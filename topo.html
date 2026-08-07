@@ -182,21 +182,21 @@
               <small class="topo-range-note">Prescribed reference path only</small>
             </div>
             <label class="topo-range-field" for="topo-display-scale">
-              <span>Display scale (display only)</span>
+              <span>Display scale · visible extent</span>
               <span class="topo-range-row">
                 <input
                   id="topo-display-scale"
                   type="range"
-                  min="50"
-                  max="150"
-                  step="5"
-                  value="100"
-                  data-keyboard-step="5"
+                  min="0.5"
+                  max="2"
+                  step="0.25"
+                  value="1"
+                  data-keyboard-step="0.25"
                   aria-label="Display-only map framing scale"
                 />
-                <output id="topo-display-scale-output" for="topo-display-scale">100%</output>
+                <output id="topo-display-scale-output" for="topo-display-scale">1.00× · 1.00 high</output>
               </span>
-              <small class="topo-range-note">Changes visible framing only; calculated wake values, contour levels and physical coordinates stay unchanged.</small>
+              <small class="topo-range-note">Lower scale shows a wider coordinate window; higher scale shows a closer view. Wake law and contour values stay unchanged.</small>
             </label>
             <fieldset id="topo-background-control" class="topo-radio-field">
               <legend>Neutral background</legend>

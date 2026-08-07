@@ -5,6 +5,10 @@ export const TOPO_REFERENCE_SCALE = 4;
 export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
 export const TOPO_DEFAULT_CONTOUR_RANGE_DECADES = 3;
 export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
+export const TOPO_DEFAULT_DISPLAY_SCALE = 1;
+export const TOPO_MIN_DISPLAY_SCALE = 0.5;
+export const TOPO_MAX_DISPLAY_SCALE = 2;
+export const TOPO_DISPLAY_SCALE_STEP = 0.25;
 export const TOPO_DISPLAY_MAPPING_ID = "signed-log10";
 export const TOPO_HEATMAP_MODE = Object.freeze({
   PHYSICAL_MAGNITUDE: "physical-magnitude",
@@ -59,6 +63,19 @@ function requireFiniteNumber(value, label) {
     throw new TypeError(label + " must be finite.");
   }
   return numericValue;
+}
+
+export function normalizeTopoDisplayScale(
+  value = TOPO_DEFAULT_DISPLAY_SCALE,
+) {
+  const scale = requireFiniteNumber(value, "displayScale");
+  if (scale < TOPO_MIN_DISPLAY_SCALE || scale > TOPO_MAX_DISPLAY_SCALE) {
+    throw new RangeError(
+      "displayScale must lie in [" + TOPO_MIN_DISPLAY_SCALE + ", " +
+      TOPO_MAX_DISPLAY_SCALE + "].",
+    );
+  }
+  return scale;
 }
 
 export function transformTopoValue(
@@ -407,17 +424,44 @@ export function topoWorldPointForCanvasPixel({
   pixelY,
   width,
   height,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
   const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
   const x = requireFiniteNumber(pixelX, "pixelX");
   const y = requireFiniteNumber(pixelY, "pixelY");
-  const commonScale = Math.max(1, canvasHeight - 1);
+  const commonScale = Math.max(1, canvasHeight - 1) *
+    normalizeTopoDisplayScale(displayScale);
   const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, canvasWidth - 1);
-  const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
+  const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
+    Math.max(1, canvasHeight - 1);
   return Object.freeze({
     x: TOPO_SOURCE_POSITION.x + (x - sourcePixelX) / commonScale,
     y: TOPO_SOURCE_POSITION.y + (sourcePixelY - y) / commonScale,
+  });
+}
+
+export function topoCanvasPixelForWorldPoint({
+  worldX,
+  worldY,
+  width,
+  height,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+} = {}) {
+  const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
+  const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
+  const commonScale = Math.max(1, canvasHeight - 1) *
+    normalizeTopoDisplayScale(displayScale);
+  const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, canvasWidth - 1);
+  const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
+    Math.max(1, canvasHeight - 1);
+  return Object.freeze({
+    x: sourcePixelX +
+      (requireFiniteNumber(worldX, "worldX") - TOPO_SOURCE_POSITION.x) *
+        commonScale,
+    y: sourcePixelY -
+      (requireFiniteNumber(worldY, "worldY") - TOPO_SOURCE_POSITION.y) *
+        commonScale,
   });
 }
 
@@ -427,6 +471,7 @@ export function createTopoExponentRadiusChart({
   pixelRatio = 1,
   sourceMarkerRadiusPixels,
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
   const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
@@ -436,6 +481,7 @@ export function createTopoExponentRadiusChart({
     requireFiniteNumber(sourceMarkerRadiusPixels, "sourceMarkerRadiusPixels"),
   );
   const span = topoContourRangeDecades(contourRangeDecades);
+  const mapScale = normalizeTopoDisplayScale(displayScale);
   const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, canvasWidth - 1);
   const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
     Math.max(1, canvasHeight - 1);
@@ -445,10 +491,10 @@ export function createTopoExponentRadiusChart({
     sourcePixelY,
     Math.max(1, canvasHeight - 1) - sourcePixelY,
   );
-  const innerRadiusPixels = markerRadius +
-    TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS * density;
-  const outerRadiusPixels = boundaryRadius -
-    TOPO_EXPONENT_RADIUS_EDGE_INSET_CSS * density;
+  const innerRadiusPixels = (markerRadius +
+    TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS * density) * mapScale;
+  const outerRadiusPixels = (boundaryRadius -
+    TOPO_EXPONENT_RADIUS_EDGE_INSET_CSS * density) * mapScale;
   if (!(outerRadiusPixels > innerRadiusPixels)) {
     throw new RangeError(
       "Exponent-radius chart requires room outside the source marker.",
@@ -456,6 +502,7 @@ export function createTopoExponentRadiusChart({
   }
   return Object.freeze({
     chartId: TOPO_EXPONENT_RADIUS_CHART_ID,
+    displayScale: mapScale,
     span,
     sourcePixelX,
     sourcePixelY,
@@ -487,18 +534,21 @@ export function createTopoEqualRadiusChart({
   anchorPixelX,
   anchorPixelY,
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
   const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
   const density = Math.max(1, requireFiniteNumber(pixelRatio, "pixelRatio"));
   const span = topoContourRangeDecades(contourRangeDecades);
+  const mapScale = normalizeTopoDisplayScale(displayScale);
   const inset = TOPO_EXPONENT_RADIUS_EDGE_INSET_CSS * density;
   const outerRadiusPixels = Math.max(
     1,
     Math.min(canvasWidth, canvasHeight) / 2 - inset,
-  );
+  ) * mapScale;
   return Object.freeze({
     chartId: TOPO_EQUAL_RADIUS_CHART_ID,
+    displayScale: mapScale,
     exponentMinimum: 0,
     exponentMaximum: span,
     anchorPixelX: requireFiniteNumber(anchorPixelX, "anchorPixelX"),
@@ -537,6 +587,7 @@ export function topoExponentRadiusPhysicalPointForCanvasPixel({
   width,
   height,
   chart,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   const x = requireFiniteNumber(pixelX, "pixelX");
   const y = requireFiniteNumber(pixelY, "pixelY");
@@ -570,6 +621,7 @@ export function topoExponentRadiusPhysicalPointForCanvasPixel({
     pixelY: y,
     width,
     height,
+    displayScale,
   });
   const displayWorldRadius = Math.hypot(
     displayPoint.x - TOPO_SOURCE_POSITION.x,

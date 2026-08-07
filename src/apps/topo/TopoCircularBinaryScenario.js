@@ -1,5 +1,7 @@
 import {
+  TOPO_DEFAULT_DISPLAY_SCALE,
   TOPO_INVERSE_SQUARE_SCALE,
+  normalizeTopoDisplayScale,
   normalizeTopoFieldColorValue,
 } from "./TopoInteractionContract.js";
 
@@ -90,21 +92,28 @@ export function createTopoCircularBinaryChart({
   width,
   height,
   radius = TOPO_CIRCULAR_BINARY_DEFAULT_RADIUS,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   const canvasWidth = Math.max(1, finiteNumber(width, "width"));
   const canvasHeight = Math.max(1, finiteNumber(height, "height"));
   const horizontalPixelSpan = Math.max(1, canvasWidth - 1);
   const orbitalRadius = normalizeOrbitalRadius(radius);
-  const visibleWorldHeight = Math.max(1, canvasHeight - 1) / horizontalPixelSpan;
+  const mapScale = normalizeTopoDisplayScale(displayScale);
+  const visibleWorldWidth = 1 / mapScale;
+  const visibleWorldHeight = Math.max(1, canvasHeight - 1) /
+    horizontalPixelSpan / mapScale;
+  const minimumX = TOPO_CIRCULAR_BINARY_CENTER.x - visibleWorldWidth / 2;
+  const maximumX = TOPO_CIRCULAR_BINARY_CENTER.x + visibleWorldWidth / 2;
   const minimumY = TOPO_CIRCULAR_BINARY_CENTER.y - visibleWorldHeight / 2;
   const maximumY = TOPO_CIRCULAR_BINARY_CENTER.y + visibleWorldHeight / 2;
   return Object.freeze({
     id: "topo_binary_visible_x_euclidean/v1",
-    minimumX: 0,
-    maximumX: 1,
+    minimumX,
+    maximumX,
     minimumY,
     maximumY,
-    worldUnitsPerPixel: 1 / horizontalPixelSpan,
+    worldUnitsPerPixel: 1 / (horizontalPixelSpan * mapScale),
+    displayScale: mapScale,
     center: TOPO_CIRCULAR_BINARY_CENTER,
     radius: orbitalRadius,
     orbitClippedVertically:
@@ -118,13 +127,18 @@ export function topoCircularBinaryWorldPointForCanvasPixel({
   pixelY,
   width,
   height,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
-  const chart = createTopoCircularBinaryChart({ width, height });
-  const canvasWidth = Math.max(1, finiteNumber(width, "width"));
+  const chart = createTopoCircularBinaryChart({
+    width,
+    height,
+    displayScale,
+  });
   return Object.freeze({
-    x: finiteNumber(pixelX, "pixelX") / Math.max(1, canvasWidth - 1),
-    y: chart.maximumY -
-      finiteNumber(pixelY, "pixelY") / Math.max(1, canvasWidth - 1),
+    x: chart.minimumX + finiteNumber(pixelX, "pixelX") *
+      chart.worldUnitsPerPixel,
+    y: chart.maximumY - finiteNumber(pixelY, "pixelY") *
+      chart.worldUnitsPerPixel,
   });
 }
 

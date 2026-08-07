@@ -5,9 +5,11 @@ import { readFileSync } from "node:fs";
 import {
   TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
+  TOPO_DEFAULT_DISPLAY_SCALE,
   TOPO_DEFAULT_HEATMAP_MODE,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_DISPLAY_MAPPING_ID,
+  TOPO_DISPLAY_SCALE_STEP,
   TOPO_EQUAL_RADIUS_CHART_ID,
   TOPO_EXPONENT_RADIUS_CHART_ID,
   TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS,
@@ -15,6 +17,8 @@ import {
   TOPO_INTERACTION_CONTRACT_ID,
   TOPO_HEATMAP_MODE,
   TOPO_INVERSE_SQUARE_SCALE,
+  TOPO_MAX_DISPLAY_SCALE,
+  TOPO_MIN_DISPLAY_SCALE,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
   TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE,
@@ -34,6 +38,7 @@ import {
   createTopoSyntheticContourSelection,
   createTopoSyntheticRawSampler,
   inverseTopoTransform,
+  normalizeTopoDisplayScale,
   normalizeTopoDisplayValue,
   normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
@@ -42,6 +47,7 @@ import {
   syntheticTopoCausalDelay,
   syntheticTopoSignedValue,
   topoContourRangeDecades,
+  topoCanvasPixelForWorldPoint,
   topoEqualRadiusDisplayRadiusForExponent,
   topoExponentDisplayRadiusForExponent,
   topoExponentRadiusPhysicalPointForCanvasPixel,
@@ -82,6 +88,63 @@ function closeTo(actual, expected, tolerance = 1e-12) {
     String(actual) + " is not within " + tolerance + " of " + expected,
   );
 }
+
+test("display scale changes the sampled world extent while preserving its anchor", () => {
+  assert.equal(TOPO_DEFAULT_DISPLAY_SCALE, 1);
+  assert.equal(TOPO_MIN_DISPLAY_SCALE, 0.5);
+  assert.equal(TOPO_MAX_DISPLAY_SCALE, 2);
+  assert.equal(TOPO_DISPLAY_SCALE_STEP, 0.25);
+  assert.equal(normalizeTopoDisplayScale("1.25"), 1.25);
+  assert.throws(() => normalizeTopoDisplayScale(0.49), /must lie in/u);
+  assert.throws(() => normalizeTopoDisplayScale(2.01), /must lie in/u);
+
+  const width = 916;
+  const height = 720;
+  const anchorPixel = topoCanvasPixelForWorldPoint({
+    worldX: TOPO_SOURCE_POSITION.x,
+    worldY: TOPO_SOURCE_POSITION.y,
+    width,
+    height,
+    displayScale: 2,
+  });
+  closeTo(anchorPixel.x, TOPO_SOURCE_POSITION.x * (width - 1));
+  closeTo(anchorPixel.y, (1 - TOPO_SOURCE_POSITION.y) * (height - 1));
+
+  for (const [displayScale, visibleHeight] of [[0.5, 2], [1, 1], [2, 0.5]]) {
+    const upperLeft = topoWorldPointForCanvasPixel({
+      pixelX: 0,
+      pixelY: 0,
+      width,
+      height,
+      displayScale,
+    });
+    const lowerRight = topoWorldPointForCanvasPixel({
+      pixelX: width - 1,
+      pixelY: height - 1,
+      width,
+      height,
+      displayScale,
+    });
+    closeTo(upperLeft.y - lowerRight.y, visibleHeight);
+    const probe = { x: 0.72, y: 0.31 };
+    const pixel = topoCanvasPixelForWorldPoint({
+      worldX: probe.x,
+      worldY: probe.y,
+      width,
+      height,
+      displayScale,
+    });
+    const roundTrip = topoWorldPointForCanvasPixel({
+      pixelX: pixel.x,
+      pixelY: pixel.y,
+      width,
+      height,
+      displayScale,
+    });
+    closeTo(roundTrip.x, probe.x);
+    closeTo(roundTrip.y, probe.y);
+  }
+});
 
 test("physical magnitude is the default and enhanced decade contrast is optional", () => {
   assert.equal(TOPO_INTERACTION_CONTRACT_ID, "topo_interaction_and_color/v1");

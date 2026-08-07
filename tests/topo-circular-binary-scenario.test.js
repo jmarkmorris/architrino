@@ -189,6 +189,51 @@ test("responsive policy clips vertical overflow without shrinking or distorting 
   closeTo(wide.worldUnitsPerPixel * 1199, 1);
 });
 
+test("display scale changes circular-binary extent without moving its center", () => {
+  const width = 1000;
+  const height = 800;
+  const wide = createTopoCircularBinaryChart({
+    width,
+    height,
+    displayScale: 0.5,
+  });
+  const normal = createTopoCircularBinaryChart({
+    width,
+    height,
+    displayScale: 1,
+  });
+  const close = createTopoCircularBinaryChart({
+    width,
+    height,
+    displayScale: 2,
+  });
+  closeTo(wide.maximumX - wide.minimumX, 2);
+  closeTo(normal.maximumX - normal.minimumX, 1);
+  closeTo(close.maximumX - close.minimumX, 0.5);
+  for (const chart of [wide, normal, close]) {
+    closeTo((chart.minimumX + chart.maximumX) / 2, 0.5);
+    closeTo((chart.minimumY + chart.maximumY) / 2, 0.5);
+  }
+  const wideCenter = topoCircularBinaryWorldPointForCanvasPixel({
+    pixelX: (width - 1) / 2,
+    pixelY: (height - 1) / 2,
+    width,
+    height,
+    displayScale: 0.5,
+  });
+  const closeCenter = topoCircularBinaryWorldPointForCanvasPixel({
+    pixelX: (width - 1) / 2,
+    pixelY: (height - 1) / 2,
+    width,
+    height,
+    displayScale: 2,
+  });
+  closeTo(wideCenter.x, TOPO_CIRCULAR_BINARY_CENTER.x);
+  closeTo(wideCenter.y, TOPO_CIRCULAR_BINARY_CENTER.y);
+  closeTo(closeCenter.x, TOPO_CIRCULAR_BINARY_CENTER.x);
+  closeTo(closeCenter.y, TOPO_CIRCULAR_BINARY_CENTER.y);
+});
+
 test("one replay is one orbit and beta zero is stationary with playback disabled", () => {
   const movingStart = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 0 });
   const movingQuarter = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 0.25 });

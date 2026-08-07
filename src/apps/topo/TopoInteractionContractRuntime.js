@@ -4,6 +4,7 @@ import {
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
 import {
+  TOPO_DEFAULT_DISPLAY_SCALE,
   TOPO_DISPLAY_MAPPING_ID,
   TOPO_HEATMAP_MODE,
   TOPO_INVERSE_SQUARE_SCALE,
@@ -16,9 +17,11 @@ import {
   createTopoSyntheticContourRenderPlan,
   createTopoSyntheticRawSampler,
   normalizeTopoExponentRadiusColorValue,
+  normalizeTopoDisplayScale,
   normalizeTopoFieldColorValue,
   resolveTopoCanvasPixelSize,
   topoContourRangeDecades,
+  topoCanvasPixelForWorldPoint,
   topoEqualRadiusDisplayRadiusForExponent,
   topoExponentDisplayRadiusForExponent,
   topoExponentRadiusPhysicalPointForCanvasPixel,
@@ -368,6 +371,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const fragmentShader = compileFieldShader(fieldGl.FRAGMENT_SHADER, `
       precision highp float;
       uniform vec2 u_size;
+      uniform float u_display_scale;
       uniform float u_beta;
       uniform float u_pair_mode;
       uniform float u_pair_time;
@@ -423,12 +427,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
 
       void main() {
-        float commonScale = max(1.0, u_size.y - 1.0);
+        float commonScale = max(1.0, u_size.y - 1.0) * u_display_scale;
         vec2 pixel = gl_FragCoord.xy - vec2(0.5);
         float sourceX = (2.0 / 3.0) * max(1.0, u_size.x - 1.0);
+        float sourceY = 0.5 * max(1.0, u_size.y - 1.0);
         vec2 worldPoint = vec2(
           (2.0 / 3.0) + (pixel.x - sourceX) / commonScale,
-          pixel.y / commonScale
+          0.5 + (pixel.y - sourceY) / commonScale
         );
         if (u_source_local_mode > 0.5) {
           vec2 displayOffset = worldPoint - vec2(2.0 / 3.0, 0.5);
@@ -544,6 +549,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       position: fieldGl.getAttribLocation(program, "a_position"),
       uniforms: Object.fromEntries([
         "u_size",
+        "u_display_scale",
         "u_beta",
         "u_pair_mode",
         "u_pair_time",
@@ -577,6 +583,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const fragmentShader = compileFieldShader(fieldGl.FRAGMENT_SHADER, `
       precision highp float;
       uniform vec2 u_size;
+      uniform float u_display_scale;
       uniform float u_beta;
       uniform float u_time;
       uniform float u_kappa;
@@ -632,10 +639,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
 
       void main() {
-        float worldScale = max(1.0, u_size.x - 1.0);
+        float worldScale = max(1.0, u_size.x - 1.0) * u_display_scale;
         vec2 pixel = gl_FragCoord.xy - vec2(0.5);
         vec2 point = vec2(
-          pixel.x / worldScale,
+          0.5 +
+            (pixel.x - 0.5 * max(1.0, u_size.x - 1.0)) / worldScale,
           0.5 + (pixel.y - 0.5 * max(1.0, u_size.y - 1.0)) / worldScale
         );
         float omega = u_direction_sign * u_beta / u_radius;
@@ -706,6 +714,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       position: fieldGl.getAttribLocation(program, "a_position"),
       uniforms: Object.fromEntries([
         "u_size",
+        "u_display_scale",
         "u_beta",
         "u_time",
         "u_kappa",
@@ -845,6 +854,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         : TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE,
       contourRangeDecades: Number(dom.contours.value),
       contourVisibility: Number(dom.contourVisibility.value) / 100,
+      displayScale: normalizeTopoDisplayScale(dom.displayScale.value),
       backgroundMode:
         dom.backgroundInputs.find((input) => input.checked)?.value === "white"
           ? "white"
@@ -944,6 +954,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pixelRatio,
       }),
       contourRangeDecades: state.contourRangeDecades,
+      displayScale: state.displayScale,
     });
   }
 
@@ -956,6 +967,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       pixelRatio,
       TOPO_SOURCE_POSITION,
+      state.displayScale,
     );
     return Object.freeze({
       sourceId: state.scenarioId,
@@ -986,6 +998,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         anchorPixelX: anchor.pixelX,
         anchorPixelY: anchor.pixelY,
         contourRangeDecades: state.contourRangeDecades,
+        displayScale: state.displayScale,
       }),
     });
   }
@@ -1006,20 +1019,63 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function updateDisplayScalePresentation() {
-    const percent = Number(dom.displayScale.value);
-    const label = percent.toFixed(0) + "%";
-    dom.app.style.setProperty(
-      "--topo-map-display-scale",
-      (percent / 100).toFixed(2),
-    );
-    dom.app.dataset.displayScalePercent = percent.toFixed(0);
+    const scale = normalizeTopoDisplayScale(dom.displayScale.value);
+    const visibleHeight = 1 / scale;
+    const label = scale.toFixed(2) + "× · " +
+      visibleHeight.toFixed(2) + " high";
+    dom.app.dataset.displayScale = scale.toFixed(2);
+    dom.app.dataset.visibleWorldHeight = visibleHeight.toFixed(4);
     dom.displayScaleOutput.value = label;
     dom.displayScaleOutput.textContent = label;
     dom.displayScale.setAttribute(
       "aria-valuetext",
-      percent.toFixed(0) +
-        " percent; display framing only; physical calculation unchanged",
+      scale.toFixed(2) + " times map scale; " +
+        visibleHeight.toFixed(2) +
+        " world units visible vertically; physical calculation unchanged",
     );
+  }
+
+  function updateVisibleExtentPresentation(width, height, state) {
+    let minimumX;
+    let maximumX;
+    let minimumY;
+    let maximumY;
+    if (state.binary) {
+      const chart = createTopoCircularBinaryChart({
+        width,
+        height,
+        radius: state.orbitalRadius,
+        displayScale: state.displayScale,
+      });
+      ({ minimumX, maximumX, minimumY, maximumY } = chart);
+    } else {
+      const upperLeft = topoWorldPointForCanvasPixel({
+        pixelX: 0,
+        pixelY: 0,
+        width,
+        height,
+        displayScale: state.displayScale,
+      });
+      const lowerRight = topoWorldPointForCanvasPixel({
+        pixelX: Math.max(0, width - 1),
+        pixelY: Math.max(0, height - 1),
+        width,
+        height,
+        displayScale: state.displayScale,
+      });
+      minimumX = upperLeft.x;
+      maximumX = lowerRight.x;
+      minimumY = lowerRight.y;
+      maximumY = upperLeft.y;
+    }
+    dom.app.dataset.visibleWorldMinimumX = minimumX.toFixed(6);
+    dom.app.dataset.visibleWorldMaximumX = maximumX.toFixed(6);
+    dom.app.dataset.visibleWorldMinimumY = minimumY.toFixed(6);
+    dom.app.dataset.visibleWorldMaximumY = maximumY.toFixed(6);
+    dom.app.dataset.visibleWorldWidth = (maximumX - minimumX).toFixed(6);
+    dom.app.dataset.visibleWorldHeight = (maximumY - minimumY).toFixed(6);
+    dom.app.dataset.fieldViewportPixels = width + "x" + height;
+    dom.app.dataset.contourViewportPixels = width + "x" + height;
   }
 
   function updateBinaryTransportVisibility(state = getState()) {
@@ -1381,6 +1437,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.enableVertexAttribArray(position);
       fieldGl.vertexAttribPointer(position, 2, fieldGl.FLOAT, false, 0, 0);
       fieldGl.uniform2f(uniforms.u_size, width, height);
+      fieldGl.uniform1f(uniforms.u_display_scale, state.displayScale);
       fieldGl.uniform1f(uniforms.u_beta, state.beta);
       fieldGl.uniform1f(uniforms.u_time, state.playback.observationTime);
       fieldGl.uniform1f(uniforms.u_kappa, TOPO_CIRCULAR_BINARY_KAPPA);
@@ -1437,6 +1494,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         width,
         height,
         radius: state.orbitalRadius,
+        displayScale: state.displayScale,
       });
       dom.app.dataset.binaryVerticalOverflowPolicy = chart.verticalOverflowPolicy;
       dom.app.dataset.binaryOrbitClippedVertically = String(
@@ -1478,6 +1536,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.enableVertexAttribArray(position);
       fieldGl.vertexAttribPointer(position, 2, fieldGl.FLOAT, false, 0, 0);
       fieldGl.uniform2f(uniforms.u_size, width, height);
+      fieldGl.uniform1f(uniforms.u_display_scale, state.displayScale);
       fieldGl.uniform1f(uniforms.u_beta, state.beta);
       const pairFrame = state.pairMode
         ? createTopoCollinearPairFrame({
@@ -1528,7 +1587,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         effectivePixelRatio(width, height),
         state,
       );
-      const commonScale = Math.max(1, height - 1);
+      const commonScale = Math.max(1, height - 1) * state.displayScale;
       fieldGl.uniform1f(
         uniforms.u_source_local_mode,
         sourceLocalChart ? 1 : 0,
@@ -1592,18 +1651,21 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     position = TOPO_SOURCE_POSITION,
+    displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
   ) {
-    const commonScale = Math.max(1, height - 1);
-    const sourceAnchorX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
-    const x = sourceAnchorX +
-      (position.x - TOPO_SOURCE_POSITION.x) * commonScale;
-    const y = (1 - position.y) * commonScale;
+    const pixel = topoCanvasPixelForWorldPoint({
+      worldX: position.x,
+      worldY: position.y,
+      width,
+      height,
+      displayScale,
+    });
     const radius = resolveTopoSourceMarkerRadius({
       width,
       height,
       pixelRatio,
-    });
-    return { x, y, radius };
+    }) * displayScale;
+    return { x: pixel.x, y: pixel.y, radius };
   }
 
   function drawSourceMarker(
@@ -1614,12 +1676,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     polaritySign,
+    displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
   ) {
     const radius = resolveTopoSourceMarkerRadius({
       width,
       height,
       pixelRatio,
-    });
+    }) * displayScale;
     const sourceColor = polaritySign < 0
       ? PHOTON_CHARGE_COLORS.electrino
       : PHOTON_CHARGE_COLORS.positrino;
@@ -1663,12 +1726,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     pixelRatio,
     polaritySign,
     position = TOPO_SOURCE_POSITION,
+    displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
   ) {
-    const { x, y, radius } = sourceOverlayGeometry(
+    const { x, y } = sourceOverlayGeometry(
       width,
       height,
       pixelRatio,
       position,
+      displayScale,
     );
     drawSourceMarker(
       targetContext,
@@ -1678,6 +1743,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       pixelRatio,
       polaritySign,
+      displayScale,
     );
   }
 
@@ -1687,6 +1753,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     sources,
+    displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
   ) {
     const positioned = sources.map((source) => ({
       source,
@@ -1695,6 +1762,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         source.position,
+        displayScale,
       ),
     }));
     const [first, second] = positioned;
@@ -1711,6 +1779,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pixelRatio,
         source.polaritySign,
         source.position,
+        displayScale,
       ));
       return;
     }
@@ -1733,6 +1802,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pixelRatio,
         source.polaritySign,
         source.position,
+        displayScale,
       );
       targetContext.restore();
     });
@@ -1756,7 +1826,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     const centerX = TOPO_CIRCULAR_BINARY_CENTER.x * Math.max(1, width - 1);
     const centerY = Math.max(1, height - 1) / 2;
-    const orbitPixelRadius = state.orbitalRadius * Math.max(1, width - 1);
+    const worldPixelScale = Math.max(1, width - 1) * state.displayScale;
+    const orbitPixelRadius = state.orbitalRadius * worldPixelScale;
     if (state.showOrbitGuide) {
       contourStagingContext.save();
       const whiteBackground = state.backgroundMode === "white";
@@ -1792,17 +1863,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
       });
       return {
         sourceSign,
-        x: position.x * Math.max(1, width - 1),
+        x: centerX +
+          (position.x - TOPO_CIRCULAR_BINARY_CENTER.x) * worldPixelScale,
         y: centerY -
           (position.y - TOPO_CIRCULAR_BINARY_CENTER.y) *
-            Math.max(1, width - 1),
+            worldPixelScale,
       };
     });
     const markerRadius = resolveTopoSourceMarkerRadius({
       width,
       height,
       pixelRatio,
-    });
+    }) * state.displayScale;
     const markerDistance = Math.hypot(
       sourceMarkers[1].x - sourceMarkers[0].x,
       sourceMarkers[1].y - sourceMarkers[0].y,
@@ -1847,6 +1919,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         marker.sourceSign,
+        state.displayScale,
       );
       contourStagingContext.restore();
     });
@@ -1884,6 +1957,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.direction,
       state.showOrbitGuide,
       state.backgroundMode,
+      state.displayScale.toFixed(2),
     ].join(":");
     return true;
   }
@@ -1951,16 +2025,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
       dom.app.dataset.majorDecadeLabelPositions = "";
       return;
     }
-    const commonScale = Math.max(1, height - 1);
+    const commonScale = Math.max(1, height - 1) * state.displayScale;
     const sourcePixelX = sourcePixelPosition?.x ??
       TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
     const sourcePixelY = sourcePixelPosition?.y ??
-      (1 - TOPO_SOURCE_POSITION.y) * commonScale;
+      (1 - TOPO_SOURCE_POSITION.y) * Math.max(1, height - 1);
     const markerRadius = resolveTopoSourceMarkerRadius({
       width,
       height,
       pixelRatio,
-    });
+    }) * state.displayScale;
     const edgeInset = 8 * pixelRatio;
     const labelGap = 5 * pixelRatio;
     const labels = [];
@@ -1986,7 +2060,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
       const centerX = sourcePixelX +
         (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
-      const centerY = (1 - circle.center.y) * commonScale;
+      const centerY = sourcePixelY -
+        (circle.center.y - TOPO_SOURCE_POSITION.y) * commonScale;
       const radius = circle.radius * commonScale;
       targetContext.globalAlpha = 0.82 * circle.revealWeight;
       const label = circle.signedMajorDecadeLabel ?? circle.majorDecadeLabel;
@@ -2186,6 +2261,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
             width: previewWidth,
             height: previewHeight,
             chart: sourceLocalChart,
+            displayScale: state.displayScale,
           })
           : null;
         const worldPoint = sourceLocalChart
@@ -2196,12 +2272,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
             pixelY,
             width: previewWidth,
             height: previewHeight,
+            displayScale: state.displayScale,
           })
           : topoWorldPointForCanvasPixel({
             pixelX,
             pixelY,
             width: previewWidth,
             height: previewHeight,
+            displayScale: state.displayScale,
           });
         const rawValue = sampleRaw
           ? providerSample(pixelX, pixelY)
@@ -2233,6 +2311,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       state.scenarioId,
       state.beta.toFixed(4),
+      "scale=" + state.displayScale.toFixed(2),
       state.binary
         ? state.playback.progress.toFixed(6) + ":" +
           state.orbitalRadius.toFixed(2) + ":" + state.direction
@@ -2264,6 +2343,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           pixelY,
           width: gridWidth,
           height: gridHeight,
+          displayScale: state.displayScale,
         });
         const index = pixelY * gridWidth + pixelX;
         const value = sampleRaw(worldPoint.x, worldPoint.y);
@@ -2311,6 +2391,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
               width,
               height,
               chart: sourceLocalChart,
+              displayScale: state.displayScale,
             })
             : null;
           const worldPoint = sourceLocalChart
@@ -2321,12 +2402,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
               pixelY: row,
               width,
               height,
+              displayScale: state.displayScale,
             })
             : topoWorldPointForCanvasPixel({
               pixelX,
               pixelY: row,
               width,
               height,
+              displayScale: state.displayScale,
             });
           const sampleIndex = row * width + pixelX;
           const value = worldPoint
@@ -2555,6 +2638,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       pixelRatio,
       pairFrame.sources,
+      state.displayScale,
     );
     if (revision !== frameRevision) {
       return false;
@@ -2607,6 +2691,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.contourRangeDecades.toFixed(0),
       state.contourVisibility.toFixed(4),
       state.backgroundMode,
+      state.displayScale.toFixed(2),
       contourKey,
     ].join(":");
     if (interactionStarted !== null) {
@@ -2682,12 +2767,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
         contourStagingContext.restore();
       });
     }
-    const commonScale = Math.max(1, height - 1);
-    const defaultSourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
-    const labelCenter = Object.freeze({
-      x: TOPO_SOURCE_POSITION.x +
-        (anchor.pixelX - defaultSourcePixelX) / commonScale,
-      y: 1 - anchor.pixelY / commonScale,
+    const commonScale = Math.max(1, height - 1) * state.displayScale;
+    const labelCenter = topoWorldPointForCanvasPixel({
+      pixelX: anchor.pixelX,
+      pixelY: anchor.pixelY,
+      width,
+      height,
+      displayScale: state.displayScale,
     });
     drawMajorDecadeLabels(
       contourStagingContext,
@@ -2748,6 +2834,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           height,
           pixelRatio,
           sourceSign,
+          state.displayScale,
         );
       }
     } else if (state.pairMode) {
@@ -2757,6 +2844,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         anchor.pairSources,
+        state.displayScale,
       );
     } else {
       drawSourceOverlay(
@@ -2766,6 +2854,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pixelRatio,
         anchor.polaritySign,
         anchor.position,
+        state.displayScale,
       );
     }
     if (revision !== frameRevision) {
@@ -2798,6 +2887,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       anchor.sourceId,
       anchor.displayedTime.toFixed(9),
       state.contourRangeDecades.toFixed(0),
+      state.displayScale.toFixed(2),
       width,
       height,
     ].join(":");
@@ -2809,6 +2899,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.contourRangeDecades.toFixed(0),
       state.contourVisibility.toFixed(4),
       state.backgroundMode,
+      state.displayScale.toFixed(2),
       width,
       height,
     ].join(":");
@@ -2876,7 +2967,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       beta: state.beta,
       contourRangeDecades: state.contourRangeDecades,
     });
-    const commonScale = Math.max(1, height - 1);
+    const commonScale = Math.max(1, height - 1) * state.displayScale;
     const sourceLocalChart = createSourceLocalChart(
       width,
       height,
@@ -2894,16 +2985,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }))
       : physicalCircles;
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
-    const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) * commonScale;
+    const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
+      Math.max(1, height - 1);
     const markerRadius = resolveTopoSourceMarkerRadius({
       width,
       height,
       pixelRatio,
-    });
+    }) * state.displayScale;
     const visibleCircles = circles.filter((circle) => {
       const centerX = sourcePixelX +
         (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
-      const centerY = (1 - circle.center.y) * commonScale;
+      const centerY = sourcePixelY -
+        (circle.center.y - TOPO_SOURCE_POSITION.y) * commonScale;
       const radius = circle.radius * commonScale;
       const minDx = centerX < 0
         ? -centerX
@@ -2930,6 +3023,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.pairMode ? state.pairPhase.toFixed(5) : "static",
       state.contourRangeDecades.toFixed(0),
       state.viewMode,
+      state.displayScale.toFixed(2),
       width,
       height,
       circles.map(({ causalDelay }) => causalDelay.toFixed(8)).join(","),
@@ -2983,7 +3077,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
       const centerX = sourcePixelX +
         (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
-      const centerY = (1 - circle.center.y) * commonScale;
+      const centerY = sourcePixelY -
+        (circle.center.y - TOPO_SOURCE_POSITION.y) * commonScale;
       const radius = circle.radius * commonScale;
       const circlePolaritySign = circle.polaritySign ?? state.polaritySign;
       const contourStyle = createTopoSequentialContourStyle({
@@ -3033,6 +3128,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         pairFrame.sources,
+        state.displayScale,
       );
     } else {
       drawSourceOverlay(
@@ -3041,6 +3137,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         state.polaritySign,
+        TOPO_SOURCE_POSITION,
+        state.displayScale,
       );
     }
     if (revision !== frameRevision) {
@@ -3057,6 +3155,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.contourVisibility.toFixed(4),
       state.polaritySign,
       state.viewMode,
+      state.displayScale.toFixed(2),
     ].join(":");
     dom.app.dataset.lastContourPaintMs = String(Math.round(
       (windowLike.performance?.now?.() ?? Date.now()) - paintStarted,
@@ -3201,6 +3300,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       }
       const pixelRatio = effectivePixelRatio(width, height);
       const styles = readStyles(state);
+      updateVisibleExtentPresentation(width, height, state);
       if (fieldResized) {
         context.fillStyle = styles.zero;
         context.fillRect(0, 0, width, height);
@@ -3246,6 +3346,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
             ? state.pairPhase.toFixed(5)
             : "static",
         state.binary ? state.orbitalRadius.toFixed(2) : state.contourRangeDecades.toFixed(0),
+        state.displayScale.toFixed(2),
         state.binary ? state.showOrbitGuide : state.contourVisibility.toFixed(4),
         state.binary
           ? state.backgroundMode + ":" + state.direction
@@ -3611,7 +3712,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }));
   dom.backgroundInputs.forEach((input) =>
     listen(input, "change", scheduleFrameChange));
-  listen(dom.displayScale, "input", updateDisplayScalePresentation);
+  listen(dom.displayScale, "input", () => {
+    updateDisplayScalePresentation();
+    scheduleFrameChange();
+  });
   dom.viewInputs.forEach((input) =>
     listen(input, "change", () => {
       enforceAvailableView({ announce: true });

@@ -343,7 +343,7 @@ test("one native Purple/White control persists across all four display-only scen
   assert.doesNotMatch(runtime, /dom\.scenario\.value/u);
 });
 
-test("display-only scale slider changes framing outside calculation state", () => {
+test("display scale redraws a full-viewport computed coordinate window", () => {
   const html = readFileSync(new URL("../topo.html", import.meta.url), "utf8");
   const css = readFileSync(new URL(
     "../src/apps/topo/topo.css",
@@ -358,18 +358,28 @@ test("display-only scale slider changes framing outside calculation state", () =
 
   assert.notEqual(sliderIndex, -1);
   assert.ok(sliderIndex < backgroundIndex);
-  assert.match(html, /Display scale \(display only\)/u);
-  assert.match(html, /id="topo-display-scale"[\s\S]*min="50"[\s\S]*max="150"[\s\S]*value="100"/u);
-  assert.match(html, /calculated wake values, contour levels and physical coordinates stay unchanged/u);
-  assert.match(css, /transform: scale\(var\(--topo-map-display-scale\)\)/u);
-  assert.match(runtime, /listen\(dom\.displayScale, "input", updateDisplayScalePresentation\)/u);
+  assert.match(html, /Display scale · visible extent/u);
+  assert.match(html, /id="topo-display-scale"[\s\S]*min="0\.5"[\s\S]*max="2"[\s\S]*step="0\.25"[\s\S]*value="1"/u);
+  assert.match(html, /Lower scale shows a wider coordinate window/u);
+  assert.doesNotMatch(css, /topo-map-display-scale/u);
+  const canvasRule = css.match(
+    /#topo-canvas,\n#topo-contour-canvas \{([\s\S]*?)\n\}/u,
+  )?.[1] ?? "";
+  assert.notEqual(canvasRule, "");
+  assert.doesNotMatch(canvasRule, /transform/u);
+  assert.match(runtime, /listen\(dom\.displayScale, "input", \(\) => \{[\s\S]*updateDisplayScalePresentation\(\);[\s\S]*scheduleFrameChange\(\);/u);
   assert.match(runtime, /physical calculation unchanged/u);
   assert.match(runtime, /function canvasLayoutSize\(\)[\s\S]*dom\.canvas\.clientWidth[\s\S]*dom\.canvas\.clientHeight/u);
+  assert.match(runtime, /function updateVisibleExtentPresentation\([\s\S]*fieldViewportPixels[\s\S]*contourViewportPixels/u);
   const stateSource = runtime.slice(
     runtime.indexOf("function getState()"),
     runtime.indexOf("function sourceLocalViewRequested"),
   );
-  assert.doesNotMatch(stateSource, /displayScale/u);
+  assert.match(stateSource, /displayScale: normalizeTopoDisplayScale/u);
+  const rawFrameKeyBody = runtime.match(
+    /function createRawFrameKey\([^)]*\) \{([\s\S]*?)\n  \}/u,
+  )?.[1] ?? "";
+  assert.match(rawFrameKeyBody, /state\.displayScale/u);
 });
 
 test("collinear playback extracts a current fail-closed contour frame while motion remains active", () => {
