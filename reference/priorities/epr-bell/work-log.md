@@ -7,6 +7,28 @@ adjudications, and handoffs. Detailed reasoning belongs in
 
 ## Log Entries
 
+### 2026-08-07 — Stanford Encyclopedia Bell-theorem entry mined
+
+The 2024 substantive revision of Wayne Myrvold, Marco Genovese, and Abner
+Shimony's Stanford Encyclopedia of Philosophy entry, *Bell's Theorem*, was
+mined as expert synthesis and a primary-source lead map. The focused
+[source-mining packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md)
+records the source artifact, section map, authority boundary, retained
+assembly insights, primary leads, and discard decisions.
+
+The pass sharpened existing objects rather than creating a new gate. EPRB-002
+now distinguishes a live remote-setting channel from rejection of common-cause
+screening; EPRB-003 separates conditional dependence, operational
+no-signaling, and control access; EPRB-004 and EPRB-007 require an
+assembly-defined outcome-closure event; EPRB-006 requires a native measure on
+the allowed physical state space; and EPRB-008 requires the full off-axis
+angular table plus PI/OI diagnostics from one record family.
+
+The entry's experimental values were not promoted, and its claim that the
+2015 tests require no additional hypothesis was rejected as an overstatement.
+No Bell route, reader-facing corpus claim, finite-$c_f$ identification, new
+gate, priority status, or generated artifact was changed.
+
 ### 2026-08-05 — Prediction-to-assembly recovery map captured
 
 The operator clarified that the Bell program must directly address the

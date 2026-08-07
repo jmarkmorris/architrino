@@ -40,8 +40,12 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   independently selected setting pairs. Determinism and “realism” do not add
   separate mathematical premises, and a deterministic setting generator does
   not by itself violate measurement independence. See the focused
-  [Maudlin EPR source-mining packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md)
-  and [Maudlin Bell-foundations packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md).
+  [Maudlin EPR source-mining packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md),
+  [Maudlin Bell-foundations packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md),
+  and [Stanford Encyclopedia Bell-theorem packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md).
+  Parameter independence and outcome independence may be recorded as
+  diagnostics, but they do not replace the question's factorization and
+  measurement-independence conditions.
 - **Completion:** The operator answers the question and the lane records the
   selected assumption scope without yet promoting a mechanism.
 
@@ -53,8 +57,13 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
 - **Priority object:** `bell_route_decision_record`
 - **Request / acceptance:** Compare the passive shared record, live
   finite-speed coordination, measurement dependence, retrocausality, global
-  nonseparability, and apparatus/trial routes. Record the selected status,
-  rejected alternatives, assumptions, owner, prerequisites, and falsifier.
+  nonseparability, rejection of common-cause screening, and apparatus/trial
+  routes. Record the selected status, rejected alternatives, assumptions,
+  owner, prerequisites, and falsifier. Keep an irreducible stochastic joint
+  law distinct from a live cross-wing channel and state whether it would
+  require primitive stochasticity or an incomplete $\lambda$ under the
+  current deterministic assembly ontology. Classify a deterministic global
+  nonseparable law separately as parameter-independence failure.
   For each retained route, identify the changed conditional dependence, its
   physical variables, its quantitative joint law, and at least one
   discriminating observer-level dependence.
@@ -70,7 +79,10 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
 - **Request / acceptance:** Build the four-party preferred-frame causal model
   and state whether finite-$c_f$ screening, measurement independence, the
   required quantum marginals, or operational no-signaling fails. Include the
-  replacement observable when a premise is changed.
+  replacement observable when a premise is changed. Separately report
+  conditional factorization failure, observer-level no-signaling, and whether
+  any hidden variable carrying remote-setting dependence is accessible or
+  controllable enough to support messaging.
 - **Completion:** A line-by-line theorem-premise map and derived multipartite
   joint distribution either preserve the route or close it as a no-go.
 
@@ -90,7 +102,10 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   conservation proposal must additionally separate its global source
   constraint, locally available premeasurement variables, setting-dependent
   response functions, any live cross-wing influence, and the resulting joint
-  law.
+  law. Declare the substrate event at which one unique persistent detector
+  record closes, and require any material-apparatus explanation to name its
+  state variable, response pathway, and setting- or orientation-dependent
+  signature.
 - **Completion:** Every retained apparatus proposal has explicit variables,
   an assumption map, a quantitative signature, and a failure observation.
 
@@ -119,7 +134,11 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   one-wing marginals, and predict how the dependence changes with setting
   source, setting rate, baseline, orientation, or Noether sea state. Compare
   the mechanism with stellar and quasar setting controls without claiming
-  that those experiments logically eliminate superdeterminism.
+  that those experiments logically eliminate superdeterminism. Declare the
+  allowed physical support $\Omega_{\mathrm{phys}}$ and a native measure
+  $\mu_{\mathrm{phys}}$ derived from accepted dynamics or preparation before
+  calling the required histories rare or fine-tuned; do not measure them with
+  an arbitrary prior over physically excluded states.
 - **Completion:** A physically declared common-past mechanism either produces
   a quantitatively adequate and independently testable setting--pair
   correlation or is rejected as an unspecified correlation claim.
@@ -138,7 +157,9 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   finite-influence-speed bounds separate from the model-dependent
   identification of that influence with primitive wakes or $c_f$. Treat any
   photon-dispersion or frequency-crossover claim as a separate constitutive
-  profile requiring its own equation and evidence.
+  profile requiring its own equation and evidence. Derive the outcome-closure
+  event from the detector's persistent assembly-record condition rather than
+  selecting a convenient timing proxy.
 - **Completion:** The route yields an operator-checkable degradation function
   across baseline and timing, with a falsifier and explicit model bridge to
   $c_f$, or the claimed finite-$c_f$ prediction is withdrawn as
@@ -159,8 +180,11 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   `spin_singlet_assembly_export` record family derived from accepted source
   histories and accepted Stern--Gerlach kernels. From those same records,
   compute the full angular joint table, $E(\theta)$, one-wing marginals, CHSH,
-  product screening, measurement independence, preferred-time ordering, and
-  the Tsirelson residual rather than fitting separate tables to each target.
+  product screening, parameter independence, outcome independence,
+  measurement independence, operational no-signaling, control access,
+  preferred-time ordering, and the Tsirelson residual rather than fitting
+  separate tables to each target. The full off-axis curve, not matched-axis
+  anticorrelation alone, is the positive assembly recovery target.
 - **Completion:** One cross-lane interface receipt states which calculations
   Quantum Closure owns, which assumption verdict this lane owns, and whether
   the negative control and selected candidate route pass or fail the same

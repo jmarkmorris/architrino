@@ -98,10 +98,12 @@ remains an observer-level benchmark map, not the route-decision owner.
 
 The complete retained-insight and disposition inventory lives in the
 [discussion record](brainstorming.md#complete-insight-and-open-issue-coverage-audit--2026-08-05).
-The two focused source maps remain the
-[2026 EPR lecture packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md)
+The focused source maps remain the
+[2026 EPR lecture packet](../source-mining/tim-maudlin-epr-bell-video-source-mining.md),
+the
+[2022 Bell-foundations interview packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md),
 and the
-[2022 Bell-foundations interview packet](../source-mining/tim-maudlin-bell-foundations-2022-video-source-mining.md).
+[2024 Stanford Encyclopedia Bell-theorem packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md).
 
 ## Hard Guards
 

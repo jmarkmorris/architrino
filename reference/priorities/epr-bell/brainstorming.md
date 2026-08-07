@@ -980,12 +980,149 @@ primitive or measurement dependence is declared.
 | Live finite-speed coordination | Bell factorization | Compatible with forward absolute time in form, but underived, timing-constrained, and Bancal-obstructed. |
 | Measurement dependence | Statistical independence of $(x,y)$ and $\lambda$ | Mathematically viable and forward-causal; contrary to the ontology hub's present declared policy and constrained by cosmic-setting tests. |
 | Retrocausal dependence | Forward-only causal support, usually measurement independence | Requires changing the existing no-advanced-interaction ontology. |
-| Global or infinite-speed nonseparable law | Finite-$c_f$ causal screening | Could evade finite-speed Bancal reasoning only by adding or changing a substrate primitive. |
+| Global or infinite-speed deterministic nonseparable law | Parameter independence and finite-$c_f$ causal screening | Could evade finite-speed Bancal reasoning only by adding or changing a substrate primitive. |
+| Irreducible unscreened stochastic joint law | Outcome independence or common-cause screening | Distinct from a live channel, but requires primitive stochasticity or an intentionally incomplete $\lambda$ under the current deterministic ontology. |
 | Apparatus or trial-model effect | Sampling, pairing, detection, postselection, spacelike mapping, or statistics | Legitimate audit route only when a concrete mechanism survives modern controls. |
-| Ontic randomness alone | None relevant | Does not help; stochastic Bell-local, measurement-independent models still obey CHSH. |
+| Wing-local ontic randomness alone | None relevant | Does not help; stochastic Bell-local, measurement-independent models still obey CHSH. |
 
 Plainly: no route is presently established. Each surviving route must name a
 different assumption or ontology change.
+
+## Stanford Encyclopedia Bell-Theorem Mining — 2026-08-07
+
+The focused
+[source-mining packet](../source-mining/stanford-encyclopedia-bell-theorem-source-mining.md)
+uses the 2024 substantive revision of the Stanford Encyclopedia of Philosophy
+entry as an expert synthesis and primary-source map, not as theorem or
+experimental authority. Exact experiment values remain controlled by official
+journal papers.
+
+### Retained Advances
+
+| Insight | Grade | EPR--Bell consequence |
+| --- | --- | --- |
+| Factorization is the conjunction of parameter independence and outcome independence. | Derived probability identity; causal interpretation remains model-dependent | Add PI and OI as separate diagnostics without replacing factorization. |
+| In the entry's causal taxonomy, PI tracks remote-setting causal dependence while OI adds common-cause screening. | Inferred causal interpretation | Distinguish a live cross-wing influence from an irreducible unscreened joint law. |
+| A complete deterministic state satisfies OI automatically. | Derived | Under current deterministic ontology, rejecting only common-cause screening while keeping PI would require primitive stochasticity or incomplete $\lambda$; a deterministic global law would instead violate PI. |
+| PI violation does not by itself imply controllable signaling. | Derived scope distinction | Separate conditional dependence, averaged no-signaling, and control/access to the hidden state. |
+| Perfect aligned correlations can be reproduced by Bell-local toy models; the full off-axis angular dependence is the discriminator. | Established comparison result; primary Bell papers remain authority | Require one assembly record family to recover the full angular table and not merely same-axis anticorrelation. |
+| A Bell spacetime map depends on the physical event at which a unique outcome closes. | Experiment-to-model requirement | Derive a persistent assembly-record closure event for detector and finite-$c_f$ timing ledgers. |
+| Fine-tuning claims for measurement dependence require a physically justified measure over the allowed state space. | Methodological inference | EPRB-006 must declare $\Omega_{\mathrm{phys}}$ and a native $\mu_{\mathrm{phys}}$. |
+| Stress-induced optical response was proposed as a concrete explanation of an early polarization anomaly. | Historical apparatus lead | Use material state, response path, and orientation signature as the minimum specificity template for apparatus proposals. |
+| “Local realism” remains too ambiguous to identify the tested assumptions. | Confirmed guard | No new gate; retain the existing factorization, independence, trial, timing, and statistics ledger. |
+
+Plainly: the article does not solve the Bell route. It makes the lane more
+precise about which conditional dependence fails, when an outcome exists, and
+what an assembly mechanism must actually derive.
+
+### PI, OI, And The Deterministic-Ontology Boundary
+
+Parameter independence is
+
+$$
+P(a\mid x,y,\lambda)=P(a\mid x,\lambda),
+\qquad
+P(b\mid x,y,\lambda)=P(b\mid y,\lambda).
+$$
+
+Plainly: at fixed complete state, the remote knob does not change the local
+conditional result distribution.
+
+Outcome independence is
+
+$$
+P(a,b\mid x,y,\lambda)
+=
+P(a\mid x,y,\lambda)P(b\mid x,y,\lambda).
+$$
+
+Plainly: after the complete state and both settings are fixed, the outcomes
+have no residual conditional correlation.
+
+Together they give Bell factorization. A deterministic complete state assigns
+zero-or-one conditional probabilities and therefore satisfies outcome
+independence. A deterministic $\mathbb{A}\mathbb{A}\mathbb{A}$ route that
+reproduces Bell violation while retaining measurement independence and valid
+trials must consequently introduce remote-setting dependence somewhere in
+the response law.
+
+Plainly: for the current ontology, an irreducible correlated stochastic law is
+not simply another description of the same mechanism. It changes the law or
+admits that $\lambda$ was not complete.
+
+### Assembly Record And Angular-Curve Obligations
+
+The same source and detector model must push accepted assembly histories into
+the entire observed family
+
+$$
+P(a,b\mid x,y),
+\qquad
+E(x,y)=\sum_{a,b}ab\,P(a,b\mid x,y),
+$$
+
+for all declared orientations used by the recovery test.
+
+Plainly: matched-axis anticorrelation is only one row. Bell tests whether the
+same underlying ensemble answers several independently selected off-axis
+questions with the required joint frequencies.
+
+The record map must also declare the assembly event at which $a$ or $b$
+becomes a unique persistent result. That event controls the spacelike-separation
+audit and the time available to any proposed finite-$c_f$ coordination.
+
+Plainly: “detector click” is not yet a substrate definition. The detector model
+must identify the stable record basin and its closure time.
+
+### No-Signaling And Control Access
+
+A model can violate PI at fixed $\lambda$ while preserving the observer-level
+marginal
+
+$$
+\sum_b P(a,b\mid x,y)=P(a\mid x)
+$$
+
+independently of $y$.
+
+Plainly: hidden remote-setting dependence can average out of every local
+frequency table.
+
+The live-channel and Bancal audits must therefore ask separately whether the
+conditional law is nonlocal, whether local observed marginals change with the
+remote setting, and whether an agent can access or control the state that
+carries the dependence.
+
+Plainly: Bell-factorization failure, observable signaling, and usable message
+control are three different verdicts.
+
+### Measurement-Dependence Typicality Boundary
+
+If a proposed route restricts physically allowed histories to
+$\Omega_{\mathrm{phys}}$, it must supply a native measure
+$\mu_{\mathrm{phys}}$ before declaring the histories that correlate settings
+and pair state typical or atypical. An arbitrary measure over a larger
+forbidden state space cannot decide that question.
+
+Plainly: a restricted state space may change the fine-tuning assessment, but
+it does not by itself derive the required $P(\lambda,x,y)$ or reproduce the
+Bell table.
+
+### Authority And Overstatement Guard
+
+The entry's statement that the 2015 experiments tested Bell inequalities
+without any additional hypothesis is not retained. Those experiments provide
+strong loophole-controlled evidence, but their interpretation still uses
+physical trial definitions, spacetime mapping, detector/no-click treatment,
+setting provenance, and statistical assumptions. Its rounded experiment
+values are also not copied over the official-paper values already in this
+lane.
+
+Plainly: the encyclopedia is useful for finding the assumptions and papers.
+The primary experiment controls the number and the exact scope of its result.
+
+No Bell route, new gate, reader-facing claim, finite-$c_f$ identification, or
+generated artifact was accepted in this mining pass.
 
 ## Independent Recommendation Preserved From The Discussion
 

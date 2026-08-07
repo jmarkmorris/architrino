@@ -6,6 +6,22 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-07 — Stanford Encyclopedia Bell-theorem entry capture
+
+The Stanford Encyclopedia of Philosophy entry, *Bell's Theorem*, substantive
+revision January 25, 2024, was captured and mined as expert synthesis and a
+source-discovery map. The focused
+[source-mining packet](stanford-encyclopedia-bell-theorem-source-mining.md)
+records its section map, factorization decomposition, outcome-closure issue,
+control-access distinction, native-measure requirement for measurement
+dependence, apparatus-mechanism example, source leads, and authority limits.
+
+Priority-only incorporation sharpened EPRB-001 through EPRB-004 and EPRB-006
+through EPRB-008 without adding queue objects. Exact experiment values and
+the entry's assumption-free rhetoric about the 2015 tests were not promoted.
+No reader-facing corpus, Bell-route decision, finite-$c_f$ mechanism, priority
+status, or generated artifact was changed.
+
 ### 2026-08-05 — Tim Maudlin Bell-foundations 2022 interview capture
 
 The October 10, 2022 Curt Jaimungal interview with Tim Maudlin was mined from
