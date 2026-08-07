@@ -7,6 +7,8 @@ export const TOPO_COLLINEAR_PAIR_SCENARIO_ID =
 export const TOPO_COLLINEAR_PAIR_PLAYBACK_SECONDS = 21.6;
 export const TOPO_COLLINEAR_PAIR_REFERENCE_BETA = 0.5;
 export const TOPO_COLLINEAR_PAIR_TRAVEL_DISTANCE = 3 / 5;
+export const TOPO_COLLINEAR_PAIR_HISTORY_MODEL =
+  "constant-velocity-incoming-prehistory/v1";
 export const TOPO_COLLINEAR_PAIR_START = Object.freeze({
   electrino: Object.freeze({ x: 1 / 5, y: 1 / 2 }),
   positrino: Object.freeze({ x: 4 / 5, y: 1 / 2 }),
@@ -94,7 +96,8 @@ export function createTopoCollinearPairFrame({
       screenStart: source.start,
       start,
       velocityBeta,
-      historyStartTime: 0,
+      historyStartTime: Number.NEGATIVE_INFINITY,
+      historyModel: TOPO_COLLINEAR_PAIR_HISTORY_MODEL,
       observationTime,
       position: Object.freeze({
         x: start.x + velocityBeta * observationTime,
@@ -220,9 +223,9 @@ export function createTopoCollinearPairRawSampler({
       if (
         causalDelay == null ||
         causalDelay <= 0 ||
-        causalDelay > frame.observationTime + 1e-12
+        frame.observationTime - causalDelay < source.historyStartTime - 1e-12
       ) {
-        continue;
+        return Number.POSITIVE_INFINITY;
       }
       signedSum += source.polaritySign *
         TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;

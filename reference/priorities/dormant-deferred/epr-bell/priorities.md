@@ -3,8 +3,8 @@
 ## Workstream Metadata
 
 - Kind: `priority-theory-audit`
-- Rank: `unranked / discussion-scoped`
-- Status: `discussion-scoped`
+- Rank: `dormant-deferred`
+- Status: `Dormant / deferred pending Noether braid closure`
 - Claim level: `evidence audit and route adjudication; no Bell mechanism selected`
 - Execution ledger: [work queue](work-queue.md)
 - Discussion record: [brainstorming](brainstorming.md)
@@ -12,16 +12,19 @@
 
 ## Current
 
-Bell closure is unresolved. A passive common-past record is retained as a
-negative control, not as a viable Bell-violation mechanism under local
-response, measurement independence, and valid sampling. A live finite-$c_f$
-coordination channel, measurement dependence, retrocausality, and trial-model
-failure remain distinct comparison routes. None is established canon or an
-irrevocable theory decision.
+Bell closure is unresolved and this lane is dormant. The operator deferred it
+until upstream Noether braid work can supply accepted assembly-level source
+states and local analyzer-response calculations for spin, phase, polarization,
+internal-state, and motional observables. The observed breadth of Bell
+platforms makes those response objects prior to further route adjudication.
 
-The first unresolved object is the operator's intended assumption scope for
-“decided at entanglement.” No mechanism, corpus rewrite, or Bell-route
-promotion may proceed until that question is answered.
+A passive common-past record remains a negative control, not a viable
+Bell-violation mechanism under local response, measurement independence, and
+valid sampling. A live finite-$c_f$ coordination channel, measurement
+dependence, retrocausality, global nonseparability, and trial-model failure
+remain comparison routes only. None is established canon or an irrevocable
+theory decision. Reactivation requires an accepted Noether braid source and
+analyzer-response object that can be mapped into the retained Bell ledger.
 
 ## Objective
 
@@ -76,25 +79,25 @@ This lane owns:
   falsifiers across the live corpus.
 
 This lane does not own the substrate derivations needed to calculate a Bell
-table. [Quantum Closure](../quantum-closure/priorities.md) retains ownership of
+table. [Quantum Closure](../../quantum-closure/priorities.md) retains ownership of
 the transfer operator, invariant measure, detector-response kernels,
 pair-provenance source measure, correlation calculation, no-signaling check,
 Tsirelson check, and Bell rewrite handoff. The
-[Bell-test comparison packet](../cross-theory-mapping/bell-test-violations.md)
+[Bell-test comparison packet](../../cross-theory-mapping/bell-test-violations.md)
 remains an observer-level benchmark map, not the route-decision owner.
 
 ## Canonical Corpus Surfaces Under Audit
 
-- [Ontology hub](../../../content/markdown/aaa/foundations/ontology.md)
-- [Bell bridge](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
-- [Entanglement and nonlocality](../../../content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
-- [Reality and quantum causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
-- [Absolute time](../../../content/markdown/aaa/foundations/absolute-time.md)
-- [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md)
-- [Lorentz kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
-- [Quantum Closure priorities](../quantum-closure/priorities.md)
-- [Quantum Closure work queue](../quantum-closure/work-queue.md)
-- [Pair-provenance scope decision](../quantum-closure/pair-provenance-local-compliance-scope-decision.md)
+- [Ontology hub](../../../../content/markdown/aaa/foundations/ontology.md)
+- [Bell bridge](../../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
+- [Entanglement and nonlocality](../../../../content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
+- [Reality and quantum causality](../../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
+- [Absolute time](../../../../content/markdown/aaa/foundations/absolute-time.md)
+- [Noether sea](../../../../content/markdown/aaa/spacetime/noether-sea.md)
+- [Lorentz kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
+- [Quantum Closure priorities](../../quantum-closure/priorities.md)
+- [Quantum Closure work queue](../../quantum-closure/work-queue.md)
+- [Pair-provenance scope decision](../../quantum-closure/pair-provenance-local-compliance-scope-decision.md)
 
 The complete retained-insight and disposition inventory lives in the
 [discussion record](brainstorming.md#complete-insight-and-open-issue-coverage-audit--2026-08-05).
@@ -125,7 +128,7 @@ and the
 - Do not assert an $\mathbb{A}\mathbb{A}\mathbb{A}$ escape from Bancal without
   identifying which theorem premise changes and deriving the resulting
   multipartite distribution.
-- Do not promote any Bell route while the lane remains `discussion-scoped`.
+- Do not promote any Bell route while the lane remains dormant.
 
 ## Promotion Boundary
 

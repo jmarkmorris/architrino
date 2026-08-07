@@ -7,7 +7,7 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
 ## Ranked Next Objects
 
 1. `decided_at_entanglement_assumption_scope` — EPRB-001. Status:
-   `discussion-scoped`.
+   `Deferred / blocked on Noether braid closure`.
 2. `bell_route_decision_record` — EPRB-002. Status: `Deferred / blocked`.
 3. `finite_speed_bancal_premise_audit` — EPRB-003. Status:
    `Deferred / blocked`.
@@ -22,11 +22,12 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
 8. `quantum_closure_bell_interface` — EPRB-008. Status:
    `Deferred / blocked`.
 
-## Discussion-scoped
+## Deferred / blocked
 
 ### EPRB-001 — Decide the scope of “decided at entanglement”
 
-- **Status:** discussion-scoped
+- **Status:** Deferred / blocked on accepted Noether braid source-state and
+  analyzer-response derivations
 - **Priority object:** `decided_at_entanglement_assumption_scope`
 - **Question:** Does the intended phrase preserve both local response and
   statistical independence of the later detector settings from the pair's
@@ -48,8 +49,6 @@ kernels, pair measures, correlation calculations, or the Bell rewrite gate.
   measurement-independence conditions.
 - **Completion:** The operator answers the question and the lane records the
   selected assumption scope without yet promoting a mechanism.
-
-## Deferred / blocked
 
 ### EPRB-002 — Create the Bell-route decision record
 

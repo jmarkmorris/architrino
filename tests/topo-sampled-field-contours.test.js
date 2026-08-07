@@ -3,6 +3,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import {
+  topoWorldPointForCanvasPixel,
+} from "../src/apps/topo/TopoInteractionContract.js";
+import {
   TOPO_CONTOUR_LEVELS_PER_DECADE,
   TOPO_SAMPLED_FIELD_CONTOUR_POLICY_ID,
   TOPO_SAMPLED_FIELD_STATE,
@@ -15,8 +18,14 @@ import {
   solveTopoCollinearPairCausalDelay,
 } from "../src/apps/topo/TopoCollinearPairScenario.js";
 import {
+  TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH,
+  TOPO_PAIR_CROSSING_PHASE_END,
+  TOPO_PAIR_CROSSING_PHASE_START,
+  TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH,
   resolveTopoCollinearSourceMaskRadius,
+  resolveTopoPairPlaybackContourGridWidth,
   topoGlobalTransportOwnsSpace,
+  topoRangePointerMoveOwnsInteraction,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
 function closeTo(actual, expected, tolerance = 1e-12) {
@@ -202,7 +211,7 @@ test("collinear source mask is contained by the marker and CPU/WebGL use the sam
     phase: 0.517,
   });
   const sampler = createTopoCollinearPairRawSampler({
-    beta: 1,
+    beta: 0.5,
     phase: 0.517,
     sourceMaskRadius: maskRadius,
   });
@@ -253,6 +262,40 @@ test("global Space transport respects native controls but owns focused ranges", 
   }), false);
 });
 
+test("range pointer movement owns a value change only during its primary press", () => {
+  assert.equal(topoRangePointerMoveOwnsInteraction({
+    pointerId: 7,
+    buttons: 1,
+  }, 7), true);
+  assert.equal(topoRangePointerMoveOwnsInteraction({
+    pointerId: 7,
+    buttons: 0,
+  }, 7), false);
+  assert.equal(topoRangePointerMoveOwnsInteraction({
+    pointerId: 7,
+    buttons: 2,
+  }, 7), false);
+  assert.equal(topoRangePointerMoveOwnsInteraction({
+    pointerId: 8,
+    buttons: 1,
+  }, 7), false);
+  assert.equal(topoRangePointerMoveOwnsInteraction({
+    pointerId: 7,
+    buttons: 1,
+  }), false);
+
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  assert.match(runtime, /event\.button !== 0 \|\| event\.isPrimary === false/u);
+  assert.match(runtime, /listen\(input, "lostpointercapture"/u);
+  assert.match(
+    runtime,
+    /!topoRangePointerMoveOwnsInteraction\(event, activePointerId\)[\s\S]*activePointerId = null/u,
+  );
+});
+
 test("pointer scenario selection hands focus to the stage while keyboard radios stay native", () => {
   const html = readFileSync(new URL("../topo.html", import.meta.url), "utf8");
   const runtime = readFileSync(new URL(
@@ -298,4 +341,183 @@ test("one native Purple/White control persists across all four display-only scen
   );
   assert.match(runtime, /dom\.scenarioInputs\.forEach\(\(input\) =>[\s\S]*listen\(input, "change", handleScenarioChange\)/u);
   assert.doesNotMatch(runtime, /dom\.scenario\.value/u);
+});
+
+test("display-only scale slider changes framing outside calculation state", () => {
+  const html = readFileSync(new URL("../topo.html", import.meta.url), "utf8");
+  const css = readFileSync(new URL(
+    "../src/apps/topo/topo.css",
+    import.meta.url,
+  ), "utf8");
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  const sliderIndex = html.indexOf('id="topo-display-scale"');
+  const backgroundIndex = html.indexOf('id="topo-background-control"');
+
+  assert.notEqual(sliderIndex, -1);
+  assert.ok(sliderIndex < backgroundIndex);
+  assert.match(html, /Display scale \(display only\)/u);
+  assert.match(html, /id="topo-display-scale"[\s\S]*min="50"[\s\S]*max="150"[\s\S]*value="100"/u);
+  assert.match(html, /calculated wake values, contour levels and physical coordinates stay unchanged/u);
+  assert.match(css, /transform: scale\(var\(--topo-map-display-scale\)\)/u);
+  assert.match(runtime, /listen\(dom\.displayScale, "input", updateDisplayScalePresentation\)/u);
+  assert.match(runtime, /physical calculation unchanged/u);
+  assert.match(runtime, /function canvasLayoutSize\(\)[\s\S]*dom\.canvas\.clientWidth[\s\S]*dom\.canvas\.clientHeight/u);
+  const stateSource = runtime.slice(
+    runtime.indexOf("function getState()"),
+    runtime.indexOf("function sourceLocalViewRequested"),
+  );
+  assert.doesNotMatch(stateSource, /displayScale/u);
+});
+
+test("collinear playback extracts a current fail-closed contour frame while motion remains active", () => {
+  assert.equal(TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH, 400);
+  assert.equal(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, 480);
+  assert.equal(TOPO_PAIR_CROSSING_PHASE_START, 0.42);
+  assert.equal(TOPO_PAIR_CROSSING_PHASE_END, 0.66);
+  assert.ok(
+    (916 - 1) / (TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH - 1) < 2.3,
+    "the live desktop contour grid must keep marching-squares facets below 2.3 canvas pixels",
+  );
+  assert.equal(resolveTopoPairPlaybackContourGridWidth({
+    canvasWidth: 916,
+    phase: 0.419,
+  }), 400);
+  assert.equal(resolveTopoPairPlaybackContourGridWidth({
+    canvasWidth: 916,
+    phase: 0.5,
+  }), 480);
+  assert.equal(resolveTopoPairPlaybackContourGridWidth({
+    canvasWidth: 916,
+    phase: 0.659,
+  }), 480);
+  assert.equal(resolveTopoPairPlaybackContourGridWidth({
+    canvasWidth: 916,
+    phase: 0.661,
+  }), 400);
+  assert.equal(resolveTopoPairPlaybackContourGridWidth({
+    canvasWidth: 500,
+    phase: 0.5,
+  }), 480);
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+
+  assert.match(runtime, /function createPairPlaybackContourFrame/u);
+  assert.match(runtime, /contourFrameKind: "playback-preview"/u);
+  assert.match(
+    runtime,
+    /const matchingFrame = rawFrame\?\.key === expectedKey/u,
+  );
+  assert.doesNotMatch(
+    runtime,
+    /const matchingFrame = !pairPlaybackPlaying/u,
+  );
+  assert.match(
+    runtime,
+    /Number\.isNaN\(value\)[\s\S]*TOPO_SAMPLED_FIELD_STATE\.MASKED[\s\S]*Number\.isFinite\(value\)[\s\S]*TOPO_SAMPLED_FIELD_STATE\.VALID[\s\S]*TOPO_SAMPLED_FIELD_STATE\.UNAVAILABLE/u,
+  );
+  assert.match(
+    runtime,
+    /state\.pairMode && pairPlaybackPlaying[\s\S]*createPairPlaybackContourFrame\(width, height, state\)/u,
+  );
+  assert.match(runtime, /lastContourPathCacheHit = matchingFrame[\s\S]*"live-grid"/u);
+  assert.match(
+    runtime,
+    /live Combined wake contours follow the current prescribed-time field/u,
+  );
+});
+
+test("crossing refinement preserves the full-density high-level component count", () => {
+  const canvasWidth = 916;
+  const canvasHeight = 720;
+  const horizontalWorldSpan = (canvasWidth - 1) / (canvasHeight - 1);
+  const sourceMaskRadius = resolveTopoCollinearSourceMaskRadius({
+    width: canvasWidth,
+    height: canvasHeight,
+    pixelRatio: 1,
+  });
+  const componentCount = (gridWidth, phase) => {
+    const gridHeight = Math.round(gridWidth * canvasHeight / canvasWidth);
+    const raw = new Float32Array(gridWidth * gridHeight);
+    const sampleStates = new Uint8Array(raw.length);
+    const sampleRaw = createTopoCollinearPairRawSampler({
+      beta: 0.5,
+      phase,
+      horizontalWorldSpan,
+      sourceMaskRadius,
+    });
+    for (let pixelY = 0; pixelY < gridHeight; pixelY += 1) {
+      for (let pixelX = 0; pixelX < gridWidth; pixelX += 1) {
+        const point = topoWorldPointForCanvasPixel({
+          pixelX,
+          pixelY,
+          width: gridWidth,
+          height: gridHeight,
+        });
+        const index = pixelY * gridWidth + pixelX;
+        const value = sampleRaw(point.x, point.y);
+        raw[index] = value;
+        sampleStates[index] = Number.isNaN(value)
+          ? TOPO_SAMPLED_FIELD_STATE.MASKED
+          : Number.isFinite(value)
+            ? TOPO_SAMPLED_FIELD_STATE.VALID
+            : TOPO_SAMPLED_FIELD_STATE.UNAVAILABLE;
+      }
+    }
+    const { segments } = extractTopoSampledFieldContourSegments({
+      raw,
+      sampleStates,
+      width: gridWidth,
+      height: gridHeight,
+      levels: [{ value: -640, family: "negative" }],
+    });
+    const adjacency = new Map();
+    const key = (x, y) => x.toFixed(10) + "," + y.toFixed(10);
+    const connect = (from, to) => {
+      if (!adjacency.has(from)) {
+        adjacency.set(from, new Set());
+      }
+      adjacency.get(from).add(to);
+    };
+    for (const segment of segments) {
+      const start = key(segment.x1, segment.y1);
+      const end = key(segment.x2, segment.y2);
+      connect(start, end);
+      connect(end, start);
+    }
+    const visited = new Set();
+    let components = 0;
+    for (const start of adjacency.keys()) {
+      if (visited.has(start)) continue;
+      components += 1;
+      visited.add(start);
+      const pending = [start];
+      while (pending.length > 0) {
+        const current = pending.pop();
+        for (const neighbor of adjacency.get(current) ?? []) {
+          if (!visited.has(neighbor)) {
+            visited.add(neighbor);
+            pending.push(neighbor);
+          }
+        }
+      }
+    }
+    return components;
+  };
+
+  for (const phase of [0.501, 0.51]) {
+    assert.equal(
+      componentCount(TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH, phase),
+      3,
+    );
+    assert.equal(
+      componentCount(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, phase),
+      1,
+    );
+    assert.equal(componentCount(canvasWidth, phase), 1);
+  }
 });

@@ -464,7 +464,10 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(html, /id="topo-binary-replay"[\s\S]*aria-label="Replay"/u);
   assert.match(html, /role="progressbar"[\s\S]*aria-label="Orbit progress"/u);
   assert.match(runtime, /setTransportControlButtonPresentation/u);
-  assert.match(runtime, /dom\.contourControls\.hidden = binaryMode/u);
+  assert.match(
+    runtime,
+    /dom\.contourControls\.hidden = binaryMode \|\| localUnavailable/u,
+  );
   assert.match(runtime, /drawCircularBinaryOverlay/u);
   assert.match(runtime, /"source-markers-only"/u);
   assert.match(runtime, /"solid-orbit-guide-and-source-markers"/u);

@@ -7,6 +7,22 @@ adjudications, and handoffs. Detailed reasoning belongs in
 
 ## Log Entries
 
+### 2026-08-07 — Lane moved to dormant-deferred behind Noether braid closure
+
+The operator deferred the EPR--Bell lane after the apparatus discussion
+showed that the relevant Bell platforms interrogate spin, polarization,
+interferometric phase, internal-state, spatial-mode, or motional observables.
+The next productive dependency is therefore an accepted Noether braid account
+of prepared pair states and local analyzer response, not further Bell-route
+adjudication in isolation.
+
+The entire lane moved under `reference/priorities/dormant-deferred/epr-bell/`,
+and its active Operator Discussion Queue entry was removed. The retained Bell
+assumption ledger, primary-source packets, negative control, alternatives, and
+claim boundaries remain available for reactivation. No Bell route, live
+finite-$c_f$ mechanism, reader-facing corpus claim, or generated artifact was
+promoted by this move.
+
 ### 2026-08-07 — Stanford Encyclopedia Bell-theorem entry mined
 
 The 2024 substantive revision of Wayne Myrvold, Marco Genovese, and Abner

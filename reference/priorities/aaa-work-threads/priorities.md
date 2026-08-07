@@ -50,15 +50,6 @@ instrument packet and Braid Program's scientific campaign packet.
 
 ## Operator Discussion Queue
 
-- **[`epr-bell`](../epr-bell/priorities.md) — `EPRB-001`,
-  discussion-scoped.** Decide whether “decided at entanglement” preserves both
-  local response and statistical independence of the later detector settings
-  from the pair's complete past state. The answer determines whether the
-  phrase is the Bell-local shared-record no-go or instead names a route that
-  changes factorization, measurement independence, the forward-causal
-  ontology, or the trial model. No Bell mechanism or corpus rewrite is
-  authorized while this remains unresolved. See
-  [its work queue](../epr-bell/work-queue.md).
 - **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) —
   `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive
   domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and

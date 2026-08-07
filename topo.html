@@ -105,6 +105,10 @@
                 <span>Source-local decades</span>
               </label>
               <label>
+                <input type="radio" name="topo-view" value="equal-radius" />
+                <span>Equal-radius exponents (stationary source)</span>
+              </label>
+              <label>
                 <input type="radio" name="topo-view" value="combined" checked />
                 <span>Combined wake</span>
               </label>
@@ -177,6 +181,23 @@
               </label>
               <small class="topo-range-note">Prescribed reference path only</small>
             </div>
+            <label class="topo-range-field" for="topo-display-scale">
+              <span>Display scale (display only)</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-display-scale"
+                  type="range"
+                  min="50"
+                  max="150"
+                  step="5"
+                  value="100"
+                  data-keyboard-step="5"
+                  aria-label="Display-only map framing scale"
+                />
+                <output id="topo-display-scale-output" for="topo-display-scale">100%</output>
+              </span>
+              <small class="topo-range-note">Changes visible framing only; calculated wake values, contour levels and physical coordinates stay unchanged.</small>
+            </label>
             <fieldset id="topo-background-control" class="topo-radio-field">
               <legend>Neutral background</legend>
               <label>

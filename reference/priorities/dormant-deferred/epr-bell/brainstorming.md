@@ -564,9 +564,9 @@ is the level at which the empirical predictions constrain
 $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 The existing
-[Quantum Closure dependency map](../quantum-closure/priorities.md#bell-final-gate-dependency-map)
+[Quantum Closure dependency map](../../quantum-closure/priorities.md#bell-final-gate-dependency-map)
 and
-[dynamic pair-provenance packet](../quantum-closure/dynamic-pair-provenance-source-measure.md)
+[dynamic pair-provenance packet](../../quantum-closure/dynamic-pair-provenance-source-measure.md)
 own the underlying derivations. Their threshold construction is currently a
 table-level target and failure-boundary fixture, not a positive assembly
 derivation: the same-outcome threshold and uniform coordinate may not be
@@ -933,30 +933,30 @@ unclosed theorem obstruction.
 
 The live corpus recheck on 2026-08-05 found:
 
-- the [ontology hub](../../../content/markdown/aaa/foundations/ontology.md)
+- the [ontology hub](../../../../content/markdown/aaa/foundations/ontology.md)
   calls live finite-$c_f$ coordination the “working selection,” but in the
   same sentence calls it provisional until the Bell derivation closes;
-- the [Bell bridge](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
+- the [Bell bridge](../../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
   calls itself a bridge rather than the final mechanism and also prohibits
   usable signal, energy, or causal-wake transfer between spacelike detectors;
 - the
-  [entanglement bridge](../../../content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
+  [entanglement bridge](../../../../content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
   calls pair-provenance gating plus live response a proof route, not a
   completed Bell derivation;
 - the
-  [quantum-causality page](../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
+  [quantum-causality page](../../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
   calls outside-effective-cone wake channels a candidate mechanism class that
   does not close Bell by itself;
-- the [absolute-time owner](../../../content/markdown/aaa/foundations/absolute-time.md)
+- the [absolute-time owner](../../../../content/markdown/aaa/foundations/absolute-time.md)
   establishes forward finite-$c_f$ propagation and excludes advanced and
   instantaneous interaction, but does not derive Bell coordination;
-- the [Noether-sea page](../../../content/markdown/aaa/spacetime/noether-sea.md)
+- the [Noether-sea page](../../../../content/markdown/aaa/spacetime/noether-sea.md)
   supplies no Bell-route decision, and its $c_{\mathrm{eff}}<c_f$ row is a
   constitutive hypothesis;
-- the [Quantum Closure queue](../quantum-closure/work-queue.md) marks detector
+- the [Quantum Closure queue](../../quantum-closure/work-queue.md) marks detector
   kernels, invariant and pair-provenance measures, the Bell gate, and the Bell
   rewrite deferred/blocked, with nothing verified;
-- the [scoped pair-provenance decision](../quantum-closure/pair-provenance-local-compliance-scope-decision.md)
+- the [scoped pair-provenance decision](../../quantum-closure/pair-provenance-local-compliance-scope-decision.md)
   rejects ER=EPR and expressly does not modify the Bell program or establish a
   mechanism.
 

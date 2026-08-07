@@ -8,6 +8,7 @@ import {
   TOPO_DEFAULT_HEATMAP_MODE,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
   TOPO_DISPLAY_MAPPING_ID,
+  TOPO_EQUAL_RADIUS_CHART_ID,
   TOPO_EXPONENT_RADIUS_CHART_ID,
   TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS,
   TOPO_FIRST_CONTOUR_BUDGET_MS,
@@ -22,6 +23,7 @@ import {
   createTopoAnalyticFieldRgbAtCanvasPixel,
   createTopoContourEmphasis,
   createTopoContourMagnitudeSchedule,
+  createTopoEqualRadiusChart,
   createTopoExponentRadiusChart,
   createTopoPreviewFrameIdentity,
   createTopoSampleRgb,
@@ -40,6 +42,7 @@ import {
   syntheticTopoCausalDelay,
   syntheticTopoSignedValue,
   topoContourRangeDecades,
+  topoEqualRadiusDisplayRadiusForExponent,
   topoExponentDisplayRadiusForExponent,
   topoExponentRadiusPhysicalPointForCanvasPixel,
   topoPhysicalRadiusForWakeExponent,
@@ -48,6 +51,7 @@ import {
   transformTopoValue,
 } from "../src/apps/topo/TopoInteractionContract.js";
 import {
+  TOPO_COLLINEAR_PAIR_HISTORY_MODEL,
   TOPO_COLLINEAR_PAIR_PLAYBACK_SECONDS,
   TOPO_COLLINEAR_PAIR_REFERENCE_BETA,
   TOPO_COLLINEAR_PAIR_SCENARIO_ID,
@@ -65,6 +69,7 @@ import {
   TOPO_SOURCE_MASK_MARKER_RATIO,
   resolveTopoSourceMarkerRadius,
   resolveTopoSourceMaskRadius,
+  topoEqualRadiusViewAvailable,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -315,11 +320,84 @@ test("beta-zero single-source exponent radius maps integer exponents to equal di
   }).state, "clipped:outside_exponent_radius");
 });
 
-test("source-local heatmap supports physical magnitude and enhanced contrast without changing exponent geometry", () => {
+test("selected-source equal-radius chart starts e=0 at r and shows only nonnegative exponent rings", () => {
+  const chart = createTopoEqualRadiusChart({
+    width: 916,
+    height: 720,
+    pixelRatio: 1,
+    anchorPixelX: 183.2,
+    anchorPixelY: 359.5,
+    contourRangeDecades: 3,
+  });
+  assert.equal(chart.chartId, TOPO_EQUAL_RADIUS_CHART_ID);
+  assert.equal(chart.exponentMinimum, 0);
+  assert.equal(chart.exponentMaximum, 3);
+  assert.equal(chart.anchorPixelX, 183.2);
+  assert.equal(chart.anchorPixelY, 359.5);
+  assert.equal(chart.levelPolicy, "nonnegative-raw-exponents-only");
+  assert.equal(
+    chart.coordinateAuthority,
+    "display-only-not-global-physical-transform",
+  );
+  const radii = [0, 1, 2, 3].map((exponent) =>
+    topoEqualRadiusDisplayRadiusForExponent({ exponent, chart }));
+  assert.deepEqual(radii, [1, 2, 3, 4].map((multiple) =>
+    multiple * chart.radialStepPixels));
+  assert.equal(radii[0], chart.radialStepPixels);
+  assert.equal(radii.at(-1), chart.outerRadiusPixels);
+  assert.throws(
+    () => topoEqualRadiusDisplayRadiusForExponent({ exponent: -1, chart }),
+    /integers in \[0, exponentMaximum\]/u,
+  );
+
+  const physical = createTopoSyntheticContourRenderPlan({
+    beta: 0.5,
+    contourRangeDecades: 3,
+  });
+  assert.deepEqual(
+    physical.map(({ rawDecade }) => rawDecade),
+    [3, 2, 1, 0, -1, -2, -3],
+  );
+  assert.deepEqual(
+    physical.filter(({ rawDecade }) => rawDecade >= 0)
+      .map(({ rawDecade }) => rawDecade),
+    [3, 2, 1, 0],
+  );
+});
+
+test("equal-radius chart is available only for a stationary single source", () => {
+  assert.equal(topoEqualRadiusViewAvailable({
+    viewMode: "equal-radius",
+    beta: 0,
+    scenarioId: "electrino",
+  }), true);
+  assert.equal(topoEqualRadiusViewAvailable({
+    viewMode: "equal-radius",
+    beta: 0.01,
+    scenarioId: "electrino",
+  }), false);
+  assert.equal(topoEqualRadiusViewAvailable({
+    viewMode: "equal-radius",
+    beta: 0,
+    pairMode: true,
+  }), false);
+  assert.equal(topoEqualRadiusViewAvailable({
+    viewMode: "equal-radius",
+    beta: 0,
+    binary: true,
+  }), false);
+  assert.equal(topoEqualRadiusViewAvailable({
+    viewMode: "combined",
+    beta: 0,
+    scenarioId: "electrino",
+  }), false);
+});
+
+test("source-local heatmap follows the original linear exponent legend without changing exponent geometry", () => {
   for (const span of [1, 2, 3, 4]) {
     for (let exponent = -span; exponent <= span; exponent += 1) {
       const magnitude = 64 * 10 ** exponent;
-      const expectedPhysical = Math.min(1, 10 ** exponent);
+      const expectedPhysical = (exponent + span) / (2 * span);
       const expectedEnhanced = ((exponent + span) / (2 * span)) ** 0.72;
       for (const polaritySign of [-1, 1]) {
         closeTo(
@@ -342,6 +420,23 @@ test("source-local heatmap supports physical magnitude and enhanced contrast wit
       }
     }
   }
+});
+
+test("source-local physical colors grade e=0 through e=-3 like the original legend", () => {
+  const actual = [0, -1, -2, -3].map((exponent) =>
+    normalizeTopoExponentRadiusColorValue(-64 * 10 ** exponent, { span: 3 }));
+  assert.deepEqual(actual, [-0.5, -1 / 3, -1 / 6, -0]);
+
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(
+    runtime,
+    /physicalStrength = mix\([\s\S]*sourceLocalLegendStrength[\s\S]*u_source_local_mode/u,
+  );
+  assert.doesNotMatch(runtime, /createTopoSourceLocalLegendGradient/u);
+  assert.match(
+    runtime,
+    /dom\.legendGradient\.style\.background = state\.pairMode \|\| state\.binary[\s\S]*linear-gradient\(90deg,[\s\S]*styles\.zero/u,
+  );
 });
 
 test("exponent-radius resize changes display spacing without changing raw exponent values", () => {
@@ -587,12 +682,20 @@ test("collinear pair follows finite prescribed paths between 20% and 80%", () =>
 });
 
 test("collinear pair superposes admitted path-history contributions before display", () => {
+  const initialFrame = createTopoCollinearPairFrame({ beta: 0.5, phase: 0 });
+  assert.equal(
+    initialFrame.sources.every((source) =>
+      source.historyModel === TOPO_COLLINEAR_PAIR_HISTORY_MODEL &&
+      source.historyStartTime === Number.NEGATIVE_INFINITY),
+    true,
+  );
   const initialSampler = createTopoCollinearPairRawSampler({
     beta: 0.5,
     phase: 0,
     sourceMaskRadius: 0,
   });
   closeTo(initialSampler(0.5, 0.6), 0);
+  assert.ok(initialSampler(0.3, 0.6) < 0);
 
   const approachingSampler = createTopoCollinearPairRawSampler({
     beta: 0.5,
@@ -611,6 +714,13 @@ test("collinear pair superposes admitted path-history contributions before displ
     sourceMaskRadius: 0,
   });
   closeTo(crossingSampler(0.5, 0.6), 0);
+
+  const endpointSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: 0.5,
+    sourceMaskRadius: 0,
+  });
+  assert.equal(endpointSampler(0.5, 0.8), Number.POSITIVE_INFINITY);
 });
 
 test("private provider states remain distinct from visible neutral color", () => {
@@ -706,7 +816,7 @@ test("all four scenarios share the half-size marker and contained source mask", 
   assert.doesNotMatch(runtime, /drawCircularBinarySourceMarker/u);
 });
 
-test("Topo UI exposes the approved two-view logarithmic architecture and preserves Home", () => {
+test("Topo UI exposes distinct combined, source-local, and equal-radius views and preserves Home", () => {
   const html = readRepoFile("topo.html");
   const css = readRepoFile("src/apps/topo/topo.css");
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
@@ -765,6 +875,9 @@ test("Topo UI exposes the approved two-view logarithmic architecture and preserv
   assert.match(runtime, /extractTopoSampledFieldContourSegments/u);
   assert.match(runtime, /drawSampledPairContours/u);
   assert.match(runtime, /rawFrame: cachedRawFrame/u);
+  assert.match(runtime, /contourScalarAuthority = "combined-raw-wake-field"/u);
+  assert.match(runtime, /masked-and-unavailable-cells-excluded/u);
+  assert.match(runtime, /equalRadiusInput\.disabled = pairMode \|\| binaryMode \|\| state\.beta !== 0/u);
   assert.match(runtime, /sourceContribution/u);
   assert.match(runtime, /finiteHistory/u);
   assert.match(runtime, /setTransportControlButtonPresentation/u);
@@ -788,6 +901,9 @@ test("Topo UI exposes the approved two-view logarithmic architecture and preserv
   assert.match(html, /<span>Enhanced decade contrast<\/span>/u);
   assert.match(html, /name="topo-view" value="source-local"/u);
   assert.match(html, /<span>Source-local decades<\/span>/u);
+  assert.match(html, /name="topo-view" value="equal-radius"/u);
+  assert.match(html, /<span>Equal-radius exponents \(stationary source\)<\/span>/u);
+  assert.doesNotMatch(html, /topo-chart-anchor/u);
   assert.match(html, /name="topo-view" value="combined" checked/u);
   assert.match(html, /<span>Combined wake<\/span>/u);
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
@@ -798,6 +914,11 @@ test("Topo UI exposes the approved two-view logarithmic architecture and preserv
   assert.match(html, /id="topo-legend-mapping"/u);
   assert.doesNotMatch(html, /Scale transform|topo-transform|Linear|Signed log2|Asinh/u);
   assert.doesNotMatch(html, /Raw probe|Nonnumeric state legend|topo-stage-caption/u);
+  assert.match(runtime, /R\(e\)=\(e\+1\)r/u);
+  assert.match(runtime, /nonnegative-raw-exponents-only/u);
+  assert.match(runtime, /equalRadiusAnchorDisplayedTime/u);
+  assert.match(runtime, /Moving and multi-source scenes use contours from their combined raw wake field/u);
+  assert.match(runtime, /not a global physical-coordinate transform/u);
   assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
 
   assert.match(css, /\.topo-range-note/u);

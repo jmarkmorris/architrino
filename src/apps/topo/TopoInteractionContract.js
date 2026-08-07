@@ -18,6 +18,8 @@ export const TOPO_MAX_CANVAS_PIXELS = 12 * 1024 * 1024;
 export const TOPO_WORLD_CHART_ID = "topo_canvas_height_euclidean/v1";
 export const TOPO_EXPONENT_RADIUS_CHART_ID =
   "topo_beta_zero_single_source_exponent_radius/v1";
+export const TOPO_EQUAL_RADIUS_CHART_ID =
+  "topo_selected_source_nonnegative_equal_radius/v1";
 export const TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS = 0;
 export const TOPO_EXPONENT_RADIUS_EDGE_INSET_CSS = 2;
 export const TOPO_TRANSLATION_AXIS = Object.freeze({
@@ -162,6 +164,20 @@ export function normalizeTopoExponentRadiusColorValue(
     span = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
   } = {},
 ) {
+  if (mode === TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE) {
+    const raw = requireFiniteNumber(rawValue, "rawValue");
+    if (raw === 0) {
+      return 0;
+    }
+    const selectedSpan = topoContourRangeDecades(span);
+    const exponent = clamp(
+      topoWakeIntensityExponent(raw),
+      -selectedSpan,
+      selectedSpan,
+    );
+    const strength = (exponent + selectedSpan) / (2 * selectedSpan);
+    return Math.sign(raw) * strength;
+  }
   return normalizeTopoFieldColorValue(rawValue, { mode, span });
 }
 
@@ -462,6 +478,52 @@ export function topoExponentDisplayRadiusForExponent({
   }
   return chart.innerRadiusPixels + (chart.span - value) *
     chart.radialStepPixels;
+}
+
+export function createTopoEqualRadiusChart({
+  width,
+  height,
+  pixelRatio = 1,
+  anchorPixelX,
+  anchorPixelY,
+  contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+} = {}) {
+  const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
+  const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
+  const density = Math.max(1, requireFiniteNumber(pixelRatio, "pixelRatio"));
+  const span = topoContourRangeDecades(contourRangeDecades);
+  const inset = TOPO_EXPONENT_RADIUS_EDGE_INSET_CSS * density;
+  const outerRadiusPixels = Math.max(
+    1,
+    Math.min(canvasWidth, canvasHeight) / 2 - inset,
+  );
+  return Object.freeze({
+    chartId: TOPO_EQUAL_RADIUS_CHART_ID,
+    exponentMinimum: 0,
+    exponentMaximum: span,
+    anchorPixelX: requireFiniteNumber(anchorPixelX, "anchorPixelX"),
+    anchorPixelY: requireFiniteNumber(anchorPixelY, "anchorPixelY"),
+    radialStepPixels: outerRadiusPixels / (span + 1),
+    outerRadiusPixels,
+    levelPolicy: "nonnegative-raw-exponents-only",
+    coordinateAuthority: "display-only-not-global-physical-transform",
+  });
+}
+
+export function topoEqualRadiusDisplayRadiusForExponent({
+  exponent,
+  chart,
+} = {}) {
+  const value = requireFiniteNumber(exponent, "exponent");
+  if (!chart || chart.chartId !== TOPO_EQUAL_RADIUS_CHART_ID) {
+    throw new TypeError("A Topo equal-radius chart is required.");
+  }
+  if (!Number.isInteger(value) || value < 0 || value > chart.exponentMaximum) {
+    throw new RangeError(
+      "Equal-radius chart exponents must be integers in [0, exponentMaximum].",
+    );
+  }
+  return (value + 1) * chart.radialStepPixels;
 }
 
 export function topoPhysicalRadiusForWakeExponent(exponent) {

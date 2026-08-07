@@ -325,10 +325,10 @@ another checklist layer.
 | [EPR--Bell brainstorming](./brainstorming.md) | Maudlin's locality-first reading and the corrected EPR-to-Bell metaphor sharpen the unresolved route discussion. | Add a concise source-intake summary and packet link. |
 | [EPR--Bell work queue](./work-queue.md) | EPRB-001, EPRB-002, and EPRB-004 can be made more mechanism-specific without new objects. | Amend existing evidence and acceptance text. |
 | [EPR--Bell work log](./work-log.md) | The mining event and non-promotion decision require a durable receipt. | Add a dated entry. |
-| [Source-mining priorities](../source-mining/priorities.md) | The focused packet should be discoverable beside the 2026 EPR lecture packet. | Add it to the comparison-packet list. |
-| [Source-mining history](../source-mining/source-mining-history.md) | This is a previously unmined source. | Add one dated row with source and disposition. |
-| [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Its Maudlin chapter already captures the ontology, law, measurement, Bell, and time program. | No duplicate reader-facing edit. |
-| [No-Go Theorems](../../../content/markdown/aaa/validation/no-go-theorems.md) | It already states PBR's preparation-independence and ontic-overlap boundaries. | No duplicate reader-facing edit. |
+| [Source-mining priorities](../../source-mining/priorities.md) | The focused packet should be discoverable beside the 2026 EPR lecture packet. | Add it to the comparison-packet list. |
+| [Source-mining history](../../source-mining/source-mining-history.md) | This is a previously unmined source. | Add one dated row with source and disposition. |
+| [The Treasure Physics Overlooked](../../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Its Maudlin chapter already captures the ontology, law, measurement, Bell, and time program. | No duplicate reader-facing edit. |
+| [No-Go Theorems](../../../../content/markdown/aaa/validation/no-go-theorems.md) | It already states PBR's preparation-independence and ontic-overlap boundaries. | No duplicate reader-facing edit. |
 
 Plainly: the useful material lands in the active discussion and source record.
 No disputed Bell route is promoted into canon.
