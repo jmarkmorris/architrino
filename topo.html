@@ -6,9 +6,9 @@
     <meta name="theme-color" content="#0d0a17" />
     <meta
       name="description"
-      content="Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino."
+      content="Explore theoretical two-dimensional views of signed wake intensity around prescribed path scenarios."
     />
-    <title>Architrino Wake Intensity Map</title>
+    <title>Architrino Wake Topological Map</title>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <link rel="stylesheet" href="./src/apps/topo/topo.css" />
   </head>
@@ -17,12 +17,12 @@
       <aside
         id="topo-left-rail"
         class="topo-left-rail"
-        aria-label="Wake Intensity Map controls"
+        aria-label="Wake Topological Map controls"
       >
         <header class="topo-rail-header">
           <div class="topo-title">
-            <h1>Wake Intensity Map</h1>
-            <p>Two-dimensional prescribed-motion slice</p>
+            <h1>Wake Topological Map</h1>
+            <p>Two-dimensional prescribed motion</p>
           </div>
           <button
             id="topo-panel-collapse"
@@ -30,24 +30,57 @@
             type="button"
             aria-controls="topo-panel-content"
             aria-expanded="true"
-            aria-label="Collapse Wake Intensity Map controls"
+            aria-label="Collapse Wake Topological Map controls"
           ></button>
         </header>
 
         <div id="topo-panel-content" class="topo-panel-content">
           <section class="topo-notice" aria-labelledby="topo-about-title">
             <h2 id="topo-about-title">About this view</h2>
-            <p>Explore a theoretical two-dimensional view of signed wake intensity around a prescribed electrino or positrino.</p>
+            <p>Explore theoretical two-dimensional views of signed wake intensity around prescribed path scenarios.</p>
           </section>
 
           <section class="topo-card" aria-labelledby="topo-scenario-title">
-            <h2 id="topo-scenario-title">Scenario record</h2>
-            <label class="topo-field" for="topo-scenario">
-              <span>Scenario</span>
-              <select id="topo-scenario">
-                <option value="electrino">Electrostatic: single electrino</option>
-                <option value="positrino">Electrostatic: single positrino</option>
-              </select>
+            <fieldset id="topo-scenario-control" class="topo-scenario-options">
+              <legend id="topo-scenario-title">Scenario</legend>
+              <label>
+                <input type="radio" name="topo-scenario" value="electrino" checked />
+                <span>Electrostatic: single electrino</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-scenario" value="positrino" />
+                <span>Electrostatic: single positrino</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-scenario" value="approaching-collinear-electrino-positrino" />
+                <span>Approaching collinear electrino and positrino</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-scenario" value="orbiting-binary" />
+                <span>Orbiting binary electrino and positrino</span>
+              </label>
+            </fieldset>
+            <label
+              id="topo-binary-radius-control"
+              class="topo-range-field"
+              for="topo-binary-radius"
+              hidden
+            >
+              <span>Orbital radius</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-binary-radius"
+                  type="range"
+                  min="0.01"
+                  max="0.45"
+                  step="0.01"
+                  value="0.30"
+                  data-keyboard-step="0.01"
+                  aria-label="Circular binary orbital radius as a fraction of visible width"
+                />
+                <output id="topo-binary-radius-output" for="topo-binary-radius">30% width</output>
+              </span>
+              <small class="topo-range-note">Antipodal separation = 2 × orbital radius</small>
             </label>
             <label class="topo-range-field" for="topo-beta">
               <span>Prescribed speed</span>
@@ -64,35 +97,89 @@
                 <output id="topo-beta-output" for="topo-beta">β = 0.50</output>
               </span>
             </label>
-            <dl class="topo-compact-facts">
-              <div>
-                <dt>Direction</dt>
-                <dd>Positive x</dd>
-              </div>
-            </dl>
-          </section>
-
-          <section class="topo-card" aria-labelledby="topo-display-title">
-            <h2 id="topo-display-title">Display</h2>
-            <label class="topo-range-field" for="topo-contours">
-              <span>Contour range</span>
+            <p id="topo-coordinate-mode" class="topo-range-note" aria-live="polite">Display coordinates: linear Euclidean</p>
+            <details id="topo-advanced-display" class="topo-advanced-display">
+              <summary>Advanced display choices</summary>
+              <label class="topo-check-field" for="topo-advanced-display-enabled">
+                <input id="topo-advanced-display-enabled" type="checkbox" />
+                <span>Use specialist display choices</span>
+              </label>
+            <fieldset id="topo-view-control" class="topo-radio-field">
+              <legend>View</legend>
+              <label>
+                <input type="radio" name="topo-view" value="source-local" />
+                <span>Source-local levels</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-view" value="equal-radius" />
+                <span>Equal-radius levels (stationary source)</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-view" value="combined" checked />
+                <span>Combined wake</span>
+              </label>
+            </fieldset>
+            <fieldset id="topo-heatmap-mode-control" class="topo-radio-field">
+              <legend>Heatmap</legend>
+              <label>
+                <input type="radio" name="topo-heatmap-mode" value="physical-magnitude" checked />
+                <span>Physical magnitude</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-heatmap-mode" value="enhanced-decade-contrast" />
+                <span>Enhanced tenfold contrast</span>
+              </label>
+            </fieldset>
+            <p id="topo-heatmap-note" class="topo-range-note" aria-live="polite">Physical magnitude uses the ordinary Shading spread control after the signed wake is calculated. Raw values, ordering, and contours do not change.</p>
+            </details>
+            <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>
+              <legend>Orbit direction</legend>
+              <label>
+                <input type="radio" name="topo-binary-direction" value="counterclockwise" checked />
+                <span>Counterclockwise</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-binary-direction" value="clockwise" />
+                <span>Clockwise</span>
+              </label>
+            </fieldset>
+            <div id="topo-contour-controls">
+            <label class="topo-range-field" for="topo-contour-count">
+              <span>Contour count</span>
               <span class="topo-range-row">
                 <input
-                  id="topo-contours"
+                  id="topo-contour-count"
+                  type="range"
+                  min="4"
+                  max="25"
+                  step="1"
+                  value="13"
+                  data-keyboard-step="1"
+                  aria-label="Number of genuine equal-wake contour levels"
+                />
+                <output id="topo-contour-count-output" for="topo-contour-count">13 levels</output>
+              </span>
+              <small class="topo-range-note">Adds real equal-value thresholds; it does not interpolate line geometry.</small>
+            </label>
+            <label class="topo-range-field" for="topo-shading-spread">
+              <span>Shading spread</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-shading-spread"
                   type="range"
                   min="0"
                   max="100"
-                  step="0.1"
-                  value="40"
+                  step="1"
+                  value="75"
                   data-keyboard-step="1"
-                  aria-label="Contour logarithmic range"
+                  aria-label="Shading spread from tight to broad"
                 />
-                <output id="topo-contours-output" for="topo-contours">2.0 decades</output>
+                <output id="topo-shading-spread-output" for="topo-shading-spread">75% · broad</output>
               </span>
-              <small class="topo-range-note">3 levels / decade · I ∝ 1/r²</small>
+              <small class="topo-range-note">Display-only color transfer after signed contributions are combined.</small>
             </label>
             <label class="topo-range-field" for="topo-contour-visibility">
-              <span>Contour visibility</span>
+              <span>Contour strength</span>
               <span class="topo-range-row">
                 <input
                   id="topo-contour-visibility"
@@ -102,20 +189,58 @@
                   step="0.1"
                   value="75"
                   data-keyboard-step="1"
-                  aria-label="Contour line visibility"
+                  aria-label="Contour line display strength"
                 />
                 <output
                   id="topo-contour-visibility-output"
                   for="topo-contour-visibility"
                 >75%</output>
               </span>
+              <small class="topo-range-note">Scales the whole contour profile: stronger wake levels stay prominent, weaker levels fade, and cancellation stays distinct.</small>
             </label>
+            </div>
+            <div id="topo-binary-orbit-guide-control" class="topo-check-field-group" hidden>
+              <label class="topo-check-field" for="topo-binary-orbit-guide">
+                <input id="topo-binary-orbit-guide" type="checkbox" checked />
+                <span>Show solid orbit guide</span>
+              </label>
+              <small class="topo-range-note">Prescribed reference path only</small>
+            </div>
+            <label class="topo-range-field" for="topo-display-scale">
+              <span>Display scale · visible extent</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-display-scale"
+                  type="range"
+                  min="0.5"
+                  max="2"
+                  step="0.25"
+                  value="1"
+                  data-keyboard-step="0.25"
+                  aria-label="Display-only map framing scale"
+                />
+                <output id="topo-display-scale-output" for="topo-display-scale">1.00× · 1.00 high</output>
+              </span>
+              <small class="topo-range-note">Lower scale shows a wider coordinate window; higher scale shows a closer view. Wake law and contour values stay unchanged.</small>
+            </label>
+            <fieldset id="topo-background-control" class="topo-radio-field">
+              <legend>Neutral background</legend>
+              <label>
+                <input type="radio" name="topo-background" value="purple" checked />
+                <span>Purple</span>
+              </label>
+              <label>
+                <input type="radio" name="topo-background" value="white" />
+                <span>White</span>
+              </label>
+            </fieldset>
           </section>
 
           <section class="topo-card topo-legend" aria-labelledby="topo-legend-title">
             <h2 id="topo-legend-title">Signed ordinary values</h2>
             <p id="topo-legend-mapping" class="topo-card-note"></p>
             <div
+              id="topo-legend-gradient"
               class="topo-legend-gradient"
               role="img"
               aria-label="Negative values blue, zero purple, positive values red"
@@ -130,12 +255,82 @@
         <canvas
           id="topo-canvas"
           tabindex="0"
-          aria-label="Theoretical signed inverse-square wake intensity around one fixed polarity-colored source marker, with exact logarithmic contours and a faint dashed horizontal reference axis pointing toward positive x"
+          aria-label="Wake Topological Map: theoretical signed inverse-square wake intensity on a linear Euclidean chart, with scenario-specific reference overlays"
         ></canvas>
         <canvas id="topo-contour-canvas" aria-hidden="true"></canvas>
         <div class="topo-loading-veil" aria-hidden="true">
           <span></span>
           <b>Preparing matching frame</b>
+        </div>
+
+        <div
+          id="topo-pair-transport"
+          class="topo-pair-transport"
+          role="group"
+          aria-label="Collinear pair replay controls"
+          hidden
+        >
+          <button
+            id="topo-pair-play"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Play collinear replay"
+            aria-keyshortcuts="Space"
+          ></button>
+          <input
+            id="topo-pair-timeline"
+            class="topo-timeline"
+            type="range"
+            min="0"
+            max="1000"
+            step="1"
+            value="0"
+            data-keyboard-step="10"
+            aria-label="Collinear replay position"
+            aria-valuetext="0% of the prescribed approach"
+          />
+          <button
+            id="topo-pair-replay"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Reset collinear replay"
+          ></button>
+          <output id="topo-pair-progress" aria-live="off">0%</output>
+        </div>
+
+        <div
+          id="topo-binary-transport"
+          class="topo-binary-transport"
+          role="group"
+          aria-label="Orbit playback"
+          hidden
+        >
+          <button
+            id="topo-binary-play"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Play"
+            aria-keyshortcuts="Space"
+          ></button>
+          <input
+            id="topo-binary-timeline"
+            class="topo-timeline"
+            type="range"
+            min="0"
+            max="1000"
+            step="1"
+            value="0"
+            data-keyboard-step="10"
+            aria-label="Orbit playback position"
+            aria-valuetext="0% of one orbit"
+          />
+          <button
+            id="topo-binary-replay"
+            class="topo-icon-button topo-transport-button"
+            type="button"
+            aria-label="Reset orbit playback"
+          ></button>
+          <output id="topo-binary-progress-output" for="topo-binary-timeline">0%</output>
         </div>
 
         <div
@@ -221,7 +416,7 @@
         </div>
 
         <p id="topo-status" class="topo-status" role="status" aria-live="polite">
-          Preparing synthetic interaction frame.
+          Preparing prescribed interaction frame.
         </p>
       </main>
     </div>

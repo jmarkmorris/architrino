@@ -1,6 +1,6 @@
 # Priorities Inventory
 
-Snapshot: 2026-08-01.
+Snapshot: 2026-08-05.
 
 This is the developer-facing ownership and routing inventory for
 [reference/priorities](../README.md). The canonical numeric order lives in
@@ -74,7 +74,7 @@ attention score. They do not create another directory owner.
 
 ## Dormant-Deferred Archive
 
-The following 16 children are preserved but excluded from the numeric table,
+The following 17 children are preserved but excluded from the numeric table,
 active discussion queue, and tracker-metadata synchronization:
 
 | Archived child | Parked role |
@@ -85,6 +85,7 @@ active discussion queue, and tracker-metadata synchronization:
 | [`app-equation-mapping`](../dormant-deferred/app-equation-mapping/priorities.md) | Deferred equation-mapping app surface; the active scientific map remains top-level `equation-mapping`. |
 | [`app-lorentz-geometry`](../dormant-deferred/app-lorentz-geometry/priorities.md) | Deferred Lorentz-geometry teaching app. |
 | [`app-lattice-lab`](../dormant-deferred/app-lattice-lab/priorities.md) | Accepted Lattice Lab teaching app and its parked follow-on queue. |
+| [`electrodynamics`](../dormant-deferred/electrodynamics/priorities.md) | Parked electrodynamics recovery and primitive-dyon brainstorm; no executable queue. |
 | [`electron-orbitals`](../dormant-deferred/electron-orbitals/priorities.md) | Deferred atomic/quantum note. |
 | [`information-relay-machines`](../dormant-deferred/information-relay-machines/priorities.md) | Deferred terminology and transduction-chain concept. |
 | [`lissajou`](../dormant-deferred/lissajou/priorities.md) | Deferred phase-closure candidate. |
