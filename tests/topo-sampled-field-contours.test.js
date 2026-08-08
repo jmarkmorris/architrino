@@ -10,6 +10,7 @@ import {
   TOPO_CONTOUR_LEVELS_PER_DECADE,
   TOPO_SAMPLED_FIELD_CONTOUR_POLICY_ID,
   TOPO_SAMPLED_FIELD_STATE,
+  connectTopoSampledFieldContourSegments,
   createTopoSignedContourLevels,
   extractTopoSampledFieldContourSegments,
 } from "../src/apps/topo/TopoSampledFieldContours.js";
@@ -19,16 +20,31 @@ import {
   solveTopoCollinearPairCausalDelay,
 } from "../src/apps/topo/TopoCollinearPairScenario.js";
 import {
+  createTopoCircularBinaryRawSampler,
+  topoCircularBinaryWorldPointForCanvasPixel,
+} from "../src/apps/topo/TopoCircularBinaryScenario.js";
+import {
   TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH,
   TOPO_PAIR_CROSSING_PHASE_END,
   TOPO_PAIR_CROSSING_PHASE_START,
   TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH,
+  TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH,
+  TOPO_PAIR_COINCIDENCE_PHASE_END,
+  TOPO_PAIR_COINCIDENCE_PHASE_START,
   TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH,
   TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH,
+  TOPO_BINARY_HIGH_SPEED_CONTOUR_BETA,
+  TOPO_BINARY_HIGH_SPEED_PLAYBACK_CONTOUR_GRID_WIDTH,
+  TOPO_BINARY_HIGH_SPEED_PAUSED_CONTOUR_GRID_WIDTH,
+  TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE,
+  TOPO_BINARY_SOURCE_REFINEMENT_RADIUS_PIXELS,
+  TOPO_BINARY_SOURCE_REFINEMENT_REPLACEMENT_RADIUS_PIXELS,
+  TOPO_BINARY_SOURCE_REFINEMENT_MIN_RAW_DECADE,
   createTopoSampledContourPaintStyle,
   resolveTopoLinearViewportAnchor,
   resolveTopoCollinearSourceMaskRadius,
   resolveTopoPairPlaybackContourGridWidth,
+  resolveTopoBinaryContourGridWidth,
   topoGlobalTransportOwnsSpace,
   topoRangePointerMoveOwnsInteraction,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
@@ -209,6 +225,79 @@ test("marching squares locates the explicit zero contour in sampled-grid coordin
     closeTo(segment.x1, 1);
     closeTo(segment.x2, 1);
   });
+});
+
+test("contour paint paths join existing shared marching-squares endpoints without changing edges", () => {
+  const extracted = extractTopoSampledFieldContourSegments({
+    raw: new Float32Array([
+      -1, 0, 1,
+      -1, 0, 1,
+      -1, 0, 1,
+    ]),
+    width: 3,
+    height: 3,
+    levels: [{ value: 0, family: "zero" }],
+  });
+  const paths = connectTopoSampledFieldContourSegments(extracted.segments);
+  assert.equal(paths.length, 1);
+  assert.equal(paths[0].length, extracted.segments.length + 1);
+  const joinedEdgeCount = paths.reduce((count, path) => count + path.length - 1, 0);
+  assert.equal(joinedEdgeCount, extracted.segments.length);
+  assert.deepEqual(
+    paths[0].map((point) => point.x),
+    [1, 1, 1],
+  );
+});
+
+test("high-speed binary uses the dense-grid component topology rather than the coarse preview alias", () => {
+  const levels = createTopoSignedContourLevels({
+    contourCount: 13,
+    contourReach: 3,
+  });
+  const selected = levels.find((level) =>
+    level.family === "negative" && level.rawDecade === -2);
+  const componentCount = (width, height) => {
+    const sample = createTopoCircularBinaryRawSampler({
+      beta: 1,
+      progress: 0,
+      radius: 0.3,
+      sourceMaskRadius: 0.003688525,
+    });
+    const raw = new Float32Array(width * height);
+    const sampleStates = new Uint8Array(raw.length);
+    for (let y = 0; y < height; y += 1) {
+      for (let x = 0; x < width; x += 1) {
+        const point = topoCircularBinaryWorldPointForCanvasPixel({
+          pixelX: x,
+          pixelY: y,
+          width,
+          height,
+          displayScale: 1,
+        });
+        const index = y * width + x;
+        const value = sample(point.x, point.y);
+        raw[index] = value;
+        sampleStates[index] = Number.isNaN(value)
+          ? TOPO_SAMPLED_FIELD_STATE.MASKED
+          : Number.isFinite(value)
+            ? TOPO_SAMPLED_FIELD_STATE.VALID
+            : TOPO_SAMPLED_FIELD_STATE.UNAVAILABLE;
+      }
+    }
+    const extracted = extractTopoSampledFieldContourSegments({
+      raw,
+      sampleStates,
+      width,
+      height,
+      levels,
+    });
+    return connectTopoSampledFieldContourSegments(extracted.segments.filter(
+      (segment) => segment.family === selected.family &&
+        segment.value === selected.value,
+    )).length;
+  };
+  assert.equal(componentCount(120, 94), 1);
+  assert.equal(componentCount(240, 188), 2);
 });
 
 test("positive and negative contours share the authoritative samples", () => {
@@ -532,6 +621,9 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.equal(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, 480);
   assert.equal(TOPO_PAIR_CROSSING_PHASE_START, 0.42);
   assert.equal(TOPO_PAIR_CROSSING_PHASE_END, 0.66);
+  assert.equal(TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH, 620);
+  assert.equal(TOPO_PAIR_COINCIDENCE_PHASE_START, 0.505);
+  assert.equal(TOPO_PAIR_COINCIDENCE_PHASE_END, 0.515);
   assert.ok(
     (916 - 1) / (TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH - 1) < 2.3,
     "the live desktop contour grid must keep marching-squares facets below 2.3 canvas pixels",
@@ -546,6 +638,10 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   }), 480);
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 916,
+    phase: 0.51,
+  }), 620);
+  assert.equal(resolveTopoPairPlaybackContourGridWidth({
+    canvasWidth: 916,
     phase: 0.659,
   }), 480);
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
@@ -554,8 +650,8 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   }), 400);
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 500,
-    phase: 0.5,
-  }), 480);
+    phase: 0.51,
+  }), 500);
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
     import.meta.url,
@@ -589,6 +685,33 @@ test("collinear playback extracts a current fail-closed contour frame while moti
 test("circular-binary live contours use a bounded preview and refine when paused", () => {
   assert.equal(TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH, 120);
   assert.equal(TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH, 180);
+  assert.equal(TOPO_BINARY_HIGH_SPEED_CONTOUR_BETA, 0.9);
+  assert.equal(TOPO_BINARY_HIGH_SPEED_PLAYBACK_CONTOUR_GRID_WIDTH, 180);
+  assert.equal(TOPO_BINARY_HIGH_SPEED_PAUSED_CONTOUR_GRID_WIDTH, 240);
+  assert.equal(resolveTopoBinaryContourGridWidth({
+    canvasWidth: 916,
+    beta: 0.5,
+    playing: true,
+  }), 120);
+  assert.equal(resolveTopoBinaryContourGridWidth({
+    canvasWidth: 916,
+    beta: 1,
+    playing: true,
+  }), 180);
+  assert.equal(resolveTopoBinaryContourGridWidth({
+    canvasWidth: 916,
+    beta: 1,
+    playing: false,
+  }), 240);
+  assert.equal(TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE, 56);
+  assert.equal(TOPO_BINARY_SOURCE_REFINEMENT_RADIUS_PIXELS, 64);
+  assert.equal(TOPO_BINARY_SOURCE_REFINEMENT_REPLACEMENT_RADIUS_PIXELS, 48);
+  assert.ok(
+    TOPO_BINARY_SOURCE_REFINEMENT_RADIUS_PIXELS >
+      TOPO_BINARY_SOURCE_REFINEMENT_REPLACEMENT_RADIUS_PIXELS,
+    "the independently sampled local contour grid must overlap the coarse hand-off",
+  );
+  assert.equal(TOPO_BINARY_SOURCE_REFINEMENT_MIN_RAW_DECADE, -1);
   assert.ok(
     TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH <
       TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH,
@@ -597,10 +720,37 @@ test("circular-binary live contours use a bounded preview and refine when paused
     "../src/apps/topo/TopoInteractionContractRuntime.js",
     import.meta.url,
   ), "utf8");
-  assert.match(runtime, /binaryPlaying[\s\S]*TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH/u);
+  assert.match(
+    runtime,
+    /resolveTopoBinaryContourGridWidth\([\s\S]*beta: state\.beta,[\s\S]*playing: binaryPlaying \|\| binaryTimelineScrubbing/u,
+  );
   assert.match(
     runtime,
     /function toggleBinaryPlayback[\s\S]*stopBinaryPlayback\(\);[\s\S]*beginRender/u,
+  );
+  assert.match(
+    runtime,
+    /function createBinaryContourRefinementFrames[\s\S]*createRawSamplerForState[\s\S]*topoCircularBinaryWorldPointForCanvasPixel[\s\S]*extractTopoSampledFieldContourSegments/u,
+  );
+  assert.match(
+    runtime,
+    /replacementRadius[\s\S]*TOPO_BINARY_SOURCE_REFINEMENT_REPLACEMENT_RADIUS_PIXELS[\s\S]*refinement\.replacementRadius/u,
+  );
+  assert.match(
+    runtime,
+    /refinedContourLevels = contourLevels\.filter[\s\S]*rawDecade >= TOPO_BINARY_SOURCE_REFINEMENT_MIN_RAW_DECADE/u,
+  );
+  assert.match(
+    runtime,
+    /state\.beta < TOPO_BINARY_HIGH_SPEED_CONTOUR_BETA[\s\S]*createBinaryContourRefinementFrames/u,
+  );
+  assert.match(
+    runtime,
+    /if \(state\.binary\) \{[\s\S]*drawSyntheticContours\([\s\S]*rawFrame,[\s\S]*Full-density circular-binary contours complete/u,
+  );
+  assert.match(
+    runtime,
+    /binaryContourRefinement[\s\S]*source patches at/u,
   );
 });
 
@@ -691,19 +841,21 @@ test("centered crossing previews preserve the full-density high-level component 
     return components;
   };
 
-  for (const phase of [0.501, 0.51]) {
-    console.error("centered-components", phase, [600, 608, 616, 624, 632, 640].map((width) => [
-      width,
-      componentCount(width, phase),
-    ]));
-    assert.equal(
-      componentCount(TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH, phase),
-      phase === 0.501 ? 1 : 3,
-    );
+  for (const [phase, previewComponents, fullComponents] of [
+    [0.5075, 4, 3],
+    [0.51, 3, 1],
+  ]) {
     assert.equal(
       componentCount(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, phase),
-      1,
+      previewComponents,
     );
-    assert.equal(componentCount(canvasWidth, phase), 1);
+    assert.equal(
+      componentCount(resolveTopoPairPlaybackContourGridWidth({
+        canvasWidth,
+        phase,
+      }), phase),
+      fullComponents,
+    );
+    assert.equal(componentCount(canvasWidth, phase), fullComponents);
   }
 });

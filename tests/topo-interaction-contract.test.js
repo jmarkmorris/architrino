@@ -1149,7 +1149,7 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.doesNotMatch(runtime, /state\.contourReach|dataset\.contourReach/u);
   assert.equal(
     runtime.match(/contourReach: TOPO_DEFAULT_CONTOUR_REACH/gu)?.length,
-    3,
+    4,
   );
   assert.match(runtime, /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u);
   assert.match(
@@ -1298,6 +1298,7 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(runtime, /nonnegative-raw-exponents-only/u);
   assert.match(runtime, /equalRadiusAnchorDisplayedTime/u);
   assert.match(runtime, /Moving and multi-source scenes use contours from their combined raw wake field/u);
+  assert.match(runtime, /equal combined-wake values, not prescribed circles or asserted equipotential surfaces/u);
   assert.match(runtime, /not a global physical-coordinate transform/u);
   assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
 

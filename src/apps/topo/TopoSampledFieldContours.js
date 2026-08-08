@@ -22,6 +22,65 @@ function requireFinite(value, label) {
   return number;
 }
 
+function contourPointKey(point) {
+  return Math.round(point.x * 1e6) + ":" + Math.round(point.y * 1e6);
+}
+
+/**
+ * Retain the marching-squares vertices while arranging adjacent edges into
+ * continuous stroke paths.  This is deliberately a paint-time operation: it
+ * neither interpolates new points nor alters segment connectivity.
+ */
+export function connectTopoSampledFieldContourSegments(segments = []) {
+  const edges = segments.map((segment) => Object.freeze({
+    start: Object.freeze({ x: segment.x1, y: segment.y1 }),
+    end: Object.freeze({ x: segment.x2, y: segment.y2 }),
+  }));
+  const endpoints = new Map();
+  const addEndpoint = (point, index) => {
+    const key = contourPointKey(point);
+    const members = endpoints.get(key) ?? [];
+    members.push(index);
+    endpoints.set(key, members);
+  };
+  edges.forEach((edge, index) => {
+    addEndpoint(edge.start, index);
+    addEndpoint(edge.end, index);
+  });
+  const unused = new Set(edges.map((_, index) => index));
+  const connected = [];
+  const extend = (points, atEnd) => {
+    while (true) {
+      const point = atEnd ? points.at(-1) : points[0];
+      const nextIndex = (endpoints.get(contourPointKey(point)) ?? [])
+        .find((index) => unused.has(index));
+      if (nextIndex == null) {
+        return;
+      }
+      unused.delete(nextIndex);
+      const edge = edges[nextIndex];
+      const next = contourPointKey(edge.start) === contourPointKey(point)
+        ? edge.end
+        : edge.start;
+      if (atEnd) {
+        points.push(next);
+      } else {
+        points.unshift(next);
+      }
+    }
+  };
+  while (unused.size > 0) {
+    const index = unused.values().next().value;
+    unused.delete(index);
+    const edge = edges[index];
+    const points = [edge.start, edge.end];
+    extend(points, true);
+    extend(points, false);
+    connected.push(Object.freeze(points));
+  }
+  return Object.freeze(connected);
+}
+
 export function createTopoSignedContourLevels({
   rangeDecades = 3,
   contourCount = null,
