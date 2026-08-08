@@ -3,9 +3,21 @@ export const TOPO_SYNTHETIC_SURFACE_ID = "topo_synthetic_causal_envelope/v1";
 export const TOPO_SOURCE_POSITION = Object.freeze({ x: 2 / 3, y: 1 / 2 });
 export const TOPO_REFERENCE_SCALE = 4;
 export const TOPO_DISPLAY_CLIP_MAGNITUDE = 64;
-export const TOPO_PHYSICAL_TONE_POWER = 1 / 3;
 export const TOPO_DEFAULT_CONTOUR_RANGE_DECADES = 3;
+export const TOPO_DEFAULT_CONTOUR_COUNT = 13;
+export const TOPO_MIN_CONTOUR_COUNT = 4;
+export const TOPO_MAX_CONTOUR_COUNT = 25;
+export const TOPO_DEFAULT_CONTOUR_REACH = 3;
+export const TOPO_MIN_CONTOUR_REACH = 1;
+export const TOPO_MAX_CONTOUR_REACH = 6;
+export const TOPO_DEFAULT_SHADING_SPREAD = 0.75;
+export const TOPO_MIN_SHADING_POWER = 1;
+export const TOPO_MAX_SHADING_POWER = 4;
 export const TOPO_DEFAULT_CONTOUR_VISIBILITY = 0.75;
+export const TOPO_CONTOUR_WEIGHT_POLICY_ID =
+  "actual-level-linear-fade-with-explicit-zero/v1";
+export const TOPO_WEAKEST_CONTOUR_WEIGHT = 0.32;
+export const TOPO_ZERO_CONTOUR_WEIGHT = 0.56;
 export const TOPO_DEFAULT_DISPLAY_SCALE = 1;
 export const TOPO_MIN_DISPLAY_SCALE = 0.5;
 export const TOPO_MAX_DISPLAY_SCALE = 2;
@@ -123,6 +135,9 @@ export function topoWakeIntensityExponent(
 export function normalizeTopoPhysicalMagnitudeValue(
   rawValue,
   referenceMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
+  {
+    spread = TOPO_DEFAULT_SHADING_SPREAD,
+  } = {},
 ) {
   const raw = requireFiniteNumber(rawValue, "rawValue");
   const reference = requireFiniteNumber(
@@ -132,8 +147,20 @@ export function normalizeTopoPhysicalMagnitudeValue(
   if (!(reference > 0)) {
     throw new RangeError("referenceMagnitude must be positive.");
   }
-  const clippedStrength = clamp(Math.abs(raw) / reference, 0, 1);
-  return Math.sign(raw) * clippedStrength ** TOPO_PHYSICAL_TONE_POWER;
+  if (raw === 0) {
+    return 0;
+  }
+  const selectedSpread = normalizeTopoShadingSpread(spread);
+  const level = topoWakeIntensityExponent(raw, reference);
+  const levelStrength = clamp(
+    (level + TOPO_DEFAULT_CONTOUR_REACH) /
+      (TOPO_DEFAULT_CONTOUR_REACH + 1),
+    0,
+    1,
+  );
+  const tonePower = TOPO_MAX_SHADING_POWER -
+    selectedSpread * (TOPO_MAX_SHADING_POWER - TOPO_MIN_SHADING_POWER);
+  return Math.sign(raw) * levelStrength ** tonePower;
 }
 
 export function normalizeTopoDisplayValue(
@@ -165,10 +192,15 @@ export function normalizeTopoFieldColorValue(
   {
     mode = TOPO_DEFAULT_HEATMAP_MODE,
     span = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+    spread = TOPO_DEFAULT_SHADING_SPREAD,
   } = {},
 ) {
   if (mode === TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE) {
-    return normalizeTopoPhysicalMagnitudeValue(rawValue);
+    return normalizeTopoPhysicalMagnitudeValue(
+      rawValue,
+      TOPO_DISPLAY_CLIP_MAGNITUDE,
+      { spread },
+    );
   }
   if (mode === TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST) {
     return normalizeTopoDisplayValue(rawValue, { span });
@@ -181,21 +213,15 @@ export function normalizeTopoExponentRadiusColorValue(
   {
     mode = TOPO_DEFAULT_HEATMAP_MODE,
     span = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+    spread = TOPO_DEFAULT_SHADING_SPREAD,
   } = {},
 ) {
   if (mode === TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE) {
-    const raw = requireFiniteNumber(rawValue, "rawValue");
-    if (raw === 0) {
-      return 0;
-    }
-    const selectedSpan = topoContourRangeDecades(span);
-    const exponent = clamp(
-      topoWakeIntensityExponent(raw),
-      -selectedSpan,
-      selectedSpan,
+    return normalizeTopoPhysicalMagnitudeValue(
+      rawValue,
+      TOPO_DISPLAY_CLIP_MAGNITUDE,
+      { spread },
     );
-    const strength = (exponent + selectedSpan) / (2 * selectedSpan);
-    return Math.sign(raw) * strength;
   }
   return normalizeTopoFieldColorValue(rawValue, { mode, span });
 }
@@ -253,25 +279,41 @@ export function createTopoContourEmphasis(
   });
 }
 
-export function createTopoSequentialContourStyle({
-  index,
-  count,
+export function createTopoContourLevelStyle({
+  rawDecade = null,
+  strongestRawDecade = 1,
+  weakestRawDecade = -TOPO_DEFAULT_CONTOUR_REACH,
+  family = "unsigned",
   visibility = TOPO_DEFAULT_CONTOUR_VISIBILITY,
 } = {}) {
-  const contourCount = Math.max(1, Math.round(requireFiniteNumber(count, "count")));
-  const contourIndex = Math.round(requireFiniteNumber(index, "index"));
-  if (contourIndex < 0 || contourIndex >= contourCount) {
-    throw new RangeError("index must identify one contour in count.");
-  }
   const emphasis = createTopoContourEmphasis(visibility);
-  const progress = contourCount === 1
-    ? 0
-    : contourIndex / (contourCount - 1);
+  const zeroContour = family === "zero";
+  const strongest = requireFiniteNumber(
+    strongestRawDecade,
+    "strongestRawDecade",
+  );
+  const weakest = requireFiniteNumber(weakestRawDecade, "weakestRawDecade");
+  if (strongest < weakest) {
+    throw new RangeError("strongestRawDecade must not be below weakestRawDecade.");
+  }
+  const level = zeroContour
+    ? null
+    : requireFiniteNumber(rawDecade, "rawDecade");
+  const levelProgress = zeroContour
+    ? null
+    : strongest === weakest
+      ? 1
+      : clamp((level - weakest) / (strongest - weakest), 0, 1);
+  const levelWeight = zeroContour
+    ? TOPO_ZERO_CONTOUR_WEIGHT
+    : TOPO_WEAKEST_CONTOUR_WEIGHT +
+      (1 - TOPO_WEAKEST_CONTOUR_WEIGHT) * levelProgress;
   return Object.freeze({
-    index: contourIndex,
-    count: contourCount,
-    progress,
-    opacity: emphasis.opacity,
+    family,
+    rawDecade: level,
+    levelProgress,
+    levelWeight,
+    opacity: emphasis.opacity * levelWeight,
     whiteMix: emphasis.whiteMix,
     widthCss: emphasis.widthCss,
   });
@@ -284,25 +326,70 @@ export function topoContourRangeDecades(
   return clamp(Math.round(decades), 1, 4);
 }
 
+export function normalizeTopoContourCount(
+  requestedCount = TOPO_DEFAULT_CONTOUR_COUNT,
+) {
+  const count = requireFiniteNumber(requestedCount, "requestedCount");
+  return clamp(
+    Math.round(count),
+    TOPO_MIN_CONTOUR_COUNT,
+    TOPO_MAX_CONTOUR_COUNT,
+  );
+}
+
+export function normalizeTopoContourReach(
+  requestedReach = TOPO_DEFAULT_CONTOUR_REACH,
+) {
+  const reach = requireFiniteNumber(requestedReach, "requestedReach");
+  return clamp(reach, TOPO_MIN_CONTOUR_REACH, TOPO_MAX_CONTOUR_REACH);
+}
+
+export function normalizeTopoShadingSpread(
+  requestedSpread = TOPO_DEFAULT_SHADING_SPREAD,
+) {
+  return clamp(
+    requireFiniteNumber(requestedSpread, "requestedSpread"),
+    0,
+    1,
+  );
+}
+
 export function createTopoContourMagnitudeSchedule({
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  contourCount = null,
+  contourReach = null,
   referenceMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
 } = {}) {
+  const denseSchedule = contourCount != null || contourReach != null;
   const span = topoContourRangeDecades(contourRangeDecades);
+  const count = denseSchedule
+    ? normalizeTopoContourCount(contourCount ?? TOPO_DEFAULT_CONTOUR_COUNT)
+    : span * 2 + 1;
+  const reach = denseSchedule
+    ? normalizeTopoContourReach(contourReach ?? TOPO_DEFAULT_CONTOUR_REACH)
+    : span;
   const reference = requireFiniteNumber(referenceMagnitude, "referenceMagnitude");
   if (!(reference > 0)) {
     throw new RangeError("referenceMagnitude must be positive.");
   }
+  const inwardIntervalCount = denseSchedule
+    ? clamp(Math.round((count - 1) / (reach + 1)), 1, count - 2)
+    : span;
+  const outwardIntervalCount = count - 1 - inwardIntervalCount;
   return Object.freeze(
-    Array.from({ length: span * 2 + 1 }, (_, index) => {
-      const rawDecade = span - index;
+    Array.from({ length: count }, (_, index) => {
+      const rawDecade = denseSchedule
+        ? index <= inwardIntervalCount
+          ? 1 - index / inwardIntervalCount
+          : -(index - inwardIntervalCount) * reach / outwardIntervalCount
+        : span - index;
       const magnitude = reference * 10 ** rawDecade;
       return Object.freeze({
         magnitude,
         rawDecade,
-        referenceLevel: rawDecade === 0,
+        referenceLevel: Math.abs(rawDecade) <= 1e-12,
         levelIdentity: "raw-decade:" + rawDecade + ":" + magnitude,
-        majorDecadeLabel: "e=" + rawDecade,
+        majorDecadeLabel: "level:" + rawDecade,
       });
     }),
   );
@@ -311,8 +398,13 @@ export function createTopoContourMagnitudeSchedule({
 export function createTopoSyntheticContourRenderPlan({
   beta = 0.5,
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  contourCount = null,
+  contourReach = null,
 } = {}) {
-  const selection = createTopoSyntheticContourSelection(contourRangeDecades);
+  const selection = createTopoSyntheticContourSelection(
+    contourRangeDecades,
+    { contourCount, contourReach },
+  );
   const circles = createTopoSyntheticContourCircles({
     beta,
     causalDelays: selection.map(({ causalDelay }) => causalDelay),
@@ -320,7 +412,6 @@ export function createTopoSyntheticContourRenderPlan({
   return Object.freeze(circles.map((circle, index) => Object.freeze({
     ...circle,
     latticeIndex: selection[index].latticeIndex,
-    revealWeight: selection[index].revealWeight,
     majorDecade: selection[index].majorDecade,
     majorDecadeIndex: selection[index].majorDecadeIndex,
     majorDecadeLabel: selection[index].majorDecadeLabel,
@@ -341,17 +432,19 @@ export function createTopoSyntheticContourDelays(
 
 export function createTopoSyntheticContourSelection(
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  { contourCount = null, contourReach = null } = {},
 ) {
   const schedule = createTopoContourMagnitudeSchedule({
     contourRangeDecades,
+    contourCount,
+    contourReach,
   });
   return Object.freeze(schedule.map((level, index) =>
     Object.freeze({
       ...level,
       latticeIndex: index,
       causalDelay: Math.sqrt(TOPO_INVERSE_SQUARE_SCALE / level.magnitude),
-      revealWeight: 1,
-      majorDecade: true,
+      majorDecade: Math.abs(level.rawDecade - Math.round(level.rawDecade)) < 1e-9,
       majorDecadeIndex: level.rawDecade,
     })));
 }
@@ -427,6 +520,8 @@ export function topoWorldPointForCanvasPixel({
   width,
   height,
   displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+  viewportCenter = TOPO_SOURCE_POSITION,
+  canvasAnchor = TOPO_SOURCE_POSITION,
 } = {}) {
   const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
   const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
@@ -434,12 +529,16 @@ export function topoWorldPointForCanvasPixel({
   const y = requireFiniteNumber(pixelY, "pixelY");
   const commonScale = Math.max(1, canvasHeight - 1) *
     normalizeTopoDisplayScale(displayScale);
-  const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, canvasWidth - 1);
-  const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
+  const centerX = requireFiniteNumber(viewportCenter?.x, "viewportCenter.x");
+  const centerY = requireFiniteNumber(viewportCenter?.y, "viewportCenter.y");
+  const anchorPixelX = requireFiniteNumber(canvasAnchor?.x, "canvasAnchor.x") *
+    Math.max(1, canvasWidth - 1);
+  const anchorPixelY = (1 -
+    requireFiniteNumber(canvasAnchor?.y, "canvasAnchor.y")) *
     Math.max(1, canvasHeight - 1);
   return Object.freeze({
-    x: TOPO_SOURCE_POSITION.x + (x - sourcePixelX) / commonScale,
-    y: TOPO_SOURCE_POSITION.y + (sourcePixelY - y) / commonScale,
+    x: centerX + (x - anchorPixelX) / commonScale,
+    y: centerY + (anchorPixelY - y) / commonScale,
   });
 }
 
@@ -449,20 +548,26 @@ export function topoCanvasPixelForWorldPoint({
   width,
   height,
   displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+  viewportCenter = TOPO_SOURCE_POSITION,
+  canvasAnchor = TOPO_SOURCE_POSITION,
 } = {}) {
   const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
   const canvasHeight = Math.max(1, requireFiniteNumber(height, "height"));
   const commonScale = Math.max(1, canvasHeight - 1) *
     normalizeTopoDisplayScale(displayScale);
-  const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, canvasWidth - 1);
-  const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
+  const centerX = requireFiniteNumber(viewportCenter?.x, "viewportCenter.x");
+  const centerY = requireFiniteNumber(viewportCenter?.y, "viewportCenter.y");
+  const anchorPixelX = requireFiniteNumber(canvasAnchor?.x, "canvasAnchor.x") *
+    Math.max(1, canvasWidth - 1);
+  const anchorPixelY = (1 -
+    requireFiniteNumber(canvasAnchor?.y, "canvasAnchor.y")) *
     Math.max(1, canvasHeight - 1);
   return Object.freeze({
-    x: sourcePixelX +
-      (requireFiniteNumber(worldX, "worldX") - TOPO_SOURCE_POSITION.x) *
+    x: anchorPixelX +
+      (requireFiniteNumber(worldX, "worldX") - centerX) *
         commonScale,
-    y: sourcePixelY -
-      (requireFiniteNumber(worldY, "worldY") - TOPO_SOURCE_POSITION.y) *
+    y: anchorPixelY -
+      (requireFiniteNumber(worldY, "worldY") - centerY) *
         commonScale,
   });
 }
@@ -473,6 +578,7 @@ export function createTopoExponentRadiusChart({
   pixelRatio = 1,
   sourceMarkerRadiusPixels,
   contourRangeDecades = TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  contourReach = null,
   displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   const canvasWidth = Math.max(1, requireFiniteNumber(width, "width"));
@@ -483,6 +589,11 @@ export function createTopoExponentRadiusChart({
     requireFiniteNumber(sourceMarkerRadiusPixels, "sourceMarkerRadiusPixels"),
   );
   const span = topoContourRangeDecades(contourRangeDecades);
+  const levelMaximum = contourReach == null ? span : 1;
+  const levelMinimum = contourReach == null
+    ? -span
+    : -normalizeTopoContourReach(contourReach);
+  const levelSpan = levelMaximum - levelMinimum;
   const mapScale = normalizeTopoDisplayScale(displayScale);
   const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, canvasWidth - 1);
   const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
@@ -506,11 +617,14 @@ export function createTopoExponentRadiusChart({
     chartId: TOPO_EXPONENT_RADIUS_CHART_ID,
     displayScale: mapScale,
     span,
+    levelMaximum,
+    levelMinimum,
+    levelSpan,
     sourcePixelX,
     sourcePixelY,
     innerRadiusPixels,
     outerRadiusPixels,
-    radialStepPixels: (outerRadiusPixels - innerRadiusPixels) / (2 * span),
+    radialStepPixels: (outerRadiusPixels - innerRadiusPixels) / levelSpan,
     referenceMagnitude: TOPO_DISPLAY_CLIP_MAGNITUDE,
     referencePhysicalRadius: TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.anchor,
     outsidePolicy: "neutral-clip-no-clamp",
@@ -525,7 +639,7 @@ export function topoExponentDisplayRadiusForExponent({
   if (!chart || chart.chartId !== TOPO_EXPONENT_RADIUS_CHART_ID) {
     throw new TypeError("A Topo exponent-radius chart is required.");
   }
-  return chart.innerRadiusPixels + (chart.span - value) *
+  return chart.innerRadiusPixels + (chart.levelMaximum - value) *
     chart.radialStepPixels;
 }
 
@@ -614,7 +728,7 @@ export function topoExponentRadiusPhysicalPointForCanvasPixel({
       physicalPoint: null,
     });
   }
-  const exponent = chart.span -
+  const exponent = chart.levelMaximum -
     (displayRadiusPixels - chart.innerRadiusPixels) /
       chart.radialStepPixels;
   const physicalRadius = topoPhysicalRadiusForWakeExponent(exponent);

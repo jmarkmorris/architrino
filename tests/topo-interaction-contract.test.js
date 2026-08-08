@@ -4,7 +4,13 @@ import { readFileSync } from "node:fs";
 
 import {
   TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
+  TOPO_DEFAULT_CONTOUR_COUNT,
+  TOPO_DEFAULT_CONTOUR_REACH,
+  TOPO_DEFAULT_SHADING_SPREAD,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
+  TOPO_CONTOUR_WEIGHT_POLICY_ID,
+  TOPO_WEAKEST_CONTOUR_WEIGHT,
+  TOPO_ZERO_CONTOUR_WEIGHT,
   TOPO_DEFAULT_DISPLAY_SCALE,
   TOPO_DEFAULT_HEATMAP_MODE,
   TOPO_DISPLAY_CLIP_MAGNITUDE,
@@ -19,7 +25,6 @@ import {
   TOPO_INVERSE_SQUARE_SCALE,
   TOPO_MAX_DISPLAY_SCALE,
   TOPO_MIN_DISPLAY_SCALE,
-  TOPO_PHYSICAL_TONE_POWER,
   TOPO_REFERENCE_SCALE,
   TOPO_SOURCE_POSITION,
   TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE,
@@ -27,12 +32,12 @@ import {
   applyTopoScenarioPolarity,
   createTopoAnalyticFieldRgbAtCanvasPixel,
   createTopoContourEmphasis,
+  createTopoContourLevelStyle,
   createTopoContourMagnitudeSchedule,
   createTopoEqualRadiusChart,
   createTopoExponentRadiusChart,
   createTopoPreviewFrameIdentity,
   createTopoSampleRgb,
-  createTopoSequentialContourStyle,
   createTopoSignedRgb,
   createTopoSyntheticContourCircles,
   createTopoSyntheticContourRenderPlan,
@@ -40,6 +45,9 @@ import {
   createTopoSyntheticRawSampler,
   inverseTopoTransform,
   normalizeTopoDisplayScale,
+  normalizeTopoContourCount,
+  normalizeTopoContourReach,
+  normalizeTopoShadingSpread,
   normalizeTopoDisplayValue,
   normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
@@ -74,6 +82,7 @@ import {
 import {
   TOPO_SOURCE_MARKER_RADIUS_SCALE,
   TOPO_SOURCE_MASK_MARKER_RATIO,
+  resolveTopoLinearViewportAnchor,
   resolveTopoSourceMarkerRadius,
   resolveTopoSourceMaskRadius,
   topoEqualRadiusViewAvailable,
@@ -147,13 +156,115 @@ test("display scale changes the sampled world extent while preserving its anchor
   }
 });
 
+test("pair display scale keeps every rendered layer on one fixed center anchor", () => {
+  const runtime = readRepoFile(
+    "src/apps/topo/TopoInteractionContractRuntime.js",
+  );
+  for (const [width, height] of [[916, 720], [390, 844]]) {
+    let scenarioCenter = null;
+    for (const phase of [0.35, 0.5, 0.75]) {
+      const frame = createTopoCollinearPairFrame({
+        beta: 0.5,
+        phase,
+        horizontalWorldSpan: (width - 1) / (height - 1),
+      });
+      const anchor = resolveTopoLinearViewportAnchor({
+        width,
+        height,
+        pairMode: true,
+        beta: 0.5,
+        phase,
+      });
+      const sourceMidpoint = {
+        x: (frame.sources[0].position.x + frame.sources[1].position.x) / 2,
+        y: (frame.sources[0].position.y + frame.sources[1].position.y) / 2,
+      };
+      closeTo(anchor.viewportCenter.x, sourceMidpoint.x);
+      closeTo(anchor.viewportCenter.y, sourceMidpoint.y);
+      closeTo(anchor.canvasAnchor.x, 0.5);
+      closeTo(anchor.canvasAnchor.y, 0.5);
+      if (scenarioCenter == null) {
+        scenarioCenter = anchor.viewportCenter;
+      } else {
+        closeTo(anchor.viewportCenter.x, scenarioCenter.x);
+        closeTo(anchor.viewportCenter.y, scenarioCenter.y);
+      }
+
+      for (const displayScale of [0.5, 1, 2]) {
+        const mapping = {
+          width,
+          height,
+          displayScale,
+          viewportCenter: anchor.viewportCenter,
+          canvasAnchor: anchor.canvasAnchor,
+        };
+        const centerPixel = topoCanvasPixelForWorldPoint({
+          worldX: anchor.viewportCenter.x,
+          worldY: anchor.viewportCenter.y,
+          ...mapping,
+        });
+        closeTo(centerPixel.x, (width - 1) / 2);
+        closeTo(centerPixel.y, (height - 1) / 2);
+        const centerWorld = topoWorldPointForCanvasPixel({
+          pixelX: (width - 1) / 2,
+          pixelY: (height - 1) / 2,
+          ...mapping,
+        });
+        closeTo(centerWorld.x, anchor.viewportCenter.x);
+        closeTo(centerWorld.y, anchor.viewportCenter.y);
+
+        const sourcePixels = frame.sources.map(({ position }) =>
+          topoCanvasPixelForWorldPoint({
+            worldX: position.x,
+            worldY: position.y,
+            ...mapping,
+          }));
+        closeTo(
+          (sourcePixels[0].x + sourcePixels[1].x) / 2,
+          centerPixel.x,
+        );
+        closeTo(
+          (sourcePixels[0].y + sourcePixels[1].y) / 2,
+          centerPixel.y,
+        );
+        closeTo(
+          (TOPO_TRANSLATION_AXIS.startX + TOPO_TRANSLATION_AXIS.endX) / 2 *
+            (width - 1),
+          centerPixel.x,
+        );
+      }
+    }
+  }
+
+  assert.match(runtime, /uniform vec2 u_viewport_center/u);
+  assert.match(runtime, /uniform vec2 u_canvas_anchor/u);
+  assert.match(
+    runtime,
+    /vec2 worldPoint = u_viewport_center \+[\s\S]*pixel - anchorPixel/u,
+  );
+  assert.match(
+    runtime,
+    /topoWorldPointForCanvasPixel\(\{[\s\S]*viewportCenter: linearViewportAnchor\.viewportCenter,[\s\S]*canvasAnchor: linearViewportAnchor\.canvasAnchor/u,
+  );
+  assert.match(
+    runtime,
+    /sourceOverlayGeometry\([\s\S]*viewportCenter,[\s\S]*TOPO_CANVAS_CENTER/u,
+  );
+  assert.match(runtime, /dataset\.fieldViewportAnchorPixel = anchorPixel/u);
+  assert.match(runtime, /dataset\.contourViewportAnchorPixel = anchorPixel/u);
+  assert.match(runtime, /dataset\.guideCenterPixel = guideCenterPixel/u);
+  assert.match(runtime, /dataset\.viewportTemporalFrameKey/u);
+});
+
 test("physical magnitude is the default and enhanced decade contrast is optional", () => {
   assert.equal(TOPO_INTERACTION_CONTRACT_ID, "topo_interaction_and_color/v1");
   assert.equal(TOPO_DISPLAY_MAPPING_ID, "signed-log10");
   assert.equal(TOPO_DEFAULT_HEATMAP_MODE, TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE);
   assert.equal(TOPO_REFERENCE_SCALE, 4);
   assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
-  assert.equal(TOPO_PHYSICAL_TONE_POWER, 1 / 3);
+  assert.equal(TOPO_DEFAULT_CONTOUR_COUNT, 13);
+  assert.equal(TOPO_DEFAULT_CONTOUR_REACH, 3);
+  assert.equal(TOPO_DEFAULT_SHADING_SPREAD, 0.75);
   assert.equal(TOPO_DEFAULT_CONTOUR_RANGE_DECADES, 3);
   assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.75);
   assert.ok(TOPO_FIRST_CONTOUR_BUDGET_MS <= 34);
@@ -167,9 +278,6 @@ test("physical magnitude is the default and enhanced decade contrast is optional
     for (const exponent of [-3, -2, -1, 0]) {
       const raw = polaritySign * 64 * 10 ** exponent;
       const physical = normalizeTopoFieldColorValue(raw);
-      const expectedStrength = Math.min(Math.abs(raw) / 64, 1) **
-        TOPO_PHYSICAL_TONE_POWER;
-      closeTo(physical, polaritySign * expectedStrength);
       closeTo(physical, normalizeTopoPhysicalMagnitudeValue(raw));
       if (prior != null) {
         assert.ok(Math.abs(physical) > Math.abs(prior));
@@ -198,24 +306,78 @@ test("physical magnitude is the default and enhanced decade contrast is optional
   );
 });
 
-test("physical magnitude uses a signed monotonic gradual tone curve", () => {
+test("shading spread is signed, monotonic, and independent of raw values", () => {
   const magnitudes = [0, 0.064, 0.64, 6.4, 64, 640];
-  const strengths = magnitudes.map((magnitude) =>
-    normalizeTopoPhysicalMagnitudeValue(magnitude));
-  for (let index = 1; index < strengths.length; index += 1) {
-    assert.ok(strengths[index] >= strengths[index - 1]);
+  const tight = magnitudes.map((magnitude) =>
+    normalizeTopoPhysicalMagnitudeValue(magnitude, 64, { reach: 3, spread: 0 }));
+  const broad = magnitudes.map((magnitude) =>
+    normalizeTopoPhysicalMagnitudeValue(magnitude, 64, { reach: 3, spread: 1 }));
+  for (const strengths of [tight, broad]) {
+    for (let index = 1; index < strengths.length; index += 1) {
+      assert.ok(strengths[index] >= strengths[index - 1]);
+    }
   }
-  for (let index = 0; index < magnitudes.length; index += 1) {
-    const clipped = Math.min(magnitudes[index], 64);
-    const expected = (clipped / 64) ** TOPO_PHYSICAL_TONE_POWER;
-    closeTo(strengths[index], expected);
+  for (let index = 1; index < magnitudes.length - 1; index += 1) {
+    assert.ok(broad[index] >= tight[index]);
     closeTo(
-      normalizeTopoPhysicalMagnitudeValue(-magnitudes[index]),
-      -expected,
+      normalizeTopoPhysicalMagnitudeValue(-magnitudes[index], 64, {
+        reach: 3,
+        spread: 1,
+      }),
+      -broad[index],
     );
   }
-  assert.ok(strengths[2] > 0.05);
-  closeTo(strengths.at(-1), 1);
+  closeTo(tight[0], 0);
+  closeTo(broad.at(-1), 1);
+  assert.equal(normalizeTopoContourCount(99), 25);
+  assert.equal(normalizeTopoContourReach(99), 6);
+  assert.equal(normalizeTopoShadingSpread(-1), 0);
+  closeTo(
+    normalizeTopoFieldColorValue(0.64, { spread: 1 }),
+    normalizeTopoFieldColorValue(0.64, { spread: 1, reach: 1 }),
+  );
+});
+
+test("contour count and reach independently select genuine equal-value thresholds", () => {
+  const sparse = createTopoContourMagnitudeSchedule({
+    contourCount: 5,
+    contourReach: 3,
+  });
+  const dense = createTopoContourMagnitudeSchedule({
+    contourCount: 13,
+    contourReach: 3,
+  });
+  const farther = createTopoContourMagnitudeSchedule({
+    contourCount: 5,
+    contourReach: 6,
+  });
+  assert.equal(sparse.length, 5);
+  assert.equal(dense.length, 13);
+  assert.equal(farther.length, 5);
+  closeTo(sparse[0].rawDecade, 1);
+  closeTo(sparse.at(-1).rawDecade, -3);
+  closeTo(farther.at(-1).rawDecade, -6);
+  assert.deepEqual(
+    sparse.map(({ rawDecade }) => rawDecade),
+    [1, 0, -1, -2, -3],
+  );
+  assert.equal(new Set(dense.map(({ magnitude }) => magnitude)).size, 13);
+
+  for (const contourCount of [4, 5, 13, 25]) {
+    for (const contourReach of [1, 3, 6]) {
+      const schedule = createTopoContourMagnitudeSchedule({
+        contourCount,
+        contourReach,
+      });
+      assert.equal(schedule.length, contourCount);
+      closeTo(schedule[0].rawDecade, 1);
+      closeTo(schedule.at(-1).rawDecade, -contourReach);
+      assert.equal(
+        schedule.filter(({ referenceLevel }) => referenceLevel).length,
+        1,
+      );
+    }
+  }
 });
 
 test("inverse-square wake magnitude is anchored at the first contour", () => {
@@ -267,7 +429,7 @@ test("Contour span selects exact inward and outward raw decades without duplicat
   assert.deepEqual(selections.map((selection) => selection.length), [3, 5, 7, 9]);
   assert.deepEqual(
     selections[3].map(({ majorDecadeLabel }) => majorDecadeLabel),
-    ["e=4", "e=3", "e=2", "e=1", "e=0", "e=-1", "e=-2", "e=-3", "e=-4"],
+    ["level:4", "level:3", "level:2", "level:1", "level:0", "level:-1", "level:-2", "level:-3", "level:-4"],
   );
   assert.equal(
     selections[3].filter(({ referenceLevel }) => referenceLevel).length,
@@ -481,11 +643,13 @@ test("equal-radius chart is available only for a stationary single source", () =
   }), false);
 });
 
-test("source-local heatmap follows the original linear exponent legend without changing exponent geometry", () => {
+test("source-local heatmap uses the shared shading transfer without changing level geometry", () => {
   for (const span of [1, 2, 3, 4]) {
     for (let exponent = -span; exponent <= span; exponent += 1) {
       const magnitude = 64 * 10 ** exponent;
-      const expectedPhysical = (exponent + span) / (2 * span);
+      const expectedPhysical = Math.min(1, Math.max(0,
+        (exponent + 3) / 4,
+      )) ** 1.75;
       const expectedEnhanced = ((exponent + span) / (2 * span)) ** 0.72;
       for (const polaritySign of [-1, 1]) {
         closeTo(
@@ -510,15 +674,17 @@ test("source-local heatmap follows the original linear exponent legend without c
   }
 });
 
-test("source-local physical colors grade e=0 through e=-3 like the original legend", () => {
+test("source-local physical colors grade successive levels with the common transfer", () => {
   const actual = [0, -1, -2, -3].map((exponent) =>
     normalizeTopoExponentRadiusColorValue(-64 * 10 ** exponent, { span: 3 }));
-  assert.deepEqual(actual, [-0.5, -1 / 3, -1 / 6, -0]);
+  const expected = [0, -1, -2, -3].map((level) =>
+    -(Math.max(0, (level + 3) / 4) ** 1.75));
+  assert.deepEqual(actual, expected);
 
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
   assert.match(
     runtime,
-    /physicalStrength = mix\([\s\S]*sourceLocalLegendStrength[\s\S]*u_source_local_mode/u,
+    /exponent \+ \$\{TOPO_DEFAULT_CONTOUR_REACH\.toPrecision/u,
   );
   assert.doesNotMatch(runtime, /createTopoSourceLocalLegendGradient/u);
   assert.match(
@@ -562,7 +728,13 @@ test("exponent-radius resize changes display spacing without changing raw expone
   }
 });
 
-test("contour visibility changes opacity only and keeps equal scientific styling", () => {
+test("contour strength scales one monotonic actual-level profile with symmetric signs", () => {
+  assert.equal(
+    TOPO_CONTOUR_WEIGHT_POLICY_ID,
+    "actual-level-linear-fade-with-explicit-zero/v1",
+  );
+  assert.equal(TOPO_WEAKEST_CONTOUR_WEIGHT, 0.32);
+  assert.equal(TOPO_ZERO_CONTOUR_WEIGHT, 0.56);
   for (const visibility of [0, 0.75, 1]) {
     assert.deepEqual(createTopoContourEmphasis(visibility), {
       opacity: visibility,
@@ -570,18 +742,67 @@ test("contour visibility changes opacity only and keeps equal scientific styling
       widthCss: 1.15,
     });
   }
-  const count = 4;
-  const styles = Array.from({ length: count }, (_, index) =>
-    createTopoSequentialContourStyle({ index, count, visibility: 0.75 }));
-  assert.equal(styles.every(({ opacity }) => opacity === 0.75), true);
+  const rawDecades = [-3, -2, -1, 0, 1];
+  const styles = rawDecades.map((rawDecade) => createTopoContourLevelStyle({
+    rawDecade,
+    strongestRawDecade: 1,
+    weakestRawDecade: -3,
+    visibility: 0.75,
+  }));
+  assert.equal(styles[0].levelWeight, TOPO_WEAKEST_CONTOUR_WEIGHT);
+  assert.equal(styles.at(-1).levelWeight, 1);
+  for (let index = 1; index < styles.length; index += 1) {
+    assert.ok(styles[index].levelWeight > styles[index - 1].levelWeight);
+    assert.ok(styles[index].opacity > styles[index - 1].opacity);
+  }
   assert.equal(styles.every(({ whiteMix }) => whiteMix === 0), true);
   assert.equal(styles.every(({ widthCss }) => widthCss === 1.15), true);
+  for (const rawDecade of rawDecades) {
+    const positive = createTopoContourLevelStyle({
+      rawDecade,
+      strongestRawDecade: 1,
+      weakestRawDecade: -3,
+      family: "positive",
+      visibility: 0.75,
+    });
+    const negative = createTopoContourLevelStyle({
+      rawDecade,
+      strongestRawDecade: 1,
+      weakestRawDecade: -3,
+      family: "negative",
+      visibility: 0.75,
+    });
+    assert.equal(positive.levelWeight, negative.levelWeight);
+    assert.equal(positive.opacity, negative.opacity);
+  }
+  const zero = createTopoContourLevelStyle({
+    family: "zero",
+    visibility: 0.75,
+  });
+  assert.equal(zero.levelWeight, TOPO_ZERO_CONTOUR_WEIGHT);
+  assert.ok(zero.levelWeight > styles[0].levelWeight);
+  assert.ok(zero.levelWeight < styles.at(-1).levelWeight);
+  for (const rawDecade of rawDecades) {
+    const low = createTopoContourLevelStyle({
+      rawDecade,
+      strongestRawDecade: 1,
+      weakestRawDecade: -3,
+      visibility: 0.1,
+    });
+    const high = createTopoContourLevelStyle({
+      rawDecade,
+      strongestRawDecade: 1,
+      weakestRawDecade: -3,
+      visibility: 1,
+    });
+    closeTo(low.opacity, high.opacity * 0.1);
+  }
   const plan = createTopoSyntheticContourRenderPlan({
     beta: 0.5,
     contourRangeDecades: 3,
   });
   assert.equal(plan.length, 7);
-  assert.equal(plan.every(({ revealWeight }) => revealWeight === 1), true);
+  assert.equal(plan.some((circle) => "revealWeight" in circle), false);
 });
 
 test("analytic contours are exact complete causal-delay circles and raw isolines", () => {
@@ -923,10 +1144,48 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
     runtime,
     /function clearContourMapLabels\(\)[\s\S]*majorDecadeLabels = ""[\s\S]*majorDecadeLabelPositions = ""/u,
   );
-  assert.match(runtime, /listen\(dom\.contours, "input", scheduleContourChange\)/u);
+  assert.match(runtime, /listen\(dom\.contourCount, "input", scheduleContourChange\)/u);
+  assert.doesNotMatch(runtime, /dom\.contourReach/u);
+  assert.doesNotMatch(runtime, /state\.contourReach|dataset\.contourReach/u);
+  assert.equal(
+    runtime.match(/contourReach: TOPO_DEFAULT_CONTOUR_REACH/gu)?.length,
+    3,
+  );
+  assert.match(runtime, /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u);
   assert.match(
     runtime,
     /listen\(dom\.contourVisibility, "input", scheduleContourChange\)/u,
+  );
+  assert.match(
+    runtime,
+    /installRangeInteraction\(dom\.pairTimeline,[\s\S]*onInteractionStart: beginPairTimelineScrub,[\s\S]*onInteractionEnd: endPairTimelineScrub/u,
+  );
+  assert.match(
+    runtime,
+    /installRangeInteraction\(dom\.binaryTimeline,[\s\S]*onInteractionStart: beginBinaryTimelineScrub,[\s\S]*onInteractionEnd: endBinaryTimelineScrub/u,
+  );
+  assert.match(runtime, /listen\(dom\.pairTimeline, "input", seekPairTimeline\)/u);
+  assert.match(runtime, /listen\(dom\.binaryTimeline, "input", seekBinaryTimeline\)/u);
+  assert.match(
+    runtime,
+    /function seekPairTimeline\(\)[\s\S]*pairPlaybackPhase = timelinePhase\(dom\.pairTimeline\)[\s\S]*pairPlaybackPlaying = false/u,
+  );
+  assert.match(
+    runtime,
+    /function seekBinaryTimeline\(\)[\s\S]*binaryProgress = timelinePhase\(dom\.binaryTimeline\)[\s\S]*binaryPlaying = false/u,
+  );
+  assert.match(runtime, /pairPlaybackPhase = 0;[\s\S]*pairTimelineScrubbing = false/u);
+  assert.match(
+    runtime,
+    /listen\(dom\.binaryReplay, "click", \(\) => \{[\s\S]*binaryProgress = 0;[\s\S]*beginRender/u,
+  );
+  assert.match(
+    runtime,
+    /pairPlaybackPlaying \|\| pairTimelineScrubbing/u,
+  );
+  assert.match(
+    runtime,
+    /binaryPlaying \|\| binaryTimelineScrubbing/u,
   );
   assert.match(
     runtime,
@@ -941,10 +1200,8 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(runtime, /Source-local levels are not yet available/u);
   assert.match(runtime, /TOPO_HEATMAP_MODE\.PHYSICAL_MAGNITUDE/u);
   assert.match(runtime, /u_enhanced_decade_contrast/u);
-  assert.equal(
-    runtime.match(/physicalStrength = pow\([\s\S]*?clamp\(abs\(rawValue\) \/ 64\.0, 0\.0, 1\.0\),[\s\S]*?\$\{TOPO_PHYSICAL_TONE_POWER\.toPrecision\(12\)\}[\s\S]*?\);/gu)?.length,
-    2,
-  );
+  assert.equal(runtime.match(/u_contour_reach/gu)?.length > 4, true);
+  assert.equal(runtime.match(/u_shading_power/gu)?.length > 4, true);
   assert.match(runtime, /heatmapModeInputs[\s\S]*listen\(input, "change", scheduleFrameChange\)/u);
   assert.match(runtime, /state\.backgroundMode === "white"[\s\S]*--ui-color-electric-purple/u);
   const markerSource = runtime.slice(
@@ -962,8 +1219,24 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(runtime, /createTopoCollinearPairRawSampler/u);
   assert.doesNotMatch(runtime, /createTopoCollinearPairContourRenderPlan/u);
   assert.match(runtime, /extractTopoSampledFieldContourSegments/u);
-  assert.match(runtime, /drawSampledPairContours/u);
-  assert.match(runtime, /rawFrame: cachedRawFrame/u);
+  assert.match(runtime, /drawSampledCombinedContours/u);
+  assert.equal(runtime.match(/topoContourStyle\(/gu)?.length, 5);
+  assert.match(runtime, /TOPO_CONTOUR_WEIGHT_POLICY_ID/u);
+  assert.match(runtime, /contourWeightProfile/u);
+  assert.doesNotMatch(runtime, /revealWeight|outwardProgress/u);
+  const geometryKeyBodies = Array.from(runtime.matchAll(
+    /dataset\.contourGeometryKey = \[([\s\S]*?)\]\.join\(":"\)/gu,
+  )).map((match) => match[1]);
+  assert.equal(geometryKeyBodies.length, 2);
+  assert.equal(
+    geometryKeyBodies.every((body) => !body.includes("contourVisibility")),
+    true,
+  );
+  assert.match(
+    runtime,
+    /const contourKey = matchingFrame[\s\S]*matchingFrame\.key \+ ":count=" \+ state\.contourCount[\s\S]*: "pending"/u,
+  );
+  assert.match(runtime, /rawFrame: state\.binary[\s\S]*createLiveSampledContourFrame/u);
   assert.match(runtime, /contourScalarAuthority = "combined-raw-wake-field"/u);
   assert.match(runtime, /masked-and-unavailable-cells-excluded/u);
   assert.match(runtime, /equalRadiusInput\.disabled = pairMode \|\| binaryMode \|\| state\.beta !== 0/u);
@@ -980,16 +1253,18 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(html, /<h1>Wake Topological Map<\/h1>/u);
   assert.match(html, /Two-dimensional prescribed motion/u);
   assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
-  assert.match(html, /<span>Contour span<\/span>/u);
+  assert.match(html, /<span>Contour count<\/span>/u);
+  assert.doesNotMatch(html, /Contour reach|topo-contour-reach/iu);
+  assert.doesNotMatch(runtime, /steps outward|genuine levels reaching|per sign reaching/iu);
+  assert.match(html, /<span>Shading spread<\/span>/u);
+  assert.match(html, /<span>Contour strength<\/span>/u);
   assert.match(html, /id="topo-coordinate-mode"[^>]*aria-live="polite"/u);
   assert.match(html, /<legend>View<\/legend>/u);
   assert.match(html, /<legend>Heatmap<\/legend>/u);
   assert.match(html, /name="topo-heatmap-mode" value="physical-magnitude" checked/u);
   assert.match(html, /<span>Physical magnitude<\/span>/u);
-  assert.match(
-    html,
-    /Physical magnitude uses a display-only gradual tone curve that keeps successive tenfold changes visibly distinct/u,
-  );
+  assert.match(html, /id="topo-advanced-display"/u);
+  assert.match(html, /id="topo-advanced-display-enabled"/u);
   assert.match(html, /name="topo-heatmap-mode" value="enhanced-decade-contrast"/u);
   assert.match(html, /<span>Enhanced tenfold contrast<\/span>/u);
   assert.match(html, /name="topo-view" value="source-local"/u);
@@ -1001,14 +1276,22 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(html, /<span>Combined wake<\/span>/u);
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
   assert.match(html, /id="topo-pair-play"/u);
-  assert.match(html, /id="topo-pair-replay"/u);
-  assert.match(html, />3 steps each side<\/output>/u);
-  assert.match(html, /One contour per factor of 10 in wake intensity/u);
-  assert.match(html, /id="topo-legend-mapping"/u);
   assert.match(
-    runtime,
-    /higher absolute wake strength always has stronger color/u,
+    html,
+    /id="topo-pair-play"[\s\S]*id="topo-pair-timeline"[\s\S]*id="topo-pair-replay"/u,
   );
+  assert.match(
+    html,
+    /id="topo-binary-play"[\s\S]*id="topo-binary-timeline"[\s\S]*id="topo-binary-replay"/u,
+  );
+  assert.match(html, /aria-label="Collinear replay position"/u);
+  assert.match(html, /aria-label="Orbit playback position"/u);
+  assert.doesNotMatch(html, /role="progressbar"/u);
+  assert.match(html, /id="topo-pair-replay"/u);
+  assert.match(html, />13 levels<\/output>/u);
+  assert.match(html, /genuine equal-wake contour levels/u);
+  assert.match(html, /id="topo-legend-mapping"/u);
+  assert.match(runtime, /signed contributions are summed before both contours and shading/u);
   assert.doesNotMatch(html, /Scale transform|topo-transform|Linear|Signed log2|Asinh/u);
   assert.doesNotMatch(html, /Raw probe|Nonnumeric state legend|topo-stage-caption/u);
   assert.match(runtime, /R\(e\)=\(e\+1\)r/u);
@@ -1021,6 +1304,7 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(css, /\.topo-range-note/u);
   assert.match(css, /input\[name="topo-heatmap-mode"\]:checked/u);
   assert.match(css, /\.topo-pair-transport/u);
+  assert.match(css, /\.topo-timeline/u);
   assert.match(css, /@media \(max-width: 820px\)/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(css, /input::-webkit-slider-runnable-track \{[\s\S]*height: 5px;/u);

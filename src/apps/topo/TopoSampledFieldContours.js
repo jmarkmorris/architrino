@@ -24,6 +24,8 @@ function requireFinite(value, label) {
 
 export function createTopoSignedContourLevels({
   rangeDecades = 3,
+  contourCount = null,
+  contourReach = null,
   clipMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
   levelsPerDecade = TOPO_CONTOUR_LEVELS_PER_DECADE,
 } = {}) {
@@ -31,9 +33,7 @@ export function createTopoSignedContourLevels({
   const maximum = requireFinite(clipMagnitude, "clipMagnitude");
   const subdivisions = requireFinite(levelsPerDecade, "levelsPerDecade");
   if (
-    !Number.isInteger(span) ||
-    span < 1 ||
-    span > 4 ||
+    (contourCount == null && (!Number.isInteger(span) || span < 1 || span > 4)) ||
     maximum <= 0 ||
     subdivisions !== 1
   ) {
@@ -43,6 +43,8 @@ export function createTopoSignedContourLevels({
   }
   const magnitudeSchedule = createTopoContourMagnitudeSchedule({
     contourRangeDecades: span,
+    contourCount,
+    contourReach,
     referenceMagnitude: maximum,
   });
   const positive = magnitudeSchedule.map((level, index) => ({
@@ -50,7 +52,8 @@ export function createTopoSignedContourLevels({
     value: level.magnitude,
     family: "positive",
     latticeIndex: index,
-    majorDecade: true,
+    majorDecade: level.majorDecade ??
+      Math.abs(level.rawDecade - Math.round(level.rawDecade)) < 1e-9,
   }));
   const negative = positive.map((level) => ({
     ...level,

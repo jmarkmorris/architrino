@@ -98,6 +98,12 @@
               </span>
             </label>
             <p id="topo-coordinate-mode" class="topo-range-note" aria-live="polite">Display coordinates: linear Euclidean</p>
+            <details id="topo-advanced-display" class="topo-advanced-display">
+              <summary>Advanced display choices</summary>
+              <label class="topo-check-field" for="topo-advanced-display-enabled">
+                <input id="topo-advanced-display-enabled" type="checkbox" />
+                <span>Use specialist display choices</span>
+              </label>
             <fieldset id="topo-view-control" class="topo-radio-field">
               <legend>View</legend>
               <label>
@@ -124,7 +130,8 @@
                 <span>Enhanced tenfold contrast</span>
               </label>
             </fieldset>
-            <p id="topo-heatmap-note" class="topo-range-note" aria-live="polite">Physical magnitude uses a display-only gradual tone curve that keeps successive tenfold changes visibly distinct. Raw values, ordering, and contours do not change.</p>
+            <p id="topo-heatmap-note" class="topo-range-note" aria-live="polite">Physical magnitude uses the ordinary Shading spread control after the signed wake is calculated. Raw values, ordering, and contours do not change.</p>
+            </details>
             <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>
               <legend>Orbit direction</legend>
               <label>
@@ -137,25 +144,42 @@
               </label>
             </fieldset>
             <div id="topo-contour-controls">
-            <label class="topo-range-field" for="topo-contours">
-              <span>Contour span</span>
+            <label class="topo-range-field" for="topo-contour-count">
+              <span>Contour count</span>
               <span class="topo-range-row">
                 <input
-                  id="topo-contours"
+                  id="topo-contour-count"
                   type="range"
-                  min="1"
-                  max="4"
+                  min="4"
+                  max="25"
                   step="1"
-                  value="3"
+                  value="13"
                   data-keyboard-step="1"
-                  aria-label="Symmetric contour-level span around the reference level"
+                  aria-label="Number of genuine equal-wake contour levels"
                 />
-                <output id="topo-contours-output" for="topo-contours">3 steps each side</output>
+                <output id="topo-contour-count-output" for="topo-contour-count">13 levels</output>
               </span>
-              <small class="topo-range-note">One contour per factor of 10 in wake intensity</small>
+              <small class="topo-range-note">Adds real equal-value thresholds; it does not interpolate line geometry.</small>
+            </label>
+            <label class="topo-range-field" for="topo-shading-spread">
+              <span>Shading spread</span>
+              <span class="topo-range-row">
+                <input
+                  id="topo-shading-spread"
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="75"
+                  data-keyboard-step="1"
+                  aria-label="Shading spread from tight to broad"
+                />
+                <output id="topo-shading-spread-output" for="topo-shading-spread">75% · broad</output>
+              </span>
+              <small class="topo-range-note">Display-only color transfer after signed contributions are combined.</small>
             </label>
             <label class="topo-range-field" for="topo-contour-visibility">
-              <span>Contour visibility</span>
+              <span>Contour strength</span>
               <span class="topo-range-row">
                 <input
                   id="topo-contour-visibility"
@@ -165,13 +189,14 @@
                   step="0.1"
                   value="75"
                   data-keyboard-step="1"
-                  aria-label="Contour line visibility"
+                  aria-label="Contour line display strength"
                 />
                 <output
                   id="topo-contour-visibility-output"
                   for="topo-contour-visibility"
                 >75%</output>
               </span>
+              <small class="topo-range-note">Scales the whole contour profile: stronger wake levels stay prominent, weaker levels fade, and cancellation stays distinct.</small>
             </label>
             </div>
             <div id="topo-binary-orbit-guide-control" class="topo-check-field-group" hidden>
@@ -252,11 +277,23 @@
             aria-label="Play collinear replay"
             aria-keyshortcuts="Space"
           ></button>
+          <input
+            id="topo-pair-timeline"
+            class="topo-timeline"
+            type="range"
+            min="0"
+            max="1000"
+            step="1"
+            value="0"
+            data-keyboard-step="10"
+            aria-label="Collinear replay position"
+            aria-valuetext="0% of the prescribed approach"
+          />
           <button
             id="topo-pair-replay"
             class="topo-icon-button topo-transport-button"
             type="button"
-            aria-label="Replay collinear crossing"
+            aria-label="Reset collinear replay"
           ></button>
           <output id="topo-pair-progress" aria-live="off">0%</output>
         </div>
@@ -275,25 +312,25 @@
             aria-label="Play"
             aria-keyshortcuts="Space"
           ></button>
+          <input
+            id="topo-binary-timeline"
+            class="topo-timeline"
+            type="range"
+            min="0"
+            max="1000"
+            step="1"
+            value="0"
+            data-keyboard-step="10"
+            aria-label="Orbit playback position"
+            aria-valuetext="0% of one orbit"
+          />
           <button
             id="topo-binary-replay"
             class="topo-icon-button topo-transport-button"
             type="button"
-            aria-label="Replay"
+            aria-label="Reset orbit playback"
           ></button>
-          <div
-            id="topo-binary-progress"
-            class="topo-binary-progress"
-            role="progressbar"
-            aria-label="Orbit progress"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0"
-            aria-valuetext="0% of one orbit"
-          >
-            <span></span>
-          </div>
-          <output id="topo-binary-progress-output" for="topo-binary-progress">0%</output>
+          <output id="topo-binary-progress-output" for="topo-binary-timeline">0%</output>
         </div>
 
         <div

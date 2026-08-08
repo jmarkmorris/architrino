@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import {
+  createTopoContourLevelStyle,
   topoWorldPointForCanvasPixel,
 } from "../src/apps/topo/TopoInteractionContract.js";
 import {
@@ -22,6 +23,10 @@ import {
   TOPO_PAIR_CROSSING_PHASE_END,
   TOPO_PAIR_CROSSING_PHASE_START,
   TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH,
+  TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH,
+  TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH,
+  createTopoSampledContourPaintStyle,
+  resolveTopoLinearViewportAnchor,
   resolveTopoCollinearSourceMaskRadius,
   resolveTopoPairPlaybackContourGridWidth,
   topoGlobalTransportOwnsSpace,
@@ -62,6 +67,128 @@ test("signed sampled-field levels use one raw factor-of-ten level per decade plu
   );
   assert.equal(positive.filter(({ referenceLevel }) => referenceLevel).length, 1);
   assert.equal(new Set(positive.map(({ value }) => value)).size, positive.length);
+});
+
+test("dense sampled levels preserve signed symmetry while count and reach vary independently", () => {
+  const levels = createTopoSignedContourLevels({
+    contourCount: 13,
+    contourReach: 3,
+  });
+  const positive = levels.filter((level) => level.family === "positive");
+  const negative = levels.filter((level) => level.family === "negative");
+  assert.equal(levels.length, 27);
+  assert.equal(positive.length, 13);
+  assert.equal(negative.length, 13);
+  assert.deepEqual(
+    negative.map(({ value }) => value),
+    positive.map(({ value }) => -value),
+  );
+  closeTo(positive[0].rawDecade, 1);
+  closeTo(positive.at(-1).rawDecade, -3);
+  for (let index = 0; index < positive.length; index += 1) {
+    const positiveStyle = createTopoContourLevelStyle({
+      ...positive[index],
+      strongestRawDecade: 1,
+      weakestRawDecade: -3,
+      visibility: 0.75,
+    });
+    const negativeStyle = createTopoContourLevelStyle({
+      ...negative[index],
+      strongestRawDecade: 1,
+      weakestRawDecade: -3,
+      visibility: 0.75,
+    });
+    assert.equal(positiveStyle.opacity, negativeStyle.opacity);
+    if (index > 0) {
+      assert.ok(positiveStyle.opacity < createTopoContourLevelStyle({
+        ...positive[index - 1],
+        strongestRawDecade: 1,
+        weakestRawDecade: -3,
+        visibility: 0.75,
+      }).opacity);
+    }
+  }
+
+  const farther = createTopoSignedContourLevels({
+    contourCount: 13,
+    contourReach: 6,
+  }).filter((level) => level.family === "positive");
+  assert.equal(farther.length, positive.length);
+  closeTo(farther[0].rawDecade, positive[0].rawDecade);
+  assert.ok(farther.at(-1).value < positive.at(-1).value);
+});
+
+test("binary sampled paint keeps strong levels perceptible while weaker levels fade sooner", () => {
+  const levels = createTopoSignedContourLevels({
+    contourCount: 13,
+    contourReach: 3,
+  });
+  const bounds = {
+    strongestRawDecade: 1,
+    weakestRawDecade: -3,
+  };
+  const positive = levels.filter((level) => level.family === "positive");
+  const negative = levels.filter((level) => level.family === "negative");
+  const strongest = positive[0];
+  const weakest = positive.at(-1);
+  const zero = levels.find((level) => level.family === "zero");
+  const paint = (level, visibility, binary = true) =>
+    createTopoSampledContourPaintStyle({
+      level,
+      bounds,
+      visibility,
+      binary,
+      pixelRatio: 2,
+    });
+
+  const strongFull = paint(strongest, 1);
+  const weakFull = paint(weakest, 1);
+  closeTo(strongFull.opacity, 1);
+  closeTo(weakFull.opacity, 0.32);
+  closeTo(strongFull.lineWidth, 2.3);
+  assert.equal(strongFull.strengthPolicy, "level-weighted-progressive-fade");
+
+  const strongIntermediate = paint(strongest, 0.6);
+  const weakIntermediate = paint(weakest, 0.6);
+  const zeroIntermediate = paint(zero, 0.6);
+  closeTo(strongIntermediate.opacity, Math.sqrt(0.6));
+  closeTo(
+    weakIntermediate.opacity,
+    weakFull.levelWeight *
+      Math.sqrt(0.6) ** (1 / weakFull.levelWeight),
+  );
+  assert.ok(weakIntermediate.opacity < weakFull.opacity * 0.6);
+  assert.ok(zeroIntermediate.opacity < strongIntermediate.opacity);
+  assert.ok(zeroIntermediate.opacity > weakIntermediate.opacity);
+  assert.ok(
+    strongIntermediate.opacity / weakIntermediate.opacity >
+      strongFull.opacity / weakFull.opacity,
+  );
+
+  for (let index = 0; index < positive.length; index += 1) {
+    closeTo(
+      paint(positive[index], 0.35).opacity,
+      paint(negative[index], 0.35).opacity,
+    );
+  }
+  closeTo(paint(strongest, 0).opacity, 0);
+  closeTo(paint(weakest, 0).opacity, 0);
+
+  const passedPairStyle = paint(weakest, 0.6, false);
+  closeTo(passedPairStyle.opacity, weakFull.opacity * 0.6);
+  assert.equal(passedPairStyle.strengthPolicy, "linear-profile-scale");
+
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  assert.match(
+    runtime,
+    /createTopoSampledContourPaintStyle\(\{[\s\S]*binary: state\.binary,[\s\S]*pixelRatio,[\s\S]*\}\)/u,
+  );
+  assert.match(runtime, /contourStagingContext\.globalAlpha = contourStyle\.opacity/u);
+  assert.match(runtime, /contourStagingContext\.lineWidth = contourStyle\.lineWidth/u);
+  assert.match(runtime, /dataset\.contourPaintProfile = emittedContourStyles/u);
 });
 
 test("marching squares locates the explicit zero contour in sampled-grid coordinates", () => {
@@ -434,8 +561,8 @@ test("collinear playback extracts a current fail-closed contour frame while moti
     import.meta.url,
   ), "utf8");
 
-  assert.match(runtime, /function createPairPlaybackContourFrame/u);
-  assert.match(runtime, /contourFrameKind: "playback-preview"/u);
+  assert.match(runtime, /function createLiveSampledContourFrame/u);
+  assert.match(runtime, /\? "binary-live-preview"[\s\S]*: "playback-preview"/u);
   assert.match(
     runtime,
     /const matchingFrame = rawFrame\?\.key === expectedKey/u,
@@ -450,7 +577,7 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   );
   assert.match(
     runtime,
-    /state\.pairMode && pairPlaybackPlaying[\s\S]*createPairPlaybackContourFrame\(width, height, state\)/u,
+    /state\.binary \|\|[\s\S]*state\.pairMode && \(pairPlaybackPlaying \|\| pairTimelineScrubbing\)[\s\S]*createLiveSampledContourFrame\(width, height, state\)/u,
   );
   assert.match(runtime, /lastContourPathCacheHit = matchingFrame[\s\S]*"live-grid"/u);
   assert.match(
@@ -459,7 +586,25 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   );
 });
 
-test("crossing refinement preserves the full-density high-level component count", () => {
+test("circular-binary live contours use a bounded preview and refine when paused", () => {
+  assert.equal(TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH, 120);
+  assert.equal(TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH, 180);
+  assert.ok(
+    TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH <
+      TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH,
+  );
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  assert.match(runtime, /binaryPlaying[\s\S]*TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH/u);
+  assert.match(
+    runtime,
+    /function toggleBinaryPlayback[\s\S]*stopBinaryPlayback\(\);[\s\S]*beginRender/u,
+  );
+});
+
+test("centered crossing previews preserve the full-density high-level component count", () => {
   const canvasWidth = 916;
   const canvasHeight = 720;
   const horizontalWorldSpan = (canvasWidth - 1) / (canvasHeight - 1);
@@ -478,6 +623,13 @@ test("crossing refinement preserves the full-density high-level component count"
       horizontalWorldSpan,
       sourceMaskRadius,
     });
+    const viewportAnchor = resolveTopoLinearViewportAnchor({
+      width: canvasWidth,
+      height: canvasHeight,
+      pairMode: true,
+      beta: 0.5,
+      phase,
+    });
     for (let pixelY = 0; pixelY < gridHeight; pixelY += 1) {
       for (let pixelX = 0; pixelX < gridWidth; pixelX += 1) {
         const point = topoWorldPointForCanvasPixel({
@@ -485,6 +637,8 @@ test("crossing refinement preserves the full-density high-level component count"
           pixelY,
           width: gridWidth,
           height: gridHeight,
+          viewportCenter: viewportAnchor.viewportCenter,
+          canvasAnchor: viewportAnchor.canvasAnchor,
         });
         const index = pixelY * gridWidth + pixelX;
         const value = sampleRaw(point.x, point.y);
@@ -538,9 +692,13 @@ test("crossing refinement preserves the full-density high-level component count"
   };
 
   for (const phase of [0.501, 0.51]) {
+    console.error("centered-components", phase, [600, 608, 616, 624, 632, 640].map((width) => [
+      width,
+      componentCount(width, phase),
+    ]));
     assert.equal(
       componentCount(TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH, phase),
-      3,
+      phase === 0.501 ? 1 : 3,
     );
     assert.equal(
       componentCount(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, phase),

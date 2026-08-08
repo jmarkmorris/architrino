@@ -331,6 +331,23 @@ button {
   margin-top: 12px;
 }
 
+.topo-advanced-display {
+  margin-top: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--ui-border);
+}
+
+.topo-advanced-display summary {
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 720;
+}
+
+.topo-advanced-display[open] {
+  padding-bottom: 6px;
+}
+
 .topo-check-field {
   display: flex;
   align-items: center;
@@ -601,7 +618,7 @@ button {
   bottom: max(14px, env(safe-area-inset-bottom));
   left: 50%;
   display: grid;
-  grid-template-columns: 36px 36px minmax(120px, 240px) 42px;
+  grid-template-columns: 36px minmax(120px, 240px) 36px 42px;
   align-items: center;
   gap: 8px;
   width: min(430px, calc(100% - 28px));
@@ -630,20 +647,9 @@ button {
   opacity: 0.45;
 }
 
-.topo-binary-progress {
-  position: relative;
-  height: 5px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: var(--ui-border);
-}
-
-.topo-binary-progress span {
-  display: block;
-  width: 0;
-  height: 100%;
-  border-radius: inherit;
-  background: var(--ui-accent);
+.topo-timeline {
+  width: clamp(96px, 24vw, 240px);
+  min-width: 72px;
 }
 
 .topo-binary-transport output {
@@ -705,7 +711,7 @@ button {
     right: 10px;
     bottom: max(10px, env(safe-area-inset-bottom));
     left: auto;
-    grid-template-columns: 36px 36px minmax(72px, 1fr) 38px;
+    grid-template-columns: 36px minmax(72px, 1fr) 36px 38px;
     width: min(360px, calc(100% - 68px));
     transform: none;
   }
@@ -714,7 +720,7 @@ button {
 
 @media (max-width: 520px) {
   .topo-binary-transport {
-    grid-template-columns: 36px 36px minmax(54px, 1fr) 34px;
+    grid-template-columns: 36px minmax(54px, 1fr) 36px 34px;
     gap: 6px;
     width: calc(100% - 72px);
   }
