@@ -2111,9 +2111,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const beta = syncBetaControlForScenario(scenarioId);
     const specialistDisplay = dom.advancedDisplayEnabled.checked;
     const requestedView = dom.viewInputs.find((input) => input.checked)?.value;
-    const automaticView = scenarioId === "electrino" || scenarioId === "positrino"
-      ? beta === 0 ? "source-local" : "combined"
-      : "combined";
+    // Ordinary display always stays in the shared Combined coordinate space.
+    // This keeps a stationary single continuous when beta reaches zero; the
+    // Source-local chart remains an explicit specialist/diagnostic choice.
+    const automaticView = "combined";
     const baseState = {
       beta,
       specialistDisplay,
@@ -3033,14 +3034,33 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const levelOpacities = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
       const levelHalfWidths = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
       const levelParities = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
+      const binaryContourPaintProfile = [];
       const pixelRatio = effectivePixelRatio(width, height);
       visibleLevels.forEach((level, index) => {
-        const contourStyle = topoContourStyle(level, contourBounds, state.contourVisibility);
+        // Keep the GPU path on the same nonlinear level-weighted profile as
+        // sampled/paused binary contours. Raw linear opacity made every
+        // level dim together at intermediate strength.
+        const contourStyle = createTopoSampledContourPaintStyle({
+          level,
+          bounds: contourBounds,
+          visibility: state.contourVisibility,
+          binary: true,
+          pixelRatio,
+        });
         levelValues[index] = level.value;
         levelOpacities[index] = contourStyle.opacity;
         levelHalfWidths[index] = Math.max(0.5, contourStyle.widthCss * pixelRatio / 2);
         levelParities[index] = topoMarchingSquaresLevelIdentity(level.value) % 2;
+        binaryContourPaintProfile.push({
+          family: level.family,
+          rawDecade: level.rawDecade,
+          opacity: contourStyle.opacity,
+          lineWidth: contourStyle.lineWidth,
+        });
       });
+      dom.app.dataset.binaryContourPaintProfile = JSON.stringify(binaryContourPaintProfile);
+      dom.app.dataset.binaryContourStrength = String(state.contourVisibility);
+      dom.app.dataset.binaryContourStrengthPolicy = "level-weighted-progressive-fade";
       const scalarPresentation = circularBinaryScalarPresentationRenderer;
       fieldGl.useProgram(scalarPresentation.program);
       fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, scalarPresentation.buffer);
@@ -4168,6 +4188,17 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const matchingFrame = rawFrame?.key === expectedKey
       ? rawFrame
       : null;
+    // A paused pair can briefly have no cached full-density frame while the
+    // selected phase is being refined. Keep the last complete presentation
+    // on screen during that handoff; clearing the visible contour canvas here
+    // would expose a blank contour layer before the matching frame is ready.
+    const previousFrameBelongsToScenario = String(
+      dom.app.dataset.contourFrameKey ?? "",
+    ).includes(":" + state.scenarioId + ":");
+    if (!matchingFrame && state.pairMode && previousFrameBelongsToScenario) {
+      dom.app.dataset.pairFrameHandoff = "holding-complete-frame";
+      return true;
+    }
     const playbackFrame = matchingFrame?.contourFrameKind ===
       "playback-preview" || matchingFrame?.contourFrameKind ===
       "binary-live-preview";
@@ -5074,7 +5105,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     paintFieldImage(image, rawFrame, width, height);
     if (state.pairMode) {
-      drawSyntheticContours({
+      const complete = drawSyntheticContours({
         width,
         height,
         pixelRatio,
@@ -5084,6 +5115,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
         rawFrame,
         interactionStarted,
       });
+      if (complete) {
+        dom.app.dataset.pairFrameHandoff = "complete";
+      }
     }
     windowLike.clearTimeout?.(renderWatchdogTimer);
     dom.app.dataset.frameState = "complete";
@@ -5192,6 +5226,15 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const cachedRawFrame = rawFrameCaches.get(
         createRawFrameKey(grid.width, grid.height, state),
       ) ?? null;
+      const holdCompletePairFrame = state.pairMode &&
+        !pairPlaybackPlaying && !pairTimelineScrubbing &&
+        !cachedRawFrame &&
+        String(dom.app.dataset.contourFrameKey ?? "").includes(
+          ":" + state.scenarioId + ":",
+        );
+      dom.app.dataset.pairFrameHandoff = holdCompletePairFrame
+        ? "holding-complete-frame"
+        : "rendering-current-frame";
       // The binary scalar presentation already contains the current full-stage
       // contours.  Do not build the historical coarse CPU frame merely to
       // draw its marker overlay; that work both duplicates the scalar law and
@@ -5203,13 +5246,15 @@ export function mountTopoInteractionContractPreview(options = {}) {
         (state.pairMode && (pairPlaybackPlaying || pairTimelineScrubbing))
           ? createLiveSampledContourFrame(width, height, state)
           : cachedRawFrame;
-      const analyticFieldPainted = paintAnalyticField(
-        width,
-        height,
-        state,
-        styles,
-      );
-      if (!analyticFieldPainted) {
+      const analyticFieldPainted = holdCompletePairFrame
+        ? false
+        : paintAnalyticField(
+          width,
+          height,
+          state,
+          styles,
+        );
+      if (!analyticFieldPainted && !holdCompletePairFrame) {
         drawImmediatePreview(
           width,
           height,
@@ -5236,11 +5281,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
           : state.polaritySign + ":" + state.backgroundMode + ":" +
             state.viewMode,
       ].join(":");
-      if (
+      if (!holdCompletePairFrame && (
         redrawContours ||
         contourResized ||
         lastContourPresentationKey !== contourPresentationKey
-      ) {
+      )) {
         drawSyntheticContours({
           width,
           height,
@@ -5294,6 +5339,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function scheduleContourChange() {
+    // The circular-binary contours are painted by the scalar WebGL
+    // presentation pass.  Updating only the 2D overlay here leaves that pass
+    // on its previous opacity uniforms, so Contour strength appears to have
+    // no effect (or shows a stale strength after a later control change).
+    // Re-run the complete current-frame presentation so field and contours
+    // receive the same current state and strength profile.
+    const currentState = getState();
+    if (currentState.binary && circularBinaryScalarPresentationRenderer &&
+        topoScalarFramebuffer.available) {
+      beginRender({ finalDelay: 0, redrawContours: true });
+      return;
+    }
     const interactionStarted = windowLike.performance?.now?.() ?? Date.now();
     frameRevision += 1;
     const revision = frameRevision;

@@ -420,6 +420,23 @@ test("binary sampled paint keeps strong levels perceptible while weaker levels f
   assert.match(runtime, /dataset\.contourPaintProfile = emittedContourStyles/u);
 });
 
+test("binary GPU paint reuses the level-weighted profile at intermediate strength", () => {
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  assert.match(
+    runtime,
+    /const binaryContourPaintProfile = \[\][\s\S]*createTopoSampledContourPaintStyle\(\{[\s\S]*binary: true,[\s\S]*levelOpacities\[index\] = contourStyle\.opacity/u,
+  );
+  assert.match(runtime, /dataset\.binaryContourPaintProfile = JSON\.stringify\(binaryContourPaintProfile\)/u);
+  assert.match(runtime, /dataset\.binaryContourStrengthPolicy = "level-weighted-progressive-fade"/u);
+  assert.match(
+    runtime,
+    /function scheduleContourChange\(\) \{[\s\S]*currentState\.binary[\s\S]*beginRender\(\{ finalDelay: 0, redrawContours: true \}\)/u,
+  );
+});
+
 test("marching squares locates the explicit zero contour in sampled-grid coordinates", () => {
   const result = extractTopoSampledFieldContourSegments({
     raw: new Float32Array([
@@ -1190,6 +1207,29 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.match(
     runtime,
     /live Combined wake contours follow the current prescribed-time field/u,
+  );
+});
+
+test("paused pair refinement holds the last complete visible frame until atomic swap", () => {
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  assert.match(
+    runtime,
+    /const holdCompletePairFrame = state\.pairMode[\s\S]*!pairPlaybackPlaying[\s\S]*!pairTimelineScrubbing[\s\S]*cachedRawFrame[\s\S]*contourFrameKey/u,
+  );
+  assert.match(
+    runtime,
+    /if \(!holdCompletePairFrame && \([\s\S]*drawSyntheticContours\(\{/u,
+  );
+  assert.match(
+    runtime,
+    /if \(!matchingFrame && state\.pairMode && previousFrameBelongsToScenario\)[\s\S]*pairFrameHandoff = "holding-complete-frame"[\s\S]*return true/u,
+  );
+  assert.match(
+    runtime,
+    /if \(state\.pairMode\) \{[\s\S]*drawSyntheticContours\(\{[\s\S]*rawFrame,[\s\S]*pairFrameHandoff = "complete"/u,
   );
 });
 

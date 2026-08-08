@@ -521,6 +521,21 @@ test("contour span preserves the raw kernel, frame identity, polarity, and movin
   assert.match(runtime, /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.heatmapMode[\s\S]*state\.contourRangeDecades/u);
 });
 
+test("ordinary stationary singles keep the Combined presentation at beta zero", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /const automaticView = "combined"/u);
+  assert.match(
+    runtime,
+    /specialistDisplay && requestedView === "source-local"[\s\S]*\? "source-local"/u,
+  );
+  assert.match(
+    runtime,
+    /state\.viewMode === "source-local"[\s\S]*!state\.pairMode && !state\.binary && state\.beta === 0/u,
+  );
+  assert.match(runtime, /Combined absolute-space wake/u);
+  assert.match(runtime, /source-local-exponent-decades/u);
+});
+
 test("beta-zero single-source exponent radius maps integer exponents to equal display steps", () => {
   const width = 916;
   const height = 720;
