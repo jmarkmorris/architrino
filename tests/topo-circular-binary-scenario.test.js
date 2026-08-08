@@ -526,7 +526,7 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(runtime, /for \(int iteration = 0; iteration < 56; iteration \+= 1\)/u);
   assert.match(runtime, /u_kappa \/ \(positiveDelay \* positiveDelay\)/u);
   assert.match(runtime, /TOPO_SOURCE_MARKER_RADIUS_SCALE = 0\.5/u);
-  assert.match(runtime, /TOPO_SOURCE_MASK_MARKER_RATIO = 0\.75/u);
+  assert.match(runtime, /TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS/u);
   assert.match(runtime, /u_source_mask_radius/u);
   assert.match(runtime, /sourceMaskRadius/u);
   assert.match(runtime, /setLineDash\(\[\]\)/u);

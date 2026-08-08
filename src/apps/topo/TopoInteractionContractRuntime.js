@@ -186,10 +186,19 @@ export function topoRangePointerMoveOwnsInteraction(
 }
 
 export const TOPO_SOURCE_MARKER_RADIUS_SCALE = 0.5;
-export const TOPO_SOURCE_MASK_MARKER_RATIO = 0.75;
-// Display-only species sizing.  Keep this separate from the shared source
-// marker base and all source-mask radii: those define field availability, not
-// the painted body.
+export const TOPO_CANVAS_SAMPLE_CENTER_OFFSET = 0.5;
+export const TOPO_ANIMATED_MIN_BETA = 0.05;
+// Marker glyph size is a CSS-pixel contract.  Canvas backing dimensions and
+// Display scale affect placement and world-to-device conversion, never this
+// visible radius.  The 4.5px source radius is the accepted pre-half-size
+// baseline; both species render at exactly half of it.
+export const TOPO_SOURCE_MARKER_RADIUS_CSS_PIXELS = 4.5;
+export const TOPO_VISIBLE_SOURCE_MARKER_RADIUS_CSS_PIXELS =
+  TOPO_SOURCE_MARKER_RADIUS_CSS_PIXELS * TOPO_SOURCE_MARKER_RADIUS_SCALE;
+// The authoritative field is fail-closed only at the exact mathematical
+// source singularity.  Display occlusion is handled by the solid marker, not
+// by a scale-dependent unavailable annulus.
+export const TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS = 0;
 export const TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE = 0.5;
 export const TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE = 0.5;
 // Keep live marching-squares cells below 2.3 canvas pixels at the desktop stage.
@@ -201,9 +210,23 @@ export const TOPO_PAIR_CROSSING_PHASE_END = 0.66;
 // lattice. A short, denser preview window prevents that saddle from aliasing
 // into disconnected branches while leaving the accepted general preview cost
 // unchanged.
-export const TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH = 620;
+// The visible source-mask boundary now reaches the half-size disk exactly.
+// Around coincidence, use the full stage width so live and paused extraction
+// cannot split or merge a near-source component at different resolutions.
+export const TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH = 916;
 export const TOPO_PAIR_COINCIDENCE_PHASE_START = 0.505;
 export const TOPO_PAIR_COINCIDENCE_PHASE_END = 0.515;
+// The live global pair grid is intentionally bounded for cadence.  At low
+// speed its strongest two closed source contours can be only 2.5--3.7 cells
+// in radius, which makes an otherwise correct level set visibly polygonal as
+// it advances between cells.  Refine only those complete closed components on
+// the same authoritative scalar at a 0.4-CSS-pixel step. A component that
+// reaches the patch boundary or is not uniquely closed is left on the global
+// path, so this cannot splice branches or replace crossing topology.
+export const TOPO_PAIR_SOURCE_REFINEMENT_MAX_BETA = 0.25;
+export const TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE = 2 / 3;
+export const TOPO_PAIR_SOURCE_REFINEMENT_RADIUS_PIXELS = 24;
+export const TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE = 121;
 export const TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH = 120;
 export const TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH = 180;
 export const TOPO_BINARY_HIGH_SPEED_CONTOUR_BETA = 0.9;
@@ -228,6 +251,22 @@ export const TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES = Object.freeze([
 ]);
 const TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS = 64;
 const TOPO_CANVAS_CENTER = Object.freeze({ x: 0.5, y: 0.5 });
+
+export function topoAnimatedScenarioUsesMinimumBeta(scenarioId) {
+  return scenarioId === TOPO_COLLINEAR_PAIR_SCENARIO_ID ||
+    scenarioId === TOPO_CIRCULAR_BINARY_SCENARIO_ID;
+}
+
+export function normalizeTopoScenarioBeta(value, scenarioId) {
+  const beta = Number(value);
+  if (!Number.isFinite(beta)) {
+    throw new TypeError("beta must be finite.");
+  }
+  const minimum = topoAnimatedScenarioUsesMinimumBeta(scenarioId)
+    ? TOPO_ANIMATED_MIN_BETA
+    : 0;
+  return Math.min(1, Math.max(minimum, beta));
+}
 
 export function resolveTopoLinearViewportAnchor({
   width,
@@ -313,20 +352,29 @@ export function resolveTopoSourceMarkerRadius({
   height,
   pixelRatio = 1,
 } = {}) {
-  const canvasWidth = Math.max(1, Number(width));
-  const canvasHeight = Math.max(1, Number(height));
-  const density = Math.max(1, Number(pixelRatio));
+  const canvasWidth = Number(width);
+  const canvasHeight = Number(height);
+  const density = Number(pixelRatio);
   if (
     !Number.isFinite(canvasWidth) ||
     !Number.isFinite(canvasHeight) ||
-    !Number.isFinite(density)
+    !Number.isFinite(density) ||
+    canvasWidth < 1 ||
+    canvasHeight < 1 ||
+    density < 1
   ) {
     throw new TypeError("Marker dimensions and pixel ratio must be finite.");
   }
-  return TOPO_SOURCE_MARKER_RADIUS_SCALE * Math.max(
-    9 * density,
-    Math.min(canvasWidth, canvasHeight) * 0.0125,
-  );
+  return TOPO_SOURCE_MARKER_RADIUS_CSS_PIXELS * density;
+}
+
+export function resolveTopoVisibleSourceMarkerCssRadius({
+  polaritySign,
+} = {}) {
+  const speciesScale = Number(polaritySign) < 0
+    ? TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE
+    : TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE;
+  return speciesScale * TOPO_SOURCE_MARKER_RADIUS_CSS_PIXELS;
 }
 
 export function resolveTopoVisibleSourceMarkerRadius({
@@ -335,14 +383,39 @@ export function resolveTopoVisibleSourceMarkerRadius({
   height,
   pixelRatio = 1,
 } = {}) {
-  const speciesScale = Number(polaritySign) < 0
-    ? TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE
-    : TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE;
-  return speciesScale * resolveTopoSourceMarkerRadius({
+  // Validate the backing dimensions while deriving the device-pixel radius
+  // from the fixed CSS-pixel contract.  Display scale is intentionally absent.
+  resolveTopoSourceMarkerRadius({
     width,
     height,
     pixelRatio,
   });
+  return resolveTopoVisibleSourceMarkerCssRadius({ polaritySign }) *
+    Number(pixelRatio);
+}
+
+export function resolveTopoVisibleSourceMarkerWorldRadius({
+  polaritySign,
+  width,
+  height,
+  pixelRatio = 1,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+  axis = "vertical",
+} = {}) {
+  const canvasWidth = Number(width);
+  const canvasHeight = Number(height);
+  const mapScale = Number(displayScale);
+  if (!Number.isFinite(canvasWidth) || !Number.isFinite(canvasHeight) ||
+      !Number.isFinite(mapScale) || mapScale <= 0) {
+    throw new TypeError("Marker world-radius inputs must be finite.");
+  }
+  const dimension = axis === "horizontal" ? canvasWidth : canvasHeight;
+  return resolveTopoVisibleSourceMarkerRadius({
+    polaritySign,
+    width: canvasWidth,
+    height: canvasHeight,
+    pixelRatio,
+  }) / (Math.max(1, dimension - 1) * mapScale);
 }
 
 export function createTopoVisibleMarkerPaintStyle({
@@ -350,7 +423,6 @@ export function createTopoVisibleMarkerPaintStyle({
   width,
   height,
   pixelRatio = 1,
-  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
 } = {}) {
   return Object.freeze({
     radius: resolveTopoVisibleSourceMarkerRadius({
@@ -358,7 +430,7 @@ export function createTopoVisibleMarkerPaintStyle({
       width,
       height,
       pixelRatio,
-    }) * displayScale,
+    }),
   });
 }
 
@@ -373,18 +445,51 @@ export function paintTopoSourceMarker({
     return false;
   }
   targetContext.save();
+  // Source disks must not inherit a contour/guide alpha or composite mode.
+  // They are the final opaque marker layer for the current source frame.
+  targetContext.globalAlpha = 1;
+  targetContext.globalCompositeOperation = "source-over";
   targetContext.fillStyle = sourceColor;
   targetContext.beginPath();
-  targetContext.arc(x, y, markerStyle.radius, 0, Math.PI * 2);
+  targetContext.arc(
+    x + TOPO_CANVAS_SAMPLE_CENTER_OFFSET,
+    y + TOPO_CANVAS_SAMPLE_CENTER_OFFSET,
+    markerStyle.radius,
+    0,
+    Math.PI * 2,
+  );
   targetContext.fill();
+  // The analytic field evaluates its source mask at integer pixel-sample
+  // coordinates (gl_FragCoord - 0.5). Canvas2D evaluates circle coverage at
+  // pixel centers. Fully cover the exact same sample set so an antialiased
+  // marker edge cannot expose the fail-closed field mask beneath it.
+  const canvasWidth = targetContext.canvas?.width ?? Infinity;
+  const canvasHeight = targetContext.canvas?.height ?? Infinity;
+  const minimumX = Math.max(0, Math.ceil(x - markerStyle.radius));
+  const maximumX = Math.min(
+    canvasWidth - 1,
+    Math.floor(x + markerStyle.radius),
+  );
+  const minimumY = Math.max(0, Math.ceil(y - markerStyle.radius));
+  const maximumY = Math.min(
+    canvasHeight - 1,
+    Math.floor(y + markerStyle.radius),
+  );
+  for (let pixelY = minimumY; pixelY <= maximumY; pixelY += 1) {
+    for (let pixelX = minimumX; pixelX <= maximumX; pixelX += 1) {
+      if (Math.hypot(pixelX - x, pixelY - y) <= markerStyle.radius) {
+        targetContext.fillRect(pixelX, pixelY, 1, 1);
+      }
+    }
+  }
   targetContext.restore();
   return true;
 }
 
-// Pair markers always compose through the same bisector layers.  When the
-// circles are separated, the clips contain each whole marker; when they meet,
-// the exact same layers reveal their respective halves.  Avoiding a branch at
-// the overlap threshold prevents a one-frame leading-edge flash in playback.
+// A separated pair takes the same direct solid-disk path as a stationary
+// source.  Only actual overlap needs the bisector split; applying a clip to
+// every moving frame makes the Canvas2D compositor part of an otherwise
+// unrelated disk edge and can leave fractional-coverage artifacts.
 export function paintTopoPairSourceMarkerLayers({
   targetContext,
   width,
@@ -399,45 +504,211 @@ export function paintTopoPairSourceMarkerLayers({
   const ordered = positioned.slice().sort((left, right) =>
     left.geometry.x - right.geometry.x);
   const splitX = (ordered[0].geometry.x + ordered[1].geometry.x) / 2;
+  const markersOverlap = Math.hypot(
+    ordered[1].geometry.x - ordered[0].geometry.x,
+    ordered[1].geometry.y - ordered[0].geometry.y,
+  ) < ordered[0].geometry.radius + ordered[1].geometry.radius;
   ordered.forEach(({ source, geometry }, index) => {
     targetContext.save();
-    targetContext.beginPath();
-    if (index === 0) {
-      targetContext.rect(0, 0, splitX, height);
-    } else {
-      targetContext.rect(splitX, 0, width - splitX, height);
+    if (markersOverlap) {
+      targetContext.beginPath();
+      if (index === 0) {
+        targetContext.rect(0, 0, splitX, height);
+      } else {
+        targetContext.rect(splitX, 0, width - splitX, height);
+      }
+      targetContext.clip();
     }
-    targetContext.clip();
     drawMarker({ source, geometry });
     targetContext.restore();
   });
-  return Object.freeze({ splitX, layerCount: ordered.length });
+  return Object.freeze({ splitX, layerCount: ordered.length, markersOverlap });
 }
 
 export function resolveTopoSourceMaskRadius({
+  polaritySign = -1,
   width,
   height,
   pixelRatio = 1,
 } = {}) {
-  const canvasWidth = Math.max(1, Number(width));
-  return TOPO_SOURCE_MASK_MARKER_RATIO * resolveTopoSourceMarkerRadius({
-    width: canvasWidth,
-    height,
-    pixelRatio,
-  }) / Math.max(1, canvasWidth - 1);
+  resolveTopoSourceMarkerRadius({ width, height, pixelRatio });
+  return TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS;
 }
 
 export function resolveTopoCollinearSourceMaskRadius({
+  polaritySign = -1,
   width,
   height,
   pixelRatio = 1,
 } = {}) {
-  const canvasHeight = Math.max(1, Number(height));
-  return TOPO_SOURCE_MASK_MARKER_RATIO * resolveTopoSourceMarkerRadius({
-    width,
+  resolveTopoSourceMarkerRadius({ width, height, pixelRatio });
+  return TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS;
+}
+
+function topoPairRefinementClosedComponent(segments, gridWidth, gridHeight) {
+  const paths = connectTopoSampledFieldContourSegments(segments);
+  if (paths.length !== 1 || paths[0].length < 4) {
+    return null;
+  }
+  const path = paths[0];
+  const first = path[0];
+  const last = path.at(-1);
+  const margin = 1;
+  if (Math.hypot(first.x - last.x, first.y - last.y) > 1e-6 ||
+      path.some((point) =>
+        point.x <= margin || point.y <= margin ||
+        point.x >= gridWidth - 1 - margin ||
+        point.y >= gridHeight - 1 - margin)) {
+    return null;
+  }
+  return path;
+}
+
+export function topoPairRefinementContainsGlobalSegments({
+  segments = [],
+  scaleX = 1,
+  scaleY = 1,
+  refinement,
+} = {}) {
+  if (!refinement || segments.length === 0) {
+    return false;
+  }
+  const horizontalScale = Number(scaleX);
+  const verticalScale = Number(scaleY);
+  const containmentRadius = refinement.radius - 2 * refinement.step;
+  return Number.isFinite(horizontalScale) && Number.isFinite(verticalScale) &&
+    containmentRadius > 0 && segments.every((segment) => [
+      [segment.x1 * horizontalScale, segment.y1 * verticalScale],
+      [segment.x2 * horizontalScale, segment.y2 * verticalScale],
+    ].every(([segmentX, segmentY]) => Math.hypot(
+      segmentX - refinement.sourceX,
+      segmentY - refinement.sourceY,
+    ) < containmentRadius));
+}
+
+export function createTopoPairSourceContourRefinement({
+  width,
+  height,
+  pixelRatio = 1,
+  beta,
+  phase,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+  levels = [],
+  polaritySign,
+} = {}) {
+  const canvasWidth = Math.max(2, Number(width));
+  const canvasHeight = Math.max(2, Number(height));
+  const density = Math.max(1, Number(pixelRatio));
+  const speed = Number(beta);
+  const replayPhase = Number(phase);
+  const sign = Math.sign(Number(polaritySign));
+  if (![canvasWidth, canvasHeight, density, speed, replayPhase, sign].every(
+    Number.isFinite,
+  ) || sign === 0) {
+    throw new TypeError("Pair contour refinement inputs must be finite and signed.");
+  }
+  const selectedLevels = levels.filter((level) =>
+    Math.sign(level.value) === sign &&
+    Number.isFinite(level.rawDecade) &&
+    level.rawDecade >= TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE);
+  if (selectedLevels.length === 0) {
+    return null;
+  }
+  const horizontalWorldSpan = Math.max(1, canvasWidth - 1) /
+    Math.max(1, canvasHeight - 1);
+  const pairFrame = createTopoCollinearPairFrame({
+    beta: speed,
+    phase: replayPhase,
+    horizontalWorldSpan,
+  });
+  const source = pairFrame.sources.find((entry) => entry.polaritySign === sign);
+  if (!source) {
+    return null;
+  }
+  const viewportAnchor = resolveTopoLinearViewportAnchor({
+    width: canvasWidth,
     height: canvasHeight,
-    pixelRatio,
-  }) / Math.max(1, canvasHeight - 1);
+    pairMode: true,
+    beta: speed,
+    phase: replayPhase,
+  });
+  const sourcePixel = topoCanvasPixelForWorldPoint({
+    worldX: source.position.x,
+    worldY: source.position.y,
+    width: canvasWidth,
+    height: canvasHeight,
+    displayScale,
+    viewportCenter: viewportAnchor.viewportCenter,
+    canvasAnchor: viewportAnchor.canvasAnchor,
+  });
+  const radius = TOPO_PAIR_SOURCE_REFINEMENT_RADIUS_PIXELS * density;
+  const gridSize = TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE;
+  const step = 2 * radius / Math.max(1, gridSize - 1);
+  const raw = new Float32Array(gridSize * gridSize);
+  const sampleStates = new Uint8Array(raw.length);
+  const sampleRaw = createTopoCollinearPairRawSampler({
+    beta: speed,
+    phase: replayPhase,
+    horizontalWorldSpan,
+    sourceMaskRadius: resolveTopoCollinearSourceMaskRadius({
+      polaritySign: sign,
+      width: canvasWidth,
+      height: canvasHeight,
+      // Match createRawSamplerForState exactly: canvas dimensions already
+      // carry device density, while the scalar mask contract uses ratio 1.
+      pixelRatio: 1,
+    }),
+  });
+  for (let sampleY = 0; sampleY < gridSize; sampleY += 1) {
+    for (let sampleX = 0; sampleX < gridSize; sampleX += 1) {
+      const canvasX = sourcePixel.x - radius + sampleX * step;
+      const canvasY = sourcePixel.y - radius + sampleY * step;
+      const worldPoint = topoWorldPointForCanvasPixel({
+        pixelX: canvasX,
+        pixelY: canvasY,
+        width: canvasWidth,
+        height: canvasHeight,
+        displayScale,
+        viewportCenter: viewportAnchor.viewportCenter,
+        canvasAnchor: viewportAnchor.canvasAnchor,
+      });
+      const index = sampleY * gridSize + sampleX;
+      const value = sampleRaw(worldPoint.x, worldPoint.y);
+      raw[index] = value;
+      sampleStates[index] = Number.isNaN(value)
+        ? TOPO_SAMPLED_FIELD_STATE.MASKED
+        : Number.isFinite(value)
+          ? TOPO_SAMPLED_FIELD_STATE.VALID
+          : TOPO_SAMPLED_FIELD_STATE.UNAVAILABLE;
+    }
+  }
+  const extracted = extractTopoSampledFieldContourSegments({
+    raw,
+    sampleStates,
+    width: gridSize,
+    height: gridSize,
+    levels: selectedLevels,
+  });
+  const replacements = selectedLevels.flatMap((level) => {
+    const segments = extracted.segments.filter((segment) =>
+      segment.family === level.family && segment.value === level.value);
+    const path = topoPairRefinementClosedComponent(
+      segments,
+      gridSize,
+      gridSize,
+    );
+    return path ? [{ level, segments, path }] : [];
+  });
+  return Object.freeze({
+    polaritySign: sign,
+    sourceX: sourcePixel.x,
+    sourceY: sourcePixel.y,
+    radius,
+    step,
+    gridSize,
+    invalidCellCount: extracted.invalidCellCount,
+    replacements: Object.freeze(replacements),
+  });
 }
 
 export function mountTopoInteractionContractPreview(options = {}) {
@@ -570,6 +841,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let pairPlaybackPreviousTimestamp = null;
   let pairTimelineScrubbing = false;
   let scenarioPointerActivation = false;
+  let backgroundPointerActivation = false;
   let viewFallbackNotice = "";
   let viewFallbackTimer = 0;
   let binaryProgress = 0;
@@ -1178,10 +1450,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
           worldPoint = vec2(2.0 / 3.0, 0.5) +
             displayOffset * (physicalRadius / displayRadius);
         }
-        if (u_pair_mode > 0.5 && (
-          distance(worldPoint, vec2(u_electrino_x, 0.5)) <= u_source_mask_radius ||
-          distance(worldPoint, vec2(u_positrino_x, 0.5)) <= u_source_mask_radius
-        )) {
+        bool sourceMasked = u_pair_mode > 0.5
+          ? distance(worldPoint, vec2(u_electrino_x, 0.5)) <= u_source_mask_radius ||
+            distance(worldPoint, vec2(u_positrino_x, 0.5)) <= u_source_mask_radius
+          : distance(worldPoint, vec2(2.0 / 3.0, 0.5)) <= u_source_mask_radius;
+        if (sourceMasked) {
           gl_FragColor = vec4(u_zero, 1.0);
           return;
         }
@@ -1820,9 +2093,22 @@ export function mountTopoInteractionContractPreview(options = {}) {
       "electrino";
   }
 
+  function syncBetaControlForScenario(scenarioId = selectedScenarioId()) {
+    const minimum = topoAnimatedScenarioUsesMinimumBeta(scenarioId)
+      ? TOPO_ANIMATED_MIN_BETA
+      : 0;
+    dom.beta.min = minimum.toFixed(2);
+    const rawBeta = Number(dom.beta.value);
+    const beta = normalizeTopoScenarioBeta(rawBeta, scenarioId);
+    if (rawBeta !== beta) {
+      dom.beta.value = beta.toFixed(2);
+    }
+    return beta;
+  }
+
   function getState() {
     const scenarioId = selectedScenarioId();
-    const beta = Number(dom.beta.value);
+    const beta = syncBetaControlForScenario(scenarioId);
     const specialistDisplay = dom.advancedDisplayEnabled.checked;
     const requestedView = dom.viewInputs.find((input) => input.checked)?.value;
     const automaticView = scenarioId === "electrino" || scenarioId === "positrino"
@@ -1945,7 +2231,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       pixelRatio,
-      sourceMarkerRadiusPixels: resolveTopoSourceMarkerRadius({
+      sourceMarkerRadiusPixels: resolveTopoVisibleSourceMarkerRadius({
+        polaritySign: state.polaritySign,
         width,
         height,
         pixelRatio,
@@ -2135,6 +2422,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const state = getState();
     const pairMode = state.pairMode === true;
     const binaryMode = state.binary === true;
+    const animatedMinimumBeta = pairMode || binaryMode
+      ? TOPO_ANIMATED_MIN_BETA
+      : 0;
+    dom.beta.min = animatedMinimumBeta.toFixed(2);
+    dom.beta.setAttribute("aria-valuemin", animatedMinimumBeta.toFixed(2));
+    dom.beta.setAttribute("aria-valuemax", "1.00");
     dom.app.dataset.scenarioId = state.scenarioId;
     dom.app.dataset.scenario = state.scenarioId;
     dom.app.dataset.neutralBackground = state.backgroundMode;
@@ -2149,6 +2442,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.sourceMarkerRadiusScale = String(
       TOPO_SOURCE_MARKER_RADIUS_SCALE,
     );
+    dom.app.dataset.sourceMarkerCssRadius =
+      resolveTopoVisibleSourceMarkerCssRadius({
+        polaritySign: state.polaritySign,
+      }).toFixed(3);
+    dom.app.dataset.sourceMarkerRadiusPolicy = "fixed-css-pixels";
+    dom.app.dataset.sourceMaskPolicy = "exact-singular-point-only";
     dom.app.dataset.pairReplayPhase = pairPlaybackPhase.toFixed(5);
     dom.app.dataset.pairReplayPlaying = String(pairPlaybackPlaying);
     dom.app.dataset.pairTimelineScrubbing = String(pairTimelineScrubbing);
@@ -2165,7 +2464,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
         : state.beta === 0 && (pairMode || binaryMode)
           ? ", stationary; choose a positive beta to replay"
           : binaryMode
-            ? ", sub-field-speed prescribed circular path"
+            ? ", sub-field-speed prescribed circular path; minimum animated beta is 0.05"
+            : pairMode
+              ? ", sub-field-speed prescribed collinear approach; minimum animated beta is 0.05"
             : ", sub-field-speed preview"),
     );
     const localAvailable = sourceLocalViewAvailable(state);
@@ -2526,13 +2827,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
         uniforms.u_direction_sign,
         state.direction === TOPO_CIRCULAR_BINARY_DIRECTION.CLOCKWISE ? -1 : 1,
       );
-      const sourceMarkerWorldRadius = resolveTopoSourceMarkerRadius({
+      const sourceMarkerWorldRadius = resolveTopoVisibleSourceMarkerWorldRadius({
+        polaritySign: -1,
         width,
         height,
         pixelRatio: effectivePixelRatio(width, height),
-      }) / Math.max(1, width - 1);
-      const sourceMaskRadius = TOPO_SOURCE_MASK_MARKER_RATIO *
-        sourceMarkerWorldRadius;
+        displayScale: state.displayScale,
+        axis: "horizontal",
+      });
+      const sourceMaskRadius = resolveTopoSourceMaskRadius({
+        polaritySign: -1,
+        width,
+        height,
+        pixelRatio: effectivePixelRatio(width, height),
+      });
       fieldGl.uniform1f(
         uniforms.u_source_mask_radius,
         sourceMaskRadius,
@@ -2860,17 +3168,21 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pairFrame?.sources[1].position.x ?? 2 / 3,
       );
       const pairSourceMaskRadius = resolveTopoCollinearSourceMaskRadius({
+        polaritySign: state.polaritySign,
         width,
         height,
         pixelRatio: effectivePixelRatio(width, height),
       });
       fieldGl.uniform1f(
         uniforms.u_source_mask_radius,
-        state.pairMode ? pairSourceMaskRadius : 0,
+        pairSourceMaskRadius,
       );
       dom.app.dataset.pairSourceMaskWorldRadius = state.pairMode
         ? pairSourceMaskRadius.toFixed(9)
         : "";
+      dom.app.dataset.singleSourceMaskWorldRadius = state.pairMode
+        ? ""
+        : pairSourceMaskRadius.toFixed(9);
       fieldGl.uniform1f(uniforms.u_polarity_sign, state.polaritySign);
       fieldGl.uniform1f(
         uniforms.u_exponent_span,
@@ -2976,7 +3288,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       pixelRatio,
-    }) * displayScale;
+    });
     return { x: pixel.x, y: pixel.y, radius };
   }
 
@@ -2988,14 +3300,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     polaritySign,
-    displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
   ) {
     const markerStyle = createTopoVisibleMarkerPaintStyle({
       polaritySign,
       width,
       height,
       pixelRatio,
-      displayScale,
     });
     const sourceColor = polaritySign < 0
       ? PHOTON_CHARGE_COLORS.electrino
@@ -3038,7 +3348,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
       height,
       pixelRatio,
       polaritySign,
-      displayScale,
     );
   }
 
@@ -3094,7 +3403,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         source.polaritySign,
-        displayScale,
       ),
     });
   }
@@ -3161,7 +3469,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           width,
           height,
           pixelRatio,
-        }) * state.displayScale,
+        }),
         x: centerX +
           (position.x - TOPO_CIRCULAR_BINARY_CENTER.x) * worldPixelScale,
         y: centerY -
@@ -3214,7 +3522,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         marker.sourceSign,
-        state.displayScale,
       );
       targetContext.restore();
     });
@@ -3369,6 +3676,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         radius: state.orbitalRadius,
         direction: state.direction,
         sourceMaskRadius: resolveTopoSourceMaskRadius({
+          polaritySign: -1,
           width,
           height,
           pixelRatio: 1,
@@ -3380,6 +3688,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         phase: state.pairPhase,
         horizontalWorldSpan: horizontalWorldSpanForCanvas(width, height),
         sourceMaskRadius: resolveTopoCollinearSourceMaskRadius({
+          polaritySign: -1,
           width,
           height,
           pixelRatio: 1,
@@ -3388,6 +3697,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
       : createTopoSyntheticRawSampler({
         ...state,
         polaritySign: 1,
+        sourceMaskRadius: resolveTopoCollinearSourceMaskRadius({
+          polaritySign: state.polaritySign,
+          width,
+          height,
+          pixelRatio: 1,
+        }),
       });
   }
 
@@ -3899,6 +4214,26 @@ export function mountTopoInteractionContractPreview(options = {}) {
         levels: refinedContourLevels,
       })
       : [];
+    const pairRefinements = extracted && state.pairMode && !state.binary &&
+        state.beta <= TOPO_PAIR_SOURCE_REFINEMENT_MAX_BETA &&
+        (state.pairPhase < TOPO_PAIR_CROSSING_PHASE_START ||
+          state.pairPhase > TOPO_PAIR_CROSSING_PHASE_END) &&
+        state.contourVisibility > 0
+      ? [-1, 1].flatMap((polaritySign) => {
+        const refinement = createTopoPairSourceContourRefinement({
+          width,
+          height,
+          pixelRatio,
+          beta: state.beta,
+          phase: state.pairPhase,
+          displayScale: state.displayScale,
+          levels: contourLevels,
+          polaritySign,
+        });
+        return refinement ? [refinement] : [];
+      })
+      : [];
+    const pairPaintReplacements = [];
     if (extracted && state.contourVisibility > 0) {
       const scaleX = Math.max(1, width - 1) /
         Math.max(1, matchingFrame.width - 1);
@@ -3915,6 +4250,28 @@ export function mountTopoInteractionContractPreview(options = {}) {
         for (const levelValue of levelValues) {
           const segments = familySegments.filter((segment) =>
             segment.value === levelValue);
+          const pairRefinement = pairRefinements.find((refinement) =>
+            refinement.replacements.some((replacement) =>
+              replacement.level.family === family &&
+              replacement.level.value === levelValue));
+          const pairReplacement = pairRefinement?.replacements.find(
+            (replacement) => replacement.level.family === family &&
+              replacement.level.value === levelValue,
+          );
+          const globalLevelContained = pairReplacement &&
+            topoPairRefinementContainsGlobalSegments({
+              segments,
+              scaleX,
+              scaleY,
+              refinement: pairRefinement,
+            });
+          if (pairReplacement && globalLevelContained) {
+            pairPaintReplacements.push({
+              refinement: pairRefinement,
+              replacement: pairReplacement,
+            });
+            continue;
+          }
           const refineLevel = binaryRefinements.length > 0 &&
             Number.isFinite(segments[0]?.rawDecade) &&
             segments[0].rawDecade >= TOPO_BINARY_SOURCE_REFINEMENT_MIN_RAW_DECADE;
@@ -4024,6 +4381,49 @@ export function mountTopoInteractionContractPreview(options = {}) {
           contourStagingContext.restore();
         }
       }
+      for (const { refinement, replacement } of pairPaintReplacements) {
+        const level = replacement.level;
+        const family = level.family;
+        const foreground = family === "positive"
+          ? styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1"
+          : styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff";
+        const contourStyle = createTopoSampledContourPaintStyle({
+          level,
+          bounds: contourLevelBounds,
+          visibility: state.contourVisibility,
+          binary: false,
+          pixelRatio,
+        });
+        contourStagingContext.save();
+        contourStagingContext.beginPath();
+        contourStagingContext.moveTo(
+          refinement.sourceX - refinement.radius +
+            replacement.path[0].x * refinement.step,
+          refinement.sourceY - refinement.radius +
+            replacement.path[0].y * refinement.step,
+        );
+        for (const point of replacement.path.slice(1)) {
+          contourStagingContext.lineTo(
+            refinement.sourceX - refinement.radius +
+              point.x * refinement.step,
+            refinement.sourceY - refinement.radius +
+              point.y * refinement.step,
+          );
+        }
+        contourStagingContext.lineCap = "round";
+        contourStagingContext.lineJoin = "round";
+        contourStagingContext.strokeStyle = foreground;
+        contourStagingContext.globalAlpha = contourStyle.opacity;
+        contourStagingContext.lineWidth = contourStyle.lineWidth;
+        emittedContourStyles.push({
+          family,
+          rawDecade: level.rawDecade,
+          opacity: contourStagingContext.globalAlpha,
+          lineWidth: contourStagingContext.lineWidth,
+        });
+        contourStagingContext.stroke();
+        contourStagingContext.restore();
+      }
     }
     if (state.binary) {
       drawCircularBinaryOverlay({
@@ -4049,6 +4449,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pairFrame.sources,
         state.displayScale,
       );
+      dom.app.dataset.pairMarkerRenderer = "canvas-overlay";
     }
     if (revision !== frameRevision) {
       return false;
@@ -4082,6 +4483,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.contourLevelPolicy =
       "signed-equal-value-levels-plus-zero";
     dom.app.dataset.contourScalarAuthority = "combined-raw-wake-field";
+    dom.app.dataset.contourLayerVisible = String(
+      state.contourVisibility > 0,
+    );
     dom.app.dataset.contourFailureStatePolicy =
       "masked-and-unavailable-cells-excluded";
     dom.app.dataset.contourSegmentCount = String(
@@ -4096,6 +4500,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.binaryContourRefinement = state.binary
       ? binaryRefinements.length + " source patches at " +
         TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE + "² samples"
+      : "";
+    dom.app.dataset.pairSourceContourRefinement = state.pairMode
+      ? pairPaintReplacements.length + " closed level components at " +
+        TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE + "² source samples"
       : "";
     dom.app.dataset.lastContourPathCacheHit = matchingFrame
       ? playbackFrame
@@ -4252,7 +4660,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
           height,
           pixelRatio,
           sourceSign,
-          state.displayScale,
         );
       }
     } else if (state.pairMode) {
@@ -4436,11 +4843,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const sourcePixelX = TOPO_SOURCE_POSITION.x * Math.max(1, width - 1);
     const sourcePixelY = (1 - TOPO_SOURCE_POSITION.y) *
       Math.max(1, height - 1);
-    const markerRadius = resolveTopoSourceMarkerRadius({
+    const markerRadius = resolveTopoVisibleSourceMarkerRadius({
       width,
       height,
       pixelRatio,
-    }) * state.displayScale;
+      polaritySign: state.polaritySign,
+    });
     const visibleCircles = circles.filter((circle) => {
       const centerX = sourcePixelX +
         (circle.center.x - TOPO_SOURCE_POSITION.x) * commonScale;
@@ -4990,7 +5398,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     if (
       selectedScenarioId() !== TOPO_COLLINEAR_PAIR_SCENARIO_ID ||
-      Number(dom.beta.value) <= 0
+      getState().beta <= 0
     ) {
       updateControlPresentation();
       return;
@@ -5036,7 +5444,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pairPlaybackPhase +
           elapsedMilliseconds /
             (resolveTopoCollinearPairPlaybackSeconds(
-              Number(dom.beta.value),
+              getState().beta,
             ) * 1000),
       );
     }
@@ -5226,18 +5634,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
     resetPairPlayback();
     stopBinaryPlayback();
     binaryProgress = 0;
-    const reducedMotion = windowLike.matchMedia?.(
-      "(prefers-reduced-motion: reduce)",
-    )?.matches === true;
-    if (
-      selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID &&
-      Number(dom.beta.value) > 0 &&
-      !reducedMotion
-    ) {
-      startPairPlayback({ restart: true });
-    } else {
-      scheduleFrameChange();
-    }
+    // Scenario entry is always a deterministic phase-zero paused frame.
+    // Playback is an explicit action through Play or context-safe Space.
+    scheduleFrameChange();
     if (handFocusToStage) {
       windowLike.requestAnimationFrame?.(() => {
         dom.canvas.focus?.({ preventScroll: true });
@@ -5252,6 +5651,15 @@ export function mountTopoInteractionContractPreview(options = {}) {
   });
   listen(dom.scenarioControl, "pointercancel", () => {
     scenarioPointerActivation = false;
+  });
+  listen(dom.backgroundControl, "pointerdown", () => {
+    backgroundPointerActivation = true;
+  });
+  listen(dom.backgroundControl, "keydown", () => {
+    backgroundPointerActivation = false;
+  });
+  listen(dom.backgroundControl, "pointercancel", () => {
+    backgroundPointerActivation = false;
   });
   dom.scenarioInputs.forEach((input) =>
     listen(input, "change", handleScenarioChange));
@@ -5287,7 +5695,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
       scheduleFrameChange();
     }));
   dom.backgroundInputs.forEach((input) =>
-    listen(input, "change", scheduleFrameChange));
+    listen(input, "change", () => {
+      const handFocusToStage = backgroundPointerActivation &&
+        input.checked === true;
+      backgroundPointerActivation = false;
+      scheduleFrameChange();
+      // A pointer-selected background radio has completed its native action;
+      // move focus to the stage so the next Space toggles playback. Keyboard
+      // radio activation keeps native Space semantics and remains untouched.
+      if (handFocusToStage) {
+        windowLike.requestAnimationFrame?.(() => {
+          dom.canvas.focus?.({ preventScroll: true });
+        });
+      }
+    }));
   listen(dom.displayScale, "input", () => {
     updateDisplayScalePresentation();
     scheduleFrameChange();
@@ -5318,7 +5739,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     if (
       selectedScenarioId() === TOPO_COLLINEAR_PAIR_SCENARIO_ID &&
-      Number(dom.beta.value) > 0
+      getState().beta > 0
     ) {
       event.preventDefault();
       togglePairPlayback();

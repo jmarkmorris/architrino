@@ -199,7 +199,7 @@ export function createTopoCollinearPairRawSampler({
   beta = 0.5,
   phase = 0,
   horizontalWorldSpan = 1,
-  sourceMaskRadius = 0.01,
+  sourceMaskRadius = 0,
 } = {}) {
   const frame = createTopoCollinearPairFrame({
     beta,

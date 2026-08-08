@@ -4,6 +4,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 import {
   createTopoContourLevelStyle,
+  topoCanvasPixelForWorldPoint,
   topoWorldPointForCanvasPixel,
 } from "../src/apps/topo/TopoInteractionContract.js";
 import {
@@ -24,12 +25,14 @@ import {
 } from "../src/apps/topo/TopoSampledFieldContours.js";
 import {
   createTopoCollinearPartnerCharacteristicDiagnostic,
+  createTopoCollinearPairFrame,
   createTopoCollinearPairRawSampler,
   solveTopoCollinearPairCausalDelay,
 } from "../src/apps/topo/TopoCollinearPairScenario.js";
 import {
   createTopoCircularBinaryPlayback,
   createTopoCircularBinaryRawSampler,
+  sampleTopoCircularBinaryWake,
   topoCircularBinarySourcePosition,
   topoCircularBinaryWorldPointForCanvasPixel,
 } from "../src/apps/topo/TopoCircularBinaryScenario.js";
@@ -41,6 +44,10 @@ import {
   TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH,
   TOPO_PAIR_COINCIDENCE_PHASE_END,
   TOPO_PAIR_COINCIDENCE_PHASE_START,
+  TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE,
+  TOPO_PAIR_SOURCE_REFINEMENT_MAX_BETA,
+  TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE,
+  TOPO_PAIR_SOURCE_REFINEMENT_RADIUS_PIXELS,
   TOPO_BINARY_PLAYBACK_CONTOUR_GRID_WIDTH,
   TOPO_BINARY_PAUSED_CONTOUR_GRID_WIDTH,
   TOPO_BINARY_HIGH_SPEED_CONTOUR_BETA,
@@ -53,13 +60,26 @@ import {
   TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES,
   TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE,
   createTopoSampledContourPaintStyle,
+  createTopoPairSourceContourRefinement,
+  topoPairRefinementContainsGlobalSegments,
   resolveTopoLinearViewportAnchor,
+  resolveTopoVisibleSourceMarkerRadius,
+  resolveTopoSourceMaskRadius,
   resolveTopoCollinearSourceMaskRadius,
   resolveTopoPairPlaybackContourGridWidth,
   resolveTopoBinaryContourGridWidth,
   topoGlobalTransportOwnsSpace,
   topoRangePointerMoveOwnsInteraction,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
+
+function binaryVisibleSourceMaskRadius(width, height) {
+  return resolveTopoSourceMaskRadius({
+    polaritySign: -1,
+    width,
+    height,
+    pixelRatio: 1,
+  });
+}
 
 function closeTo(actual, expected, tolerance = 1e-12) {
   assert.ok(
@@ -478,7 +498,7 @@ test("GPU finite-difference contour band fails closed at unavailable neighbors",
   }), true);
 });
 
-test("high-speed binary uses the dense-grid component topology rather than the coarse preview alias", () => {
+test("binary exact-point source mask preserves the high-speed branch without an annulus", () => {
   const levels = createTopoSignedContourLevels({
     contourCount: 13,
     contourReach: 3,
@@ -490,7 +510,7 @@ test("high-speed binary uses the dense-grid component topology rather than the c
       beta: 1,
       progress: 0,
       radius: 0.3,
-      sourceMaskRadius: 0.003688525,
+      sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
     });
     const raw = new Float32Array(width * height);
     const sampleStates = new Uint8Array(raw.length);
@@ -526,13 +546,14 @@ test("high-speed binary uses the dense-grid component topology rather than the c
     )).length;
   };
   assert.equal(componentCount(120, 94), 1);
-  assert.equal(componentCount(240, 188), 2);
+  assert.equal(componentCount(240, 188), 1);
 });
 
 test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branch and fail closed", () => {
   const width = 916, height = 720;
+  const sourceMaskRadius = binaryVisibleSourceMaskRadius(width, height);
   const sample = createTopoCircularBinaryRawSampler({
-    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: 0.003688525,
+    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius,
   });
   const playback = createTopoCircularBinaryPlayback({ beta: 1, progress: 0, radius: 0.3 });
   const sourcePositions = [-1, 1].map((sourceSign) => ({
@@ -560,7 +581,7 @@ test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branc
   assert.ok(gpu.some(Boolean));
   assert.ok(cpu.some(Boolean));
   assert.equal(connectTopoSampledFieldContourSegments(extracted.segments).length, 1);
-  assert.equal(componentCount(cpu, width, height), 2);
+  assert.equal(componentCount(cpu, width, height), 1);
   assert.equal(componentCount(gpu, width, height), 1);
   const distance = bidirectionalMaskDistance(cpu, gpu, width);
   const diagnostics = {
@@ -571,11 +592,11 @@ test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branc
     },
     gpuToCpu: describeBandOutlier({
       entry: distance.worstRightToLeft, direction: "gpu-to-cpu", raw, states, width, height,
-      rawDecade: -2, cpuSegments: extracted.segments, sourcePositions, sourceMaskRadius: 0.003688525,
+      rawDecade: -2, cpuSegments: extracted.segments, sourcePositions, sourceMaskRadius,
     }),
     cpuToGpu: describeBandOutlier({
       entry: distance.worstLeftToRight, direction: "cpu-to-gpu", raw, states, width, height,
-      rawDecade: -2, cpuSegments: extracted.segments, sourcePositions, sourceMaskRadius: 0.003688525,
+      rawDecade: -2, cpuSegments: extracted.segments, sourcePositions, sourceMaskRadius,
     }),
   };
   if (process.env.TOPO_CONTOUR_DIAGNOSTICS_DIR) {
@@ -597,7 +618,7 @@ test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branc
 test("every selected signed binary level matches the canonical screen-space marching-squares mask at beta one phase zero", () => {
   const width = 916, height = 720;
   const sample = createTopoCircularBinaryRawSampler({
-    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: 0.003688525,
+    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
   });
   const raw = new Float32Array(width * height);
   const states = new Uint8Array(raw.length);
@@ -663,7 +684,7 @@ test("table-driven beta-one diagnostic phases retain all signed screen-space con
     const raw = new Float32Array(width * height);
     const states = new Uint8Array(raw.length);
     const sample = createTopoCircularBinaryRawSampler({
-      beta: 1, progress: phase, radius: 0.3, sourceMaskRadius: 0.003688525,
+      beta: 1, progress: phase, radius: 0.3, sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
     });
     for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
       const index = y * width + x;
@@ -690,6 +711,11 @@ test("table-driven beta-one diagnostic phases retain all signed screen-space con
         family: level.family,
         rawDecade: level.rawDecade,
         cpuPaths: connectTopoSampledFieldContourSegments(segments).length,
+        cpuRasterComponents: componentCount(
+          excludeInvalidStencil(rasterizeSegments({ segments, width, height }), states, width, height),
+          width,
+          height,
+        ),
         gpuComponents: componentCount(gpu, width, height),
         invalidBridgePixels: gpu.reduce((count, value, index) => count +
           (value && states[index] !== TOPO_SAMPLED_FIELD_STATE.VALID ? 1 : 0), 0),
@@ -702,8 +728,8 @@ test("table-driven beta-one diagnostic phases retain all signed screen-space con
   for (const { phase, rows } of phaseRows) {
     assert.equal(rows.length, 26, `selected signed level count at phase ${phase}`);
     for (const row of rows) {
-      assert.equal(row.gpuComponents, row.cpuPaths,
-        `component topology at phase ${phase}: ${JSON.stringify(row)}`);
+      assert.equal(row.gpuComponents, row.cpuRasterComponents,
+        `screen-space component topology at phase ${phase}: ${JSON.stringify(row)}`);
       assert.equal(row.invalidBridgePixels, 0,
         `fail-closed mask at phase ${phase}: ${JSON.stringify(row)}`);
       assert.ok(row.p95 <= 1 && row.max <= 1,
@@ -720,10 +746,10 @@ test("table-driven beta-one diagnostic phases retain all signed screen-space con
   }
 });
 
-test("binary scalar-pass audit grid preserves pixel mapping, signs, masks, and selected-level neighborhoods", () => {
+test("binary scalar-pass audit grid preserves pixel mapping, signs, singular state, and selected-level neighborhoods", () => {
   const width = 916, height = 720;
   const sample = createTopoCircularBinaryRawSampler({
-    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: 0.003688525,
+    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
   });
   const probes = [
     [0, 0], [width - 1, height - 1], [Math.floor(width / 2), Math.floor(height / 2)],
@@ -735,8 +761,8 @@ test("binary scalar-pass audit grid preserves pixel mapping, signs, masks, and s
   assert.ok(values.some((value) => value > 0));
   assert.ok(values.some((value) => value < 0));
   assert.ok(Math.abs(values[2]) < 0.01, "center remains the cancellation probe");
-  assert.equal(Number.isFinite(values[3]), false, "negative source mask stays explicit");
-  assert.equal(Number.isFinite(values[4]), false, "positive source mask stays explicit");
+  assert.equal(Number.isFinite(values[3]), true, "near-source positive-distance samples stay ordinary");
+  assert.equal(Number.isFinite(values[4]), true, "near-source positive-distance samples stay ordinary");
   const thresholds = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
     .filter((level) => level.family === "negative" || level.family === "positive");
   assert.equal(thresholds.length, 26);
@@ -860,26 +886,66 @@ test("beta-one post-crossing source positions ride partner trailing characterist
   }
 });
 
-test("collinear source mask is contained by the marker and CPU/WebGL use the same radius", () => {
+test("visible source disk uses display occlusion while providers fail closed only at the exact singularity", () => {
+  const width = 1000;
+  const height = 800;
   const maskRadius = resolveTopoCollinearSourceMaskRadius({
-    width: 1000,
-    height: 800,
+    polaritySign: -1,
+    width,
+    height,
     pixelRatio: 1,
   });
-  const diagnostic = createTopoCollinearPartnerCharacteristicDiagnostic({
-    phase: 0.517,
+  const positiveMaskRadius = resolveTopoCollinearSourceMaskRadius({
+    polaritySign: 1,
+    width,
+    height,
+    pixelRatio: 1,
   });
+  closeTo(maskRadius, positiveMaskRadius);
+  closeTo(maskRadius, 0);
+  const frame = createTopoCollinearPairFrame({ beta: 0.5, phase: 0.3 });
   const sampler = createTopoCollinearPairRawSampler({
-    beta: 0.5,
-    phase: 0.517,
+    beta: 0.5, phase: 0.3,
     sourceMaskRadius: maskRadius,
   });
-  assert.equal(Number.isNaN(sampler(
-    diagnostic.observer.position.x,
-    diagnostic.observer.position.y,
-  )), true);
-  const justOutside = diagnostic.observer.position.x + maskRadius * 1.1;
-  assert.equal(Number.isFinite(sampler(justOutside, 0.5)), true);
+  for (const source of frame.sources) {
+    assert.equal(Number.isNaN(sampler(source.position.x, source.position.y)), true);
+    assert.equal(Number.isFinite(sampler(
+      source.position.x, source.position.y + 1e-6,
+    )), true);
+  }
+
+  const binaryMaskRadius = binaryVisibleSourceMaskRadius(width, height);
+  closeTo(binaryMaskRadius, 0);
+  const playback = createTopoCircularBinaryPlayback({ beta: 0.5, progress: 0.3 });
+  for (const sourceSign of [-1, 1]) {
+    const source = topoCircularBinarySourcePosition({
+      sourceSign,
+      time: playback.observationTime,
+      beta: playback.beta,
+      radius: playback.radius,
+      direction: playback.direction,
+    });
+    const singular = sampleTopoCircularBinaryWake({
+      point: { x: source.x, y: source.y },
+      beta: playback.beta,
+      radius: playback.radius,
+      progress: playback.progress,
+      sourceMaskRadius: binaryMaskRadius,
+      direction: playback.direction,
+    });
+    const outside = sampleTopoCircularBinaryWake({
+      point: { x: source.x, y: source.y + 1e-6 },
+      beta: playback.beta,
+      radius: playback.radius,
+      progress: playback.progress,
+      sourceMaskRadius: binaryMaskRadius,
+      direction: playback.direction,
+    });
+    assert.match(singular.state, /^(singular|nonordinary):/u);
+    assert.equal(outside.state, "ordinary");
+    assert.equal(Number.isFinite(outside.rawValue), true);
+  }
 
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
@@ -888,6 +954,8 @@ test("collinear source mask is contained by the marker and CPU/WebGL use the sam
   assert.match(runtime, /uniform float u_source_mask_radius;/u);
   assert.match(runtime, /resolveTopoCollinearSourceMaskRadius/u);
   assert.match(runtime, /uniforms\.u_source_mask_radius/u);
+  assert.match(runtime, /sourceMasked = u_pair_mode/u);
+  assert.match(runtime, /distance\(worldPoint, vec2\(2\.0 \/ 3\.0, 0\.5\)\) <= u_source_mask_radius/u);
   assert.match(runtime, /distance\(worldPoint, vec2\(u_electrino_x, 0\.5\)\)/u);
   assert.match(runtime, /distance\(worldPoint, vec2\(u_positrino_x, 0\.5\)\)/u);
 });
@@ -1064,7 +1132,7 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.equal(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, 480);
   assert.equal(TOPO_PAIR_CROSSING_PHASE_START, 0.42);
   assert.equal(TOPO_PAIR_CROSSING_PHASE_END, 0.66);
-  assert.equal(TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH, 620);
+  assert.equal(TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH, 916);
   assert.equal(TOPO_PAIR_COINCIDENCE_PHASE_START, 0.505);
   assert.equal(TOPO_PAIR_COINCIDENCE_PHASE_END, 0.515);
   assert.ok(
@@ -1082,7 +1150,7 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 916,
     phase: 0.51,
-  }), 620);
+  }), 916);
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 916,
     phase: 0.659,
@@ -1197,7 +1265,7 @@ test("circular-binary live contours use a bounded preview and refine when paused
   );
 });
 
-test("centered crossing previews preserve the full-density high-level component count", () => {
+test("centered crossing previews retain the current visible-disk mask topology at full density", () => {
   const canvasWidth = 916;
   const canvasHeight = 720;
   const horizontalWorldSpan = (canvasWidth - 1) / (canvasHeight - 1);
@@ -1284,21 +1352,278 @@ test("centered crossing previews preserve the full-density high-level component 
     return components;
   };
 
-  for (const [phase, previewComponents, fullComponents] of [
-    [0.5075, 4, 3],
-    [0.51, 3, 1],
-  ]) {
-    assert.equal(
-      componentCount(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, phase),
-      previewComponents,
-    );
-    assert.equal(
-      componentCount(resolveTopoPairPlaybackContourGridWidth({
-        canvasWidth,
-        phase,
-      }), phase),
-      fullComponents,
-    );
-    assert.equal(componentCount(canvasWidth, phase), fullComponents);
+  for (const phase of [0.5075, 0.51]) {
+    const previewComponents = componentCount(resolveTopoPairPlaybackContourGridWidth({
+      canvasWidth,
+      phase,
+    }), phase);
+    const fullComponents = componentCount(canvasWidth, phase);
+    assert.ok(fullComponents > 0, `crossing phase ${phase} retains genuine contour components`);
+    assert.equal(previewComponents, fullComponents,
+      `crossing phase ${phase} cannot change topology between live and paused frames`);
   }
+});
+
+test("low-speed pair source contours refine complete components against a dense authoritative reference", () => {
+  assert.equal(TOPO_PAIR_SOURCE_REFINEMENT_MAX_BETA, 0.25);
+  assert.equal(TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE, 2 / 3);
+  assert.equal(TOPO_PAIR_SOURCE_REFINEMENT_RADIUS_PIXELS, 24);
+  assert.equal(TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE, 121);
+
+  const width = 916;
+  const height = 720;
+  const beta = 0.1;
+  const phase = 0.23;
+  const horizontalWorldSpan = (width - 1) / (height - 1);
+  const levels = createTopoSignedContourLevels({
+    contourCount: 13,
+    contourReach: 3,
+  });
+  const nearLevels = levels.filter((level) =>
+    Number.isFinite(level.rawDecade) &&
+    level.rawDecade >= TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE);
+
+  const buildFrame = (gridWidth, replayPhase = phase) => {
+    const gridHeight = Math.round(gridWidth * height / width);
+    const raw = new Float32Array(gridWidth * gridHeight);
+    const sampleStates = new Uint8Array(raw.length);
+    const sampleRaw = createTopoCollinearPairRawSampler({
+      beta,
+      phase: replayPhase,
+      horizontalWorldSpan,
+      sourceMaskRadius: resolveTopoCollinearSourceMaskRadius({
+        polaritySign: -1,
+        width,
+        height,
+        pixelRatio: 1,
+      }),
+    });
+    const viewportAnchor = resolveTopoLinearViewportAnchor({
+      width,
+      height,
+      pairMode: true,
+      beta,
+      phase: replayPhase,
+    });
+    for (let y = 0; y < gridHeight; y += 1) {
+      for (let x = 0; x < gridWidth; x += 1) {
+        const point = topoWorldPointForCanvasPixel({
+          pixelX: x,
+          pixelY: y,
+          width: gridWidth,
+          height: gridHeight,
+          viewportCenter: viewportAnchor.viewportCenter,
+          canvasAnchor: viewportAnchor.canvasAnchor,
+        });
+        const index = y * gridWidth + x;
+        const value = sampleRaw(point.x, point.y);
+        raw[index] = value;
+        sampleStates[index] = Number.isNaN(value)
+          ? TOPO_SAMPLED_FIELD_STATE.MASKED
+          : Number.isFinite(value)
+            ? TOPO_SAMPLED_FIELD_STATE.VALID
+            : TOPO_SAMPLED_FIELD_STATE.UNAVAILABLE;
+      }
+    }
+    const extracted = extractTopoSampledFieldContourSegments({
+      raw,
+      sampleStates,
+      width: gridWidth,
+      height: gridHeight,
+      levels: nearLevels,
+    });
+    return {
+      width: gridWidth,
+      height: gridHeight,
+      scaleX: (width - 1) / (gridWidth - 1),
+      scaleY: (height - 1) / (gridHeight - 1),
+      extracted,
+    };
+  };
+
+  const pathPoints = (path) => path.flatMap((point, index) => {
+    if (index === path.length - 1) return [];
+    const next = path[index + 1];
+    const steps = Math.max(1, Math.ceil(
+      Math.hypot(next.x - point.x, next.y - point.y) / 0.25,
+    ));
+    return Array.from({ length: steps }, (_, step) => {
+      const t = step / steps;
+      return {
+        x: point.x + (next.x - point.x) * t,
+        y: point.y + (next.y - point.y) * t,
+      };
+    });
+  });
+  const pathDistance = (leftPath, rightPath) => {
+    const left = pathPoints(leftPath);
+    const right = pathPoints(rightPath);
+    const nearest = (from, to) => from.map((point) =>
+      to.reduce((distance, candidate) => Math.min(
+        distance,
+        Math.hypot(point.x - candidate.x, point.y - candidate.y),
+      ), Infinity));
+    const values = [...nearest(left, right), ...nearest(right, left)]
+      .sort((a, b) => a - b);
+    return {
+      p95: values[Math.floor(0.95 * (values.length - 1))],
+      max: values.at(-1),
+    };
+  };
+
+  const preview = buildFrame(TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH);
+  const dense = buildFrame(width * 2);
+  const sourceFrame = createTopoCollinearPairFrame({
+    beta,
+    phase,
+    horizontalWorldSpan,
+  });
+  const viewportAnchor = resolveTopoLinearViewportAnchor({
+    width,
+    height,
+    pairMode: true,
+    beta,
+    phase,
+  });
+  const markerRadius = resolveTopoVisibleSourceMarkerRadius({
+    polaritySign: -1,
+    width,
+    height,
+    pixelRatio: 1,
+  });
+  const measurements = [];
+
+  for (const polaritySign of [-1, 1]) {
+    const refinement = createTopoPairSourceContourRefinement({
+      width,
+      height,
+      pixelRatio: 1,
+      beta,
+      phase,
+      displayScale: 1,
+      levels,
+      polaritySign,
+    });
+    closeTo(refinement.step, 0.4);
+    assert.equal(refinement.replacements.length, 2);
+    closeTo(refinement.replacements[0].level.rawDecade, 1);
+    closeTo(refinement.replacements[1].level.rawDecade, 2 / 3);
+    const source = sourceFrame.sources.find((entry) =>
+      entry.polaritySign === polaritySign);
+    const sourcePixel = topoCanvasPixelForWorldPoint({
+      worldX: source.position.x,
+      worldY: source.position.y,
+      width,
+      height,
+      viewportCenter: viewportAnchor.viewportCenter,
+      canvasAnchor: viewportAnchor.canvasAnchor,
+    });
+
+    for (const replacement of refinement.replacements) {
+      const level = replacement.level;
+      const previewSegments = preview.extracted.segments.filter((segment) =>
+        segment.value === level.value);
+      const denseSegments = dense.extracted.segments.filter((segment) =>
+        segment.value === level.value);
+      const previewPaths = connectTopoSampledFieldContourSegments(previewSegments);
+      const densePaths = connectTopoSampledFieldContourSegments(denseSegments);
+      assert.equal(previewPaths.length, 1);
+      assert.equal(densePaths.length, 1);
+      const refinedPath = replacement.path.map((point) => ({
+        x: refinement.sourceX - refinement.radius + point.x * refinement.step,
+        y: refinement.sourceY - refinement.radius + point.y * refinement.step,
+      }));
+      const densePath = densePaths[0].map((point) => ({
+        x: point.x * dense.scaleX,
+        y: point.y * dense.scaleY,
+      }));
+      const distance = pathDistance(refinedPath, densePath);
+      assert.ok(distance.p95 <= 0.1, JSON.stringify({ level, distance }));
+      assert.ok(distance.max <= 0.15, JSON.stringify({ level, distance }));
+      assert.ok(
+        replacement.segments.length > denseSegments.length &&
+        denseSegments.length > previewSegments.length,
+        "the source component must gain genuine scalar samples, not smoothed vertices",
+      );
+      const minimumRadius = Math.min(...refinedPath.map((point) =>
+        Math.hypot(point.x - sourcePixel.x, point.y - sourcePixel.y)));
+      assert.ok(
+        minimumRadius > markerRadius,
+        "a refined contour centerline cannot enter the canonical source disk",
+      );
+      measurements.push({
+        polaritySign,
+        rawDecade: level.rawDecade,
+        previewSegments: previewSegments.length,
+        denseSegments: denseSegments.length,
+        refinedSegments: replacement.segments.length,
+        p95: distance.p95,
+        max: distance.max,
+        minimumRadius,
+      });
+    }
+  }
+
+  assert.equal(measurements.length, 4);
+  for (const displayScale of [0.5, 1, 2]) {
+    for (const polaritySign of [-1, 1]) {
+      const refinement = createTopoPairSourceContourRefinement({
+        width,
+        height,
+        pixelRatio: 1,
+        beta,
+        phase,
+        displayScale,
+        levels,
+        polaritySign,
+      });
+      assert.equal(refinement.replacements.length, 2);
+    }
+  }
+
+  for (const replayPhase of [0.20432, 0.20633, 0.22346, 0.22747, 0.23147]) {
+    const previewFrame = buildFrame(
+      TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH,
+      replayPhase,
+    );
+    for (const polaritySign of [-1, 1]) {
+      const refinement = createTopoPairSourceContourRefinement({
+        width,
+        height,
+        pixelRatio: 1,
+        beta,
+        phase: replayPhase,
+        displayScale: 1,
+        levels,
+        polaritySign,
+      });
+      assert.equal(refinement.replacements.length, 2);
+      for (const replacement of refinement.replacements) {
+        const globalSegments = previewFrame.extracted.segments.filter((segment) =>
+          segment.value === replacement.level.value);
+        assert.equal(topoPairRefinementContainsGlobalSegments({
+          segments: globalSegments,
+          scaleX: previewFrame.scaleX,
+          scaleY: previewFrame.scaleY,
+          refinement,
+        }), true, "each coarse source component remains wholly inside its closed replacement");
+      }
+    }
+  }
+
+  const runtime = readFileSync(new URL(
+    "../src/apps/topo/TopoInteractionContractRuntime.js",
+    import.meta.url,
+  ), "utf8");
+  assert.match(runtime, /contourLayerVisible = String\([\s\S]*state\.contourVisibility > 0/u);
+  assert.match(
+    runtime,
+    /state\.pairPhase < TOPO_PAIR_CROSSING_PHASE_START \|\|[\s\S]*state\.pairPhase > TOPO_PAIR_CROSSING_PHASE_END/u,
+    "accepted crossing extraction must remain on its existing global path",
+  );
+  assert.match(
+    runtime,
+    /if \(extracted && state\.contourVisibility > 0\)[\s\S]*drawPairSourceOverlays/u,
+    "the ordinary strength-zero diagnostic hides contours without suppressing markers",
+  );
 });

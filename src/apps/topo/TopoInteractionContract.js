@@ -604,8 +604,11 @@ export function createTopoExponentRadiusChart({
     sourcePixelY,
     Math.max(1, canvasHeight - 1) - sourcePixelY,
   );
-  const innerRadiusPixels = (markerRadius +
-    TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS * density) * mapScale;
+  // The marker is a fixed CSS-pixel display glyph.  Keep its occluded inner
+  // boundary fixed while Display scale changes the surrounding map extent;
+  // scaling this radius would expose a mask annulus around the glyph.
+  const innerRadiusPixels = markerRadius +
+    TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS * density;
   const outerRadiusPixels = (boundaryRadius -
     TOPO_EXPONENT_RADIUS_EDGE_INSET_CSS * density) * mapScale;
   if (!(outerRadiusPixels > innerRadiusPixels)) {
@@ -869,7 +872,7 @@ function evaluateTopoPreviewRawUnchecked(
 export function createTopoSyntheticRawSampler({
   beta = 0.5,
   polaritySign = -1,
-  sourceMaskRadius = 0.01,
+  sourceMaskRadius = 0,
 } = {}) {
   const normalizedBeta = requireFiniteNumber(beta, "beta");
   const sign = requireFiniteNumber(polaritySign, "polaritySign");
@@ -897,7 +900,7 @@ export function topoPreviewResultAt({
   y,
   beta = 0.5,
   polaritySign = -1,
-  sourceMaskRadius = 0.01,
+  sourceMaskRadius = 0,
 } = {}) {
   const normalizedX = requireFiniteNumber(x, "x");
   const normalizedY = requireFiniteNumber(y, "y");

@@ -83,14 +83,23 @@ import {
   TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE,
   TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE,
   TOPO_SOURCE_MARKER_RADIUS_SCALE,
-  TOPO_SOURCE_MASK_MARKER_RATIO,
+  TOPO_ANIMATED_MIN_BETA,
+  TOPO_SOURCE_MARKER_RADIUS_CSS_PIXELS,
+  TOPO_VISIBLE_SOURCE_MARKER_RADIUS_CSS_PIXELS,
+  TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS,
+  TOPO_CANVAS_SAMPLE_CENTER_OFFSET,
   resolveTopoLinearViewportAnchor,
   resolveTopoSourceMarkerRadius,
   resolveTopoSourceMaskRadius,
+  resolveTopoVisibleSourceMarkerCssRadius,
   resolveTopoVisibleSourceMarkerRadius,
+  resolveTopoVisibleSourceMarkerWorldRadius,
   createTopoVisibleMarkerPaintStyle,
   paintTopoSourceMarker,
   paintTopoPairSourceMarkerLayers,
+  topoGlobalTransportOwnsSpace,
+  topoAnimatedScenarioUsesMinimumBeta,
+  normalizeTopoScenarioBeta,
   topoEqualRadiusViewAvailable,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
@@ -1090,47 +1099,51 @@ test("accepted palette, axis, and frame identity remain fixed", () => {
   );
 });
 
-test("all Topo marker paths halve both species' display radii", () => {
+test("all Topo marker paths use one fixed CSS-pixel half-size radius", () => {
   assert.equal(TOPO_SOURCE_MARKER_RADIUS_SCALE, 0.5);
-  assert.equal(TOPO_SOURCE_MASK_MARKER_RATIO, 0.75);
   assert.equal(TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE, 0.5);
   assert.equal(TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE, 0.5);
+  assert.equal(TOPO_SOURCE_MARKER_RADIUS_CSS_PIXELS, 4.5);
+  assert.equal(TOPO_VISIBLE_SOURCE_MARKER_RADIUS_CSS_PIXELS, 2.25);
   closeTo(resolveTopoSourceMarkerRadius({
     width: 1000,
     height: 800,
     pixelRatio: 1,
-  }), 5);
+  }), 4.5);
   closeTo(resolveTopoSourceMarkerRadius({
     width: 400,
     height: 300,
     pixelRatio: 2,
   }), 9);
-  const markerWorldRadius = resolveTopoSourceMarkerRadius({
-    width: 1000,
-    height: 800,
-    pixelRatio: 1,
-  }) / 999;
-  const maskWorldRadius = resolveTopoSourceMaskRadius({
-    width: 1000,
-    height: 800,
-    pixelRatio: 1,
-  });
-  closeTo(maskWorldRadius, markerWorldRadius * 0.75);
-  assert.ok(maskWorldRadius < markerWorldRadius);
   for (const [width, height, pixelRatio] of [
     [1000, 800, 1],
     [400, 300, 2],
     [916, 720, 1],
+    [1832, 1440, 2],
   ]) {
     const baseline = resolveTopoSourceMarkerRadius({ width, height, pixelRatio });
+    const expectedDeviceRadius = 2.25 * pixelRatio;
+    closeTo(baseline, 4.5 * pixelRatio);
     closeTo(resolveTopoVisibleSourceMarkerRadius({
       polaritySign: -1, width, height, pixelRatio,
-    }), baseline / 2);
+    }), expectedDeviceRadius);
     closeTo(resolveTopoVisibleSourceMarkerRadius({
       polaritySign: 1, width, height, pixelRatio,
-    }), baseline / 2);
+    }), expectedDeviceRadius);
+    closeTo(resolveTopoVisibleSourceMarkerCssRadius({ polaritySign: -1 }), 2.25);
+    closeTo(resolveTopoVisibleSourceMarkerCssRadius({ polaritySign: 1 }), 2.25);
     closeTo(resolveTopoSourceMaskRadius({ width, height, pixelRatio }),
-      baseline * TOPO_SOURCE_MASK_MARKER_RATIO / Math.max(1, width - 1));
+      TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS);
+    for (const displayScale of [0.5, 1, 2]) {
+      closeTo(resolveTopoVisibleSourceMarkerWorldRadius({
+        polaritySign: -1,
+        width,
+        height,
+        pixelRatio,
+        displayScale,
+        axis: "vertical",
+      }) * Math.max(1, height - 1) * displayScale, expectedDeviceRadius);
+    }
   }
 
   const html = readRepoFile("topo.html");
@@ -1148,11 +1161,11 @@ test("all Topo marker paths halve both species' display radii", () => {
   assert.match(runtime, /drawPairSourceOverlays[\s\S]*source\.polaritySign/u);
   assert.match(runtime, /drawCircularBinaryOverlay[\s\S]*polaritySign: sourceSign/u);
   assert.match(runtime, /markerDistance <[\s\S]*sourceMarkers\[0\]\.radius \+ sourceMarkers\[1\]\.radius/u);
-  assert.match(runtime, /resolveTopoSourceMaskRadius[\s\S]*resolveTopoSourceMarkerRadius/u);
+  assert.match(runtime, /TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS/u);
   assert.doesNotMatch(runtime, /drawCircularBinarySourceMarker/u);
 });
 
-test("moving pair marker compositor keeps the same two layers through overlap", () => {
+test("moving pair marker compositor uses clips only for actual overlap", () => {
   const paintFrame = (positions) => {
     const operations = [];
     const drawn = [];
@@ -1186,27 +1199,34 @@ test("moving pair marker compositor keeps the same two layers through overlap", 
   ]);
   for (const frame of [separated, overlapping]) {
     assert.equal(frame.result.layerCount, 2);
-    assert.equal(frame.operations.filter((value) => value === "clip").length, 2);
     assert.equal(frame.drawn.length, 2);
     assert.deepEqual(frame.drawn.map(({ polaritySign, radius }) => ({ polaritySign, radius })), [
       { polaritySign: -1, radius: 2.25 },
       { polaritySign: 1, radius: 2.25 },
     ]);
   }
+  assert.equal(separated.result.markersOverlap, false);
+  assert.equal(separated.operations.filter((value) => value === "clip").length, 0);
+  assert.equal(overlapping.result.markersOverlap, true);
+  assert.equal(overlapping.operations.filter((value) => value === "clip").length, 2);
   assert.equal(separated.result.splitX, 100);
   assert.equal(overlapping.result.splitX, 100);
 });
 
-test("production marker paint style is exactly one half-size solid disk", () => {
+test("production marker paint style is fixed across Display scale", () => {
   for (const polaritySign of [-1, 1]) {
-    const baseRadius = resolveTopoSourceMarkerRadius({
-      width: 916, height: 720, pixelRatio: 1,
-    });
-    const style = createTopoVisibleMarkerPaintStyle({
-      polaritySign, width: 916, height: 720, pixelRatio: 1, displayScale: 1,
-    });
-    closeTo(style.radius, baseRadius / 2);
-    assert.deepEqual(Object.keys(style), ["radius"]);
+    for (const [pixelRatio, width, height] of [
+      [1, 916, 720],
+      [2, 1832, 1440],
+    ]) {
+      const styles = [0.5, 1, 2].map((displayScale) =>
+        createTopoVisibleMarkerPaintStyle({
+          polaritySign, width, height, pixelRatio, displayScale,
+        }));
+      assert.deepEqual(styles.map(({ radius }) => radius),
+        [2.25 * pixelRatio, 2.25 * pixelRatio, 2.25 * pixelRatio]);
+      styles.forEach((style) => assert.deepEqual(Object.keys(style), ["radius"]));
+    }
   }
 });
 
@@ -1219,7 +1239,10 @@ test("consecutive production marker paints emit only solid species-color coverag
     const operations = [];
     let path = null;
     const context = {
+      canvas: { width: 16, height: 16 },
       fillStyle: "",
+      globalAlpha: 0.25,
+      globalCompositeOperation: "destination-out",
       save() { operations.push("save"); },
       restore() { operations.push("restore"); },
       beginPath() { operations.push("beginPath"); },
@@ -1229,13 +1252,15 @@ test("consecutive production marker paints emit only solid species-color coverag
       },
       fill() {
         operations.push("fill");
-        if (!path) return;
+        assert.equal(this.globalAlpha, 1);
+        assert.equal(this.globalCompositeOperation, "source-over");
+      },
+      fillRect(pixelX, pixelY, width, height) {
+        operations.push("fillRect");
+        assert.equal(width, 1);
+        assert.equal(height, 1);
         const pixels = pixelsByColor.get(this.fillStyle) ?? [];
-        for (let y = 0; y < 16; y += 1) for (let pixelX = 0; pixelX < 16; pixelX += 1) {
-          if (Math.hypot(pixelX + 0.5 - path.centerX, y + 0.5 - path.centerY) <= path.radius) {
-            pixels.push([pixelX, y]);
-          }
-        }
+        pixels.push([pixelX, pixelY]);
         pixelsByColor.set(this.fillStyle, pixels);
       },
     };
@@ -1243,18 +1268,152 @@ test("consecutive production marker paints emit only solid species-color coverag
       targetContext: context, x, y: 8, markerStyle: style,
       sourceColor,
     });
-    return { pixelsByColor, operations };
+    return { pixelsByColor, operations, path };
   };
   for (const [centerX, sourceColor] of [[7.15, "blue"], [7.65, "blue"], [8, "red"]]) {
-    const { pixelsByColor, operations } = paintCoverage(centerX, sourceColor);
+    const { pixelsByColor, operations, path } = paintCoverage(centerX, sourceColor);
     assert.deepEqual([...pixelsByColor.keys()], [sourceColor]);
-    assert.deepEqual(operations, ["save", "beginPath", "arc", "fill", "restore"]);
+    assert.deepEqual(operations.slice(0, 4), ["save", "beginPath", "arc", "fill"]);
+    assert.equal(operations.at(-1), "restore");
     const pixels = pixelsByColor.get(sourceColor);
     assert.ok(pixels.length > 0);
+    assert.equal(path.centerX, centerX + TOPO_CANVAS_SAMPLE_CENTER_OFFSET);
+    assert.equal(path.centerY, 8 + TOPO_CANVAS_SAMPLE_CENTER_OFFSET);
+    const expectedPixels = [];
+    for (let pixelY = 0; pixelY < 16; pixelY += 1) {
+      for (let pixelX = 0; pixelX < 16; pixelX += 1) {
+        if (Math.hypot(pixelX - centerX, pixelY - 8) <= style.radius) {
+          expectedPixels.push([pixelX, pixelY]);
+        }
+      }
+    }
+    assert.deepEqual(pixels, expectedPixels);
     for (const [pixelX, pixelY] of pixels) {
-      assert.ok(Math.hypot(pixelX + 0.5 - centerX, pixelY + 0.5 - 8) <= style.radius + 1e-12);
+      assert.ok(Math.hypot(pixelX - centerX, pixelY - 8) <= style.radius + 1e-12);
     }
   }
+});
+
+test("moving pair marker coverage fully hides the exact source mask across subpixel frames", () => {
+  const width = 40;
+  const height = 18;
+  const radius = 2.25;
+  for (const background of ["white", "purple"]) {
+    for (let step = 0; step <= 20; step += 1) {
+      const leftX = 8.05 + step * 0.0475;
+      const rightX = 30.95 - step * 0.0475;
+      const positioned = [
+        { source: { polaritySign: -1 }, geometry: { x: leftX, y: 8, radius } },
+        { source: { polaritySign: 1 }, geometry: { x: rightX, y: 8, radius } },
+      ];
+      const pixels = new Map();
+      const context = {
+        canvas: { width, height },
+        fillStyle: "",
+        globalAlpha: 1,
+        globalCompositeOperation: "source-over",
+        save() {},
+        restore() {},
+        beginPath() {},
+        arc() {},
+        fill() {},
+        fillRect(pixelX, pixelY) {
+          pixels.set(pixelX + "," + pixelY, this.fillStyle);
+        },
+      };
+      const result = paintTopoPairSourceMarkerLayers({
+        targetContext: context,
+        width,
+        height,
+        positioned,
+        drawMarker: ({ source, geometry }) => paintTopoSourceMarker({
+          targetContext: context,
+          x: geometry.x,
+          y: geometry.y,
+          markerStyle: { radius: geometry.radius },
+          sourceColor: source.polaritySign < 0 ? "blue" : "red",
+        }),
+      });
+      assert.equal(result.markersOverlap, false);
+      for (const { source, geometry } of positioned) {
+        const color = source.polaritySign < 0 ? "blue" : "red";
+        let maskPixelCount = 0;
+        for (let pixelY = 0; pixelY < height; pixelY += 1) {
+          for (let pixelX = 0; pixelX < width; pixelX += 1) {
+            if (Math.hypot(
+              pixelX - geometry.x,
+              pixelY - geometry.y,
+            ) <= geometry.radius) {
+              maskPixelCount += 1;
+              assert.equal(
+                pixels.get(pixelX + "," + pixelY),
+                color,
+                background + " frame " + step + " exposed a source-mask pixel",
+              );
+            }
+          }
+        }
+        assert.ok(maskPixelCount > 0);
+      }
+    }
+  }
+});
+
+test("animated Topo scenarios enter paused at zero and keep Space context-safe", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  const handlerStart = runtime.indexOf("function handleScenarioChange");
+  const handlerEnd = runtime.indexOf(
+    'listen(dom.scenarioControl, "pointerdown"',
+    handlerStart,
+  );
+  const scenarioHandler = runtime.slice(handlerStart, handlerEnd);
+  assert.match(scenarioHandler, /resetPairPlayback\(\)/u);
+  assert.match(scenarioHandler, /stopBinaryPlayback\(\)/u);
+  assert.match(scenarioHandler, /binaryProgress = 0/u);
+  assert.match(scenarioHandler, /scheduleFrameChange\(\)/u);
+  assert.doesNotMatch(scenarioHandler, /startPairPlayback/u);
+  assert.match(runtime, /let backgroundPointerActivation = false/u);
+  assert.match(runtime, /backgroundPointerActivation &&[\s\S]*dom\.canvas\.focus/u);
+  assert.match(runtime, /listen\(dom\.backgroundControl, "pointerdown"/u);
+  assert.match(runtime, /listen\(dom\.backgroundControl, "keydown"/u);
+  assert.match(runtime, /binaryProgress = 0;[\s\S]*updateBinaryTransportPresentation\(\)/u);
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "INPUT", type: "radio" },
+  }), false);
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "INPUT", type: "range" },
+  }), true);
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "CANVAS" },
+  }), true);
+});
+
+test("animated beta minimum is 0.05 while stationary singles retain beta zero", () => {
+  assert.equal(TOPO_ANIMATED_MIN_BETA, 0.05);
+  for (const scenarioId of [
+    "approaching-collinear-electrino-positrino",
+    "orbiting-binary",
+  ]) {
+    assert.equal(topoAnimatedScenarioUsesMinimumBeta(scenarioId), true);
+    assert.equal(normalizeTopoScenarioBeta(0, scenarioId), 0.05);
+    assert.equal(normalizeTopoScenarioBeta(0.01, scenarioId), 0.05);
+    assert.equal(normalizeTopoScenarioBeta(0.05, scenarioId), 0.05);
+    assert.equal(normalizeTopoScenarioBeta(1.2, scenarioId), 1);
+  }
+  for (const scenarioId of ["electrino", "positrino"]) {
+    assert.equal(topoAnimatedScenarioUsesMinimumBeta(scenarioId), false);
+    assert.equal(normalizeTopoScenarioBeta(0, scenarioId), 0);
+    assert.equal(normalizeTopoScenarioBeta(0.01, scenarioId), 0.01);
+  }
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /dom\.beta\.min = minimum\.toFixed\(2\)/u);
+  assert.match(runtime, /dom\.beta\.setAttribute\("aria-valuemin"/u);
+  assert.match(runtime, /syncBetaControlForScenario\(scenarioId\)/u);
+  assert.match(runtime, /minimum animated beta is 0\.05/u);
+  assert.match(runtime, /resolveTopoCollinearPairPlaybackSeconds\([\s\S]*getState\(\)\.beta/u);
 });
 
 test("Topo UI exposes distinct combined, source-local, and equal-radius views and preserves Home", () => {
@@ -1281,7 +1440,7 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.doesNotMatch(runtime, /state\.contourReach|dataset\.contourReach/u);
   assert.equal(
     runtime.match(/contourReach: TOPO_DEFAULT_CONTOUR_REACH/gu)?.length,
-    4,
+    5,
   );
   assert.match(runtime, /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u);
   assert.match(
@@ -1353,7 +1512,7 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.doesNotMatch(runtime, /createTopoCollinearPairContourRenderPlan/u);
   assert.match(runtime, /extractTopoSampledFieldContourSegments/u);
   assert.match(runtime, /drawSampledCombinedContours/u);
-  assert.equal(runtime.match(/topoContourStyle\(/gu)?.length, 5);
+  assert.equal(runtime.match(/topoContourStyle\(/gu)?.length, 6);
   assert.match(runtime, /TOPO_CONTOUR_WEIGHT_POLICY_ID/u);
   assert.match(runtime, /contourWeightProfile/u);
   assert.doesNotMatch(runtime, /revealWeight|outwardProgress/u);
