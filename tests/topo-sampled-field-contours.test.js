@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
 import {
   createTopoContourLevelStyle,
@@ -10,6 +10,14 @@ import {
   TOPO_CONTOUR_LEVELS_PER_DECADE,
   TOPO_SAMPLED_FIELD_CONTOUR_POLICY_ID,
   TOPO_SAMPLED_FIELD_STATE,
+  TOPO_MARCHING_SQUARES_GLSL_CONTRACT,
+  topoMarchingSquaresCaseIndex,
+  topoMarchingSquaresEdgePairs,
+  topoMarchingSquaresEdgePoint,
+  topoMarchingSquaresScreenSpaceMask,
+  topoMarchingSquaresScreenSpaceCenterlineDistance,
+  topoGpuContourBandWidth,
+  topoGpuContourBandContains,
   connectTopoSampledFieldContourSegments,
   createTopoSignedContourLevels,
   extractTopoSampledFieldContourSegments,
@@ -20,7 +28,9 @@ import {
   solveTopoCollinearPairCausalDelay,
 } from "../src/apps/topo/TopoCollinearPairScenario.js";
 import {
+  createTopoCircularBinaryPlayback,
   createTopoCircularBinaryRawSampler,
+  topoCircularBinarySourcePosition,
   topoCircularBinaryWorldPointForCanvasPixel,
 } from "../src/apps/topo/TopoCircularBinaryScenario.js";
 import {
@@ -40,6 +50,8 @@ import {
   TOPO_BINARY_SOURCE_REFINEMENT_RADIUS_PIXELS,
   TOPO_BINARY_SOURCE_REFINEMENT_REPLACEMENT_RADIUS_PIXELS,
   TOPO_BINARY_SOURCE_REFINEMENT_MIN_RAW_DECADE,
+  TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES,
+  TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE,
   createTopoSampledContourPaintStyle,
   resolveTopoLinearViewportAnchor,
   resolveTopoCollinearSourceMaskRadius,
@@ -54,6 +66,187 @@ function closeTo(actual, expected, tolerance = 1e-12) {
     Math.abs(actual - expected) <= tolerance,
     String(actual) + " is not within " + tolerance + " of " + expected,
   );
+}
+
+function createGpuBandMask({ raw, sampleStates, width, height, rawDecade, sign = 0 }) {
+  const mask = new Uint8Array(width * height);
+  for (let y = 1; y < height - 1; y += 1) {
+    for (let x = 1; x < width - 1; x += 1) {
+      const index = y * width + x;
+      const neighborIndexes = [index - 1, index + 1, index - width, index + width];
+      if ([index, ...neighborIndexes].some((entry) =>
+        sampleStates[entry] !== TOPO_SAMPLED_FIELD_STATE.VALID)) continue;
+      mask[index] = (sign === 0 || Math.sign(raw[index]) === sign) && topoGpuContourBandContains({
+        value: raw[index],
+        levelRawDecade: rawDecade,
+        neighbors: {
+          left: raw[neighborIndexes[0]], right: raw[neighborIndexes[1]],
+          down: raw[neighborIndexes[2]], up: raw[neighborIndexes[3]],
+        },
+      }) ? 1 : 0;
+    }
+  }
+  return mask;
+}
+
+function rasterizeSegments({ segments, width, height }) {
+  const mask = new Uint8Array(width * height);
+  for (const segment of segments) {
+    let x0 = Math.round(segment.x1), y0 = Math.round(segment.y1);
+    const x1 = Math.round(segment.x2), y1 = Math.round(segment.y2);
+    const dx = Math.abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    const dy = -Math.abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    let error = dx + dy;
+    while (true) {
+      if (x0 >= 0 && x0 < width && y0 >= 0 && y0 < height) mask[y0 * width + x0] = 1;
+      if (x0 === x1 && y0 === y1) break;
+      const twice = 2 * error;
+      if (twice >= dy) { error += dy; x0 += sx; }
+      if (twice <= dx) { error += dx; y0 += sy; }
+    }
+  }
+  return mask;
+}
+
+function excludeInvalidStencil(mask, sampleStates, width, height) {
+  const filtered = new Uint8Array(mask);
+  for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
+    const index = y * width + x;
+    if (x === 0 || y === 0 || x === width - 1 || y === height - 1 ||
+        [index, index - 1, index + 1, index - width, index + width].some((entry) =>
+          sampleStates[entry] !== TOPO_SAMPLED_FIELD_STATE.VALID)) filtered[index] = 0;
+  }
+  return filtered;
+}
+
+function componentCount(mask, width, height) {
+  const seen = new Uint8Array(mask.length);
+  let count = 0;
+  for (let start = 0; start < mask.length; start += 1) {
+    if (!mask[start] || seen[start]) continue;
+    count += 1;
+    const queue = [start];
+    seen[start] = 1;
+    while (queue.length) {
+      const index = queue.pop();
+      const x = index % width, y = Math.floor(index / width);
+      for (let dy = -1; dy <= 1; dy += 1) for (let dx = -1; dx <= 1; dx += 1) {
+        const nx = x + dx, ny = y + dy, next = ny * width + nx;
+        if (nx >= 0 && nx < width && ny >= 0 && ny < height && mask[next] && !seen[next]) {
+          seen[next] = 1; queue.push(next);
+        }
+      }
+    }
+  }
+  return count;
+}
+
+function bidirectionalMaskDistance(left, right, width) {
+  const points = (mask) => [...mask].flatMap((value, index) => value ? [{
+    x: index % width, y: Math.floor(index / width),
+  }] : []);
+  const nearest = (from, to) => from.map((point) => {
+    let nearestPoint = null;
+    let distance = Infinity;
+    for (const candidate of to) {
+      const nextDistance = Math.hypot(point.x - candidate.x, point.y - candidate.y);
+      if (nextDistance < distance) {
+        distance = nextDistance;
+        nearestPoint = candidate;
+      }
+    }
+    return { ...point, nearestPoint, distance };
+  });
+  const leftToRight = nearest(points(left), points(right));
+  const rightToLeft = nearest(points(right), points(left));
+  const values = [...leftToRight, ...rightToLeft].map((entry) => entry.distance).sort((a, b) => a - b);
+  const worst = (entries) => entries.reduce((current, entry) =>
+    !current || entry.distance > current.distance ? entry : current, null);
+  return {
+    p95: values[Math.floor(0.95 * (values.length - 1))],
+    max: values.at(-1),
+    worstLeftToRight: worst(leftToRight),
+    worstRightToLeft: worst(rightToLeft),
+  };
+}
+
+function describeBandOutlier({
+  entry, direction, raw, states, width, height, rawDecade, cpuSegments,
+  sourcePositions = [], sourceMaskRadius = 0,
+}) {
+  if (!entry) return null;
+  const index = entry.y * width + entry.x;
+  const stencil = {
+    center: index,
+    left: index - 1,
+    right: index + 1,
+    down: index - width,
+    up: index + width,
+  };
+  const neighbors = Object.fromEntries(Object.entries(stencil).slice(1).map(([name, sampleIndex]) =>
+    [name, raw[sampleIndex]]));
+  const bandWidth = topoGpuContourBandWidth(neighbors);
+  const rawValues = Object.fromEntries(Object.entries(stencil).map(([name, sampleIndex]) =>
+    [name, raw[sampleIndex]]));
+  const sampleStates = Object.fromEntries(Object.entries(stencil).map(([name, sampleIndex]) =>
+    [name, sampleStatesLabel(states[sampleIndex])])) ;
+  const componentEndpoint = cpuSegments.some((segment) =>
+    (Math.round(segment.x1) === entry.x && Math.round(segment.y1) === entry.y) ||
+    (Math.round(segment.x2) === entry.x && Math.round(segment.y2) === entry.y));
+  const rawDecades = Object.fromEntries(Object.entries(rawValues).map(([name, value]) =>
+    [name, Number.isFinite(value) ? Math.log10(Math.max(Math.abs(value), 1e-30) / 64) : null]));
+  const relative = Object.fromEntries(Object.entries(rawDecades).map(([name, value]) =>
+    [name, value == null ? null : value - rawDecade]));
+  const point = topoCircularBinaryWorldPointForCanvasPixel({
+    pixelX: entry.x, pixelY: entry.y, width, height, displayScale: 1,
+  });
+  const sourceDistances = sourcePositions.map((source) => ({
+    sourceSign: source.sourceSign,
+    distance: Math.hypot(point.x - source.x, point.y - source.y),
+  }));
+  return {
+    direction,
+    pixel: { x: entry.x, y: entry.y },
+    nearest: entry.nearestPoint,
+    distance: entry.distance,
+    thresholdRawDecade: rawDecade,
+    raw: rawValues,
+    rawDecades,
+    sampleStates,
+    estimatedGradient: {
+      x: (neighbors.right - neighbors.left) / 2,
+      y: (neighbors.up - neighbors.down) / 2,
+      magnitude: Math.hypot(neighbors.right - neighbors.left, neighbors.up - neighbors.down) / 2,
+    },
+    halfBandWidth: 0.45 * bandWidth,
+    viewportEdge: entry.x <= 1 || entry.y <= 1 || entry.x >= width - 2 || entry.y >= height - 2,
+    invalidStencil: Object.values(sampleStates).some((state) => state !== "valid"),
+    sourceMaskBoundary: sourceDistances.some(({ distance }) => distance <= sourceMaskRadius + 1 / width),
+    localExtremum: (relative.center >= 0 && Object.values(relative).slice(1).every((value) => value <= 0)) ||
+      (relative.center <= 0 && Object.values(relative).slice(1).every((value) => value >= 0)),
+    levelSaddle: relative.left * relative.right < 0 && relative.down * relative.up < 0,
+    sourceDistances,
+    componentEndpoint,
+  };
+}
+
+function sampleStatesLabel(state) {
+  return Object.entries(TOPO_SAMPLED_FIELD_STATE).find(([, value]) => value === state)?.[0].toLowerCase() ?? "unknown";
+}
+
+function writeDiagnosticCrop({ directory, name, raw, states, width, height, entry }) {
+  if (!directory || !entry) return;
+  const radius = 12;
+  const cropWidth = radius * 2 + 1;
+  const pixels = [];
+  for (let y = entry.y - radius; y <= entry.y + radius; y += 1) for (let x = entry.x - radius; x <= entry.x + radius; x += 1) {
+    const index = y * width + x;
+    const valid = x >= 0 && y >= 0 && x < width && y < height && states[index] === TOPO_SAMPLED_FIELD_STATE.VALID;
+    const exponent = valid ? Math.log10(Math.max(Math.abs(raw[index]), 1e-30) / 64) : -6;
+    pixels.push(Math.max(0, Math.min(255, Math.round((exponent + 4) * 64))));
+  }
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(`${directory}/${name}.pgm`, `P2\n${cropWidth} ${cropWidth}\n255\n${pixels.join(" ")}\n`);
 }
 
 test("signed sampled-field levels use one raw factor-of-ten level per decade plus zero", () => {
@@ -227,6 +420,28 @@ test("marching squares locates the explicit zero contour in sampled-grid coordin
   });
 });
 
+test("canonical marching-squares helpers cover all cases, saddles, interpolation, and invalid corners", () => {
+  assert.deepEqual(TOPO_MARCHING_SQUARES_GLSL_CONTRACT.ambiguousCases, [5, 10]);
+  for (let caseIndex = 0; caseIndex < 16; caseIndex += 1) {
+    const corners = [0, 1, 2, 3].map((index) => caseIndex & (1 << index) ? 1 : -1);
+    assert.equal(topoMarchingSquaresCaseIndex(corners, 0), caseIndex);
+    const pairs = topoMarchingSquaresEdgePairs(caseIndex, corners, 0, 2, 3, 7);
+    if (caseIndex === 0 || caseIndex === 15) assert.equal(pairs.length, 0);
+    else assert.ok(pairs.length >= 1);
+  }
+  assert.deepEqual(topoMarchingSquaresEdgePairs(5, [1, -1, 1, -1], 0, 0, 0, 0), [[0, 1], [2, 3]]);
+  assert.deepEqual(topoMarchingSquaresEdgePairs(5, [1, -1, 1, -1], 0, 0, 1, 0), [[3, 0], [1, 2]]);
+  const zero = topoMarchingSquaresEdgePoint(0, 4, 5, [-1, 1, 1, -1], 0);
+  closeTo(zero.x, 4.5); closeTo(zero.y, 5);
+  const endpoint = topoMarchingSquaresEdgePoint(0, 0, 0, [0, 2, 2, 0], 0);
+  closeTo(endpoint.x, 0); closeTo(endpoint.y, 0);
+  const invalid = extractTopoSampledFieldContourSegments({
+    raw: new Float32Array([1, -1, -1, 1]), width: 2, height: 2,
+    sampleStates: new Uint8Array([0, 0, TOPO_SAMPLED_FIELD_STATE.MASKED, 0]), levels: [0],
+  });
+  assert.equal(invalid.segments.length, 0);
+});
+
 test("contour paint paths join existing shared marching-squares endpoints without changing edges", () => {
   const extracted = extractTopoSampledFieldContourSegments({
     raw: new Float32Array([
@@ -247,6 +462,20 @@ test("contour paint paths join existing shared marching-squares endpoints withou
     paths[0].map((point) => point.x),
     [1, 1, 1],
   );
+});
+
+test("GPU finite-difference contour band fails closed at unavailable neighbors", () => {
+  assert.equal(topoGpuContourBandWidth({
+    left: Number.NaN, right: 1, down: 1, up: 1,
+  }), 0);
+  assert.ok(topoGpuContourBandWidth({
+    left: 1, right: 2, down: 1, up: 2,
+  }) > 0);
+  assert.equal(topoGpuContourBandContains({
+    value: 64,
+    levelRawDecade: 0,
+    neighbors: { left: 32, right: 128, down: 32, up: 128 },
+  }), true);
 });
 
 test("high-speed binary uses the dense-grid component topology rather than the coarse preview alias", () => {
@@ -298,6 +527,220 @@ test("high-speed binary uses the dense-grid component topology rather than the c
   };
   assert.equal(componentCount(120, 94), 1);
   assert.equal(componentCount(240, 188), 2);
+});
+
+test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branch and fail closed", () => {
+  const width = 916, height = 720;
+  const sample = createTopoCircularBinaryRawSampler({
+    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: 0.003688525,
+  });
+  const playback = createTopoCircularBinaryPlayback({ beta: 1, progress: 0, radius: 0.3 });
+  const sourcePositions = [-1, 1].map((sourceSign) => ({
+    sourceSign,
+    ...topoCircularBinarySourcePosition({
+      sourceSign, time: playback.observationTime, beta: playback.beta,
+      radius: playback.radius, direction: playback.direction,
+    }),
+  }));
+  const raw = new Float32Array(width * height);
+  const states = new Uint8Array(raw.length);
+  for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
+    const index = y * width + x;
+    const point = topoCircularBinaryWorldPointForCanvasPixel({ pixelX: x, pixelY: y, width, height, displayScale: 1 });
+    raw[index] = sample(point.x, point.y);
+    states[index] = Number.isFinite(raw[index]) ? TOPO_SAMPLED_FIELD_STATE.VALID : TOPO_SAMPLED_FIELD_STATE.MASKED;
+  }
+  const level = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
+    .find((entry) => entry.family === "negative" && entry.rawDecade === -2);
+  const extracted = extractTopoSampledFieldContourSegments({ raw, sampleStates: states, width, height, levels: [level] });
+  const gpu = createGpuBandMask({ raw, sampleStates: states, width, height, rawDecade: -2, sign: -1 });
+  const cpu = excludeInvalidStencil(rasterizeSegments({
+    segments: extracted.segments, width, height,
+  }), states, width, height);
+  assert.ok(gpu.some(Boolean));
+  assert.ok(cpu.some(Boolean));
+  assert.equal(connectTopoSampledFieldContourSegments(extracted.segments).length, 1);
+  assert.equal(componentCount(cpu, width, height), 2);
+  assert.equal(componentCount(gpu, width, height), 1);
+  const distance = bidirectionalMaskDistance(cpu, gpu, width);
+  const diagnostics = {
+    components: {
+      cpuRaster: componentCount(cpu, width, height),
+      gpuBand: componentCount(gpu, width, height),
+      cpuPaths: connectTopoSampledFieldContourSegments(extracted.segments).length,
+    },
+    gpuToCpu: describeBandOutlier({
+      entry: distance.worstRightToLeft, direction: "gpu-to-cpu", raw, states, width, height,
+      rawDecade: -2, cpuSegments: extracted.segments, sourcePositions, sourceMaskRadius: 0.003688525,
+    }),
+    cpuToGpu: describeBandOutlier({
+      entry: distance.worstLeftToRight, direction: "cpu-to-gpu", raw, states, width, height,
+      rawDecade: -2, cpuSegments: extracted.segments, sourcePositions, sourceMaskRadius: 0.003688525,
+    }),
+  };
+  if (process.env.TOPO_CONTOUR_DIAGNOSTICS_DIR) {
+    for (const [name, diagnostic] of Object.entries(diagnostics)) {
+      writeDiagnosticCrop({
+        directory: process.env.TOPO_CONTOUR_DIAGNOSTICS_DIR, name, raw, states, width, height,
+        entry: diagnostic && (name === "gpuToCpu" ? distance.worstRightToLeft : distance.worstLeftToRight),
+      });
+    }
+    console.info("Topo GPU contour comparator diagnostics", JSON.stringify({ distance, diagnostics }));
+  }
+  assert.ok(distance.p95 <= 1, "GPU center band should remain within one pixel of CPU segments: " + JSON.stringify({ distance, diagnostics }));
+  assert.ok(distance.max <= 2, "GPU center band should remain within two pixels of CPU segments: " + JSON.stringify({ distance, diagnostics }));
+  states[120 * width + 120] = TOPO_SAMPLED_FIELD_STATE.MASKED;
+  const masked = createGpuBandMask({ raw, sampleStates: states, width, height, rawDecade: -2 });
+  assert.equal(masked[120 * width + 120], 0);
+});
+
+test("every selected signed binary level matches the canonical screen-space marching-squares mask at beta one phase zero", () => {
+  const width = 916, height = 720;
+  const sample = createTopoCircularBinaryRawSampler({
+    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: 0.003688525,
+  });
+  const raw = new Float32Array(width * height);
+  const states = new Uint8Array(raw.length);
+  for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
+    const index = y * width + x;
+    const point = topoCircularBinaryWorldPointForCanvasPixel({ pixelX: x, pixelY: y, width, height, displayScale: 1 });
+    raw[index] = sample(point.x, point.y);
+    states[index] = Number.isFinite(raw[index]) ? TOPO_SAMPLED_FIELD_STATE.VALID : TOPO_SAMPLED_FIELD_STATE.MASKED;
+  }
+  const levels = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
+    .filter((level) => level.family === "negative" || level.family === "positive");
+  const extracted = extractTopoSampledFieldContourSegments({ raw, sampleStates: states, width, height, levels });
+  const table = levels.map((level) => {
+    const segments = extracted.segments.filter((segment) => segment.value === level.value);
+    const cpu = excludeInvalidStencil(rasterizeSegments({ segments, width, height }), states, width, height);
+    const gpu = topoMarchingSquaresScreenSpaceMask({
+      raw, sampleStates: states, width, height, level, lineHalfWidth: 0.5,
+    });
+    const distance = topoMarchingSquaresScreenSpaceCenterlineDistance({
+      segments, mask: gpu, width, lineHalfWidth: 0.5,
+    });
+    return {
+      sign: level.family,
+      rawDecade: level.rawDecade,
+      cpuPaths: connectTopoSampledFieldContourSegments(segments).length,
+      cpuRasterComponents: componentCount(cpu, width, height),
+      gpuMaskComponents: componentCount(gpu, width, height),
+      invalidBridgePixels: gpu.reduce((count, value, index) => count +
+        (value && states[index] !== TOPO_SAMPLED_FIELD_STATE.VALID ? 1 : 0), 0),
+      p95: distance.p95,
+      max: distance.max,
+    };
+  });
+  if (process.env.TOPO_CONTOUR_DIAGNOSTICS_DIR) {
+    console.info("Topo phase-zero all-level GPU contour comparator", JSON.stringify(table));
+  }
+  for (const row of table) {
+    assert.equal(row.gpuMaskComponents, row.cpuPaths,
+      "phase-zero true component topology: " + JSON.stringify(row));
+    assert.equal(row.invalidBridgePixels, 0,
+      "phase-zero mask must stay fail-closed: " + JSON.stringify(row));
+    assert.ok(row.p95 <= 1, "phase-zero p95 displacement: " + JSON.stringify(row));
+    assert.ok(row.max <= 1, "phase-zero centerline maximum displacement: " + JSON.stringify(row));
+  }
+  for (const negative of table.filter((row) => row.sign === "negative")) {
+    const positive = table.find((row) => row.sign === "positive" &&
+      row.rawDecade === negative.rawDecade);
+    assert.equal(negative.cpuPaths, positive?.cpuPaths,
+      "signed CPU topology symmetry: " + JSON.stringify({ negative, positive }));
+    assert.equal(negative.gpuMaskComponents, positive?.gpuMaskComponents,
+      "signed GPU topology symmetry: " + JSON.stringify({ negative, positive }));
+  }
+});
+
+test("table-driven beta-one diagnostic phases retain all signed screen-space contour contracts", () => {
+  assert.ok(TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES.includes(
+    TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE,
+  ));
+  const width = 240, height = 188;
+  const levels = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
+    .filter((level) => level.family === "negative" || level.family === "positive");
+  const phaseRows = TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES.map((phase) => {
+    const raw = new Float32Array(width * height);
+    const states = new Uint8Array(raw.length);
+    const sample = createTopoCircularBinaryRawSampler({
+      beta: 1, progress: phase, radius: 0.3, sourceMaskRadius: 0.003688525,
+    });
+    for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
+      const index = y * width + x;
+      const point = topoCircularBinaryWorldPointForCanvasPixel({
+        pixelX: x, pixelY: y, width, height, displayScale: 1,
+      });
+      raw[index] = sample(point.x, point.y);
+      states[index] = Number.isFinite(raw[index])
+        ? TOPO_SAMPLED_FIELD_STATE.VALID
+        : TOPO_SAMPLED_FIELD_STATE.MASKED;
+    }
+    const extracted = extractTopoSampledFieldContourSegments({
+      raw, sampleStates: states, width, height, levels,
+    });
+    const rows = levels.map((level) => {
+      const segments = extracted.segments.filter((segment) => segment.value === level.value);
+      const gpu = topoMarchingSquaresScreenSpaceMask({
+        raw, sampleStates: states, width, height, level, lineHalfWidth: 0.5,
+      });
+      const distance = topoMarchingSquaresScreenSpaceCenterlineDistance({
+        segments, mask: gpu, width, lineHalfWidth: 0.5,
+      });
+      return {
+        family: level.family,
+        rawDecade: level.rawDecade,
+        cpuPaths: connectTopoSampledFieldContourSegments(segments).length,
+        gpuComponents: componentCount(gpu, width, height),
+        invalidBridgePixels: gpu.reduce((count, value, index) => count +
+          (value && states[index] !== TOPO_SAMPLED_FIELD_STATE.VALID ? 1 : 0), 0),
+        p95: distance.p95,
+        max: distance.max,
+      };
+    });
+    return { phase, rows };
+  });
+  for (const { phase, rows } of phaseRows) {
+    assert.equal(rows.length, 26, `selected signed level count at phase ${phase}`);
+    for (const row of rows) {
+      assert.equal(row.gpuComponents, row.cpuPaths,
+        `component topology at phase ${phase}: ${JSON.stringify(row)}`);
+      assert.equal(row.invalidBridgePixels, 0,
+        `fail-closed mask at phase ${phase}: ${JSON.stringify(row)}`);
+      assert.ok(row.p95 <= 1 && row.max <= 1,
+        `centerline bounds at phase ${phase}: ${JSON.stringify(row)}`);
+    }
+    for (const negative of rows.filter((row) => row.family === "negative")) {
+      const positive = rows.find((row) => row.family === "positive" &&
+        row.rawDecade === negative.rawDecade);
+      assert.equal(negative.cpuPaths, positive?.cpuPaths,
+        `signed CPU symmetry at phase ${phase}: ${negative.rawDecade}`);
+      assert.equal(negative.gpuComponents, positive?.gpuComponents,
+        `signed GPU symmetry at phase ${phase}: ${negative.rawDecade}`);
+    }
+  }
+});
+
+test("binary scalar-pass audit grid preserves pixel mapping, signs, masks, and selected-level neighborhoods", () => {
+  const width = 916, height = 720;
+  const sample = createTopoCircularBinaryRawSampler({
+    beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: 0.003688525,
+  });
+  const probes = [
+    [0, 0], [width - 1, height - 1], [Math.floor(width / 2), Math.floor(height / 2)],
+    [Math.floor(width * .2), Math.floor(height / 2)], [Math.floor(width * .8), Math.floor(height / 2)],
+  ].map(([pixelX, pixelY]) => ({ pixelX, pixelY, point: topoCircularBinaryWorldPointForCanvasPixel({
+    pixelX, pixelY, width, height, displayScale: 1,
+  }) }));
+  const values = probes.map(({ point }) => sample(point.x, point.y));
+  assert.ok(values.some((value) => value > 0));
+  assert.ok(values.some((value) => value < 0));
+  assert.ok(Math.abs(values[2]) < 0.01, "center remains the cancellation probe");
+  assert.equal(Number.isFinite(values[3]), false, "negative source mask stays explicit");
+  assert.equal(Number.isFinite(values[4]), false, "positive source mask stays explicit");
+  const thresholds = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
+    .filter((level) => level.family === "negative" || level.family === "positive");
+  assert.equal(thresholds.length, 26);
+  assert.ok(thresholds.every((level) => Number.isFinite(level.value)));
 });
 
 test("positive and negative contours share the authoritative samples", () => {

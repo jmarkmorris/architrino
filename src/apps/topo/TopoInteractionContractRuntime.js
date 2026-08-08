@@ -43,6 +43,12 @@ import {
   createTopoSignedContourLevels,
   connectTopoSampledFieldContourSegments,
   extractTopoSampledFieldContourSegments,
+  TOPO_MARCHING_SQUARES_GLSL_CONTRACT,
+  topoMarchingSquaresLevelIdentity,
+  topoMarchingSquaresScreenSpaceCenterlineDistance,
+  TOPO_GPU_CONTOUR_BAND_MAX,
+  TOPO_GPU_CONTOUR_BAND_MIN,
+  TOPO_GPU_CONTOUR_BAND_SCALE,
   TOPO_SAMPLED_FIELD_STATE,
 } from "./TopoSampledFieldContours.js";
 import {
@@ -56,6 +62,7 @@ import {
   createTopoCircularBinaryFrameIdentity,
   createTopoCircularBinaryPlayback,
   createTopoCircularBinaryRawSampler,
+  sampleTopoCircularBinaryWake,
   topoCircularBinarySourcePosition,
   topoCircularBinaryWorldPointForCanvasPixel,
 } from "./TopoCircularBinaryScenario.js";
@@ -68,9 +75,6 @@ import {
 } from "../navigator/StandaloneAppSceneSearchRuntime.js";
 import { PHOTON_CHARGE_COLORS } from "../photon/PhotonStateRuntime.js";
 import {
-  ARCHITRINO_BODY_OUTLINE_WIDTH,
-  DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT,
-  TRANSMISSION_POINT_MARKER_STYLES,
   WHITE,
 } from "../causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
 
@@ -183,6 +187,11 @@ export function topoRangePointerMoveOwnsInteraction(
 
 export const TOPO_SOURCE_MARKER_RADIUS_SCALE = 0.5;
 export const TOPO_SOURCE_MASK_MARKER_RATIO = 0.75;
+// Display-only species sizing.  Keep this separate from the shared source
+// marker base and all source-mask radii: those define field availability, not
+// the painted body.
+export const TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE = 0.5;
+export const TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE = 0.5;
 // Keep live marching-squares cells below 2.3 canvas pixels at the desktop stage.
 export const TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH = 400;
 export const TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH = 480;
@@ -206,6 +215,18 @@ export const TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE = 56;
 export const TOPO_BINARY_SOURCE_REFINEMENT_RADIUS_PIXELS = 64;
 export const TOPO_BINARY_SOURCE_REFINEMENT_REPLACEMENT_RADIUS_PIXELS = 48;
 export const TOPO_BINARY_SOURCE_REFINEMENT_MIN_RAW_DECADE = -1;
+// A beta-one 0.025 phase sweep of the selected -2 contour found its largest
+// current screen-space aspect deviation at this phase (and antipodal 0.875).
+// Keep it explicit so the formerly egg-like frame remains reproducible.
+export const TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE = 0.375;
+export const TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES = Object.freeze([
+  0,
+  0.25,
+  0.5,
+  0.75,
+  TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE,
+]);
+const TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS = 64;
 const TOPO_CANVAS_CENTER = Object.freeze({ x: 0.5, y: 0.5 });
 
 export function resolveTopoLinearViewportAnchor({
@@ -306,6 +327,91 @@ export function resolveTopoSourceMarkerRadius({
     9 * density,
     Math.min(canvasWidth, canvasHeight) * 0.0125,
   );
+}
+
+export function resolveTopoVisibleSourceMarkerRadius({
+  polaritySign,
+  width,
+  height,
+  pixelRatio = 1,
+} = {}) {
+  const speciesScale = Number(polaritySign) < 0
+    ? TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE
+    : TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE;
+  return speciesScale * resolveTopoSourceMarkerRadius({
+    width,
+    height,
+    pixelRatio,
+  });
+}
+
+export function createTopoVisibleMarkerPaintStyle({
+  polaritySign,
+  width,
+  height,
+  pixelRatio = 1,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+} = {}) {
+  return Object.freeze({
+    radius: resolveTopoVisibleSourceMarkerRadius({
+      polaritySign,
+      width,
+      height,
+      pixelRatio,
+    }) * displayScale,
+  });
+}
+
+export function paintTopoSourceMarker({
+  targetContext,
+  x,
+  y,
+  markerStyle,
+  sourceColor,
+} = {}) {
+  if (!targetContext || !markerStyle) {
+    return false;
+  }
+  targetContext.save();
+  targetContext.fillStyle = sourceColor;
+  targetContext.beginPath();
+  targetContext.arc(x, y, markerStyle.radius, 0, Math.PI * 2);
+  targetContext.fill();
+  targetContext.restore();
+  return true;
+}
+
+// Pair markers always compose through the same bisector layers.  When the
+// circles are separated, the clips contain each whole marker; when they meet,
+// the exact same layers reveal their respective halves.  Avoiding a branch at
+// the overlap threshold prevents a one-frame leading-edge flash in playback.
+export function paintTopoPairSourceMarkerLayers({
+  targetContext,
+  width,
+  height,
+  positioned,
+  drawMarker,
+} = {}) {
+  if (!targetContext || !Array.isArray(positioned) || positioned.length !== 2 ||
+      typeof drawMarker !== "function") {
+    return false;
+  }
+  const ordered = positioned.slice().sort((left, right) =>
+    left.geometry.x - right.geometry.x);
+  const splitX = (ordered[0].geometry.x + ordered[1].geometry.x) / 2;
+  ordered.forEach(({ source, geometry }, index) => {
+    targetContext.save();
+    targetContext.beginPath();
+    if (index === 0) {
+      targetContext.rect(0, 0, splitX, height);
+    } else {
+      targetContext.rect(splitX, 0, width - splitX, height);
+    }
+    targetContext.clip();
+    drawMarker({ source, geometry });
+    targetContext.restore();
+  });
+  return Object.freeze({ splitX, layerCount: ordered.length });
 }
 
 export function resolveTopoSourceMaskRadius({
@@ -469,12 +575,28 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let binaryProgress = 0;
   let binaryPlaying = false;
   let binaryPlaybackStartedAt = null;
+  let binaryPlaybackPreviousTimestamp = null;
   let binaryPlaybackStartProgress = 0;
+  let binaryPlaybackPresentedFrameCount = 0;
   let binaryTimelineScrubbing = false;
   let binaryAnimationRequest = 0;
+  let topoScalarAuditKey = null;
+  let topoPassTwoDiagnosticKey = null;
+  const topoPassTwoDiagnosticPhaseSummaries = new Map();
+  // Full-frame readback and CPU comparison are deliberately opt-in diagnostics.
+  // They are useful for the bounded parity proof, but never belong on the
+  // presented animation path: each comparison is substantially more expensive
+  // than the scalar-texture draw it verifies.
+  const topoBinaryDiagnosticsEnabled =
+    dom.app.dataset.topoBinaryDiagnostics === "enabled";
   let rawFrameCache = null;
   let lastContourPresentationKey = null;
   const rawFrameCaches = new Map();
+
+  function topoPassTwoDiagnosticPhase(progress) {
+    return TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES.find((phase) =>
+      Math.abs(progress - phase) <= 0.0005) ?? null;
+  }
   const sampledContourCaches = new Map();
   const previewCanvas = documentLike.createElement("canvas");
   const previewContext = previewCanvas.getContext("2d", { alpha: false });
@@ -492,13 +614,457 @@ export function mountTopoInteractionContractPreview(options = {}) {
     throw new Error("Topo interaction preview requires a field raster context.");
   }
   const analyticFieldCanvas = documentLike.createElement("canvas");
+  analyticFieldCanvas.className = "topo-gpu-field-canvas";
+  analyticFieldCanvas.setAttribute("aria-hidden", "true");
+  Object.assign(analyticFieldCanvas.style, {
+    position: "absolute",
+    inset: "0",
+    display: "block",
+    width: "100%",
+    height: "100%",
+    pointerEvents: "none",
+    zIndex: "0",
+  });
+  dom.canvas.parentElement?.insertBefore(analyticFieldCanvas, dom.contourCanvas);
   const fieldGl = analyticFieldCanvas.getContext("webgl", {
     alpha: false,
     antialias: false,
     depth: false,
     stencil: false,
-    preserveDrawingBuffer: true,
+    preserveDrawingBuffer: false,
   });
+
+  function createTopoScalarFramebufferResources() {
+    if (!fieldGl) return Object.freeze({ available: false, reason: "webgl-unavailable" });
+    const candidates = [];
+    const version = fieldGl.getParameter(fieldGl.VERSION);
+    const floatExtension = fieldGl.getExtension("OES_texture_float");
+    const halfFloatExtension = fieldGl.getExtension("OES_texture_half_float");
+    const colorFloatExtension = fieldGl.getExtension("WEBGL_color_buffer_float");
+    const colorHalfFloatExtension = fieldGl.getExtension("EXT_color_buffer_half_float");
+    if (floatExtension && colorFloatExtension) {
+      candidates.push({ id: "rgba-float", type: fieldGl.FLOAT });
+    }
+    if (halfFloatExtension && colorHalfFloatExtension) {
+      candidates.push({ id: "rgba-half-float", type: halfFloatExtension.HALF_FLOAT_OES });
+    }
+    // This is a deterministic fail-closed diagnostic fallback only; it is not
+    // a scalar contour path until its threshold precision is independently
+    // accepted.
+    candidates.push({ id: "rgba8-diagnostic", type: fieldGl.UNSIGNED_BYTE });
+    for (const candidate of candidates) {
+      const texture = fieldGl.createTexture();
+      const framebuffer = fieldGl.createFramebuffer();
+      if (!texture || !framebuffer) continue;
+      fieldGl.bindTexture(fieldGl.TEXTURE_2D, texture);
+      fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_MIN_FILTER, fieldGl.NEAREST);
+      fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_MAG_FILTER, fieldGl.NEAREST);
+      fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_WRAP_S, fieldGl.CLAMP_TO_EDGE);
+      fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_WRAP_T, fieldGl.CLAMP_TO_EDGE);
+      fieldGl.texImage2D(fieldGl.TEXTURE_2D, 0, fieldGl.RGBA, 2, 2, 0,
+        fieldGl.RGBA, candidate.type, null);
+      fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, framebuffer);
+      fieldGl.framebufferTexture2D(fieldGl.FRAMEBUFFER, fieldGl.COLOR_ATTACHMENT0,
+        fieldGl.TEXTURE_2D, texture, 0);
+      const complete = fieldGl.checkFramebufferStatus(fieldGl.FRAMEBUFFER) ===
+        fieldGl.FRAMEBUFFER_COMPLETE;
+      fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, null);
+      if (complete) {
+        const vertex = compileFieldShader(fieldGl.VERTEX_SHADER, `
+          attribute vec2 a_position;
+          void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
+        `);
+        const fragment = compileFieldShader(fieldGl.FRAGMENT_SHADER, `
+          precision highp float;
+          uniform float u_diagnostic;
+          void main() {
+            // R is the signed scalar, G is availability (one = ordinary),
+            // B is reserved for provenance, and A is an initialized marker.
+            gl_FragColor = vec4(u_diagnostic, 1.0, 0.0, 1.0);
+          }
+        `);
+        const program = fieldGl.createProgram();
+        fieldGl.attachShader(program, vertex);
+        fieldGl.attachShader(program, fragment);
+        fieldGl.linkProgram(program);
+        const buffer = fieldGl.createBuffer();
+        fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, buffer);
+        fieldGl.bufferData(fieldGl.ARRAY_BUFFER,
+          new Float32Array([-1, -1, 3, -1, -1, 3]), fieldGl.STATIC_DRAW);
+        fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, framebuffer);
+        fieldGl.viewport(0, 0, 2, 2);
+        fieldGl.useProgram(program);
+        fieldGl.enableVertexAttribArray(fieldGl.getAttribLocation(program, "a_position"));
+        fieldGl.vertexAttribPointer(fieldGl.getAttribLocation(program, "a_position"), 2,
+          fieldGl.FLOAT, false, 0, 0);
+        fieldGl.uniform1f(fieldGl.getUniformLocation(program, "u_diagnostic"), -0.375);
+        fieldGl.drawArrays(fieldGl.TRIANGLES, 0, 3);
+        const readback = new Float32Array(4);
+        fieldGl.readPixels(0, 0, 1, 1, fieldGl.RGBA, fieldGl.FLOAT, readback);
+        fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, null);
+        const diagnosticError = Math.max(
+          Math.abs(readback[0] + 0.375), Math.abs(readback[1] - 1),
+          Math.abs(readback[2]), Math.abs(readback[3] - 1),
+        );
+        return {
+          available: candidate.id !== "rgba8-diagnostic",
+          diagnosticAvailable: true,
+          id: candidate.id,
+          type: candidate.type,
+          texture,
+          framebuffer,
+          version,
+          extensions: { float: Boolean(floatExtension), half: Boolean(halfFloatExtension),
+            colorFloat: Boolean(colorFloatExtension), colorHalf: Boolean(colorHalfFloatExtension) },
+          width: 2,
+          height: 2,
+          program,
+          buffer,
+          diagnosticError,
+          channelSemantics: "r=signed-raw,g=ordinary-availability,b=source-mask-or-unavailable,a=initialized",
+        };
+      }
+      fieldGl.deleteFramebuffer(framebuffer);
+      fieldGl.deleteTexture(texture);
+    }
+    return Object.freeze({ available: false, reason: "no-renderable-scalar-color-attachment", version });
+  }
+
+  function resizeTopoScalarFramebuffer(resources, width, height) {
+    if (!resources?.texture || resources.width === width && resources.height === height) return;
+    fieldGl.bindTexture(fieldGl.TEXTURE_2D, resources.texture);
+    fieldGl.texImage2D(fieldGl.TEXTURE_2D, 0, fieldGl.RGBA, width, height, 0,
+      fieldGl.RGBA, resources.type, null);
+    resources.width = width;
+    resources.height = height;
+  }
+
+  const topoScalarFramebuffer = createTopoScalarFramebufferResources();
+  dom.app.dataset.binaryScalarFramebuffer = topoScalarFramebuffer.id ?? "unavailable";
+  dom.app.dataset.binaryScalarFramebufferReason = topoScalarFramebuffer.available
+    ? "renderable-nearest-scalar-target" : topoScalarFramebuffer.reason ??
+      "precision-path-not-accepted";
+  dom.app.dataset.binaryScalarFramebufferVersion = topoScalarFramebuffer.version ?? "unavailable";
+  dom.app.dataset.binaryScalarFramebufferPrecisionError = Number.isFinite(
+    topoScalarFramebuffer.diagnosticError,
+  ) ? topoScalarFramebuffer.diagnosticError.toExponential(3) : "unavailable";
+  dom.app.dataset.binaryScalarFramebufferChannels = topoScalarFramebuffer.channelSemantics ?? "unavailable";
+
+  function createTopoPassTwoDiagnosticTarget() {
+    if (!fieldGl) return Object.freeze({ available: false, reason: "webgl-unavailable" });
+    const texture = fieldGl.createTexture();
+    const framebuffer = fieldGl.createFramebuffer();
+    if (!texture || !framebuffer) {
+      return Object.freeze({ available: false, reason: "diagnostic-target-allocation-failed" });
+    }
+    fieldGl.bindTexture(fieldGl.TEXTURE_2D, texture);
+    fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_MIN_FILTER, fieldGl.NEAREST);
+    fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_MAG_FILTER, fieldGl.NEAREST);
+    fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_WRAP_S, fieldGl.CLAMP_TO_EDGE);
+    fieldGl.texParameteri(fieldGl.TEXTURE_2D, fieldGl.TEXTURE_WRAP_T, fieldGl.CLAMP_TO_EDGE);
+    fieldGl.texImage2D(fieldGl.TEXTURE_2D, 0, fieldGl.RGBA, 2, 2, 0,
+      fieldGl.RGBA, fieldGl.UNSIGNED_BYTE, null);
+    fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, framebuffer);
+    fieldGl.framebufferTexture2D(fieldGl.FRAMEBUFFER, fieldGl.COLOR_ATTACHMENT0,
+      fieldGl.TEXTURE_2D, texture, 0);
+    const status = fieldGl.checkFramebufferStatus(fieldGl.FRAMEBUFFER);
+    const complete = status === fieldGl.FRAMEBUFFER_COMPLETE;
+    fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, null);
+    if (!complete) {
+      fieldGl.deleteFramebuffer(framebuffer);
+      fieldGl.deleteTexture(texture);
+      return Object.freeze({ available: false, reason: "diagnostic-target-incomplete:" + status });
+    }
+    return { available: true, texture, framebuffer, width: 2, height: 2 };
+  }
+
+  function resizeTopoPassTwoDiagnosticTarget(target, width, height) {
+    if (!target?.texture || target.width === width && target.height === height) return;
+    fieldGl.bindTexture(fieldGl.TEXTURE_2D, target.texture);
+    fieldGl.texImage2D(fieldGl.TEXTURE_2D, 0, fieldGl.RGBA, width, height, 0,
+      fieldGl.RGBA, fieldGl.UNSIGNED_BYTE, null);
+    target.width = width;
+    target.height = height;
+  }
+
+  const topoPassTwoDiagnosticTarget = createTopoPassTwoDiagnosticTarget();
+  dom.app.dataset.binaryPassTwoDiagnosticTarget = topoPassTwoDiagnosticTarget.available
+    ? "rgba8-mask" : topoPassTwoDiagnosticTarget.reason ?? "unavailable";
+
+  function topoDiagnosticRasterizeSegments(segments, width, height) {
+    const mask = new Uint8Array(width * height);
+    for (const segment of segments) {
+      let x0 = Math.round(segment.x1), y0 = Math.round(segment.y1);
+      const x1 = Math.round(segment.x2), y1 = Math.round(segment.y2);
+      const deltaX = Math.abs(x1 - x0), stepX = x0 < x1 ? 1 : -1;
+      const deltaY = -Math.abs(y1 - y0), stepY = y0 < y1 ? 1 : -1;
+      let error = deltaX + deltaY;
+      while (true) {
+        if (x0 >= 0 && x0 < width && y0 >= 0 && y0 < height) mask[y0 * width + x0] = 1;
+        if (x0 === x1 && y0 === y1) break;
+        const twice = 2 * error;
+        if (twice >= deltaY) { error += deltaY; x0 += stepX; }
+        if (twice <= deltaX) { error += deltaX; y0 += stepY; }
+      }
+    }
+    return mask;
+  }
+
+  function topoDiagnosticExcludeInvalidStencil(mask, sampleStates, width, height) {
+    const filtered = new Uint8Array(mask);
+    for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
+      const index = y * width + x;
+      if (x === 0 || y === 0 || x === width - 1 || y === height - 1 ||
+          [index, index - 1, index + 1, index - width, index + width].some((entry) =>
+            sampleStates[entry] !== TOPO_SAMPLED_FIELD_STATE.VALID)) filtered[index] = 0;
+    }
+    return filtered;
+  }
+
+  function topoDiagnosticComponentCount(mask, width, height) {
+    const seen = new Uint8Array(mask.length);
+    let count = 0;
+    for (let start = 0; start < mask.length; start += 1) {
+      if (!mask[start] || seen[start]) continue;
+      count += 1;
+      const queue = [start];
+      seen[start] = 1;
+      while (queue.length) {
+        const index = queue.pop();
+        const x = index % width, y = Math.floor(index / width);
+        for (let offsetY = -1; offsetY <= 1; offsetY += 1) {
+          for (let offsetX = -1; offsetX <= 1; offsetX += 1) {
+            const nextX = x + offsetX, nextY = y + offsetY;
+            const next = nextY * width + nextX;
+            if (nextX >= 0 && nextX < width && nextY >= 0 && nextY < height &&
+                mask[next] && !seen[next]) { seen[next] = 1; queue.push(next); }
+          }
+        }
+      }
+    }
+    return count;
+  }
+
+  function topoDiagnosticDistanceSummary(leftMask, rightMask, width) {
+    const points = (mask) => Array.from(mask, (value, index) => value ? {
+      x: index % width, y: Math.floor(index / width),
+    } : null).filter(Boolean);
+    const nearest = (from, to) => from.map((point) => to.reduce((best, candidate) =>
+      Math.min(best, Math.hypot(point.x - candidate.x, point.y - candidate.y)), Infinity));
+    const distances = [...nearest(points(leftMask), points(rightMask)),
+      ...nearest(points(rightMask), points(leftMask))].sort((left, right) => left - right);
+    return {
+      p95: distances[Math.floor(0.95 * Math.max(0, distances.length - 1))] ?? Infinity,
+      max: distances.at(-1) ?? Infinity,
+    };
+  }
+
+  function createTopoPassTwoDiagnosticProgram() {
+    if (!fieldGl || !topoScalarFramebuffer.available) return null;
+    // Keep the diagnostic shader tied to the same exported marching-squares
+    // contract as CPU extraction. GLSL cannot import the object directly, so
+    // this checked source marker makes its ordering and ambiguous cases explicit.
+    const marchingSquaresContractSource = `
+      // contract corners: ${TOPO_MARCHING_SQUARES_GLSL_CONTRACT.cornerOrder.join(",")}
+      // contract edges: ${TOPO_MARCHING_SQUARES_GLSL_CONTRACT.edgeOrder.join(",")}
+      // contract ambiguous cases: ${TOPO_MARCHING_SQUARES_GLSL_CONTRACT.ambiguousCases.join(",")}
+    `;
+    const vertex = compileFieldShader(fieldGl.VERTEX_SHADER, `
+      attribute vec2 a_position;
+      void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
+    `);
+    const fragment = compileFieldShader(fieldGl.FRAGMENT_SHADER, `
+      precision highp float;
+      uniform sampler2D u_scalar_texture;
+      uniform vec2 u_scalar_resolution;
+      uniform float u_threshold;
+      uniform float u_line_half_width;
+      uniform float u_ambiguous_parity;
+      ${marchingSquaresContractSource}
+      vec4 scalarAt(vec2 pixel) {
+        return texture2D(u_scalar_texture, (pixel + vec2(0.5)) / u_scalar_resolution);
+      }
+      float pointSegmentDistance(vec2 point, vec2 a, vec2 b) {
+        vec2 ab = b - a;
+        float amount = dot(point - a, ab) / max(dot(ab, ab), 1.0e-12);
+        return length(point - (a + clamp(amount, 0.0, 1.0) * ab));
+      }
+      float edgeInterpolation(float startValue, float endValue) {
+        float denominator = endValue - startValue;
+        return abs(denominator) <= 1.0e-12 ? 0.5 :
+          clamp((u_threshold - startValue) / denominator, 0.0, 1.0);
+      }
+      float contourDistanceForCell(vec2 cell, vec2 point) {
+        if (cell.x < 0.0 || cell.y < 0.0 ||
+            cell.x >= u_scalar_resolution.x - 1.0 ||
+            cell.y >= u_scalar_resolution.y - 1.0) return 1.0e6;
+        vec4 a = scalarAt(cell);
+        vec4 b = scalarAt(cell + vec2(1.0, 0.0));
+        vec4 c = scalarAt(cell + vec2(1.0, 1.0));
+        vec4 d = scalarAt(cell + vec2(0.0, 1.0));
+        if (a.g < 0.5 || b.g < 0.5 || c.g < 0.5 || d.g < 0.5) {
+          return 1.0e6;
+        }
+        int caseIndex = (a.r >= u_threshold ? 1 : 0) + (b.r >= u_threshold ? 2 : 0) +
+          (c.r >= u_threshold ? 4 : 0) + (d.r >= u_threshold ? 8 : 0);
+        // CPU contract: cases 1/14,2/13,3/12,4/11,6/9,7/8 and determinant-decided 5/10.
+        if (caseIndex == 0 || caseIndex == 15) return 1.0e6;
+        float determinant = (a.r-u_threshold)*(c.r-u_threshold) -
+          (b.r-u_threshold)*(d.r-u_threshold);
+        bool positiveDiagonal = determinant > 0.0 ||
+          (determinant == 0.0 && mod(cell.x + cell.y + u_ambiguous_parity, 2.0) < 0.5);
+        vec2 p = point - cell;
+        vec2 e0 = vec2(edgeInterpolation(a.r, b.r), 0.0);
+        vec2 e1 = vec2(1.0, edgeInterpolation(b.r, c.r));
+        vec2 e2 = vec2(1.0 - edgeInterpolation(c.r, d.r), 1.0);
+        vec2 e3 = vec2(0.0, 1.0 - edgeInterpolation(d.r, a.r));
+        float distance = 1.0e6;
+        if (caseIndex == 1 || caseIndex == 14) distance = pointSegmentDistance(p,e3,e0);
+        else if (caseIndex == 2 || caseIndex == 13) distance = pointSegmentDistance(p,e0,e1);
+        else if (caseIndex == 3 || caseIndex == 12) distance = pointSegmentDistance(p,e3,e1);
+        else if (caseIndex == 4 || caseIndex == 11) distance = pointSegmentDistance(p,e1,e2);
+        else if (caseIndex == 6 || caseIndex == 9) distance = pointSegmentDistance(p,e0,e2);
+        else if (caseIndex == 7 || caseIndex == 8) distance = pointSegmentDistance(p,e3,e2);
+        else if (caseIndex == 5 || caseIndex == 10) {
+          if (positiveDiagonal) distance = min(pointSegmentDistance(p,e0,e1),pointSegmentDistance(p,e2,e3));
+          else distance = min(pointSegmentDistance(p,e3,e0),pointSegmentDistance(p,e1,e2));
+        }
+        return distance;
+      }
+      void main() {
+        vec2 point = gl_FragCoord.xy;
+        vec2 baseCell = floor(point);
+        // A contour never paints over an unavailable scalar sample, even when
+        // an adjacent fully ordinary cell contributes a nearby segment.
+        if (scalarAt(baseCell).g < 0.5) { gl_FragColor = vec4(0.0); return; }
+        // A segment may lie in either adjacent cell of a pixel center. Evaluate
+        // that exact four-cell neighborhood, never a gradient band.
+        float distance = min(
+          min(contourDistanceForCell(baseCell + vec2(-1.0, -1.0), point),
+              contourDistanceForCell(baseCell + vec2(0.0, -1.0), point)),
+          min(contourDistanceForCell(baseCell + vec2(-1.0, 0.0), point),
+              contourDistanceForCell(baseCell, point))
+        );
+        gl_FragColor = distance <= u_line_half_width ? vec4(1.0) : vec4(0.0);
+      }
+    `);
+    const program = fieldGl.createProgram();
+    try {
+      fieldGl.attachShader(program, vertex); fieldGl.attachShader(program, fragment); fieldGl.linkProgram(program);
+      if (!fieldGl.getProgramParameter(program, fieldGl.LINK_STATUS)) {
+        throw new Error(fieldGl.getProgramInfoLog(program));
+      }
+      return program;
+    } catch (error) {
+      fieldGl.deleteProgram(program);
+      throw error;
+    } finally {
+      fieldGl.deleteShader(vertex);
+      fieldGl.deleteShader(fragment);
+    }
+  }
+  let topoPassTwoDiagnosticProgram = null;
+  try { topoPassTwoDiagnosticProgram = createTopoPassTwoDiagnosticProgram();
+    dom.app.dataset.binaryPassTwoDiagnostic = topoPassTwoDiagnosticProgram ? "compiled" : "unavailable";
+  } catch (error) { dom.app.dataset.binaryPassTwoDiagnostic = "failed";
+    dom.app.dataset.binaryPassTwoDiagnosticError = String(error?.message ?? error); }
+  const topoPassTwoDiagnosticBindings = topoPassTwoDiagnosticProgram
+    ? Object.freeze({
+      position: fieldGl.getAttribLocation(topoPassTwoDiagnosticProgram, "a_position"),
+      scalarTexture: fieldGl.getUniformLocation(topoPassTwoDiagnosticProgram, "u_scalar_texture"),
+      scalarResolution: fieldGl.getUniformLocation(topoPassTwoDiagnosticProgram, "u_scalar_resolution"),
+      threshold: fieldGl.getUniformLocation(topoPassTwoDiagnosticProgram, "u_threshold"),
+      lineHalfWidth: fieldGl.getUniformLocation(topoPassTwoDiagnosticProgram, "u_line_half_width"),
+      ambiguousParity: fieldGl.getUniformLocation(topoPassTwoDiagnosticProgram, "u_ambiguous_parity"),
+    }) : null;
+
+  function createTopoPassTwoDiagnosticScalarGrid(scalarReadback, width, height) {
+    const raw = new Float32Array(width * height);
+    const states = new Uint8Array(width * height);
+    for (let index = 0; index < raw.length; index += 1) {
+      raw[index] = scalarReadback[index * 4];
+      states[index] = scalarReadback[index * 4 + 1] > 0.5
+        ? TOPO_SAMPLED_FIELD_STATE.VALID
+        : TOPO_SAMPLED_FIELD_STATE.MASKED;
+    }
+    return Object.freeze({ raw, states });
+  }
+
+  function drawTopoPassTwoDiagnostic({ width, height, threshold, scalarGrid }) {
+    if (!topoPassTwoDiagnosticProgram || !topoPassTwoDiagnosticBindings ||
+        !topoScalarFramebuffer.available || !topoPassTwoDiagnosticTarget.available) {
+      throw new Error("Topo pass-two diagnostic resources are unavailable.");
+    }
+    const savedFramebuffer = fieldGl.getParameter(fieldGl.FRAMEBUFFER_BINDING);
+    const savedViewport = fieldGl.getParameter(fieldGl.VIEWPORT);
+    const savedProgram = fieldGl.getParameter(fieldGl.CURRENT_PROGRAM);
+    const savedArrayBuffer = fieldGl.getParameter(fieldGl.ARRAY_BUFFER_BINDING);
+    const savedActiveTexture = fieldGl.getParameter(fieldGl.ACTIVE_TEXTURE);
+    fieldGl.activeTexture(fieldGl.TEXTURE0);
+    const savedTexture0 = fieldGl.getParameter(fieldGl.TEXTURE_BINDING_2D);
+    try {
+      resizeTopoPassTwoDiagnosticTarget(topoPassTwoDiagnosticTarget, width, height);
+      fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, topoPassTwoDiagnosticTarget.framebuffer);
+      fieldGl.viewport(0, 0, width, height);
+      fieldGl.useProgram(topoPassTwoDiagnosticProgram);
+      fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, topoScalarFramebuffer.buffer);
+      fieldGl.enableVertexAttribArray(topoPassTwoDiagnosticBindings.position);
+      fieldGl.vertexAttribPointer(topoPassTwoDiagnosticBindings.position, 2,
+        fieldGl.FLOAT, false, 0, 0);
+      fieldGl.activeTexture(fieldGl.TEXTURE0);
+      fieldGl.bindTexture(fieldGl.TEXTURE_2D, topoScalarFramebuffer.texture);
+      fieldGl.uniform1i(topoPassTwoDiagnosticBindings.scalarTexture, 0);
+      fieldGl.uniform2f(topoPassTwoDiagnosticBindings.scalarResolution, width, height);
+      fieldGl.uniform1f(topoPassTwoDiagnosticBindings.threshold, threshold.value);
+      const lineHalfWidth = 0.5;
+      fieldGl.uniform1f(topoPassTwoDiagnosticBindings.lineHalfWidth, lineHalfWidth);
+      fieldGl.uniform1f(topoPassTwoDiagnosticBindings.ambiguousParity,
+        topoMarchingSquaresLevelIdentity(threshold.value) % 2);
+      fieldGl.drawArrays(fieldGl.TRIANGLES, 0, 3);
+      const raster = new Uint8Array(width * height * 4);
+      fieldGl.readPixels(0, 0, width, height, fieldGl.RGBA, fieldGl.UNSIGNED_BYTE, raster);
+      const gpuMask = new Uint8Array(width * height);
+      for (let index = 0; index < gpuMask.length; index += 1) {
+        gpuMask[index] = raster[index * 4] > 127 ? 1 : 0;
+      }
+      const extraction = extractTopoSampledFieldContourSegments({
+        raw: scalarGrid.raw, sampleStates: scalarGrid.states, width, height, levels: [threshold],
+      });
+      const cpuMask = topoDiagnosticExcludeInvalidStencil(
+        topoDiagnosticRasterizeSegments(extraction.segments, width, height),
+        scalarGrid.states, width, height,
+      );
+      const filteredGpuMask = new Uint8Array(gpuMask.length);
+      for (let index = 0; index < gpuMask.length; index += 1) {
+        filteredGpuMask[index] = gpuMask[index] &&
+          scalarGrid.states[index] === TOPO_SAMPLED_FIELD_STATE.VALID ? 1 : 0;
+      }
+      const rasterDistance = topoDiagnosticDistanceSummary(cpuMask, filteredGpuMask, width);
+      const centerlineDistance = topoMarchingSquaresScreenSpaceCenterlineDistance({
+        segments: extraction.segments, mask: filteredGpuMask, width, lineHalfWidth,
+      });
+      return Object.freeze({
+        raster,
+        cpuPathComponents: connectTopoSampledFieldContourSegments(extraction.segments).length,
+        gpuMaskComponents: topoDiagnosticComponentCount(filteredGpuMask, width, height),
+        cpuRasterComponents: topoDiagnosticComponentCount(cpuMask, width, height),
+        p95: centerlineDistance.p95,
+        max: centerlineDistance.max,
+        rawP95: rasterDistance.p95,
+        rawMax: rasterDistance.max,
+        invalidBridgePixels: gpuMask.reduce((count, value, index) =>
+          count + (value && scalarGrid.states[index] !== TOPO_SAMPLED_FIELD_STATE.VALID ? 1 : 0), 0),
+      });
+    } finally {
+      fieldGl.activeTexture(fieldGl.TEXTURE0);
+      fieldGl.bindTexture(fieldGl.TEXTURE_2D, savedTexture0);
+      fieldGl.activeTexture(savedActiveTexture);
+      fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, savedArrayBuffer);
+      fieldGl.useProgram(savedProgram);
+      fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, savedFramebuffer);
+      fieldGl.viewport(savedViewport[0], savedViewport[1], savedViewport[2], savedViewport[3]);
+    }
+  }
 
   function compileFieldShader(shaderType, source) {
     const shader = fieldGl.createShader(shaderType);
@@ -762,6 +1328,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniform float u_contour_levels[25];
       uniform float u_contour_count;
       uniform float u_contour_visibility;
+      uniform float u_scalar_pass;
 
       vec2 sourcePosition(float sourcePhase, float time, float omega) {
         float phase = sourcePhase + omega * time;
@@ -825,19 +1392,26 @@ export function mountTopoInteractionContractPreview(options = {}) {
         float negativeDelay = solveDelay(point, 3.141592653589793, omega);
         float positiveDelay = solveDelay(point, 0.0, omega);
         if (negativeDelay == 0.0) {
+          if (u_scalar_pass > 0.5) { gl_FragColor = vec4(0.0, 0.0, -1.0, 1.0); return; }
           gl_FragColor = vec4(u_negative, 1.0);
           return;
         }
         if (positiveDelay == 0.0) {
+          if (u_scalar_pass > 0.5) { gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0); return; }
           gl_FragColor = vec4(u_positive, 1.0);
           return;
         }
         if (negativeDelay < 0.0 || positiveDelay < 0.0) {
+          if (u_scalar_pass > 0.5) { gl_FragColor = vec4(0.0, 0.0, 2.0, 1.0); return; }
           gl_FragColor = vec4(u_zero, 1.0);
           return;
         }
         float rawValue = -u_kappa / (negativeDelay * negativeDelay) +
           u_kappa / (positiveDelay * positiveDelay);
+        if (u_scalar_pass > 0.5) {
+          gl_FragColor = vec4(rawValue, 1.0, 0.0, 1.0);
+          return;
+        }
         float exponent = rawValue == 0.0
           ? -u_exponent_span
           : log(abs(rawValue) / 64.0) / log(10.0);
@@ -887,16 +1461,25 @@ export function mountTopoInteractionContractPreview(options = {}) {
         float exponentRight = log(max(abs(rawRight), 1.0e-30) / 64.0) / log(10.0);
         float exponentDown = log(max(abs(rawDown), 1.0e-30) / 64.0) / log(10.0);
         float exponentUp = log(max(abs(rawUp), 1.0e-30) / 64.0) / log(10.0);
-        float pixelBand = clamp(0.6 * (
+        float pixelBand = clamp(${TOPO_GPU_CONTOUR_BAND_SCALE} * (
           abs(exponentRight - exponentLeft) + abs(exponentUp - exponentDown)
-        ), 0.004, 0.18);
+        ), ${TOPO_GPU_CONTOUR_BAND_MIN}, ${TOPO_GPU_CONTOUR_BAND_MAX});
+        float minimumExponent = min(levelExponent, min(exponentLeft,
+          min(exponentRight, min(exponentDown, exponentUp))));
+        float maximumExponent = max(levelExponent, max(exponentLeft,
+          max(exponentRight, max(exponentDown, exponentUp))));
+        bool sameSignStencil = rawValue * rawLeft > 0.0 && rawValue * rawRight > 0.0 &&
+          rawValue * rawDown > 0.0 && rawValue * rawUp > 0.0;
         float contourAlpha = 0.0;
         for (int levelIndex = 0; levelIndex < 25; levelIndex += 1) {
           if (float(levelIndex) >= u_contour_count) break;
-          float distanceToLevel = abs(levelExponent - u_contour_levels[levelIndex]);
-          contourAlpha = max(contourAlpha, 1.0 - smoothstep(
-            0.45 * pixelBand, 1.35 * pixelBand, distanceToLevel
-          ));
+          float contourLevel = u_contour_levels[levelIndex];
+          if (sameSignStencil && contourLevel >= minimumExponent && contourLevel <= maximumExponent) {
+            float distanceToLevel = abs(levelExponent - contourLevel);
+            contourAlpha = max(contourAlpha, 1.0 - smoothstep(
+              0.45 * pixelBand, 1.35 * pixelBand, distanceToLevel
+            ));
+          }
         }
         float zeroBand = max(0.000001, 0.5 * (
           abs(rawRight - rawLeft) + abs(rawUp - rawDown)
@@ -929,6 +1512,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     );
     return {
       program,
+      buffer,
       position: fieldGl.getAttribLocation(program, "a_position"),
       uniforms: Object.fromEntries([
         "u_size",
@@ -949,19 +1533,158 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "u_contour_levels[0]",
         "u_contour_count",
         "u_contour_visibility",
+        "u_scalar_pass",
+      ].map((name) => [name, fieldGl.getUniformLocation(program, name)])),
+    };
+  }
+
+  function createCircularBinaryScalarPresentationRenderer() {
+    if (!fieldGl || !topoScalarFramebuffer.available) return null;
+    const vertex = compileFieldShader(fieldGl.VERTEX_SHADER, `
+      attribute vec2 a_position;
+      void main() { gl_Position = vec4(a_position, 0.0, 1.0); }
+    `);
+    const fragment = compileFieldShader(fieldGl.FRAGMENT_SHADER, `
+      precision highp float;
+      uniform sampler2D u_scalar_texture;
+      uniform vec2 u_scalar_resolution;
+      uniform float u_exponent_span;
+      uniform float u_shading_power;
+      uniform float u_enhanced_decade_contrast;
+      uniform vec3 u_negative;
+      uniform vec3 u_zero;
+      uniform vec3 u_positive;
+      uniform float u_contour_values[${TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS}];
+      uniform float u_contour_opacities[${TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS}];
+      uniform float u_contour_half_widths[${TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS}];
+      uniform float u_contour_parities[${TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS}];
+      uniform float u_contour_count;
+      vec4 scalarAt(vec2 pixel) {
+        return texture2D(u_scalar_texture, (pixel + vec2(0.5)) / u_scalar_resolution);
+      }
+      float pointSegmentDistance(vec2 point, vec2 a, vec2 b) {
+        vec2 delta = b - a;
+        float amount = dot(point - a, delta) / max(dot(delta, delta), 1.0e-12);
+        return length(point - (a + clamp(amount, 0.0, 1.0) * delta));
+      }
+      float interpolation(float startValue, float endValue, float threshold) {
+        float denominator = endValue - startValue;
+        return abs(denominator) <= 1.0e-12 ? 0.5 :
+          clamp((threshold - startValue) / denominator, 0.0, 1.0);
+      }
+      float distanceForCell(vec2 cell, vec2 point, float threshold, float levelParity) {
+        if (cell.x < 0.0 || cell.y < 0.0 ||
+            cell.x >= u_scalar_resolution.x - 1.0 || cell.y >= u_scalar_resolution.y - 1.0) return 1.0e6;
+        vec4 a = scalarAt(cell);
+        vec4 b = scalarAt(cell + vec2(1.0, 0.0));
+        vec4 c = scalarAt(cell + vec2(1.0, 1.0));
+        vec4 d = scalarAt(cell + vec2(0.0, 1.0));
+        if (a.g < 0.5 || b.g < 0.5 || c.g < 0.5 || d.g < 0.5) return 1.0e6;
+        int caseIndex = (a.r >= threshold ? 1 : 0) + (b.r >= threshold ? 2 : 0) +
+          (c.r >= threshold ? 4 : 0) + (d.r >= threshold ? 8 : 0);
+        if (caseIndex == 0 || caseIndex == 15) return 1.0e6;
+        vec2 p = point - cell;
+        vec2 e0 = vec2(interpolation(a.r, b.r, threshold), 0.0);
+        vec2 e1 = vec2(1.0, interpolation(b.r, c.r, threshold));
+        vec2 e2 = vec2(1.0 - interpolation(c.r, d.r, threshold), 1.0);
+        vec2 e3 = vec2(0.0, 1.0 - interpolation(d.r, a.r, threshold));
+        if (caseIndex == 1 || caseIndex == 14) return pointSegmentDistance(p, e3, e0);
+        if (caseIndex == 2 || caseIndex == 13) return pointSegmentDistance(p, e0, e1);
+        if (caseIndex == 3 || caseIndex == 12) return pointSegmentDistance(p, e3, e1);
+        if (caseIndex == 4 || caseIndex == 11) return pointSegmentDistance(p, e1, e2);
+        if (caseIndex == 6 || caseIndex == 9) return pointSegmentDistance(p, e0, e2);
+        if (caseIndex == 7 || caseIndex == 8) return pointSegmentDistance(p, e3, e2);
+        float determinant = (a.r-threshold)*(c.r-threshold) - (b.r-threshold)*(d.r-threshold);
+        bool positiveDiagonal = determinant > 0.0 ||
+          (determinant == 0.0 && mod(cell.x + cell.y + levelParity, 2.0) < 0.5);
+        return positiveDiagonal
+          ? min(pointSegmentDistance(p, e0, e1), pointSegmentDistance(p, e2, e3))
+          : min(pointSegmentDistance(p, e3, e0), pointSegmentDistance(p, e1, e2));
+      }
+      float contourDistance(vec2 point, float threshold, float levelParity) {
+        vec2 cell = floor(point);
+        return min(min(distanceForCell(cell + vec2(-1.0, -1.0), point, threshold, levelParity),
+                           distanceForCell(cell + vec2(0.0, -1.0), point, threshold, levelParity)),
+                   min(distanceForCell(cell + vec2(-1.0, 0.0), point, threshold, levelParity),
+                           distanceForCell(cell, point, threshold, levelParity)));
+      }
+      void main() {
+        vec2 point = gl_FragCoord.xy;
+        vec4 scalar = scalarAt(floor(point));
+        vec3 color;
+        if (scalar.g < 0.5) {
+          color = scalar.b < 0.0 ? u_negative : scalar.b < 1.5 ? u_positive : u_zero;
+          gl_FragColor = vec4(color, 1.0); return;
+        }
+        float rawValue = scalar.r;
+        float exponent = rawValue == 0.0 ? -u_exponent_span : log(abs(rawValue) / 64.0) / log(10.0);
+        float clipped = clamp(exponent, -u_exponent_span, u_exponent_span);
+        float lower = floor(clipped);
+        float within = clipped - lower;
+        float linear = clamp((lower + within * within * (3.0 - 2.0 * within) + u_exponent_span) /
+          (2.0 * u_exponent_span), 0.0, 1.0);
+        float enhanced = pow(linear, 0.72);
+        float physical = pow(clamp((exponent + ${TOPO_DEFAULT_CONTOUR_REACH.toPrecision(12)}) /
+          ${(TOPO_DEFAULT_CONTOUR_REACH + 1).toPrecision(12)}, 0.0, 1.0), u_shading_power);
+        float strength = mix(physical, enhanced, u_enhanced_decade_contrast);
+        color = mix(u_zero, rawValue < 0.0 ? u_negative : u_positive, strength);
+        for (int index = 0; index < ${TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS}; index += 1) {
+          if (float(index) >= u_contour_count) break;
+          float threshold = u_contour_values[index];
+          float parity = u_contour_parities[index];
+          float distance = contourDistance(point, threshold, parity);
+          float halfWidth = u_contour_half_widths[index];
+          // Coverage is a rasterization edge only: the centerline remains the
+          // exact canonical segment.  The one-device-pixel feather removes
+          // stair-step sampling without widening, joining, or moving a level.
+          float coverage = 1.0 - smoothstep(max(0.0, halfWidth - 0.75),
+            halfWidth + 0.75, distance);
+          if (coverage > 0.0) {
+            vec3 contourColor = threshold < 0.0 ? u_negative : threshold > 0.0 ? u_positive : u_zero;
+            color = mix(color, contourColor, u_contour_opacities[index] * coverage);
+          }
+        }
+        gl_FragColor = vec4(color, 1.0);
+      }
+    `);
+    const program = fieldGl.createProgram();
+    fieldGl.attachShader(program, vertex);
+    fieldGl.attachShader(program, fragment);
+    fieldGl.linkProgram(program);
+    if (!fieldGl.getProgramParameter(program, fieldGl.LINK_STATUS)) {
+      throw new Error("Topo binary scalar presentation program failed: " +
+        fieldGl.getProgramInfoLog(program));
+    }
+    const buffer = fieldGl.createBuffer();
+    fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, buffer);
+    fieldGl.bufferData(fieldGl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 3, -1, -1, 3]), fieldGl.STATIC_DRAW);
+    return {
+      program,
+      buffer,
+      position: fieldGl.getAttribLocation(program, "a_position"),
+      uniforms: Object.fromEntries([
+        "u_scalar_texture", "u_scalar_resolution", "u_exponent_span", "u_shading_power",
+        "u_enhanced_decade_contrast", "u_negative", "u_zero", "u_positive",
+        "u_contour_values[0]", "u_contour_opacities[0]", "u_contour_half_widths[0]",
+        "u_contour_parities[0]",
+        "u_contour_count",
       ].map((name) => [name, fieldGl.getUniformLocation(program, name)])),
     };
   }
 
   let analyticFieldRenderer = null;
   let circularBinaryFieldRenderer = null;
+  let circularBinaryScalarPresentationRenderer = null;
   try {
     analyticFieldRenderer = createAnalyticFieldRenderer();
     circularBinaryFieldRenderer = createCircularBinaryFieldRenderer();
+    circularBinaryScalarPresentationRenderer = createCircularBinaryScalarPresentationRenderer();
   } catch (error) {
     dom.app.dataset.fieldRendererError = String(error?.message ?? error);
   }
-  dom.app.dataset.fieldRenderer = analyticFieldRenderer && circularBinaryFieldRenderer
+  dom.app.dataset.fieldRenderer = analyticFieldRenderer && circularBinaryFieldRenderer &&
+      circularBinaryScalarPresentationRenderer
     ? "webgl-analytic"
     : "cpu-reference";
 
@@ -1241,6 +1964,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       pixelRatio,
+      state.polaritySign,
       TOPO_SOURCE_POSITION,
       state.displayScale,
     );
@@ -1785,9 +2509,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
         analyticFieldCanvas.width = width;
         analyticFieldCanvas.height = height;
       }
-      const { program, position, uniforms } = circularBinaryFieldRenderer;
+      const { program, buffer, position, uniforms } = circularBinaryFieldRenderer;
+      resizeTopoScalarFramebuffer(topoScalarFramebuffer, width, height);
       fieldGl.viewport(0, 0, width, height);
       fieldGl.useProgram(program);
+      fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, buffer);
       fieldGl.enableVertexAttribArray(position);
       fieldGl.vertexAttribPointer(position, 2, fieldGl.FLOAT, false, 0, 0);
       fieldGl.uniform2f(uniforms.u_size, width, height);
@@ -1856,11 +2582,191 @@ export function mountTopoInteractionContractPreview(options = {}) {
         uniforms.u_contour_visibility,
         state.contourVisibility,
       );
+      // Pass 1: the authoritative combined signed wake is evaluated once into
+      // the scalar texture. Every visible field and contour pixel below reads it.
+      fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, topoScalarFramebuffer.framebuffer);
+      fieldGl.viewport(0, 0, width, height);
+      fieldGl.uniform1f(uniforms.u_scalar_pass, 1);
+      fieldGl.drawArrays(fieldGl.TRIANGLES, 0, 3);
+      const diagnosticPhase = topoBinaryDiagnosticsEnabled && state.beta === 1
+        ? topoPassTwoDiagnosticPhase(state.playback.progress)
+        : null;
+      const scalarAuditKey = diagnosticPhase != null
+        ? `${width}x${height}:beta-one-phase-${diagnosticPhase.toFixed(3)}`
+        : null;
+      if (scalarAuditKey && topoScalarAuditKey !== scalarAuditKey &&
+          topoScalarFramebuffer.available) {
+        const auditSamples = [
+          [0, 0], [width - 1, 0], [0, height - 1], [width - 1, height - 1],
+          [Math.floor(width / 2), Math.floor(height / 2)],
+          [Math.floor(width * 0.2), Math.floor(height / 2)],
+          [Math.floor(width * 0.8), Math.floor(height / 2)],
+          [Math.floor(width / 2), Math.floor(height * 0.25)],
+          [Math.floor(width / 2), Math.floor(height * 0.75)],
+        ];
+        const cpu = [];
+        const gpu = new Float32Array(4);
+        let maxAbsoluteError = 0;
+        let maxRelativeError = 0;
+        let stateMismatchCount = 0;
+        for (const [pixelX, pixelY] of auditSamples) {
+          fieldGl.readPixels(pixelX, pixelY, 1, 1, fieldGl.RGBA, fieldGl.FLOAT, gpu);
+          const point = topoCircularBinaryWorldPointForCanvasPixel({
+            pixelX, pixelY: height - 1 - pixelY, width, height, displayScale: state.displayScale,
+          });
+          const expected = sampleTopoCircularBinaryWake({
+            point, beta: state.beta, radius: state.orbitalRadius,
+            progress: state.playback.progress, direction: state.direction,
+            sourceMaskRadius,
+          });
+          const ordinary = expected.state === "ordinary";
+          const actualOrdinary = gpu[1] > 0.5;
+          if (ordinary !== actualOrdinary) stateMismatchCount += 1;
+          if (ordinary) {
+            const absoluteError = Math.abs(gpu[0] - expected.rawValue);
+            maxAbsoluteError = Math.max(maxAbsoluteError, absoluteError);
+            maxRelativeError = Math.max(maxRelativeError,
+              absoluteError / Math.max(1, Math.abs(expected.rawValue)));
+          }
+          cpu.push({ pixelX, pixelY, state: expected.state, raw: expected.rawValue, gpuRaw: gpu[0], gpuState: gpu[1] });
+        }
+        const scalarReadback = new Float32Array(width * height * 4);
+        fieldGl.readPixels(0, 0, width, height, fieldGl.RGBA, fieldGl.FLOAT, scalarReadback);
+        if (scalarAuditKey && topoPassTwoDiagnosticKey !== scalarAuditKey) {
+          const diagnosticLevels = createTopoSignedContourLevels({
+            contourCount: 13,
+            contourReach: TOPO_DEFAULT_CONTOUR_REACH,
+          }).filter((level) => level.family === "negative" || level.family === "positive");
+          try {
+            const scalarGrid = createTopoPassTwoDiagnosticScalarGrid(
+              scalarReadback, width, height,
+            );
+            const table = diagnosticLevels.map((threshold) => {
+              const diagnostic = drawTopoPassTwoDiagnostic({
+                width, height, threshold, scalarGrid,
+              });
+              return Object.freeze({
+                family: threshold.family,
+                rawDecade: threshold.rawDecade,
+                cpuPathComponents: diagnostic.cpuPathComponents,
+                gpuMaskComponents: diagnostic.gpuMaskComponents,
+                invalidBridgePixels: diagnostic.invalidBridgePixels,
+                p95: diagnostic.p95,
+                max: diagnostic.max,
+                rawP95: diagnostic.rawP95,
+                rawMax: diagnostic.rawMax,
+              });
+            });
+            const signedSymmetry = diagnosticLevels.filter((level) => level.family === "positive")
+              .map((positive) => {
+                const negative = table.find((row) => row.family === "negative" &&
+                  row.rawDecade === positive.rawDecade);
+                const matched = table.find((row) => row.family === "positive" &&
+                  row.rawDecade === positive.rawDecade);
+                return Object.freeze({
+                  rawDecade: positive.rawDecade,
+                  cpuPathComponents: negative?.cpuPathComponents === matched?.cpuPathComponents,
+                  gpuMaskComponents: negative?.gpuMaskComponents === matched?.gpuMaskComponents,
+                });
+              });
+            const passed = table.every((row) =>
+              row.cpuPathComponents === row.gpuMaskComponents &&
+              row.p95 <= 1 && row.max <= 1 && row.invalidBridgePixels === 0,
+            ) && signedSymmetry.every((row) => row.cpuPathComponents && row.gpuMaskComponents);
+            dom.app.dataset.binaryPassTwoDiagnosticDraw = passed ? "complete" : "comparison-failed";
+            dom.app.dataset.binaryPassTwoDiagnosticResolution = `${width}x${height}`;
+            dom.app.dataset.binaryPassTwoDiagnosticThreshold = "all-26-signed-raw-levels";
+            dom.app.dataset.binaryPassTwoDiagnosticAllLevels = JSON.stringify(table);
+            dom.app.dataset.binaryPassTwoDiagnosticSignedSymmetry = JSON.stringify(signedSymmetry);
+            dom.app.dataset.binaryPassTwoDiagnosticAllLevelsSummary = JSON.stringify({
+              levelCount: table.length,
+              passed,
+              phase: diagnosticPhase,
+              maximumP95: Math.max(...table.map((row) => row.p95)),
+              maximumCenterlineError: Math.max(...table.map((row) => row.max)),
+              invalidBridgePixels: table.reduce((sum, row) => sum + row.invalidBridgePixels, 0),
+            });
+            topoPassTwoDiagnosticPhaseSummaries.set(diagnosticPhase, JSON.parse(
+              dom.app.dataset.binaryPassTwoDiagnosticAllLevelsSummary,
+            ));
+            dom.app.dataset.binaryPassTwoDiagnosticPhases = JSON.stringify(
+              [...topoPassTwoDiagnosticPhaseSummaries.values()],
+            );
+            dom.app.dataset.binaryPassTwoDiagnosticEggPhase =
+              TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE.toFixed(3);
+            dom.app.dataset.binaryPassTwoDiagnosticError = table.map((row) =>
+              `${row.family}:${row.rawDecade}:cpu=${row.cpuPathComponents}:gpu=${row.gpuMaskComponents}:` +
+              `p95=${row.p95.toFixed(3)}:max=${row.max.toFixed(3)}:invalid=${row.invalidBridgePixels}`,
+            ).join("|");
+            topoPassTwoDiagnosticKey = scalarAuditKey;
+          } catch (error) {
+            dom.app.dataset.binaryPassTwoDiagnosticDraw = "failed";
+            dom.app.dataset.binaryPassTwoDiagnosticError = String(error?.message ?? error);
+            topoPassTwoDiagnosticKey = scalarAuditKey;
+          }
+        }
+        dom.app.dataset.binaryScalarPassAudit = "complete";
+        dom.app.dataset.binaryScalarPassAuditSamples = String(auditSamples.length);
+        dom.app.dataset.binaryScalarPassAuditStateMismatches = String(stateMismatchCount);
+        dom.app.dataset.binaryScalarPassAuditMaxAbsoluteError = maxAbsoluteError.toExponential(3);
+        dom.app.dataset.binaryScalarPassAuditMaxRelativeError = maxRelativeError.toExponential(3);
+        dom.app.dataset.binaryScalarPassAuditDetail = JSON.stringify(cpu);
+        topoScalarAuditKey = scalarAuditKey;
+      }
+      fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, null);
+      fieldGl.viewport(0, 0, width, height);
+      fieldGl.uniform1f(uniforms.u_scalar_pass, 0);
+      if (!circularBinaryScalarPresentationRenderer) {
+        throw new Error("Topo scalar presentation renderer is unavailable.");
+      }
+      const visibleLevels = contourLevels.slice(0, TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
+      const contourBounds = topoContourLevelBounds(visibleLevels);
+      const levelValues = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
+      const levelOpacities = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
+      const levelHalfWidths = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
+      const levelParities = new Float32Array(TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS);
+      const pixelRatio = effectivePixelRatio(width, height);
+      visibleLevels.forEach((level, index) => {
+        const contourStyle = topoContourStyle(level, contourBounds, state.contourVisibility);
+        levelValues[index] = level.value;
+        levelOpacities[index] = contourStyle.opacity;
+        levelHalfWidths[index] = Math.max(0.5, contourStyle.widthCss * pixelRatio / 2);
+        levelParities[index] = topoMarchingSquaresLevelIdentity(level.value) % 2;
+      });
+      const scalarPresentation = circularBinaryScalarPresentationRenderer;
+      fieldGl.useProgram(scalarPresentation.program);
+      fieldGl.bindBuffer(fieldGl.ARRAY_BUFFER, scalarPresentation.buffer);
+      fieldGl.enableVertexAttribArray(scalarPresentation.position);
+      fieldGl.vertexAttribPointer(scalarPresentation.position, 2, fieldGl.FLOAT, false, 0, 0);
+      fieldGl.activeTexture(fieldGl.TEXTURE0);
+      fieldGl.bindTexture(fieldGl.TEXTURE_2D, topoScalarFramebuffer.texture);
+      fieldGl.uniform1i(scalarPresentation.uniforms.u_scalar_texture, 0);
+      fieldGl.uniform2f(scalarPresentation.uniforms.u_scalar_resolution, width, height);
+      fieldGl.uniform1f(scalarPresentation.uniforms.u_exponent_span,
+        topoContourRangeDecades(state.contourRangeDecades));
+      fieldGl.uniform1f(scalarPresentation.uniforms.u_shading_power,
+        topoShadingPower(state.shadingSpread));
+      fieldGl.uniform1f(scalarPresentation.uniforms.u_enhanced_decade_contrast,
+        state.heatmapMode === TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST ? 1 : 0);
+      fieldGl.uniform3fv(scalarPresentation.uniforms.u_negative,
+        styles.negativeRgb.map((channel) => channel / 255));
+      fieldGl.uniform3fv(scalarPresentation.uniforms.u_zero,
+        styles.zeroRgb.map((channel) => channel / 255));
+      fieldGl.uniform3fv(scalarPresentation.uniforms.u_positive,
+        styles.positiveRgb.map((channel) => channel / 255));
+      fieldGl.uniform1fv(scalarPresentation.uniforms["u_contour_values[0]"], levelValues);
+      fieldGl.uniform1fv(scalarPresentation.uniforms["u_contour_opacities[0]"], levelOpacities);
+      fieldGl.uniform1fv(scalarPresentation.uniforms["u_contour_half_widths[0]"], levelHalfWidths);
+      fieldGl.uniform1fv(scalarPresentation.uniforms["u_contour_parities[0]"], levelParities);
+      fieldGl.uniform1f(scalarPresentation.uniforms.u_contour_count, visibleLevels.length);
       fieldGl.drawArrays(fieldGl.TRIANGLES, 0, 3);
       if (fieldGl.getError() !== fieldGl.NO_ERROR) {
         throw new Error("WebGL reported a circular-binary field-rendering error.");
       }
-      context.drawImage(analyticFieldCanvas, 0, 0, width, height);
+      // Keep the WebGL result as the binary field layer.  Copying this full
+      // canvas into the 2D interaction canvas synchronizes the GPU and turned
+      // each presented beta-one frame into a visible phase jump.
+      dom.canvas.style.opacity = "0";
       const elapsed = Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - started,
       );
@@ -1875,14 +2781,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
         chart.orbitClippedVertically,
       );
       dom.app.dataset.lastRawProviderMs = String(elapsed);
-      dom.app.dataset.lastRawProviderCacheHit = "gpu-bisection";
+      dom.app.dataset.lastRawProviderCacheHit = "gpu-scalar-pass";
       dom.app.dataset.lastColorRemapMs = "0";
       dom.app.dataset.lastColorRemapCacheHit = "gpu-direct-signed-log10";
       dom.app.dataset.lastFieldPaintMs = String(elapsed);
-      dom.app.dataset.binaryContourRenderer = "gpu-current-frame";
+      dom.app.dataset.binaryContourRenderer = "gpu-scalar-marching-squares-current-frame";
       return true;
     } catch (error) {
       circularBinaryFieldRenderer = null;
+      circularBinaryScalarPresentationRenderer = null;
+      dom.canvas.style.opacity = "1";
       dom.app.dataset.fieldRenderer = "cpu-reference";
       dom.app.dataset.fieldRendererError = String(error?.message ?? error);
       return false;
@@ -1893,6 +2801,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     if (state.binary) {
       return paintCircularBinaryField(width, height, state, styles);
     }
+    dom.canvas.style.opacity = "1";
     if (!analyticFieldRenderer) {
       return false;
     }
@@ -2047,6 +2956,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     width,
     height,
     pixelRatio,
+    polaritySign,
     position = TOPO_SOURCE_POSITION,
     displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
     viewportCenter = TOPO_SOURCE_POSITION,
@@ -2061,7 +2971,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       viewportCenter,
       canvasAnchor,
     });
-    const radius = resolveTopoSourceMarkerRadius({
+    const radius = resolveTopoVisibleSourceMarkerRadius({
+      polaritySign,
       width,
       height,
       pixelRatio,
@@ -2079,45 +2990,23 @@ export function mountTopoInteractionContractPreview(options = {}) {
     polaritySign,
     displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
   ) {
-    const radius = resolveTopoSourceMarkerRadius({
+    const markerStyle = createTopoVisibleMarkerPaintStyle({
+      polaritySign,
       width,
       height,
       pixelRatio,
-    }) * displayScale;
+      displayScale,
+    });
     const sourceColor = polaritySign < 0
       ? PHOTON_CHARGE_COLORS.electrino
       : PHOTON_CHARGE_COLORS.positrino;
-    targetContext.save();
-    targetContext.fillStyle = sourceColor;
-    targetContext.beginPath();
-    targetContext.arc(x, y, radius, 0, Math.PI * 2);
-    targetContext.fill();
-    targetContext.lineWidth = Math.max(
-      1,
-      ARCHITRINO_BODY_OUTLINE_WIDTH * pixelRatio,
-    );
-    targetContext.strokeStyle =
-      "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
-    targetContext.stroke();
-    const originStyle = TRANSMISSION_POINT_MARKER_STYLES[
-      DEFAULT_TRANSMISSION_POINT_MARKER_VARIANT
-    ];
-    targetContext.globalAlpha = originStyle.fillAlpha;
-    targetContext.fillStyle =
-      "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
-    targetContext.beginPath();
-    targetContext.arc(
+    paintTopoSourceMarker({
+      targetContext,
       x,
       y,
-      Math.max(
-        0.75,
-        originStyle.radius * pixelRatio * TOPO_SOURCE_MARKER_RADIUS_SCALE,
-      ),
-      0,
-      Math.PI * 2,
-    );
-    targetContext.fill();
-    targetContext.restore();
+      markerStyle,
+      sourceColor,
+    });
   }
 
   function drawSourceOverlay(
@@ -2135,6 +3024,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       pixelRatio,
+      polaritySign,
       position,
       displayScale,
       viewportCenter,
@@ -2170,19 +3060,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
         width,
         height,
         pixelRatio,
+        source.polaritySign,
         source.position,
         displayScale,
         viewportCenter,
         TOPO_CANVAS_CENTER,
       ),
     }));
-    const [first, second] = positioned;
-    if (
-      !first ||
-      !second ||
-      Math.abs(first.geometry.x - second.geometry.x) >=
-        first.geometry.radius + second.geometry.radius
-    ) {
+    if (positioned.length !== 2) {
       positioned.forEach(({ source }) => drawSourceOverlay(
         targetContext,
         width,
@@ -2196,30 +3081,21 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ));
       return;
     }
-    const ordered = positioned.slice().sort((left, right) =>
-      left.geometry.x - right.geometry.x);
-    const splitX = (ordered[0].geometry.x + ordered[1].geometry.x) / 2;
-    ordered.forEach(({ source }, index) => {
-      targetContext.save();
-      targetContext.beginPath();
-      if (index === 0) {
-        targetContext.rect(0, 0, splitX, height);
-      } else {
-        targetContext.rect(splitX, 0, width - splitX, height);
-      }
-      targetContext.clip();
-      drawSourceOverlay(
+    paintTopoPairSourceMarkerLayers({
+      targetContext,
+      width,
+      height,
+      positioned,
+      drawMarker: ({ source, geometry }) => drawSourceMarker(
         targetContext,
+        geometry.x,
+        geometry.y,
         width,
         height,
         pixelRatio,
         source.polaritySign,
-        source.position,
         displayScale,
-        viewportCenter,
-        TOPO_CANVAS_CENTER,
-      );
-      targetContext.restore();
+      ),
     });
   }
 
@@ -2280,6 +3156,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
       });
       return {
         sourceSign,
+        radius: resolveTopoVisibleSourceMarkerRadius({
+          polaritySign: sourceSign,
+          width,
+          height,
+          pixelRatio,
+        }) * state.displayScale,
         x: centerX +
           (position.x - TOPO_CIRCULAR_BINARY_CENTER.x) * worldPixelScale,
         y: centerY -
@@ -2287,16 +3169,12 @@ export function mountTopoInteractionContractPreview(options = {}) {
             worldPixelScale,
       };
     });
-    const markerRadius = resolveTopoSourceMarkerRadius({
-      width,
-      height,
-      pixelRatio,
-    }) * state.displayScale;
     const markerDistance = Math.hypot(
       sourceMarkers[1].x - sourceMarkers[0].x,
       sourceMarkers[1].y - sourceMarkers[0].y,
     );
-    const markersOverlap = markerDistance < 2 * markerRadius;
+    const markersOverlap = markerDistance <
+      sourceMarkers[0].radius + sourceMarkers[1].radius;
     sourceMarkers.forEach((marker, index) => {
       targetContext.save();
       if (markersOverlap && markerDistance > 0) {
@@ -3488,7 +4366,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       });
     }
     if (state.binary) {
-      if (circularBinaryFieldRenderer) {
+      if (circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available) {
         drawCircularBinaryOverlay({
           width,
           height,
@@ -3906,10 +4784,17 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const cachedRawFrame = rawFrameCaches.get(
         createRawFrameKey(grid.width, grid.height, state),
       ) ?? null;
-      const contourRawFrame = state.binary ||
+      // The binary scalar presentation already contains the current full-stage
+      // contours.  Do not build the historical coarse CPU frame merely to
+      // draw its marker overlay; that work both duplicates the scalar law and
+      // makes an otherwise current GPU animation advance in visible jumps.
+      const contourRawFrame = (state.binary &&
+          circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available)
+        ? null
+        : state.binary ||
         (state.pairMode && (pairPlaybackPlaying || pairTimelineScrubbing))
-        ? createLiveSampledContourFrame(width, height, state)
-        : cachedRawFrame;
+          ? createLiveSampledContourFrame(width, height, state)
+          : cachedRawFrame;
       const analyticFieldPainted = paintAnalyticField(
         width,
         height,
@@ -3964,7 +4849,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ));
       if (analyticFieldPainted && !state.pairMode &&
           (!state.binary || binaryPlaying || binaryTimelineScrubbing ||
-            circularBinaryFieldRenderer)) {
+            circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available)) {
         windowLike.clearTimeout?.(renderWatchdogTimer);
         dom.app.dataset.frameState = "complete";
         dom.app.dataset.lastFullDensityLatencyMs = String(Math.round(
@@ -4022,7 +4907,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         createRawFrameKey(grid.width, grid.height, state),
       ) ?? null;
       if ((state.pairMode && !cachedRawFrame) ||
-          (state.binary && !binaryPlaying && !binaryTimelineScrubbing)) {
+          (state.binary && !binaryPlaying && !binaryTimelineScrubbing &&
+            !(circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available))) {
         beginRender({ finalDelay: 0, redrawContours: true });
         return;
       }
@@ -4038,7 +4924,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         state,
         styles,
         revision,
-        rawFrame: state.binary
+        rawFrame: state.binary &&
+          !(circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available)
           ? createLiveSampledContourFrame(width, height, state)
           : cachedRawFrame,
       });
@@ -4197,6 +5084,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryPlaying = false;
     binaryTimelineScrubbing = false;
     binaryPlaybackStartedAt = null;
+    binaryPlaybackPreviousTimestamp = null;
     windowLike.cancelAnimationFrame?.(binaryAnimationRequest);
     binaryAnimationRequest = 0;
     updateBinaryTransportPresentation();
@@ -4208,12 +5096,24 @@ export function mountTopoInteractionContractPreview(options = {}) {
     }
     if (binaryPlaybackStartedAt == null) {
       binaryPlaybackStartedAt = timestamp;
+      binaryPlaybackPreviousTimestamp = timestamp;
     }
-    const elapsed = Math.max(0, timestamp - binaryPlaybackStartedAt);
-    binaryProgress = Math.min(
-      1,
-      binaryPlaybackStartProgress +
-        elapsed / (TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS * 1000),
+    const frameElapsed = Math.max(0, timestamp - binaryPlaybackPreviousTimestamp);
+    const requestedPhaseDelta = frameElapsed /
+      (TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS * 1000);
+    // A full-stage beta-one contour frame can take longer than a display
+    // refresh.  Advance no more than one small visible phase increment after
+    // such a frame; this preserves the exact selected scalar frame and avoids
+    // skipping several contour poses in one presentation.
+    const phaseDelta = Math.min(requestedPhaseDelta, 1 / 80);
+    binaryProgress = Math.min(1, binaryProgress + phaseDelta);
+    binaryPlaybackPreviousTimestamp = timestamp;
+    binaryPlaybackPresentedFrameCount += 1;
+    dom.app.dataset.binaryPlaybackRafDeltaMs = frameElapsed.toFixed(3);
+    dom.app.dataset.binaryPlaybackPhaseDelta = phaseDelta.toFixed(6);
+    dom.app.dataset.binaryPlaybackRequestedPhaseDelta = requestedPhaseDelta.toFixed(6);
+    dom.app.dataset.binaryPlaybackPresentedFrameCount = String(
+      binaryPlaybackPresentedFrameCount,
     );
     beginRender({ finalDelay: 0, redrawContours: true });
     if (binaryProgress >= 1) {
@@ -4243,6 +5143,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryTimelineScrubbing = false;
     binaryPlaybackStartProgress = binaryProgress;
     binaryPlaybackStartedAt = null;
+    binaryPlaybackPreviousTimestamp = null;
+    binaryPlaybackPresentedFrameCount = 0;
     updateBinaryTransportPresentation();
     windowLike.cancelAnimationFrame?.(binaryAnimationRequest);
     binaryAnimationRequest = windowLike.requestAnimationFrame?.(
@@ -4467,6 +5369,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
       windowLike.clearTimeout?.(viewFallbackTimer);
       resizeObserver?.disconnect?.();
       listeners.splice(0).forEach((remove) => remove());
+      if (topoPassTwoDiagnosticProgram && fieldGl) {
+        fieldGl.deleteProgram(topoPassTwoDiagnosticProgram);
+        topoPassTwoDiagnosticProgram = null;
+      }
+      if (topoPassTwoDiagnosticTarget.available && fieldGl) {
+        fieldGl.deleteFramebuffer(topoPassTwoDiagnosticTarget.framebuffer);
+        fieldGl.deleteTexture(topoPassTwoDiagnosticTarget.texture);
+      }
       sceneSearchRuntime.destroy();
     },
     render,

@@ -14,6 +14,37 @@ export const TOPO_SAMPLED_FIELD_STATE = Object.freeze({
   SINGULAR: 4,
 });
 
+export const TOPO_GPU_CONTOUR_BAND_SCALE = 0.6;
+export const TOPO_GPU_CONTOUR_BAND_MIN = 0.004;
+// A fast sheared level set can cross a pixel even when its centre sample is
+// farther than the low-curvature band.  The stencil bracket below keeps this
+// wider high-gradient allowance on the genuine level set.
+export const TOPO_GPU_CONTOUR_BAND_MAX = 0.7;
+
+export function topoGpuContourBandWidth({ left, right, down, up }) {
+  const exponent = (value) => Math.log10(Math.max(Math.abs(value), 1e-30) / 64);
+  if (![left, right, down, up].every(Number.isFinite)) return 0;
+  return Math.min(TOPO_GPU_CONTOUR_BAND_MAX, Math.max(
+    TOPO_GPU_CONTOUR_BAND_MIN,
+    TOPO_GPU_CONTOUR_BAND_SCALE * (
+      Math.abs(exponent(right) - exponent(left)) +
+      Math.abs(exponent(up) - exponent(down))
+    ),
+  ));
+}
+
+export function topoGpuContourBandContains({ value, levelRawDecade, neighbors }) {
+  const width = topoGpuContourBandWidth(neighbors);
+  if (!(width > 0) || !Number.isFinite(value)) return false;
+  const decade = Math.log10(Math.max(Math.abs(value), 1e-30) / 64);
+  const neighborDecades = Object.values(neighbors).map((neighbor) =>
+    Math.log10(Math.max(Math.abs(neighbor), 1e-30) / 64));
+  const lower = Math.min(decade, ...neighborDecades);
+  const upper = Math.max(decade, ...neighborDecades);
+  return levelRawDecade >= lower && levelRawDecade <= upper &&
+    Math.abs(decade - levelRawDecade) <= 0.45 * width;
+}
+
 function requireFinite(value, label) {
   const number = Number(value);
   if (!Number.isFinite(number)) {
@@ -134,7 +165,14 @@ export function createTopoSignedContourLevels({
   ]);
 }
 
-function edgePoint(edge, cellX, cellY, corners, level) {
+export const TOPO_MARCHING_SQUARES_GLSL_CONTRACT = Object.freeze({
+  cornerOrder: Object.freeze(["topLeft", "topRight", "bottomRight", "bottomLeft"]),
+  edgeOrder: Object.freeze(["top", "right", "bottom", "left"]),
+  ambiguousCases: Object.freeze([5, 10]),
+  rule: "corners-greater-or-equal; determinant diagonal with stable parity tie",
+});
+
+export function topoMarchingSquaresEdgePoint(edge, cellX, cellY, corners, level) {
   const endpoints = edge === 0
     ? [[cellX, cellY, corners[0]], [cellX + 1, cellY, corners[1]]]
     : edge === 1
@@ -153,7 +191,7 @@ function edgePoint(edge, cellX, cellY, corners, level) {
   };
 }
 
-function stableLevelTieIdentity(value) {
+export function topoMarchingSquaresLevelIdentity(value) {
   const text = Number(value).toPrecision(15);
   let hash = 2166136261;
   for (let index = 0; index < text.length; index += 1) {
@@ -162,7 +200,16 @@ function stableLevelTieIdentity(value) {
   return hash >>> 0;
 }
 
-function edgePairsForCase(caseIndex, corners, level, cellX, cellY, levelIdentity) {
+export function topoMarchingSquaresCaseIndex(corners, level) {
+  let caseIndex = 0;
+  if (corners[0] >= level) caseIndex |= 1;
+  if (corners[1] >= level) caseIndex |= 2;
+  if (corners[2] >= level) caseIndex |= 4;
+  if (corners[3] >= level) caseIndex |= 8;
+  return caseIndex;
+}
+
+export function topoMarchingSquaresEdgePairs(caseIndex, corners, level, cellX, cellY, levelIdentity) {
   switch (caseIndex) {
     case 1:
     case 14:
@@ -195,6 +242,107 @@ function edgePairsForCase(caseIndex, corners, level, cellX, cellY, levelIdentity
     default:
       return [];
   }
+}
+
+function topoPointSegmentDistance(point, start, end) {
+  const deltaX = end.x - start.x;
+  const deltaY = end.y - start.y;
+  const denominator = deltaX * deltaX + deltaY * deltaY;
+  const amount = denominator <= Number.EPSILON
+    ? 0
+    : Math.min(1, Math.max(0, ((point.x - start.x) * deltaX +
+      (point.y - start.y) * deltaY) / denominator));
+  return Math.hypot(point.x - (start.x + amount * deltaX),
+    point.y - (start.y + amount * deltaY));
+}
+
+export function topoMarchingSquaresScreenSpaceMask({
+  raw,
+  sampleStates,
+  width,
+  height,
+  level,
+  lineHalfWidth = 0.5,
+} = {}) {
+  const gridWidth = Number(width);
+  const gridHeight = Number(height);
+  const threshold = requireFinite(
+    typeof level === "number" ? level : level?.value,
+    "level",
+  );
+  if (!raw || raw.length !== gridWidth * gridHeight ||
+      !sampleStates || sampleStates.length !== raw.length) {
+    throw new RangeError("raw and sampleStates must cover the requested screen grid.");
+  }
+  const mask = new Uint8Array(raw.length);
+  const levelIdentity = topoMarchingSquaresLevelIdentity(threshold);
+  for (let pixelY = 0; pixelY < gridHeight; pixelY += 1) {
+    for (let pixelX = 0; pixelX < gridWidth; pixelX += 1) {
+      const point = { x: pixelX + 0.5, y: pixelY + 0.5 };
+      if (sampleStates[pixelY * gridWidth + pixelX] !== TOPO_SAMPLED_FIELD_STATE.VALID) continue;
+      let minimumDistance = Infinity;
+      for (const offsetY of [-1, 0]) for (const offsetX of [-1, 0]) {
+        const cellX = pixelX + offsetX;
+        const cellY = pixelY + offsetY;
+        if (cellX < 0 || cellY < 0 || cellX >= gridWidth - 1 || cellY >= gridHeight - 1) continue;
+        const index = cellY * gridWidth + cellX;
+        const indexes = [index, index + 1, index + gridWidth + 1, index + gridWidth];
+        if (indexes.some((entry) => sampleStates[entry] !== TOPO_SAMPLED_FIELD_STATE.VALID)) continue;
+        const corners = indexes.map((entry) => raw[entry]);
+        if (!corners.every(Number.isFinite)) continue;
+        const pairs = topoMarchingSquaresEdgePairs(
+          topoMarchingSquaresCaseIndex(corners, threshold), corners, threshold,
+          cellX, cellY, levelIdentity,
+        );
+        for (const [firstEdge, secondEdge] of pairs) {
+          minimumDistance = Math.min(minimumDistance, topoPointSegmentDistance(
+            point,
+            topoMarchingSquaresEdgePoint(firstEdge, cellX, cellY, corners, threshold),
+            topoMarchingSquaresEdgePoint(secondEdge, cellX, cellY, corners, threshold),
+          ));
+        }
+      }
+      if (minimumDistance <= lineHalfWidth) mask[pixelY * gridWidth + pixelX] = 1;
+    }
+  }
+  return mask;
+}
+
+export function topoMarchingSquaresScreenSpaceCenterlineDistance({
+  segments,
+  mask,
+  width,
+  lineHalfWidth = 0.5,
+} = {}) {
+  const gridWidth = Number(width);
+  const gpuPoints = Array.from(mask ?? [], (value, index) => value ? {
+    x: index % gridWidth + 0.5,
+    y: Math.floor(index / gridWidth) + 0.5,
+  } : null).filter(Boolean);
+  const cpuPoints = [];
+  for (const segment of segments ?? []) {
+    const length = Math.hypot(segment.x2 - segment.x1, segment.y2 - segment.y1);
+    const count = Math.max(1, Math.ceil(length * 2));
+    for (let index = 0; index <= count; index += 1) {
+      const amount = index / count;
+      cpuPoints.push({
+        x: segment.x1 + (segment.x2 - segment.x1) * amount,
+        y: segment.y1 + (segment.y2 - segment.y1) * amount,
+      });
+    }
+  }
+  const nearest = (from, distanceTo) => from.map((point) => distanceTo(point));
+  const gpuToCpu = nearest(gpuPoints, (point) => Math.min(...(segments ?? []).map((segment) =>
+    topoPointSegmentDistance(point, { x: segment.x1, y: segment.y1 },
+      { x: segment.x2, y: segment.y2 }))));
+  const cpuToGpu = nearest(cpuPoints, (point) => Math.min(...gpuPoints.map((candidate) =>
+    Math.hypot(point.x - candidate.x, point.y - candidate.y))));
+  const values = [...gpuToCpu, ...cpuToGpu].map((distance) =>
+    Math.max(0, distance - lineHalfWidth)).sort((left, right) => left - right);
+  return Object.freeze({
+    p95: values[Math.floor(0.95 * Math.max(0, values.length - 1))] ?? Infinity,
+    max: values.at(-1) ?? Infinity,
+  });
 }
 
 export function extractTopoSampledFieldContourSegments({
@@ -234,7 +382,7 @@ export function extractTopoSampledFieldContourSegments({
       family: typeof level === "number"
         ? value < 0 ? "negative" : value > 0 ? "positive" : "zero"
         : level.family,
-      levelIdentity: stableLevelTieIdentity(value),
+      levelIdentity: topoMarchingSquaresLevelIdentity(value),
     };
   });
   const segments = [];
@@ -271,12 +419,8 @@ export function extractTopoSampledFieldContourSegments({
         if (level.value < minimum || level.value > maximum || minimum === maximum) {
           continue;
         }
-        let caseIndex = 0;
-        if (corners[0] >= level.value) caseIndex |= 1;
-        if (corners[1] >= level.value) caseIndex |= 2;
-        if (corners[2] >= level.value) caseIndex |= 4;
-        if (corners[3] >= level.value) caseIndex |= 8;
-        const edgePairs = edgePairsForCase(
+        const caseIndex = topoMarchingSquaresCaseIndex(corners, level.value);
+        const edgePairs = topoMarchingSquaresEdgePairs(
           caseIndex,
           corners,
           level.value,
@@ -285,14 +429,14 @@ export function extractTopoSampledFieldContourSegments({
           level.levelIdentity,
         );
         for (const [firstEdge, secondEdge] of edgePairs) {
-          const start = edgePoint(
+          const start = topoMarchingSquaresEdgePoint(
             firstEdge,
             cellX,
             cellY,
             corners,
             level.value,
           );
-          const end = edgePoint(
+          const end = topoMarchingSquaresEdgePoint(
             secondEdge,
             cellX,
             cellY,

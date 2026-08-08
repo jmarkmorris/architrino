@@ -80,11 +80,17 @@ import {
   getStandaloneAppPathForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
 import {
+  TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE,
+  TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE,
   TOPO_SOURCE_MARKER_RADIUS_SCALE,
   TOPO_SOURCE_MASK_MARKER_RATIO,
   resolveTopoLinearViewportAnchor,
   resolveTopoSourceMarkerRadius,
   resolveTopoSourceMaskRadius,
+  resolveTopoVisibleSourceMarkerRadius,
+  createTopoVisibleMarkerPaintStyle,
+  paintTopoSourceMarker,
+  paintTopoPairSourceMarkerLayers,
   topoEqualRadiusViewAvailable,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
@@ -1084,9 +1090,11 @@ test("accepted palette, axis, and frame identity remain fixed", () => {
   );
 });
 
-test("all four scenarios share the half-size marker and contained source mask", () => {
+test("all Topo marker paths halve both species' display radii", () => {
   assert.equal(TOPO_SOURCE_MARKER_RADIUS_SCALE, 0.5);
   assert.equal(TOPO_SOURCE_MASK_MARKER_RATIO, 0.75);
+  assert.equal(TOPO_ELECTRINO_VISIBLE_MARKER_RADIUS_SCALE, 0.5);
+  assert.equal(TOPO_POSITRINO_VISIBLE_MARKER_RADIUS_SCALE, 0.5);
   closeTo(resolveTopoSourceMarkerRadius({
     width: 1000,
     height: 800,
@@ -1109,6 +1117,21 @@ test("all four scenarios share the half-size marker and contained source mask", 
   });
   closeTo(maskWorldRadius, markerWorldRadius * 0.75);
   assert.ok(maskWorldRadius < markerWorldRadius);
+  for (const [width, height, pixelRatio] of [
+    [1000, 800, 1],
+    [400, 300, 2],
+    [916, 720, 1],
+  ]) {
+    const baseline = resolveTopoSourceMarkerRadius({ width, height, pixelRatio });
+    closeTo(resolveTopoVisibleSourceMarkerRadius({
+      polaritySign: -1, width, height, pixelRatio,
+    }), baseline / 2);
+    closeTo(resolveTopoVisibleSourceMarkerRadius({
+      polaritySign: 1, width, height, pixelRatio,
+    }), baseline / 2);
+    closeTo(resolveTopoSourceMaskRadius({ width, height, pixelRatio }),
+      baseline * TOPO_SOURCE_MASK_MARKER_RATIO / Math.max(1, width - 1));
+  }
 
   const html = readRepoFile("topo.html");
   const optionValues = Array.from(html.matchAll(/name="topo-scenario" value="([^"]+)"/gu))
@@ -1121,8 +1144,117 @@ test("all four scenarios share the half-size marker and contained source mask", 
   ]);
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
   assert.match(runtime, /function drawSourceMarker/u);
-  assert.match(runtime, /sourceOverlayGeometry[\s\S]*resolveTopoSourceMarkerRadius/u);
+  assert.match(runtime, /sourceOverlayGeometry[\s\S]*resolveTopoVisibleSourceMarkerRadius/u);
+  assert.match(runtime, /drawPairSourceOverlays[\s\S]*source\.polaritySign/u);
+  assert.match(runtime, /drawCircularBinaryOverlay[\s\S]*polaritySign: sourceSign/u);
+  assert.match(runtime, /markerDistance <[\s\S]*sourceMarkers\[0\]\.radius \+ sourceMarkers\[1\]\.radius/u);
+  assert.match(runtime, /resolveTopoSourceMaskRadius[\s\S]*resolveTopoSourceMarkerRadius/u);
   assert.doesNotMatch(runtime, /drawCircularBinarySourceMarker/u);
+});
+
+test("moving pair marker compositor keeps the same two layers through overlap", () => {
+  const paintFrame = (positions) => {
+    const operations = [];
+    const drawn = [];
+    const targetContext = {
+      save: () => operations.push("save"),
+      beginPath: () => operations.push("begin"),
+      rect: (...values) => operations.push(["rect", ...values]),
+      clip: () => operations.push("clip"),
+      restore: () => operations.push("restore"),
+    };
+    const result = paintTopoPairSourceMarkerLayers({
+      targetContext,
+      width: 200,
+      height: 100,
+      positioned: positions,
+      drawMarker: ({ source, geometry }) => drawn.push({
+        polaritySign: source.polaritySign,
+        x: geometry.x,
+        radius: geometry.radius,
+      }),
+    });
+    return { operations, drawn, result };
+  };
+  const separated = paintFrame([
+    { source: { polaritySign: -1 }, geometry: { x: 90, y: 50, radius: 2.25 } },
+    { source: { polaritySign: 1 }, geometry: { x: 110, y: 50, radius: 2.25 } },
+  ]);
+  const overlapping = paintFrame([
+    { source: { polaritySign: -1 }, geometry: { x: 99, y: 50, radius: 2.25 } },
+    { source: { polaritySign: 1 }, geometry: { x: 101, y: 50, radius: 2.25 } },
+  ]);
+  for (const frame of [separated, overlapping]) {
+    assert.equal(frame.result.layerCount, 2);
+    assert.equal(frame.operations.filter((value) => value === "clip").length, 2);
+    assert.equal(frame.drawn.length, 2);
+    assert.deepEqual(frame.drawn.map(({ polaritySign, radius }) => ({ polaritySign, radius })), [
+      { polaritySign: -1, radius: 2.25 },
+      { polaritySign: 1, radius: 2.25 },
+    ]);
+  }
+  assert.equal(separated.result.splitX, 100);
+  assert.equal(overlapping.result.splitX, 100);
+});
+
+test("production marker paint style is exactly one half-size solid disk", () => {
+  for (const polaritySign of [-1, 1]) {
+    const baseRadius = resolveTopoSourceMarkerRadius({
+      width: 916, height: 720, pixelRatio: 1,
+    });
+    const style = createTopoVisibleMarkerPaintStyle({
+      polaritySign, width: 916, height: 720, pixelRatio: 1, displayScale: 1,
+    });
+    closeTo(style.radius, baseRadius / 2);
+    assert.deepEqual(Object.keys(style), ["radius"]);
+  }
+});
+
+test("consecutive production marker paints emit only solid species-color coverage", () => {
+  const style = createTopoVisibleMarkerPaintStyle({
+    polaritySign: -1, width: 916, height: 720, pixelRatio: 1, displayScale: 1,
+  });
+  const paintCoverage = (x, sourceColor) => {
+    const pixelsByColor = new Map();
+    const operations = [];
+    let path = null;
+    const context = {
+      fillStyle: "",
+      save() { operations.push("save"); },
+      restore() { operations.push("restore"); },
+      beginPath() { operations.push("beginPath"); },
+      arc(centerX, centerY, radius) {
+        operations.push("arc");
+        path = { centerX, centerY, radius };
+      },
+      fill() {
+        operations.push("fill");
+        if (!path) return;
+        const pixels = pixelsByColor.get(this.fillStyle) ?? [];
+        for (let y = 0; y < 16; y += 1) for (let pixelX = 0; pixelX < 16; pixelX += 1) {
+          if (Math.hypot(pixelX + 0.5 - path.centerX, y + 0.5 - path.centerY) <= path.radius) {
+            pixels.push([pixelX, y]);
+          }
+        }
+        pixelsByColor.set(this.fillStyle, pixels);
+      },
+    };
+    paintTopoSourceMarker({
+      targetContext: context, x, y: 8, markerStyle: style,
+      sourceColor,
+    });
+    return { pixelsByColor, operations };
+  };
+  for (const [centerX, sourceColor] of [[7.15, "blue"], [7.65, "blue"], [8, "red"]]) {
+    const { pixelsByColor, operations } = paintCoverage(centerX, sourceColor);
+    assert.deepEqual([...pixelsByColor.keys()], [sourceColor]);
+    assert.deepEqual(operations, ["save", "beginPath", "arc", "fill", "restore"]);
+    const pixels = pixelsByColor.get(sourceColor);
+    assert.ok(pixels.length > 0);
+    for (const [pixelX, pixelY] of pixels) {
+      assert.ok(Math.hypot(pixelX + 0.5 - centerX, pixelY + 0.5 - 8) <= style.radius + 1e-12);
+    }
+  }
 });
 
 test("Topo UI exposes distinct combined, source-local, and equal-radius views and preserves Home", () => {
@@ -1209,7 +1341,8 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
     runtime.indexOf("function drawSourceOverlay"),
   );
   assert.doesNotMatch(markerSource, /state\./u);
-  assert.match(markerSource, /WHITE\.r/u);
+  assert.match(markerSource, /paintTopoSourceMarker/u);
+  assert.doesNotMatch(markerSource, /outline|center|stroke|WHITE\.r/u);
   assert.match(runtime, /u_source_local_mode/u);
   assert.match(runtime, /displayRadius - u_source_local_inner_radius/u);
   assert.doesNotMatch(runtime, /fillText\(\s*label/u);
@@ -1339,6 +1472,85 @@ test("Topo rendered copy does not expose exponent terminology", () => {
   ]) {
     assert.equal(runtime.includes(formerCopy), false, formerCopy);
   }
+});
+
+test("binary scalar framebuffer probes renderability before accepting a precision path", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /createTopoScalarFramebufferResources/u);
+  assert.match(runtime, /OES_texture_float/u);
+  assert.match(runtime, /OES_texture_half_float/u);
+  assert.match(runtime, /WEBGL_color_buffer_float/u);
+  assert.match(runtime, /EXT_color_buffer_half_float/u);
+  assert.match(runtime, /TEXTURE_MIN_FILTER, fieldGl\.NEAREST/u);
+  assert.match(runtime, /checkFramebufferStatus\(fieldGl\.FRAMEBUFFER\)/u);
+  assert.match(runtime, /binaryScalarFramebufferReason/u);
+  assert.match(runtime, /binaryScalarFramebufferPrecisionError/u);
+  assert.match(runtime, /r=signed-raw,g=ordinary-availability/u);
+  assert.match(runtime, /readPixels\(0, 0, 1, 1, fieldGl\.RGBA, fieldGl\.FLOAT/u);
+  assert.match(runtime, /binaryScalarPassAuditMaxAbsoluteError/u);
+  assert.match(runtime, /sampleTopoCircularBinaryWake/u);
+  assert.match(runtime, /fieldGl\.bindFramebuffer\(fieldGl\.FRAMEBUFFER, topoScalarFramebuffer\.framebuffer\)/u);
+  assert.match(runtime, /resizeTopoScalarFramebuffer\(topoScalarFramebuffer, width, height\)/u);
+});
+
+test("diagnostic scalar-texture marching-squares program restores state and routes one captured threshold", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /TOPO_MARCHING_SQUARES_GLSL_CONTRACT/u);
+  assert.match(runtime, /createTopoPassTwoDiagnosticProgram/u);
+  for (const uniform of [
+    "u_scalar_texture",
+    "u_scalar_resolution",
+    "u_threshold",
+    "u_line_half_width",
+    "u_ambiguous_parity",
+  ]) {
+    assert.match(runtime, new RegExp(`uniform (sampler2D|vec2|float) ${uniform}`, "u"));
+  }
+  assert.match(runtime, /a\.g < 0\.5 \|\| b\.g < 0\.5 \|\| c\.g < 0\.5 \|\| d\.g < 0\.5/u);
+  assert.match(runtime, /caseIndex == 1 \|\| caseIndex == 14/u);
+  assert.match(runtime, /caseIndex == 2 \|\| caseIndex == 13/u);
+  assert.match(runtime, /caseIndex == 3 \|\| caseIndex == 12/u);
+  assert.match(runtime, /caseIndex == 4 \|\| caseIndex == 11/u);
+  assert.match(runtime, /caseIndex == 6 \|\| caseIndex == 9/u);
+  assert.match(runtime, /caseIndex == 7 \|\| caseIndex == 8/u);
+  assert.match(runtime, /caseIndex == 5 \|\| caseIndex == 10/u);
+  assert.match(runtime, /determinant == 0\.0 && mod\(cell\.x \+ cell\.y \+ u_ambiguous_parity, 2\.0\) < 0\.5/u);
+  assert.match(runtime, /pointSegmentDistance/u);
+  assert.match(runtime, /binaryPassTwoDiagnostic/u);
+  assert.match(runtime, /drawTopoPassTwoDiagnostic/u);
+  assert.match(runtime, /fieldGl\.bindFramebuffer\(fieldGl\.FRAMEBUFFER, topoPassTwoDiagnosticTarget\.framebuffer\)/u);
+  assert.match(runtime, /fieldGl\.bindTexture\(fieldGl\.TEXTURE_2D, topoScalarFramebuffer\.texture\)/u);
+  assert.match(runtime, /fieldGl\.readPixels\(0, 0, width, height, fieldGl\.RGBA, fieldGl\.UNSIGNED_BYTE, raster\)/u);
+  assert.match(runtime, /fieldGl\.bindFramebuffer\(fieldGl\.FRAMEBUFFER, savedFramebuffer\)/u);
+  assert.match(runtime, /fieldGl\.viewport\(savedViewport\[0\], savedViewport\[1\], savedViewport\[2\], savedViewport\[3\]\)/u);
+  assert.match(runtime, /fieldGl\.deleteFramebuffer\(topoPassTwoDiagnosticTarget\.framebuffer\)/u);
+  assert.match(runtime, /fieldGl\.deleteTexture\(topoPassTwoDiagnosticTarget\.texture\)/u);
+  assert.match(runtime, /all-26-signed-raw-levels/u);
+  assert.match(runtime, /binaryPassTwoDiagnosticAllLevels/u);
+  assert.match(runtime, /binaryPassTwoDiagnosticSignedSymmetry/u);
+  assert.match(runtime, /binaryPassTwoDiagnosticAllLevelsSummary/u);
+  assert.match(runtime, /TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE = 0\.375/u);
+  assert.match(runtime, /TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES/u);
+  assert.match(runtime, /binaryPassTwoDiagnosticPhases/u);
+  assert.match(runtime, /diagnosticLevels\.map\(\(threshold\)/u);
+  assert.match(runtime, /binaryPassTwoDiagnosticDraw/u);
+});
+
+test("ordinary binary rendering presents the scalar texture and bypasses coarse CPU contours", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(runtime, /createCircularBinaryScalarPresentationRenderer/u);
+  assert.match(runtime, /u_contour_values\[\$\{TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS\}\]/u);
+  assert.match(runtime, /u_contour_opacities\[\$\{TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS\}\]/u);
+  assert.match(runtime, /u_contour_half_widths\[\$\{TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS\}\]/u);
+  assert.match(runtime, /u_contour_parities\[\$\{TOPO_BINARY_GPU_CONTOUR_MAX_LEVELS\}\]/u);
+  assert.match(runtime, /topoMarchingSquaresLevelIdentity\(level\.value\) % 2/u);
+  assert.match(runtime, /Coverage is a rasterization edge only/u);
+  assert.match(runtime, /smoothstep\(max\(0\.0, halfWidth - 0\.75\),/u);
+  assert.match(runtime, /gpu-scalar-marching-squares-current-frame/u);
+  assert.match(runtime, /const contourRawFrame = \(state\.binary &&[\s\S]*?\? null/u);
+  assert.match(runtime, /topoBinaryDiagnosticsEnabled[\s\S]*?dom\.app\.dataset\.topoBinaryDiagnostics === "enabled"/u);
+  assert.match(runtime, /const diagnosticPhase = topoBinaryDiagnosticsEnabled && state\.beta === 1/u);
+  assert.match(runtime, /circularBinaryScalarPresentationRenderer && topoScalarFramebuffer\.available/u);
 });
 
 test("Applications retains four category scenes and all fifteen direct app routes", () => {
