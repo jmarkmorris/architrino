@@ -173,16 +173,16 @@ prescribed replay parameter is viewed.
 
 Plainly: the screen does not pretend to offer contour controls that do nothing. The smaller moving dots identify the prescribed sources, and the optional solid circle shows only where those authored paths run.
 
-The binary display also exposes a small accessible radio group for `Purple`
-and `White` neutral backgrounds. Purple is the unchanged Electric Purple
-`#8F00FF` default. White uses `#FFFFFF` as a display-only neutral midpoint and
-changes only color interpolation, unavailable pixels, and the legend. The orbit
-guide is pale lavender on Purple and restrained Electric Purple on White. Each
-checked radio uses its named option color with a contrasting boundary.
-Background selection does not
+The binary display also exposes a small accessible neutral-background slider
+from Electric Purple to White. Electric Purple `#8F00FF` remains the default,
+and the White endpoint is `#FFFFFF`. Intermediate values add only white to the
+accepted purple in sRGB; there is no additional color stop. The slider changes
+only color interpolation, unavailable pixels, the legend, and adaptive overlay
+contrast. The orbit guide changes continuously from pale lavender on Purple to
+restrained Electric Purple on White. Background selection does not
 change roots, raw values, orbital radius, frame identity, or playback.
 
-Plainly: the radio group lets the reader compare the same signed numbers against two neutral visual baselines. White exposes weaker blue/red contrast differently, but it does not turn neutral into a new scientific value.
+Plainly: the slider lets the reader add as much white as desired to the existing purple behind the same signed numbers. It does not turn neutral into a new scientific value.
 
 ## Verification And Falsifiers
 

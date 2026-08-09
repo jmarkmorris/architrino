@@ -4,6 +4,10 @@ This file is the chronological work log for the `app-topo` priority area. Use [p
 
 ## Log Entries
 
+- Shortened the unified left-panel slider labels to `Speed`, `Topo count`, `Shading`, `Topo fade`, and `Scale`, and aligned every slider on the same row as its title. Slider values, scientific/display ownership, keyboard behavior, and the Purple-to-White neutral-background endpoints are unchanged.
+
+- Replaced the discrete Purple/White neutral-background radios with one accessible slider from the accepted Electric Purple endpoint to White. Intermediate values are channel-wise sRGB mixtures that add only white, and the same value continuously updates the field midpoint, unavailable display color, legend, contour contrast, translation axis, and prescribed orbit guide without entering raw-frame or scientific frame identity.
+
 - Made Physical magnitude the default heatmap transfer: relative endpoint-color contribution is $\min(|W|/64,1)$, so exponents $e=0,-1,-2,-3$ contribute $1,0.1,0.01,0.001$. Added an optional Enhanced decade contrast mode labeled as display-only. Raw fields, prescribed histories, contour levels and positions, coordinate charts, and scientific frame identities do not change. Unsupported Source-local transitions now atomically return to Combined wake before rendering, preserve focus, and announce the reason instead of stranding the reader on an unavailable canvas.
 
 - Recorded the orbiting-binary precision follow-up without claiming acceptance. Later evidence must solve $c_f\tau_i=\lVert x-X_i(T-\tau_i)\rVert$ independently for each source and preserve source identity, emission and observation events, $\tau_i$, residual, bracket/history availability, and kernel identity before signed combination. A separately authored selected-pixel reference must cover phases, radii, and both directions; $\beta<1$ requires the monotone unique-root contract and $\beta=1$ fails closed wherever the ordinary finite-history route is unavailable or unresolved. Screenshot similarity is not precision evidence.

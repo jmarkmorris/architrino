@@ -47,14 +47,17 @@ The initial controls are:
 | --- | --- |
 | Scenario | single electrino; single positrino; approaching collinear electrino and positrino; orbiting binary electrino and positrino |
 | Perspective | pair scenarios only; native `Electrino` and `Positrino` radios; the selected observer's self-wake is excluded before field, contour, shading, cache, and diagnostic calculations; both markers remain visible |
-| $\beta=v/c_f$ | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
+| `Speed` ($\beta=v/c_f$) | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
 | Heatmap | bounded square-root transfer $C_s(W)=\operatorname{sgn}(W)g(s)\sqrt{|W|}/(g(s)\sqrt{|W|}+8)$ with $g(s)=0.25\,16^s$; for the stationary inverse-square wake this has the gradual $1/r$-like form $\operatorname{sgn}(W)a(s)/(r+a(s))$, where $a(s)=0.025g(s)$ |
-| Contour count | integer $4$ through $25$; default $13$; selects genuine equal-wake thresholds across the fixed raw range without interpolating line geometry; pair perspectives retain only the partner source's sign |
-| Shading spread | range $0$ through $100$, step $1$, default $50$; changes only the characteristic color reach from $0.25$ through $4$ times the default; no visible numeric output; raw values and contours remain unchanged |
-| Contour visibility | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; changes line opacity only; zero reads `Hidden`; equal nonzero widths and the single adaptive zero stroke do not alter field color, contour geometry, or raw values |
-| Display scale | range $0.5$ through $2$ in $0.25$ steps; default $1$; changes the visible coordinate window while preserving the wake law and raw contour values |
+| `Topo count` | integer $4$ through $25$; default $13$; selects genuine equal-wake thresholds across the fixed raw range without interpolating line geometry; pair perspectives retain only the partner source's sign |
+| `Shading` | range $0$ through $100$, step $1$, default $50$; changes only the characteristic color reach from $0.25$ through $4$ times the default; no visible numeric output; raw values and contours remain unchanged |
+| `Topo fade` | display-only global contour-emphasis percent from $0$ through $100$ in one-point keyboard steps; default $75$; changes line opacity only; zero reads `Hidden`; equal nonzero widths and the single adaptive zero stroke do not alter field color, contour geometry, or raw values |
+| `Scale` | range $0.5$ through $2$ in $0.25$ steps; default $1$; changes the visible coordinate window while preserving the wake law and raw contour values |
 | Color mapping | applied only after the signed raw field and equal-value contour geometry are calculated; contour levels remain raw factor-of-ten values and never consume shaded values |
 | Overlay | scenario-specific reference geometry plus source polarity disks using one shared half-size radius, canonical thin white border, and half-size centered white origin dot |
+
+Every slider uses the same fixed title column and places its track on the same
+row as its title. Notes remain on a separate full-width row below the control.
 
 Source position, shading spread, contour range, contour visibility, neutral background, and color limits belong to display state. The chosen species or pair observer, retained partner source, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
@@ -124,7 +127,7 @@ Plainly: for every pixel, the provider looks backward along the architrino's lef
 
 The `Orbiting binary electrino and positrino` scenario uses equal-scale world coordinates centered at $(1/2,1/2)$. Its shared orbital radius $R$ ranges from $0.01$ through $0.45$ visible-width units and defaults to $0.3$, reproducing the initial $(0.2,0.5)$ and $(0.8,0.5)$ positions. The sources stay antipodal and use $|\omega|=\beta/R$, so the slider changes source separation and period without changing the selected nonnegative tangential-speed magnitude $\beta$. Counterclockwise uses positive $\omega$ and remains the default; Clockwise uses negative $\omega$ consistently in warm-up, replay, source placement, root evaluation, and frame identity.
 
-The current binary display shows partner-wake contours and adjustable-reach $1/r$-like visibility shading, shared half-size polarity markers, one optional thin solid orbit guide, playback progress, Perspective, direction, radius, contour, and shared play/pause/replay controls. The guide follows $R$ in the same equal-scale chart and is explicitly a prescribed path reference, not an equal-intensity contour. It is pale lavender on the Electric Purple neutral background and restrained Electric Purple on White. Each background radio uses its option color for the checked indicator while retaining native radio semantics, focus, and keyboard behavior. The WebGL scalar pass and CPU fallback both retain only the selected observer's partner source and mask only that emitting source's exact singular point.
+The current binary display shows partner-wake contours and adjustable-reach $1/r$-like visibility shading, shared half-size polarity markers, one optional thin solid orbit guide, playback progress, Perspective, direction, radius, contour, and shared play/pause/replay controls. The guide follows $R$ in the same equal-scale chart and is explicitly a prescribed path reference, not an equal-intensity contour. It changes continuously from pale lavender on the Electric Purple neutral background to restrained Electric Purple on White. One native range control mixes only white into Electric Purple while retaining slider focus and keyboard behavior. The WebGL scalar pass and CPU fallback both retain only the selected observer's partner source and mask only that emitting source's exact singular point.
 
 At the $1\%$ radius endpoint, marker disks can overlap on narrow canvases. The overlay clips the two marker drawings at their perpendicular bisector so both source identities remain visible deterministically; it does not merge, reorder, or hide either source. The source display mask is $75\%$ of the visible marker radius in world units, replacing the stale fixed $0.012$ mask that extended beyond the smaller marker at $\beta=1$. Root failure remains fail-closed, and the mask changes no ordinary value outside the marker.
 
@@ -203,11 +206,13 @@ Plainly: the pair contours follow the sampled field in world space. The
 logarithm chooses raw contour values, not pixel positions, and missing samples
 cannot masquerade as a cancellation line.
 
-One native `Purple` / `White` neutral-background radio group appears in the
-common unified Scenario panel for all four scenarios. Its checked value persists when
-the scenario changes and affects only the neutral display color and reference
-overlay contrast. Raw-frame keys, prescribed histories, solver state, timing,
-and frame identities exclude it.
+One native neutral-background slider runs continuously from Electric Purple to
+White in the common unified Scenario panel for all four scenarios. Its value
+persists when the scenario changes and affects only the neutral display color
+and reference-overlay contrast. Every intermediate value is an sRGB mixture of
+the accepted Electric Purple and added white; the control introduces no other
+color stop. Raw-frame keys, prescribed histories, solver state, timing, and
+frame identities exclude it.
 
 Plainly: changing the background changes the paper behind the signed colors,
 not the numbers or motion being shown.

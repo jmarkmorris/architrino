@@ -102,6 +102,36 @@ function hexToRgb(hexColor) {
   ];
 }
 
+export function normalizeTopoNeutralWhiteMix(value) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue)
+    ? Math.min(1, Math.max(0, numericValue))
+    : 0;
+}
+
+function interpolateRgb(startRgb, endRgb, amount) {
+  const normalizedAmount = normalizeTopoNeutralWhiteMix(amount);
+  return startRgb.map((channel, index) => Math.round(
+    channel + (endRgb[index] - channel) * normalizedAmount,
+  ));
+}
+
+export function createTopoNeutralBackgroundRgb(purpleRgb, whiteMix) {
+  return Object.freeze(interpolateRgb(
+    purpleRgb,
+    [255, 255, 255],
+    whiteMix,
+  ));
+}
+
+function rgbCss(rgb) {
+  return "rgb(" + rgb.join(", ") + ")";
+}
+
+function interpolateHexColor(start, end, amount) {
+  return rgbCss(interpolateRgb(hexToRgb(start), hexToRgb(end), amount));
+}
+
 function formatPercentage(normalizedValue) {
   const percentage = normalizedValue * 100;
   return (Number.isInteger(percentage) ? percentage.toFixed(0) : percentage.toFixed(1)) + "%";
@@ -735,7 +765,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     ),
     beta: requireElement(documentLike, "#topo-beta"),
     betaOutput: requireElement(documentLike, "#topo-beta-output"),
-    coordinateMode: requireElement(documentLike, "#topo-coordinate-mode"),
     contourCount: requireElement(documentLike, "#topo-contour-count"),
     shadingSpread: requireElement(documentLike, "#topo-shading-spread"),
     contourVisibility: requireElement(documentLike, "#topo-contour-visibility"),
@@ -762,13 +791,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryDirectionInputs: Array.from(documentLike.querySelectorAll(
       'input[name="topo-binary-direction"]',
     )),
-    backgroundControl: requireElement(
-      documentLike,
-      "#topo-background-control",
-    ),
-    backgroundInputs: Array.from(documentLike.querySelectorAll(
-      'input[name="topo-background"]',
-    )),
+    background: requireElement(documentLike, "#topo-background"),
     canvas: requireElement(documentLike, "#topo-canvas"),
     contourCanvas: requireElement(documentLike, "#topo-contour-canvas"),
     status: requireElement(documentLike, "#topo-status"),
@@ -815,7 +838,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let pairPlaybackPreviousTimestamp = null;
   let pairTimelineScrubbing = false;
   let scenarioPointerActivation = false;
-  let backgroundPointerActivation = false;
   let binaryProgress = 0;
   let binaryPlaying = false;
   let binaryPlaybackStartedAt = null;
@@ -1998,10 +2020,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ),
       contourVisibility: Number(dom.contourVisibility.value) / 100,
       displayScale: normalizeTopoDisplayScale(dom.displayScale.value),
-      backgroundMode:
-        dom.backgroundInputs.find((input) => input.checked)?.value === "white"
-          ? "white"
-          : "purple",
+      neutralWhiteMix: normalizeTopoNeutralWhiteMix(
+        Number(dom.background.value) / 100,
+      ),
     };
     const observerId = normalizeTopoPartnerWakeObserver(
       dom.partnerPerspectiveInputs.find((input) => input.checked)?.value ??
@@ -2194,7 +2215,17 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.wakeAggregation = partnerPerspective
       ? "partner-only-self-excluded"
       : "single-source";
-    dom.app.dataset.neutralBackground = state.backgroundMode;
+    dom.app.dataset.neutralBackgroundWhiteMix =
+      state.neutralWhiteMix.toFixed(2);
+    const neutralWhitePercentage = Math.round(state.neutralWhiteMix * 100);
+    dom.background.setAttribute(
+      "aria-valuetext",
+      neutralWhitePercentage === 0
+        ? "Electric Purple"
+        : neutralWhitePercentage === 100
+          ? "White"
+          : neutralWhitePercentage + "% white added to Electric Purple",
+    );
     dom.app.dataset.contourCount = String(state.contourCount);
     dom.app.dataset.contourRadii = "";
     dom.app.dataset.contourPhysicalRadii = "";
@@ -2232,9 +2263,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
               ? ", sub-field-speed prescribed collinear approach; minimum animated beta is 0.05"
             : ", sub-field-speed preview"),
     );
-    dom.coordinateMode.textContent = partnerPerspective
-      ? "Display coordinates: linear Euclidean · " + observerName + " perspective"
-      : "Display coordinates: linear Euclidean";
     dom.app.dataset.coordinateMode = "linear-absolute-space";
     dom.partnerPerspectiveControl.hidden = !partnerPerspective;
     dom.partnerPerspectiveControl.inert = !partnerPerspective;
@@ -2253,7 +2281,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.shadingSpread.setAttribute(
       "aria-valuetext",
       Math.round(state.shadingSpread * 100) +
-        "% shading spread; color reach " +
+        "% shading; color reach " +
         topoShadingReachScale(state.shadingSpread).toFixed(2) +
         " times the default; display only",
     );
@@ -2263,7 +2291,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.contourVisibility.setAttribute(
       "aria-valuetext",
       contourStrengthText +
-        "; overall display strength for the graded contour profile",
+        "; Topo fade for the graded contour profile",
     );
     dom.contourVisibility.disabled = false;
     dom.contourControls.hidden = false;
@@ -2362,8 +2390,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
       : "stationary-disabled";
     dom.app.dataset.binaryProgress = state.playback.progress.toFixed(6);
     dom.app.dataset.binaryTimelineScrubbing = String(binaryTimelineScrubbing);
-    dom.app.dataset.neutralBackground = state.backgroundMode;
-    dom.app.dataset.binaryBackground = state.binary ? state.backgroundMode : "";
+    dom.app.dataset.neutralBackgroundWhiteMix =
+      state.neutralWhiteMix.toFixed(2);
+    dom.app.dataset.binaryBackgroundWhiteMix = state.binary
+      ? state.neutralWhiteMix.toFixed(2)
+      : "";
     dom.app.dataset.binaryOrbitalRadius = state.orbitalRadius.toFixed(2);
     dom.app.dataset.binaryDirection = state.direction;
     dom.app.dataset.binaryAngularVelocity = state.playback.angularVelocity.toFixed(9);
@@ -2403,7 +2434,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         : "Single-source wake shows ") + state.contourCount +
       " equal-value contour levels" +
       "; heatmap mode is " + heatmapDescription +
-      "; negative values are blue, neutral is " + styles.backgroundMode +
+      "; negative values are blue, neutral is " +
+      styles.neutralBackgroundDescription +
       ", and positive values are red" +
       (state.binary && state.showOrbitGuide
         ? "; solid circle marks the prescribed orbit"
@@ -2440,7 +2472,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function readStyles(state = null) {
-    const whiteBackground = state?.backgroundMode === "white";
+    const neutralWhiteMix = normalizeTopoNeutralWhiteMix(
+      state?.neutralWhiteMix ?? 0,
+    );
+    const electricPurple = readHexToken(
+      windowLike,
+      dom.app,
+      "--ui-color-electric-purple",
+      "#8f00ff",
+    );
+    const zeroRgb = createTopoNeutralBackgroundRgb(
+      hexToRgb(electricPurple),
+      neutralWhiteMix,
+    );
+    const whitePercentage = Math.round(neutralWhiteMix * 100);
     const styles = {
       negative: readHexToken(
         windowLike,
@@ -2448,14 +2493,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "--ui-data-negative",
         "#2563eb",
       ),
-      zero: whiteBackground
-        ? "#ffffff"
-        : readHexToken(
-          windowLike,
-          dom.app,
-          "--ui-color-electric-purple",
-          "#8f00ff",
-        ),
+      zero: rgbCss(zeroRgb),
       positive: readHexToken(
         windowLike,
         dom.app,
@@ -2465,14 +2503,39 @@ export function mountTopoInteractionContractPreview(options = {}) {
       polaritySign: state?.polaritySign ?? -1,
       pairMode: state?.pairMode === true,
       binary: state?.binary === true,
-      backgroundMode: whiteBackground ? "white" : "purple",
+      neutralWhiteMix,
+      neutralBackgroundDescription: whitePercentage === 0
+        ? "Electric Purple"
+        : whitePercentage === 100
+          ? "white"
+          : whitePercentage + "% white added to Electric Purple",
+      neutralOverlay: interpolateHexColor(
+        "#f2e6ff",
+        electricPurple,
+        neutralWhiteMix,
+      ),
+      axisOverlay: rgbCss(interpolateRgb(
+        [WHITE.r, WHITE.g, WHITE.b],
+        hexToRgb(electricPurple),
+        neutralWhiteMix,
+      )),
+      negativeContour: interpolateHexColor(
+        "#adc6ff",
+        "#003a9e",
+        neutralWhiteMix,
+      ),
+      positiveContour: interpolateHexColor(
+        "#ffb3c1",
+        "#a00024",
+        neutralWhiteMix,
+      ),
       exponentSpan: topoContourRangeDecades(state?.contourRangeDecades),
       shadingSpread: normalizeTopoShadingSpread(
         state?.shadingSpread ?? TOPO_DEFAULT_SHADING_SPREAD,
       ),
     };
     styles.negativeRgb = hexToRgb(styles.negative);
-    styles.zeroRgb = hexToRgb(styles.zero);
+    styles.zeroRgb = zeroRgb;
     styles.positiveRgb = hexToRgb(styles.positive);
     return styles;
   }
@@ -3068,6 +3131,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     state,
+    styles,
     revision,
     targetContext = contourStagingContext,
     commit = true,
@@ -3087,16 +3151,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const orbitPixelRadius = state.orbitalRadius * worldPixelScale;
     if (state.showOrbitGuide) {
       targetContext.save();
-      const whiteBackground = state.backgroundMode === "white";
-      targetContext.globalAlpha = whiteBackground ? 0.58 : 0.68;
-      targetContext.strokeStyle = whiteBackground
-        ? readHexToken(
-          windowLike,
-          dom.app,
-          "--ui-color-electric-purple",
-          "#8f00ff",
-        )
-        : "#f2e6ff";
+      targetContext.globalAlpha = 0.68 - 0.1 * state.neutralWhiteMix;
+      targetContext.strokeStyle = styles.neutralOverlay;
       targetContext.lineWidth = Math.max(1, pixelRatio);
       targetContext.setLineDash([]);
       targetContext.beginPath();
@@ -3195,9 +3251,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.binaryOverlay = state.showOrbitGuide
       ? "solid-orbit-guide-and-source-markers"
       : "source-markers-only";
-    dom.app.dataset.binaryOrbitGuideColor = state.backgroundMode === "white"
-      ? "electric-purple"
-      : "pale-lavender";
+    dom.app.dataset.binaryOrbitGuideColor = styles.neutralOverlay;
     dom.app.dataset.binaryMarkerRadiusScale = String(
       TOPO_SOURCE_MARKER_RADIUS_SCALE,
     );
@@ -3217,7 +3271,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.orbitalRadius.toFixed(2),
       state.direction,
       state.showOrbitGuide,
-      state.backgroundMode,
+      state.neutralWhiteMix.toFixed(2),
       state.displayScale.toFixed(2),
     ].join(":");
     return true;
@@ -3229,7 +3283,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     height,
     pixelRatio,
     pairMode = false,
-    styles = { backgroundMode: "purple" },
+    styles = { axisOverlay: "#ffffff" },
   ) {
     const y = (1 - TOPO_SOURCE_POSITION.y) * Math.max(1, height - 1);
     const startX = TOPO_TRANSLATION_AXIS.startX * Math.max(1, width - 1);
@@ -3237,14 +3291,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const arrow = TOPO_TRANSLATION_AXIS.arrowCss * pixelRatio;
     targetContext.save();
     targetContext.globalAlpha = TOPO_TRANSLATION_AXIS.opacity;
-    targetContext.strokeStyle = styles.backgroundMode === "white"
-      ? readHexToken(
-        windowLike,
-        dom.app,
-        "--ui-color-electric-purple",
-        "#8f00ff",
-      )
-      : "rgb(" + [WHITE.r, WHITE.g, WHITE.b].join(",") + ")";
+    targetContext.strokeStyle = styles.axisOverlay;
     targetContext.lineWidth = TOPO_TRANSLATION_AXIS.widthCss * pixelRatio;
     targetContext.lineCap = "butt";
     targetContext.lineJoin = "miter";
@@ -3699,7 +3746,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
   async function buildDisplayImage(rawFrame, pixelRatio, state, styles, revision) {
     const displayKey = TOPO_DISPLAY_MAPPING_ID +
       ":spread=" + state.shadingSpread.toFixed(2) +
-      ":" + state.polaritySign + ":" + state.backgroundMode;
+      ":" + state.polaritySign + ":white=" +
+      state.neutralWhiteMix.toFixed(2);
     const cached = rawFrame.displays.get(displayKey);
     if (cached) {
       dom.app.dataset.lastColorRemapMs = "0";
@@ -3916,17 +3964,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
             continue;
           }
           const foreground = family === "zero"
-            ? styles.backgroundMode === "white"
-              ? readHexToken(
-                  windowLike,
-                  dom.app,
-                  "--ui-color-electric-purple",
-                  "#8f00ff",
-                )
-              : "#f2e6ff"
+            ? styles.neutralOverlay
             : family === "positive"
-              ? styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1"
-              : styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff";
+              ? styles.positiveContour
+              : styles.negativeContour;
           contourStagingContext.save();
           contourStagingContext.beginPath();
           for (const path of connectTopoSampledFieldContourSegments(visibleSegments)) {
@@ -3975,8 +4016,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
           }
           const family = level.family;
           const foreground = family === "positive"
-            ? styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1"
-            : styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff";
+            ? styles.positiveContour
+            : styles.negativeContour;
           const contourStyle = createTopoSampledContourPaintStyle({
             level,
             bounds: contourLevelBounds,
@@ -4011,8 +4052,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         const level = replacement.level;
         const family = level.family;
         const foreground = family === "positive"
-          ? styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1"
-          : styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff";
+          ? styles.positiveContour
+          : styles.negativeContour;
         const contourStyle = createTopoSampledContourPaintStyle({
           level,
           bounds: contourLevelBounds,
@@ -4057,6 +4098,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         height,
         pixelRatio,
         state,
+        styles,
         revision,
         targetContext: contourStagingContext,
         commit: false,
@@ -4156,7 +4198,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         : state.pairPhase.toFixed(5),
       state.contourCount,
       state.contourVisibility.toFixed(4),
-      state.backgroundMode,
+      state.neutralWhiteMix.toFixed(2),
       state.displayScale.toFixed(2),
       state.observerId ?? "single-source",
       contourKey,
@@ -4187,6 +4229,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           height,
           pixelRatio,
           state,
+          styles,
           revision,
         });
         dom.app.dataset.contourFrameKind = "gpu-current-frame";
@@ -4210,6 +4253,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           height,
           pixelRatio,
           state,
+          styles,
           revision,
         });
     }
@@ -4342,8 +4386,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         Math.PI * 2,
       );
       const contourForeground = circlePolaritySign < 0
-        ? styles.backgroundMode === "white" ? "#003a9e" : "#adc6ff"
-        : styles.backgroundMode === "white" ? "#a00024" : "#ffb3c1";
+        ? styles.negativeContour
+        : styles.positiveContour;
       contourStagingContext.lineCap = "round";
       contourStagingContext.lineJoin = "round";
       contourStagingContext.strokeStyle = contourForeground;
@@ -4577,8 +4621,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         state.displayScale.toFixed(2),
         state.binary ? state.showOrbitGuide : state.contourVisibility.toFixed(4),
         state.binary
-          ? state.backgroundMode + ":" + state.direction
-          : state.polaritySign + ":" + state.backgroundMode,
+          ? state.neutralWhiteMix.toFixed(2) + ":" + state.direction
+          : state.polaritySign + ":" + state.neutralWhiteMix.toFixed(2),
       ].join(":");
       const shouldRedrawContours = !holdCompletePairFrame && (
         redrawContours ||
@@ -4669,7 +4713,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function scheduleContourChange() {
     // The circular-binary contours are painted by the scalar WebGL
     // presentation pass.  Updating only the 2D overlay here leaves that pass
-    // on its previous opacity uniforms, so Contour strength appears to have
+    // on its previous opacity uniforms, so Topo fade appears to have
     // no effect (or shows a stale strength after a later control change).
     // Re-run the complete current-frame presentation so field and contours
     // receive the same current state and strength profile.
@@ -5001,6 +5045,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
   installRangeInteraction(dom.contourVisibility);
   installRangeInteraction(dom.binaryRadius);
   installRangeInteraction(dom.displayScale);
+  installRangeInteraction(dom.background);
   installRangeInteraction(dom.pairTimeline, {
     onInteractionStart: beginPairTimelineScrub,
     onInteractionEnd: endPairTimelineScrub,
@@ -5035,15 +5080,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
   });
   listen(dom.scenarioControl, "pointercancel", () => {
     scenarioPointerActivation = false;
-  });
-  listen(dom.backgroundControl, "pointerdown", () => {
-    backgroundPointerActivation = true;
-  });
-  listen(dom.backgroundControl, "keydown", () => {
-    backgroundPointerActivation = false;
-  });
-  listen(dom.backgroundControl, "pointercancel", () => {
-    backgroundPointerActivation = false;
   });
   dom.scenarioInputs.forEach((input) =>
     listen(input, "change", handleScenarioChange));
@@ -5083,21 +5119,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       binaryProgress = 0;
       scheduleFrameChange();
     }));
-  dom.backgroundInputs.forEach((input) =>
-    listen(input, "change", () => {
-      const handFocusToStage = backgroundPointerActivation &&
-        input.checked === true;
-      backgroundPointerActivation = false;
-      scheduleFrameChange();
-      // A pointer-selected background radio has completed its native action;
-      // move focus to the stage so the next Space toggles playback. Keyboard
-      // radio activation keeps native Space semantics and remains untouched.
-      if (handFocusToStage) {
-        windowLike.requestAnimationFrame?.(() => {
-          dom.canvas.focus?.({ preventScroll: true });
-        });
-      }
-    }));
+  listen(dom.background, "input", scheduleFrameChange);
   listen(dom.displayScale, "input", () => {
     updateDisplayScalePresentation();
     scheduleFrameChange();

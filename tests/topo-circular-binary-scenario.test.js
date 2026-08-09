@@ -521,10 +521,16 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(html, /Show solid orbit guide/u);
   assert.match(html, /Prescribed reference path only/u);
   assert.doesNotMatch(html, /topo-binary-axes/u);
-  assert.match(html, /<legend>Neutral background<\/legend>/u);
-  assert.match(html, /id="topo-background-control" class="topo-radio-field"/u);
-  assert.match(html, /name="topo-background" value="purple" checked/u);
-  assert.match(html, /name="topo-background" value="white"/u);
+  assert.match(html, /<span>Neutral<\/span>/u);
+  assert.match(html, /id="topo-background-control"[\s\S]*class="topo-range-field"/u);
+  assert.match(
+    html,
+    /id="topo-background"[\s\S]*type="range"[\s\S]*min="0"[\s\S]*max="100"[\s\S]*value="0"/u,
+  );
+  assert.match(
+    html,
+    /id="topo-background"[\s\S]*aria-label="Neutral, Electric Purple to white"/u,
+  );
   assert.match(html, /id="topo-binary-play"[\s\S]*aria-label="Play"/u);
   assert.match(html, /id="topo-binary-replay"[\s\S]*aria-label="Reset orbit playback"/u);
   assert.match(html, /id="topo-binary-timeline"[\s\S]*aria-label="Orbit playback position"/u);
@@ -538,8 +544,8 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(runtime, /"source-markers-only"/u);
   assert.match(runtime, /"solid-orbit-guide-and-source-markers"/u);
   assert.match(runtime, /"disabled:orbiting-binary"/u);
-  assert.match(runtime, /whiteBackground[\s\S]*\? "#ffffff"/u);
-  assert.match(runtime, /dom\.app\.dataset\.neutralBackground = state\.backgroundMode/u);
+  assert.match(runtime, /createTopoNeutralBackgroundRgb[\s\S]*\[255, 255, 255\]/u);
+  assert.match(runtime, /dataset\.neutralBackgroundWhiteMix[\s\S]*state\.neutralWhiteMix/u);
   assert.doesNotMatch(runtime, /backgroundControl\.hidden/u);
   assert.match(runtime, /const mobileOverlayOpen =/u);
   assert.match(runtime, /dom\.binaryTransport\.hidden = hidden/u);
@@ -556,15 +562,14 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(runtime, /sourceMaskRadius/u);
   assert.match(runtime, /setLineDash\(\[\]\)/u);
   assert.match(runtime, /"#f2e6ff"/u);
-  assert.match(runtime, /state\.backgroundMode === "white"/u);
+  assert.match(runtime, /createTopoNeutralBackgroundRgb/u);
   assert.match(runtime, /split-perpendicular-bisector/u);
   assert.match(runtime, /u_direction_sign/u);
   assert.match(runtime, /event\?\.repeat/u);
   assert.match(runtime, /togglePairPlayback/u);
   assert.match(runtime, /getState\(\)\.playback\.playbackEnabled/u);
-  assert.match(css, /input\[value="purple"\]:checked::before/u);
-  assert.match(css, /input\[value="white"\]:checked::before/u);
-  assert.match(css, /background: #ffffff;/u);
+  assert.match(css, /#topo-background::-(?:webkit-slider-runnable-track|moz-range-track)/u);
+  assert.match(css, /var\(--ui-color-electric-purple\)[\s\S]*#ffffff/u);
   assert.match(css, /\.topo-radio-field input:focus-visible/u);
   assert.match(runtime, /topoGlobalTransportOwnsSpace/u);
   assert.match(runtime, /String\(event\.target\?\.type/u);

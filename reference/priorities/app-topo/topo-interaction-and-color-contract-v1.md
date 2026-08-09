@@ -91,11 +91,11 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 | --- | --- | --- |
 | Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it reverses polarity only. Beta, contour range, and contour visibility remain unchanged, and the same analytic geometry is immediately restyled with the new polarity color. |
 | Perspective | Unified left Scenario panel; pair scenarios only | Native radios `Electrino` and `Positrino`. The selected architrino is the observer. Its self-wake is excluded before any field, contour, shading, cache, or diagnostic calculation; only the partner source remains. Both body markers stay visible. |
-| $\beta=v/c_f$ | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
-| Contour count | Unified left Scenario panel | Integer $4$ through $25$, step $1$, default $13$. It selects genuine equal-wake thresholds across the fixed raw range. Pair perspectives retain only thresholds with the partner source's sign. |
-| Shading spread | Unified left Scenario panel | Percent range $0$ through $100$, step $1$, default $50$. It adjusts only the characteristic reach of the bounded $1/r$-like color transfer from $0.25$ through $4$ times the default. It has no visible numeric output and changes neither raw wake values nor contours. |
-| Contour visibility | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
-| Display scale | Unified left Scenario panel | Range $0.5$ through $2$, step $0.25$, default $1$; changes the visible coordinate window while preserving the wake law and raw contour values. |
+| `Speed` ($\beta=v/c_f$) | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
+| `Topo count` | Unified left Scenario panel | Integer $4$ through $25$, step $1$, default $13$. It selects genuine equal-wake thresholds across the fixed raw range. Pair perspectives retain only thresholds with the partner source's sign. |
+| `Shading` | Unified left Scenario panel | Percent range $0$ through $100$, step $1$, default $50$. It adjusts only the characteristic reach of the bounded $1/r$-like color transfer from $0.25$ through $4$ times the default. It has no visible numeric output and changes neither raw wake values nor contours. |
+| `Topo fade` | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
+| `Scale` | Unified left Scenario panel | Range $0.5$ through $2$, step $0.25$, default $1$; changes the visible coordinate window while preserving the wake law and raw contour values. |
 | Legend | Left panel near display controls | Always visible while the panel is open. It is headed `Shading scale` and states that signed contributions are summed before drawing equal-value topographic contours. The Perspective note and canvas accessible name identify the observer, retained partner source, and self-exclusion rule in pair scenarios. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
 | Shared chrome | Top-right safe area | Stable order is `Home`, `Back`, `Forward`, `Search`, then any declared Notes/Documents and Settings controls. TOPO-002 declares only the first four. Home retains the shared Applications-return behavior. |
@@ -155,7 +155,7 @@ $$
 
 For a single synthetic source, Topo draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with physical radius $T$ on the linear chart. Pair scenarios calculate a sampled partner-only raw field and extract contours from that same field. The retained partner's singular point is masked; the selected observer's position remains an ordinary sample whenever the partner wake admits one.
 
-Contour styling is uniform around every nonzero level: equal width and opacity with one adaptive high-contrast family-colored stroke. The explicit zero contour is slightly thicker and uses pale lavender on Purple or Electric Purple on White. Visibility is the only opacity gain, and range only filters fixed level identities. No level sign, polarity, draw order, cache timing, or range interaction perturbs existing radii or topology.
+Contour styling is uniform around every nonzero level: equal width and opacity with one adaptive high-contrast family-colored stroke. The explicit zero contour is slightly thicker. Its color changes continuously from pale lavender on Electric Purple to Electric Purple on White, following the same background slider. Visibility is the only opacity gain, and range only filters fixed level identities. No level sign, polarity, draw order, cache timing, or range interaction perturbs existing radii or topology.
 
 Neither fragment evaluation nor vector contour styling writes back to the raw provider, geometry, frame identity, or state classification. A future sampled TOPO-001 provider may use a separate general contour implementation without weakening this boundary.
 
@@ -171,9 +171,15 @@ $$
 \text{blue}\rightarrow\text{purple}\rightarrow\text{red}.
 $$
 
-Interpolation is piecewise linear in sRGB between `--ui-data-negative`, `--ui-data-zero`, and `--ui-data-positive`. The shared `--ui-data-zero` semantic resolves through `--ui-color-electric-purple` to the accepted Electric Purple (`#8F00FF`) midpoint. The zero tick is always present. The palette is supplemented by raw numbers and state text; color is never the only carrier of meaning. The shared dark stage remains a shell/empty-space color and is not substituted for a numeric zero.
+The neutral display midpoint is controlled by one white-mix parameter $t\in[0,1]$:
 
-Plainly: blue always means negative, purple means zero, and red means positive. A reader can still determine the state without relying on color perception.
+$$
+C_0(t)=(1-t)\,\text{Electric Purple}+t\,\text{White}.
+$$
+
+The interpolation is channel-wise in sRGB, so it adds only white to the accepted Electric Purple (`#8F00FF`) and introduces no other color stop. Signed-field interpolation is then piecewise linear in sRGB between `--ui-data-negative`, $C_0(t)$, and `--ui-data-positive`. The zero tick is always present. The palette is supplemented by raw numbers and state text; color is never the only carrier of meaning. The shared dark stage remains a shell/empty-space color and is not substituted for a numeric zero.
+
+Plainly: blue always means negative, red always means positive, and the neutral midpoint is the existing purple with the slider's chosen amount of white added. A reader can still determine the state without relying on color perception.
 
 ## Private Nonnumeric And Lifecycle Guards
 
@@ -181,21 +187,21 @@ Plainly: blue always means negative, purple means zero, and red means positive. 
 | --- | --- | --- |
 | `ordinary` | Signed blue-purple-red fill and contours | Private numeric value remains available to the renderer. |
 | `singular:endpoint_source` | One compact canonical architrino disk: standard blue electrino or standard red positrino with the established thin centered white body stroke and small canonical white origin dot. Masked display pixels beneath it use the same-polarity field endpoint color so no second object-like underlay appears. | Private state remains singular; no raw number is fabricated. |
-| `unavailable:no_positive_causal_root` | Electric Purple neutral midpoint with no boundary, texture, tint, or region ornament; this is display-only and does not supply a raw zero | Private state remains `unavailable`; no raw number. |
+| `unavailable:no_positive_causal_root` | The slider-selected neutral midpoint $C_0(t)$ with no boundary, texture, tint, or region ornament; this is display-only and does not supply a raw zero | Private state remains `unavailable`; no raw number. |
 | `nonordinary:degenerate_root_family` | The same compact canonical architrino disk | Private state remains nonordinary; no raw number is fabricated. |
 | `unresolved:numeric_failure` | Dark error hatch reserved for TOPO-003 | Polite live status announces calculation failure; no raw number. |
 | `loading` | Reserved neutral veil before any current preview exists | Polite live region announces that the initial frame is computing. |
 | `refining` | A current low-density interaction preview remains visible while interruptible work replaces it with the full-density frame | Polite live region announces that full-density refinement continues. |
 | `complete` | Loading veil removed only after the matching frame is ready | Polite live region announces the matching frame identity is complete. |
 
-At $\beta=1$, the preview demonstrates the TOPO-001 state layout without evaluating its raw ordinary formula: the strict trailing half-plane remains available for the synthetic comparison surface, while the leading half-plane and off-source transverse line use the Electric Purple neutral display midpoint and the Signed ordinary wake-intensity product reports unavailable with no raw number. The source uses the nonordinary treatment.
+At $\beta=1$, the preview demonstrates the TOPO-001 state layout without evaluating its raw ordinary formula: the strict trailing half-plane remains available for the synthetic comparison surface, while the leading half-plane and off-source transverse line use the slider-selected neutral display midpoint $C_0(t)$ and the Signed ordinary wake-intensity product reports unavailable with no raw number. The source uses the nonordinary treatment.
 
 Plainly: the endpoint void and numeric zero share a neutral display color, while the private typed state still distinguishes no value from zero.
 
 ## Layout And Accessibility Contract
 
 - The user-facing header is `Wake Topography`; internal TOPO work-item/version labels do not appear in that header.
-- The first information card is titled `About this view` and says exactly: `Explore wake topography for source and superposition views around prescribed path scenarios.` Internal preview, validation, and work-item language does not appear in the visible card.
+- The first information card is titled `About this view` and says exactly: `Explore wake topography for source and superposition views around prescribed what if path scenarios.` Internal preview, validation, and work-item language does not appear in the visible card.
 - The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Topo adds no app-local shell palette.
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.

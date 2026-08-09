@@ -1072,7 +1072,7 @@ test("custom radio controls keep a non-shrinking circular border box", () => {
   assert.match(css, /\.topo-radio-field input:focus-visible \{[\s\S]*outline: 2px solid/u);
 });
 
-test("one native Purple/White control persists across all four display-only scenarios", () => {
+test("one native Purple-to-White slider persists across all four display-only scenarios", () => {
   const html = readFileSync(new URL("../topo.html", import.meta.url), "utf8");
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
@@ -1080,17 +1080,17 @@ test("one native Purple/White control persists across all four display-only scen
   ), "utf8");
   assert.match(
     html,
-    /<fieldset id="topo-background-control" class="topo-radio-field">[\s\S]*name="topo-background" value="purple" checked[\s\S]*name="topo-background" value="white"[\s\S]*<\/fieldset>/u,
+    /id="topo-background-control"[\s\S]*class="topo-range-field"[\s\S]*id="topo-background"[\s\S]*type="range"[\s\S]*min="0"[\s\S]*max="100"[\s\S]*value="0"/u,
   );
   assert.doesNotMatch(html, /id="topo-background-control"[^>]*hidden/u);
   assert.equal((html.match(/name="topo-scenario"/gu) ?? []).length, 4);
   assert.match(
     runtime,
-    /const baseState = \{[\s\S]*backgroundMode:[\s\S]*dom\.backgroundInputs/u,
+    /const baseState = \{[\s\S]*neutralWhiteMix:[\s\S]*dom\.background\.value/u,
   );
   assert.match(
     runtime,
-    /dom\.backgroundInputs\.forEach\(\(input\) =>[\s\S]*listen\(input, "change", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.background, "input", scheduleFrameChange\)/u,
   );
   const rawFrameKeyBody = runtime.match(
     /function createRawFrameKey\([^)]*\) \{([\s\S]*?)\n  \}/u,
@@ -1099,7 +1099,7 @@ test("one native Purple/White control persists across all four display-only scen
   assert.doesNotMatch(rawFrameKeyBody, /background/u);
   assert.match(
     runtime,
-    /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.backgroundMode/u,
+    /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.neutralWhiteMix/u,
   );
   assert.match(runtime, /dom\.scenarioInputs\.forEach\(\(input\) =>[\s\S]*listen\(input, "change", handleScenarioChange\)/u);
   assert.doesNotMatch(runtime, /dom\.scenario\.value/u);
@@ -1120,7 +1120,7 @@ test("display scale redraws a full-viewport computed coordinate window", () => {
 
   assert.notEqual(sliderIndex, -1);
   assert.ok(sliderIndex < backgroundIndex);
-  assert.match(html, /Display scale · visible extent/u);
+  assert.match(html, /<span>Scale<\/span>/u);
   assert.match(html, /id="topo-display-scale"[\s\S]*min="0\.5"[\s\S]*max="2"[\s\S]*step="0\.25"[\s\S]*value="1"/u);
   assert.doesNotMatch(html, /topo-display-scale-output|1\.00× · 1\.00 high/u);
   assert.doesNotMatch(html, /Lower scale shows a wider coordinate window/u);

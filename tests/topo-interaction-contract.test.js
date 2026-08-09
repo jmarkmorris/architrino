@@ -77,6 +77,7 @@ import {
   TOPO_VISIBLE_SOURCE_MARKER_RADIUS_CSS_PIXELS,
   TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS,
   TOPO_CANVAS_SAMPLE_CENTER_OFFSET,
+  createTopoNeutralBackgroundRgb,
   resolveTopoLinearViewportAnchor,
   resolveTopoSourceMarkerRadius,
   resolveTopoSourceMaskRadius,
@@ -89,6 +90,7 @@ import {
   topoGlobalTransportOwnsSpace,
   topoAnimatedScenarioUsesMinimumBeta,
   normalizeTopoScenarioBeta,
+  normalizeTopoNeutralWhiteMix,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -157,6 +159,25 @@ test("display scale changes the sampled world extent while preserving its anchor
     closeTo(roundTrip.x, probe.x);
     closeTo(roundTrip.y, probe.y);
   }
+});
+
+test("neutral background adds only white to Electric Purple", () => {
+  const electricPurple = [143, 0, 255];
+  assert.equal(normalizeTopoNeutralWhiteMix(-1), 0);
+  assert.equal(normalizeTopoNeutralWhiteMix(0.5), 0.5);
+  assert.equal(normalizeTopoNeutralWhiteMix(2), 1);
+  assert.deepEqual(
+    createTopoNeutralBackgroundRgb(electricPurple, 0),
+    electricPurple,
+  );
+  assert.deepEqual(
+    createTopoNeutralBackgroundRgb(electricPurple, 0.5),
+    [199, 128, 255],
+  );
+  assert.deepEqual(
+    createTopoNeutralBackgroundRgb(electricPurple, 1),
+    [255, 255, 255],
+  );
 });
 
 test("pair display scale keeps every rendered layer on one fixed center anchor", () => {
@@ -1133,10 +1154,8 @@ test("animated Topo scenarios enter paused at zero and keep Space context-safe",
   assert.match(scenarioHandler, /binaryProgress = 0/u);
   assert.match(scenarioHandler, /scheduleFrameChange\(\)/u);
   assert.doesNotMatch(scenarioHandler, /startPairPlayback/u);
-  assert.match(runtime, /let backgroundPointerActivation = false/u);
-  assert.match(runtime, /backgroundPointerActivation &&[\s\S]*dom\.canvas\.focus/u);
-  assert.match(runtime, /listen\(dom\.backgroundControl, "pointerdown"/u);
-  assert.match(runtime, /listen\(dom\.backgroundControl, "keydown"/u);
+  assert.match(runtime, /installRangeInteraction\(dom\.background\)/u);
+  assert.match(runtime, /listen\(dom\.background, "input", scheduleFrameChange\)/u);
   assert.match(runtime, /binaryProgress = 0;[\s\S]*updateBinaryTransportPresentation\(\)/u);
   assert.equal(topoGlobalTransportOwnsSpace({
     code: "Space",
@@ -1262,7 +1281,7 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     )?.length,
     3,
   );
-  assert.match(runtime, /state\.backgroundMode === "white"[\s\S]*--ui-color-electric-purple/u);
+  assert.match(runtime, /createTopoNeutralBackgroundRgb[\s\S]*neutralWhiteMix/u);
   const markerSource = runtime.slice(
     runtime.indexOf("function drawSourceMarker"),
     runtime.indexOf("function drawSourceOverlay"),
@@ -1315,12 +1334,17 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
   assert.match(
     html,
-    /Explore wake topography for source and superposition views around prescribed path scenarios\./u,
+    /Explore wake topography from a receiver perspective for prescribed what if transmitter path scenarios\./u,
   );
-  assert.match(html, /<span>Contour count<\/span>/u);
+  assert.match(
+    html,
+    /id="topo-scenario-control"[\s\S]*?aria-describedby="topo-scenario-provenance-note"[\s\S]*?These paths are chosen inputs, not predictions of how architrinos naturally move\./u,
+  );
+  assert.match(html, /<span>Speed<\/span>/u);
+  assert.match(html, /<span>Topo count<\/span>/u);
   assert.doesNotMatch(html, /Contour reach|topo-contour-reach/iu);
   assert.doesNotMatch(runtime, /steps outward|genuine levels reaching|per sign reaching/iu);
-  assert.match(html, /<span>Shading spread<\/span>/u);
+  assert.match(html, /<span>Shading<\/span>/u);
   assert.match(
     html,
     /id="topo-shading-spread"[\s\S]*?min="0"[\s\S]*?max="100"[\s\S]*?value="50"/u,
@@ -1329,10 +1353,15 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     html,
     /topo-shading-spread-output|% · broad|% · balanced|% · tight/u,
   );
-  assert.match(html, /<span>Contour strength<\/span>/u);
+  assert.match(html, /<span>Topo fade<\/span>/u);
+  assert.match(html, /<span>Scale<\/span>/u);
+  assert.doesNotMatch(
+    html,
+    /<span>(?:Prescribed speed|Contour count|Shading spread|Contour strength|Display scale · visible extent)<\/span>/u,
+  );
   assert.doesNotMatch(html, /topo-contour-visibility-output|>75%<\/output>/u);
   assert.doesNotMatch(html, /topo-display-scale-output|1\.00× · 1\.00 high/u);
-  assert.match(html, /id="topo-coordinate-mode"[^>]*aria-live="polite"/u);
+  assert.doesNotMatch(html, /Display coordinates: linear Euclidean/u);
   assert.doesNotMatch(
     html,
     /topo-advanced-display|Advanced display choices|topo-view|topo-heatmap-mode|Source-local levels|Equal-radius levels|Enhanced tenfold contrast/u,
@@ -1382,6 +1411,15 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   assert.doesNotMatch(css, /topo-advanced-display|topo-heatmap-mode|topo-view/u);
   assert.match(css, /\.topo-pair-transport/u);
   assert.match(css, /\.topo-timeline/u);
+  assert.match(
+    css,
+    /\.topo-field,[\s\S]*?\.topo-range-field \{[\s\S]*?grid-template-columns: 106px minmax\(0, 1fr\)/u,
+  );
+  assert.match(
+    css,
+    /\.topo-range-field > \.topo-range-row \{[\s\S]*?grid-column: 2/u,
+  );
+  assert.match(css, /#topo-background::-(?:webkit-slider-runnable-track|moz-range-track)[\s\S]*linear-gradient/u);
   assert.match(
     css,
     /\.topo-legend-gradient \{[\s\S]*?border: 0;[\s\S]*?background: linear-gradient/u,
