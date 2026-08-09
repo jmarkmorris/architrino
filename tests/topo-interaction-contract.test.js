@@ -7,6 +7,7 @@ import {
   TOPO_DEFAULT_CONTOUR_COUNT,
   TOPO_DEFAULT_CONTOUR_REACH,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
+  TOPO_ABSOLUTE_OBSERVER,
   TOPO_CONTOUR_WEIGHT_POLICY_ID,
   TOPO_WEAKEST_CONTOUR_WEIGHT,
   TOPO_ZERO_CONTOUR_WEIGHT,
@@ -44,6 +45,7 @@ import {
   normalizeTopoContourReach,
   normalizeTopoFieldColorValue,
   normalizeTopoShadingSpread,
+  normalizeTopoWakeView,
   resolveTopoCanvasPixelSize,
   syntheticTopoCausalDelay,
   syntheticTopoSignedValue,
@@ -65,6 +67,10 @@ import {
   resolveTopoCollinearPairPlaybackSeconds,
   topoCollinearPairWorldXForScreenFraction,
 } from "../src/apps/topo/TopoCollinearPairScenario.js";
+import {
+  createTopoCircularBinaryRawSampler,
+  sampleTopoCircularBinaryWake,
+} from "../src/apps/topo/TopoCircularBinaryScenario.js";
 import {
   getStandaloneAppPathForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
@@ -788,6 +794,16 @@ test("collinear perspectives retain only the admitted partner path-history contr
   assert.ok(initialSampler(0.5, 0.6) > 0);
   assert.ok(initialPositrinoPerspective(0.5, 0.6) < 0);
   closeTo(initialSampler(0.5, 0.6), -initialPositrinoPerspective(0.5, 0.6));
+  const initialAbsoluteObserver = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  closeTo(
+    initialAbsoluteObserver(0.5, 0.6),
+    initialSampler(0.5, 0.6) + initialPositrinoPerspective(0.5, 0.6),
+  );
 
   const approachingSampler = createTopoCollinearPairRawSampler({
     beta: 0.5,
@@ -827,6 +843,44 @@ test("collinear perspectives retain only the admitted partner path-history contr
     sourceMaskRadius: 0,
   });
   assert.equal(endpointSampler(0.5, 0.8), Number.POSITIVE_INFINITY);
+});
+
+test("absolute observer sums both circular-binary wake contributions", () => {
+  assert.equal(normalizeTopoWakeView("absolute"), TOPO_ABSOLUTE_OBSERVER);
+  const point = { x: 0.5, y: 0.8 };
+  const electrinoView = sampleTopoCircularBinaryWake({
+    point,
+    beta: 0.5,
+    sourceMaskRadius: 0,
+    observerId: "electrino",
+  });
+  const positrinoView = sampleTopoCircularBinaryWake({
+    point,
+    beta: 0.5,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  const absoluteView = sampleTopoCircularBinaryWake({
+    point,
+    beta: 0.5,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  assert.equal(electrinoView.state, "ordinary");
+  assert.equal(positrinoView.state, "ordinary");
+  assert.equal(absoluteView.state, "ordinary");
+  closeTo(
+    absoluteView.rawValue,
+    electrinoView.rawValue + positrinoView.rawValue,
+  );
+  closeTo(
+    createTopoCircularBinaryRawSampler({
+      beta: 0.5,
+      sourceMaskRadius: 0,
+      superposition: true,
+    })(point.x, point.y),
+    absoluteView.rawValue,
+  );
 });
 
 test("private provider states remain distinct from visible neutral color", () => {
@@ -1314,7 +1368,7 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     /const contourKey = matchingFrame[\s\S]*matchingFrame\.key \+ ":count=" \+ state\.contourCount[\s\S]*: "pending"/u,
   );
   assert.match(runtime, /rawFrame: state\.binary[\s\S]*createLiveSampledContourFrame/u);
-  assert.match(runtime, /contourScalarAuthority = "partner-raw-wake-field"/u);
+  assert.match(runtime, /contourScalarAuthority = state\.superpositionView[\s\S]*signed-two-source-superposition-field[\s\S]*partner-raw-wake-field/u);
   assert.match(runtime, /masked-and-unavailable-cells-excluded/u);
   assert.match(runtime, /sourceContribution/u);
   assert.match(runtime, /finiteHistory/u);
@@ -1367,10 +1421,17 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     /topo-advanced-display|Advanced display choices|topo-view|topo-heatmap-mode|Source-local levels|Equal-radius levels|Enhanced tenfold contrast/u,
   );
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
-  assert.match(html, /id="topo-partner-perspective-control"[\s\S]*<legend>Perspective<\/legend>/u);
+  assert.match(html, /id="topo-partner-perspective-control"[\s\S]*<legend>View<\/legend>/u);
   assert.match(html, /name="topo-partner-perspective" value="electrino" checked/u);
   assert.match(html, /name="topo-partner-perspective" value="positrino"/u);
-  assert.match(runtime, /dom\.partnerPerspectiveControl\.hidden = !partnerPerspective/u);
+  assert.match(html, /name="topo-partner-perspective" value="absolute"[\s\S]*<span>Absolute Observer<\/span>/u);
+  assert.match(runtime, /dom\.partnerPerspectiveControl\.hidden = !receiverViewAvailable/u);
+  assert.match(runtime, /signed-two-source-superposition/u);
+  assert.match(runtime, /superposition: state\.superpositionView/u);
+  assert.match(
+    runtime,
+    /state\.pairMode && state\.superpositionView && state\.beta === 1/u,
+  );
   assert.match(runtime, /dom\.partnerPerspectiveInputs\.forEach/u);
   assert.match(html, /id="topo-pair-play"/u);
   assert.match(

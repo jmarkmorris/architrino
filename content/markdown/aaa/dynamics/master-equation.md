@@ -1246,17 +1246,223 @@ Because $r = c_f(T_r-T_t)$, $r = 0$ implies $\Delta = T_r-T_t = 0$. This case is
 
 This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a transmitter contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transmitter-side transversality and transmitter-side control, active-root count, and the required stability/action/event accounts. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
 
-#### Superposition Principle
+#### Superposition and Local Wake Geometry
 
-The Master EOM is **linear in transmitter contributions** on a declared branch chart:
+**Postulated vector superposition.** On one declared regular branch chart at a
+receiver event, let $\mathcal B$ be the finite set of admitted causal-root
+rows. The Master EOM states that the receiver-local acceleration is the linear
+sum
 
 $$
-\mathbf A_{\text{total}}(T) = \sum_j \mathbf A_{j}(T)
+\mathbf A_{\mathrm{total}}(T;\mathbf X_r)
+=
+\sum_{b\in\mathcal B}\mathbf A_b(T;\mathbf X_r).
 $$
 
-The causal-wake distributions from distinct transmitters superpose without mutual interference, and the receiver sums the branch accelerations that actually intersect it. Effective potentials reconstructed from those wakes also superpose in the corresponding linear diagnostic or continuum limit, but the substrate law remains the receiver-local branch sum.
+Plainly: each admitted wake intersection contributes one acceleration vector,
+and the receiver adds those vectors. This vector sum is the postulated
+substrate rule. It does not require a scalar wake landscape.
 
-**Consequence:** The problem of $N$ interacting architrinos reduces to solving $N$ coupled delay differential equations (DDEs), one per architrino, with each depending on the retained history of all transmitters and on the certified active causal-root records.
+**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix
+the retained histories, root selections, regularization, and boundary
+convention of that chart. If every row $b\in\mathcal B$ has a differentiable
+receiver-local scalar representative $\Phi_b$ on the same chart satisfying
+
+$$
+\mathbf A_b
+=
+-\nabla_{\mathbf X_r}\Phi_b,
+$$
+
+Plainly: the condition says that moving the receiver within this one regular
+chart changes a scalar $\Phi_b$ in exactly the way needed to reproduce row
+$b$'s acceleration. The theorem assumes that per-row identity; it does not
+derive the identity from vector superposition.
+
+Define the finite superposed scalar by
+
+$$
+\Phi_{\mathcal B}
+=
+\sum_{b\in\mathcal B}\Phi_b.
+$$
+
+Plainly: $\Phi_{\mathcal B}$ is only the sum of the valid row scalars on the
+shared chart. No scalar from a different retained history, root convention,
+regularization, or boundary prescription can be inserted into this sum.
+
+Linearity of the receiver gradient then gives
+
+$$
+\mathbf A_{\mathrm{total}}
+=
+\sum_{b\in\mathcal B}\mathbf A_b
+=
+-\nabla_{\mathbf X_r}\Phi_{\mathcal B}.
+$$
+
+Plainly: once every admitted acceleration row is already the negative gradient
+of its own valid scalar, adding the scalars reproduces the same complete vector
+ledger. This is a **conditional derivation** for a finite regular chart, not a
+proof that the required row scalars or one global scalar exist.
+
+Where $\nabla_{\mathbf X_r}\Phi_{\mathcal B}\ne\mathbf0$, the local level-set
+normal, acceleration direction, and acceleration magnitude obey
+
+$$
+\widehat{\mathbf n}_{\Phi}
+=
+\frac{\nabla_{\mathbf X_r}\Phi_{\mathcal B}}
+{\|\nabla_{\mathbf X_r}\Phi_{\mathcal B}\|},
+\qquad
+\frac{\mathbf A_{\mathrm{total}}}
+{\|\mathbf A_{\mathrm{total}}\|}
+=
+-\widehat{\mathbf n}_{\Phi},
+\qquad
+\|\mathbf A_{\mathrm{total}}\|
+=
+\|\nabla_{\mathbf X_r}\Phi_{\mathcal B}\|.
+$$
+
+Plainly: the normalized gradient gives only the local normal direction, the
+minus sign selects the acceleration direction, and the unnormalized gradient
+retains the acceleration magnitude. Direction alone is not the complete
+acceleration vector.
+
+At a cancellation point, and under a small receiver displacement away from a
+regular point, the same representation gives
+
+$$
+\nabla_{\mathbf X_r}\Phi_{\mathcal B}=\mathbf0
+\Longrightarrow
+\mathbf A_{\mathrm{total}}=\mathbf0,
+\qquad
+\nabla_{\mathbf X_r}\mathbf A_{\mathrm{total}}
+=
+-\nabla_{\mathbf X_r}^{2}\Phi_{\mathcal B}.
+$$
+
+Plainly: when the row accelerations cancel, the gradient vanishes, so there is
+no preferred level-set normal and the net acceleration is zero. The Hessian,
+which is the matrix of second scalar derivatives, and related curvature data
+describe how the acceleration changes after displacement. They are not extra
+instantaneous acceleration contributions.
+
+Finite induction over added architrinos is an intuitive corollary, not the
+proof: after the retained histories and regular branch chart are fixed, one may
+start with one admitted row and add the rows associated with each further
+label. This reasoning does not transfer directly to self-consistently evolved
+$N$-architrino solutions, because adding an architrino may change every
+previous trajectory, causal root, transmitter-side weight, and branch
+identity.
+
+Plainly: adding another fixed ledger entry preserves a finite sum. Adding a
+new moving architrino to the dynamical system can rebuild the ledger itself, so
+the old induction hypotheses must be proved again on the new histories.
+
+The characteristic-tail construction in the receiver-gradient discussion
+supplies an exact receiver-gradient identity for its declared regularized
+kernel, retained-history conditions, and regular branch chart. It is therefore
+an example of the kind of per-row identity that the conditional theorem can
+use only where its normalization, polarity, root selection, regularization,
+history depth, and boundary convention match the ledger row. It does not by
+itself establish an exact action, a conservation account, an independently
+evolving causal-wake state, a globally defined scalar, or a singular
+self-inclusive continuation.
+
+Plainly: the characteristic-tail calculation proves one controlled local
+gradient equality. It does not turn that local equality into a complete
+history law, boundary law, or universe-wide scalar.
+
+A raw $1/r^2$ wake-intensity scalar is not the required representative: its
+receiver gradient has inverse-cube radial scaling rather than the canonical
+inverse-square acceleration scaling. A bare $1/r$ scalar is also not a
+universal delayed-wake solution: root-constrained differentiation carries a
+signed transmitter factor, and the direct scalar action route leaves the
+derivative-of-constraint residual derived later in this chapter. A displayed
+wake-intensity scalar or display-only color transfer is therefore not a
+physical potential. None of these scalar constructions licenses an additional
+slope, curvature, or Hessian response in the Master EOM.
+
+Plainly: a picture of wake intensity can be useful without being the scalar
+whose gradient equals the acceleration ledger. Differentiating the wrong
+scalar gives the wrong acceleration, and differentiating any display a second
+time would add a response that the Master Equation does not contain.
+
+The finite theorem has no implication by itself for action, energy, momentum,
+angular momentum, conservation, stability, retention, or physical
+realization. Each such claim requires its own Architrino-native derivation and
+boundary account.
+
+Plainly: rewriting the same finite acceleration sum as a scalar gradient does
+not create new dynamics or new conserved quantities.
+
+**Open theorem target: global extension.** Define the complete acceleration
+one-form on a regular receiver domain by
+
+$$
+\omega_{\mathcal B}
+\equiv
+-\mathbf A_{\mathrm{total}}\cdot d\mathbf X_r.
+$$
+
+Plainly: $\omega_{\mathcal B}$ records the component of the negative total
+acceleration along each possible receiver displacement. If a scalar exists,
+this one-form must equal the scalar differential $d\Phi_{\mathcal B}$.
+
+A global extension must prove local closedness
+$d\omega_{\mathcal B}=0$ on every certified regular receiver domain, check
+closed-loop integrals and the agreement of scalar charts on overlaps, and keep
+sources, folds, coincidences, and self-diagonal events as quarantined
+boundaries unless an accepted prescription covers them. For a countable or
+continuum Noether-sea limit, it must also justify
+
+$$
+\nabla_{\mathbf X_r}
+\int \Phi_b\,d\mu(b)
+=
+\int \nabla_{\mathbf X_r}\Phi_b\,d\mu(b)
+$$
+
+using declared lower-distance and Jacobian bounds together with an integrable
+summability bound on the source-history measure $\mu$.
+
+Plainly: local scalar pieces become one global scalar only if they have no
+circulation, match wherever their charts overlap, and never cross an untreated
+singularity. An infinite sea adds another burden: differentiating the combined
+history must be provably interchangeable with summing or integrating its
+individual rows.
+
+The scalar representation is falsified on its claimed domain by any one of the
+following operator-checkable results:
+
+- nonzero curl of the complete acceleration on a certified regular chart;
+- a nonzero integral of the acceleration around an admissible closed receiver
+  loop;
+- failure of local scalar representatives to agree, up to their allowed chart
+  constants, on overlaps;
+- a certified nonzero residual
+  $\mathbf A_{\mathrm{ledger}}+
+  \nabla_{\mathbf X_r}\Phi_{\mathcal B}$ when the scalar gradient and unchanged
+  causal-root ledger are computed independently; or
+- failure of the declared distance, Jacobian, or summability bound needed for
+  the countable or continuum source limit.
+
+Plainly: any one of these checks shows that the proposed scalar description
+does not reproduce or extend the acceleration ledger on the stated domain. It
+does not overturn the postulated vector superposition rule, which remains the
+substrate law even when a scalar representation fails.
+
+**Consequence:** The problem of $N$ interacting architrinos reduces to solving
+$N$ coupled delay differential equations (DDEs), one per architrino, with each
+depending on the retained history of all transmitters and on the certified
+active causal-root records.
+
+Plainly: each architrino's next acceleration depends on the stored past paths
+that supply its currently admitted wake intersections. The equations are
+coupled because changing one path can change the later root ledger seen by the
+others.
 
 ---
 

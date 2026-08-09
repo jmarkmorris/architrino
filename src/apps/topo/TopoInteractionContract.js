@@ -29,6 +29,7 @@ export const TOPO_PARTNER_WAKE_OBSERVER = Object.freeze({
   ELECTRINO: "electrino",
   POSITRINO: "positrino",
 });
+export const TOPO_ABSOLUTE_OBSERVER = "absolute";
 export const TOPO_DEFAULT_PARTNER_WAKE_OBSERVER =
   TOPO_PARTNER_WAKE_OBSERVER.ELECTRINO;
 export const TOPO_FIRST_CONTOUR_BUDGET_MS = 34;
@@ -60,6 +61,15 @@ export function normalizeTopoPartnerWakeObserver(
     throw new RangeError("observerId must be electrino or positrino.");
   }
   return value;
+}
+
+export function normalizeTopoWakeView(
+  value = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+) {
+  if (value === TOPO_ABSOLUTE_OBSERVER) {
+    return value;
+  }
+  return normalizeTopoPartnerWakeObserver(value);
 }
 
 export function topoPartnerWakeSourceSign(observerId) {

@@ -12,117 +12,20 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ### Local Wake Geometry Versus Superposed-Landscape Shape (2026-08-08)
 
-Claim level: **derived distinction plus unselected constitutive proposal**. The
-canonical regular Master Equation already consumes the local geometry of each
-arriving causal surface: its outward normal fixes the acceleration direction,
-its inverse-square surface dilution fixes the range dependence, and the local
-normal spacing of neighboring emission-labeled surfaces supplies the
-transmitter-side factor $c_f/|D_t|$. It then sums those per-root vector
-contributions. It does not additionally evaluate the gradient, Hessian,
-curvature, or other neighborhood shape of a separately reconstructed total
-wake-intensity landscape.
+→ promoted to
+[Master Equation: Superposition and Local Wake Geometry](../../../content/markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry)
+(2026-08-08), grade **conditional derivation** for finite scalar
+superposition on one regular retained-history branch chart. The postulated
+vector superposition law remains distinct from that conditional scalar
+equivalence.
 
-Plainly: local shape is already present wake by wake. The present law does not
-let an architrino inspect the surrounding Topo surface and respond a second
-time to the shape of the combined hills and valleys.
-
-A dependence on the local derivatives of the superposed scalar landscape would
-therefore be a new constitutive law, not an omitted step in the existing EOM.
-It should be considered only after defining one receiver-local scalar whose
-gradient reproduces the canonical complete vector ledger on regular charts.
-Otherwise a gradient response risks double-counting geometry already contained
-in the surface normals, inverse-square dilution, and $D_t$ weights. A genuine
-residual after that equality test would identify the information added by the
-new law.
-
-- **Assumptions and proof burden:** Fix one retained regular branch chart and
-  one scalar reconstruction with explicit polarity, root, and normalization
-  provenance. Prove or refute
-  $-\nabla_{\mathbf X_r}\Phi_{\mathrm{wake}}=\mathbf A_{\mathrm{ledger}}$
-  without importing an observer-level potential as a substrate premise. Keep
-  folds, coincidences, and self-diagonal events quarantined.
-- **Promotion target:** The regular-domain result belongs in the Master Equation
-  receiver-gradient discussion; any display consequence belongs in the Topo
-  observable contract and must keep scalar topography distinct from vector
-  acceleration.
-- **Next artifact:** Construct the equality-or-residual test first for one
-  static opposite-polarity pair and one moving single-root binary, using an
-  independently differentiated scalar reconstruction and the unchanged
-  canonical per-root acceleration ledger.
-
-**Superposition refinement (2026-08-08).** On one common regular retained-
-history chart, suppose every admitted wake row has a differentiable scalar
-representative satisfying
-$-\nabla_{\mathbf X_r}\Phi_{j,\ell}=\mathbf A_{j,\ell}$. Linearity then gives
-
-$$
--\nabla_{\mathbf X_r}\left(\sum_{j,\ell}\Phi_{j,\ell}\right)
-=
-\sum_{j,\ell}\mathbf A_{j,\ell}
-=
-\mathbf A_{\mathrm{total}}.
-$$
-
-Under those hypotheses, using the local shape of the superposition is not a
-new response law; it is an equivalent representation of the already linear
-causal-root ledger. The normal of a level surface supplies only direction: its
-unnormalized gradient is required to retain acceleration magnitude. At a
-stationary point the gradient and canonical total acceleration both vanish if
-the representation is exact.
-
-The proof burden is therefore concentrated before superposition: construct a
-valid per-row scalar on the delayed moving-root chart, including implicit root
-motion and transmitter-side weight, then keep all rows on the same branch and
-boundary convention. A raw $1/r^2$ intensity map does not meet this burden,
-and intersecting delta-supported wakes do not form one smooth surface without
-a declared finite-width or distributional treatment. Failure of the per-row
-identity, a nonzero spatial curl of the complete regular acceleration field,
-or inconsistent branch derivatives would refute a scalar-superposition
-representation while leaving vector superposition intact.
-
-Promotion target and next artifact remain the receiver-gradient equality-or-
-residual test, now followed by an explicit linearity check for a two-source
-cancellation point and a non-collinear three-source chart.
-
-**Proof architecture refinement (2026-08-08).** Finite induction over added
-architrinos is a valid explanatory proof only after fixing the retained
-histories and one regular branch chart: the base case is one admitted wake
-row, and the step adds all partner and self rows owned by the next label.
-Induction over self-consistently evolved $N$-body solutions is not immediate,
-because adding one architrino changes the old trajectories and may change every
-old root, weight, and branch identity.
-
-The cleaner finite proof treats the receiver-gradient map as a linear operator
-on the complete branch ledger. With branch index $b=(j,\ell)$ and
-$\alpha_b=-d\Phi_b$, one has
-
-$$
-\alpha_{\mathcal B}
-=
-\sum_{b\in\mathcal B}\alpha_b
-=
--d\left(\sum_{b\in\mathcal B}\Phi_b\right)
-$$
-
-for every finite regular branch set $\mathcal B$. This proves all finite
-architrino counts at once. A complementary topological proof asks whether the
-complete acceleration one-form is closed. On a contractible regular receiver
-domain, closedness implies a local scalar representative; on domains punctured
-by sources, folds, or quarantined singular strata, overlap constants and loop
-integrals become the global obstruction. For a continuum or countable Noether-
-sea limit, replace the finite sum by a source-history measure and justify
-interchanging receiver differentiation with integration using a uniform
-distance, Jacobian, and summability bound.
-
-- **Falsifiers:** nonzero curl on a certified regular chart; nonzero loop
-  integral around an admissible closed receiver path; failure of scalar charts
-  to agree on overlaps; or failure of dominated convergence in the infinite-
-  source limit.
-- **Promotion target:** a finite-ledger superposition lemma followed separately
-  by local exactness, chart-gluing, and infinite-source extension theorems.
-- **Next artifact:** state and prove the finite-ledger lemma independently of
-  any evolved trajectory, then test closedness on the moving single-root
-  benchmark before attempting induction or a Noether-sea limit.
+Residual open theorem targets: construct and independently verify a valid
+per-row delayed scalar for the moving-single-root chart; select and prove any
+singular-chart extension across sources, folds, coincidences, or the self
+diagonal; prove scalar-chart agreement on overlaps; and justify the countable
+or continuum source limit under explicit distance, Jacobian, and summability
+bounds. The next artifact is the independently checked moving-single-root
+scalar-gradient-versus-ledger identity.
 
 ### Concave/Inside Versus Convex/Outside Wake-Side Response Audit (2026-07-29)
 

@@ -204,6 +204,7 @@ export function createTopoCollinearPairRawSampler({
   horizontalWorldSpan = 1,
   sourceMaskRadius = 0,
   observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+  superposition = false,
 } = {}) {
   const frame = createTopoCollinearPairFrame({
     beta,
@@ -214,30 +215,35 @@ export function createTopoCollinearPairRawSampler({
   if (maskRadius < 0) {
     throw new RangeError("sourceMaskRadius must be nonnegative.");
   }
-  const normalizedObserverId = normalizeTopoPartnerWakeObserver(observerId);
-  const partnerSourceSign = topoPartnerWakeSourceSign(normalizedObserverId);
-  const partner = frame.sources.find((source) =>
-    source.polaritySign === partnerSourceSign);
-  if (!partner) {
-    throw new Error("The selected observer has no partner source.");
+  const sources = superposition
+    ? frame.sources
+    : [frame.sources.find((source) =>
+      source.polaritySign === topoPartnerWakeSourceSign(
+        normalizeTopoPartnerWakeObserver(observerId),
+      ))];
+  if (sources.some((source) => !source)) {
+    throw new Error("The selected view has no source ledger.");
   }
   return (candidateX, candidateY) => {
     const x = requireFiniteNumber(candidateX, "x");
     const y = requireFiniteNumber(candidateY, "y");
-    if (
-      Math.hypot(x - partner.position.x, y - partner.position.y) <= maskRadius
-    ) {
+    if (sources.some((source) =>
+      Math.hypot(x - source.position.x, y - source.position.y) <= maskRadius)) {
       return Number.NaN;
     }
-    const causalDelay = solveTopoCollinearPairCausalDelay(x, y, partner);
-    if (
-      causalDelay == null ||
-      causalDelay <= 0 ||
-      frame.observationTime - causalDelay < partner.historyStartTime - 1e-12
-    ) {
-      return Number.POSITIVE_INFINITY;
+    let rawValue = 0;
+    for (const source of sources) {
+      const causalDelay = solveTopoCollinearPairCausalDelay(x, y, source);
+      if (
+        causalDelay == null ||
+        causalDelay <= 0 ||
+        frame.observationTime - causalDelay < source.historyStartTime - 1e-12
+      ) {
+        return Number.POSITIVE_INFINITY;
+      }
+      rawValue += source.polaritySign *
+        TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
     }
-    return partner.polaritySign *
-      TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
+    return rawValue;
   };
 }

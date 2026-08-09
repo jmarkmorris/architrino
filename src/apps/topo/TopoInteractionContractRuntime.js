@@ -11,6 +11,7 @@ import {
   TOPO_DISPLAY_MAPPING_ID,
   TOPO_INVERSE_SQUARE_SCALE,
   TOPO_REFERENCE_WAKE_MAGNITUDE,
+  TOPO_ABSOLUTE_OBSERVER,
   TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
   TOPO_PARTNER_WAKE_OBSERVER,
   TOPO_SOURCE_POSITION,
@@ -24,6 +25,7 @@ import {
   normalizeTopoDisplayScale,
   normalizeTopoFieldColorValue,
   normalizeTopoPartnerWakeObserver,
+  normalizeTopoWakeView,
   resolveTopoCanvasPixelSize,
   topoContourRangeDecades,
   topoCanvasPixelForWorldPoint,
@@ -153,12 +155,16 @@ function topoContourLevelBounds(levels = []) {
   });
 }
 
-function createTopoPartnerWakeContourLevels(state) {
-  const family = state.partnerWakeSourceSign < 0 ? "negative" : "positive";
-  return createTopoSignedContourLevels({
+function createTopoWakeContourLevels(state) {
+  const levels = createTopoSignedContourLevels({
     contourCount: state.contourCount,
     contourReach: TOPO_DEFAULT_CONTOUR_REACH,
-  }).filter((level) => level.family === family);
+  });
+  if (state.superpositionView) {
+    return levels;
+  }
+  const family = state.partnerWakeSourceSign < 0 ? "negative" : "positive";
+  return levels.filter((level) => level.family === family);
 }
 
 function topoContourStyle(level, bounds, visibility) {
@@ -624,6 +630,7 @@ export function createTopoPairSourceContourRefinement({
   levels = [],
   polaritySign,
   observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+  superposition = false,
 } = {}) {
   const canvasWidth = Math.max(2, Number(width));
   const canvasHeight = Math.max(2, Number(height));
@@ -688,6 +695,7 @@ export function createTopoPairSourceContourRefinement({
       pixelRatio: 1,
     }),
     observerId,
+    superposition,
   });
   for (let sampleY = 0; sampleY < gridSize; sampleY += 1) {
     for (let sampleX = 0; sampleX < gridSize; sampleX += 1) {
@@ -1366,6 +1374,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniform float u_electrino_x;
       uniform float u_positrino_x;
       uniform float u_partner_source_sign;
+      uniform float u_superposition_view;
       uniform float u_source_mask_radius;
       uniform float u_polarity_sign;
       uniform float u_shading_reach_scale;
@@ -1419,16 +1428,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
         );
         vec2 worldPoint = u_viewport_center +
           (pixel - anchorPixel) / commonScale;
+        bool electrinoMasked = distance(
+          worldPoint,
+          vec2(u_electrino_x, 0.5)
+        ) <= u_source_mask_radius;
+        bool positrinoMasked = distance(
+          worldPoint,
+          vec2(u_positrino_x, 0.5)
+        ) <= u_source_mask_radius;
         bool sourceMasked = u_pair_mode > 0.5
-          ? distance(
-              worldPoint,
-              vec2(
-                u_partner_source_sign < 0.0
-                  ? u_electrino_x
-                  : u_positrino_x,
-                0.5
-              )
-            ) <= u_source_mask_radius
+          ? (u_superposition_view > 0.5
+            ? electrinoMasked || positrinoMasked
+            : (u_partner_source_sign < 0.0
+              ? electrinoMasked
+              : positrinoMasked))
           : distance(worldPoint, vec2(2.0 / 3.0, 0.5)) <= u_source_mask_radius;
         if (sourceMasked) {
           gl_FragColor = vec4(u_zero, 1.0);
@@ -1436,7 +1449,23 @@ export function mountTopoInteractionContractPreview(options = {}) {
         }
         float rawValue;
         if (u_pair_mode > 0.5) {
-          rawValue = u_partner_source_sign < 0.0
+          rawValue = u_superposition_view > 0.5
+            ? sourceContribution(
+                worldPoint,
+                u_electrino_x,
+                u_beta,
+                -1.0,
+                u_pair_time,
+                0.0
+              ) + sourceContribution(
+                worldPoint,
+                u_positrino_x,
+                -u_beta,
+                1.0,
+                u_pair_time,
+                0.0
+              )
+            : u_partner_source_sign < 0.0
             ? sourceContribution(
                 worldPoint,
                 u_electrino_x,
@@ -1502,6 +1531,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "u_electrino_x",
         "u_positrino_x",
         "u_partner_source_sign",
+        "u_superposition_view",
         "u_source_mask_radius",
         "u_polarity_sign",
         "u_shading_reach_scale",
@@ -1532,6 +1562,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       uniform float u_radius;
       uniform float u_direction_sign;
       uniform float u_partner_source_sign;
+      uniform float u_superposition_view;
       uniform float u_source_mask_radius;
       uniform float u_shading_reach_scale;
       uniform vec3 u_negative;
@@ -1584,13 +1615,25 @@ export function mountTopoInteractionContractPreview(options = {}) {
           : -1.0;
       }
 
-      float rawAt(vec2 point, float omega) {
-        float sourcePhase = u_partner_source_sign < 0.0
+      float sourceRawAt(vec2 point, float omega, float sourceSign) {
+        float sourcePhase = sourceSign < 0.0
           ? 3.141592653589793
           : 0.0;
         float delay = solveDelay(point, sourcePhase, omega);
         if (delay <= 0.0) return 1.0e30;
-        return u_partner_source_sign * u_kappa / (delay * delay);
+        return sourceSign * u_kappa / (delay * delay);
+      }
+
+      float rawAt(vec2 point, float omega) {
+        if (u_superposition_view > 0.5) {
+          float negativeRaw = sourceRawAt(point, omega, -1.0);
+          float positiveRaw = sourceRawAt(point, omega, 1.0);
+          if (abs(negativeRaw) >= 1.0e20 || abs(positiveRaw) >= 1.0e20) {
+            return 1.0e30;
+          }
+          return negativeRaw + positiveRaw;
+        }
+        return sourceRawAt(point, omega, u_partner_source_sign);
       }
 
       void main() {
@@ -1602,27 +1645,42 @@ export function mountTopoInteractionContractPreview(options = {}) {
           0.5 + (pixel.y - 0.5 * max(1.0, u_size.y - 1.0)) / worldScale
         );
         float omega = u_direction_sign * u_beta / u_radius;
-        float sourcePhase = u_partner_source_sign < 0.0
-          ? 3.141592653589793
-          : 0.0;
-        float delay = solveDelay(point, sourcePhase, omega);
-        if (delay == 0.0) {
+        float negativeDelay = solveDelay(
+          point,
+          3.141592653589793,
+          omega
+        );
+        float positiveDelay = solveDelay(point, 0.0, omega);
+        float selectedDelay = u_partner_source_sign < 0.0
+          ? negativeDelay
+          : positiveDelay;
+        bool sourceMasked = u_superposition_view > 0.5
+          ? negativeDelay == 0.0 || positiveDelay == 0.0
+          : selectedDelay == 0.0;
+        float maskedSourceSign = negativeDelay == 0.0 ? -1.0 : 1.0;
+        if (sourceMasked) {
           if (u_scalar_pass > 0.5) {
-            gl_FragColor = vec4(0.0, 0.0, u_partner_source_sign, 1.0);
+            gl_FragColor = vec4(0.0, 0.0, maskedSourceSign, 1.0);
             return;
           }
           gl_FragColor = vec4(
-            u_partner_source_sign < 0.0 ? u_negative : u_positive,
+            maskedSourceSign < 0.0 ? u_negative : u_positive,
             1.0
           );
           return;
         }
-        if (delay < 0.0) {
+        bool unavailable = u_superposition_view > 0.5
+          ? negativeDelay < 0.0 || positiveDelay < 0.0
+          : selectedDelay < 0.0;
+        if (unavailable) {
           if (u_scalar_pass > 0.5) { gl_FragColor = vec4(0.0, 0.0, 2.0, 1.0); return; }
           gl_FragColor = vec4(u_zero, 1.0);
           return;
         }
-        float rawValue = u_partner_source_sign * u_kappa / (delay * delay);
+        float rawValue = u_superposition_view > 0.5
+          ? -u_kappa / (negativeDelay * negativeDelay) +
+            u_kappa / (positiveDelay * positiveDelay)
+          : u_partner_source_sign * u_kappa / (selectedDelay * selectedDelay);
         if (u_scalar_pass > 0.5) {
           gl_FragColor = vec4(rawValue, 1.0, 0.0, 1.0);
           return;
@@ -1709,6 +1767,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         "u_radius",
         "u_direction_sign",
         "u_partner_source_sign",
+        "u_superposition_view",
         "u_source_mask_radius",
         "u_shading_reach_scale",
         "u_negative",
@@ -2024,11 +2083,17 @@ export function mountTopoInteractionContractPreview(options = {}) {
         Number(dom.background.value) / 100,
       ),
     };
-    const observerId = normalizeTopoPartnerWakeObserver(
+    const viewId = normalizeTopoWakeView(
       dom.partnerPerspectiveInputs.find((input) => input.checked)?.value ??
         TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
     );
-    const partnerWakeSourceSign = topoPartnerWakeSourceSign(observerId);
+    const superpositionView = viewId === TOPO_ABSOLUTE_OBSERVER;
+    const observerId = superpositionView
+      ? null
+      : normalizeTopoPartnerWakeObserver(viewId);
+    const partnerWakeSourceSign = superpositionView
+      ? null
+      : topoPartnerWakeSourceSign(observerId);
     if (scenarioId === TOPO_COLLINEAR_PAIR_SCENARIO_ID) {
       return Object.freeze({
         ...baseState,
@@ -2036,6 +2101,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         pairMode: true,
         pairPhase: pairPlaybackPhase,
         polaritySign: 1,
+        viewId,
+        superpositionView,
         observerId,
         partnerWakeSourceSign,
       });
@@ -2060,6 +2127,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         direction,
         playback,
         polaritySign: 0,
+        viewId,
+        superpositionView,
         observerId,
         partnerWakeSourceSign,
         showOrbitGuide: dom.binaryOrbitGuide.checked,
@@ -2197,11 +2266,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const state = getState();
     const pairMode = state.pairMode === true;
     const binaryMode = state.binary === true;
-    const partnerPerspective = pairMode || binaryMode;
-    const observerId = state.observerId ?? TOPO_DEFAULT_PARTNER_WAKE_OBSERVER;
-    const partnerSourceId = topoPartnerWakeSourceId(observerId);
-    const observerName = topoSourceName(observerId);
-    const partnerSourceName = topoSourceName(partnerSourceId);
+    const receiverViewAvailable = pairMode || binaryMode;
+    const superpositionView = state.superpositionView === true;
+    const observerId = state.observerId;
+    const partnerSourceId = superpositionView
+      ? null
+      : topoPartnerWakeSourceId(observerId);
+    const observerName = superpositionView ? null : topoSourceName(observerId);
+    const partnerSourceName = superpositionView
+      ? null
+      : topoSourceName(partnerSourceId);
     const animatedMinimumBeta = pairMode || binaryMode
       ? TOPO_ANIMATED_MIN_BETA
       : 0;
@@ -2210,11 +2284,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.beta.setAttribute("aria-valuemax", "1.00");
     dom.app.dataset.scenarioId = state.scenarioId;
     dom.app.dataset.scenario = state.scenarioId;
-    dom.app.dataset.partnerWakeObserver = partnerPerspective ? observerId : "";
-    dom.app.dataset.partnerWakeSource = partnerPerspective ? partnerSourceId : "";
-    dom.app.dataset.wakeAggregation = partnerPerspective
-      ? "partner-only-self-excluded"
+    dom.app.dataset.wakeView = receiverViewAvailable
+      ? state.viewId
       : "single-source";
+    dom.app.dataset.partnerWakeObserver = receiverViewAvailable && !superpositionView
+      ? observerId
+      : "";
+    dom.app.dataset.partnerWakeSource = receiverViewAvailable && !superpositionView
+      ? partnerSourceId
+      : "";
+    dom.app.dataset.wakeAggregation = superpositionView
+      ? "signed-two-source-superposition"
+      : receiverViewAvailable
+        ? "partner-only-self-excluded"
+        : "single-source";
     dom.app.dataset.neutralBackgroundWhiteMix =
       state.neutralWhiteMix.toFixed(2);
     const neutralWhitePercentage = Math.round(state.neutralWhiteMix * 100);
@@ -2264,15 +2347,19 @@ export function mountTopoInteractionContractPreview(options = {}) {
             : ", sub-field-speed preview"),
     );
     dom.app.dataset.coordinateMode = "linear-absolute-space";
-    dom.partnerPerspectiveControl.hidden = !partnerPerspective;
-    dom.partnerPerspectiveControl.inert = !partnerPerspective;
-    dom.partnerPerspectiveNote.textContent = observerName + " sees the " +
-      partnerSourceId + " wake only; " + observerId + " self-wake is excluded.";
+    dom.partnerPerspectiveControl.hidden = !receiverViewAvailable;
+    dom.partnerPerspectiveControl.inert = !receiverViewAvailable;
+    dom.partnerPerspectiveNote.textContent = superpositionView
+      ? "Absolute observer sees the signed superposition of both wakes."
+      : observerName + " sees the " + partnerSourceId + " wake only; " +
+        observerId + " self-wake is excluded.";
     dom.binaryDirectionControl.hidden = !binaryMode;
     dom.binaryDirectionControl.inert = !binaryMode;
-    const countText = partnerPerspective
-      ? state.contourCount + " partner-wake levels"
-      : state.contourCount + " levels";
+    const countText = superpositionView
+      ? state.contourCount + " signed-superposition levels per polarity"
+      : receiverViewAvailable
+        ? state.contourCount + " partner-wake levels"
+        : state.contourCount + " levels";
     dom.contourCount.disabled = false;
     dom.contourCount.setAttribute(
       "aria-valuetext",
@@ -2338,8 +2425,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.legendTitle.textContent = "Shading scale";
     dom.canvas.setAttribute(
       "aria-label",
-      partnerPerspective
-        ? observerName + " perspective: " + partnerSourceName.toLowerCase() +
+      superpositionView
+        ? "Absolute observer view: signed superposition of both wakes on a linear Euclidean plane, with genuine equal-wake contours" +
+          (binaryMode && state.showOrbitGuide
+            ? " and a prescribed-orbit guide"
+            : "")
+        : receiverViewAvailable
+        ? observerName + " view: " + partnerSourceName.toLowerCase() +
           " wake only on a linear Euclidean plane; the selected " +
           observerId + " self-wake is excluded, with genuine equal-wake contours" +
           (binaryMode && state.showOrbitGuide
@@ -2405,17 +2497,23 @@ export function mountTopoInteractionContractPreview(options = {}) {
       radius: state.orbitalRadius,
       direction: state.direction,
       observerId: state.observerId,
+      superposition: state.superpositionView,
     });
   }
 
   function updateLegend() {
     const state = getState();
     const styles = readStyles(state);
-    const partnerPerspective = state.pairMode || state.binary;
-    const observerId = state.observerId ?? TOPO_DEFAULT_PARTNER_WAKE_OBSERVER;
-    const partnerSourceId = topoPartnerWakeSourceId(observerId);
-    const observerName = topoSourceName(observerId);
-    const partnerSourceName = topoSourceName(partnerSourceId);
+    const receiverViewAvailable = state.pairMode || state.binary;
+    const superpositionView = state.superpositionView === true;
+    const observerId = state.observerId;
+    const partnerSourceId = superpositionView
+      ? null
+      : topoPartnerWakeSourceId(observerId);
+    const observerName = superpositionView ? null : topoSourceName(observerId);
+    const partnerSourceName = superpositionView
+      ? null
+      : topoSourceName(partnerSourceId);
     const heatmapDescription =
       "one-over-distance-like visibility with adjustable display-only reach applied after raw contour calculation";
     dom.legendMapping.textContent =
@@ -2428,8 +2526,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
         styles.zero + ")";
     dom.legendGradient.setAttribute(
       "aria-label",
-      (partnerPerspective
-        ? observerName + " perspective shows " + partnerSourceName.toLowerCase() +
+      (superpositionView
+        ? "Absolute observer view shows the signed superposition of both wakes with "
+        : receiverViewAvailable
+        ? observerName + " view shows " + partnerSourceName.toLowerCase() +
           " wake only with "
         : "Single-source wake shows ") + state.contourCount +
       " equal-value contour levels" +
@@ -2587,7 +2687,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
       );
       fieldGl.uniform1f(
         uniforms.u_partner_source_sign,
-        state.partnerWakeSourceSign,
+        state.partnerWakeSourceSign ?? 1,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_superposition_view,
+        state.superpositionView ? 1 : 0,
       );
       const sourceMarkerWorldRadius = resolveTopoVisibleSourceMarkerWorldRadius({
         polaritySign: -1,
@@ -2626,10 +2730,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
         uniforms.u_positive,
         styles.positiveRgb.map((channel) => channel / 255),
       );
-      const contourLevels = createTopoPartnerWakeContourLevels(state);
-      const rawDecades = contourLevels
+      const contourLevels = createTopoWakeContourLevels(state);
+      const rawDecades = [...new Set(contourLevels
         .filter((level) => Number.isFinite(level.rawDecade))
-        .map((level) => level.rawDecade);
+        .map((level) => level.rawDecade))];
       const shaderLevels = new Float32Array(25);
       shaderLevels.set(rawDecades.slice(0, shaderLevels.length));
       fieldGl.uniform1fv(uniforms["u_contour_levels[0]"], shaderLevels);
@@ -2638,8 +2742,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
         uniforms.u_contour_visibility,
         state.contourVisibility,
       );
-      // Pass 1: the selected observer's partner wake is evaluated once into
-      // the scalar texture. Every visible field and contour pixel below reads it.
+      // Pass 1 evaluates the selected receiver view or the absolute signed
+      // superposition once. Every visible field and contour pixel reads it.
       fieldGl.bindFramebuffer(fieldGl.FRAMEBUFFER, topoScalarFramebuffer.framebuffer);
       fieldGl.viewport(0, 0, width, height);
       fieldGl.uniform1f(uniforms.u_scalar_pass, 1);
@@ -2648,7 +2752,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         ? topoPassTwoDiagnosticPhase(state.playback.progress)
         : null;
       const scalarAuditKey = diagnosticPhase != null
-        ? `${width}x${height}:${state.observerId}:beta-one-phase-${diagnosticPhase.toFixed(3)}`
+        ? `${width}x${height}:${state.viewId}:beta-one-phase-${diagnosticPhase.toFixed(3)}`
         : null;
       if (scalarAuditKey && topoScalarAuditKey !== scalarAuditKey &&
           topoScalarFramebuffer.available) {
@@ -2674,6 +2778,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
             point, beta: state.beta, radius: state.orbitalRadius,
             progress: state.playback.progress, direction: state.direction,
             sourceMaskRadius, observerId: state.observerId,
+            superposition: state.superpositionView,
           });
           const ordinary = expected.state === "ordinary";
           const actualOrdinary = gpu[1] > 0.5;
@@ -2689,7 +2794,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
         const scalarReadback = new Float32Array(width * height * 4);
         fieldGl.readPixels(0, 0, width, height, fieldGl.RGBA, fieldGl.FLOAT, scalarReadback);
         if (scalarAuditKey && topoPassTwoDiagnosticKey !== scalarAuditKey) {
-          const diagnosticLevels = createTopoPartnerWakeContourLevels({
+          const diagnosticLevels = createTopoWakeContourLevels({
             ...state,
             contourCount: 13,
           });
@@ -2720,10 +2825,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
             dom.app.dataset.binaryPassTwoDiagnosticDraw = passed ? "complete" : "comparison-failed";
             dom.app.dataset.binaryPassTwoDiagnosticResolution = `${width}x${height}`;
             dom.app.dataset.binaryPassTwoDiagnosticThreshold =
-              "all-partner-wake-raw-levels";
+              state.superpositionView
+                ? "all-superposition-raw-levels"
+                : "all-partner-wake-raw-levels";
             dom.app.dataset.binaryPassTwoDiagnosticAllLevels = JSON.stringify(table);
             dom.app.dataset.binaryPassTwoDiagnosticSignedSymmetry =
-              "not-applicable:partner-wake";
+              state.superpositionView
+                ? "signed-two-source-superposition"
+                : "not-applicable:partner-wake";
             dom.app.dataset.binaryPassTwoDiagnosticAllLevelsSummary = JSON.stringify({
               levelCount: table.length,
               passed,
@@ -2865,6 +2974,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
     if (state.binary) {
       return paintCircularBinaryField(width, height, state, styles);
     }
+    // At the field-speed endpoint, either source can lack an ordinary root.
+    // Use the CPU ledger so the absolute sum stays fail-closed in those cells.
+    if (state.pairMode && state.superpositionView && state.beta === 1) {
+      return false;
+    }
     dom.canvas.style.opacity = "1";
     if (!analyticFieldRenderer) {
       return false;
@@ -2926,6 +3040,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
       fieldGl.uniform1f(
         uniforms.u_partner_source_sign,
         state.partnerWakeSourceSign ?? 1,
+      );
+      fieldGl.uniform1f(
+        uniforms.u_superposition_view,
+        state.superpositionView ? 1 : 0,
       );
       const pairSourceMaskRadius = resolveTopoCollinearSourceMaskRadius({
         polaritySign: state.polaritySign,
@@ -3379,6 +3497,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           pixelRatio: 1,
         }),
         observerId: state.observerId,
+        superposition: state.superpositionView,
       })
       : state.pairMode
       ? createTopoCollinearPairRawSampler({
@@ -3392,6 +3511,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           pixelRatio: 1,
         }),
         observerId: state.observerId,
+        superposition: state.superpositionView,
       })
       : createTopoSyntheticRawSampler({
         ...state,
@@ -3421,7 +3541,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const centerY = Math.max(1, height - 1) / 2;
     const worldPixelScale = Math.max(1, width - 1) * state.displayScale;
     const sampleRaw = createRawSamplerForState(state, width, height);
-    return [state.partnerWakeSourceSign].flatMap((sourceSign) => {
+    const sourceSigns = state.superpositionView
+      ? [-1, 1]
+      : [state.partnerWakeSourceSign];
+    return sourceSigns.flatMap((sourceSign) => {
       const position = topoCircularBinarySourcePosition({
         sourceSign,
         time: state.playback.observationTime,
@@ -3568,7 +3691,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       width,
       height,
       state.scenarioId,
-      state.observerId ?? "single-source",
+      state.viewId ?? "single-source",
       state.beta.toFixed(4),
       "scale=" + state.displayScale.toFixed(2),
       state.binary
@@ -3646,6 +3769,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       raw,
       sampleStates,
       observerId: state.observerId,
+      viewId: state.viewId ?? null,
+      superpositionView: state.superpositionView === true,
       partnerWakeSourceSign: state.partnerWakeSourceSign,
       contourFrameKind: state.binary
         ? "binary-live-preview"
@@ -3727,6 +3852,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
       pairPhase: state.pairPhase ?? null,
       orbitalRadius: state.orbitalRadius ?? null,
       observerId: state.observerId ?? null,
+      viewId: state.viewId ?? null,
+      superpositionView: state.superpositionView === true,
       partnerWakeSourceSign: state.partnerWakeSourceSign ?? null,
       raw,
       sampleStates,
@@ -3850,7 +3977,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const contourKey = matchingFrame
       ? matchingFrame.key + ":count=" + state.contourCount
       : "pending";
-    const contourLevels = createTopoPartnerWakeContourLevels(state);
+    const contourLevels = createTopoWakeContourLevels(state);
     const contourLevelBounds = topoContourLevelBounds(contourLevels);
     let extracted = matchingFrame && !playbackFrame
       ? sampledContourCaches.get(contourKey)
@@ -3892,20 +4019,22 @@ export function mountTopoInteractionContractPreview(options = {}) {
         (state.pairPhase < TOPO_PAIR_CROSSING_PHASE_START ||
           state.pairPhase > TOPO_PAIR_CROSSING_PHASE_END) &&
         state.contourVisibility > 0
-      ? [state.partnerWakeSourceSign].flatMap((polaritySign) => {
-        const refinement = createTopoPairSourceContourRefinement({
-          width,
-          height,
-          pixelRatio,
-          beta: state.beta,
-          phase: state.pairPhase,
-          displayScale: state.displayScale,
-          levels: contourLevels,
-          polaritySign,
-          observerId: state.observerId,
-        });
-        return refinement ? [refinement] : [];
-      })
+      ? (state.superpositionView ? [-1, 1] : [state.partnerWakeSourceSign])
+        .flatMap((polaritySign) => {
+          const refinement = createTopoPairSourceContourRefinement({
+            width,
+            height,
+            pixelRatio,
+            beta: state.beta,
+            phase: state.pairPhase,
+            displayScale: state.displayScale,
+            levels: contourLevels,
+            polaritySign,
+            observerId: state.observerId,
+            superposition: state.superpositionView,
+          });
+          return refinement ? [refinement] : [];
+        })
       : [];
     const pairPaintReplacements = [];
     if (extracted && state.contourVisibility > 0) {
@@ -4150,7 +4279,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
     ).join(",");
     dom.app.dataset.contourLevelPolicy =
       "signed-equal-value-levels-plus-zero";
-    dom.app.dataset.contourScalarAuthority = "partner-raw-wake-field";
+    dom.app.dataset.contourScalarAuthority = state.superpositionView
+      ? "signed-two-source-superposition-field"
+      : "partner-raw-wake-field";
     dom.app.dataset.contourLayerVisible = String(
       state.contourVisibility > 0,
     );
@@ -4200,7 +4331,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       state.contourVisibility.toFixed(4),
       state.neutralWhiteMix.toFixed(2),
       state.displayScale.toFixed(2),
-      state.observerId ?? "single-source",
+      state.viewId ?? "single-source",
       contourKey,
     ].join(":");
     if (interactionStarted !== null) {
@@ -4234,7 +4365,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
         });
         dom.app.dataset.contourFrameKind = "gpu-current-frame";
         dom.app.dataset.contourFrameResolution = width + "x" + height;
-        dom.app.dataset.contourScalarAuthority = "partner-raw-wake-field";
+        dom.app.dataset.contourScalarAuthority = state.superpositionView
+          ? "signed-two-source-superposition-field"
+          : "partner-raw-wake-field";
         return true;
       }
       return rawFrame
@@ -4487,8 +4620,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       dom.app.dataset.lastFullDensityLatencyMs = String(Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
       ));
-      dom.status.textContent =
-        "Full-density circular-binary partner-wake contours complete; the orbit circle is a reference path only.";
+      dom.status.textContent = state.superpositionView
+        ? "Full-density circular-binary superposition contours complete; the orbit circle is a reference path only."
+        : "Full-density circular-binary partner-wake contours complete; the orbit circle is a reference path only.";
       return;
     }
     if (state.pairMode) {
@@ -4527,10 +4661,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ? "Prescribed circular-binary heatmap complete. The solid orbit is a reference path only; no dynamics, binding, or stability claim is attached."
       : state.beta === 1
       ? state.pairMode
-        ? "Partner-wake prescribed-prehistory frame complete at the field-speed endpoint; unavailable leading roots remain neutral."
+        ? state.superpositionView
+          ? "Absolute-observer superposition frame complete at the field-speed endpoint; unavailable roots remain neutral."
+          : "Partner-wake prescribed-prehistory frame complete at the field-speed endpoint; unavailable leading roots remain neutral."
         : "Full-density synthetic frame complete. Signed ordinary wake intensity has no value in front; no value was fabricated."
       : state.pairMode
-        ? "Partner-wake constant-velocity prescribed-prehistory frame complete. The selected observer's self-wake is excluded; prescribed paths are display-only."
+        ? state.superpositionView
+          ? "Absolute-observer signed superposition frame complete; prescribed paths are display-only."
+          : "Partner-wake constant-velocity prescribed-prehistory frame complete. The selected observer's self-wake is excluded; prescribed paths are display-only."
         : "One-source full-density synthetic frame complete. No TOPO-001 values are shown.";
   }
 
@@ -4617,7 +4755,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
             ? state.pairPhase.toFixed(5)
             : "static",
         state.binary ? state.orbitalRadius.toFixed(2) : state.contourCount,
-        state.observerId ?? "single-source",
+        state.viewId ?? "single-source",
         state.displayScale.toFixed(2),
         state.binary ? state.showOrbitGuide : state.contourVisibility.toFixed(4),
         state.binary
@@ -4688,8 +4826,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       } else if (state.pairMode && (pairPlaybackPlaying || pairTimelineScrubbing)) {
         windowLike.clearTimeout?.(renderWatchdogTimer);
         dom.app.dataset.frameState = "playback-preview";
-        dom.status.textContent =
-          "Prescribed collinear playback preview; live partner-wake contours follow the current prescribed-time field. Full-density contours settle when paused or scrubbing ends.";
+        dom.status.textContent = state.superpositionView
+          ? "Prescribed collinear playback preview; live superposition contours follow the current prescribed-time field. Full-density contours settle when paused or scrubbing ends."
+          : "Prescribed collinear playback preview; live partner-wake contours follow the current prescribed-time field. Full-density contours settle when paused or scrubbing ends.";
       } else {
         finalRenderTimer = windowLike.setTimeout(() => {
           void renderFinal(
