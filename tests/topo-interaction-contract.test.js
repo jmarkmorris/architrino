@@ -1382,6 +1382,10 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   assert.doesNotMatch(css, /topo-advanced-display|topo-heatmap-mode|topo-view/u);
   assert.match(css, /\.topo-pair-transport/u);
   assert.match(css, /\.topo-timeline/u);
+  assert.match(
+    css,
+    /\.topo-legend-gradient \{[\s\S]*?border: 0;[\s\S]*?background: linear-gradient/u,
+  );
   assert.match(css, /@media \(max-width: 820px\)/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(css, /input::-webkit-slider-runnable-track \{[\s\S]*height: 5px;/u);

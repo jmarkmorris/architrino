@@ -10,6 +10,46 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
+### Local Wake Geometry Versus Superposed-Landscape Shape (2026-08-08)
+
+Claim level: **derived distinction plus unselected constitutive proposal**. The
+canonical regular Master Equation already consumes the local geometry of each
+arriving causal surface: its outward normal fixes the acceleration direction,
+its inverse-square surface dilution fixes the range dependence, and the local
+normal spacing of neighboring emission-labeled surfaces supplies the
+transmitter-side factor $c_f/|D_t|$. It then sums those per-root vector
+contributions. It does not additionally evaluate the gradient, Hessian,
+curvature, or other neighborhood shape of a separately reconstructed total
+wake-intensity landscape.
+
+Plainly: local shape is already present wake by wake. The present law does not
+let an architrino inspect the surrounding Topo surface and respond a second
+time to the shape of the combined hills and valleys.
+
+A dependence on the local derivatives of the superposed scalar landscape would
+therefore be a new constitutive law, not an omitted step in the existing EOM.
+It should be considered only after defining one receiver-local scalar whose
+gradient reproduces the canonical complete vector ledger on regular charts.
+Otherwise a gradient response risks double-counting geometry already contained
+in the surface normals, inverse-square dilution, and $D_t$ weights. A genuine
+residual after that equality test would identify the information added by the
+new law.
+
+- **Assumptions and proof burden:** Fix one retained regular branch chart and
+  one scalar reconstruction with explicit polarity, root, and normalization
+  provenance. Prove or refute
+  $-\nabla_{\mathbf X_r}\Phi_{\mathrm{wake}}=\mathbf A_{\mathrm{ledger}}$
+  without importing an observer-level potential as a substrate premise. Keep
+  folds, coincidences, and self-diagonal events quarantined.
+- **Promotion target:** The regular-domain result belongs in the Master Equation
+  receiver-gradient discussion; any display consequence belongs in the Topo
+  observable contract and must keep scalar topography distinct from vector
+  acceleration.
+- **Next artifact:** Construct the equality-or-residual test first for one
+  static opposite-polarity pair and one moving single-root binary, using an
+  independently differentiated scalar reconstruction and the unchanged
+  canonical per-root acceleration ledger.
+
 ### Concave/Inside Versus Convex/Outside Wake-Side Response Audit (2026-07-29)
 
 Claim level: **explicit speculation / existing-law audit first**. With polarity

@@ -476,7 +476,7 @@ button {
 .topo-legend-gradient {
   height: 15px;
   margin-top: 10px;
-  border: 1px solid var(--ui-border);
+  border: 0;
   border-radius: 999px;
   background: linear-gradient(
     90deg,
