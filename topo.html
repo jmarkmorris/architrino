@@ -72,7 +72,7 @@
             >
               <legend>View</legend>
               <label>
-                <input type="radio" name="topo-partner-perspective" value="electrino" checked />
+                <input type="radio" name="topo-partner-perspective" value="electrino" />
                 <span>Electrino</span>
               </label>
               <label>
@@ -80,10 +80,10 @@
                 <span>Positrino</span>
               </label>
               <label>
-                <input type="radio" name="topo-partner-perspective" value="absolute" />
+                <input type="radio" name="topo-partner-perspective" value="absolute" checked />
                 <span>Absolute Observer</span>
               </label>
-              <small id="topo-partner-perspective-note" class="topo-range-note" aria-live="polite">Electrino sees the positrino wake only.</small>
+              <small id="topo-partner-perspective-note" class="topo-range-note" aria-live="polite">Absolute observer sees the signed superposition of both wakes.</small>
             </fieldset>
             <label
               id="topo-binary-radius-control"
@@ -314,7 +314,7 @@
             value="0"
             data-keyboard-step="10"
             aria-label="Orbit playback position"
-            aria-valuetext="0% of one orbit"
+            aria-valuetext="0% of two rotations"
           />
           <button
             id="topo-binary-replay"

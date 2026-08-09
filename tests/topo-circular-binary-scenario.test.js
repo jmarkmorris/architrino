@@ -12,12 +12,15 @@ import {
   TOPO_CIRCULAR_BINARY_KAPPA,
   TOPO_CIRCULAR_BINARY_MAX_RADIUS,
   TOPO_CIRCULAR_BINARY_MIN_RADIUS,
+  TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS,
   TOPO_CIRCULAR_BINARY_RADIUS,
+  TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS,
   TOPO_CIRCULAR_BINARY_SCENARIO_ID,
   TOPO_CIRCULAR_BINARY_VERTICAL_OVERFLOW_POLICY,
   createTopoCircularBinaryChart,
   createTopoCircularBinaryFrameIdentity,
   createTopoCircularBinaryPlayback,
+  resolveTopoCircularBinaryHistoryWarmup,
   sampleTopoCircularBinaryWake,
   solveTopoCircularBinaryCausalDelay,
   topoCircularBinaryCausalResidual,
@@ -236,14 +239,17 @@ test("display scale changes circular-binary extent without moving its center", (
   closeTo(closeCenter.y, TOPO_CIRCULAR_BINARY_CENTER.y);
 });
 
-test("one replay is one orbit and beta zero is stationary with playback disabled", () => {
+test("one replay is two rotations and beta zero is stationary with playback disabled", () => {
   const movingStart = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 0 });
-  const movingQuarter = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 0.25 });
+  const movingEighth = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 0.125 });
+  const movingHalf = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 0.5 });
   const movingEnd = createTopoCircularBinaryPlayback({ beta: 0.75, progress: 1 });
+  assert.equal(TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS, 2);
+  assert.equal(TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS, 16);
   closeTo(movingStart.angularVelocity, 0.75 / TOPO_CIRCULAR_BINARY_RADIUS);
   closeTo(
     movingEnd.observationTime - movingStart.observationTime,
-    movingStart.orbitPeriod,
+    2 * movingStart.orbitPeriod,
   );
   const start = topoCircularBinarySourcePosition({
     sourceSign: -1,
@@ -252,7 +258,12 @@ test("one replay is one orbit and beta zero is stationary with playback disabled
   });
   const quarter = topoCircularBinarySourcePosition({
     sourceSign: -1,
-    time: movingQuarter.observationTime,
+    time: movingEighth.observationTime,
+    beta: 0.75,
+  });
+  const half = topoCircularBinarySourcePosition({
+    sourceSign: -1,
+    time: movingHalf.observationTime,
     beta: 0.75,
   });
   const end = topoCircularBinarySourcePosition({
@@ -262,15 +273,84 @@ test("one replay is one orbit and beta zero is stationary with playback disabled
   });
   closeTo(start.x, end.x);
   closeTo(start.y, end.y);
+  closeTo(start.x, half.x);
+  closeTo(start.y, half.y);
   closeTo(quarter.x, 0.5);
   closeTo(quarter.y, 0.2);
+  assert.equal(movingEnd.replayRotations, 2);
 
   const stationary = createTopoCircularBinaryPlayback({ beta: 0, progress: 0.8 });
   assert.equal(stationary.playbackEnabled, false);
   assert.equal(stationary.progress, 0);
   assert.equal(stationary.angularVelocity, 0);
   assert.equal(stationary.orbitPeriod, null);
+  assert.equal(stationary.replayRotations, 2);
   assert.equal(stationary.historyPolicy, TOPO_CIRCULAR_BINARY_HISTORY_POLICY);
+});
+
+test("adaptive whole-orbit warmup covers the visible frame without moving replay start", () => {
+  const settings = {
+    beta: 1,
+    radius: TOPO_CIRCULAR_BINARY_MIN_RADIUS,
+    width: 1600,
+    height: 900,
+    displayScale: 0.5,
+  };
+  const warmup = resolveTopoCircularBinaryHistoryWarmup(settings);
+  const playback = createTopoCircularBinaryPlayback({
+    beta: settings.beta,
+    radius: settings.radius,
+    progress: 0,
+    ...warmup,
+  });
+  assert.ok(warmup.historyWarmupOrbits > 1);
+  assert.ok(warmup.historyWarmupDuration >= warmup.historyRequiredDuration);
+  assert.ok(
+    warmup.historyWarmupDuration - playback.orbitPeriod <
+      warmup.historyRequiredDuration,
+  );
+  closeTo(
+    warmup.historyWarmupDuration,
+    warmup.historyWarmupOrbits * playback.orbitPeriod,
+  );
+  const chart = createTopoCircularBinaryChart(settings);
+  const corners = [
+    { x: chart.minimumX, y: chart.minimumY },
+    { x: chart.minimumX, y: chart.maximumY },
+    { x: chart.maximumX, y: chart.minimumY },
+    { x: chart.maximumX, y: chart.maximumY },
+  ];
+  for (const sourceSign of [-1, 1]) {
+    const start = topoCircularBinarySourcePosition({
+      sourceSign,
+      time: playback.observationTime,
+      beta: playback.beta,
+      radius: playback.radius,
+    });
+    closeTo(start.x, sourceSign < 0 ? 0.49 : 0.51);
+    closeTo(start.y, 0.5);
+    for (const point of corners) {
+      assert.equal(solveTopoCircularBinaryCausalDelay({
+        point,
+        sourceSign,
+        observationTime: playback.observationTime,
+        beta: playback.beta,
+        radius: playback.radius,
+      }).state, "ordinary");
+    }
+  }
+
+  const stationaryWarmup = resolveTopoCircularBinaryHistoryWarmup({
+    ...settings,
+    beta: 0,
+  });
+  const stationary = createTopoCircularBinaryPlayback({
+    beta: 0,
+    radius: settings.radius,
+    ...stationaryWarmup,
+  });
+  closeTo(stationary.observationTime, stationaryWarmup.historyRequiredDuration);
+  assert.equal(stationary.historyWarmupOrbits, 0);
 });
 
 test("clockwise reverses every prescribed history while preserving replay duration", () => {
@@ -469,7 +549,7 @@ test("beta-one endpoint is explicit and a missing finite-history root fails clos
   );
 });
 
-test("frame identity changes with beta and orbit progress without changing the one-orbit contract", () => {
+test("frame identity changes with beta and two-rotation replay progress", () => {
   const open = createTopoCircularBinaryFrameIdentity({ beta: 0.5, progress: 0 });
   const quarter = createTopoCircularBinaryFrameIdentity({ beta: 0.5, progress: 0.25 });
   const faster = createTopoCircularBinaryFrameIdentity({ beta: 0.75, progress: 0.25 });
@@ -495,8 +575,8 @@ test("frame identity changes with beta and orbit progress without changing the o
   assert.notEqual(tighter, clockwise);
   assert.notEqual(open, positrinoPerspective);
   assert.match(clockwise, /direction=clockwise/u);
-  assert.match(open, /observer=electrino/u);
-  assert.match(positrinoPerspective, /observer=positrino/u);
+  assert.match(open, /view=electrino/u);
+  assert.match(positrinoPerspective, /view=positrino/u);
   assert.match(open, /^topo_prescribed_circular_binary\/v1:/u);
 });
 
@@ -509,9 +589,10 @@ test("binary UI removes no-op contours and preserves accessible shared transport
 
   assert.match(html, /Orbiting binary electrino and positrino/u);
   assert.match(html, /Approaching collinear electrino and positrino/u);
-  assert.match(html, /<legend>Perspective<\/legend>/u);
-  assert.match(html, /name="topo-partner-perspective" value="electrino" checked/u);
+  assert.match(html, /<legend>View<\/legend>/u);
+  assert.match(html, /name="topo-partner-perspective" value="electrino"/u);
   assert.match(html, /name="topo-partner-perspective" value="positrino"/u);
+  assert.match(html, /name="topo-partner-perspective" value="absolute" checked/u);
   assert.match(html, /id="topo-contour-controls"/u);
   assert.match(html, /id="topo-binary-radius"[\s\S]*min="0\.01"[\s\S]*max="0\.45"[\s\S]*value="0\.30"/u);
   assert.match(html, /<legend>Orbit direction<\/legend>/u);
@@ -554,7 +635,7 @@ test("binary UI removes no-op contours and preserves accessible shared transport
     /gpu-direct-signed-bounded-square-root-variable-reach/u,
   );
   assert.match(runtime, /for \(int iteration = 0; iteration < 56; iteration \+= 1\)/u);
-  assert.match(runtime, /u_partner_source_sign \* u_kappa \/ \(delay \* delay\)/u);
+  assert.match(runtime, /sourceSign \* u_kappa \/ \(delay \* delay\)/u);
   assert.match(runtime, /partner-only-self-excluded/u);
   assert.match(runtime, /TOPO_SOURCE_MARKER_RADIUS_SCALE = 0\.5/u);
   assert.match(runtime, /TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS/u);

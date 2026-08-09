@@ -18,9 +18,10 @@ export const TOPO_CIRCULAR_BINARY_MIN_RADIUS = 0.01;
 export const TOPO_CIRCULAR_BINARY_MAX_RADIUS = 0.45;
 export const TOPO_CIRCULAR_BINARY_RADIUS = TOPO_CIRCULAR_BINARY_DEFAULT_RADIUS;
 export const TOPO_CIRCULAR_BINARY_KAPPA = TOPO_INVERSE_SQUARE_SCALE;
-export const TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS = 8;
+export const TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS = 2;
+export const TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS = 16;
 export const TOPO_CIRCULAR_BINARY_HISTORY_POLICY =
-  "one-orbit-warmup-plus-one-orbit-replay/v1";
+  "adaptive-whole-orbit-warmup-plus-two-orbit-replay/v2";
 export const TOPO_CIRCULAR_BINARY_VERTICAL_OVERFLOW_POLICY =
   "clip-stage-preserve-world-scale/v1";
 export const TOPO_CIRCULAR_BINARY_DIRECTION = Object.freeze({
@@ -145,11 +146,54 @@ export function topoCircularBinaryWorldPointForCanvasPixel({
   });
 }
 
+export function resolveTopoCircularBinaryHistoryWarmup({
+  beta = 0.5,
+  radius = TOPO_CIRCULAR_BINARY_DEFAULT_RADIUS,
+  width = 1,
+  height = 1,
+  displayScale = TOPO_DEFAULT_DISPLAY_SCALE,
+} = {}) {
+  const normalizedBeta = normalizeBeta(beta);
+  const orbitalRadius = normalizeOrbitalRadius(radius);
+  const chart = createTopoCircularBinaryChart({
+    width,
+    height,
+    radius: orbitalRadius,
+    displayScale,
+  });
+  const halfWidth = (chart.maximumX - chart.minimumX) / 2;
+  const halfHeight = (chart.maximumY - chart.minimumY) / 2;
+  const requiredDuration = Math.hypot(
+    halfWidth + orbitalRadius,
+    halfHeight,
+  );
+  if (normalizedBeta === 0) {
+    return Object.freeze({
+      historyWarmupDuration: requiredDuration,
+      historyWarmupOrbits: 0,
+      historyRequiredDuration: requiredDuration,
+    });
+  }
+  const orbitPeriod = TWO_PI * orbitalRadius / normalizedBeta;
+  const historyWarmupOrbits = Math.max(
+    1,
+    Math.ceil(requiredDuration / orbitPeriod),
+  );
+  return Object.freeze({
+    historyWarmupDuration: historyWarmupOrbits * orbitPeriod,
+    historyWarmupOrbits,
+    historyRequiredDuration: requiredDuration,
+  });
+}
+
 export function createTopoCircularBinaryPlayback({
   beta = 0.5,
   progress = 0,
   radius = TOPO_CIRCULAR_BINARY_DEFAULT_RADIUS,
   direction = TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE,
+  historyWarmupDuration,
+  historyWarmupOrbits,
+  historyRequiredDuration,
 } = {}) {
   const normalizedBeta = normalizeBeta(beta);
   const normalizedProgress = normalizeProgress(progress);
@@ -160,19 +204,55 @@ export function createTopoCircularBinaryPlayback({
   const orbitPeriod = normalizedBeta === 0
     ? null
     : TWO_PI / Math.abs(angularVelocity);
-  const observationTime = normalizedBeta === 0
-    ? TWO_PI * orbitalRadius
-    : orbitPeriod * (1 + normalizedProgress);
+  const requiredDuration = historyRequiredDuration == null
+    ? null
+    : finiteNumber(historyRequiredDuration, "historyRequiredDuration");
+  if (requiredDuration != null && !(requiredDuration > 0)) {
+    throw new RangeError("historyRequiredDuration must be positive.");
+  }
+  const warmupOrbits = normalizedBeta === 0
+    ? 0
+    : historyWarmupOrbits == null
+      ? 1
+      : Math.round(finiteNumber(historyWarmupOrbits, "historyWarmupOrbits"));
+  if (warmupOrbits < 0 ||
+      (normalizedBeta > 0 && (warmupOrbits < 1 ||
+        warmupOrbits !== Number(historyWarmupOrbits ?? 1)))) {
+    throw new RangeError(
+      "historyWarmupOrbits must be a positive integer for a moving binary.",
+    );
+  }
+  const warmupDuration = normalizedBeta === 0
+    ? historyWarmupDuration == null
+      ? TWO_PI * orbitalRadius
+      : finiteNumber(historyWarmupDuration, "historyWarmupDuration")
+    : warmupOrbits * orbitPeriod;
+  if (!(warmupDuration > 0) ||
+      (requiredDuration != null && warmupDuration + DEFAULT_ROOT_TOLERANCE <
+        requiredDuration)) {
+    throw new RangeError(
+      "history warmup must be positive and cover historyRequiredDuration.",
+    );
+  }
+  const observationTime = warmupDuration + (
+    normalizedBeta === 0
+      ? 0
+      : orbitPeriod * TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS * normalizedProgress
+  );
   return Object.freeze({
     beta: normalizedBeta,
     progress: normalizedBeta === 0 ? 0 : normalizedProgress,
     angularVelocity,
     orbitPeriod,
     observationTime,
+    historyWarmupDuration: warmupDuration,
+    historyWarmupOrbits: warmupOrbits,
+    historyRequiredDuration: requiredDuration,
     radius: orbitalRadius,
     direction: normalizedDirection,
     playbackEnabled: normalizedBeta > 0,
     complete: normalizedBeta === 0 || normalizedProgress >= 1,
+    replayRotations: TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS,
     historyPolicy: TOPO_CIRCULAR_BINARY_HISTORY_POLICY,
   });
 }
@@ -481,12 +561,18 @@ export function createTopoCircularBinaryFrameIdentity({
   direction = TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE,
   observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
   superposition = false,
+  historyWarmupDuration,
+  historyWarmupOrbits,
+  historyRequiredDuration,
 } = {}) {
   const playback = createTopoCircularBinaryPlayback({
     beta,
     progress,
     radius,
     direction,
+    historyWarmupDuration,
+    historyWarmupOrbits,
+    historyRequiredDuration,
   });
   const viewIdentity = superposition
     ? "absolute-superposition"

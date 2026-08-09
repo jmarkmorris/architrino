@@ -37,16 +37,40 @@ Plainly: one world unit is always one canvas-height, so equal horizontal and ver
 
 The linear Euclidean chart is the only coordinate view. Heatmap color uses the single bounded square-root transfer declared below, with Shading spread changing only its reach. No selectable coordinate or color-transfer modes remain.
 
-In either pair scenario, a `Perspective` radio group selects the observing architrino. Selecting `Electrino` excludes the electrino's self-wake and retains only the positrino wake. Selecting `Positrino` excludes the positrino's self-wake and retains only the electrino wake. The selection enters the raw frame and contour identity; it is not a display-only color switch.
+In either pair scenario, a `View` radio group selects `Electrino`, `Positrino`,
+or `Absolute Observer`. Selecting an architrino excludes that architrino's
+self-wake and retains only the partner wake. `Absolute Observer` retains and
+signed-sums both source wakes before shading or contour extraction. The
+selection enters the raw frame and contour identity; it is not a display-only
+color switch.
 
-Plainly: the pair map answers one question at a time: what wake from its partner does the selected architrino encounter? Both body markers remain visible, but only the partner acts as a wake source in that view.
+Plainly: the pair map can show either partner-only receiver view or the complete signed two-source map. Both body markers remain visible in every view.
+
+The approaching-collinear paths use the explicit piecewise history
+
+$$
+\mathbf X_s(t)=
+\begin{cases}
+\mathbf x_{s,0}, & t\leq0,\\
+\mathbf x_{s,0}+\mathbf v_s t, & t\geq0.
+\end{cases}
+$$
+
+Each source is stationary at its visible starting position for the infinite
+prehistory, then undergoes a prescribed instantaneous launch at replay time
+zero. Position is continuous; prescribed velocity changes discontinuously.
+This input supplies an arriving wake from both source histories throughout the
+visible frame, including at $\beta=1$, without changing the existing 20% and
+80% replay-start positions.
+
+Plainly: the collinear bodies have been sitting at the two opening dots for as long as the calculation looks backward. Pressing play begins the authored straight-line motion from those dots; it is a what-if launch, not a prediction of natural acceleration.
 
 The initial controls are:
 
 | Control | Initial contract |
 | --- | --- |
 | Scenario | single electrino; single positrino; approaching collinear electrino and positrino; orbiting binary electrino and positrino |
-| Perspective | pair scenarios only; native `Electrino` and `Positrino` radios; the selected observer's self-wake is excluded before field, contour, shading, cache, and diagnostic calculations; both markers remain visible |
+| View | pair scenarios only; native `Electrino`, `Positrino`, and `Absolute Observer` radios; partner views exclude the selected observer's self-wake, while Absolute Observer signed-sums both wakes before field, contour, shading, cache, and diagnostic calculations; both markers remain visible |
 | `Speed` ($\beta=v/c_f$) | range $0\leq\beta\leq1$; the exact ordinary, unavailable, and nonordinary endpoint regions are fixed by TOPO-001 |
 | Heatmap | bounded square-root transfer $C_s(W)=\operatorname{sgn}(W)g(s)\sqrt{|W|}/(g(s)\sqrt{|W|}+8)$ with $g(s)=0.25\,16^s$; for the stationary inverse-square wake this has the gradual $1/r$-like form $\operatorname{sgn}(W)a(s)/(r+a(s))$, where $a(s)=0.025g(s)$ |
 | `Topo count` | integer $4$ through $25$; default $13$; selects genuine equal-wake thresholds across the fixed raw range without interpolating line geometry; pair perspectives retain only the partner source's sign |
@@ -70,9 +94,10 @@ app-local navigation or panel language.
   panel surfaces. The colors must come from shared semantic UI tokens; Topo
   must not introduce another nearly matching hard-coded purple palette. Signed
   data zero uses the accepted shared Electric Purple (`#8F00FF`) semantic
-  token. At the beta endpoint, the leading region uses the same neutral display
-  midpoint without receiving a fabricated raw value; the shell itself keeps
-  the dark shared stage token.
+  token. In the single-source uniform-motion scenarios, the beta endpoint's
+  rootless leading region uses the same neutral display midpoint without
+  receiving a fabricated raw value; the shell itself keeps the dark shared
+  stage token.
 - The shared application controls occupy the top-right safe area in the
   established order: `Home`, `Back`, `Forward`, `Search`, `Notes` or
   `Documents`, and `Settings`, omitting only a control that has no declared

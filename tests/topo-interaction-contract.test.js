@@ -8,6 +8,7 @@ import {
   TOPO_DEFAULT_CONTOUR_REACH,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
   TOPO_ABSOLUTE_OBSERVER,
+  TOPO_DEFAULT_WAKE_VIEW,
   TOPO_CONTOUR_WEIGHT_POLICY_ID,
   TOPO_WEAKEST_CONTOUR_WEIGHT,
   TOPO_ZERO_CONTOUR_WEIGHT,
@@ -97,6 +98,7 @@ import {
   topoAnimatedScenarioUsesMinimumBeta,
   normalizeTopoScenarioBeta,
   normalizeTopoNeutralWhiteMix,
+  resetTopoVisiblePresentation,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -184,6 +186,42 @@ test("neutral background adds only white to Electric Purple", () => {
     createTopoNeutralBackgroundRgb(electricPurple, 1),
     [255, 255, 255],
   );
+});
+
+test("control changes synchronously clear every visible presentation layer", () => {
+  const calls = [];
+  const canvas = { style: { opacity: "0" } };
+  const analyticFieldCanvas = { style: { visibility: "visible" } };
+  const fieldContext = {
+    fillStyle: "",
+    clearRect: (...args) => calls.push(["field-clear", ...args]),
+    fillRect: (...args) => calls.push(["field-fill", ...args]),
+  };
+  const contourContext = {
+    clearRect: (...args) => calls.push(["contour-clear", ...args]),
+  };
+  const contourStagingContext = {
+    clearRect: (...args) => calls.push(["staging-clear", ...args]),
+  };
+  resetTopoVisiblePresentation({
+    canvas,
+    analyticFieldCanvas,
+    fieldContext,
+    contourContext,
+    contourStagingContext,
+    width: 916,
+    height: 720,
+    neutralColor: "rgb(143, 0, 255)",
+  });
+  assert.equal(canvas.style.opacity, "1");
+  assert.equal(analyticFieldCanvas.style.visibility, "hidden");
+  assert.equal(fieldContext.fillStyle, "rgb(143, 0, 255)");
+  assert.deepEqual(calls, [
+    ["field-clear", 0, 0, 916, 720],
+    ["field-fill", 0, 0, 916, 720],
+    ["contour-clear", 0, 0, 916, 720],
+    ["staging-clear", 0, 0, 916, 720],
+  ]);
 });
 
 test("pair display scale keeps every rendered layer on one fixed center anchor", () => {
@@ -777,7 +815,10 @@ test("collinear perspectives retain only the admitted partner path-history contr
   assert.equal(
     initialFrame.sources.every((source) =>
       source.historyModel === TOPO_COLLINEAR_PAIR_HISTORY_MODEL &&
-      source.historyStartTime === Number.NEGATIVE_INFINITY),
+      source.historyStartTime === Number.NEGATIVE_INFINITY &&
+      source.launchTime === 0 &&
+      source.prelaunchVelocityBeta === 0 &&
+      source.prelaunchPosition === source.start),
     true,
   );
   const initialSampler = createTopoCollinearPairRawSampler({
@@ -842,10 +883,85 @@ test("collinear perspectives retain only the admitted partner path-history contr
     phase: 0.5,
     sourceMaskRadius: 0,
   });
-  assert.equal(endpointSampler(0.5, 0.8), Number.POSITIVE_INFINITY);
+  assert.ok(Number.isFinite(endpointSampler(0.5, 0.8)));
+});
+
+test("beta-one absolute observer shows each arriving collinear wake", () => {
+  const phase = 0;
+  const absoluteSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  const electrinoWakeSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  const positrinoWakeSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase,
+    sourceMaskRadius: 0,
+    observerId: "electrino",
+  });
+  const leftTrailingPoint = [0.1, 0.6];
+  const rightTrailingPoint = [0.9, 0.6];
+  assert.ok(absoluteSampler(...leftTrailingPoint) < 0);
+  assert.ok(absoluteSampler(...rightTrailingPoint) > 0);
+  for (const point of [leftTrailingPoint, [0.5, 0.6], rightTrailingPoint]) {
+    assert.ok(Number.isFinite(electrinoWakeSampler(...point)));
+    assert.ok(Number.isFinite(positrinoWakeSampler(...point)));
+    closeTo(
+      absoluteSampler(...point),
+      electrinoWakeSampler(...point) + positrinoWakeSampler(...point),
+    );
+  }
+  closeTo(absoluteSampler(0.5, 0.6), 0);
+
+  for (const replayPhase of [0, 0.25, 0.5, 0.75, 1]) {
+    const fullHistorySampler = createTopoCollinearPairRawSampler({
+      beta: 1,
+      phase: replayPhase,
+      horizontalWorldSpan: 16 / 9,
+      sourceMaskRadius: 0,
+      superposition: true,
+    });
+    for (const x of [-1, 0, 0.5, 1, 2]) {
+      assert.ok(Number.isFinite(fullHistorySampler(x, 0.73)));
+    }
+  }
+
+  const postCrossingPhase = 0.75;
+  const postCrossingAbsolute = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: postCrossingPhase,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  const postCrossingElectrinoWake = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: postCrossingPhase,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  const postCrossingPositrinoWake = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: postCrossingPhase,
+    sourceMaskRadius: 0,
+    observerId: "electrino",
+  });
+  closeTo(
+    postCrossingAbsolute(0.45, 0.6),
+    postCrossingElectrinoWake(0.45, 0.6) +
+      postCrossingPositrinoWake(0.45, 0.6),
+  );
 });
 
 test("absolute observer sums both circular-binary wake contributions", () => {
+  assert.equal(TOPO_DEFAULT_WAKE_VIEW, TOPO_ABSOLUTE_OBSERVER);
+  assert.equal(normalizeTopoWakeView(), TOPO_ABSOLUTE_OBSERVER);
   assert.equal(normalizeTopoWakeView("absolute"), TOPO_ABSOLUTE_OBSERVER);
   const point = { x: 0.5, y: 0.8 };
   const electrinoView = sampleTopoCircularBinaryWake({
@@ -1250,6 +1366,150 @@ test("animated beta minimum is 0.05 while stationary singles retain beta zero", 
   assert.match(runtime, /resolveTopoCollinearPairPlaybackSeconds\([\s\S]*getState\(\)\.beta/u);
 });
 
+test("every display-affecting left-panel control invalidates the prior presentation", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  const frameScheduler = runtime.slice(
+    runtime.indexOf("function scheduleFrameChange"),
+    runtime.indexOf("function scheduleContourChange"),
+  );
+  const contourScheduler = runtime.slice(
+    runtime.indexOf("function scheduleContourChange"),
+    runtime.indexOf("function render()"),
+  );
+  assert.match(frameScheduler, /resetPresentation: true/u);
+  assert.match(contourScheduler, /resetPresentation: true/u);
+  assert.doesNotMatch(
+    runtime,
+    /holding-complete-frame|holdCompletePairFrame|previousFrameBelongsToScenario/u,
+  );
+  for (const controlRoute of [
+    /function handleScenarioChange[\s\S]*scheduleFrameChange\(\)/u,
+    /dom\.partnerPerspectiveInputs\.forEach[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.beta, "input", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.binaryRadius, "input", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.binaryOrbitGuide, "change", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /dom\.binaryDirectionInputs\.forEach[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.background, "input", scheduleFrameChange\)/u,
+    /listen\(dom\.displayScale, "input", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.contourCount, "input", scheduleContourChange\)/u,
+    /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u,
+    /listen\(dom\.contourVisibility, "input", scheduleContourChange\)/u,
+  ]) {
+    assert.match(runtime, controlRoute);
+  }
+});
+
+test("pointer-driven view controls return Space ownership to the stage", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  for (const [control, activation] of [
+    ["partnerPerspectiveControl", "partnerPerspectivePointerActivation"],
+    ["binaryDirectionControl", "binaryDirectionPointerActivation"],
+  ]) {
+    assert.match(
+      runtime,
+      new RegExp(
+        `listen\\(dom\\.${control}, "pointerdown", \\(\\) => \\{[\\s\\S]*?` +
+        `${activation} = true`,
+        "u",
+      ),
+    );
+    assert.match(
+      runtime,
+      new RegExp(
+        `listen\\(dom\\.${control}, "keydown", \\(\\) => \\{[\\s\\S]*?` +
+        `${activation} = false`,
+        "u",
+      ),
+    );
+  }
+  assert.match(
+    runtime,
+    /listen\(dom\.binaryOrbitGuide, "pointerdown", \(\) => \{[\s\S]*?binaryOrbitGuidePointerActivation = true/u,
+  );
+  for (const activation of [
+    "partnerPerspectivePointerActivation",
+    "binaryDirectionPointerActivation",
+    "binaryOrbitGuidePointerActivation",
+  ]) {
+    assert.match(
+      runtime,
+      new RegExp(
+        `const handFocusToStage = ${activation};[\\s\\S]*?` +
+        `dom\\.canvas\\.focus\\?\\.\\(\\{ preventScroll: true \\}\\)`,
+        "u",
+      ),
+    );
+  }
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "INPUT", type: "radio" },
+  }), false);
+});
+
+test("pointer-driven replay returns Space ownership to the stage", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(
+    runtime,
+    /function installPointerStageFocusHandoff\(control\)[\s\S]*listen\(control, "pointerdown"[\s\S]*pointerActivation = true[\s\S]*listen\(control, "keydown"[\s\S]*pointerActivation = false[\s\S]*dom\.canvas\.focus\?\.\(\{ preventScroll: true \}\)/u,
+  );
+  assert.match(
+    runtime,
+    /handPairReplayPointerFocusToStage =\s*installPointerStageFocusHandoff\(dom\.pairReplay\)/u,
+  );
+  assert.match(
+    runtime,
+    /handBinaryReplayPointerFocusToStage =\s*installPointerStageFocusHandoff\(dom\.binaryReplay\)/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.pairReplay, "click"[\s\S]*handPairReplayPointerFocusToStage\(\)/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.binaryReplay, "click"[\s\S]*handBinaryReplayPointerFocusToStage\(\)/u,
+  );
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "BUTTON" },
+  }), false);
+});
+
+test("Space-owned play and pause edges reset immediately without clearing animation frames", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  const functionBody = (name, nextName) => runtime.slice(
+    runtime.indexOf("function " + name),
+    runtime.indexOf("function " + nextName),
+  );
+  assert.match(
+    functionBody("pausePairPlayback", "startPairPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    functionBody("startPairPlayback", "togglePairPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    functionBody("startBinaryPlayback", "toggleBinaryPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    functionBody("toggleBinaryPlayback", "beginBinaryTimelineScrub"),
+    /resetPresentation: true/u,
+  );
+  assert.doesNotMatch(
+    functionBody("advancePairPlayback", "beginPairTimelineScrub"),
+    /resetPresentation: true/u,
+  );
+  assert.doesNotMatch(
+    functionBody("runBinaryPlaybackFrame", "startBinaryPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(documentLike, "keydown", \(event\) => \{[\s\S]*event\.preventDefault\(\)[\s\S]*togglePairPlayback\(\)[\s\S]*toggleBinaryPlayback\(\)/u,
+  );
+});
+
 test("Topo UI exposes partner-wake perspectives on one linear display path and preserves Home", () => {
   const html = readRepoFile("topo.html");
   const css = readRepoFile("src/apps/topo/topo.css");
@@ -1367,11 +1627,18 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     runtime,
     /const contourKey = matchingFrame[\s\S]*matchingFrame\.key \+ ":count=" \+ state\.contourCount[\s\S]*: "pending"/u,
   );
-  assert.match(runtime, /rawFrame: state\.binary[\s\S]*createLiveSampledContourFrame/u);
+  assert.match(
+    runtime,
+    /const contourRawFrame = \(state\.binary[\s\S]*createLiveSampledContourFrame/u,
+  );
   assert.match(runtime, /contourScalarAuthority = state\.superpositionView[\s\S]*signed-two-source-superposition-field[\s\S]*partner-raw-wake-field/u);
   assert.match(runtime, /masked-and-unavailable-cells-excluded/u);
   assert.match(runtime, /sourceContribution/u);
-  assert.match(runtime, /finiteHistory/u);
+  assert.match(runtime, /stationaryPrehistory/u);
+  assert.doesNotMatch(
+    runtime,
+    /state\.pairMode && state\.superpositionView && state\.beta === 1/u,
+  );
   assert.match(runtime, /setTransportControlButtonPresentation/u);
   assert.match(runtime, /TRANSPORT_CONTROL_ICON\.RESET/u);
   assert.doesNotMatch(runtime, /float magnitude = min\(/u);
@@ -1426,16 +1693,12 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   );
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
   assert.match(html, /id="topo-partner-perspective-control"[\s\S]*<legend>View<\/legend>/u);
-  assert.match(html, /name="topo-partner-perspective" value="electrino" checked/u);
+  assert.match(html, /name="topo-partner-perspective" value="electrino"/u);
   assert.match(html, /name="topo-partner-perspective" value="positrino"/u);
-  assert.match(html, /name="topo-partner-perspective" value="absolute"[\s\S]*<span>Absolute Observer<\/span>/u);
+  assert.match(html, /name="topo-partner-perspective" value="absolute" checked[\s\S]*<span>Absolute Observer<\/span>/u);
   assert.match(runtime, /dom\.partnerPerspectiveControl\.hidden = !receiverViewAvailable/u);
   assert.match(runtime, /signed-two-source-superposition/u);
   assert.match(runtime, /superposition: state\.superpositionView/u);
-  assert.match(
-    runtime,
-    /state\.pairMode && state\.superpositionView && state\.beta === 1/u,
-  );
   assert.match(runtime, /dom\.partnerPerspectiveInputs\.forEach/u);
   assert.match(html, /id="topo-pair-play"/u);
   assert.match(
@@ -1448,6 +1711,9 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   );
   assert.match(html, /aria-label="Collinear replay position"/u);
   assert.match(html, /aria-label="Orbit playback position"/u);
+  assert.match(html, /aria-valuetext="0% of two rotations"/u);
+  assert.match(runtime, /progressText \+ " of two rotations"/u);
+  assert.match(runtime, /binaryReplayRotations/u);
   assert.doesNotMatch(
     html,
     /topo-pair-progress|topo-binary-progress-output/u,

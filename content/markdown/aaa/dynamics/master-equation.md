@@ -1263,6 +1263,91 @@ Plainly: each admitted wake intersection contributes one acceleration vector,
 and the receiver adds those vectors. This vector sum is the postulated
 substrate rule. It does not require a scalar wake landscape.
 
+**Moving-single-root scalar representative (derived on one regular chart).**
+Fix the reception time, a retained transmitter history, and a connected
+receiver chart $U$ on which one selected causal root $s_b(\mathbf X_r)$ is
+unique and differentiable. For the canonical row, write
+
+$$
+\begin{aligned}
+\mathbf R_b
+&=\mathbf X_r-\mathbf X_{t(b)}(s_b),
+&r_b&=\|\mathbf R_b\|,
+&\mathbf n_b&=\frac{\mathbf R_b}{r_b},\\
+D_b
+&=c_f-\mathbf n_b\cdot\mathbf V_{t(b)}(s_b),
+&C_b&=\kappa\,\sigma_b|q_rq_{t(b)}|,
+\end{aligned}
+$$
+
+with $r_b\ge r_{\min}>0$ and $|D_b|\ge D_{\min}>0$ throughout $U$.
+
+Plainly: this is one admitted moving-source row with a smoothly tracked past
+emission event. The chart excludes sources, folds, coincidences, and singular
+self roots by keeping both the separation and transmitter factor away from
+zero.
+
+Differentiating the causal constraint
+$r_b-c_f(T-s_b)=0$ with respect to the receiver position gives
+
+$$
+0
+=
+d\!\left[r_b-c_f(T-s_b)\right]
+=
+\mathbf n_b\cdot d\mathbf X_r+D_b\,ds_b,
+\qquad
+\nabla_{\mathbf X_r}s_b
+=
+-\frac{\mathbf n_b}{D_b},
+\qquad
+\nabla_{\mathbf X_r}r_b
+=
+\frac{c_f}{D_b}\mathbf n_b.
+$$
+
+Plainly: moving the receiver changes both its separation from the retained
+source point and the emission time selected by the causal equation. These two
+effects combine into the signed factor $1/D_b$.
+
+The sign $\epsilon_b=\operatorname{sgn}(D_b)$ is constant on the connected
+regular chart. Therefore the receiver-local scalar
+
+$$
+\Phi_b
+=
+C_b\frac{\epsilon_b}{r_b}
+$$
+
+satisfies
+
+$$
+-\nabla_{\mathbf X_r}\Phi_b
+=
+C_b\frac{c_f}{r_b^2|D_b|}\mathbf n_b
+=
+\mathbf A_b.
+$$
+
+Plainly: the branch sign converts the signed derivative of $1/r_b$ into the
+absolute transmitter-side weight in the canonical acceleration ledger. This
+is an exact local rewrite of the existing row, not a new response based on
+slope or curvature.
+
+The claim grade is **derived on one connected regular moving-simple-root
+chart**. A separately structured $c_f=1$ circular-history check computes the
+scalar gradient from freshly solved roots and finite differences, while the
+ledger vector comes from an unchanged causal-root record and the canonical
+row. Across five step refinements, the largest component residual was
+$2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because
+its radial scaling is wrong. The check is recorded in
+[`verify-moving-single-root-scalar-gradient.mjs`](../../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs).
+
+Plainly: the proof supplies the identity, and an independently structured
+calculation checks its numerical realization on one moving regular chart. A
+nonzero scalar-gradient-versus-ledger residual on any certified point would
+falsify the claimed local representation.
+
 **Finite-ledger scalar-superposition theorem (conditional derivation).** Fix
 the retained histories, root selections, regularization, and boundary
 convention of that chart. If every row $b\in\mathcal B$ has a differentiable
@@ -1304,7 +1389,10 @@ $$
 Plainly: once every admitted acceleration row is already the negative gradient
 of its own valid scalar, adding the scalars reproduces the same complete vector
 ledger. This is a **conditional derivation** for a finite regular chart, not a
-proof that the required row scalars or one global scalar exist.
+proof that one global scalar exists. The preceding moving-single-root theorem
+discharges the per-row premise for canonical rows that share its fixed-history,
+fixed-sign regular chart. A row with a different kernel, regularization, or
+boundary rule still requires its own matching scalar derivation.
 
 Where $\nabla_{\mathbf X_r}\Phi_{\mathcal B}\ne\mathbf0$, the local level-set
 normal, acceleration direction, and acceleration magnitude obey

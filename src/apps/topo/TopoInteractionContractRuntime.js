@@ -13,6 +13,7 @@ import {
   TOPO_REFERENCE_WAKE_MAGNITUDE,
   TOPO_ABSOLUTE_OBSERVER,
   TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+  TOPO_DEFAULT_WAKE_VIEW,
   TOPO_PARTNER_WAKE_OBSERVER,
   TOPO_SOURCE_POSITION,
   TOPO_TRANSLATION_AXIS,
@@ -59,11 +60,13 @@ import {
   TOPO_CIRCULAR_BINARY_DIRECTION,
   TOPO_CIRCULAR_BINARY_KAPPA,
   TOPO_CIRCULAR_BINARY_PLAYBACK_SECONDS,
+  TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS,
   TOPO_CIRCULAR_BINARY_SCENARIO_ID,
   createTopoCircularBinaryChart,
   createTopoCircularBinaryFrameIdentity,
   createTopoCircularBinaryPlayback,
   createTopoCircularBinaryRawSampler,
+  resolveTopoCircularBinaryHistoryWarmup,
   sampleTopoCircularBinaryWake,
   topoCircularBinarySourcePosition,
   topoCircularBinaryWorldPointForCanvasPixel,
@@ -86,6 +89,27 @@ function requireElement(documentLike, selector) {
     throw new Error("Missing Topo interaction-preview element: " + selector);
   }
   return element;
+}
+
+export function resetTopoVisiblePresentation({
+  canvas,
+  analyticFieldCanvas,
+  fieldContext,
+  contourContext,
+  contourStagingContext,
+  width,
+  height,
+  neutralColor,
+} = {}) {
+  const resetWidth = Math.max(0, Number(width) || 0);
+  const resetHeight = Math.max(0, Number(height) || 0);
+  canvas.style.opacity = "1";
+  analyticFieldCanvas.style.visibility = "hidden";
+  fieldContext.clearRect(0, 0, resetWidth, resetHeight);
+  fieldContext.fillStyle = neutralColor;
+  fieldContext.fillRect(0, 0, resetWidth, resetHeight);
+  contourContext.clearRect(0, 0, resetWidth, resetHeight);
+  contourStagingContext.clearRect(0, 0, resetWidth, resetHeight);
 }
 
 function readHexToken(windowLike, element, token, fallback) {
@@ -846,6 +870,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
   let pairPlaybackPreviousTimestamp = null;
   let pairTimelineScrubbing = false;
   let scenarioPointerActivation = false;
+  let partnerPerspectivePointerActivation = false;
+  let binaryDirectionPointerActivation = false;
+  let binaryOrbitGuidePointerActivation = false;
   let binaryProgress = 0;
   let binaryPlaying = false;
   let binaryPlaybackStartedAt = null;
@@ -1388,19 +1415,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
         float velocityBeta,
         float polaritySign,
         float historyAge,
-        float finiteHistory
+        float stationaryPrehistory
       ) {
         vec2 offset = worldPoint - vec2(sourceX, 0.5);
         float radiusSquared = dot(offset, offset);
         if (radiusSquared <= 0.000000000001) {
           return polaritySign * 64.0;
         }
-        float causalDelay;
+        float causalDelay = -1.0;
         if (abs(velocityBeta) >= 0.999999) {
-          if (velocityBeta * offset.x >= 0.0) {
-            return 0.0;
+          if (velocityBeta * offset.x < 0.0) {
+            causalDelay = -radiusSquared / (2.0 * velocityBeta * offset.x);
           }
-          causalDelay = -radiusSquared / (2.0 * velocityBeta * offset.x);
         } else {
           float lambda = sqrt(
             offset.x * offset.x +
@@ -1408,10 +1434,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
           );
           causalDelay = radiusSquared / (lambda - velocityBeta * offset.x);
         }
-        if (
-          causalDelay <= 0.0 ||
-          (finiteHistory > 0.5 && causalDelay > historyAge)
-        ) {
+        if (stationaryPrehistory > 0.5 &&
+            (causalDelay <= 0.0 || causalDelay > historyAge)) {
+          float launchX = sourceX - velocityBeta * historyAge;
+          float prehistoryDelay = distance(
+            worldPoint,
+            vec2(launchX, 0.5)
+          );
+          causalDelay = prehistoryDelay + 0.000001 >= historyAge
+            ? prehistoryDelay
+            : -1.0;
+        }
+        if (causalDelay <= 0.0) {
           return 0.0;
         }
         float magnitude = ${TOPO_INVERSE_SQUARE_SCALE.toPrecision(12)} /
@@ -1456,14 +1490,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
                 u_beta,
                 -1.0,
                 u_pair_time,
-                0.0
+                1.0
               ) + sourceContribution(
                 worldPoint,
                 u_positrino_x,
                 -u_beta,
                 1.0,
                 u_pair_time,
-                0.0
+                1.0
               )
             : u_partner_source_sign < 0.0
             ? sourceContribution(
@@ -1472,7 +1506,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
                 u_beta,
                 -1.0,
                 u_pair_time,
-                0.0
+                1.0
               )
             : sourceContribution(
                 worldPoint,
@@ -1480,7 +1514,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
                 -u_beta,
                 1.0,
                 u_pair_time,
-                0.0
+                1.0
               );
         } else {
           rawValue = sourceContribution(
@@ -1928,6 +1962,28 @@ export function mountTopoInteractionContractPreview(options = {}) {
       target.removeEventListener?.(eventName, handler, eventOptions));
   }
 
+  function installPointerStageFocusHandoff(control) {
+    let pointerActivation = false;
+    listen(control, "pointerdown", () => {
+      pointerActivation = true;
+    });
+    listen(control, "keydown", () => {
+      pointerActivation = false;
+    });
+    listen(control, "pointercancel", () => {
+      pointerActivation = false;
+    });
+    return () => {
+      const handFocusToStage = pointerActivation;
+      pointerActivation = false;
+      if (handFocusToStage) {
+        windowLike.requestAnimationFrame?.(() => {
+          dom.canvas.focus?.({ preventScroll: true });
+        });
+      }
+    };
+  }
+
   function installRangeInteraction(input, {
     onInteractionStart = null,
     onInteractionEnd = null,
@@ -2085,7 +2141,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     };
     const viewId = normalizeTopoWakeView(
       dom.partnerPerspectiveInputs.find((input) => input.checked)?.value ??
-        TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+        TOPO_DEFAULT_WAKE_VIEW,
     );
     const superpositionView = viewId === TOPO_ABSOLUTE_OBSERVER;
     const observerId = superpositionView
@@ -2113,11 +2169,20 @@ export function mountTopoInteractionContractPreview(options = {}) {
         ?.value === TOPO_CIRCULAR_BINARY_DIRECTION.CLOCKWISE
         ? TOPO_CIRCULAR_BINARY_DIRECTION.CLOCKWISE
         : TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE;
+      const renderSize = canvasSize();
+      const historyWarmup = resolveTopoCircularBinaryHistoryWarmup({
+        beta: baseState.beta,
+        radius: orbitalRadius,
+        width: renderSize.width,
+        height: renderSize.height,
+        displayScale: baseState.displayScale,
+      });
       const playback = createTopoCircularBinaryPlayback({
         beta: baseState.beta,
         progress: binaryProgress,
         radius: orbitalRadius,
         direction,
+        ...historyWarmup,
       });
       return Object.freeze({
         ...baseState,
@@ -2331,6 +2396,8 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.pairHistoryModel = pairMode
       ? TOPO_COLLINEAR_PAIR_HISTORY_MODEL
       : "";
+    dom.app.dataset.pairLaunchTime = pairMode ? "0" : "";
+    dom.app.dataset.pairPrelaunchVelocityBeta = pairMode ? "0" : "";
     dom.betaOutput.value = "β = " + state.beta.toFixed(2);
     dom.betaOutput.textContent = dom.betaOutput.value;
     dom.beta.setAttribute(
@@ -2465,7 +2532,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     setTransportControlButtonPresentation(dom.binaryReplay, {
       kind: TRANSPORT_CONTROL_ICON.RESET,
       label: "Reset orbit playback",
-      tooltip: "Reset to the orbit start",
+      tooltip: "Reset to the two-rotation replay start",
     });
     const progressText = formatPercentage(state.playback.progress);
     dom.binaryTimeline.value = String(Math.round(
@@ -2474,13 +2541,16 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.binaryTimeline.setAttribute(
       "aria-valuetext",
       enabled
-        ? progressText + " of one orbit"
+        ? progressText + " of two rotations"
         : "Stationary at beta zero; playback unavailable",
     );
     dom.app.dataset.binaryPlayback = enabled
       ? (binaryPlaying ? "playing" : state.playback.complete ? "complete" : "paused")
       : "stationary-disabled";
     dom.app.dataset.binaryProgress = state.playback.progress.toFixed(6);
+    dom.app.dataset.binaryReplayRotations = String(
+      TOPO_CIRCULAR_BINARY_REPLAY_ROTATIONS,
+    );
     dom.app.dataset.binaryTimelineScrubbing = String(binaryTimelineScrubbing);
     dom.app.dataset.neutralBackgroundWhiteMix =
       state.neutralWhiteMix.toFixed(2);
@@ -2490,6 +2560,14 @@ export function mountTopoInteractionContractPreview(options = {}) {
     dom.app.dataset.binaryOrbitalRadius = state.orbitalRadius.toFixed(2);
     dom.app.dataset.binaryDirection = state.direction;
     dom.app.dataset.binaryAngularVelocity = state.playback.angularVelocity.toFixed(9);
+    dom.app.dataset.binaryHistoryPolicy = state.playback.historyPolicy;
+    dom.app.dataset.binaryHistoryWarmupDuration =
+      state.playback.historyWarmupDuration.toFixed(9);
+    dom.app.dataset.binaryHistoryWarmupOrbits = String(
+      state.playback.historyWarmupOrbits,
+    );
+    dom.app.dataset.binaryHistoryRequiredDuration =
+      state.playback.historyRequiredDuration?.toFixed(9) ?? "";
     dom.app.dataset.binaryOrbitGuide = state.showOrbitGuide ? "solid" : "hidden";
     dom.app.dataset.binaryFrameIdentity = createTopoCircularBinaryFrameIdentity({
       beta: state.beta,
@@ -2498,6 +2576,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       direction: state.direction,
       observerId: state.observerId,
       superposition: state.superpositionView,
+      historyWarmupDuration: state.playback.historyWarmupDuration,
+      historyWarmupOrbits: state.playback.historyWarmupOrbits,
+      historyRequiredDuration: state.playback.historyRequiredDuration,
     });
   }
 
@@ -2777,6 +2858,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           const expected = sampleTopoCircularBinaryWake({
             point, beta: state.beta, radius: state.orbitalRadius,
             progress: state.playback.progress, direction: state.direction,
+            observationTime: state.playback.observationTime,
             sourceMaskRadius, observerId: state.observerId,
             superposition: state.superpositionView,
           });
@@ -2938,6 +3020,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
       // Keep the WebGL result as the binary field layer.  Copying this full
       // canvas into the 2D interaction canvas synchronizes the GPU and turned
       // each presented beta-one frame into a visible phase jump.
+      analyticFieldCanvas.style.visibility = "visible";
       dom.canvas.style.opacity = "0";
       const elapsed = Math.round(
         (windowLike.performance?.now?.() ?? Date.now()) - started,
@@ -2963,6 +3046,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     } catch (error) {
       circularBinaryFieldRenderer = null;
       circularBinaryScalarPresentationRenderer = null;
+      analyticFieldCanvas.style.visibility = "hidden";
       dom.canvas.style.opacity = "1";
       dom.app.dataset.fieldRenderer = "cpu-reference";
       dom.app.dataset.fieldRendererError = String(error?.message ?? error);
@@ -2973,11 +3057,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function paintAnalyticField(width, height, state, styles) {
     if (state.binary) {
       return paintCircularBinaryField(width, height, state, styles);
-    }
-    // At the field-speed endpoint, either source can lack an ordinary root.
-    // Use the CPU ledger so the absolute sum stays fail-closed in those cells.
-    if (state.pairMode && state.superpositionView && state.beta === 1) {
-      return false;
     }
     dom.canvas.style.opacity = "1";
     if (!analyticFieldRenderer) {
@@ -3960,17 +4039,6 @@ export function mountTopoInteractionContractPreview(options = {}) {
     const matchingFrame = rawFrame?.key === expectedKey
       ? rawFrame
       : null;
-    // A paused pair can briefly have no cached full-density frame while the
-    // selected phase is being refined. Keep the last complete presentation
-    // on screen during that handoff; clearing the visible contour canvas here
-    // would expose a blank contour layer before the matching frame is ready.
-    const previousFrameBelongsToScenario = String(
-      dom.app.dataset.contourFrameKey ?? "",
-    ).includes(":" + state.scenarioId + ":");
-    if (!matchingFrame && state.pairMode && previousFrameBelongsToScenario) {
-      dom.app.dataset.pairFrameHandoff = "holding-complete-frame";
-      return true;
-    }
     const playbackFrame = matchingFrame?.contourFrameKind ===
       "playback-preview" || matchingFrame?.contourFrameKind ===
       "binary-live-preview";
@@ -4661,24 +4729,72 @@ export function mountTopoInteractionContractPreview(options = {}) {
       ? "Prescribed circular-binary heatmap complete. The solid orbit is a reference path only; no dynamics, binding, or stability claim is attached."
       : state.beta === 1
       ? state.pairMode
-        ? state.superpositionView
-          ? "Absolute-observer superposition frame complete at the field-speed endpoint; unavailable roots remain neutral."
-          : "Partner-wake prescribed-prehistory frame complete at the field-speed endpoint; unavailable leading roots remain neutral."
+          ? state.superpositionView
+          ? "Absolute-observer superposition frame complete at the field-speed endpoint; both stationary-prehistory wakes are shown across the frame."
+          : "Partner-wake stationary-prehistory frame complete at the field-speed endpoint; the prescribed launch begins at replay time zero."
         : "Full-density synthetic frame complete. Signed ordinary wake intensity has no value in front; no value was fabricated."
       : state.pairMode
         ? state.superpositionView
           ? "Absolute-observer signed superposition frame complete; prescribed paths are display-only."
-          : "Partner-wake constant-velocity prescribed-prehistory frame complete. The selected observer's self-wake is excluded; prescribed paths are display-only."
+          : "Partner-wake stationary-prehistory frame complete. The selected observer's self-wake is excluded; prescribed paths are display-only."
         : "One-source full-density synthetic frame complete. No TOPO-001 values are shown.";
   }
 
-  function beginRender({ finalDelay = 0, redrawContours = true } = {}) {
+  function resetPresentationForControlChange(state) {
+    const width = dom.canvas.width;
+    const height = dom.canvas.height;
+    const styles = readStyles(state);
+    const configurationKey = [
+      state.scenarioId,
+      state.viewId ?? "single-source",
+      state.beta.toFixed(4),
+      state.contourCount,
+      state.shadingSpread.toFixed(4),
+      state.contourVisibility.toFixed(4),
+      state.displayScale.toFixed(2),
+      state.neutralWhiteMix.toFixed(2),
+      state.orbitalRadius?.toFixed(2) ?? "not-applicable",
+      state.direction ?? "not-applicable",
+      state.showOrbitGuide == null
+        ? "not-applicable"
+        : String(state.showOrbitGuide),
+    ].join(":");
+    resetTopoVisiblePresentation({
+      canvas: dom.canvas,
+      analyticFieldCanvas,
+      fieldContext: context,
+      contourContext,
+      contourStagingContext,
+      width,
+      height,
+      neutralColor: styles.zero,
+    });
+    lastContourPresentationKey = null;
+    dom.app.dataset.presentationResetRevision = String(frameRevision);
+    dom.app.dataset.presentationResetConfiguration = configurationKey;
+    dom.app.dataset.contourFrameKey = "pending:" + configurationKey;
+    dom.app.dataset.contourFrameKind = "pending";
+    dom.app.dataset.contourFrameResolution = "pending";
+    dom.app.dataset.contourGeometryKey = "pending:" + configurationKey;
+    dom.app.dataset.pairFrameHandoff = state.pairMode
+      ? "reset-for-current-configuration"
+      : "not-applicable";
+  }
+
+  function beginRender({
+    finalDelay = 0,
+    redrawContours = true,
+    resetPresentation = false,
+  } = {}) {
     const interactionStarted = windowLike.performance?.now?.() ?? Date.now();
     frameRevision += 1;
     const revision = frameRevision;
     const state = getState();
     updateControlPresentation();
     updateLegend();
+    if (resetPresentation) {
+      resetPresentationForControlChange(state);
+    }
     dom.app.dataset.frameState = "refining";
     dom.status.textContent =
       "Preview updated; refining the full-density synthetic frame.";
@@ -4725,15 +4841,9 @@ export function mountTopoInteractionContractPreview(options = {}) {
       const cachedRawFrame = rawFrameCaches.get(
         createRawFrameKey(grid.width, grid.height, state),
       ) ?? null;
-      const holdCompletePairFrame = state.pairMode &&
-        !pairPlaybackPlaying && !pairTimelineScrubbing &&
-        !cachedRawFrame &&
-        String(dom.app.dataset.contourFrameKey ?? "").includes(
-          ":" + state.scenarioId + ":",
-        );
-      dom.app.dataset.pairFrameHandoff = holdCompletePairFrame
-        ? "holding-complete-frame"
-        : "rendering-current-frame";
+      dom.app.dataset.pairFrameHandoff = state.pairMode
+        ? "rendering-current-frame"
+        : "not-applicable";
       // The binary scalar presentation already contains the current full-stage
       // contours.  Do not build the historical coarse CPU frame merely to
       // draw its marker overlay; that work both duplicates the scalar law and
@@ -4762,7 +4872,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
           ? state.neutralWhiteMix.toFixed(2) + ":" + state.direction
           : state.polaritySign + ":" + state.neutralWhiteMix.toFixed(2),
       ].join(":");
-      const shouldRedrawContours = !holdCompletePairFrame && (
+      const shouldRedrawContours = (
         redrawContours ||
         contourResized ||
         lastContourPresentationKey !== contourPresentationKey
@@ -4779,15 +4889,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
           rawFrame: contourRawFrame,
         });
       }
-      const analyticFieldPainted = holdCompletePairFrame
-        ? false
-        : paintAnalyticField(
-          width,
-          height,
-          state,
-          styles,
-        );
-      if (!analyticFieldPainted && !holdCompletePairFrame) {
+      const analyticFieldPainted = paintAnalyticField(
+        width,
+        height,
+        state,
+        styles,
+      );
+      if (!analyticFieldPainted) {
         drawImmediatePreview(
           width,
           height,
@@ -4846,73 +4954,18 @@ export function mountTopoInteractionContractPreview(options = {}) {
   }
 
   function scheduleFrameChange() {
-    beginRender({ finalDelay: 90 });
+    beginRender({ finalDelay: 90, resetPresentation: true });
   }
 
   function scheduleContourChange() {
-    // The circular-binary contours are painted by the scalar WebGL
-    // presentation pass.  Updating only the 2D overlay here leaves that pass
-    // on its previous opacity uniforms, so Topo fade appears to have
-    // no effect (or shows a stale strength after a later control change).
-    // Re-run the complete current-frame presentation so field and contours
-    // receive the same current state and strength profile.
-    const currentState = getState();
-    if (currentState.binary && circularBinaryScalarPresentationRenderer &&
-        topoScalarFramebuffer.available) {
-      beginRender({ finalDelay: 0, redrawContours: true });
-      return;
-    }
-    const interactionStarted = windowLike.performance?.now?.() ?? Date.now();
-    frameRevision += 1;
-    const revision = frameRevision;
-    const state = getState();
-    updateControlPresentation();
-    updateLegend();
-    windowLike.cancelAnimationFrame?.(renderRequest);
-    windowLike.clearTimeout?.(finalRenderTimer);
-    windowLike.clearTimeout?.(renderWatchdogTimer);
-    renderRequest = windowLike.requestAnimationFrame?.(() => {
-      if (revision !== frameRevision) {
-        return;
-      }
-      const { width, height } = canvasSize();
-      const pixelRatio = effectivePixelRatio(width, height);
-      const styles = readStyles(state);
-      const grid = rawGridSize();
-      const cachedRawFrame = rawFrameCaches.get(
-        createRawFrameKey(grid.width, grid.height, state),
-      ) ?? null;
-      if ((state.pairMode && !cachedRawFrame) ||
-          (state.binary && !binaryPlaying && !binaryTimelineScrubbing &&
-            !(circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available))) {
-        beginRender({ finalDelay: 0, redrawContours: true });
-        return;
-      }
-      dom.app.dataset.lastPreviewLatencyMs = String(Math.round(
-        (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
-      ));
-      dom.app.dataset.frameState = "complete";
-      dom.status.textContent = "Updating contour lines from the cached field.";
-      const complete = drawSyntheticContours({
-        width,
-        height,
-        pixelRatio,
-        state,
-        styles,
-        revision,
-        rawFrame: state.binary &&
-          !(circularBinaryScalarPresentationRenderer && topoScalarFramebuffer.available)
-          ? createLiveSampledContourFrame(width, height, state)
-          : cachedRawFrame,
-      });
-      if (complete && revision === frameRevision) {
-        dom.app.dataset.lastFullDensityLatencyMs = String(Math.round(
-          (windowLike.performance?.now?.() ?? Date.now()) - interactionStarted,
-        ));
-        dom.status.textContent =
-          "Contour overlay updated from the same cached raw and field frame.";
-      }
-    }) ?? 0;
+    // Contours can live in either the 2D overlay or the circular-binary WebGL
+    // presentation. Repaint the complete current presentation so neither path
+    // can retain pixels from the previous count or fade setting.
+    beginRender({
+      finalDelay: 0,
+      redrawContours: true,
+      resetPresentation: true,
+    });
   }
 
   function render() {
@@ -4957,7 +5010,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
     pairPlaybackPreviousTimestamp = null;
     pairTimelineScrubbing = false;
     updateControlPresentation();
-    beginRender({ finalDelay: 0, redrawContours: true });
+    beginRender({
+      finalDelay: 0,
+      redrawContours: true,
+      resetPresentation: true,
+    });
   }
 
   function startPairPlayback({ restart = false } = {}) {
@@ -4979,7 +5036,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
     pairPlaybackPreviousTimestamp = null;
     pairTimelineScrubbing = false;
     updateControlPresentation();
-    beginRender({ finalDelay: 0, redrawContours: true });
+    beginRender({
+      finalDelay: 0,
+      redrawContours: true,
+      resetPresentation: true,
+    });
     requestPairPlaybackFrame();
   }
 
@@ -5122,6 +5183,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryPlaybackPreviousTimestamp = null;
     binaryPlaybackPresentedFrameCount = 0;
     updateBinaryTransportPresentation();
+    beginRender({
+      finalDelay: 0,
+      redrawContours: true,
+      resetPresentation: true,
+    });
     windowLike.cancelAnimationFrame?.(binaryAnimationRequest);
     binaryAnimationRequest = windowLike.requestAnimationFrame?.(
       runBinaryPlaybackFrame,
@@ -5131,7 +5197,11 @@ export function mountTopoInteractionContractPreview(options = {}) {
   function toggleBinaryPlayback() {
     if (binaryPlaying) {
       stopBinaryPlayback();
-      beginRender({ finalDelay: 0, redrawContours: true });
+      beginRender({
+        finalDelay: 0,
+        redrawContours: true,
+        resetPresentation: true,
+      });
     } else {
       startBinaryPlayback();
     }
@@ -5193,6 +5263,10 @@ export function mountTopoInteractionContractPreview(options = {}) {
     onInteractionStart: beginBinaryTimelineScrub,
     onInteractionEnd: endBinaryTimelineScrub,
   });
+  const handPairReplayPointerFocusToStage =
+    installPointerStageFocusHandoff(dom.pairReplay);
+  const handBinaryReplayPointerFocusToStage =
+    installPointerStageFocusHandoff(dom.binaryReplay);
   function handleScenarioChange(event) {
     if (event && event.target?.checked !== true) {
       return;
@@ -5222,10 +5296,26 @@ export function mountTopoInteractionContractPreview(options = {}) {
   });
   dom.scenarioInputs.forEach((input) =>
     listen(input, "change", handleScenarioChange));
+  listen(dom.partnerPerspectiveControl, "pointerdown", () => {
+    partnerPerspectivePointerActivation = true;
+  });
+  listen(dom.partnerPerspectiveControl, "keydown", () => {
+    partnerPerspectivePointerActivation = false;
+  });
+  listen(dom.partnerPerspectiveControl, "pointercancel", () => {
+    partnerPerspectivePointerActivation = false;
+  });
   dom.partnerPerspectiveInputs.forEach((input) =>
     listen(input, "change", () => {
       if (input.checked) {
+        const handFocusToStage = partnerPerspectivePointerActivation;
+        partnerPerspectivePointerActivation = false;
         scheduleFrameChange();
+        if (handFocusToStage) {
+          windowLike.requestAnimationFrame?.(() => {
+            dom.canvas.focus?.({ preventScroll: true });
+          });
+        }
       }
     }));
   listen(dom.beta, "input", () => {
@@ -5245,18 +5335,56 @@ export function mountTopoInteractionContractPreview(options = {}) {
   listen(dom.pairReplay, "click", () => {
     resetPairPlayback();
     beginRender({ finalDelay: 0, redrawContours: true });
+    handPairReplayPointerFocusToStage();
   });
   listen(dom.binaryRadius, "input", () => {
     stopBinaryPlayback();
     binaryProgress = 0;
     scheduleFrameChange();
   });
-  listen(dom.binaryOrbitGuide, "change", scheduleFrameChange);
+  listen(dom.binaryOrbitGuide, "pointerdown", () => {
+    binaryOrbitGuidePointerActivation = true;
+  });
+  listen(dom.binaryOrbitGuide, "keydown", () => {
+    binaryOrbitGuidePointerActivation = false;
+  });
+  listen(dom.binaryOrbitGuide, "pointercancel", () => {
+    binaryOrbitGuidePointerActivation = false;
+  });
+  listen(dom.binaryOrbitGuide, "change", () => {
+    const handFocusToStage = binaryOrbitGuidePointerActivation;
+    binaryOrbitGuidePointerActivation = false;
+    scheduleFrameChange();
+    if (handFocusToStage) {
+      windowLike.requestAnimationFrame?.(() => {
+        dom.canvas.focus?.({ preventScroll: true });
+      });
+    }
+  });
+  listen(dom.binaryDirectionControl, "pointerdown", () => {
+    binaryDirectionPointerActivation = true;
+  });
+  listen(dom.binaryDirectionControl, "keydown", () => {
+    binaryDirectionPointerActivation = false;
+  });
+  listen(dom.binaryDirectionControl, "pointercancel", () => {
+    binaryDirectionPointerActivation = false;
+  });
   dom.binaryDirectionInputs.forEach((input) =>
     listen(input, "change", () => {
+      if (!input.checked) {
+        return;
+      }
+      const handFocusToStage = binaryDirectionPointerActivation;
+      binaryDirectionPointerActivation = false;
       stopBinaryPlayback();
       binaryProgress = 0;
       scheduleFrameChange();
+      if (handFocusToStage) {
+        windowLike.requestAnimationFrame?.(() => {
+          dom.canvas.focus?.({ preventScroll: true });
+        });
+      }
     }));
   listen(dom.background, "input", scheduleFrameChange);
   listen(dom.displayScale, "input", () => {
@@ -5271,6 +5399,7 @@ export function mountTopoInteractionContractPreview(options = {}) {
     binaryPlaybackStartProgress = 0;
     updateBinaryTransportPresentation();
     beginRender({ finalDelay: 0, redrawContours: true });
+    handBinaryReplayPointerFocusToStage();
   });
   listen(documentLike, "keydown", (event) => {
     if (!topoGlobalTransportOwnsSpace(event)) {

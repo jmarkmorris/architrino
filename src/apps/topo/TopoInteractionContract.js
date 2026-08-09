@@ -32,6 +32,7 @@ export const TOPO_PARTNER_WAKE_OBSERVER = Object.freeze({
 export const TOPO_ABSOLUTE_OBSERVER = "absolute";
 export const TOPO_DEFAULT_PARTNER_WAKE_OBSERVER =
   TOPO_PARTNER_WAKE_OBSERVER.ELECTRINO;
+export const TOPO_DEFAULT_WAKE_VIEW = TOPO_ABSOLUTE_OBSERVER;
 export const TOPO_FIRST_CONTOUR_BUDGET_MS = 34;
 export const TOPO_MAX_CANVAS_DIMENSION = 4096;
 export const TOPO_MAX_CANVAS_PIXELS = 12 * 1024 * 1024;
@@ -64,7 +65,7 @@ export function normalizeTopoPartnerWakeObserver(
 }
 
 export function normalizeTopoWakeView(
-  value = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+  value = TOPO_DEFAULT_WAKE_VIEW,
 ) {
   if (value === TOPO_ABSOLUTE_OBSERVER) {
     return value;

@@ -14,18 +14,20 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 → promoted to
 [Master Equation: Superposition and Local Wake Geometry](../../../content/markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry)
-(2026-08-08), grade **conditional derivation** for finite scalar
-superposition on one regular retained-history branch chart. The postulated
-vector superposition law remains distinct from that conditional scalar
-equivalence.
+(2026-08-08; moving-single-root theorem added 2026-08-09), with the proof and
+independent check in
+[Moving-Single-Root Scalar-Gradient Theorem](receiver-wake-gradient-closure.md#moving-single-root-scalar-gradient-theorem).
+The canonical per-row identity is **derived on one connected regular
+moving-simple-root chart**. Finite scalar superposition remains a
+**conditional derivation** because all rows must occupy one shared
+retained-history and boundary chart; postulated vector superposition remains
+distinct.
 
-Residual open theorem targets: construct and independently verify a valid
-per-row delayed scalar for the moving-single-root chart; select and prove any
-singular-chart extension across sources, folds, coincidences, or the self
-diagonal; prove scalar-chart agreement on overlaps; and justify the countable
-or continuum source limit under explicit distance, Jacobian, and summability
-bounds. The next artifact is the independently checked moving-single-root
-scalar-gradient-versus-ledger identity.
+Unpromoted theorem targets: construct a matching scalar for any different
+delayed or regularized row; select and prove singular-chart treatment across
+sources, folds, coincidences, or the self diagonal; prove scalar-chart gluing;
+and justify the infinite-source limit under explicit distance, Jacobian, and
+summability bounds.
 
 ### Concave/Inside Versus Convex/Outside Wake-Side Response Audit (2026-07-29)
 

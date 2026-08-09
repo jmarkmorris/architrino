@@ -498,7 +498,7 @@ Plainly: the general formula reduces to the ordinary derivative of
 $C_{ij}\mathbf R/r^3$. Failure of this reduction falsifies the tensor formula
 before any delayed-history test is attempted.
 
-## Why A Pure Scalar Route Is Not The Missing Term
+## Moving-Root Scalar Identity And Its Boundaries
 
 At fixed emission time,
 
@@ -522,6 +522,127 @@ not the unsigned acceleration weight $1/|D|$. On a fixed one-sign branch one
 can rewrite the canonical row using the branch sign, but that rewrite does not
 define a smooth scalar across a fold and does not supply a complete
 whole-history action.
+
+### Moving-Single-Root Scalar-Gradient Theorem
+
+Fix the reception time, one retained transmitter history, and a connected open
+receiver chart $U$. Assume that the selected causal root $s_b(\mathbf x)$ is
+unique and differentiable on $U$, and that
+
+$$
+r_b(\mathbf x)\ge r_{\min}>0,
+\qquad
+|D_b(\mathbf x)|\ge D_{\min}>0,
+$$
+
+where
+
+$$
+\begin{aligned}
+\mathbf R_b
+&=\mathbf x-\mathbf X_j(s_b),
+&r_b&=\|\mathbf R_b\|,
+&\mathbf n_b&=\frac{\mathbf R_b}{r_b},\\
+D_b
+&=c_f-\mathbf n_b\cdot\mathbf V_j(s_b),
+&C_b&=\kappa\,\sigma_b|q_iq_j|.
+\end{aligned}
+$$
+
+Plainly: this theorem stays inside one ordinary branch. The active past event
+moves smoothly when the receiver moves, while separation and the transmitter
+factor stay away from their singular values. The signed coupling $C_b$ is
+fixed for that admitted row.
+
+The causal constraint and its receiver derivative are
+
+$$
+g_b(\mathbf x,s_b)
+=
+r_b-c_f(T-s_b)
+=0,
+\qquad
+0
+=
+dg_b
+=
+\mathbf n_b\cdot d\mathbf x+D_b\,ds_b,
+\qquad
+\nabla_{\mathbf x}s_b
+=
+-\frac{\mathbf n_b}{D_b},
+\qquad
+\nabla_{\mathbf x}r_b
+=
+\frac{c_f}{D_b}\mathbf n_b.
+$$
+
+Plainly: moving the receiver changes both the separation and which emission
+time solves the causal equation. Differentiating the selected root accounts
+for both changes and supplies the signed factor $1/D_b$.
+
+Because $D_b$ is continuous and nonzero on the connected chart, its sign
+$\epsilon_b=\operatorname{sgn}(D_b)$ is constant there. Define
+
+$$
+\Phi_b(\mathbf x)
+=
+C_b\frac{\epsilon_b}{r_b(\mathbf x)}.
+$$
+
+Then
+
+$$
+\begin{aligned}
+-\nabla_{\mathbf x}\Phi_b
+&=
+C_b\epsilon_b
+\frac{c_f}{D_b}
+\frac{\mathbf n_b}{r_b^2}\\
+&=
+C_b
+\frac{c_f}{r_b^2|D_b|}
+\mathbf n_b
+=
+\mathbf A_b.
+\end{aligned}
+$$
+
+Plainly: the branch sign converts the signed root derivative into the absolute
+transmitter weight already present in the Master Equation. The result is the
+existing acceleration row written as a local scalar gradient; it is not a new
+acceleration term.
+
+Claim grade: **derived on one connected regular moving-simple-root chart**.
+The derivation is falsified by a certified regular-chart point where
+$\mathbf A_b+\nabla_{\mathbf x}\Phi_b\ne\mathbf0$. It does not cross
+$D_b=0$ or $r_b=0$, glue distinct root charts, define a singular self root, or
+establish a whole-history action or global scalar.
+
+Plainly: the exact local identity is proved under its stated hypotheses. Its
+boundaries are part of the theorem, so it cannot be extended past a fold,
+source, coincidence, or self diagonal merely by continuing the displayed
+formula.
+
+The separately structured executable check
+[`verify-moving-single-root-scalar-gradient.mjs`](../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs)
+uses $c_f=1$, a moving uniform-circular transmitter, a certified receiver ball
+of radius $0.02$, the analytic floors $D_b\ge0.72$ and $r_b\ge1.0722$, and
+five finite-difference refinements of the scalar. The scalar side
+solves the moving root by a certified Newton iteration and never calls the
+analytic gradient or the EOM solver sensitivity. The ledger side uses the
+unchanged circular-root record from
+[`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs)
+and the canonical acceleration row. Across the five refinements, the largest
+component residual was $2.12\times10^{-12}$ and the largest disagreement
+between the two numerical gradient stencils was $5.93\times10^{-13}$. The raw
+$1/r_b^2$ scalar negative control left a component residual of $0.513$.
+
+Plainly: a numerical gradient of scalar values computed from freshly solved
+moving roots agrees with an unchanged acceleration-ledger construction to the
+declared tolerance. The wrong radial scalar fails visibly. This measured check
+tests the implementation of the proved identity on one regular chart; it does
+not prove the theorem or any global extension by numerical agreement alone.
 
 Similarly,
 

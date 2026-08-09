@@ -430,7 +430,7 @@ test("binary GPU paint reuses the level-weighted profile at intermediate strengt
   assert.match(runtime, /dataset\.binaryContourStrengthPolicy = "level-weighted-progressive-fade"/u);
   assert.match(
     runtime,
-    /function scheduleContourChange\(\) \{[\s\S]*currentState\.binary[\s\S]*beginRender\(\{ finalDelay: 0, redrawContours: true \}\)/u,
+    /function scheduleContourChange\(\) \{[\s\S]*beginRender\(\{[\s\S]*finalDelay: 0,[\s\S]*redrawContours: true,[\s\S]*resetPresentation: true/u,
   );
 });
 
@@ -1208,22 +1208,19 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   );
 });
 
-test("paused pair refinement holds the last complete visible frame until atomic swap", () => {
+test("paused pair refinement clears the prior frame before the current atomic swap", () => {
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
     import.meta.url,
   ), "utf8");
-  assert.match(
+  assert.doesNotMatch(
     runtime,
-    /const holdCompletePairFrame = state\.pairMode[\s\S]*!pairPlaybackPlaying[\s\S]*!pairTimelineScrubbing[\s\S]*cachedRawFrame[\s\S]*contourFrameKey/u,
+    /holdCompletePairFrame|holding-complete-frame|previousFrameBelongsToScenario/u,
   );
+  assert.match(runtime, /function scheduleFrameChange\(\) \{[\s\S]*resetPresentation: true/u);
   assert.match(
     runtime,
-    /const shouldRedrawContours = !holdCompletePairFrame && \([\s\S]*if \(shouldRedrawContours && !state\.binary\) \{[\s\S]*drawSyntheticContours\(\{/u,
-  );
-  assert.match(
-    runtime,
-    /if \(!matchingFrame && state\.pairMode && previousFrameBelongsToScenario\)[\s\S]*pairFrameHandoff = "holding-complete-frame"[\s\S]*return true/u,
+    /resetPresentationForControlChange\(state\)[\s\S]*contourFrameKey = "pending:"/u,
   );
   assert.match(
     runtime,
