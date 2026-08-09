@@ -1416,6 +1416,10 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
   assert.doesNotMatch(html, /topo-contour-visibility-output|>75%<\/output>/u);
   assert.doesNotMatch(html, /topo-display-scale-output|1\.00× · 1\.00 high/u);
   assert.doesNotMatch(html, /Display coordinates: linear Euclidean/u);
+  assert.match(
+    html,
+    /<h2 id="topo-definitions-title">Definitions<\/h2>[\s\S]*?<strong>Wake propagation<\/strong> follows wake emitted at earlier moments as it travels outward\.[\s\S]*?<strong>Wake topography<\/strong> takes one present-time slice and maps the wake arriving at every possible receiver location\. Each contour joins locations receiving the same wake value\. During uniform motion, the pattern keeps its shape because the causal geometry repeats, even though the wake producing it is continually renewed\./u,
+  );
   assert.doesNotMatch(
     html,
     /topo-advanced-display|Advanced display choices|topo-view|topo-heatmap-mode|Source-local levels|Equal-radius levels|Enhanced tenfold contrast/u,
