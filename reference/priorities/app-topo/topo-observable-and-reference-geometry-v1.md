@@ -286,11 +286,10 @@ Every requested point returns geometry metadata plus exactly one state:
 | `unavailable:no_positive_causal_root` | No positive root, including the $\beta=1$ leading and off-source transverse cases | No |
 | `nonordinary:degenerate_root_family` | Non-isolated $\beta=1$ source-point family with $D_t=0$ | No |
 | `unresolved:numeric_failure` | The declared analytical case should be ordinary, but the implementation failed its residual or finite-value checks | No |
-| `ordinary:display_clipped` | The raw ordinary value is finite and preserved, but its displayed color is clipped | Yes, preserved separately |
 
-A raw zero is a valid number only if a future declared aggregate cancels to zero. This single-source product is nonzero everywhere on its ordinary domain. No singular, unavailable, nonordinary, unresolved, or clipped state may be encoded as raw zero.
+A raw zero is a valid number only if a future declared aggregate cancels to zero. This single-source product is nonzero everywhere on its ordinary domain. No singular, unavailable, nonordinary, or unresolved state may be encoded as raw zero.
 
-Plainly: purple zero, a missing root, a singular marker, a failed calculation, and a clipped high value are five different things.
+Plainly: purple zero, a missing root, a singular marker, and a failed calculation are four different things.
 
 ## Provider Checks
 

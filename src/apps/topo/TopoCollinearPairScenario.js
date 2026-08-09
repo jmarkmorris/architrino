@@ -1,5 +1,8 @@
 import {
+  TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
   TOPO_INVERSE_SQUARE_SCALE,
+  normalizeTopoPartnerWakeObserver,
+  topoPartnerWakeSourceSign,
 } from "./TopoInteractionContract.js";
 
 export const TOPO_COLLINEAR_PAIR_SCENARIO_ID =
@@ -200,6 +203,7 @@ export function createTopoCollinearPairRawSampler({
   phase = 0,
   horizontalWorldSpan = 1,
   sourceMaskRadius = 0,
+  observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
 } = {}) {
   const frame = createTopoCollinearPairFrame({
     beta,
@@ -210,26 +214,30 @@ export function createTopoCollinearPairRawSampler({
   if (maskRadius < 0) {
     throw new RangeError("sourceMaskRadius must be nonnegative.");
   }
+  const normalizedObserverId = normalizeTopoPartnerWakeObserver(observerId);
+  const partnerSourceSign = topoPartnerWakeSourceSign(normalizedObserverId);
+  const partner = frame.sources.find((source) =>
+    source.polaritySign === partnerSourceSign);
+  if (!partner) {
+    throw new Error("The selected observer has no partner source.");
+  }
   return (candidateX, candidateY) => {
     const x = requireFiniteNumber(candidateX, "x");
     const y = requireFiniteNumber(candidateY, "y");
-    if (frame.sources.some((source) =>
-      Math.hypot(x - source.position.x, y - source.position.y) <= maskRadius)) {
+    if (
+      Math.hypot(x - partner.position.x, y - partner.position.y) <= maskRadius
+    ) {
       return Number.NaN;
     }
-    let signedSum = 0;
-    for (const source of frame.sources) {
-      const causalDelay = solveTopoCollinearPairCausalDelay(x, y, source);
-      if (
-        causalDelay == null ||
-        causalDelay <= 0 ||
-        frame.observationTime - causalDelay < source.historyStartTime - 1e-12
-      ) {
-        return Number.POSITIVE_INFINITY;
-      }
-      signedSum += source.polaritySign *
-        TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
+    const causalDelay = solveTopoCollinearPairCausalDelay(x, y, partner);
+    if (
+      causalDelay == null ||
+      causalDelay <= 0 ||
+      frame.observationTime - causalDelay < partner.historyStartTime - 1e-12
+    ) {
+      return Number.POSITIVE_INFINITY;
     }
-    return signedSum;
+    return partner.polaritySign *
+      TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
   };
 }

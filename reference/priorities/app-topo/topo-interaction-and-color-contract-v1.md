@@ -8,11 +8,12 @@
 - Preview input: declared synthetic signed surface only
 - Scientific input: none
 - Scientific authority: none beyond preserving TOPO-001 result states and raw values supplied later
-- View split: `Combined wake` is the default absolute-space chart; `Source-local decades` is a display-only portable chart available for beta-zero single-source scenes
-- Display mapping: Physical magnitude is the default signed fill in both views; Enhanced decade contrast is an explicitly display-only analytical option. Source-local decades maps the same raw exponent through one finite equal-step radial chart without changing the raw kernel
-- Physical-magnitude reference: $|z|=64$
-- Full endpoint-color magnitude: $|z|=64$
-- Contour span: integer $1$ through $4$, step $1$, default $3$; span $N$ selects one raw factor-of-ten level at each of $N$ decades inward and $N$ decades outward from the reference, includes the reference exactly once per sign, and retains explicit zero where defined
+- Coordinate chart: one linear Euclidean absolute-space chart for every scenario
+- Pair perspective: native `Electrino` and `Positrino` radios appear only for the collinear and orbiting pair scenarios; the selected observer's self-wake is excluded and only its partner's admitted wake enters the raw field, contours, and shading
+- Display mapping: bounded square-root visibility transfer with an adjustable display-only reach, applied only after raw-field and contour calculations
+- Shading spread: percent range $0$ through $100$, step $1$, default $50$; maps to $0.25$ through $4$ times the default color reach without changing raw values or contours
+- Visibility midpoint: at the default shading spread, $|z|=64$ maps to half of the polarity endpoint color
+- Contour count: integer $4$ through $25$, step $1$, default $13$; selects genuine equal-wake thresholds across the fixed raw range without interpolating line geometry
 - Contour visibility: percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$
 
 The companion `topo.html` surface is an interaction preview. It uses a declared synthetic signed inverse-square function so that color, contour, panel, and state behavior can be inspected before TOPO-003 connects the TOPO-001 provider. Its visible information card frames the view as a theoretical model without claiming TOPO-001 scientific authority.
@@ -21,11 +22,11 @@ Plainly: the preview is a ruler for the interface. Its colored values are not me
 
 ## Reproducible State Split
 
-The later scientific frame identity contains the scenario identity, source species, $\beta$, observable identity, reception slice, domain, and scientific-kernel version. Display state contains the contour span, contour visibility, coordinate chart, heatmap mode, panel state, and viewport.
+The later scientific frame identity contains the scenario identity, source species, selected pair observer, retained partner source, $\beta$, observable identity, reception slice, domain, and scientific-kernel version. Display state contains shading spread, contour count, contour visibility, the fixed coordinate chart, panel state, and viewport.
 
-Changing $\beta$ changes the unsigned synthetic geometry. Changing scenario reverses polarity over that same geometry. View selection, contour span, contour visibility, and panel state are display-only and must not change the inverse-square kernel or the raw magnitude assigned to a physical point. When Source-local decades is selected at $\beta=0$ in either single-source scenario, contour span also selects the endpoints of the display-only exponent-radius chart and therefore changes the pixel-to-physical-coordinate map; the resulting display frame key changes while the scientific kernel identity does not. An unsupported Source-local selection is atomically returned to Combined wake before a frame is scheduled, with a brief accessible explanation; focus is not moved.
+Changing $\beta$ changes the prescribed geometry. Changing a single-source scenario reverses polarity over that geometry. In a pair scenario, changing Perspective changes the scientific frame identity: it removes the selected observer's source contribution and retains only the partner contribution. Shading spread, contour count, contour visibility, panel state, neutral background, and display scale remain display-only and must not change the inverse-square kernel or a retained partner value at a physical point.
 
-Plainly: speed chooses the synthetic geometry. Species changes its sign. The View radios choose either the combined absolute-space map or, for a stationary single source, its local exponent chart. Neither choice changes the inverse-square calculation.
+Plainly: speed chooses the prescribed geometry. In a pair, Perspective chooses whose surroundings are being inspected. Choosing Electrino displays only the positrino wake; choosing Positrino displays only the electrino wake.
 
 The TOPO-002 preview uses the accepted prescribed causal-root geometry to place
 one explicitly non-scientific comparison envelope around the displayed source.
@@ -78,22 +79,9 @@ x=\frac23+\frac{p_x-(2/3)W}{H},
 y=\frac12+\frac{(1/2)H-p_y}{H}.
 $$
 
-This linear Euclidean chart is the `Combined wake` view for every scenario. The source remains at two-thirds canvas width and vertical center, while equal horizontal and vertical pixel offsets represent equal Euclidean distances. Canvas width and height are part of the display geometry identity.
+This linear Euclidean chart is the only coordinate view. A single source remains at two-thirds canvas width and vertical center. Pair scenarios use their declared midpoint or circular center while retaining the same equal horizontal and vertical scale. Canvas width, height, and display scale are part of display geometry identity; the selected observer is part of the pair scientific-frame identity.
 
-When `Source-local decades` is selected at $\beta=0$, radial symmetry permits a distinct display-only exponent-radius chart for either single-source polarity. Define
-
-$$
-e=\log_{10}(|z|/64),
-\qquad
-r_{\rm phys}(e)=T_0 10^{-e/2},
-\qquad T_0=0.025.
-$$
-
-For selected span $N$, $e=+N$ maps to the finite source-marker edge, $e=-N$ maps to the largest complete equal-scale circle inset two CSS pixels from the stage boundary, and all integer exponents between them map affinely to equally spaced display radii. Values inside the inner boundary are masked beneath the opaque source marker and values outside the outer boundary are neutral-clipped; neither region is clamped to an endpoint. Heatmap sampling and contour placement use the same inverse/forward map. Plain integer labels $N,\ldots,0,\ldots,-N$ identify the radial exponent axis.
-
-Plainly: Source-local decades uses exponent as screen radius around one stationary source. Combined wake stays on the ordinary absolute-space plane. Moving and multi-source local charts are not yet accepted because there is no canonical causal-history-aware angular mapping for a portable moving-source chart. Those transitions return to Combined wake rather than publishing an unavailable canvas.
-
-The blocking control is radial symmetry: every $\beta=0$ constant-value contour must have equal screen-pixel width and height at every supported aspect ratio, and consecutive integer exponent circles must have equal radial pixel spacing. At $\beta>0$, each synthetic constant-delay circle shifts trailing by $\beta T$ on the linear chart and therefore preserves the causal leading/trailing asymmetry.
+At $\beta>0$, each retained source's causal geometry preserves its leading/trailing asymmetry on the linear chart. No exponent-radius or source-local coordinate transform is available.
 
 Plainly: a wide screen reveals more world space left and right; it does not stretch circles into ellipses.
 
@@ -102,34 +90,44 @@ Plainly: a wide screen reveals more world space left and right; it does not stre
 | Control | Location | Accepted behavior |
 | --- | --- | --- |
 | Scenario | Left panel, first control | `Electrostatic: single electrino`; `Electrostatic: single positrino`; changing it reverses polarity only. Beta, contour range, and contour visibility remain unchanged, and the same analytic geometry is immediately restyled with the new polarity color. |
-| View | Unified left Scenario panel | Native radios Source-local decades and Combined wake, with Combined wake checked by default. Source-local is available only for beta-zero single-source scenes. Unsupported moving or multi-source transitions atomically select Combined wake, preserve focus, and announce the reason. |
+| Perspective | Unified left Scenario panel; pair scenarios only | Native radios `Electrino` and `Positrino`. The selected architrino is the observer. Its self-wake is excluded before any field, contour, shading, cache, or diagnostic calculation; only the partner source remains. Both body markers stay visible. |
 | $\beta=v/c_f$ | Left panel below scenario | Range $0\leq\beta\leq1$, step $0.01$, keyboard-operable, with visible numeric output and `aria-valuetext`; changing it creates a fresh raw-frame identity. |
-| Heatmap | Unified left Scenario panel | Native radios Physical magnitude (default) and Enhanced decade contrast. Physical magnitude blends $|z|/64$ toward the selected neutral background, so each lower exponent decade contributes one tenth as much fill. Enhanced contrast is display-only. Neither mode changes raw values, histories, contours, or scientific frame identity. |
-| Contour span | Unified left Scenario panel | Integer $1$ through $4$, step $1$, default $3$. Span $N$ selects integer exponents $+N$ through $-N$, one line per raw factor of ten, the reference included once, symmetric signed families, and explicit zero where defined. In linear scenes shared levels retain exact world positions and topology. In a $\beta=0$ single-source scene, $N$ selects the exponent-radius endpoints and the same levels occupy equal radial display steps. The cue reads One contour per factor of 10 in wake intensity. |
-| Contour visibility | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. At $0$ the output reads `Hidden`. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
-| Legend | Left panel near display controls | Always visible while the panel is open; names the active heatmap transfer and integer wake-intensity exponents relative to $|z|=64$. Physical magnitude copy states the tenfold falloff; enhanced copy identifies a display-only analytical transfer. Contours remain the topology carrier when weak physical fill is nearly neutral. |
+| Contour count | Unified left Scenario panel | Integer $4$ through $25$, step $1$, default $13$. It selects genuine equal-wake thresholds across the fixed raw range. Pair perspectives retain only thresholds with the partner source's sign. |
+| Shading spread | Unified left Scenario panel | Percent range $0$ through $100$, step $1$, default $50$. It adjusts only the characteristic reach of the bounded $1/r$-like color transfer from $0.25$ through $4$ times the default. It has no visible numeric output and changes neither raw wake values nor contours. |
+| Contour visibility | Unified left Scenario panel | Percent range $0$ through $100$, pointer step $0.1$, keyboard step $1$, default $75$; changes opacity only. Nonzero decade lines have equal width and opacity with one adaptive high-contrast family-colored stroke; zero is slightly thicker. Device-pixel scaling preserves apparent width. |
+| Display scale | Unified left Scenario panel | Range $0.5$ through $2$, step $0.25$, default $1$; changes the visible coordinate window while preserving the wake law and raw contour values. |
+| Legend | Left panel near display controls | Always visible while the panel is open. It is headed `Shading scale` and states that signed contributions are summed before drawing equal-value topographic contours. The Perspective note and canvas accessible name identify the observer, retained partner source, and self-exclusion rule in pair scenarios. |
 | Panel toggle | Persistent left rail | Uses `PanelCollapseIcons.js`, updates name and `aria-expanded`, preserves the reopen control, and makes closed content hidden and inert. |
 | Shared chrome | Top-right safe area | Stable order is `Home`, `Back`, `Forward`, `Search`, then any declared Notes/Documents and Settings controls. TOPO-002 declares only the first four. Home retains the shared Applications-return behavior. |
 
 Plainly: the controls that change the requested data are separated from the controls that only change its presentation, and a collapsed panel can always be reopened by keyboard or pointer.
 
-## Signed Base-10 Color And Logarithmic Contour Contract
+## Adjustable-Reach Visibility Color And Raw Contour Contract
 
-For a raw ordinary value $z$, Physical magnitude is the default heatmap transfer in both views:
-
-$$
-P(z)=\operatorname{sgn}(z)\min\!\left(1,\frac{|z|}{64}\right).
-$$
-
-Thus wake-intensity exponents $e=0,-1,-2,-3$ contribute $1,0.1,0.01,0.001$ of the polarity endpoint color over the selected neutral background. Contour strokes are composited separately and remain legible when the physical-magnitude fill is nearly neutral.
-
-Enhanced decade contrast is an optional analytical display transfer. Let $e_c=\operatorname{clip}(\log_{10}(|z|/64),-N,N)$, $f=e_c-\lfloor e_c\rfloor$, and $d=\lfloor e_c\rfloor+f^2(3-2f)$. Then
+For normalized slider position $s\in[0,1]$, define the display-only reach scale
 
 $$
-E_N(z)=\operatorname{sgn}(z)\left(\frac{d+N}{2N}\right)^{0.72}.
+g(s)=0.25\,16^s.
 $$
 
-This optional transfer changes only color contrast. It does not change $z$, any contour level or position, a source history, the coordinate chart, or scientific frame identity. Zero maps to the selected neutral color.
+For a raw ordinary value $z$, the sole heatmap transfer is
+
+$$
+C_s(z)=\operatorname{sgn}(z)
+\frac{g(s)\sqrt{|z|}}{g(s)\sqrt{|z|}+8}.
+$$
+
+The default $s=0.5$ gives $g=1$ and exactly reproduces the prior fixed curve. At that default, $|z|=64$ contributes half of the polarity endpoint color. For the stationary inverse-square wake $|z|=K/r^2$ with $K=64r_0^2$ and $r_0=0.025$, define $a(s)=r_0g(s)$. The visible strength is
+
+$$
+|C_s(z(r))|=\frac{a(s)}{r+a(s)}.
+$$
+
+Plainly: the raw wake still falls as one over distance squared. The slider changes only how far its gradual one-over-distance-like color remains visible. The bounded denominator prevents a hard color clip near the source.
+
+The renderer calculates the signed raw field and extracts equal-value contour geometry before applying $C_s$ to the field color. The contour extractor never consumes $C_s(z)$, RGB values, or any other shaded quantity.
+
+Plainly: changing how strongly a region is colored cannot move, create, or delete a contour. Every contour remains a threshold of the unshaded wake calculation.
 
 The contour lattice is fixed independently of viewport, polarity, interaction, and color mapping. With $T_0=0.025$, every level is
 
@@ -141,13 +139,9 @@ I_m=\frac{K}{T_m^2}=64\,10^m,
 m\in\{-N,\ldots,0,\ldots,N\}.
 $$
 
-For selected span $N$, positive $m$ gives the higher-magnitude inward family and negative $m$ gives the lower-magnitude outward family. The reference $m=0$ appears exactly once. Consecutive raw levels differ by a factor of ten. On linear charts, inverse-square geometry places consecutive single-source physical radii at the true ratio $1/\sqrt{10}$ inward or $\sqrt{10}$ outward. On the $\beta=0$ single-source exponent-radius chart, those same physical radii map to equal display-radius steps. Visibility changes opacity only. A value with $|z|>64$ retains its private raw value and receives the internal state qualifier `ordinary:display_clipped`; only the physical-magnitude fill reaches full endpoint color.
+For selected range $N$, positive $m$ gives the higher-magnitude inward family and negative $m$ gives the lower-magnitude outward family. The reference $m=0$ appears exactly once. Consecutive raw levels differ by a factor of ten. On the linear chart, inverse-square geometry places consecutive single-source physical radii at the true ratio $1/\sqrt{10}$ inward or $\sqrt{10}$ outward. Visibility changes contour opacity only. The bounded color transfer approaches the polarity endpoint asymptotically and does not clip finite ordinary values.
 
-Plainly: every line still means one tenfold change in raw signed wake intensity. Source-local decades spaces those exponents evenly around a stationary single source; Combined wake keeps linear absolute-space coordinates.
-
-Within the finite Source-local decades annulus, the selected heatmap transfer uses the raw value sampled by the same inverse/forward chart as the rings. Physical magnitude remains the default, so outward decades rapidly approach neutral while the contour rings retain the full decade topology. Enhanced decade contrast may be selected to reveal weak fill, and is explicitly labeled display-only. Neither transfer changes the approved ring spacing, labels, mask relationship, or physical radius associated with an exponent.
-
-Plainly: the rings show the selected exponent sequence even when honest magnitude makes distant fill faint. Enhanced contrast is available for inspection, but it is not the physical-magnitude view.
+Plainly: every line still means one tenfold change in raw signed wake intensity, and all contour positions remain in ordinary linear space.
 
 ## Analytic Field And Contour Rendering Contract
 
@@ -159,13 +153,13 @@ $$
 (u+\beta T)^2+w^2=T^2.
 $$
 
-In Combined wake, Topo draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with physical radius $T$ on the linear chart. In Source-local decades, it maps the beta-zero circle through the exponent-radius chart and draws the corresponding display-radius ring, using the same map as the heatmap. The immediate and final contour paths are the same atomic vector overlay: no marching-squares extraction, partial batches, low-resolution tessellation, or delayed refinement runs for this provider. Clipping occurs only at the declared chart boundary. Plain `e=` labels are placed on visible rings when space allows, never inside the source mask, and are collision-suppressed.
+For a single synthetic source, Topo draws one direct Canvas2D arc centered at $(2/3-\beta T,1/2)$ with physical radius $T$ on the linear chart. Pair scenarios calculate a sampled partner-only raw field and extract contours from that same field. The retained partner's singular point is masked; the selected observer's position remains an ordinary sample whenever the partner wake admits one.
 
 Contour styling is uniform around every nonzero level: equal width and opacity with one adaptive high-contrast family-colored stroke. The explicit zero contour is slightly thicker and uses pale lavender on Purple or Electric Purple on White. Visibility is the only opacity gain, and range only filters fixed level identities. No level sign, polarity, draw order, cache timing, or range interaction perturbs existing radii or topology.
 
 Neither fragment evaluation nor vector contour styling writes back to the raw provider, geometry, frame identity, or state classification. A future sampled TOPO-001 provider may use a separate general contour implementation without weakening this boundary.
 
-Plainly: the synthetic formula is evaluated sharply at the screen, and its contours are complete mathematical circles. Source-local decades shows exact raw exponents on the approved local chart; Combined wake shows their absolute-space positions.
+Plainly: the synthetic formula is evaluated sharply at the screen. Pair contours describe only the retained partner wake in absolute-space coordinates.
 
 ## Signed Color Contract
 
@@ -186,10 +180,8 @@ Plainly: blue always means negative, purple means zero, and red means positive. 
 | State | Visual treatment | Accessible treatment |
 | --- | --- | --- |
 | `ordinary` | Signed blue-purple-red fill and contours | Private numeric value remains available to the renderer. |
-| `ordinary:display_clipped` | Endpoint color | Preserved private raw value and internal clipped qualifier. |
 | `singular:endpoint_source` | One compact canonical architrino disk: standard blue electrino or standard red positrino with the established thin centered white body stroke and small canonical white origin dot. Masked display pixels beneath it use the same-polarity field endpoint color so no second object-like underlay appears. | Private state remains singular; no raw number is fabricated. |
 | `unavailable:no_positive_causal_root` | Electric Purple neutral midpoint with no boundary, texture, tint, or region ornament; this is display-only and does not supply a raw zero | Private state remains `unavailable`; no raw number. |
-| `unavailable:source_local_chart` | Neutral canvas with a short notice that Source-local decades is not yet available for the selected moving or multi-source scene | No chart or field value is fabricated; Combined wake remains available. |
 | `nonordinary:degenerate_root_family` | The same compact canonical architrino disk | Private state remains nonordinary; no raw number is fabricated. |
 | `unresolved:numeric_failure` | Dark error hatch reserved for TOPO-003 | Polite live status announces calculation failure; no raw number. |
 | `loading` | Reserved neutral veil before any current preview exists | Polite live region announces that the initial frame is computing. |
@@ -202,13 +194,13 @@ Plainly: the endpoint void and numeric zero share a neutral display color, while
 
 ## Layout And Accessibility Contract
 
-- The user-facing header is `Wake Topological Map` with the subtitle `Two-dimensional prescribed motion`; internal TOPO work-item/version labels do not appear in that header.
-- The first information card is titled `About this view` and says exactly: `Explore theoretical two-dimensional views of signed wake intensity around prescribed path scenarios.` Internal preview, validation, and work-item language does not appear in the visible card.
+- The user-facing header is `Wake Topography`; internal TOPO work-item/version labels do not appear in that header.
+- The first information card is titled `About this view` and says exactly: `Explore wake topography for source and superposition views around prescribed path scenarios.` Internal preview, validation, and work-item language does not appear in the visible card.
 - The stage and shell consume the shared semantic tokens from `ui-tokens.css`; Topo adds no app-local shell palette.
 - The left panel opens at a desktop width near $360$ pixels and collapses to a persistent $58$-pixel rail.
 - Below $820$ pixels, the panel begins collapsed and expands as an overlay over the stage. The shared top-right controls retain $32\times32$ hit targets.
 - The single compact source marker remains anchored at normalized $(2/3,1/2)$ in every viewport. It reuses the repository's standard solid blue electrino and solid red positrino semantics with the same thin centered white circular stroke and small centered white origin dot as the Causal Delay Feedback marker treatment. No backing shape, glow, shadow, inset, or direction ornament is permitted; direction is reported in the scenario facts.
-- Source-local decades uses the approved equally spaced integer-exponent rings themselves as the coordinate guide. Their labels avoid the source marker and each other and may be suppressed when no collision-free placement exists. Combined wake retains scenario-specific absolute-space overlays only where the scenario declares one.
+- Pair scenarios keep both source markers visible while the Perspective control selects the observer. The Perspective note and canvas accessible name state which partner wake is retained and that self-wake is excluded.
 - Every form control has a visible label, every icon button has an accessible name, and all focusable controls receive a visible focus treatment.
 - Range controls keep a fixed five-pixel visual track and fixed-size thumb in default, hover, focus, active, and drag states. Their larger transparent interaction lane does not render; keyboard focus is shown only around the thumb.
 - Closed panel content is hidden, `aria-hidden`, and inert. The reopen control stays focusable.
@@ -218,7 +210,7 @@ Plainly: the same controls work by touch, pointer, and keyboard, and motion pref
 
 ## TOPO-003 Handoff
 
-TOPO-003 may replace only the synthetic surface provider and internal provenance. It must retain this contract's state split, one signed base-10 mapping, fixed scale, symmetric inward/outward raw-decade contour lattice, palette semantics, contour span, shell behavior, navigation order, endpoint treatments, and accessibility behavior unless a separately reviewed contract supersedes them.
+TOPO-003 may replace only the synthetic surface provider and internal provenance. It must retain this contract's state split, partner-only pair perspective, bounded square-root variable-reach visibility mapping, fixed coordinate scale, raw-decade contour lattice, palette semantics, contour controls, shell behavior, navigation order, endpoint treatments, and accessibility behavior unless a separately reviewed contract supersedes them.
 
 The TOPO-003 implementation is accepted only when independent analytical references verify its raw TOPO-001 samples. Agreement with this synthetic preview is not scientific evidence.
 

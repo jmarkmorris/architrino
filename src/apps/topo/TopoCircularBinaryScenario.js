@@ -1,8 +1,11 @@
 import {
+  TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
   TOPO_DEFAULT_DISPLAY_SCALE,
   TOPO_INVERSE_SQUARE_SCALE,
   normalizeTopoDisplayScale,
   normalizeTopoFieldColorValue,
+  normalizeTopoPartnerWakeObserver,
+  topoPartnerWakeSourceSign,
 } from "./TopoInteractionContract.js";
 
 export const TOPO_CIRCULAR_BINARY_SCENARIO_ID = "orbiting-binary";
@@ -371,6 +374,7 @@ export function sampleTopoCircularBinaryWake({
   kappa = TOPO_CIRCULAR_BINARY_KAPPA,
   sourceMaskRadius = DEFAULT_SOURCE_MASK_RADIUS,
   direction = TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE,
+  observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
 } = {}) {
   const playback = createTopoCircularBinaryPlayback({
     beta,
@@ -385,16 +389,17 @@ export function sampleTopoCircularBinaryWake({
   if (!(scale > 0)) {
     throw new RangeError("kappa must be positive.");
   }
-  const roots = [-1, 1].map((sourceSign) =>
-    solveTopoCircularBinaryCausalDelay({
-      point,
-      sourceSign,
-      observationTime: receptionTime,
-      beta: playback.beta,
-      radius: playback.radius,
-      direction: playback.direction,
-      sourceMaskRadius,
-    }));
+  const normalizedObserverId = normalizeTopoPartnerWakeObserver(observerId);
+  const sourceSign = topoPartnerWakeSourceSign(normalizedObserverId);
+  const roots = [solveTopoCircularBinaryCausalDelay({
+    point,
+    sourceSign,
+    observationTime: receptionTime,
+    beta: playback.beta,
+    radius: playback.radius,
+    direction: playback.direction,
+    sourceMaskRadius,
+  })];
   const sourceState = roots.find(({ state }) =>
     state === "singular:endpoint_source" ||
     state === "nonordinary:endpoint_source");
@@ -417,12 +422,13 @@ export function sampleTopoCircularBinaryWake({
       playback,
     });
   }
-  const rawValue = (-scale / roots[0].delay ** 2) +
-    (scale / roots[1].delay ** 2);
+  const rawValue = sourceSign * scale / roots[0].delay ** 2;
   return Object.freeze({
     state: "ordinary",
     rawValue,
     displayCoordinate: normalizeTopoFieldColorValue(rawValue),
+    observerId: normalizedObserverId,
+    sourceSign,
     roots: Object.freeze(roots),
     playback,
   });
@@ -435,6 +441,7 @@ export function createTopoCircularBinaryRawSampler({
   observationTime,
   sourceMaskRadius = DEFAULT_SOURCE_MASK_RADIUS,
   direction = TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE,
+  observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
 } = {}) {
   return (x, y) => {
     const result = sampleTopoCircularBinaryWake({
@@ -445,6 +452,7 @@ export function createTopoCircularBinaryRawSampler({
       observationTime,
       sourceMaskRadius,
       direction,
+      observerId,
     });
     if (result.state === "ordinary") {
       return result.rawValue;
@@ -461,6 +469,7 @@ export function createTopoCircularBinaryFrameIdentity({
   progress = 0,
   radius = TOPO_CIRCULAR_BINARY_DEFAULT_RADIUS,
   direction = TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE,
+  observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
 } = {}) {
   const playback = createTopoCircularBinaryPlayback({
     beta,
@@ -468,12 +477,14 @@ export function createTopoCircularBinaryFrameIdentity({
     radius,
     direction,
   });
+  const normalizedObserverId = normalizeTopoPartnerWakeObserver(observerId);
   return [
     TOPO_CIRCULAR_BINARY_CONTRACT_ID,
     "beta=" + playback.beta.toFixed(2),
     "orbit=" + playback.progress.toFixed(6),
     "radius=" + playback.radius.toFixed(2),
     "direction=" + playback.direction,
+    "observer=" + normalizedObserverId,
     "T=" + playback.observationTime.toFixed(9),
   ].join(":");
 }

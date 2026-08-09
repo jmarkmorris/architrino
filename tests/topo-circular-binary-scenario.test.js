@@ -26,6 +26,7 @@ import {
 } from "../src/apps/topo/TopoCircularBinaryScenario.js";
 import {
   normalizeTopoFieldColorValue,
+  TOPO_PARTNER_WAKE_OBSERVER,
 } from "../src/apps/topo/TopoInteractionContract.js";
 import {
   evaluatePrescribedSourceWake,
@@ -47,6 +48,7 @@ function createIndependentSourceRecord(
   observationTime,
   radius = 0.3,
   direction = TOPO_CIRCULAR_BINARY_DIRECTION.COUNTERCLOCKWISE,
+  sourceId = "positrino",
 ) {
   const commonTrajectory = {
     kind: "moving-circular.v1",
@@ -76,7 +78,7 @@ function createIndependentSourceRecord(
         charge: 1,
         trajectory: { ...commonTrajectory, phaseAtEpoch: 0 },
       },
-    ],
+    ].filter((source) => source.id === sourceId),
   };
 }
 
@@ -334,7 +336,7 @@ test("sub-field-speed roots retain a strict bracket and satisfy the direct circu
   }
 });
 
-test("selected moving samples agree with the separately authored prescribed-path CPU evaluator", () => {
+test("each partner-wake perspective agrees with the separately authored prescribed-path CPU evaluator", () => {
   const samples = [
     {
       beta: 0.25,
@@ -353,49 +355,46 @@ test("selected moving samples agree with the separately authored prescribed-path
     },
   ];
   for (const sample of samples) {
-    const playback = createTopoCircularBinaryPlayback(sample);
-    const independent = evaluatePrescribedSourceWake({
-      sourceRecord: createIndependentSourceRecord(
-        sample.beta,
-        playback.observationTime,
-        sample.radius,
-        sample.direction,
-      ),
-      observationTime: playback.observationTime,
-      probePosition: { ...sample.point, z: 0 },
-      probeCharge: 1,
-      fieldSpeed: 1,
-      coupling: 1,
-      minimumDelay: 1e-12,
-      rootTolerance: 1e-12,
-    });
-    assert.equal(independent.contributionCount, 2);
-    const actual = sampleTopoCircularBinaryWake(sample);
-    assert.equal(actual.state, "ordinary");
-    for (let index = 0; index < 2; index += 1) {
+    for (const observerId of Object.values(TOPO_PARTNER_WAKE_OBSERVER)) {
+      const partnerId = observerId === "electrino" ? "positrino" : "electrino";
+      const playback = createTopoCircularBinaryPlayback(sample);
+      const independent = evaluatePrescribedSourceWake({
+        sourceRecord: createIndependentSourceRecord(
+          sample.beta,
+          playback.observationTime,
+          sample.radius,
+          sample.direction,
+          partnerId,
+        ),
+        observationTime: playback.observationTime,
+        probePosition: { ...sample.point, z: 0 },
+        probeCharge: 1,
+        fieldSpeed: 1,
+        coupling: 1,
+        minimumDelay: 1e-12,
+        rootTolerance: 1e-12,
+      });
+      assert.equal(independent.contributionCount, 1);
+      const actual = sampleTopoCircularBinaryWake({ ...sample, observerId });
+      assert.equal(actual.state, "ordinary");
       closeTo(
-        actual.roots[index].delay,
-        independent.contributions[index].delay,
+        actual.roots[0].delay,
+        independent.contributions[0].delay,
         2e-9,
       );
+      const contribution = independent.contributions[0];
+      const expectedRaw = Math.sign(contribution.transmitterCharge) *
+        TOPO_CIRCULAR_BINARY_KAPPA / contribution.delay ** 2;
+      closeTo(actual.rawValue, expectedRaw, 2e-8);
     }
-    const expectedRaw = independent.contributions.reduce(
-      (sum, contribution) => sum +
-        Math.sign(contribution.transmitterCharge) *
-        TOPO_CIRCULAR_BINARY_KAPPA / contribution.delay ** 2,
-      0,
-    );
-    closeTo(actual.rawValue, expectedRaw, 2e-8);
   }
 });
 
-test("stationary, superposition, source masking, and physical-magnitude display mapping stays explicit", () => {
+test("stationary partner wake, self exclusion, source masking, and variable-reach visibility mapping stay explicit", () => {
   const point = { x: 0.1, y: 0.5 };
   const stationary = sampleTopoCircularBinaryWake({ point, beta: 0, progress: 0 });
-  const negativeDistance = Math.hypot(point.x - 0.2, point.y - 0.5);
   const positiveDistance = Math.hypot(point.x - 0.8, point.y - 0.5);
-  const expected = -TOPO_CIRCULAR_BINARY_KAPPA / negativeDistance ** 2 +
-    TOPO_CIRCULAR_BINARY_KAPPA / positiveDistance ** 2;
+  const expected = TOPO_CIRCULAR_BINARY_KAPPA / positiveDistance ** 2;
   closeTo(stationary.rawValue, expected, 1e-8);
   closeTo(stationary.displayCoordinate, normalizeTopoFieldColorValue(expected));
 
@@ -406,17 +405,27 @@ test("stationary, superposition, source masking, and physical-magnitude display 
       progress: 0.33,
     });
     assert.equal(center.state, "ordinary");
-    closeTo(center.rawValue, 0, 1e-12);
+    assert.ok(center.rawValue > 0);
   }
 
   const playback = createTopoCircularBinaryPlayback({ beta: 0.5, progress: 0.4 });
-  const source = topoCircularBinarySourcePosition({
+  const selectedObserver = topoCircularBinarySourcePosition({
     sourceSign: -1,
     time: playback.observationTime,
     beta: playback.beta,
   });
+  const partnerSource = topoCircularBinarySourcePosition({
+    sourceSign: 1,
+    time: playback.observationTime,
+    beta: playback.beta,
+  });
   assert.equal(sampleTopoCircularBinaryWake({
-    point: source,
+    point: selectedObserver,
+    beta: playback.beta,
+    progress: playback.progress,
+  }).state, "ordinary");
+  assert.equal(sampleTopoCircularBinaryWake({
+    point: partnerSource,
     beta: playback.beta,
     progress: playback.progress,
   }).state, "singular:endpoint_source");
@@ -475,11 +484,19 @@ test("frame identity changes with beta and orbit progress without changing the o
     radius: 0.1,
     direction: TOPO_CIRCULAR_BINARY_DIRECTION.CLOCKWISE,
   });
+  const positrinoPerspective = createTopoCircularBinaryFrameIdentity({
+    beta: 0.5,
+    progress: 0,
+    observerId: "positrino",
+  });
   assert.notEqual(open, quarter);
   assert.notEqual(quarter, faster);
   assert.notEqual(faster, tighter);
   assert.notEqual(tighter, clockwise);
+  assert.notEqual(open, positrinoPerspective);
   assert.match(clockwise, /direction=clockwise/u);
+  assert.match(open, /observer=electrino/u);
+  assert.match(positrinoPerspective, /observer=positrino/u);
   assert.match(open, /^topo_prescribed_circular_binary\/v1:/u);
 });
 
@@ -492,6 +509,9 @@ test("binary UI removes no-op contours and preserves accessible shared transport
 
   assert.match(html, /Orbiting binary electrino and positrino/u);
   assert.match(html, /Approaching collinear electrino and positrino/u);
+  assert.match(html, /<legend>Perspective<\/legend>/u);
+  assert.match(html, /name="topo-partner-perspective" value="electrino" checked/u);
+  assert.match(html, /name="topo-partner-perspective" value="positrino"/u);
   assert.match(html, /id="topo-contour-controls"/u);
   assert.match(html, /id="topo-binary-radius"[\s\S]*min="0\.01"[\s\S]*max="0\.45"[\s\S]*value="0\.30"/u);
   assert.match(html, /<legend>Orbit direction<\/legend>/u);
@@ -511,8 +531,9 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.match(runtime, /setTransportControlButtonPresentation/u);
   assert.match(
     runtime,
-    /dom\.contourControls\.hidden = localUnavailable/u,
+    /dom\.contourControls\.hidden = false/u,
   );
+  assert.doesNotMatch(runtime, /localUnavailable/u);
   assert.match(runtime, /drawCircularBinaryOverlay/u);
   assert.match(runtime, /"source-markers-only"/u);
   assert.match(runtime, /"solid-orbit-guide-and-source-markers"/u);
@@ -522,9 +543,13 @@ test("binary UI removes no-op contours and preserves accessible shared transport
   assert.doesNotMatch(runtime, /backgroundControl\.hidden/u);
   assert.match(runtime, /const mobileOverlayOpen =/u);
   assert.match(runtime, /dom\.binaryTransport\.hidden = hidden/u);
-  assert.match(runtime, /gpu-direct-signed-log10/u);
+  assert.match(
+    runtime,
+    /gpu-direct-signed-bounded-square-root-variable-reach/u,
+  );
   assert.match(runtime, /for \(int iteration = 0; iteration < 56; iteration \+= 1\)/u);
-  assert.match(runtime, /u_kappa \/ \(positiveDelay \* positiveDelay\)/u);
+  assert.match(runtime, /u_partner_source_sign \* u_kappa \/ \(delay \* delay\)/u);
+  assert.match(runtime, /partner-only-self-excluded/u);
   assert.match(runtime, /TOPO_SOURCE_MARKER_RADIUS_SCALE = 0\.5/u);
   assert.match(runtime, /TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS/u);
   assert.match(runtime, /u_source_mask_radius/u);

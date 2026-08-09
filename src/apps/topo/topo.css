@@ -331,23 +331,6 @@ button {
   margin-top: 12px;
 }
 
-.topo-advanced-display {
-  margin-top: 10px;
-  padding-top: 6px;
-  border-top: 1px solid var(--ui-border);
-}
-
-.topo-advanced-display summary {
-  color: var(--ui-text-muted);
-  cursor: pointer;
-  font-size: 10px;
-  font-weight: 720;
-}
-
-.topo-advanced-display[open] {
-  padding-bottom: 6px;
-}
-
 .topo-check-field {
   display: flex;
   align-items: center;
@@ -426,18 +409,16 @@ button {
 }
 
 .topo-radio-field input[value="purple"]:checked,
-.topo-radio-field input[name="topo-view"]:checked,
-.topo-radio-field input[name="topo-heatmap-mode"]:checked,
 .topo-radio-field input[value="counterclockwise"]:checked,
-.topo-radio-field input[value="clockwise"]:checked {
+.topo-radio-field input[value="clockwise"]:checked,
+.topo-radio-field input[name="topo-partner-perspective"]:checked {
   border-color: var(--ui-color-electric-purple);
 }
 
 .topo-radio-field input[value="purple"]:checked::before,
-.topo-radio-field input[name="topo-view"]:checked::before,
-.topo-radio-field input[name="topo-heatmap-mode"]:checked::before,
 .topo-radio-field input[value="counterclockwise"]:checked::before,
-.topo-radio-field input[value="clockwise"]:checked::before {
+.topo-radio-field input[value="clockwise"]:checked::before,
+.topo-radio-field input[name="topo-partner-perspective"]:checked::before {
   background: var(--ui-color-electric-purple);
 }
 
@@ -449,6 +430,15 @@ button {
 .topo-radio-field input[value="white"]:checked::before {
   border: 1px solid var(--ui-color-electric-purple);
   background: #ffffff;
+}
+
+#topo-partner-perspective-control {
+  flex-wrap: wrap;
+}
+
+#topo-partner-perspective-note {
+  flex-basis: 100%;
+  margin: 0;
 }
 
 .topo-compact-facts {
@@ -650,24 +640,6 @@ button {
 .topo-timeline {
   width: clamp(96px, 24vw, 240px);
   min-width: 72px;
-}
-
-.topo-binary-transport output {
-  color: var(--ui-text);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  font-weight: 760;
-  text-align: right;
-}
-
-#topo-pair-progress {
-  min-width: 38px;
-  padding-right: 5px;
-  color: var(--ui-text-muted);
-  font-family: SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 10px;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
 }
 
 @keyframes topo-loading-spin {
