@@ -266,32 +266,6 @@ label {
   line-height: 1.4;
 }
 
-.greek-match-audio-source-notice {
-  margin: -4px 0 0;
-  padding: 10px 11px;
-  border: 1px solid rgba(225, 214, 255, 0.2);
-  border-radius: 9px;
-  background: rgba(7, 2, 16, 0.42);
-  color: rgba(242, 237, 255, 0.72);
-  font-size: 10px;
-  line-height: 1.45;
-}
-
-.greek-match-audio-source-notice[data-active="review"] {
-  border-color: rgba(255, 215, 105, 0.58);
-  background: rgba(107, 67, 13, 0.34);
-  color: #fff4ca;
-}
-
-.greek-match-audio-source-notice a {
-  color: #e5d2ff;
-}
-
-.greek-match-audio-source-notice a:hover,
-.greek-match-audio-source-notice a:focus-visible {
-  color: #ffffff;
-}
-
 .greek-match-next-round,
 .greek-match-reset {
   min-height: 40px;

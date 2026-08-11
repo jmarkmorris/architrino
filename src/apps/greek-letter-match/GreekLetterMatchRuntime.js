@@ -4,65 +4,37 @@ import {
 } from "../navigator/StandaloneAppHomeRuntime.js";
 
 export const GREEK_LETTERS = Object.freeze([
-  Object.freeze({ name: "alpha", upper: "Α", lower: "α", audioFile: "alpha.m4a" }),
-  Object.freeze({ name: "beta", upper: "Β", lower: "β", audioFile: "beta.m4a" }),
-  Object.freeze({ name: "gamma", upper: "Γ", lower: "γ", audioFile: "gamma.m4a" }),
-  Object.freeze({ name: "delta", upper: "Δ", lower: "δ", audioFile: "delta.m4a" }),
-  Object.freeze({ name: "epsilon", upper: "Ε", lower: "ε", audioFile: "epsilon.m4a" }),
-  Object.freeze({ name: "zeta", upper: "Ζ", lower: "ζ", audioFile: "zeta.m4a" }),
-  Object.freeze({ name: "eta", upper: "Η", lower: "η", audioFile: "eta.m4a" }),
-  Object.freeze({ name: "theta", upper: "Θ", lower: "θ", audioFile: "theta.m4a" }),
-  Object.freeze({ name: "iota", upper: "Ι", lower: "ι", audioFile: "iota.m4a" }),
-  Object.freeze({ name: "kappa", upper: "Κ", lower: "κ", audioFile: "kappa.m4a" }),
-  Object.freeze({ name: "lambda", upper: "Λ", lower: "λ", audioFile: "lambda.m4a" }),
-  Object.freeze({ name: "mu", upper: "Μ", lower: "μ", audioFile: "mu.m4a" }),
-  Object.freeze({ name: "nu", upper: "Ν", lower: "ν", audioFile: "nu.m4a" }),
-  Object.freeze({ name: "xi", upper: "Ξ", lower: "ξ", audioFile: "xi.m4a" }),
-  Object.freeze({ name: "omicron", upper: "Ο", lower: "ο", audioFile: "omicron.m4a" }),
-  Object.freeze({ name: "pi", upper: "Π", lower: "π", audioFile: "pi.m4a" }),
-  Object.freeze({ name: "rho", upper: "Ρ", lower: "ρ", audioFile: "rho.m4a" }),
-  Object.freeze({ name: "sigma", upper: "Σ", lower: "σ", audioFile: "sigma.m4a" }),
-  Object.freeze({ name: "tau", upper: "Τ", lower: "τ", audioFile: "tau.m4a" }),
-  Object.freeze({ name: "upsilon", upper: "Υ", lower: "υ", audioFile: "upsilon.m4a" }),
-  Object.freeze({ name: "phi", upper: "Φ", lower: "φ", audioFile: "phi.m4a" }),
-  Object.freeze({ name: "chi", upper: "Χ", lower: "χ", audioFile: "chi.m4a" }),
-  Object.freeze({ name: "psi", upper: "Ψ", lower: "ψ", audioFile: "psi.m4a" }),
-  Object.freeze({ name: "omega", upper: "Ω", lower: "ω", audioFile: "omega.m4a" }),
+  Object.freeze({ name: "alpha", upper: "Α", lower: "α", audioFile: "alpha.wav" }),
+  Object.freeze({ name: "beta", upper: "Β", lower: "β", audioFile: "beta.wav" }),
+  Object.freeze({ name: "gamma", upper: "Γ", lower: "γ", audioFile: "gamma.wav" }),
+  Object.freeze({ name: "delta", upper: "Δ", lower: "δ", audioFile: "delta.wav" }),
+  Object.freeze({ name: "epsilon", upper: "Ε", lower: "ε", audioFile: "epsilon.wav" }),
+  Object.freeze({ name: "zeta", upper: "Ζ", lower: "ζ", audioFile: "zeta.wav" }),
+  Object.freeze({ name: "eta", upper: "Η", lower: "η", audioFile: "eta.wav" }),
+  Object.freeze({ name: "theta", upper: "Θ", lower: "θ", audioFile: "theta.wav" }),
+  Object.freeze({ name: "iota", upper: "Ι", lower: "ι", audioFile: "iota.wav" }),
+  Object.freeze({ name: "kappa", upper: "Κ", lower: "κ", audioFile: "kappa.wav" }),
+  Object.freeze({ name: "lambda", upper: "Λ", lower: "λ", audioFile: "lambda.wav" }),
+  Object.freeze({ name: "mu", upper: "Μ", lower: "μ", audioFile: "mu.wav" }),
+  Object.freeze({ name: "nu", upper: "Ν", lower: "ν", audioFile: "nu.wav" }),
+  Object.freeze({ name: "xi", upper: "Ξ", lower: "ξ", audioFile: "xi.wav" }),
+  Object.freeze({ name: "omicron", upper: "Ο", lower: "ο", audioFile: "omicron.wav" }),
+  Object.freeze({ name: "pi", upper: "Π", lower: "π", audioFile: "pi.wav" }),
+  Object.freeze({ name: "rho", upper: "Ρ", lower: "ρ", audioFile: "rho.wav" }),
+  Object.freeze({ name: "sigma", upper: "Σ", lower: "σ", audioFile: "sigma.wav" }),
+  Object.freeze({ name: "tau", upper: "Τ", lower: "τ", audioFile: "tau.wav" }),
+  Object.freeze({ name: "upsilon", upper: "Υ", lower: "υ", audioFile: "upsilon.wav" }),
+  Object.freeze({ name: "phi", upper: "Φ", lower: "φ", audioFile: "phi.wav" }),
+  Object.freeze({ name: "chi", upper: "Χ", lower: "χ", audioFile: "chi.wav" }),
+  Object.freeze({ name: "psi", upper: "Ψ", lower: "ψ", audioFile: "psi.wav" }),
+  Object.freeze({ name: "omega", upper: "Ω", lower: "ω", audioFile: "omega.wav" }),
 ]);
 
-export const GREEK_PRONUNCIATION_REVIEW_CANDIDATES = Object.freeze([
-  "delta",
-  "epsilon",
-  "mu",
-  "nu",
-  "sigma",
-  "tau",
-  "phi",
-]);
-
-const GREEK_PRONUNCIATION_REVIEW_CANDIDATE_SET = new Set(
-  GREEK_PRONUNCIATION_REVIEW_CANDIDATES
-);
-const GREEK_PRONUNCIATION_REVIEW_DIRECTORY =
-  "./audio/candidates/openai-coral-2026-08-10";
-
-export function isGreekPronunciationReviewCandidate(letter) {
-  return GREEK_PRONUNCIATION_REVIEW_CANDIDATE_SET.has(letter?.name);
-}
-
-export function getGreekPronunciationUrl(
-  letter,
-  moduleUrl = import.meta.url,
-  source = "current"
-) {
+export function getGreekPronunciationUrl(letter, moduleUrl = import.meta.url) {
   if (!letter?.audioFile) {
     return null;
   }
-  const audioDirectory =
-    source === "coral-review" && isGreekPronunciationReviewCandidate(letter)
-      ? GREEK_PRONUNCIATION_REVIEW_DIRECTORY
-      : "./audio";
-  return new URL(`${audioDirectory}/${letter.audioFile}`, moduleUrl).href;
+  return new URL(`./audio/${letter.audioFile}`, moduleUrl).href;
 }
 
 // This is the navigator's default structured-sphere progression (the jewel palette).
@@ -359,7 +331,6 @@ export class GreekLetterMatchRuntime {
     this.centerRepresentation = "name";
     this.feedbackInterval = "standard";
     this.gameMode = "game";
-    this.pronunciationSource = "current";
     this.teachingLetterIndex = null;
     this.session = createGreekMatchSession(this.random);
     this.feedbackTimer = null;
@@ -491,26 +462,8 @@ export class GreekLetterMatchRuntime {
           this.feedbackInterval = value;
         },
       }),
-      createSegmentedControl(this.document, {
-        label: "Pronunciation audio",
-        name: "greek-pronunciation-source",
-        value: this.pronunciationSource,
-        options: [
-          { value: "current", label: "Current" },
-          { value: "coral-review", label: "Coral review" },
-        ],
-        onChange: (value) => this.setPronunciationSource(value),
-      })
+      
     );
-
-    this.audioSourceNotice = createElement(
-      this.document,
-      "p",
-      "greek-match-audio-source-notice"
-    );
-    this.audioSourceNotice.setAttribute("role", "status");
-    this.audioSourceNotice.setAttribute("aria-live", "polite");
-    this.updatePronunciationSourceNotice();
     this.setupSummary = createElement(this.document, "p", "greek-match-setup-summary");
     this.nextRoundButton = createElement(
       this.document,
@@ -524,7 +477,6 @@ export class GreekLetterMatchRuntime {
     resetButton.type = "button";
     resetButton.addEventListener("click", () => this.resetSession());
     controls.append(
-      this.audioSourceNotice,
       this.setupSummary,
       this.nextRoundButton,
       resetButton
@@ -771,51 +723,6 @@ export class GreekLetterMatchRuntime {
     this.pronunciationFeedback.dataset.state = state;
   }
 
-  updatePronunciationSourceNotice() {
-    if (!this.audioSourceNotice) {
-      return;
-    }
-    const reviewActive = this.pronunciationSource === "coral-review";
-    this.audioSourceNotice.dataset.active = reviewActive ? "review" : "current";
-    const detailsLink = createElement(
-      this.document,
-      "a",
-      "",
-      "candidate provenance and review checklist"
-    );
-    detailsLink.href = new URL(
-      "./audio/candidates/openai-coral-2026-08-10/REVIEW.md",
-      import.meta.url
-    ).href;
-    if (reviewActive) {
-      this.audioSourceNotice.replaceChildren(
-        this.document.createTextNode(
-          "Review only — unreviewed OpenAI Coral candidates are active for Delta, Epsilon, Mu (mew), Nu (noo), Sigma, Tau (tow), and Phi (fye). The other letters still use Current. Choose Current to return. "
-        ),
-        detailsLink
-      );
-    } else {
-      this.audioSourceNotice.replaceChildren(
-        this.document.createTextNode(
-          "Current recordings are active. Coral review temporarily switches only seven letters to unreviewed candidate original audio for listening evaluation. "
-        ),
-        detailsLink
-      );
-    }
-  }
-
-  setPronunciationSource(source) {
-    const nextSource = source === "coral-review" ? "coral-review" : "current";
-    if (nextSource === this.pronunciationSource) {
-      return;
-    }
-    this.stopPronunciation();
-    this.setPronunciationFeedback("");
-    this.pronunciationSource = nextSource;
-    this.updatePronunciationSourceNotice();
-    this.render();
-  }
-
   stopPronunciation() {
     this.pronunciationRequestId += 1;
     if (!this.pronunciationAudio) {
@@ -851,15 +758,8 @@ export class GreekLetterMatchRuntime {
 
     this.stopPronunciation();
     const requestId = ++this.pronunciationRequestId;
-    const reviewCandidateActive =
-      this.pronunciationSource === "coral-review" &&
-      isGreekPronunciationReviewCandidate(letter);
     audio.preload = "auto";
-    audio.src = getGreekPronunciationUrl(
-      letter,
-      import.meta.url,
-      this.pronunciationSource
-    );
+    audio.src = getGreekPronunciationUrl(letter, import.meta.url);
     audio.onended = () => {
       if (requestId === this.pronunciationRequestId) {
         this.setPronunciationFeedback("");
@@ -873,12 +773,7 @@ export class GreekLetterMatchRuntime {
         );
       }
     };
-    this.setPronunciationFeedback(
-      reviewCandidateActive
-        ? `Playing unreviewed Coral candidate for ${letter.name}.`
-        : `Playing ${letter.name}.`,
-      "playing"
-    );
+    this.setPronunciationFeedback(`Playing ${letter.name}.`, "playing");
 
     try {
       const playResult = audio.play();
@@ -1111,17 +1006,10 @@ export class GreekLetterMatchRuntime {
     this.pronunciationButton.hidden = !activePronunciationLetter;
     this.pronunciationButton.disabled = !activePronunciationLetter;
     if (activePronunciationLetter) {
-      const reviewCandidateActive =
-        this.pronunciationSource === "coral-review" &&
-        isGreekPronunciationReviewCandidate(activePronunciationLetter);
-      this.pronunciationButton.textContent = reviewCandidateActive
-        ? `🔊 Review ${activePronunciationLetter.name}`
-        : `🔊 Hear ${activePronunciationLetter.name}`;
+      this.pronunciationButton.textContent = `🔊 Hear ${activePronunciationLetter.name}`;
       this.pronunciationButton.setAttribute(
         "aria-label",
-        reviewCandidateActive
-          ? `Review the unreviewed Coral candidate for ${activePronunciationLetter.name}`
-          : `Hear ${activePronunciationLetter.name} pronounced`
+        `Hear ${activePronunciationLetter.name} pronounced`
       );
     } else {
       this.pronunciationButton.textContent = "🔊 Hear pronunciation";
