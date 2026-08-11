@@ -16,7 +16,6 @@ This is the canonical execution ledger for accepted Archie product and service w
 10. `site_navigator` — Status: `Deferred / blocked`.
 11. `claim_level_explainer` — Status: `Deferred / blocked`.
 12. `app_helper` — Status: `Deferred / blocked`.
-13. `greek_letter_match_original_pronunciation_audio` — [ARCH-013](#arch-013--greek-letter-match-original-pronunciation-audio). Status: `Awaiting verification`.
 
 ## In progress
 
@@ -82,13 +81,7 @@ This is the canonical execution ledger for accepted Archie product and service w
 
 ## Awaiting verification
 
-### ARCH-013 — Greek Letter Match original pronunciation audio
-
-- **Status:** Awaiting verification
-- **Priority object:** `greek_letter_match_original_pronunciation_audio`
-- **Request / acceptance:** Prepare one consistent original-voice replacement set for all 24 Greek Letter Match pronunciations, with the seven clips currently sourced from the unlicensed GreekLetterLearner upstream project retaining the specific source-reliance priority. Preserve every current production clip and its provenance record until its proposed replacement is explicitly approved; the current record is not a claim that the existing use has been legally validated, and public availability alone does not establish fair use.
-- **Evidence / blocker:** The original seven built-in-voice candidates and complete generation provenance remain available in the [2026-08-10 Coral review set](../../../../src/apps/greek-letter-match/audio/candidates/openai-coral-2026-08-10/REVIEW.md), and the temporary app selector still keeps `Current` as the default. After reporting an overly artificial or grainy Coral direction, the user selected `marin` through the [three-voice lossless audition](../../../../src/apps/greek-letter-match/audio/auditions/voice-audition-2026-08-10/REVIEW.md). The complete [24-letter Marin review set](../../../../src/apps/greek-letter-match/audio/candidates/openai-marin-2026-08-10/REVIEW.md) exists in canonical app order with lossless browser WAVs, exact targets, provenance, technical checks, and individual human approval for all 24 clips. In the separate [eight-letter Marin accent audition](../../../../src/apps/greek-letter-match/audio/auditions/accent-audition-2026-08-11/REVIEW.md), the user selected neutral international English as the preferred accent direction; General American, Indian English, and British English were not selected for this purpose. The approved 24-letter baseline remains unchanged. Expansion to a 24-letter neutral-international set and production installation each require separate explicit authorization; no permanent runtime default, active file, or active source-use disclosure has changed.
-- **Completion:** All 24 original pronunciation recordings are individually approved; their provenance and credits are recorded; runtime and source links point to the approved records; the old third-party clips are removed only after their replacements are ready; and relevant content, app, and source-link checks pass.
+No rows.
 
 ## Verified
 

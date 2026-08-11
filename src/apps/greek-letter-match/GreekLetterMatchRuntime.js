@@ -462,7 +462,6 @@ export class GreekLetterMatchRuntime {
           this.feedbackInterval = value;
         },
       }),
-      
     );
     this.setupSummary = createElement(this.document, "p", "greek-match-setup-summary");
     this.nextRoundButton = createElement(
@@ -639,40 +638,16 @@ export class GreekLetterMatchRuntime {
       this.document,
       "p",
       "greek-match-audio-credit",
-      "Pronunciation sources: "
+      "Pronunciation audio: AI-generated with OpenAI's built-in Marin voice · "
     );
-    const audioCreditLink = createElement(
-      this.document,
-      "a",
-      "",
-      "GreekLetterLearner"
-    );
-    audioCreditLink.href = "https://github.com/TechNolaByte/GreekLetterLearner";
-    audioCreditLink.target = "_blank";
-    audioCreditLink.rel = "noreferrer";
-    const wikimediaCreditLink = createElement(
-      this.document,
-      "a",
-      "",
-      "Wikimedia Commons"
-    );
-    wikimediaCreditLink.href = "https://commons.wikimedia.org/";
-    wikimediaCreditLink.target = "_blank";
-    wikimediaCreditLink.rel = "noreferrer";
     const audioDetailsLink = createElement(
       this.document,
       "a",
       "",
-      "credits & licenses"
+      "provenance, history & license status"
     );
     audioDetailsLink.href = new URL("./audio/SOURCE.md", import.meta.url).href;
-    audioCredit.append(
-      audioCreditLink,
-      this.document.createTextNode(" · "),
-      wikimediaCreditLink,
-      this.document.createTextNode(" · "),
-      audioDetailsLink
-    );
+    audioCredit.append(audioDetailsLink);
     chartSection.append(audioCredit);
     panel.append(panelHeader, scoreCard, chartSection);
     return panel;

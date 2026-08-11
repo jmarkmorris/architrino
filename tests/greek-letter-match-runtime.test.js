@@ -5,7 +5,6 @@ import { existsSync, readFileSync } from "node:fs";
 import {
   FEEDBACK_INTERVALS,
   GREEK_LETTERS,
-  GREEK_PRONUNCIATION_REVIEW_CANDIDATES,
   GreekLetterMatchRuntime,
   SPHERE_COLOR_PROGRESSION,
   advanceGreekMatch,
@@ -19,7 +18,6 @@ import {
   getOpticallyCenteredGlyphPosition,
   getRoundPercent,
   getSphereColor,
-  isGreekPronunciationReviewCandidate,
   startNextGreekMatchRound,
 } from "../src/apps/greek-letter-match/GreekLetterMatchRuntime.js";
 
@@ -62,29 +60,42 @@ test("Greek letters use the standard 24-letter order from alpha through omega", 
     name: "alpha",
     upper: "Α",
     lower: "α",
-    audioFile: "alpha.m4a",
+    audioFile: "alpha.wav",
   });
   assert.deepEqual(GREEK_LETTERS.at(-1), {
     name: "omega",
     upper: "Ω",
     lower: "ω",
-    audioFile: "omega.m4a",
+    audioFile: "omega.wav",
   });
 });
 
-test("every Greek letter has one locally deployed pronunciation recording", () => {
+test("every Greek letter uses the approved neutral-international Marin WAV", () => {
   assert.equal(new Set(GREEK_LETTERS.map((letter) => letter.audioFile)).size, 24);
   for (const letter of GREEK_LETTERS) {
-    assert.match(letter.audioFile, /^[a-z]+\.m4a$/u);
+    assert.match(letter.audioFile, /^[a-z]+\.wav$/u);
+    const deployedUrl = new URL(
+      `../src/apps/greek-letter-match/audio/${letter.audioFile}`,
+      import.meta.url
+    );
+    const approvedUrl = new URL(
+      `../src/apps/greek-letter-match/audio/candidates/openai-marin-neutral-international-2026-08-11/browser/${letter.audioFile}`,
+      import.meta.url
+    );
     assert.equal(
-      existsSync(
-        new URL(
-          `../src/apps/greek-letter-match/audio/${letter.audioFile}`,
-          import.meta.url
-        )
-      ),
+      existsSync(deployedUrl),
       true,
       `${letter.name} pronunciation is missing`
+    );
+    assert.equal(
+      existsSync(approvedUrl),
+      true,
+      `${letter.name} approved source is missing`
+    );
+    assert.deepEqual(
+      readFileSync(deployedUrl),
+      readFileSync(approvedUrl),
+      `${letter.name} production audio differs from its approved source`
     );
   }
   assert.equal(
@@ -92,82 +103,20 @@ test("every Greek letter has one locally deployed pronunciation recording", () =
       GREEK_LETTERS[0],
       "https://architrino.com/src/apps/greek-letter-match/GreekLetterMatchRuntime.js"
     ),
-    "https://architrino.com/src/apps/greek-letter-match/audio/alpha.m4a"
+    "https://architrino.com/src/apps/greek-letter-match/audio/alpha.wav"
   );
 
   const provenance = readRepoFile(
     "src/apps/greek-letter-match/audio/SOURCE.md"
   );
-  assert.match(provenance, /Wikimedia Commons replacements/u);
-  assert.match(provenance, /GreekLetterLearner recordings/u);
-  assert.match(provenance, /CC BY-SA 3\.0/u);
-  assert.match(provenance, /CC BY-SA 4\.0/u);
-  assert.match(provenance, /CC0 1\.0/u);
-  assert.match(provenance, /Public domain/u);
-  for (const sourceFilename of [
-    "En-us-pie.ogg",
-    "En-us-psi.ogg",
-    "En-us-beta.ogg",
-    "En-us-iota.ogg",
-    "En-us-alpha.ogg",
-    "En-us-omicron.ogg",
-    "En-us-rho.ogg",
-    "En-us-theta.ogg",
-    "En-us-xi.ogg",
-    "En-us-chi.ogg",
-    "En-us-zeta.ogg",
-    "En-us-eta.ogg",
-    "En-us-omega.ogg",
-    "En-us-gamma.ogg",
-    "En-us-kappa.ogg",
-    "En-us-lambda.ogg",
-    "En-us-upsilon.ogg",
-  ]) {
-    assert.match(provenance, new RegExp(sourceFilename.replace(".", "\\."), "u"));
-  }
-});
-
-test("Coral review routes exactly seven unreviewed candidates and preserves current fallbacks", () => {
-  assert.deepEqual(GREEK_PRONUNCIATION_REVIEW_CANDIDATES, [
-    "delta",
-    "epsilon",
-    "mu",
-    "nu",
-    "sigma",
-    "tau",
-    "phi",
-  ]);
-  const moduleUrl =
-    "https://architrino.com/src/apps/greek-letter-match/GreekLetterMatchRuntime.js";
-  for (const letter of GREEK_LETTERS) {
-    const isReviewCandidate = GREEK_PRONUNCIATION_REVIEW_CANDIDATES.includes(
-      letter.name
-    );
-    assert.equal(isGreekPronunciationReviewCandidate(letter), isReviewCandidate);
-    const reviewUrl = getGreekPronunciationUrl(letter, moduleUrl, "coral-review");
-    assert.equal(
-      reviewUrl,
-      isReviewCandidate
-        ? `https://architrino.com/src/apps/greek-letter-match/audio/candidates/openai-coral-2026-08-10/${letter.audioFile}`
-        : `https://architrino.com/src/apps/greek-letter-match/audio/${letter.audioFile}`
-    );
-    assert.equal(
-      getGreekPronunciationUrl(letter, moduleUrl, "current"),
-      `https://architrino.com/src/apps/greek-letter-match/audio/${letter.audioFile}`
-    );
-    if (isReviewCandidate) {
-      assert.equal(
-        existsSync(
-          new URL(
-            `../src/apps/greek-letter-match/audio/candidates/openai-coral-2026-08-10/${letter.audioFile}`,
-            import.meta.url
-          )
-        ),
-        true,
-        `${letter.name} Coral review candidate is missing`
-      );
-    }
-  }
+  assert.match(provenance, /AI-generated/u);
+  assert.match(provenance, /gpt-4o-mini-tts-2025-12-15/u);
+  assert.match(provenance, /built-in `marin` voice/u);
+  assert.match(provenance, /neutral international English/u);
+  assert.match(provenance, /pending.*CC0.*CC BY 4\.0/isu);
+  assert.match(provenance, /Historical production sources/u);
+  assert.match(provenance, /GreekLetterLearner/u);
+  assert.match(provenance, /fair use/u);
 });
 
 test("pronunciation playback reuses one audio player and restarts it", () => {
@@ -194,39 +143,9 @@ test("pronunciation playback reuses one audio player and restarts it", () => {
   assert.equal(audio.pauseCalls, 2);
   assert.equal(audio.playCalls, 2);
   assert.equal(audio.currentTime, 0);
-  assert.match(audio.src, /\/audio\/beta\.m4a$/u);
+  assert.match(audio.src, /\/audio\/beta\.wav$/u);
   assert.equal(runtime.pronunciationFeedback.textContent, "Playing beta.");
   assert.equal(runtime.pronunciationFeedback.dataset.state, "playing");
-});
-
-test("pronunciation playback labels and routes an active Coral review candidate", () => {
-  const audio = {
-    currentTime: 0,
-    pause() {},
-    play() {
-      return Promise.resolve();
-    },
-  };
-  const runtime = Object.create(GreekLetterMatchRuntime.prototype);
-  runtime.audioFactory = () => audio;
-  runtime.pronunciationAudio = null;
-  runtime.pronunciationRequestId = 0;
-  runtime.pronunciationSource = "coral-review";
-  runtime.pronunciationFeedback = { textContent: "", dataset: {} };
-
-  assert.equal(runtime.playPronunciation(3), true);
-  assert.match(
-    audio.src,
-    /\/audio\/candidates\/openai-coral-2026-08-10\/delta\.m4a$/u
-  );
-  assert.equal(
-    runtime.pronunciationFeedback.textContent,
-    "Playing unreviewed Coral candidate for delta."
-  );
-
-  assert.equal(runtime.playPronunciation(0), true);
-  assert.match(audio.src, /\/audio\/alpha\.m4a$/u);
-  assert.equal(runtime.pronunciationFeedback.textContent, "Playing alpha.");
 });
 
 test("teaching selection plays the selected letter without changing the score", () => {
@@ -395,13 +314,12 @@ test("feedback choices use buttons only and avoid dropdown and slider controls",
   assert.match(runtime, /input\.type = "radio"/u);
   assert.match(runtime, /"Next round"/u);
   assert.match(runtime, /"Teach me"/u);
-  assert.match(runtime, /"Coral review"/u);
-  assert.match(runtime, /Review only — unreviewed OpenAI Coral candidates/u);
-  assert.match(runtime, /Choose Current to return/u);
-  assert.match(runtime, /greek-match-audio-source-notice/u);
+  assert.doesNotMatch(runtime, /Coral review|pronunciationSource|greek-match-audio-source-notice/u);
+  assert.doesNotMatch(css, /greek-match-audio-source-notice/u);
   assert.match(runtime, /greek-match-pronunciation/u);
   assert.match(runtime, /playPronunciation/u);
-  assert.match(runtime, /credits & licenses/u);
+  assert.match(runtime, /AI-generated with OpenAI's built-in Marin voice/u);
+  assert.match(runtime, /provenance, history & license status/u);
   assert.match(runtime, /"Incorrect"/u);
   assert.doesNotMatch(runtime, /Try the highlighted answer/u);
   assert.match(runtime, /greek-match-teach-name/u);

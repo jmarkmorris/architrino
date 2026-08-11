@@ -1,10 +1,27 @@
-# Greek letter pronunciation audio
+# Greek Letter Match production pronunciation audio
 
-This directory contains 24 English-language Greek-letter pronunciation recordings from two source groups. The source information below was verified on 2026-07-20.
+The active production set consists of 24 AI-generated English-language Greek-letter pronunciation WAVs. Each deployed file is byte-identical to the normalized browser file in the [full neutral-international review packet](candidates/openai-marin-neutral-international-2026-08-11/REVIEW.md); that packet's [`SOURCE.md`](candidates/openai-marin-neutral-international-2026-08-11/SOURCE.md) supplies the exact inputs, instructions, checksums, processing contract, and rejected-attempt evidence.
 
-## Wikimedia Commons replacements
+## Current production set
 
-Seventeen source OGG recordings were retrieved from Wikimedia Commons and converted to AAC-in-M4A with FFmpeg for consistent playback in the deployed game. The spoken content was not edited. The conversion is a format change, and the converted files retain the licenses listed below. Files derived from Creative Commons ShareAlike sources are redistributed under their respective source licenses.
+- Generation system: [OpenAI Speech API](https://developers.openai.com/api/reference/resources/audio/subresources/speech/methods/create).
+- Model: pinned snapshot `gpt-4o-mini-tts-2025-12-15`.
+- Voice and delivery: OpenAI's built-in `marin` voice with a restrained neutral international English accent/style instruction. Neutral international is an instruction applied to Marin, not a separate voice or a claim about a person's demographic identity.
+- Generation date: 2026-08-11.
+- Format: PCM signed 16-bit little-endian, 24 kHz, mono WAV after lossless, linear-only loudness normalization.
+- Runtime scope: all 24 canonical Greek-letter names. Uppercase and lowercase forms share the same letter-name file; sigma's lowercase forms share `sigma.wav`.
+
+These recordings are AI-generated speech, not human-authored recordings and not source evidence for factual, legal, or scientific claims. The built-in voice does not represent an independent legal person or academically accountable author.
+
+The standalone media-license label remains pending an explicit choice between CC0, as a public-domain dedication where legally possible with a permissive fallback, and CC BY 4.0, for open reuse with attribution. The repository's MIT software license is not asserted as the license for these audio files. This record does not guarantee that copyright exists in the recordings or that either licensing approach has the same legal effect in every jurisdiction.
+
+## Historical production sources (retired 2026-08-11)
+
+Before the AI-generated production set was deployed, the game used 24 AAC-in-M4A recordings from the two source groups below. Their files were removed from the active runtime after all 24 new mappings and browser playback were verified. This history preserves the original license and source-use record; retirement is not a legal finding about the prior uses.
+
+### Wikimedia Commons recordings
+
+Seventeen source OGG recordings were retrieved from Wikimedia Commons and converted to AAC-in-M4A with FFmpeg for consistent playback in the former deployed game. The spoken content was not edited. The conversion was a format change, and the converted files retained the licenses listed below. Files derived from Creative Commons ShareAlike sources were redistributed under their respective source licenses.
 
 | Letter | Source recording | Author | Source license | Source OGG SHA-1 |
 | --- | --- | --- | --- | --- |
@@ -26,13 +43,13 @@ Seventeen source OGG recordings were retrieved from Wikimedia Commons and conver
 | xi | [`En-us-xi.ogg`](https://commons.wikimedia.org/wiki/File:En-us-xi.ogg) | Dvortygirl, based on the source copyright claim | Public domain | `8426936043b1b14df632a192898a31a1ccd03256` |
 | zeta | [`En-us-zeta.ogg`](https://commons.wikimedia.org/wiki/File:En-us-zeta.ogg) | 0x0077BE | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | `cc8ee876c2735d8e33aba960bd984010a7dcc648` |
 
-## GreekLetterLearner recordings
+### GreekLetterLearner recordings
 
-The remaining seven recordings were retrieved from [TechNolaByte/GreekLetterLearner](https://github.com/TechNolaByte/GreekLetterLearner/tree/main/audio) at source commit `12e95111206d10c7c145a95ec821a55cc01b1032`.
+The remaining seven former production recordings were retrieved from [TechNolaByte/GreekLetterLearner](https://github.com/TechNolaByte/GreekLetterLearner/tree/main/audio) at source commit `12e95111206d10c7c145a95ec821a55cc01b1032`.
 
 Only individual Greek-letter recordings were copied. The upstream game's effects, hints, alphabet recording, scripts, markup, and styles were not copied. The files were renamed from Greek-symbol filenames to ASCII letter names so their GitHub Pages URLs remain simple and stable. The upstream repository did not contain a license when these files were retrieved. For this limited, item-specific use, the project records a good-faith reliance on U.S. fair use rather than an open license or permission. This record states the project's basis for the use; it is not a legal determination, an open-source license, or permission for downstream reuse.
 
-| Upstream filename | Deployed filename |
+| Upstream filename | Former deployed filename |
 | --- | --- |
 | `δ.m4a` | `delta.m4a` |
 | `ε.m4a` | `epsilon.m4a` |
