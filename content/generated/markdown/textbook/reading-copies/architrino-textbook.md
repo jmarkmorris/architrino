@@ -38076,7 +38076,7 @@ Only after Neon stability and node discreteness are established should the progr
 #### References
 
 - Theodor Benfey, "The Biography of a Periodic Spiral: from Chemistry magazine, via Industry, to a Foucault Pendulum," *Bulletin for the History of Chemistry* 34, no. 2 (2009): 141-145, [doi:10.70359/bhc2009v034p141](https://doi.org/10.70359/bhc2009v034p141).
-- Hyde artwork used in this project: Rezmason, "The chemical elements and their periodic relationships" SVG, CC BY-SA 4.0; see [Licenses & Attributions](../../../../markdown/aaa/archie/licenses-attributions.md) and the [local asset](../../../../assets/images/nuclear/hyde-periodic-table-relationships-commons.svg).
+- Hyde artwork used in this project: Rezmason, "The chemical elements and their periodic relationships" SVG, CC BY-SA 4.0; see [Licenses, Attribution & Source Use](../../../../markdown/aaa/archie/licenses-attributions.md) and the [local asset](../../../../assets/images/nuclear/hyde-periodic-table-relationships-commons.svg).
 
 ### Molecular Geometry
 

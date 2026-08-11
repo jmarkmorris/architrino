@@ -30,7 +30,7 @@ Seventeen source OGG recordings were retrieved from Wikimedia Commons and conver
 
 The remaining seven recordings were retrieved from [TechNolaByte/GreekLetterLearner](https://github.com/TechNolaByte/GreekLetterLearner/tree/main/audio) at source commit `12e95111206d10c7c145a95ec821a55cc01b1032`.
 
-Only individual Greek-letter recordings were copied. The upstream game's effects, hints, alphabet recording, scripts, markup, and styles were not copied. The files were renamed from Greek-symbol filenames to ASCII letter names so their GitHub Pages URLs remain simple and stable. The upstream repository did not contain a license when these files were retrieved. They are included at the operator's direction for educational fair use; this provenance record does not claim that the upstream files carry an open-source license.
+Only individual Greek-letter recordings were copied. The upstream game's effects, hints, alphabet recording, scripts, markup, and styles were not copied. The files were renamed from Greek-symbol filenames to ASCII letter names so their GitHub Pages URLs remain simple and stable. The upstream repository did not contain a license when these files were retrieved. For this limited, item-specific use, the project records a good-faith reliance on U.S. fair use rather than an open license or permission. This record states the project's basis for the use; it is not a legal determination, an open-source license, or permission for downstream reuse.
 
 | Upstream filename | Deployed filename |
 | --- | --- |

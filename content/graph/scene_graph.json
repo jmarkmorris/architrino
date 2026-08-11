@@ -366,7 +366,7 @@
     },
     {
       "id": "archie__licenses_attributions",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/scenes/archie/licenses_attributions.json",
       "nodeType": "scene"
     },
@@ -2670,7 +2670,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc"
     },
@@ -4078,7 +4078,7 @@
       "nodeId": "scene:content/scenes/archie/licenses_attributions.json",
       "nodeType": "scene",
       "id": "archie__licenses_attributions",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/scenes/archie/licenses_attributions.json",
       "searchTarget": "content/scenes/archie/licenses_attributions.json",
       "implicit": false
@@ -7480,7 +7480,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
       "searchTarget": "content/markdown/aaa/archie/licenses-attributions.md",
       "implicit": false

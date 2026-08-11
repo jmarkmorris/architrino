@@ -16,6 +16,7 @@ This is the canonical execution ledger for accepted Archie product and service w
 10. `site_navigator` — Status: `Deferred / blocked`.
 11. `claim_level_explainer` — Status: `Deferred / blocked`.
 12. `app_helper` — Status: `Deferred / blocked`.
+13. `greek_letter_match_original_pronunciation_audio` — [ARCH-013](#arch-013--greek-letter-match-original-pronunciation-audio). Status: `Deferred / blocked`.
 
 ## In progress
 
@@ -78,6 +79,14 @@ This is the canonical execution ledger for accepted Archie product and service w
 - **Request / acceptance:** Investigate these as modes of one Archie service: native-frame explanation, published-corpus Q&A, inherited-physics comparison, site navigation, claim-level explanation, and app guidance.
 - **Evidence / blocker:** Depends on ARCH-001 through ARCH-006 and stable source-authority contracts; no mode may elevate priority or diagnostic material.
 - **Completion:** Each retained mode has one service contract, source allowlist, response fixture, and explicit claim boundary, or is withdrawn.
+
+### ARCH-013 — Greek Letter Match original pronunciation audio
+
+- **Status:** Deferred / blocked
+- **Priority object:** `greek_letter_match_original_pronunciation_audio`
+- **Request / acceptance:** Rerecord the seven individual Greek-letter pronunciations currently sourced from the unlicensed GreekLetterLearner upstream project, replacing those third-party clips with original recordings so the app avoids unnecessary future reliance on that source. Preserve the current provenance record and its no-open-license disclaimer until the replacement is ready; the current record is not a claim that the use has been legally validated, and public availability alone does not establish fair use.
+- **Evidence / blocker:** The seven current clips and their source commit are recorded in the app's audio provenance file. This low-priority item is intentionally deferred behind higher-value Archie work, and no original replacement set is ready.
+- **Completion:** Seven original pronunciation recordings are ready; their provenance and credits are recorded; runtime and source links point to the new records; the old third-party clips are removed only after the replacements are ready; and relevant content, app, and source-link checks pass.
 
 ## Awaiting verification
 

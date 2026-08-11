@@ -50,4 +50,4 @@ The public posture should be serious, direct, and non-humiliating: answer the te
 
 Architrino's values are inspection over spectacle, source discipline over authority theater, privacy over convenience, accessibility over polish alone, and professional public conduct over short-term attention.
 
-For license, attribution, and use-boundary information, see [Legal Terms](legal-terms.md) and [Licenses & Attributions](licenses-attributions.md).
+For license, attribution, and use-boundary information, see [Legal Terms](legal-terms.md) and [Licenses, Attribution & Source Use](licenses-attributions.md).

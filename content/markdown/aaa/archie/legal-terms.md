@@ -8,7 +8,7 @@ Basic terms: Architrino is open source, published in good faith, and offered for
 
 ## License
 
-Project-authored Architrino code and documents are open source under the [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images, and derivatives retain their own licenses and attribution requirements; see [Licenses & Attributions](licenses-attributions.md).
+Project-authored Architrino code and documents are open source under the [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images, and derivatives retain their own licenses and attribution requirements; see [Licenses, Attribution & Source Use](licenses-attributions.md).
 
 In broad terms, the MIT License allows use, copying, modification, merging, publication, distribution, sublicensing, and sale of copies of the software, as long as the copyright notice and permission notice are included in copies or substantial portions of the software.
 
@@ -32,7 +32,7 @@ The material is educational and research-oriented. It is not personal medical, l
 
 ## Third-Party Material
 
-Some assets, data, libraries, and references used by the project have their own licenses, permissions, or attribution requirements. See [Licenses & Attributions](licenses-attributions.md) for the public attribution inventory.
+Some assets, data, libraries, and references used by the project have their own licenses, permissions, or attribution requirements. See [Licenses, Attribution & Source Use](licenses-attributions.md) for the public attribution inventory and source-use boundaries.
 
 When a third-party license, attribution, or source-specific term applies, users are responsible for complying with that term.
 
