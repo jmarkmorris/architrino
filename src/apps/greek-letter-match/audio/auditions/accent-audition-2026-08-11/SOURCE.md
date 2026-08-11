@@ -1,8 +1,12 @@
 # Greek Letter Match Marin Accent Audition Provenance
 
-Status: **review-only; unaccepted AI-generated accent renderings; no production or app route is changed by this record**.
+Status: **review complete; neutral international English is the human-selected accent direction; every file remains review-only and no production or app route is changed by this record**.
 
 Open [review.html](review.html) for the listening matrix. The four condition labels describe requested rendering instructions only. They do not identify the built-in voice with a demographic group, imitate or reference a person, rank cultures, or establish that a generated rendition represents every speaker of an English variety.
+
+## Human selection
+
+On 2026-08-11, the user selected the neutral international English condition as the preferred accent direction after listening to the four-condition audition. General American English, Indian English, and British English were not selected for this purpose. This is a comparative human preference, not a technical measurement, cultural ranking, demographic claim, or acceptance of a full-alphabet replacement. The separately approved 24-letter baseline Marin set remains unchanged and 24/24 human-approved. Generating a 24-letter neutral-international set requires a separate explicit decision.
 
 ## Constant generation and processing contract
 
@@ -114,4 +118,4 @@ Each row identifies `raw/{condition}/{letter}.wav` and `browser/{condition}/{let
 | neutral-international | chi | 1.000 s | -23.00 LUFS | -7.24 dBFS | `65f16eea278843935db840ac06eee25f0432b618d7960ceb370ea0edbe95a13a` | `5fe085238b0c0bb458db2255e27d8d4f55ba10a8a8f375dc8615ea8a52c82341` |
 | neutral-international | psi | 1.200 s | -23.12 LUFS | -8.57 dBFS | `8e0d2fac4acbda3fa4bbb607d1f3c25cced3f10e121565c5fa99dfba2e11d5c3` | `b0e743f8ee5d19dc4c3fb1df9461fa8a4615d1ad820a1220ddb67eb935049368` |
 
-This packet establishes request inputs, retained media, processing, checksums, and screening results. It does not establish human acceptance, cultural representativeness, production suitability, or a legal or academic claim, and it does not modify the already approved 24-letter Marin packet or any active recording or source-use record.
+This packet establishes request inputs, retained media, processing, checksums, screening results, and the stated human selection of neutral international English as the preferred direction. It does not establish individual acceptance of a new full-alphabet set, cultural representativeness, production suitability, or a legal or academic claim, and it does not modify the already approved 24-letter Marin packet or any active recording or source-use record.
