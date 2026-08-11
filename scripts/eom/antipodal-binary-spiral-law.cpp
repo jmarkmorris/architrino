@@ -64,11 +64,13 @@ struct Options {
   std::string chart = "sharp_with_finite_width_fallback";
   std::size_t thread_count = 4;
   std::string checkpoint;
+  std::string restart_checkpoint;
   bool resume = false;
   double chunk_duration = 100.0;
   std::size_t heartbeat_every = 25;
   bool adaptive_step_growth = false;
   bool continuous_adaptive_step = false;
+  bool certificate_cost_feedback = false;
   double initial_speed_km_s = 0.0;
   double target_speed_km_s = 0.0;
   double physical_radius_kpc = 0.0;
@@ -107,6 +109,17 @@ struct EvolutionSample {
   double radial_velocity = 0.0;
   double tangential_velocity = 0.0;
   double s = 0.0;
+};
+
+struct PhysicalEventBracket {
+  std::string kind;
+  EvolutionSample before;
+  EvolutionSample after;
+};
+
+struct PhysicalOutputSummary {
+  bool positive_radial_departure_seen = false;
+  std::optional<EvolutionSample> maximum_speed_sample;
 };
 
 struct SeedState {
@@ -246,18 +259,26 @@ RootFormula analytic_formula(double s) {
   for (const double phase : result.partner) {
     const double half = phase / 2.0;
     const double orientation = std::copysign(1.0, std::cos(half));
+    const double transmitter_factor =
+        std::abs(1.0 + s * orientation * std::sin(half));
     result.partner_radial +=
-        s * s * std::abs(std::cos(half)) / (phase * phase);
+        s * s * std::abs(std::cos(half)) /
+        (phase * phase * transmitter_factor);
     result.partner_tangential +=
-        s * s * orientation * std::sin(half) / (phase * phase);
+        s * s * orientation * std::sin(half) /
+        (phase * phase * transmitter_factor);
   }
   for (const double phase : result.self) {
     const double half = phase / 2.0;
     const double orientation = std::copysign(1.0, std::sin(half));
+    const double transmitter_factor =
+        std::abs(1.0 - s * orientation * std::cos(half));
     result.self_radial +=
-        s * s * std::abs(std::sin(half)) / (phase * phase);
+        s * s * std::abs(std::sin(half)) /
+        (phase * phase * transmitter_factor);
     result.self_tangential +=
-        s * s * orientation * std::cos(half) / (phase * phase);
+        s * s * orientation * std::cos(half) /
+        (phase * phase * transmitter_factor);
   }
   return result;
 }
@@ -693,7 +714,29 @@ void write_evolution_samples(
   }
 }
 
-void truncate_physical_output_to_checkpoint(
+EvolutionSample parse_physical_output_sample(const std::string& line) {
+  std::array<double, 5> values{};
+  std::size_t begin = 0U;
+  for (std::size_t index = 0U; index < values.size(); ++index) {
+    const std::size_t comma = line.find(',', begin);
+    if (comma == std::string::npos) {
+      throw std::runtime_error(
+          "physical-target resume output has a malformed row");
+    }
+    values[index] = std::stod(line.substr(begin, comma - begin));
+    begin = comma + 1U;
+  }
+  return {
+      .time = values[0],
+      .radius = values[1],
+      .speed = values[2],
+      .radial_velocity = values[3],
+      .tangential_velocity = values[4],
+      .s = values[2],
+  };
+}
+
+PhysicalOutputSummary truncate_physical_output_to_checkpoint(
     const std::string& path, double accepted_end) {
   std::ifstream input(path);
   if (!input) {
@@ -712,14 +755,18 @@ void truncate_physical_output_to_checkpoint(
     throw std::runtime_error("physical-target resume output is empty");
   }
   output << line << '\n';
+  PhysicalOutputSummary summary;
   while (std::getline(input, line)) {
-    const auto comma = line.find(',');
-    if (comma == std::string::npos) {
-      throw std::runtime_error(
-          "physical-target resume output has a malformed row");
+    const EvolutionSample sample = parse_physical_output_sample(line);
+    if (sample.time > accepted_end + 1e-12) continue;
+    output << line << '\n';
+    summary.positive_radial_departure_seen =
+        summary.positive_radial_departure_seen ||
+        sample.radial_velocity > 0.0;
+    if (!summary.maximum_speed_sample.has_value() ||
+        sample.speed > summary.maximum_speed_sample->speed) {
+      summary.maximum_speed_sample = sample;
     }
-    const double time = std::stod(line.substr(0, comma));
-    if (time <= accepted_end + 1e-12) output << line << '\n';
   }
   output.close();
   if (!output) {
@@ -727,6 +774,7 @@ void truncate_physical_output_to_checkpoint(
         "physical-target resume temporary output write failed");
   }
   std::filesystem::rename(temporary, path);
+  return summary;
 }
 
 std::vector<eom::NativeCoupledPathInput> make_binary_paths(
@@ -785,6 +833,8 @@ eom::NativeCoupledEvolutionRequest make_evolution_request(
       .thread_count = options.thread_count,
       .use_adaptive_step_growth = options.adaptive_step_growth,
       .use_continuous_adaptive_step = options.continuous_adaptive_step,
+      .use_certificate_cost_feedback =
+          options.certificate_cost_feedback,
   };
 }
 
@@ -875,6 +925,11 @@ void evolve_binary_to_physical_target(Options options) {
     throw std::invalid_argument(
         "physical-target requires --output and --checkpoint");
   }
+  if (options.resume && !options.restart_checkpoint.empty()) {
+    throw std::invalid_argument(
+        "physical-target cannot combine --resume with "
+        "--restart-checkpoint");
+  }
   if (!(options.chunk_duration > 0.0) ||
       !(options.duration > 0.0) || options.heartbeat_every == 0U) {
     throw std::invalid_argument(
@@ -904,38 +959,62 @@ void evolve_binary_to_physical_target(Options options) {
 
   const auto paths = make_binary_paths(options);
   auto request = make_evolution_request(options, paths);
-  request.run_id =
+  const std::string scenario_run_id =
       "antipodal-binary-physical-target-r" +
       token(options.physical_radius_kpc) + "-v" +
       token(options.initial_speed_km_s) + "-to" +
       token(options.target_speed_km_s) + "-cf" +
-      token(options.physical_field_speed_km_s);
-  const auto initial_histories = published_paths(paths);
+      token(options.physical_field_speed_km_s) +
+      (options.adaptive_step_growth ? "-adaptive-growth" : "") +
+      (options.continuous_adaptive_step ? "-continuous-adaptive" : "") +
+      (options.certificate_cost_feedback ? "-certificate-cost" : "");
+  request.run_id = scenario_run_id;
+  auto initial_histories = published_paths(paths);
   const double years_per_solver_time =
       options.physical_radius_kpc * kKilometresPerKiloparsec /
       options.physical_field_speed_km_s / kSecondsPerJulianYear;
 
   std::optional<eom::NativeEvolutionCheckpoint> checkpoint;
+  PhysicalOutputSummary prior_output;
   std::string accepted_end = "0";
   EvolutionSample previous =
       measure_evolution_state(initial_histories, accepted_end);
-  if (options.resume) {
+  if (!options.restart_checkpoint.empty()) {
+    const auto source =
+        eom::read_native_evolution_checkpoint(options.restart_checkpoint);
+    if (!source.run_id.starts_with(scenario_run_id)) {
+      throw std::runtime_error(
+          "physical-target restart source has the wrong scenario family");
+    }
+    request.run_id = scenario_run_id + "-restart-" +
+        source.checkpoint_fingerprint.substr(0U, 16U);
+    request.start_time = source.accepted_time;
+    request.paths.clear();
+    initial_histories.clear();
+    for (const auto& path : source.paths) {
+      request.paths.push_back({path.path_id, path.charge, path.history});
+      initial_histories.push_back({path.path_id, path.history});
+    }
+    accepted_end = source.accepted_time;
+    previous = measure_evolution_state(initial_histories, accepted_end);
+  } else if (options.resume) {
     checkpoint = eom::read_native_evolution_checkpoint(options.checkpoint);
-    if (checkpoint->run_id != request.run_id) {
+    if (!checkpoint->run_id.starts_with(scenario_run_id)) {
       throw std::runtime_error(
           "physical-target checkpoint scenario identity mismatch");
     }
+    request.run_id = checkpoint->run_id;
     accepted_end = checkpoint->accepted_time;
     std::vector<eom::NativePublishedPath> resumed_histories;
     for (const auto& path : checkpoint->paths) {
       resumed_histories.push_back({path.path_id, path.history});
     }
     previous = measure_evolution_state(resumed_histories, accepted_end);
-    truncate_physical_output_to_checkpoint(
+    prior_output = truncate_physical_output_to_checkpoint(
         options.output, std::stod(accepted_end));
   } else {
     const auto start_snapshot = eom::certify_native_acceleration_snapshot(
-        request, initial_histories, "0");
+        request, initial_histories, accepted_end);
     if (start_snapshot.status != "certified_complete" ||
         start_snapshot.acceleration.status != "certified_complete") {
       throw std::runtime_error(
@@ -958,9 +1037,10 @@ void evolve_binary_to_physical_target(Options options) {
               "radial_velocity_km_s,tangential_velocity_km_s\n";
     stream << previous.time << ',' << previous.radius << ','
            << previous.speed << ',' << previous.radial_velocity << ','
-           << previous.tangential_velocity << ',' << 0.0 << ','
-           << options.physical_radius_kpc << ','
-           << options.initial_speed_km_s << ','
+           << previous.tangential_velocity << ','
+           << previous.time * years_per_solver_time << ','
+           << previous.radius * options.physical_radius_kpc << ','
+           << previous.speed * options.physical_field_speed_km_s << ','
            << previous.radial_velocity * options.physical_field_speed_km_s
            << ','
            << previous.tangential_velocity *
@@ -969,15 +1049,31 @@ void evolve_binary_to_physical_target(Options options) {
     stream.flush();
   }
 
-  std::optional<EvolutionSample> crossing;
-  if (previous.speed >= target_s) crossing = previous;
-  std::string final_status = "maximum_duration_reached";
+  std::optional<PhysicalEventBracket> terminal_event;
+  if (previous.speed >= target_s) {
+    terminal_event = PhysicalEventBracket{
+        .kind = "target_reached",
+        .before = previous,
+        .after = previous,
+    };
+  }
+  bool positive_radial_departure_seen =
+      prior_output.positive_radial_departure_seen ||
+      previous.radial_velocity > 0.0;
+  EvolutionSample maximum_speed_sample =
+      prior_output.maximum_speed_sample.value_or(previous);
+  if (previous.speed > maximum_speed_sample.speed) {
+    maximum_speed_sample = previous;
+  }
+  std::string final_status = terminal_event.has_value()
+      ? terminal_event->kind : "maximum_duration_reached";
   std::size_t chunks = 0U;
   std::size_t cumulative_accepted = 0U;
   std::size_t cumulative_rejected = 0U;
   const auto wall_start = std::chrono::steady_clock::now();
 
-  while (std::stod(accepted_end) + 1e-15 < options.duration) {
+  while (!terminal_event.has_value() &&
+         std::stod(accepted_end) + 1e-15 < options.duration) {
     const double chunk_target = std::min(
         options.duration,
         std::stod(accepted_end) + options.chunk_duration);
@@ -1017,15 +1113,98 @@ void evolve_binary_to_physical_target(Options options) {
              << sample.tangential_velocity *
                     options.physical_field_speed_km_s
              << '\n';
-      if (!crossing.has_value() && previous.speed < target_s &&
-          sample.speed >= target_s) {
-        crossing = sample;
+      if (sample.speed > maximum_speed_sample.speed) {
+        maximum_speed_sample = sample;
       }
+      if (!terminal_event.has_value()) {
+        const bool target_crossing =
+            previous.speed < target_s && sample.speed >= target_s;
+        const bool radial_turn =
+            positive_radial_departure_seen &&
+            previous.radial_velocity > 0.0 &&
+            sample.radial_velocity <= 0.0;
+        if (target_crossing || radial_turn) {
+          terminal_event = PhysicalEventBracket{
+              .kind = target_crossing && radial_turn
+                  ? "target_and_radial_turn_same_step"
+                  : (target_crossing ? "target_reached" : "radial_turn"),
+              .before = previous,
+              .after = sample,
+          };
+        }
+      }
+      positive_radial_departure_seen =
+          positive_radial_departure_seen || sample.radial_velocity > 0.0;
       previous = sample;
     }
     stream.flush();
 
+    const auto report_root_failures = [&chunk] {
+      const auto report_snapshot = [](const char* label,
+                                      const auto& snapshot) {
+        if (snapshot.status == "certified_complete") return;
+        std::cerr << "snapshot_failure stage=" << label << " status="
+                  << snapshot.status << " failure_code="
+                  << snapshot.failure_code << " acceleration_status="
+                  << snapshot.acceleration.status
+                  << " acceleration_failure_code="
+                  << snapshot.acceleration.failure_code << std::endl;
+        for (const auto& root : snapshot.root_certificates) {
+          if (root.certificate.status == "certified_complete") continue;
+          std::cerr << "root_failure receiver="
+                    << root.receiver_path_id << " transmitter="
+                    << root.transmitter_path_id << " status="
+                    << root.certificate.status << " failure_code="
+                    << root.certificate.failure_code << " detail="
+                    << root.certificate.diagnostic_detail
+                    << " precision_bits="
+                    << root.certificate.achieved_precision_bits
+                    << " difficult_segment="
+                    << root.certificate.difficult_source_segment_index
+                    << " difficult_cell=["
+                    << root.certificate.difficult_cell_lower << ','
+                    << root.certificate.difficult_cell_upper << "]"
+                    << std::endl;
+        }
+        for (const auto& pair : snapshot.acceleration.pair_certificates) {
+          if (pair.status == "certified_complete") continue;
+          std::cerr << "acceleration_failure receiver="
+                    << pair.receiver_path_id << " transmitter="
+                    << pair.transmitter_path_id << " status="
+                    << pair.status << " failure_code="
+                    << pair.failure_code << " precision_bits="
+                    << pair.achieved_acceleration_precision_bits
+                    << std::endl;
+        }
+      };
+      for (auto step = chunk.steps.rbegin(); step != chunk.steps.rend();
+           ++step) {
+        if (step->status == "accepted") continue;
+        std::cerr << "step_failure attempted=[" << step->attempted_start
+                  << ',' << step->attempted_end << "] failure_code="
+                  << step->failure_code << std::endl;
+        for (const auto& substep : step->substeps) {
+          std::cerr << "substep_failure interval=[" << substep.start_time
+                    << ',' << substep.end_time << "] failure_code="
+                    << substep.failure_code << std::endl;
+          report_snapshot("start", substep.start_snapshot);
+          if (substep.endpoint_snapshot.has_value()) {
+            report_snapshot("endpoint", *substep.endpoint_snapshot);
+          }
+        }
+        if (step->accepted_snapshot.has_value()) {
+          report_snapshot("accepted", *step->accepted_snapshot);
+        }
+        if (step->recertification_snapshot.has_value()) {
+          report_snapshot(
+              "recertification", *step->recertification_snapshot);
+        }
+        break;
+      }
+    };
+
     if (chunk.accepted_step_count == 0U) {
+      report_root_failures();
       final_status = "halted_" +
           (chunk.halt_code.empty() ? chunk.status : chunk.halt_code);
       break;
@@ -1050,14 +1229,27 @@ void evolve_binary_to_physical_target(Options options) {
               << previous.radius * options.physical_radius_kpc
               << " elapsed_years="
               << previous.time * years_per_solver_time
+              << " snapshot_wall_seconds="
+              << chunk.timing.snapshot_total_wall_seconds
+              << " root_binary64_worker_wall_seconds="
+              << chunk.timing.root_binary64_worker_wall_seconds
+              << " root_mpfr_worker_wall_seconds="
+              << chunk.timing.root_mpfr_worker_wall_seconds
+              << " history_copy_hash_wall_seconds="
+              << chunk.timing.history_copy_hash_wall_seconds
+              << " correction_wall_seconds="
+              << chunk.timing.correction_wall_seconds
+              << " recertification_wall_seconds="
+              << chunk.timing.recertification_wall_seconds
               << " wall_seconds=" << wall_seconds << std::endl;
 
-    if (crossing.has_value()) {
-      final_status = "target_reached";
+    if (terminal_event.has_value()) {
+      final_status = terminal_event->kind;
       break;
     }
     if (chunk.status != "completed" ||
         std::stod(chunk.accepted_end_time) + 1e-15 < chunk_target) {
+      report_root_failures();
       final_status = "halted_" +
           (chunk.halt_code.empty() ? chunk.status : chunk.halt_code);
       break;
@@ -1080,15 +1272,41 @@ void evolve_binary_to_physical_target(Options options) {
             << " coupling=" << options.coupling
             << " effective_coupling=" << options.coupling / 36.0
             << " release_partner_roots=" << balance.partner_roots
-            << " release_self_roots=" << balance.self_roots;
-  if (crossing.has_value()) {
-    std::cout << " crossing_time=" << crossing->time
-              << " crossing_elapsed_years="
-              << crossing->time * years_per_solver_time
-              << " crossing_radius_kpc="
-              << crossing->radius * options.physical_radius_kpc
-              << " crossing_speed_km_s="
-              << crossing->speed * options.physical_field_speed_km_s;
+            << " release_self_roots=" << balance.self_roots
+            << " adaptive_step_growth=" << options.adaptive_step_growth
+            << " continuous_adaptive_step="
+            << options.continuous_adaptive_step
+            << " certificate_cost_feedback="
+            << options.certificate_cost_feedback
+            << " maximum_accepted_speed_km_s="
+            << maximum_speed_sample.speed *
+                   options.physical_field_speed_km_s
+            << " maximum_accepted_speed_time="
+            << maximum_speed_sample.time;
+  if (terminal_event.has_value()) {
+    std::cout << " event=" << terminal_event->kind
+              << " event_time_lower=" << terminal_event->before.time
+              << " event_time_upper=" << terminal_event->after.time
+              << " event_elapsed_years_lower="
+              << terminal_event->before.time * years_per_solver_time
+              << " event_elapsed_years_upper="
+              << terminal_event->after.time * years_per_solver_time
+              << " event_radius_kpc_lower="
+              << terminal_event->before.radius * options.physical_radius_kpc
+              << " event_radius_kpc_upper="
+              << terminal_event->after.radius * options.physical_radius_kpc
+              << " event_speed_km_s_lower="
+              << terminal_event->before.speed *
+                     options.physical_field_speed_km_s
+              << " event_speed_km_s_upper="
+              << terminal_event->after.speed *
+                     options.physical_field_speed_km_s
+              << " event_radial_velocity_km_s_lower="
+              << terminal_event->before.radial_velocity *
+                     options.physical_field_speed_km_s
+              << " event_radial_velocity_km_s_upper="
+              << terminal_event->after.radial_velocity *
+                     options.physical_field_speed_km_s;
   }
   std::cout << '\n';
 }
@@ -1131,6 +1349,8 @@ int main(int argc, char** argv) {
         option_size(argc, argv, "thread-count", options.thread_count);
     options.checkpoint =
         option_string(argc, argv, "checkpoint", options.checkpoint);
+    options.restart_checkpoint = option_string(
+        argc, argv, "restart-checkpoint", options.restart_checkpoint);
     options.resume = option_bool(argc, argv, "resume", options.resume);
     options.chunk_duration = option_double(
         argc, argv, "chunk-duration", options.chunk_duration);
@@ -1141,6 +1361,9 @@ int main(int argc, char** argv) {
     options.continuous_adaptive_step = option_bool(
         argc, argv, "continuous-adaptive-step",
         options.continuous_adaptive_step);
+    options.certificate_cost_feedback = option_bool(
+        argc, argv, "certificate-cost-feedback",
+        options.certificate_cost_feedback);
     options.initial_speed_km_s = option_double(
         argc, argv, "initial-speed-km-s", options.initial_speed_km_s);
     options.target_speed_km_s = option_double(

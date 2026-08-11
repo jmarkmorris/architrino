@@ -11,14 +11,18 @@ $0<\beta=v/c_f<1$.
 velocity after release. The near-ceiling prefix begins at $\beta=0.99$ and ends
 at $v=0.9998750943\,c_f$ without a radial turn.
 
-**Not established:** the radius has not been shown to increase monotonically
-along one complete evolved trajectory from an arbitrary sub-$c_f$ release to
-$c_f$. The test therefore does not establish binary fate, retention, binding,
-stability, or a globally monotone outspiral.
+**Measured closure:** a later vector-consistent retained-history run from
+$100\,\mathrm{km/s}$ at radius $2\,\mathrm{kpc}$ reaches a sub-$c_f$ radial
+turn near $121$ million years. The full record is in
+[Physical Binary Retained-History Radial Turn](2026-08-11-physical-binary-retained-history-radial-turn.md).
 
-Plainly: the outward start is now a result, not a visual impression. The full
-outspiral is still open because the EOM solver has not yet carried one such
-trajectory all the way to field speed or to an earlier radial turn.
+**Not established:** the turn calculation does not establish later binary
+fate, retention, binding, stability, or the behavior of every possible
+sub-$c_f$ release.
+
+Plainly: the outward start is a result, not a visual impression. It is not a
+globally monotone outspiral: the retained-history counterexample eventually
+turns inward before reaching field speed.
 
 ## Analytic release test
 
@@ -139,17 +143,13 @@ is the durable claim record.
 
 ## Closure status and falsifiers
 
-The complete monotonic-outspiral question remains **open**. The next decisive
-run must evolve one balanced release until the first of:
-
-1. an accepted sample with $v\geq c_f$ while $\dot r$ has remained positive;
-2. an accepted outward-to-inward radial turn with $v<c_f$;
-3. a fail-closed root-completeness halt, reported as the numerical blocker.
+The universal monotonic-outspiral conjecture is **closed negatively** by the
+accepted outward-to-inward turn with $v<c_f$ in the retained-history run linked
+above. The local cubic departure theorem remains unchanged.
 
 The local theorem is falsified by a certified principal one-root circular
 release satisfying radial balance but having $r^{(3)}(0)\leq0$. The global
 monotonicity conjecture is falsified by a certified $v<c_f$ radial maximum,
 equivalently a turn with $\Gamma+B_r<0$.
 
-Plainly: the current answer is “outward locally everywhere tested and derived,
-no turn seen, full monotonicity not yet decided.”
+Plainly: the current answer is “outward locally, but not outward forever.”

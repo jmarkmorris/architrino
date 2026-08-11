@@ -9,7 +9,7 @@
 - Excluded recent claims read: none overlap this binary spiral-direction target; the newest visible claim cards are from 2026-07-28 or earlier
 - Search plan: inspect the closed spiral-direction flow, the frozen Campaign 1 sub-field binary protocol, current/withdrawn two-architrino return diagnostics, and the live EOM execution boundary; search for an exact circular-release seed or the smallest honest diagnostic route
 - Expected output: an analytic monotonicity or turn criterion, a bounded numerical diagnostic when lawful, an explicit falsifier, and a durable result at derived or diagnostic grade without promoting binary fate, retention, stability, or physical realization
-- Status: completed with the full-interval closure target still open
+- Status: completed; retained-history follow-up closed the full-interval target negatively
 
 Closure goal: Test whether the local outward departure of a radially balanced, unique-root sub-field circular binary remains monotonic before field speed or undergoes a radial turn.
 
@@ -19,7 +19,14 @@ Closure goal: Test whether the local outward departure of a radially balanced, u
   $r^{(3)}(0)=2\omega a_\theta>0$ for $0<v<c_f$.
 - Measured: sharp-chart EOM prefixes released at $0.75c_f$ and $0.99c_f$ kept
   strictly positive radial velocity; the latter reached $0.9998750943c_f$.
-- Open: no single evolved trajectory has yet been certified from a general
-  sub-$c_f$ release through either $c_f$ or a radial turn.
+- Measured follow-up: the vector-consistent retained-history trajectory from
+  $100\,\mathrm{km/s}$ at radius $2\,\mathrm{kpc}$ reaches a radial turn near
+  $121$ million years at $2.00840092573\,\mathrm{kpc}$, without reaching
+  $170\,\mathrm{km/s}$.
+- Closed negatively: a sub-$c_f$ retained-history counterexample falsifies the
+  universal monotonic-outspiral conjecture. Later fate after the first radial
+  turn remains outside this claim.
 - Durable evidence:
   [balanced circular-release outward-departure test](../../../priorities/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md)
+  and
+  [physical binary retained-history radial turn](../../../priorities/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md)
