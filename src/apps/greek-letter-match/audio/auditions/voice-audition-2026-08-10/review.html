@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Greek Letter Match Voice Audition</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background: #12051f;
+        color: #f8f2ff;
+      }
+      body {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 18px 48px;
+      }
+      h1 { margin-bottom: 8px; }
+      .boundary {
+        padding: 14px 16px;
+        border: 1px solid #d6b85a;
+        border-radius: 12px;
+        background: #35230d;
+        line-height: 1.5;
+      }
+      .next {
+        display: inline-block;
+        margin: 8px 0 2px;
+        padding: 11px 16px;
+        border-radius: 999px;
+        background: #6f32a5;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .voices {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-top: 22px;
+      }
+      article {
+        padding: 18px;
+        border: 1px solid #5e4779;
+        border-radius: 14px;
+        background: #211033;
+      }
+      article h2 { margin-top: 0; font-family: ui-monospace, monospace; }
+      .clip { margin: 18px 0; }
+      .clip strong, .clip span { display: block; }
+      .clip span { margin: 3px 0 7px; color: #cdbfdb; font-size: 0.9rem; }
+      audio { width: 100%; }
+      a { color: #dcc2ff; }
+      footer { margin-top: 24px; color: #cdbfdb; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <h1>Greek Letter Match Voice Audition</h1>
+    <p>Compare each system voice across the same three pronunciation targets.</p>
+    <p class="boundary">
+      Review complete — Marin was selected as the voice direction. These files
+      are not used by the app and do not replace the current recordings or Coral
+      candidates. Individual full-set clips still require listening approval.
+    </p>
+    <a class="next" href="../../candidates/openai-marin-2026-08-10/review.html">Review all 24 Marin pronunciations</a>
+    <main class="voices">
+      <article>
+        <h2>marin</h2>
+        <div class="clip"><strong>Delta</strong><span>DEL-tuh</span><audio aria-label="Play marin Delta" controls preload="metadata" src="browser/marin/delta.wav"></audio></div>
+        <div class="clip"><strong>Nu</strong><span>NOO, like new; short and plain</span><audio aria-label="Play marin Nu" controls preload="metadata" src="browser/marin/nu.wav"></audio></div>
+        <div class="clip"><strong>Phi</strong><span>FYE, rhyming with pie</span><audio aria-label="Play marin Phi" controls preload="metadata" src="browser/marin/phi.wav"></audio></div>
+      </article>
+      <article>
+        <h2>cedar</h2>
+        <div class="clip"><strong>Delta</strong><span>DEL-tuh</span><audio aria-label="Play cedar Delta" controls preload="metadata" src="browser/cedar/delta.wav"></audio></div>
+        <div class="clip"><strong>Nu</strong><span>NOO, like new; short and plain</span><audio aria-label="Play cedar Nu" controls preload="metadata" src="browser/cedar/nu.wav"></audio></div>
+        <div class="clip"><strong>Phi</strong><span>FYE, rhyming with pie</span><audio aria-label="Play cedar Phi" controls preload="metadata" src="browser/cedar/phi.wav"></audio></div>
+      </article>
+      <article>
+        <h2>shimmer</h2>
+        <div class="clip"><strong>Delta</strong><span>DEL-tuh</span><audio aria-label="Play shimmer Delta" controls preload="metadata" src="browser/shimmer/delta.wav"></audio></div>
+        <div class="clip"><strong>Nu</strong><span>NOO, like new; short and plain</span><audio aria-label="Play shimmer Nu" controls preload="metadata" src="browser/shimmer/nu.wav"></audio></div>
+        <div class="clip"><strong>Phi</strong><span>FYE, rhyming with pie</span><audio aria-label="Play shimmer Phi" controls preload="metadata" src="browser/shimmer/phi.wav"></audio></div>
+      </article>
+    </main>
+    <footer>
+      <a href="REVIEW.md">Review checklist</a> ·
+      <a href="SOURCE.md">generation, diagnostic, and technical evidence</a>
+    </footer>
+  </body>
+</html>

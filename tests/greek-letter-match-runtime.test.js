@@ -5,6 +5,7 @@ import { existsSync, readFileSync } from "node:fs";
 import {
   FEEDBACK_INTERVALS,
   GREEK_LETTERS,
+  GREEK_PRONUNCIATION_REVIEW_CANDIDATES,
   GreekLetterMatchRuntime,
   SPHERE_COLOR_PROGRESSION,
   advanceGreekMatch,
@@ -18,6 +19,7 @@ import {
   getOpticallyCenteredGlyphPosition,
   getRoundPercent,
   getSphereColor,
+  isGreekPronunciationReviewCandidate,
   startNextGreekMatchRound,
 } from "../src/apps/greek-letter-match/GreekLetterMatchRuntime.js";
 
@@ -125,6 +127,49 @@ test("every Greek letter has one locally deployed pronunciation recording", () =
   }
 });
 
+test("Coral review routes exactly seven unreviewed candidates and preserves current fallbacks", () => {
+  assert.deepEqual(GREEK_PRONUNCIATION_REVIEW_CANDIDATES, [
+    "delta",
+    "epsilon",
+    "mu",
+    "nu",
+    "sigma",
+    "tau",
+    "phi",
+  ]);
+  const moduleUrl =
+    "https://architrino.com/src/apps/greek-letter-match/GreekLetterMatchRuntime.js";
+  for (const letter of GREEK_LETTERS) {
+    const isReviewCandidate = GREEK_PRONUNCIATION_REVIEW_CANDIDATES.includes(
+      letter.name
+    );
+    assert.equal(isGreekPronunciationReviewCandidate(letter), isReviewCandidate);
+    const reviewUrl = getGreekPronunciationUrl(letter, moduleUrl, "coral-review");
+    assert.equal(
+      reviewUrl,
+      isReviewCandidate
+        ? `https://architrino.com/src/apps/greek-letter-match/audio/candidates/openai-coral-2026-08-10/${letter.audioFile}`
+        : `https://architrino.com/src/apps/greek-letter-match/audio/${letter.audioFile}`
+    );
+    assert.equal(
+      getGreekPronunciationUrl(letter, moduleUrl, "current"),
+      `https://architrino.com/src/apps/greek-letter-match/audio/${letter.audioFile}`
+    );
+    if (isReviewCandidate) {
+      assert.equal(
+        existsSync(
+          new URL(
+            `../src/apps/greek-letter-match/audio/candidates/openai-coral-2026-08-10/${letter.audioFile}`,
+            import.meta.url
+          )
+        ),
+        true,
+        `${letter.name} Coral review candidate is missing`
+      );
+    }
+  }
+});
+
 test("pronunciation playback reuses one audio player and restarts it", () => {
   const audio = {
     currentTime: 7,
@@ -152,6 +197,36 @@ test("pronunciation playback reuses one audio player and restarts it", () => {
   assert.match(audio.src, /\/audio\/beta\.m4a$/u);
   assert.equal(runtime.pronunciationFeedback.textContent, "Playing beta.");
   assert.equal(runtime.pronunciationFeedback.dataset.state, "playing");
+});
+
+test("pronunciation playback labels and routes an active Coral review candidate", () => {
+  const audio = {
+    currentTime: 0,
+    pause() {},
+    play() {
+      return Promise.resolve();
+    },
+  };
+  const runtime = Object.create(GreekLetterMatchRuntime.prototype);
+  runtime.audioFactory = () => audio;
+  runtime.pronunciationAudio = null;
+  runtime.pronunciationRequestId = 0;
+  runtime.pronunciationSource = "coral-review";
+  runtime.pronunciationFeedback = { textContent: "", dataset: {} };
+
+  assert.equal(runtime.playPronunciation(3), true);
+  assert.match(
+    audio.src,
+    /\/audio\/candidates\/openai-coral-2026-08-10\/delta\.m4a$/u
+  );
+  assert.equal(
+    runtime.pronunciationFeedback.textContent,
+    "Playing unreviewed Coral candidate for delta."
+  );
+
+  assert.equal(runtime.playPronunciation(0), true);
+  assert.match(audio.src, /\/audio\/alpha\.m4a$/u);
+  assert.equal(runtime.pronunciationFeedback.textContent, "Playing alpha.");
 });
 
 test("teaching selection plays the selected letter without changing the score", () => {
@@ -320,6 +395,10 @@ test("feedback choices use buttons only and avoid dropdown and slider controls",
   assert.match(runtime, /input\.type = "radio"/u);
   assert.match(runtime, /"Next round"/u);
   assert.match(runtime, /"Teach me"/u);
+  assert.match(runtime, /"Coral review"/u);
+  assert.match(runtime, /Review only — unreviewed OpenAI Coral candidates/u);
+  assert.match(runtime, /Choose Current to return/u);
+  assert.match(runtime, /greek-match-audio-source-notice/u);
   assert.match(runtime, /greek-match-pronunciation/u);
   assert.match(runtime, /playPronunciation/u);
   assert.match(runtime, /credits & licenses/u);

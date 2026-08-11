@@ -16,7 +16,7 @@ This is the canonical execution ledger for accepted Archie product and service w
 10. `site_navigator` — Status: `Deferred / blocked`.
 11. `claim_level_explainer` — Status: `Deferred / blocked`.
 12. `app_helper` — Status: `Deferred / blocked`.
-13. `greek_letter_match_original_pronunciation_audio` — [ARCH-013](#arch-013--greek-letter-match-original-pronunciation-audio). Status: `Deferred / blocked`.
+13. `greek_letter_match_original_pronunciation_audio` — [ARCH-013](#arch-013--greek-letter-match-original-pronunciation-audio). Status: `Awaiting verification`.
 
 ## In progress
 
@@ -80,17 +80,15 @@ This is the canonical execution ledger for accepted Archie product and service w
 - **Evidence / blocker:** Depends on ARCH-001 through ARCH-006 and stable source-authority contracts; no mode may elevate priority or diagnostic material.
 - **Completion:** Each retained mode has one service contract, source allowlist, response fixture, and explicit claim boundary, or is withdrawn.
 
-### ARCH-013 — Greek Letter Match original pronunciation audio
-
-- **Status:** Deferred / blocked
-- **Priority object:** `greek_letter_match_original_pronunciation_audio`
-- **Request / acceptance:** Rerecord the seven individual Greek-letter pronunciations currently sourced from the unlicensed GreekLetterLearner upstream project, replacing those third-party clips with original recordings so the app avoids unnecessary future reliance on that source. Preserve the current provenance record and its no-open-license disclaimer until the replacement is ready; the current record is not a claim that the use has been legally validated, and public availability alone does not establish fair use.
-- **Evidence / blocker:** The seven current clips and their source commit are recorded in the app's audio provenance file. This low-priority item is intentionally deferred behind higher-value Archie work, and no original replacement set is ready.
-- **Completion:** Seven original pronunciation recordings are ready; their provenance and credits are recorded; runtime and source links point to the new records; the old third-party clips are removed only after the replacements are ready; and relevant content, app, and source-link checks pass.
-
 ## Awaiting verification
 
-No rows.
+### ARCH-013 — Greek Letter Match original pronunciation audio
+
+- **Status:** Awaiting verification
+- **Priority object:** `greek_letter_match_original_pronunciation_audio`
+- **Request / acceptance:** Prepare one consistent original-voice replacement set for all 24 Greek Letter Match pronunciations, with the seven clips currently sourced from the unlicensed GreekLetterLearner upstream project retaining the specific source-reliance priority. Preserve every current production clip and its provenance record until its proposed replacement is explicitly approved; the current record is not a claim that the existing use has been legally validated, and public availability alone does not establish fair use.
+- **Evidence / blocker:** The original seven built-in-voice candidates and complete generation provenance remain available in the [2026-08-10 Coral review set](../../../../src/apps/greek-letter-match/audio/candidates/openai-coral-2026-08-10/REVIEW.md), and the temporary app selector still keeps `Current` as the default. After reporting an overly artificial or grainy Coral direction, the user selected `marin` through the [three-voice lossless audition](../../../../src/apps/greek-letter-match/audio/auditions/voice-audition-2026-08-10/REVIEW.md). The complete [24-letter Marin review set](../../../../src/apps/greek-letter-match/audio/candidates/openai-marin-2026-08-10/REVIEW.md) exists in canonical app order with lossless browser WAVs, exact targets, provenance, technical checks, and individual human approval for all 24 clips. A separate [eight-letter Marin accent audition](../../../../src/apps/greek-letter-match/audio/auditions/accent-audition-2026-08-11/REVIEW.md) now awaits human comparison of four restrained English rendering instructions; it is exploratory and does not reopen or replace the approved full-set decisions. Production installation remains the blocker and requires a separate authorized step: no permanent runtime default, active file, or active source-use disclosure has changed.
+- **Completion:** All 24 original pronunciation recordings are individually approved; their provenance and credits are recorded; runtime and source links point to the approved records; the old third-party clips are removed only after their replacements are ready; and relevant content, app, and source-link checks pass.
 
 ## Verified
 

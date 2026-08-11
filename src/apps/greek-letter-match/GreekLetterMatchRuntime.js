@@ -30,11 +30,39 @@ export const GREEK_LETTERS = Object.freeze([
   Object.freeze({ name: "omega", upper: "Ω", lower: "ω", audioFile: "omega.m4a" }),
 ]);
 
-export function getGreekPronunciationUrl(letter, moduleUrl = import.meta.url) {
+export const GREEK_PRONUNCIATION_REVIEW_CANDIDATES = Object.freeze([
+  "delta",
+  "epsilon",
+  "mu",
+  "nu",
+  "sigma",
+  "tau",
+  "phi",
+]);
+
+const GREEK_PRONUNCIATION_REVIEW_CANDIDATE_SET = new Set(
+  GREEK_PRONUNCIATION_REVIEW_CANDIDATES
+);
+const GREEK_PRONUNCIATION_REVIEW_DIRECTORY =
+  "./audio/candidates/openai-coral-2026-08-10";
+
+export function isGreekPronunciationReviewCandidate(letter) {
+  return GREEK_PRONUNCIATION_REVIEW_CANDIDATE_SET.has(letter?.name);
+}
+
+export function getGreekPronunciationUrl(
+  letter,
+  moduleUrl = import.meta.url,
+  source = "current"
+) {
   if (!letter?.audioFile) {
     return null;
   }
-  return new URL(`./audio/${letter.audioFile}`, moduleUrl).href;
+  const audioDirectory =
+    source === "coral-review" && isGreekPronunciationReviewCandidate(letter)
+      ? GREEK_PRONUNCIATION_REVIEW_DIRECTORY
+      : "./audio";
+  return new URL(`${audioDirectory}/${letter.audioFile}`, moduleUrl).href;
 }
 
 // This is the navigator's default structured-sphere progression (the jewel palette).
@@ -331,6 +359,7 @@ export class GreekLetterMatchRuntime {
     this.centerRepresentation = "name";
     this.feedbackInterval = "standard";
     this.gameMode = "game";
+    this.pronunciationSource = "current";
     this.teachingLetterIndex = null;
     this.session = createGreekMatchSession(this.random);
     this.feedbackTimer = null;
@@ -461,9 +490,27 @@ export class GreekLetterMatchRuntime {
         onChange: (value) => {
           this.feedbackInterval = value;
         },
+      }),
+      createSegmentedControl(this.document, {
+        label: "Pronunciation audio",
+        name: "greek-pronunciation-source",
+        value: this.pronunciationSource,
+        options: [
+          { value: "current", label: "Current" },
+          { value: "coral-review", label: "Coral review" },
+        ],
+        onChange: (value) => this.setPronunciationSource(value),
       })
     );
 
+    this.audioSourceNotice = createElement(
+      this.document,
+      "p",
+      "greek-match-audio-source-notice"
+    );
+    this.audioSourceNotice.setAttribute("role", "status");
+    this.audioSourceNotice.setAttribute("aria-live", "polite");
+    this.updatePronunciationSourceNotice();
     this.setupSummary = createElement(this.document, "p", "greek-match-setup-summary");
     this.nextRoundButton = createElement(
       this.document,
@@ -476,7 +523,12 @@ export class GreekLetterMatchRuntime {
     const resetButton = createElement(this.document, "button", "greek-match-reset", "Reset session");
     resetButton.type = "button";
     resetButton.addEventListener("click", () => this.resetSession());
-    controls.append(this.setupSummary, this.nextRoundButton, resetButton);
+    controls.append(
+      this.audioSourceNotice,
+      this.setupSummary,
+      this.nextRoundButton,
+      resetButton
+    );
     panel.append(panelHeader, controls);
     return panel;
   }
@@ -719,6 +771,51 @@ export class GreekLetterMatchRuntime {
     this.pronunciationFeedback.dataset.state = state;
   }
 
+  updatePronunciationSourceNotice() {
+    if (!this.audioSourceNotice) {
+      return;
+    }
+    const reviewActive = this.pronunciationSource === "coral-review";
+    this.audioSourceNotice.dataset.active = reviewActive ? "review" : "current";
+    const detailsLink = createElement(
+      this.document,
+      "a",
+      "",
+      "candidate provenance and review checklist"
+    );
+    detailsLink.href = new URL(
+      "./audio/candidates/openai-coral-2026-08-10/REVIEW.md",
+      import.meta.url
+    ).href;
+    if (reviewActive) {
+      this.audioSourceNotice.replaceChildren(
+        this.document.createTextNode(
+          "Review only — unreviewed OpenAI Coral candidates are active for Delta, Epsilon, Mu (mew), Nu (noo), Sigma, Tau (tow), and Phi (fye). The other letters still use Current. Choose Current to return. "
+        ),
+        detailsLink
+      );
+    } else {
+      this.audioSourceNotice.replaceChildren(
+        this.document.createTextNode(
+          "Current recordings are active. Coral review temporarily switches only seven letters to unreviewed candidate original audio for listening evaluation. "
+        ),
+        detailsLink
+      );
+    }
+  }
+
+  setPronunciationSource(source) {
+    const nextSource = source === "coral-review" ? "coral-review" : "current";
+    if (nextSource === this.pronunciationSource) {
+      return;
+    }
+    this.stopPronunciation();
+    this.setPronunciationFeedback("");
+    this.pronunciationSource = nextSource;
+    this.updatePronunciationSourceNotice();
+    this.render();
+  }
+
   stopPronunciation() {
     this.pronunciationRequestId += 1;
     if (!this.pronunciationAudio) {
@@ -754,8 +851,15 @@ export class GreekLetterMatchRuntime {
 
     this.stopPronunciation();
     const requestId = ++this.pronunciationRequestId;
+    const reviewCandidateActive =
+      this.pronunciationSource === "coral-review" &&
+      isGreekPronunciationReviewCandidate(letter);
     audio.preload = "auto";
-    audio.src = getGreekPronunciationUrl(letter);
+    audio.src = getGreekPronunciationUrl(
+      letter,
+      import.meta.url,
+      this.pronunciationSource
+    );
     audio.onended = () => {
       if (requestId === this.pronunciationRequestId) {
         this.setPronunciationFeedback("");
@@ -769,7 +873,12 @@ export class GreekLetterMatchRuntime {
         );
       }
     };
-    this.setPronunciationFeedback(`Playing ${letter.name}.`, "playing");
+    this.setPronunciationFeedback(
+      reviewCandidateActive
+        ? `Playing unreviewed Coral candidate for ${letter.name}.`
+        : `Playing ${letter.name}.`,
+      "playing"
+    );
 
     try {
       const playResult = audio.play();
@@ -1002,10 +1111,17 @@ export class GreekLetterMatchRuntime {
     this.pronunciationButton.hidden = !activePronunciationLetter;
     this.pronunciationButton.disabled = !activePronunciationLetter;
     if (activePronunciationLetter) {
-      this.pronunciationButton.textContent = `🔊 Hear ${activePronunciationLetter.name}`;
+      const reviewCandidateActive =
+        this.pronunciationSource === "coral-review" &&
+        isGreekPronunciationReviewCandidate(activePronunciationLetter);
+      this.pronunciationButton.textContent = reviewCandidateActive
+        ? `🔊 Review ${activePronunciationLetter.name}`
+        : `🔊 Hear ${activePronunciationLetter.name}`;
       this.pronunciationButton.setAttribute(
         "aria-label",
-        `Hear ${activePronunciationLetter.name} pronounced`
+        reviewCandidateActive
+          ? `Review the unreviewed Coral candidate for ${activePronunciationLetter.name}`
+          : `Hear ${activePronunciationLetter.name} pronounced`
       );
     } else {
       this.pronunciationButton.textContent = "🔊 Hear pronunciation";
