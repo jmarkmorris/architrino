@@ -402,7 +402,7 @@
     },
     {
       "id": "archie__project",
-      "name": "Project",
+      "name": "How This Work Is Made",
       "path": "content/scenes/archie/project.json",
       "nodeType": "scene"
     },
@@ -4141,7 +4141,7 @@
       "nodeId": "scene:content/scenes/archie/project.json",
       "nodeType": "scene",
       "id": "archie__project",
-      "name": "Project",
+      "name": "How This Work Is Made",
       "path": "content/scenes/archie/project.json",
       "searchTarget": "content/scenes/archie/project.json",
       "implicit": false
