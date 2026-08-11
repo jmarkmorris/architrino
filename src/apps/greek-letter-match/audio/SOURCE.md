@@ -13,7 +13,13 @@ The active production set consists of 24 AI-generated English-language Greek-let
 
 These recordings are AI-generated speech, not human-authored recordings and not source evidence for factual, legal, or scientific claims. The built-in voice does not represent an independent legal person or academically accountable author.
 
-The standalone media-license label remains pending an explicit choice between CC0, as a public-domain dedication where legally possible with a permissive fallback, and CC BY 4.0, for open reuse with attribution. The repository's MIT software license is not asserted as the license for these audio files. This record does not guarantee that copyright exists in the recordings or that either licensing approach has the same legal effect in every jurisdiction.
+### CC0 dedication for the production recordings
+
+The 24 production recordings identified by the final manifest in the linked provenance packet are made available under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/). To the extent the project holds copyright or related rights in these recordings, it dedicates those rights to the public domain as fully as the law permits, with CC0's fallback license applying where the waiver is not legally effective. Attribution is not required.
+
+This notice applies only to the 24 final normalized recordings identified by the packet's browser/production hashes, including their byte-identical top-level deployed WAV copies. It does not apply to repository code or text, raw or rejected generation files, other candidate or audition audio, historical third-party recordings or evidence, future media, or any other project material. The repository's MIT software license is not asserted for these recordings.
+
+Applying CC0 does not establish that copyright or related rights exist in the recordings, guarantee CC0's legal effect in every jurisdiction, provide warranties, or affect patent, trademark, privacy, publicity, or other rights outside its stated scope.
 
 ## Historical production sources (retired 2026-08-11)
 

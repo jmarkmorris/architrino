@@ -113,7 +113,9 @@ test("every Greek letter uses the approved neutral-international Marin WAV", () 
   assert.match(provenance, /gpt-4o-mini-tts-2025-12-15/u);
   assert.match(provenance, /built-in `marin` voice/u);
   assert.match(provenance, /neutral international English/u);
-  assert.match(provenance, /pending.*CC0.*CC BY 4\.0/isu);
+  assert.match(provenance, /CC0 1\.0 Universal/u);
+  assert.match(provenance, /Attribution is not required/u);
+  assert.match(provenance, /does not establish that copyright/u);
   assert.match(provenance, /Historical production sources/u);
   assert.match(provenance, /GreekLetterLearner/u);
   assert.match(provenance, /fair use/u);
