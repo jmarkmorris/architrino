@@ -1,9 +1,12 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/Checkpoint.hpp"
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <cmath>
 #include <cstddef>
+#include <filesystem>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -13,6 +16,25 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+// Example physical-unit event run (the EOM request remains normalized to
+// c_f=1; physical units are an input/output mapping only):
+//
+//   antipodal-binary-spiral-law \
+//     --mode=physical-target \
+//     --initial-speed-km-s=100 --target-speed-km-s=170 \
+//     --physical-radius-kpc=2 \
+//     --physical-field-speed-km-s=299792.458 \
+//     --history-depth=3 --history-segment-step=0.1 \
+//     --duration=1000 --chunk-duration=25 \
+//     --step=1 --minimum-step=0.01 --maximum-step=1 \
+//     --chart=sharp --acceleration-tolerance=1e-10 \
+//     --heartbeat-every=25 --thread-count=4 \
+//     --output=physical-target.csv \
+//     --checkpoint=physical-target.checkpoint.bin
+//
+// Resume by repeating the same scenario and numerical options with a larger
+// --duration and --resume=1. The checkpoint scenario identity is verified.
 
 namespace eom = architrino::eom;
 
@@ -41,6 +63,16 @@ struct Options {
   double coupling = 32.413220013230898;
   std::string chart = "sharp_with_finite_width_fallback";
   std::size_t thread_count = 4;
+  std::string checkpoint;
+  bool resume = false;
+  double chunk_duration = 100.0;
+  std::size_t heartbeat_every = 25;
+  bool adaptive_step_growth = false;
+  bool continuous_adaptive_step = false;
+  double initial_speed_km_s = 0.0;
+  double target_speed_km_s = 0.0;
+  double physical_radius_kpc = 0.0;
+  double physical_field_speed_km_s = 0.0;
 };
 
 struct RootFormula {
@@ -125,6 +157,15 @@ std::string option_string(
     }
   }
   return fallback;
+}
+
+bool option_bool(
+    int argc, char** argv, const std::string& name, bool fallback) {
+  const std::string value = option_string(
+      argc, argv, name, fallback ? "true" : "false");
+  if (value == "true" || value == "1") return true;
+  if (value == "false" || value == "0") return false;
+  throw std::invalid_argument("--" + name + " must be true, false, 1, or 0");
 }
 
 double midpoint(const eom::Interval& interval) {
@@ -652,7 +693,44 @@ void write_evolution_samples(
   }
 }
 
-void evolve_binary(const Options& options) {
+void truncate_physical_output_to_checkpoint(
+    const std::string& path, double accepted_end) {
+  std::ifstream input(path);
+  if (!input) {
+    throw std::runtime_error(
+        "cannot read physical-target resume output: " + path);
+  }
+  const std::filesystem::path temporary = path + ".resume.tmp";
+  std::ofstream output(temporary, std::ios::trunc);
+  if (!output) {
+    throw std::runtime_error(
+        "cannot create physical-target resume temporary output: " +
+        temporary.string());
+  }
+  std::string line;
+  if (!std::getline(input, line)) {
+    throw std::runtime_error("physical-target resume output is empty");
+  }
+  output << line << '\n';
+  while (std::getline(input, line)) {
+    const auto comma = line.find(',');
+    if (comma == std::string::npos) {
+      throw std::runtime_error(
+          "physical-target resume output has a malformed row");
+    }
+    const double time = std::stod(line.substr(0, comma));
+    if (time <= accepted_end + 1e-12) output << line << '\n';
+  }
+  output.close();
+  if (!output) {
+    throw std::runtime_error(
+        "physical-target resume temporary output write failed");
+  }
+  std::filesystem::rename(temporary, path);
+}
+
+std::vector<eom::NativeCoupledPathInput> make_binary_paths(
+    const Options& options) {
   constexpr const char* charge =
       "0.1666666666666666666666666666666667";
   constexpr const char* negative_charge =
@@ -664,7 +742,13 @@ void evolve_binary(const Options& options) {
   paths.push_back({
       "negative", negative_charge,
       history_for_seed(options, "negative-history", kPi)});
-  eom::NativeCoupledEvolutionRequest request{
+  return paths;
+}
+
+eom::NativeCoupledEvolutionRequest make_evolution_request(
+    const Options& options,
+    const std::vector<eom::NativeCoupledPathInput>& paths) {
+  return {
       .run_id = "antipodal-binary-evolution-s" + token(options.s),
       .paths = paths,
       .start_time = "0",
@@ -699,12 +783,24 @@ void evolve_binary(const Options& options) {
       .max_step_attempts = 200000,
       .max_rejected_steps = 1000,
       .thread_count = options.thread_count,
-      .use_adaptive_step_growth = false,
+      .use_adaptive_step_growth = options.adaptive_step_growth,
+      .use_continuous_adaptive_step = options.continuous_adaptive_step,
   };
+}
+
+std::vector<eom::NativePublishedPath> published_paths(
+    const std::vector<eom::NativeCoupledPathInput>& paths) {
   std::vector<eom::NativePublishedPath> initial_histories;
   for (const auto& path : paths) {
     initial_histories.push_back({path.path_id, path.history});
   }
+  return initial_histories;
+}
+
+void evolve_binary(const Options& options) {
+  const auto paths = make_binary_paths(options);
+  auto request = make_evolution_request(options, paths);
+  const auto initial_histories = published_paths(paths);
   const auto start_snapshot =
       eom::certify_native_acceleration_snapshot(request, initial_histories, "0");
   if (start_snapshot.status != "certified_complete" ||
@@ -761,6 +857,242 @@ void evolve_binary(const Options& options) {
   }
 }
 
+void evolve_binary_to_physical_target(Options options) {
+  constexpr double kKilometresPerKiloparsec =
+      3.0856775814913673e16;
+  constexpr double kSecondsPerJulianYear = 31557600.0;
+  if (!(options.initial_speed_km_s > 0.0) ||
+      !(options.target_speed_km_s > options.initial_speed_km_s) ||
+      !(options.target_speed_km_s < options.physical_field_speed_km_s) ||
+      !(options.physical_radius_kpc > 0.0) ||
+      !(options.physical_field_speed_km_s > 0.0)) {
+    throw std::invalid_argument(
+        "physical-target requires 0 < initial-speed-km-s < "
+        "target-speed-km-s < physical-field-speed-km-s and "
+        "physical-radius-kpc > 0");
+  }
+  if (options.output.empty() || options.checkpoint.empty()) {
+    throw std::invalid_argument(
+        "physical-target requires --output and --checkpoint");
+  }
+  if (!(options.chunk_duration > 0.0) ||
+      !(options.duration > 0.0) || options.heartbeat_every == 0U) {
+    throw std::invalid_argument(
+        "physical-target requires positive duration, chunk-duration, and "
+        "heartbeat-every");
+  }
+
+  options.radius = 1.0;
+  options.seed = "circular";
+  options.s =
+      options.initial_speed_km_s / options.physical_field_speed_km_s;
+  const double target_s =
+      options.target_speed_km_s / options.physical_field_speed_km_s;
+
+  // The sharp EOM snapshot independently supplies the radial coefficient.
+  // Choose the coupling so the prescribed circular endpoint is radially
+  // balanced at release. Evolution thereafter is unconstrained.
+  const auto balance = measure_snapshot(options, options.s, false);
+  if (balance.partner_roots != 1U || balance.self_roots != 0U ||
+      !(balance.f_r > 0.0)) {
+    throw std::runtime_error(
+        "physical-target release is not a certified one-partner-root, "
+        "no-self-root balance point");
+  }
+  options.coupling =
+      36.0 * options.s * options.s * options.radius / balance.f_r;
+
+  const auto paths = make_binary_paths(options);
+  auto request = make_evolution_request(options, paths);
+  request.run_id =
+      "antipodal-binary-physical-target-r" +
+      token(options.physical_radius_kpc) + "-v" +
+      token(options.initial_speed_km_s) + "-to" +
+      token(options.target_speed_km_s) + "-cf" +
+      token(options.physical_field_speed_km_s);
+  const auto initial_histories = published_paths(paths);
+  const double years_per_solver_time =
+      options.physical_radius_kpc * kKilometresPerKiloparsec /
+      options.physical_field_speed_km_s / kSecondsPerJulianYear;
+
+  std::optional<eom::NativeEvolutionCheckpoint> checkpoint;
+  std::string accepted_end = "0";
+  EvolutionSample previous =
+      measure_evolution_state(initial_histories, accepted_end);
+  if (options.resume) {
+    checkpoint = eom::read_native_evolution_checkpoint(options.checkpoint);
+    if (checkpoint->run_id != request.run_id) {
+      throw std::runtime_error(
+          "physical-target checkpoint scenario identity mismatch");
+    }
+    accepted_end = checkpoint->accepted_time;
+    std::vector<eom::NativePublishedPath> resumed_histories;
+    for (const auto& path : checkpoint->paths) {
+      resumed_histories.push_back({path.path_id, path.history});
+    }
+    previous = measure_evolution_state(resumed_histories, accepted_end);
+    truncate_physical_output_to_checkpoint(
+        options.output, std::stod(accepted_end));
+  } else {
+    const auto start_snapshot = eom::certify_native_acceleration_snapshot(
+        request, initial_histories, "0");
+    if (start_snapshot.status != "certified_complete" ||
+        start_snapshot.acceleration.status != "certified_complete") {
+      throw std::runtime_error(
+          "physical-target start snapshot is uncertified: " +
+          start_snapshot.failure_code + "; acceleration=" +
+          start_snapshot.acceleration.failure_code);
+    }
+  }
+
+  std::ofstream stream(
+      options.output,
+      options.resume ? std::ios::app : std::ios::trunc);
+  if (!stream) {
+    throw std::runtime_error("cannot open output: " + options.output);
+  }
+  stream << std::setprecision(17);
+  if (!options.resume) {
+    stream << "time,radius,speed,radial_velocity,tangential_velocity,"
+              "elapsed_years,radius_kpc,speed_km_s,"
+              "radial_velocity_km_s,tangential_velocity_km_s\n";
+    stream << previous.time << ',' << previous.radius << ','
+           << previous.speed << ',' << previous.radial_velocity << ','
+           << previous.tangential_velocity << ',' << 0.0 << ','
+           << options.physical_radius_kpc << ','
+           << options.initial_speed_km_s << ','
+           << previous.radial_velocity * options.physical_field_speed_km_s
+           << ','
+           << previous.tangential_velocity *
+                  options.physical_field_speed_km_s
+           << '\n';
+    stream.flush();
+  }
+
+  std::optional<EvolutionSample> crossing;
+  if (previous.speed >= target_s) crossing = previous;
+  std::string final_status = "maximum_duration_reached";
+  std::size_t chunks = 0U;
+  std::size_t cumulative_accepted = 0U;
+  std::size_t cumulative_rejected = 0U;
+  const auto wall_start = std::chrono::steady_clock::now();
+
+  while (std::stod(accepted_end) + 1e-15 < options.duration) {
+    const double chunk_target = std::min(
+        options.duration,
+        std::stod(accepted_end) + options.chunk_duration);
+    request.end_time = token(chunk_target);
+    const std::size_t chunk_index = chunks;
+    request.accepted_step_callback =
+        [&options, &wall_start, chunk_index](
+            std::size_t step_index, const std::string& accepted_time) {
+          if (step_index % options.heartbeat_every != 0U) return;
+          const double wall_seconds = std::chrono::duration<double>(
+              std::chrono::steady_clock::now() - wall_start).count();
+          std::cerr << "heartbeat mode=physical-target chunk="
+                    << chunk_index << " step=" << step_index
+                    << " accepted_time=" << accepted_time
+                    << " wall_seconds=" << wall_seconds << std::endl;
+        };
+
+    const auto chunk = checkpoint.has_value()
+        ? eom::resume_native_coupled_histories(
+              request, *checkpoint, token(chunk_target))
+        : eom::evolve_native_coupled_histories(request);
+    cumulative_accepted += chunk.accepted_step_count;
+    cumulative_rejected += chunk.rejected_step_count;
+
+    for (const auto& step_row : chunk.steps) {
+      if (step_row.status != "accepted") continue;
+      const auto sample = measure_evolution_state(
+          step_row.published_histories, step_row.accepted_time);
+      stream << sample.time << ',' << sample.radius << ',' << sample.speed
+             << ',' << sample.radial_velocity << ','
+             << sample.tangential_velocity << ','
+             << sample.time * years_per_solver_time << ','
+             << sample.radius * options.physical_radius_kpc << ','
+             << sample.speed * options.physical_field_speed_km_s << ','
+             << sample.radial_velocity * options.physical_field_speed_km_s
+             << ','
+             << sample.tangential_velocity *
+                    options.physical_field_speed_km_s
+             << '\n';
+      if (!crossing.has_value() && previous.speed < target_s &&
+          sample.speed >= target_s) {
+        crossing = sample;
+      }
+      previous = sample;
+    }
+    stream.flush();
+
+    if (chunk.accepted_step_count == 0U) {
+      final_status = "halted_" +
+          (chunk.halt_code.empty() ? chunk.status : chunk.halt_code);
+      break;
+    }
+
+    const auto next_checkpoint =
+        eom::create_native_evolution_checkpoint(request, chunk);
+    eom::write_native_evolution_checkpoint_atomic(
+        options.checkpoint, next_checkpoint);
+    checkpoint = next_checkpoint;
+    accepted_end = chunk.accepted_end_time;
+    ++chunks;
+
+    const double wall_seconds = std::chrono::duration<double>(
+        std::chrono::steady_clock::now() - wall_start).count();
+    std::cerr << std::setprecision(17)
+              << "chunk_complete mode=physical-target index="
+              << (chunks - 1U) << " accepted_end=" << accepted_end
+              << " speed_km_s="
+              << previous.speed * options.physical_field_speed_km_s
+              << " radius_kpc="
+              << previous.radius * options.physical_radius_kpc
+              << " elapsed_years="
+              << previous.time * years_per_solver_time
+              << " wall_seconds=" << wall_seconds << std::endl;
+
+    if (crossing.has_value()) {
+      final_status = "target_reached";
+      break;
+    }
+    if (chunk.status != "completed" ||
+        std::stod(chunk.accepted_end_time) + 1e-15 < chunk_target) {
+      final_status = "halted_" +
+          (chunk.halt_code.empty() ? chunk.status : chunk.halt_code);
+      break;
+    }
+  }
+
+  std::cout << std::setprecision(17)
+            << "physical_target status=" << final_status
+            << " accepted_end=" << accepted_end
+            << " accepted_steps=" << cumulative_accepted
+            << " rejected_steps=" << cumulative_rejected
+            << " initial_speed_km_s=" << options.initial_speed_km_s
+            << " target_speed_km_s=" << options.target_speed_km_s
+            << " final_speed_km_s="
+            << previous.speed * options.physical_field_speed_km_s
+            << " final_radius_kpc="
+            << previous.radius * options.physical_radius_kpc
+            << " elapsed_years="
+            << previous.time * years_per_solver_time
+            << " coupling=" << options.coupling
+            << " effective_coupling=" << options.coupling / 36.0
+            << " release_partner_roots=" << balance.partner_roots
+            << " release_self_roots=" << balance.self_roots;
+  if (crossing.has_value()) {
+    std::cout << " crossing_time=" << crossing->time
+              << " crossing_elapsed_years="
+              << crossing->time * years_per_solver_time
+              << " crossing_radius_kpc="
+              << crossing->radius * options.physical_radius_kpc
+              << " crossing_speed_km_s="
+              << crossing->speed * options.physical_field_speed_km_s;
+  }
+  std::cout << '\n';
+}
+
 }  // namespace
 
 int main(int argc, char** argv) {
@@ -797,6 +1129,27 @@ int main(int argc, char** argv) {
     options.chart = option_string(argc, argv, "chart", options.chart);
     options.thread_count =
         option_size(argc, argv, "thread-count", options.thread_count);
+    options.checkpoint =
+        option_string(argc, argv, "checkpoint", options.checkpoint);
+    options.resume = option_bool(argc, argv, "resume", options.resume);
+    options.chunk_duration = option_double(
+        argc, argv, "chunk-duration", options.chunk_duration);
+    options.heartbeat_every = option_size(
+        argc, argv, "heartbeat-every", options.heartbeat_every);
+    options.adaptive_step_growth = option_bool(
+        argc, argv, "adaptive-step-growth", options.adaptive_step_growth);
+    options.continuous_adaptive_step = option_bool(
+        argc, argv, "continuous-adaptive-step",
+        options.continuous_adaptive_step);
+    options.initial_speed_km_s = option_double(
+        argc, argv, "initial-speed-km-s", options.initial_speed_km_s);
+    options.target_speed_km_s = option_double(
+        argc, argv, "target-speed-km-s", options.target_speed_km_s);
+    options.physical_radius_kpc = option_double(
+        argc, argv, "physical-radius-kpc", options.physical_radius_kpc);
+    options.physical_field_speed_km_s = option_double(
+        argc, argv, "physical-field-speed-km-s",
+        options.physical_field_speed_km_s);
 
     if (options.mode == "snapshot") {
       const auto row = measure_snapshot(options, options.s, true);
@@ -834,10 +1187,14 @@ int main(int argc, char** argv) {
       evolve_binary(options);
       return 0;
     }
+    if (options.mode == "physical-target") {
+      evolve_binary_to_physical_target(options);
+      return 0;
+    }
     if (options.mode != "snapshot-grid") {
       throw std::invalid_argument(
-          "mode must be snapshot, formula, partner-roots, evolve, or "
-          "snapshot-grid");
+          "mode must be snapshot, formula, partner-roots, evolve, "
+          "physical-target, or snapshot-grid");
     }
     const std::vector<double> speeds{
         0.25, 0.5, 0.75, 0.9, 0.95, 0.99, 0.999,
