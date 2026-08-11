@@ -46,6 +46,53 @@ The starting picture is a layered map in which each thematic surface answers a d
 
 The layers may overlap without agreeing. Their value is analytic separation: a route can be physically described while access remains disputed; an institution can assert jurisdiction while another contests it; a proximity map can show operational risk without resolving liability.
 
+## Proposed Future Registry And Atlas Model
+
+Today, a **geospatial system**, usually implemented with geographic information system (GIS) software, maps Earth-referenced features and thematic layers. Cosmic Civics asks what additional record and display structure would be needed when regions, routes, actors, operational locations, and assertions may change across time, scale, domain, and declared reference frame.
+
+> Current GIS maps geography; Cosmic Civics would require a reference-frame-aware claims registry and a multiscale claims atlas.
+
+This sentence states a proposed future model. It is not a claim that Cosmic Civics has been implemented, that a global or cosmic registry exists, or that one system could confer, recognize, validate, or enforce legal rights.
+
+### Claims Registry
+
+The proposed **claims registry** would be the authoritative record *within the proposed system* for what a claim says and how it is sourced. `Authoritative record` here means the designated system-of-record entry for the assertion, not legal authority over the asserted object, region, route, actor, or activity.
+
+A candidate registry entry would carry:
+
+- claimant or asserting source;
+- asserted object, region, route, activity, or passage;
+- declared reference frame or coordinate chart and its provenance;
+- duration or applicable time interval;
+- asserted jurisdiction or rule source;
+- evidence and provenance;
+- conditions, qualifications, objections, or dependencies;
+- status, such as hypothetical, asserted, disputed, recognized by a named authority, rejected, withdrawn, or unknown.
+
+The registry would preserve the distinction between recording a claim and validating it. No entry, identifier, status label, or geometric intersection would itself create ownership, jurisdiction, access, exclusion, liability, a duty, a fee, or a toll.
+
+### Claims Atlas
+
+The proposed **claims atlas** would be the human-facing, multiscale display of selected registry records and related physical or operational context. Candidate layers include:
+
+- passage;
+- jurisdiction;
+- access;
+- exclusion;
+- liability;
+- use.
+
+The atlas could project different layers across land, water, airspace, and outer-space contexts and expose changes of scale, time interval, uncertainty, and declared reference frame. It would remain a view over source-bound records. A map layer, overlay, boundary, route intersection, or visual prominence would not create, rank, validate, recognize, or enforce a right.
+
+### Separation Of Roles
+
+| Proposed component | Primary role | Explicit boundary |
+| --- | --- | --- |
+| Claims registry | Preserve the source-bound record of each assertion, its scope, provenance, conditions, and status. | Recording is not legal recognition or enforcement. |
+| Claims atlas | Present multiscale, reference-frame-aware map layers for human comparison and inquiry. | Display is not authority, adjudication, or rights creation. |
+
+Legal recognition remains jurisdiction-specific and open. Any later legal treatment would require domain-specific sources, competent review, and an explicit account of which institution recognizes what claim under which law.
+
 ## Domain Bridge
 
 The inquiry remains anchored to ordinary domains before it expands:

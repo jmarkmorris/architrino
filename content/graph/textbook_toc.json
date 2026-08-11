@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 183,
-      "sections": 1532
+      "entries": 184,
+      "sections": 1538
     }
   },
   "tocRoot": {
@@ -14086,6 +14086,64 @@
                 ]
               }
             ]
+          }
+        ]
+      },
+      {
+        "id": "archie__about_architrino",
+        "title": "About Architrino",
+        "kind": "markdown-view",
+        "sceneType": "Scene-Markdown-View",
+        "scenePath": "content/scenes/archie/about_architrino.json",
+        "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+        "sections": [
+          {
+            "kind": "markdown-section",
+            "title": "Contribution and Accountability",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "Contribution and Accountability",
+            "sectionKey": "contribution and accountability",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "The Inheritance of Inquiry",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "The Inheritance of Inquiry",
+            "sectionKey": "the inheritance of inquiry",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "Source and AI-Assistance Disclosure",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "Source and AI-Assistance Disclosure",
+            "sectionKey": "source and ai assistance disclosure",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "What Architrino Provides",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "What Architrino Provides",
+            "sectionKey": "what architrino provides",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "Public Surfaces",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "Public Surfaces",
+            "sectionKey": "public surfaces",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "Operating Standard",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "Operating Standard",
+            "sectionKey": "operating standard",
+            "headingLevel": 2
           }
         ]
       }

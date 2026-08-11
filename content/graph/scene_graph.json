@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 608,
-      "edges": 1374,
+      "edges": 1375,
       "scenes": 392,
       "markdownIndexes": 0,
       "markdownDocs": 199,
@@ -9676,10 +9676,17 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/about_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/archie/archie.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/architrino_assembly_architecture.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",

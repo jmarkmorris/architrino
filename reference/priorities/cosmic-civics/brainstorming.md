@@ -41,6 +41,30 @@ Then expand cautiously toward outer space and larger scales:
 
 The expanded questions are exploratory. No bullet asserts that such a claim is legally recognized, physically realizable, administratively possible, enforceable, or authorized.
 
+## Why A Registry And An Atlas Are Different
+
+Today, a geospatial system, usually implemented with GIS, can organize Earth-referenced features and layers. The Cosmic Civics idea becomes more demanding when a route, region, claimant, jurisdictional assertion, or operational location changes with time, scale, domain, or declared reference frame.
+
+> Current GIS maps geography; Cosmic Civics would require a reference-frame-aware claims registry and a multiscale claims atlas.
+
+This is proposed future framing, not an implementation statement. No actual global or cosmic claims registry is asserted to exist.
+
+The distinction matters because a record and a view have different jobs:
+
+- A **claims registry** would preserve the designated source record for an assertion: claimant, asserted object, region or route, reference frame, duration, jurisdiction, evidence or provenance, conditions, and status.
+- A **claims atlas** would present human-facing map layers for passage, jurisdiction, access, exclusion, liability, and use across relevant scales.
+
+Calling the registry `authoritative` would mean only that it is the proposed system of record for what was asserted. It would not mean that the claimant has legal authority, that the assertion is recognized, or that the registry creates a right. The atlas would be a projection of selected records and context; its colors, boundaries, labels, overlays, and route intersections could not validate or enforce the claims they display.
+
+One registry entry might support many atlas views: a land parcel view, a water-route view, an altitude-and-time airspace view, or an outer-space operational-chart view. Conversely, one atlas region might display several conflicting registry entries. Keeping the two components separate would make conflict, provenance, scale, frame, and status visible without letting display order silently become legal priority.
+
+Questions to retain:
+
+- What makes a registry entry complete enough to compare without implying that it is valid?
+- How should one assertion retain multiple coordinate descriptions without selecting a universal legal frame?
+- Which status labels describe records neutrally, and which would require a named legal authority?
+- How should an atlas show conflicts, uncertainty, expired durations, changing frames, and unresolved jurisdiction without ranking claims by graphical prominence?
+
 ## Working Chain
 
 > Absolute Timespace → Assembly Architecture → Passage → Claim

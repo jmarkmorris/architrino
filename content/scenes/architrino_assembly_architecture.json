@@ -62,6 +62,10 @@
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       },
       {
+        "nodeId": "about_architrino",
+        "scenePath": "content/scenes/archie/about_architrino.json"
+      },
+      {
         "nodeId": "archie",
         "scenePath": "content/scenes/archie/archie.json",
         "textbookToc": {
@@ -147,6 +151,14 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "labelTitle": "Philosophy-History"
+    },
+    {
+      "id": "about_architrino",
+      "title": "About Architrino",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "labelTitle": "About Architrino",
+      "labelBadge": "doc"
     },
     {
       "id": "archie",

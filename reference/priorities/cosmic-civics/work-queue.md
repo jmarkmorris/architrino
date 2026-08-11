@@ -32,7 +32,22 @@ No rows.
 
 ## Deferred / Blocked
 
-No rows. Provisional directions remain in [brainstorming.md](brainstorming.md) until accepted.
+### CC-001 — Nested Motion Scenarios
+
+- **Title:** `Nested Motion Scenarios`
+- **Status:** Deferred / blocked
+- **Priority:** Low
+- **Claim level:** Exploratory, priority-only
+- **Priority object:** `nested_motion_scenarios`
+- **Request / acceptance:** Prepare a small, source-labeled scenario set containing exactly four bounded comparisons: ordinary land access; one air or sea passage; orbital transit; and one deliberately hypothetical interstellar case. Each scenario must state:
+  1. the absolute-timespace background, using that term only at its established canonical scope;
+  2. the local assembly-anchored or operational reference frame, including who or what selected the frame and without asserting an assembly-to-frame selection law;
+  3. the passage at issue;
+  4. the claim asserted;
+  5. what current law can actually say, labeled by jurisdiction, source, and source date; and
+  6. what remains hypothetical, unresolved, outside the cited jurisdiction, or physically open.
+- **Evidence / blocker:** No scenario packet has been requested for execution, no legal sources have been selected, and no interstellar claim is assumed physically feasible or legally cognizable. The item remains intentionally postponed behind higher-value theory work and requires a separately authorized, source-grounded legal/comparative pass before drafting.
+- **Completion:** One compact comparison table and short source notes cover all four scenarios without promoting a local frame into a universal physical rule, extending legal recognition beyond the cited jurisdiction, proposing a universal rights regime, treating a claim as a right, or presenting orbital or interstellar hypotheticals as physically feasible. Maps and records remain descriptive and do not create, validate, or enforce claims.
 
 ## Superseded / Withdrawn
 

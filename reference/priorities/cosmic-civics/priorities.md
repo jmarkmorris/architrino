@@ -20,6 +20,8 @@ Only `absolute timespace` enters that chain as established corpus terminology, a
 
 Preserve and discipline a GIS-like, multi-layer inquiry into how civilizations describe activity, rights, jurisdiction, proximity, liability, use, access, and exclusion across land, water, airspace, and outer space, then ask how those mapping questions change for moving systems, relative operational locations, and hypothetical future passage claims.
 
+Current GIS maps geography; Cosmic Civics would require a reference-frame-aware claims registry and a multiscale claims atlas. This is a proposed future model: the registry would preserve source-bound assertion records, while the atlas would display selected multiscale layers without creating, validating, recognizing, or enforcing rights.
+
 The packet keeps those questions visible without treating a map as proof of a right, a proposed claim as legally valid, a hypothetical toll as accepted, or an operational coordinate choice as a new reference-frame-selection law.
 
 ## Scope Boundary
