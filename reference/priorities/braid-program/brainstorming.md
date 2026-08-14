@@ -226,3 +226,165 @@ Across all $197$ Family-C draws, a log-linear fit of the measured $P_{\ell=2}/P_
 ## Entry 10 — the angular approximation has a controlled but non-certifying bound (2026-07-24)
 
 **Disposition (grade: derived bound plus independent prescribed-path measurement).** The compact-source and first causal-delay approximations now have explicit pointwise and harmonic error bounds, and an independent implementation recovered the primary Family-C $\ell=2/\ell=1$ ratios to maximum relative difference $2.06\times10^{-12}$. The $2/5$ coefficient is exact for the first causal-delay approximation. The active speed range makes the uniform remainder too broad to certify individual current draws, so the relationship remains a strong measured prescribed-path regularity rather than a uniformly error-certified coefficient law. The proof, audit hash, numerical scope, and absent-EOM-branch disposition are recorded in [Causal-Delay Angular Approximation Bound and Independent Audit](evidence/2026-07-24-causal-delay-angular-bound.md).
+
+## Entry 11 — Planck-cadence sampled logarithmic binary spiral (2026-08-13, operator exploration)
+
+**Proposed construction (grade: speculation with derived kinematic test).** Consider a family of externally contained circular binary states indexed by completed revolution $n$. Define $T_*=L_*/c_f$ and normalized frequency $\nu=fT_*$. Introduce the proposed initial radius $r_0=2\pi\ell_P$, initial normalized frequency $\nu_0=\nu_P$, additive rule $\nu_n=\nu_P-n$, phase $\theta_n=2\pi n$, and logarithmic radius samples
+
+$$
+r_n=r_0e^{b\theta_n}=2\pi\ell_Pe^{2\pi bn}.
+$$
+
+If the sample after $N$ revolutions is required to have radius $r_N=2\pi L_*$, then
+
+$$
+b=\frac{\ln(L_*/\ell_P)}{2\pi N}.
+$$
+
+The shorthand $b=\ln(1/\ell_P)/(2\pi N)$ is dimensionally lawful only when $1$ denotes a declared reference length $L_*$ and $\ell_P$ denotes its dimensionless ratio $\ell_P/L_*$. If instead the endpoint radius itself is $L_*$, then the numerator is $\ln[L_*/(2\pi\ell_P)]$.
+
+**Kinematic obstruction.** If $f_n$ is the orbital frequency, circular kinematics fixes
+
+$$
+\frac{v_n}{c_f}
+=
+2\pi\frac{r_n}{L_*}\nu_n.
+$$
+
+The requirements $r_{n+1}>r_n$ and $v_{n+1}<v_n$ imply
+
+$$
+e^{2\pi b}\frac{\nu_n-1}{\nu_n}<1,
+\qquad
+b<\frac{1}{2\pi}\ln\!\left(\frac{\nu_n}{\nu_n-1}\right).
+$$
+
+The tightest row is the initial one. For $\nu_P\gg1$ it requires $b\lesssim1/(2\pi\nu_P)$. Combined with the proposed endpoint relation, this requires approximately
+
+$$
+N>\nu_P\ln\!\left(\frac{L_*}{\ell_P}\right),
+$$
+
+while positive additive frequency requires $N<\nu_P$. Any expansion by more than a factor $e$ therefore conflicts with monotone speed decrease under the unit-step-per-revolution rule. The obstruction is dimensionless and does not depend on the name of the frequency unit.
+
+The proposed initial pair also differs from the current Planck-alignment convention $R_{\mathrm{align}}=\ell_P/(2\pi)$. If $f_P\ell_P=c$ is used as an observer-level comparison and $f_P$ means cycles per second, $r_0=2\pi\ell_P$ gives $v_0=4\pi^2c$, not $c$. This does not algebraically forbid a contained speculative state, but it prevents identifying it with the current field-speed Planck-alignment row.
+
+**Strongest coherent variant.** Keep the logarithmic radius but make the orbital frequency fall multiplicatively,
+
+$$
+\nu(\theta)=\nu_0e^{-pb\theta},
+\qquad p>1.
+$$
+
+Then
+
+$$
+r(\theta)=r_0e^{b\theta},
+\qquad
+\frac{v(\theta)}{c_f}
+=
+2\pi\frac{r_0}{L_*}\nu_0e^{-(p-1)b\theta},
+$$
+
+so radius increases and tangential speed decreases at every phase. The case $p=1$ gives constant speed. Alternatively, the additive unit-step rule can be retained only if the named frequency is an internal cadence rather than orbital frequency, in which case a separate derived map from that cadence to orbital speed is required.
+
+**Assumptions and proof burden.** The containment acceleration, Planck-scale initial datum, unit frequency update, and constrained-to-unconstrained point correspondence are proposed rules rather than outputs of the master equation. A viable branch must specify whether frequency is orbital or internal, declare the endpoint length $L_*$, reconcile the $2\pi$ convention, define the containment acceleration without assigning primitive mass, and show through retained-history evolution why the constrained circular family corresponds to samples of one unconstrained spiral.
+
+**Promotion target and falsifier.** If a retained-history derivation supplies the cadence law and correspondence, the geometry may support the Planck-scale mapping and A1-dynamics chapters. The additive orbital-frequency version is falsified as stated by the inequality above whenever it demands both a radius expansion exceeding $e$ and monotone speed decrease before frequency reaches zero.
+
+**Next artifact.** Build a one-page symbolic comparison of the additive-frequency and multiplicative-frequency laws, including $r_n$, $\nu_n$, $v_n$, elapsed time, endpoint conditions, and the exact monotonicity inequalities, before any EOM-solver implementation.
+
+**Frequency-indexed stabilization refinement (grade: speculative synthesis).** The more promising interpretation is that stabilization samples the continuous outspiral at phase-closure points and assigns each accepted point an integer mode index. Let
+
+$$
+n=\frac{\theta_n}{2\pi}\in\mathbb Z_{\geq0},
+\qquad
+r_n=2\pi\ell_P
+\left(\frac{L_*}{\ell_P}\right)^{n/N}.
+$$
+
+A unit-step descending normalized-frequency ladder can then be written
+
+$$
+\nu_n=\nu_P-n.
+$$
+
+Here $T_*=L_*/c_f$ and $\nu=fT_*$. In the stipulated normalized units $L_*=1$ and $c_f=1$, adjacent frequencies differ by exactly one:
+
+$$
+\nu_{n+1}-\nu_n=-1,
+\qquad
+\frac{r_{n+1}}{r_n}=e^{2\pi b}.
+$$
+
+The first relation is an arithmetic frequency ladder. The second is a
+geometric radius ladder. Constant frequency difference therefore does not mean
+constant radial separation; it means that a unit change in frequency maps to a
+constant change in $\ln r$.
+
+Eliminating $n$ gives the radius-frequency correspondence
+
+$$
+\nu(r)
+=
+\nu_P-
+\frac{N}{\ln(L_*/\ell_P)}
+\ln\!\left(\frac{r}{2\pi\ell_P}\right).
+$$
+
+The delayed stabilization mechanism would have to supply a phase condition of the form
+
+$$
+2\pi\nu_n\frac{\tau_n}{T_*}+\phi_{\mathrm{geom},n}=2\pi k_n,
+\qquad k_n\in\mathbb Z,
+$$
+
+with $\tau_n$ and $\phi_{\mathrm{geom},n}$ computed from the retained branch. Approximately constant $\tau_n/T_*$ and a unit change in $k_n$ would recover an approximately equally spaced frequency ladder; different delay scaling could instead produce harmonic or subharmonic ladders. This is the possible bridge to the integer mode numbers in effective physics formulas.
+
+**Refined proof burden and next artifact.** Determine whether a stabilized retained-history outspiral admits isolated phase-lock roots $k_n$ and whether their spacings are constant, harmonic, or neither. The focused investigation now lives in [Integer-Frequency Stabilized Outspiral Investigation](integer-frequency-stabilized-outspiral.md); its next useful artifact is a symbolic phase-lock ledger with columns $(n,k_n,r_n,\tau_n,\nu_n)$, not a numerical EOM-solver run.
+
+**Operator clarification: literal unit-step integer-frequency landing rule (grade: stipulated speculative map).** In the intended toy, one completed revolution lands on the next integer normalized frequency. Write $m_n\in\mathbb Z_{>0}$, so
+
+$$
+m_{n+1}=m_n-1,
+\qquad
+\nu_n=m_n,
+\qquad
+r_n=2\pi\ell_P
+\left(\frac{L_*}{\ell_P}\right)^{n/N}.
+$$
+
+Thus revolution count and the unit frequency decrement are the same discrete index: $m_n=m_0-n$. The immediate brainstorming question is whether stabilization can make these integer-frequency points the retained states of the otherwise continuous outspiral. The derivation burden is why the physical stabilizer selects $\nu\in\mathbb Z$ with adjacent spacing one rather than a generic discrete spectrum $\nu=F(m)$.
+
+**Operator clarification: the assembly transition is the quantum (grade: speculative assembly-level definition).** The Master Equation remains continuous for individual architrino histories. Quantization is proposed to enter only after two or more architrinos form isolated retained assembly states $\mathcal H_m$ indexed by integer normalized frequency. The elementary quantum is the complete transition
+
+$$
+\mathcal H_m\longrightarrow\mathcal H_{m\pm1},
+$$
+
+not the frequency label by itself. If $I[\mathcal H_m]$ is the
+action-derived, radian-normalized rotational action of the complete retained
+assembly and wake record, the universal-angular-momentum version of the
+hypothesis is
+
+$$
+I[\mathcal H_{m\pm1}]-I[\mathcal H_m]=\pm I_*.
+$$
+
+Observer-level recovery would identify $I_*=\hbar$ and the corresponding
+closed-cycle action transaction as $\Delta A_{\mathrm{cycle}}=\pm h$. Neither
+identification is assumed at the substrate level. Integer frequency spacing
+alone does not prove constant $\Delta I$; both relations must be derived from
+the same retained-history family.
+
+**Assumptions and proof burden.** Derive neighboring retained states and both
+transition directions from the Master Equation; obtain $I$ from a
+symmetry-preserving action; close the assembly, wake, environment, source, and
+boundary angular-momentum ledger; and show that $\Delta I$ is independent of
+$m$ with no retained fractional endpoint.
+
+**Promotion target and next artifact.** If derived, this supplies the native
+bridge from continuous architrino dynamics to the action-quantum and
+angular-momentum recovery program. Add $I_m$, $I_{m+1}$, $\Delta I_m$, and the
+signed transfer partition to the three-state symbolic ledger before assigning
+$I_*=\hbar$.

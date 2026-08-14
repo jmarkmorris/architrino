@@ -27,7 +27,7 @@ The **new SI** defines all units via **exact values** of seven constants:
 | Planck constant | $h$ | $6.62607015 \times 10^{-34}$ J·s | kilogram (kg) |
 | Elementary charge | $e$ | $1.602176634 \times 10^{-19}$ C | ampere (A) |
 | Boltzmann constant | $k_B$ | $1.380649 \times 10^{-23}$ J/K | kelvin (K) |
-| Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}$ mol⁻¹ | mole (mol) |
+| Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}\,\mathrm{mol}^{-1}$ | mole (mol) |
 | Luminous efficacy of 540 THz radiation | $K_{\text{cd}}$ | 683 lm/W | candela (cd) |
 
 **Key insight:** These SI rows are definitions, not measurements. Their exactness is a property of the unit system. A physical closure claim still has to recover the observer-level records that make those definitions useful: spectral frequencies, charge inventories, action increments, thermal energy scales, and signal propagation.

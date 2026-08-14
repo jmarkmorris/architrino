@@ -1704,7 +1704,7 @@
     },
     {
       "id": "theory_bridges__bell_theorem",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "name": "Bell's Theorem: QM Foundations vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "nodeType": "scene"
     },
@@ -1716,7 +1716,7 @@
     },
     {
       "id": "theory_bridges__entanglement_nonlocality",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "name": "Entanglement and Nonlocality: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "nodeType": "scene"
     },
@@ -1734,7 +1734,7 @@
     },
     {
       "id": "theory_bridges__pilot_wave_character",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene"
     },
@@ -1770,7 +1770,7 @@
     },
     {
       "id": "theory_bridges__superposition_mechanism",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "name": "Superposition Mechanism: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "nodeType": "scene"
     },
@@ -2268,7 +2268,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene"
     },
@@ -6229,7 +6229,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "nodeType": "scene",
       "id": "theory_bridges__bell_theorem",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "name": "Bell's Theorem: QM Foundations vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "implicit": false
@@ -6247,7 +6247,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "nodeType": "scene",
       "id": "theory_bridges__entanglement_nonlocality",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "name": "Entanglement and Nonlocality: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "implicit": false
@@ -6274,7 +6274,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene",
       "id": "theory_bridges__pilot_wave_character",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "implicit": false
@@ -6328,7 +6328,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "nodeType": "scene",
       "id": "theory_bridges__superposition_mechanism",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "name": "Superposition Mechanism: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "implicit": false
@@ -7075,7 +7075,7 @@
       "nodeId": "scene:content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "searchTarget": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "implicit": false

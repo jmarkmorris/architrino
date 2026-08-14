@@ -9,6 +9,11 @@
       content="Explore wake topography from a receiver perspective for prescribed what if transmitter path scenarios."
     />
     <title>Architrino Wake Topography</title>
+    <link
+      rel="stylesheet"
+      href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
+    />
+    <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
     <link rel="stylesheet" href="./src/apps/navigator/standalone-app-navigation.css" />
     <link rel="stylesheet" href="./src/apps/topo/topo.css" />
   </head>
@@ -119,7 +124,7 @@
                   value="0.50"
                   aria-label="Speed, beta divided by wake speed"
                 />
-                <output id="topo-beta-output" for="topo-beta">β = 0.50</output>
+                <output id="topo-beta-output" for="topo-beta">beta = 0.50</output>
               </span>
             </label>
             <fieldset id="topo-binary-direction-control" class="topo-radio-field" hidden>

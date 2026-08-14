@@ -297,120 +297,22 @@ function escapeMarkdownLinkText(text) {
 function normalizeTextbookTocMarkdownLabel(text) {
   const stylizedAAA = "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$";
   const stylizedUNow = "$\\mathbb{U}_{\\text{now}}$";
-  const stylizedGeff = "$G_{\\text{eff}}$";
-  const stylizedFieldSpeed = "$c_f$";
-  const stylizedFieldSpeedEquality = "$v = c_f$";
-  const superscriptMap = new Map([
-    ["+", "⁺"],
-    ["-", "⁻"],
-    ["0", "⁰"],
-    ["1", "¹"],
-    ["2", "²"],
-    ["3", "³"],
-    ["4", "⁴"],
-    ["5", "⁵"],
-    ["6", "⁶"],
-    ["7", "⁷"],
-    ["8", "⁸"],
-    ["9", "⁹"],
-  ]);
-  const subscriptMap = new Map([
-    ["+", "₊"],
-    ["-", "₋"],
-    ["0", "₀"],
-    ["1", "₁"],
-    ["2", "₂"],
-    ["3", "₃"],
-    ["4", "₄"],
-    ["5", "₅"],
-    ["6", "₆"],
-    ["7", "₇"],
-    ["8", "₈"],
-    ["9", "₉"],
-  ]);
+  const preservedMathSegments = [];
+  const labelWithMathTokens = String(text).replace(/\$[^$\n]+\$/g, (segment) => {
+    const token = `TEXTBOOKMATHSEGMENT${preservedMathSegments.length}X`;
+    preservedMathSegments.push(segment);
+    return token;
+  });
 
-  function toSuperscript(textValue) {
-    const value = String(textValue ?? "");
-    if (value === "\\pm") {
-      return "±";
-    }
-    return value
-      .split("")
-      .map((char) => superscriptMap.get(char) ?? char)
-      .join("");
-  }
-
-  function toSubscript(textValue) {
-    const value = String(textValue ?? "");
-    return value
-      .split("")
-      .map((char) => subscriptMap.get(char) ?? char)
-      .join("");
-  }
-
-  function normalizeInlineMathSegment(segment) {
-    const rawValue = String(segment ?? "").trim();
-    if (rawValue.replace(/\s+/g, "") === "\\mathbb{A}\\mathbb{A}\\mathbb{A}") {
-      return stylizedAAA;
-    }
-    if (rawValue.replace(/\s+/g, "") === "\\mathbb{U}_{\\text{now}}") {
-      return stylizedUNow;
-    }
-    if (rawValue.replace(/\s+/g, "") === "G_{\\text{eff}}") {
-      return stylizedGeff;
-    }
-    if (rawValue.replace(/\s+/g, "") === "c_f") {
-      return stylizedFieldSpeed;
-    }
-    if (rawValue.replace(/\s+/g, "") === "v=c_f") {
-      return stylizedFieldSpeedEquality;
-    }
-
-    let value = rawValue;
-    value = value.replace(/\\+mathbf\{([^}]+)\}/g, "$1");
-    value = value.replace(/\\+mathbf([A-Za-z0-9]+)/g, "$1");
-    value = value.replace(/\\+text\{([^}]+)\}/g, "$1");
-    value = value.replace(/\\+lvert/g, "|");
-    value = value.replace(/\\+rvert/g, "|");
-    value = value.replace(/\\+mathbb\{A\}/g, "A");
-    value = value.replace(/\\+mathbb\{U\}/g, "U");
-    value = value.replace(/\\+gamma/g, "γ");
-    value = value.replace(/\\+pi/g, "π");
-    value = value.replace(/\\+rho/g, "ρ");
-    value = value.replace(/\\+Delta/g, "Δ");
-    value = value.replace(/\\+epsilon/g, "ε");
-    value = value.replace(/\\+eta/g, "η");
-    value = value.replace(/\\+Lambda/g, "Λ");
-    value = value.replace(/\\+sim/g, "~");
-    value = value.replace(/\\+times/g, "×");
-    value = value.replace(/\\+nu/g, "ν");
-    value = value.replace(/\\+pm/g, "±");
-    value = value.replace(/\\+to/g, "→");
-    value = value.replace(/\\+bar\{([^}]+)\}/g, (_, inner) => `${inner}̄`);
-    value = value.replace(/\^\{([^}]+)\}/g, (_, exponent) => toSuperscript(exponent));
-    value = value.replace(/\^([A-Za-z0-9+\-±\\]+)\b/g, (_, exponent) => toSuperscript(exponent));
-    value = value.replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent));
-    value = value.replace(/\^±/g, "±");
-    value = value.replace(/_\\+text\{([^}]+)\}/g, "_$1");
-    value = value.replace(/_\{([^}]+)\}/g, "_$1");
-    value = value.replace(/_([0-9+\-]+)/g, (_, subscript) => toSubscript(subscript));
-    value = value.replace(/[{}]/g, "");
-    value = value.replace(/\^([⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻±]+)/g, "$1");
-    value = value.replace(/\|\s*([A-Za-z0-9])/g, "|$1");
-    value = value.replace(/([A-Za-z0-9])\s*\|/g, "$1|");
-    value = value.replace(/\s+/g, " ").trim();
-    return value;
-  }
-
-  return String(text)
-    .replace(/\$([^$]+)\$/g, (_, segment) => normalizeInlineMathSegment(segment))
+  let normalizedLabel = labelWithMathTokens
     .replace(/𝔸𝔸𝔸/g, stylizedAAA)
     .replace(/\bAAA\b/g, stylizedAAA)
     .replace(/\bU_now\b/g, stylizedUNow)
-    .replace(/\^([+\-0]{1,2})/g, (_, exponent) => toSuperscript(exponent))
-    .replace(/\^±/g, "±")
-    .replace(/_([0-9+\-]+)/g, (_, subscript) => toSubscript(subscript))
     .replace(/\|= /g, "| = ");
+  preservedMathSegments.forEach((segment, index) => {
+    normalizedLabel = normalizedLabel.replace(`TEXTBOOKMATHSEGMENT${index}X`, segment);
+  });
+  return normalizedLabel;
 }
 
 function compareNodes(a, b) {

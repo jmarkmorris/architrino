@@ -458,6 +458,24 @@ function inferSceneName(scenePath, sceneMeta, sceneId) {
   );
 }
 
+const MATH_UNICODE_SUBSTITUTION_PATTERN =
+  /[\u0370-\u03ff\u2070-\u209f\u{1d400}-\u{1d7ff}]/u;
+
+function resolveGeneratedSceneName(currentName, derivedName) {
+  const current = asText(currentName);
+  const derived = asText(derivedName);
+  if (
+    current &&
+    derived &&
+    current !== derived &&
+    /\$[^$]+\$/u.test(derived) &&
+    MATH_UNICODE_SUBSTITUTION_PATTERN.test(current)
+  ) {
+    return derived;
+  }
+  return current || derived;
+}
+
 function buildGeneratedScenesIndex(scenePaths, sceneDataByPath, currentSceneEntries) {
   const derivedByPath = new Map(
     scenePaths.map((scenePath) => {
@@ -492,7 +510,7 @@ function buildGeneratedScenesIndex(scenePaths, sceneDataByPath, currentSceneEntr
     }
     generated.push({
       id: asText(entry.id) || derived.id,
-      name: asText(entry.name) || derived.name,
+      name: resolveGeneratedSceneName(entry.name, derived.name),
       path: entry.path,
     });
     seenPaths.add(entry.path);

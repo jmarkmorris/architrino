@@ -13,7 +13,7 @@ export function createRootsView(state) {
   const available = state.causalEvaluationAvailable !== false;
   return {
     title: "Roots",
-    notation: "g(Tᵣ;Tₜ)",
+    notation: "$g(T_r;T_t)$",
     receiverTime: state.receiverTime,
     samples: state.delayMap ?? [],
     roots,

@@ -1,6 +1,10 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 import { createPanelCollapseIconSvg } from "../../runtime/PanelCollapseIcons.js";
 import {
+  renderDeclaredInlineMath,
+  renderInlineMathText,
+} from "../../runtime/InlineMathRuntime.js";
+import {
   navigateStandaloneAppHome,
   resolveStandaloneAppHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
@@ -585,6 +589,7 @@ export function createTripodAxisLayout(axis, projectedVector) {
 export function mountLatticeLab(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
+  renderDeclaredInlineMath(documentLike, { documentLike, windowLike });
   let caseRecords = [...(options.caseRecords ??
     (options.caseRecord
       ? Object.freeze([options.caseRecord])
@@ -1941,8 +1946,12 @@ export function mountLatticeLab(options = {}) {
     dom.compressionCard.dataset.available = String(available);
     dom.deformationBeta.disabled = !available;
     dom.deformationBeta.value = String(deformationBeta);
-    dom.compressionValue.value = `β = ${deformationBeta.toFixed(2)}`;
-    dom.compressionValue.textContent = dom.compressionValue.value;
+    dom.compressionValue.value = `beta = ${deformationBeta.toFixed(2)}`;
+    renderInlineMathText(
+      dom.compressionValue,
+      `$\\beta = ${deformationBeta.toFixed(2)}$`,
+      { documentLike, windowLike },
+    );
     const endpointDescription = deformationBeta === 0
       ? "undeformed baseline"
       : deformationBeta === 1
@@ -1950,47 +1959,52 @@ export function mountLatticeLab(options = {}) {
         : `static X-axis scale ${compressionFactor.toFixed(3)}`;
     dom.deformationBeta.setAttribute(
       "aria-valuetext",
-      `β = ${deformationBeta.toFixed(2)}, ${endpointDescription}`,
+      `beta equals ${deformationBeta.toFixed(2)}, ${endpointDescription}`,
     );
     const certificatePassed = activePeriodicCertificatePassed();
     dom.compressionCard.dataset.certificatePassed =
       String(certificatePassed);
+    let statusText;
     if (message) {
-      dom.compressionStatus.textContent = message;
+      statusText = message;
     } else if (certificatePassed) {
-      dom.compressionStatus.textContent =
-        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+      statusText =
+        `$\\beta = ${deformationBeta.toFixed(2)}$ sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation.";
+        "$\\beta = 0$ is the undeformed baseline; $\\beta = 1$ is the maximum deformation.";
     } else if (caseRecord.id === LATTICE_LAB_CASE_ID) {
-      dom.compressionStatus.textContent =
-        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+      statusText =
+        `$\\beta = ${deformationBeta.toFixed(2)}$ sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
+        "$\\beta = 0$ is the undeformed baseline; $\\beta = 1$ is the maximum deformation. " +
         "The reference tiled-pattern certificate is unavailable in this " +
         "modified polarity state; no all-site zero result is shown.";
     } else if (caseRecord.calculationScope === "finite-nonperiodic") {
-      dom.compressionStatus.textContent =
-        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+      statusText =
+        `$\\beta = ${deformationBeta.toFixed(2)}$ sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation.";
+        "$\\beta = 0$ is the undeformed baseline; $\\beta = 1$ is the maximum deformation.";
     } else if (caseRecord.id === "hcp-abab-layers-v1") {
-      dom.compressionStatus.textContent =
-        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+      statusText =
+        `$\\beta = ${deformationBeta.toFixed(2)}$ sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
+        "$\\beta = 0$ is the undeformed baseline; $\\beta = 1$ is the maximum deformation. " +
         "The undeformed HCP certificate uses " +
         "threefold rotational symmetry, which this X-axis deformation does " +
         "not preserve. A complete periodic acceleration result is therefore " +
         "not established at this setting.";
     } else {
-      dom.compressionStatus.textContent =
-        `β = ${deformationBeta.toFixed(2)} sets the static X-axis scale to ` +
+      statusText =
+        `$\\beta = ${deformationBeta.toFixed(2)}$ sets the static X-axis scale to ` +
         `${Number(compressionFactor.toFixed(6))}. ` +
-        "β = 0 is the undeformed baseline; β = 1 is the maximum deformation. " +
+        "$\\beta = 0$ is the undeformed baseline; $\\beta = 1$ is the maximum deformation. " +
         "Static transformed geometry only. No independent per-case periodic " +
         "cancellation check is attached, so no zero result is shown.";
     }
+    renderInlineMathText(dom.compressionStatus, statusText, {
+      documentLike,
+      windowLike,
+    });
   }
 
   function applyCompressionControls() {
@@ -2005,7 +2019,7 @@ export function mountLatticeLab(options = {}) {
       nextBeta > 1
     ) {
       updateCompressionPresentation(
-        "Enter β from 0 (undeformed) to 1 (maximum supported deformation).",
+        "Enter $\\beta$ from 0 (undeformed) to 1 (maximum supported deformation).",
       );
       return false;
     }
@@ -2133,20 +2147,25 @@ export function mountLatticeLab(options = {}) {
     dom.caseTitle.textContent = caseRecord.title;
     dom.caseGeometry.textContent =
       `${caseRecord.geometryLabel}; ${caseRecord.polarityRule}`;
-    dom.caseNearest.textContent = compressed
+    const nearestText = compressed
       ? summarizeTransformedDistances("nearest")
       : caseRecord.id === LATTICE_LAB_CASE_ID
         ? "6 at distance d"
         : `${caseRecord.nearestShell.count} at distance ${caseRecord.nearestShell.distance}`;
-    dom.caseNext.textContent = compressed
+    const nextText = compressed
       ? summarizeTransformedDistances("next-local")
       : caseRecord.id === LATTICE_LAB_CASE_ID
-        ? "12 at distance √2d"
+        ? "12 at distance $\\sqrt{2}d$"
         : `${caseRecord.nextLocalShell.count} at distance ${caseRecord.nextLocalShell.distance}`;
+    renderInlineMathText(dom.caseNearest, nearestText, { documentLike, windowLike });
+    renderInlineMathText(dom.caseNext, nextText, { documentLike, windowLike });
     dom.caseLocalTotal.textContent = String(
       caseRecord.nearestShell.count + caseRecord.nextLocalShell.count,
     );
-    dom.caseDensity.textContent = caseRecord.geometricSiteDensity;
+    renderInlineMathText(dom.caseDensity, caseRecord.geometricSiteDensity, {
+      documentLike,
+      windowLike,
+    });
     const randomization = caseRecord.randomization ?? null;
     dom.randomRecalculate.hidden = !randomization;
     dom.ledger.dataset.randomConfiguration = randomization ? "true" : "false";
@@ -2187,6 +2206,7 @@ export function mountLatticeLab(options = {}) {
     });
     renderLatticeLabLedgerViewModel({
       documentLike,
+      windowLike,
       dom: {
         root: dom.ledger,
         receiver: dom.ledgerReceiver,

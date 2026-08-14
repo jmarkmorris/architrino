@@ -22,6 +22,9 @@ import {
   TRANSPORT_CONTROL_ICON,
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
+import {
+  renderInlineMathText,
+} from "../../runtime/InlineMathRuntime.js";
 
 function describeReason(reason) {
   const descriptions = {
@@ -64,29 +67,12 @@ function formatTime(value) {
   return Number.isFinite(Number(value)) ? Number(value).toFixed(3) : "—";
 }
 
-function setFormattedMathText(documentLike, element, value) {
-  const text = String(value ?? "");
-  if (
-    !text.includes("C_f") ||
-    typeof documentLike?.createTextNode !== "function" ||
-    typeof element?.replaceChildren !== "function"
-  ) {
-    element.textContent = text;
-    return;
-  }
-  const children = text.split(/(C_f)/u).map((part) => {
-    if (part !== "C_f") {
-      return documentLike.createTextNode(part);
-    }
-    const symbol = documentLike.createElement("span");
-    symbol.className = "causal-inline-math";
-    symbol.append(documentLike.createTextNode("C"));
-    const subscript = documentLike.createElement("sub");
-    subscript.textContent = "f";
-    symbol.append(subscript);
-    return symbol;
+function setFormattedMathText(documentLike, windowLike, element, value) {
+  renderInlineMathText(element, value, {
+    documentLike,
+    windowLike,
+    mathClassName: "causal-inline-math",
   });
-  element.replaceChildren(...children);
 }
 
 export function createCausalDelayFeedbackModeController(options) {
@@ -96,6 +82,7 @@ export function createCausalDelayFeedbackModeController(options) {
 export class CausalDelayFeedbackModeController {
   constructor({
     document,
+    window,
     state,
     onModeChange,
     onStateChange,
@@ -105,6 +92,7 @@ export class CausalDelayFeedbackModeController {
     onTableOfContents,
   } = {}) {
     this.document = document ?? globalThis.document;
+    this.window = window ?? this.document?.defaultView ?? globalThis.window;
     this.state = state;
     this.onModeChange = onModeChange;
     this.onStateChange = onStateChange;
@@ -450,7 +438,7 @@ export class CausalDelayFeedbackModeController {
         selectedRow ? `row ${selectedRow.depth} is selected` : "no root row is selected"
       }.`,
     });
-    const table = this.createTable(["History row", "Tₜ", "State", "Reason"]);
+    const table = this.createTable(["History row", "$T_t$", "State", "Reason"]);
     const body = table.querySelector("tbody");
     rows.forEach((row) => {
       const tr = this.document.createElement("tr");
@@ -483,7 +471,7 @@ export class CausalDelayFeedbackModeController {
     const view = createRootsView(this.state);
     this.setLessonCopy({
       title: "Roots",
-      body: "At one reception time Tᵣ, every zero of g(Tᵣ;Tₜ) is linked to the same wake intersection, history row, and root identity.",
+      body: "At one reception time $T_r$, every zero of $g(T_r;T_t)$ is linked to the same wake intersection, history row, and root identity.",
       meta: `${view.notation}=0`,
       status: view.available
         ? `${view.activeRootCount} active causal ${view.activeRootCount === 1 ? "root" : "roots"}.`
@@ -493,17 +481,17 @@ export class CausalDelayFeedbackModeController {
     grid.append(
       this.createDelayMapSvg(view),
       this.createMetricCard("Active roots", view.activeRootCount),
-      this.createMetricCard("Reception time Tᵣ", formatTime(view.receiverTime)),
-      this.createMetricCard("Selected Tₜ", formatTime(this.state.emissionTime)),
+      this.createMetricCard("Reception time $T_r$", formatTime(view.receiverTime)),
+      this.createMetricCard("Selected $T_t$", formatTime(this.state.emissionTime)),
       this.createMetricCard(
         "transversality",
         Number.isFinite(view.selectedRoot?.transversality)
           ? view.selectedRoot.transversality.toFixed(4)
           : "unavailable",
       ),
-      this.createMetricCard("Ordinary-fold ΔN", view.fold.deltaN > 0 ? "+2" : String(view.fold.deltaN)),
+      this.createMetricCard("Ordinary-fold $\\Delta N$", view.fold.deltaN > 0 ? "+2" : String(view.fold.deltaN)),
       this.createMetricCard("Pointwise acceleration", view.fold.pointwiseAcceleration.toFixed(2)),
-      this.createMetricCard("Finite accumulated ΔV", view.fold.accumulatedVelocityChange.toFixed(3)),
+      this.createMetricCard("Finite accumulated $\\Delta V$", view.fold.accumulatedVelocityChange.toFixed(3)),
     );
     const note = createElement(this.document, "p", {
       className: "causal-fold-note",
@@ -527,7 +515,7 @@ export class CausalDelayFeedbackModeController {
     const svg = this.document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 420 190");
     svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", `${view.activeRootCount} active roots of g(Tᵣ;Tₜ)`);
+    svg.setAttribute("aria-label", `${view.activeRootCount} active roots of the delay map`);
     const samples = view.samples.filter((sample) => Number.isFinite(sample.value));
     if (samples.length > 1) {
       const minT = samples[0].emissionTime;
@@ -560,15 +548,17 @@ export class CausalDelayFeedbackModeController {
     }
     wrapper.append(
       svg,
-      createElement(this.document, "figcaption", { text: "Delay map g(Tᵣ;Tₜ); marked zeros are active causal roots." }),
+      this.createMathTextElement("figcaption", "", "Delay map $g(T_r;T_t)$; marked zeros are active causal roots."),
     );
     return wrapper;
   }
 
   createMetricCard(label, value) {
     const card = createElement(this.document, "div", { className: "causal-metric-card" });
+    const labelElement = createElement(this.document, "span");
+    setFormattedMathText(this.document, this.window, labelElement, label);
     card.append(
-      createElement(this.document, "span", { text: label }),
+      labelElement,
       createElement(this.document, "strong", { text: value }),
     );
     return card;
@@ -578,10 +568,13 @@ export class CausalDelayFeedbackModeController {
     const table = createElement(this.document, "table", { className: "causal-ledger-table" });
     const head = this.document.createElement("thead");
     const headRow = this.document.createElement("tr");
-    headings.forEach((heading) => headRow.append(createElement(this.document, "th", {
-      text: heading,
-      attributes: { scope: "col" },
-    })));
+    headings.forEach((heading) => {
+      const cell = createElement(this.document, "th", {
+        attributes: { scope: "col" },
+      });
+      setFormattedMathText(this.document, this.window, cell, heading);
+      headRow.append(cell);
+    });
     head.append(headRow);
     table.append(head, this.document.createElement("tbody"));
     return table;
@@ -589,10 +582,16 @@ export class CausalDelayFeedbackModeController {
 
   setLessonCopy({ title, body, meta, status }) {
     this.dom.title.textContent = title;
-    setFormattedMathText(this.document, this.dom.body, body);
-    this.dom.meta.textContent = meta;
-    this.dom.status.textContent = status ?? "";
+    setFormattedMathText(this.document, this.window, this.dom.body, body);
+    setFormattedMathText(this.document, this.window, this.dom.meta, meta);
+    setFormattedMathText(this.document, this.window, this.dom.status, status ?? "");
     this.dom.status.hidden = !String(status ?? "").trim();
+  }
+
+  createMathTextElement(tagName, className, text) {
+    const element = createElement(this.document, tagName, { className });
+    setFormattedMathText(this.document, this.window, element, text);
+    return element;
   }
 
   updateControls() {
@@ -647,9 +646,9 @@ export class CausalDelayFeedbackModeController {
       : null;
     const replayAuthoritySummary =
       this.state.replay?.lessonMeta ?? "Display authority unavailable";
-    this.dom.summary.textContent = this.state.mode === "story"
+    const summary = this.state.mode === "story"
       ? storyView?.id === "motion"
-        ? `Lesson Four. Three evaluator-backed constant-speed display fixtures compare transmitter speeds ${STORY_MOTION_SPEED_FRACTIONS.join(", ")} times C_f; ${Number(this.state.storyMotionSpeedFraction).toFixed(1)} is highlighted. These displays do not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
+        ? `Lesson Four. Three evaluator-backed constant-speed display fixtures compare transmitter speeds ${STORY_MOTION_SPEED_FRACTIONS.join(", ")} times $c_f$; ${Number(this.state.storyMotionSpeedFraction).toFixed(1)} is highlighted. These displays do not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
         : storyView?.id === "forward-buildup"
           ? `Lesson Five. ${storyView.body} This display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
           : storyView?.id === "inverse-square-spreading"
@@ -660,11 +659,12 @@ export class CausalDelayFeedbackModeController {
             ? `Lesson Eight. ${storyView.body} Replay status: ${replayAuthoritySummary}.`
           : `Lesson. Electrino transmitter to Positrino receiver; Positrino transmitter to Electrino receiver. This teaching display does not establish physics acceptance. Replay status: ${replayAuthoritySummary}.`
       : this.state.mode === "history" && root && reciprocalRoot
-        ? `Path History. Positrino and Electrino history-emission markers show the evaluator-backed earlier points for both reciprocal relationships at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}.`
+        ? `Path History. Positrino and Electrino history-emission markers show the evaluator-backed earlier points for both reciprocal relationships at $T_t=${formatTime(root.emissionTime)}$ and $T_t=${formatTime(reciprocalRoot.emissionTime)}$.`
       : this.state.mode === "sandbox" && root && reciprocalRoot
-        ? `Laboratory. Positrino and electrino current-emission markers and wake geometry follow the shared replay state at Tₜ=${formatTime(root.emissionTime)} and Tₜ=${formatTime(reciprocalRoot.emissionTime)}. The visible replay-status label identifies the display authority; the display is not physics acceptance.`
+        ? `Laboratory. Positrino and electrino current-emission markers and wake geometry follow the shared replay state at $T_t=${formatTime(root.emissionTime)}$ and $T_t=${formatTime(reciprocalRoot.emissionTime)}$. The visible replay-status label identifies the display authority; the display is not physics acceptance.`
       : root
-      ? `${modeLabel}. Transmitter ${root.sourceId} transmitted at Tₜ=${formatTime(root.emissionTime)}; receiver ${root.receiverId} receives at Tᵣ=${formatTime(root.receiverTime)}. Root ${root.ordinal} is ${root.accepted ? "accepted" : describeReason(root.reason)}.`
+      ? `${modeLabel}. Transmitter ${root.sourceId} transmitted at $T_t=${formatTime(root.emissionTime)}$; receiver ${root.receiverId} receives at $T_r=${formatTime(root.receiverTime)}$. Root ${root.ordinal} is ${root.accepted ? "accepted" : describeReason(root.reason)}.`
       : `${modeLabel}. No causal root is available at the selected receiver event.`;
+    setFormattedMathText(this.document, this.window, this.dom.summary, summary);
   }
 }

@@ -323,6 +323,7 @@ class CausalDelayFeedbackRuntime {
     this.bindEvents();
     this.modeController = createCausalDelayFeedbackModeController({
       document: this.document,
+      window: this.window,
       state: this.learnerState,
       onModeChange: (mode) => {
         this.handleLearnerModeChange(mode);
@@ -2980,7 +2981,7 @@ class CausalDelayFeedbackRuntime {
         showCausalLine: true,
       });
       this.drawTransmissionGhost(ctx, root.emission, root.sourceId, {
-        label: `root ${root.ordinal} · Tₜ=${root.emissionTime.toFixed(3)}`,
+        label: `root ${root.ordinal} · transmitted at ${root.emissionTime.toFixed(3)}`,
         emphasized: root.id === this.learnerState.selectedRootId,
         labelOffset: root.sourceId === "positrino"
           ? { x: 0, y: -34 }

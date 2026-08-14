@@ -105,7 +105,7 @@ test("Roots exposes the evaluator root count without claiming an independent int
   assert.equal(view.activeRootCount, state.roots.filter((root) => root.accepted).length);
   assert.equal("zeroCrossingCount" in view, false);
   assert.equal("wakeIntersectionCount" in view, false);
-  assert.equal(view.notation, "g(Tᵣ;Tₜ)");
+  assert.equal(view.notation, "$g(T_r;T_t)$");
 });
 
 test("ordinary fold independently gives a two-root interior and no post-fold roots", () => {
@@ -158,14 +158,15 @@ test("runtime delegates root finding to the canonical evaluator", async () => {
   assert.doesNotMatch(method, /for \(let refine/u);
 });
 
-test("end-user implementation uses subscripted g(Tᵣ;Tₜ) and contains no provisional c() delay-map label", async () => {
+test("end-user implementation sends the delay-map notation through KaTeX and contains no provisional c() label", async () => {
   const sources = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackModeController.js", REPO_ROOT), "utf8"),
     readFile(new URL("src/apps/causal-delay-feedback/CausalDelayFeedbackRootsMode.js", REPO_ROOT), "utf8"),
   ]);
   const joined = sources.join("\n");
-  assert.match(joined, /g\(Tᵣ;Tₜ\)/u);
-  assert.doesNotMatch(joined, /T_[tr]/u);
+  assert.match(joined, /\$g\(T_r;T_t\)\$/u);
+  assert.match(joined, /katex\.min\.(?:css|js)/u);
+  assert.doesNotMatch(joined, /T[ᵣₜ]/u);
   assert.doesNotMatch(joined, /(?:delay|root)[^\n"']{0,40}c\(\)/iu);
 });

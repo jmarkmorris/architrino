@@ -1,5 +1,9 @@
 import { createPanelCollapseIconSvg } from "../../runtime/PanelCollapseIcons.js";
 import {
+  renderDeclaredInlineMath,
+  renderInlineMathText,
+} from "../../runtime/InlineMathRuntime.js";
+import {
   TRANSPORT_CONTROL_ICON,
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
@@ -776,6 +780,7 @@ export function createTopoPairSourceContourRefinement({
 export function mountTopoInteractionContractPreview(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
+  renderDeclaredInlineMath(documentLike, { documentLike, windowLike });
   const dom = {
     app: requireElement(documentLike, "#topo-app"),
     panelContent: requireElement(documentLike, "#topo-panel-content"),
@@ -2398,11 +2403,15 @@ export function mountTopoInteractionContractPreview(options = {}) {
       : "";
     dom.app.dataset.pairLaunchTime = pairMode ? "0" : "";
     dom.app.dataset.pairPrelaunchVelocityBeta = pairMode ? "0" : "";
-    dom.betaOutput.value = "β = " + state.beta.toFixed(2);
-    dom.betaOutput.textContent = dom.betaOutput.value;
+    dom.betaOutput.value = "beta = " + state.beta.toFixed(2);
+    renderInlineMathText(
+      dom.betaOutput,
+      `$\\beta = ${state.beta.toFixed(2)}$`,
+      { documentLike, windowLike },
+    );
     dom.beta.setAttribute(
       "aria-valuetext",
-      "β = " + state.beta.toFixed(2) +
+      "beta equals " + state.beta.toFixed(2) +
       (state.beta === 1
         ? ", exact field-speed endpoint"
         : state.beta === 0 && (pairMode || binaryMode)
@@ -4366,11 +4375,13 @@ export function mountTopoInteractionContractPreview(options = {}) {
     );
     dom.app.dataset.binaryContourRefinement = state.binary
       ? binaryRefinements.length + " source patches at " +
-        TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE + "² samples"
+        TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE + " by " +
+        TOPO_BINARY_SOURCE_REFINEMENT_GRID_SIZE + " samples"
       : "";
     dom.app.dataset.pairSourceContourRefinement = state.pairMode
       ? pairPaintReplacements.length + " closed level components at " +
-        TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE + "² source samples"
+        TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE + " by " +
+        TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE + " source samples"
       : "";
     dom.app.dataset.lastContourPathCacheHit = matchingFrame
       ? playbackFrame

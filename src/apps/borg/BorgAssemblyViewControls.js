@@ -7,6 +7,7 @@ import {
   borgPrescribedDisplayFrameReadout,
   resolveBorgPrescribedTranslation,
 } from "./BorgPrescribedTranslation.js";
+import { renderInlineMathText } from "../../runtime/InlineMathRuntime.js";
 
 const FILTER_LABELS = Object.freeze({
   claimGrade: "Claim grade",
@@ -489,9 +490,9 @@ function renderAnalysisDiagnostics(
         event.status,
         `${root.transmitterId} / ${root.binaryId ?? "binary unavailable"} / ` +
           `root ${root.rootOrdinal} (${root.rootId})`,
-        `Te=${format(root.emissionTime)} · ΔT=${format(root.delay)}`,
-        `r=${format(root.distance)} · n=(${format(root.direction.x)}, ${format(root.direction.y)}, ${format(root.direction.z)})`,
-        `${root.rootCompletenessStatus} · Dt=${format(root.transmitterSideFactorDt)} · [${root.finalBracket.map(format).join(", ")}]`,
+        `$T_e=${format(root.emissionTime)}$ · $\\Delta T=${format(root.delay)}$`,
+        `$r=${format(root.distance)}$ · $\\mathbf n=(${format(root.direction.x)}, ${format(root.direction.y)}, ${format(root.direction.z)})$`,
+        `${root.rootCompletenessStatus} · $D_t=${format(root.transmitterSideFactorDt)}$ · [${root.finalBracket.map(format).join(", ")}]`,
         root.accelerationContribution
           ? `(${format(root.accelerationContribution.x)}, ${format(root.accelerationContribution.y)}, ${format(root.accelerationContribution.z)})`
           : "unavailable",
@@ -544,9 +545,13 @@ function renderAnalysisDiagnostics(
 
 function appendAnalysisRow(documentLike, body, values) {
   const row = documentLike.createElement("tr");
+  const windowLike = documentLike?.defaultView ?? globalThis.window;
   values.forEach((value) => {
     const cell = documentLike.createElement("td");
-    cell.textContent = String(value ?? "unavailable");
+    renderInlineMathText(cell, String(value ?? "unavailable"), {
+      documentLike,
+      windowLike,
+    });
     row.append(cell);
   });
   body.append(row);
@@ -654,18 +659,22 @@ function normalized(value, minimum, maximum) {
 
 function renderFieldRows(documentLike, container, rows) {
   container.textContent = "";
+  const windowLike = documentLike?.defaultView ?? globalThis.window;
   rows.forEach(([label, value]) => {
     const row = documentLike.createElement("div");
     row.className = "borg-field-row";
     const labelElement = documentLike.createElement("span");
     labelElement.className = "borg-field-label";
-    labelElement.textContent = label;
+    renderInlineMathText(labelElement, label, { documentLike, windowLike });
     const valueElement = documentLike.createElement("span");
     valueElement.className = "borg-field-value";
     const displayedValue = value && typeof value === "object" && !Array.isArray(value)
       ? value.text
       : value;
-    valueElement.textContent = format(displayedValue);
+    renderInlineMathText(valueElement, format(displayedValue), {
+      documentLike,
+      windowLike,
+    });
     if (value && typeof value === "object" && value.title) {
       valueElement.title = value.title;
     }

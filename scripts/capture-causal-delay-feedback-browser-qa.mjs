@@ -360,7 +360,7 @@ const PROOFS = Object.freeze([
     verifyInverseSquareSpreading: true,
     expectedScene: "story:inverse-square-spreading",
     expectedText: "Wake Strength Decreases as it Expands",
-    expectedSecondaryText: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+    expectedSecondaryText: "The emission spreads over the growing spherical wakefront area",
   },
   {
     id: "inverse-square-lesson-six-phone",
@@ -377,7 +377,7 @@ const PROOFS = Object.freeze([
     verifyInverseSquareSpreading: true,
     expectedScene: "story:inverse-square-spreading",
     expectedText: "Wake Strength Decreases as it Expands",
-    expectedSecondaryText: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+    expectedSecondaryText: "The emission spreads over the growing spherical wakefront area",
   },
   {
     id: "superposition-lesson-seven-desktop",
@@ -1585,14 +1585,22 @@ function createPrepareProofExpression(proof) {
     if (${proof.verifyInverseSquareSpreading === true ? "true" : "false"}) {
       const expectedLessonTitle =
         "Wake Strength Decreases as it Expands";
-      const expectedLessonBody =
-        "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².";
+      const expectedLessonBodyFragments = [
+        "Both architrinos remain fixed.",
+        "The emission spreads over the growing spherical wakefront area,",
+        "the acceleration action on a receiving architrino decreases as",
+      ];
+      const expectedLessonMath = ["4\\pi R^2", "R", "1/R^2"];
       const actualLessonTitle = document.querySelector(
         "#causal-delay-feedback-lesson-title",
       )?.textContent;
-      const actualLessonBody = document.querySelector(
+      const actualLessonBodyElement = document.querySelector(
         "#causal-delay-feedback-lesson-body",
-      )?.textContent;
+      );
+      const actualLessonBody = actualLessonBodyElement?.textContent;
+      const actualLessonMath = Array.from(
+        actualLessonBodyElement?.querySelectorAll?.("[data-math-tex]") ?? [],
+      ).map((element) => element.dataset.mathTex);
       const expectedLabels = [
         "1. Meet the Electrino and Positrino Transceivers",
         "2. Wakes Received Now Were Transmitted in the Past",
@@ -1707,7 +1715,10 @@ function createPrepareProofExpression(proof) {
       const inverseSquareContract =
         scene?.id === "inverse-square-spreading" &&
         actualLessonTitle === expectedLessonTitle &&
-        actualLessonBody === expectedLessonBody &&
+        expectedLessonBodyFragments.every((fragment) =>
+          actualLessonBody?.includes(fragment)
+        ) &&
+        actualLessonMath.join("|") === expectedLessonMath.join("|") &&
         actualLabels.join("|") === expectedLabels.join("|") &&
         lessonSixButton &&
         lessonSixButton.disabled === false &&
@@ -1742,8 +1753,10 @@ function createPrepareProofExpression(proof) {
           reason: "inverse_square_spreading_contract_failed",
           expectedLessonTitle,
           actualLessonTitle,
-          expectedLessonBody,
+          expectedLessonBodyFragments,
+          expectedLessonMath,
           actualLessonBody,
+          actualLessonMath,
           expectedLabels,
           actualLabels,
           sceneId: scene?.id ?? null,

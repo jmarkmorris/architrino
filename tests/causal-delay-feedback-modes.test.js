@@ -104,7 +104,7 @@ test("Story reads both reciprocal roots selected by the shared learner state", (
   assert.equal(view.root?.receiverTime, state.receiverTime);
   assert.equal(view.reciprocalRoot?.receiverTime, state.receiverTime);
   assert.match(view.summary, /Two causal relationships/u);
-  assert.match(view.summary, /Tᵣ=/u);
+  assert.match(view.summary, /\$T_r=/u);
   assert.equal(view.relationshipDescriptions, STORY_RELATIONSHIP_DESCRIPTIONS);
   assert.deepEqual(view.relationshipDescriptions, [
     {
@@ -159,7 +159,7 @@ test("working lessons Six, Seven, and Eight share one teaching sequence and disp
   );
   assert.equal(
     createStoryView(state).body,
-    "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+    "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, $4\\pi R^2$. As radius $R$ grows, the acceleration action on a receiving architrino decreases as $1/R^2$.",
   );
   assert.doesNotMatch(
     createStoryView(state).body,
@@ -1135,7 +1135,8 @@ test("new learner-facing copy remains acceleration-first", async () => {
   assert.doesNotMatch(authoredStrings, /\bmass\b/iu);
   assert.doesNotMatch(authoredStrings, new RegExp("\\breta" + "rd(?:ed|ation)?\\b", "iu"));
   assert.doesNotMatch(learnerStrings, /\bsource(?:'s)?\b/iu);
-  assert.doesNotMatch(learnerStrings, /T_[tr]/u);
+  assert.doesNotMatch(learnerStrings, /T[\u1d63\u209c]/u);
+  assert.match(learnerStrings, /\$T_[tr]/u);
   assert.doesNotMatch(learnerStrings, /C_F/u);
   assert.match(learnerStrings, /C_f/u);
 });

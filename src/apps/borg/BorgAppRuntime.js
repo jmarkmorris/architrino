@@ -4,6 +4,10 @@ import {
   setTransportControlButtonPresentation,
 } from "../../runtime/TransportControlIcons.js";
 import {
+  renderDeclaredInlineMath,
+  renderInlineMathText,
+} from "../../runtime/InlineMathRuntime.js";
+import {
   navigateStandaloneAppHome,
   resolveStandaloneSiteHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
@@ -229,6 +233,7 @@ export const BORG_PRESCRIBED_PATH_TRAIL_COLOR = 0xc6b6ff;
 export function mountBorgApp(options = {}) {
   const documentLike = options.documentLike ?? globalThis.document;
   const windowLike = options.windowLike ?? globalThis.window;
+  renderDeclaredInlineMath(documentLike, { documentLike, windowLike });
   const manifest = options.manifest ?? BORG_DATASET_MANIFEST_V1;
   const surfaceDesign = options.surfaceDesign ?? BORG_APP_SURFACE_DESIGN_V1;
   validateBorgManifest({ manifest, surfaceDesign });
@@ -946,7 +951,7 @@ export function mountBorgApp(options = {}) {
       ["Distribution", state.distributionLabel],
       ["Active electrinos", state.initialConditionConfig.electrinoCount],
       ["Active positrinos", state.initialConditionConfig.positrinoCount],
-      ["EOM coupling κ", state.eomCoupling],
+      ["EOM coupling $\\kappa$", state.eomCoupling],
       ["Per-axis speed maximum", state.initialConditionConfig.randomVelocityMaxComponentMagnitude],
       ["Total-speed minimum", state.initialConditionConfig.randomVelocityMinSpeed],
       ["Required initial separation", placement.minimumPairSeparation],
@@ -964,7 +969,7 @@ export function mountBorgApp(options = {}) {
       ["EOM retained-history policy", state.eomRetainedHistoryPolicy],
       ["EOM retained-history start", state.eomRetainedHistoryStart ?? "not-started"],
       ["EOM retained-history end", state.eomRetainedHistoryEnd ?? "not-started"],
-      ["Core scale εc", isEomSimulationActive() ? state.eomCoreScale : "not-applicable"],
+      ["Core scale $\\epsilon_c$", isEomSimulationActive() ? state.eomCoreScale : "not-applicable"],
       ["Far-field enclosure", "certified policy"],
       ["Forward-evolution claim", isEomSimulationActive() ? state.eomEvolutionClaimLevel : "not-applicable"],
       ["Initial-history certificate", state.eomSeedCertificate?.schema ?? "not-applicable"],
@@ -1024,7 +1029,7 @@ export function mountBorgApp(options = {}) {
       ["seed", state.distributionFrameRows ? state.distributionLabel : manifest.initialConditions.initialConditionSeed ?? "null"],
       ["electrinoCount", config.electrinoCount],
       ["positrinoCount", config.positrinoCount],
-      ["coupling κ", state.eomCoupling],
+      ["coupling $\\kappa$", state.eomCoupling],
       ["certifiedBudget", certifiedBudget.label],
       ["budgetAllocationHash", certifiedBudget.allocationHash],
       ["stepHeight", state.eomStepHeight],
@@ -1051,9 +1056,9 @@ export function mountBorgApp(options = {}) {
       ["positrinos outside sphere now", diagnostics?.outsideNow.positrino ?? "not-measured"],
       ["electrinos escaped by time", diagnostics?.escapedThroughTime.electrino ?? "not-measured"],
       ["positrinos escaped by time", diagnostics?.escapedThroughTime.positrino ?? "not-measured"],
-      ["close-pair threshold εc", diagnostics?.closePairThreshold ?? "not-measured"],
+      ["close-pair threshold $\\epsilon_c$", diagnostics?.closePairThreshold ?? "not-measured"],
       ["close metric", diagnostics
-        ? "fraction of unordered pairs inside core scale εc"
+        ? "fraction of unordered pairs inside core scale $\\epsilon_c$"
         : "not-measured"],
       ["electrino close-pair fraction", formatDiagnosticPercent(
         diagnostics?.pairs.electrino.closeFraction,
@@ -1083,10 +1088,13 @@ export function mountBorgApp(options = {}) {
       row.className = "borg-field-row";
       const labelElement = documentLike.createElement("span");
       labelElement.className = "borg-field-label";
-      labelElement.textContent = label;
+      renderInlineMathText(labelElement, label, { documentLike, windowLike });
       const valueElement = documentLike.createElement("span");
       valueElement.className = "borg-field-value";
-      valueElement.textContent = formatValue(value);
+      renderInlineMathText(valueElement, formatValue(value), {
+        documentLike,
+        windowLike,
+      });
       row.append(labelElement, valueElement);
       container.append(row);
     });
@@ -1180,7 +1188,7 @@ export function mountBorgApp(options = {}) {
     const coupling = Number(dom.coupling.value);
     if (!Number.isFinite(coupling) || coupling <= 0) {
       state.initialConditionEditStatus = "rejected-runtime-edit";
-      setInitialConditionFeedback("κ coupling must be a number greater than zero.", "bad");
+      setInitialConditionFeedback("$\\kappa$ coupling must be a number greater than zero.", "bad");
       renderInitialConditionFields();
       return null;
     }
@@ -1248,7 +1256,10 @@ export function mountBorgApp(options = {}) {
 
   function setInitialConditionFeedback(message, tone) {
     dom.initialConditionFeedback.value = message;
-    dom.initialConditionFeedback.textContent = message;
+    renderInlineMathText(dom.initialConditionFeedback, message, {
+      documentLike,
+      windowLike,
+    });
     dom.initialConditionFeedback.dataset.tone = tone;
   }
 
@@ -3625,7 +3636,7 @@ export function mountBorgApp(options = {}) {
     }
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
     setInitialConditionFeedback(
-      `Accepted ${getBorgCertifiedBudgetPreset(state.eomCertifiedBudgetId).label}; κ=${state.eomCoupling}; step ${state.eomStepHeight} to ${state.eomMinimumStep}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
+      `Accepted ${getBorgCertifiedBudgetPreset(state.eomCertifiedBudgetId).label}; $\\kappa=${state.eomCoupling}$; step ${state.eomStepHeight} to ${state.eomMinimumStep}; ${config.electrinoCount} electrinos + ${config.positrinoCount} positrinos; ${state.eomPathCount ** 2} ordered EOM pairs`,
       "accepted",
     );
     state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;

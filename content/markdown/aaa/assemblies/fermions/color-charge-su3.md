@@ -469,7 +469,7 @@ A Gen‑I baryon (e.g., proton or neutron) consists of:
 
 - 3 quarks → 3 Noether braids
 - Each with 1, 2, 3 axes
-- Total of **9 axes**: 1₁,2₁,3₁; 1₂,2₂,3₂; 1₃,2₃,3₃.
+- Total of **9 axes**: $1_1,2_1,3_1; 1_2,2_2,3_2; 1_3,2_3,3_3$.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
 
 ### Color singlet condition as closed braid
@@ -501,7 +501,7 @@ This closed 3‑strand braid (in color space) is **topologically distinct** from
 
 Even for color‑singlet nucleons:
 
-- Internal 1, 2, 3 structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances ≲ 1–2 fm.
+- Internal 1, 2, 3 structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances $\lesssim 1$–$2\,\mathrm{fm}$.
 
 Heuristic:
 

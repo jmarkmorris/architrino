@@ -44,10 +44,10 @@ test("certified checkerboard view starts with the exact periodic zero result", (
   assert.equal(viewModel.residualMagnitude, 0);
   assert.equal(viewModel.residualMagnitudeLabel, "0");
   assert.deepEqual(viewModel.residualVector, [0, 0, 0]);
-  assert.equal(viewModel.residualVectorLabel, "⟨0, 0, 0⟩");
+  assert.equal(viewModel.residualVectorLabel, "$\\langle 0, 0, 0 \\rangle$");
   assert.equal(
     viewModel.residualLineLabel,
-    "Magnitude 0 · Vector ⟨0, 0, 0⟩",
+    "Magnitude 0 · Vector $\\langle 0, 0, 0 \\rangle$",
   );
   assert.equal("statement" in viewModel, false);
   assert.deepEqual(
@@ -212,7 +212,7 @@ test("finite nonperiodic state reports only its calculated finite residual", () 
     "Non-zero acceleration in this configuration.",
   );
   assert.equal(viewModel.residualMagnitudeLabel, "0.25");
-  assert.equal(viewModel.residualVectorLabel, "⟨0.25, 0, 0⟩");
+  assert.equal(viewModel.residualVectorLabel, "$\\langle 0.25, 0, 0 \\rangle$");
   assert.equal("statement" in viewModel, false);
   assert.equal(
     viewModel.receiverLabel,

@@ -104,7 +104,10 @@ test("deterministic gallery calculations use periodic certificates, never displa
           "Net acceleration is zero at every architrino.",
           caseId,
         );
-        assert.equal(view.residualLineLabel, "Magnitude 0 · Vector ⟨0, 0, 0⟩");
+        assert.equal(
+          view.residualLineLabel,
+          "Magnitude 0 · Vector $\\langle 0, 0, 0 \\rangle$",
+        );
         assert.equal(view.calculationAvailable, true, caseId);
         assert.equal(view.calculationRows.length, expectation.rows, caseId);
         const nearCount = caseRecord.shells[0].expectedCount;

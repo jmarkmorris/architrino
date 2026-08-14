@@ -38,7 +38,7 @@
     },
     {
       "id": "sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "title": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
+      "title": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "radius": 2.688,
       "color": "#3c6a7a",
       "labelTitle": "Hydrogen Γ_N Spectral Row",

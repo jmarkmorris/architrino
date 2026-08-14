@@ -303,9 +303,9 @@ function createSimpleCubicCase({
     nearestNeighborDistanceValue: 1,
     coordinationNumber: 6,
     nearestShell: Object.freeze({ count: 6, distance: "d" }),
-    nextLocalShell: Object.freeze({ count: 12, distance: "√2d" }),
+    nextLocalShell: Object.freeze({ count: 12, distance: "$\\sqrt{2}d$" }),
     selectedLocalTotal: 18,
-    geometricSiteDensity: "n = 1/d³",
+    geometricSiteDensity: "$n = 1/d^3$",
     calculationBoundaryTreatment,
     evidenceStatus,
     accelerationCertificate,
@@ -314,7 +314,7 @@ function createSimpleCubicCase({
     displayRadius,
     shells: Object.freeze([
       createShell("nearest", "Nearest shell", 1, "d", 6),
-      createShell("next-local", "Next local shell", Math.SQRT2, "√2d", 12),
+      createShell("next-local", "Next local shell", Math.SQRT2, "$\\sqrt{2}d$", 12),
     ]),
     sites: Object.freeze(sites),
     idealSites: Object.freeze(idealSites),
@@ -477,7 +477,7 @@ function createBccCase() {
     defaultSiteSelector: nearestElectrinoToCenter,
     shells: Object.freeze([
       createShell("nearest", "Nearest shell", 1, "d", 8),
-      createShell("next-local", "Next local shell", a, "2d/√3", 6),
+      createShell("next-local", "Next local shell", a, "$2d/\\sqrt{3}$", 6),
     ]),
     repeatCell: createRepeatCell(
       vectors,
@@ -508,9 +508,9 @@ function createBccCase() {
       nearestNeighborDistance: "d",
       coordinationNumber: 8,
       nearestShell: Object.freeze({ count: 8, distance: "d" }),
-      nextLocalShell: Object.freeze({ count: 6, distance: "2d/√3" }),
+      nextLocalShell: Object.freeze({ count: 6, distance: "$2d/\\sqrt{3}$" }),
       selectedLocalTotal: 14,
-      geometricSiteDensity: "n = 3√3/(4d³)",
+      geometricSiteDensity: "$n = 3\\sqrt{3}/(4d^3)$",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
       evidenceStatus:
@@ -552,7 +552,7 @@ function createFccCase() {
     defaultSiteSelector: nearestElectrinoToCenter,
     shells: Object.freeze([
       createShell("nearest", "Nearest shell", 1, "d", 12),
-      createShell("next-local", "Next local shell", a, "√2d", 6),
+      createShell("next-local", "Next local shell", a, "$\\sqrt{2}d$", 6),
     ]),
     repeatCell: createRepeatCell(
       polarityRepeatVectors,
@@ -587,9 +587,9 @@ function createFccCase() {
       nearestNeighborDistance: "d",
       coordinationNumber: 12,
       nearestShell: Object.freeze({ count: 12, distance: "d" }),
-      nextLocalShell: Object.freeze({ count: 6, distance: "√2d" }),
+      nextLocalShell: Object.freeze({ count: 6, distance: "$\\sqrt{2}d$" }),
       selectedLocalTotal: 18,
-      geometricSiteDensity: "n = √2/d³",
+      geometricSiteDensity: "$n = \\sqrt{2}/d^3$",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with receiver-centered inversion-symmetric exhaustion; the spherical envelope is display only",
       evidenceStatus:
@@ -628,7 +628,7 @@ function createHcpCase() {
     defaultSiteSelector: nearestElectrinoToCenter,
     shells: Object.freeze([
       createShell("nearest", "Nearest shell", 1, "d", 12),
-      createShell("next-local", "Next local shell", Math.SQRT2, "√2d", 6),
+      createShell("next-local", "Next local shell", Math.SQRT2, "$\\sqrt{2}d$", 6),
     ]),
     repeatCell: createRepeatCell(
       vectors,
@@ -655,9 +655,9 @@ function createHcpCase() {
       nearestNeighborDistance: "d",
       coordinationNumber: 12,
       nearestShell: Object.freeze({ count: 12, distance: "d" }),
-      nextLocalShell: Object.freeze({ count: 6, distance: "√2d" }),
+      nextLocalShell: Object.freeze({ count: 6, distance: "$\\sqrt{2}d$" }),
       selectedLocalTotal: 18,
-      geometricSiteDensity: "n = √2/d³",
+      geometricSiteDensity: "$n = \\sqrt{2}/d^3$",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with complete threefold-rotation and basal-reflection symmetry-orbit exhaustion at the undeformed baseline; the spherical envelope is display only",
       evidenceStatus:
@@ -715,7 +715,7 @@ function createDiamondCase() {
         "next-local",
         "Next local shell",
         4 / Math.sqrt(6),
-        "4d/√6",
+        "$4d/\\sqrt{6}$",
         12,
       ),
     ]),
@@ -749,9 +749,9 @@ function createDiamondCase() {
       nearestNeighborDistance: "d",
       coordinationNumber: 4,
       nearestShell: Object.freeze({ count: 4, distance: "d" }),
-      nextLocalShell: Object.freeze({ count: 12, distance: "4d/√6" }),
+      nextLocalShell: Object.freeze({ count: 12, distance: "$4d/\\sqrt{6}$" }),
       selectedLocalTotal: 16,
-      geometricSiteDensity: "n = 3√3/(8d³)",
+      geometricSiteDensity: "$n = 3\\sqrt{3}/(8d^3)$",
       calculationBoundaryTreatment:
         "ideal stationary infinite repeat with receiver-centered twofold-rotation symmetry-orbit exhaustion; the spherical envelope is display only",
       evidenceStatus:
@@ -1148,9 +1148,9 @@ function pairAntipodalRows(rows, distanceLabel) {
 }
 
 function formatDirection(vector) {
-  return `⟨${vector.map((value) =>
+  return `$\\langle ${vector.map((value) =>
     Math.abs(value) < EPSILON ? "0" : value.toFixed(3).replace(/\.?0+$/u, "")
-  ).join(", ")}⟩`;
+  ).join(", ")} \\rangle$`;
 }
 
 function createFiniteNonperiodicSiteLedger(
