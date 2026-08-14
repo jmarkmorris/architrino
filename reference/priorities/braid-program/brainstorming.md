@@ -388,3 +388,140 @@ bridge from continuous architrino dynamics to the action-quantum and
 angular-momentum recovery program. Add $I_m$, $I_{m+1}$, $\Delta I_m$, and the
 signed transfer partition to the three-state symbolic ledger before assigning
 $I_*=\hbar$.
+
+## Entry 12 — neutral six-point static balance on one sphere (2026-08-13, operator exploration)
+
+**Question and exact reduction (grade: derivation target).** Place three
+electrinos and three positrinos at distinct points $\mathbf x_i\in S^2$ and
+hold their prior histories stationary. In normalized units $c_f=1$, with no
+nontrivial stationary self-hit roots, release from zero velocity has zero
+initial partner acceleration at every site exactly when
+
+$$
+\sum_{j\ne i}
+\sigma_i\sigma_j
+\frac{\mathbf x_i-\mathbf x_j}
+{\|\mathbf x_i-\mathbf x_j\|^3}
+=\mathbf0,
+\qquad i=1,\ldots,6.
+$$
+
+Plainly: every architrino must receive five partner contributions whose vector
+sum is zero. A cancellation obtained only after adding different receivers
+together does not keep any one architrino at rest.
+
+Because $\|\mathbf x_i\|=1$, the radial projection supplies this necessary
+condition at every site:
+
+$$
+\sum_{j\ne i}\frac{\sigma_j}{\|\mathbf x_i-\mathbf x_j\|}=0
+$$
+
+Plainly: at each site, the distance-weighted contributions from the two
+same-polarity partners and three opposite-polarity partners must cancel even
+before the tangential components are checked. Thus cancellation of the total
+acceleration or of a distant moment is insufficient; all six receiver-local
+vector ledgers must vanish.
+
+**Exact symmetric negatives (grade: derived for the stated charts).** The A2
+face-opposite octahedron does not satisfy the condition. At the positive
+$x$-axis site its partner acceleration, apart from the common positive
+coupling, is the following vector, whose magnitude is $\sqrt{17}/4$:
+
+$$
+-\frac14\mathbf e_x
+-\frac1{\sqrt2}(\mathbf e_y+\mathbf e_z),
+$$
+
+Plainly: the octahedral symmetry keeps the six-body motion in a reduced
+symmetry channel, but it does not make the initial acceleration vanish.
+
+The antipodal three-pair family numerically relaxes to the alternating regular
+hexagon; that exact hexagon also fails, with inward radial magnitude at every
+site
+
+$$
+\frac54-\frac1{\sqrt3}\approx0.6726497308
+$$
+
+Plainly: the best symmetric planar arrangement still pulls every site inward;
+its opposite-polarity contributions are stronger than its same-polarity
+contributions.
+
+**Topological-symmetry refinement (grade: exact no-balance derivation on the
+declared strata).** Interpret full colored symmetry to mean that all six sites
+are equivalent under spatial symmetries that either preserve polarity or
+exchange both polarity classes. The natural $C_3$ two-orbit realization places
+the electrinos on one equilateral ring at height $h$ and the positrinos on the
+mirror ring at height $-h$, with ring radius
+$\rho=\sqrt{1-h^2}$. For the staggered triangular-antiprism assignment, a
+representative electrino has
+
+$$
+\frac{\mathbf A}{\kappa}
+=
+\left[
+\frac{1}{\sqrt3\rho^2}
+-\frac{\rho}{(1+3h^2)^{3/2}}
+-\frac{\rho}{4}
+\right]\hat{\boldsymbol\rho}
+-
+\left[
+\frac{4h}{(1+3h^2)^{3/2}}
++\frac{h}{4}
+\right]\hat{\mathbf z}.
+$$
+
+Plainly: for every $h>0$, the axial bracket is strictly positive, so the
+acceleration has a strictly negative axial component and cannot be zero. At
+$h=0$ the family becomes the already rejected alternating regular hexagon;
+at $h=1/\sqrt3$ it is the regular face-opposite octahedron.
+
+The aligned triangular-prism assignment fails by the same one-signed argument:
+
+$$
+\frac{A_z}{\kappa}
+=
+-\frac{1}{4h^2}
+-\frac{4h}{(3+h^2)^{3/2}}
+<0,
+\qquad h>0.
+$$
+
+Plainly: the directly opposed positrino and the other two positrinos all pull
+toward the opposite ring; the same-polarity ring mates have no axial component
+available to oppose them. A single alternating six-site ring at any latitude
+is only a rescaled copy of the failed regular-hexagon ledger, so changing its
+latitude cannot create a zero either.
+
+This closes the natural aligned-ring, staggered-ring, regular-octahedral, and
+single-ring transitive symmetry strata. It is not yet a classification theorem
+for every finite subgroup action on six colored points, and a merely
+topological adjacency symmetry without a metric embedding cannot decide the
+inverse-square vector sum.
+
+**Bounded diagnostic and claim boundary.** A 40-start nonlinear least-squares
+search over twelve spherical angles found no zero and returned the alternating
+regular hexagon as the best row, with full residual norm about $1.64765$.
+This search is model-grade evidence about those starts only. It neither proves
+that an arbitrary six-point solution is impossible nor establishes stability
+or retained-history persistence if a static zero exists. The current strongest
+answer is therefore that no exact unit-sphere construction is known here; the
+global existence question remains open.
+
+**Proof burden, falsifier, and next artifact.** Eliminate global rotation,
+write the nine-dimensional collision-free configuration chart, and certify
+either (a) one root of all eighteen acceleration components by an interval
+Newton or Krawczyk box with an independently evaluated residual, or (b) a
+global lower bound excluding zero after symmetry strata and collision
+boundaries are covered. One certified noncollision root falsifies the negative
+lead immediately. The next artifact is a finite colored-symmetry-stratum table
+that enumerates the transitive subgroup actions, their metric parameters, and
+one exact residual or sign certificate per stratum. A compact arbitrary-chart
+static-balance certificate follows only for any strata left open; neither
+artifact is a retained-branch or stability campaign.
+
+**Promotion target.** If a root or global exclusion theorem is certified, the
+result can support the Noether-braid static-seed discussion and the general
+Master Equation stationary-cancellation treatment. Until then it remains
+priority-only.

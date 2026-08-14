@@ -6,6 +6,26 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-13 — Magnetar vacuum-birefringence source and mathematics capture
+
+The August 13 Anton Petrov video was mined from English-original automatic
+captions, metadata, chapters, description, its linked NASA Science summary,
+the Stewart et al. Nature/arXiv primary paper, and the smallest mathematical
+bibliography trail needed to evaluate the Noether sea bridge. The focused
+[source map](vacuum-birefringence-noether-sea-constitutive-map.md) separates
+the measured IXPE/NICER/Parkes Stokes and geometry record from the
+model-dependent vacuum-birefringence interpretation and from the video's
+literal-crystal, virtual-particle, and definitive-proof rhetoric.
+
+Priority-only incorporation added a polarization-resolved projection to the
+existing pressure-dependent Noether sea constitutive-response packet. The new
+mathematical route uses one shared susceptibility to derive two photon-channel
+eigenvalues, Stokes transport, adiabatic following and freeze-out, a possible
+avoided crossing, and the causal dispersion/loss partner. No reader-facing
+corpus, retained-branch claim, queue item, status, generated artifact, or score
+was changed because the accepted retained Noether sea state remains the first
+blocker.
+
 ### 2026-08-07 — Stanford Encyclopedia Bell-theorem entry capture
 
 The Stanford Encyclopedia of Philosophy entry, *Bell's Theorem*, substantive
