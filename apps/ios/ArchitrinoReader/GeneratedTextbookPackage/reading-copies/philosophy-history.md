@@ -13380,13 +13380,13 @@ This operator gives the first closure test for the unified route. It must fail i
 - **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $\lvert V_{ud}\rvert$ is large (same shielding tier), $\lvert V_{us}\rvert$ smaller (tri ↔ bi), $\lvert V_{ub}\rvert$ tiny (tri ↔ uni). Similar logic for the up-type rows.
 - **Provenance lens:** $V_{ij}$ can be read as a coherent sum over admissible architrino transport paths from weak-state geometry to shielding eigenstate geometry; $\lvert V_{ij}\rvert^2$ is the net channel weight after interference.
 
-###### Wolfenstein parametrization (to 𝒪(λ³))
+###### Wolfenstein parametrization (to $\mathcal{O}(\lambda^3)$)
 
 Use this as a target when deriving overlaps/angles from shielding geometry and weak-coupling-triad alignment.
 
-With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to 𝒪(λ³).
+With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to $\mathcal{O}(\lambda^3)$.
 
-Matrix form (Wolfenstein to 𝒪(λ³)):
+Matrix form (Wolfenstein to $\mathcal{O}(\lambda^3)$):
 
 $$
 V \simeq
@@ -13436,11 +13436,11 @@ $$
 
 Legend: $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$ are candidate occupancy vectors on persistent support indices $1,2,3$. They do not encode inner/middle/outer radius roles. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
 
-Quantitative target (heuristic): “high” should land near 0.2–1, “medium” ~10⁻²–10⁻¹, “tiny” ~10⁻³–10⁻² to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
+Quantitative target (heuristic): “high” should land near 0.2–1, “medium” $\sim 10^{-2}$–$10^{-1}$, “tiny” $\sim 10^{-3}$–$10^{-2}$ to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
 
 ###### Using CKM in amplitudes (quick examples)
 
-- **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $\lvert V_{ij}\rvert^2$. Neutral currents (Z/γ) are flavor-diagonal at tree level (no CKM factor at tree level); flavor-changing neutral currents appear only via loops.
+- **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $\lvert V_{ij}\rvert^2$. Neutral currents ($Z/\gamma$) are flavor-diagonal at tree level (no CKM factor at tree level); flavor-changing neutral currents appear only via loops.
 - **Beta reaction (SM label: `beta decay`):** $d \to u\,e^- \bar\nu_e$ uses $V_{ud}\approx0.974$; $\mathcal{M}\propto G_F V_{ud}$, rate $\propto \lvert V_{ud}\rvert^2$ times nuclear form factors.
 - **Semileptonic $B$ reaction:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto \lvert V_{cb}\rvert^2 G_F^2 m_b^5$ (times hadronic form factor).
 - **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.

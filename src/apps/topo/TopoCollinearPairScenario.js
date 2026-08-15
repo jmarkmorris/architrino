@@ -1,5 +1,8 @@
 import {
+  TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
   TOPO_INVERSE_SQUARE_SCALE,
+  normalizeTopoPartnerWakeObserver,
+  topoPartnerWakeSourceSign,
 } from "./TopoInteractionContract.js";
 
 export const TOPO_COLLINEAR_PAIR_SCENARIO_ID =
@@ -8,7 +11,7 @@ export const TOPO_COLLINEAR_PAIR_PLAYBACK_SECONDS = 21.6;
 export const TOPO_COLLINEAR_PAIR_REFERENCE_BETA = 0.5;
 export const TOPO_COLLINEAR_PAIR_TRAVEL_DISTANCE = 3 / 5;
 export const TOPO_COLLINEAR_PAIR_HISTORY_MODEL =
-  "constant-velocity-incoming-prehistory/v1";
+  "stationary-prehistory-instantaneous-prescribed-launch/v1";
 export const TOPO_COLLINEAR_PAIR_START = Object.freeze({
   electrino: Object.freeze({ x: 1 / 5, y: 1 / 2 }),
   positrino: Object.freeze({ x: 4 / 5, y: 1 / 2 }),
@@ -98,6 +101,9 @@ export function createTopoCollinearPairFrame({
       velocityBeta,
       historyStartTime: Number.NEGATIVE_INFINITY,
       historyModel: TOPO_COLLINEAR_PAIR_HISTORY_MODEL,
+      launchTime: 0,
+      prelaunchPosition: start,
+      prelaunchVelocityBeta: 0,
       observationTime,
       position: Object.freeze({
         x: start.x + velocityBeta * observationTime,
@@ -130,16 +136,28 @@ export function solveTopoCollinearPairCausalDelay(x, y, source) {
     return 0;
   }
   const velocityBeta = source.velocityBeta;
+  let constantVelocityDelay = null;
   if (Math.abs(velocityBeta) === 1) {
-    if (velocityBeta * offsetX >= 0) {
-      return null;
+    if (velocityBeta * offsetX < 0) {
+      constantVelocityDelay = -radiusSquared / (2 * velocityBeta * offsetX);
     }
-    return -radiusSquared / (2 * velocityBeta * offsetX);
+  } else {
+    const lambda = Math.sqrt(
+      offsetX ** 2 + (1 - velocityBeta ** 2) * offsetY ** 2,
+    );
+    constantVelocityDelay = radiusSquared / (lambda - velocityBeta * offsetX);
   }
-  const lambda = Math.sqrt(
-    offsetX ** 2 + (1 - velocityBeta ** 2) * offsetY ** 2,
+  if (constantVelocityDelay != null && constantVelocityDelay > 0 &&
+      source.observationTime - constantVelocityDelay >= -1e-12) {
+    return constantVelocityDelay;
+  }
+  const stationaryPrehistoryDelay = Math.hypot(
+    x - source.prelaunchPosition.x,
+    y - source.prelaunchPosition.y,
   );
-  return radiusSquared / (lambda - velocityBeta * offsetX);
+  return source.observationTime - stationaryPrehistoryDelay <= 1e-12
+    ? stationaryPrehistoryDelay
+    : null;
 }
 
 export function createTopoCollinearPartnerCharacteristicDiagnostic({
@@ -200,6 +218,8 @@ export function createTopoCollinearPairRawSampler({
   phase = 0,
   horizontalWorldSpan = 1,
   sourceMaskRadius = 0,
+  observerId = TOPO_DEFAULT_PARTNER_WAKE_OBSERVER,
+  superposition = false,
 } = {}) {
   const frame = createTopoCollinearPairFrame({
     beta,
@@ -210,26 +230,34 @@ export function createTopoCollinearPairRawSampler({
   if (maskRadius < 0) {
     throw new RangeError("sourceMaskRadius must be nonnegative.");
   }
+  const sources = superposition
+    ? frame.sources
+    : [frame.sources.find((source) =>
+      source.polaritySign === topoPartnerWakeSourceSign(
+        normalizeTopoPartnerWakeObserver(observerId),
+      ))];
+  if (sources.some((source) => !source)) {
+    throw new Error("The selected view has no source ledger.");
+  }
   return (candidateX, candidateY) => {
     const x = requireFiniteNumber(candidateX, "x");
     const y = requireFiniteNumber(candidateY, "y");
-    if (frame.sources.some((source) =>
+    if (sources.some((source) =>
       Math.hypot(x - source.position.x, y - source.position.y) <= maskRadius)) {
       return Number.NaN;
     }
-    let signedSum = 0;
-    for (const source of frame.sources) {
+    let rawValue = 0;
+    for (const source of sources) {
       const causalDelay = solveTopoCollinearPairCausalDelay(x, y, source);
-      if (
-        causalDelay == null ||
-        causalDelay <= 0 ||
-        frame.observationTime - causalDelay < source.historyStartTime - 1e-12
-      ) {
+      if (causalDelay == null || causalDelay <= 0) {
         return Number.POSITIVE_INFINITY;
       }
-      signedSum += source.polaritySign *
+      if (frame.observationTime - causalDelay < source.historyStartTime - 1e-12) {
+        return Number.POSITIVE_INFINITY;
+      }
+      rawValue += source.polaritySign *
         TOPO_INVERSE_SQUARE_SCALE / causalDelay ** 2;
     }
-    return signedSum;
+    return rawValue;
   };
 }

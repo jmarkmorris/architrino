@@ -1,5 +1,5 @@
 import {
-  TOPO_DISPLAY_CLIP_MAGNITUDE,
+  TOPO_REFERENCE_WAKE_MAGNITUDE,
   createTopoContourMagnitudeSchedule,
 } from "./TopoInteractionContract.js";
 
@@ -116,11 +116,11 @@ export function createTopoSignedContourLevels({
   rangeDecades = 3,
   contourCount = null,
   contourReach = null,
-  clipMagnitude = TOPO_DISPLAY_CLIP_MAGNITUDE,
+  referenceMagnitude = TOPO_REFERENCE_WAKE_MAGNITUDE,
   levelsPerDecade = TOPO_CONTOUR_LEVELS_PER_DECADE,
 } = {}) {
   const span = requireFinite(rangeDecades, "rangeDecades");
-  const maximum = requireFinite(clipMagnitude, "clipMagnitude");
+  const maximum = requireFinite(referenceMagnitude, "referenceMagnitude");
   const subdivisions = requireFinite(levelsPerDecade, "levelsPerDecade");
   if (
     (contourCount == null && (!Number.isInteger(span) || span < 1 || span > 4)) ||
@@ -128,7 +128,7 @@ export function createTopoSignedContourLevels({
     subdivisions !== 1
   ) {
     throw new RangeError(
-      "rangeDecades must be an integer in [1, 4], clipMagnitude positive, and levelsPerDecade exactly one.",
+      "rangeDecades must be an integer in [1, 4], referenceMagnitude positive, and levelsPerDecade exactly one.",
     );
   }
   const magnitudeSchedule = createTopoContourMagnitudeSchedule({

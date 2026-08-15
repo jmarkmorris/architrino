@@ -57,13 +57,29 @@ $$
 P=\frac{2\pi R}{\beta}.
 $$
 
-The displayed replay parameter $p\in[0,1]$ maps to reception time
-$T=P(1+p)$. Thus the open frame has one prescribed orbit of retained history,
-and playback advances exactly one additional orbit from $T=P$ through $T=2P$.
-At $\beta=0$, both histories are stationary, $T=2\pi R$ is the finite retained
-window, progress is fixed at zero, and play and replay are disabled.
+Let $A_x$ and $A_y$ be the visible chart's horizontal and vertical half-extents.
+The greatest replay-start distance from either source to a visible corner is
 
-Plainly: the binary is warmed up with one finite orbit before the visible replay starts. The replay then shows one orbit, while $\beta=0$ becomes a genuinely stationary comparison rather than an infinitely slow animation.
+$$
+D_{\max}=\sqrt{(A_x+R)^2+A_y^2}.
+$$
+
+For $\beta>0$, the retained warmup uses the smallest whole-orbit count
+
+$$
+N=\max\left(1,\left\lceil\frac{D_{\max}}{P}\right\rceil\right),
+\qquad
+T_0=NP,
+$$
+
+and the displayed replay parameter $p\in[0,1]$ maps to reception time
+$T=T_0+2Pp$. Because $T_0$ contains an integer number of orbits, both sources
+remain at the declared replay-start positions. Because $T_0\geq D_{\max}$,
+the retained-history endpoint brackets a root from both sources at every
+visible off-source location. At $\beta=0$, both histories are stationary and
+$T_0=D_{\max}$; progress is fixed at zero, and play and replay are disabled.
+
+Plainly: Topo silently adds however many complete earlier orbits the current window needs, then starts the visible two-rotation replay at exactly the same source positions. A wider view or smaller, faster orbit can add history, but it cannot rotate or move the opening frame.
 
 ## Per-Source Causal Root
 
@@ -85,7 +101,7 @@ off-source point, $g_s(0)>0$. A retained-history root is bracketed exactly when
 $g_s(T)\leq0$; if $g_s(T)>0$, that source reports
 `unavailable:no_ordinary_root_in_retained_history`.
 
-Plainly: every pixel looks backward along each circle for the emission whose wake had exactly enough time to arrive. If the finite stored history is too short, Topo leaves the product unavailable rather than filling in a guessed value.
+Plainly: every pixel looks backward along each circle for the emission whose wake had exactly enough time to arrive. The adaptive opening history covers the visible frame; any unexpected missing bracket still remains unavailable rather than being filled with a guessed value.
 
 For $0\leq\beta<1$, wherever the distance function is differentiable,
 
@@ -163,34 +179,32 @@ Plainly: the orders-of-magnitude color mapping is applied once, directly to the 
 The binary view contains only the heatmap, two source markers governed by the
 shared Topo half-size contract, an optional thin solid circular orbit guide,
 orbit progress, the orbital-radius and direction controls, and the shared
-play, pause, and replay controls. The single-source contour-range and
-contour-visibility controls are hidden and inert while this scenario is active.
-The binary overlay draws no field contours, contour labels, source circles, or
-source labels. The solid circle is a prescribed reference path at the selected
-$R$, not an equal-intensity contour or a dynamical claim. Playback lasts eight
-wall-clock seconds for usability; that wall time is only the rate at which the
-prescribed replay parameter is viewed.
+play, pause, and replay controls. The solid circle is a prescribed reference
+path at the selected $R$, not an equal-intensity contour or a dynamical claim.
+Playback lasts sixteen wall-clock seconds for usability; that wall time is only
+the rate at which the prescribed replay parameter is viewed.
 
 Plainly: the screen does not pretend to offer contour controls that do nothing. The smaller moving dots identify the prescribed sources, and the optional solid circle shows only where those authored paths run.
 
-The binary display also exposes a small accessible radio group for `Purple`
-and `White` neutral backgrounds. Purple is the unchanged Electric Purple
-`#8F00FF` default. White uses `#FFFFFF` as a display-only neutral midpoint and
-changes only color interpolation, unavailable pixels, and the legend. The orbit
-guide is pale lavender on Purple and restrained Electric Purple on White. Each
-checked radio uses its named option color with a contrasting boundary.
-Background selection does not
+The binary display also exposes a small accessible neutral-background slider
+from Electric Purple to White. Electric Purple `#8F00FF` remains the default,
+and the White endpoint is `#FFFFFF`. Intermediate values add only white to the
+accepted purple in sRGB; there is no additional color stop. The slider changes
+only color interpolation, unavailable pixels, the legend, and adaptive overlay
+contrast. The orbit guide changes continuously from pale lavender on Purple to
+restrained Electric Purple on White. Background selection does not
 change roots, raw values, orbital radius, frame identity, or playback.
 
-Plainly: the radio group lets the reader compare the same signed numbers against two neutral visual baselines. White exposes weaker blue/red contrast differently, but it does not turn neutral into a new scientific value.
+Plainly: the slider lets the reader add as much white as desired to the existing purple behind the same signed numbers. It does not turn neutral into a new scientific value.
 
 ## Verification And Falsifiers
 
 Focused tests compare selected $\beta<1$ roots and signed sums with the
 separately authored prescribed-path CPU evaluator in
 `ExactPrescribedSourceWake.mjs`. Closed controls also check the stationary
-inverse-square sum, exact center cancellation, antipodal geometry, one-orbit
-closure, both radius endpoints, $|\omega|=\beta/R$, source masking,
+inverse-square sum, exact center cancellation, antipodal geometry, adaptive
+whole-orbit warmup and unchanged replay-start phase, both radius endpoints,
+$|\omega|=\beta/R$, source masking,
 finite-history failure, the $\beta=1$ classification, direct signed-log mapping,
 the shared half-radius marker contract, solid-guide geometry, both angular-rate
 signs, contained source masking, and background-control

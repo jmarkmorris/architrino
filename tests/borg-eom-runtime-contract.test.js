@@ -609,7 +609,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(htmlSource, /id="borg-minimum-step"[^>]*value="0\.0001"/);
   assert.match(
     htmlSource,
-    /κ coupling[\s\S]*class="borg-step-control-group"[\s\S]*Step height[\s\S]*Adaptive minimum/,
+    /data-inline-math="\\kappa"[\s\S]*coupling[\s\S]*class="borg-step-control-group"[\s\S]*Step height[\s\S]*Adaptive minimum/,
   );
   assert.match(htmlSource, /<span>Max per-axis speed vs\. C<sub>f<\/sub> = 1<\/span>/);
   assert.match(htmlSource, /<span>Minimum total speed vs\. C<sub>f<\/sub> = 1<\/span>/);
@@ -667,7 +667,7 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runtimeSource, /Exact polynomial causal seed history \(C1 inertial\)/);
   assert.match(runtimeSource, /Causal seed-history depth/);
   assert.match(runtimeSource, /EOM retained-history start/);
-  assert.match(runtimeSource, /close-pair threshold εc/);
+  assert.match(runtimeSource, /close-pair threshold \$\\\\epsilon_c\$/);
   assert.match(
     runtimeSource,
     /function startRunAndPlayback\(\)[\s\S]*beginPlaybackPrefill\(firstChunk, generation\)/,

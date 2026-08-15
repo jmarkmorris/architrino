@@ -407,7 +407,7 @@ const equationMapSeedDocuments = [
         "transmitter-side",
         "Acceleration factor",
         "branchStrength",
-        "The acceleration weight is fixed by transmitter-side wake spacing. Receiver-side wake crossing remains separately available only through the signed root-playback derivative Dᵣ/Dₜ. This sharp formula applies only to an ordinary causal hit with Dₜ certified nonzero; when roots are born or die at Dₜ = 0, the solver must use a certified finite transition. Otherwise verification is incomplete and the contribution is not advanced.",
+        "The acceleration weight is fixed by transmitter-side wake spacing. Receiver-side wake crossing remains separately available only through the signed root-playback derivative $D_r/D_t$. This sharp formula applies only to an ordinary causal hit with $D_t$ certified nonzero; when roots are born or die at $D_t=0$, the solver must use a certified finite transition. Otherwise verification is incomplete and the contribution is not advanced.",
         "W_{r\\leftarrow t}^{\\mathrm{acc}}(T_r;T_t)=c_f/\\left|D_t(T_r;T_t)\\right|",
         { x: 6, y: 68, width: 34, line: "below" }
       ),
@@ -517,7 +517,7 @@ const equationMapSeedDocuments = [
         "drift-through-sea",
         "Drift through sea",
         "driftSpeed",
-        "This is the speed used inside γ. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ subtracts that flow first.",
+        "This is the speed used inside $\\gamma$. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ subtracts that flow first.",
         "\\mathbf w_{\\mathrm{eff}}=\\mathbf V_{\\mathrm{cm,eff}}-\\mathbf u_{\\mathrm{sea,eff}}",
         { x: 6, y: 8, width: 34, maxWidth: 480, line: "above" }
       ),
@@ -525,7 +525,7 @@ const equationMapSeedDocuments = [
         "clock-consumer",
         "Clock rate",
         "clockRate",
-        "The right equation is the observer-level clock-rate target: a moving clock advances by 1/γ compared with observer time. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, absolute time stays steady; the open derivation must obtain the changed clock readout from retained assembly history.",
+        "The right equation is the observer-level clock-rate target: a moving clock advances by $1/\\gamma$ compared with observer time. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, absolute time stays steady; the open derivation must obtain the changed clock readout from retained assembly history.",
         "d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
         { x: 58, y: 68, width: 34, line: "below" }
       ),
@@ -533,7 +533,7 @@ const equationMapSeedDocuments = [
         "branch-blocker",
         "One Lorentz factor",
         "gammaFactor",
-        "γ is the Lorentz comparison factor. Moving clocks use 1/γ, lengths along the motion use 1/γ, and momentum-energy uses γ. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ closure target is to derive all three readouts from one retained branch history; that common-history result is not yet established.",
+        "$\\gamma$ is the Lorentz comparison factor. Moving clocks use $1/\\gamma$, lengths along the motion use $1/\\gamma$, and momentum-energy uses $\\gamma$. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ closure target is to derive all three readouts from one retained branch history; that common-history result is not yet established.",
         "\\gamma_\\star\\rightarrow S_{\\mathrm{eq}}",
         { x: 8, y: 82, width: 34, line: "below" }
       ),
@@ -575,7 +575,7 @@ const equationMapSeedDocuments = [
         "return-cycle",
         "Lorentz target",
         "gammaEff",
-        "The target is 1 over effective γ. That means the along-motion radius is smaller by the Lorentz contraction factor. Return-cycle algebra motivates this $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target, but evolved retained-branch confirmation remains open.",
+        "The target is $1/\\gamma_{\\mathrm{eff}}$. That means the along-motion radius is smaller by the Lorentz contraction factor. Return-cycle algebra motivates this $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target, but evolved retained-branch confirmation remains open.",
         "\\xi\\to\\gamma_{\\mathrm{eff}}^{-1}",
         { x: 66, y: 68, width: 30, line: "below" }
       ),
@@ -637,7 +637,7 @@ const equationMapSeedDocuments = [
         "energy-readout",
         "Energy readout",
         "energy",
-        "E² is the observer-level total-energy comparison. It combines momentum and rest-energy terms. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target is to derive this readout from one retained branch history; the Master Equation does not yet supply that conserved account by itself.",
+        "$E^2$ is the observer-level total-energy comparison. It combines momentum and rest-energy terms. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target is to derive this readout from one retained branch history; the Master Equation does not yet supply that conserved account by itself.",
         "E^2",
         { x: 4, y: 8, width: 22, line: "above" }
       ),
@@ -645,7 +645,7 @@ const equationMapSeedDocuments = [
         "motion-response",
         "Motion response",
         "momentum",
-        "p is the momentum term. To get the γ form, first substitute p = effective γ times M₀ times effective v. The γ identity then collapses the motion and rest terms into one total energy term.",
+        "$p$ is the momentum term. To get the $\\gamma$ form, first substitute $p=\\gamma_{\\mathrm{eff}}M_0v_{\\mathrm{eff}}$. The $\\gamma$ identity then collapses the motion and rest terms into one total energy term.",
         "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2",
         { x: 26, y: 8, width: 25, line: "above" }
       ),
@@ -753,7 +753,7 @@ const equationMapSeedDocuments = [
         "density-row",
         "Density ledger",
         "densityChange",
-        "ρₙₛ is the Noether sea density: how much sea is here. This candidate continuity equation asks how that amount changes through flow, declared additions or removals, and a residual. Its derivation from resolved Noether braid population dynamics remains open.",
+        "$\\rho_{\\mathrm{NS}}$ is the Noether sea density: how much sea is here. This candidate continuity equation asks how that amount changes through flow, declared additions or removals, and a residual. Its derivation from resolved Noether braid population dynamics remains open.",
         "\\rho_{\\mathrm{NS}}(\\mathbf X,T)",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -761,7 +761,7 @@ const equationMapSeedDocuments = [
         "transport-row",
         "Transport ledger",
         "flowDivergence",
-        "This is density carried by sea flow. The divergence operator compares flow in versus flow out. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, uₛₑₐ is the Noether sea flow in native coordinates.",
+        "This is density carried by sea flow. The divergence operator compares flow in versus flow out. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, $\\mathbf u_{\\mathrm{sea}}$ is the Noether sea flow in native coordinates.",
         "\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}}(\\mathbf X,T)",
         { x: 60, y: 22, width: 34, line: "above" }
       ),
@@ -769,7 +769,7 @@ const equationMapSeedDocuments = [
         "source-residual",
         "Source loading",
         "sourceTerm",
-        "Sᵨ is the generic equation-source term. It marks declared events that add or remove Noether sea density and is unrelated to the transmitter role in a causal hit. Those declared changes are counted before the residual is read.",
+        "$S_{\\rho}$ is the generic equation-source term. It marks declared events that add or remove Noether sea density and is unrelated to the transmitter role in a causal hit. Those declared changes are counted before the residual is read.",
         "S_{\\rho}",
         { x: 7, y: 68, width: 36, line: "below" }
       ),
@@ -777,7 +777,7 @@ const equationMapSeedDocuments = [
         "density-residual",
         "Leftover term",
         "residual",
-        "rᵨ is what remains after density change, flow, and known sources are counted. If it is not zero, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ shows the missing carrier or response ledger instead of hiding it.",
+        "$r_{\\rho}$ is what remains after density change, flow, and known sources are counted. If it is not zero, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ shows the missing carrier or response ledger instead of hiding it.",
         "r_{\\rho}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -830,7 +830,7 @@ const equationMapSeedDocuments = [
         "spatial-channel",
         "Spatial channel",
         "spatialCompliance",
-        "γᵢⱼ is the ruler part of the effective metric. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target must derive this spatial-compliance entry together with the clock and signal entries; a scalar delay alone does not supply that derivation.",
+        "$\\gamma_{ij}^{\\mathrm{eff}}$ is the ruler part of the effective metric. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target must derive this spatial-compliance entry together with the clock and signal entries; a scalar delay alone does not supply that derivation.",
         "\\gamma_{ij}^{\\mathrm{eff}}",
         { x: 34, y: 7, width: 30, line: "above" }
       ),
@@ -878,7 +878,7 @@ const equationMapSeedDocuments = [
         "potential-response",
         "Potential response",
         "potentialTerm",
-        "Φₙ over c₀² is the standard weak-gravity comparison term. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ closure target is to recover that clock shift from the same response ledger used for effective acceleration and path bending.",
+        "$\\Phi_N/c_0^2$ is the standard weak-gravity comparison term. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ closure target is to recover that clock shift from the same response ledger used for effective acceleration and path bending.",
         "\\Phi_N/c_0^2",
         { x: 8, y: 68, width: 34, line: "below" }
       ),
@@ -886,7 +886,7 @@ const equationMapSeedDocuments = [
         "moving-clock",
         "Moving clock",
         "motionTerm",
-        "This is the low-speed moving-clock comparison term. A successful $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ derivation must obtain it from the same retained branch history as the full γ and ruler-contraction targets.",
+        "This is the low-speed moving-clock comparison term. A successful $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ derivation must obtain it from the same retained branch history as the full $\\gamma$ and ruler-contraction targets.",
         "\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/(2c_0^2)",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -926,7 +926,7 @@ const equationMapSeedDocuments = [
         "ppn-handoff",
         "Curvature factor",
         "ppn",
-        "γₚₚₙ is the standard weak-gravity comparison factor for the spatial contribution to light bending. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target requires the same response ledger to recover Shapiro delay, effective acceleration, and redshift as well.",
+        "$\\gamma_{\\mathrm{PPN}}$ is the standard weak-gravity comparison factor for the spatial contribution to light bending. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target requires the same response ledger to recover Shapiro delay, effective acceleration, and redshift as well.",
         "\\gamma_{\\mathrm{PPN}}",
         { x: 58, y: 22, width: 34, line: "above" }
       ),
@@ -934,7 +934,7 @@ const equationMapSeedDocuments = [
         "path-geometry",
         "Path geometry",
         "impact",
-        "b is the impact distance: how close the light ray passes to the mass. c₀² sets the light-speed scale. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this denominator keeps spatial compliance in the path geometry, not only clock delay.",
+        "$b$ is the impact distance: how close the light ray passes to the mass. $c_0^2$ sets the light-speed scale. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this denominator keeps spatial compliance in the path geometry, not only clock delay.",
         "b c_0^2",
         { x: 7, y: 68, width: 34, line: "below" }
       ),
@@ -976,7 +976,7 @@ const equationMapSeedDocuments = [
         "factor-budget",
         "Frequency budget",
         "redshift",
-        "1+zₓ is the redshift factor: received wavelength compared with transmitted wavelength. This candidate $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ factorization must keep transmitter cadence, receiver cadence, path history, radiation-source behavior, and relative motion on one transfer ledger.",
+        "$1+z_X$ is the redshift factor: received wavelength compared with transmitted wavelength. This candidate $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ factorization must keep transmitter cadence, receiver cadence, path history, radiation-source behavior, and relative motion on one transfer ledger.",
         "1+z_X",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -1000,7 +1000,7 @@ const equationMapSeedDocuments = [
         "radiation-motion",
         "Radiation and motion",
         "radiationMotion",
-        "Bₓ is the radiation-source behavior factor, while Dᵥ is the relative-motion factor. Here source has its generic radiation meaning, not the causal-hit transmitter role. The candidate map must tie both factors to endpoint cadence and path history without separate fitting.",
+        "$B_X$ is the radiation-source behavior factor, while $D_v$ is the relative-motion factor. Here source has its generic radiation meaning, not the causal-hit transmitter role. The candidate map must tie both factors to endpoint cadence and path history without separate fitting.",
         "B_XD_v",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -1038,7 +1038,7 @@ const equationMapSeedDocuments = [
         "rest-energy-weight",
         "Rest-energy weight",
         "restMass",
-        "M₀c₀² is the observer-level rest-energy weight multiplying the clock path. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ mass-map target must derive that weight from trapped internal causal history rather than assign it to an architrino.",
+        "$M_0c_0^2$ is the observer-level rest-energy weight multiplying the clock path. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ mass-map target must derive that weight from trapped internal causal history rather than assign it to an architrino.",
         "M_0c_0^2",
         { x: 36, y: 8, width: 30, line: "above" }
       ),
@@ -1046,7 +1046,7 @@ const equationMapSeedDocuments = [
         "proper-time-history",
         "Proper-time path",
         "properTime",
-        "dτ is the derived clock-time readout along the effective path. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the open clock-map derivation must obtain it from assembly history evolving in steady absolute time.",
+        "$d\\tau$ is the derived clock-time readout along the effective path. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the open clock-map derivation must obtain it from assembly history evolving in steady absolute time.",
         "\\int d\\tau",
         { x: 66, y: 8, width: 30, line: "above" }
       ),
@@ -1088,7 +1088,7 @@ const equationMapSeedDocuments = [
         "density-source",
         "Source density",
         "massDensity",
-        "ρ is the source density that loads the field. Ordinary gravity reads it as mass-energy density. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this points to the missing carrier question: which Noether sea ledger stores that source loading?",
+        "$\\rho$ is the source density that loads the field. Ordinary gravity reads it as mass-energy density. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this points to the missing carrier question: which Noether sea ledger stores that source loading?",
         "\\rho_{\\mathrm{eff}}",
         { x: 36, y: 8, width: 30, line: "above" }
       ),
@@ -1134,7 +1134,7 @@ const equationMapSeedDocuments = [
         "photon-energy",
         "Photon energy",
         "photonEnergy",
-        "Eγ equals h times frequency in the standard photon comparison law. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target must derive both the frequency readout and the shared action scale from the same photon carrier history.",
+        "$E_\\gamma$ equals $h$ times frequency in the standard photon comparison law. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target must derive both the frequency readout and the shared action scale from the same photon carrier history.",
         "E_\\gamma=h\\nu",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1389,7 +1389,7 @@ const equationMapSeedDocuments = [
         "density-loading",
         "Density loading",
         "density",
-        "ρ is the matter and energy density source. In LCDM it helps set the expansion rate. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this density must connect to source loading in the Noether sea.",
+        "$\\rho$ is the matter and energy density source. In LCDM it helps set the expansion rate. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this density must connect to source loading in the Noether sea.",
         "\\rho_{\\mathrm{eff}}",
         { x: 25, y: 8, width: 21, line: "above" }
       ),
@@ -1405,7 +1405,7 @@ const equationMapSeedDocuments = [
         "lambda-pressure",
         "Lambda pressure",
         "lambda",
-        "Λ is the standard geometric cosmological-constant parameter. Multiplication by c₀² gives the rate term required in this Friedmann comparison. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target is to derive the effective contribution from Noether sea pressure and density response.",
+        "$\\Lambda$ is the standard geometric cosmological-constant parameter. Multiplication by $c_0^2$ gives the rate term required in this Friedmann comparison. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target is to derive the effective contribution from Noether sea pressure and density response.",
         "\\Lambda_{\\mathrm{eff}}c_0^2/3",
         { x: 69, y: 8, width: 24, line: "above" }
       ),
@@ -1460,7 +1460,7 @@ const equationMapSeedDocuments = [
         "lambda-density",
         "Lambda density",
         "lambdaDensity",
-        "This standard conversion treats ρ as mass density and Λ as a geometric curvature-scale parameter. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target is to derive both density and pressure from one Noether sea constitutive ledger.",
+        "This standard conversion treats $\\rho$ as mass density and $\\Lambda$ as a geometric curvature-scale parameter. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ target is to derive both density and pressure from one Noether sea constitutive ledger.",
         "\\rho_{\\mathrm{DE,eff}}\\to\\Lambda_{\\mathrm{eff}}",
         { x: 66, y: 8, width: 30, line: "above" }
       ),
@@ -1506,7 +1506,7 @@ const equationMapSeedDocuments = [
         "btfr-row",
         "Flat-velocity ledger",
         "flatVelocity",
-        "The second equation is the baryonic Tully-Fisher comparison: flat rotation speed to the fourth tracks baryonic mass. The scale a₀ must emerge from the shared $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ constitutive response rather than be installed as a galaxy-only constant.",
+        "The second equation is the baryonic Tully-Fisher comparison: flat rotation speed to the fourth tracks baryonic mass. The scale $a_0$ must emerge from the shared $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ constitutive response rather than be installed as a galaxy-only constant.",
         "v_f^4=G M_b a_0",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -1541,7 +1541,7 @@ const equationMapSeedDocuments = [
         "thermal-scale",
         "Temperature factor",
         "temperature",
-        "x compares the standard photon-energy term hν with thermal energy kBT. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target must derive both the photon action scale and the temperature readout from one finite-window thermal history.",
+        "$x_\\nu$ compares the standard photon-energy term $h\\nu$ with thermal energy $k_B T_{\\mathrm{temp}}$. The $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ recovery target must derive both the photon action scale and the temperature readout from one finite-window thermal history.",
         "x_\\nu=h\\nu/(k_BT_{\\mathrm{temp}})",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1557,7 +1557,7 @@ const equationMapSeedDocuments = [
         "radiation-mode-density",
         "Radiation mode density",
         "modeDensity",
-        "uν is the standard energy density per frequency. The ν cubed factor reflects mode counting. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, reproducing that factor is a geometry and carrier-count recovery target, not an assumed architrino-level law.",
+        "$u_\\nu$ is the standard energy density per frequency. The $\\nu^3$ factor reflects mode counting. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, reproducing that factor is a geometry and carrier-count recovery target, not an assumed architrino-level law.",
         "u_\\nu",
         { x: 62, y: 76, width: 34, line: "below" }
       ),

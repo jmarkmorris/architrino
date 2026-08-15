@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__project",
-    "title": "Project",
+    "title": "How This Art Is Made",
     "type": "Scene-Index",
     "units": "relative",
     "layout": {
@@ -91,10 +91,10 @@
     },
     {
       "id": "licenses_attributions",
-      "title": "Licenses & Attributions",
+      "title": "Licenses, Attribution & Source Use",
       "radius": 2.2,
       "color": "#6a3c3c",
-      "labelTitle": "Licenses & Attributions",
+      "labelTitle": "Licenses, Attribution & Source Use",
       "labelBadge": "doc"
     },
     {

@@ -288,9 +288,9 @@ Why do observer-level electric charges appear in units of $e/3$?
 | split | Electrinos | Positrinos | net observer-level charge |
 |:-----:|:----------:|:----------:|:------------------:|
 | polarity label |   $-\epsilon$   |   $+\epsilon$   |        units of $|e|$         |
-|     6:0     |         6         |         0         |           −1           |
-|     5:1     |         5         |         1         |          −2/3          |
-|     4:2     |         4         |         2         |          −1/3          |
+|     6:0     |         6         |         0         |           $-1$           |
+|     5:1     |         5         |         1         |          $-2/3$          |
+|     4:2     |         4         |         2         |          $-1/3$          |
 |     3:3     |         3         |         3         |            0           |
 |     2:4     |         2         |         4         |          +1/3          |
 |     1:5     |         1         |         5         |          +2/3          |

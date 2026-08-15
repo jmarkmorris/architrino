@@ -346,7 +346,7 @@ test("every deformation status uses the concise beta endpoint wording", () => {
   const compressionPresentation = source.match(
     /function updateCompressionPresentation\(message = ""\) \{([\s\S]*?)\n  function applyCompressionControls/u,
   )?.[1] ?? "";
-  assert.match(source, /β = 1 is the maximum deformation\./u);
+  assert.match(source, /\$\\\\beta = 1\$ is the maximum deformation\./u);
   assert.doesNotMatch(
     source,
     /maximum supported non-?degenerate deformation|supported nondegenerate/u,
@@ -396,7 +396,7 @@ test("every case uses near, far, and total neighbor facts without Calculation sc
   )?.[1] ?? "";
   assert.doesNotMatch(
     presentation,
-    /caseGeometry\.textContent[\s\S]{0,400}(?:β|deformation|scale|static X)/u,
+    /caseGeometry\.textContent[\s\S]{0,400}(?:\u03b2|deformation|scale|static X)/u,
   );
   assert.doesNotMatch(presentation, /caseScope|calculationBoundaryTreatment/u);
   const html = readRepoFile("lattice-lab.html");
@@ -431,7 +431,7 @@ test("every case uses near, far, and total neighbor facts without Calculation sc
 test("checkerboard case facts expose bare near, far, and total neighbor values", () => {
   const source = readRepoFile("src/apps/lattice-lab/LatticeLabRuntime.js");
   assert.match(source, /"6 at distance d"/u);
-  assert.match(source, /"12 at distance √2d"/u);
+  assert.match(source, /"12 at distance \$\\\\sqrt\{2\}d\$"/u);
   assert.doesNotMatch(source, /"(?:6|12) neighbors at distance/u);
   const checkerboard = createSimpleCubicCheckerboardCase();
   assert.equal(checkerboard.nearestShell.count, 6);
@@ -852,7 +852,7 @@ test("selected electrino exposes two local shells as nine cancelling antipodal p
       },
       {
         id: "next-local",
-        distance: "√2d",
+        distance: "$\\sqrt{2}d$",
         expectedCount: 12,
         visibleCount: 12,
         equalPolarityAntipodalPairs: 6,
@@ -1660,7 +1660,8 @@ test("Lattice Lab page keeps the shared standalone navigation strip without Borg
     /id="lattice-lab-deformation-beta"[\s\S]*type="range"[\s\S]*min="0"[\s\S]*max="1"[\s\S]*value="0"[\s\S]*aria-label="Uniaxial deformation beta, 0 undeformed and 1 maximum"/u,
   );
   assert.doesNotMatch(html, /id="lattice-lab-compression-factor"|id="lattice-lab-compression-amount"/u);
-  assert.match(html, /β = 0\.00/u);
+  assert.match(html, />\s*beta = 0\.00\s*</u);
+  assert.match(html, /katex\.min\.(?:css|js)/u);
   assert.match(
     html,
     /<h2 id="lattice-lab-case-title" class="lattice-lab-card-kicker"><\/h2>/u,

@@ -232,4 +232,4 @@ audit.
 Project-authored code and documents are licensed under the [MIT License](LICENSE),
 Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images,
 and derivatives retain their own licenses and attribution requirements; see
-[Licenses & Attributions](content/markdown/aaa/archie/licenses-attributions.md).
+[Licenses, Attribution & Source Use](content/markdown/aaa/archie/licenses-attributions.md).

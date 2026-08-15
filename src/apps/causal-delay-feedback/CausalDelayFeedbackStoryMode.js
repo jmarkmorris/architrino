@@ -140,7 +140,7 @@ export const STORY_CONTINUATION_STEPS = Object.freeze([
   Object.freeze({
     id: "inverse-square-spreading",
     title: "Wake Strength Decreases as it Expands",
-    body: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, 4πR². As radius R grows, the acceleration action on a receiving architrino decreases as 1/R².",
+    body: "Both architrinos remain fixed. They emit wakes continuously at a constant rate. The emission spreads over the growing spherical wakefront area, $4\\pi R^2$. As radius $R$ grows, the acceleration action on a receiving architrino decreases as $1/R^2$.",
   }),
   Object.freeze({
     id: "superposition",
@@ -935,7 +935,7 @@ export function createStoryView(state) {
     interactions,
     relationshipDescriptions: STORY_RELATIONSHIP_DESCRIPTIONS,
     summary: availableCount === 2
-      ? `Two causal relationships are shown at Tᵣ=${root.receiverTime.toFixed(3)}: positrino Tₜ=${root.emissionTime.toFixed(3)} and electrino Tₜ=${reciprocalRoot.emissionTime.toFixed(3)}.`
+      ? `Two causal relationships are shown at $T_r=${root.receiverTime.toFixed(3)}$: positrino $T_t=${root.emissionTime.toFixed(3)}$ and electrino $T_t=${reciprocalRoot.emissionTime.toFixed(3)}$.`
       : `Only ${availableCount} of 2 reciprocal causal relationships is available at this receiver event.`,
   };
 }

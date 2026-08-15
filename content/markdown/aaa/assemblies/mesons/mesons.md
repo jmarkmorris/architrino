@@ -169,12 +169,12 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Polarity conjugation flips signs. Meson pairs cancel most axes; indexed candidate-axis permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter braid, −1/3 per polarity-conjugate antimatter braid. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes $+e/3$, `-` contributes $-e/3$, and `0` contributes $0$. Polarity conjugation flips signs. Meson pairs cancel most axes; indexed candidate-axis permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** $+1/3$ per matter braid, $-1/3$ per polarity-conjugate antimatter braid. Mesons sum to $0$; baryons sum to $1$.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
 - **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned candidate braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned candidate braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity is hypothesized to track whether the flux/axis pattern inverts (odd for these mesons, even for the proposed ground-state candidate braids).
-- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or strongly over-twisted excited states (ρ, Δ) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors (π±, $K$) live longer.
+- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs ($\pi^0$) or strongly over-twisted excited states ($\rho$, $\Delta$) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors ($\pi^\pm$, $K$) live longer.
 
 ### SM quantum numbers (cheat sheet for particles discussed)
 
@@ -184,16 +184,16 @@ Lifetime and width entries below are PDG comparison values.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $\pi^+$ | $u\bar d$ | +1 | 0 | 0 | +1 | $0^-$ | $2.60\times10^{-8}$ s |
 | $\pi^0$ | $(u\bar u-d\bar d)/\sqrt{2}$ | 0 | 0 | 0 | 0 | $0^-$ | $8.4\times10^{-17}$ s |
-| $\pi^-$ | $d\bar u$ | −1 | 0 | 0 | −1 | $0^-$ | $2.60\times10^{-8}$ s |
+| $\pi^-$ | $d\bar u$ | $-1$ | 0 | 0 | $-1$ | $0^-$ | $2.60\times10^{-8}$ s |
 | $K^+$ | $u\bar s$ | +1 | 0 | +1 | +1/2 | $0^-$ | $1.24\times10^{-8}$ s |
-| $K^0$ | $d\bar s$ | 0 | 0 | +1 | −1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
-| $K^-$ | $\bar u s$ | −1 | 0 | −1 | −1/2 | $0^-$ | $1.24\times10^{-8}$ s |
-| $\bar K^0$ | $\bar d s$ | 0 | 0 | −1 | +1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
-| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | +1,0,−1 | 0 | 0 | +1,0,−1 | $1^-$ | $\Gamma \approx 150$ MeV ($\sim5\times10^{-24}$ s) |
+| $K^0$ | $d\bar s$ | 0 | 0 | +1 | $-1/2$ | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
+| $K^-$ | $\bar u s$ | $-1$ | 0 | $-1$ | $-1/2$ | $0^-$ | $1.24\times10^{-8}$ s |
+| $\bar K^0$ | $\bar d s$ | 0 | 0 | $-1$ | +1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
+| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | $+1,0,-1$ | 0 | 0 | $+1,0,-1$ | $1^-$ | $\Gamma \approx 150$ MeV ($\sim5\times10^{-24}$ s) |
 | $\Delta^{++}$ | $uuu$ | +2 | 1 | 0 | +3/2 | $3/2^+$ | $\Gamma \approx 120$ MeV ($\sim5\times10^{-24}$ s) |
 | $\Delta^{+}$ | $uud$ | +1 | 1 | 0 | +1/2 | $3/2^+$ | same as above |
-| $\Delta^{0}$ | $udd$ | 0 | 1 | 0 | −1/2 | $3/2^+$ | same as above |
-| $\Delta^{-}$ | $ddd$ | −1 | 1 | 0 | −3/2 | $3/2^+$ | same as above |
+| $\Delta^{0}$ | $udd$ | 0 | 1 | 0 | $-1/2$ | $3/2^+$ | same as above |
+| $\Delta^{-}$ | $ddd$ | $-1$ | 1 | 0 | $-3/2$ | $3/2^+$ | same as above |
 
 ---
 
@@ -235,7 +235,7 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse braids, weak $W^-$ dissociation corridor. |
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ supplies the strange-sector CP-asymmetry handle. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral-kaon oscillation and CP-odd asymmetry are separate closure rows. |
-| Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
+| Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge $-1$ kaon; roles swapped vs $K^+$. |
 | $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; exchanges matter and polarity-conjugate antimatter branches. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |

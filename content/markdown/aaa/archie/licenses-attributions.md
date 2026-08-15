@@ -1,10 +1,24 @@
-# Licenses & Attributions
+# Licenses, Attribution & Source Use
 
 This page is the public receipt drawer for third-party material and project-owned media. It tells readers where assets, libraries, data, and generated or curated media came from, and which license or attribution rule travels with them.
 
 - For plain-language use boundaries, see [Legal Terms](legal-terms.md).
 
+## Source Use and Fair-Use Boundaries
+
+Architrino's public, open-source work supports free inquiry and education. The project uses direct sources, permissions, public-domain and openly licensed material, and attribution, with source and use conditions recorded wherever practical.
+
+In limited, documented cases, the project may record a good-faith reliance on U.S. fair use rather than an open license or permission. Each such reliance must be evaluated and disclosed item by item. Educational purpose, attribution, or public availability alone does not establish fair use, and a project record does not claim that a court or rights holder has validated the use.
+
+This page provides general information, not legal advice or blanket permission. It does not expand a third party's license, grant downstream reuse rights, or replace a downstream user's own assessment of the controlling license, permission, or law.
+
+## Source and License Records
+
 - Project-authored Architrino code and documents are open source under the [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, data, and media retain the licenses named below and in the image manifest.
+
+- Greek Letter Match production pronunciation audio: 24 AI-generated WAV recordings created through the OpenAI Speech API with the pinned `gpt-4o-mini-tts-2025-12-15` model and OpenAI's built-in `marin` voice under a neutral international English accent/style instruction. Neutral international is an instruction applied to Marin, not a separate voice or a claim about a person's demographic identity. The [audio provenance record](../../../../src/apps/greek-letter-match/audio/SOURCE.md) links the complete generation, processing, target, checksum, and review evidence. The recordings are not human-authored and are not source evidence for factual, legal, or scientific claims. The 24 final normalized production recordings identified by that record are made available under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/): to the extent the project holds copyright or related rights in them, it dedicates those rights to the public domain as fully as the law permits, with CC0's fallback license applying where the waiver is not legally effective. Attribution is not required. This narrow dedication does not cover code, text, raw or rejected generation files, other audio groups, historical third-party evidence, or future media; it does not establish copyrightability, guarantee legal effect, provide warranties, or affect patent, trademark, privacy, publicity, or other rights outside its stated scope. The repository's MIT software license is not asserted for these recordings.
+
+
 
 - PDG REST API data used by the project: licensed under the same terms as the corresponding edition of the *Review of Particle Physics*; starting with the 2024 edition, the *Review of Particle Physics* is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Required citation: S. Navas et al. (Particle Data Group), “Review of Particle Physics,” *Phys. Rev. D* **110**, 030001 (2024), [PDG 2024 edition](https://pdg.lbl.gov/2024/).
 

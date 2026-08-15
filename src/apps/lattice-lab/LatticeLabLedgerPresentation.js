@@ -1,3 +1,7 @@
+import {
+  renderInlineMathText,
+} from "../../runtime/InlineMathRuntime.js";
+
 const RESIDUAL_EPSILON = 1e-12;
 
 export const LATTICE_LAB_LEDGER_SCOPE = Object.freeze({
@@ -49,7 +53,7 @@ export function formatLedgerVector(vector) {
   if (!vector) {
     return null;
   }
-  return `⟨${vector.map(formatNumber).join(", ")}⟩`;
+  return `$\\langle ${vector.map(formatNumber).join(", ")} \\rangle$`;
 }
 
 function summarizePolarities(rows) {
@@ -301,6 +305,7 @@ function replaceChildren(element, children) {
 
 export function renderLatticeLabLedgerViewModel({
   documentLike,
+  windowLike,
   dom,
   viewModel,
 }) {
@@ -313,13 +318,16 @@ export function renderLatticeLabLedgerViewModel({
   dom.icon.textContent = viewModel.icon ?? "";
   dom.icon.hidden = !viewModel.icon;
   dom.outcome.textContent = viewModel.outcomeLabel ?? "";
-  dom.residual.textContent = viewModel.residualLineLabel ?? "";
+  renderInlineMathText(dom.residual, viewModel.residualLineLabel ?? "", {
+    documentLike,
+    windowLike,
+  });
   dom.residual.hidden = !viewModel.residualLineLabel;
 
   const shellElements = viewModel.shellSummaries.map((shell) => {
     const row = documentLike.createElement("p");
     row.className = "lattice-lab-ledger-shell";
-    row.textContent = shell.totalLabel;
+    renderInlineMathText(row, shell.totalLabel, { documentLike, windowLike });
     return row;
   });
   replaceChildren(dom.shells, shellElements);
@@ -345,7 +353,11 @@ export function renderLatticeLabLedgerViewModel({
 
     const values = documentLike.createElement("span");
     values.className = "lattice-lab-ledger-calculation-values";
-    values.textContent = `${formatLedgerVector(row.contribution)} → ${formatLedgerVector(row.runningResidual)}`;
+    renderInlineMathText(
+      values,
+      `${formatLedgerVector(row.contribution)} → ${formatLedgerVector(row.runningResidual)}`,
+      { documentLike, windowLike },
+    );
     rowElement.append(label, values);
     return rowElement;
   });

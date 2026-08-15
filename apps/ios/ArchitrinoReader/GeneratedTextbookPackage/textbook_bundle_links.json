@@ -1,8 +1,72 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-05T03:14:18.312Z",
-  "total_links": 2094,
+  "generated_at": "2026-08-15T15:42:53.285Z",
+  "total_links": 2102,
   "links": [
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/about-the-webapp.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/about-the-webapp.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/github-presence-and-community.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/github-presence-and-community.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/legal-terms.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/legal-terms.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/people.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/people.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/people.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/people.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/values.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/values.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/archie/values.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/values.md"
+    },
+    {
+      "sourceChapterId": "archie__about_architrino",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/about-architrino.md",
+      "target": "../../../../markdown/aaa/validation/validation-protocols.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/validation-protocols.md"
+    },
     {
       "sourceChapterId": "archie-academic-style-guide",
       "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",

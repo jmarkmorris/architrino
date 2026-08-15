@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Full Marin Neutral-International Greek Review</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #12051f; color: #f8f2ff; }
+      body { max-width: 1040px; margin: 0 auto; padding: 28px 18px 48px; }
+      h1 { margin-bottom: 8px; }
+      .boundary { padding: 14px 16px; border: 1px solid #d6b85a; border-radius: 12px; background: #35230d; line-height: 1.5; }
+      .controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+      button { border: 1px solid #9e72cb; border-radius: 999px; background: #5c268f; color: white; font: inherit; font-weight: 700; padding: 10px 16px; cursor: pointer; }
+      button.secondary { background: #28153b; }
+      #status { min-height: 1.5em; color: #dcc2ff; }
+      .letters { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+      article { padding: 16px; border: 1px solid #5e4779; border-radius: 14px; background: #211033; }
+      article.playing { border-color: #e0c26c; box-shadow: 0 0 0 2px #e0c26c55; }
+      h2 { margin: 0 0 5px; }
+      .target { margin: 0 0 10px; color: #dcc2ff; font-weight: 650; }
+      audio { width: 100%; }
+      a { color: #dcc2ff; }
+      footer { margin-top: 24px; color: #cdbfdb; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <h1>Full Greek Alphabet — Marin + Neutral International</h1>
+    <p>Listen in canonical Alpha-to-Omega order. The visible respellings are the exact production targets.</p>
+    <p class="boundary">
+      AI-generated speech — all clips use the OpenAI built-in Marin voice with
+      a neutral international English accent/style instruction. Neutral
+      international is not a separate voice or demographic identity. This page
+      preserves the complete review and provenance surface for the production set.
+    </p>
+    <div class="controls"><button id="play-all" type="button">Play all from Alpha</button><button id="stop" class="secondary" type="button">Stop</button></div>
+    <p id="status" aria-live="polite">Ready.</p>
+    <main class="letters">
+      <article><h2>1. Α α — Alpha</h2><p class="target">AL-fuh</p><audio controls preload="metadata" data-letter="Alpha" src="browser/alpha.wav"></audio></article>
+      <article><h2>2. Β β — Beta</h2><p class="target">BAY-tuh</p><audio controls preload="metadata" data-letter="Beta" src="browser/beta.wav"></audio></article>
+      <article><h2>3. Γ γ — Gamma</h2><p class="target">GAM-uh</p><audio controls preload="metadata" data-letter="Gamma" src="browser/gamma.wav"></audio></article>
+      <article><h2>4. Δ δ — Delta</h2><p class="target">DEL-tuh</p><audio controls preload="metadata" data-letter="Delta" src="browser/delta.wav"></audio></article>
+      <article><h2>5. Ε ε — Epsilon</h2><p class="target">EP-sih-lon</p><audio controls preload="metadata" data-letter="Epsilon" src="browser/epsilon.wav"></audio></article>
+      <article><h2>6. Ζ ζ — Zeta</h2><p class="target">ZAY-tuh</p><audio controls preload="metadata" data-letter="Zeta" src="browser/zeta.wav"></audio></article>
+      <article><h2>7. Η η — Eta</h2><p class="target">AY-tuh — one connected word</p><audio controls preload="metadata" data-letter="Eta" src="browser/eta.wav"></audio></article>
+      <article><h2>8. Θ θ — Theta</h2><p class="target">THAY-tuh</p><audio controls preload="metadata" data-letter="Theta" src="browser/theta.wav"></audio></article>
+      <article><h2>9. Ι ι — Iota</h2><p class="target">eye-OH-tuh</p><audio controls preload="metadata" data-letter="Iota" src="browser/iota.wav"></audio></article>
+      <article><h2>10. Κ κ — Kappa</h2><p class="target">KAP-uh</p><audio controls preload="metadata" data-letter="Kappa" src="browser/kappa.wav"></audio></article>
+      <article><h2>11. Λ λ — Lambda</h2><p class="target">LAM-duh</p><audio controls preload="metadata" data-letter="Lambda" src="browser/lambda.wav"></audio></article>
+      <article><h2>12. Μ μ — Mu</h2><p class="target">MYOO, like “mew”</p><audio controls preload="metadata" data-letter="Mu" src="browser/mu.wav"></audio></article>
+      <article><h2>13. Ν ν — Nu</h2><p class="target">NOO, like “new” — short and natural</p><audio controls preload="metadata" data-letter="Nu" src="browser/nu.wav"></audio></article>
+      <article><h2>14. Ξ ξ — Xi</h2><p class="target">ZYE, rhyming with “eye”</p><audio controls preload="metadata" data-letter="Xi" src="browser/xi.wav"></audio></article>
+      <article><h2>15. Ο ο — Omicron</h2><p class="target">OM-ih-kron</p><audio controls preload="metadata" data-letter="Omicron" src="browser/omicron.wav"></audio></article>
+      <article><h2>16. Π π — Pi</h2><p class="target">PIE</p><audio controls preload="metadata" data-letter="Pi" src="browser/pi.wav"></audio></article>
+      <article><h2>17. Ρ ρ — Rho</h2><p class="target">ROH</p><audio controls preload="metadata" data-letter="Rho" src="browser/rho.wav"></audio></article>
+      <article><h2>18. Σ σ/ς — Sigma</h2><p class="target">SIG-muh — one shared recording</p><audio controls preload="metadata" data-letter="Sigma" src="browser/sigma.wav"></audio></article>
+      <article><h2>19. Τ τ — Tau</h2><p class="target">TOW, rhyming with “cow”</p><audio controls preload="metadata" data-letter="Tau" src="browser/tau.wav"></audio></article>
+      <article><h2>20. Υ υ — Upsilon</h2><p class="target">OOP-sih-lon</p><audio controls preload="metadata" data-letter="Upsilon" src="browser/upsilon.wav"></audio></article>
+      <article><h2>21. Φ φ — Phi</h2><p class="target">FYE, rhyming with “pie”</p><audio controls preload="metadata" data-letter="Phi" src="browser/phi.wav"></audio></article>
+      <article><h2>22. Χ χ — Chi</h2><p class="target">KYE, rhyming with “sky”</p><audio controls preload="metadata" data-letter="Chi" src="browser/chi.wav"></audio></article>
+      <article><h2>23. Ψ ψ — Psi</h2><p class="target">SYE, like “sigh”</p><audio controls preload="metadata" data-letter="Psi" src="browser/psi.wav"></audio></article>
+      <article><h2>24. Ω ω — Omega</h2><p class="target">oh-MAY-guh</p><audio controls preload="metadata" data-letter="Omega" src="browser/omega.wav"></audio></article>
+    </main>
+    <footer><a href="REVIEW.md">review record</a> · <a href="SOURCE.md">generation and technical evidence</a> · <a href="../openai-marin-2026-08-10/review.html">standard Marin fallback set</a></footer>
+    <script>
+      const clips = [...document.querySelectorAll("audio")];
+      const status = document.querySelector("#status");
+      let sequenceIndex = -1;
+      function clearPlaying() { document.querySelectorAll("article.playing").forEach((item) => item.classList.remove("playing")); }
+      function stopAll(message = "Stopped.") { sequenceIndex = -1; clips.forEach((clip) => { clip.pause(); clip.currentTime = 0; }); clearPlaying(); status.textContent = message; }
+      async function playAt(index) { if (index >= clips.length) { stopAll("Set complete."); return; } sequenceIndex = index; const clip = clips[index]; clips.forEach((other) => { if (other !== clip) other.pause(); }); clearPlaying(); clip.closest("article").classList.add("playing"); clip.currentTime = 0; status.textContent = `Playing ${clip.dataset.letter}.`; try { await clip.play(); } catch { stopAll("Playback was blocked; use an individual control."); } }
+      clips.forEach((clip, index) => { clip.addEventListener("play", () => { clips.forEach((other) => { if (other !== clip) other.pause(); }); clearPlaying(); clip.closest("article").classList.add("playing"); if (sequenceIndex !== index) { sequenceIndex = -1; status.textContent = `Playing ${clip.dataset.letter}.`; } }); clip.addEventListener("ended", () => { if (sequenceIndex === index) playAt(index + 1); else clearPlaying(); }); });
+      document.querySelector("#play-all").addEventListener("click", () => playAt(0));
+      document.querySelector("#stop").addEventListener("click", () => stopAll());
+    </script>
+  </body>
+</html>

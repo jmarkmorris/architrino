@@ -112,6 +112,39 @@ This packet protects one live derivation route and does not create a separate va
 | Equation mapping | Project the shared state into observer-level rows without upgrading coefficients before acceptance. |
 | Cosmology | Use the same constitutive state for effective metric, pressure, growth, and low-acceleration projections; no sector-local retuning. |
 
+## Polarization-Resolved Strong-Loading Bridge
+
+The [vacuum-birefringence source map](../source-mining/vacuum-birefringence-noether-sea-constitutive-map.md)
+adds a concrete photon-channel consumer without changing this packet's blocker
+or status. Project the same retained orientation or strain record into the
+transverse photon plane,
+
+$$
+P_{\perp}^{ij}=\delta^{ij}-\hat{k}^{i}\hat{k}^{j},
+$$
+
+and require the polarization-resolved susceptibility to be derived from the
+same $\mathcal C_{\mathrm{sea}}^{(\ell)}$ row:
+
+$$
+\chi_{\gamma}^{ab}
+=
+\chi_{\mathrm{iso}}P_{\perp}^{ab}
++
+\chi_{\mathrm{aniso}}
+P_{\perp}^{a i}S_{ij}^{\mathrm{TF}}P_{\perp}^{j b}
++
+R_{\gamma}^{ab}.
+$$
+
+The two eigenvalues must coincide in the weak homogeneous isotropic limit and
+may split only when the same retained state supplies nonzero local orientation
+or strain. Their gap and eigenvectors then feed an observer-level Stokes
+transport, an adiabatic-following calculation, and any candidate mode crossing.
+A source-specific refractive tensor, an independently fitted strong-field row,
+or a polarization split that is not tied to the clock, stress, metric, and
+matter response remains a failed shared constitutive object.
+
 ## Falsifiers
 
 - The pressure perturbation changes the retained root or branch identity without a declared transition row.

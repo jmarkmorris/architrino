@@ -6,26 +6,25 @@ import {
   TOPO_DEFAULT_CONTOUR_RANGE_DECADES,
   TOPO_DEFAULT_CONTOUR_COUNT,
   TOPO_DEFAULT_CONTOUR_REACH,
-  TOPO_DEFAULT_SHADING_SPREAD,
   TOPO_DEFAULT_CONTOUR_VISIBILITY,
+  TOPO_ABSOLUTE_OBSERVER,
+  TOPO_DEFAULT_WAKE_VIEW,
   TOPO_CONTOUR_WEIGHT_POLICY_ID,
   TOPO_WEAKEST_CONTOUR_WEIGHT,
   TOPO_ZERO_CONTOUR_WEIGHT,
   TOPO_DEFAULT_DISPLAY_SCALE,
-  TOPO_DEFAULT_HEATMAP_MODE,
-  TOPO_DISPLAY_CLIP_MAGNITUDE,
+  TOPO_DEFAULT_SHADING_SPREAD,
   TOPO_DISPLAY_MAPPING_ID,
   TOPO_DISPLAY_SCALE_STEP,
-  TOPO_EQUAL_RADIUS_CHART_ID,
-  TOPO_EXPONENT_RADIUS_CHART_ID,
-  TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS,
   TOPO_FIRST_CONTOUR_BUDGET_MS,
   TOPO_INTERACTION_CONTRACT_ID,
-  TOPO_HEATMAP_MODE,
   TOPO_INVERSE_SQUARE_SCALE,
   TOPO_MAX_DISPLAY_SCALE,
+  TOPO_MAX_SHADING_REACH_SCALE,
   TOPO_MIN_DISPLAY_SCALE,
+  TOPO_MIN_SHADING_REACH_SCALE,
   TOPO_REFERENCE_SCALE,
+  TOPO_REFERENCE_WAKE_MAGNITUDE,
   TOPO_SOURCE_POSITION,
   TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE,
   TOPO_TRANSLATION_AXIS,
@@ -34,8 +33,6 @@ import {
   createTopoContourEmphasis,
   createTopoContourLevelStyle,
   createTopoContourMagnitudeSchedule,
-  createTopoEqualRadiusChart,
-  createTopoExponentRadiusChart,
   createTopoPreviewFrameIdentity,
   createTopoSampleRgb,
   createTopoSignedRgb,
@@ -47,21 +44,16 @@ import {
   normalizeTopoDisplayScale,
   normalizeTopoContourCount,
   normalizeTopoContourReach,
-  normalizeTopoShadingSpread,
-  normalizeTopoDisplayValue,
-  normalizeTopoExponentRadiusColorValue,
   normalizeTopoFieldColorValue,
-  normalizeTopoPhysicalMagnitudeValue,
+  normalizeTopoShadingSpread,
+  normalizeTopoWakeView,
   resolveTopoCanvasPixelSize,
   syntheticTopoCausalDelay,
   syntheticTopoSignedValue,
   topoContourRangeDecades,
   topoCanvasPixelForWorldPoint,
-  topoEqualRadiusDisplayRadiusForExponent,
-  topoExponentDisplayRadiusForExponent,
-  topoExponentRadiusPhysicalPointForCanvasPixel,
-  topoPhysicalRadiusForWakeExponent,
   topoPreviewResultAt,
+  topoShadingReachScale,
   topoWorldPointForCanvasPixel,
   transformTopoValue,
 } from "../src/apps/topo/TopoInteractionContract.js";
@@ -77,6 +69,10 @@ import {
   topoCollinearPairWorldXForScreenFraction,
 } from "../src/apps/topo/TopoCollinearPairScenario.js";
 import {
+  createTopoCircularBinaryRawSampler,
+  sampleTopoCircularBinaryWake,
+} from "../src/apps/topo/TopoCircularBinaryScenario.js";
+import {
   getStandaloneAppPathForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
 import {
@@ -88,6 +84,7 @@ import {
   TOPO_VISIBLE_SOURCE_MARKER_RADIUS_CSS_PIXELS,
   TOPO_EXACT_SOURCE_MASK_WORLD_RADIUS,
   TOPO_CANVAS_SAMPLE_CENTER_OFFSET,
+  createTopoNeutralBackgroundRgb,
   resolveTopoLinearViewportAnchor,
   resolveTopoSourceMarkerRadius,
   resolveTopoSourceMaskRadius,
@@ -100,7 +97,8 @@ import {
   topoGlobalTransportOwnsSpace,
   topoAnimatedScenarioUsesMinimumBeta,
   normalizeTopoScenarioBeta,
-  topoEqualRadiusViewAvailable,
+  normalizeTopoNeutralWhiteMix,
+  resetTopoVisiblePresentation,
 } from "../src/apps/topo/TopoInteractionContractRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -169,6 +167,61 @@ test("display scale changes the sampled world extent while preserving its anchor
     closeTo(roundTrip.x, probe.x);
     closeTo(roundTrip.y, probe.y);
   }
+});
+
+test("neutral background adds only white to Electric Purple", () => {
+  const electricPurple = [143, 0, 255];
+  assert.equal(normalizeTopoNeutralWhiteMix(-1), 0);
+  assert.equal(normalizeTopoNeutralWhiteMix(0.5), 0.5);
+  assert.equal(normalizeTopoNeutralWhiteMix(2), 1);
+  assert.deepEqual(
+    createTopoNeutralBackgroundRgb(electricPurple, 0),
+    electricPurple,
+  );
+  assert.deepEqual(
+    createTopoNeutralBackgroundRgb(electricPurple, 0.5),
+    [199, 128, 255],
+  );
+  assert.deepEqual(
+    createTopoNeutralBackgroundRgb(electricPurple, 1),
+    [255, 255, 255],
+  );
+});
+
+test("control changes synchronously clear every visible presentation layer", () => {
+  const calls = [];
+  const canvas = { style: { opacity: "0" } };
+  const analyticFieldCanvas = { style: { visibility: "visible" } };
+  const fieldContext = {
+    fillStyle: "",
+    clearRect: (...args) => calls.push(["field-clear", ...args]),
+    fillRect: (...args) => calls.push(["field-fill", ...args]),
+  };
+  const contourContext = {
+    clearRect: (...args) => calls.push(["contour-clear", ...args]),
+  };
+  const contourStagingContext = {
+    clearRect: (...args) => calls.push(["staging-clear", ...args]),
+  };
+  resetTopoVisiblePresentation({
+    canvas,
+    analyticFieldCanvas,
+    fieldContext,
+    contourContext,
+    contourStagingContext,
+    width: 916,
+    height: 720,
+    neutralColor: "rgb(143, 0, 255)",
+  });
+  assert.equal(canvas.style.opacity, "1");
+  assert.equal(analyticFieldCanvas.style.visibility, "hidden");
+  assert.equal(fieldContext.fillStyle, "rgb(143, 0, 255)");
+  assert.deepEqual(calls, [
+    ["field-clear", 0, 0, 916, 720],
+    ["field-fill", 0, 0, 916, 720],
+    ["contour-clear", 0, 0, 916, 720],
+    ["staging-clear", 0, 0, 916, 720],
+  ]);
 });
 
 test("pair display scale keeps every rendered layer on one fixed center anchor", () => {
@@ -271,15 +324,22 @@ test("pair display scale keeps every rendered layer on one fixed center anchor",
   assert.match(runtime, /dataset\.viewportTemporalFrameKey/u);
 });
 
-test("physical magnitude is the default and enhanced decade contrast is optional", () => {
+test("bounded square-root shading varies only its one-over-distance-like reach", () => {
   assert.equal(TOPO_INTERACTION_CONTRACT_ID, "topo_interaction_and_color/v1");
-  assert.equal(TOPO_DISPLAY_MAPPING_ID, "signed-log10");
-  assert.equal(TOPO_DEFAULT_HEATMAP_MODE, TOPO_HEATMAP_MODE.PHYSICAL_MAGNITUDE);
+  assert.equal(
+    TOPO_DISPLAY_MAPPING_ID,
+    "signed-bounded-square-root-variable-reach/v1",
+  );
   assert.equal(TOPO_REFERENCE_SCALE, 4);
-  assert.equal(TOPO_DISPLAY_CLIP_MAGNITUDE, 64);
+  assert.equal(TOPO_REFERENCE_WAKE_MAGNITUDE, 64);
+  assert.equal(TOPO_DEFAULT_SHADING_SPREAD, 0.5);
+  assert.equal(TOPO_MIN_SHADING_REACH_SCALE, 0.25);
+  assert.equal(TOPO_MAX_SHADING_REACH_SCALE, 4);
+  closeTo(topoShadingReachScale(0), 0.25);
+  closeTo(topoShadingReachScale(0.5), 1);
+  closeTo(topoShadingReachScale(1), 4);
   assert.equal(TOPO_DEFAULT_CONTOUR_COUNT, 13);
   assert.equal(TOPO_DEFAULT_CONTOUR_REACH, 3);
-  assert.equal(TOPO_DEFAULT_SHADING_SPREAD, 0.75);
   assert.equal(TOPO_DEFAULT_CONTOUR_RANGE_DECADES, 3);
   assert.equal(TOPO_DEFAULT_CONTOUR_VISIBILITY, 0.75);
   assert.ok(TOPO_FIRST_CONTOUR_BUDGET_MS <= 34);
@@ -293,7 +353,6 @@ test("physical magnitude is the default and enhanced decade contrast is optional
     for (const exponent of [-3, -2, -1, 0]) {
       const raw = polaritySign * 64 * 10 ** exponent;
       const physical = normalizeTopoFieldColorValue(raw);
-      closeTo(physical, normalizeTopoPhysicalMagnitudeValue(raw));
       if (prior != null) {
         assert.ok(Math.abs(physical) > Math.abs(prior));
       }
@@ -301,56 +360,41 @@ test("physical magnitude is the default and enhanced decade contrast is optional
     }
   }
   closeTo(normalizeTopoFieldColorValue(0), 0);
-  closeTo(normalizeTopoFieldColorValue(640), 1);
-  closeTo(normalizeTopoFieldColorValue(-640), -1);
+  closeTo(normalizeTopoFieldColorValue(64), 0.5);
+  closeTo(normalizeTopoFieldColorValue(576), 0.75);
+  closeTo(normalizeTopoFieldColorValue(-576), -0.75);
+  assert.ok(
+    normalizeTopoFieldColorValue(1, { spread: 1 }) >
+      normalizeTopoFieldColorValue(1, { spread: 0 }),
+  );
   for (const magnitude of [0.001, 0.01, 0.1, 1, 4, 16, 64]) {
-    closeTo(
-      normalizeTopoFieldColorValue(magnitude, {
-        mode: TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST,
-      }),
-      normalizeTopoDisplayValue(magnitude),
-    );
     closeTo(
       normalizeTopoFieldColorValue(-magnitude),
       -normalizeTopoFieldColorValue(magnitude),
     );
   }
-  assert.throws(
-    () => normalizeTopoFieldColorValue(1, { mode: "unknown" }),
-    /Unknown Topo heatmap mode/u,
-  );
 });
 
-test("shading spread is signed, monotonic, and independent of raw values", () => {
-  const magnitudes = [0, 0.064, 0.64, 6.4, 64, 640];
-  const tight = magnitudes.map((magnitude) =>
-    normalizeTopoPhysicalMagnitudeValue(magnitude, 64, { reach: 3, spread: 0 }));
-  const broad = magnitudes.map((magnitude) =>
-    normalizeTopoPhysicalMagnitudeValue(magnitude, 64, { reach: 3, spread: 1 }));
-  for (const strengths of [tight, broad]) {
-    for (let index = 1; index < strengths.length; index += 1) {
-      assert.ok(strengths[index] >= strengths[index - 1]);
+test("shading spread changes only the stationary one-over-distance visibility reach", () => {
+  const anchor = TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.anchor;
+  assert.equal(normalizeTopoShadingSpread(-1), 0);
+  assert.equal(normalizeTopoShadingSpread(2), 1);
+  for (const spread of [0, 0.5, 1]) {
+    const reach = anchor * topoShadingReachScale(spread);
+    for (const radius of [anchor / 4, anchor, anchor * 2, anchor * 10]) {
+      const rawMagnitude = TOPO_INVERSE_SQUARE_SCALE / radius ** 2;
+      closeTo(
+        normalizeTopoFieldColorValue(rawMagnitude, { spread }),
+        reach / (radius + reach),
+      );
+      closeTo(
+        normalizeTopoFieldColorValue(-rawMagnitude, { spread }),
+        -reach / (radius + reach),
+      );
     }
   }
-  for (let index = 1; index < magnitudes.length - 1; index += 1) {
-    assert.ok(broad[index] >= tight[index]);
-    closeTo(
-      normalizeTopoPhysicalMagnitudeValue(-magnitudes[index], 64, {
-        reach: 3,
-        spread: 1,
-      }),
-      -broad[index],
-    );
-  }
-  closeTo(tight[0], 0);
-  closeTo(broad.at(-1), 1);
   assert.equal(normalizeTopoContourCount(99), 25);
   assert.equal(normalizeTopoContourReach(99), 6);
-  assert.equal(normalizeTopoShadingSpread(-1), 0);
-  closeTo(
-    normalizeTopoFieldColorValue(0.64, { spread: 1 }),
-    normalizeTopoFieldColorValue(0.64, { spread: 1, reach: 1 }),
-  );
 });
 
 test("contour count and reach independently select genuine equal-value thresholds", () => {
@@ -398,7 +442,7 @@ test("contour count and reach independently select genuine equal-value threshold
 test("inverse-square wake magnitude is anchored at the first contour", () => {
   closeTo(
     TOPO_INVERSE_SQUARE_SCALE,
-    TOPO_DISPLAY_CLIP_MAGNITUDE * TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.anchor ** 2,
+    TOPO_REFERENCE_WAKE_MAGNITUDE * TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.anchor ** 2,
   );
   const anchorPoint = {
     x: TOPO_SOURCE_POSITION.x - TOPO_SYNTHETIC_CONTOUR_DELAY_RANGE.anchor,
@@ -408,7 +452,7 @@ test("inverse-square wake magnitude is anchored at the first contour", () => {
   };
   closeTo(
     syntheticTopoSignedValue(anchorPoint),
-    -TOPO_DISPLAY_CLIP_MAGNITUDE,
+    -TOPO_REFERENCE_WAKE_MAGNITUDE,
   );
   const farther = { ...anchorPoint, x: TOPO_SOURCE_POSITION.x - 0.05 };
   closeTo(
@@ -506,256 +550,16 @@ test("contour span preserves the raw kernel, frame identity, polarity, and movin
     syntheticTopoSignedValue({ ...sample, polaritySign: 1 }),
     -rawBefore,
   );
+});
+
+test("ordinary stationary singles retain the one linear presentation", () => {
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
-  assert.match(runtime, /state\.beta === 0/u);
-  assert.match(runtime, /state\.viewMode === "source-local"/u);
-  assert.match(runtime, /sourceLocalViewAvailable/u);
-  assert.match(runtime, /source-local-unavailable/u);
-  assert.match(runtime, /enforceAvailableView/u);
-  assert.match(runtime, /View switched to Combined wake/u);
-  const rawFrameKeySource = runtime.slice(
-    runtime.indexOf("function createRawFrameKey"),
-    runtime.indexOf("async function buildRawFrame"),
-  );
-  assert.doesNotMatch(rawFrameKeySource, /heatmapMode/u);
-  assert.match(runtime, /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.heatmapMode[\s\S]*state\.contourRangeDecades/u);
-});
-
-test("ordinary stationary singles keep the Combined presentation at beta zero", () => {
-  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
-  assert.match(runtime, /const automaticView = "combined"/u);
-  assert.match(
+  assert.match(runtime, /dataset\.coordinateMode = "linear-absolute-space"/u);
+  assert.match(runtime, /Shading scale/u);
+  assert.doesNotMatch(
     runtime,
-    /specialistDisplay && requestedView === "source-local"[\s\S]*\? "source-local"/u,
+    /source-local|equal-radius|specialistDisplay|advancedDisplay/u,
   );
-  assert.match(
-    runtime,
-    /state\.viewMode === "source-local"[\s\S]*!state\.pairMode && !state\.binary && state\.beta === 0/u,
-  );
-  assert.match(runtime, /Combined absolute-space wake/u);
-  assert.match(runtime, /source-local-exponent-decades/u);
-});
-
-test("beta-zero single-source exponent radius maps integer exponents to equal display steps", () => {
-  const width = 916;
-  const height = 720;
-  const markerRadius = 4.5;
-  const chart = createTopoExponentRadiusChart({
-    width,
-    height,
-    pixelRatio: 1,
-    sourceMarkerRadiusPixels: markerRadius,
-    contourRangeDecades: 3,
-  });
-  assert.equal(chart.chartId, TOPO_EXPONENT_RADIUS_CHART_ID);
-  assert.equal(chart.span, 3);
-  assert.equal(chart.referenceMagnitude, 64);
-  assert.equal(chart.outsidePolicy, "neutral-clip-no-clamp");
-  assert.equal(TOPO_EXPONENT_RADIUS_MARKER_GAP_CSS, 0);
-
-  const exponents = [3, 2, 1, 0, -1, -2, -3];
-  const radii = exponents.map((exponent) =>
-    topoExponentDisplayRadiusForExponent({ exponent, chart }));
-  for (let index = 1; index < radii.length; index += 1) {
-    closeTo(radii[index] - radii[index - 1], chart.radialStepPixels);
-  }
-  closeTo(radii[0], chart.innerRadiusPixels);
-  closeTo(radii.at(-1), chart.outerRadiusPixels);
-
-  for (const exponent of exponents) {
-    const radius = topoExponentDisplayRadiusForExponent({ exponent, chart });
-    const mapped = topoExponentRadiusPhysicalPointForCanvasPixel({
-      pixelX: chart.sourcePixelX - radius,
-      pixelY: chart.sourcePixelY,
-      width,
-      height,
-      chart,
-    });
-    assert.equal(mapped.state, "ordinary");
-    closeTo(mapped.exponent, exponent);
-    closeTo(mapped.physicalRadius, topoPhysicalRadiusForWakeExponent(exponent));
-    for (const polaritySign of [-1, 1]) {
-      const raw = syntheticTopoSignedValue({
-        ...mapped.physicalPoint,
-        beta: 0,
-        polaritySign,
-      });
-      closeTo(raw, polaritySign * 64 * 10 ** exponent, Math.abs(raw) * 1e-12);
-    }
-  }
-
-  assert.equal(topoExponentRadiusPhysicalPointForCanvasPixel({
-    pixelX: chart.sourcePixelX + chart.innerRadiusPixels - 0.25,
-    pixelY: chart.sourcePixelY,
-    width,
-    height,
-    chart,
-  }).state, "masked:inside_exponent_radius");
-  assert.equal(topoExponentRadiusPhysicalPointForCanvasPixel({
-    pixelX: chart.sourcePixelX + chart.outerRadiusPixels + 0.25,
-    pixelY: chart.sourcePixelY,
-    width,
-    height,
-    chart,
-  }).state, "clipped:outside_exponent_radius");
-});
-
-test("selected-source equal-radius chart starts e=0 at r and shows only nonnegative exponent rings", () => {
-  const chart = createTopoEqualRadiusChart({
-    width: 916,
-    height: 720,
-    pixelRatio: 1,
-    anchorPixelX: 183.2,
-    anchorPixelY: 359.5,
-    contourRangeDecades: 3,
-  });
-  assert.equal(chart.chartId, TOPO_EQUAL_RADIUS_CHART_ID);
-  assert.equal(chart.exponentMinimum, 0);
-  assert.equal(chart.exponentMaximum, 3);
-  assert.equal(chart.anchorPixelX, 183.2);
-  assert.equal(chart.anchorPixelY, 359.5);
-  assert.equal(chart.levelPolicy, "nonnegative-raw-exponents-only");
-  assert.equal(
-    chart.coordinateAuthority,
-    "display-only-not-global-physical-transform",
-  );
-  const radii = [0, 1, 2, 3].map((exponent) =>
-    topoEqualRadiusDisplayRadiusForExponent({ exponent, chart }));
-  assert.deepEqual(radii, [1, 2, 3, 4].map((multiple) =>
-    multiple * chart.radialStepPixels));
-  assert.equal(radii[0], chart.radialStepPixels);
-  assert.equal(radii.at(-1), chart.outerRadiusPixels);
-  assert.throws(
-    () => topoEqualRadiusDisplayRadiusForExponent({ exponent: -1, chart }),
-    /integers in \[0, exponentMaximum\]/u,
-  );
-
-  const physical = createTopoSyntheticContourRenderPlan({
-    beta: 0.5,
-    contourRangeDecades: 3,
-  });
-  assert.deepEqual(
-    physical.map(({ rawDecade }) => rawDecade),
-    [3, 2, 1, 0, -1, -2, -3],
-  );
-  assert.deepEqual(
-    physical.filter(({ rawDecade }) => rawDecade >= 0)
-      .map(({ rawDecade }) => rawDecade),
-    [3, 2, 1, 0],
-  );
-});
-
-test("equal-radius chart is available only for a stationary single source", () => {
-  assert.equal(topoEqualRadiusViewAvailable({
-    viewMode: "equal-radius",
-    beta: 0,
-    scenarioId: "electrino",
-  }), true);
-  assert.equal(topoEqualRadiusViewAvailable({
-    viewMode: "equal-radius",
-    beta: 0.01,
-    scenarioId: "electrino",
-  }), false);
-  assert.equal(topoEqualRadiusViewAvailable({
-    viewMode: "equal-radius",
-    beta: 0,
-    pairMode: true,
-  }), false);
-  assert.equal(topoEqualRadiusViewAvailable({
-    viewMode: "equal-radius",
-    beta: 0,
-    binary: true,
-  }), false);
-  assert.equal(topoEqualRadiusViewAvailable({
-    viewMode: "combined",
-    beta: 0,
-    scenarioId: "electrino",
-  }), false);
-});
-
-test("source-local heatmap uses the shared shading transfer without changing level geometry", () => {
-  for (const span of [1, 2, 3, 4]) {
-    for (let exponent = -span; exponent <= span; exponent += 1) {
-      const magnitude = 64 * 10 ** exponent;
-      const expectedPhysical = Math.min(1, Math.max(0,
-        (exponent + 3) / 4,
-      )) ** 1.75;
-      const expectedEnhanced = ((exponent + span) / (2 * span)) ** 0.72;
-      for (const polaritySign of [-1, 1]) {
-        closeTo(
-          normalizeTopoExponentRadiusColorValue(
-            polaritySign * magnitude,
-            { span },
-          ),
-          polaritySign * expectedPhysical,
-        );
-        closeTo(
-          normalizeTopoExponentRadiusColorValue(
-            polaritySign * magnitude,
-            {
-              span,
-              mode: TOPO_HEATMAP_MODE.ENHANCED_DECADE_CONTRAST,
-            },
-          ),
-          polaritySign * expectedEnhanced,
-        );
-      }
-    }
-  }
-});
-
-test("source-local physical colors grade successive levels with the common transfer", () => {
-  const actual = [0, -1, -2, -3].map((exponent) =>
-    normalizeTopoExponentRadiusColorValue(-64 * 10 ** exponent, { span: 3 }));
-  const expected = [0, -1, -2, -3].map((level) =>
-    -(Math.max(0, (level + 3) / 4) ** 1.75));
-  assert.deepEqual(actual, expected);
-
-  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
-  assert.match(
-    runtime,
-    /exponent \+ \$\{TOPO_DEFAULT_CONTOUR_REACH\.toPrecision/u,
-  );
-  assert.doesNotMatch(runtime, /createTopoSourceLocalLegendGradient/u);
-  assert.match(
-    runtime,
-    /dom\.legendGradient\.style\.background = state\.pairMode \|\| state\.binary[\s\S]*linear-gradient\(90deg,[\s\S]*styles\.zero/u,
-  );
-});
-
-test("exponent-radius resize changes display spacing without changing raw exponent values", () => {
-  for (const { width, height } of [
-    { width: 1440, height: 600 },
-    { width: 390, height: 844 },
-  ]) {
-    const chart = createTopoExponentRadiusChart({
-      width,
-      height,
-      pixelRatio: 1,
-      sourceMarkerRadiusPixels: 4.5,
-      contourRangeDecades: 4,
-    });
-    for (const exponent of [4, 0, -4]) {
-      const radius = topoExponentDisplayRadiusForExponent({ exponent, chart });
-      const mapped = topoExponentRadiusPhysicalPointForCanvasPixel({
-        pixelX: chart.sourcePixelX,
-        pixelY: chart.sourcePixelY - radius,
-        width,
-        height,
-        chart,
-      });
-      closeTo(mapped.exponent, exponent);
-      closeTo(
-        Math.abs(syntheticTopoSignedValue({
-          ...mapped.physicalPoint,
-          beta: 0,
-          polaritySign: 1,
-        })),
-        64 * 10 ** exponent,
-        64 * 10 ** exponent * 1e-12,
-      );
-    }
-  }
 });
 
 test("contour strength scales one monotonic actual-level profile with symmetric signs", () => {
@@ -896,22 +700,8 @@ test("true x-y chart maps equal pixel distances to equal beta-zero values", () =
 test("analytic display-pixel reference is deterministic for both polarities", () => {
   const width = 916;
   const height = 720;
-  const chart = createTopoExponentRadiusChart({
-    width,
-    height,
-    sourceMarkerRadiusPixels: 4.5,
-    contourRangeDecades: 3,
-  });
   for (const beta of [0, 0.5, 0.83, 1]) {
-    const sample = beta === 0
-      ? {
-        pixelX: chart.sourcePixelX -
-          topoExponentDisplayRadiusForExponent({ exponent: 0, chart }),
-        pixelY: chart.sourcePixelY,
-        width,
-        height,
-      }
-      : { pixelX: 210, pixelY: 357, width, height };
+    const sample = { pixelX: 210, pixelY: 357, width, height };
     const electrino = createTopoAnalyticFieldRgbAtCanvasPixel({
       ...sample,
       beta,
@@ -1020,12 +810,15 @@ test("collinear pair follows finite prescribed paths between 20% and 80%", () =>
   );
 });
 
-test("collinear pair superposes admitted path-history contributions before display", () => {
+test("collinear perspectives retain only the admitted partner path-history contribution", () => {
   const initialFrame = createTopoCollinearPairFrame({ beta: 0.5, phase: 0 });
   assert.equal(
     initialFrame.sources.every((source) =>
       source.historyModel === TOPO_COLLINEAR_PAIR_HISTORY_MODEL &&
-      source.historyStartTime === Number.NEGATIVE_INFINITY),
+      source.historyStartTime === Number.NEGATIVE_INFINITY &&
+      source.launchTime === 0 &&
+      source.prelaunchVelocityBeta === 0 &&
+      source.prelaunchPosition === source.start),
     true,
   );
   const initialSampler = createTopoCollinearPairRawSampler({
@@ -1033,33 +826,177 @@ test("collinear pair superposes admitted path-history contributions before displ
     phase: 0,
     sourceMaskRadius: 0,
   });
-  closeTo(initialSampler(0.5, 0.6), 0);
-  assert.ok(initialSampler(0.3, 0.6) < 0);
+  const initialPositrinoPerspective = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  assert.ok(initialSampler(0.5, 0.6) > 0);
+  assert.ok(initialPositrinoPerspective(0.5, 0.6) < 0);
+  closeTo(initialSampler(0.5, 0.6), -initialPositrinoPerspective(0.5, 0.6));
+  const initialAbsoluteObserver = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  closeTo(
+    initialAbsoluteObserver(0.5, 0.6),
+    initialSampler(0.5, 0.6) + initialPositrinoPerspective(0.5, 0.6),
+  );
 
   const approachingSampler = createTopoCollinearPairRawSampler({
     beta: 0.5,
     phase: 0.25,
     sourceMaskRadius: 0,
   });
-  const leftValue = approachingSampler(0.38, 0.5);
-  const rightValue = approachingSampler(0.62, 0.5);
-  assert.ok(leftValue < 0);
-  assert.ok(rightValue > 0);
-  closeTo(leftValue, -rightValue, 1e-9);
+  assert.ok(approachingSampler(0.38, 0.5) > 0);
+  assert.ok(approachingSampler(0.62, 0.5) > 0);
+
+  const approachingFrame = createTopoCollinearPairFrame({ beta: 0.5, phase: 0.25 });
+  const selectedElectrino = approachingFrame.sources.find(({ id }) => id === "electrino");
+  const retainedPositrino = approachingFrame.sources.find(({ id }) => id === "positrino");
+  const maskedSampler = createTopoCollinearPairRawSampler({
+    beta: 0.5,
+    phase: 0.25,
+    sourceMaskRadius: 1e-6,
+  });
+  assert.ok(Number.isFinite(maskedSampler(
+    selectedElectrino.position.x,
+    selectedElectrino.position.y,
+  )));
+  assert.equal(Number.isNaN(maskedSampler(
+    retainedPositrino.position.x,
+    retainedPositrino.position.y,
+  )), true);
 
   const crossingSampler = createTopoCollinearPairRawSampler({
     beta: 0.5,
     phase: 0.5,
     sourceMaskRadius: 0,
   });
-  closeTo(crossingSampler(0.5, 0.6), 0);
+  assert.ok(crossingSampler(0.5, 0.6) > 0);
 
   const endpointSampler = createTopoCollinearPairRawSampler({
     beta: 1,
     phase: 0.5,
     sourceMaskRadius: 0,
   });
-  assert.equal(endpointSampler(0.5, 0.8), Number.POSITIVE_INFINITY);
+  assert.ok(Number.isFinite(endpointSampler(0.5, 0.8)));
+});
+
+test("beta-one absolute observer shows each arriving collinear wake", () => {
+  const phase = 0;
+  const absoluteSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  const electrinoWakeSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  const positrinoWakeSampler = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase,
+    sourceMaskRadius: 0,
+    observerId: "electrino",
+  });
+  const leftTrailingPoint = [0.1, 0.6];
+  const rightTrailingPoint = [0.9, 0.6];
+  assert.ok(absoluteSampler(...leftTrailingPoint) < 0);
+  assert.ok(absoluteSampler(...rightTrailingPoint) > 0);
+  for (const point of [leftTrailingPoint, [0.5, 0.6], rightTrailingPoint]) {
+    assert.ok(Number.isFinite(electrinoWakeSampler(...point)));
+    assert.ok(Number.isFinite(positrinoWakeSampler(...point)));
+    closeTo(
+      absoluteSampler(...point),
+      electrinoWakeSampler(...point) + positrinoWakeSampler(...point),
+    );
+  }
+  closeTo(absoluteSampler(0.5, 0.6), 0);
+
+  for (const replayPhase of [0, 0.25, 0.5, 0.75, 1]) {
+    const fullHistorySampler = createTopoCollinearPairRawSampler({
+      beta: 1,
+      phase: replayPhase,
+      horizontalWorldSpan: 16 / 9,
+      sourceMaskRadius: 0,
+      superposition: true,
+    });
+    for (const x of [-1, 0, 0.5, 1, 2]) {
+      assert.ok(Number.isFinite(fullHistorySampler(x, 0.73)));
+    }
+  }
+
+  const postCrossingPhase = 0.75;
+  const postCrossingAbsolute = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: postCrossingPhase,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  const postCrossingElectrinoWake = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: postCrossingPhase,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  const postCrossingPositrinoWake = createTopoCollinearPairRawSampler({
+    beta: 1,
+    phase: postCrossingPhase,
+    sourceMaskRadius: 0,
+    observerId: "electrino",
+  });
+  closeTo(
+    postCrossingAbsolute(0.45, 0.6),
+    postCrossingElectrinoWake(0.45, 0.6) +
+      postCrossingPositrinoWake(0.45, 0.6),
+  );
+});
+
+test("absolute observer sums both circular-binary wake contributions", () => {
+  assert.equal(TOPO_DEFAULT_WAKE_VIEW, TOPO_ABSOLUTE_OBSERVER);
+  assert.equal(normalizeTopoWakeView(), TOPO_ABSOLUTE_OBSERVER);
+  assert.equal(normalizeTopoWakeView("absolute"), TOPO_ABSOLUTE_OBSERVER);
+  const point = { x: 0.5, y: 0.8 };
+  const electrinoView = sampleTopoCircularBinaryWake({
+    point,
+    beta: 0.5,
+    sourceMaskRadius: 0,
+    observerId: "electrino",
+  });
+  const positrinoView = sampleTopoCircularBinaryWake({
+    point,
+    beta: 0.5,
+    sourceMaskRadius: 0,
+    observerId: "positrino",
+  });
+  const absoluteView = sampleTopoCircularBinaryWake({
+    point,
+    beta: 0.5,
+    sourceMaskRadius: 0,
+    superposition: true,
+  });
+  assert.equal(electrinoView.state, "ordinary");
+  assert.equal(positrinoView.state, "ordinary");
+  assert.equal(absoluteView.state, "ordinary");
+  closeTo(
+    absoluteView.rawValue,
+    electrinoView.rawValue + positrinoView.rawValue,
+  );
+  closeTo(
+    createTopoCircularBinaryRawSampler({
+      beta: 0.5,
+      sourceMaskRadius: 0,
+      superposition: true,
+    })(point.x, point.y),
+    absoluteView.rawValue,
+  );
 });
 
 test("private provider states remain distinct from visible neutral color", () => {
@@ -1387,10 +1324,8 @@ test("animated Topo scenarios enter paused at zero and keep Space context-safe",
   assert.match(scenarioHandler, /binaryProgress = 0/u);
   assert.match(scenarioHandler, /scheduleFrameChange\(\)/u);
   assert.doesNotMatch(scenarioHandler, /startPairPlayback/u);
-  assert.match(runtime, /let backgroundPointerActivation = false/u);
-  assert.match(runtime, /backgroundPointerActivation &&[\s\S]*dom\.canvas\.focus/u);
-  assert.match(runtime, /listen\(dom\.backgroundControl, "pointerdown"/u);
-  assert.match(runtime, /listen\(dom\.backgroundControl, "keydown"/u);
+  assert.match(runtime, /installRangeInteraction\(dom\.background\)/u);
+  assert.match(runtime, /listen\(dom\.background, "input", scheduleFrameChange\)/u);
   assert.match(runtime, /binaryProgress = 0;[\s\S]*updateBinaryTransportPresentation\(\)/u);
   assert.equal(topoGlobalTransportOwnsSpace({
     code: "Space",
@@ -1431,7 +1366,151 @@ test("animated beta minimum is 0.05 while stationary singles retain beta zero", 
   assert.match(runtime, /resolveTopoCollinearPairPlaybackSeconds\([\s\S]*getState\(\)\.beta/u);
 });
 
-test("Topo UI exposes distinct combined, source-local, and equal-radius views and preserves Home", () => {
+test("every display-affecting left-panel control invalidates the prior presentation", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  const frameScheduler = runtime.slice(
+    runtime.indexOf("function scheduleFrameChange"),
+    runtime.indexOf("function scheduleContourChange"),
+  );
+  const contourScheduler = runtime.slice(
+    runtime.indexOf("function scheduleContourChange"),
+    runtime.indexOf("function render()"),
+  );
+  assert.match(frameScheduler, /resetPresentation: true/u);
+  assert.match(contourScheduler, /resetPresentation: true/u);
+  assert.doesNotMatch(
+    runtime,
+    /holding-complete-frame|holdCompletePairFrame|previousFrameBelongsToScenario/u,
+  );
+  for (const controlRoute of [
+    /function handleScenarioChange[\s\S]*scheduleFrameChange\(\)/u,
+    /dom\.partnerPerspectiveInputs\.forEach[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.beta, "input", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.binaryRadius, "input", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.binaryOrbitGuide, "change", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /dom\.binaryDirectionInputs\.forEach[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.background, "input", scheduleFrameChange\)/u,
+    /listen\(dom\.displayScale, "input", \(\) => \{[\s\S]*scheduleFrameChange\(\)/u,
+    /listen\(dom\.contourCount, "input", scheduleContourChange\)/u,
+    /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u,
+    /listen\(dom\.contourVisibility, "input", scheduleContourChange\)/u,
+  ]) {
+    assert.match(runtime, controlRoute);
+  }
+});
+
+test("pointer-driven view controls return Space ownership to the stage", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  for (const [control, activation] of [
+    ["partnerPerspectiveControl", "partnerPerspectivePointerActivation"],
+    ["binaryDirectionControl", "binaryDirectionPointerActivation"],
+  ]) {
+    assert.match(
+      runtime,
+      new RegExp(
+        `listen\\(dom\\.${control}, "pointerdown", \\(\\) => \\{[\\s\\S]*?` +
+        `${activation} = true`,
+        "u",
+      ),
+    );
+    assert.match(
+      runtime,
+      new RegExp(
+        `listen\\(dom\\.${control}, "keydown", \\(\\) => \\{[\\s\\S]*?` +
+        `${activation} = false`,
+        "u",
+      ),
+    );
+  }
+  assert.match(
+    runtime,
+    /listen\(dom\.binaryOrbitGuide, "pointerdown", \(\) => \{[\s\S]*?binaryOrbitGuidePointerActivation = true/u,
+  );
+  for (const activation of [
+    "partnerPerspectivePointerActivation",
+    "binaryDirectionPointerActivation",
+    "binaryOrbitGuidePointerActivation",
+  ]) {
+    assert.match(
+      runtime,
+      new RegExp(
+        `const handFocusToStage = ${activation};[\\s\\S]*?` +
+        `dom\\.canvas\\.focus\\?\\.\\(\\{ preventScroll: true \\}\\)`,
+        "u",
+      ),
+    );
+  }
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "INPUT", type: "radio" },
+  }), false);
+});
+
+test("pointer-driven replay returns Space ownership to the stage", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  assert.match(
+    runtime,
+    /function installPointerStageFocusHandoff\(control\)[\s\S]*listen\(control, "pointerdown"[\s\S]*pointerActivation = true[\s\S]*listen\(control, "keydown"[\s\S]*pointerActivation = false[\s\S]*dom\.canvas\.focus\?\.\(\{ preventScroll: true \}\)/u,
+  );
+  assert.match(
+    runtime,
+    /handPairReplayPointerFocusToStage =\s*installPointerStageFocusHandoff\(dom\.pairReplay\)/u,
+  );
+  assert.match(
+    runtime,
+    /handBinaryReplayPointerFocusToStage =\s*installPointerStageFocusHandoff\(dom\.binaryReplay\)/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.pairReplay, "click"[\s\S]*handPairReplayPointerFocusToStage\(\)/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(dom\.binaryReplay, "click"[\s\S]*handBinaryReplayPointerFocusToStage\(\)/u,
+  );
+  assert.equal(topoGlobalTransportOwnsSpace({
+    code: "Space",
+    target: { tagName: "BUTTON" },
+  }), false);
+});
+
+test("Space-owned play and pause edges reset immediately without clearing animation frames", () => {
+  const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
+  const functionBody = (name, nextName) => runtime.slice(
+    runtime.indexOf("function " + name),
+    runtime.indexOf("function " + nextName),
+  );
+  assert.match(
+    functionBody("pausePairPlayback", "startPairPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    functionBody("startPairPlayback", "togglePairPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    functionBody("startBinaryPlayback", "toggleBinaryPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    functionBody("toggleBinaryPlayback", "beginBinaryTimelineScrub"),
+    /resetPresentation: true/u,
+  );
+  assert.doesNotMatch(
+    functionBody("advancePairPlayback", "beginPairTimelineScrub"),
+    /resetPresentation: true/u,
+  );
+  assert.doesNotMatch(
+    functionBody("runBinaryPlaybackFrame", "startBinaryPlayback"),
+    /resetPresentation: true/u,
+  );
+  assert.match(
+    runtime,
+    /listen\(documentLike, "keydown", \(event\) => \{[\s\S]*event\.preventDefault\(\)[\s\S]*togglePairPlayback\(\)[\s\S]*toggleBinaryPlayback\(\)/u,
+  );
+});
+
+test("Topo UI exposes partner-wake perspectives on one linear display path and preserves Home", () => {
   const html = readRepoFile("topo.html");
   const css = readRepoFile("src/apps/topo/topo.css");
   const runtime = readRepoFile("src/apps/topo/TopoInteractionContractRuntime.js");
@@ -1455,9 +1534,14 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.doesNotMatch(runtime, /state\.contourReach|dataset\.contourReach/u);
   assert.equal(
     runtime.match(/contourReach: TOPO_DEFAULT_CONTOUR_REACH/gu)?.length,
-    5,
+    2,
   );
-  assert.match(runtime, /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u);
+  assert.match(
+    runtime,
+    /listen\(dom\.shadingSpread, "input", scheduleFrameChange\)/u,
+  );
+  assert.match(runtime, /u_shading_reach_scale/u);
+  assert.doesNotMatch(runtime, /u_shading_power|u_exponent_span/u);
   assert.match(
     runtime,
     /listen\(dom\.contourVisibility, "input", scheduleContourChange\)/u,
@@ -1497,19 +1581,21 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
     runtime,
     /state\.contourVisibility === 0[\s\S]*\? "Hidden"/u,
   );
-  assert.match(runtime, /createTopoExponentRadiusChart/u);
-  assert.match(runtime, /sourceLocalViewRequested/u);
-  assert.match(runtime, /sourceLocalViewAvailable/u);
-  assert.match(runtime, /topoExponentRadiusPhysicalPointForCanvasPixel/u);
-  assert.match(runtime, /Source-local level chart/u);
-  assert.match(runtime, /Combined absolute-space wake/u);
-  assert.match(runtime, /Source-local levels are not yet available/u);
-  assert.match(runtime, /TOPO_HEATMAP_MODE\.PHYSICAL_MAGNITUDE/u);
-  assert.match(runtime, /u_enhanced_decade_contrast/u);
-  assert.equal(runtime.match(/u_contour_reach/gu)?.length > 4, true);
-  assert.equal(runtime.match(/u_shading_power/gu)?.length > 4, true);
-  assert.match(runtime, /heatmapModeInputs[\s\S]*listen\(input, "change", scheduleFrameChange\)/u);
-  assert.match(runtime, /state\.backgroundMode === "white"[\s\S]*--ui-color-electric-purple/u);
+  assert.match(runtime, /partner-only-self-excluded/u);
+  assert.match(runtime, /topoPartnerWakeSourceSign/u);
+  assert.match(runtime, /u_partner_source_sign/u);
+  assert.doesNotMatch(
+    runtime,
+    /sourceLocal|source-local|equalRadius|equal-radius|advancedDisplay|heatmapMode|u_enhanced_decade_contrast|u_source_local/u,
+  );
+  assert.doesNotMatch(runtime, /u_contour_reach/u);
+  assert.equal(
+    runtime.match(
+      /rootMagnitude = sqrt\(abs\(rawValue\)\) \* u_shading_reach_scale/gu,
+    )?.length,
+    3,
+  );
+  assert.match(runtime, /createTopoNeutralBackgroundRgb[\s\S]*neutralWhiteMix/u);
   const markerSource = runtime.slice(
     runtime.indexOf("function drawSourceMarker"),
     runtime.indexOf("function drawSourceOverlay"),
@@ -1517,8 +1603,6 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.doesNotMatch(markerSource, /state\./u);
   assert.match(markerSource, /paintTopoSourceMarker/u);
   assert.doesNotMatch(markerSource, /outline|center|stroke|WHITE\.r/u);
-  assert.match(runtime, /u_source_local_mode/u);
-  assert.match(runtime, /displayRadius - u_source_local_inner_radius/u);
   assert.doesNotMatch(runtime, /fillText\(\s*label/u);
   assert.doesNotMatch(runtime, /suppressed-responsive/u);
   assert.match(runtime, /contourRadii/u);
@@ -1526,15 +1610,15 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   assert.match(runtime, /createTopoCollinearPairRawSampler/u);
   assert.doesNotMatch(runtime, /createTopoCollinearPairContourRenderPlan/u);
   assert.match(runtime, /extractTopoSampledFieldContourSegments/u);
-  assert.match(runtime, /drawSampledCombinedContours/u);
-  assert.equal(runtime.match(/topoContourStyle\(/gu)?.length, 6);
+  assert.match(runtime, /drawSampledPartnerContours/u);
+  assert.equal(runtime.match(/topoContourStyle\(/gu)?.length, 4);
   assert.match(runtime, /TOPO_CONTOUR_WEIGHT_POLICY_ID/u);
   assert.match(runtime, /contourWeightProfile/u);
   assert.doesNotMatch(runtime, /revealWeight|outwardProgress/u);
   const geometryKeyBodies = Array.from(runtime.matchAll(
     /dataset\.contourGeometryKey = \[([\s\S]*?)\]\.join\(":"\)/gu,
   )).map((match) => match[1]);
-  assert.equal(geometryKeyBodies.length, 2);
+  assert.equal(geometryKeyBodies.length, 1);
   assert.equal(
     geometryKeyBodies.every((body) => !body.includes("contourVisibility")),
     true,
@@ -1543,45 +1627,79 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
     runtime,
     /const contourKey = matchingFrame[\s\S]*matchingFrame\.key \+ ":count=" \+ state\.contourCount[\s\S]*: "pending"/u,
   );
-  assert.match(runtime, /rawFrame: state\.binary[\s\S]*createLiveSampledContourFrame/u);
-  assert.match(runtime, /contourScalarAuthority = "combined-raw-wake-field"/u);
+  assert.match(
+    runtime,
+    /const contourRawFrame = \(state\.binary[\s\S]*createLiveSampledContourFrame/u,
+  );
+  assert.match(runtime, /contourScalarAuthority = state\.superpositionView[\s\S]*signed-two-source-superposition-field[\s\S]*partner-raw-wake-field/u);
   assert.match(runtime, /masked-and-unavailable-cells-excluded/u);
-  assert.match(runtime, /equalRadiusInput\.disabled = pairMode \|\| binaryMode \|\| state\.beta !== 0/u);
   assert.match(runtime, /sourceContribution/u);
-  assert.match(runtime, /finiteHistory/u);
+  assert.match(runtime, /stationaryPrehistory/u);
+  assert.doesNotMatch(
+    runtime,
+    /state\.pairMode && state\.superpositionView && state\.beta === 1/u,
+  );
   assert.match(runtime, /setTransportControlButtonPresentation/u);
   assert.match(runtime, /TRANSPORT_CONTROL_ICON\.RESET/u);
   assert.doesNotMatch(runtime, /float magnitude = min\(/u);
-  assert.match(runtime, /log\(abs\(rawValue\) \/ 64\.0\) \/ log\(10\.0\)/u);
+  assert.match(
+    runtime,
+    /if \(u_scalar_pass > 0\.5\)[\s\S]*vec4\(rawValue, 1\.0, 0\.0, 1\.0\)[\s\S]*return;[\s\S]*rootMagnitude = sqrt\(abs\(rawValue\)\)/u,
+  );
   assert.doesNotMatch(runtime, /asinh|arsinh|u_gain|TOPO_FIELD_COLOR_GAIN/iu);
   assert.doesNotMatch(runtime, /transformId|u_transform|scheduleTransformChange|dom\.transform/u);
 
-  assert.match(html, /<title>Architrino Wake Topological Map<\/title>/u);
-  assert.match(html, /<h1>Wake Topological Map<\/h1>/u);
-  assert.match(html, /Two-dimensional prescribed motion/u);
+  assert.match(html, /<title>Architrino Wake Topography<\/title>/u);
+  assert.match(html, /<h1>Wake Topography<\/h1>/u);
+  assert.doesNotMatch(html, /Two-dimensional prescribed motion/u);
   assert.match(html, /<h2 id="topo-about-title">About this view<\/h2>/u);
-  assert.match(html, /<span>Contour count<\/span>/u);
+  assert.match(
+    html,
+    /Explore wake topography from a receiver perspective for prescribed what if transmitter path scenarios\./u,
+  );
+  assert.match(
+    html,
+    /id="topo-scenario-control"[\s\S]*?aria-describedby="topo-scenario-provenance-note"[\s\S]*?These paths are chosen inputs, not predictions of how architrinos naturally move\./u,
+  );
+  assert.match(html, /<span>Speed<\/span>/u);
+  assert.match(html, /<span>Topo count<\/span>/u);
   assert.doesNotMatch(html, /Contour reach|topo-contour-reach/iu);
   assert.doesNotMatch(runtime, /steps outward|genuine levels reaching|per sign reaching/iu);
-  assert.match(html, /<span>Shading spread<\/span>/u);
-  assert.match(html, /<span>Contour strength<\/span>/u);
-  assert.match(html, /id="topo-coordinate-mode"[^>]*aria-live="polite"/u);
-  assert.match(html, /<legend>View<\/legend>/u);
-  assert.match(html, /<legend>Heatmap<\/legend>/u);
-  assert.match(html, /name="topo-heatmap-mode" value="physical-magnitude" checked/u);
-  assert.match(html, /<span>Physical magnitude<\/span>/u);
-  assert.match(html, /id="topo-advanced-display"/u);
-  assert.match(html, /id="topo-advanced-display-enabled"/u);
-  assert.match(html, /name="topo-heatmap-mode" value="enhanced-decade-contrast"/u);
-  assert.match(html, /<span>Enhanced tenfold contrast<\/span>/u);
-  assert.match(html, /name="topo-view" value="source-local"/u);
-  assert.match(html, /<span>Source-local levels<\/span>/u);
-  assert.match(html, /name="topo-view" value="equal-radius"/u);
-  assert.match(html, /<span>Equal-radius levels \(stationary source\)<\/span>/u);
-  assert.doesNotMatch(html, /topo-chart-anchor/u);
-  assert.match(html, /name="topo-view" value="combined" checked/u);
-  assert.match(html, /<span>Combined wake<\/span>/u);
+  assert.match(html, /<span>Shading<\/span>/u);
+  assert.match(
+    html,
+    /id="topo-shading-spread"[\s\S]*?min="0"[\s\S]*?max="100"[\s\S]*?value="50"/u,
+  );
+  assert.doesNotMatch(
+    html,
+    /topo-shading-spread-output|% · broad|% · balanced|% · tight/u,
+  );
+  assert.match(html, /<span>Topo fade<\/span>/u);
+  assert.match(html, /<span>Scale<\/span>/u);
+  assert.doesNotMatch(
+    html,
+    /<span>(?:Prescribed speed|Contour count|Shading spread|Contour strength|Display scale · visible extent)<\/span>/u,
+  );
+  assert.doesNotMatch(html, /topo-contour-visibility-output|>75%<\/output>/u);
+  assert.doesNotMatch(html, /topo-display-scale-output|1\.00× · 1\.00 high/u);
+  assert.doesNotMatch(html, /Display coordinates: linear Euclidean/u);
+  assert.match(
+    html,
+    /<h2 id="topo-definitions-title">Definitions<\/h2>[\s\S]*?<strong>Wake propagation<\/strong> follows wake emitted at earlier moments as it travels outward\.[\s\S]*?<strong>Wake topography<\/strong> takes one present-time slice and maps the wake arriving at every possible receiver location\. Each contour joins locations receiving the same wake value\. During uniform motion, the pattern keeps its shape because the causal geometry repeats, even though the wake producing it is continually renewed\./u,
+  );
+  assert.doesNotMatch(
+    html,
+    /topo-advanced-display|Advanced display choices|topo-view|topo-heatmap-mode|Source-local levels|Equal-radius levels|Enhanced tenfold contrast/u,
+  );
   assert.match(html, />Approaching collinear electrino and positrino<\/span>/u);
+  assert.match(html, /id="topo-partner-perspective-control"[\s\S]*<legend>View<\/legend>/u);
+  assert.match(html, /name="topo-partner-perspective" value="electrino"/u);
+  assert.match(html, /name="topo-partner-perspective" value="positrino"/u);
+  assert.match(html, /name="topo-partner-perspective" value="absolute" checked[\s\S]*<span>Absolute Observer<\/span>/u);
+  assert.match(runtime, /dom\.partnerPerspectiveControl\.hidden = !receiverViewAvailable/u);
+  assert.match(runtime, /signed-two-source-superposition/u);
+  assert.match(runtime, /superposition: state\.superpositionView/u);
+  assert.match(runtime, /dom\.partnerPerspectiveInputs\.forEach/u);
   assert.match(html, /id="topo-pair-play"/u);
   assert.match(
     html,
@@ -1593,26 +1711,50 @@ test("Topo UI exposes distinct combined, source-local, and equal-radius views an
   );
   assert.match(html, /aria-label="Collinear replay position"/u);
   assert.match(html, /aria-label="Orbit playback position"/u);
+  assert.match(html, /aria-valuetext="0% of two rotations"/u);
+  assert.match(runtime, /progressText \+ " of two rotations"/u);
+  assert.match(runtime, /binaryReplayRotations/u);
+  assert.doesNotMatch(
+    html,
+    /topo-pair-progress|topo-binary-progress-output/u,
+  );
   assert.doesNotMatch(html, /role="progressbar"/u);
   assert.match(html, /id="topo-pair-replay"/u);
-  assert.match(html, />13 levels<\/output>/u);
+  assert.doesNotMatch(html, /topo-contour-count-output|per sign \+ zero/u);
   assert.match(html, /genuine equal-wake contour levels/u);
   assert.match(html, /id="topo-legend-mapping"/u);
-  assert.match(runtime, /signed contributions are summed before both contours and shading/u);
+  assert.match(html, />Shading scale<\/h2>/u);
+  assert.match(
+    html,
+    /signed contributions are summed before drawing equal-value topographic contours/u,
+  );
+  assert.match(runtime, /self-wake is excluded/u);
   assert.doesNotMatch(html, /Scale transform|topo-transform|Linear|Signed log2|Asinh/u);
   assert.doesNotMatch(html, /Raw probe|Nonnumeric state legend|topo-stage-caption/u);
-  assert.match(runtime, /R\(e\)=\(e\+1\)r/u);
-  assert.match(runtime, /nonnegative-raw-exponents-only/u);
-  assert.match(runtime, /equalRadiusAnchorDisplayedTime/u);
-  assert.match(runtime, /Moving and multi-source scenes use contours from their combined raw wake field/u);
-  assert.match(runtime, /equal combined-wake values, not prescribed circles or asserted equipotential surfaces/u);
-  assert.match(runtime, /not a global physical-coordinate transform/u);
+  assert.doesNotMatch(runtime, /R\(e\)=\(e\+1\)r|nonnegative-raw-exponents-only/u);
+  assert.match(
+    runtime,
+    /signed contributions are summed before drawing equal-value topographic contours/u,
+  );
   assert.match(html, /id="home-button"[\s\S]*id="nav-up"[\s\S]*id="nav-forward"[\s\S]*id="scene-search"/u);
 
   assert.match(css, /\.topo-range-note/u);
-  assert.match(css, /input\[name="topo-heatmap-mode"\]:checked/u);
+  assert.doesNotMatch(css, /topo-advanced-display|topo-heatmap-mode|topo-view/u);
   assert.match(css, /\.topo-pair-transport/u);
   assert.match(css, /\.topo-timeline/u);
+  assert.match(
+    css,
+    /\.topo-field,[\s\S]*?\.topo-range-field \{[\s\S]*?grid-template-columns: 106px minmax\(0, 1fr\)/u,
+  );
+  assert.match(
+    css,
+    /\.topo-range-field > \.topo-range-row \{[\s\S]*?grid-column: 2/u,
+  );
+  assert.match(css, /#topo-background::-(?:webkit-slider-runnable-track|moz-range-track)[\s\S]*linear-gradient/u);
+  assert.match(
+    css,
+    /\.topo-legend-gradient \{[\s\S]*?border: 0;[\s\S]*?background: linear-gradient/u,
+  );
   assert.match(css, /@media \(max-width: 820px\)/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/u);
   assert.match(css, /input::-webkit-slider-runnable-track \{[\s\S]*height: 5px;/u);
@@ -1699,9 +1841,9 @@ test("diagnostic scalar-texture marching-squares program restores state and rout
   assert.match(runtime, /fieldGl\.viewport\(savedViewport\[0\], savedViewport\[1\], savedViewport\[2\], savedViewport\[3\]\)/u);
   assert.match(runtime, /fieldGl\.deleteFramebuffer\(topoPassTwoDiagnosticTarget\.framebuffer\)/u);
   assert.match(runtime, /fieldGl\.deleteTexture\(topoPassTwoDiagnosticTarget\.texture\)/u);
-  assert.match(runtime, /all-26-signed-raw-levels/u);
+  assert.match(runtime, /all-partner-wake-raw-levels/u);
   assert.match(runtime, /binaryPassTwoDiagnosticAllLevels/u);
-  assert.match(runtime, /binaryPassTwoDiagnosticSignedSymmetry/u);
+  assert.match(runtime, /not-applicable:partner-wake/u);
   assert.match(runtime, /binaryPassTwoDiagnosticAllLevelsSummary/u);
   assert.match(runtime, /TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE = 0\.375/u);
   assert.match(runtime, /TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES/u);

@@ -92,7 +92,7 @@ The **new SI** defines all units via **exact values** of seven constants:
 | Planck constant | $h$ | $6.62607015 \times 10^{-34}$ J·s | kilogram (kg) |
 | Elementary charge | $e$ | $1.602176634 \times 10^{-19}$ C | ampere (A) |
 | Boltzmann constant | $k_B$ | $1.380649 \times 10^{-23}$ J/K | kelvin (K) |
-| Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}$ mol⁻¹ | mole (mol) |
+| Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}\,\mathrm{mol}^{-1}$ | mole (mol) |
 | Luminous efficacy of 540 THz radiation | $K_{\text{cd}}$ | 683 lm/W | candela (cd) |
 
 **Key insight:** These SI rows are definitions, not measurements. Their exactness is a property of the unit system. A physical closure claim still has to recover the observer-level records that make those definitions useful: spectral frequencies, charge inventories, action increments, thermal energy scales, and signal propagation.
@@ -2021,7 +2021,7 @@ This constraint explains how apparent metric deviations (Shapiro delay and light
 
 We require that the proposed mechanical slowing induced by Noether braid density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
 
-* **Constraint** – reproduce GPS clock offsets (38 μs/day), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
+* **Constraint** – reproduce GPS clock offsets ($38\,\mu\mathrm{s/day}$), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
 * **Mechanism** – mechanical slowing of Noether braid orbital frequencies couples to the local Noether braid density and Noether sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
 
 #### Massive-Superposition Gravitational Distinguishability
@@ -3438,7 +3438,7 @@ Plain language: a receiver never sees the full ledger of who emitted what; it se
 #### $\mathbb{U}_{\text{now}}$ Note: Limits of Perfect Clocks and Frames
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
-- Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
+- Sign/side ambiguity: attraction from $+\epsilon$ on one side vs repulsion from $-\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
 - Baseline distance scaling and branch geometry: $A\propto W^{\mathrm{acc}}/r^2$; transmitter motion sets $D_t$ and the arriving acceleration weight, while receiver motion enters root playback through $D_r/D_t$ and changes future geometry.
 - Collinear superposition: several transmitters on the two rays of one inference axis can sum to the same instantaneous $\mathbf A$.
 - Self-hit aliasing: self-intersections can mimic external transmitters along $L$.
@@ -3498,13 +3498,13 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
   - The analyzer projects the planar mode's transverse ledger onto its axis. Geometric projection supplies the candidate $\cos\theta$ amplitude factor; transmission $\propto\cos^2\theta$ remains a recovery result that requires the same record-forming measure and analyzer residual used by the polarization target above.
 
 - Sequential filters (order matters):
-  - Two non-parallel analyzers F($\theta$₁) and G($\theta$₂) applied in different orders yield different transmitted patterns because they recondition future causal roots differently: F∘G ≠ G∘F.
+  - Two non-parallel analyzers $F(\theta_1)$ and $G(\theta_2)$ applied in different orders yield different transmitted patterns because they recondition future causal roots differently: $F\circ G \ne G\circ F$.
 
 ---
 
 #### Falsifiable edges and tests (observability-focused)
 
-- Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry F∘G vs G∘F.
+- Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry $F\circ G$ vs. $G\circ F$.
 - Planar-mode interference robustness: map how partial decoherence (deliberate jitter in transmitter paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
 - Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product acceleration terms; treat Tsirelson-like bounds as a stringent benchmark.
@@ -5581,7 +5581,7 @@ The current validation status is therefore conditional. Nonzero static endpoint 
 
 The hydrogen spectral toy scan may replay this compensated row as a scaffold, but that replay is not evidence that the gravitational endpoint has acquired nonzero $a_n$, $a_\lambda$, or $a_R$. Those entries become promotable only when the hydrogen branch or another declared branch derives the same component split for the same Noether sea cell.
 
-#### Hydrogen Γ_N Spectral Coefficient Row Toy Scan
+#### Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan
 
 This protocol is the first proof/simulation packet for the hydrogen spectral coefficient row $\mathbf{b}_{N}^{\mathrm{spec}}$. Its purpose is narrow: constrain the row that extracts $\Gamma_N$ for the hydrogen spectral channel without fitting a separate clock factor to each line.
 

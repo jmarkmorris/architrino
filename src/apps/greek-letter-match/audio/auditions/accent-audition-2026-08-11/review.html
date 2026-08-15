@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Greek Letter Match Marin Accent Audition</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        background: #12051f;
+        color: #f8f2ff;
+      }
+      body { max-width: 1320px; margin: 0 auto; padding: 28px 18px 48px; }
+      h1 { margin-bottom: 8px; }
+      .boundary {
+        padding: 14px 16px;
+        border: 1px solid #d6b85a;
+        border-radius: 12px;
+        background: #35230d;
+        line-height: 1.5;
+      }
+      .controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 8px; }
+      button {
+        border: 1px solid #9e72cb;
+        border-radius: 999px;
+        background: #5c268f;
+        color: white;
+        font: inherit;
+        font-weight: 700;
+        padding: 10px 16px;
+        cursor: pointer;
+      }
+      button.secondary { background: #28153b; }
+      #playback-status { min-height: 1.5em; margin: 8px 0 22px; color: #dcc2ff; }
+      .letters { display: grid; gap: 16px; }
+      article {
+        padding: 16px;
+        border: 1px solid #5e4779;
+        border-radius: 14px;
+        background: #211033;
+      }
+      article h2 { margin: 0 0 4px; }
+      .target { margin: 0 0 14px; color: #dcc2ff; font-weight: 650; }
+      .variants { display: grid; grid-template-columns: repeat(4, minmax(210px, 1fr)); gap: 12px; }
+      .variant {
+        padding: 12px;
+        border: 1px solid #503a69;
+        border-radius: 10px;
+        background: #180b26;
+      }
+      .variant.playing { border-color: #e0c26c; box-shadow: 0 0 0 2px #e0c26c55; }
+      .variant strong { display: block; min-height: 2.5em; margin-bottom: 8px; }
+      audio { width: 100%; }
+      a { color: #dcc2ff; }
+      footer { margin-top: 24px; color: #cdbfdb; line-height: 1.5; }
+      @media (max-width: 980px) { .variants { grid-template-columns: repeat(2, minmax(210px, 1fr)); } }
+      @media (max-width: 520px) { .variants { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <h1>Marin Accent Audition — Eight Greek Letters</h1>
+    <p>Compare each letter across four restrained English accent/style instructions, listening for intelligibility and enunciation.</p>
+    <p class="boundary">
+      Review only — these are AI-generated accent renderings using the same
+      built-in Marin voice. The labels describe requested rendering conditions,
+      not the voice’s identity or any person. None of these files is accepted,
+      deployed, or routed into the game. The existing full 24-letter Marin set
+      remains human-approved and production audio remains unchanged.
+    </p>
+    <div class="controls" aria-label="Play one accent condition from Eta through Psi">
+      <button type="button" data-play-accent="general-american">Play General American set</button>
+      <button type="button" data-play-accent="indian-english">Play Indian English set</button>
+      <button type="button" data-play-accent="british-english">Play British English set</button>
+      <button type="button" data-play-accent="neutral-international">Play neutral international set</button>
+      <button id="stop" class="secondary" type="button">Stop</button>
+    </div>
+    <p id="playback-status" aria-live="polite">Ready. Initial review volume is held at 80% for every clip.</p>
+    <main class="letters">
+      <article>
+        <h2>Η η — Eta</h2><p class="target">Connected AY-tuh — long A as in “day,” no large pause</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Eta" src="browser/general-american/eta.wav" aria-label="Play General American English Eta"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Eta" src="browser/indian-english/eta.wav" aria-label="Play Indian English Eta"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Eta" src="browser/british-english/eta.wav" aria-label="Play British English Eta"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Eta" src="browser/neutral-international/eta.wav" aria-label="Play neutral international English Eta"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Μ μ — Mu</h2><p class="target">MYOO, like “mew”</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Mu" src="browser/general-american/mu.wav" aria-label="Play General American English Mu"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Mu" src="browser/indian-english/mu.wav" aria-label="Play Indian English Mu"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Mu" src="browser/british-english/mu.wav" aria-label="Play British English Mu"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Mu" src="browser/neutral-international/mu.wav" aria-label="Play neutral international English Mu"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Ν ν — Nu</h2><p class="target">NOO, like “new” — short and natural</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Nu" src="browser/general-american/nu.wav" aria-label="Play General American English Nu"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Nu" src="browser/indian-english/nu.wav" aria-label="Play Indian English Nu"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Nu" src="browser/british-english/nu.wav" aria-label="Play British English Nu"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Nu" src="browser/neutral-international/nu.wav" aria-label="Play neutral international English Nu"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Ξ ξ — Xi</h2><p class="target">ZYE, rhyming with “eye”</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Xi" src="browser/general-american/xi.wav" aria-label="Play General American English Xi"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Xi" src="browser/indian-english/xi.wav" aria-label="Play Indian English Xi"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Xi" src="browser/british-english/xi.wav" aria-label="Play British English Xi"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Xi" src="browser/neutral-international/xi.wav" aria-label="Play neutral international English Xi"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Υ υ — Upsilon</h2><p class="target">OOP-sih-lon</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Upsilon" src="browser/general-american/upsilon.wav" aria-label="Play General American English Upsilon"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Upsilon" src="browser/indian-english/upsilon.wav" aria-label="Play Indian English Upsilon"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Upsilon" src="browser/british-english/upsilon.wav" aria-label="Play British English Upsilon"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Upsilon" src="browser/neutral-international/upsilon.wav" aria-label="Play neutral international English Upsilon"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Φ φ — Phi</h2><p class="target">FYE, rhyming with “pie”</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Phi" src="browser/general-american/phi.wav" aria-label="Play General American English Phi"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Phi" src="browser/indian-english/phi.wav" aria-label="Play Indian English Phi"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Phi" src="browser/british-english/phi.wav" aria-label="Play British English Phi"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Phi" src="browser/neutral-international/phi.wav" aria-label="Play neutral international English Phi"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Χ χ — Chi</h2><p class="target">KYE, rhyming with “sky”</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Chi" src="browser/general-american/chi.wav" aria-label="Play General American English Chi"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Chi" src="browser/indian-english/chi.wav" aria-label="Play Indian English Chi"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Chi" src="browser/british-english/chi.wav" aria-label="Play British English Chi"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Chi" src="browser/neutral-international/chi.wav" aria-label="Play neutral international English Chi"></audio></div>
+        </div>
+      </article>
+      <article>
+        <h2>Ψ ψ — Psi</h2><p class="target">SYE, like “sigh” — silent P</p>
+        <div class="variants">
+          <div class="variant"><strong>General American English</strong><audio controls preload="metadata" data-accent="general-american" data-letter="Psi" src="browser/general-american/psi.wav" aria-label="Play General American English Psi"></audio></div>
+          <div class="variant"><strong>Indian English</strong><audio controls preload="metadata" data-accent="indian-english" data-letter="Psi" src="browser/indian-english/psi.wav" aria-label="Play Indian English Psi"></audio></div>
+          <div class="variant"><strong>British English</strong><audio controls preload="metadata" data-accent="british-english" data-letter="Psi" src="browser/british-english/psi.wav" aria-label="Play British English Psi"></audio></div>
+          <div class="variant"><strong>Neutral international English</strong><audio controls preload="metadata" data-accent="neutral-international" data-letter="Psi" src="browser/neutral-international/psi.wav" aria-label="Play neutral international English Psi"></audio></div>
+        </div>
+      </article>
+    </main>
+    <footer>
+      <a href="REVIEW.md">review checklist and boundaries</a> ·
+      <a href="SOURCE.md">generation, retry, checksum, and technical evidence</a> ·
+      <a href="../../candidates/openai-marin-2026-08-10/review.html">approved full Marin set</a>
+    </footer>
+    <script>
+      const clips = [...document.querySelectorAll("audio")];
+      const status = document.querySelector("#playback-status");
+      const conditionNames = {
+        "general-american": "General American English",
+        "indian-english": "Indian English",
+        "british-english": "British English",
+        "neutral-international": "neutral international English",
+      };
+      let sequence = [];
+      let sequenceIndex = -1;
+
+      clips.forEach((clip) => { clip.volume = 0.8; });
+
+      function clearPlayingState() {
+        document.querySelectorAll(".variant.playing").forEach((item) => item.classList.remove("playing"));
+      }
+
+      function stopAll(message = "Stopped. Initial review volume remains 80%.") {
+        sequence = [];
+        sequenceIndex = -1;
+        clips.forEach((clip) => {
+          clip.pause();
+          clip.currentTime = 0;
+        });
+        clearPlayingState();
+        status.textContent = message;
+      }
+
+      async function playSequenceAt(index) {
+        if (index >= sequence.length) {
+          stopAll("Set complete. Choose another condition or an individual clip.");
+          return;
+        }
+        sequenceIndex = index;
+        const clip = sequence[index];
+        clips.forEach((other) => { if (other !== clip) other.pause(); });
+        clearPlayingState();
+        clip.closest(".variant").classList.add("playing");
+        clip.currentTime = 0;
+        status.textContent = `Playing ${conditionNames[clip.dataset.accent]} — ${clip.dataset.letter}.`;
+        try { await clip.play(); }
+        catch { stopAll("Playback was blocked. Use an individual audio control to begin listening."); }
+      }
+
+      clips.forEach((clip) => {
+        clip.addEventListener("play", () => {
+          clips.forEach((other) => { if (other !== clip) other.pause(); });
+          clearPlayingState();
+          clip.closest(".variant").classList.add("playing");
+          if (sequence[sequenceIndex] !== clip) {
+            sequence = [];
+            sequenceIndex = -1;
+            status.textContent = `Playing ${conditionNames[clip.dataset.accent]} — ${clip.dataset.letter}.`;
+          }
+        });
+        clip.addEventListener("ended", () => {
+          if (sequence[sequenceIndex] === clip) playSequenceAt(sequenceIndex + 1);
+          else clearPlayingState();
+        });
+      });
+
+      document.querySelectorAll("[data-play-accent]").forEach((button) => {
+        button.addEventListener("click", () => {
+          sequence = clips.filter((clip) => clip.dataset.accent === button.dataset.playAccent);
+          playSequenceAt(0);
+        });
+      });
+      document.querySelector("#stop").addEventListener("click", () => stopAll());
+    </script>
+  </body>
+</html>

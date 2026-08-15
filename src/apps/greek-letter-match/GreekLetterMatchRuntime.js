@@ -4,30 +4,30 @@ import {
 } from "../navigator/StandaloneAppHomeRuntime.js";
 
 export const GREEK_LETTERS = Object.freeze([
-  Object.freeze({ name: "alpha", upper: "Α", lower: "α", audioFile: "alpha.m4a" }),
-  Object.freeze({ name: "beta", upper: "Β", lower: "β", audioFile: "beta.m4a" }),
-  Object.freeze({ name: "gamma", upper: "Γ", lower: "γ", audioFile: "gamma.m4a" }),
-  Object.freeze({ name: "delta", upper: "Δ", lower: "δ", audioFile: "delta.m4a" }),
-  Object.freeze({ name: "epsilon", upper: "Ε", lower: "ε", audioFile: "epsilon.m4a" }),
-  Object.freeze({ name: "zeta", upper: "Ζ", lower: "ζ", audioFile: "zeta.m4a" }),
-  Object.freeze({ name: "eta", upper: "Η", lower: "η", audioFile: "eta.m4a" }),
-  Object.freeze({ name: "theta", upper: "Θ", lower: "θ", audioFile: "theta.m4a" }),
-  Object.freeze({ name: "iota", upper: "Ι", lower: "ι", audioFile: "iota.m4a" }),
-  Object.freeze({ name: "kappa", upper: "Κ", lower: "κ", audioFile: "kappa.m4a" }),
-  Object.freeze({ name: "lambda", upper: "Λ", lower: "λ", audioFile: "lambda.m4a" }),
-  Object.freeze({ name: "mu", upper: "Μ", lower: "μ", audioFile: "mu.m4a" }),
-  Object.freeze({ name: "nu", upper: "Ν", lower: "ν", audioFile: "nu.m4a" }),
-  Object.freeze({ name: "xi", upper: "Ξ", lower: "ξ", audioFile: "xi.m4a" }),
-  Object.freeze({ name: "omicron", upper: "Ο", lower: "ο", audioFile: "omicron.m4a" }),
-  Object.freeze({ name: "pi", upper: "Π", lower: "π", audioFile: "pi.m4a" }),
-  Object.freeze({ name: "rho", upper: "Ρ", lower: "ρ", audioFile: "rho.m4a" }),
-  Object.freeze({ name: "sigma", upper: "Σ", lower: "σ", audioFile: "sigma.m4a" }),
-  Object.freeze({ name: "tau", upper: "Τ", lower: "τ", audioFile: "tau.m4a" }),
-  Object.freeze({ name: "upsilon", upper: "Υ", lower: "υ", audioFile: "upsilon.m4a" }),
-  Object.freeze({ name: "phi", upper: "Φ", lower: "φ", audioFile: "phi.m4a" }),
-  Object.freeze({ name: "chi", upper: "Χ", lower: "χ", audioFile: "chi.m4a" }),
-  Object.freeze({ name: "psi", upper: "Ψ", lower: "ψ", audioFile: "psi.m4a" }),
-  Object.freeze({ name: "omega", upper: "Ω", lower: "ω", audioFile: "omega.m4a" }),
+  Object.freeze({ name: "alpha", upper: "Α", lower: "α", audioFile: "alpha.wav" }),
+  Object.freeze({ name: "beta", upper: "Β", lower: "β", audioFile: "beta.wav" }),
+  Object.freeze({ name: "gamma", upper: "Γ", lower: "γ", audioFile: "gamma.wav" }),
+  Object.freeze({ name: "delta", upper: "Δ", lower: "δ", audioFile: "delta.wav" }),
+  Object.freeze({ name: "epsilon", upper: "Ε", lower: "ε", audioFile: "epsilon.wav" }),
+  Object.freeze({ name: "zeta", upper: "Ζ", lower: "ζ", audioFile: "zeta.wav" }),
+  Object.freeze({ name: "eta", upper: "Η", lower: "η", audioFile: "eta.wav" }),
+  Object.freeze({ name: "theta", upper: "Θ", lower: "θ", audioFile: "theta.wav" }),
+  Object.freeze({ name: "iota", upper: "Ι", lower: "ι", audioFile: "iota.wav" }),
+  Object.freeze({ name: "kappa", upper: "Κ", lower: "κ", audioFile: "kappa.wav" }),
+  Object.freeze({ name: "lambda", upper: "Λ", lower: "λ", audioFile: "lambda.wav" }),
+  Object.freeze({ name: "mu", upper: "Μ", lower: "μ", audioFile: "mu.wav" }),
+  Object.freeze({ name: "nu", upper: "Ν", lower: "ν", audioFile: "nu.wav" }),
+  Object.freeze({ name: "xi", upper: "Ξ", lower: "ξ", audioFile: "xi.wav" }),
+  Object.freeze({ name: "omicron", upper: "Ο", lower: "ο", audioFile: "omicron.wav" }),
+  Object.freeze({ name: "pi", upper: "Π", lower: "π", audioFile: "pi.wav" }),
+  Object.freeze({ name: "rho", upper: "Ρ", lower: "ρ", audioFile: "rho.wav" }),
+  Object.freeze({ name: "sigma", upper: "Σ", lower: "σ", audioFile: "sigma.wav" }),
+  Object.freeze({ name: "tau", upper: "Τ", lower: "τ", audioFile: "tau.wav" }),
+  Object.freeze({ name: "upsilon", upper: "Υ", lower: "υ", audioFile: "upsilon.wav" }),
+  Object.freeze({ name: "phi", upper: "Φ", lower: "φ", audioFile: "phi.wav" }),
+  Object.freeze({ name: "chi", upper: "Χ", lower: "χ", audioFile: "chi.wav" }),
+  Object.freeze({ name: "psi", upper: "Ψ", lower: "ψ", audioFile: "psi.wav" }),
+  Object.freeze({ name: "omega", upper: "Ω", lower: "ω", audioFile: "omega.wav" }),
 ]);
 
 export function getGreekPronunciationUrl(letter, moduleUrl = import.meta.url) {
@@ -461,9 +461,8 @@ export class GreekLetterMatchRuntime {
         onChange: (value) => {
           this.feedbackInterval = value;
         },
-      })
+      }),
     );
-
     this.setupSummary = createElement(this.document, "p", "greek-match-setup-summary");
     this.nextRoundButton = createElement(
       this.document,
@@ -476,7 +475,11 @@ export class GreekLetterMatchRuntime {
     const resetButton = createElement(this.document, "button", "greek-match-reset", "Reset session");
     resetButton.type = "button";
     resetButton.addEventListener("click", () => this.resetSession());
-    controls.append(this.setupSummary, this.nextRoundButton, resetButton);
+    controls.append(
+      this.setupSummary,
+      this.nextRoundButton,
+      resetButton
+    );
     panel.append(panelHeader, controls);
     return panel;
   }
@@ -635,40 +638,16 @@ export class GreekLetterMatchRuntime {
       this.document,
       "p",
       "greek-match-audio-credit",
-      "Pronunciation sources: "
+      "Pronunciation audio: AI-generated with OpenAI's built-in Marin voice · "
     );
-    const audioCreditLink = createElement(
-      this.document,
-      "a",
-      "",
-      "GreekLetterLearner"
-    );
-    audioCreditLink.href = "https://github.com/TechNolaByte/GreekLetterLearner";
-    audioCreditLink.target = "_blank";
-    audioCreditLink.rel = "noreferrer";
-    const wikimediaCreditLink = createElement(
-      this.document,
-      "a",
-      "",
-      "Wikimedia Commons"
-    );
-    wikimediaCreditLink.href = "https://commons.wikimedia.org/";
-    wikimediaCreditLink.target = "_blank";
-    wikimediaCreditLink.rel = "noreferrer";
     const audioDetailsLink = createElement(
       this.document,
       "a",
       "",
-      "credits & licenses"
+      "provenance, history & license status"
     );
     audioDetailsLink.href = new URL("./audio/SOURCE.md", import.meta.url).href;
-    audioCredit.append(
-      audioCreditLink,
-      this.document.createTextNode(" · "),
-      wikimediaCreditLink,
-      this.document.createTextNode(" · "),
-      audioDetailsLink
-    );
+    audioCredit.append(audioDetailsLink);
     chartSection.append(audioCredit);
     panel.append(panelHeader, scoreCard, chartSection);
     return panel;
@@ -755,7 +734,7 @@ export class GreekLetterMatchRuntime {
     this.stopPronunciation();
     const requestId = ++this.pronunciationRequestId;
     audio.preload = "auto";
-    audio.src = getGreekPronunciationUrl(letter);
+    audio.src = getGreekPronunciationUrl(letter, import.meta.url);
     audio.onended = () => {
       if (requestId === this.pronunciationRequestId) {
         this.setPronunciationFeedback("");

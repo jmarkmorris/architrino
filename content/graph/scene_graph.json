@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 608,
-      "edges": 1374,
+      "edges": 1375,
       "scenes": 392,
       "markdownIndexes": 0,
       "markdownDocs": 199,
@@ -366,7 +366,7 @@
     },
     {
       "id": "archie__licenses_attributions",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/scenes/archie/licenses_attributions.json",
       "nodeType": "scene"
     },
@@ -402,7 +402,7 @@
     },
     {
       "id": "archie__project",
-      "name": "Project",
+      "name": "How This Art Is Made",
       "path": "content/scenes/archie/project.json",
       "nodeType": "scene"
     },
@@ -1704,7 +1704,7 @@
     },
     {
       "id": "theory_bridges__bell_theorem",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "name": "Bell's Theorem: QM Foundations vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "nodeType": "scene"
     },
@@ -1716,7 +1716,7 @@
     },
     {
       "id": "theory_bridges__entanglement_nonlocality",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "name": "Entanglement and Nonlocality: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "nodeType": "scene"
     },
@@ -1734,7 +1734,7 @@
     },
     {
       "id": "theory_bridges__pilot_wave_character",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene"
     },
@@ -1770,7 +1770,7 @@
     },
     {
       "id": "theory_bridges__superposition_mechanism",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "name": "Superposition Mechanism: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "nodeType": "scene"
     },
@@ -2268,7 +2268,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene"
     },
@@ -2670,7 +2670,7 @@
     },
     {
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc"
     },
@@ -4078,7 +4078,7 @@
       "nodeId": "scene:content/scenes/archie/licenses_attributions.json",
       "nodeType": "scene",
       "id": "archie__licenses_attributions",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/scenes/archie/licenses_attributions.json",
       "searchTarget": "content/scenes/archie/licenses_attributions.json",
       "implicit": false
@@ -4141,7 +4141,7 @@
       "nodeId": "scene:content/scenes/archie/project.json",
       "nodeType": "scene",
       "id": "archie__project",
-      "name": "Project",
+      "name": "How This Art Is Made",
       "path": "content/scenes/archie/project.json",
       "searchTarget": "content/scenes/archie/project.json",
       "implicit": false
@@ -6229,7 +6229,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "nodeType": "scene",
       "id": "theory_bridges__bell_theorem",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "name": "Bell's Theorem: QM Foundations vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "implicit": false
@@ -6247,7 +6247,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "nodeType": "scene",
       "id": "theory_bridges__entanglement_nonlocality",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "name": "Entanglement and Nonlocality: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "implicit": false
@@ -6274,7 +6274,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene",
       "id": "theory_bridges__pilot_wave_character",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "implicit": false
@@ -6328,7 +6328,7 @@
       "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "nodeType": "scene",
       "id": "theory_bridges__superposition_mechanism",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "name": "Superposition Mechanism: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
       "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "searchTarget": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "implicit": false
@@ -7075,7 +7075,7 @@
       "nodeId": "scene:content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen $\\Gamma_N$ Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "searchTarget": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "implicit": false
@@ -7480,7 +7480,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
-      "name": "Licenses & Attributions",
+      "name": "Licenses, Attribution & Source Use",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
       "searchTarget": "content/markdown/aaa/archie/licenses-attributions.md",
       "implicit": false
@@ -9676,10 +9676,17 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/about_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/architrino_assembly_architecture.json",
+      "to": "scene:content/scenes/archie/archie.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/architrino_assembly_architecture.json",
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",

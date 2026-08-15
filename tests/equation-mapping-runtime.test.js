@@ -55,6 +55,10 @@ function collectVisibleEquationMapText(document) {
   ].filter((entry) => entry.text);
 }
 
+function stripInlineMath(text) {
+  return String(text ?? "").replace(/\$[^$\n]+\$/gu, "");
+}
+
 function createFakeStyle() {
   return {
     flexWrap: "",
@@ -224,7 +228,7 @@ test("equation mapping reproduces the canonical transmitter-side Master Equation
     "W_{r\\leftarrow t}^{\\mathrm{acc}}(T_r;T_t)=c_f/\\left|D_t(T_r;T_t)\\right|"
   );
   assert.equal(accelerationFactorMath.includes("D_r"), false);
-  assert.match(accelerationFactorText, /Dₜ certified nonzero/u);
+  assert.match(accelerationFactorText, /\$D_t\$ certified nonzero/u);
   assert.match(accelerationFactorText, /verification is incomplete/u);
 });
 
@@ -349,32 +353,38 @@ test("equation mapping can target an inner Lorentz marker without splitting the 
   );
 });
 
-test("equation mapping callout prose uses the gamma symbol", () => {
+test("equation mapping callout prose uses inline TeX instead of Unicode math substitutions", () => {
+  const unicodeMathSubstitution = new RegExp(
+    "[\\u0370-\\u03ff\\u1f00-\\u1fff\\u2070-\\u209f\\u2100-\\u214f" +
+      "\\u2190-\\u22ff\\u27c0-\\u27ef\\u27f0-\\u27ff\\u2900-\\u297f" +
+      "\\u2a00-\\u2aff\\u{1d400}-\\u{1d7ff}]",
+    "u"
+  );
   createSeedEquationMapDocuments().forEach((document) => {
     document.overlays.forEach((overlay) => {
       overlay.content
         .filter((block) => block.type === "text")
         .forEach((block) => {
           assert.equal(
-            block.text.toLowerCase().includes("gamma"),
+            unicodeMathSubstitution.test(block.text),
             false,
-            `${document.id} ${overlay.id} should use γ in rendered callout prose`
+            `${document.id} ${overlay.id} should use inline TeX for symbolic notation`
           );
         });
     });
   });
 });
 
-test("equation mapping callout prose avoids underscore notation", () => {
+test("equation mapping callout prose avoids underscore notation outside inline TeX", () => {
   createSeedEquationMapDocuments().forEach((document) => {
     document.overlays.forEach((overlay) => {
       overlay.content
         .filter((block) => block.type === "text")
         .forEach((block) => {
           assert.equal(
-            /_[A-Za-z0-9]/u.test(block.text),
+            /_[A-Za-z0-9]/u.test(stripInlineMath(block.text)),
             false,
-            `${document.id} ${overlay.id} should use subscripted prose symbols`
+            `${document.id} ${overlay.id} should keep symbolic subscripts inside inline TeX`
           );
         });
     });

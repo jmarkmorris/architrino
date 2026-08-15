@@ -25,6 +25,10 @@ const STOP_WORDS = new Set([
 // presenting the current reader-facing title.
 const COMPATIBILITY_TITLE_ALIASES = new Map([
   ["content/markdown/aaa/archie/ideal-braid-guide.md", "A1 Lorentz Geometry Guide"],
+  [
+    "content/markdown/aaa/archie/licenses-attributions.md",
+    "Licenses, Attribution & Source Use",
+  ],
 ]);
 
 const args = process.argv.slice(2);

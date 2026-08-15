@@ -41,9 +41,6 @@ import {
   TOPO_PAIR_CROSSING_PHASE_END,
   TOPO_PAIR_CROSSING_PHASE_START,
   TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH,
-  TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH,
-  TOPO_PAIR_COINCIDENCE_PHASE_END,
-  TOPO_PAIR_COINCIDENCE_PHASE_START,
   TOPO_PAIR_SOURCE_REFINEMENT_GRID_SIZE,
   TOPO_PAIR_SOURCE_REFINEMENT_MAX_BETA,
   TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE,
@@ -433,7 +430,7 @@ test("binary GPU paint reuses the level-weighted profile at intermediate strengt
   assert.match(runtime, /dataset\.binaryContourStrengthPolicy = "level-weighted-progressive-fade"/u);
   assert.match(
     runtime,
-    /function scheduleContourChange\(\) \{[\s\S]*currentState\.binary[\s\S]*beginRender\(\{ finalDelay: 0, redrawContours: true \}\)/u,
+    /function scheduleContourChange\(\) \{[\s\S]*beginRender\(\{[\s\S]*finalDelay: 0,[\s\S]*redrawContours: true,[\s\S]*resetPresentation: true/u,
   );
 });
 
@@ -528,6 +525,7 @@ test("binary exact-point source mask preserves the high-speed branch without an 
       progress: 0,
       radius: 0.3,
       sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
+      observerId: "positrino",
     });
     const raw = new Float32Array(width * height);
     const sampleStates = new Uint8Array(raw.length);
@@ -571,6 +569,7 @@ test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branc
   const sourceMaskRadius = binaryVisibleSourceMaskRadius(width, height);
   const sample = createTopoCircularBinaryRawSampler({
     beta: 1, progress: 0, radius: 0.3, sourceMaskRadius,
+    observerId: "positrino",
   });
   const playback = createTopoCircularBinaryPlayback({ beta: 1, progress: 0, radius: 0.3 });
   const sourcePositions = [-1, 1].map((sourceSign) => ({
@@ -632,10 +631,11 @@ test("GPU-equivalent band and full-stage CPU masks preserve the high-speed branc
   assert.equal(masked[120 * width + 120], 0);
 });
 
-test("every selected signed binary level matches the canonical screen-space marching-squares mask at beta one phase zero", () => {
+test("every selected partner-wake binary level matches the canonical screen-space marching-squares mask at beta one phase zero", () => {
   const width = 916, height = 720;
   const sample = createTopoCircularBinaryRawSampler({
     beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
+    observerId: "positrino",
   });
   const raw = new Float32Array(width * height);
   const states = new Uint8Array(raw.length);
@@ -646,7 +646,7 @@ test("every selected signed binary level matches the canonical screen-space marc
     states[index] = Number.isFinite(raw[index]) ? TOPO_SAMPLED_FIELD_STATE.VALID : TOPO_SAMPLED_FIELD_STATE.MASKED;
   }
   const levels = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
-    .filter((level) => level.family === "negative" || level.family === "positive");
+    .filter((level) => level.family === "negative");
   const extracted = extractTopoSampledFieldContourSegments({ raw, sampleStates: states, width, height, levels });
   const table = levels.map((level) => {
     const segments = extracted.segments.filter((segment) => segment.value === level.value);
@@ -680,28 +680,21 @@ test("every selected signed binary level matches the canonical screen-space marc
     assert.ok(row.p95 <= 1, "phase-zero p95 displacement: " + JSON.stringify(row));
     assert.ok(row.max <= 1, "phase-zero centerline maximum displacement: " + JSON.stringify(row));
   }
-  for (const negative of table.filter((row) => row.sign === "negative")) {
-    const positive = table.find((row) => row.sign === "positive" &&
-      row.rawDecade === negative.rawDecade);
-    assert.equal(negative.cpuPaths, positive?.cpuPaths,
-      "signed CPU topology symmetry: " + JSON.stringify({ negative, positive }));
-    assert.equal(negative.gpuMaskComponents, positive?.gpuMaskComponents,
-      "signed GPU topology symmetry: " + JSON.stringify({ negative, positive }));
-  }
 });
 
-test("table-driven beta-one diagnostic phases retain all signed screen-space contour contracts", () => {
+test("table-driven beta-one diagnostic phases retain partner-wake screen-space contour contracts", () => {
   assert.ok(TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES.includes(
     TOPO_BINARY_PASS_TWO_EGG_DIAGNOSTIC_PHASE,
   ));
   const width = 240, height = 188;
   const levels = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
-    .filter((level) => level.family === "negative" || level.family === "positive");
+    .filter((level) => level.family === "negative");
   const phaseRows = TOPO_BINARY_PASS_TWO_DIAGNOSTIC_PHASES.map((phase) => {
     const raw = new Float32Array(width * height);
     const states = new Uint8Array(raw.length);
     const sample = createTopoCircularBinaryRawSampler({
       beta: 1, progress: phase, radius: 0.3, sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
+      observerId: "positrino",
     });
     for (let y = 0; y < height; y += 1) for (let x = 0; x < width; x += 1) {
       const index = y * width + x;
@@ -743,7 +736,7 @@ test("table-driven beta-one diagnostic phases retain all signed screen-space con
     return { phase, rows };
   });
   for (const { phase, rows } of phaseRows) {
-    assert.equal(rows.length, 26, `selected signed level count at phase ${phase}`);
+    assert.equal(rows.length, 13, `selected partner-wake level count at phase ${phase}`);
     for (const row of rows) {
       assert.equal(row.gpuComponents, row.cpuRasterComponents,
         `screen-space component topology at phase ${phase}: ${JSON.stringify(row)}`);
@@ -752,21 +745,18 @@ test("table-driven beta-one diagnostic phases retain all signed screen-space con
       assert.ok(row.p95 <= 1 && row.max <= 1,
         `centerline bounds at phase ${phase}: ${JSON.stringify(row)}`);
     }
-    for (const negative of rows.filter((row) => row.family === "negative")) {
-      const positive = rows.find((row) => row.family === "positive" &&
-        row.rawDecade === negative.rawDecade);
-      assert.equal(negative.cpuPaths, positive?.cpuPaths,
-        `signed CPU symmetry at phase ${phase}: ${negative.rawDecade}`);
-      assert.equal(negative.gpuComponents, positive?.gpuComponents,
-        `signed GPU symmetry at phase ${phase}: ${negative.rawDecade}`);
-    }
   }
 });
 
-test("binary scalar-pass audit grid preserves pixel mapping, signs, singular state, and selected-level neighborhoods", () => {
+test("binary scalar-pass audit grid preserves both partner perspectives and selected-level neighborhoods", () => {
   const width = 916, height = 720;
-  const sample = createTopoCircularBinaryRawSampler({
+  const positrinoWake = createTopoCircularBinaryRawSampler({
     beta: 1, progress: 0, radius: 0.3, sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
+  });
+  const electrinoWake = createTopoCircularBinaryRawSampler({
+    beta: 1, progress: 0, radius: 0.3,
+    sourceMaskRadius: binaryVisibleSourceMaskRadius(width, height),
+    observerId: "positrino",
   });
   const probes = [
     [0, 0], [width - 1, height - 1], [Math.floor(width / 2), Math.floor(height / 2)],
@@ -774,15 +764,16 @@ test("binary scalar-pass audit grid preserves pixel mapping, signs, singular sta
   ].map(([pixelX, pixelY]) => ({ pixelX, pixelY, point: topoCircularBinaryWorldPointForCanvasPixel({
     pixelX, pixelY, width, height, displayScale: 1,
   }) }));
-  const values = probes.map(({ point }) => sample(point.x, point.y));
-  assert.ok(values.some((value) => value > 0));
-  assert.ok(values.some((value) => value < 0));
-  assert.ok(Math.abs(values[2]) < 0.01, "center remains the cancellation probe");
-  assert.equal(Number.isFinite(values[3]), true, "near-source positive-distance samples stay ordinary");
-  assert.equal(Number.isFinite(values[4]), true, "near-source positive-distance samples stay ordinary");
+  const positiveValues = probes.map(({ point }) => positrinoWake(point.x, point.y));
+  const negativeValues = probes.map(({ point }) => electrinoWake(point.x, point.y));
+  assert.ok(positiveValues.filter(Number.isFinite).every((value) => value > 0));
+  assert.ok(negativeValues.filter(Number.isFinite).every((value) => value < 0));
+  closeTo(positrinoWake(0.5, 0.5), -electrinoWake(0.5, 0.5), 1e-5);
+  assert.equal(Number.isFinite(positiveValues[3]), true, "selected-observer samples stay ordinary");
+  assert.equal(Number.isFinite(negativeValues[4]), true, "selected-observer samples stay ordinary");
   const thresholds = createTopoSignedContourLevels({ contourCount: 13, contourReach: 3 })
-    .filter((level) => level.family === "negative" || level.family === "positive");
-  assert.equal(thresholds.length, 26);
+    .filter((level) => level.family === "positive");
+  assert.equal(thresholds.length, 13);
   assert.ok(thresholds.every((level) => Number.isFinite(level.value)));
 });
 
@@ -925,23 +916,32 @@ test("visible source disk uses display occlusion while providers fail closed onl
     beta: 0.5, phase: 0.3,
     sourceMaskRadius: maskRadius,
   });
-  for (const source of frame.sources) {
-    assert.equal(Number.isNaN(sampler(source.position.x, source.position.y)), true);
-    assert.equal(Number.isFinite(sampler(
-      source.position.x, source.position.y + 1e-6,
-    )), true);
-  }
+  const electrino = frame.sources.find(({ id }) => id === "electrino");
+  const positrino = frame.sources.find(({ id }) => id === "positrino");
+  assert.equal(Number.isFinite(sampler(
+    electrino.position.x,
+    electrino.position.y,
+  )), true);
+  assert.equal(Number.isNaN(sampler(
+    positrino.position.x,
+    positrino.position.y,
+  )), true);
+  assert.equal(Number.isFinite(sampler(
+    positrino.position.x, positrino.position.y + 1e-6,
+  )), true);
 
   const binaryMaskRadius = binaryVisibleSourceMaskRadius(width, height);
   closeTo(binaryMaskRadius, 0);
   const playback = createTopoCircularBinaryPlayback({ beta: 0.5, progress: 0.3 });
   for (const sourceSign of [-1, 1]) {
+    const observerId = sourceSign < 0 ? "positrino" : "electrino";
     const source = topoCircularBinarySourcePosition({
       sourceSign,
       time: playback.observationTime,
       beta: playback.beta,
       radius: playback.radius,
       direction: playback.direction,
+      observerId,
     });
     const singular = sampleTopoCircularBinaryWake({
       point: { x: source.x, y: source.y },
@@ -950,6 +950,7 @@ test("visible source disk uses display occlusion while providers fail closed onl
       progress: playback.progress,
       sourceMaskRadius: binaryMaskRadius,
       direction: playback.direction,
+      observerId,
     });
     const outside = sampleTopoCircularBinaryWake({
       point: { x: source.x, y: source.y + 1e-6 },
@@ -973,8 +974,7 @@ test("visible source disk uses display occlusion while providers fail closed onl
   assert.match(runtime, /uniforms\.u_source_mask_radius/u);
   assert.match(runtime, /sourceMasked = u_pair_mode/u);
   assert.match(runtime, /distance\(worldPoint, vec2\(2\.0 \/ 3\.0, 0\.5\)\) <= u_source_mask_radius/u);
-  assert.match(runtime, /distance\(worldPoint, vec2\(u_electrino_x, 0\.5\)\)/u);
-  assert.match(runtime, /distance\(worldPoint, vec2\(u_positrino_x, 0\.5\)\)/u);
+  assert.match(runtime, /u_partner_source_sign < 0\.0/u);
 });
 
 test("global Space transport respects native controls but owns focused ranges", () => {
@@ -1072,7 +1072,7 @@ test("custom radio controls keep a non-shrinking circular border box", () => {
   assert.match(css, /\.topo-radio-field input:focus-visible \{[\s\S]*outline: 2px solid/u);
 });
 
-test("one native Purple/White control persists across all four display-only scenarios", () => {
+test("one native Purple-to-White slider persists across all four display-only scenarios", () => {
   const html = readFileSync(new URL("../topo.html", import.meta.url), "utf8");
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
@@ -1080,17 +1080,17 @@ test("one native Purple/White control persists across all four display-only scen
   ), "utf8");
   assert.match(
     html,
-    /<fieldset id="topo-background-control" class="topo-radio-field">[\s\S]*name="topo-background" value="purple" checked[\s\S]*name="topo-background" value="white"[\s\S]*<\/fieldset>/u,
+    /id="topo-background-control"[\s\S]*class="topo-range-field"[\s\S]*id="topo-background"[\s\S]*type="range"[\s\S]*min="0"[\s\S]*max="100"[\s\S]*value="0"/u,
   );
   assert.doesNotMatch(html, /id="topo-background-control"[^>]*hidden/u);
   assert.equal((html.match(/name="topo-scenario"/gu) ?? []).length, 4);
   assert.match(
     runtime,
-    /const baseState = \{[\s\S]*backgroundMode:[\s\S]*dom\.backgroundInputs/u,
+    /const baseState = \{[\s\S]*neutralWhiteMix:[\s\S]*dom\.background\.value/u,
   );
   assert.match(
     runtime,
-    /dom\.backgroundInputs\.forEach\(\(input\) =>[\s\S]*listen\(input, "change", scheduleFrameChange\)/u,
+    /listen\(dom\.background, "input", scheduleFrameChange\)/u,
   );
   const rawFrameKeyBody = runtime.match(
     /function createRawFrameKey\([^)]*\) \{([\s\S]*?)\n  \}/u,
@@ -1099,7 +1099,7 @@ test("one native Purple/White control persists across all four display-only scen
   assert.doesNotMatch(rawFrameKeyBody, /background/u);
   assert.match(
     runtime,
-    /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.backgroundMode/u,
+    /const displayKey = TOPO_DISPLAY_MAPPING_ID[\s\S]*state\.neutralWhiteMix/u,
   );
   assert.match(runtime, /dom\.scenarioInputs\.forEach\(\(input\) =>[\s\S]*listen\(input, "change", handleScenarioChange\)/u);
   assert.doesNotMatch(runtime, /dom\.scenario\.value/u);
@@ -1120,9 +1120,10 @@ test("display scale redraws a full-viewport computed coordinate window", () => {
 
   assert.notEqual(sliderIndex, -1);
   assert.ok(sliderIndex < backgroundIndex);
-  assert.match(html, /Display scale · visible extent/u);
+  assert.match(html, /<span>Scale<\/span>/u);
   assert.match(html, /id="topo-display-scale"[\s\S]*min="0\.5"[\s\S]*max="2"[\s\S]*step="0\.25"[\s\S]*value="1"/u);
-  assert.match(html, /Lower scale shows a wider coordinate window/u);
+  assert.doesNotMatch(html, /topo-display-scale-output|1\.00× · 1\.00 high/u);
+  assert.doesNotMatch(html, /Lower scale shows a wider coordinate window/u);
   assert.doesNotMatch(css, /topo-map-display-scale/u);
   const canvasRule = css.match(
     /#topo-canvas,\n#topo-contour-canvas \{([\s\S]*?)\n\}/u,
@@ -1135,7 +1136,7 @@ test("display scale redraws a full-viewport computed coordinate window", () => {
   assert.match(runtime, /function updateVisibleExtentPresentation\([\s\S]*fieldViewportPixels[\s\S]*contourViewportPixels/u);
   const stateSource = runtime.slice(
     runtime.indexOf("function getState()"),
-    runtime.indexOf("function sourceLocalViewRequested"),
+    runtime.indexOf("function updatePanelPresentation"),
   );
   assert.match(stateSource, /displayScale: normalizeTopoDisplayScale/u);
   const rawFrameKeyBody = runtime.match(
@@ -1149,9 +1150,6 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.equal(TOPO_PAIR_CROSSING_CONTOUR_GRID_WIDTH, 480);
   assert.equal(TOPO_PAIR_CROSSING_PHASE_START, 0.42);
   assert.equal(TOPO_PAIR_CROSSING_PHASE_END, 0.66);
-  assert.equal(TOPO_PAIR_COINCIDENCE_CONTOUR_GRID_WIDTH, 916);
-  assert.equal(TOPO_PAIR_COINCIDENCE_PHASE_START, 0.505);
-  assert.equal(TOPO_PAIR_COINCIDENCE_PHASE_END, 0.515);
   assert.ok(
     (916 - 1) / (TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH - 1) < 2.3,
     "the live desktop contour grid must keep marching-squares facets below 2.3 canvas pixels",
@@ -1167,7 +1165,7 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 916,
     phase: 0.51,
-  }), 916);
+  }), 480);
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 916,
     phase: 0.659,
@@ -1179,7 +1177,7 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.equal(resolveTopoPairPlaybackContourGridWidth({
     canvasWidth: 500,
     phase: 0.51,
-  }), 500);
+  }), 480);
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
     import.meta.url,
@@ -1206,26 +1204,23 @@ test("collinear playback extracts a current fail-closed contour frame while moti
   assert.match(runtime, /lastContourPathCacheHit = matchingFrame[\s\S]*"live-grid"/u);
   assert.match(
     runtime,
-    /live Combined wake contours follow the current prescribed-time field/u,
+    /live partner-wake contours follow the current prescribed-time field/u,
   );
 });
 
-test("paused pair refinement holds the last complete visible frame until atomic swap", () => {
+test("paused pair refinement clears the prior frame before the current atomic swap", () => {
   const runtime = readFileSync(new URL(
     "../src/apps/topo/TopoInteractionContractRuntime.js",
     import.meta.url,
   ), "utf8");
-  assert.match(
+  assert.doesNotMatch(
     runtime,
-    /const holdCompletePairFrame = state\.pairMode[\s\S]*!pairPlaybackPlaying[\s\S]*!pairTimelineScrubbing[\s\S]*cachedRawFrame[\s\S]*contourFrameKey/u,
+    /holdCompletePairFrame|holding-complete-frame|previousFrameBelongsToScenario/u,
   );
+  assert.match(runtime, /function scheduleFrameChange\(\) \{[\s\S]*resetPresentation: true/u);
   assert.match(
     runtime,
-    /if \(!holdCompletePairFrame && \([\s\S]*drawSyntheticContours\(\{/u,
-  );
-  assert.match(
-    runtime,
-    /if \(!matchingFrame && state\.pairMode && previousFrameBelongsToScenario\)[\s\S]*pairFrameHandoff = "holding-complete-frame"[\s\S]*return true/u,
+    /resetPresentationForControlChange\(state\)[\s\S]*contourFrameKey = "pending:"/u,
   );
   assert.match(
     runtime,
@@ -1297,7 +1292,7 @@ test("circular-binary live contours use a bounded preview and refine when paused
   );
   assert.match(
     runtime,
-    /if \(state\.binary\) \{[\s\S]*drawSyntheticContours\([\s\S]*rawFrame,[\s\S]*Full-density circular-binary contours complete/u,
+    /if \(state\.binary\) \{[\s\S]*drawSyntheticContours\([\s\S]*rawFrame,[\s\S]*Full-density circular-binary partner-wake contours complete/u,
   );
   assert.match(
     runtime,
@@ -1305,7 +1300,7 @@ test("circular-binary live contours use a bounded preview and refine when paused
   );
 });
 
-test("centered crossing previews retain the current visible-disk mask topology at full density", () => {
+test("bounded centered-crossing previews retain the full-density contour topology", () => {
   const canvasWidth = 916;
   const canvasHeight = 720;
   const horizontalWorldSpan = (canvasWidth - 1) / (canvasHeight - 1);
@@ -1356,7 +1351,7 @@ test("centered crossing previews retain the current visible-disk mask topology a
       sampleStates,
       width: gridWidth,
       height: gridHeight,
-      levels: [{ value: -640, family: "negative" }],
+      levels: [{ value: 640, family: "positive" }],
     });
     const adjacency = new Map();
     const key = (x, y) => x.toFixed(10) + "," + y.toFixed(10);
@@ -1420,6 +1415,7 @@ test("low-speed pair source contours refine complete components against a dense 
     contourReach: 3,
   });
   const nearLevels = levels.filter((level) =>
+    level.family === "positive" &&
     Number.isFinite(level.rawDecade) &&
     level.rawDecade >= TOPO_PAIR_SOURCE_REFINEMENT_MIN_RAW_DECADE);
 
@@ -1533,7 +1529,7 @@ test("low-speed pair source contours refine complete components against a dense 
   });
   const measurements = [];
 
-  for (const polaritySign of [-1, 1]) {
+  for (const polaritySign of [1]) {
     const refinement = createTopoPairSourceContourRefinement({
       width,
       height,
@@ -1604,9 +1600,9 @@ test("low-speed pair source contours refine complete components against a dense 
     }
   }
 
-  assert.equal(measurements.length, 4);
+  assert.equal(measurements.length, 2);
   for (const displayScale of [0.5, 1, 2]) {
-    for (const polaritySign of [-1, 1]) {
+    for (const polaritySign of [1]) {
       const refinement = createTopoPairSourceContourRefinement({
         width,
         height,
@@ -1626,7 +1622,7 @@ test("low-speed pair source contours refine complete components against a dense 
       TOPO_PAIR_PLAYBACK_CONTOUR_GRID_WIDTH,
       replayPhase,
     );
-    for (const polaritySign of [-1, 1]) {
+    for (const polaritySign of [1]) {
       const refinement = createTopoPairSourceContourRefinement({
         width,
         height,

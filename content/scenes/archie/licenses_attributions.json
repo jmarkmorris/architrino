@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__licenses_attributions",
-    "title": "Licenses & Attributions",
+    "title": "Licenses, Attribution & Source Use",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

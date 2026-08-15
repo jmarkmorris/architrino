@@ -6,6 +6,21 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
+- 2026-08-09: Proved the canonical moving-single-root identity
+  $\Phi_b=C_b\operatorname{sgn}(D_b)/r_b$ and
+  $-\nabla_{\mathbf X_r}\Phi_b=\mathbf A_b$ on one connected regular
+  fixed-reception chart with fixed retained history, $r_b>0$, and $D_b\ne0$.
+  A separately structured $c_f=1$ circular-history verifier solved every
+  perturbed root by certified Newton iteration, differentiated scalar values
+  with two numerical stencils, and compared them with the unchanged canonical
+  ledger record. Across five refinements the largest component residual was
+  $2.12\times10^{-12}$ and the largest stencil disagreement was
+  $5.93\times10^{-13}$; a raw $1/r_b^2$ negative control missed by $0.513$.
+  Promoted the regular per-row theorem into the Master Equation while retaining
+  finite scalar superposition at conditional-derivation grade. No global
+  scalar, chart gluing, singular continuation, action, conservation account,
+  infinite-source limit, or EOM solver acceptance was established.
+
 - 2026-07-30: Split the mirror-symmetric collinear close-approach and
   causal-root boundary program out of MEC-006 into the new MEC-007
   `mirror_close_approach_causal_root_boundary` owner. MEC-006 now retains only
