@@ -4495,17 +4495,311 @@ Because $r = c_f(T_r-T_t)$, $r = 0$ implies $\Delta = T_r-T_t = 0$. This case is
 
 This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a transmitter contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transmitter-side transversality and transmitter-side control, active-root count, and the required stability/action/event accounts. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
 
-###### Superposition Principle
+###### Superposition and Local Wake Geometry
 
-The Master EOM is **linear in transmitter contributions** on a declared branch chart:
+**Postulated vector superposition.** On one declared regular branch chart at a
+receiver event, let $\mathcal B$ be the finite set of admitted causal-root
+rows. The Master EOM states that the receiver-local acceleration is the linear
+sum
 
 $$
-\mathbf A_{\text{total}}(T) = \sum_j \mathbf A_{j}(T)
+\mathbf A_{\mathrm{total}}(T;\mathbf X_r)
+=
+\sum_{b\in\mathcal B}\mathbf A_b(T;\mathbf X_r).
 $$
 
-The causal-wake distributions from distinct transmitters superpose without mutual interference, and the receiver sums the branch accelerations that actually intersect it. Effective potentials reconstructed from those wakes also superpose in the corresponding linear diagnostic or continuum limit, but the substrate law remains the receiver-local branch sum.
+Plainly: each admitted wake intersection contributes one acceleration vector,
+and the receiver adds those vectors. This vector sum is the postulated
+substrate rule. It does not require a scalar wake landscape.
 
-**Consequence:** The problem of $N$ interacting architrinos reduces to solving $N$ coupled delay differential equations (DDEs), one per architrino, with each depending on the retained history of all transmitters and on the certified active causal-root records.
+**Moving-single-root scalar representative (derived on one regular chart).**
+Fix the reception time, a retained transmitter history, and a connected
+receiver chart $U$ on which one selected causal root $s_b(\mathbf X_r)$ is
+unique and differentiable. For the canonical row, write
+
+$$
+\begin{aligned}
+\mathbf R_b
+&=\mathbf X_r-\mathbf X_{t(b)}(s_b),
+&r_b&=\|\mathbf R_b\|,
+&\mathbf n_b&=\frac{\mathbf R_b}{r_b},\\
+D_b
+&=c_f-\mathbf n_b\cdot\mathbf V_{t(b)}(s_b),
+&C_b&=\kappa\,\sigma_b|q_rq_{t(b)}|,
+\end{aligned}
+$$
+
+with $r_b\ge r_{\min}>0$ and $|D_b|\ge D_{\min}>0$ throughout $U$.
+
+Plainly: this is one admitted moving-source row with a smoothly tracked past
+emission event. The chart excludes sources, folds, coincidences, and singular
+self roots by keeping both the separation and transmitter factor away from
+zero.
+
+Differentiating the causal constraint
+$r_b-c_f(T-s_b)=0$ with respect to the receiver position gives
+
+$$
+0
+=
+d\!\left[r_b-c_f(T-s_b)\right]
+=
+\mathbf n_b\cdot d\mathbf X_r+D_b\,ds_b,
+\qquad
+\nabla_{\mathbf X_r}s_b
+=
+-\frac{\mathbf n_b}{D_b},
+\qquad
+\nabla_{\mathbf X_r}r_b
+=
+\frac{c_f}{D_b}\mathbf n_b.
+$$
+
+Plainly: moving the receiver changes both its separation from the retained
+source point and the emission time selected by the causal equation. These two
+effects combine into the signed factor $1/D_b$.
+
+The sign $\epsilon_b=\operatorname{sgn}(D_b)$ is constant on the connected
+regular chart. Therefore the receiver-local scalar
+
+$$
+\Phi_b
+=
+C_b\frac{\epsilon_b}{r_b}
+$$
+
+satisfies
+
+$$
+-\nabla_{\mathbf X_r}\Phi_b
+=
+C_b\frac{c_f}{r_b^2|D_b|}\mathbf n_b
+=
+\mathbf A_b.
+$$
+
+Plainly: the branch sign converts the signed derivative of $1/r_b$ into the
+absolute transmitter-side weight in the canonical acceleration ledger. This
+is an exact local rewrite of the existing row, not a new response based on
+slope or curvature.
+
+The claim grade is **derived on one connected regular moving-simple-root
+chart**. A separately structured $c_f=1$ circular-history check computes the
+scalar gradient from freshly solved roots and finite differences, while the
+ledger vector comes from an unchanged causal-root record and the canonical
+row. Across five step refinements, the largest component residual was
+$2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because
+its radial scaling is wrong. The check is recorded in
+`verify-moving-single-root-scalar-gradient.mjs`.
+
+Plainly: the proof supplies the identity, and an independently structured
+calculation checks its numerical realization on one moving regular chart. A
+nonzero scalar-gradient-versus-ledger residual on any certified point would
+falsify the claimed local representation.
+
+**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix
+the retained histories, root selections, regularization, and boundary
+convention of that chart. If every row $b\in\mathcal B$ has a differentiable
+receiver-local scalar representative $\Phi_b$ on the same chart satisfying
+
+$$
+\mathbf A_b
+=
+-\nabla_{\mathbf X_r}\Phi_b,
+$$
+
+Plainly: the condition says that moving the receiver within this one regular
+chart changes a scalar $\Phi_b$ in exactly the way needed to reproduce row
+$b$'s acceleration. The theorem assumes that per-row identity; it does not
+derive the identity from vector superposition.
+
+Define the finite superposed scalar by
+
+$$
+\Phi_{\mathcal B}
+=
+\sum_{b\in\mathcal B}\Phi_b.
+$$
+
+Plainly: $\Phi_{\mathcal B}$ is only the sum of the valid row scalars on the
+shared chart. No scalar from a different retained history, root convention,
+regularization, or boundary prescription can be inserted into this sum.
+
+Linearity of the receiver gradient then gives
+
+$$
+\mathbf A_{\mathrm{total}}
+=
+\sum_{b\in\mathcal B}\mathbf A_b
+=
+-\nabla_{\mathbf X_r}\Phi_{\mathcal B}.
+$$
+
+Plainly: once every admitted acceleration contribution is already the negative gradient
+of its own valid scalar, adding the scalars reproduces the same complete vector
+ledger. This is a **conditional derivation** for a finite regular chart, not a
+proof that one global scalar exists. The preceding moving-single-root theorem
+discharges the per-row premise for canonical rows that share its fixed-history,
+fixed-sign regular chart. A row with a different kernel, regularization, or
+boundary rule still requires its own matching scalar derivation.
+
+Where $\nabla_{\mathbf X_r}\Phi_{\mathcal B}\ne\mathbf0$, the local level-set
+normal, acceleration direction, and acceleration magnitude obey
+
+$$
+\widehat{\mathbf n}_{\Phi}
+=
+\frac{\nabla_{\mathbf X_r}\Phi_{\mathcal B}}
+{\|\nabla_{\mathbf X_r}\Phi_{\mathcal B}\|},
+\qquad
+\frac{\mathbf A_{\mathrm{total}}}
+{\|\mathbf A_{\mathrm{total}}\|}
+=
+-\widehat{\mathbf n}_{\Phi},
+\qquad
+\|\mathbf A_{\mathrm{total}}\|
+=
+\|\nabla_{\mathbf X_r}\Phi_{\mathcal B}\|.
+$$
+
+Plainly: the normalized gradient gives only the local normal direction, the
+minus sign selects the acceleration direction, and the unnormalized gradient
+retains the acceleration magnitude. Direction alone is not the complete
+acceleration vector.
+
+At a cancellation point, and under a small receiver displacement away from a
+regular point, the same representation gives
+
+$$
+\nabla_{\mathbf X_r}\Phi_{\mathcal B}=\mathbf0
+\Longrightarrow
+\mathbf A_{\mathrm{total}}=\mathbf0,
+\qquad
+\nabla_{\mathbf X_r}\mathbf A_{\mathrm{total}}
+=
+-\nabla_{\mathbf X_r}^{2}\Phi_{\mathcal B}.
+$$
+
+Plainly: when the row accelerations cancel, the gradient vanishes, so there is
+no preferred level-set normal and the net acceleration is zero. The Hessian,
+which is the matrix of second scalar derivatives, and related curvature data
+describe how the acceleration changes after displacement. They are not extra
+instantaneous acceleration contributions.
+
+Finite induction over added architrinos is an intuitive corollary, not the
+proof: after the retained histories and regular branch chart are fixed, one may
+start with one admitted row and add the rows associated with each further
+label. This reasoning does not transfer directly to self-consistently evolved
+$N$-architrino solutions, because adding an architrino may change every
+previous trajectory, causal root, transmitter-side weight, and branch
+identity.
+
+Plainly: adding another fixed ledger entry preserves a finite sum. Adding a
+new moving architrino to the dynamical system can rebuild the ledger itself, so
+the old induction hypotheses must be proved again on the new histories.
+
+The characteristic-tail construction in the receiver-gradient discussion
+supplies an exact receiver-gradient identity for its declared regularized
+kernel, retained-history conditions, and regular branch chart. It is therefore
+an example of the kind of per-row identity that the conditional theorem can
+use only where its normalization, polarity, root selection, regularization,
+history depth, and boundary convention match the ledger row. It does not by
+itself establish an exact action, a conservation account, an independently
+evolving causal-wake state, a globally defined scalar, or a singular
+self-inclusive continuation.
+
+Plainly: the characteristic-tail calculation proves one controlled local
+gradient equality. It does not turn that local equality into a complete
+history law, boundary law, or universe-wide scalar.
+
+A raw $1/r^2$ wake-intensity scalar is not the required representative: its
+receiver gradient has inverse-cube radial scaling rather than the canonical
+inverse-square acceleration scaling. A bare $1/r$ scalar is also not a
+universal delayed-wake solution: root-constrained differentiation carries a
+signed transmitter factor, and the direct scalar action route leaves the
+derivative-of-constraint residual derived later in this chapter. A displayed
+wake-intensity scalar or display-only color transfer is therefore not a
+physical potential. None of these scalar constructions licenses an additional
+slope, curvature, or Hessian response in the Master EOM.
+
+Plainly: a picture of wake intensity can be useful without being the scalar
+whose gradient equals the acceleration ledger. Differentiating the wrong
+scalar gives the wrong acceleration, and differentiating any display a second
+time would add a response that the Master Equation does not contain.
+
+The finite theorem has no implication by itself for action, energy, momentum,
+angular momentum, conservation, stability, retention, or physical
+realization. Each such claim requires its own Architrino-native derivation and
+boundary account.
+
+Plainly: rewriting the same finite acceleration sum as a scalar gradient does
+not create new dynamics or new conserved quantities.
+
+**Open theorem target: global extension.** Define the complete acceleration
+one-form on a regular receiver domain by
+
+$$
+\omega_{\mathcal B}
+\equiv
+-\mathbf A_{\mathrm{total}}\cdot d\mathbf X_r.
+$$
+
+Plainly: $\omega_{\mathcal B}$ records the component of the negative total
+acceleration along each possible receiver displacement. If a scalar exists,
+this one-form must equal the scalar differential $d\Phi_{\mathcal B}$.
+
+A global extension must prove local closedness
+$d\omega_{\mathcal B}=0$ on every certified regular receiver domain, check
+closed-loop integrals and the agreement of scalar charts on overlaps, and keep
+sources, folds, coincidences, and self-diagonal events as quarantined
+boundaries unless an accepted prescription covers them. For a countable or
+continuum Noether-sea limit, it must also justify
+
+$$
+\nabla_{\mathbf X_r}
+\int \Phi_b\,d\mu(b)
+=
+\int \nabla_{\mathbf X_r}\Phi_b\,d\mu(b)
+$$
+
+using declared lower-distance and Jacobian bounds together with an integrable
+summability bound on the source-history measure $\mu$.
+
+Plainly: local scalar pieces become one global scalar only if they have no
+circulation, match wherever their charts overlap, and never cross an untreated
+singularity. An infinite sea adds another burden: differentiating the combined
+history must be provably interchangeable with summing or integrating its
+individual rows.
+
+The scalar representation is falsified on its claimed domain by any one of the
+following operator-checkable results:
+
+- nonzero curl of the complete acceleration on a certified regular chart;
+- a nonzero integral of the acceleration around an admissible closed receiver
+  loop;
+- failure of local scalar representatives to agree, up to their allowed chart
+  constants, on overlaps;
+- a certified nonzero residual
+  $\mathbf A_{\mathrm{ledger}}+
+  \nabla_{\mathbf X_r}\Phi_{\mathcal B}$ when the scalar gradient and unchanged
+  causal-root ledger are computed independently; or
+- failure of the declared distance, Jacobian, or summability bound needed for
+  the countable or continuum source limit.
+
+Plainly: any one of these checks shows that the proposed scalar description
+does not reproduce or extend the acceleration ledger on the stated domain. It
+does not overturn the postulated vector superposition rule, which remains the
+substrate law even when a scalar representation fails.
+
+**Consequence:** The problem of $N$ interacting architrinos reduces to solving
+$N$ coupled delay differential equations (DDEs), one per architrino, with each
+depending on the retained history of all transmitters and on the certified
+active causal-root records.
+
+Plainly: each architrino's next acceleration depends on the stored past paths
+that supply its currently admitted wake intersections. The equations are
+coupled because changing one path can change the later root ledger seen by the
+others.
 
 ---
 
@@ -30286,9 +30580,9 @@ Why do observer-level electric charges appear in units of $e/3$?
 | split | Electrinos | Positrinos | net observer-level charge |
 |:-----:|:----------:|:----------:|:------------------:|
 | polarity label |   $-\epsilon$   |   $+\epsilon$   |        units of $|e|$         |
-|     6:0     |         6         |         0         |           −1           |
-|     5:1     |         5         |         1         |          −2/3          |
-|     4:2     |         4         |         2         |          −1/3          |
+|     6:0     |         6         |         0         |           $-1$           |
+|     5:1     |         5         |         1         |          $-2/3$          |
+|     4:2     |         4         |         2         |          $-1/3$          |
 |     3:3     |         3         |         3         |            0           |
 |     2:4     |         2         |         4         |          +1/3          |
 |     1:5     |         1         |         5         |          +2/3          |
@@ -32166,7 +32460,7 @@ A Gen‑I baryon (e.g., proton or neutron) consists of:
 
 - 3 quarks → 3 Noether braids
 - Each with 1, 2, 3 axes
-- Total of **9 axes**: 1₁,2₁,3₁; 1₂,2₂,3₂; 1₃,2₃,3₃.
+- Total of **9 axes**: $1_1,2_1,3_1; 1_2,2_2,3_2; 1_3,2_3,3_3$.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
 
 ###### Color singlet condition as closed braid
@@ -32197,7 +32491,7 @@ This closed 3‑strand braid (in color space) is **topologically distinct** from
 
 Even for color‑singlet nucleons:
 
-- Internal 1, 2, 3 structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances ≲ 1–2 fm.
+- Internal 1, 2, 3 structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances $\lesssim 1$–$2\,\mathrm{fm}$.
 
 Heuristic:
 
@@ -35692,12 +35986,12 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Polarity conjugation flips signs. Meson pairs cancel most axes; indexed candidate-axis permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter braid, −1/3 per polarity-conjugate antimatter braid. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes $+e/3$, `-` contributes $-e/3$, and `0` contributes $0$. Polarity conjugation flips signs. Meson pairs cancel most axes; indexed candidate-axis permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** $+1/3$ per matter braid, $-1/3$ per polarity-conjugate antimatter braid. Mesons sum to $0$; baryons sum to $1$.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
 - **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned candidate braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned candidate braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity is hypothesized to track whether the flux/axis pattern inverts (odd for these mesons, even for the proposed ground-state candidate braids).
-- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or strongly over-twisted excited states (ρ, Δ) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors (π±, $K$) live longer.
+- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs ($\pi^0$) or strongly over-twisted excited states ($\rho$, $\Delta$) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors ($\pi^\pm$, $K$) live longer.
 
 ##### SM quantum numbers (cheat sheet for particles discussed)
 
@@ -35707,16 +36001,16 @@ Lifetime and width entries below are PDG comparison values.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $\pi^+$ | $u\bar d$ | +1 | 0 | 0 | +1 | $0^-$ | $2.60\times10^{-8}$ s |
 | $\pi^0$ | $(u\bar u-d\bar d)/\sqrt{2}$ | 0 | 0 | 0 | 0 | $0^-$ | $8.4\times10^{-17}$ s |
-| $\pi^-$ | $d\bar u$ | −1 | 0 | 0 | −1 | $0^-$ | $2.60\times10^{-8}$ s |
+| $\pi^-$ | $d\bar u$ | $-1$ | 0 | 0 | $-1$ | $0^-$ | $2.60\times10^{-8}$ s |
 | $K^+$ | $u\bar s$ | +1 | 0 | +1 | +1/2 | $0^-$ | $1.24\times10^{-8}$ s |
-| $K^0$ | $d\bar s$ | 0 | 0 | +1 | −1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
-| $K^-$ | $\bar u s$ | −1 | 0 | −1 | −1/2 | $0^-$ | $1.24\times10^{-8}$ s |
-| $\bar K^0$ | $\bar d s$ | 0 | 0 | −1 | +1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
-| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | +1,0,−1 | 0 | 0 | +1,0,−1 | $1^-$ | $\Gamma \approx 150$ MeV ($\sim5\times10^{-24}$ s) |
+| $K^0$ | $d\bar s$ | 0 | 0 | +1 | $-1/2$ | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
+| $K^-$ | $\bar u s$ | $-1$ | 0 | $-1$ | $-1/2$ | $0^-$ | $1.24\times10^{-8}$ s |
+| $\bar K^0$ | $\bar d s$ | 0 | 0 | $-1$ | +1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
+| $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | $+1,0,-1$ | 0 | 0 | $+1,0,-1$ | $1^-$ | $\Gamma \approx 150$ MeV ($\sim5\times10^{-24}$ s) |
 | $\Delta^{++}$ | $uuu$ | +2 | 1 | 0 | +3/2 | $3/2^+$ | $\Gamma \approx 120$ MeV ($\sim5\times10^{-24}$ s) |
 | $\Delta^{+}$ | $uud$ | +1 | 1 | 0 | +1/2 | $3/2^+$ | same as above |
-| $\Delta^{0}$ | $udd$ | 0 | 1 | 0 | −1/2 | $3/2^+$ | same as above |
-| $\Delta^{-}$ | $ddd$ | −1 | 1 | 0 | −3/2 | $3/2^+$ | same as above |
+| $\Delta^{0}$ | $udd$ | 0 | 1 | 0 | $-1/2$ | $3/2^+$ | same as above |
+| $\Delta^{-}$ | $ddd$ | $-1$ | 1 | 0 | $-3/2$ | $3/2^+$ | same as above |
 
 ---
 
@@ -35758,7 +36052,7 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse braids, weak $W^-$ dissociation corridor. |
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ supplies the strange-sector CP-asymmetry handle. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral-kaon oscillation and CP-odd asymmetry are separate closure rows. |
-| Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
+| Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge $-1$ kaon; roles swapped vs $K^+$. |
 | $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; exchanges matter and polarity-conjugate antimatter branches. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |
@@ -51266,7 +51560,7 @@ The **new SI** defines all units via **exact values** of seven constants:
 | Planck constant | $h$ | $6.62607015 \times 10^{-34}$ J·s | kilogram (kg) |
 | Elementary charge | $e$ | $1.602176634 \times 10^{-19}$ C | ampere (A) |
 | Boltzmann constant | $k_B$ | $1.380649 \times 10^{-23}$ J/K | kelvin (K) |
-| Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}$ mol⁻¹ | mole (mol) |
+| Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}\,\mathrm{mol}^{-1}$ | mole (mol) |
 | Luminous efficacy of 540 THz radiation | $K_{\text{cd}}$ | 683 lm/W | candela (cd) |
 
 **Key insight:** These SI rows are definitions, not measurements. Their exactness is a property of the unit system. A physical closure claim still has to recover the observer-level records that make those definitions useful: spectral frequencies, charge inventories, action increments, thermal energy scales, and signal propagation.
@@ -53195,7 +53489,7 @@ This constraint explains how apparent metric deviations (Shapiro delay and light
 
 We require that the proposed mechanical slowing induced by Noether braid density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
 
-* **Constraint** – reproduce GPS clock offsets (38 μs/day), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
+* **Constraint** – reproduce GPS clock offsets ($38\,\mu\mathrm{s/day}$), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
 * **Mechanism** – mechanical slowing of Noether braid orbital frequencies couples to the local Noether braid density and Noether sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
 
 ##### Massive-Superposition Gravitational Distinguishability
@@ -54612,7 +54906,7 @@ Plain language: a receiver never sees the full ledger of who emitted what; it se
 ##### $\mathbb{U}_{\text{now}}$ Note: Limits of Perfect Clocks and Frames
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
-- Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
+- Sign/side ambiguity: attraction from $+\epsilon$ on one side vs repulsion from $-\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
 - Baseline distance scaling and branch geometry: $A\propto W^{\mathrm{acc}}/r^2$; transmitter motion sets $D_t$ and the arriving acceleration weight, while receiver motion enters root playback through $D_r/D_t$ and changes future geometry.
 - Collinear superposition: several transmitters on the two rays of one inference axis can sum to the same instantaneous $\mathbf A$.
 - Self-hit aliasing: self-intersections can mimic external transmitters along $L$.
@@ -54672,13 +54966,13 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
   - The analyzer projects the planar mode's transverse ledger onto its axis. Geometric projection supplies the candidate $\cos\theta$ amplitude factor; transmission $\propto\cos^2\theta$ remains a recovery result that requires the same record-forming measure and analyzer residual used by the polarization target above.
 
 - Sequential filters (order matters):
-  - Two non-parallel analyzers F($\theta$₁) and G($\theta$₂) applied in different orders yield different transmitted patterns because they recondition future causal roots differently: F∘G ≠ G∘F.
+  - Two non-parallel analyzers $F(\theta_1)$ and $G(\theta_2)$ applied in different orders yield different transmitted patterns because they recondition future causal roots differently: $F\circ G \ne G\circ F$.
 
 ---
 
 ##### Falsifiable edges and tests (observability-focused)
 
-- Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry F∘G vs G∘F.
+- Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry $F\circ G$ vs. $G\circ F$.
 - Planar-mode interference robustness: map how partial decoherence (deliberate jitter in transmitter paths) suppresses the overlap term; compare to predicted $|A|^2$ decay with coherence length.
 - Multi-receiver triangulation under ambiguity: show that two-sided localization from unoriented lines plus time series reduces, but does not eliminate, sign/side and distance–speed degeneracies—matching Step 9 limits.
 - Bell-type correlation target (open): assess whether planar-mode phase models with absolute time can reproduce observed $\cos(2\theta)$ correlations across separated analyzers without hidden cross-product acceleration terms; treat Tsirelson-like bounds as a stringent benchmark.
@@ -56755,7 +57049,7 @@ The current validation status is therefore conditional. Nonzero static endpoint 
 
 The hydrogen spectral toy scan may replay this compensated row as a scaffold, but that replay is not evidence that the gravitational endpoint has acquired nonzero $a_n$, $a_\lambda$, or $a_R$. Those entries become promotable only when the hydrogen branch or another declared branch derives the same component split for the same Noether sea cell.
 
-##### Hydrogen Γ_N Spectral Coefficient Row Toy Scan
+##### Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan
 
 This protocol is the first proof/simulation packet for the hydrogen spectral coefficient row $\mathbf{b}_{N}^{\mathrm{spec}}$. Its purpose is narrow: constrain the row that extracts $\Gamma_N$ for the hydrogen spectral channel without fitting a separate clock factor to each line.
 
@@ -71978,13 +72272,13 @@ This operator gives the first closure test for the unified route. It must fail i
 - **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $\lvert V_{ud}\rvert$ is large (same shielding tier), $\lvert V_{us}\rvert$ smaller (tri ↔ bi), $\lvert V_{ub}\rvert$ tiny (tri ↔ uni). Similar logic for the up-type rows.
 - **Provenance lens:** $V_{ij}$ can be read as a coherent sum over admissible architrino transport paths from weak-state geometry to shielding eigenstate geometry; $\lvert V_{ij}\rvert^2$ is the net channel weight after interference.
 
-###### Wolfenstein parametrization (to 𝒪(λ³))
+###### Wolfenstein parametrization (to $\mathcal{O}(\lambda^3)$)
 
 Use this as a target when deriving overlaps/angles from shielding geometry and weak-coupling-triad alignment.
 
-With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to 𝒪(λ³).
+With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to $\mathcal{O}(\lambda^3)$.
 
-Matrix form (Wolfenstein to 𝒪(λ³)):
+Matrix form (Wolfenstein to $\mathcal{O}(\lambda^3)$):
 
 $$
 V \simeq
@@ -72034,11 +72328,11 @@ $$
 
 Legend: $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$ are candidate occupancy vectors on persistent support indices $1,2,3$. They do not encode inner/middle/outer radius roles. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
 
-Quantitative target (heuristic): “high” should land near 0.2–1, “medium” ~10⁻²–10⁻¹, “tiny” ~10⁻³–10⁻² to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
+Quantitative target (heuristic): “high” should land near 0.2–1, “medium” $\sim 10^{-2}$–$10^{-1}$, “tiny” $\sim 10^{-3}$–$10^{-2}$ to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
 
 ###### Using CKM in amplitudes (quick examples)
 
-- **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $\lvert V_{ij}\rvert^2$. Neutral currents (Z/γ) are flavor-diagonal at tree level (no CKM factor at tree level); flavor-changing neutral currents appear only via loops.
+- **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $\lvert V_{ij}\rvert^2$. Neutral currents ($Z/\gamma$) are flavor-diagonal at tree level (no CKM factor at tree level); flavor-changing neutral currents appear only via loops.
 - **Beta reaction (SM label: `beta decay`):** $d \to u\,e^- \bar\nu_e$ uses $V_{ud}\approx0.974$; $\mathcal{M}\propto G_F V_{ud}$, rate $\propto \lvert V_{ud}\rvert^2$ times nuclear form factors.
 - **Semileptonic $B$ reaction:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto \lvert V_{cb}\rvert^2 G_F^2 m_b^5$ (times hadronic form factor).
 - **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.
@@ -79284,3 +79578,54 @@ In the current academic canon, these traditions remain successful local framewor
 Cosmology and black holes force the issue because the energy economy cannot stay open-ended. If transparent redshift deposits energy into the Noether sea, that sink must be returned, relaxed, recycled, or carried through boundary flux; otherwise the medium ledger secularly heats. The black-hole recycling chapters are therefore not late decorative examples. They are the candidate return channel that makes the redshift ledger, background radiation, compact-object records, and source/release history one closure problem.
 
 The arc is that abstraction became final, geometry became final, records became final, and then cosmology and black holes exposed the missing source/release history those local victories had kept apart.
+
+## About Architrino
+
+Architrino is the company and public project organized around the Architrino Assembly Architecture, written as $\mathbb{A}\mathbb{A}\mathbb{A}$ in the research corpus. The company, the theory, the public webapp, and the supporting repository are connected, but they are not the same object.
+
+The simple split is this: the theory makes the physics claim, the webapp helps readers inspect it, the repository keeps the work versioned, and the company gives the public project an accountable home.
+
+Use `architrino.com` for the literal domain. Use Architrino for the company, project, and public identity.
+
+### Contribution and Accountability
+
+Architrino is a human-led, AI-assisted research and publishing project. J Mark Morris retains editorial judgment and publication accountability for published project materials. The named Chief Technology Officer (CTO) and Chief Science Officer (CSO) offices each serve as an AI research synthesizer and collaborator in a named executive role under CEO authority. They are not independent legal persons, human employees, or academically accountable authors.
+
+AI systems, including generative-AI tools where used, may assist analysis, drafting, criticism, synthesis, software implementation, and review support. The corpus uses AI (Assembled Intelligence) as its theory-specific term for such collaborators. Human review and accountable publication remain required. These collaborative roles do not transfer responsibility for published claims or corrections away from the human publisher.
+
+Other AI systems or local AI agents that materially assist the project at a given time may be acknowledged by documented contribution role, such as research synthesis, analysis, drafting, critique, software implementation, or review support. Such acknowledgement does not assert that every AI use is individually recorded or that attribution is exhaustive. Named human contributors retain editorial and publication accountability, and acknowledged AI systems are not presented as independent legal persons or academically accountable authors.
+
+### The Inheritance of Inquiry
+
+Architrino is developed within humanity's long inheritance of inquiry: observation and recordkeeping, experiment and measurement, mathematics and philosophy, criticism and correction, and repeated attempts to understand patterns in nature. That inheritance reaches from the earliest surviving human records through modern scientific disciplines. It is the intellectual setting in which this project works, not evidence for an Architrino claim and not an assertion that earlier thinkers endorsed the project.
+
+Direct intellectual debts are treated more specifically. Where an identifiable work, result, method, datum, or argument bears on a claim, the project should provide a direct citation or a declared validation record appropriate to that use. The broader historical inheritance cannot be exhaustively enumerated or individually weighted, and acknowledging it does not make prior thinkers coauthors. Historical lineage never substitutes for the sources and validation a particular factual, legal, scientific, or theoretical claim requires.
+
+AI-mediated synthesis helps current human and AI research synthesizers and collaborators connect, compare, critique, and organize accessible material. It does not make model-training data a complete, transparent, or weighted account of intellectual lineage, nor does training provenance become author credit or source evidence. AI systems do not thereby acquire independent academic or legal authorship or agency. Human editorial review and publication accountability remain with the named human contributors.
+
+### Source and AI-Assistance Disclosure
+
+Factual, legal, and scientific assertions require independently checkable sources or declared validation records appropriate to the claim. A model response is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted drafting or analysis gains no authority merely because a model produced it.
+
+Repository history, discussions, source notes, review records, and validation ledgers aid transparency and reconstruction. They do not establish that every claim has been independently verified, and they do not create passage-level AI provenance where no such record exists. Readers should inspect the applicable claim status, cited sources, validation records, and open burdens. The [People](../../../../markdown/aaa/archie/people.md), [Values](../../../../markdown/aaa/archie/values.md), [GitHub Presence and Community](../../../../markdown/aaa/archie/github-presence-and-community.md), and [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md) pages provide the surrounding role, review, and evidence standards.
+
+### What Architrino Provides
+
+Architrino publishes a zero-price, open-source physics architecture whose documents, simulations, validation ledgers, and open problems can be inspected in public.
+
+The public offer is not instant belief. The public offer is inspection: readers can compare claims against derivations, scene structure, proof burdens, source notes, simulations, and validation gates.
+
+### Public Surfaces
+
+Architrino currently has several public-facing surfaces:
+
+- `architrino.com`, the reader-facing webapp and knowledge graph;
+- the GitHub repository, the versioned workbench for documents, scenes, checks, and critique;
+- generated reading copies and review artifacts for exchange and annotation;
+- support and contact routes for readers, critics, contributors, and patrons.
+
+The [About the Webapp](../../../../markdown/aaa/archie/about-the-webapp.md) page explains the runtime and reader experience. This page explains the project and company frame. The [People](../../../../markdown/aaa/archie/people.md) page separates the founder/CEO and CTO spheres. The [Values](../../../../markdown/aaa/archie/values.md) page states the public operating standard for claim discipline, generated media, privacy, rights, accessibility, and professional conduct. The [Legal Terms](../../../../markdown/aaa/archie/legal-terms.md) page summarizes the MIT license, good-faith publication posture, and use-at-your-own-risk boundary.
+
+### Operating Standard
+
+Architrino should remain public, inspectable, and claim-disciplined. Its strongest posture is to expose the architecture, the evidence, the remaining proof burdens, and the failure conditions clearly enough that serious readers can help test or improve the work.

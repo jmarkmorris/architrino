@@ -1341,7 +1341,7 @@ ledger vector comes from an unchanged causal-root record and the canonical
 row. Across five step refinements, the largest component residual was
 $2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because
 its radial scaling is wrong. The check is recorded in
-[`verify-moving-single-root-scalar-gradient.mjs`](../../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs).
+`verify-moving-single-root-scalar-gradient.mjs`.
 
 Plainly: the proof supplies the identity, and an independently structured
 calculation checks its numerical realization on one moving regular chart. A
@@ -1386,7 +1386,7 @@ $$
 -\nabla_{\mathbf X_r}\Phi_{\mathcal B}.
 $$
 
-Plainly: once every admitted acceleration row is already the negative gradient
+Plainly: once every admitted acceleration contribution is already the negative gradient
 of its own valid scalar, adding the scalars reproduces the same complete vector
 ledger. This is a **conditional derivation** for a finite regular chart, not a
 proof that one global scalar exists. The preceding moving-single-root theorem
