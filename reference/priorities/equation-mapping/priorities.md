@@ -61,6 +61,12 @@ Closure packets should be durable working files. Prefer one packet per equation 
 
 This priority is equation-first. It should complement, not replace, [Cross-Theory Mapping Priority Candidates](../cross-theory-mapping/priorities.md), which is case-first and experiment-first.
 
+[Mapping Electromagnetism](../mapping-electromagnetism/priorities.md) is the
+electromagnetic integration consumer for the EQ-13, EQ-15, and EQ-27 rows. It
+owns cross-row Maxwell cases and inverse constraints on braid, electron, and
+Noether sea structure; Equation Mapping retains the exact equation carriers,
+scores, source-field packets, and executable controls.
+
 The workstream should stay internal until a line item produces a mature mathematical object:
 
 - a derived equation;

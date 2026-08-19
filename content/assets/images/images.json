@@ -25146,6 +25146,55 @@
         "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
         "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
       ]
+    },
+    {
+      "id": "extramarks-moving-charges-and-magnetism-cheat-sheet",
+      "title": "Moving Charges and Magnetism Cheat Sheet",
+      "description": "Extramarks Class 12 physics infographic summarizing formulas and practice patterns for moving charges, current-carrying conductors, and magnetism; retained as a review-only external reference.",
+      "path": "content/assets/images/physics/extramarks-moving-charges-and-magnetism-cheat-sheet.jpg",
+      "mediaType": "image/jpeg",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "fileSizeBytes": 361102,
+      "sha256": "70921cb544b0234decface6c239f10de5df0c5c407422998453e14837678d4b7",
+      "dateCreated": "2026-05",
+      "dateImported": "2026-08-18",
+      "status": "needs-review",
+      "category": "physics-diagram",
+      "source": {
+        "name": "Extramarks",
+        "pageUrl": "https://www.extramarks.com/studymaterials/cbse/important-questions-class-12-physics-chapter-4/",
+        "fileUrl": "https://emseo.extramarks.com/wp-content/uploads/2026/05/physics_cheat_sheet_moving_charges_and_magnetism_compressed.jpg",
+        "accessedDate": "2026-08-18"
+      },
+      "creators": [
+        {
+          "name": "Extramarks",
+          "role": "publisher; individual image creator not stated"
+        }
+      ],
+      "license": {
+        "rightsStatus": "unknown",
+        "label": "All rights reserved; reuse permission not established",
+        "rationale": "The source page identifies Extramarks and states Copyright 2026 Extramarks. All rights reserved; no public-domain, Creative Commons, or other reuse license was found on the page.",
+        "requiresAttribution": true
+      },
+      "creditLine": "Moving Charges and Magnetism infographic, Extramarks, 2026. Reuse permission pending review.",
+      "usage": {
+        "intendedUses": [
+          "image library provenance review",
+          "observer-level physics comparison reference"
+        ],
+        "usedBy": []
+      },
+      "selectionNotes": [
+        "Downloaded from the article's full-resolution image URL rather than the 240 x 300 Open Graph preview or the 506 x 633 rendered derivative.",
+        "The downloaded bytes match the 1122-pixel source selected by the article's srcset.",
+        "Do not reference from markdown, scenes, or generated outputs until reuse rights are confirmed.",
+        "The formulas and force language are observer-level standard-physics material and are not Architrino-level premises."
+      ]
     }
   ]
 }

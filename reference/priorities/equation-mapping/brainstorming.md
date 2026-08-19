@@ -75,6 +75,14 @@ For cosmology, the inventory identified:
 | BBN rate and freezeout equations | Shared effective $H(t)$, thermal source record, photon and baryon loading, $N_{\text{eff}}$, and Noether sea state. |
 | BAO and distance ladder equations | Effective ruler and clock projections through the Noether sea, not literal void expansion. |
 
+### Electromagnetism Integration Routing
+
+The charge-neutral common-axis magnetic discussion moved on 2026-08-18 to
+[Mapping Electromagnetism](../mapping-electromagnetism/brainstorming.md).
+Equation Mapping retains the exact EQ-13, EQ-15, and EQ-27 equation rows,
+scores, source-field packets, and executable controls; the new lane owns
+cross-row electromagnetic integration and inverse benchmark design.
+
 ### Noether Sea Pressure Sign Logic And Floating Balance Point
 
 Migrated from paused `EQ-20` discussion on 2026-07-02 as provisional idea material. The detailed candidate equations live in [EQ-11/20 Gravity And Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md#outer-binary-equilibrium-and-relaxation-wireframe); this note preserves the conceptual route without treating it as reader-facing canon or score movement.
