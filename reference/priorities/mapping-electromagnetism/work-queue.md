@@ -67,11 +67,19 @@ and inverse-geometry tasks.
 - **Request / acceptance:** Derive one weak-regime Noether sea response family
   serving effective permittivity, permeability, impedance, wave speed,
   dispersion, magnetic circulation, and material-boundary response.
+- **Focused packet:** [Fine-Structure Coupling Map](fine-structure.md) applies
+  the same constitutive state to $\alpha_{\mathrm{ref}}$ and
+  $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ while preserving
+  Equation Mapping ownership of `EQ-26A` evidence and score decisions.
 - **Depends on:** accepted assembly source rows, photon transport rows, and at
-  least two independent electromagnetic benchmark classes.
+  least two independent electromagnetic benchmark classes. The fine-structure
+  application additionally depends on an accepted `theta_gamma_packet`, a
+  geometry-derived action period, and a scheme-pinned `charge_exposure_row`.
 - **Completion:** Two or more benchmark families follow from one constitutive
   state without per-observable retuning, with explicit failure outside the
-  declared regime.
+  declared regime. For the fine-structure application, the same state supplies
+  the low-energy reference readout and one running interval without a private
+  alpha-only coefficient.
 
 ## Awaiting verification
 

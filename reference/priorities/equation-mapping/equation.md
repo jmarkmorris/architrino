@@ -2578,6 +2578,10 @@ for a declared effective charged-threshold inventory $I_\mu$ in the regime where
 
 ### AAA Mapping
 
+The focused integration and derivation program is the
+[Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md).
+This section retains the scored equation row and compact closure contract.
+
 `EQ-26` owns the atomic envelope and line-set residual. `EQ-26A` owns the dimensionless coupling row that those spectra consume. The mapped carrier is
 
 $$

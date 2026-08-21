@@ -208,96 +208,37 @@ Promotion condition: one hydrogen packet derives the envelope gaps, shared coeff
 
 ## EQ-26A: Fine-Structure Constant, Electromagnetic Coupling, And Energy Running
 
-### Standard Equation / Regime
+### Current Authority And Cross-Row Role
 
-The low-energy coupling benchmark is
+The [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
+owns the factorization of $\alpha_{\mathrm{ref}}$ and
+$\mathcal K_{\mathrm{EM}}$, the shared carrier, benchmark ladder, dependency
+joins, and multi-anchor falsifier. The
+[EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md)
+owns exact source-attempt fields, checker controls, blocker order, and score
+review.
 
-$$
-\alpha
-=
-\frac{e^2}{4\pi\epsilon_0\hbar c_\gamma},
-$$
+This grouped precision packet retains the cross-row binding:
 
-with running treated as a declared scale-dependent projection, not as a fixed universal number:
+- `EQ-12A` must derive the action period before `EQ-26A` consumes it;
+- `EQ-26` supplies Rydberg and atomic fine-structure consumers without a
+  private alpha fit;
+- `EQ-27` treats electron $g-2$ as a withheld precision consumer rather than a
+  calibration source; and
+- `EQ-30` and `EQ-31` may consume the running coupling only after scheme,
+  threshold, source-provenance, and no-retune rows are attached.
 
-$$
-\frac{d\alpha^{-1}}{d\ln\mu}
-=
--b(\mu).
-$$
-
-### Mapped Form
-
-The mapped carrier is
-
-$$
-\Theta_\alpha
-=
-\left(
-q_{\mathrm{obs}},
-\hbar_\vartheta,
-c_\gamma,
-\mathcal E_S,
-\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}}),
-I_\mu
-\right),
-$$
-
-where $\hbar_\vartheta=h_\vartheta/2\pi$ must come from the `EQ-12A` retained-orbit period reduction before this row consumes it, $q_{\mathrm{obs}}$ is the scheme-pinned observer charge/exposure row, and $I_\mu$ is the charged-threshold inventory. The useful residual is
-
-$$
-\mathbf R_{26A}
-=
-\left(
-\Delta_{\alpha(0)},
-\Delta_{\mathrm{Ryd}},
-\Delta_{\mathrm{fs}},
-\Delta_{\mathrm{run}},
-\mathcal S_{\mathrm{retune}}
-\right).
-$$
-
-The scale split is part of the closure target. The action period $h_\vartheta$, $q_{\mathrm{obs}}$, $c_\gamma$ at fixed $\theta_{\mathrm{sea}}$, and $\theta_{\mathrm{sea}}$ are fixed across the low-energy coupling, atomic fine-structure anchor, and higher-energy running readout. The scale-dependent part is confined to $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ and the charged-threshold inventory $I_\mu$:
-
-$$
-\frac{\partial h_\vartheta}{\partial\ln\mu}=0,
-\qquad
-\alpha(\mu)
-=
-\alpha[
-\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}}),
-I_\mu
-].
-$$
-
-This makes the strongest falsifier simple: derive $h_\vartheta$ from retained-orbit geometry first, pin the charge-exposure convention for $q_{\mathrm{obs}}$, and then compare the low-energy coupling, one atomic fine-structure anchor, and one running point. If matching the three anchors requires fitting $h_\vartheta$ from $\alpha$ data or changing it with $\mu$, the row fails rather than retuning the Planck-action carrier.
-
-### Rows Needed
-
-- Scheme-pinned observer charge/exposure row for $q_{\mathrm{obs}}$.
-- `EQ-12A` retained-orbit period reduction row deriving $h_\vartheta$ and $\hbar_\vartheta$ from geometry before alpha consumes them.
-- Local photon-channel speed row.
-- Effective gauge/coupling covariance row.
-- Charged-threshold inventory row for the scale window.
-- $\alpha(\mu)$ running row.
-- Rydberg and fine-structure anchor rows tied back to `EQ-26`.
-- Period-readout independence row showing that coupling anchors do not force a different $h_\vartheta$.
-- Alpha-fitted action-period negative control.
-- Source provenance and no-hidden-retune witness.
+Plainly: this packet preserves how the neighboring precision rows share alpha.
+The focused map develops the mathematics, and the source-field map decides
+whether accepted evidence exists.
 
 ### Executable Status
 
-[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates this as one sub-residual of the score-neutral Planck/alpha bundle. The attempt fixture [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json) blocks first at `missing_accepted_theta_gamma_packet`; after photon/action closure, the coupling-specific blockers are geometry-derived $h_\vartheta$, a scheme-pinned charge/current exposure convention, gauge covariance, charged-threshold inventory, and running rows.
-
-The priority-only [EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md) narrows the local source-field route to a scheme-pinned `charge_exposure_row` before `alpha_coupling_row`, running, threshold, and no-retune rows are reviewed. No score changes.
-
-### Failure Mode
-
-`eq26a.alpha_hidden_retune`: $h_\vartheta$, $c_\gamma$, charge exposure, gauge domain, or Noether sea state changes between the low-energy reference coupling, atomic fine-structure anchor, and higher-energy running readout.
-
-`eq26a.mu_dependent_action_period`: matching $\alpha(\mu)$ requires $\partial h_\vartheta/\partial\ln\mu\ne0$ or inconsistent extracted action periods across the three anchors.
-
-`eq26a.alpha_fitted_action_period`: the row chooses $h_\vartheta$ by inverting the observed fine-structure constant rather than deriving $h_\vartheta$ from the retained-orbit period reduction.
+[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
+evaluates the score-neutral `EQ-26A` sub-residual. The current attempt blocks
+first at `missing_accepted_theta_gamma_packet`; the first alpha-specific
+source-field object remains a scheme-pinned `charge_exposure_row`. No score
+changes.
 
 ## EQ-27: Magnetic Moment, Larmor/Cyclotron Precession, And $g-2$
 

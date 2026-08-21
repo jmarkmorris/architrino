@@ -53,13 +53,21 @@ The first target is the common-axis source/moment/field discriminator in
 axis, its polarity-weighted exposed-current moment, and the surrounding
 observer-level magnetic readout.
 
+The current focused constitutive packet is the
+[Fine-Structure Coupling Map](fine-structure.md). It develops the factorization
+$\alpha(\mu;\theta_{\mathrm{sea}})=\alpha_{\mathrm{ref}}
+\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ as an application of
+`EMAP-004` without changing that object's blocked status, the workstream rank,
+or the `EQ-26A` score.
+
 ## Scope And Ownership
 
 - This lane owns electromagnetic case integration, inverse-constraint design,
-  cross-row same-record requirements, and the source/moment/field matrix.
+  cross-row same-record requirements, the source/moment/field matrix, and the
+  fine-structure coupling derivation packet.
 - [Equation Mapping](../equation-mapping/priorities.md) retains ownership of the
-  exact EQ-13, EQ-15, and EQ-27 equation rows, scores, focused source-field
-  packets, and executable comparison controls.
+  exact EQ-13, EQ-15, EQ-26A, and EQ-27 equation rows, scores, focused
+  source-field packets, and executable comparison controls.
 - [Braid Program](../braid-program/priorities.md) owns retained braid existence,
   evolution, common-axis geometry, branch identity, and causal-root evidence.
 - [Master Equation Closure](../master-equation-closure/priorities.md) owns the
@@ -113,7 +121,9 @@ objects remain in [work-queue.md](work-queue.md), and dated handoffs remain in
 - no derived exposed-current density from polarity, shielding, and retained
   path history; and
 - no shared Noether sea electromagnetic constitutive response with independent
-  Maxwell benchmarks.
+  Maxwell benchmarks;
+- no accepted `theta_gamma_packet`, geometry-derived action period, or
+  scheme-pinned `charge_exposure_row` for the fine-structure coupling map.
 
 Closure goal: recover observer-level electromagnetism from retained assembly
 geometry and Noether sea response while using solved electromagnetic cases as

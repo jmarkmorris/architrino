@@ -11,6 +11,87 @@ geometric and electromagnetic ideas.
 
 ## Log Entries
 
+### 2026-08-19 — Equation-first finite-braid exploration prompt
+
+- Accepted the operator's scale correction that device-specific capacitor and
+  other apparatus implementations remain too bulk-heavy for the first native
+  electromagnetic map.
+- Created a reusable prompt centered on one finite, individually auditable
+  braid collection, one shared coarse-graining, the four Maxwell residuals,
+  and continuity.
+- Replaced device cases with density, translation, internal circulation,
+  exposure reconfiguration, propagating disturbance, and isotropic-null source
+  families.
+- Required shared coefficients, reversal controls, record identity, and
+  refinement across braid count, window, and smoothing scale without retuning.
+- Kept all outputs priority-only and routed a report-only finite-braid
+  predeclaration as the smallest next artifact.
+
+### 2026-08-19 — Capacitor-mechanism microscopic reduction
+
+- Reduced the bulk charging capacitor to one prescribed charge-conserving
+  source-history cell, one structured receiver assembly, one short causal
+  reception window, and an optional retained Noether sea cell.
+- Applied the canonical Master Equation constraint that receiver velocity does
+  not alter a fixed arriving hit's instantaneous acceleration; magnetic-like
+  behavior must therefore emerge from finite-history multi-hit geometry,
+  internal assembly response, and possibly sea dynamics.
+- Defined a double-odd finite-window projector under matched source-history and
+  receiver-motion reversals, with a separate receiver-circulation version for
+  the magnetic-moment-like channel.
+- Separated direct delayed source response from sea-essential response through
+  a mathematical direct-only null control and one fixed retained-sea control.
+- Proposed rebuilding the bulk circular-capacitor profile by identical
+  one-, two-, four-, and $N$-cell refinements without retuning, targeting
+  azimuthal orientation, $B_\phi\propto r$, and the axial node.
+- Routed one report-only microcell predeclaration as the smallest next artifact;
+  no queue, solver, score, or corpus status changed.
+
+### 2026-08-19 — Literal plate charge and capacitor-state separation
+
+- Captured the positive metal plate as an electron deficit leaving existing
+  ionic-lattice charge incompletely balanced; no arriving positive carrier or
+  hole is required.
+- Restricted hole language to an effective unoccupied-electronic-state and
+  relay description whose underlying electron and material ledger remains
+  mandatory.
+- Separated plate charge, capacitor voltage, source voltage, and stored energy,
+  including the RC transient and the limited late-time condition $V_C=V_S$.
+- Recorded disconnected, AC, current-source, voltage-multiplying, loss, and
+  breakdown cases that prevent applied voltage from defining capacitor voltage
+  generally.
+- Routed one same-event $(Q_+,Q_-,V_S,V_C,I,U_C)$ row into the planned
+  metal/insulator/gap comparison; no queue, solver, score, or corpus status
+  changed.
+
+### 2026-08-19 — Wire explanatory-asymmetry correction
+
+- Accepted the operator's critique that the capacitor map scrutinized the gap
+  microscopically while treating the familiar wire as self-explanatory.
+- Corrected the existing capacitor table and reasoning chain to classify wire
+  current as a kinematic assembly preimage, not a derived conduction mechanism.
+- Reframed wire versus gap as two branches of assembly-filled regions sharing
+  the Noether sea: material-dressed net-charge transport versus response
+  transport without net charge.
+- Preserved the worldline-transport versus identity-preserving-relay fork and
+  separated carrier drift from signal propagation.
+- Routed a fixed-geometry metal/insulator/gap comparison as the smallest next
+  artifact; no queue, solver, score, or corpus status changed.
+
+### 2026-08-19 — Ideal gap and neutral-corridor consequence
+
+- Sharpened the capacitor statement: no charged assembly crosses the ideal gap,
+  while causal history and energy-momentum still reach and change the gap.
+- Distinguished Maxwell's complete effective field answer from the open
+  $\mathbb{A}\mathbb{A}\mathbb{A}$ microscopic carrier question.
+- Derived the uniform circular-capacitor profile
+  $B_{\phi}=(\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}/2)r\,dE/dT$ and its exact
+  axial node.
+- Connected that node to the neutral-corridor hypothesis while explicitly
+  limiting the result to the capacitor source class.
+- Routed a four-radius analytic sweep as the smallest next discriminator; no
+  queue, solver, score, or corpus status changed.
+
 ### 2026-08-19 — Minimal charging-capacitor two-surface map
 
 - Built the least-bulk capacitor thought experiment directly in the

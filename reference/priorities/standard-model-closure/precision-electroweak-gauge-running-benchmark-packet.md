@@ -7,6 +7,7 @@
 - Claim level: `derivation-closure target`
 - Primary consumers:
   - [Weak-Sector Gauge Closure](weak-sector-gauge-closure.md)
+  - [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
   - [EQ-16 Weak-Visible Branch Ledger Source-Field Map](../equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md)
   - [EQ-26A Theta Alpha Source-Field Map](../equation-mapping/eq-26a-theta-alpha-source-field-map.md)
   - [EQ-26 Through EQ-31 Observation-First Precision Packet](../equation-mapping/eq-26-31-observation-first-precision-packet.md)
@@ -134,7 +135,13 @@ This row is score-neutral until the photon/charge and strong/gauge running carri
 
 1. Populate one source-backed `va_chirality_gate` for the retained muon projection lane in `EQ-16`. The accepted packet already has same-domain `weak_visible_branch_ledger`, `weak_projection`, `weak_quotient`, and `weak_exposure_record`; the remaining row set must still bind `V-A` chirality, CKM/PMNS overlap, weak-corridor provenance, effective gauge covariance, reaction event ledger, and Noether sea response on one weak-visible retained domain. Current projection-lane blocker: `missing_accepted_va_chirality_gate`.
 
-2. Complete the `Theta_alpha` path for `EQ-26A`. The first accepted rows are `theta_gamma_packet`, scheme-pinned `charge_exposure_row`, `alpha_coupling_row`, `vacuum_polarization_wake_dressing_row`, and `energy_scale_running_row`. Current first blockers: `missing_accepted_theta_gamma_packet`, then `missing_accepted_charge_exposure_row`.
+2. Complete the `Theta_alpha` path through the
+   [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
+   and `EQ-26A`. The first accepted rows are `theta_gamma_packet`, scheme-pinned
+   `charge_exposure_row`, `alpha_coupling_row`,
+   `vacuum_polarization_wake_dressing_row`, and `energy_scale_running_row`.
+   Current first blockers: `missing_accepted_theta_gamma_packet`, then
+   `missing_accepted_charge_exposure_row`.
 
 3. Convert the PDG/LEP/SLC electroweak source family into one weak-sector covariance packet after the native carrier exists. The benchmark vector should include the scheme labels and fit modes above; it should not add another gate before the native weak carrier is present.
 

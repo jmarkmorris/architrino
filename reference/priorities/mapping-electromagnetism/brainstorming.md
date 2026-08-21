@@ -1401,7 +1401,7 @@ wrong.
 | Event component | Physical assembly change | Wire-surface projection | Gap-surface projection |
 | --- | --- | --- | --- |
 | Source and return circuit | Source assemblies drive a closed redistribution of charged assemblies | Supplies the through-current and return ledger | Supplies the historical cause of plate charging; it is not absent merely because the chosen surface misses the wire |
-| Feed-wire charged assemblies | Exposed charged assemblies undergo coherent drift | Counted directly in $I_{\mathrm{cond}}[S_{\mathrm w}]$ | No worldline crosses $S_{\mathrm g}$ in the ideal gap |
+| Feed-wire charged assemblies | Exposed charged assemblies undergo effective coherent drift; the material-selection and identity-routing mechanism remains unproved | Counted kinematically in $I_{\mathrm{cond}}[S_{\mathrm w}]$ without yet explaining why the metal branch carries them | No worldline crosses $S_{\mathrm g}$ in the ideal gap |
 | Plate assemblies | Electron envelopes accumulate on one plate and deplete on the other while lattice assemblies take stress and recoil | Seen only through the joined event history | Their changing exposed polarity distribution supplies the effective changing-flux boundary data |
 | Gap Noether sea | The intervening assembly population receives changing causal-wake history and develops a time-dependent polarization/circulation response | Present in the complete event even when the current term dominates the chosen cut | Candidate physical carrier of the effective gap response; this is a derivation target |
 | Receiver apparatus | A loop probe, compass, atomic envelope, or charged probe records one circulation response | Reads $\Gamma_B[C]$ | Reads the identical $\Gamma_B[C]$ because the boundary loop is unchanged |
@@ -1413,9 +1413,11 @@ declared candidate carrier whose constitutive update remains to be derived.
 
 ### Reasoning Chain
 
-1. **The wire term has a direct assembly preimage.** Charged assemblies cross
-   $S_{\mathrm w}$, so $I_{\mathrm{cond}}$ is a coarse count of exposed
-   worldline transport.
+1. **The wire term has a direct kinematic preimage, not yet a transport
+   mechanism.** Charged assemblies cross $S_{\mathrm w}$, so
+   $I_{\mathrm{cond}}$ is a coarse count of exposed worldline transport. Why
+   the metal assembly branch supports that crossing while the surrounding
+   Noether sea or an insulating branch does not is a separate derivation.
 2. **Those worldlines do not disappear at the plate.** Their arrival changes
    plate electron-envelope occupation and exposed polarity. Charge continuity
    joins wire transport to $dQ/dT$.
@@ -1532,3 +1534,1771 @@ receiver update. Each row should name the assemblies changed, causal predecessor
 effective $I$ or $d\Phi_E/dT$ projection, sea response, and the one common
 $\Gamma_B[C]$ comparison window. No solver work or corpus promotion is
 authorized by this thought experiment.
+
+## Session 6 — Nothing Charged Crosses The Ideal Gap (2026-08-19)
+
+### The Definitive Statement And Its Boundary
+
+For the declared ideal capacitor:
+
+- no charged assembly worldline intersects the gap surface;
+- no net polarity inventory is transported from one plate to the other; and
+- the gap contribution is not a concealed conduction current of the same kind
+  as the wire current.
+
+This does **not** imply that nothing physical changes or that no energy,
+momentum, or causal information reaches the gap. The plate histories change,
+their causal wakes change, the gap's Noether sea assemblies receive a new
+history, and the receiver records a changed response. The idealization excludes
+leakage, tunneling, breakdown, and detached radiation; those are separate event
+branches.
+
+Plainly: charge does not cross the gap. A changing physical record does.
+
+### Why Standard Electromagnetism Is Not Mathematically Mysterious
+
+In Maxwell theory, the electric and magnetic fields are local dynamical
+variables. The term
+
+$$
+\mathbf J_{\mathrm d}
+=\epsilon_{mathrm{eff}}
+\frac{\partial\mathbf E_{\mathrm{eff}}}{\partial T}
+$$
+
+is called displacement current because it enters Maxwell-Ampere with the same
+units and curl-producing role as conduction current. It is not a statement that
+charged matter crosses the vacuum gap. Its inclusion restores the local
+continuity identity when wire current terminates on accumulating plate charge.
+
+Thus standard field theory has a complete effective answer: the field changes
+and carries energy-momentum. The residual mystery is microscopic only for an
+ontology that asks what physical carrier underlies the field variable. In
+$\mathbb{A}\mathbb{A}\mathbb{A}$ that question is mandatory because fields are
+recovery outputs rather than substrate premises.
+
+Plainly: Maxwell closes the equations; the mapping program must still open the
+box and identify the assemblies that make the closure true.
+
+### Energy And History Cross Without Charge Transport
+
+The useful three-way separation is:
+
+1. **Charge transport:** absent across the ideal gap.
+2. **Causal-history propagation:** required, because later gap and receiver
+   states depend on earlier source and plate changes.
+3. **Energy-momentum transfer:** required, because the capacitor's stored
+   effective energy and stress increase during charging.
+
+The candidate Noether sea mechanism need not move sea assemblies bodily from
+one plate to the other. A disturbance can propagate through sequential local
+changes in orientation, exposure, causal-root population, or stress while the
+medium's constituents remain locally bound. Which variables actually do this
+is open; calling the process polarization or circulation does not derive it.
+
+Plainly: what travels may be an organized update through the medium, not a
+stream of charged objects across it.
+
+### Exact Neutral-Corridor Connection
+
+For circular plates of radius $R$ with approximately uniform axial
+$E_{\mathrm{gap}}(T)$, take a circular loop of radius $r<R$ in the gap.
+Axisymmetry and Maxwell-Ampere give
+
+$$
+2\pi r B_{\phi}(r,T)
+=\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}
+\pi r^2
+\frac{dE_{\mathrm{gap}}}{dT},
+$$
+
+so
+
+$$
+B_{\phi}(r,T)
+=\frac{\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}}{2}
+r\frac{dE_{\mathrm{gap}}}{dT}.
+$$
+
+Therefore
+
+$$
+B_{\phi}(0,T)=0,
+$$
+
+and the azimuthal magnetic amplitude grows linearly with radius inside the
+ideal uniform-flux region. The central axis is a true magnetic node for this
+source class while organizing every surrounding circulation loop.
+
+This is a precise realization of the earlier neutral-corridor intuition: the
+corridor can be special because it is the symmetry axis and field node, not
+because a magnetic substance flows along it. The magnetic record lives in
+oriented rings around the corridor.
+
+Plainly: in the ideal capacitor, the axis is the quiet axle and the magnetic
+response is the turning around it.
+
+### Scope Warning For The Corridor Insight
+
+The axial node is not a universal property of every magnetic source. An
+ordinary magnetic-dipole comparison can have nonzero magnetic field along its
+axis. What is general is the need to distinguish:
+
+- the source or symmetry axis;
+- the local magnetic amplitude on that axis; and
+- circulation organized around that axis.
+
+The capacitor establishes an exact axis-node case. It does not prove that a
+translating braid or intrinsic electron moment has the same field profile.
+Those cases must be calculated from their own source records.
+
+### Native Mapping Constraint
+
+Any candidate gap response must reproduce more than the integrated loop value.
+Inside the ideal plate radius it must produce:
+
+- azimuthal orientation;
+- odd parity under reversal of $dE_{mathrm{gap}}/dT$;
+- $B_{\phi}\propto r$;
+- a regular zero at $r=0$ rather than a singular axial conduit;
+- the same delay-aligned circulation as the wire-side record; and
+- inward effective energy flow during charging.
+
+This rules out a model in which the sea merely acquires a uniform scalar state
+or in which magnetic amplitude is assigned to the central corridor itself.
+The minimal candidate is an oriented, radius-resolved circulation response of
+gap assemblies to the changing plate history.
+
+### Claim Grades And Falsifiers
+
+- **Effective-grade derivation:** no conduction charge crosses the ideal gap,
+  while $B_{\phi}\propto r$ and $B_{\phi}(0)=0$ in the uniform circular-plate
+  comparison. Falsifier: the declared Maxwell solution violates any of these
+  ideal-regime results.
+- **Ontology boundary:** causal history and energy-momentum must reach the gap
+  even though charge does not. Falsifier: the capacitor's gap state or stored
+  energy changes without any source-to-gap account.
+- **Derivation target:** locally bound Noether sea assemblies transmit the
+  update through an oriented response without net charge transport across the
+  gap. Falsifier: a retained sea record requires charged crossing, remains
+  scalar and orientation-free, or fails the radial profile.
+- **Cross-lane synthesis:** the capacitor supplies an exact example of a
+  neutral central corridor organizing surrounding magnetic circulation.
+  Falsifier: extending that profile to another source without computing its
+  distinct source geometry.
+
+### Next Artifact
+
+Add one analytic radial-sweep row to the minimal capacitor event table. At one
+delay-aligned charging window, receivers at $r=0$, $r=R/4$, $r=R/2$, and
+$r=3R/4$ must recover $B_{\phi}/r$ as constant away from the axis, the correct
+reversal parity, and an exact axial zero. This is an observer-level benchmark
+for the future Noether sea response map, not evidence that the map already
+exists.
+
+## Session 7 — The Wire Was An Explanatory Blind Spot (2026-08-19)
+
+### Correction
+
+The prior capacitor reasoning applied microscopic scrutiny asymmetrically. It
+asked what physically changes in the gap while treating "wire" and "conduction
+current" as if they already explained themselves. The better diagnosis is
+**explanatory asymmetry**, produced here by familiarity: an effective object
+was allowed to look ontologically transparent because ordinary language makes
+metal conduction feel routine.
+
+The statement "charged assemblies cross the wire surface" is a kinematic fact
+about a declared current record. It does not explain:
+
+- why the charged assemblies remain in the material corridor;
+- why that corridor permits sustained charge transport;
+- why the surrounding region does not accept the same transport branch;
+- how resistance, heating, recoil, and signal delay arise; or
+- whether one electron assembly traverses the wire or the material performs an
+  identity-preserving relay through extended envelope states.
+
+Plainly: naming the path is not explaining why the path works.
+
+### The Standard Effective Answer
+
+At observer level, condensed-matter physics explains metal conduction through
+available extended electronic states, band occupancy, the Fermi surface,
+electric response, and scattering. The material surface supplies a work-function
+barrier against escape; insulators lack an accessible low-energy transport band;
+and resistance routes ordered electrical work into lattice and other material
+excitations. These are successful, tested descriptions.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, every term in that answer is a recovery
+target rather than a substrate premise. "Band," "delocalized electron,"
+"work function," "scattering," and "conductivity" must be reconstructed from
+electron assemblies, atomic envelopes, lattice branches, exclusion, causal
+history, and Noether sea response.
+
+Plainly: standard physics explains which materials conduct very well. Our
+remaining obligation is to explain what those successful material variables
+refer to in assembly geometry and dynamics.
+
+### The Choice Is Not Wire Or Noether Sea
+
+The Noether sea permeates the metal as well as the gap. The physical contrast
+is therefore not an electron choosing a wire instead of the sea. It is a choice
+between two locally available assembly branches:
+
+1. **Material-dressed charge-transport branch:** metal atoms, electron
+   envelopes, lattice order, source bias, and local Noether sea response jointly
+   provide a connected sequence of low-residual charged states.
+2. **Free or gap branch:** the Noether sea without the metal's atomic-envelope
+   and lattice channel does not accept sustained net charged transport below a
+   surface-emission, tunneling, ionization, or breakdown threshold.
+
+"Prefer" must ultimately mean that the first branch has the lower admissible
+action or closure residual and a connected continuation under the applied
+source conditions. That inequality has not been derived. It is the exact
+physical content hidden by the word wire.
+
+Plainly: the electron does not see a painted line and decide to follow it. The
+metal must continuously offer an allowed next state that the surrounding gap
+does not offer at the same event energy and boundary conditions.
+
+### A Candidate Native Transport Grammar
+
+Let $\mathcal B_{\mathrm{metal}}$ denote the realized metal assembly branch and
+$\mathcal B_{\mathrm{gap}}$ the corresponding gap branch in the same source
+window. A minimal selection target is
+
+$$
+\mathcal R_{\mathrm{tr}}
+\left(
+\mathcal B_{\mathrm{metal}},
+\Theta_{\mathrm{sea}},
+\Delta V,
+T_{mathrm{temp}}
+\right)
+<
+\mathcal R_{\mathrm{escape}}
+\left(
+\mathcal B_{\mathrm{gap}},
+\Theta_{\mathrm{sea}},
+\Delta V,
+T_{mathrm{temp}}
+\right)
+$$
+
+throughout the ordinary conduction regime. Here the residuals are placeholders
+for derived branch admissibility and closure, not a fitted explanation. The
+inequality must change at declared emission, tunneling, breakdown, phase, or
+superconducting thresholds.
+
+This formulation also prevents a second shortcut: the conducting path cannot
+be explained merely by assigning a smaller phenomenological resistance. The
+assembly map must show which connected states exist, how charge identity and
+energy move among them, and why competing escape states are unavailable.
+
+Plainly: conductivity is the measured result of branch selection. It cannot
+also serve as the unexplained cause of that selection.
+
+### Does One Electron Traverse The Whole Wire?
+
+The capacitor map does not yet know. Two native possibilities must remain
+open until the material record decides them:
+
+- **worldline transport:** identifiable charged assemblies drift through many
+  material cells while remaining the same retained assemblies; or
+- **identity-preserving relay:** local electron-envelope associations and
+  releases pass exposed charge and event identity through an extended material
+  branch without a classical bead-like electron following the entire route.
+
+Standard conduction language includes delocalized states, so assuming the
+first picture by default would import a classical particle trajectory that the
+effective material description does not require. Either native route must
+recover net charge crossing, current density, carrier statistics, drift,
+signal propagation, heat, and noise from one record.
+
+The signal also need not travel at the drift speed of the charged assemblies.
+Circuit reconfiguration can propagate through causal-wake and material/sea
+response while the net carrier drift remains much slower. Conflating current
+carrier motion with signal propagation would repeat the same explanatory
+collapse exposed by the gap.
+
+### Wire And Gap As Two Modes Of One Assembly Medium
+
+The revised capacitor comparison is more symmetric:
+
+| Region | Extra assembly structure beyond the common Noether sea | Permitted low-threshold channel | Conserved quantity transported across the test surface |
+| --- | --- | --- | --- |
+| Metal wire | Atomic nuclei, electron envelopes, bonding/lattice branch, surfaces, defects, source coupling | Material-dressed charged transport plus reversible response and possible heating | Net exposed charge, energy, momentum, and causal history |
+| Ideal gap | No metal lattice or connected electron-envelope branch | Polarization/circulation and causal-history response below leakage, emission, or breakdown | Energy, momentum, and causal history, but no net charge |
+
+This suggests a deeper unification: conduction current and displacement current
+are not matter versus nothing. They are two transport modes of assembly-filled
+regions, distinguished by whether the realized branch carries net exposed
+charge across the surface.
+
+Plainly: both sides need mechanisms. The wire transports charge and response;
+the gap transports response without charge.
+
+### Strong Discriminators
+
+The smallest controlled family keeps source geometry fixed and replaces one
+segment with:
+
+1. a normal metal;
+2. an insulator;
+3. an ideal sub-threshold gap; and
+4. later, a superconductor.
+
+The same assembly framework must predict charge crossing, surface
+accumulation, gap response, current delay, heating, and threshold transitions.
+It fails if it:
+
+- assigns conduction merely because a region is labeled metal;
+- lets charged assemblies leak through the gap at the metal rate below all
+  emission and breakdown thresholds;
+- cannot recover a work-function or insulating gap from material assembly
+  structure;
+- uses unrelated Noether sea variables for conductor and gap response;
+- confuses signal speed with carrier drift; or
+- changes electron identity without an explicit routing ledger.
+
+### Claim Grade, Promotion Target, And Next Artifact
+
+The critique of the prior explanation is established as a reasoning correction:
+the wire had only a kinematic current preimage, not a derived transport
+mechanism. Standard band, conductivity, and work-function descriptions remain
+effective-grade recovery targets. The proposed lower-residual connected
+material branch and the relay/worldline fork remain speculation until derived
+from retained assembly records.
+
+This insight may later support Condensed Matter, Atomic Structure, Gauge
+Structure Emergence, and the capacitor continuity benchmark. No corpus
+promotion is authorized here.
+
+The next artifact is a minimal metal/insulator/gap comparison table using one
+source window and one geometry. It must name the available assembly branches,
+net charge crossing, surface accumulation, heat/recoil, signal delay, response
+carrier, threshold, and falsifier without assigning conductivity as an input.
+
+## Session 8 — Literal Charge Imbalance And Capacitor Voltage State (2026-08-19)
+
+### What $+Q$ Physically Means On A Metal Plate
+
+An ordinary metallic capacitor does not require hole language. Before charging,
+the positive ionic lattice and electronic charge of each plate nearly cancel:
+
+$$
+Q_{mathrm{plate}}
+=Q_{mathrm{ion/core}}+Q_{mathrm{electron}}
+\simeq0.
+$$
+
+If the circuit removes $N$ electrons from one plate and delivers them to the
+other, the ideal terminal charge ledger becomes
+
+$$
+Q_+=+Ne,
+\qquad
+Q_-=-Ne.
+$$
+
+The positive constituents were already in the first plate. They do not travel
+there during charging; electron removal leaves their charge incompletely
+balanced. Microscopically this is better described as uncompensated positive
+ionic-lattice charge than as exposed individual protons, because nuclei, core
+electrons, conduction electrons, screening, and the lattice jointly determine
+the surface distribution. Only a small residual fails to cancel, and that
+residual is what the exterior observer records as $+Q$.
+
+Plainly: electrons are transferred. One plate has too few electrons to balance
+its existing positive material; the other has excess electrons. No positive
+carrier has to arrive at the positive plate.
+
+### Where Hole Language Is And Is Not Legitimate
+
+A hole is an effective quasiparticle description of an unoccupied electronic
+state, especially in a nearly full semiconductor band. Neighboring electrons
+move into the unoccupied state, so the vacancy propagates as though it were a
+mobile positive carrier. It is not a proton and not a new fundamental positive
+particle.
+
+Hole language can be a useful observer-level transport quotient, but it must
+not replace the physical charge ledger. For the basic metal-capacitor account,
+it is unnecessary. If a later material branch uses holes, the map must still
+name the underlying electron states, occupation changes, lattice coupling, and
+the circumstances under which the positive-carrier approximation is valid.
+
+This connects directly to the wire worldline-versus-relay fork above. A hole is
+one effective relay description; it does not decide whether one retained
+electron assembly traverses the sample or whether local association and release
+events pass the electronic vacancy and current record through the material.
+
+Plainly: “a hole moved” is a compact calculation statement. The microscopic
+statement is that actual electron occupations changed in a coordinated way.
+
+### Four Capacitor Quantities That Must Remain Separate
+
+The capacitor ledger must distinguish:
+
+1. plate charge magnitude $Q_C$;
+2. capacitor terminal voltage $V_C$;
+3. applied source voltage $V_S$; and
+4. stored energy $U_C$.
+
+For an ideal linear capacitor,
+
+$$
+Q_C=CV_C,
+\qquad
+U_C=\frac12CV_C^2
+=\frac{Q_C^2}{2C}
+=\frac12Q_CV_C.
+$$
+
+Voltage is a potential difference describing the capacitor state. Energy is
+what is stored in that state. Calling voltage itself “stored potential” risks
+collapsing quantities with different physical dimensions and ledgers.
+
+Plainly: the source supplies work, charge separation builds, a voltage appears,
+and energy accumulates. These are related outputs, not synonyms.
+
+### When Does Capacitor Voltage Equal Applied Voltage?
+
+For an initially uncharged ideal capacitor driven by a constant DC source
+through resistance $R$,
+
+$$
+V_C(T)=V_S\left(1-e^{-T/(RC)}\right),
+\qquad
+I(T)=C\frac{dV_C}{dT},
+$$
+
+and the simple loop relation is
+
+$$
+V_S=V_C+V_R.
+$$
+
+During charging, $V_C$ is generally not equal to $V_S$. Equality is the
+late-time ideal DC limit after current and the other circuit voltage drops have
+vanished. The phrase “charged by a voltage $V_S$” therefore does not establish
+$V_C=V_S$ without the circuit, initial condition, connection duration, and
+loss model.
+
+Other valid cases include:
+
+- a disconnected ideal capacitor retaining its last $V_C$;
+- leakage and dielectric relaxation changing real disconnected voltage;
+- AC operation with capacitor and source voltages differing in phase and
+  magnitude;
+- current-source charging with $dV_C/dT=I/C$ until source compliance;
+- charge-pump, transformer, or resonant branches producing $V_C>V_S$; and
+- breakdown limiting the admissible plate imbalance and field state.
+
+Plainly: $V_C=V_S$ is one equilibrium boundary condition, not the definition
+of charging.
+
+### Assembly-Mapping Consequence
+
+One capacitor event record must separately carry:
+
+- electron inventory transferred by the source and return branch;
+- uncompensated positive and excess negative plate surface distributions;
+- plate, lattice, and electron-envelope relaxation;
+- the gap causal-wake and Noether sea response;
+- instantaneous $Q_C$, $V_C$, $I$, and source-terminal state;
+- stored response energy plus heat, recoil, and loss rows; and
+- leakage, tunneling, emission, or breakdown when those channels open.
+
+No observer-level hole label may replace the electron and ionic inventories,
+and no applied-voltage label may be copied into the capacitor-state row without
+the circuit evolution that produces it.
+
+### Claim Grade, Falsifiers, And Next Artifact
+
+The charge-imbalance account, ideal capacitor identities, and RC transient are
+effective-grade physics results. Their realization in retained electron,
+material, causal-wake, and Noether sea assembly records remains a derivation
+target.
+
+The mapping fails if it invents incoming positive carriers to explain the
+$+Q$ metal plate, treats a hole as a fundamental particle, identifies $V_C$
+with $V_S$ during every charging history, equates voltage with stored energy,
+or changes plate charge without a closed electron and source ledger.
+
+This insight may later support the capacitor continuity benchmark, Condensed
+Matter, Atomic Structure, and Gauge Structure Emergence. No corpus promotion is
+authorized here.
+
+The next artifact is one compact capacitor-state row carrying
+$(Q_+,Q_-,V_S,V_C,I,U_C)$ plus source, plate, gap, heat, leakage, and timestamp
+references on the same event id. It should be added to the fixed-geometry
+metal/insulator/gap comparison rather than becoming a separate packet.
+
+## Session 9 — A Capacitor-Mechanism Microscope Below The Bulk Field (2026-08-19)
+
+### The Decisive Scale Reduction
+
+The full capacitor is the wrong first object for seeing a native mechanism. It
+coarse-grains enormous source, conductor, plate, sea, and receiver populations
+into smooth $Q_C(T)$, $I(T)$, $\mathbf E_{\mathrm{eff}}$, and
+$\mathbf B_{\mathrm{eff}}$ records. The smallest useful reduction is instead:
+
+1. one prescribed, charge-conserving source-history cell representing a
+   localized transfer and plate-imbalance update;
+2. one local Noether sea cell, with a direct-only null control;
+3. one structured receiver assembly at a declared off-axis location; and
+4. one short reception window retaining every causal-root hit and every
+   architrino acceleration contribution.
+
+This is not yet a microscopic capacitor. Prescribing the source history avoids
+pretending that conductor transport, plate binding, and source work have
+already been derived. Its narrower purpose is to ask whether the Master
+Equation can produce any receiver-level magnetic-like channel from a completely
+visible delayed history before bulk averaging hides the construction.
+
+Plainly: replace millions of atoms and a smooth field with one controlled
+history, one tiny receiver, and a list of every delayed interaction that reaches
+it.
+
+### Why One Architrino At One Instant Is Too Small
+
+The Master Equation supplies a radial per-hit acceleration whose instantaneous
+weight is transmitter-side. At one fixed receiver event, changing only the
+receiver velocity does not change the arriving acceleration contribution.
+Therefore no primitive receiver-velocity cross term can be exposed by placing
+one architrino at a point and asking for its acceleration twice.
+
+This is a derived constraint from the current Master Equation, not a guess
+about electromagnetism. Any observer-level magnetic-like response must develop
+over a finite history through some combination of:
+
+- changed transmitter emission geometry and velocity;
+- changed causal-root playback and later receiver position;
+- multiple line-of-action contributions arriving at different delays;
+- internal geometry and phase response of a receiver assembly; and
+- Noether sea dressing or relay, if that contribution survives the controls.
+
+The irreducible receiver is consequently not a point readout but an extended,
+time-resolving assembly. The smallest presently interpretable diagnostic
+receiver is a prescribed opposite-polarity binary geometry. It is a geometry
+instrument only: it is not evidence for a retained binary, electron, compass,
+or material detector.
+
+Plainly: magnetism cannot be hiding in one extra term on one hit. If it emerges,
+we should be able to watch many ordinary radial hits build an oriented assembly
+response over time.
+
+### Source-History Cell
+
+The source cell should initially bypass the unsolved metal mechanism without
+erasing its debt. Use matched prescribed histories $H_+$ and $H_-$ with:
+
+- the same architrino inventory and fixed polarity magnitudes;
+- the same reference-time source positions and plate-like charge imbalance;
+- opposite local redistribution rates, standing for charging and discharging;
+- one explicit external return path, so no charged architrino crosses the
+  declared ideal gap; and
+- all source, support, recoil, and in-flight wake rows retained even when their
+  physical binding mechanism is not yet supplied.
+
+The source histories are diagnostic inputs, not accepted assembly dynamics.
+They test whether a candidate causal geometry can carry the required parity.
+A later material-cell experiment must replace every prescribed source path with
+a retained source, conductor, surface-accumulation, and return-path history.
+
+Plainly: first ask whether the law has the right microscopic vocabulary. Only
+then ask whether a real metal assembly naturally speaks it.
+
+### Finite-Window Magnetic Projector
+
+Let $s=\pm1$ label the matched source-history reversal and let $u=\pm1$ label
+opposite receiver-assembly drift through the same local cell. Let
+$\mathcal C[H_s,u;W]$ be a declared receiver response over the finite window
+$W$, such as center-path curvature, internal-axis deflection, phase shift, or
+an assembly angular-momentum-ledger change. Define the double-odd projection
+
+$$
+\mathcal C_{B}[W]
+=\frac14\left[
+\mathcal C[H_+,+;W]
+-\mathcal C[H_+,-;W]
+-\mathcal C[H_-,+;W]
++\mathcal C[H_-,-;W]
+\right].
+$$
+
+This is an observer-comparison projector, not a substrate acceleration law. It
+isolates the response component odd under both source-history reversal and
+receiver-drift reversal, which is the parity required of a Lorentz magnetic
+comparison. At the common initial receiver event the instantaneous
+receiver-velocity contribution must be zero under the Master Equation. A later
+nonzero $\mathcal C_B[W]$ must therefore be traceable to changed paths, roots,
+hit directions, internal assembly response, or sea history.
+
+A companion internal-circulation control replaces $u$ with receiver circulation
+orientation $h=\pm1$. Its double-odd projection asks whether the same source
+history couples to an assembly magnetic-moment-like channel. Drift and internal
+circulation must remain separate tests; success in one does not establish the
+other.
+
+Plainly: perform four matched histories and subtract everything that behaves
+like an ordinary electric response. What remains must reverse both when the
+charging direction reverses and when the receiver motion reverses.
+
+### What The Hit Ledger Must Show
+
+For every receiver architrino and every reception step, retain:
+
+- transmitter identity, polarity, and emission label;
+- emission time, reception time, causal-root branch, and delay;
+- line-of-action direction and transmitter-side acceleration weight;
+- the individual radial acceleration contribution before summation;
+- receiver center, internal axis, phase, and shape projections after summation;
+- direct source, source-through-sea, background-sea, and self-hit attribution;
+  and
+- assembly-plus-wake energy, momentum, and angular-momentum bookkeeping
+  residuals at the diagnostic grade currently available.
+
+The receiver may not be assigned a magnetic moment, susceptibility, or
+$\mathbf v\times\mathbf B$ response coefficient as an input. Those are outputs
+to be reconstructed only if the raw hit history supports them.
+
+Plainly: the entire point is to prevent the answer from disappearing inside a
+field variable. We should be able to point to the particular delayed hits that
+bend or reorient the receiver history.
+
+### Direct Wake Or Noether Sea?
+
+The microscopic experiment can distinguish three mechanism classes that the
+bulk capacitor currently blends:
+
+1. **Direct-history branch.** The source-to-receiver causal hits already
+   produce the double-odd response; the Noether sea then dresses, screens, or
+   stabilizes it.
+2. **Sea-essential branch.** The direct-only null control has no double-odd
+   response, while the same source history in one declared sea cell produces
+   it through changed sea-assembly histories.
+3. **Current-mechanism failure.** Neither branch produces the required parity
+   and geometry without inserting a new fitted response.
+
+The direct-only case is a mathematical null control, not a physical vacuum
+claim: the corpus states that every physical receiver is immersed in the
+Noether sea background. Likewise, varying an authored sea model tests only that
+model. Sea-essential evidence requires a retained sea population whose response
+arises from the Master Equation and is reused without retuning.
+
+This adjudication corrects an earlier overcommitment. The capacitor requires a
+physical source-to-gap-to-receiver account, but it does not yet prove that the
+Noether sea is the unique carrier of the magnetic-like part. Direct delayed
+source history and sea-mediated response must be separated rather than bundled
+under the word "field."
+
+Plainly: first find out whether the source wakes can do the job directly. If
+they cannot, add the sea and demand that its actual assemblies do the missing
+work.
+
+### Rebuilding The Bulk Field From Granular Events
+
+One source cell should not be expected to produce a smooth axisymmetric
+$B_\phi(r)$. Its receiver record will generally be granular, directionally
+uneven, and sensitive to exact emission timing. Bulk recovery should be tested
+by tiling the same source cell around successively finer rings while preserving
+one source law and one sea state. The meaningful sequence is
+
+$$
+1\ \text{cell}
+\longrightarrow
+2\ \text{opposed cells}
+\longrightarrow
+4\ \text{quadrature cells}
+\longrightarrow
+N\ \text{ring cells}
+\longrightarrow
+\text{axisymmetric plate limit}.
+$$
+
+At each refinement, measure the double-odd receiver response, azimuthal
+orientation defect, axial value, radius dependence, timing dispersion, and
+unexplained residual. The target is convergence toward the effective
+$B_\phi\propto r$ profile with a regular axial zero. No convergence rate is
+assumed in advance, and a smooth result obtained only by retuning each ring is
+a failure.
+
+This supplies a concrete micro-to-bulk interpretation: the smooth magnetic
+field is a quotient of many discrete, delay-aligned receiver interactions. The
+single-cell pattern is not required to resemble the final field pointwise; its
+controlled superposition must produce the final symmetry and parity.
+
+Plainly: start with the lumpy microscopic event, then add identical events and
+watch whether the familiar circular field is what survives averaging.
+
+### Minimal Control Family
+
+The first diagnostic family needs only these controls, all at $c_f=1$:
+
+| Control | Required result | What failure means |
+| --- | --- | --- |
+| Static source history | No charging-rate-odd channel | The projector is mixing ordinary static response into the magnetic-like row |
+| Source reversal $H_+\leftrightarrow H_-$ | Reverses $\mathcal C_B$ | Wrong source parity |
+| Receiver drift reversal $u\leftrightarrow-u$ | Reverses the drift-channel projection | No Lorentz-like receiver-motion channel |
+| Receiver circulation reversal $h\leftrightarrow-h$ | Reverses only the moment-channel projection | Drift and intrinsic-circulation mechanisms are being conflated |
+| On-axis receiver | Vanishing capacitor-source magnetic-like projection in the symmetric refinement limit | Failure of the exact axial-node target |
+| Azimuthally reflected receiver | Correct reflected orientation | An axial magnitude has been fit without the required handed geometry |
+| Direct-only versus retained-sea cell | Separates direct and sea-mediated contributions | The proposed carrier cannot be identified |
+
+Plainly: each run changes one thing. A surviving response earns its name only
+after all of the easy symmetry impostors have been subtracted.
+
+### Claim Grades, Falsifiers, And Promotion Route
+
+- **Derived substrate constraint:** a fixed arriving hit has no instantaneous
+  receiver-velocity multiplier; observer-level magnetic response must emerge
+  from finite-history, multi-hit, assembly, or sea dynamics. Falsifier: the
+  canonical Master Equation contains a receiver-velocity factor in the
+  instantaneous acceleration weight.
+- **Diagnostic construction:** the double-odd finite-window projector isolates
+  the required source-reversal and receiver-motion parity without importing it
+  into the substrate law. Falsifier: a static or electric-only control survives
+  the same projection.
+- **New synthesis:** the capacitor can be decomposed into granular source cells
+  and rebuilt toward the axisymmetric bulk limit. Falsifier: identical
+  no-retune cell refinements do not approach a stable azimuthal profile and
+  axial node.
+- **Speculation:** either direct delayed source hits, a retained Noether sea
+  response, or their same-record combination produces a nonzero magnetic-like
+  receiver channel. Falsifier: the full controlled family yields zero or wrong
+  parity, or succeeds only after a magnetic coefficient is assigned by hand.
+
+This may later support the Master Equation magnetic-emergence residual,
+Observer Framework, Gauge Structure Emergence, and the capacitor continuity
+benchmark. No corpus promotion, solver implementation, queue-status change, or
+evidence-score change is authorized by this brainstorm.
+
+### Next Artifact
+
+Write one report-only microcell predeclaration with the four double-odd runs,
+the static and axis controls, exact prescribed source and receiver paths,
+$c_f=1$, a finite reception window, the raw causal-hit columns above, and two
+declared environments: direct-only null control and one fixed retained-sea
+cell. The first result sought is not agreement with Maxwell magnitude. It is a
+nonzero, correctly oriented parity channel whose individual radial-hit origin
+can be audited without a fitted magnetic term.
+
+## Equation-First Finite-Braid Pivot (2026-08-19)
+
+Device-specific reductions still carry too much conductor, boundary, material,
+and apparatus structure to expose the common equation map cleanly. The next
+exploration should instead hold a finite collection of individually indexed
+braids in one observation window, apply one shared coarse-graining, and evaluate
+the four Maxwell residuals plus continuity across minimal density, translation,
+circulation, reconfiguration, propagation, and null families.
+
+The reusable prompt is
+[Fine-Grained Braid Maxwell Exploration Prompt](fine-grained-braid-maxwell-exploration-prompt.md).
+Its strongest new constraint is scale discipline: Maxwell equations are not
+applied to one braid, and braid records are not erased into a bulk device. The
+same finite population, smoothing rule, coefficient set, and record ids must
+serve every equation and reversal control.
+
+Claim level: operator-selected exploration strategy. The proposed field
+projections remain derivation targets, and prescribed braid collections remain
+diagnostic inputs rather than retained evidence. The first promotion target is
+a term-to-braid matrix; the smallest next artifact is one report-only
+finite-braid predeclaration with no device geometry.
+
+## Session 10 — One Finite-Braid Projection For Maxwell Residuals (2026-08-19)
+
+### Scope And Strongest Surviving Idea
+
+This session stays entirely at report and predeclaration grade. It does not
+calculate a residual, establish a retained braid, derive exposed charge,
+populate an accepted `EQ-13` row, change a score, or promote a corpus claim.
+Every braid path in the proposed first artifact is a diagnostic input unless a
+later EOM solver record independently establishes retention.
+
+The strongest surviving synthesis is a two-stage quotient:
+
+1. derive the smoothed exposed four-current from individually identified
+   constituent worldlines; and
+2. project one root-resolved spacetime causal-history two-chain into the
+   observer electric and magnetic charts.
+
+The same history two-chain can carry a polar time-space component and an axial
+space-space component. Its uncancelled chain boundary then appears directly in
+the magnetic-divergence and Faraday residuals. This makes it possible in
+principle for the homogeneous Maxwell rows to follow from closed history
+geometry rather than from defining $\mathbf B_\ell$ as a curl. The sourced
+Maxwell rows still require a constitutive Noether sea response joining that
+history record to exposed charge and current.
+
+Plainly: charge and current come from counting exposed moving constituents.
+Electric and magnetic readouts may be two views of one causal-history sheet.
+If the sheet has an unpaired edge, the homogeneous Maxwell tests expose that
+edge. If it closes, those tests can vanish for a topological reason. The harder
+source-to-response law remains missing.
+
+### Observation Domain, Scale Hypothesis, And Frozen Protocol
+
+Let $W=\Omega\times[T_0,T_1]$ be one finite observation window containing
+$N$ individually indexed braids. Every source, receiver, and resolved-sea role
+is metadata on a retained identity; changing a role must not change the
+underlying braid or architrino record.
+
+For braid $A$, let $\mathcal I_A$ be its finite indexed architrino inventory.
+For constituent $a\in\mathcal I_A$, retain
+
+$$
+\mathbf x_{Aa}(T)
+=
+\mathbf X_A(T)+\mathbf R_A(T)\boldsymbol\xi_{Aa}(T),
+\qquad
+\mathbf v_{Aa}(T)=\dot{\mathbf x}_{Aa}(T),
+\qquad
+q_{Aa}\in\{-\epsilon,+\epsilon\},
+$$
+
+where $\mathbf R_A$ is the ordered internal frame and the signed circulation
+orientation is retained with the internal coordinates
+$\boldsymbol\xi_{Aa}$. The polarity-conjugation map is the exact inventory
+involution $q_{Aa}\mapsto-q_{Aa}$ with positions, velocities, root ids, and
+all non-polarity metadata held fixed.
+
+Plainly: each braid is still a named collection of named architrinos. Its
+center, frame, internal motion, and polarity reversal are all explicit. No
+smooth field has replaced those records yet.
+
+Choose one even, nonnegative, normalized spatial kernel
+$K\in C_c^2(\mathbb R^3)$ and one even, normalized temporal kernel
+$g\in C_c^2(\mathbb R)$. In normalized wake-speed units $c_f=1$, define
+
+$$
+K_\ell(\mathbf x)=\ell^{-3}K(\mathbf x/\ell),
+\qquad
+g_\ell(T)=\ell^{-1}g(T/\ell),
+\qquad
+G_\ell(\mathbf x,T)=K_\ell(\mathbf x)g_\ell(T).
+$$
+
+Using the same $\ell$ in space and time makes the temporal smoothing width
+$\ell/c_f=\ell$. No other smoothing scale is introduced. All derivatives are
+taken analytically on this frozen $C^2$ kernel, not with equation-specific
+stencils.
+
+The scale claim is only the hypothesis that a nonempty interval exists with
+
+$$
+R_{\mathrm{braid}}\ll\ell\ll L_{\mathrm{variation}}.
+$$
+
+It is not assumed. It is supported only if a common residual and parity plateau
+appears under the declared $N$, $W$, and $\ell$ refinements below. Kernel
+support touching $\partial W$ is marked as a boundary row rather than silently
+discarded.
+
+Plainly: one blur rule is used everywhere. A Maxwell-like continuum window
+exists only if there is room to blur over whole braids while still resolving
+the larger pattern, and if the answer stops changing materially when that blur
+is refined.
+
+### Exact Exposed-Inventory And Worldline Projection
+
+Introduce an exposure weight
+
+$$
+e_{Aa}(T)
+=
+\mathcal E_{Aa}
+\left[
+\mathcal H_A,
+\text{shielding and axial-layer record},
+\Theta_{\mathrm{sea}}
+\right](T)
+\in[0,1].
+$$
+
+The functional $\mathcal E_{Aa}$ is a derivation target, not a fitted charge
+assignment. It must be invariant under randomized braid labels and must carry
+its own source record. Define the braid-level exposed inventory and the
+unsmoothed internal exposed-current record by
+
+$$
+Q_{\mathrm{exp},A}(T)
+=
+\sum_{a\in\mathcal I_A}q_{Aa}e_{Aa}(T),
+$$
+
+$$
+\mathbf j_{\mathrm{exp},A}(\mathbf x,T)
+=
+\sum_{a\in\mathcal I_A}
+q_{Aa}e_{Aa}(T)
+\left(\mathbf v_{Aa}(T)-\mathbf V_A(T)\right)
+\delta^{(3)}\!\left(\mathbf x-\mathbf x_{Aa}(T)\right).
+$$
+
+Retain separately the polarity-blind internal antisymmetric circulation record
+
+$$
+\Sigma_A^{ij}(T)
+=
+\frac{1}{|\mathcal I_A|}
+\sum_{a\in\mathcal I_A}
+\left(
+\xi_{Aa}^i\dot\xi_{Aa}^j
+-
+\xi_{Aa}^j\dot\xi_{Aa}^i
+\right).
+$$
+
+This records oriented internal geometry and contains no mass or magnetic
+moment. The exposed current carries polarity and exposure; $\Sigma_A$ does
+not. Their separation makes equal-exposure cancellation a real control rather
+than an algebraic impossibility.
+
+These are exact definitions conditional on a supplied exposure record. They do
+not establish that the exposure record is physical or retained.
+
+Plainly: $Q_{\mathrm{exp}}[A]$ adds the visible signed inventory of braid $A$.
+The internal current keeps only constituent motion relative to that braid's
+center. Both remain blocked until shielding and exposure are derived from the
+same histories.
+
+The common smoothed density and current are
+
+$$
+\boxed{
+\rho_\ell(\mathbf x,T)
+=
+\int_{T_0}^{T_1}
+g_\ell(T-S)
+\sum_{A=1}^{N}\sum_{a\in\mathcal I_A}
+q_{Aa}e_{Aa}(S)
+K_\ell\!\left(\mathbf x-\mathbf x_{Aa}(S)\right)
+\,dS
+}
+$$
+
+and
+
+$$
+\boxed{
+\mathbf J_\ell(\mathbf x,T)
+=
+\int_{T_0}^{T_1}
+g_\ell(T-S)
+\sum_{A=1}^{N}\sum_{a\in\mathcal I_A}
+q_{Aa}e_{Aa}(S)\mathbf v_{Aa}(S)
+K_\ell\!\left(\mathbf x-\mathbf x_{Aa}(S)\right)
+\,dS.
+}
+$$
+
+The current has the exact decomposition
+
+$$
+\mathbf J_\ell
+=
+\mathbf J_{\ell,\mathrm{tr}}
++
+\mathbf J_{\ell,\mathrm{int}},
+$$
+
+where $\mathbf J_{\ell,\mathrm{tr}}$ replaces each
+$\mathbf v_{Aa}$ by $\mathbf V_A$, while
+$\mathbf J_{\ell,\mathrm{int}}$ replaces it by
+$\mathbf v_{Aa}-\mathbf V_A$. Thus translation and internal circulation are
+not separate fitted source laws; they are two exact parts of the same exposed
+worldline current.
+
+Plainly: density counts visible signed constituents. Current counts the same
+constituents moving. Splitting their velocity into center motion and internal
+motion separates translation from circulation without changing the data.
+
+Away from window edges, distributional differentiation gives
+
+$$
+\boxed{
+\mathcal R_{\mathrm{cont}}
+=
+\frac{\partial\rho_\ell}{\partial T}
++
+\nabla\cdot\mathbf J_\ell
+=
+G_\ell*
+\left[
+\sum_{A,a}q_{Aa}\dot e_{Aa}(T)
+\delta^{(3)}(\mathbf x-\mathbf x_{Aa}(T))
+\right]
+}
+$$
+
+plus explicit flux through $\partial W$. Therefore fixed exposure weights give
+exact continuity for the worldline projection. Changing exposure does not.
+An exposure-reconfiguration family needs an additional identity-routed
+exposure-transfer current whose divergence cancels the displayed term, or a
+theorem that the exposure update is itself a conservative rearrangement of the
+resolved constituent current.
+
+Plainly: ordinary motion conserves the counted charge automatically. Merely
+turning a visibility weight up or down creates apparent charge unless the
+record shows where that exposed amount moved. The continuity residual is the
+audit for that missing route.
+
+### One Causal-History Two-Chain For $\mathbf E_\ell$ And $\mathbf B_\ell$
+
+The field-side input is not a field. It is a finite oriented spacetime
+two-chain
+
+$$
+\mathfrak C_W
+=
+\sum_{f\in\mathcal F_W}w_f\,f,
+$$
+
+whose faces $f$ are built from root-resolved causal-history records. Every face
+must carry:
+
+- a face id and parent record id;
+- emitting braid and architrino ids;
+- receiver or receiver-cell id;
+- emission interval and reception interval;
+- every contributing causal-root id and the same-record
+  $W^{\mathrm{acc}}=1/|D_t|$ entry;
+- direct-wake or resolved-sea-response role;
+- oriented boundary-edge ids;
+- an oriented spacetime area element; and
+- the signed weight $w_f$ derived from polarity, exposure, emitted measure,
+  and the canonical root-density record.
+
+No face weight may use receiver velocity as an instantaneous multiplier. The
+receiver history may change later face geometry and root playback, exactly as
+the Master Equation permits.
+
+Plainly: replace an electromagnetic field cell by an auditable patch of
+history. The patch says who emitted, who received, which delayed roots joined
+them, how it is oriented, and how its edges connect to neighboring patches.
+
+Let $\operatorname{PD}(\mathfrak C_W)$ be the Poincare-dual two-current of
+this finite spacetime chain. Define one smoothed antisymmetric observer record
+
+$$
+\mathsf F_\ell
+=
+Z_F\,G_\ell*\operatorname{PD}(\mathfrak C_W),
+$$
+
+with one frozen normalization $Z_F$ for both electric and magnetic components.
+Using the orientation convention selected to match the displayed residuals,
+define
+
+$$
+\boxed{
+E_{\ell,i}=\mathsf F_{\ell,iT},
+\qquad
+B_\ell^k
+=
+\frac12\varepsilon^{kij}\mathsf F_{\ell,ij}.
+}
+$$
+
+These are exact projection definitions conditional on the face record. They do
+not assign $\mathbf E$, $\mathbf B$, a potential, a magnetic moment, or a
+constitutive constant to any architrino or braid.
+
+Together with the exposed-worldline definitions, this is the single proposed
+projection
+
+$$
+\boxed{
+(\rho_\ell,\mathbf J_\ell,\mathbf E_\ell,\mathbf B_\ell)
+=
+\Pi_\ell
+\left[
+\{\mathbf X_A,\mathbf V_A,Q_{\mathrm{exp}}[A],
+\mathbf j_{\mathrm{exp}}[A],\Sigma_A,\mathcal H_A\}_{A=1}^{N},
+\Theta_{\mathrm{sea}}
+\right],
+}
+$$
+
+where $\Pi_\ell$ means exactly the frozen constituent convolution and
+history-chain construction above. It is not a free operator that may change by
+case.
+
+Plainly: the time-space faces of one history sheet are read as the electric
+chart. Its space-space faces are read as the magnetic chart. Both use the same
+sheet, blur, record id, and normalization.
+
+The two directions needed for an axial magnetic projection come from the
+oriented spatial area of a face. For a translating exposed constituent they
+are the delayed source-to-receiver direction and the transmitter-history
+tangent. For internal circulation they are the radius within the ordered braid
+frame and the internal exposed-current tangent. A pure scalar exposure change
+at fixed noncirculating centers supplies only a time-like weight change; it
+does not supply the second spatial direction needed by $\mathbf B_\ell$.
+That family therefore needs either existing internal motion or a resolved
+Noether sea history face that turns the changing polar record into an oriented
+spatial circulation.
+
+Plainly: magnetism needs an oriented plane. Translation and internal rotation
+already provide two directions. A scalar visibility change does not; the
+missing direction must be present in an actual changing history or in the
+resolved sea response.
+
+Smoothing commutes with the chain-boundary operation. Consequently,
+
+$$
+d\mathsf F_\ell
+=
+Z_F\,G_\ell*
+\operatorname{PD}(\partial\mathfrak C_W).
+$$
+
+The spatial component is $\mathcal R_B=\nabla\cdot\mathbf B_\ell$ and the
+time-space component is
+$\mathcal R_F=\nabla\times\mathbf E_\ell+\partial_T\mathbf B_\ell$.
+Thus both homogeneous residuals vanish if the physical history faces close
+with $\partial\mathfrak C_W=0$ in the analysis interior. They remain nonzero
+and root-attributable when face edges are unmatched, omitted, or exported
+through the window boundary.
+
+Plainly: zero magnetic divergence and Faraday coupling are not inserted by
+calling $\mathbf B$ a curl. They become the statement that every oriented
+history-face edge is paired with another edge. Any unpaired edge identifies
+the exact braid histories responsible for failure.
+
+This construction answers the magnetic-closure question conditionally. Closed
+internal braid circulation alone is insufficient: depositing isolated axial
+moments at braid centers need not yield a divergence-free spatial field. The
+required native carrier is a closed inter-braid or wake-history two-chain whose
+edge cancellation survives projection. Whether the EOM solver and a resolved
+Noether sea actually produce such a chain is open.
+
+### Shared Constitutive Unknowns And The Sourced Residuals
+
+Carry $\epsilon_{\mathrm{eff}}$ and $\mu_{\mathrm{eff}}$ as one shared pair
+for the entire protocol. They are not fitted separately by equation, source
+family, $N$, window, or smoothing scale. If no independent Noether sea
+calibration exists, they remain symbolic and only null, parity, covariance,
+continuity, and trend tests may be interpreted.
+
+The sourced residuals remain
+
+$$
+\mathcal R_\rho
+=
+\nabla\cdot\mathbf E_\ell
+-
+\frac{\rho_\ell}{\epsilon_{\mathrm{eff}}},
+$$
+
+$$
+\mathcal R_A
+=
+\nabla\times\mathbf B_\ell
+-
+\mu_{\mathrm{eff}}\mathbf J_\ell
+-
+\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}
+\frac{\partial\mathbf E_\ell}{\partial T}.
+$$
+
+These rows require a constitutive map between the exposed four-current and the
+same history two-chain. Topology alone does not supply the normalization,
+screening, polarization, circulation response, impedance, or phase relation.
+The smallest missing shared object is a resolved-sea constitutive record
+
+$$
+\mathcal C_{\mathrm{sea}}:
+(\rho_\ell,\mathbf J_\ell,\mathfrak C_{\mathrm{direct}},
+\Theta_{\mathrm{sea}})
+\longmapsto
+\mathfrak C_W
+$$
+
+with one response law and one coefficient pair across all six families.
+
+Plainly: closed sheets can explain why the homogeneous equations have no loose
+edges. They do not yet explain how much electric response a charge produces or
+how much circulation a current produces. That magnitude and phase relation is
+the constitutive job of the resolved sea.
+
+Continuity forces the *presence and coefficient* of the changing-electric term
+as an observer-level compatibility condition, but it does not derive its
+native carrier. Taking the divergence of the Ampere residual and using
+$\nabla\cdot(\nabla\times\mathbf B_\ell)=0$ gives
+
+$$
+0
+=
+\mu_{\mathrm{eff}}
+\left(
+\nabla\cdot\mathbf J_\ell
++
+\epsilon_{\mathrm{eff}}
+\frac{\partial}{\partial T}
+\nabla\cdot\mathbf E_\ell
+\right).
+$$
+
+If $\mathcal R_{\mathrm{cont}}=0$ and $\mathcal R_\rho=0$, the coefficient of
+$\partial_T\mathbf E_\ell$ must be the same
+$\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}$ used elsewhere. This proves
+compatibility inside the observer equations. It does not prove that a resolved
+Noether sea creates the corresponding circulation record.
+
+Plainly: once Gauss and charge continuity are both required, Ampere cannot
+stop at ordinary current. The changing-electric term is mathematically needed
+to keep the sourced equations consistent. The physical sea mechanism that
+carries it is still missing.
+
+### Term-To-Braid Matrix
+
+| Maxwell or continuity term | Finite-braid preimage in the common projection | Strongest present grade | Exact first blocker | Smallest missing native carrier |
+| --- | --- | --- | --- | --- |
+| $\rho_\ell$ | Same exposed constituent inventory used in every family, smoothed by $G_\ell$ | Definition conditional on exposure; worldline geometry derived | $e_{Aa}$ is not derived from shielding and retained history | One source-backed exposure functional per constituent, with polarity conjugation and identity routing |
+| $\mathbf J_\ell$ | Same exposed constituent worldlines; exact translation plus internal decomposition | Definition and derived geometry | Exposure changes can create apparent current nonconservation | Conservative exposure-transfer current or theorem that $\dot e_{Aa}$ is a resolved rearrangement |
+| $\nabla\cdot\mathbf E_\ell$ | Divergence of the time-space part of $\mathsf F_\ell$ | Diagnostic definition | No source-to-polar-response constitutive law | One shared resolved-sea polar-response row fixing $Z_F/\epsilon_{\mathrm{eff}}$ |
+| $\rho_\ell/\epsilon_{\mathrm{eff}}$ | Exposed density and one shared effective coefficient | Observer comparison target | $\epsilon_{\mathrm{eff}}$ is not independently derived | Same sea response row used by every source family and refinement rung |
+| $\nabla\cdot\mathbf B_\ell$ | Spatial component of the smoothed boundary of $\mathfrak C_W$ | Derived chain geometry conditional on supplied faces | No retained closed inter-braid history chain | Root-resolved spatial face network with paired internal edges and explicit window exports |
+| $\nabla\times\mathbf E_\ell$ | Time-space boundary component of the same history chain | Derived chain geometry conditional on supplied faces | Electric faces are not yet bound to magnetic faces on one record | Same face adjacency and orientation ledger used by both projections |
+| $\partial_T\mathbf B_\ell$ | Time transport of the space-space faces with unchanged face ids | Derived chain geometry conditional on supplied faces | No native update law for the face network | One time-resolved causal-history/sea two-chain with root-preserving updates |
+| $\nabla\times\mathbf B_\ell$ | Circulation of the spatial face projection | Diagnostic definition | Topology does not set sourced response magnitude | Shared resolved-sea constitutive response from exposed current to history-chain circulation |
+| $\mu_{\mathrm{eff}}\mathbf J_\ell$ | Same worldline current used by continuity | Observer comparison target | $\mu_{\mathrm{eff}}$ and magnetic response are not derived | One coefficient-frozen sea circulation response, not a case-specific magnetic kernel |
+| $\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}\partial_T\mathbf E_\ell$ | Time-changing polar faces feeding the same sea/history chain | Compatibility is derived; mechanism is guessed | No oriented sea carrier for fixed-center exposure change | A resolved polar-to-circulation history face with the same coefficient pair |
+| $\partial_T\rho_\ell+\nabla\cdot\mathbf J_\ell$ | Exact smoothed exposed-worldline identity plus $q_{Aa}\dot e_{Aa}$ and boundary rows | Derived geometry | Exposure weights can change without an identity-routed flux | Exposure-fiber transport ledger and explicit flux through $\partial W$ |
+
+Plainly: the easy rows are the ones that count and move named exposed
+constituents. The homogeneous field rows could become topology tests on one
+history sheet. The hard rows all meet at the same missing object: a resolved,
+coefficient-frozen Noether sea response connecting those two sides.
+
+### Residual-First Blocker Order
+
+| Residual | First blocker before any numerical value can count | Smallest missing native carrier |
+| --- | --- | --- |
+| $\mathcal R_{\mathrm{cont}}$ | The exposure-change term $\sum q_{Aa}\dot e_{Aa}$ is not identity-routed | One conservative exposure-transfer current with explicit window-boundary flux |
+| $\mathcal R_B$ | No retained face record demonstrates $\partial\mathfrak C_W=0$ in the spatial sector | One closed, root-resolved inter-braid or wake-history face network |
+| $\mathcal R_F$ | Time-like electric faces and spatial magnetic faces do not yet share one edge-adjacency ledger | One evolving spacetime two-chain with persistent face, edge, braid, and root ids |
+| $\mathcal R_\rho$ | Exposed inventory is not derived before the polar source response is tested | One source-backed exposure functional plus one fixed resolved-sea polar-response row |
+| $\mathcal R_A$ | Continuity is not closed, and no shared sea circulation response consumes the resulting current | The exposure-transfer carrier followed by one coefficient-frozen sea constitutive map producing both ordinary-current and changing-electric circulation rows |
+
+Plainly: continuity blocks the sourced Ampere test first because an unreliable
+current cannot test its source law. The two homogeneous residuals wait on one
+closed history sheet. Electric Gauss then waits on exposed charge plus polar
+response, and Ampere waits on the shared constitutive circulation response.
+
+### Predeclared Source-Family Parity And Null Matrix
+
+All entries below are predictions to test after projection, not inputs used to
+generate paths. `Odd` means the listed operation must reverse the projected
+component while all non-operated records remain fixed. `Even` means it must
+remain unchanged to the declared approximation. A zero target is evaluated
+against the same fixed tolerance family, not a case-specific threshold.
+
+| Source family | $\rho_\ell$ | $\mathbf J_\ell$ | $\mathbf E_\ell$ | $\mathbf B_\ell$ | Predeclared null or parity target |
+| --- | --- | --- | --- | --- | --- |
+| 1. Isotropic neutral null | Zero after balanced exposure sum | Zero after incoherent drift and circulation sum | Zero in the interior mean, with finite-$N$ fluctuation reported | Zero in the interior mean, with finite-$N$ fluctuation reported | Global polarity conjugation preserves the null; randomized labels change nothing |
+| 2. Static exposed-density perturbation | Nonzero and odd under polarity conjugation | Zero apart from declared internal stationary rows | Nonzero, polar, and odd under polarity conjugation | Zero in the static noncirculating control | Any magnetic output must trace to a nonstatic root, internal circulation, boundary row, or sea response |
+| 3. Coherent translation of fixed exposed population | Even under drift reversal; odd under polarity conjugation | Odd under drift reversal and polarity conjugation | Leading static component even under drift reversal; all odd corrections reported | Translation component odd under drift reversal and polarity conjugation | Internal-circulation contribution must remain unchanged under drift reversal |
+| 4. Fixed-center internal-circulation alignment | Neutral scalar row remains zero | Center-transport current zero; internal current odd under circulation reversal | Even or null under circulation reversal in the stationary comparison | Internal component odd under circulation reversal; polarity-weighted component odd under conjugation | Axis-only, equal-exposure cancellation must give zero intrinsic magnetic readout |
+| 5. Exposure reconfiguration with no center crossing | Changes according to the exposure ledger | Center-transport part zero; exposure-transfer part must close continuity | Changes with the exposed polar record | Changing-electric component odd when the reconfiguration history is reversed | Failure of continuity blocks interpretation of the Ampere changing-electric row |
+| 6. Localized transverse history disturbance | Locally zero after leaving the source cell | Locally zero after leaving the source cell | Transverse, propagated, and odd under disturbance-amplitude reversal | Transverse, propagated, and odd under amplitude reversal; propagation reversal flips its orientation relative to $\mathbf E_\ell$ | No photon, wave equation, or local source is inserted; persistence must trace to carrier and sea faces |
+
+Plainly: each family changes one physical feature. Translation reversal tests
+motion-induced magnetism; circulation reversal tests intrinsic circulation;
+exposure-history reversal tests the changing-electric channel. If one reversal
+changes the wrong component, the proposed single map has mixed distinct
+mechanisms.
+
+### Required Control Ledger
+
+| Control | Frozen operation | Required result |
+| --- | --- | --- |
+| Polarity conjugation | Apply $q_{Aa}\mapsto-q_{Aa}$ with all paths, roots, faces, and non-polarity metadata fixed | $\rho_\ell$, $\mathbf J_\ell$, $\mathbf E_\ell$, and polarity-weighted $\mathbf B_\ell$ reverse; geometry-only $\Sigma_A$ does not |
+| Drift reversal | Apply $\mathbf V_A\mapsto-\mathbf V_A$ to the coherent-translation family with internal records fixed | Translation current and translation magnetic component reverse; intrinsic circulation component does not |
+| Circulation reversal | Reverse ordered internal circulation with centers and drift fixed | $\mathbf J_{\ell,\mathrm{int}}$ and intrinsic magnetic component reverse; translation component does not |
+| Rigid rotation | Transform the complete record by one $P\in SO(3)$ | Scalars remain scalar and all vector/axial records rotate covariantly |
+| Spatial reflection | Transform the complete record by one $P\in O(3)$ with $\det P=-1$ | $\mathbf E_\ell$ and $\mathbf J_\ell$ are polar; $\mathbf B_\ell$ is axial |
+| Isotropic neutral null | Use balanced exposure, incoherent drift, unaligned circulation, and stationary coarse state | Interior means vanish and finite-$N$ fluctuations refine downward without coefficient changes |
+| Record-split negative | Deliberately pair sources, faces, or coefficients from different protocol or event ids | Projection must fail before residual arithmetic |
+| Hidden-retune negative | Change one frozen coefficient, kernel, tolerance, role rule, or face weight in one family | Protocol-hash mismatch must fail before comparison |
+| Direct-only versus fixed sea | Remove only sea-tagged faces while preserving all source records | The contribution lost or gained is attributable to named sea faces |
+| $N$, $W$, and $\ell$ refinement | Follow the nested ladder below with the protocol hash unchanged | Common parities, covariance, continuity, and residual trends approach a plateau or the quotient fails |
+| Randomized labels | Permute braid and constituent labels while preserving every physical record | Every projected field, residual, and attribution sum is invariant up to the same permutation of the audit table |
+
+Plainly: each control changes exactly one bookkeeping or physical feature. The
+test either produces the predeclared parity or fails. In particular, a split
+record or changed coefficient is rejected before a small residual can look
+persuasive.
+
+For every rigid orthogonal transformation $P$, the full collection must obey
+
+$$
+\rho_\ell'(\mathbf x,T)=\rho_\ell(P^{-1}\mathbf x,T),
+$$
+
+$$
+\mathbf J_\ell'(\mathbf x,T)
+=P\mathbf J_\ell(P^{-1}\mathbf x,T),
+\qquad
+\mathbf E_\ell'(\mathbf x,T)
+=P\mathbf E_\ell(P^{-1}\mathbf x,T),
+$$
+
+$$
+\mathbf B_\ell'(\mathbf x,T)
+=\det(P)P\mathbf B_\ell(P^{-1}\mathbf x,T).
+$$
+
+Thus $\mathbf J_\ell$ and $\mathbf E_\ell$ are polar vectors, while
+$\mathbf B_\ell$ is axial. Proper rotations have $\det(P)=+1$; reflections
+have $\det(P)=-1$. The entire record, including face orientations and causal
+roots, must be transformed before this comparison.
+
+Plainly: rotating the experiment rotates every arrow normally. Reflecting it
+also flips the handed magnetic arrow. A map that passes rotations but fails
+reflections has not recovered the axial character of magnetism.
+
+### Direct-Only Versus Resolved-Sea Adjudication
+
+Partition the common face record without changing the sources:
+
+$$
+\mathfrak C_W
+=
+\mathfrak C_{\mathrm{direct}}
++
+\mathfrak C_{\mathrm{sea}}.
+$$
+
+The direct-only mathematical control evaluates the projection with
+$\mathfrak C_{\mathrm{sea}}=0$. The physical comparison evaluates the identical
+source histories with one fixed, individually resolved sea population and its
+native face rows. No coefficient, kernel, role rule, or source record changes.
+
+- A direct-history result requires the direct faces alone to pass the relevant
+  parity and trend tests.
+- A sea-essential result requires the direct control to fail while the fixed
+  resolved-sea record supplies the specifically attributable missing faces.
+- If an authored sea rule is swept over its own parameters, the result is only
+  evidence about that authored rule.
+- If direct and sea contributions cannot be separated by face ids, neither
+  mechanism claim is admissible.
+
+Plainly: remove only the sea faces and run the same projection. If the answer
+survives, it was direct. If it appears only with specific resolved sea
+histories, it is sea-mediated. If the bookkeeping cannot say which faces did
+the work, the mechanism is unknown.
+
+### Claim Ledger
+
+#### Definitions
+
+- $Q_{\mathrm{exp}}\!\left[A\right]$,
+  $\mathbf j_{\mathrm{exp}}\!\left[A\right]$, $\rho_\ell$, and
+  $\mathbf J_\ell$ are exact definitions conditional on the unresolved
+  exposure weights $e_{Aa}$.
+- $\mathbf E_\ell$ and $\mathbf B_\ell$ are exact observer-projection
+  definitions conditional on the unresolved causal-history face record
+  $\mathfrak C_W$.
+- The five displayed residuals are observer-level recovery tests only.
+
+#### Derived Geometry
+
+- The translation/internal-current split follows exactly from
+  $\mathbf v_{Aa}=\mathbf V_A+(\mathbf v_{Aa}-\mathbf V_A)$.
+- The continuity identity reduces exactly to exposure-change and window-boundary
+  rows.
+- An axial magnetic record needs two oriented spatial directions; a lone axis
+  or scalar exposure change is insufficient.
+- Conditional on a supplied face record, the homogeneous residuals are the
+  smoothed Poincare dual of $\partial\mathfrak C_W$.
+- Continuity plus electric Gauss compatibility forces the changing-electric
+  coefficient in the observer Ampere equation to use the same
+  $\epsilon_{\mathrm{eff}}$ and $\mu_{\mathrm{eff}}$.
+
+#### Inferences
+
+- A root-resolved spacetime history two-chain is a smaller common carrier for
+  the homogeneous Maxwell pair than separate electric-creates-magnetic and
+  magnetic-creates-electric mechanisms.
+- Closed internal braid circulation is not enough; inter-braid or wake-history
+  face closure is the relevant candidate for $\nabla\cdot\mathbf B_\ell=0$.
+- Translation and internal circulation can feed one magnetic projection
+  because both contribute spatial area faces with independent reversal
+  parities.
+- The first useful continuum quotient should preserve an attribution sidecar
+  even though the four projected fields forget most braid details.
+
+#### Guesses
+
+- A resolved Noether sea supplies the missing closed history faces for
+  fixed-center exposure reconfiguration and transverse propagation.
+- One weak-regime constitutive response yields both
+  $\epsilon_{\mathrm{eff}}$ and $\mu_{\mathrm{eff}}$ without case-specific
+  retuning.
+- A localized transverse history disturbance can persist across the population
+  under the same projection without a photon or wave equation as input.
+
+#### Measurements
+
+No new measurement was made in this session. No residual value, convergence
+rate, retained path, accepted face chain, or constitutive coefficient exists.
+Existing attempt fixtures and same-projection arithmetic do not measure the
+proposed native carrier.
+
+Plainly: the equations above define a test and prove a few bookkeeping
+identities. They do not report a successful run. The central physical claims
+remain inferences or guesses until independent retained records populate the
+definitions.
+
+### Independent Evidence And Exact Falsifiers
+
+The admissible independent references are deliberately different for different
+rows:
+
+- continuity: the distributional worldline identity plus an independently
+  authored exposure-transfer ledger;
+- axial covariance: the $O(3)$ transformation theorem for polar and axial
+  records;
+- homogeneous rows: the chain identity
+  $d\operatorname{PD}(\mathfrak C)=\operatorname{PD}(\partial\mathfrak C)$;
+- source rows: independently derived exposed inventory and a separately
+  authored Noether sea response instrument;
+- propagation: a carrier record evolved by the Master Equation, compared with
+  an independently specified observer-level transverse benchmark.
+
+The projection is falsified on its declared domain by any one of these:
+
+1. a braid-label permutation changes a field or residual;
+2. translation reversal changes the internal magnetic component, or
+   circulation reversal changes the translation component;
+3. a reflected record transforms $\mathbf B_\ell$ as a polar vector;
+4. $\mathcal R_{\mathrm{cont}}$ is small only because exposure rows or window
+   fluxes were omitted;
+5. $\mathcal R_B$ or $\mathcal R_F$ is declared zero while
+   $\partial\mathfrak C_W$ contains unmatched interior edges;
+6. $\epsilon_{\mathrm{eff}}$, $\mu_{\mathrm{eff}}$, $Z_F$, the kernel, or a
+   face weight changes between cases or refinements;
+7. a direct-only and a sea-populated result cannot be separated by record ids;
+8. residual improvement disappears under $N$, $W$, or $\ell$ refinement; or
+9. the result depends on prescribed paths being described as retained.
+
+Agreement between $\mathsf F_\ell$ and another quantity computed from the same
+faces proves only internal consistency. Correctness requires one of the
+independent identities or instruments above.
+
+### No-Hidden-Retune Refinement Plan
+
+Before any run, freeze one protocol hash containing:
+
+- inventory and identity schema;
+- exposure-functional version;
+- source/receiver/resolved-sea role map;
+- $K$, $g$, and the rule $\tau_\ell=\ell$ at $c_f=1$;
+- face-construction and edge-pairing rules;
+- $Z_F$, $\epsilon_{\mathrm{eff}}$, and $\mu_{\mathrm{eff}}$, either
+  independently calibrated once or left symbolic;
+- window-boundary export rule;
+- residual norms and tolerances;
+- direct/sea partition rule; and
+- causal-root attribution schema.
+
+Use nested refinements and change one axis at a time:
+
+$$
+N\in\{5,9,17\},
+\qquad
+W\in\{W_0,2W_0,4W_0\},
+\qquad
+\ell\in\{\ell_0/2,\ell_0,2\ell_0\}.
+$$
+
+The $N$ ladder preserves every earlier identity and adds resolved sea/receiver
+braids. The $W$ ladder retains longer causal histories while evaluating a
+common interior window. The $\ell$ ladder is admitted only where kernel support
+stays inside that interior and the proposed scale inequalities can both be
+checked.
+
+At every rung report:
+
+1. normalized $L^2$ and $L^\infty$ norms of all five residuals;
+2. Cauchy differences of all four projected fields between adjacent rungs;
+3. null, reversal, rotation, reflection, and label-randomization defects;
+4. the complete ranked causal-root and face contribution ledger for every
+   apparent nonzero or cancellation;
+5. boundary-export and exposure-transfer contributions separately;
+6. direct-only and fixed-sea differences; and
+7. the unchanged protocol hash.
+
+No result stabilizes merely because one curve is smooth. Stabilization requires
+a common plateau across all six source families in which the projection,
+parities, covariance defects, continuity, and residual trends remain within
+the predeclared tolerances without parameter changes. Failure to find a
+nonempty $\ell$ plateau is evidence against the proposed quotient at the tested
+scale, not permission to choose a prettier smoothing width.
+
+Plainly: enlarge the population, retain more history, and sharpen or broaden
+the blur separately. Every setting and coefficient stays frozen. A real
+continuum map should settle across all source types at once, not only in the
+case used to choose its parameters.
+
+### Information Lost At The Quotient
+
+The four projected fields do not retain:
+
+- individual braid and architrino labels;
+- internal phase, ordered-frame microstate, or branch multiplicity below
+  $\ell$;
+- which causal roots cancelled unless the attribution sidecar is retained;
+- shielded polarity inventory not exposed by $e_{Aa}$;
+- direct-wake versus sea-mediated provenance after their sums are merged;
+- face-edge topology below the smoothing scale;
+- distinct histories that occupy the same
+  $(\rho_\ell,\mathbf J_\ell,\mathbf E_\ell,\mathbf B_\ell)$ equivalence
+  class; or
+- finite-window boundary history outside $W$.
+
+Therefore the projection output is never sufficient evidence by itself. The
+raw identity, causal-root, exposure, and face ledgers remain mandatory audit
+sidecars for every residual.
+
+Plainly: Maxwell variables are intentionally compressed. They can predict the
+observer-level pattern while forgetting which microscopic histories produced
+it. The audit ledger keeps that forgotten information available for checking.
+
+### Smallest Report-Only Finite-Braid Predeclaration
+
+The first rung is `FBM-001`, a candidate $N=5$ record, not a theorem that five
+braids are physically minimal:
+
+- braid $A_0$ is the central feature-controlled braid used for static exposure,
+  translation, circulation, and exposure-reconfiguration cases;
+- braids $A_1,\ldots,A_4$ form one noncoplanar tetrahedral
+  receiver/resolved-sea shell, the smallest regular shell with an isotropic
+  second moment in three dimensions;
+- all five retain complete constituent identities, ordered frames, exposure
+  targets, causal histories, and root ledgers;
+- the same inventory is transformed, never replaced, to generate the six
+  source families;
+- the direct-only control removes only sea-tagged faces;
+- $c_f=1$, one $G_{\ell_0}$, one symbolic coefficient set, and one protocol id
+  serve every row;
+- the transverse disturbance is launched at one shell braid and evaluated at
+  the remaining shell records after it leaves the launch cell; and
+- every output includes the raw constituent, root, face, boundary, and
+  exposure-transfer attribution tables.
+
+The $N=9$ rung adds the complementary tetrahedral shell, producing an
+eight-site cubic shell around the unchanged $A_0$. The $N=17$ rung adds a
+second radius-resolved shell without changing prior identities. These are
+diagnostic geometries only; no prescribed shell is a retained Noether sea.
+
+`FBM-001` succeeds only if one frozen projection produces the predeclared
+nulls, independent reversal parities, rigid covariance, label invariance,
+continuity accounting, and improving residual trends across all six families.
+It does not succeed by matching a Maxwell magnitude in one case. Its first
+blocked field is expected to be the sourced response because no native
+$\mathcal C_{\mathrm{sea}}$ or exposure-transfer carrier currently exists.
+
+### Promotion Target And Next Artifact
+
+This session remains priority-only. The candidate promotion destinations are
+Gauge Structure Emergence, Mode Taxonomy's effective EM gate, and the `EQ-13`
+Maxwell source-field packet, but only after a retained carrier and independent
+instrument exist. No current statement is ready for promotion.
+
+The smallest next artifact is the report-only `FBM-001` schema and
+predeclaration: five indexed braid records, one spacetime kernel, one
+constituent exposure/worldline projection, one causal-history face ledger, the
+six transformed source families, frozen symbolic constitutive coefficients,
+and the full control/refinement table. It should contain no EOM solver change
+and no claimed residual measurement.
+
+Closure goal: preserve the common exposed-worldline plus causal-history
+two-chain mapping at **inferred structural-map grade**, and build the
+report-only `FBM-001` five-braid predeclaration as the smallest next
+finite-braid artifact.
+
+## Session 11 — Magnetic Readout And Birefringence As Co-Projections (2026-08-20)
+
+### The Stronger Native Statement
+
+The observer-level sentence "a photon encounters a very strong magnetic
+field" is useful shorthand, but it cannot be the substrate explanation in
+$\mathbb{A}\mathbb{A}\mathbb{A}$. The current mapping gives the effective
+magnetic record as a projection of source assemblies, their root-resolved
+causal histories, the Noether sea state, and the receiver chart. It does not
+assign a fundamental magnetic field to the Euclidean void, an architrino, or a
+braid.
+
+The corresponding native hypothesis is that strongly ordered source
+assemblies load one retained Noether sea state anisotropically. Two different
+observer projections of that same state then appear:
+
+1. a loop, clock, atomic envelope, or other magnetic receiver reconstructs an
+   effective axial magnetic record $\mathbf B_{\mathrm{eff}}$; and
+2. a photon channel reconstructs a polarization-resolved susceptibility
+   $\chi_{\gamma}^{ab}$ whose eigenvalue split produces birefringent transport.
+
+Plainly: the magnetic field does not act on the photon as a second fundamental
+thing. The strong magnetic reading and the polarization split may be two
+different measurements of one loaded assembly-and-sea history.
+
+### Common-Cause Map
+
+Let $\Theta$ denote one shared retained record containing the ordered source
+assemblies, their causal-history two-chain, and the local Noether sea state.
+The proposed relationship is
+
+$$
+\mathbf B_{\mathrm{eff}}
+=
+\Pi_B[\Theta;\mathcal R_B],
+\qquad
+\chi_{\gamma}^{ab}
+=
+\Pi_{\gamma}^{ab}[\Theta;\omega,\hat{\mathbf k}],
+$$
+
+where $\mathcal R_B$ identifies the magnetic receiver class and neither
+projection may introduce a source-local fitted state. The birefringence
+observable remains
+
+$$
+\Delta\chi_{\gamma}
+=
+\lambda_1(\chi_{\gamma})
+-
+\lambda_2(\chi_{\gamma}).
+$$
+
+This does not make $\mathbf B_{\mathrm{eff}}$ the input to
+$\Pi_{\gamma}$. Both are outputs of $\Theta$. Consequently, a large effective
+magnetic amplitude is evidence that the source is strongly ordered, but it is
+not by itself a proof that the transverse photon response splits.
+
+Plainly: correlation with a strong magnetic chart does not yet identify the
+microscopic cause. The shared record must separately produce the magnetic
+reading and the two photon eigenchannels.
+
+### The Missing Irreducible-Response Link
+
+The Maxwell map and the birefringence map currently consume different tensor
+parts of the shared state. The effective magnetic axial vector is the spatial
+dual of an antisymmetric circulation record, whereas linear birefringence is
+carried by a symmetric trace-free orientation or strain record
+$S_{ij}^{\mathrm{TF}}$. One does not follow algebraically from the other.
+
+A minimal rotationally covariant candidate cross-map is
+
+$$
+S_{ij}^{\mathrm{TF}}
+=
+\alpha_{\mathrm{sea}}
+\left(
+b_i b_j
+-
+\frac{1}{3}\|\mathbf b\|^2\delta_{ij}
+\right)
++
+R_{ij}^{(S)},
+$$
+
+where $\mathbf b$ is the axial dual of the native antisymmetric circulation
+part of $\Theta$, not a primitive magnetic field. The coefficient
+$\alpha_{\mathrm{sea}}$ and remainder $R_{ij}^{(S)}$ must be derived from the
+same constitutive record. Substitution into the existing photon projection,
+
+$$
+\chi_{\gamma}^{ab}
+=
+\chi_{\mathrm{iso}}P_{\perp}^{ab}
++
+\chi_{\mathrm{aniso}}
+P_{\perp}^{ai}S_{ij}^{\mathrm{TF}}P_{\perp}^{jb}
++
+R_{\gamma}^{ab},
+$$
+
+would make the leading linear-birefringence magnitude even under circulation
+reversal, while leaving its axis tied to the ordered response. This parity is
+a candidate consequence of the quadratic cross-map, not a current
+$\mathbb{A}\mathbb{A}\mathbb{A}$ prediction.
+
+Plainly: magnetic-like circulation is an oriented turning record;
+birefringence is a directional stiffness difference. The missing derivation
+must show how strong turning order produces directional stiffness in the same
+sea state.
+
+### Claim Ledger
+
+- **Ontology:** no primitive magnetic field is assigned to an architrino, a
+  braid, or the Euclidean void. Fundamental dynamics remain the Master
+  Equation, causal path history, polarity, assemblies, and the retained Noether
+  sea state.
+- **Derived effective structure:** conditional on one supplied causal-history
+  face record, $\mathbf B_{\mathrm{eff}}$ is the axial projection of the
+  spatial-spatial part of the common antisymmetric observer record.
+- **Inferred synthesis:** magnetar magnetic readout and photon birefringence
+  should be treated as co-projections of one strongly ordered
+  assembly-and-Noether-sea record, not as a fundamental field exerting a
+  separate action on a photon.
+- **Speculation:** the leading shared-state bridge is quadratic,
+  $S_{ij}^{\mathrm{TF}}\propto
+  b_i b_j-\|\mathbf b\|^2\delta_{ij}/3$.
+- **Measurement boundary:** the IXPE/NICER/Parkes record measures
+  phase- and energy-dependent polarization. The birefringent interpretation is
+  model-dependent, and neither the data nor the effective magnetic chart
+  identifies a Noether sea state directly.
+
+### Falsifiers And Discriminators
+
+The common-cause proposal and its simplest quadratic specialization are
+disciplined by these tests:
+
+1. the magnetic and photon projections require different retained state ids or
+   separately fitted source coefficients;
+2. the weak homogeneous limit retains a polarization split above its declared
+   bound;
+3. if two histories with the same $\mathbf B_{\mathrm{eff}}$ but different
+   $S_{ij}^{\mathrm{TF}}$ produce distinguishable polarization, any map that
+   uses $\mathbf B_{\mathrm{eff}}$ alone as the photon-response input is
+   falsified, although the fuller shared-state map survives;
+4. circulation reversal changes the leading linear-birefringence magnitude in
+   a regime governed by the quadratic candidate, rather than only reversing an
+   odd circular or handed response;
+5. the derived eigenchannel split violates its causal dispersion and loss
+   partner; or
+6. an accepted retained strong-loading state has a large axial circulation
+   response but provably cannot generate the required symmetric trace-free
+   response.
+
+The third discriminator is especially important: effective
+$\mathbf B_{\mathrm{eff}}$ may be an incomplete coordinate on the native state.
+Equal magnetic readings need not imply equal birefringence if hidden strain,
+source geometry, frequency dependence, or path history differs.
+
+Plainly: "strong magnetic field" may label the right observational regime
+while still omitting native variables that actually determine the photon
+response.
+
+### Promotion Target And Next Artifact
+
+This synthesis remains priority-only. Its possible promotion targets are the
+magnetic-field mapping, the Noether sea constitutive response, and photon
+transport sections only after a shared retained record supports both
+projections.
+
+The smallest next artifact is a report-only cross-projection schema. One record
+id should carry the source assemblies, causal-history faces, axial circulation
+readout $\mathbf b$, symmetric trace-free response $S_{ij}^{\mathrm{TF}}$,
+effective magnetic receiver projection, photon eigenvalues, Stokes transport,
+and weak-limit null. The first calculation is a parity table under source
+reversal, photon-direction reversal, and polarization-basis rotation; no EOM
+solver change or residual-success claim is implied.
+
+Closure goal: derive or falsify one shared-state map from native antisymmetric
+circulation to symmetric trace-free Noether sea response, so that effective
+magnetic readout and strong-loading birefringence become independently checked
+co-projections rather than a fundamental field-action premise.
