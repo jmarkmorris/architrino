@@ -46,7 +46,7 @@ Priority-only method: each packet should include a direct geometry layer when th
 
 ## Status And Evidence Routing
 
-Score rounds are maintained in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records the 2026-06-23 team-agent score-table dispositions as priority-ledger decisions only. They are not accepted retained evidence and do not by themselves authorize score-change review.
+Score rounds are maintained only in [equation.md](equation.md). The `6/23 a` column preserves the first-round maturity scores, and `6/23 b` records the 2026-06-23 team-agent score-table dispositions as priority-ledger decisions only. Sibling packet sections titled `2026-06-23 Maturity Assessment` preserve the rationale for those dated dispositions; they have no score authority. Neither the dispositions nor their packet rationales are accepted retained evidence, and they do not by themselves authorize score-change review.
 
 Chronological score-neutral closure passes, checker narratives, failed paths, handoffs, and supersession notes belong in [work-log.md](work-log.md#chronological-closure-pass-history). Provisional equation intuitions, conceptual maps, and draft corpus-promotable wording belong in [brainstorming.md](brainstorming.md). Focused proof packets, source-field maps, evidence-object contracts, and app specs stay in sibling files.
 

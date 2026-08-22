@@ -12,16 +12,20 @@ This packet groups the observation-first precision rows that discipline atomic s
 
 ## Packet Attack Card
 
-- Current score snapshot: `EQ-26` score `3`, `EQ-26A` score `2`, `EQ-27` score `2`, `EQ-28` score `3`, `EQ-29` score `3`, `EQ-30` score `2`, and `EQ-31` score `2` in this packet's score recommendation table. This pass does not update [equation.md](equation.md).
+- Dated score snapshot: the `6/23 b` ledger records `EQ-26` at `3`, `EQ-26A` at `2`, `EQ-27` at `2`, `EQ-28` at `3`, `EQ-29` at `3`, `EQ-30` at `2`, and `EQ-31` at `2`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
 - Closure driver: every precision comparison must consume one retained event or observation record $\mathsf e$ with branch/source state, path-history record, local Noether sea tuple, finite channel set, outgoing rows, detector/readout row, and no-hidden-retune witness.
 - Exact first blockers: `EQ-26` still needs the candidate `missing_accepted_theta_H_spec` row; `EQ-26A` inherits `missing_accepted_theta_gamma_packet` before the local charge-exposure row can move; `EQ-27` blocks at `missing_accepted_ordered_frame_loop`; `EQ-28` blocks at `missing_accepted_photon_gate_A_input_output`; `EQ-29` blocks at `missing_accepted_radiation_source_carrier`; `EQ-30` and `EQ-31` share the finite-window blocker `missing_accepted_W` before their top-carrier and projection rows can count.
 - First implementation target for this packet: choose one row-specific lane and replace its source-attempt or source-contract shell with a durable non-priority carrier that the relevant checker can evaluate under one event or observation record $\mathsf e$. No score change follows until the checker accepts the carrier, row-specific source contract, and same-record bindings from durable source evidence.
 - Smallest next artifact: choose one lane among hydrogen spectra, alpha/charge exposure, ordered frame-loop, Compton replay, radiation source, `EQ-30`, or `EQ-31`, then replace its source-attempt or source-contract shell with one durable carrier source consumed by the existing checker.
 - Safe evidence target after this pass: a source-backed retained carrier for one row-specific lane, with `theta_H_spec`, `ordered_frame_loop`, `photon_gate_A_input_output`, `radiation_source_carrier`, or finite-window `W` accepted only after the relevant checker confirms durable source evidence and same-record binding.
 
-## Score Recommendations
+## 2026-06-23 Maturity Assessment
 
-| ID | Current `6/23 a` | Recommended `6/23 b` | Reason |
+This table preserves the dated assessment that informed the `6/23 b` ledger.
+It is not retained evidence and does not update [equation.md](equation.md), the
+sole current score authority.
+
+| ID | `6/23 a` | Recorded `6/23 b` assessment | Reason |
 | --- | --- | --- | --- |
 | `EQ-26` | `3` | `3` | The Rydberg coefficient-row residual and hydrogen spectral scaffold are explicit, but the native envelope-gap derivation and spin-sensitive residuals are still open. |
 | `EQ-26A` | `2` | `2` | The fine-structure coupling and running row is now explicit, but charge exposure, action-unit, photon-speed, gauge/coupling, and scale-threshold rows are not accepted. |
@@ -183,9 +187,9 @@ where $\Delta_R$ tests transition-independent $\widehat R_{\mathrm H}$, $\mathca
 - Spin-sensitive row for fine structure, spin-orbit, Zeeman, and hyperfine terms.
 - Lamb-shift-class radiation/wake-dressing row tied to photon Gate B/C and causal-wake regularization.
 
-### `6/23 b` Score Recommendation
+### EQ-26 2026-06-23 Maturity Assessment
 
-Recommend `3`. The variable map and residual grammar are explicit, but the native electron-envelope calculation and spin/radiation corrections remain derivation targets.
+The dated `6/23 b` assessment records `3`. The variable map and residual grammar are explicit, but the native electron-envelope calculation and spin/radiation corrections remain derivation targets. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -334,9 +338,9 @@ with precession read as the connection holonomy around $\Phi$. The leading compa
 - Dressing rows for radiation, weak, hadronic, and wake-sensitive corrections.
 - Lepton-family consistency row so electron, muon, and tau comparisons do not retune the leading spin ledger independently.
 
-### `6/23 b` Score Recommendation
+### EQ-27 2026-06-23 Maturity Assessment
 
-Recommend `2`. The closure dependencies are clear, but current material still blocks proof on ordered-frame spinor closure and concrete magnetic-response apparatus dynamics.
+The dated `6/23 b` assessment records `2`. The closure dependencies are clear, but current material still blocks proof on ordered-frame spinor closure and concrete magnetic-response apparatus dynamics. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -482,9 +486,9 @@ where $M_T^{\mathrm{exp}}$ is the exposed target mass response and $c_\gamma$ is
 - Energy, momentum, angular-momentum, polarity, and path-history event ledger.
 - Residual row for Compton shift, photoelectric threshold, and pair-threshold topology.
 
-### `6/23 b` Score Recommendation
+### EQ-28 2026-06-23 Maturity Assessment
 
-Recommend `3`. The row has a strong event-ledger carrier and local corpus support, but no closed calculation yet derives the standard $\Delta\lambda$ form from the retained photon and target records.
+The dated `6/23 b` assessment records `3`. The row has a strong event-ledger carrier and local corpus support, but no closed calculation yet derives the standard $\Delta\lambda$ form from the retained photon and target records. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -866,9 +870,9 @@ where $m$ is a declared source mechanism and $Z_m$ is its observer-level compari
 - Gate B polarization and angular-momentum handoff row.
 - Thermal detailed-balance row when blackbody or free-free ensemble behavior is claimed.
 
-### `6/23 b` Score Recommendation
+### EQ-29 2026-06-23 Maturity Assessment
 
-Recommend `3`. The event grammar is developed enough for a strong partial map, but standard $P_L$, Lienard, bremsstrahlung emissivity, synchrotron $\gamma^2B$, and blackbody limits still need derivation from one mechanism-declared ledger.
+The dated `6/23 b` assessment records `3`. The event grammar is developed enough for a strong partial map, but standard $P_L$, Lienard, bremsstrahlung emissivity, synchrotron $\gamma^2B$, and blackbody limits still need derivation from one mechanism-declared ledger. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -989,9 +993,9 @@ $$
 - Elastic / inelastic / deep-inelastic regime row.
 - Cross-section residual row against the standard comparison formula.
 
-### `6/23 b` Score Recommendation
+### EQ-30 2026-06-23 Maturity Assessment
 
-Recommend `2`. The comparison object is plausible, but no current packet ties a specific scattering amplitude, detector kernel, flux calibration, and form factor to a computed branch ensemble.
+The dated `6/23 b` assessment records `2`. The comparison object is plausible, but no current packet ties a specific scattering amplitude, detector kernel, flux calibration, and form factor to a computed branch ensemble. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -1209,9 +1213,9 @@ The Breit-Wigner-like profile is a comparison-layer shape recovered only after t
 - Branching fraction row from relative corridor measures.
 - Interference and detector-response residual row for observed line shapes.
 
-### `6/23 b` Score Recommendation
+### EQ-31 2026-06-23 Maturity Assessment
 
-Recommend `2`. The native branch-stability interpretation is clear, but no current row computes a width, lifetime, or branching fraction from a retained Noether braid branch.
+The dated `6/23 b` assessment records `2`. The native branch-stability interpretation is clear, but no current row computes a width, lifetime, or branching fraction from a retained Noether braid branch. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -1283,4 +1287,4 @@ Promotion condition: one metastable branch packet produces $E_0$, $\Gamma$, $\ta
 - `EQ-30`: defer with blocker. Needs one scattering branch-statistics packet with detector kernel and form factor.
 - `EQ-31`: defer with blocker. Needs one metastable branch-stability packet producing width, lifetime, and branching fractions.
 
-No row is ready for reader-facing promotion now. The packet is still useful because it turns the assigned precision surfaces into explicit residual vectors, score recommendations, first mathematical objects, and falsifiable failure modes.
+No row is ready for reader-facing promotion now. The packet is still useful because it turns the assigned precision surfaces into explicit residual vectors, dated maturity assessments, first mathematical objects, and falsifiable failure modes.

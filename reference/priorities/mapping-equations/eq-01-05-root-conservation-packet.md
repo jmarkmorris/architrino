@@ -431,9 +431,13 @@ These candidates are reusable enough to become independent equation rows or name
 | `wake_energy_crosswalk_residual` | $\epsilon_{\mathrm{cross}}^{\mathfrak{B}}$ comparing action-boundary, work-integral, and boundary-flux routes. | Delay-energy, effective Lagrangian, thermodynamics, and no-runaway claims. | Internal/candidate; required when more than one wake-energy construction is invoked. |
 | `ledger_transition_gauge_matching` | Equality of pre/post branch energy gauges plus declared $\Delta_{\mathrm{ledger}}$ at root changes. | Action quantization, nested shell braid energy routing, and branch-transition packets. | Internal/candidate; strong local use in energy bookkeeping, no general theorem yet. |
 
-## Score Alignment
+## 2026-06-23 Maturity Assessment
 
-| ID | Accepted `6/23 b` | Reason |
+This table restates the dated ledger assessment for packet alignment. It is not
+retained evidence and has no score authority; current scores are owned by
+[equation.md](equation.md).
+
+| ID | Recorded `6/23 b` assessment | Reason |
 | --- | --- | --- |
 | `EQ-01` | `5` | The per-hit causal wake law and causal-root Jacobian are native substrate equations. The maintenance burden is dependency discipline, not a mapping proof. |
 | `EQ-05` | `4` | The finite-window conservation grammar, same-root checksum, event ledger, boundary-flux row, and wake-energy crosswalk are explicit. The row remains below `5` until $\mathcal{R}_{01-05}^{\mathfrak{B}}(W)$ is populated on a retained branch with event, boundary, and wake-history rows closed. |

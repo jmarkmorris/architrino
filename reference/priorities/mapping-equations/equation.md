@@ -19,6 +19,20 @@ This is internal priority material. It is not a reader-facing claim that these e
 
 Use each dated score as a maturity indicator, not as a value judgment. A low-score equation can still be important if it protects contact with tested physics. Scores should be conservative audit-facing evidence labels, not motivational targets. Assume a hostile but technically competent review: a row should rise only when its retained branch, Noether sea record, event ledger, residual, or proof route can survive close inspection without hidden retuning. The `Promoted?` column tracks reader-facing promotion state: leave it blank when the packet is not promotion-ready, use `ready` when the priority packet is mature enough for promotion work, and use `complete` only after the material has been promoted into `content/markdown/aaa`.
 
+## Score Authority
+
+This file is the sole current maturity-score ledger for Equation Mapping. The
+`6/23 a` and `6/23 b` columns are dated assessments; `6/23 b` records the
+2026-06-23 team-agent disposition. Sibling closure packets may preserve the
+reasoning behind that dated assessment, but they cannot set or change a score.
+
+Any later score movement requires an explicit edit to this ledger supported by
+accepted retained evidence, same-record binding, source provenance, the
+declared residual, and the applicable no-hidden-retune controls. A numerical
+pass, executable checker, source-attempt object, priority document, authored
+prose, generated output, probe, mock, or negative control does not by itself
+authorize score movement.
+
 ## Scale-Resolution Guardrail
 
 Observer-scale formula agreement is not substrate evidence by itself. A row can match a benchmark at the resolution where modern experiments reconstruct fields, particles, spectra, or cosmological parameters while still hiding substrate carriers many orders below that scale. Score review therefore requires either a native-to-effective lifting map or an explicit blocker saying that the lift is missing.

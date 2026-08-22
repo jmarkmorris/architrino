@@ -95,7 +95,7 @@ The same $\theta$ must supply the weak-field metric rows, the endpoint/source/la
 
 ## Packet Attack Card
 
-- Current score snapshot: `EQ-07` score `4`, `EQ-08` score `4`, `EQ-09` score `3`, `EQ-10` score `3`, `EQ-17` score `4`, `EQ-18` score `3`, and `EQ-19` score `3` in this packet's score recommendation table. This pass does not update [equation.md](equation.md).
+- Dated score snapshot: the `6/23 b` ledger records `EQ-07` at `4`, `EQ-08` at `4`, `EQ-09` at `3`, `EQ-10` at `3`, `EQ-17` at `4`, `EQ-18` at `3`, and `EQ-19` at `3`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
 - Closure driver: one retained record $\theta$ must generate the weak-field effective metric, signed redshift-transfer ledger, effective-FRW handoff, and Friedmann/continuity source-provenance rows without per-observable retuning.
 - Exact first blockers: the weak-field checker blocks at `missing_accepted_theta_W`; the signed-transfer checker blocks at `missing_accepted_theta_transfer`; the effective-FRW checker now has an accepted `theta_cos` handoff for the provider-backed `EQ-20` route; the pressure/$\Lambda_{\mathrm{eff}}$ source-attempt still blocks at `missing_accepted_theta_sea_rho_NS`, while the provider-backed route is populated.
 - First implementation target for this packet: source-backed retained $\theta_W$ row for a weak solar-system window, because it is the shared carrier for `EQ-07` through `EQ-10` and a dependency for redshift/cosmology consumers.
@@ -489,11 +489,13 @@ The priority-only [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-ma
 | `collapse.metric_matter_split` | Stellar-core material scale compression and effective spatial-compliance compression are fitted from different branch or Noether sea records. |
 | `ppn.preferred_frame_leakage` | $(\alpha_1,\alpha_2,\alpha_3)$ or SME-style residuals exceed the recorded bounds after the same metric record is used for clock/ruler/signal rows. |
 
-## `6/23 b` Score Recommendation
+## 2026-06-23 Maturity Assessment
 
-Do not update [equation.md](equation.md) from this worker packet. Recommended next score column entries:
+This table preserves the dated assessment that informed the `6/23 b` ledger.
+It is not retained evidence and does not update [equation.md](equation.md), the
+sole current score authority.
 
-| ID | `6/23 a` | Recommended `6/23 b` | Reason |
+| ID | `6/23 a` | Recorded `6/23 b` assessment | Reason |
 | --- | --- | --- | --- |
 | `EQ-07` | `4` | `4` | ADM/Cartan variables and coefficient scaffold are strong, but the constitutive coefficients still need branch/population derivation. |
 | `EQ-08` | `4` | `4` | $\Gamma_N$ endpoint, Lorentz, and weak-gravity extraction targets are explicit; the Noether braid derivation of $\mathbf{b}_N$ remains open. |

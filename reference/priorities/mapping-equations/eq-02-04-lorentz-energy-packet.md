@@ -71,7 +71,7 @@ This is not a substrate metric claim. It is an observer-level recovery target fo
 
 ## Packet Attack Card
 
-- Current score snapshot: `EQ-02`, `EQ-03`, and `EQ-04` are each recommended at score `4` in this packet. This pass does not update [equation.md](equation.md).
+- Dated score snapshot: the `6/23 b` ledger records `EQ-02`, `EQ-03`, and `EQ-04` at score `4`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
 - Closure driver: one retained branch record must produce the same Lorentz factor in clock phase, ruler/envelope geometry, two-way signal behavior, energy-momentum response, rest-invariance, and Noether sea response.
 - Exact first blocker: the solver-facing route is now source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$; the live same-branch check blocks at `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, and the coframe source attempt remains blocked by source status until accepted retained support exists.
 - First implementation target for this packet: harden the translating-binary and coframe checker lane around a source-backed retained support that preserves raw labeled rows, same-branch chart identity, support/coframe bindings, and holonomy witnesses. No score change follows until that retained support is accepted from durable source evidence.
@@ -317,13 +317,17 @@ with the error budget allocated to named causal-root features, Noether sea dress
 | Medium-response record | $\mathcal{M}_{\text{sea}}^{ab}$, $\mathcal{M}_{+}^{ab}$, $\mathcal{M}_{-}^{ab}$, $\delta\mathcal{M}_0$, and $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$. | Mass map collapses into shielding-only or dissipative-drag language. |
 | Mass-shell residual | $R_E$, $R_p$, $R_{\mathrm{shell}}$, and $R_{M_0}$ on the same branch. | Energy-momentum closure is not tied to clock/ruler Lorentz closure. |
 
-## `6/23 b` Score Recommendation
+## 2026-06-23 Maturity Assessment
 
-| ID | `6/23 b` recommendation | Justification |
+This dated assessment preserves the rationale for the `6/23 b` ledger. It is
+not retained evidence and does not change the current scores in
+[equation.md](equation.md).
+
+| ID | Recorded `6/23 b` assessment | Justification |
 | --- | --- | --- |
 | `EQ-02` | `4` | The clock-rate and Lorentz-factor map has canonical variables and explicit residuals, but no retained branch ledger has yet derived $T_q/T_0=\gamma_{\star}$ across the required drift range. |
 | `EQ-03` | `4` | The oblate spheroidal envelope map $\xi\to1/\gamma_{\text{eff}}$ has a strong closed-return derivation and canonical terminology, but still needs the all-layer branch ledger to prove the envelope ratio rather than assign it. |
-| `EQ-04` | `4` | Upgrade from the first-round `3` is justified once this packet is accepted as the shared residual grammar: the canonical variables, tensor response, rest-invariance row, and mass-shell residuals are now explicit. It is not a `5` because $E_{\text{internal}}$, $\zeta(A)$, $\mathcal{M}_{\text{sea}}^{ab}$, and $M_0$ remain uncomputed for an accepted branch. |
+| `EQ-04` | `4` | The dated move from the first-round `3` records that the shared residual grammar, canonical variables, tensor response, rest-invariance row, and mass-shell residuals are explicit. It is not a `5` because $E_{\text{internal}}$, $\zeta(A)$, $\mathcal{M}_{\text{sea}}^{ab}$, and $M_0$ remain uncomputed for an accepted branch. |
 
 ## Translating-Binary Solvability And Account Boundary
 

@@ -5,7 +5,7 @@
 - IDs owned: `EQ-06`, `EQ-24`, `EQ-25`.
 - Status: priority-only closure packet.
 - Source rows: [equation.md](equation.md) and [priorities.md](priorities.md).
-- Do not promote this packet into reader-facing prose until the score recommendations are accepted and the missing coefficient/proof rows are supplied.
+- Do not promote this packet into reader-facing prose until the missing coefficient and proof rows are supplied as accepted retained evidence and any resulting score movement is recorded in [equation.md](equation.md).
 
 This packet treats continuum, acoustic/elastic, and thermodynamic equations as one ladder:
 
@@ -27,7 +27,7 @@ The packet does not add a new ontology. The Euclidean void remains the fixed con
 | --- | --- |
 | Rows served | `EQ-06`, `EQ-24`, and `EQ-25` |
 | Closure driver | Recover continuum, acoustic/elastic, and thermodynamic equations as low-moment projections of retained Noether braid population and finite-window statistical records, not as independent fluid or entropy postulates. |
-| Current score state | `EQ-06` remains `4`; `EQ-24` remains `3`; `EQ-25` recommendation is `3` but no score change is made here. |
+| Dated score state | The `6/23 b` ledger records `EQ-06` at `4`, `EQ-24` at `3`, and `EQ-25` at `3`; this packet has no score authority. |
 | Exact first blocker language | `EQ-24` retained-attempt checker stops at `missing_accepted_theta_sea_rho_NS`; `EQ-25` thermodynamic record checker stops at `missing_accepted_theta_therm`; `EQ-06` now has the same density-compression executable route through [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs), which blocks first at `missing_accepted_theta_sea_rho_NS` while the density/cadence projection lemma or executable refinement-family proof remains the next mathematical object. |
 | Smallest accepted evidence object | One same-window source-backed bundle whose retained Noether sea rows, response rows, thermodynamic rows, event ledger, source provenance, and no-hidden-retune witness are accepted and share the same retained record. |
 | Smallest next artifact | Build one durable `theta_sea_rho_NS` retained-window source row with speed plus same-window stress/strain or metric-compliance rows, then connect it to the `theta_therm` finite-window thermodynamic carrier. |
@@ -193,9 +193,11 @@ The density row is the special case $M_a=\rho_{\text{NS}}$ and $J_a=\rho_{\text{
 - `wake_boundary_row`: causal-wake admissibility and $\mathcal H_{\partial W}$.
 - `moment_refinement_row`: declared refinement sequence and observed behavior of $\mathcal R_{\mathrm{mom}}$.
 
-### `6/23 b` Score Recommendation
+### EQ-06 2026-06-23 Maturity Assessment
 
-Recommend `4` unchanged.
+The dated `6/23 b` assessment records `4`, unchanged from `6/23 a`. This
+assessment is not retained evidence and does not change the current score in
+[equation.md](equation.md).
 
 Justification: EQ-06 already has a native equation-level form, canonical variables, and an explicit residual. This packet supplies the concrete low-moment projection object, but it does not yet prove that the projection converges from resolved Noether braid population dynamics or that the residual decreases in an executed refinement family. A `5` would require that proof or an executable convergence packet.
 
@@ -340,9 +342,10 @@ $$
 - `metric_embedding_row`: embeds scalar delay or perturbation speed into $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ when a metric claim is made.
 - `correlation_row`: supplies $C_{AB}^{\theta}(x,y)$ from retained deterministic histories instead of an independent stochastic field.
 
-### `6/23 b` Score Recommendation
+### EQ-24 2026-06-23 Maturity Assessment
 
-Accepted table score: `3`.
+The dated `6/23 b` assessment records `3`. This assessment is not retained
+evidence and does not change the current score in [equation.md](equation.md).
 
 Justification: EQ-24 now has a direct coefficient translation table, declared missing rows, and explicit residuals for metric, constitutive, causality, and correlation closure. The row remains at `3` because no acoustic, elastic, stress-strain, delayed-support, or $\mathcal R_{\mathrm{KK}}$ coefficient has been executed from a retained Noether sea population. The next score-4 route is one shared coefficient extraction that predicts a perturbation speed and stress/strain or metric response without changing $\Theta_{\mathrm{sea}}^{(\ell,W)}$.
 
@@ -648,9 +651,10 @@ with $\tau_{\mathrm{th}}^{-1}$ decomposed into event-recorded channels such as p
 - `fluctuation_row`: supplies two-point or higher correlation projections from retained deterministic histories.
 - `event_ledger_row`: closes energy, momentum, angular momentum, recoil, medium, remnant, identity, and boundary rows before a thermal law is accepted.
 
-### `6/23 b` Score Recommendation
+### EQ-25 2026-06-23 Maturity Assessment
 
-Recommend `3`.
+The dated `6/23 b` assessment records `3`. This assessment is not retained
+evidence and does not change the current score in [equation.md](equation.md).
 
 Justification: EQ-25 moves beyond a loose comparison because the packet identifies a finite-window state count, deterministic pushforward, entropy balance, thermalization-depth diagnostic, and required event rows. It should not be scored `4` until a concrete $C_{\mathrm{eff}}$, entropy-production term, or thermalization record is derived for one selected window and shown to share variables with radiation, measurement, CMB, or Noether sea transport.
 
@@ -691,12 +695,15 @@ EQ-25 fails if entropy is used without a region, coarse-graining, measure, and b
 
 Promote only after a chosen finite window supplies a real measure, event ledger, thermalization or record-locking calculation, and residual.
 
-## Integrated Score Recommendation
+## Integrated 2026-06-23 Maturity Assessment
 
-| ID | `6/23 a` | Recommended `6/23 b` | Reason |
+This table preserves the dated assessment rationale for the `6/23 b` ledger.
+It has no score authority and is not retained evidence.
+
+| ID | `6/23 a` | Recorded `6/23 b` assessment | Reason |
 | --- | --- | --- | --- |
 | `EQ-06` | `4` | `4` | Native continuity and moment residual are strong, but convergence from resolved Noether braid population dynamics is still open. |
-| `EQ-24` | `3` | `3` | The accepted `6/23 b` table holds this row at `3` because no acoustic, elastic, stress-strain, delayed-support, or $\mathcal R_{\mathrm{KK}}$ coefficient has been executed. The packet contains a plausible score-4 route once one shared coefficient row is extracted. |
+| `EQ-24` | `3` | `3` | The dated `6/23 b` ledger records this row at `3` because no acoustic, elastic, stress-strain, delayed-support, or $\mathcal R_{\mathrm{KK}}$ coefficient has been executed. The packet contains a plausible score-4 route once one shared coefficient row is extracted. |
 | `EQ-25` | `2` | `3` | Finite-window entropy, deterministic pushforward, and thermalization rows are now named, but no concrete collision operator or entropy-production proof exists yet. |
 
 ## Promotion Classification

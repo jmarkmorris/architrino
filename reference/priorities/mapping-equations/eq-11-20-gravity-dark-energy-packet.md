@@ -44,7 +44,7 @@ If weak gravity requires one Noether sea state while dark energy requires anothe
 
 ## Packet Attack Card
 
-- Current score snapshot: `EQ-11` current score `2`, recommended `3`; `EQ-20` current score `2`, recommended `3`. This pass does not update [equation.md](equation.md).
+- Dated score snapshot: the `6/23 a` ledger records `EQ-11` and `EQ-20` at `2`; the `6/23 b` assessment records both at `3`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
 - Closure driver: one retained $\Theta_{11\text{-}20}^{(\ell,W)}$ record must produce the weak-gravity Poisson/curvature readout and the dark-energy pressure/$\Lambda_{\mathrm{eff}}$ readout through the same Noether sea constitutive-response component.
 - Exact first blockers: the provider-backed `EQ-20` pressure slice, accepted `EQ-11` weak-gravity `theta_11_20` slice, shared `EQ-11`/`EQ-20` constitutive residual, accepted `theta_W` slice, and accepted downstream output-projection slice all report populated status with `nextBlocker=null`. This is still score-neutral: growth, CMB, and broader low-acceleration consumers remain open downstream.
 - First implementation target for this packet: carry the accepted shared record into growth, CMB, and broader low-acceleration consumers without changing the accepted density provider, pressure projection, `theta_cos` handoff, `theta_11_20` weak-gravity evidence, `theta_W` evidence, or output-projection evidence. No score change follows until those downstream families survive without hidden retuning.
@@ -687,11 +687,13 @@ The first calculation should use a weak solar-system window $W_{\odot}$ for $R_\
 | `cosmology.void_expansion_level_collapse` | $\Lambda_{\mathrm{eff}}$, $H_{\mathrm{eff}}$, or pressure rows are written as dynamics of expanding substrate space rather than observer-level Noether sea projections. |
 | `local_gravity_spoilage` | A pressure or low-acceleration response that improves cosmology spoils solar-system, binary-pulsar, gravitational-wave, Shapiro, lensing, or PPN rows. |
 
-## `6/23 b` Score Recommendation
+## 2026-06-23 Maturity Assessment
 
-Do not update [equation.md](equation.md) from this packet. Recommended next score column entries:
+This table preserves the dated assessment that informed the `6/23 b` ledger.
+It is not retained evidence and does not update [equation.md](equation.md), the
+sole current score authority.
 
-| ID | `6/23 a` | Recommended `6/23 b` | Reason |
+| ID | `6/23 a` | Recorded `6/23 b` assessment | Reason |
 | --- | --- | --- | --- |
 | `EQ-11` | `2` | `3` | This packet gives the right shared Noether sea variables, a populated score-neutral `theta_11_20` weak-gravity slice, a Poisson handoff, curvature-readout residual, effective-coupling continuity row, and hidden-retune check. It should not rise to `4` until `theta_W` metric-output rows and downstream weak-gravity observables consume the same record without retuning. |
 | `EQ-20` | `2` | `3` | The dark-energy row now has a pressure/tension/relaxation residual, executable pressure/$\Lambda_{\mathrm{eff}}$ checker, accepted `theta_cos` handoff, and a populated shared `EQ-11`/`EQ-20` residual. It should not rise to `4` until a concrete $p_{\mathrm{sea}}$ law or relaxation calculation survives growth, CMB, and low-acceleration consumers without fitted $\Lambda$ or split cosmology records. |
