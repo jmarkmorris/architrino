@@ -24,57 +24,289 @@ response record. It owns the derivation program, dependency joins, benchmark
 selection, and falsifiers. It does not own `EQ-26A` scores, checker semantics,
 or accepted-row decisions.
 
+This is one track in the larger program to determine the braid geometry, or
+small family of geometries, that supports assemblies of matter and the Noether
+sea. Equation mapping supplies observer-level equations whose bulk responses
+must be reconstructed from those geometries. The special interest of this
+track is whether the many apparent ingredients of electromagnetic coupling can
+be reduced to a parsimonious retained record built from an electron and/or a
+positron, the absolute-state view, and declared effective electric or magnetic
+environments.
+
+In this packet, **absolute-state view** names complete-state bookkeeping from
+$S(T)$. It is the packet's canonical wording for the operator's Absolute
+Observer perspective; it does not introduce another embedded observer or an
+apparatus-dependent frame.
+
 The fine-structure constant is not a primitive substrate constant in this
 packet. Its measured low-energy value, atomic consequences, radiative
 corrections, and running are observer-level recovery targets. Standard
 electromagnetic and QED equations specify the comparison surface; they are not
 premises for an individual architrino's acceleration.
 
-Plainly: this file asks how one retained exposure/action-period/photon-channel/
-Noether sea record produces the observed electromagnetic coupling. It does not
-insert the observed value or QED running law into the Master Equation.
+Plainly: this file asks how one retained exposure/action/photon-channel/Noether
+sea record produces the observed electromagnetic coupling. It does not insert
+the observed value or QED running law into the Master Equation.
 
-## Target Factorization
+## What An Alpha Determination Means
 
-The organizing equation is
+An experiment does not place a direct meter on $\alpha$. It measures a
+frequency ratio, recoil, resistance, spectral interval, cross section, or
+another observable and infers $\alpha$ through a declared theoretical
+relation, auxiliary constants, and environmental assumptions. The 2022 CODATA
+adjustment identifies the electron magnetic-moment anomaly and the rubidium and
+cesium atom-recoil results as its three most accurate alpha determinations; the
+first route is strongly theory-mediated, while the recoil routes join measured
+$h/m$ to the Rydberg constant and relative masses. The [2022 CODATA
+report](https://physics.nist.gov/cuu/pdf/JPCRD2022CODATA.pdf) owns the detailed
+observational equations and covariance treatment.
+
+Each scenario in this packet must therefore record:
+
+1. the matter assemblies and their geometry;
+2. the Noether sea state and causal boundary history;
+3. any effective electric or magnetic environment derived from source
+   assemblies and the sea;
+4. the observable actually measured;
+5. the comparison equation used to infer $\alpha$;
+6. which other constants or theory terms enter that inference; and
+7. whether the result tests the coupling itself or only a downstream
+   alpha-sensitive response.
+
+Plainly: “measuring alpha” means solving an interpretation problem. The raw
+readout and the equation that turns it into $\alpha$ must both be mapped before
+the braid geometry can be inferred.
+
+## Scenario Inventory
+
+The inventory has two complementary parts. **Determination scenarios** ask how
+an alpha value or constraint is presently inferred. **Geometry scenarios** ask
+which controlled matter, field, sea, or gravity configuration could produce
+the same or a different readout in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+### Determination And Consumer Scenarios
+
+The determination rows are not sea-free descriptions. Each row must join to a
+geometry/environment row and carry a resolved sea partition, schematically
 
 $$
-\alpha(\mu;\theta_{\mathrm{sea}})
+\Theta_{\mathrm{sea}}^{(D_k)}
 =
-\alpha_{\mathrm{ref}}\,
+\left(
+\Theta_{\mathrm{sea}}^{\mathrm{near}},
+\Theta_{\mathrm{sea}}^{\mathrm{env}},
+\Theta_{\mathrm{sea}}^{\mathrm{far}}
+\right)_{D_k}
+$$
+
+Here the near part is coupled directly to the measured assembly, the
+environment part includes the region organized by field sources and nearby
+apparatus assemblies, and the far part supplies the ambient and causal boundary
+state. These labels are resolution domains of one sea record, not three
+different media. A row may find that one domain contributes no distinguishable
+effect, but that must be a derived or measured null rather than an omission.
+
+Plainly: every alpha determination occurs in the Noether sea. The scenario must
+say which part of the sea is close to the particle, which part carries the
+declared environment, and what farther state supplies the boundary conditions.
+
+| Id | Observer-level situation | What is actually measured | Role in the alpha map | Minimal $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry question |
+| --- | --- | --- | --- | --- |
+| `D1` | Trapped electron magnetic-moment anomaly | Spin-precession and cyclotron-frequency information in a confining electromagnetic environment. | Precision alpha determination after inversion of the QED moment relation. | Can one electron, the trap-source assemblies, the near electron-coupled sea, the field-organized environmental sea, and the farther boundary sea reproduce the frequency relation without fitting a private coupling? |
+| `D2` | Trapped positron magnetic response | Positron spin and orbital frequency information under the polarity-conjugate field arrangement. | Polarity and matter-antimatter comparison; not currently the primary alpha anchor. | Does the conjugate braid and its near-to-far sea response reverse the required orientations while preserving the same dimensionless coupling? |
+| `D3` | Rubidium or cesium atom recoil | The recoil ratio $h/m_X$ from photon momentum transfer. | Independent precision determination when joined to $R_\infty$ and relative masses. | Can a many-architrino atom and photon event reproduce the recoil relation from the same action and exposure records? |
+| `D4` | Hydrogen or a hydrogen-like ion | Transition frequencies, including gross, fine, hyperfine, and radiative structure. | Alpha-sensitive consumer and cross-check; each line also depends on other structure. | Which spectral terms come from the common coupling, and which require spin, recoil, nuclear, or wake geometry? |
+| `D5` | Positronium, muonium, or another simple leptonic bound system | Spectral intervals, decay rates, or magnetic response. | Composition-changing consumer with reduced or altered nuclear structure. | Can electron-positron or lepton-pair geometry isolate the coupling from nuclear geometry? |
+| `D6` | Quantum Hall or electrical-metrology system | A resistance plateau or related electrical ratio in many-body matter under strong magnetic response. | Bulk electromagnetic cross-check, historically used to infer alpha. | Can the same coupling survive a collective charged assembly and its strongly organized sea response? |
+| `D7` | Low-energy scattering or annihilation | Differential rates, angular distributions, or cross sections. | Process-dependent coupling consumer. | Does one exposed-charge and photon-channel record predict both bound and unbound electromagnetic events? |
+| `D8` | Spacelike and timelike running measurements | Scale-dependent scattering or annihilation observables. | Determines an effective $\alpha$ at declared momentum transfer and scheme. | Can one fixed situation record reproduce both running branches and their threshold inventory? |
+| `D9` | Electroweak-scale precision inference | A global set of electroweak observables near $M_Z$. | Scheme-labelled high-scale running anchor. | Can the electromagnetic projection join the weak-sector basis without reassigning the low-energy parents? |
+| `D10` | Clock comparisons over time or gravitational potential | Ratios of transitions with different alpha sensitivities. | Constraint on $\Delta\alpha/\alpha$, not an absolute alpha determination. | Does a changed gravitational or sea environment move the coupling, the clocks' assembly geometry, or both? |
+| `D11` | Astrophysical spectra or cosmological recombination | Relative line positions, opacity, or recombination-sensitive observables. | Distant-time or distant-environment constraint with substantial model dependence. | Which source, propagation, sea, composition, and clock changes are degenerate with a changed coupling? |
+
+Plainly: the cleanest first geometry target is `D1` because it approaches the
+desired reduction to one electron plus applied fields. `D2` supplies the
+polarity control. Recoil and spectroscopy then test whether the same coupling
+survives increasingly complicated assemblies. Bulk, high-energy, gravity, and
+cosmological cases come later because more geometry is entangled in their
+readouts.
+
+### Geometry And Environment Scenarios
+
+| Id | Declared situation | Why examine it | Noether sea question |
+| --- | --- | --- | --- |
+| `G0` | Weak, approximately homogeneous reference region with no declared applied field | Defines the reference matter and sea record. | What density, cadence, orientation distribution, strain, flow, and braid-envelope distribution constitute the baseline? |
+| `G1` | Electron and positron separately in the reference region | Isolates polarity and the minimal charged assembly geometry. | Does each charged assembly create a conjugate local sea organization while leaving the far reference state common? |
+| `G2` | Static magnetic-dominant environment | Directly supports the trapped-electron and trapped-positron routes. | What source-assembly and sea configuration projects to $\mathbf B_{\mathrm{eff}}$, and which braid orientations determine spin and orbital response? |
+| `G3` | Static electric-dominant environment | Separates electric exposure from magnetic response. | What sea loading, polarization, or strain projects to $\mathbf E_{\mathrm{eff}}$? |
+| `G4` | Parallel, crossed, and independently varied electric and magnetic environments | Tests whether one parsimonious geometry generates both field sectors and their combined response. | Are the effective fields distinct projections of one sea response, or do they require independent modes? |
+| `G5` | Time-dependent or radiative electromagnetic environment | Separates static constitutive response from propagation and delayed response. | Which sea and wake variables carry phase, polarization, dispersion, and energy transfer? |
+| `G6` | Electron-positron pair, positronium, hydrogen, and one-electron ions | Introduces the smallest bound assemblies in a controlled order. | How do exclusion envelopes, source exposure, and shared-sea deformation change with partner polarity and nuclear geometry? |
+| `G7` | High-$Z$ ion or other strong local electric environment | Amplifies relativistic, spin-sensitive, nuclear-size, and radiative consumers. | Does the sea response remain in the weak constitutive regime, or develop a new density, strain, or anisotropy branch? |
+| `G8` | Dense or many-body charged matter, including the quantum Hall regime | Tests whether a common microscopic coupling produces a collective bulk response. | What sea configuration is induced by charge density, boundaries, lattice geometry, and macroscopic magnetic organization? |
+| `G9` | Prescribed sea-density, strain, flow, orientation, or envelope-anisotropy variation | Directly tests environmental dependence without first naming it an electric or magnetic field. | Which sea variables change the parent coupling projection, and which change only propagation or assembly dynamics? |
+| `G10` | Different gravitational potentials or gradients, extending eventually to compact-object conditions | Tests the possibility that effective gravity and electromagnetism share sea state variables. | Does gravitational sea loading change $q_{\mathrm{obs}}$, $h_\vartheta$, $c_\gamma$, or $\mathcal C_{\mathrm{EM}}$, or only the comparison clocks and paths? |
+| `G11` | Different thermal or ambient radiation states | Tests background occupation and thermal sea response. | Does temperature change the coupling projection or only populate and perturb the assemblies used to infer it? |
+| `G12-A` | Fixed-background scale projection | Provides the conventional control in which the parent matter and sea record is held fixed while the effective scale label changes. | Can wake/dressing and threshold response reproduce $\alpha(\mu)$ without changing matter or sea state? |
+| `G12-B` | Matter energy-state transition $A\rightarrow B$ | Tests whether a higher-energy electron or other charged assembly has different internal cadence, radii, envelope scale, envelope shape, or exposure. | Does the assembly transition require a coupled local sea retuning, and which part of the changed readout belongs to matter geometry rather than the coupling? |
+| `G12-C` | Matched matter state in different local or extended sea states | Tests whether energy-state preparation is accompanied by local or wider sea differences that survive outside the immediate assembly neighborhood. | At matched matter geometry and comparison scale, does changing sea density, cadence distribution, strain, orientation, flow, or boundary history change the inferred coupling? |
+
+Plainly: `G2` through `G5` ask what actual geometry corresponds to applied
+fields. `G9` and `G10` ask whether a changed sea or gravitational environment
+changes the coupling itself. `G12-A` is the fixed-background running control;
+`G12-B` and `G12-C` test the alternative that conventional running folds real
+matter-braid and sea-state changes into one effective scale law. Changing the
+comparison scale, changing the assembly state, and changing the sea are three
+distinct operations until a derivation proves that they are linked.
+
+Existing running measurements do not by themselves choose among these three
+interpretations. They infer an effective coupling from scale-dependent process
+observables under a declared QED or electroweak response model. Agreement
+across processes, kinematic channels, and schemes strongly constrains any
+native explanation to reproduce a common effective running law, but it does
+not directly report an electron's internal braid radii or the Noether sea
+state. The scenario ledger must therefore retain all three rows and ask what
+additional same-scale controls distinguish them.
+
+The scale $\mu$ must also be kept distinct from energy stored in a charged
+assembly. In running measurements it commonly labels a momentum-transfer or
+renormalization scale. Different event geometries can therefore sample
+different $\mu$ values without preparing different persistent internal states
+of the incoming electron, while different processes can be compared at a
+matched $\mu$. A native map may still assign a $\mu$-dependent transient braid,
+wake, and local sea geometry to the interaction event, but it must derive that
+identification rather than equating higher $\mu$ with a smaller electron by
+definition.
+
+Plainly: the measurements may compress several native changes into one
+$\alpha(\mu)$ curve. They do not make the assembly and sea possibilities go
+away; they tell us how universal and reproducible their combined projection
+must be. They also require the packet to distinguish persistent particle
+state, event momentum transfer, and sea response.
+
+## Absolute-Situation Factorization
+
+Let $\mathfrak s$ label one declared physical situation. Its candidate alpha
+carrier is
+
+$$
+\Theta_\alpha^{(\mathfrak s)}
+=
+\left(
+\Theta_{\mathrm{matter}}^{(\mathfrak s)},
+\Theta_{\mathrm{sea}}^{(\mathfrak s)},
+\mathcal H_{\partial\Omega}^{(\mathfrak s)},
+q_{\mathrm{obs}}^{(\mathfrak s)},
+h_\vartheta^{(\mathfrak s)},
+c_\gamma^{(\mathfrak s)},
+\mathcal E_S^{(\mathfrak s)},
+\mathcal C_{\mathrm{EM}}^{(\mathfrak s)}
+\right)
+$$
+
+The matter, sea, and boundary entries belong to the absolute-state record. The
+remaining entries are candidate electromagnetic readouts that must be derived
+from that record rather than independently assigned.
+
+Effective fields are child projections of source assemblies and sea response:
+
+$$
+\left(
+\mathbf E_{\mathrm{eff}}^{(\mathfrak s)},
+\mathbf B_{\mathrm{eff}}^{(\mathfrak s)}
+\right)
+=
+\Pi_{\mathrm{EM}}
+\left[
+\Theta_{\mathrm{src}}^{(\mathfrak s)},
+\Theta_{\mathrm{sea}}^{(\mathfrak s)},
+\mathcal H_{\partial\Omega}^{(\mathfrak s)}
+\right]
+$$
+
+Plainly: a declared electric or magnetic field describes part of the effective
+assembly situation. It does not replace the required source and sea geometry
+that produces that field.
+
+The situation-conditioned coupling question is
+
+$$
+\alpha_{\mathrm{eff}}^{(\mathfrak s)}
+=
+\mathcal P_\alpha
+\left[
+\Theta_\alpha^{(\mathfrak s)}
+\right]
+$$
+
+This is a question map, not a derived law. A changed spectral interval,
+precession frequency, recoil, or resistance does not by itself establish that
+$\alpha_{\mathrm{eff}}^{(\mathfrak s)}$ changed. The corresponding assembly,
+field, propagation, and sea-response changes must first be accounted for.
+
+Plainly: each scenario asks two questions. What observable does this geometry
+produce, and does reproducing it require a different dimensionless coupling?
+
+For conventional scale running inside one fixed situation, the subordinate
+factorization is
+
+$$
+\alpha(\mu\mid\mathfrak s)
+=
+\alpha_{\mathrm{ref}}^{(\mathfrak s)}\,
 \mathcal K_{\mathrm{EM}}
-\left(\mu;\theta_{\mathrm{sea}},I_\mu\right)
+\left(
+\mu;
+\Theta_\alpha^{(\mathfrak s)},
+I_\mu
+\right)
 $$
 
 Its entries mean:
 
 - $\mu$ is the declared observer-level probe energy or resolution scale;
-- $\theta_{\mathrm{sea}}$ is the fixed Noether sea state for the comparison
-  window;
-- $\alpha_{\mathrm{ref}}$ is the coupling readout at a declared reference scale
-  $\mu_0$;
+- $\mathfrak s$ fixes the matter geometry, Noether sea state, boundary history,
+  electromagnetic environment, and parent readouts for the comparison window;
+- $\alpha_{\mathrm{ref}}^{(\mathfrak s)}$ is the coupling readout at a declared
+  reference scale $\mu_0$ in that situation;
 - $\mathcal K_{\mathrm{EM}}$ is the scale-dependent effective electromagnetic
-  response derived from the same exposure and Noether sea record; and
+  response derived from the same fixed situation record; and
 - $I_\mu$ is the scheme-labelled inventory of charged effective channels
   resolved at scale $\mu$.
 
-The semicolon separates the varied probe scale from the fixed environmental
-record. The normalization condition is
+The vertical bar separates conventional scale variation from a change of
+physical situation. The normalization condition is
 
 $$
 \mathcal K_{\mathrm{EM}}
-\left(\mu_0;\theta_{\mathrm{sea}},I_{\mu_0}\right)
+\left(
+\mu_0;
+\Theta_\alpha^{(\mathfrak s)},
+I_{\mu_0}
+\right)
 =1,
 \qquad
-\alpha_{\mathrm{ref}}
+\alpha_{\mathrm{ref}}^{(\mathfrak s)}
 =
-\alpha(\mu_0;\theta_{\mathrm{sea}})
+\alpha(\mu_0\mid\mathfrak s)
 $$
 
 Plainly: the reference value fixes the anchor, and the response factor carries
-all allowed scale dependence. A changed action period, charge convention,
-photon-speed row, gauge domain, or Noether sea state is a different record, not
-running of the same coupling.
+all allowed scale dependence within one situation. A changed matter geometry,
+action period, charge convention, photon-speed row, gauge domain, applied-field
+configuration, or Noether sea state defines a different $\mathfrak s$. It may
+be a legitimate scenario comparison, but it is not running of the same fixed
+record.
+
+The current `EQ-26A` checker contract covers the fixed-background running
+route, especially `G12-A`. It does not yet represent `G12-B`, `G12-C`, or the
+full cross-situation inventory `G0` through `G11`. Adding that inventory here
+changes the research question and the required evidence map, but it does not
+populate an accepted row or change the present equation-mapping score.
+
+Plainly: the existing checker remains useful for running. A later artifact must
+add the declared-situation dimension without weakening its hidden-retune
+control.
 
 ## Observer-Level Benchmark Anchors
 
@@ -621,7 +853,7 @@ unification as model-dependent comparison material.
 
 ## Fixed-Record Conditions
 
-For one comparison carrier and fixed $\theta_{\mathrm{sea}}$, the no-retune
+For scale running inside one declared situation $\mathfrak s$, the no-retune
 conditions are
 
 $$
@@ -642,15 +874,17 @@ id, source provenance, exposure domain, action-period parent, and photon-speed
 parent.
 
 Plainly: only the effective response and its declared threshold content may
-run. Everything that defines which physical record is being measured stays
-fixed.
+run inside one $\mathfrak s$. Everything that defines that physical situation
+stays fixed. A comparison between two different situations may intentionally
+change the sea or field geometry, but it must use two explicitly related
+carriers rather than disguising the change as scale running.
 
 ## Shared Carrier And Required Rows
 
-The smallest useful mathematical object is
+The smallest useful fixed-situation mathematical object is
 
 $$
-\Theta_\alpha^{(\mu,W)}
+\Theta_\alpha^{(\mathfrak s,\mu,W)}
 =
 \left(
 q_{\mathrm{obs}},
@@ -681,7 +915,9 @@ $$
 $$
 
 Plainly: one object must carry the low-energy value, atomic consequences,
-running behavior, and proof that none of the parents were secretly changed.
+running behavior, and proof that none of the parents were secretly changed
+inside the declared situation. Cross-situation comparisons require a family
+of such objects with their intended geometry changes made explicit.
 
 | Required row | Mathematical job | Owning prerequisite |
 | --- | --- | --- |
@@ -710,7 +946,7 @@ fixture for the accepted source row that `EQ-26A` requires.
 | $\alpha_{\mathrm{ref}}$ | Weak-chart projection $\mathcal P_\alpha$ from charge, action, photon speed, and sea response. | The coupling row consumes the accepted parent ids without inversion from observed alpha. | `eq26a.alpha_fitted_action_period`. | Accepted `alpha_coupling_row` bound to accepted charge/action/photon/constitutive rows. |
 | $I_\mu$ | Charged-channel threshold readout for the declared scale interval. | Threshold ids, matching scheme, wake response, and source provenance share one carrier. | An undeclared threshold or a pointwise fitted coupling. | Accepted threshold inventory and matching rows. |
 | $\mathcal K_{\mathrm{EM}}$ | Noether sea electromagnetic wake/dressing response. | The same constitutive state serves sourced Maxwell coefficients and alpha running. | `scale_independent_alpha` or a private alpha-only constitutive coefficient. | Accepted constitutive and wake/dressing rows with two independent electromagnetic benchmark families. |
-| $\mathcal S_{\mathrm{retune}}$ | Same-record witness across low-energy, atomic, recoil, and running anchors. | Every child cites one carrier, source, scheme, exposure domain, sea state, and parent chain. | Any anchor requires a changed parent entry. | Source-backed $\Theta_\alpha^{(\mu,W)}$ consumed by the existing checker. |
+| $\mathcal S_{\mathrm{retune}}$ | Same-record witness across low-energy, atomic, recoil, and running anchors within one declared situation. | Every child cites one carrier, source, scheme, exposure domain, sea state, and parent chain. | An undeclared parent change inside one fixed-situation comparison. | Source-backed $\Theta_\alpha^{(\mathfrak s,\mu,W)}$ consumed by the existing checker. |
 
 Plainly: each effective comparison term has a named native readout, a binding
 rule, and a failure condition. The table is a proof route, not evidence that
@@ -755,19 +991,22 @@ $\mathcal C_{\mathrm{EM}}$, and then evaluate $\alpha(0)$, one atomic
 fine-structure anchor, and one running point. Extract the action period implied
 by each observer comparison without refitting the source record.
 
-The map fails if the inferred periods disagree under numerical refinement, if
-matching the running point requires
+The fixed-situation map fails if the inferred periods disagree under numerical
+refinement, if matching the running point requires
 
 $$
 \frac{\partial h_\vartheta}{\partial\ln\mu}\ne0
 $$
 
-or if any anchor requires a different charge exposure, photon speed, gauge
-domain, constitutive state, or Noether sea record.
+or if any anchor inside the same declared situation requires a different
+charge exposure, photon speed, gauge domain, constitutive state, or Noether sea
+record.
 
 Plainly: one geometry-derived action clock must work everywhere. If each alpha
 measurement demands a different clock or electromagnetic environment, the
-factorization is incoherent.
+fixed-situation factorization is incoherent. A planned comparison of different
+field, matter, sea, or gravity scenarios is not a failure; its burden is to
+show exactly what changed and whether the inferred dimensionless coupling did.
 
 ## Current Evidence Boundary
 
@@ -818,11 +1057,12 @@ Successful source-backed results may support:
 - [Solving the Crisis](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md); and
 - the electron magnetic-response and radiation chapters.
 
-Promotion requires at least one source-backed $\Theta_\alpha^{(\mu,W)}$ whose
+Promotion requires at least one source-backed
+$\Theta_\alpha^{(\mathfrak s,\mu,W)}$ whose
 reference coupling, one independent atomic or recoil consumer, and one running
 consumer share the accepted parent rows and pass the no-hidden-retune controls.
 
-Closure goal: derive $\alpha_{\mathrm{ref}}$ and
-$\mathcal K_{\mathrm{EM}}$ from one retained electromagnetic exposure and
-Noether sea response record, then falsify that map across independent
-low-energy, atomic, recoil, and running benchmarks without retuning.
+Closure goal: derive a situation-conditioned $\alpha_{\mathrm{eff}}$ from
+retained matter, field, and Noether sea geometry; then derive
+$\mathcal K_{\mathrm{EM}}$ inside one fixed situation and distinguish true
+coupling variation from changes in downstream alpha-sensitive observables.

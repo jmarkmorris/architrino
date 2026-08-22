@@ -3302,3 +3302,632 @@ Closure goal: derive or falsify one shared-state map from native antisymmetric
 circulation to symmetric trace-free Noether sea response, so that effective
 magnetic readout and strong-loading birefringence become independently checked
 co-projections rather than a fundamental field-action premise.
+
+## Session 12 — Bulk Long-Range Field Inventory (2026-08-22)
+
+### Direct Working Answer
+
+Beyond the local Noether sea response to matter volume and dynamics, the one
+clear additional long-range bulk sector already required by the corpus is the
+gravity/effective-geometry sector. It is sourced by persistent assembly energy,
+stress, exposed wake history, and the resulting Noether sea loading, rather
+than by exposed electric charge alone. Its observer projections include the
+clock-rate or lapse response, medium drift, spatial compliance, weak-field
+acceleration, lensing, and propagating tensor disturbances.
+
+This does not yet imply several independent gravitational substances. The
+scalar clock-rate, vector drift, and tensor compliance records are components
+of one effective-metric reconstruction and must be derived from one retained
+assembly-and-sea record. Gravitational waves are propagating disturbances of
+that same sector, not an additional static long-range field.
+
+Plainly: the current inventory contains electromagnetism and gravity as the
+two established long-range observer sectors. Both may be different readouts
+of assembly histories coupled through the Noether sea, but they have different
+source selection: electromagnetism is sensitive to exposed charge and current,
+while gravity must respond to the full persistent loading record.
+
+### The Field-Inventory Principle
+
+The native field inventory should not be copied from a list of observer-level
+fields. It should be extracted from the long-wavelength eigenmodes of one
+linearized Noether sea constitutive response. Let
+$\delta\mathcal N_{\mathrm{sea}}$ collect perturbations of density, flow,
+energy, cadence, orientation, strain, and delay variables, and let
+$\delta\mathcal S_{\mathrm{asm}}$ collect resolved assembly source moments.
+A candidate response equation is
+
+$$
+\mathsf L(\omega,\mathbf k)\,
+\delta\mathcal N_{\mathrm{sea}}(\omega,\mathbf k)
+=
+\mathsf C(\omega,\mathbf k)\,
+\delta\mathcal S_{\mathrm{asm}}(\omega,\mathbf k),
+$$
+
+with observer projections
+
+$$
+\delta\mathcal O_X
+=
+\Pi_X\,\delta\mathcal N_{\mathrm{sea}}
++
+\Pi_X^{\mathrm{dir}}\,\delta\mathcal S_{\mathrm{asm}}.
+$$
+
+Here $\mathsf L$ is the linearized sea-response operator, $\mathsf C$ is the
+assembly-to-sea coupling, $\mathbf k$ is spatial wave number, $\omega$ is
+frequency, $X$ labels a receiver channel, and the two $\Pi$ maps extract the
+sea-mediated and direct assembly-history readouts. A distinct bulk long-range
+field exists only if this system contains an independently observable mode
+whose static response remains unscreened as $\|\mathbf k\|\to0$, rather than a
+different coordinate or projection of an already counted mode.
+
+Plainly: write all small sea disturbances as one coupled system, then
+diagonalize it. Each genuinely independent mode is a possible field. A mode
+that dies beyond a finite correlation length is short-range; two formulas that
+read the same mode in different ways are not two fields.
+
+### Provisional Inventory
+
+1. **Electromagnetic sector — effective recovery target.** The electric and
+   magnetic records are the polar and axial parts of one charge-selective
+   observer response. Exposed charge, charge transport, internal circulation,
+   and changing source history provide the source rows. The Maxwell map remains
+   open at the constitutive carrier and independent-instrument levels.
+2. **Gravity/effective-geometry sector — required long-range recovery
+   target.** Persistent assembly loading changes Noether sea density, cadence,
+   stress, orientation, drift, and compliance. One shared effective-metric map
+   must produce clock-rate, ruler, signal, acceleration, lensing, and tensor
+   wave behavior. These projections are not separate substrate fields.
+3. **Cosmological background and slow-relaxation sector — effective or
+   speculative, not yet a new local field.** Long-lived Noether sea strain,
+   population imbalance, or relaxation can alter effective expansion and
+   large-scale gravitational response. Unless it has an independent source
+   moment and receiver signature after the gravity map is fixed, it is a
+   background state or gravity-side constitutive correction rather than a new
+   long-range force.
+4. **Orientation/chirality response — speculative candidate.** A bulk source
+   with net assembly angular-momentum, orientation, or handedness could load an
+   odd-parity Noether sea mode. It would count as a new long-range field only
+   if its far response survives neutral and nonrotating controls, cannot be
+   absorbed into electromagnetic axial response or effective-metric drift, and
+   produces an independent receiver effect within existing parity, dispersion,
+   and polarization bounds.
+5. **Weak and color sectors — effective fields, but not default bulk
+   long-range fields.** Their observer-level gauge descriptions remain recovery
+   targets, while ordinary bulk weak response is range-limited and open color
+   response must close or confine. A new unscreened weak or color mode would be
+   a deviation requiring its own null-test ledger, not a present
+   $\mathbb{A}\mathbb{A}\mathbb{A}$ prediction.
+6. **Radiation and fluxes — do not automatically add fields.** Electromagnetic
+   radiation is the propagating electromagnetic sector; gravitational waves
+   are the propagating effective-geometry sector. A neutrino-like assembly flux,
+   heat flow, or acoustic disturbance transports energy and information but is
+   not by that fact a quasi-static long-range field acting on remote matter.
+
+Plainly: after electromagnetism and gravity, the best current possibilities
+are not named extra forces. They are candidate slow, orientational, or chiral
+modes of the Noether sea. Most could turn out to be parts of gravity, screened
+medium disturbances, or background conditions rather than new fields.
+
+### Requirements On An Emitting Assembly
+
+Every proposed long-range sector must identify, from one retained source
+record:
+
+- the assembly moment that remains after the appropriate neutrality and
+  symmetry quotients;
+- the conservation or slow-relaxation law that prevents the moment from being
+  locally erased;
+- the direct-wake and sea-mediated shares of the response;
+- the far-distance falloff, screening length, dispersion, and retardation
+  structure derived from the same response operator;
+- the receiver class and the transformation parity of its readout; and
+- the reciprocal energy, momentum, angular-momentum, identity, and Noether sea
+  update ledger.
+
+The last item makes backreaction mandatory. A source cannot emit or maintain a
+long-range response while its internal branch and the surrounding Noether sea
+remain unchanged by declaration. The allowed change may be reversible
+polarization, persistent loading, recoil, internal retuning, outgoing wake
+flux, or slow relaxation, but it must be booked on the same event history.
+
+Plainly: a field claim needs a source, a carrier response, a detector, a range
+law, and balanced books. If any of those is missing, the word "field" is only
+a useful picture.
+
+### Claim Grades And Falsifiers
+
+- **Ontology:** architrinos, causal wakes, retained assemblies, and the Noether
+  sea remain the native objects; no primitive electromagnetic, gravitational,
+  scalar, vector, or tensor field is added.
+- **Effective recovery target:** electromagnetism and gravity are the two
+  established long-range observer sectors to be recovered.
+- **Inferred synthesis:** the independent field count is the count of
+  unscreened, independently observable long-wavelength response modes after
+  source and receiver quotients, not the count of scalar, vector, and tensor
+  coordinates used to describe one response.
+- **Speculation:** an independent long-range orientation/chirality mode may
+  exist, and slow Noether sea relaxation may leave a persistent nonlocal
+  response beyond the instantaneous matter-volume loading.
+
+This synthesis fails if the response operator cannot be derived from resolved
+braid histories, if gravity observables require separately fitted scalar,
+vector, and tensor sea records, if a proposed extra mode disappears after the
+electromagnetic and effective-metric projections are fixed, or if the claimed
+far response violates existing null, dispersion, polarization, equivalence,
+or inverse-square comparison rows.
+
+### Promotion Targets And Next Artifact
+
+This inventory remains priority-only. Possible later destinations are Noether
+Sea, Emergent Metric, Gauge Structure Emergence, and the electromagnetic mode
+taxonomy, but no extra long-range field is ready for corpus promotion.
+
+The smallest decisive next artifact is a report-only **long-wavelength
+response-mode matrix**. It should declare the source moments, retained sea
+variables, linear response operator $\mathsf L(\omega,\mathbf k)$, coupling
+matrix $\mathsf C$, receiver projections, neutrality controls, and small-$k$
+classification for each eigenmode: unscreened, screened, diffusive, propagating,
+or constraint-only. The first payoff is a proof-quality answer to whether the
+gravity, electromagnetic, cosmological-relaxation, and orientation candidates
+are independent modes or different projections of fewer shared modes.
+
+Closure goal: construct the report-only long-wavelength response-mode matrix
+and use its small-$k$ spectrum to count genuinely independent bulk long-range
+fields without importing observer-level field ontology.
+
+## Session 13 — Absolute-Record Fine-Structure Situation Map (2026-08-22)
+
+Operator correction: physical-probe backreaction is outside the intended
+organizing frame. The operator's Absolute Observer preference is implemented
+here as evaluation from the complete ontic state $S(T)$, restricted to a
+declared region and causal boundary record. In canonical terminology this is
+an **absolute-record** or **complete-state** view, not an embedded Physical
+Observer. The energy coordinate $\mu$ remains useful only as a later
+observer-level running benchmark; it must not organize the native derivation.
+
+Claim level: **derivation target plus an inferred organizing synthesis**. The
+fine-structure problem is to determine how an assembly situation, represented
+in one absolute record, projects to an effective electromagnetic coupling and
+to separate a change in that coupling from a change in a downstream
+fine-structure observable.
+
+The provisional absolute situation record is
+
+$$
+\Theta_{\alpha}^{\mathrm{abs}}(T;\Omega)
+=
+\left(
+\Theta_{\mathrm{matter}},
+\Theta_{\mathrm{sea}},
+\mathcal H_{\partial\Omega},
+\mathcal E_S,
+h_{\vartheta},
+c_{\gamma}
+\right)
+$$
+
+where $\Theta_{\mathrm{matter}}$ records the retained source and receiving
+assembly geometry, $\Theta_{\mathrm{sea}}$ records the local Noether sea state,
+$\mathcal H_{\partial\Omega}$ records causal boundary history,
+$\mathcal E_S$ records the exposed charged-sector share, $h_{\vartheta}$ is the
+provisional action-per-cycle quantity, and $c_{\gamma}$ is the recovered
+photon-channel speed. This tuple is schematic and does not yet establish that
+these entries are independent or sufficient.
+
+Plainly: begin with what matter and the sea are actually doing in the absolute
+record. Do not begin with how an apparatus interrogates them.
+
+The Noether sea part may include density, cadence, flow, orientation, strain,
+stress, delay response, transverse envelope scale $\lambda$, and envelope
+shape ratio $\xi=R_{\parallel}/R_{\perp}$. An individual Noether braid may have
+an oblate deformable exclusion envelope. A sea region may therefore have an
+anisotropic population geometry, but the entire sea should not be called one
+literal ellipsoid without a derived coarse-grained shape map.
+
+Effective electric and magnetic fields enter only after projection from
+assembly source histories and the sea response:
+
+$$
+\left(
+\mathbf E_{\mathrm{eff}},
+\mathbf B_{\mathrm{eff}}
+\right)
+=
+\Pi_{\mathrm{EM}}
+\left[
+\Theta_{\mathrm{src}},
+\Theta_{\mathrm{sea}},
+\mathcal H_{\partial\Omega}
+\right]
+$$
+
+They are not primitive architrino-level inputs. They are effective summaries
+of the electromagnetic environment produced by source assemblies and carried
+through the shared sea and wake record.
+
+Plainly: an electric or magnetic field may be present in the assembly-level
+description of a situation, but the native account must derive that field from
+source geometry, histories, and sea response.
+
+For a declared situation label $\mathfrak s$, the coupling question is
+schematically
+
+$$
+\alpha_{\mathrm{eff}}^{(\mathfrak s)}
+=
+\mathcal P_{\alpha}
+\left[
+\Theta_{\alpha}^{\mathrm{abs}}(T;\Omega),
+\mathbf E_{\mathrm{eff}}^{(\mathfrak s)},
+\mathbf B_{\mathrm{eff}}^{(\mathfrak s)}
+\right]
+$$
+
+This is a question map, not a derived law. In particular, it does not assert
+that an effective electric or magnetic field changes $\alpha$. The packet must
+distinguish three cases:
+
+1. matter geometry changes a spectrum, exposure, or transition while the
+   coupling remains fixed;
+2. Noether sea geometry or constitutive state changes the effective coupling;
+   and
+3. an effective electric or magnetic environment changes assembly dynamics or
+   energy-level structure while the coupling remains fixed.
+
+Only the second case is genuine environmental variation of the effective
+fine-structure coupling. A shifted fine-structure observable does not by
+itself identify that case.
+
+Assumptions and proof burden:
+
+- define a reference situation from one retained absolute record;
+- specify which matter-geometry and Noether sea variables are independent;
+- derive the effective electromagnetic projection from assembly histories and
+  sea response rather than importing primitive fields;
+- derive the exposed-charge, action-per-cycle, and photon-channel quantities
+  from the same record;
+- predict which observables change in each situation; and
+- identify a dimensionless discriminator that separates a changed coupling
+  from a fixed coupling acting through changed geometry or effective fields.
+
+The standard running relation in $\mu$ remains an observer-level comparison
+target. It belongs after the situation map, where the absolute-record model can
+be projected onto the conventional energy-scale benchmark without making
+$\mu$ a substrate cause.
+
+Promotion target: the fine-structure packet first; later the Noether Sea and
+electromagnetic constitutive map only after the corresponding native response
+is derived. The next artifact is a **fine-structure situation matrix** with
+rows for reference matter, altered assembly geometry, altered Noether sea
+state, effective electric environment, effective magnetic environment, and
+combined environments. Each row must declare the absolute geometry, sea state,
+effective field projection, coupling verdict, downstream observable, claim
+grade, and falsifier.
+
+Closure goal: derive a situation-conditioned fine-structure map from complete
+matter, sea, and boundary records, and distinguish a true change in the
+effective coupling from ordinary geometric or field-induced changes in its
+observables.
+
+## Session 14 — Fine-Structure Scenario Program (2026-08-22)
+
+Claim level: **program architecture and derivation target**. The fine-structure
+track is one branch of the larger effort to infer parsimonious matter-assembly
+and Noether sea braid geometries from observer-level equation maps. Its first
+question is not how to fit $1/137$ but what each claimed alpha determination
+actually measures and which theoretical and environmental assumptions turn
+that readout into $\alpha$.
+
+The program must separate two axes:
+
+1. **determination route:** electron anomaly, positron magnetic response,
+   atomic recoil, simple-assembly spectroscopy, leptonic bound systems,
+   quantum Hall response, scattering, high-energy running, clock comparisons,
+   and astrophysical or cosmological constraints; and
+2. **physical situation:** reference sea, isolated electron or positron,
+   electric-dominant, magnetic-dominant, combined-field, radiative, bound,
+   high-$Z$, many-body, explicitly altered sea, gravitationally altered, and
+   thermal environments.
+
+The preferred reduction order begins with one electron in a derived static
+magnetic environment, adds the positron polarity control, then separates
+electric and combined-field geometries before introducing bound atoms and bulk
+matter. This order is attractive because it approaches the operator's desired
+parsimonious basis: electron and/or positron, complete-state bookkeeping, and
+derived effective electric or magnetic fields.
+
+The fixed-record rule in the current `EQ-26A` route applies only within one
+declared situation while $\mu$ varies. It must not prohibit a controlled
+comparison between different declared sea, field, matter, or gravity
+situations. Such comparisons require related carriers with explicit state
+differences; they are neither hidden retunes nor ordinary scale running.
+
+Assumptions and proof burden:
+
+- reconstruct each determination from its raw observable and observational
+  equation rather than treating a published alpha value as direct data;
+- derive effective electric and magnetic fields from source assemblies, sea
+  response, and boundary history;
+- identify which sea variables are required in each situation;
+- hold the geometry-derived action, exposed-charge convention, and photon
+  parent fixed wherever the physical comparison permits; and
+- distinguish a changed coupling from a changed alpha-sensitive observable.
+
+Promotion target: the early program-role, measurement-meaning, and scenario
+inventory sections of the fine-structure packet. The next artifact is a
+**fine-structure scenario ledger** whose rows bind determination route to
+physical situation, raw observable, inference equation, matter geometry, sea
+state, derived fields, coupling verdict, claim grade, and falsifier.
+
+Closure goal: build the scenario ledger beginning with trapped electron and
+positron magnetic-response rows, then use it to identify the smallest shared
+matter-and-sea geometry capable of supporting multiple independent alpha
+determinations.
+
+## Session 15 — Running As Coupled Matter-Sea Retuning (2026-08-22)
+
+Trigger: the operator's physical picture of energy running is not merely a
+fixed object viewed at a different resolution. An electron in energy state
+$A$ may differ from one in energy state $B$ through internal cadence, binary
+radii, envelope scale, envelope shape, exposure, and wake organization. The
+local Noether sea may retune with it, and an extended sea difference may also
+be present.
+
+Claim level: **corpus-supported hypothesis split, not a derived explanation of
+alpha running**. The Cadence-Scale Retuning Hypothesis already permits an
+accepted action transaction to change braid cadence, indexed-binary radii,
+envelope scale, envelope ratio, orientation, strain, and inter-binary exchange.
+The Noether sea equilibrium-transport hypothesis applies the same kind of
+retuning to neighboring sea braids and to the local cadence distribution. This
+supports retaining real matter and sea state changes as candidate native
+carriers of running; it does not establish that observed QED running is caused
+by either one.
+
+Four hypotheses must remain distinct:
+
+1. **Fixed-background projection:** the same matter and sea record produces a
+   scale-dependent effective readout through wake/dressing resolution and
+   threshold inventory.
+2. **Matter-state retuning:** the charged assembly changes cadence, scale,
+   shape, exposure, or internal wake geometry between energy states while the
+   ambient sea is held fixed as closely as possible.
+3. **Local coupled retuning:** the matter transition necessarily reorganizes
+   neighboring Noether braids, so the smallest complete carrier is the charged
+   assembly plus its local sea response.
+4. **Extended sea-state difference:** the energy-state comparison also differs
+   in a wider density, cadence, orientation, strain, flow, or boundary-history
+   record.
+
+Existing running measurements do not obviate hypotheses 2 through 4. They
+measure scale-dependent scattering, annihilation, or precision observables and
+infer an effective coupling through a declared observer theory. Cross-process
+agreement constrains the combined native projection to be highly reproducible
+and approximately universal in the tested regime, but it does not directly
+measure electron braid radii, internal cadence, or Noether sea state.
+
+A further distinction is mandatory: $\mu$ commonly labels momentum transfer
+or renormalization scale, not energy stored in a persistent electron assembly.
+One prepared beam state can populate different event-transfer scales, and
+different processes can be compared at matched $\mu$. The native candidate is
+therefore not necessarily a smaller stable electron at larger $\mu$; it may be
+a transient event-level retuning of the charged assembly, exchanged corridor,
+wake geometry, and local sea. Persistent particle state, event geometry, and
+ambient sea state must remain separate coordinates.
+
+The discriminating comparisons are therefore two-dimensional:
+
+- vary the conventional scale while holding initial matter state and ambient
+  sea as fixed as the record permits;
+- vary matter excitation at matched conventional scale;
+- vary local field or sea state at matched matter excitation and scale; and
+- compare local versus distant sea diagnostics before, during, and after the
+  energy-state transition.
+
+Assumptions and proof burden:
+
+- define energy state $A$ and energy state $B$ as retained geometry records,
+  not labels imported from observer energy alone;
+- close the action, identity, energy, momentum, angular-momentum, wake, and sea
+  ledgers across $A\rightarrow B$;
+- determine the spatial and temporal support of the sea response;
+- identify a matched-scale observable that is sensitive to matter or sea state
+  independently of ordinary running; and
+- recover the observed process-universal alpha curve after all declared state
+  dependence is projected to the observer level.
+
+Promotion target: split `G12` in the fine-structure packet into fixed-background,
+matter-retuning, and sea-retuning rows. The next artifact is an **energy-state
+$A/B$ decomposition matrix** with columns for matter cadence and scale, local
+sea state, extended sea state, conventional scale, inferred alpha, and the
+same-scale control that distinguishes the four hypotheses.
+
+Closure goal: construct the energy-state $A/B$ decomposition matrix and use
+matched-scale, matched-matter, and matched-sea controls to determine whether
+effective alpha running is a projection effect, a matter retuning, a coupled
+local sea retuning, or an extended sea-state change.
+
+## Session 16 — From Observed Behavior To Braid Requirements (2026-08-22)
+
+Claim level: **methodological derivation target plus an ontology restatement**.
+An observed electromagnetic behavior constrains a candidate matter-and-sea
+geometry but does not uniquely identify it. Orientation, cadence, binary radii,
+phase, envelope geometry, polarity inventory, and collective ordering are
+candidate realization variables only after the behavior's transformation,
+scaling, conservation, range, and receiver signatures have been stated.
+
+### Three Claim Levels That Must Not Be Collapsed
+
+1. **Behavior requirement:** every admissible geometry must reproduce the
+   measured observable, its control dependence, symmetries, reversals,
+   conservation ledger, and uncertainty.
+2. **Candidate realization:** an Electrino-/Positrino-containing matter braid,
+   a local cluster, or a sea-braid population with specified orientation,
+   cadence, radii, phase, and envelope variables could supply those
+   requirements.
+3. **Selected realization:** one geometry actually derives the observable
+   bundle, survives negative controls, and is more parsimonious than the
+   competing geometries without per-scenario retuning.
+
+The phrase “could be caused by” belongs only to the second level. A requirement
+should say **what must be produced**, not prematurely say **which braid does
+it**.
+
+### Requirement-To-Geometry Map
+
+For behavior family $k$, define the observer requirement bundle
+
+$$
+\mathcal Q_k
+=
+\left(
+\mathcal O_k,
+\mathcal T_k,
+\mathcal D_k,
+\mathcal L_k
+\right)
+$$
+
+where $\mathcal O_k$ is the measured observable with covariance,
+$\mathcal T_k$ is its transformation signature under rotation, reflection,
+polarity reversal, source reversal, receiver reversal, and time-history
+reversal where meaningful, $\mathcal D_k$ is its dependence on controlled
+geometry and operating conditions, and $\mathcal L_k$ is the identity, action,
+energy, momentum, angular-momentum, wake, and Noether sea ledger.
+
+A candidate native realization is
+
+$$
+\mathcal G_k
+=
+\left(
+\mathcal G_{\mathrm{matter},k},
+\mathcal G_{\mathrm{sea},k}^{\mathrm{near}},
+\mathcal G_{\mathrm{sea},k}^{\mathrm{env}},
+\mathcal G_{\mathrm{sea},k}^{\mathrm{far}},
+\mathcal H_{\partial\Omega,k}
+\right)
+$$
+
+The forward obligation is
+
+$$
+\widehat{\mathcal Q}_k
+=
+\Pi_k[\mathcal G_k],
+\qquad
+\mathcal R_k
+=
+\mathcal R_{\mathrm{obs},k}
++
+\mathcal R_{\mathrm{transform},k}
++
+\mathcal R_{\mathrm{ledger},k}
++
+\mathcal R_{\mathrm{retune},k}
+$$
+
+with each residual defined against an independent observational or analytical
+requirement. A small observable residual is insufficient if the candidate has
+the wrong parity, reversal law, energy ledger, or requires private geometry for
+each measurement.
+
+Plainly: write down everything the behavior does before proposing the braid.
+Then make the braid generate that whole bundle, including what flips, what
+stays fixed, and where the energy and action go.
+
+### Minimal Realization Hierarchy
+
+Every behavior should be tested at the lowest level that can carry its full
+directional and historical structure:
+
+1. **Single causal-root contribution:** one receiving architrino responds to a
+   potential-bearing causal wake intersection through the Master Equation.
+   This level supplies radial acceleration contributions but no primitive
+   electric or magnetic field.
+2. **One retained matter braid:** internal orientation, circulation, cadence,
+   radii, phase, exposure, and wake aggregation may supply an assembly
+   response.
+3. **Local few-braid or near-sea complex:** neighboring matter or Noether
+   braids may be required for closure, screening, axial order, or receiver
+   coupling.
+4. **Collective sea or material response:** a distribution of many oriented,
+   strained, flowing, or cadence-retuned braids may be required for a smooth,
+   approximately homogeneous bulk behavior.
+5. **Effective observer projection:** the complete source, sea, wake, and
+   receiver record is compressed into $\mathbf E_{\mathrm{eff}}$,
+   $\mathbf B_{\mathrm{eff}}$, constitutive coefficients, or an effective
+   coupling.
+
+Parsimony means choosing the lowest level that passes the entire requirement
+bundle and reusing the same retained geometry across multiple behavior
+families. It does not mean forcing a single braid to explain a response whose
+symmetry or smoothness requires a population.
+
+### Magnetic-Field Ontology Boundary
+
+There is no primitive magnetic field assigned to an architrino, a braid, or the
+Euclidean void. A bare architrino receives causal-root acceleration
+contributions; it does not evaluate $\mathbf v\times\mathbf B$ or carry an
+intrinsic magnetic-state variable. A source-history-dependent transverse or
+axial pattern may contribute to a later magnetic projection, but it should be
+called a causal-wake or assembly response until that projection is derived.
+
+A static effective magnetic field is therefore not a substance flowing through
+space and time. It is a persistent observer compression of an organized source
+assembly, its continuously emitted causal wake history, the responding Noether
+sea, and the receiver class. Architrinos themselves move through the Euclidean
+void; the primitive interaction support that propagates from their histories is
+the potential-bearing causal wake. The wake is dynamical geometry rather than
+material cargo or an autonomous field state.
+
+Changing the source organization changes the emitted wake history and may
+launch a propagating electromagnetic assembly/wake disturbance. That radiative
+case must be distinguished from the static effective field chart. Neither case
+licenses a magnetic substance moving independently through the void.
+
+Plainly: a magnet does not fill the void with magnetic material. Its ordered
+architrinos and sea environment continuously generate a wake pattern. Matter
+assemblies placed in that pattern respond collectively, and Physical Observers
+summarize the repeatable response as a magnetic field.
+
+### First Application To `D1`
+
+The trapped-electron anomaly route should begin with the observed requirement
+bundle: a stable axial orbit response, spin-sensitive precession, the anomaly
+frequency ratio, the correct behavior under electron/positron and source-axis
+reversals, the effective no-work property of the magnetic part in the declared
+regime, and closed trap-source, radiation, recoil, and sea ledgers.
+
+Candidate geometric requirements include an axial order parameter supplied by
+the trap-source and sea record; an ordered receiver frame carried by the
+electron braid; cadence and phase variables capable of producing the two
+frequency readouts; and a near-to-far sea response whose reversal and
+relaxation properties preserve the observed symmetry. Whether one matter braid
+plus direct wakes suffices, or a collective sea response is necessary, remains
+the first selection question rather than an assumed answer.
+
+Assumptions and proof burden:
+
+- reconstruct each behavior from raw measured readouts rather than effective
+  field labels alone;
+- derive candidate geometry variables from retained matter and sea records;
+- evaluate single-braid and collective candidates under the same controls;
+- require source and receiver reversals, parity, scaling, range, and
+  conservation to close on one carrier; and
+- penalize only actual hidden retuning or added independent geometry, not the
+  collective degrees of freedom required by a derived population response.
+
+Promotion target: the fine-structure scenario method and, after derivation,
+the electromagnetic and gauge-structure chapters. The next artifact is a
+**behavior-to-braid requirement matrix** for `D1` with one row per measured
+signature and columns for required transformation, candidate realization
+level, matter variables, near/environment/far sea variables, forward
+projection, knockout control, claim grade, and falsifier.
+
+Closure goal: build the `D1` behavior-to-braid requirement matrix and use its
+reversal, symmetry, scaling, and ledger controls to select the smallest shared
+matter-and-sea geometry that reproduces the trapped-electron alpha
+determination without importing a primitive magnetic field.
