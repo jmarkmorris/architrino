@@ -30,9 +30,9 @@ corrections, and running are observer-level recovery targets. Standard
 electromagnetic and QED equations specify the comparison surface; they are not
 premises for an individual architrino's acceleration.
 
-Plainly: this file asks how one native charge/action/photon/sea record produces
-the observed electromagnetic coupling. It does not insert the observed value
-or QED running law into the Master Equation.
+Plainly: this file asks how one retained exposure/action-period/photon-channel/
+Noether sea record produces the observed electromagnetic coupling. It does not
+insert the observed value or QED running law into the Master Equation.
 
 ## Target Factorization
 
@@ -43,7 +43,7 @@ $$
 =
 \alpha_{\mathrm{ref}}\,
 \mathcal K_{\mathrm{EM}}
-\left(\mu;\theta_{\mathrm{sea}},I_\mu\right).
+\left(\mu;\theta_{\mathrm{sea}},I_\mu\right)
 $$
 
 Its entries mean:
@@ -68,7 +68,7 @@ $$
 \qquad
 \alpha_{\mathrm{ref}}
 =
-\alpha(\mu_0;\theta_{\mathrm{sea}}).
+\alpha(\mu_0;\theta_{\mathrm{sea}})
 $$
 
 Plainly: the reference value fixes the anchor, and the response factor carries
@@ -76,19 +76,59 @@ all allowed scale dependence. A changed action period, charge convention,
 photon-speed row, gauge domain, or Noether sea state is a different record, not
 running of the same coupling.
 
+## Observer-Level Benchmark Anchors
+
+The 2022 CODATA recommended low-energy value is
+
+$$
+\alpha(0)
+=
+7.297\,352\,5643(11)\times10^{-3},
+\qquad
+\alpha(0)^{-1}
+=
+137.035\,999\,177(21)
+$$
+
+This is the reference-scale benchmark for the packet, not a dimensionless
+substrate input. The [2022 CODATA value
+table](https://physics.nist.gov/cuu/pdf/wallet_2022.pdf) supplies the value and
+uncertainty.
+
+At the electroweak scale, the shorthand $\alpha(M_Z)\approx1/128$ is useful only
+after its scheme and resolved channel content are declared. The 2024 PDG
+electroweak review gives, in its five-flavor $\overline{\mathrm{MS}}$
+comparison,
+
+$$
+\widehat{\alpha}^{(5)}(M_Z)^{-1}
+=
+127.930\pm0.008
+$$
+
+The [PDG electroweak
+review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf),
+Section 10.2.2, also identifies low-energy hadronic vacuum polarization as part
+of the uncertainty in transporting the electromagnetic coupling to this scale.
+The low-energy and $M_Z$ rows therefore cannot be compared as two unlabeled
+measurements of one scheme-free scalar.
+
+Plainly: electromagnetic coupling is stronger at the higher comparison scale,
+but the precise number near $1/128$ belongs to a declared calculation and
+threshold convention. The map must reproduce both the change and the labels
+that make the comparison meaningful.
+
 ## Reference-Coupling Derivation
 
-The observer comparison is conventionally written
+Standard comparison form:
 
 $$
 \alpha
 =
-\frac{e^2}{4\pi\epsilon_0\hbar c_\gamma}.
+\frac{e^2}{4\pi\epsilon_0\hbar c_\gamma}
 $$
 
-For this map, $e$, $\epsilon_0$, $\hbar$, and $c_\gamma$ are effective
-comparison entries. They must not be imported as substrate constants. The
-native derivation target is a projection
+Packet translation:
 
 $$
 \alpha_{\mathrm{ref}}
@@ -100,14 +140,39 @@ h_\vartheta,
 c_\gamma,
 \mathcal E_S,
 \mathcal C_{\mathrm{EM}}(\theta_{\mathrm{sea}})
-\right],
+\right]
 $$
 
-where $q_{\mathrm{obs}}$ is a scheme-pinned charge/exposure readout,
-$h_\vartheta$ is the geometry-derived action period,
-$\hbar_\vartheta=h_\vartheta/(2\pi)$, $\mathcal E_S$ is the exposed-sector
-record, and $\mathcal C_{\mathrm{EM}}$ is the electromagnetic part of the
-resolved Noether sea constitutive response.
+Here $e$, $\epsilon_0$, $\hbar$, and $c_\gamma$ in the standard form are
+effective comparison entries, not substrate constants. In the packet
+translation, $q_{\mathrm{obs}}$ is a scheme-pinned charge/exposure readout,
+$\mathcal E_S$ is the exposed-sector record, and
+$\mathcal C_{\mathrm{EM}}$ is the electromagnetic part of the resolved Noether
+sea constitutive response.
+
+The native reduced-carrier action-period target inherited from `EQ-12A` is
+
+$$
+h_\vartheta
+\equiv
+\oint_{\gamma_0}\vartheta_{\mathrm{PC}}
+$$
+
+where $\gamma_0$ is the certified retained periodic orbit and
+$\vartheta_{\mathrm{PC}}$ is the local Poincare-Cartan one-form on the reduced
+carrier. Its reduced action quantum is
+
+$$
+\hbar_\vartheta
+\equiv
+\frac{h_\vartheta}{2\pi}
+$$
+
+In standard observer notation, Planck's constant $h$ has units of action and
+$\hbar=h/(2\pi)$. This packet does not use bare $h$ as a generic action
+variable: $h_\vartheta$ names the particular retained-orbit action period, and
+$\hbar_\vartheta$ names its reduced form. Both must be derived before any alpha
+datum is consumed.
 
 In a weak isotropic observer chart, the projection must reduce to
 
@@ -116,7 +181,7 @@ $$
 \longrightarrow
 \frac{q_{\mathrm{obs}}^2}
 {4\pi\epsilon_{\mathrm{eff}}
-\hbar_\vartheta c_\gamma},
+\hbar_\vartheta c_\gamma}
 $$
 
 with $\epsilon_{\mathrm{eff}}$ extracted from
@@ -132,16 +197,17 @@ private permittivity or action unit would not explain it.
 
 ## Scale-Response Derivation
 
-The standard running comparison is
+Standard comparison form:
 
 $$
 \frac{d\alpha^{-1}}{d\ln\mu}
-=-b(\mu).
+=-b(\mu)
 $$
 
-Inside the factorization, $\alpha^{-1}=\alpha_{\mathrm{ref}}^{-1}
+Packet translation: inside the factorization,
+$\alpha^{-1}=\alpha_{\mathrm{ref}}^{-1}
 \mathcal K_{\mathrm{EM}}^{-1}$. Between declared threshold crossings, the
-corresponding native closure equation is therefore
+corresponding closure equation is
 
 $$
 \frac{d\alpha^{-1}}{d\ln\mu}
@@ -150,7 +216,7 @@ $$
 \mathcal K_{\mathrm{EM}}^{-2}
 \frac{d\mathcal K_{\mathrm{EM}}}{d\ln\mu}
 =
--b_\theta(\mu),
+-b_\theta(\mu)
 $$
 
 or equivalently
@@ -160,12 +226,54 @@ $$
 =
 \alpha_{\mathrm{ref}}\,
 b_\theta(\mu)\,
-\mathcal K_{\mathrm{EM}}^2.
+\mathcal K_{\mathrm{EM}}^2
 $$
 
 Here $b_\theta(\mu)$ is the recovered observer-level running coefficient from
 the same wake/dressing response and threshold inventory. The QED-like
 coefficient is a comparison target in its valid regime, not a substrate input.
+
+For a fixed charged-channel inventory in the standard QED-like one-loop
+comparison regime,
+
+$$
+b(\mu)
+=
+\frac{2}{3\pi}
+\sum_{f\in I_\mu}N_cQ_f^2,
+\qquad
+\beta_\alpha(\alpha,\mu)
+\equiv
+\frac{d\alpha}{d\ln\mu}
+=
+b(\mu)\alpha^2
++O(\alpha^3)
+$$
+
+Here $f$ indexes the resolved effective channels in $I_\mu$, $N_c$ is the
+declared channel multiplicity, and $Q_f$ is the channel charge in units of the
+declared reference charge.
+
+For one unit-charge Dirac channel, this reduces to the often-quoted special
+case $\beta_\alpha=2\alpha^2/(3\pi)+O(\alpha^3)$. Holding $b$ fixed between two
+thresholds gives
+
+$$
+\alpha(\mu_1)
+=
+\frac{\alpha(\mu_0)}
+{1-\alpha(\mu_0)b\ln(\mu_1/\mu_0)}
+$$
+
+The equivalent form with $\ln(\mu_1^2/\mu_0^2)/(3\pi)$ applies only to that
+single-unit-charge case. Higher-loop terms and threshold matching must be
+carried when the benchmark precision or scale interval requires them.
+
+Plainly: a positive QED comparison coefficient makes $\alpha$ increase with
+probe scale. The packet translates that behavior into a required change of the
+electromagnetic response while keeping the parent record fixed. The familiar
+one-line formula is a controlled special case, not a universal running law for
+every charged inventory or across every threshold.
 
 At a charged-channel threshold $\mu_k$, the packet must declare the matching
 row
@@ -175,7 +283,7 @@ $$
 -
 \mathcal K_{\mathrm{EM}}(\mu_k^-)
 =
-\Delta\mathcal K_k,
+\Delta\mathcal K_k
 $$
 
 where $\Delta\mathcal K_k$ is derived under the same scheme, exposure domain,
@@ -185,6 +293,324 @@ $\alpha_{\mathrm{ref}}$.
 Plainly: between thresholds, the response kernel must reproduce the observed
 slope. At thresholds, the same record must explain the matching change. Neither
 case permits the underlying action unit or charge convention to move.
+
+## Vacuum-Polarization Comparison And Native Translation
+
+In QED, vacuum-polarization loops provide the effective screening account of
+electromagnetic running. Charged-pair contributions modify the photon
+propagator, so a low-momentum-transfer probe measures a more screened coupling
+than a high-momentum-transfer probe. The familiar polarized-cloud picture is a
+useful visualization of this effective result, but virtual particles in that
+picture are not literal constituents imported into the substrate. Likewise,
+shorter-distance language refers to the resolution associated with larger
+momentum transfer in the declared observer experiment; it is not a new
+fundamental distance law.
+
+The corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is not to
+reproduce the cartoon. It is to derive the same scale-dependent observer
+response from the `vacuum_polarization_wake_dressing_row` and the shared
+constitutive record:
+
+$$
+\mathcal K_{\mathrm{EM}}
+=
+\mathcal P_{\mathrm{dress}}
+\left[
+\mathcal E_S,
+\mathcal C_{\mathrm{EM}}(\theta_{\mathrm{sea}}),
+I_\mu,
+\mu
+\right]
+$$
+
+$\mathcal P_{\mathrm{dress}}$ is the packet's dressing projection. Its
+low-energy screening, positive QED-like slope, and threshold changes must
+appear as outputs of one retained carrier. The projection must also connect
+to the same electromagnetic constitutive response used by sourced Maxwell
+recovery; an alpha-only dressing coefficient would be a hidden fit.
+
+Plainly: QED tells this packet what observed scale response must be recovered.
+The native explanation must come from delayed geometry, exposure, and Noether
+sea response, not from assuming a pre-existing quantum vacuum filled with
+Standard Model particles.
+
+## Graph Geometry And Coupling Basis
+
+The apparent shape of running depends on the plotted variables. For the
+electromagnetic convention used above, fixed $b$ gives
+
+$$
+\alpha^{-1}(\mu)
+=
+\alpha^{-1}(\mu_0)
+-b\ln\left(\frac{\mu}{\mu_0}\right)
+$$
+
+Thus $\alpha^{-1}$ plotted against $\ln\mu$ is a straight line within a
+one-loop interval of fixed channel content. If the horizontal coordinate is
+$x=\log_{10}\mu$, its slope is $-b\ln 10$. By contrast,
+
+$$
+\alpha(\mu)
+=
+\frac{1}
+{\alpha^{-1}(\mu_0)-b\ln(\mu/\mu_0)}
+$$
+
+is the reciprocal of an affine function of logarithmic scale. It is not
+literally a logarithm. Against $\ln\mu$ it rises gently and curves upward;
+against a linear $\mu$ axis its change is spread over many orders of magnitude
+and ordinarily appears increasingly flat throughout the perturbative range.
+
+| Vertical coordinate | Horizontal coordinate | One-loop fixed-inventory shape |
+| --- | --- | --- |
+| $\alpha^{-1}$ | $\ln\mu$ or $\log_{10}\mu$ | Straight line, with slope changed only by the logarithm base. |
+| $\alpha$ | $\ln\mu$ or $\log_{10}\mu$ | Slowly rising reciprocal-linear curve. |
+| $\alpha^{-1}$ | Linear $\mu$ | Slowly falling logarithmic curve. |
+| $\alpha$ | Linear $\mu$ | Slowly rising curve that is generally visually flattened over the ordinary perturbative range. |
+
+Plainly: the coupling does not acquire a different physical law when the graph
+looks curved. A straight or curved trace can represent the same running after
+the axes and reciprocal convention are changed.
+
+Standard comparison form for the conventional three-coupling unification
+plot:
+
+$$
+\alpha_i
+=
+\frac{g_i^2}{4\pi},
+\qquad
+\frac{d\alpha_i^{-1}}{d\ln\mu}
+=
+-\frac{B_i}{2\pi},
+\qquad
+i\in\{1,2,3\}
+$$
+
+so that
+
+$$
+\alpha_i^{-1}(\mu)
+=
+\alpha_i^{-1}(\mu_0)
+-\frac{B_i}{2\pi}
+\ln\left(\frac{\mu}{\mu_0}\right)
+$$
+
+Packet translation into collision-free semantic labels:
+
+$$
+\alpha_{Y,\mathrm{GUT}}
+\equiv
+\alpha_1
+=
+\frac{5}{3}\alpha_Y,
+\qquad
+\alpha_W
+\equiv
+\alpha_2,
+\qquad
+\alpha_s
+\equiv
+\alpha_3
+$$
+
+The numbered gauge symbols appear only in the displayed recognition and
+translation forms. They are not packet working symbols because the canonical
+terminology reserves that numbered alpha family for PPN preferred-frame
+parameters. In this section, $\alpha_{Y,\mathrm{GUT}}$ is the GUT-normalized
+hypercharge coupling, $\alpha_W$ is the weak-isospin coupling, and $\alpha_s$
+is the strong coupling.
+
+Here $B_i$ in the standard form is the conventional one-loop gauge beta
+coefficient. It is kept distinct from this packet's $b$, which already
+includes the factor $1/(2\pi)$; within the corresponding electromagnetic
+interval,
+
+$$
+b
+=
+\frac{B_{\mathrm{EM}}}{2\pi}
+$$
+
+The labels are also important. The GUT-normalized hypercharge line is not
+ordinary electromagnetic $\alpha$. At the electroweak matching scale,
+
+$$
+\alpha_{\mathrm{EM}}^{-1}
+=
+\alpha_Y^{-1}+\alpha_W^{-1}
+=
+\frac{5}{3}\alpha_{Y,\mathrm{GUT}}^{-1}+\alpha_W^{-1}
+$$
+
+The [PDG grand-unification
+review](https://pdg.lbl.gov/2023/reviews/rpp2023-rev-guts.pdf), Section 93.5 and
+Figure 93.1, gives the one-loop affine form and shows the two-loop and threshold
+qualification.
+
+Plainly: the classic three-line diagram compares normalized gauge-basis
+couplings. Calling its hypercharge line “electromagnetism” hides the
+electroweak mixing and normalization that must accompany any quantitative
+comparison.
+
+Massive-channel transitions add a second qualification. In a sharp
+effective-theory presentation, a massive channel is integrated out below its
+matching scale and included above it, giving piecewise-linear inverse-coupling
+segments with changed slopes and matching offsets. Higher-loop evolution adds
+gentle curvature. Physical observables generally cross a massive threshold
+smoothly rather than developing an exact geometric corner.
+
+The condition $E\geq2mc^2$ is the on-shell pair-production threshold for an
+appropriate time-like process; it is not the condition under which a virtual
+loop first exists. For running-coupling bookkeeping, a massive contribution
+decouples for $\mu\ll m$, becomes active for $\mu\gg m$, and is matched through
+a scheme- and observable-dependent region of order $m$. Charm, bottom, and top
+therefore change the effective inventory, but not as universal exact kinks at
+$2mc^2$.
+
+Plainly: threshold bends mean that the effective channel inventory and matching
+description have changed. They do not mean a virtual particle suddenly begins
+to exist at the real-pair-production energy.
+
+## Scale Narrative: Resolving The Response
+
+The useful narrative is successive resolution of electromagnetic dressing,
+not the exposure of a measurable naked core. In renormalized QED, a bare charge
+is regulator- and scheme-dependent rather than an observable object. The
+polarized-cloud or onion picture can illustrate why a higher-momentum probe
+measures a larger effective coupling, but it must not be read as a literal map
+of particles surrounding an electron in the substrate.
+
+| Stage | Observer benchmark | Defensible physical narrative | Inference not carried forward |
+| --- | --- | --- | --- |
+| Low momentum transfer | $\alpha(0)^{-1}=137.035\,999\,177(21)$ | The long-resolution readout includes the full low-energy polarization response represented in the declared comparison scheme. | Most of a hidden true charge has literally been canceled by a material fog. |
+| Electroweak scale | $\widehat{\alpha}^{(5)}(M_Z)^{-1}=127.930\pm0.008$ in the stated $\overline{\mathrm{MS}}$ convention | Larger momentum transfer resolves shorter-scale response, and the effective electromagnetic coupling is larger. | A collider physically punches through layers of virtual particles to touch an electron core. |
+| High-scale gauge evolution | $\alpha_{Y,\mathrm{GUT}}$, $\alpha_W$, and $\alpha_s$ with declared normalization, spectrum, and thresholds | The three gauge-basis couplings evolve with different beta coefficients and may approach one another in selected extensions. | The interactions are empirically known to merge, or ordinary $\alpha_{\mathrm{EM}}$ simply reaches $1/40$. |
+| Formal QED ultraviolet extrapolation | Zero of the one-loop denominator defining the Landau-pole scale | The isolated perturbative QED formula signals that it cannot serve as an ultraviolet-complete description indefinitely. | Quantum gravity is known to prevent the pole by turning spacetime into quantum foam. |
+
+Plainly: each stage says what a declared observer calculation reports at a
+different resolution. None reveals a directly measurable bare charge or
+licenses an imported microscopic picture for the Noether sea.
+
+At the atomic comparison level, the smallness of $\alpha$ controls useful
+hydrogenic hierarchies such as
+
+$$
+\frac{v}{c_\gamma}
+\sim
+\frac{Z\alpha}{n},
+\qquad
+\frac{|E_{\mathrm{bind}}|}{m_ec_\gamma^2}
+\sim
+\frac{(Z\alpha)^2}{2n^2}
+$$
+
+Here $Z$ is the nuclear charge number, $n$ is the principal quantum number,
+$v$ is the bound-state speed estimate, $E_{\mathrm{bind}}$ is the binding
+energy, and $m_e$ is the observer-level electron mass. These are observer-level
+Coulombic scaling targets. For the hydrogen ground state, $Z=n=1$ makes
+$v/c_\gamma$ of order $\alpha$ and the binding fraction of order $\alpha^2$.
+They help explain the perturbative hierarchy of ordinary atomic structure, but
+they do not establish by themselves that chemistry, DNA, or solid matter would
+be stable under an arbitrary change of $\alpha$; those are many-parameter,
+many-body questions.
+
+Plainly: $1/137$ organizes the size of familiar atomic corrections. It is an
+important ingredient in ordinary matter, not a one-number proof of every form
+of material or biological stability.
+
+The useful distance language is a resolution estimate. For a relativistic
+probe with characteristic momentum scale $\mu$,
+
+$$
+\ell_{\mathrm{res}}
+\sim
+\frac{\hbar c_\gamma}{\mu}
+$$
+
+$\ell_{\mathrm{res}}$ is the estimated observer-level spatial resolution. At
+$\mu=M_Z\approx91\,\mathrm{GeV}$ this gives a resolution of order
+$2\times10^{-18}\,\mathrm{m}$. The estimate connects momentum transfer to
+spatial resolution; it does not say that $\alpha$ is fundamentally a function
+of Euclidean radius or that the probe crosses literal shells.
+
+Plainly: greater collision energy can resolve shorter structures, but “zooming
+inside the cloud” remains a picture of the effective measurement, not the
+native mechanism.
+
+For the high-scale comparison, the numerical claim must be attached to a
+model. The PDG example with a minimal supersymmetric spectrum and omitted
+subleading corrections gives
+
+$$
+M_G
+\simeq
+2\times10^{16}\,\mathrm{GeV},
+\qquad
+\alpha_G^{-1}(M_G)
+\simeq
+24.3
+$$
+
+$M_G$ is the model's comparison meeting scale and $\alpha_G$ is its common
+coupling at that scale. This is not ordinary
+$\alpha_{\mathrm{EM}}\approx1/40$, and it is not a Standard Model result. The
+minimal Standard Model lines fail quantitative unification; the quoted meeting
+belongs to the specified extension and changes with its spectrum and threshold
+corrections. Above electroweak matching, the correct comparison tracks the
+gauge-basis couplings rather than continuing ordinary electromagnetic
+$\alpha_{\mathrm{EM}}$ as an isolated identity.
+
+Plainly: a near-meeting of three extrapolated couplings is a model test, not an
+observation that electromagnetism has lost its identity or that one substrate
+interaction has been derived.
+
+Finally, the fixed-$b$ one-loop electromagnetic expression has a formal pole
+where its denominator vanishes:
+
+$$
+\mu_L
+=
+\mu_0
+\exp\left[
+\frac{1}{b\alpha(\mu_0)}
+\right]
+$$
+
+This extrapolation lies far outside the regime in which isolated low-order QED
+with fixed channel content is justified. It does not place the pole at the
+Planck scale, prove that a physical divergence occurs, or identify quantum
+gravity as its resolution. The Planck scale remains a separate observer-level
+comparison regime where gravitational quantum effects are expected to matter.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate retains Euclidean void and
+absolute time; quantum foam is therefore not imported as its ultraviolet
+ontology.
+
+Plainly: the Landau pole is a warning about indefinite extrapolation of the
+comparison formula. It is not evidence for a smallest distance, spacetime foam,
+or a known cosmic mechanism that prevents an infinity.
+
+## Comparison Boundary: QED, QCD, And Unification
+
+The [PDG grand-unification
+review](https://pdg.lbl.gov/2023/reviews/rpp2023-rev-guts.pdf), Section 93.5,
+states the essential qualification: quantitative coupling unification fails in
+the minimal Standard Model extrapolation and works much more closely only for
+declared extensions and threshold assumptions.
+
+| Observer-level comparison | Running behavior | Use in this packet |
+| --- | --- | --- |
+| Electromagnetic QED regime | Charged-matter screening gives a positive one-loop electromagnetic beta coefficient, so $\alpha$ grows with scale between declared thresholds. | Required recovery target for $\mathcal K_{\mathrm{EM}}$. |
+| Asymptotically free QCD regime | Non-Abelian gauge-sector contributions dominate the usual high-energy strong-coupling beta coefficient, so $\alpha_s$ decreases with scale. | Contrast showing that one universal screening response cannot be assumed; a separate strong/gauge carrier is required. |
+| Grand-unification extrapolation | High-scale meeting depends on coupling normalization, spectrum, thresholds, perturbative order, and model. The minimal Standard Model extrapolation does not give quantitative unification; selected extensions can bring the couplings much closer near $10^{16}\,\mathrm{GeV}$. | Optional comparison only after separate electromagnetic, weak, and strong running carriers exist; not an alpha-map closure obligation. |
+
+Plainly: electromagnetic screening does not establish a universal mechanism for
+all gauge couplings, and three extrapolated lines approaching one another does
+not by itself establish a unified substrate interaction. This packet keeps the
+measured running of $\alpha$ as required benchmark pressure and leaves grand
+unification as model-dependent comparison material.
 
 ## Fixed-Record Conditions
 
@@ -200,7 +626,7 @@ $$
 \qquad
 \theta_{\mathrm{sea}}(\mu)
 =
-\theta_{\mathrm{sea}}(\mu_0).
+\theta_{\mathrm{sea}}(\mu_0)
 $$
 
 The gauge scheme is fixed across the comparison. The threshold inventory may
@@ -229,7 +655,7 @@ c_\gamma,
 I_\mu,
 \mathcal R_\alpha,
 \mathcal S_{\mathrm{retune}}
-\right),
+\right)
 $$
 
 where $W$ is the declared finite source/measurement window. The residual vector
@@ -244,7 +670,7 @@ $$
 \Delta_{\mathrm{fs}},
 \Delta_{\mathrm{run}},
 \mathcal S_{\mathrm{retune}}
-\right).
+\right)
 $$
 
 Plainly: one object must carry the low-energy value, atomic consequences,
@@ -294,18 +720,26 @@ rewritings of the same datum.
 | Rydberg/hydrogen scale | Action-charge-spectrum consistency consumer. | Consume the `EQ-26` hydrogen carrier; do not fit a private alpha or gross-spectrum coefficient. |
 | Atomic fine-structure splitting | Higher-order atomic consumer. | Keep spin-sensitive and radiation/wake corrections outside the gross spectral fit until their ledgers exist. |
 | Independent recoil family | Charge/action calibration and cross-check. | Keep rubidium and cesium determinations as distinct records rather than averaging a discrepancy away. |
-| $\hat{\alpha}(M_Z)$ or another declared running point | Scale-response anchor. | Carry scheme, scale, threshold inventory, and hadronic-polarization uncertainty. |
+| $\widehat{\alpha}^{(5)}(M_Z)$ or another declared running point | Scale-response anchor. | Carry scheme, scale, threshold inventory, and hadronic-polarization uncertainty. |
 | Electron $g-2$ | Withheld precision consumer. | Freeze the alpha/electron/electromagnetic record without fitting $a_e$, then predict the moment residual. |
 
 Plainly: the same derived coupling must survive low-energy, atomic, recoil, and
 running tests. The electron moment is strongest when withheld from calibration.
 
-The source-mined 2022 fine-structure overview is retained only as a source lead.
-It usefully groups $\alpha(0)\approx1/137.035999$, spectral splitting,
-Coulomb-to-photon energy ratios, the $v/c\sim\alpha$ atomic comparison,
-binding-to-rest-energy scaling of order $\alpha^2$, and energy-scale running.
-Its anthropic or multiverse interpretation is outside this equation map. None
-of those comparisons supplies accepted retained evidence for a native row.
+The useful content of the supplied fine-structure overview is consolidated in
+this packet as follows: the low-energy value and running are benchmark rows;
+the one-loop beta function is a regime-limited comparison equation; the
+screening cloud is explanatory imagery for the observer-level QED account; the
+inverse-coupling-versus-logarithmic-scale plot is piecewise near-linear; the
+QED/QCD contrast prevents a universal-response assumption; and high-scale grand
+unification and the Landau pole remain optional, model-dependent comparison
+material.
+Atomic spectral splitting, the $v/c\sim\alpha$ comparison, and
+binding-to-rest-energy scaling of order $\alpha^2$ remain downstream consumers,
+not independent evidence for the native coupling row.
+
+Plainly: the supplied material strengthens the benchmark and explanation map,
+but it does not fill any accepted native row or change the current score.
 
 ## Strongest Falsifier
 
@@ -318,7 +752,7 @@ The map fails if the inferred periods disagree under numerical refinement, if
 matching the running point requires
 
 $$
-\frac{\partial h_\vartheta}{\partial\ln\mu}\ne0,
+\frac{\partial h_\vartheta}{\partial\ln\mu}\ne0
 $$
 
 or if any anchor requires a different charge exposure, photon speed, gauge

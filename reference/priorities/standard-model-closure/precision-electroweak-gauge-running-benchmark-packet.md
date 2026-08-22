@@ -58,7 +58,20 @@ The benchmark pressure is useful because the same electroweak fit surface couple
 
 4. LHC weak-sector rows are detector-provenance rows before they are carrier evidence. ATLAS and CMS W-mass and Drell-Yan weak-angle measurements depend on recoil modelling, lepton calibration, parton distribution functions, angular coefficients, QCD/EW corrections, trigger/reconstruction selections, and nuisance-parameter profiling. They should attach through $\mathcal{D}_{\mathrm{LHC}}$ and the finite event ledger, not directly to primitive weak objects.
 
-5. Running couplings require a threshold and scheme inventory. $\hat{\alpha}(M_Z)$ is entangled with hadronic vacuum polarization; $\alpha_s(M_Z)$ depends on perturbative order, scale convention, threshold treatment, and world-average correlation assumptions. A scalar coupling comparison is invalid until the native row carries those labels.
+5. Running couplings require a threshold and scheme inventory. The shorthand
+   $\alpha(M_Z)\approx1/128$ is not a scheme-free scalar target; the
+   [fine-structure benchmark anchors](../mapping-electromagnetism/fine-structure.md#observer-level-benchmark-anchors)
+   retain the low-energy CODATA value and the five-flavor
+   $\overline{\mathrm{MS}}$ PDG value separately. $\hat{\alpha}(M_Z)$ is
+   entangled with hadronic vacuum polarization; $\alpha_s(M_Z)$ depends on
+   perturbative order, scale convention, threshold treatment, and
+   world-average correlation assumptions. A scalar coupling comparison is
+   invalid until the native row carries those labels.
+
+Plainly: the low-energy and $M_Z$ electromagnetic values are different kinds
+of benchmark records. Their numerical difference demonstrates running only
+when the scheme, active channels, and polarization corrections travel with the
+comparison.
 
 ## Candidate Covariance Residual
 
