@@ -22,15 +22,15 @@ and their local order.
 - Routed the public-facing primary-source refresh to
   [Source Mining](../source-mining/priorities.md).
 - Routed the micro/meso/macro bridge to
-  [Cross-Theory Mapping](../cross-theory-mapping/brainstorming.md), the
+  [Mapping Benchmarks](../mapping-benchmarks/brainstorming.md), the
   drift-relaxed moving-branch instrument to
   [EOM](../app-solver/brainstorming.md), and the three-axis/Witten-chain proof gap
   to [Standard Model Closure](../standard-model-closure/brainstorming.md).
 - Removed the former local theory brainstorming file after disposition. Its
   Lorentz-attractor obligations are already owned by
-  [Lorentz Invariance Test Suite](../cross-theory-mapping/lorentz-invariance-test-suite.md)
+  [Lorentz Invariance Test Suite](../mapping-benchmarks/lorentz-invariance-test-suite.md)
   and the current Lorentz corpus; its population-average scale identity is
-  already owned by Cosmology Closure and Cross-Theory Mapping.
+  already owned by Cosmology Closure and Mapping Benchmarks.
 - Retired three stale or duplicate notes rather than copying them: the
   receiver-normal acceleration-strength reading is superseded by the current
   transmitter-side acceleration authority; the rail-pin action claim was

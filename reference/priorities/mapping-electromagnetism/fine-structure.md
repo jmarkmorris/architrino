@@ -5,9 +5,9 @@
 - Kind: `priority` focused derivation packet
 - Owner: [Mapping Electromagnetism](priorities.md), under `EMAP-004`
 - Equation-row authority:
-  [EQ-26A Theta-Alpha Source-Field Map](../equation-mapping/eq-26a-theta-alpha-source-field-map.md)
+  [EQ-26A Theta-Alpha Source-Field Map](../mapping-equations/eq-26a-theta-alpha-source-field-map.md)
 - Score authority:
-  [Equation Mapping Detail](../equation-mapping/equation.md#eq-26a-fine-structure-constant-electromagnetic-coupling-and-energy-running)
+  [Equation Mapping Detail](../mapping-equations/equation.md#eq-26a-fine-structure-constant-electromagnetic-coupling-and-energy-running)
 - Benchmark authority:
   [Precision Electroweak Gauge-Running Benchmark Packet](../standard-model-closure/precision-electroweak-gauge-running-benchmark-packet.md)
 - Review synthesis:
@@ -1028,7 +1028,7 @@ The derivation dependency order is:
 6. accepted wake/dressing, threshold, running, provenance, and no-retune rows.
 
 The exact checker order remains owned by the
-[EQ-26A source-field map](../equation-mapping/eq-26a-theta-alpha-source-field-map.md);
+[EQ-26A source-field map](../mapping-equations/eq-26a-theta-alpha-source-field-map.md);
 the current global first blocker is `missing_accepted_theta_gamma_packet`, and
 the first local source-field object is `charge_exposure_row`.
 

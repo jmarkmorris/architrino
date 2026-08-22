@@ -95,9 +95,9 @@ This packet does not advance a retained geometry by itself. It supplies benchmar
 | Recovery target | Required retained carrier before acceptance |
 | --- | --- |
 | Charged-lepton mass map | Accepted charged-lepton branch family, shared scalar exposure quotient, shielding/exposure coefficients, reversible Noether sea response, and branch-derived mass-facing numerators. |
-| Charged-lepton Koide residual | All charged-lepton mass-map rows fixed first; observed charged-lepton masses enter only after the branch-derived residual is frozen. See Charged-Lepton Koide Residual and [EQ-04A](../equation-mapping/eq-04a-koide-charged-lepton-mass-relation.md). |
+| Charged-lepton Koide residual | All charged-lepton mass-map rows fixed first; observed charged-lepton masses enter only after the branch-derived residual is frozen. See Charged-Lepton Koide Residual and [EQ-04A](../mapping-equations/eq-04a-koide-charged-lepton-mass-relation.md). |
 | Light-hadron masses | Retained hadron carrier, admitted constituent rows, binding/shielding record, and response convention. |
-| Width and lifetime rows | Same parent carrier, decay-channel rows, daughter rows, and finite-window clock convention. The current finite-window blocker remains [EQ-31](../equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md). |
+| Width and lifetime rows | Same parent carrier, decay-channel rows, daughter rows, and finite-window clock convention. The current finite-window blocker remains [EQ-31](../mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md). |
 | Branching-ratio rows | Same parent carrier, all declared channel windows, exposure convention, and detector/reconstruction provenance for collider products. |
 | $W/Z/H$ collider rows | Production mode, line shape, calibration, recoil/object reconstruction, uncertainty/correlation, and detector-provenance rows. Use [Collider Detector Provenance And Event Reconstruction](collider-detector-provenance-event-reconstruction.md) as the companion boundary. |
 | Top mass rows | Explicit separation of direct reconstruction mass, cross-section fit mass, and pole extraction, plus generator, perturbative, detector, flavor-tag, and uncertainty provenance. |

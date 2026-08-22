@@ -51,7 +51,7 @@ Dated organizational decisions remain in [work-log.md](work-log.md).
   benchmark program.
 - [Master Equation Closure](../../master-equation-closure/priorities.md) owns
   the causal-root and update-law foundations.
-- [Equation Mapping](../../equation-mapping/priorities.md) owns exact comparison
+- [Equation Mapping](../../mapping-equations/priorities.md) owns exact comparison
   rows, scores, source-field packets, and executable controls.
 - [EOM solver](../../app-solver/priorities.md) owns production numerical
   execution and accepted record contracts.

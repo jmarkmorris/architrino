@@ -6,7 +6,7 @@
   "carrier": {
     "status": "attempt",
     "id": "theta_nu_ex_source_attempt_0001",
-    "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+    "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
     "sourceIdentity": {
       "carrierId": "theta_nu_ex_source_attempt_0001",
       "pathWindowId": "W_path_nu_ex_source_attempt_0001",
@@ -60,7 +60,7 @@
       "path_frequency_exchange_carrier": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "pathWindowId": "W_path_nu_ex_source_attempt_0001",
         "photonInId": "gamma_in_theta_nu_ex_source_attempt_0001",
         "photonOutId": "gamma_out_theta_nu_ex_source_attempt_0001",
@@ -86,7 +86,7 @@
       "electron_medium_population": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "electronMediumId": "electron_column_theta_nu_ex_source_attempt_0001",
         "opticalDepthId": "tau_e_theta_nu_ex_source_attempt_0001",
         "temperatureColumnId": "T_e_theta_nu_ex_source_attempt_0001",
@@ -95,14 +95,14 @@
       "noether_sea_path_history": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-24-theta-sea-rho-ns-source-field-map.md",
         "noetherSeaPathHistoryId": "theta_sea_path_history_attempt_0001",
         "pathWindowId": "W_path_nu_ex_source_attempt_0001"
       },
       "exchange_event_ledger": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "exchangeEventLedgerId": "exchange_ledger_theta_nu_ex_source_attempt_0001",
         "pathWindowId": "W_path_nu_ex_source_attempt_0001",
         "electronMediumId": "electron_column_theta_nu_ex_source_attempt_0001"
@@ -110,14 +110,14 @@
       "inverse_compton_row": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "exchangeSegmentId": "normalized_inverse_compton_segment_source_attempt_0001",
         "electronMediumId": "electron_column_theta_nu_ex_source_attempt_0001"
       },
       "thermal_sz_row": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-25-theta-therm-cmb-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-25-theta-therm-cmb-source-field-map.md",
         "columnSampleId": "normalized_cluster_column_source_attempt_0001",
         "finiteThermalRecordId": "finite_thermal_record_theta_nu_ex_source_attempt_0001",
         "electronMediumId": "electron_column_theta_nu_ex_source_attempt_0001"
@@ -125,14 +125,14 @@
       "kinematic_sz_row": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "columnSampleId": "normalized_cluster_column_source_attempt_0001",
         "electronMediumId": "electron_column_theta_nu_ex_source_attempt_0001"
       },
       "recoil_remnant_row": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "exchangeEventLedgerId": "exchange_ledger_theta_nu_ex_source_attempt_0001",
         "recoilRowId": "recoil_theta_nu_ex_source_attempt_0001",
         "remnantRowId": "remnant_theta_nu_ex_source_attempt_0001"
@@ -146,13 +146,13 @@
       "source_provenance": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "sourceProvenanceId": "source_provenance_theta_nu_ex_source_attempt_0001"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-28a-theta-nu-ex-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-28a-theta-nu-ex-source-field-map.md",
         "retuneWitnessId": "retune_witness_theta_nu_ex_source_attempt_0001"
       }
     },

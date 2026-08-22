@@ -15,7 +15,7 @@ through delayed moving-source response, binary or ordered-frame geometry,
 internal circulation, shielding and exposure, and medium response.
 [Mapping Electromagnetism](../../mapping-electromagnetism/priorities.md) owns
 the active integration of that direction, while the
-[current magnetism bridge](../../equation-mapping/eq-15-27-ordered-frame-loop-source-field-map.md#priority-only-magnetism-bridge-to-eq-13)
+[current magnetism bridge](../../mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md#priority-only-magnetism-bridge-to-eq-13)
 retains the exact EQ-13/EQ-27 row contract and
 [Gauge Structure Emergence](../../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md)
 retains the reader-facing map.

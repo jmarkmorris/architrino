@@ -14,7 +14,7 @@
     "id": "Theta_obs_theta_src_source_contract_attempt_0001",
     "rowId": "theta_obs_theta_src_source_contract_attempt_row",
     "status": "attempt",
-    "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md",
+    "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
     "sourceAttempt": {
       "expectedSummaryBlocker": "missing_accepted_theta_obs",
       "expectedFocusedThetaSrcBlocker": "missing_accepted_theta_src",

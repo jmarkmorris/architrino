@@ -13,7 +13,7 @@ reader-facing promotion.
   observer-level comparison side; do not use them as premises for the Master
   Equation or individual architrino dynamics.
 - Route exact EQ-13, EQ-15, and EQ-27 row contracts and scores through
-  [Equation Mapping](../equation-mapping/priorities.md).
+  [Equation Mapping](../mapping-equations/priorities.md).
 - Do not promote a prescribed braid geometry, priority packet, attempt fixture,
   replay, or same-code comparison as retained physical evidence.
 - Observer-level comparison reference: image manifest entry

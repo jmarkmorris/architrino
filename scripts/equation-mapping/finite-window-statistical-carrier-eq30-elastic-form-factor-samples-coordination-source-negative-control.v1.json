@@ -133,7 +133,7 @@
         "F_rotated": 0.9604,
         "tolerance": 0.001,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
       },
       {
         "id": "F_Q_mid_eq30_form_factor_samples_coordination_source_control_0001",
@@ -142,7 +142,7 @@
         "F_rotated": 0.7303,
         "tolerance": 0.001,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
       }
     ],
     "regime": {

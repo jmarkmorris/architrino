@@ -8,9 +8,9 @@
 - Primary consumers:
   - [Weak-Sector Gauge Closure](weak-sector-gauge-closure.md)
   - [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
-  - [EQ-16 Weak-Visible Branch Ledger Source-Field Map](../equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md)
-  - [EQ-26A Theta Alpha Source-Field Map](../equation-mapping/eq-26a-theta-alpha-source-field-map.md)
-  - [EQ-26 Through EQ-31 Observation-First Precision Packet](../equation-mapping/eq-26-31-observation-first-precision-packet.md)
+  - [EQ-16 Weak-Visible Branch Ledger Source-Field Map](../mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md)
+  - [EQ-26A Theta Alpha Source-Field Map](../mapping-equations/eq-26a-theta-alpha-source-field-map.md)
+  - [EQ-26 Through EQ-31 Observation-First Precision Packet](../mapping-equations/eq-26-31-observation-first-precision-packet.md)
 
 ## Purpose
 

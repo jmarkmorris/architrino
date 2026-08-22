@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: priority
-- Rank: unranked / newly established
+- Rank: unranked integration packet
 - Status: queued
 - Created: 2026-08-18
 - Claim level: observer-level recovery and derivation targets with explicitly
@@ -32,8 +32,10 @@ exist without inserting electric or magnetic fields into the architrino-level
 acceleration law.
 
 No Maxwell derivation, magnetic-field ontology, retained common-axis electron
-model, constitutive closure, score change, or active-priority rank is established
-by creating this lane.
+model, constitutive closure, or score change is established by creating this
+lane. It remains unranked because it integrates constraints whose native
+evidence and execution authority live in ranked source workstreams; its local
+queue orders integration artifacts without competing with those derivations.
 
 ## Objective
 
@@ -62,10 +64,28 @@ or the `EQ-26A` score.
 
 ## Scope And Ownership
 
+The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture-2026-06-23-c.md)
+defines this lane as a domain integrator. For an electromagnetic benchmark set
+$\mathcal B_{\mathrm{EM}}$, this lane owns the same-record intersection
+
+$$
+\mathfrak A_{\mathrm{EM}}
+=
+\bigcap_{b\in\mathcal B_{\mathrm{EM}}}
+\mathfrak A_b(\epsilon_b),
+$$
+
+not the equation rows, benchmark provenance, or native retained records that
+populate the individual sets.
+
+Plainly: this lane asks which assembly-and-sea records survive all required
+electromagnetic comparisons at once. The contributing workstreams still own
+the formulas, experiments, and evidence used to answer that question.
+
 - This lane owns electromagnetic case integration, inverse-constraint design,
   cross-row same-record requirements, the source/moment/field matrix, and the
   fine-structure coupling derivation packet.
-- [Equation Mapping](../equation-mapping/priorities.md) retains ownership of the
+- [Equation Mapping](../mapping-equations/priorities.md) retains ownership of the
   exact EQ-13, EQ-15, EQ-26A, and EQ-27 equation rows, scores, focused
   source-field packets, and executable comparison controls.
 - [Braid Program](../braid-program/priorities.md) owns retained braid existence,

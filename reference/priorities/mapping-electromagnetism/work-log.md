@@ -11,6 +11,21 @@ geometric and electromagnetic ideas.
 
 ## Log Entries
 
+### 2026-08-22 — Shared mapping architecture and rank decision
+
+- Classified Mapping Electromagnetism explicitly as an unranked domain
+  integration packet rather than a separately scored derivation program.
+- Kept `EMAP-001` as the local integration winner while routing execution
+  attention through its ranked native prerequisites and exact equation owners.
+- Adopted the shared admissible-set method
+  $\mathfrak A_{\mathrm{EM}}=\bigcap_b\mathfrak A_b(\epsilon_b)$ for requiring
+  one assembly-and-sea record across electromagnetic equations and benchmarks.
+- Preserved Equation Mapping authority for exact rows and scores, Cross-Theory
+  authority for independent benchmarks, and native workstream authority for
+  retained geometry and evidence.
+- Changed no fine-structure derivation, equation score, queue status, retained
+  braid claim, or reader-facing corpus claim.
+
 ### 2026-08-19 — Equation-first finite-braid exploration prompt
 
 - Accepted the operator's scale correction that device-specific capacitor and

@@ -40,7 +40,7 @@
     {
       "id": "source_field_map_priority_packet",
       "role": "priority-only source-field map",
-      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-24-theta-sea-rho-ns-source-field-map.md"
     }
   ]
 }

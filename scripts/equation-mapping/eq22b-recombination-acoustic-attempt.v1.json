@@ -6,7 +6,7 @@
   "carrier": {
     "status": "attempt",
     "id": "theta_rec_ac_attempt_0001",
-    "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+    "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
   },
   "tolerances": {
     "carrier": 1e-12,
@@ -33,37 +33,37 @@
       "recombination_acoustic_carrier": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
       },
       "theta_src": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_therm_prov": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_read": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_bb": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "photon_channel": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
       },
       "neutrino_channel": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "noether_sea_state": {
         "status": "attempt",
@@ -73,12 +73,12 @@
       "recombination_kinetics_row": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
       },
       "thomson_visibility_row": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
       },
       "sound_horizon_row": {
         "status": "attempt",
@@ -98,17 +98,17 @@
       "event_ledger": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
       },
       "source_provenance": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "theta_rec_ac_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
       }
     },
     "recombinationSamples": [

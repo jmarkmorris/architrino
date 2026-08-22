@@ -8,7 +8,7 @@
       "rho_NS": {
         "status": "accepted",
         "rowId": "rho-NS-retained-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md",
         "eventLedgerRef": "event-ledger-retained-0001"
       },
       "n": {

@@ -83,7 +83,7 @@ table. [Quantum Closure](../../quantum-closure/priorities.md) retains ownership 
 the transfer operator, invariant measure, detector-response kernels,
 pair-provenance source measure, correlation calculation, no-signaling check,
 Tsirelson check, and Bell rewrite handoff. The
-[Bell-test comparison packet](../../cross-theory-mapping/bell-test-violations.md)
+[Bell-test comparison packet](../../mapping-benchmarks/bell-test-violations.md)
 remains an observer-level benchmark map, not the route-decision owner.
 
 ## Canonical Corpus Surfaces Under Audit

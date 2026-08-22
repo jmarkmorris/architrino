@@ -87,7 +87,7 @@ $$
 | Target | Proposed promotion | Gate |
 | --- | --- | --- |
 | [black-holes.md](../../../content/markdown/aaa/spacetime/black-holes.md) | Add the horizon-wrapping ratio as a comparison-only refinement for horizon entropy and Page-style information accounting. | Must preserve the distinction between event horizon, causal boundary, and region-anchored entropy surface. |
-| [entropy.md](../cross-theory-mapping/entropy.md) | Keep the RT minimal-surface target and $\eta_H$ as an entropy benchmark. | Must define the native label ensemble before claiming area scaling. |
+| [entropy.md](../mapping-benchmarks/entropy.md) | Keep the RT minimal-surface target and $\eta_H$ as an entropy benchmark. | Must define the native label ensemble before claiming area scaling. |
 | [spacetime-models-and-noether-sea.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md) | Add Maldacena as boundary-data and scale-coordinate discipline. | Must avoid importing AdS/CFT ontology. |
 | [priorities.md](priorities.md) | Use the packet as source support for `horizon_entropy_packet` and `observer_predictions`. | Must consume the embedded horizon-interface condition and release-channel ledger rather than adding a separate holography lane. |
 

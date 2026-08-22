@@ -19,7 +19,7 @@
       "theta_W": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       },
       "noether_sea_cell": {
         "status": "attempt",
@@ -39,12 +39,12 @@
       "lapse_row": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       },
       "drift_row": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       },
       "spatial_compliance_row": {
         "status": "attempt",
@@ -94,22 +94,22 @@
       "null_eikonal_row": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       },
       "geodesic_action_row": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       },
       "source_provenance": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "theta_W_static_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
       }
     },
     "sharedKeys": [

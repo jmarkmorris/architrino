@@ -15,7 +15,7 @@ Read first:
 - `content/markdown/aaa/dynamics/master-equation.md`
 - `content/markdown/aaa/assemblies/gauge-structure-emergence.md`
 - `content/markdown/aaa/reactions/mode-taxonomy.md`
-- `reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md`
+- `reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md`
 
 Scale choice:
 Use a finite observation window $W$ containing $N$ individually indexed braids. Preserve each braid's identity and raw history. Choose one smoothing scale $\ell$ satisfying the declared separation

@@ -61,7 +61,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
   paper maintenance; completed its section route map and merged the redundant
   paper claim filter into the two controls that enforce it.
 - Routed source refresh to Source Mining, the architecture scale bridge and
-  Lorentz acceptance to Cross-Theory Mapping, the drift-relaxation capability
+  Lorentz acceptance to Mapping Benchmarks, the drift-relaxation capability
   to EOM, and the axis-count proof gap to Standard Model Closure.
 - Removed the local theory brainstorming file after preserving current
   obligations at their owners and documenting stale or already-promoted

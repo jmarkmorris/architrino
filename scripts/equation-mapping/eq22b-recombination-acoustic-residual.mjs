@@ -58,8 +58,8 @@ const DISALLOWED_SOURCE_KINDS = new Set([
 
 const GENERIC_SOURCE_PATHS = new Set([
   "content/markdown/aaa/cosmology/CMB.md",
-  "reference/priorities/equation-mapping/eq-22b-recombination-acoustic-transfer.md",
-  "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md",
+  "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md",
+  "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
   "scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json",
 ]);
 

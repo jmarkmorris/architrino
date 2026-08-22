@@ -532,4 +532,4 @@ The photon app is an exploratory diagnostic. It may visualize candidate planar-p
 - Photon planar-pair ledger substrate packet
 - Planar-pair symbolic substrate instance
 - Photon event ledger balance diagnostic
-- [Malus' law](../cross-theory-mapping/malus-law.md)
+- [Malus' law](../mapping-benchmarks/malus-law.md)

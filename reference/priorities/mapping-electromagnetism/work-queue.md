@@ -5,10 +5,10 @@ and inverse-geometry tasks.
 
 ## Ranked Next Objects
 
-1. common_axis_source_moment_field_matrix — Status: Queued.
-2. maxwell_four_equation_recovery_matrix — Status: Deferred / blocked.
-3. electron_positron_magnetic_moment_map — Status: Deferred / blocked.
-4. noether_sea_electromagnetic_constitutive_map — Status: Deferred / blocked.
+1. `common_axis_source_moment_field_matrix` — Status: `Queued`.
+2. `maxwell_four_equation_recovery_matrix` — Status: `Deferred / blocked`.
+3. `electron_positron_magnetic_moment_map` — Status: `Deferred / blocked`.
+4. `noether_sea_electromagnetic_constitutive_map` — Status: `Deferred / blocked`.
 
 ## Cross-Cutting Terminology Tasks
 

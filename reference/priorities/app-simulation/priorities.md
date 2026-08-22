@@ -17,7 +17,7 @@ queue.
 | `convergence_and_provenance` | [EOM](../app-solver/priorities.md) | EOM owns generic refinement, precision, deterministic replay, checkpoint, and provenance capability; each consuming campaign owns its thresholds. |
 | `eta_positive_package` | [Master-Equation Closure](../master-equation-closure/priorities.md) | Treat finite-$\eta$ existence and continuation as a mathematical proof obligation, not an app feature. |
 | `hydrogen_gamma_n_record_extraction` | [Nuclear, Atomic, and Molecular Closure](../nuclear-atomic-molecular-closure/priorities.md) | Own the hydrogen spectral-channel record and its atomic promotion gate. |
-| `gw_public_waveform_packet` | [Strong-Field Closure](../strong-field-closure/priorities.md) and [Equation Mapping](../equation-mapping/priorities.md) | Strong-Field Closure owns the source/effective-metric derivation; Equation Mapping owns the versioned observer-level benchmark comparison. |
+| `gw_public_waveform_packet` | [Strong-Field Closure](../strong-field-closure/priorities.md) and [Equation Mapping](../mapping-equations/priorities.md) | Strong-Field Closure owns the source/effective-metric derivation; Equation Mapping owns the versioned observer-level benchmark comparison. |
 
 ## Preserved Detail
 
@@ -43,7 +43,7 @@ These conditions remain useful definitions, but execution and promotion decision
 | `convergence_and_provenance` | [simulations.md](simulations.md) | [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) and [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md) | Convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs are reproducible enough to audit a promoted result. |
 | `eta_positive_package` | [simulations.md](simulations.md) | [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | The formal $\eta > 0$ package states existence, uniqueness, continuation criteria, and no-runaway bounds for the relevant causal-wake model. |
 | `hydrogen_gamma_n_record_extraction` | [simulations.md](simulations.md) | [hydrogen-gamma-n-spectral-row-toy-scan](../../../content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md), [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | The scaffolded hydrogen row is promoted beyond scaffold status only when $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, envelope gaps, observer frequencies, and static response inputs come from one declared hydrogen spectral channel record and the same clock-rate conversion survives refinement. |
-| `gw_public_waveform_packet` | [simulations.md](simulations.md) and [gravitational-waves](../cross-theory-mapping/gravitational-waves.md) | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and future strong-field validation rows | A public gravitational-wave packet compares predicted detector strain, phase, event energy ledger, photon/gravity timing, and provenance against versioned GWOSC/LVK records rather than against unversioned plots or hand-tuned templates. |
+| `gw_public_waveform_packet` | [simulations.md](simulations.md) and [gravitational-waves](../mapping-benchmarks/gravitational-waves.md) | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and future strong-field validation rows | A public gravitational-wave packet compares predicted detector strain, phase, event energy ledger, photon/gravity timing, and provenance against versioned GWOSC/LVK records rather than against unversioned plots or hand-tuned templates. |
 
 ## Related Owners
 
@@ -52,4 +52,4 @@ These conditions remain useful definitions, but execution and promotion decision
 - [Master-Equation Closure](../master-equation-closure/priorities.md)
 - [Nuclear, Atomic, and Molecular Closure](../nuclear-atomic-molecular-closure/priorities.md)
 - [Strong-Field Closure](../strong-field-closure/priorities.md)
-- [Equation Mapping](../equation-mapping/priorities.md)
+- [Equation Mapping](../mapping-equations/priorities.md)

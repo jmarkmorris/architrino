@@ -29,47 +29,47 @@
       "halo_cluster_transfer_child": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-transfer-child-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "halo_cluster_inversion_row": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-inversion-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "cluster_consistency_row": {
         "status": "accepted",
         "rowId": "eq21-cluster-consistency-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "matter_power_parent_row": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-matter-power-parent-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "lensing_parent_row": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-lensing-parent-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "shear_rsd_parent_row": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-shear-rsd-parent-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "halo_cluster_grid": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-grid-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "source_provenance": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-source-provenance-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "no_hidden_retune_witness": {
         "status": "accepted",
         "rowId": "eq21-halo-cluster-no-hidden-retune-priority-source-control-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       }
     },
     "sharedKeys": [
@@ -77,62 +77,62 @@
         "key": "rho_NS",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "n",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "chi_sea",
         "status": "accepted",
         "value": 1.002,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "Gamma_N",
         "status": "accepted",
         "value": 1.0000010100010202,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "M_sea_ab",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "rho_bar",
         "status": "accepted",
         "value": 0.05,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "rho_A",
         "status": "accepted",
         "value": 0.25,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "H_eff",
         "status": "accepted",
         "value": 3.424706202494149,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "a_eff",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       }
     ],
     "model": {
       "haloClusterInversion": {
         "status": "accepted",
         "sourceFamily": "score-neutral halo/cluster parent-chain inversion readout",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "formula": {
         "P_lensing": "C_phi_phi * (ell * (ell + 1))^2 / (A_lens * W_lens)",

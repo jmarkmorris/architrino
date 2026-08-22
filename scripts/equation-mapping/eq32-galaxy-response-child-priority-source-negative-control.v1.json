@@ -25,70 +25,70 @@
         "rowId": "eq32-galaxy-response-child-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "rar_response_row": {
         "status": "accepted",
         "rowId": "eq32-rar-response-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "btfr_response_row": {
         "status": "accepted",
         "rowId": "eq32-btfr-response-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "lensing_consistency_row": {
         "status": "accepted",
         "rowId": "eq32-lensing-consistency-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "high_acceleration_recovery_row": {
         "status": "accepted",
         "rowId": "eq32-high-acceleration-recovery-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "local_gravity_constraint_row": {
         "status": "accepted",
         "rowId": "eq32-local-gravity-constraint-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "delta_a_star_parent_row": {
         "status": "accepted",
         "rowId": "eq32-delta-a-star-parent-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "galaxy_response_grid": {
         "status": "accepted",
         "rowId": "eq32-galaxy-response-grid-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "source_provenance": {
         "status": "accepted",
         "rowId": "eq32-galaxy-response-source-provenance-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "no_hidden_retune_witness": {
         "status": "accepted",
         "rowId": "eq32-galaxy-response-no-hidden-retune-priority-source-negative-control-0001",
         "carrierId": "theta-sea-density-compression-provider-0001",
         "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       }
     },
     "sharedKeys": [
@@ -96,86 +96,86 @@
         "key": "rho_NS",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "n",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "chi_sea",
         "status": "accepted",
         "value": 1.002,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "Gamma_N",
         "status": "accepted",
         "value": 1.0000010100010202,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "u_sea",
         "status": "accepted",
         "value": 0,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "M_sea_ab",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "rho_bar",
         "status": "accepted",
         "value": 0.05,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "rho_A",
         "status": "accepted",
         "value": 0.25,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "eta",
         "status": "accepted",
         "value": 6.1e-10,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "N_eff",
         "status": "accepted",
         "value": 3.046,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "Y_p",
         "status": "accepted",
         "value": 0.245,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "H_eff",
         "status": "accepted",
         "value": 3.424706202494149,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       {
         "key": "a_eff",
         "status": "accepted",
         "value": 1,
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       }
     ],
     "model": {
       "galaxyResponse": {
         "status": "accepted",
         "sourceFamily": "score-neutral predictive galaxy-response law",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "a_star": 0.0012,
       "G_eff": 1,

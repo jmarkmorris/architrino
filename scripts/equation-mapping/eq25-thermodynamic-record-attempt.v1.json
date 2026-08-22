@@ -20,7 +20,7 @@
       "theta_therm": {
         "status": "attempt",
         "carrierId": "theta_therm_CMB_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "state_space_row": {
         "status": "attempt",
@@ -40,17 +40,17 @@
       "deterministic_pushforward_row": {
         "status": "attempt",
         "carrierId": "theta_therm_CMB_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "coarse_projection_row": {
         "status": "attempt",
         "carrierId": "theta_therm_CMB_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "collision_operator_row": {
         "status": "attempt",
         "carrierId": "theta_therm_CMB_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "entropy_balance_row": {
         "status": "attempt",
@@ -60,7 +60,7 @@
       "thermalization_depth_row": {
         "status": "attempt",
         "carrierId": "theta_therm_CMB_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "fluctuation_row": {
         "status": "attempt",
@@ -85,7 +85,7 @@
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "theta_therm_CMB_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       }
     },
     "sharedKeys": [
