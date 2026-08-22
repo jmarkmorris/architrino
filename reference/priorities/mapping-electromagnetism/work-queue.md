@@ -10,6 +10,44 @@ and inverse-geometry tasks.
 3. electron_positron_magnetic_moment_map — Status: Deferred / blocked.
 4. noether_sea_electromagnetic_constitutive_map — Status: Deferred / blocked.
 
+## Cross-Cutting Terminology Tasks
+
+### Overall action symbology
+
+- **Status:** Queued; requires a terminology-policy review before editing the
+  controlled Archie references.
+- **Current gap:**
+  [Mathematical Terminology](../../../content/markdown/aaa/archie/mathematics-terminology.md)
+  does not yet provide an overall action-symbol system distinguishing the
+  acceleration-first Master Equation, an off-shell variational action
+  functional, an action-like retained-branch statistic, a Poincare-Cartan
+  orbit integral, the candidate retained action period $h_\vartheta$ and its
+  reduced form $\hbar_\vartheta$, and the observer-level Planck constants $h$
+  and $\hbar$. The policy must also resolve the existing canonical use of bare
+  $h$ as a candidate branch carrier index.
+- **Required decision:** Establish the symbol, layer, authority, and allowed
+  equality statements for each action object before propagating notation
+  changes through the corpus. In particular, notation must not define
+  $h_\vartheta=h$ before the same-record recovery test closes.
+- **Completion:** The controlled terminology guide records the accepted action
+  symbols without collisions, the Master Equation and causal-action documents
+  use those symbols consistently, and priority packets identify provisional
+  versus recovered Planck-action notation explicitly.
+
+### Fine-structure promotion terminology
+
+- **Status:** Required before promotion of
+  [Fine-Structure Coupling Map](fine-structure.md) into `content/markdown/aaa`.
+- **Request / acceptance:** When the packet becomes promotion-ready, add every
+  newly accepted cross-chapter symbol or term to the relevant controlled
+  terminology guide, retain local definitions for specialized packet symbols,
+  and audit the destination plus its immediate consumers for notation
+  collisions and layer ambiguity.
+- **Completion:** The promoted document uses the accepted action symbology and
+  fine-structure terminology, introduces no unregistered cross-chapter symbol,
+  and preserves the distinction between observer-level comparison quantities
+  and retained $\mathbb{A}\mathbb{A}\mathbb{A}$ readouts.
+
 ## Queued
 
 ### EMAP-001 — Common-axis source/moment/field matrix

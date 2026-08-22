@@ -150,7 +150,8 @@ $\mathcal E_S$ is the exposed-sector record, and
 $\mathcal C_{\mathrm{EM}}$ is the electromagnetic part of the resolved Noether
 sea constitutive response.
 
-The native reduced-carrier action-period target inherited from `EQ-12A` is
+The retained-branch reduced-carrier action-period target inherited from
+`EQ-12A` is
 
 $$
 h_\vartheta
@@ -173,6 +174,12 @@ $\hbar=h/(2\pi)$. This packet does not use bare $h$ as a generic action
 variable: $h_\vartheta$ names the particular retained-orbit action period, and
 $\hbar_\vartheta$ names its reduced form. Both must be derived before any alpha
 datum is consumed.
+
+This action period is not a primitive per-architrino action and is not yet the
+action functional whose variation derives the Master Equation. It is a
+same-branch orbit readout. It gains authority only when the retained orbit also
+satisfies the vector Master Equation and the action, history-energy, and
+boundary residuals close on that record.
 
 In a weak isotropic observer chart, the projection must reduce to
 
