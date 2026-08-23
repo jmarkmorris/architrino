@@ -49,7 +49,7 @@ $$
 0
 $$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, Noether sea response, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through circulation/vorticity without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, declared Noether sea record, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through an axial or antisymmetric projection without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
 
 ### Maxwell-Ampere Continuity Benchmark
 
@@ -66,11 +66,11 @@ I_{\mathrm{cond}}
 \right)
 $$
 
-in the validated regime. The useful lesson is not that displacement current is a new substrate current moving through empty space. It is that conduction-current bookkeeping in charged assemblies and changing effective electric flux in the Noether sea response must project to the same loop-circulation record. If the two surface choices require different branch records, different medium-response variables, or a hidden retuning of $\mu_0$ and $\epsilon_0$, then the effective electromagnetic map has not recovered Maxwell-level continuity.
+in the validated regime. The useful lesson is not that displacement current is a new substrate current moving through empty space. It is that conduction-current bookkeeping in charged assemblies and changing effective electric flux projected from the source, boundary, and declared Noether sea record must yield the same loop-circulation result. If the two surface choices require different branch records, different medium-response variables, or a hidden retuning of $\mu_0$ and $\epsilon_0$, then the effective electromagnetic map has not recovered Maxwell-level continuity.
 
 ## Symmetry Groups as Geometric Deformations
 
-We map the abstract gauge groups of the Standard Model to physical deformations of the Noether sea and its Noether braids:
+We map the abstract gauge groups of the Standard Model to candidate assembly, causal-wake, and Noether sea records:
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.

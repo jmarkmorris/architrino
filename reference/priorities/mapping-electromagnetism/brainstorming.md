@@ -184,8 +184,8 @@ not contain enough directional structure to make such a record.
 
 Plainly: a magnetic field is the observer's map of organized circulation. What
 physically produces that map in $\mathbb{A}\mathbb{A}\mathbb{A}$ must be
-derived from source history and the sea; it is not an additional ingredient
-put into the Master Equation.
+derived from source history and any required sea response; it is not an
+additional ingredient put into the Master Equation.
 
 ### Three Questions That Must Not Be Collapsed
 
@@ -3877,8 +3877,10 @@ called a causal-wake or assembly response until that projection is derived.
 
 A static effective magnetic field is therefore not a substance flowing through
 space and time. It is a persistent observer compression of an organized source
-assembly, its continuously emitted causal wake history, the responding Noether
-sea, and the declared observer chart and projection convention. Receiver class
+assembly, its continuously emitted causal wake history, the declared Noether
+sea record, and the observer chart and projection convention. Whether that sea
+record responds or remains within its balanced tolerance is a constitutive
+question. Receiver class
 belongs to the separate response map rather than the field-state definition.
 Architrinos themselves move through the Euclidean
 void; the primitive interaction support that propagates from their histories is
