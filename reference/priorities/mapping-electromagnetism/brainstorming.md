@@ -3931,3 +3931,213 @@ Closure goal: build the `D1` behavior-to-braid requirement matrix and use its
 reversal, symmetry, scaling, and ledger controls to select the smallest shared
 matter-and-sea geometry that reproduces the trapped-electron alpha
 determination without importing a primitive magnetic field.
+
+## Session 17 — Noether Sea Braid Response-State Taxonomy (2026-08-22)
+
+Trigger: prescribed braid-architecture guesses have not produced a promising
+retained candidate. The proposed alternative is to use controlled electric,
+magnetic, induction, material-polarization, and radiation situations to infer
+which collective Noether sea braid configurations could support their
+transformation and response signatures.
+
+Claim level: **inferred program direction plus speculative response variables**.
+The program direction is well motivated by the existing equation- and
+benchmark-mapping architecture. No specific sea-braid configuration, pure
+sea-mediation claim, or electromagnetic constitutive law is established here.
+
+### Core Judgment
+
+This is a strong direction because it asks for fewer unsupported geometric
+guesses. The external situation supplies parity, reversal, range, boundary,
+relaxation, and receiver constraints. Those constraints can classify admissible
+sea responses before the microscopic braid member is selected.
+
+The inquiry must not begin by placing primitive electric or magnetic fields in
+the Noether sea. It should begin with resolved source histories and a population
+of sea braids, then ask which population moments and causal-history records an
+observer later compresses into effective electric and magnetic fields.
+
+Plainly: use familiar field situations as controlled boundary conditions and
+inverse clues. Do not use the familiar field labels as the microscopic answer.
+
+### Direct-Wake And Sea-Mediated Shares
+
+The hypothesis that every electromagnetic effect is entirely a Noether sea
+effect is stronger than the current corpus supports. An assembly emits causal
+wake history directly, and the surrounding sea may reorient, deform, retune,
+screen, store, or propagate part of that response. The first map should
+therefore retain both shares:
+
+$$
+\left(
+\mathbf E_{\mathrm{eff}},
+\mathbf B_{\mathrm{eff}}
+\right)
+=
+\Pi_{\mathrm{dir}}[\mathcal H_{\mathrm{src}}]
++
+\Pi_{\mathrm{sea}}[
+\delta\mathcal F_{\mathrm{sea}},
+\mathcal H_{\partial\Omega}
+],
+$$
+
+where $\mathcal H_{\mathrm{src}}$ is the resolved source history,
+$\delta\mathcal F_{\mathrm{sea}}$ is a perturbation of the local sea-braid
+population record, and $\mathcal H_{\partial\Omega}$ is the causal boundary
+history. The two $\Pi$ maps are provisional observer projections, not primitive
+field laws.
+
+The decisive controls are direct-only, responsive-sea, frozen-sea, and
+source-removed relaxation cases. If the same effective behavior survives when
+the sea response is suppressed, pure sea mediation fails. If direct wakes
+cannot reproduce the response without a resolved collective sea state, the
+constitutive sea share is necessary.
+
+Plainly: the source may act directly, through the sea, or through both. The
+taxonomy should discover the division rather than assume it.
+
+### Population Moments Before Microscopic Members
+
+Let $f_{\mathrm{sea}}$ be a local resolved distribution over sea-braid identity,
+cadence $\nu$, orientation $\hat{\mathbf n}$, pro/anti orientation label,
+envelope variables, phase, exposed-polarity structure, internal circulation,
+and center drift. The first useful coarse rows are provisional irreducible
+moments:
+
+$$
+n_{\mathrm{sea}}=\int f_{\mathrm{sea}}\,d\Lambda,
+\qquad
+P^i_{\mathrm{sea}}
+=
+\int p_{\mathrm{exp}}^i(\Lambda)
+f_{\mathrm{sea}}(\Lambda)\,d\Lambda,
+$$
+
+$$
+M^i_{\mathrm{sea}}
+=
+\int \mu_{\mathrm{exp}}^i(\Lambda)
+f_{\mathrm{sea}}(\Lambda)\,d\Lambda,
+\qquad
+Q^{ij}_{\mathrm{sea}}
+=
+\int
+\left(
+n^i n^j-\frac13\delta^{ij}
+\right)
+f_{\mathrm{sea}}(\Lambda)\,d\Lambda.
+$$
+
+Here $P^i_{\mathrm{sea}}$ is a polar exposure or displacement moment,
+$M^i_{\mathrm{sea}}$ is an axial exposed-circulation moment, and
+$Q^{ij}_{\mathrm{sea}}$ is a symmetric trace-free alignment moment. None is
+automatically equal to $\mathbf E_{\mathrm{eff}}$, $\mathbf B_{\mathrm{eff}}$,
+permittivity, permeability, or birefringence. They are candidate native inputs
+to one constitutive projection.
+
+Plainly: first ask whether the sea becomes directionally displaced, begins to
+favor a circulation sense, or merely aligns its axes. Those are three different
+geometries even when an observer summarizes them with one field label.
+
+### Provisional Response-State Taxonomy
+
+| State class | Minimal native signature | Possible effective role | Required null or discriminator |
+| --- | --- | --- | --- |
+| Balanced reference | pro/anti balance, isotropic orientations, no polar or axial moment | weak homogeneous reference sea | all electric-, magnetic-, and birefringent-like residuals vanish within the declared baseline |
+| Scalar loaded | changed density, cadence, envelope scale, or isotropic stress with $P=M=Q=0$ | gravity-, pressure-, or clock-side loading | must not create an electromagnetic readout merely from scalar compression |
+| Polar ordered | $P^i_{\mathrm{sea}}\ne0$ from internal exposure displacement, rephasing, or population bias | electric-like polarization, screening, or boundary response | polarity or source reversal flips the polar row; axis-only and circulation-only controls do not |
+| Axis-aligned but circulation-neutral | $Q^{ij}_{\mathrm{sea}}\ne0$ with $M^i_{\mathrm{sea}}=0$ | anisotropic propagation or birefringence without intrinsic magnetic moment | magnetic-moment readout remains null while directional propagation may change |
+| Axial circulation ordered | $M^i_{\mathrm{sea}}\ne0$ from exposed circulation or aligned assembly moments | magnetic-like circulation and receiver-moment alignment | circulation reversal flips the axial row; axis preservation with cancelled circulation removes it |
+| Mixed polar-axial | nonzero $P$, $M$, and possibly $Q$ on one coupled record | crossed-field, magnetoelectric, chiral, or moving-medium response | independent source reversals separate polar and axial parities without private retuning |
+| Boundary or screened | strong gradients or domains confined near a source, surface, dielectric, magnetic material, or shield | capacitance, screening, material constitutive response, evanescence | range and thickness dependence distinguish a local layer from an unscreened bulk mode |
+| Relaxing or hysteretic | response persists after source change and decays or switches by a measurable return map | remanence, dielectric relaxation, magnetic hysteresis, medium memory | source removal separates material assembly memory from sea memory and direct continuing wakes |
+| Propagating coupled mode | transverse time-dependent $P/M/Q$ combination with a causal phase and energy ledger | electromagnetic radiation or a photon-channel disturbance | survives in a locally source-free region with the required dispersion, polarization, and energy-flow rows |
+
+This table classifies response geometry, not particles. Several microscopic
+sea-braid populations may occupy one class, and one microscopic population may
+move between classes under different source histories. The mapping program
+should therefore preserve equivalence classes of sea records that share the
+same observer projection until an additional experiment separates them.
+
+Plainly: the first goal is not to name the exact braid. It is to learn which
+kind of order the sea must possess and which kinds are experimentally
+indistinguishable.
+
+### Polarization Layers That Must Remain Separate
+
+The word `polarization` currently spans several physically different records:
+
+1. redistribution or orientation inside the source material;
+2. induced deformation, phase bias, or orientation of nearby Noether sea
+   braids;
+3. receiver-assembly retuning or basin selection;
+4. transverse polarization of a propagating photon-channel record; and
+5. the final observer-level electric, magnetic, dielectric, or optical
+   polarization summary.
+
+A dynamic experiment may contain all five. Each event must state which layer
+changes first, which carries the response through the intervening region, which
+relaxes after source removal, and which is only an observer projection.
+
+### Minimum Experimental Situation Ladder
+
+1. **Static parallel-plate capacitor.** Isolate polar ordering, boundary
+   layers, charge accumulation, gap response, screening, and direct-versus-sea
+   contributions with minimal axial circulation.
+2. **Steady long solenoid and toroid.** Isolate axial circulation order, compare
+   an approximately uniform interior with an exterior null, and test whether
+   topology and material support localize the response.
+3. **Source reversal and switch-on/switch-off.** Measure parity, propagation
+   delay, relaxation, overshoot, and any persistent sea or material memory.
+4. **Crossed electric and magnetic configurations.** Decide whether polar and
+   axial moments superpose independently or require a coupled/chiral sea state.
+5. **Dielectric, magnetic, and nominal vacuum comparison.** Separate source
+   material reorganization from ambient sea response and identify which
+   constitutive coefficients actually change.
+6. **Strong-field propagation or birefringence.** Test whether axial order
+   induces the symmetric trace-free $Q^{ij}_{\mathrm{sea}}$ response required
+   for directional photon propagation.
+7. **Locally source-free propagation and Aharonov-Bohm-type history tests.**
+   Decide whether the relevant carrier is a local response moment, a boundary
+   or holonomy record, a propagating assembly/wake packet, or a combination.
+
+The first three situations are the preferred starting set. They span polar,
+axial, boundary, and time-response behavior before fine-structure extraction,
+atomic structure, or many-body material complexity is added.
+
+### Assumptions, Falsifiers, And Promotion Route
+
+- The response moments must be computed from resolved sea-braid histories, not
+  assigned to reproduce effective fields.
+- One frozen constitutive map must face capacitor, solenoid or toroid,
+  reversal, induction, and propagation cases.
+- The scalar-loaded null must prevent ordinary density or clock loading from
+  being relabeled as electromagnetism.
+- The axis-aligned/circulation-neutral null must distinguish birefringent
+  alignment from magnetic moment.
+- Direct-only and responsive-sea controls must decide whether the sea is
+  necessary, optional dressing, or the dominant carrier in each regime.
+- A persistent post-source response must be assigned to retained material
+  order, sea memory, boundary history, or an outgoing packet; it may not be
+  called field memory without that disposition.
+
+The program fails in its proposed form if no common population moments survive
+across the minimum situation ladder, if each field case requires unrelated sea
+variables, if direct source wakes already close every tested response without a
+collective sea contribution, or if the proposed sea states violate established
+parity, range, dispersion, energy-flow, or null controls.
+
+Promotion target: first a focused priority packet under Mapping
+Electromagnetism; later Noether Sea, Gauge Structure Emergence, and relevant
+material or photon chapters only after a resolved response operator exists.
+The next artifact is a **Noether sea electromagnetic response-state matrix**
+whose rows are the minimum experimental situations and whose columns are
+source assembly history, direct-wake share, near/environment/far sea moments,
+boundary history, relaxation law, effective projection, reversals, knockout
+controls, and falsifier.
+
+Closure goal: construct the Noether sea electromagnetic response-state matrix
+for the capacitor, solenoid or toroid, and switch-on/switch-off situations, and
+use direct-only, frozen-sea, and responsive-sea controls to determine which
+polar, axial, alignment, boundary, and relaxation moments are genuinely needed.
