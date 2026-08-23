@@ -6,7 +6,7 @@
     "id": "theta_agn_accretion_release_attempt_0001",
     "rowId": "agn_accretion_release_carrier_attempt_0001",
     "status": "attempt",
-    "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md",
+    "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md",
     "sourceKind": "priority_identity_shell",
     "sourceFamily": "EQ-07B AGN accretion-release",
     "sourceRole": "carrier"
@@ -48,7 +48,7 @@
       "sourceWindowId": "W_agn_strong_field_attempt_0001",
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md"
     },
     "inflow_accretion_row": {
       "status": "attempt",
@@ -59,7 +59,7 @@
       "releaseWindowId": "T_agn_release_attempt_0001",
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
     },
     "mass_spin_readout_row": {
       "status": "attempt",
@@ -69,7 +69,7 @@
       "sourceWindowId": "W_agn_strong_field_attempt_0001",
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
     },
     "radiation_output_row": {
       "status": "attempt",
@@ -81,7 +81,7 @@
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
       "radiationChannelId": "S_rad_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
     },
     "jet_channel_row": {
       "status": "attempt",
@@ -94,7 +94,7 @@
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
       "releaseSelectorId": "Pi_AGN_attempt_0001",
       "radiationChannelId": "S_rad_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
     },
     "wind_sheath_confinement_row": {
       "status": "attempt",
@@ -106,7 +106,7 @@
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
       "releaseSelectorId": "Pi_AGN_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
     },
     "noether_sea_loading_row": {
       "status": "attempt",
@@ -117,7 +117,7 @@
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
       "noetherSeaLoadingId": "A_NS_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-24-theta-sea-rho-ns-source-field-map.md"
     },
     "feedback_row": {
       "status": "attempt",
@@ -129,7 +129,7 @@
       "supportId": "Omega_agn_attempt_0001",
       "eventLedgerId": "L_EpJ_agn_attempt_0001",
       "feedbackRowId": "F_fb_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
     },
     "horizon_interface_label_row": {
       "status": "attempt",
@@ -179,7 +179,7 @@
       "radiationChannelId": "S_rad_agn_attempt_0001",
       "feedbackRowId": "F_fb_agn_attempt_0001",
       "retuneWitnessId": "S_retune_agn_attempt_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md"
     }
   },
   "negativeControls": [

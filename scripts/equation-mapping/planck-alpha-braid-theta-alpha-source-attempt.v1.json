@@ -21,147 +21,147 @@
         "rowId": "theta_gamma_packet_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
       },
       "retained_orbit_reduction_row": {
         "id": "retained_orbit_reduction_row_theta_alpha_source_attempt_0001",
         "rowId": "retained_orbit_reduction_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "constant_delay_self_hit_model_row": {
         "id": "constant_delay_self_hit_model_row_theta_alpha_source_attempt_0001",
         "rowId": "constant_delay_self_hit_model_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "hopf_retained_orbit_birth_row": {
         "id": "hopf_retained_orbit_birth_row_theta_alpha_source_attempt_0001",
         "rowId": "hopf_retained_orbit_birth_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "first_lyapunov_coefficient_row": {
         "id": "first_lyapunov_coefficient_row_theta_alpha_source_attempt_0001",
         "rowId": "first_lyapunov_coefficient_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "monodromy_floquet_certificate": {
         "id": "monodromy_floquet_certificate_theta_alpha_source_attempt_0001",
         "rowId": "monodromy_floquet_certificate_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "poincare_section_reduction_row": {
         "id": "poincare_section_reduction_row_theta_alpha_source_attempt_0001",
         "rowId": "poincare_section_reduction_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "poincare_cartan_orbit_integral_row": {
         "id": "poincare_cartan_orbit_integral_row_theta_alpha_source_attempt_0001",
         "rowId": "poincare_cartan_orbit_integral_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "energy_clock_readout_row": {
         "id": "energy_clock_readout_row_theta_alpha_source_attempt_0001",
         "rowId": "energy_clock_readout_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "phase_loop_area_readout_row": {
         "id": "phase_loop_area_readout_row_theta_alpha_source_attempt_0001",
         "rowId": "phase_loop_area_readout_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "readout_refinement_independence_row": {
         "id": "readout_refinement_independence_row_theta_alpha_source_attempt_0001",
         "rowId": "readout_refinement_independence_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "parameter_sweep_action_invariance_row": {
         "id": "parameter_sweep_action_invariance_row_theta_alpha_source_attempt_0001",
         "rowId": "parameter_sweep_action_invariance_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "history_energy_throughput_row": {
         "id": "history_energy_throughput_row_theta_alpha_source_attempt_0001",
         "rowId": "history_energy_throughput_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "non_resonance_certificate": {
         "id": "non_resonance_certificate_theta_alpha_source_attempt_0001",
         "rowId": "non_resonance_certificate_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "sea_state_fibration_row": {
         "id": "sea_state_fibration_row_theta_alpha_source_attempt_0001",
         "rowId": "sea_state_fibration_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "geometry_derived_action_period_row": {
         "id": "geometry_derived_action_period_row_theta_alpha_source_attempt_0001",
         "rowId": "geometry_derived_action_period_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "planck_braid_carrier": {
         "id": "planck_braid_carrier_theta_alpha_source_attempt_0001",
         "rowId": "planck_braid_carrier_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "photon_action_quantum_row": {
         "id": "photon_action_quantum_row_theta_alpha_source_attempt_0001",
         "rowId": "photon_action_quantum_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "phase_cycle_angular_momentum_row": {
         "id": "phase_cycle_angular_momentum_row_theta_alpha_source_attempt_0001",
         "rowId": "phase_cycle_angular_momentum_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
       },
       "photon_packet_row": {
         "id": "photon_packet_row_theta_alpha_source_attempt_0001",
         "rowId": "photon_packet_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
       },
       "thermal_mode_counting_row": {
         "id": "thermal_mode_counting_row_theta_alpha_source_attempt_0001",
         "rowId": "thermal_mode_counting_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-22a-theta-bb-source-field-map.md",
         "thetaBbCarrierId": "theta_alpha_source_attempt_0001",
         "finiteWindowId": "W_bb_source_attempt_0001",
         "gateBModeCountId": "gateB_two_mode_count_source_attempt_0001",
@@ -174,7 +174,7 @@
         "rowId": "planck_occupancy_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-22a-theta-bb-source-field-map.md",
         "thetaBbCarrierId": "theta_alpha_source_attempt_0001",
         "finiteWindowId": "W_bb_source_attempt_0001",
         "modeMeasureId": "N_mode_theta_alpha_source_attempt_0001",
@@ -186,7 +186,7 @@
         "rowId": "temperature_clock_conversion_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-22a-theta-bb-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-22a-theta-bb-source-field-map.md",
         "thetaBbCarrierId": "theta_alpha_source_attempt_0001",
         "finiteWindowId": "W_bb_source_attempt_0001",
         "temperatureClockId": "T_theta_alpha_source_attempt_0001",
@@ -198,7 +198,7 @@
         "rowId": "alpha_coupling_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md",
         "thetaAlphaCarrierId": "theta_alpha_source_attempt_0001",
         "chargeExposureRowId": "charge_exposure_row_theta_alpha_source_attempt_row",
         "actionPeriodRef": "h_vartheta_theta_gamma_parent_attempt_0001",
@@ -210,7 +210,7 @@
         "rowId": "charge_exposure_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md",
         "thetaAlphaCarrierId": "theta_alpha_source_attempt_0001",
         "chargeExposureScheme": "low_energy_dimensionless_em_exposure_attempt",
         "qObsRowId": "q_obs_theta_alpha_source_attempt_0001",
@@ -222,14 +222,14 @@
         "rowId": "local_photon_speed_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md"
       },
       "vacuum_polarization_wake_dressing_row": {
         "id": "vacuum_polarization_wake_dressing_row_theta_alpha_source_attempt_0001",
         "rowId": "vacuum_polarization_wake_dressing_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md",
         "responseKernelId": "K_EM_theta_alpha_source_attempt_0001",
         "chargedThresholdInventoryId": "I_mu_theta_alpha_source_attempt_0001"
       },
@@ -238,7 +238,7 @@
         "rowId": "energy_scale_running_row_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md",
         "runningIntervalId": "mu_window_theta_alpha_source_attempt_0001",
         "chargedThresholdInventoryId": "I_mu_theta_alpha_source_attempt_0001",
         "allowedRunningRows": [
@@ -257,14 +257,14 @@
         "rowId": "source_provenance_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md"
       },
       "no_hidden_retune_witness": {
         "id": "no_hidden_retune_witness_theta_alpha_source_attempt_0001",
         "rowId": "no_hidden_retune_witness_theta_alpha_source_attempt_row",
         "status": "attempt",
         "carrierId": "theta_alpha_source_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-26a-theta-alpha-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-26a-theta-alpha-source-field-map.md"
       }
     },
     "planckAlpha": {

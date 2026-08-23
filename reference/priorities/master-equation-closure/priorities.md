@@ -153,4 +153,4 @@ $D_r/D_t$ has been classified as playback rather than acceleration strength.
 - [Quantum closure](../quantum-closure/priorities.md)
 - [Strong-field closure](../strong-field-closure/priorities.md)
 - [Cosmology closure](../cosmology-closure/priorities.md)
-- [Equation mapping](../equation-mapping/priorities.md)
+- [Equation mapping](../mapping-equations/priorities.md)

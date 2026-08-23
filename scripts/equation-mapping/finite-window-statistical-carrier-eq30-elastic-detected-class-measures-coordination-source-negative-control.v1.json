@@ -90,7 +90,7 @@
         "measure": 0.2,
         "detectorRefinementResidual": 0.0005,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
       },
       {
         "id": "inelastic_ep_measure_eq30_detected_class_measures_coordination_source_control_0001",
@@ -98,7 +98,7 @@
         "measure": 0.0005,
         "detectorRefinementResidual": 0.0005,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
       },
       {
         "id": "lost_measure_eq30_detected_class_measures_coordination_source_control_0001",
@@ -106,7 +106,7 @@
         "measure": 0.0005,
         "detectorRefinementResidual": 0.0005,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
       }
     ],
     "crossSectionComparisons": [

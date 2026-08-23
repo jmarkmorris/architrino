@@ -525,3 +525,295 @@ artifact is a retained-branch or stability campaign.
 result can support the Noether-braid static-seed discussion and the general
 Master Equation stationary-cancellation treatment. Until then it remains
 priority-only.
+
+## Entry 13 — body-diagonal spin does not support the nonplanar A2 seed (2026-08-15, operator exploration)
+
+**Question and chart (grade: exact kinematics).** Give the face-opposite A2
+octahedron common-frequency co-rotation about the unoriented body-diagonal axis
+$(-1,-1,-1)\leftrightarrow(1,1,1)$. With
+$\hat{\mathbf n}=(1,1,1)/\sqrt3$, every site has fixed-coordinate chart values
+
+$$
+h=\frac1{\sqrt3},
+\qquad
+\rho=\sqrt{\frac23},
+\qquad
+v_{\mathrm{rim}}=\omega\rho.
+$$
+
+Plainly: each polarity class is a rotating equilateral triangle; the two
+triangles remain staggered by $60^\circ$ and lie on opposite sides of the
+mid-plane in the prescribed chart.
+
+A true rigid rotating-wave solution would require, in the co-rotating frame,
+
+$$
+A_{\parallel}=0,
+\qquad
+A_{\rho}=-\omega^2\rho,
+\qquad
+A_{\phi}=0.
+$$
+
+Plainly: the received partner acceleration must supply exactly the inward
+circular-path curvature, with no acceleration along the axis and no change of
+angular speed.
+
+**Exact axial obstruction (grade: derivation on the fixed-coordinate
+single-frequency chart).** Same-ring partner contributions have zero axial
+component, while all three opposite-ring contributions point toward the other
+ring. Their axial sum is therefore strictly one-signed for every nonzero ring
+height and every sub-field rim speed. Common rotation cannot make
+$A_{\parallel}$ vanish. The nonplanar A2 octahedron is consequently not a
+rigidly supported rotating wave under the bare partner ledger; the declared
+family would have to flatten to the all-equatorial boundary, deform, or acquire
+another internal or environmental response.
+
+**Instantaneous spin-up from a stationary history (grade: exact initial-time
+identity).** If the positions are held stationary through the history window
+and tangential velocities $\mathbf v_i=\omega\hat{\mathbf n}\times\mathbf x_i$
+are assigned only at release, the arriving wakes at that instant still give
+the static A2 acceleration. Since
+$\|\mathbf v_i\|^2=2\omega^2/3$ and
+$\mathbf x_i\mathbin{\cdot}\mathbf A_i=-\kappa/4$, the initial common-radius
+curvature is
+
+$$
+\ddot R(0)
+=
+\frac{2\omega^2}{3}
+-\frac{\kappa}{4}.
+$$
+
+Plainly: spin can make the distance from the center initially shrink, remain
+flat to second order, or grow. The instantaneous radius threshold is
+$\omega^2=3\kappa/8$; if $\kappa=1$, its rim speed is $v_{\mathrm{rim}}=1/2$.
+This is not a rotating-branch solution because the axial height still obeys
+
+$$
+\ddot h(0)
+=
+-\frac{1+4\sqrt2}{4\sqrt3}\,\kappa
+\approx
+-0.960834\,\kappa,
+$$
+
+independently of $\omega$.
+
+Plainly: even the radius-tuned kick cannot preserve the octahedron. The two
+triangles immediately approach the mid-plane while continuing to rotate, so
+the initial motion is a flattening spiral rather than a rigid sphere-bound
+orbit.
+
+**Coherent rotating-history boundary.** If the prior history was already
+uniformly rotating, delayed roots and transmitter-side acceleration weights
+must be recomputed and the static kick formula above no longer applies. The
+exact axial sign obstruction still rejects the declared fixed-coordinate
+single-frequency two-ring chart. A positive tangential residual that pumps the
+spin is conjectured for the fixed-coordinate octahedral/planar family but is
+not yet verified; no spin-up, spin-down, collision, rebound, escape, breathing,
+or retained-branch outcome follows without direct evolution.
+
+**Proof burden, falsifier, and next artifact.** Build one $c_f=1$ rotating A2
+constant-lag ledger and EOM-solver release sweep over sub-field rim speed,
+reporting independent axial, radial, and tangential residuals plus the evolved
+ring height, transverse radius, angular rate, causal-root census, and retained
+history. A certified nonplanar row with all three rotating-wave residuals zero
+falsifies the fixed-chart no-balance statement. The next artifact is the
+rotating A2 reduced-history evolution record, not a prescribed animation.
+
+**Promotion target.** The exact kick identity and any independently checked
+rotating-history result may support the A2 symmetry and return-response
+chapter. Until the evolution and ledger close, the physical fate remains
+priority-only.
+
+## Entry 14 — fixed-sphere A2 spin becomes an equator-crossing latitude oscillator (2026-08-15, operator exploration)
+
+**Operator stipulation and scope (grade: constrained-chart definition).** The
+six architrinos are now required to satisfy $\|\mathbf x_i(T)\|=1$ for all
+times. This is not the bare A2 release studied above: an additional normal
+constraint acceleration must cancel whatever radial acceleration would leave
+the sphere. Assume that this constraint is ideal, preserves the exact
+$C_3\times\langle\iota\rangle$ channel, and adds no tangential acceleration.
+
+Plainly: the sphere is now a real part of the model rather than an initial
+drawing surface. Its origin and its constraint-acceleration provider must be
+carried in any physical interpretation.
+
+Write a representative electrino at latitude $\alpha$ and azimuth $\phi$:
+
+$$
+h=\sin\alpha,
+\qquad
+\rho=\cos\alpha,
+\qquad
+\mathbf x=\rho\hat{\boldsymbol\rho}+h\hat{\mathbf z}.
+$$
+
+Plainly: $h=0$ is the equator, while $|h|=1$ is a pole where the three sites
+in one same-polarity ring would coincide.
+
+**Instantaneous constrained tangent law (grade: exact for stationary arriving
+histories and the unsoftened signed inverse-square partner row).** Projecting
+the symmetric two-ring partner acceleration onto increasing latitude gives
+
+$$
+\frac{A_{\alpha}}{\kappa}
+=
+-h\left[
+\frac{1}{\sqrt3\rho^2}
++\frac{3\rho}{(1+3h^2)^{3/2}}
+\right].
+$$
+
+Plainly: above the equator the partner contribution points south; below the
+equator it points north. It vanishes at the equator and diverges away from a
+pole as the same-polarity ring separation collapses.
+
+The constrained latitude equation also contains the exact path-curvature term
+from azimuthal motion:
+
+$$
+\ddot\alpha
+=
+A_{\alpha}
+-h\rho\dot\phi^2.
+$$
+
+Plainly: co-rotation strengthens the initial motion toward the equator on both
+hemispheres; it does not drive either ring toward its nearer pole.
+
+**Crossing and turning picture (grade: derived for the instantaneous
+constraint surrogate; hypothesis for delayed evolution).** At $h=0$ the two
+staggered triangles form six distinct alternating sites on one great circle,
+so there is no collision and the rings may pass through the equatorial chart,
+exchanging hemispheres. In the instantaneous time-symmetric surrogate, a
+release with zero latitude speed crosses the equator, slows in the opposite
+hemisphere, turns at the mirror latitude, and returns. The sequence is
+
+$$
++\alpha_0
+\longrightarrow 0
+\longrightarrow -\alpha_0
+\longrightarrow 0
+\longrightarrow +\alpha_0.
+$$
+
+Plainly: the natural motion is a rotating north-south latitude oscillation,
+not contraction to a pole followed by re-expansion. Approaching a pole would
+instead drive three same-polarity sites toward coincidence and terminate the
+ordinary point-kernel chart.
+
+Combining continuous azimuthal rotation with latitude oscillation yields a
+spherical-band path. A rational rotation-to-latitude frequency ratio closes
+after finitely many oscillations; an irrational ratio does not close and
+samples a band. This is kinematic topology only and does not establish a
+retained Noether braid, quantized mode, or physical constraint source.
+
+**Delayed-history boundary.** For a coherently rotating and latitude-breathing
+history, the arriving roots are not the stationary rows used in the displayed
+tangent formula. Delayed tangential acceleration can change both the spin and
+the latitude amplitude, so the exact Master EOM may produce growing,
+shrinking, biased, or non-closing oscillations. Symmetry preserves the reduced
+channel but does not supply time-reversal or amplitude conservation. A claim
+that the rings turn exactly at $\pm\alpha_0$ therefore remains surrogate-only.
+
+**Proof burden, falsifier, and next artifact.** Specify the normal
+constraint-acceleration row explicitly, verify that it contributes no tangent
+component, and evolve the reduced constrained rotating history at $c_f=1$.
+Record equator crossings, minimum same-polarity separation, latitude turning
+points, azimuthal phase advance, causal-root census, and the constraint ledger.
+The next artifact is a constrained-A2 latitude/azimuth reduced-history
+protocol. One retained history that reaches a pole without first violating the
+declared separation floor falsifies the ordinary-chart boundary; one unbiased
+constant-amplitude delayed orbit would advance the oscillator hypothesis.
+
+**Promotion target.** The constrained geometry may support a future
+constraint-model or spherical-candidate comparison section only after the
+constraint provider is native to the theory or explicitly retained as an
+external comparison instrument. It does not modify the bare A2 release result.
+
+## Entry 15 — unrestricted planar neutral six-point static balance (2026-08-15, operator exploration)
+
+**Question and exact chart (grade: derivation target).** Place three electrinos
+and three positrinos at six distinct points
+$\mathbf x_i\in\mathbb R^2$ at one release time, with stationary arriving
+histories and normalized wake speed $c_f=1$. The fact that the coordinates are
+planar does not replace the Master Equation partner row with a logarithmic
+two-dimensional interaction. For the unsoftened signed inverse-square row, zero
+initial partner acceleration requires
+
+$$
+\mathbf A_i
+=
+\kappa\sum_{j\ne i}\sigma_i\sigma_j
+\frac{\mathbf x_i-\mathbf x_j}{\|\mathbf x_i-\mathbf x_j\|^3}
+=\mathbf0,
+\qquad i=1,\ldots,6.
+$$
+
+Plainly: this is the same distance law as before, evaluated at points that all
+happen to lie in one plane. All twelve scalar acceleration components must
+vanish at once; a zero total over all six receivers is automatic and is not the
+requested balance.
+
+**Two exact necessary conditions (grade: derived).** Pairing the terms in
+$\sum_i\mathbf x_i\mathbin{\cdot}\mathbf A_i$ gives the scale identity
+
+$$
+\sum_{i<j}\frac{\sigma_i\sigma_j}
+{\|\mathbf x_i-\mathbf x_j\|}=0.
+$$
+
+Plainly: the inverse-distance total of the six same-polarity pairs must equal
+the inverse-distance total of the nine opposite-polarity pairs. This scalar
+condition is necessary but does not enforce the receiver-local vector
+cancellations.
+
+Summing the three electrino acceleration rows cancels their internal pair
+terms and leaves
+
+$$
+\sum_{p\in P}\sum_{n\in N}
+\frac{\mathbf x_n-\mathbf x_p}
+{\|\mathbf x_n-\mathbf x_p\|^3}=\mathbf0.
+$$
+
+Plainly: the convex hull of the three electrino sites must overlap the convex
+hull of the three positrino sites. If a line strictly separates the two
+triangles, every cross-polarity term has the same signed projection on that
+line and their sum cannot vanish.
+
+**Symmetric and unrestricted diagnostics (grade: measured, bounded).** Direct
+evaluation rejects the alternating regular hexagon. Searches over two
+concentric equilateral triangles, including aligned and staggered phases and
+variable radius ratio, found no finite zero; the optimizer reduced its
+residual by sending one ring outward rather than locating a balance. A separate
+64-start nonlinear least-squares search fixed two electrinos at
+$(-1,0)$ and $(1,0)$, varied the other eight coordinates in the box
+$[-8,8]^8$, and found no zero. Its best full residual norm was about $0.2983$;
+that row was nearly collinear and extended to radius about $6.83$.
+
+Plainly: the obvious symmetric drawings do not work, and the unrestricted
+search also did not reveal an asymmetric solution. The smallish residual is
+not a near-proof: it is partly obtained by separating sites, which weakens
+some contributions without canceling the fixed finite ledger.
+
+**Current claim boundary.** No finite, collision-free planar arrangement is
+currently exhibited here, but the bounded searches do not prove that none
+exists. The planar global existence question therefore remains open. Even a
+certified zero would establish only zero initial partner acceleration for the
+declared stationary history; it would not establish stability, binding, or a
+retained delayed-history branch.
+
+**Proof burden, falsifier, and next artifact.** Quotient translation, rotation,
+and scale, then either certify one noncollision root with an interval Newton or
+Krawczyk box and an independently evaluated twelve-component residual, or
+cover the compactified shape chart with a positive residual lower bound,
+including collision and separation boundaries. One certified finite root
+immediately falsifies the negative lead. The next artifact is a planar
+static-balance certificate, not a dynamical braid claim.
+
+**Promotion target.** A certified root or global exclusion theorem can support
+the general Master Equation stationary-cancellation treatment and the neutral
+braid seed discussion. Until then this remains priority-only.

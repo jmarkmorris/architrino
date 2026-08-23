@@ -88,7 +88,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 499 | `e84e279b056d9bab` |
 | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 1013 | `082ee90b0cede01d` |
 | [reference/priorities/README.md](../priorities/README.md) | 48 | `37f38d7f5b1a072c` |
-| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 44 | `7c2f8734e29d8353` |
+| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 44 | `18ff91313e71ee93` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 76 | `40ee7728d1d26857` |
 | [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 135 | `7297c811d8a68462` |
 | [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 639 | `659572a338801d25` |

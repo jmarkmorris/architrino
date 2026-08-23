@@ -6,7 +6,7 @@
     "id": "theta_H_spec_priority_source_negative_control_0001",
     "rowId": "theta_H_spec_priority_source_negative_control_0001",
     "status": "accepted",
-    "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md",
+    "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md",
     "sourceKind": "priority_source_negative_control",
     "sourceFamily": "EQ-26 hydrogen spectral carrier",
     "sourceRole": "theta_H_spec"
@@ -53,7 +53,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "envelope_gap_rows": {
       "status": "accepted",
@@ -65,7 +65,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "gamma_N_row": {
       "status": "accepted",
@@ -77,7 +77,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "static_response_row": {
       "status": "accepted",
@@ -89,7 +89,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "photon_action_support": {
       "status": "accepted",
@@ -101,7 +101,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "residual_budget": {
       "status": "accepted",
@@ -113,7 +113,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "event_ledger_row": {
       "status": "accepted",
@@ -125,7 +125,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "source_provenance": {
       "status": "accepted",
@@ -137,7 +137,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     },
     "no_hidden_retune_witness": {
       "status": "accepted",
@@ -149,7 +149,7 @@
       "gammaNRowId": "Gamma_N_H_priority_source_negative_control_0001",
       "eventLedgerId": "L_EpJ_hydrogen_spectral_priority_source_negative_control_0001",
       "retuneWitnessId": "S_retune_hydrogen_spectral_priority_source_negative_control_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-26-hydrogen-spectral-carrier-source-field-map.md"
     }
   },
   "scoreDecision": "no_score_increase",

@@ -240,7 +240,7 @@ TOPICS = [
             "content/markdown/aaa/foundations",
             "content/markdown/aaa/dynamics",
             "reference/priorities/master-equation-closure",
-            "reference/priorities/equation-mapping",
+            "reference/priorities/mapping-equations",
         ],
         "claim_bucket": "derivation or closure target",
         "priority": 10,
@@ -359,7 +359,7 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/spacetime",
             "content/markdown/aaa/dynamics",
-            "reference/priorities/cross-theory-mapping",
+            "reference/priorities/mapping-benchmarks",
         ],
         "claim_bucket": "ontology",
         "priority": 9,
@@ -440,7 +440,7 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/dynamics",
             "content/markdown/aaa/cosmology",
-            "reference/priorities/equation-mapping",
+            "reference/priorities/mapping-equations",
             "reference/priorities/cosmology-closure",
         ],
         "claim_bucket": "derivation or closure target",
@@ -465,7 +465,7 @@ TOPICS = [
         "title": "External theory mapping and source leads",
         "destinations": [
             "content/markdown/aaa/philosophy-history/theory-mapping.md",
-            "reference/priorities/cross-theory-mapping",
+            "reference/priorities/mapping-benchmarks",
             "reference/priorities/source-mining",
         ],
         "claim_bucket": "historical/provenance only",

@@ -14,7 +14,7 @@
     "id": "Theta_obs_attempt_0001",
     "rowId": "theta_obs_theta_src_source_attempt_row",
     "status": "attempt",
-    "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md",
+    "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
     "sourceAttempt": {
       "expectedSummaryBlocker": "missing_accepted_theta_obs",
       "expectedFocusedThetaSrcBlocker": "missing_accepted_theta_src"
@@ -24,7 +24,7 @@
         "id": "Theta_src_attempt_0001",
         "rowId": "theta_src_source_attempt_row",
         "status": "attempt",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
         "sourceKeys": {
           "BBN": [
             "W_src",
@@ -76,19 +76,19 @@
         "id": "Theta_read_attempt_0001",
         "rowId": "theta_read_theta_src_source_attempt_row",
         "status": "attempt",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_therm_prov": {
         "id": "Theta_therm_prov_attempt_0001",
         "rowId": "theta_therm_prov_theta_src_source_attempt_row",
         "status": "attempt",
-        "sourcePath": "reference/priorities/equation-mapping/eq-25-theta-therm-cmb-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-25-theta-therm-cmb-source-field-map.md"
       },
       "theta_gal": {
         "id": "Theta_gal_attempt_0001",
         "rowId": "theta_gal_theta_src_source_attempt_row",
         "status": "attempt",
-        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "event_ledger": {
         "id": "L_EpJ_obs_attempt_0001",
@@ -102,21 +102,21 @@
       "rowId": "frw_handoff_theta_src_source_attempt_row",
       "status": "attempt",
       "residual": 0,
-      "sourcePath": "reference/priorities/equation-mapping/eq-18-19-theta-cos-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
     },
     "thermalProvenanceLedger": {
       "id": "R_therm_prov_attempt_0001",
       "rowId": "thermal_provenance_ledger_theta_src_source_attempt_row",
       "status": "attempt",
       "residual": 0,
-      "sourcePath": "reference/priorities/equation-mapping/eq-25-theta-therm-cmb-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-25-theta-therm-cmb-source-field-map.md"
     },
     "noHiddenRetuneWitness": {
       "id": "S_retune_obs_attempt_0001",
       "rowId": "no_hidden_retune_theta_src_source_attempt_row",
       "status": "attempt",
       "residual": 0,
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
     }
   },
   "projections": {
@@ -134,7 +134,7 @@
         "Y_p",
         "H_eff"
       ],
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md"
     },
     "CMB": {
       "id": "Pi_CMB_attempt_0001",
@@ -151,7 +151,7 @@
         "H_eff",
         "a_eff"
       ],
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md"
     },
     "growth": {
       "id": "Pi_growth_attempt_0001",
@@ -169,7 +169,7 @@
         "H_eff",
         "a_eff"
       ],
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md"
     },
     "RAR": {
       "id": "Pi_RAR_attempt_0001",
@@ -185,14 +185,14 @@
         "rho_bar",
         "rho_A"
       ],
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
     }
   },
   "sharedKeys": [
     {
       "key": "rho_NS",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -203,7 +203,7 @@
     {
       "key": "n",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -214,7 +214,7 @@
     {
       "key": "chi_sea",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -225,7 +225,7 @@
     {
       "key": "Gamma_N",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 0.1,
         "CMB": 0.1,
@@ -236,7 +236,7 @@
     {
       "key": "u_sea",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 0,
         "CMB": 0,
@@ -247,7 +247,7 @@
     {
       "key": "M_sea_ab",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -258,7 +258,7 @@
     {
       "key": "rho_bar",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 0.05,
         "CMB": 0.05,
@@ -269,7 +269,7 @@
     {
       "key": "rho_A",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 0.25,
         "CMB": 0.25,
@@ -280,7 +280,7 @@
     {
       "key": "eta",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 6.1e-10,
         "CMB": 6.1e-10,
@@ -291,7 +291,7 @@
     {
       "key": "N_eff",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 3.046,
         "CMB": 3.046,
@@ -302,7 +302,7 @@
     {
       "key": "Y_p",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 0.245,
         "CMB": 0.245,
@@ -313,7 +313,7 @@
     {
       "key": "H_eff",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 70,
         "CMB": 70,
@@ -324,7 +324,7 @@
     {
       "key": "a_eff",
       "status": "attempt",
-      "sourcePath": "reference/priorities/equation-mapping/eq-21-22-23-theta-src-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-21-22-23-theta-src-source-field-map.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,

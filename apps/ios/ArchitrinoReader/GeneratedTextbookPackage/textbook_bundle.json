@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-08-15T15:42:53.285Z",
-  "package_version": "1.0.0-b88e8d95",
+  "generated_at": "2026-08-23T03:08:49.294Z",
+  "package_version": "1.0.0-68ab6c4f",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "b88e8d951cc19a17b70dab4a079cbe5375b8218579a7d24458bdce93299fee4a",
-    "size": 723089
+    "sha256": "68ab6c4fa3d15305c505b266258094296af3f69a526108e09e1740c65d9a42f2",
+    "size": 723534
   },
   "chapters": [
     {
@@ -182,8 +182,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 723575,
-      "sha256": "b88e8d951cc19a17b70dab4a079cbe5375b8218579a7d24458bdce93299fee4a"
+      "size": 724020,
+      "sha256": "68ab6c4fa3d15305c505b266258094296af3f69a526108e09e1740c65d9a42f2"
     },
     {
       "path": "reading-copies/about-architrino.html",
@@ -254,16 +254,16 @@
       "sourcePath": "__generated__/reading-copies/foundations.html",
       "role": "chapter",
       "type": "html",
-      "size": 2574357,
-      "sha256": "7bb5229a8378a741249a66963b89cf0a0fbec891e1295c21b5eda17c7a620780"
+      "size": 2593416,
+      "sha256": "6213418b0862907ac72917c896b49df1dc5d4baf7b8a591364c7201a5e3b424a"
     },
     {
       "path": "reading-copies/foundations.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 287954,
-      "sha256": "fffd675e40a2bf10047509136107f3db0e9ba105badbbcaafeed48047fe5ea15"
+      "size": 290425,
+      "sha256": "ee86e7b12bb3f68aaf1f9ab7ae26edce107db22803fd7584369bc5018f06acbe"
     },
     {
       "path": "reading-copies/noether-braid.html",
@@ -334,32 +334,32 @@
       "sourcePath": "__generated__/reading-copies/reactions.html",
       "role": "chapter",
       "type": "html",
-      "size": 2377038,
-      "sha256": "6e731a386873a9c828b716e05893361c583b4b744495047d00bbc360dff5588f"
+      "size": 2376719,
+      "sha256": "112e3378332e6cffd1e146d42e6959113a495889065ab45a93a05cfd0c840a53"
     },
     {
       "path": "reading-copies/reactions.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 201285,
-      "sha256": "26eb15f42a6aed37b601bf59630ed0ce471f148bbf8c750b70ed3498f3e8f85e"
+      "size": 201450,
+      "sha256": "fda951c36b70c36fd190d65d8d51ea168e03d18612de7f2d4111131f91193ad5"
     },
     {
       "path": "reading-copies/standard-model-assemblies.html",
       "sourcePath": "__generated__/reading-copies/standard-model-assemblies.html",
       "role": "chapter",
       "type": "html",
-      "size": 4604987,
-      "sha256": "2d0be00d934e01557861691eee155148a0b28bcdc8687c57b4ce792e41cb41de"
+      "size": 4608017,
+      "sha256": "0dcaf96d25db7507d55b90fb8e87efcbbd7de4462b89125539ead9f24a35d9c1"
     },
     {
       "path": "reading-copies/standard-model-assemblies.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 434851,
-      "sha256": "7430d76988a2e08dac0f94436fbd69e9baba4279be5b7affde5090fd200adb22"
+      "size": 435978,
+      "sha256": "7228fb9e0f978791a78cdc75f5fdc2c3337b59284a848a35fb86ba7fa2f84684"
     },
     {
       "path": "reading-copies/validation.html",
@@ -462,8 +462,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8780861,
-      "sha256": "8fd15b442ea06eccae81dedb72844f211bd559080f0dfc7c58013dd3fff52e7e"
+      "size": 8785565,
+      "sha256": "0de24c993a70327897705715ee8834678630f604c9e7592c32dff4aa88e06914"
     }
   ],
   "links": []

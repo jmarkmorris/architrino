@@ -397,6 +397,77 @@ $$
 $$
 with each orbit site carrying a fixed polarity sign. If assembly closure retains exactly that six-unit inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why a charged-fermion Noether braid supplies six protected axial polar sites, or whether a more general non-axial six-unit carrier is required, belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
+### Wake Response and Effective Electromagnetic Fields
+
+An individual architrino does not receive an electric or magnetic field as an
+additional substrate input. It receives the causal-root acceleration
+contributions defined by the Master Equation. Effective field language becomes
+available only after those source-provenanced contributions and any derived
+assembly, Noether sea, and boundary response have been projected into a
+receiver-independent continuum record.
+
+There is nevertheless a useful bridge to electric response. For one declared
+source history, evaluate the source-driven acceleration on matched hypothetical
+receiver states that differ only by polarity. Define
+
+$$
+\mathbf A_{\mathrm{even}}^{\mathrm{src}}
+=
+\frac12
+\left(
+\mathbf A_{+}^{\mathrm{src}}
++
+\mathbf A_{-}^{\mathrm{src}}
+\right)
+$$
+
+and
+
+$$
+\mathbf A_{\mathrm{odd}}^{\mathrm{src}}
+=
+\frac12
+\left(
+\mathbf A_{+}^{\mathrm{src}}
+-
+\mathbf A_{-}^{\mathrm{src}}
+\right)
+$$
+
+so that
+
+$$
+\mathbf A_{\sigma}^{\mathrm{src}}
+=
+\mathbf A_{\mathrm{even}}^{\mathrm{src}}
++
+\sigma\mathbf A_{\mathrm{odd}}^{\mathrm{src}},
+\qquad
+\sigma\in\{+1,-1\}.
+$$
+
+The labels `even` and `odd` refer to receiver-polarity reversal. They do not
+refer to spatial parity. One actual architrino has one fixed polarity; the
+matched pair is a comparison instrument, not a co-located physical pair. If
+the even term vanishes in an isolated electric regime, the two receiver
+polarities acquire equal-and-opposite source-driven accelerations. This is the
+native electric-sign analogue, but it remains a decomposition of the causal-hit
+ledger rather than an imported $q\mathbf E/m$ law.
+
+There is no corresponding primitive magnetic vector in one radial hit. A
+magnetic readout must be recovered from organized multi-source and multi-root
+history, moving or circulating assembly geometry, any derived Noether sea and
+boundary response, and an observer-level projection. Whether the sea is
+essential, modifies a direct source-history response, or remains within its
+balanced reference tolerance is a constitutive closure target rather than a
+definition of either field.
+
+Plainly: the electric-like sign difference is already visible when the same
+source history is evaluated against the two architrino polarities. The smooth
+electric field is the later common map of that response. Magnetic behavior
+requires additional organized geometry; neither field is a new substance or
+an extra term in the architrino equation of motion.
+
 ### Provenance and Persistence
 
 The stronger ontological claim is not merely that architrinos move through time. It is that each architrino persists as the same entity through time.

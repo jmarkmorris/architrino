@@ -50,7 +50,7 @@
     "detectorKernel": {
       "id": "K_det_eq31_pi_plus_K_det_coordination_source_control_0001",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-14-30-31-finite-window-w-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md",
       "readout": "charged_pion_free_decay_channel_classifier"
     },
     "outcomePartition": {

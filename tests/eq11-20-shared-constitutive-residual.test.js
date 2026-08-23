@@ -55,7 +55,7 @@ test("shared EQ-11/EQ-20 residual rejects priority-source theta_11_20 rows", () 
     fs.readFileSync(path.join(repoRoot, sharedResidualPath), "utf8"),
   );
   fixture.packet.rows.theta_11_20_weak_gravity.sourcePath =
-    "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md";
+    "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md";
 
   const report = runShared(writeTempFixture(fixture, "priority-source-control.json"));
 

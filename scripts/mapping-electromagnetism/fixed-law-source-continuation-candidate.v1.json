@@ -1,0 +1,329 @@
+{
+  "schema": "aaa-fixed-law-source-continuation-input/v1",
+  "recordId": "fixed-law-source-continuation-candidate-0001",
+  "sourceEvidence": {
+    "status": "candidate_only",
+    "retainedBranchAccepted": false,
+    "producer": "prescribed-return-map diagnostic",
+    "claimBoundary": "Tests evaluator shape only; not retained branch evidence."
+  },
+  "sourcePreparation": {
+    "kind": "exposed-source-inventory-separation-scale",
+    "parameter": "zeta",
+    "insertedIntoPerHitLaw": false
+  },
+  "commonRecord": {
+    "recordId": "source-sea-receiver-family-0001",
+    "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+    "coefficientFingerprint": "coefficient-set-fixed-0001",
+    "regulatorFingerprint": "regulator-fixed-0001",
+    "projectionFingerprint": "internal-section-projection-fixed-0001",
+    "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+    "sourceFamilyId": "source-family-zeta-0001",
+    "commonHistoryPrefixId": "history-prefix-0001",
+    "architrinoIdentityDigest": "identity-inventory-fixed-0001",
+    "fieldSpeed": 1
+  },
+  "tolerances": {
+    "weakZetaMaximum": 0.1,
+    "weakLinearityResidualMax": 0.02,
+    "relativeResidualEpsilon": 1e-12,
+    "rootWeightResidualMax": 1e-12,
+    "transitionMargin": 0,
+    "eventLedgerResidualMax": 1e-8
+  },
+  "continuationRows": [
+    {
+      "rowId": "zeta-minus-010",
+      "zeta": -0.1,
+      "sourceHistoryId": "source-zeta-minus-010",
+      "seaHistoryId": "sea-prefix-0001-zeta-minus-010",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-minus-010",
+      "wakeLedgerFingerprint": "wake-zeta-minus-010",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [-0.197, 0.0999],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 2,
+          "D_r": 1.1,
+          "W_acc": 0.5
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.5,
+        "inactiveGap": 0.6,
+        "sectionStability": 0.3,
+        "collision": 0.9
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-minus-005",
+      "zeta": -0.05,
+      "sourceHistoryId": "source-zeta-minus-005",
+      "seaHistoryId": "sea-prefix-0001-zeta-minus-005",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-minus-005",
+      "wakeLedgerFingerprint": "wake-zeta-minus-005",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [-0.09925, 0.0499875],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 2,
+          "D_r": 1.05,
+          "W_acc": 0.5
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.52,
+        "inactiveGap": 0.62,
+        "sectionStability": 0.31,
+        "collision": 0.91
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-zero",
+      "zeta": 0,
+      "sourceHistoryId": "source-zeta-zero",
+      "seaHistoryId": "sea-prefix-0001-zeta-zero",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-zero",
+      "wakeLedgerFingerprint": "wake-zeta-zero",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [0, 0],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 2,
+          "D_r": 1,
+          "W_acc": 0.5
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.55,
+        "inactiveGap": 0.65,
+        "sectionStability": 0.32,
+        "collision": 0.92
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-plus-005",
+      "zeta": 0.05,
+      "sourceHistoryId": "source-zeta-plus-005",
+      "seaHistoryId": "sea-prefix-0001-zeta-plus-005",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-plus-005",
+      "wakeLedgerFingerprint": "wake-zeta-plus-005",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [0.10075, -0.0499875],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 2,
+          "D_r": 0.95,
+          "W_acc": 0.5
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.52,
+        "inactiveGap": 0.62,
+        "sectionStability": 0.31,
+        "collision": 0.91
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-plus-010",
+      "zeta": 0.1,
+      "sourceHistoryId": "source-zeta-plus-010",
+      "seaHistoryId": "sea-prefix-0001-zeta-plus-010",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-plus-010",
+      "wakeLedgerFingerprint": "wake-zeta-plus-010",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [0.203, -0.0999],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 2,
+          "D_r": 0.9,
+          "W_acc": 0.5
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.5,
+        "inactiveGap": 0.6,
+        "sectionStability": 0.3,
+        "collision": 0.9
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-plus-030",
+      "zeta": 0.3,
+      "sourceHistoryId": "source-zeta-plus-030",
+      "seaHistoryId": "sea-prefix-0001-zeta-plus-030",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-plus-030",
+      "wakeLedgerFingerprint": "wake-zeta-plus-030",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [0.627, -0.2973],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 1.8,
+          "D_r": 0.7,
+          "W_acc": 0.5555555555555556
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.35,
+        "inactiveGap": 0.35,
+        "sectionStability": 0.2,
+        "collision": 0.75
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-plus-050",
+      "zeta": 0.5,
+      "sourceHistoryId": "source-zeta-plus-050",
+      "seaHistoryId": "sea-prefix-0001-zeta-plus-050",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-plus-050",
+      "wakeLedgerFingerprint": "wake-zeta-plus-050",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [1.075, -0.4875],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 1.5,
+          "D_r": 0.5,
+          "W_acc": 0.6666666666666666
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.15,
+        "inactiveGap": 0.1,
+        "sectionStability": 0.08,
+        "collision": 0.6
+      },
+      "branchStatus": "retained"
+    },
+    {
+      "rowId": "zeta-plus-070-transition",
+      "zeta": 0.7,
+      "sourceHistoryId": "source-zeta-plus-070",
+      "seaHistoryId": "sea-prefix-0001-zeta-plus-070",
+      "receiverHistoryId": "receiver-prefix-0001-zeta-plus-070",
+      "wakeLedgerFingerprint": "wake-zeta-plus-070",
+      "transmitterTags": ["source", "sea", "receiver", "boundary"],
+      "bindings": {
+        "lawFingerprint": "master-equation-fixed-law-candidate-0001",
+        "coefficientFingerprint": "coefficient-set-fixed-0001",
+        "regulatorFingerprint": "regulator-fixed-0001",
+        "projectionFingerprint": "internal-section-projection-fixed-0001",
+        "toleranceFingerprint": "continuation-tolerances-fixed-0001",
+        "sourceFamilyId": "source-family-zeta-0001",
+        "commonHistoryPrefixId": "history-prefix-0001",
+        "architrinoIdentityDigest": "identity-inventory-fixed-0001"
+      },
+      "stateVector": [1.547, -0.6657],
+      "rootRows": [
+        {
+          "rootId": "receiver<-source/root-0",
+          "transmitterTag": "source",
+          "D_t": 1.25,
+          "D_r": 0.3,
+          "W_acc": 0.8
+        }
+      ],
+      "margins": {
+        "rootJacobian": 0.04,
+        "inactiveGap": 0,
+        "sectionStability": 0.02,
+        "collision": 0.45
+      },
+      "branchStatus": "retained"
+    }
+  ],
+  "pairBasins": {
+    "electron": null,
+    "positron": null
+  }
+}

@@ -15,7 +15,7 @@ No locally owned rows. All preserved simulation tasks route to canonical owners.
 | `convergence_and_provenance` | [App Solver](../app-solver/work-queue.md) |
 | `eta_positive_package` | Master-Equation Closure |
 | `hydrogen_gamma_n_record_extraction` | [Nuclear, Atomic, and Molecular Closure](../nuclear-atomic-molecular-closure/work-queue.md) |
-| `gw_public_waveform_packet` | [Strong-Field Closure](../strong-field-closure/work-queue.md) and [Equation Mapping](../equation-mapping/work-queue.md) |
+| `gw_public_waveform_packet` | [Strong-Field Closure](../strong-field-closure/work-queue.md) and [Equation Mapping](../mapping-equations/work-queue.md) |
 
 ## Open work
 

@@ -107,7 +107,7 @@ Plainly: one event record describes one event; population claims need their own 
 | Source history, validity regime, uncertainty, and covariance fields | Same owner, `source_window_carrier_map` | Integrate now into the routing shell and first trial. | Record-shape requirement only. |
 | No-hidden-retune witness | Same owner and existing EQ-07A route | Retain and make explicit in the trial. | No accepted no-retune result. |
 | Detachability test | Same owner | Integrate now as an observer/native level-separation test. | Proposed operational test only. |
-| EQ-07A compact-star first trial | Same owner, routed to [EQ-07A](../../../priorities/equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md) | Integrate now as a record-shape-only next action. | No carrier identity, retention, stability, realization, acceptance, or score movement. |
+| EQ-07A compact-star first trial | Same owner, routed to [EQ-07A](../../../priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md) | Integrate now as a record-shape-only next action. | No carrier identity, retention, stability, realization, acceptance, or score movement. |
 | Compact-star/black-hole and merger-class separations | Same owner | Retain as taxonomy discipline. | No assertion that the classes can never be joined. |
 | Population statistics | No safe existing owner identified in the inspected owner chain | Explicitly out of scope for the single-event trial. | No new ensemble record or queue object. |
 

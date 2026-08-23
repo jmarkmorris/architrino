@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1538
+      "sections": 1539
     }
   },
   "tocRoot": {
@@ -138,6 +138,14 @@
                 "markdownPath": "content/markdown/aaa/foundations/architrino.md",
                 "markdownSection": "Polarity and Electric Bookkeeping",
                 "sectionKey": "polarity and electric bookkeeping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wake Response and Effective Electromagnetic Fields",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Wake Response and Effective Electromagnetic Fields",
+                "sectionKey": "wake response and effective electromagnetic fields",
                 "headingLevel": 2
               },
               {

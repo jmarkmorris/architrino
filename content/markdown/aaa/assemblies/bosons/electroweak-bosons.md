@@ -19,8 +19,8 @@ Accordingly, the planar-pair description, Gate A/B quantities, and every neutrin
 The photon-channel construction is the canonical electromagnetic transport target. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework models that target as a **propagating assembly of discrete action history**.
 
 ### Ontological Status: No Separate Gauge Inventory
-*   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
-*   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
+*   **The Claim:** There is no primitive electromagnetic gauge field added to the Euclidean void as a separate substance.
+*   **The Effective Record:** An electromagnetic field is an observer-level projection of source-assembly path histories, their causal wakes, the boundary record, and any derived Noether sea response. The relative direct-wake and sea-mediated shares remain a constitutive closure target.
 *   **The Assembly Target:** A candidate photon channel is modeled as a specific, coherent bundle of these historical influences (per-hit actions), organized into a planar-pair mode whose retained stability remains to be established. In this construction, emission is not the excitation of a background field; it is the release of an action ledger into the candidate photon channel.
 
 ### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair

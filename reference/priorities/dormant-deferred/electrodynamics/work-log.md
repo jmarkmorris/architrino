@@ -13,6 +13,13 @@ certificates, or evidence packets.
 
 ## Log Entries
 
+- 2026-08-18: Created the active
+  [Mapping Electromagnetism](../../mapping-electromagnetism/priorities.md)
+  integration lane for Maxwell recovery, electromagnetic inverse constraints,
+  and the charge-neutral common-axis source/moment/field question. The parked
+  electrodynamics packet remains on ice with an empty queue; its primitive-dyon
+  counterfactuals were not promoted or reactivated. No theory, evidence, solver,
+  score, or reader-facing corpus status changed.
 - 2026-08-05: Mined Renato P. dos Santos, *Magnetic monopoles and dyons
   revisited*, arXiv:1503.00499, as a standard classical comparison. Retained
   only its separation of radial and transverse charge pairings, the

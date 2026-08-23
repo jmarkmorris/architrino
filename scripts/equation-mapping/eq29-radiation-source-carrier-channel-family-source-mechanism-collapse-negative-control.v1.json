@@ -79,84 +79,84 @@
         "rowId": "source-branch-gamma-e-pm-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "noether_sea_magnetic_state_row": {
         "id": "noether-sea-magnetic-state-source-candidate-0001",
         "rowId": "noether-sea-magnetic-state-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "closure_residual_planar_mode_row": {
         "id": "closure-residual-planar-mode-source-candidate-0001",
         "rowId": "closure-residual-planar-mode-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "photon_output_gate_A_B_row": {
         "id": "photon-output-gate-A-B-source-candidate-0001",
         "rowId": "photon-output-gate-A-B-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "source_depletion_row": {
         "id": "source-depletion-synchrotron-source-candidate-0001",
         "rowId": "source-depletion-synchrotron-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "recoil_medium_wake_remnant_rows": {
         "id": "recoil-medium-wake-remnant-source-candidate-0001",
         "rowId": "recoil-medium-wake-remnant-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "power_spectrum_benchmark_row": {
         "id": "power-spectrum-benchmark-source-candidate-0001",
         "rowId": "power-spectrum-benchmark-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "cooling_row": {
         "id": "cooling-synchrotron-source-candidate-0001",
         "rowId": "cooling-synchrotron-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "polarization_angular_momentum_handoff_row": {
         "id": "polarization-angular-momentum-source-candidate-0001",
         "rowId": "polarization-angular-momentum-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "event_ledger_row": {
         "id": "event-ledger-synchrotron-source-candidate-0001",
         "rowId": "event-ledger-synchrotron-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "source_provenance": {
         "id": "source-provenance-synchrotron-source-candidate-0001",
         "rowId": "source-provenance-synchrotron-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       },
       "no_hidden_retune_witness": {
         "id": "no-hidden-retune-synchrotron-source-candidate-0001",
         "rowId": "no-hidden-retune-synchrotron-source-candidate-row",
         "status": "attempt",
         "carrierId": "radiation_source_carrier_W_syn_0_source_mechanism_collapse_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-29-radiation-source-carrier-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-29-radiation-source-carrier-source-field-map.md"
       }
     },
     "radiationSource": {

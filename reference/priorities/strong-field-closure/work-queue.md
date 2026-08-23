@@ -62,7 +62,7 @@ Build the source-side and effective-metric portion of a versioned public gravita
 
 Keep observer-accessible temperature, stored configuration energy, and packed-core coarse-graining separate before any low-temperature or low-entropy interior claim.
 
-**Depends on:** [temperature](../cross-theory-mapping/temperature.md), SF-001.
+**Depends on:** [temperature](../mapping-benchmarks/temperature.md), SF-001.
 
 ### SF-009 — Electromagnetic constitutive ceiling
 

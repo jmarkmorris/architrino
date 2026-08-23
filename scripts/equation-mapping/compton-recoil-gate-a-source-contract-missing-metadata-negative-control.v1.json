@@ -52,7 +52,7 @@
     "medium": {
       "status": "attempt",
       "rowId": "medium-ledger-zero-gate-a-source-contract-missing-metadata-control",
-      "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
       "eventId": "e_gamma_e_0",
       "delta_E": 0,
       "delta_p": [
@@ -64,7 +64,7 @@
     "remnant": {
       "status": "attempt",
       "rowId": "remnant-ledger-zero-gate-a-source-contract-missing-metadata-control",
-      "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
       "eventId": "e_gamma_e_0",
       "delta_E": 0,
       "delta_p": [
@@ -113,37 +113,37 @@
       "photon_gate_B_transverse_handoff": {
         "status": "attempt",
         "rowId": "photon-gate-B-transverse-handoff-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "eventId": "e_gamma_e_0"
       },
       "target_retained_branch": {
         "status": "attempt",
         "rowId": "target-retained-branch-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "eventId": "e_gamma_e_0"
       },
       "recoil_branch": {
         "status": "attempt",
         "rowId": "recoil-branch-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "eventId": "e_gamma_e_0"
       },
       "angular_momentum_ledger_delta_J": {
         "status": "attempt",
         "rowId": "angular-momentum-ledger-delta-J-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "eventId": "e_gamma_e_0"
       },
       "noether_sea_state_row": {
         "status": "attempt",
         "rowId": "noether-sea-state-row-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "eventId": "e_gamma_e_0"
       },
       "energy_momentum_event_ledger": {
         "status": "attempt",
         "rowId": "energy-momentum-event-ledger-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md",
         "eventId": "e_gamma_e_0"
       }
     },
@@ -151,25 +151,25 @@
       "effective_charge_current_continuity": {
         "status": "attempt",
         "rowId": "effective-charge-current-continuity-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "em_stress_poynting_control_volume": {
         "status": "attempt",
         "rowId": "em-stress-poynting-control-volume-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "effective_gauge_chart_witness": {
         "status": "attempt",
         "rowId": "effective-gauge-chart-witness-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "photon_gate_C_compton_vertex_handoff": {
         "status": "attempt",
         "rowId": "photon-gate-C-compton-vertex-handoff-gate-a-source-contract-missing-metadata-control",
-        "sourcePath": "reference/priorities/equation-mapping/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       }
     },

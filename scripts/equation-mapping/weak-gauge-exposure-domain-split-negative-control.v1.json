@@ -14,77 +14,77 @@
     "weak_visible_branch_ledger": {
       "id": "L_A_weak_visible_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "weak_projection": {
       "id": "Pi_weak_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "weak_quotient": {
       "id": "Q_weak_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "weak_exposure_record": {
       "id": "E_weak_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "va_chirality_gate": {
       "id": "VA_gate_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "ckm_overlap_readout": {
       "id": "CKM_readout_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "pmns_overlap_readout": {
       "id": "PMNS_readout_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_split_PMNS_negative_control",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "weak_corridor_provenance": {
       "id": "weak_corridor_provenance_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "effective_gauge_covariance_witness": {
       "id": "R_cov_weak_gauge_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "reaction_event_ledger": {
       "id": "L_EpJ_reaction_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "eventId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "noether_sea_response": {
       "id": "M_sea_weak_domain_split_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/eq-16-weak-visible-branch-ledger-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     }

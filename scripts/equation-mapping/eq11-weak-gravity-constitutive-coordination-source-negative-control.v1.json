@@ -18,7 +18,7 @@
       "theta_11_20": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "theta_sea": {
         "status": "accepted",
@@ -28,27 +28,27 @@
       "theta_src": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "constitutive_response": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "source_branch_ledger": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "wake_ledger": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "mass_loading_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-02-04-translating-binary-shared-record-instantiation.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md"
       },
       "metric_projection": {
         "status": "accepted",
@@ -58,32 +58,32 @@
       "effective_coupling_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "poisson_handoff_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "sea_stress_pressure_source_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "curvature_readout_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "stress_energy_readout_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "effective_coupling_continuity_row": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "ppn_metric_handoff": {
         "status": "accepted",
@@ -93,12 +93,12 @@
       "source_provenance": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       },
       "no_hidden_retune_witness": {
         "status": "accepted",
         "carrierId": "theta_11_20_weak_attempt_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-11-20-gravity-dark-energy-packet.md"
       }
     },
     "sharedKeys": [

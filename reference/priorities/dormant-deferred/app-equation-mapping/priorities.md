@@ -2,7 +2,7 @@
 
 ## LLM Instructions
 
-- Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../equation-mapping/priorities.md](../../equation-mapping/priorities.md).
+- Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../mapping-equations/priorities.md](../../mapping-equations/priorities.md).
 - Treat app output as an explanatory working surface, not as accepted equation-mapping evidence or score movement.
 - Keep user-facing app language plain. Use `equation`, `comment`, `pointer line`, `section of the formula`, `subject`, and `background`; do not expose animation-engine or scene-language terminology.
 - Keep [requirements-and-design.md](requirements-and-design.md) stable and descriptive. Move task-shaped implementation work into `Task Queue`.
@@ -77,4 +77,4 @@ The first useful version should let the operator:
 
 ## Related Priority Notes
 
-- [Equation Mapping](../../equation-mapping/priorities.md)
+- [Equation Mapping](../../mapping-equations/priorities.md)

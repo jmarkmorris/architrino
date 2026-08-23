@@ -11,7 +11,7 @@
     "expectedNextBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history"
   },
   "sourceBasis": {
-    "path": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "path": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
     "role": "priority-only evidence-object contract, not accepted retained evidence"
   },
   "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",
@@ -20,7 +20,7 @@
     "kind": "positive_width_domain",
     "status": "blocked",
     "rowId": "domain_support_blocked_source_shell",
-    "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
     "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
   },
   "rowBindings": {
@@ -29,7 +29,7 @@
       "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "six_body_polarity_neutral_inventory_preserved": {
@@ -37,7 +37,7 @@
       "rowId": "six_body_polarity_neutral_inventory_preserved_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "role_map_selected_or_quotient_policy_declared": {
@@ -45,7 +45,7 @@
       "rowId": "role_map_selected_or_quotient_policy_declared_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "path_history_rows_bound_to_S_eq": {
@@ -53,7 +53,7 @@
       "rowId": "path_history_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "causal_root_ledger_rows_bound_to_S_eq": {
@@ -61,7 +61,7 @@
       "rowId": "causal_root_ledger_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "wake_tail_rows_bound_to_S_eq": {
@@ -69,7 +69,7 @@
       "rowId": "wake_tail_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "energy_action_rows_bound_to_S_eq": {
@@ -77,7 +77,7 @@
       "rowId": "energy_action_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "momentum_and_angular_momentum_rows_bound_to_S_eq": {
@@ -85,7 +85,7 @@
       "rowId": "momentum_and_angular_momentum_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "phase_rows_bound_to_S_eq": {
@@ -93,7 +93,7 @@
       "rowId": "phase_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "retained_plane_orientation_rows_bound_to_S_eq": {
@@ -101,7 +101,7 @@
       "rowId": "retained_plane_orientation_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "response_center_and_group_velocity_rows_bound_to_S_eq": {
@@ -109,7 +109,7 @@
       "rowId": "response_center_and_group_velocity_rows_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "Noether_sea_record_bound_to_S_eq": {
@@ -117,7 +117,7 @@
       "rowId": "Noether_sea_record_bound_to_S_eq_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "binary_to_binary_phase_row_set_identity": {
@@ -125,7 +125,7 @@
       "rowId": "binary_to_binary_phase_row_set_identity_blocked_source_shell",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     }
   },
@@ -135,7 +135,7 @@
       "rowId": "split_witness_zero_blocked_source_shell",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
       "residual": 0,
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "retune_witness_zero": {
@@ -143,7 +143,7 @@
       "rowId": "retune_witness_zero_blocked_source_shell",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
       "residual": 0,
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     },
     "overlap_preimage_identity": {
@@ -151,7 +151,7 @@
       "rowId": "overlap_preimage_identity_blocked_source_shell",
       "domainId": "S_eq_retained_domain_blocked_source_shell_0001",
       "consistent": false,
-      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
       "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001"
     }
   }

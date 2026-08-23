@@ -38,7 +38,7 @@
         "thermalProvenanceId": "theta_therm_prov_source_identity_negative_control_0001",
         "eventLedgerId": "cmb_event_ledger_source_identity_negative_control_0001",
         "transportPathId": "cmb_source_to_decoupling_transport_negative_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-25-theta-therm-cmb-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-25-theta-therm-cmb-source-field-map.md"
       },
       "state_space_row": {
         "status": "accepted",
@@ -86,7 +86,7 @@
         "thermalProvenanceId": "theta_therm_prov_source_identity_negative_control_0001",
         "eventLedgerId": "cmb_event_ledger_source_identity_negative_control_0001",
         "transportPathId": "cmb_source_to_decoupling_transport_negative_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "coarse_projection_row": {
         "status": "accepted",
@@ -98,7 +98,7 @@
         "thermalProvenanceId": "theta_therm_prov_source_identity_negative_control_0001",
         "eventLedgerId": "cmb_event_ledger_source_identity_negative_control_0001",
         "transportPathId": "cmb_source_to_decoupling_transport_negative_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "collision_operator_row": {
         "status": "accepted",
@@ -194,7 +194,7 @@
         "thermalProvenanceId": "theta_therm_prov_source_identity_negative_control_0001",
         "eventLedgerId": "cmb_event_ledger_source_identity_negative_control_0001",
         "transportPathId": "cmb_source_to_decoupling_transport_negative_control_0001",
-        "sourcePath": "reference/priorities/equation-mapping/eq-25-theta-therm-cmb-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/eq-25-theta-therm-cmb-source-field-map.md"
       }
     },
     "sharedKeys": [

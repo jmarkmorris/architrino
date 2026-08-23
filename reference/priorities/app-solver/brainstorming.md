@@ -83,7 +83,7 @@ does not establish Lorentz recovery by itself.
 - Route seed choice and branch identity through the Braid Program; route
   observer-level clock, ruler, synchronization, and preferred-frame
   acceptance through
-  [Cross-Theory Mapping](../cross-theory-mapping/lorentz-invariance-test-suite.md).
+  [Mapping Benchmarks](../mapping-benchmarks/lorentz-invariance-test-suite.md).
 
 ### CPU Performance
 

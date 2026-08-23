@@ -19,7 +19,7 @@
       "id": "W_eq31_pi_plus_source_missing_negative_control_0001",
       "kind": "charged_pion_free_weak_decay_window_source_missing_negative_control",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/equation-mapping/missing-eq31-pion-window-source.md",
+      "sourcePath": "reference/priorities/mapping-equations/missing-eq31-pion-window-source.md",
       "pdgReactionId": "pi_plus_s008_1",
       "pdgSourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
       "freeVsInMediumBoundary": "free_charged_pion_weak_lifetime_not_in_medium_residual_strong_exchange"

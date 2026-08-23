@@ -399,6 +399,77 @@ $$
 $$
 with each orbit site carrying a fixed polarity sign. If assembly closure retains exactly that six-unit inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why a charged-fermion Noether braid supplies six protected axial polar sites, or whether a more general non-axial six-unit carrier is required, belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
+#### Wake Response and Effective Electromagnetic Fields
+
+An individual architrino does not receive an electric or magnetic field as an
+additional substrate input. It receives the causal-root acceleration
+contributions defined by the Master Equation. Effective field language becomes
+available only after those source-provenanced contributions and any derived
+assembly, Noether sea, and boundary response have been projected into a
+receiver-independent continuum record.
+
+There is nevertheless a useful bridge to electric response. For one declared
+source history, evaluate the source-driven acceleration on matched hypothetical
+receiver states that differ only by polarity. Define
+
+$$
+\mathbf A_{\mathrm{even}}^{\mathrm{src}}
+=
+\frac12
+\left(
+\mathbf A_{+}^{\mathrm{src}}
++
+\mathbf A_{-}^{\mathrm{src}}
+\right)
+$$
+
+and
+
+$$
+\mathbf A_{\mathrm{odd}}^{\mathrm{src}}
+=
+\frac12
+\left(
+\mathbf A_{+}^{\mathrm{src}}
+-
+\mathbf A_{-}^{\mathrm{src}}
+\right)
+$$
+
+so that
+
+$$
+\mathbf A_{\sigma}^{\mathrm{src}}
+=
+\mathbf A_{\mathrm{even}}^{\mathrm{src}}
++
+\sigma\mathbf A_{\mathrm{odd}}^{\mathrm{src}},
+\qquad
+\sigma\in\{+1,-1\}.
+$$
+
+The labels `even` and `odd` refer to receiver-polarity reversal. They do not
+refer to spatial parity. One actual architrino has one fixed polarity; the
+matched pair is a comparison instrument, not a co-located physical pair. If
+the even term vanishes in an isolated electric regime, the two receiver
+polarities acquire equal-and-opposite source-driven accelerations. This is the
+native electric-sign analogue, but it remains a decomposition of the causal-hit
+ledger rather than an imported $q\mathbf E/m$ law.
+
+There is no corresponding primitive magnetic vector in one radial hit. A
+magnetic readout must be recovered from organized multi-source and multi-root
+history, moving or circulating assembly geometry, any derived Noether sea and
+boundary response, and an observer-level projection. Whether the sea is
+essential, modifies a direct source-history response, or remains within its
+balanced reference tolerance is a constitutive closure target rather than a
+definition of either field.
+
+Plainly: the electric-like sign difference is already visible when the same
+source history is evaluated against the two architrino polarities. The smooth
+electric field is the later common map of that response. Magnetic behavior
+requires additional organized geometry; neither field is a new substance or
+an extra term in the architrino equation of motion.
+
 #### Provenance and Persistence
 
 The stronger ontological claim is not merely that architrinos move through time. It is that each architrino persists as the same entity through time.
@@ -30292,11 +30363,11 @@ That yields a disciplined provisional picture:
 
 ### Gauge Structure Emergence
 
-This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$. The short version is that gauge fields are not added to the Euclidean void as new primitive substances. They are observer-level bookkeeping for repeatable patterns in Noether sea state, assembly geometry, axial-layer exposure, and causal-wake response.
+This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$. The short version is that gauge fields are not added to the Euclidean void as new primitive substances. They are observer-level bookkeeping projected from source-assembly geometry, axial-layer exposure, causal-wake history, boundary records, and any derived Noether sea response.
 
 The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, anomaly cancellation, running couplings, and null results for non-baseline channels. This chapter is a working emergence map, not the formal symmetry theorem chapter. Its job is to show what must be recovered and which substrate records are allowed to carry that recovery before exact closure is finished.
 
-The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one retained assembly and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
+The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one declared source-assembly, causal-history, boundary, and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
 
 Readers who want the particle dictionary before this emergence map can read [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) and [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) first.
 
@@ -30308,20 +30379,20 @@ In this chapter, the Noether sea means the dense, permeating medium of coupled, 
 
 - **Occupancy:** Nonzero occupancy of pro/anti Noether braid assemblies.
 - **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows, where $S$ denotes spin/angular-momentum bookkeeping rather than the action.
-- **Medium response:** The Noether sea is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. The subscripted $\epsilon_0$ is the standard effective permittivity symbol and is unrelated to the polarity unit $\epsilon=|e|/6$. These are not fundamental constants of the void but derived measures of Noether sea response, including resistance to polarization and density-like occupation.
+- **Medium-response target:** The Noether sea is a candidate contributor to the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. The subscripted $\epsilon_0$ is the standard effective permittivity symbol and is unrelated to the polarity unit $\epsilon=|e|/6$. These are not fundamental constants of the void. The constitutive derivation must determine whether they summarize an essential sea response, a modification of direct source-wake response, or a regime in which the sea remains within its balanced reference tolerance.
 
 One useful assembly-level picture is that long-lived Noether sea units arise when complementary pro/anti braids pair in antiparallel fashion so that local polar-site leakage is mutually suppressed. In that reading, Noether sea transparency is not emptiness but a successful cancellation strategy: the Noether sea remains quiet because its local polar-site leakage is internally routed and its large-scale moments stay near zero.
 
 #### Field Language as Effective Bookkeeping
 
-Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for Noether sea state and assembly state, not a second substrate ontology.
+Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for source and assembly history, boundaries, and any resolved Noether sea state, not a second substrate ontology.
 
 The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state perspective and the Physical Observer.
 
 - **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
 - **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
-  - **$\mathbf{E}$ and $\mathbf{B}$ fields** are statistical averages of receiver-side causal-flux density and circulation/vorticity in the Noether sea.
-  - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
+  - **$\mathbf{E}_{\mathrm{eff}}$ and $\mathbf{B}_{\mathrm{eff}}$** are receiver-independent effective projections of the declared source, causal-history, boundary, and Noether sea record. Electric response is constrained by receiver-polarity reversal; magnetic response is constrained by axial, circulation, and motion-dependent assembly measurements. Neither field is defined to be a Noether sea average.
+  - **Gauge potentials ($A_\mu^{\mathrm{eff}}$)** are effective connections to be reconstructed from the same wake/action record. Local twists, strains, polarization, or density gradients in the Noether braid network are candidate native carriers, not established meanings of the potential by definition.
 
 ##### Gauss-Law Source and Closure Benchmarks
 
@@ -30341,7 +30412,7 @@ $$
 0
 $$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, Noether sea response, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through circulation/vorticity without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, declared Noether sea record, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through an axial or antisymmetric projection without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
 
 ##### Maxwell-Ampere Continuity Benchmark
 
@@ -30358,15 +30429,15 @@ I_{\mathrm{cond}}
 \right)
 $$
 
-in the validated regime. The useful lesson is not that displacement current is a new substrate current moving through empty space. It is that conduction-current bookkeeping in charged assemblies and changing effective electric flux in the Noether sea response must project to the same loop-circulation record. If the two surface choices require different branch records, different medium-response variables, or a hidden retuning of $\mu_0$ and $\epsilon_0$, then the effective electromagnetic map has not recovered Maxwell-level continuity.
+in the validated regime. The useful lesson is not that displacement current is a new substrate current moving through empty space. It is that conduction-current bookkeeping in charged assemblies and changing effective electric flux projected from the source, boundary, and declared Noether sea record must yield the same loop-circulation result. If the two surface choices require different branch records, different medium-response variables, or a hidden retuning of $\mu_0$ and $\epsilon_0$, then the effective electromagnetic map has not recovered Maxwell-level continuity.
 
 #### Symmetry Groups as Geometric Deformations
 
-We map the abstract gauge groups of the Standard Model to physical deformations of the Noether sea and its Noether braids:
+We map the abstract gauge groups of the Standard Model to candidate assembly, causal-wake, and Noether sea records:
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and transmitter-side acceleration-weight modulation (the transmitter-side Jacobian entering only as transversality and root-density data).
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A recovery target in which one source-history, assembly, boundary, and Noether sea record must supply charge continuity, effective phase transport, and electric and magnetic response. Potential density and polarization alignment of the Noether sea are candidate carriers. They must be derived or bounded as unnecessary rather than inserted as the definition of U(1). The native acceleration remains the delayed line-of-action hit sum; transverse and velocity-dependent observer-level pieces must arise only after the relevant branch geometry and causal history are aggregated.
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
@@ -30376,7 +30447,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
     *   *SM View:* Non-Abelian color rotation among three quark color labels.
     *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A color-sector recovery target for axis-exceptionality bookkeeping in the axial frame of the Noether braid assembly; see [Color Charge SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
-The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether sea state and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, color axis-exceptionality records, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, $g_1$, $g_2$, $g_3$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
+The emergence claim in this chapter is therefore a mapping target with four required parts. The candidate native mechanisms include delayed causal-wake coupling, axial-layer deformation, and Noether sea response, whose relative roles remain to be derived. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, color axis-exceptionality records, source and boundary history, and any required medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, $g_1$, $g_2$, $g_3$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
 
 A compact reader-facing residual for this map is
 $$
@@ -34959,8 +35030,8 @@ Accordingly, the planar-pair description, Gate A/B quantities, and every neutrin
 The photon-channel construction is the canonical electromagnetic transport target. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework models that target as a **propagating assembly of discrete action history**.
 
 ##### Ontological Status: No Separate Gauge Inventory
-*   **The Claim:** There is no abstract "electromagnetic field" separate from the particles.
-*   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
+*   **The Claim:** There is no primitive electromagnetic gauge field added to the Euclidean void as a separate substance.
+*   **The Effective Record:** An electromagnetic field is an observer-level projection of source-assembly path histories, their causal wakes, the boundary record, and any derived Noether sea response. The relative direct-wake and sea-mediated shares remain a constitutive closure target.
 *   **The Assembly Target:** A candidate photon channel is modeled as a specific, coherent bundle of these historical influences (per-hit actions), organized into a planar-pair mode whose retained stability remains to be established. In this construction, emission is not the excitation of a background field; it is the release of an action ledger into the candidate photon channel.
 
 ##### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
@@ -41582,7 +41653,7 @@ A relativistic electron or positron with Lorentz factor $\gamma$ moving in magne
 
 Cascade development is controlled by competition among radiative cooling, pair production, advection, and escape. In compact high-field zones, this feedback can strongly increase pair loading and opacity.
 
-This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer below does not replace these formulas; it asks which Noether braid velocity deformation, anisotropic Noether sea state, and closure residual must be present for the same photon output to occur.
+This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer below does not replace these formulas; it asks which Noether braid velocity deformation and closure residual must be present for the same photon output to occur, and whether an anisotropic Noether sea state is required to carry part of that response.
 
 #### Core Equations
 
@@ -41683,7 +41754,7 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 
 #### Radiation Inheritance
 
-Synchrotron emission is the curved charged-assembly transport specialization of the shared radiation program in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The standard phrase "a magnetic field bends a relativistic charge and the charge radiates" remains the observer-level baseline. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ map, the channel-specific claim is narrower: anisotropic Noether sea transport and gradient forcing deform the moving Noether braid faster than its internal closure ledgers can retune, leaving a residual that may enter the planar-mode basin.
+Synchrotron emission is the curved charged-assembly transport specialization of the shared radiation program in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The standard phrase "a magnetic field bends a relativistic charge and the charge radiates" remains the observer-level baseline. In the provisional sea-mediated branch studied here, the channel-specific hypothesis is narrower: anisotropic Noether sea transport and gradient forcing deform the moving Noether braid faster than its internal closure ledgers can retune, leaving a residual that may enter the planar-mode basin. A direct-wake or mixed branch remains admissible until the provenance controls distinguish it.
 
 The inherited skeleton is
 
