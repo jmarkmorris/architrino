@@ -1,6 +1,6 @@
 # Gauge Structure Emergence
 
-This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$. The short version is that gauge fields are not added to the Euclidean void as new primitive substances. They are observer-level bookkeeping for repeatable patterns in Noether sea state, assembly geometry, axial-layer exposure, and causal-wake response.
+This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$. The short version is that gauge fields are not added to the Euclidean void as new primitive substances. They are observer-level bookkeeping projected from source-assembly geometry, axial-layer exposure, causal-wake history, boundary records, and any derived Noether sea response.
 
 The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, anomaly cancellation, running couplings, and null results for non-baseline channels. This chapter is a working emergence map, not the formal symmetry theorem chapter. Its job is to show what must be recovered and which substrate records are allowed to carry that recovery before exact closure is finished.
 
@@ -16,7 +16,7 @@ In this chapter, the Noether sea means the dense, permeating medium of coupled, 
 
 - **Occupancy:** Nonzero occupancy of pro/anti Noether braid assemblies.
 - **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows, where $S$ denotes spin/angular-momentum bookkeeping rather than the action.
-- **Medium response:** The Noether sea is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. The subscripted $\epsilon_0$ is the standard effective permittivity symbol and is unrelated to the polarity unit $\epsilon=|e|/6$. These are not fundamental constants of the void but derived measures of Noether sea response, including resistance to polarization and density-like occupation.
+- **Medium-response target:** The Noether sea is a candidate contributor to the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. The subscripted $\epsilon_0$ is the standard effective permittivity symbol and is unrelated to the polarity unit $\epsilon=|e|/6$. These are not fundamental constants of the void. The constitutive derivation must determine whether they summarize an essential sea response, a modification of direct source-wake response, or a regime in which the sea remains within its balanced reference tolerance.
 
 One useful assembly-level picture is that long-lived Noether sea units arise when complementary pro/anti braids pair in antiparallel fashion so that local polar-site leakage is mutually suppressed. In that reading, Noether sea transparency is not emptiness but a successful cancellation strategy: the Noether sea remains quiet because its local polar-site leakage is internally routed and its large-scale moments stay near zero.
 
@@ -28,8 +28,8 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
 
 - **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
 - **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
-  - **$\mathbf{E}$ and $\mathbf{B}$ fields** are statistical averages of receiver-side causal-flux density and circulation/vorticity in the Noether sea.
-  - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
+  - **$\mathbf{E}_{\mathrm{eff}}$ and $\mathbf{B}_{\mathrm{eff}}$** are receiver-independent effective projections of the declared source, causal-history, boundary, and Noether sea record. Electric response is constrained by receiver-polarity reversal; magnetic response is constrained by axial, circulation, and motion-dependent assembly measurements. Neither field is defined to be a Noether sea average.
+  - **Gauge potentials ($A_\mu^{\mathrm{eff}}$)** are effective connections to be reconstructed from the same wake/action record. Local twists, strains, polarization, or density gradients in the Noether braid network are candidate native carriers, not established meanings of the potential by definition.
 
 ### Gauss-Law Source and Closure Benchmarks
 
@@ -74,7 +74,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and transmitter-side acceleration-weight modulation (the transmitter-side Jacobian entering only as transversality and root-density data).
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A recovery target in which one source-history, assembly, boundary, and Noether sea record must supply charge continuity, effective phase transport, and electric and magnetic response. Potential density and polarization alignment of the Noether sea are candidate carriers. They must be derived or bounded as unnecessary rather than inserted as the definition of U(1). The native acceleration remains the delayed line-of-action hit sum; transverse and velocity-dependent observer-level pieces must arise only after the relevant branch geometry and causal history are aggregated.
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
@@ -84,7 +84,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
     *   *SM View:* Non-Abelian color rotation among three quark color labels.
     *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A color-sector recovery target for axis-exceptionality bookkeeping in the axial frame of the Noether braid assembly; see [Color Charge SU(3)](fermions/color-charge-su3.md).
 
-The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether sea state and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, color axis-exceptionality records, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, $g_1$, $g_2$, $g_3$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
+The emergence claim in this chapter is therefore a mapping target with four required parts. The candidate native mechanisms include delayed causal-wake coupling, axial-layer deformation, and Noether sea response, whose relative roles remain to be derived. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, color axis-exceptionality records, source and boundary history, and any required medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, $g_1$, $g_2$, $g_3$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
 
 A compact reader-facing residual for this map is
 $$

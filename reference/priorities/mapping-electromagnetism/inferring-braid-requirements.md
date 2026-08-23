@@ -384,6 +384,429 @@ stress, and memory are different possible ways for the sea to respond. The
 program must discover which combination projects to electric and magnetic
 behavior.
 
+## Electric Field First Reduction
+
+### Declared Scope
+
+Begin with a stationary or quasi-stationary source assembly and a declared
+test region $\Omega$ containing no ordinary matter assemblies, neutrino-like
+assemblies, photon-channel packets, or other propagating matter used as a
+field carrier or response probe. The region still contains the Noether sea and
+the causal histories reaching it from the source and the boundary. No receiver
+assembly is included in the base state.
+
+Choose the source record so its exposed-polarity distribution is stationary on
+the causal window and its coarse current, axial circulation, induction, and
+radiation projections are null to the declared tolerance. This isolates the
+electric-like source row before magnetic or propagating behavior is admitted.
+
+The reduced native record is
+
+$$
+\mathcal G_E(T;\Omega)
+=
+\left(
+\Theta_{\mathrm{src}},
+\mathcal H_{\mathrm{src}\to\Omega},
+\Theta_{\mathrm{sea}}^{(0)},
+\delta\Theta_{\mathrm{sea}}^{E},
+\mathcal H_{\partial\Omega}
+\right).
+$$
+
+Here $\Theta_{\mathrm{sea}}^{(0)}$ is the balanced reference sea and
+$\delta\Theta_{\mathrm{sea}}^{E}$ is a response to be derived or bounded as
+zero. The effective electric field is not an entry in this native record.
+
+Plainly: remove the passing particles and detector from the first question.
+Retain only the source, its arriving wake history, the Noether sea, and the
+boundary history.
+
+### Candidate Native Cause
+
+At the observer level, a stationary electric field is sourced by an exposed
+charge distribution. The native statement must be more specific: a source
+assembly has a nonzero polarity-weighted exposed wake record after its internal
+cancellation, shielding, orientation, and finite-window history have been
+resolved. That signed source record generates different acceleration
+contributions for matched positive- and negative-polarity receivers.
+
+For diagnostic purposes, let
+$\mathbf A_{+}^{\mathrm{src}}(\mathbf x,T)$ and
+$\mathbf A_{-}^{\mathrm{src}}(\mathbf x,T)$ denote the source-history
+acceleration contributions evaluated for matched positive- and
+negative-polarity receiver states at the same event and over the same causal
+window. These are comparison evaluations of one source record, not two
+co-located physical architrinos. Define
+
+$$
+\mathbf A_{\mathrm{even}}^{\mathrm{src}}
+=
+\frac12
+\left(
+\mathbf A_{+}^{\mathrm{src}}
++
+\mathbf A_{-}^{\mathrm{src}}
+\right),
+$$
+
+$$
+\mathbf A_{\mathrm{odd}}^{\mathrm{src}}
+=
+\frac12
+\left(
+\mathbf A_{+}^{\mathrm{src}}
+-
+\mathbf A_{-}^{\mathrm{src}}
+\right).
+$$
+
+The first electric-cause hypothesis is that the effective electric projection
+descends from the polar, receiver-polarity-odd response operator represented by
+$\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$, together with any sea-mediated
+modification of that operator. This does not define
+$\mathbf E_{\mathrm{eff}}=\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$; assembly
+response, coarse-graining, and the effective charge convention remain to be
+derived.
+
+Claim grade: inferred. Falsifier: a source-backed calculation produces the
+correct electric behavior from a polarity-even native response, or the
+polarity-odd diagnostic fails the required source-conjugation and reflection
+parities.
+
+Plainly: the native cause may be the part of one source's wake pattern that
+acts oppositely on the two architrino polarities. The familiar electric field
+would be the assembly-level summary of that polarity-selective environment.
+
+### Source Classes And Continuing Isochron Reception
+
+The smallest possible native transmitter is one bare architrino. Its polarity
+and path history determine a causal wake that can contribute directly to the
+acceleration of another architrino. This does not make the bare architrino an
+electric field: the field is an effective reconstruction from received
+source-history contributions and, if required, the response of the Noether
+sea. Whether a bare architrino can occur as a persistent isolated physical
+state is a separate assembly-closure question.
+
+An effective electron or positron can also be a source. In native terms it is
+a retained assembly whose constituent wakes leave a nonzero exposed-polarity
+record after internal cancellation and shielding are resolved. A population
+of electrons, a population of positrons, or an unequal mixture adds those
+resolved records. A charge-neutral population can still produce an electric
+dipole or higher spatial pattern when opposite exposed polarities are
+separated. Charged ions, charged composite assemblies, polarized neutral
+matter, charged surfaces, and source histories outside the chosen region are
+further assembly-level source classes. A changing source configuration and a
+propagating photon-channel packet belong to later induction and radiation
+passes rather than the stationary electric-only reduction.
+
+A preconditioned polar state of the Noether sea is a possible proximate cause
+of a local effective electric response, but not an unproven source without
+history. Its maintaining source, preparation history, boundary record, or
+retained free mode must be identified in the native ledger.
+
+The ideal Master Equation uses a continuous uniform emission-time measure:
+each architrino emits causal isochrons at every absolute emission time. On a
+regular single-root branch, each successive receiver time selects the past
+isochron that intersects that receiver event. Thus a stationary effective
+electric environment may be continually refreshed by a succession of
+potential-bearing causal-isochron intersections even though its coarse-grained
+value is time independent.
+
+That statement is not the identity
+$\mathbf E_{\mathrm{eff}}=\text{isochrons}$. One intersection supplies one
+receiver-local acceleration contribution. The effective field requires a
+declared projection of many source contributions over an assembly and causal
+window, together with whatever sea state survives the direct-wake versus
+sea-response controls. Schematically,
+
+$$
+\mathbf E_{\mathrm{eff}}(\mathbf x,T)
+=
+\Pi_E\!\left[
+\mathcal H_{\mathrm{src}\to\mathbf x},
+\Theta_{\mathrm{sea}};
+W,\ell
+\right].
+$$
+
+Here $\Pi_E$ is a recovery map to be derived, not a primitive law. The causal
+isochrons are source-provenanced path-history geometry rather than material
+sheets or field substance, and they pass through one another without
+interacting. Their physical update occurs when a receiver architrino lies on
+one of them. If the source changes, the former history continues to arrive for
+the applicable causal delay before the changed pattern reaches the region.
+
+Claim grades: bare-architrino emission and receiver-local causal-isochron
+intersection are substrate ontology under the Master Equation; assembly and
+population source addition is a native superposition consequence; the
+identification of a particular projected aggregate with
+$\mathbf E_{\mathrm{eff}}$ and any essential sea retuning remain closure
+targets. Falsifier: a proposed electric projection that cannot be computed
+from a source-provenanced hit history and declared sea/boundary record, or that
+requires isochrons to interact with one another in flight, is not a realization
+of the present substrate law.
+
+Plainly: yes, the static-looking electric environment can be the stable bulk
+appearance of an ongoing succession of delayed wake receptions. The bare
+event is a causal-isochron hit; the electric field is the organized effective
+summary of those hits and any derived response they maintain in the sea.
+
+### Architrino Hit Versus Effective Electromagnetic Fields
+
+At substrate level, an architrino receives acceleration contributions from
+the causal isochrons intersecting its present event. The Master Equation sums
+those contributions directly. It does not first construct an electric field,
+assign an effective charge or mass to the architrino, and then apply an
+electric-force equation. Receiver polarity enters the native per-hit sign,
+while transmitter path history, causal-root geometry, distance, and the
+transmitter-side acceleration weight determine the remaining contribution.
+
+It is permissible to evaluate an effective electric projection at an
+architrino's location as a diagnostic or continuum reconstruction. That does
+not make the projection a second cause acting alongside the causal hits. The
+matched positive- and negative-receiver comparison used in
+$\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$ is likewise a diagnostic: one actual
+architrino has one polarity and does not perform that comparison internally.
+From the definitions, the matched response can be reconstructed as
+
+$$
+\mathbf A_{\sigma}^{\mathrm{src}}
+=
+\mathbf A_{\mathrm{even}}^{\mathrm{src}}
++
+\sigma\mathbf A_{\mathrm{odd}}^{\mathrm{src}},
+\qquad \sigma\in\{+1,-1\}.
+$$
+
+If the polarity-even term vanishes in the isolated electric regime, the two
+bare receiver polarities acquire equal-and-opposite source-driven
+accelerations. This is the closest native analogue of electric sign response,
+but it is still a consequence of the hit ledger rather than an imported
+$q\mathbf E/m$ law.
+
+At assembly level, every constituent receives its own root-resolved hit sum.
+The assembly's retained geometry then determines which contributions cancel,
+which change internal geometry, and which produce an effective translation,
+rotation, polarization, transition, or recoil. An observer-level electric
+field is useful only when one source-plus-sea projection can be held fixed
+while separate receiver-response maps explain those different assembly
+responses.
+
+Claim grades: receiver-local causal-hit acceleration is substrate ontology;
+constituent aggregation through a retained assembly is a native derivation
+target; a receiver-independent $\mathbf E_{\mathrm{eff}}$ and the effective
+charge/inertial response conventions are recovery targets. Falsifier: if two
+receiver classes require different field records for the same source, sea,
+boundary, region, and causal window, the proposed quantity is not yet a
+receiver-independent effective electric field.
+
+Plainly: the underlying electric-like influence reaches individual
+architrinos, but not in the same language used for an electron or a laboratory
+body. Architrinos receive wake-derived acceleration contributions. Assemblies
+organize many such contributions into the behavior summarized by an effective
+electric field.
+
+The electric diagnostic has a one-hit foothold because receiver polarity
+already selects the sign of a radial acceleration contribution. There is no
+corresponding one-hit magnetic variable: one hit supplies a line of action, not
+an axial circulation record or a velocity cross product. A magnetic projection
+therefore requires additional organization across source history, multiple
+roots or transmitters, assembly geometry, and any derived sea response. Calling
+that organized record $\mathbf B_{\mathrm{eff}}$ is justified only after one
+receiver-independent projection explains the required motion-, orientation-,
+flux-, and circulation-sensitive assembly measurements.
+
+Plainly: electric-like sign response begins with polarity at one receiver.
+Magnetic-like response needs relationships among several directions and
+histories. Neither observation inserts $\mathbf E$ or $\mathbf B$ into the
+Master Equation.
+
+### Candidate Impact On A Neutral Sea Braid
+
+A neutral Noether braid contains balanced positive- and negative-polarity
+architrinos. For one resolved sea braid $N$, define the mean source-driven
+acceleration contribution to each polarity sector,
+
+$$
+\overline{\mathbf A}_{N,+}^{\mathrm{src}}
+=
+\frac{1}{N_+}
+\sum_{a\in N,+}
+\mathbf A_a^{\mathrm{src}},
+\qquad
+\overline{\mathbf A}_{N,-}^{\mathrm{src}}
+=
+\frac{1}{N_-}
+\sum_{a\in N,-}
+\mathbf A_a^{\mathrm{src}}.
+$$
+
+The overbar denotes an arithmetic average over the indicated polarity sector
+of braid $N$. It is not a time average, a complex conjugate, a wake surface, or
+an effective field. The superscript $\mathrm{src}$ retains only contributions
+from the declared source history, while $N_+$ and $N_-$ are the numbers of
+positive- and negative-polarity members included in the two sums.
+
+The common and differential drives are
+
+$$
+\mathbf D_{N,\mathrm{com}}^{E}
+=
+\frac12
+\left(
+\overline{\mathbf A}_{N,+}^{\mathrm{src}}
++
+\overline{\mathbf A}_{N,-}^{\mathrm{src}}
+\right),
+$$
+
+$$
+\mathbf D_{N,\mathrm{pol}}^{E}
+=
+\overline{\mathbf A}_{N,+}^{\mathrm{src}}
+-
+\overline{\mathbf A}_{N,-}^{\mathrm{src}}.
+$$
+
+In a symmetric weak-response limit, an electric-like source may produce a
+small common drive but a nonzero differential drive. The leading response of a
+retained neutral sea braid would then be internal rather than translational:
+opposite-polarity displacement, phase redistribution, exposure change,
+orientation change, envelope deformation, cadence retuning, or strain. A
+stationary electric-like sea response therefore need not imply bulk sea flow.
+
+The differential drive must not be confused with the sea braid's pro/anti
+orientation label. Pro/anti is a geometric orientation class and remains
+distinct from architrino polarity and electric response.
+
+Claim grade: inferred mechanism. Falsifier: the resolved causal-root sum for a
+retained neutral sea braid gives no polarity-differential internal drive, or
+the proposed response destroys braid closure instead of producing a bounded
+retuned branch.
+
+Plainly: a neutral sea braid can remain neutral while its positive and negative
+constituents are driven differently. The possible electric response is a
+change of internal geometry, not the acquisition of net charge.
+
+### Three Sea Dispositions
+
+The first electric pass must preserve three alternatives:
+
+1. **Direct-wake electric response.** The source's polarity-odd causal history
+   supplies the effective electric projection while the sea remains within its
+   balanced reference tolerance.
+2. **Sea-essential electric response.** The source history induces a bounded
+   polar or differential sea state without which the effective electric
+   projection cannot be recovered.
+3. **Mixed electric response.** The direct source history supplies the primary
+   polarity-odd drive while the sea changes its magnitude, range, boundary
+   behavior, energy storage, or effective coupling.
+
+A scalar-only sea change in density or cadence cannot by itself encode the
+polar direction of $\mathbf E_{\mathrm{eff}}$. If the sea carries part of the
+directional electric response, its resolved record must contain a polar object
+or a spatial construction, such as a derived gradient, with polar
+transformation behavior. The source geometry may instead carry the direction
+while scalar sea variables modify only the response magnitude.
+
+The first controls are source-polarity conjugation, exposed-neutral source
+replacement, spatial reflection, frozen-sea versus responsive-sea comparison,
+randomized sea orientation, and source removal followed by relaxation. The
+source record, causal window, projection rule, and coefficients remain fixed
+throughout.
+
+Plainly: the sea may be unchanged, may be necessary, or may modify a direct
+electric drive. The purpose of the first calculation is to distinguish those
+possibilities, not to assume polarization in advance.
+
+### Direct-Wake Versus Sea-Essential Discriminator
+
+Agreement with an inverse-square magnitude or one charged-probe trajectory
+cannot distinguish direct-wake and sea-mediated realizations. Both can be made
+to reproduce one effective row. The discriminator must intervene on sea
+response while preserving one source history, causal window, boundary record,
+receiver comparison, projection rule, and coefficient set.
+
+Use two stages. The first is a prescribed-record diagnostic and cannot certify
+a retained physical branch. Evaluate all rows at the same receiver events so
+trajectory divergence does not contaminate the source partition:
+
+| Run | Source record | Sea treatment | Native quantity isolated |
+| --- | --- | --- | --- |
+| `E0` | Source absent | Balanced reference sea | Sea and boundary baseline |
+| `E1` | Fixed source history | Sea transmitters omitted | Direct source-labeled polarity-odd hit operator |
+| `E2` | Same fixed source history | Reference sea held on its unresponsive record | Direct operator plus unchanged sea baseline |
+| `E3` | Same fixed source history | Sea braids respond under the unchanged Master Equation | Direct operator plus source-induced sea contribution |
+| `E4` | Source removed after conditioning | Sea responds until the direct source history clears the region | Retention, relaxation, or propagation of the induced sea state |
+
+The causal-root ledger must retain transmitter identity so the direct and sea
+contributions are partitioned without fitting. Define the diagnostic sea
+increment only on the common receiver-event record,
+
+$$
+\Delta\mathbf A_{mathrm{odd}}^{\mathrm{sea}}
+=
+\mathbf A_{mathrm{odd}}^{E3}
+-
+\mathbf A_{mathrm{odd}}^{E2}.
+$$
+
+A nonzero increment establishes participation only within the prescribed
+candidate model. It does not establish that the sea is physically essential.
+The second stage must therefore release the source, sea, and receiver to a
+same-record EOM evolution from declared initial histories. It must test the
+electric requirement bundle rather than a single magnitude: source-polarity
+and receiver-polarity reversal, polar reflection behavior, superposition,
+range and sourced divergence, stationary curl, boundary dependence, temporal
+arrival and relaxation, energy-momentum accounting, and receiver-independent
+reconstruction across more than one retained assembly class.
+
+Classify the outcome as follows:
+
+- **Direct-wake dominant:** `E1` and the frozen-sea evolution satisfy the
+  predeclared electric requirements, while the responsive-sea correction
+  converges below tolerance under sea and causal-window refinement.
+- **Sea-essential:** the direct and frozen-sea cases fail at least one required
+  row, the responsive-sea case passes it with no retuning, and suppressing the
+  derived sea response removes that pass.
+- **Mixed:** the direct record supplies a necessary polarity-odd response, but
+  a derived sea response is necessary for other rows such as boundary
+  behavior, storage, screening, or the common receiver-independent projection.
+- **Unresolved or rejected:** neither case passes, or the result depends on a
+  prescribed constitutive knob, receiver-specific field definition, or
+  resolution-dependent tuning.
+
+To identify a particular sea geometry rather than merely a sea contribution,
+record the resolved braid variables before naming the geometry: sector drive
+$\mathbf D_{N,\mathrm{pol}}^E$, relative displacement, phase redistribution,
+exposure, orientation, envelope deformation, cadence, and strain. A candidate
+polar order parameter is supported only if it reverses with source polarity,
+transforms as a polar object under reflection, vanishes in the exposed-neutral
+control, remains bounded on retained sea braids, and mediates the missing
+electric requirement under knockout. Correlation with
+$\mathbf E_{\mathrm{eff}}$ alone is insufficient.
+
+The present blocker is a retained candidate Noether sea braid whose responsive
+history can be evolved. Before that geometry exists, `E1` can determine how
+much electric structure is already present in direct source hits, but no
+calculation can honestly prove that a nonexistent or unspecified sea response
+is dispensable.
+
+Claim grade: the run partition and decision rules are a proposed diagnostic;
+their source/sea decomposition follows from transmitter-labeled native
+bookkeeping, while physical necessity remains a closure target until the
+second-stage same-record evolutions and independent effective comparisons are
+available. Promotion target: the electromagnetic recovery derivation after a
+retained sea response branch exists. Next artifact: a predeclared `E0`--`E4`
+comparison record with fixed source history, fixed coefficients, matched
+receiver events, and explicit electric-row tolerances.
+
+Plainly: first ask whether the source wakes already contain the required
+electric pattern. Then let real candidate sea braids respond without changing
+the rules. The sea is essential only if turning off that derived response
+breaks a required electric behavior that the full evolution restores.
+
 ## Initial Effective-Field Requirement Ledger
 
 The following rows begin the reverse-engineering work. They are requirements
@@ -595,17 +1018,21 @@ explicit. It cannot declare that the required geometry exists.
 
 ## First Concrete Pass
 
-The first pass should fill `BR-E-01` through `BR-EB-05` from the existing
-owners, then construct three competing native records:
+The first pass is electric-only. It should refine `BR-E-01` through `BR-E-03`,
+add the stationary curl, range, energy-storage, and receiver-independence rows,
+and construct three competing native records:
 
 1. a direct-wake-dominant record;
-2. a polar/axial sea-response record; and
-3. a unified matter--sea causal-response record.
+2. a polarity-differential sea-response record; and
+3. a mixed direct-wake and sea-response record.
 
-Each record should face the same transformation, null, induction, propagation,
-energy-stress, receiver-substitution, and same-record consumer requirements.
+Each record should face the same source-conjugation, reflection, neutrality,
+range, stationary-curl, energy, relaxation, receiver-substitution, and
+same-record consumer requirements. Magnetic, induction, radiation, and
+photon-channel rows remain outside this first pass except as declared nulls.
 No coefficient or geometry may be retuned between rows. The outcome may be a
-negative classification showing that none of the three families is sufficient.
+negative classification showing that none of the three electric families is
+sufficient.
 
 The next implementation artifact is a populated field-identity matrix inside
 this file or a focused sibling table only when the row count becomes too large

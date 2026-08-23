@@ -3878,7 +3878,9 @@ called a causal-wake or assembly response until that projection is derived.
 A static effective magnetic field is therefore not a substance flowing through
 space and time. It is a persistent observer compression of an organized source
 assembly, its continuously emitted causal wake history, the responding Noether
-sea, and the receiver class. Architrinos themselves move through the Euclidean
+sea, and the declared observer chart and projection convention. Receiver class
+belongs to the separate response map rather than the field-state definition.
+Architrinos themselves move through the Euclidean
 void; the primitive interaction support that propagates from their histories is
 the potential-bearing causal wake. The wake is dynamical geometry rather than
 material cargo or an autonomous field state.
