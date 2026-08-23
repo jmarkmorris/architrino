@@ -3935,10 +3935,11 @@ determination without importing a primitive magnetic field.
 ## Session 17 — Noether Sea Braid Response-State Taxonomy (2026-08-22)
 
 Trigger: prescribed braid-architecture guesses have not produced a promising
-retained candidate. The proposed alternative is to use controlled electric,
-magnetic, induction, material-polarization, and radiation situations to infer
-which collective Noether sea braid configurations could support their
-transformation and response signatures.
+retained candidate. The proposed alternative is to determine what the already
+mapped effective electric and magnetic fields require of collective Noether sea
+braid configurations. Existing equation rows, benchmark rows, fine-structure
+work, and Maxwell recovery work supply the constraints; this is not a proposal
+to create a second inventory of electromagnetic situations.
 
 Claim level: **inferred program direction plus speculative response variables**.
 The program direction is well motivated by the existing equation- and
@@ -3948,17 +3949,19 @@ sea-mediation claim, or electromagnetic constitutive law is established here.
 ### Core Judgment
 
 This is a strong direction because it asks for fewer unsupported geometric
-guesses. The external situation supplies parity, reversal, range, boundary,
-relaxation, and receiver constraints. Those constraints can classify admissible
-sea responses before the microscopic braid member is selected.
+guesses. The existing mapping program already supplies parity, reversal, range,
+boundary, relaxation, propagation, and receiver constraints. Those constraints
+can classify admissible sea responses before the microscopic braid member is
+selected.
 
 The inquiry must not begin by placing primitive electric or magnetic fields in
 the Noether sea. It should begin with resolved source histories and a population
 of sea braids, then ask which population moments and causal-history records an
 observer later compresses into effective electric and magnetic fields.
 
-Plainly: use familiar field situations as controlled boundary conditions and
-inverse clues. Do not use the familiar field labels as the microscopic answer.
+Plainly: use the work already collected as inverse clues. The missing step is
+to say what changes in the sea when an observer reports an electric or magnetic
+field, without using either field label as the microscopic answer.
 
 ### Direct-Wake And Sea-Mediated Shares
 
@@ -4080,38 +4083,71 @@ A dynamic experiment may contain all five. Each event must state which layer
 changes first, which carries the response through the intervening region, which
 relaxes after source removal, and which is only an observer projection.
 
-### Minimum Experimental Situation Ladder
+### Existing Constraint Surfaces And Correct Work Order
 
-1. **Static parallel-plate capacitor.** Isolate polar ordering, boundary
-   layers, charge accumulation, gap response, screening, and direct-versus-sea
-   contributions with minimal axial circulation.
-2. **Steady long solenoid and toroid.** Isolate axial circulation order, compare
-   an approximately uniform interior with an exterior null, and test whether
-   topology and material support localize the response.
-3. **Source reversal and switch-on/switch-off.** Measure parity, propagation
-   delay, relaxation, overshoot, and any persistent sea or material memory.
-4. **Crossed electric and magnetic configurations.** Decide whether polar and
-   axial moments superpose independently or require a coupled/chiral sea state.
-5. **Dielectric, magnetic, and nominal vacuum comparison.** Separate source
-   material reorganization from ambient sea response and identify which
-   constitutive coefficients actually change.
-6. **Strong-field propagation or birefringence.** Test whether axial order
-   induces the symmetric trace-free $Q^{ij}_{\mathrm{sea}}$ response required
-   for directional photon propagation.
-7. **Locally source-free propagation and Aharonov-Bohm-type history tests.**
-   Decide whether the relevant carrier is a local response moment, a boundary
-   or holonomy record, a propagating assembly/wake packet, or a combination.
+The first task is one field-to-sea response map, not another experimental or
+equation inventory. It should proceed in this order:
 
-The first three situations are the preferred starting set. They span polar,
-axial, boundary, and time-response behavior before fine-structure extraction,
-atomic structure, or many-body material complexity is added.
+1. define the smallest native sea population record that could change between
+   no-field, electric-like, and magnetic-like conditions;
+2. identify which parts of that record are polar, axial, symmetric trace-free,
+   scalar, boundary-held, or history-dependent;
+3. determine whether effective $\mathbf E$ and $\mathbf B$ are distinct sea
+   modes or observer projections of one underlying causal response record;
+4. separate source-owned direct wakes, sea-mediated response, boundary history,
+   and receiver response without allowing the receiver to define the field;
+5. state what carries effective field energy, momentum, stress, persistence,
+   propagation, and backreaction; and
+6. use the existing equation, benchmark, fine-structure, photon, and material
+   rows to constrain or falsify that same map.
+
+The existing owners include the Maxwell and wave-equation row, magnetic-moment
+mapping, the fine-structure packet, photon gates, material-response work, and
+the already collected electromagnetic benchmarks. A capacitor, solenoid,
+toroid, or switching event can later serve as a clean discriminator if a
+particular ambiguity requires it. None is a new first-priority workstream.
+
+The central provisional object is therefore
+
+$$
+\Theta_{\mathrm{sea}}^{\mathrm{EM}}
+=
+\left(
+n,\nu,\mathbf u,\mathbf P,\mathbf M,\mathbf Q,
+\boldsymbol\Sigma,\mathcal H_{\partial\Omega},\ldots
+\right),
+$$
+
+together with one observer projection
+
+$$
+\left(\mathbf E_{\mathrm{eff}},\mathbf B_{\mathrm{eff}}\right)
+=
+\Pi_{\mathrm{EM}}
+\left[
+\mathcal H_{\mathrm{src}},
+\Theta_{\mathrm{sea}}^{\mathrm{EM}},
+\mathcal H_{\partial\Omega}
+\right].
+$$
+
+The entries are placeholders for native population variables, not an asserted
+constitutive law. The map must decide whether an electric-like response is a
+polar sea state, a gradient, a response rate, or a source-history projection;
+whether a magnetic-like response is axial circulation order, a curl or time
+relation of polar order, or another source-history projection; and whether the
+two effective fields are frame-dependent projections of one deeper response.
+
+Plainly: first define the sea record that the words electric field and magnetic
+field summarize. Then make the equations and benchmarks already in hand test
+that definition.
 
 ### Assumptions, Falsifiers, And Promotion Route
 
 - The response moments must be computed from resolved sea-braid histories, not
   assigned to reproduce effective fields.
-- One frozen constitutive map must face capacitor, solenoid or toroid,
-  reversal, induction, and propagation cases.
+- One frozen constitutive map must face all applicable existing equation and
+  benchmark constraints without case-private retuning.
 - The scalar-loaded null must prevent ordinary density or clock loading from
   being relabeled as electromagnetism.
 - The axis-aligned/circulation-neutral null must distinguish birefringent
@@ -4123,21 +4159,25 @@ atomic structure, or many-body material complexity is added.
   called field memory without that disposition.
 
 The program fails in its proposed form if no common population moments survive
-across the minimum situation ladder, if each field case requires unrelated sea
-variables, if direct source wakes already close every tested response without a
-collective sea contribution, or if the proposed sea states violate established
-parity, range, dispersion, energy-flow, or null controls.
+across the existing constraints, if electric and magnetic cases require
+unrelated case-private sea variables, if direct source wakes already close
+every tested response without a collective sea contribution, or if the
+proposed sea states violate established parity, range, dispersion, energy-flow,
+or null controls.
 
 Promotion target: first a focused priority packet under Mapping
 Electromagnetism; later Noether Sea, Gauge Structure Emergence, and relevant
 material or photon chapters only after a resolved response operator exists.
-The next artifact is a **Noether sea electromagnetic response-state matrix**
-whose rows are the minimum experimental situations and whose columns are
-source assembly history, direct-wake share, near/environment/far sea moments,
-boundary history, relaxation law, effective projection, reversals, knockout
-controls, and falsifier.
+The focused pre-derivation packet is now
+[Inferring Braid Requirements](inferring-braid-requirements.md). Its primary
+rows define effective-field identity, source history, candidate matter and sea
+variables, transformation type, static or dynamic status, direct-wake and
+sea-mediated shares, carrier and receiver roles, energy and stress ledger,
+receiver-independent meaning, existing equation and benchmark constraints,
+knockout control, and falsifier.
 
-Closure goal: construct the Noether sea electromagnetic response-state matrix
-for the capacitor, solenoid or toroid, and switch-on/switch-off situations, and
-use direct-only, frozen-sea, and responsive-sea controls to determine which
-polar, axial, alignment, boundary, and relaxation moments are genuinely needed.
+Closure goal: define the smallest common Noether sea response record whose
+polar and axial projections can be identified with effective $\mathbf E$ and
+$\mathbf B$, then use the existing Maxwell, magnetic-moment, fine-structure,
+photon, material-response, and benchmark rows to constrain or falsify that
+record without creating a new benchmark program.

@@ -3,6 +3,12 @@
 This is the canonical execution ledger for accepted electromagnetic recovery
 and inverse-geometry tasks.
 
+The report-only
+[Inferring Braid Requirements](inferring-braid-requirements.md) packet supplies
+the shared pre-derivation method and requirement ledger used by these objects.
+Creating or expanding that packet does not change a queue state, equation
+score, or retained-evidence decision.
+
 ## Ranked Next Objects
 
 1. `common_axis_source_moment_field_matrix` — Status: `Queued`.
@@ -105,6 +111,11 @@ and inverse-geometry tasks.
 - **Request / acceptance:** Derive one weak-regime Noether sea response family
   serving effective permittivity, permeability, impedance, wave speed,
   dispersion, magnetic circulation, and material-boundary response.
+- **Pre-derivation requirements:**
+  [Inferring Braid Requirements](inferring-braid-requirements.md) separates
+  deduced effective requirements, inferred native requirements, and candidate
+  source/matter/sea/carrier/receiver realizations without claiming a derived
+  constitutive law.
 - **Focused packet:** [Fine-Structure Coupling Map](fine-structure.md) applies
   the same constitutive state to $\alpha_{\mathrm{ref}}$ and
   $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ while preserving

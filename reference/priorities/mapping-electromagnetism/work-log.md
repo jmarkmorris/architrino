@@ -11,6 +11,23 @@ geometric and electromagnetic ideas.
 
 ## Log Entries
 
+### 2026-08-22 — Braid-requirement inference packet created
+
+- Created
+  [Inferring Braid Requirements](inferring-braid-requirements.md) as the
+  focused pre-derivation bridge from existing equations and benchmarks to
+  native source, matter, Noether sea, carrier, receiver, and boundary
+  requirements.
+- Consolidated the field-ontology and long-range-response discussion with the
+  fine-structure thread's absolute-record, near/environment/far sea,
+  matter-retuning, scale-separation, and no-hidden-retune insights.
+- Added an initial effective-field requirement ledger, competing realization
+  families, direct-wake versus sea-mediation controls, a reusable matrix
+  schema, and an explicit inference work order.
+- Kept the packet report-only and pre-derivation. No `EMAP` lifecycle state,
+  equation score, benchmark authority, retained-braid claim, constitutive
+  closure, or reader-facing corpus claim changed.
+
 ### 2026-08-22 — Shared mapping architecture and rank decision
 
 - Classified Mapping Electromagnetism explicitly as an unranked domain

@@ -62,6 +62,14 @@ $\alpha(\mu;\theta_{\mathrm{sea}})=\alpha_{\mathrm{ref}}
 `EMAP-004` without changing that object's blocked status, the workstream rank,
 or the `EQ-26A` score.
 
+The focused inverse-method packet is
+[Inferring Braid Requirements](inferring-braid-requirements.md). It converts
+existing effective behaviors into graded requirements on source assemblies,
+matter and receiver braids, near-to-far Noether sea response, propagating
+carriers, and causal boundary history. It is a pre-derivation constraint
+artifact for `EMAP-001` through `EMAP-004`, not a new equation or benchmark
+inventory and not evidence that any candidate geometry is retained.
+
 ## Scope And Ownership
 
 The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md)
