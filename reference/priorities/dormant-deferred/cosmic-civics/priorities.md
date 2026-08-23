@@ -49,9 +49,9 @@ Cosmic Civics is not:
 
 ## Canonical Anchors
 
-- [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md) owns the formal product background.
-- [Ontology](../../../content/markdown/aaa/foundations/ontology.md) owns the substrate, primitive-entity, medium, and observer-level distinctions.
-- [Terminology Usage](../../../content/markdown/aaa/archie/terminology-usage.md) owns the `absolute timespace`, Euclidean void, Noether sea, and effective-spacetime vocabulary boundary.
+- [Absolute Timespace](../../../../content/markdown/aaa/foundations/absolute-timespace.md) owns the formal product background.
+- [Ontology](../../../../content/markdown/aaa/foundations/ontology.md) owns the substrate, primitive-entity, medium, and observer-level distinctions.
+- [Terminology Usage](../../../../content/markdown/aaa/archie/terminology-usage.md) owns the `absolute timespace`, Euclidean void, Noether sea, and effective-spacetime vocabulary boundary.
 
 These links ground vocabulary only. They do not provide a legal theory, a passage-right mechanism, or a claim-validation rule.
 

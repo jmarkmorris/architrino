@@ -4,7 +4,7 @@ This file preserves the original ideas, map layers, cross-scale questions, illus
 
 ## Routing Rules
 
-- Keep the established meaning of `absolute timespace` bound to [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md).
+- Keep the established meaning of `absolute timespace` bound to [Absolute Timespace](../../../../content/markdown/aaa/foundations/absolute-timespace.md).
 - Keep `Assembly Architecture`, `Passage`, `Claim`, and the four-link chain labeled as proposed framing unless a later decision grants a narrower status.
 - Keep legal and philosophical material in question or hypothesis form.
 - Treat every future ownership, exclusion, passage-fee, or toll scenario as an illustrative hypothetical, never as current fact, authorization, or expected outcome.
