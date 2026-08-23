@@ -69,7 +69,7 @@ The shortest path to many `5` scores is through shared carriers:
 
 Coordinator normalization: when a row consumes a shared checker, the First reducer cell must still name the exact first blocker and smallest accepted evidence object. Source-evidence probes, source-contract attempts, negative controls, mocks, generated files, and priority prose can expose later diagnostic blockers, but they do not replace the parent accepted-evidence blocker until the parent object is retained and checker-consumed.
 
-| ID | Current `6/23 b` | Score-5 closure object | First reducer |
+| ID | Current `6/23` | Score-5 closure object | First reducer |
 | --- | --- | --- | --- |
 | `EQ-01` | `5` | Native per-hit causal wake law plus causal-root Jacobian. | Maintain dependency discipline; every downstream row must declare which reduced root, wake, event, or Noether sea record it consumes. |
 | `EQ-02` | `4` | Retained translating-binary or nested shell braid branch derives $T_q/T_0=\gamma_{\star}$ from a gamma-free wake-return coframe with bounded two-way leakage. | First certify a positive-width invariant cell $(B_N,\Sigma_N,P_N)$ for the retained branch; then populate $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$, assemble $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$, and require $e^0_u(\partial_t)=\lambda(u)$ from a coframe constructed without $\gamma_f$ input. |

@@ -77,7 +77,7 @@ The last term is the split-state witness. It is zero only when growth, CMB, BBN,
 
 ## Packet Attack Card
 
-- Dated score snapshot: the `6/23 b` ledger records `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32` at score `3`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
+- Dated score snapshot: the `6/23` ledger records `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32` at score `3`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
 - Closure driver: one retained observation-family record must bind growth, CMB, BBN, and low-acceleration galaxy projections through shared Noether sea, assembly, source, photon, baryon, neutrino, medium, and event-ledger rows.
 - Accepted route status: the refined [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md) now consumes accepted shared-observation evidence, the accepted `theta_cos` handoff, and accepted `delta_a_star` output projection. It reports `status=populated`, `nextBlocker=null`, and no hidden shared-key retune across BBN, CMB, growth, and RAR rows.
 - Remaining blocker boundary: no score change follows from the shared-observation carrier or its score-neutral growth, matter-power, lensing, shear/RSD, halo/cluster, nonlinear, and galaxy-response children. CMB transfer, blackbody/acoustic rows, BBN source-window physics, and score-review observational transfer remain open.
@@ -195,7 +195,7 @@ $$
 
 ### EQ-21 2026-06-23 Maturity Assessment
 
-The dated `6/23 b` assessment records `3`. The current map has the right variables and a concrete $G_{\mathrm{eff}}$ constitutive scaffold, but the predictive transfer pipeline and shared residual evaluation are still missing. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
+The dated `6/23` assessment records `3`. The current map has the right variables and a concrete $G_{\mathrm{eff}}$ constitutive scaffold, but the predictive transfer pipeline and shared residual evaluation are still missing. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -314,7 +314,7 @@ where $\mathcal{T}_{\mathrm{CMB}}^{XY}$ is an observer-level transfer operator. 
 
 ### EQ-22 2026-06-23 Maturity Assessment
 
-The dated `6/23 b` assessment records `3`. The equation-level transfer target, blackbody residuals, thermalization-depth target, frame row, and BBN handoff variables are already named locally. It should not rise above `3` until a branch computes $\Delta_{X\ell}^\theta$ and the blackbody/acoustic/lensing residuals from one source and Noether sea record. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
+The dated `6/23` assessment records `3`. The equation-level transfer target, blackbody residuals, thermalization-depth target, frame row, and BBN handoff variables are already named locally. It should not rise above `3` until a branch computes $\Delta_{X\ell}^\theta$ and the blackbody/acoustic/lensing residuals from one source and Noether sea record. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -461,7 +461,7 @@ where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-
 
 ### EQ-23 2026-06-23 Maturity Assessment
 
-The dated `6/23 b` assessment records `3`. The weak-rate interface, freezeout clock, yield-vector target, $\eta$, $N_{\text{eff}}$, and source-window rows are now equation-level scaffolding with the right shared variables. It remains below `4` because no native source-window mechanism computes the yields without importing benchmark parameters. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
+The dated `6/23` assessment records `3`. The weak-rate interface, freezeout clock, yield-vector target, $\eta$, $N_{\text{eff}}$, and source-window rows are now equation-level scaffolding with the right shared variables. It remains below `4` because no native source-window mechanism computes the yields without importing benchmark parameters. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 
@@ -610,7 +610,7 @@ not as a new fundamental constant or imported gravity ontology.
 
 ### EQ-32 2026-06-23 Maturity Assessment
 
-The dated `6/23 b` assessment records `3`. The row has a concrete constitutive-response comparison, local dark-matter/RAR residuals, and an explicit shared-state requirement. It remains below `4` because $A_\star$, $F_\star$, $a_0^{\mathrm{RAR}}$, and the screening/local-recovery map are not derived from Noether sea coefficients. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
+The dated `6/23` assessment records `3`. The row has a concrete constitutive-response comparison, local dark-matter/RAR residuals, and an explicit shared-state requirement. It remains below `4` because $A_\star$, $F_\star$, $a_0^{\mathrm{RAR}}$, and the screening/local-recovery map are not derived from Noether sea coefficients. This assessment is not retained evidence and does not change the current score in [equation.md](equation.md).
 
 ### First Mathematical Object
 

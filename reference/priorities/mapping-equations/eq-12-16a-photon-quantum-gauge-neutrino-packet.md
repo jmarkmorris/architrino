@@ -23,19 +23,19 @@ This packet keeps photon, quantum, spinor, gauge, and neutrino equations in the 
 
 ## 2026-06-23 Maturity Assessment
 
-This table preserves the dated assessment that informed the `6/23 b` ledger.
+This table preserves the dated assessment that informed the `6/23` ledger.
 It is not retained evidence and does not update [equation.md](equation.md), the
 sole current score authority.
 
-| ID | `6/23 a` | Recorded `6/23 b` assessment | Rationale |
-| --- | --- | --- | --- |
-| `EQ-12` | `3` | `3` | Photon Gate A/B/C variables are strong, but the event ledger has not yet derived $E_\gamma=h\nu$, null transport, and receiver energy from one accepted branch. |
-| `EQ-12A` | `2` | `2` | The Planck action quantum is now an explicit closure target, but $h$ and $\hbar$ are still bridge constants until a retained cycle-action row derives them. |
-| `EQ-13` | `2` | `3` | Maxwell/wave recovery now has a concrete effective EM residual target, but remains an effective continuum summary rather than a native field law. |
-| `EQ-14` | `2` | `3` | Born-current continuity has a named basin-measure pushforward and residual, with the real derivation still open. |
-| `EQ-15` | `1` | `2` | The ordered-frame spinor proof program names the right row-local objects and falsifiers, but no retained non-gauge spinor row has passed. |
-| `EQ-16` | `1` | `2` | Gauge and Standard Model rows have exposure, covariance, and topology residuals, but no branch-derived Yang-Mills or Standard Model coefficient recovery. |
-| `EQ-16A` | `2` | `3` | Neutrino oscillation now has a precise common-clock plus residual phase-operator packet; the retained neutral-lepton branch remains missing. |
+| ID | 6/23 score | Rationale |
+| --- | --- | --- |
+| `EQ-12` | `3` | Photon Gate A/B/C variables are strong, but the event ledger has not yet derived $E_\gamma=h\nu$, null transport, and receiver energy from one accepted branch. |
+| `EQ-12A` | `2` | The Planck action quantum is now an explicit closure target, but $h$ and $\hbar$ are still bridge constants until a retained cycle-action row derives them. |
+| `EQ-13` | `3` | Maxwell/wave recovery now has a concrete effective EM residual target, but remains an effective continuum summary rather than a native field law. |
+| `EQ-14` | `3` | Born-current continuity has a named basin-measure pushforward and residual, with the real derivation still open. |
+| `EQ-15` | `2` | The ordered-frame spinor proof program names the right row-local objects and falsifiers, but no retained non-gauge spinor row has passed. |
+| `EQ-16` | `2` | Gauge and Standard Model rows have exposure, covariance, and topology residuals, but no branch-derived Yang-Mills or Standard Model coefficient recovery. |
+| `EQ-16A` | `3` | Neutrino oscillation now has a precise common-clock plus residual phase-operator packet; the retained neutral-lepton branch remains missing. |
 
 The dated assessment is deliberately conservative for `EQ-12`: the photon row is central and comparatively mature, but scoring it as `4` would be premature until one retained packet supplies energy, helicity, null/eikonal transport, source depletion, path-history transfer, and receiver coupling.
 
@@ -1022,7 +1022,7 @@ Priority-only until a retained neutral-lepton branch exists. Later promotion tar
 
 ## Integration Notes
 
-- Keep `equation.md` unchanged in this worker pass; the score row above preserves only the dated `6/23 b` maturity assessment.
+- Keep `equation.md` unchanged in this worker pass; the score row above preserves only the dated `6/23` maturity assessment.
 - Do not promote any item from this packet directly into reader-facing prose until the named first mathematical object is populated with a retained branch, shared Noether sea state, and failure residual.
 - The most actionable next packet is `EQ-16A`, because it has a small, falsifiable object: $\omega_f C_0\mathbf 1+\delta H_{3B}$ with two observed phase gaps and a sharp failure if cancellation erases the residual operator.
 - The highest-risk overclaim is `EQ-13` or `EQ-16`: effective gauge and Maxwell equations are strong recovery targets, but they remain observer-level summaries until causal-wake provenance, exposure quotient, and Noether sea response rows are derived on the same branch record.

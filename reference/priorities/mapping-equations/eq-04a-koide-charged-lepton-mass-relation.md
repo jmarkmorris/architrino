@@ -389,7 +389,7 @@ The charged leptons are the cleanest place to look for a bare generation-by-shie
 
 ## Current Score
 
-Current `6/23 b` score: `1`.
+Current `6/23` score: `1`.
 
 Reason: the relation is already recognized as a speculative charged-lepton benchmark in the particle-mass material, but there is no accepted charged-lepton retained branch family and no shared mass map that predicts the three charged-lepton masses before checking Koide.
 

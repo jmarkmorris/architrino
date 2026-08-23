@@ -95,7 +95,7 @@ The same $\theta$ must supply the weak-field metric rows, the endpoint/source/la
 
 ## Packet Attack Card
 
-- Dated score snapshot: the `6/23 b` ledger records `EQ-07` at `4`, `EQ-08` at `4`, `EQ-09` at `3`, `EQ-10` at `3`, `EQ-17` at `4`, `EQ-18` at `3`, and `EQ-19` at `3`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
+- Dated score snapshot: the `6/23` ledger records `EQ-07` at `4`, `EQ-08` at `4`, `EQ-09` at `3`, `EQ-10` at `3`, `EQ-17` at `4`, `EQ-18` at `3`, and `EQ-19` at `3`. This packet preserves the assessment rationale but does not update [equation.md](equation.md), the sole current score authority.
 - Closure driver: one retained record $\theta$ must generate the weak-field effective metric, signed redshift-transfer ledger, effective-FRW handoff, and Friedmann/continuity source-provenance rows without per-observable retuning.
 - Exact first blockers: the weak-field checker blocks at `missing_accepted_theta_W`; the signed-transfer checker blocks at `missing_accepted_theta_transfer`; the effective-FRW checker now has an accepted `theta_cos` handoff for the provider-backed `EQ-20` route; the pressure/$\Lambda_{\mathrm{eff}}$ source-attempt still blocks at `missing_accepted_theta_sea_rho_NS`, while the provider-backed route is populated.
 - First implementation target for this packet: source-backed retained $\theta_W$ row for a weak solar-system window, because it is the shared carrier for `EQ-07` through `EQ-10` and a dependency for redshift/cosmology consumers.
@@ -491,19 +491,19 @@ The priority-only [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-ma
 
 ## 2026-06-23 Maturity Assessment
 
-This table preserves the dated assessment that informed the `6/23 b` ledger.
+This table preserves the dated assessment that informed the `6/23` ledger.
 It is not retained evidence and does not update [equation.md](equation.md), the
 sole current score authority.
 
-| ID | `6/23 a` | Recorded `6/23 b` assessment | Reason |
-| --- | --- | --- | --- |
-| `EQ-07` | `4` | `4` | ADM/Cartan variables and coefficient scaffold are strong, but the constitutive coefficients still need branch/population derivation. |
-| `EQ-08` | `4` | `4` | $\Gamma_N$ endpoint, Lorentz, and weak-gravity extraction targets are explicit; the Noether braid derivation of $\mathbf{b}_N$ remains open. |
-| `EQ-09` | `3` | `4` | The current PPN material has a shared ADM/Cartan extraction equation, PPN decision vector, forward observable projection, and residual rows. Coefficient closure remains open, so `4` is the ceiling. |
-| `EQ-10` | `3` | `3` | Proper-time/geodesic benchmarks are present, but the action-to-acceleration and null/eikonal rows still need a single branch-derived record. |
-| `EQ-17` | `4` | `4` | Redshift factorization is explicit and signed; path-history propagation and energy-exchange closure still need validation. |
-| `EQ-18` | `3` | `3` | Effective FRW variables are correctly scoped as observer projections, and the handoff checker is executable, but the accepted $\theta_{\mathrm{cos}}$ carrier is still missing. |
-| `EQ-19` | `3` | `3` | Friedmann and continuity equations have correct fixed-void interpretation and executable residuals, but accepted $R_H$, $R_\rho$, and source-provenance rows remain undeveloped. |
+| ID | 6/23 score | Reason |
+| --- | --- | --- |
+| `EQ-07` | `4` | ADM/Cartan variables and coefficient scaffold are strong, but the constitutive coefficients still need branch/population derivation. |
+| `EQ-08` | `4` | $\Gamma_N$ endpoint, Lorentz, and weak-gravity extraction targets are explicit; the Noether braid derivation of $\mathbf{b}_N$ remains open. |
+| `EQ-09` | `4` | The current PPN material has a shared ADM/Cartan extraction equation, PPN decision vector, forward observable projection, and residual rows. Coefficient closure remains open, so `4` is the ceiling. |
+| `EQ-10` | `3` | Proper-time/geodesic benchmarks are present, but the action-to-acceleration and null/eikonal rows still need a single branch-derived record. |
+| `EQ-17` | `4` | Redshift factorization is explicit and signed; path-history propagation and energy-exchange closure still need validation. |
+| `EQ-18` | `3` | Effective FRW variables are correctly scoped as observer projections, and the handoff checker is executable, but the accepted $\theta_{\mathrm{cos}}$ carrier is still missing. |
+| `EQ-19` | `3` | Friedmann and continuity equations have correct fixed-void interpretation and executable residuals, but accepted $R_H$, $R_\rho$, and source-provenance rows remain undeveloped. |
 
 ## Promotion Targets
 

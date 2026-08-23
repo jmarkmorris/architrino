@@ -15,7 +15,7 @@
 
 ## Purpose
 
-This note identifies equation components that recur across the equation-mapping packets and could become useful equations, residuals, records, or operators in their own right. It is internal priority material. It does not promote any packet into reader-facing corpus prose and does not change any `6/23 b` score.
+This note identifies equation components that recur across the equation-mapping packets and could become useful equations, residuals, records, or operators in their own right. It is internal priority material. It does not promote any packet into reader-facing corpus prose and does not change any `6/23` score.
 
 The packet set is already converging on one architecture:
 

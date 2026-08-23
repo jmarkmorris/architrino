@@ -22,9 +22,9 @@ Use each dated score as a maturity indicator, not as a value judgment. A low-sco
 ## Score Authority
 
 This file is the sole current maturity-score ledger for Equation Mapping. The
-`6/23 a` and `6/23 b` columns are dated assessments; `6/23 b` records the
-2026-06-23 team-agent disposition. Sibling closure packets may preserve the
-reasoning behind that dated assessment, but they cannot set or change a score.
+`6/23` column records the retained 2026-06-23 team-agent disposition. Sibling
+closure packets may preserve the reasoning behind that dated assessment, but
+they cannot set or change a score.
 
 Any later score movement requires an explicit edit to this ledger supported by
 accepted retained evidence, same-record binding, source provenance, the
@@ -59,49 +59,49 @@ A precise observer fit with $\mathcal R_{\mathrm{lift},k}$ absent remains `2` or
 
 ## Summary Table
 
-| ID | Equation or equation group | Representative equation | Primary AAA carrier | 6/23 a | 6/23 b | Closure driver | Promoted? |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `EQ-01` | Causal wake Master Equation and per-hit law | $\mathbf A_{r\leftarrow t}\propto r^{-2}W_{r\leftarrow t}^{\mathrm{acc}}\hat{\mathbf r}_t$, $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/|D_t|$ | Architrino causal wakes, causal-root ledger | `5` | `5` | Keep all later maps tied to active roots, transmitter-side factors, transmitter-side acceleration weights, separate signed root playback $D_r/D_t$, line-of-action hits, and event ledgers. | ready on the certified regular domain; global transition and conservation closure open |
-| `EQ-02` | Lorentz factor, clock rate, and ruler contraction | $\gamma_{\star}=(1-\beta_{\star}^2)^{-1/2}$; $d\tau/dt_{\mathrm{eff}}=1/\gamma_{\star}$ | Moving Noether braid through local Noether sea | `4` | `4` | Derive moving-clock and moving-ruler factors from one branch ledger. |  |
-| `EQ-03` | Oblate spheroidal envelope ratio | $\xi=R_{\parallel}/R_{\perp}\to1/\gamma_{\mathrm{eff}}$ | Noether braid envelope geometry | `4` | `4` | Prove return-cycle closure produces the axis ratio, not just a visual match. |  |
-| `EQ-04` | Energy-momentum and rest energy | $E^2=p^2c_{\mathrm{eff}}^2+M_0^2c_{\mathrm{eff}}^4$ | Closed internal causal-history ledger, shielding, Noether sea response | `3` | `4` | Compose branch energy, exposure quotient, and medium-response tensor. |  |
-| `EQ-04A` | Koide charged-lepton mass relation | $\frac{(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2}{m_e+m_\mu+m_\tau}=\frac{3}{2}$ | Charged-lepton generation-by-shielding ladder and exposed mass response | `1` | `1` | Test whether one charged-lepton mass map lands near the Koide surface without fitting to it. |  |
-| `EQ-05` | Noether conservation laws | $dE_{\mathrm{tot}}/dt=0$; $\mathbf{P}_{\mathrm{tot}}=\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ | Delay action, wake channels, event ledgers | `3` | `4` | Construct finite-window conserved totals with boundary flux and residuals. |  |
-| `EQ-06` | Noether sea continuity and moment closure | $\partial_t\rho_{\mathrm{NS}}+\nabla\cdot(\rho_{\mathrm{NS}}\mathbf u_{\mathrm{sea}})=S_{\rho}+r_{\rho}$ | Noether sea density, flow, energy, cadence, orientation | `4` | `4` | Derive continuum rows as low-moment projections of braid population dynamics. |  |
-| `EQ-07` | Effective metric ADM/Cartan map | $ds_{\mathrm{eff}}^2=-N^2c_0^2dt_{\mathrm{eff}}^2+\gamma_{ij}^{\mathrm{eff}}(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}})(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}})$ | Noether sea lapse, drift, spatial compliance | `4` | `4` | Derive one constitutive map into clock, ruler, and signal channels. |  |
-| `EQ-07A` | Compact-star support and collapse scale residual | $P_{e,\mathrm{nr}}\propto\rho^{5/3}$; $P_{e,\mathrm{rel}}\propto\rho^{4/3}$; $M_{\mathrm{Ch}}\propto Y_e^2M_\odot$ | Compact-region Noether braid packing, reaction ledger, Noether sea response, and metric compliance | `2` | `2` | Build one compact-region carrier that recovers support scaling, reaction inventory, material scale compression, and effective spatial compliance without hidden retuning. |  |
-| `EQ-08` | Weak-field clock and gravitational redshift | $d\tau/dt_{\mathrm{eff}}\approx1+\Phi_N/c_0^2-\lVert\mathbf w\rVert^2/(2c_0^2)$ | Noether sea cadence $\Gamma_N$, moving clock channel | `4` | `4` | Extract $\Gamma_N$ from braid cadence, density, delay, and potential response. |  |
-| `EQ-09` | Shapiro delay, lensing, and PPN rows | $\Delta\theta=2(1+\gamma_{\mathrm{PPN}})GM/(bc_0^2)$ | Shared effective metric projection | `3` | `4` | Force redshift, Shapiro, lensing, precession, acceleration, and preferred-frame rows through one record. |  |
-| `EQ-10` | Geodesic and proper-time action | $S_{\mathrm{clk}}=-mc_0^2\int d\tau$ | Observer-level clock/ruler record from Noether sea | `3` | `3` | Recover geodesic motion as a projection, not as substrate geometry. |  |
-| `EQ-11` | Einstein and Poisson weak-gravity limits | $\nabla^2\Phi_N=4\pi G\rho$; $G_{\mu\nu}=8\pi GT_{\mu\nu}/c^4$ | Noether sea stress, density, effective response | `2` | `3` | Derive $G_{\mathrm{eff}}$, stress-energy readout, and curvature response from the same constitutive law. |  |
-| `EQ-11A` | Gravitational-wave source, chirp, orbital-decay, and ringdown recovery | $\dot f_{\mathrm{GW}}\propto\mathcal M_c^{5/3}f_{\mathrm{GW}}^{11/3}$; $P_{\mathrm{GW}}\propto\langle\dddot Q_{ij}\dddot Q^{ij}\rangle$ | Effective metric tensor channel, Noether sea constitutive record, and source event ledger | `2` | `2` | Recover source quadrupole, chirp mass, orbital decay, strain flux, radiated energy/angular momentum, and ringdown from one source carrier without hidden retuning. |  |
-| `EQ-12` | Photon energy, null condition, and eikonal propagation | $E=h\nu$; $g^{\mathrm{eff}}_{\mu\nu}dx^\mu dx^\nu=0$ | Photon-channel packets through Noether sea | `3` | `3` | Connect packet energy, helicity, null transport, and medium frequency exchange. |  |
-| `EQ-12A` | Planck action quantum, de Broglie relations, and braid action scale | $E=h\nu=\hbar\omega$; $\mathbf p=\hbar\mathbf k$; $\oint p\,dq=nh$ | Closed-cycle Noether braid action ledger and photon packet row | `2` | `2` | Derive $h$ and $\hbar$ as shared action-cycle readouts instead of primitive constants or per-row fit handles. |  |
-| `EQ-13` | Maxwell and wave equations | $\Box A_{\mu}=J_{\mu}$ as comparison form | Effective field summary of causal wakes and photon channels | `2` | `3` | Recover field equations as continuum summaries of wake superposition and packet transport. |  |
-| `EQ-14` | Schrodinger and Born-current continuity | $\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf J_{\mathrm{rec}}=0$ | Basin measure, record flow, Noether sea background | `2` | `3` | Derive probability-current behavior from deterministic branch and record dynamics. |  |
-| `EQ-15` | Klein-Gordon, Dirac, spinor, and spin-statistics equations | $(i\hbar\gamma^\mu\partial_\mu-mc)\psi=0$ as benchmark | Noether braid ordered-frame, spinor, exchange, and angular-momentum ledgers | `1` | `2` | Build the spinor and exchange record before importing relativistic wave equations. |  |
-| `EQ-16` | Gauge and Standard Model field equations | Yang-Mills and QED/QCD equations as benchmarks | Effective interaction sectors, reaction provenance, branch labels | `1` | `2` | Convert gauge behavior into sector-visible ledger projections and reaction closure. |  |
-| `EQ-16A` | Neutrino oscillation phase gaps and PMNS mixing | $\Delta\omega_{ij}\simeq\Delta m_{ij}^2c^4/(2E\hbar)$; $\lvert\nu_\alpha\rangle=\sum_iU_{\alpha i}\lvert\nu_i\rangle$ | Iso-frequency Noether braid candidate, neutral-lepton phase operator, weak-coupling readout | `2` | `3` | Factor a common hidden clock while deriving two independent observed phase gaps from one retained neutral-lepton branch. |  |
-| `EQ-17` | Redshift factorization | $1+z_X\approx \Gamma_{N,E}\mathcal P_{E\to R}/(\Gamma_{N,R}B_XD_v)$ | Endpoint cadence, launch geometry, source branch, path-history propagation | `4` | `4` | Close one signed frequency-transfer ledger across gravitational, Doppler, source, and cosmological cases. |  |
-| `EQ-18` | Effective FRW metric and scale factor | $ds_{\mathrm{FRW,eff}}^2=-c_0^2d\tau_c^2+a_{\mathrm{eff}}^2d\Sigma_k^2$ | Observer-level projection of evolving Noether sea | `3` | `3` | Extract $a_{\mathrm{eff}}$ from medium evolution, clock comparison, and transport records. |  |
-| `EQ-19` | Friedmann and cosmological continuity equations | $H_{\mathrm{eff}}^2=8\pi G_{\mathrm{eff}}\rho_{\mathrm{eff}}/(3c_0^2)-kc_0^2/a_{\mathrm{eff}}^2+\Lambda_{\mathrm{eff}}/3$ | Fixed-void Noether sea cosmology projection | `3` | `3` | Recover Friedmann-like bookkeeping without promoting void expansion. |  |
-| `EQ-20` | Dark-energy equation of state and $\Lambda$ | $p=w\rho c_0^2$; $\Lambda_{\mathrm{eff}}=8\pi G_{\mathrm{eff}}\rho_{\mathrm{DE,eff}}/c_0^2$ | Noether sea tension, pressure, relaxation | `2` | `3` | Derive negative effective pressure from Noether sea state, not from fitted $\Lambda$ alone. |  |
-| `EQ-21` | Structure growth and matter power | $\ddot\delta+2H\dot\delta-4\pi G_{\mathrm{eff}}\bar\rho_m\delta=0$; $P(k,z)=P_{\mathrm{seed}}T^2D^2$ | Medium-and-assembly growth history | `3` | `3` | One sea record must feed growth, CMB lensing, shear, BAO, and halo tests. |  |
-| `EQ-22` | CMB transfer, blackbody, and acoustic equations | $C_\ell^{XY}=\frac{2}{\pi}\int k^2dk\,P(k)\Delta_{X\ell}\Delta_{Y\ell}$ | Noether sea thermalization and photon decoupling | `2` | `3` | Derive source, thermalization, acoustic, frame, and blackbody records together. |  |
-| `EQ-22A` | Planck blackbody law, mode counting, and photon occupancy | $\bar n_\nu=(e^{h\nu/k_BT}-1)^{-1}$; $u_\nu=8\pi h\nu^3/[c_\gamma^3(e^{h\nu/k_BT}-1)]$ | Finite-window thermal record, photon Gate B modes, Noether sea thermalization | `2` | `2` | Recover the Planck spectrum from shared mode counting, zero photon chemical potential, and thermalization depth without per-bin temperature fitting. |  |
-| `EQ-22B` | Recombination, visibility, sound horizon, and acoustic transfer | $\Gamma_T=n_e\sigma_Tc_\gamma$; $y_{\mathrm{vis}}=\Gamma_Te^{-\tau_T}$; $r_s=\int c_s\,dt/a_{\mathrm{eff}}$ | Shared thermal/provenance/readout record, photon and neutrino channels, Noether sea state, event ledger | `2` | `2` | Recover recombination kinetics, visibility, sound horizon, damping, and acoustic transfer from one shared observation carrier without importing an origin story or private readout clock. |  |
-| `EQ-23` | BBN rate and freezeout equations | reaction-network yields $\mathbf Y[\{T,\rho,n_b,n_\gamma,n_n\}]$ | Source-window thermal record and Noether sea state | `2` | `3` | Preserve light-element yields, $\eta$, $N_{\text{eff}}$, photon loading, and neutrino rows in one record. |  |
-| `EQ-24` | Fluid, elastic, and acoustic-medium equations | acoustic metric and stress-strain laws as comparison forms | Noether sea continuum response | `3` | `3` | Use only as low-moment projections of Noether braid population dynamics. |  |
-| `EQ-25` | Thermodynamic, Boltzmann, entropy, and fluctuation equations | $df/dt=C[f]$; $dS/dt\ge0$ | Coarse-grained sea and record dynamics | `2` | `3` | Derive thermalization, irreversibility, and noise from deterministic unresolved degrees of freedom. |  |
-| `EQ-26` | Atomic spectral constants, fine/hyperfine structure, and Lamb-shift class | $1/\lambda=R_\infty(1/n_b^2-1/n_a^2)$; $\Delta E=h\nu$ | Atomic envelope Noether braid, local clock row, angular-momentum ledger | `3` | `3` | Recover one shared Rydberg scale and then attach spin-sensitive and loop-sensitive residuals without per-line fitting. |  |
-| `EQ-26A` | Fine-structure constant, electromagnetic coupling, and energy running | $\alpha=e^2/(4\pi\epsilon_0\hbar c_\gamma)$; $d\alpha^{-1}/d\ln\mu=-b(\mu)$ | Exposed charge row, `EQ-12A` action row, photon speed, gauge/coupling response | `2` | `2` | Derive $\alpha(\mu)$ as a scale-dependent coupling projection from one electromagnetic exposure domain rather than a fixed fitted constant. |  |
-| `EQ-27` | Magnetic moment, Larmor/cyclotron precession, and g-2 | $\boldsymbol\mu=g(q/2m)\mathbf S$; $a_\ell=(g-2)/2$ | Internal current geometry, ordered-frame spinor ledger, measurement-response row | `2` | `2` | Derive magnetic moment and anomaly as exposed internal-current response, not as an assigned spin label. |  |
-| `EQ-28` | Compton, photoelectric, pair-threshold, and recoil equations | $\Delta\lambda=h(1-\cos\theta)/(m_ec)$; $E_\gamma\ge2m_ec^2$ | Photon-channel event ledger, recoil branch, pair-production provenance | `3` | `3` | Close energy, momentum, angular momentum, photon packet, recoil, and material/Noether sea update in one event record. |  |
-| `EQ-28A` | Inverse-Compton and SZ path-frequency exchange | $Y_{\gamma}^{\mathrm{ex}}=-\ln(\nu^+/\nu^-)$; $y=\int(k_BT_e/m_ec_\gamma^2)n_e\sigma_Td\ell$ | Photon path-history exchange carrier, electron-medium row, Noether sea path state, and finite-window thermal record | `2` | `2` | Keep frequency shifts tied to one photon packet, medium/recoil/remnant ledger, SZ electron column, and thermal record without hidden retuning. |  |
-| `EQ-29` | Larmor/Lienard radiation, synchrotron, bremsstrahlung, and thermal channels | $P_L=q^2a^2/(6\pi\epsilon_0c^3)$; $\nu_c\propto\gamma^2B$ | Radiation residual, photon-channel packet selection, source-event ledger | `3` | `3` | Keep source mechanism separate from carrier/channel family while deriving emitted power and spectrum from one ledger. |  |
-| `EQ-30` | Scattering cross sections and form factors | $d\sigma/d\Omega\propto\lvert\mathcal M\rvert^2$; $F(Q^2)$ | Detector record statistics, exposure distribution, branch-outcome measure | `2` | `2` | Recover event rates and finite-size/exposure form factors from branch statistics rather than postulated amplitudes. |  |
-| `EQ-31` | Resonance widths, lifetimes, and branching fractions | $\sigma(E)\propto[(E-E_0)^2+\Gamma^2/4]^{-1}$; $\tau=\hbar/\Gamma$ | Metastable Noether braid branch, leakage corridor, decay provenance ledger | `2` | `2` | Derive width, lifetime, and branching fractions from branch stability and admissible decay corridors. |  |
-| `EQ-32` | Baryonic Tully-Fisher and radial-acceleration relation | $g_{\mathrm{obs}}\approx\sqrt{g_{\mathrm{bar}}a_0}$; $v_f^4=GM_ba_0$ | Noether sea constitutive response around baryonic assemblies | `2` | `3` | Treat low-acceleration galaxy regularities as constitutive-response benchmarks without importing a new ontology. |  |
+| ID | Equation or equation group | Representative equation | Primary AAA carrier | 6/23 | Closure driver | Promoted? |
+| --- | --- | --- | --- | --- | --- | --- |
+| `EQ-01` | Causal wake Master Equation and per-hit law | $\mathbf A_{r\leftarrow t}\propto r^{-2}W_{r\leftarrow t}^{\mathrm{acc}}\hat{\mathbf r}_t$, $W_{r\leftarrow t}^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ | Architrino causal wakes, causal-root ledger | `5` | Keep all later maps tied to active roots, transmitter-side factors, transmitter-side acceleration weights, separate signed root playback $D_r/D_t$, line-of-action hits, and event ledgers. | ready on the certified regular domain; global transition and conservation closure open |
+| `EQ-02` | Lorentz factor, clock rate, and ruler contraction | $\gamma_{\star}=(1-\beta_{\star}^2)^{-1/2}$; $d\tau/dt_{\mathrm{eff}}=1/\gamma_{\star}$ | Moving Noether braid through local Noether sea | `4` | Derive moving-clock and moving-ruler factors from one branch ledger. |  |
+| `EQ-03` | Oblate spheroidal envelope ratio | $\xi=R_{\parallel}/R_{\perp}\to1/\gamma_{\mathrm{eff}}$ | Noether braid envelope geometry | `4` | Prove return-cycle closure produces the axis ratio, not just a visual match. |  |
+| `EQ-04` | Energy-momentum and rest energy | $E^2=p^2c_{\mathrm{eff}}^2+M_0^2c_{\mathrm{eff}}^4$ | Closed internal causal-history ledger, shielding, Noether sea response | `4` | Compose branch energy, exposure quotient, and medium-response tensor. |  |
+| `EQ-04A` | Koide charged-lepton mass relation | $\frac{(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2}{m_e+m_\mu+m_\tau}=\frac{3}{2}$ | Charged-lepton generation-by-shielding ladder and exposed mass response | `1` | Test whether one charged-lepton mass map lands near the Koide surface without fitting to it. |  |
+| `EQ-05` | Noether conservation laws | $dE_{\mathrm{tot}}/dt=0$; $\mathbf{P}_{\mathrm{tot}}=\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ | Delay action, wake channels, event ledgers | `4` | Construct finite-window conserved totals with boundary flux and residuals. |  |
+| `EQ-06` | Noether sea continuity and moment closure | $\partial_t\rho_{\mathrm{NS}}+\nabla\cdot(\rho_{\mathrm{NS}}\mathbf u_{\mathrm{sea}})=S_{\rho}+r_{\rho}$ | Noether sea density, flow, energy, cadence, orientation | `4` | Derive continuum rows as low-moment projections of braid population dynamics. |  |
+| `EQ-07` | Effective metric ADM/Cartan map | $ds_{\mathrm{eff}}^2=-N^2c_0^2dt_{\mathrm{eff}}^2+\gamma_{ij}^{\mathrm{eff}}(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}})(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}})$ | Noether sea lapse, drift, spatial compliance | `4` | Derive one constitutive map into clock, ruler, and signal channels. |  |
+| `EQ-07A` | Compact-star support and collapse scale residual | $P_{e,\mathrm{nr}}\propto\rho^{5/3}$; $P_{e,\mathrm{rel}}\propto\rho^{4/3}$; $M_{\mathrm{Ch}}\propto Y_e^2M_\odot$ | Compact-region Noether braid packing, reaction ledger, Noether sea response, and metric compliance | `2` | Build one compact-region carrier that recovers support scaling, reaction inventory, material scale compression, and effective spatial compliance without hidden retuning. |  |
+| `EQ-08` | Weak-field clock and gravitational redshift | $d\tau/dt_{\mathrm{eff}}\approx1+\Phi_N/c_0^2-\lVert\mathbf w\rVert^2/(2c_0^2)$ | Noether sea cadence $\Gamma_N$, moving clock channel | `4` | Extract $\Gamma_N$ from braid cadence, density, delay, and potential response. |  |
+| `EQ-09` | Shapiro delay, lensing, and PPN rows | $\Delta\theta=2(1+\gamma_{\mathrm{PPN}})GM/(bc_0^2)$ | Shared effective metric projection | `4` | Force redshift, Shapiro, lensing, precession, acceleration, and preferred-frame rows through one record. |  |
+| `EQ-10` | Geodesic and proper-time action | $S_{\mathrm{clk}}=-mc_0^2\int d\tau$ | Observer-level clock/ruler record from Noether sea | `3` | Recover geodesic motion as a projection, not as substrate geometry. |  |
+| `EQ-11` | Einstein and Poisson weak-gravity limits | $\nabla^2\Phi_N=4\pi G\rho$; $G_{\mu\nu}=8\pi GT_{\mu\nu}/c^4$ | Noether sea stress, density, effective response | `3` | Derive $G_{\mathrm{eff}}$, stress-energy readout, and curvature response from the same constitutive law. |  |
+| `EQ-11A` | Gravitational-wave source, chirp, orbital-decay, and ringdown recovery | $\dot f_{\mathrm{GW}}\propto\mathcal M_c^{5/3}f_{\mathrm{GW}}^{11/3}$; $P_{\mathrm{GW}}\propto\langle\dddot Q_{ij}\dddot Q^{ij}\rangle$ | Effective metric tensor channel, Noether sea constitutive record, and source event ledger | `2` | Recover source quadrupole, chirp mass, orbital decay, strain flux, radiated energy/angular momentum, and ringdown from one source carrier without hidden retuning. |  |
+| `EQ-12` | Photon energy, null condition, and eikonal propagation | $E=h\nu$; $g^{\mathrm{eff}}_{\mu\nu}dx^\mu dx^\nu=0$ | Photon-channel packets through Noether sea | `3` | Connect packet energy, helicity, null transport, and medium frequency exchange. |  |
+| `EQ-12A` | Planck action quantum, de Broglie relations, and braid action scale | $E=h\nu=\hbar\omega$; $\mathbf p=\hbar\mathbf k$; $\oint p\,dq=nh$ | Closed-cycle Noether braid action ledger and photon packet row | `2` | Derive $h$ and $\hbar$ as shared action-cycle readouts instead of primitive constants or per-row fit handles. |  |
+| `EQ-13` | Maxwell and wave equations | $\Box A_{\mu}=J_{\mu}$ as comparison form | Effective field summary of causal wakes and photon channels | `3` | Recover field equations as continuum summaries of wake superposition and packet transport. |  |
+| `EQ-14` | Schrodinger and Born-current continuity | $\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf J_{\mathrm{rec}}=0$ | Basin measure, record flow, Noether sea background | `3` | Derive probability-current behavior from deterministic branch and record dynamics. |  |
+| `EQ-15` | Klein-Gordon, Dirac, spinor, and spin-statistics equations | $(i\hbar\gamma^\mu\partial_\mu-mc)\psi=0$ as benchmark | Noether braid ordered-frame, spinor, exchange, and angular-momentum ledgers | `2` | Build the spinor and exchange record before importing relativistic wave equations. |  |
+| `EQ-16` | Gauge and Standard Model field equations | Yang-Mills and QED/QCD equations as benchmarks | Effective interaction sectors, reaction provenance, branch labels | `2` | Convert gauge behavior into sector-visible ledger projections and reaction closure. |  |
+| `EQ-16A` | Neutrino oscillation phase gaps and PMNS mixing | $\Delta\omega_{ij}\simeq\Delta m_{ij}^2c^4/(2E\hbar)$; $\lvert\nu_\alpha\rangle=\sum_iU_{\alpha i}\lvert\nu_i\rangle$ | Iso-frequency Noether braid candidate, neutral-lepton phase operator, weak-coupling readout | `3` | Factor a common hidden clock while deriving two independent observed phase gaps from one retained neutral-lepton branch. |  |
+| `EQ-17` | Redshift factorization | $1+z_X\approx \Gamma_{N,E}\mathcal P_{E\to R}/(\Gamma_{N,R}B_XD_v)$ | Endpoint cadence, launch geometry, source branch, path-history propagation | `4` | Close one signed frequency-transfer ledger across gravitational, Doppler, source, and cosmological cases. |  |
+| `EQ-18` | Effective FRW metric and scale factor | $ds_{\mathrm{FRW,eff}}^2=-c_0^2d\tau_c^2+a_{\mathrm{eff}}^2d\Sigma_k^2$ | Observer-level projection of evolving Noether sea | `3` | Extract $a_{\mathrm{eff}}$ from medium evolution, clock comparison, and transport records. |  |
+| `EQ-19` | Friedmann and cosmological continuity equations | $H_{\mathrm{eff}}^2=8\pi G_{\mathrm{eff}}\rho_{\mathrm{eff}}/(3c_0^2)-kc_0^2/a_{\mathrm{eff}}^2+\Lambda_{\mathrm{eff}}/3$ | Fixed-void Noether sea cosmology projection | `3` | Recover Friedmann-like bookkeeping without promoting void expansion. |  |
+| `EQ-20` | Dark-energy equation of state and $\Lambda$ | $p=w\rho c_0^2$; $\Lambda_{\mathrm{eff}}=8\pi G_{\mathrm{eff}}\rho_{\mathrm{DE,eff}}/c_0^2$ | Noether sea tension, pressure, relaxation | `3` | Derive negative effective pressure from Noether sea state, not from fitted $\Lambda$ alone. |  |
+| `EQ-21` | Structure growth and matter power | $\ddot\delta+2H\dot\delta-4\pi G_{\mathrm{eff}}\bar\rho_m\delta=0$; $P(k,z)=P_{\mathrm{seed}}T^2D^2$ | Medium-and-assembly growth history | `3` | One sea record must feed growth, CMB lensing, shear, BAO, and halo tests. |  |
+| `EQ-22` | CMB transfer, blackbody, and acoustic equations | $C_\ell^{XY}=\frac{2}{\pi}\int k^2dk\,P(k)\Delta_{X\ell}\Delta_{Y\ell}$ | Noether sea thermalization and photon decoupling | `3` | Derive source, thermalization, acoustic, frame, and blackbody records together. |  |
+| `EQ-22A` | Planck blackbody law, mode counting, and photon occupancy | $\bar n_\nu=(e^{h\nu/k_BT}-1)^{-1}$; $u_\nu=8\pi h\nu^3/[c_\gamma^3(e^{h\nu/k_BT}-1)]$ | Finite-window thermal record, photon Gate B modes, Noether sea thermalization | `2` | Recover the Planck spectrum from shared mode counting, zero photon chemical potential, and thermalization depth without per-bin temperature fitting. |  |
+| `EQ-22B` | Recombination, visibility, sound horizon, and acoustic transfer | $\Gamma_T=n_e\sigma_Tc_\gamma$; $y_{\mathrm{vis}}=\Gamma_Te^{-\tau_T}$; $r_s=\int c_s\,dt/a_{\mathrm{eff}}$ | Shared thermal/provenance/readout record, photon and neutrino channels, Noether sea state, event ledger | `2` | Recover recombination kinetics, visibility, sound horizon, damping, and acoustic transfer from one shared observation carrier without importing an origin story or private readout clock. |  |
+| `EQ-23` | BBN rate and freezeout equations | reaction-network yields $\mathbf Y[\{T,\rho,n_b,n_\gamma,n_n\}]$ | Source-window thermal record and Noether sea state | `3` | Preserve light-element yields, $\eta$, $N_{\text{eff}}$, photon loading, and neutrino rows in one record. |  |
+| `EQ-24` | Fluid, elastic, and acoustic-medium equations | acoustic metric and stress-strain laws as comparison forms | Noether sea continuum response | `3` | Use only as low-moment projections of Noether braid population dynamics. |  |
+| `EQ-25` | Thermodynamic, Boltzmann, entropy, and fluctuation equations | $df/dt=C[f]$; $dS/dt\ge0$ | Coarse-grained sea and record dynamics | `3` | Derive thermalization, irreversibility, and noise from deterministic unresolved degrees of freedom. |  |
+| `EQ-26` | Atomic spectral constants, fine/hyperfine structure, and Lamb-shift class | $1/\lambda=R_\infty(1/n_b^2-1/n_a^2)$; $\Delta E=h\nu$ | Atomic envelope Noether braid, local clock row, angular-momentum ledger | `3` | Recover one shared Rydberg scale and then attach spin-sensitive and loop-sensitive residuals without per-line fitting. |  |
+| `EQ-26A` | Fine-structure constant, electromagnetic coupling, and energy running | $\alpha=e^2/(4\pi\epsilon_0\hbar c_\gamma)$; $d\alpha^{-1}/d\ln\mu=-b(\mu)$ | Exposed charge row, `EQ-12A` action row, photon speed, gauge/coupling response | `2` | Derive $\alpha(\mu)$ as a scale-dependent coupling projection from one electromagnetic exposure domain rather than a fixed fitted constant. |  |
+| `EQ-27` | Magnetic moment, Larmor/cyclotron precession, and g-2 | $\boldsymbol\mu=g(q/2m)\mathbf S$; $a_\ell=(g-2)/2$ | Internal current geometry, ordered-frame spinor ledger, measurement-response row | `2` | Derive magnetic moment and anomaly as exposed internal-current response, not as an assigned spin label. |  |
+| `EQ-28` | Compton, photoelectric, pair-threshold, and recoil equations | $\Delta\lambda=h(1-\cos\theta)/(m_ec)$; $E_\gamma\ge2m_ec^2$ | Photon-channel event ledger, recoil branch, pair-production provenance | `3` | Close energy, momentum, angular momentum, photon packet, recoil, and material/Noether sea update in one event record. |  |
+| `EQ-28A` | Inverse-Compton and SZ path-frequency exchange | $Y_{\gamma}^{\mathrm{ex}}=-\ln(\nu^+/\nu^-)$; $y=\int(k_BT_e/m_ec_\gamma^2)n_e\sigma_Td\ell$ | Photon path-history exchange carrier, electron-medium row, Noether sea path state, and finite-window thermal record | `2` | Keep frequency shifts tied to one photon packet, medium/recoil/remnant ledger, SZ electron column, and thermal record without hidden retuning. |  |
+| `EQ-29` | Larmor/Lienard radiation, synchrotron, bremsstrahlung, and thermal channels | $P_L=q^2a^2/(6\pi\epsilon_0c^3)$; $\nu_c\propto\gamma^2B$ | Radiation residual, photon-channel packet selection, source-event ledger | `3` | Keep source mechanism separate from carrier/channel family while deriving emitted power and spectrum from one ledger. |  |
+| `EQ-30` | Scattering cross sections and form factors | $d\sigma/d\Omega\propto\lvert\mathcal M\rvert^2$; $F(Q^2)$ | Detector record statistics, exposure distribution, branch-outcome measure | `2` | Recover event rates and finite-size/exposure form factors from branch statistics rather than postulated amplitudes. |  |
+| `EQ-31` | Resonance widths, lifetimes, and branching fractions | $\sigma(E)\propto[(E-E_0)^2+\Gamma^2/4]^{-1}$; $\tau=\hbar/\Gamma$ | Metastable Noether braid branch, leakage corridor, decay provenance ledger | `2` | Derive width, lifetime, and branching fractions from branch stability and admissible decay corridors. |  |
+| `EQ-32` | Baryonic Tully-Fisher and radial-acceleration relation | $g_{\mathrm{obs}}\approx\sqrt{g_{\mathrm{bar}}a_0}$; $v_f^4=GM_ba_0$ | Noether sea constitutive response around baryonic assemblies | `3` | Treat low-acceleration galaxy regularities as constitutive-response benchmarks without importing a new ontology. |  |
 
 ## Speed-Symbol Audit Target
 
@@ -384,9 +384,9 @@ with raw and normalized shell defects retained as diagnostics rather than accept
 
 ### Closure Status
 
-Current `6/23 b` score: `4`.
+Current `6/23` score: `4`.
 
-The conceptual and variable map is strong enough for the second-round score because it now sits inside the shared Lorentz-energy residual program. It remains below `5` because the first branch-derived $E_{\mathrm{internal}}$, $\zeta(A)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ are still active mass-map work.
+The conceptual and variable map supports the dated score because it now sits inside the shared Lorentz-energy residual program. It remains below `5` because the first branch-derived $E_{\mathrm{internal}}$, $\zeta(A)$, and $\mathcal M_{\mathrm{sea}}^{ab}$ are still active mass-map work.
 
 ### Closure Burden
 
@@ -573,7 +573,7 @@ A hit requires the band to land near $1/2$ while remaining narrow enough that ge
 
 ### Closure Status
 
-Current `6/23 b` score: `1`.
+Current `6/23` score: `1`.
 
 The relation is already recorded in the particle-mass material as a speculative charged-lepton benchmark, but no branch-derived mass map currently predicts the electron, muon, and tau masses before checking the Koide residual. The score is therefore deliberately low.
 
@@ -630,9 +630,9 @@ The corpus already warns that ordinary local Noether energy does not automatical
 
 ### Closure Status
 
-Current `6/23 b` score: `4`.
+Current `6/23` score: `4`.
 
-The bookkeeping standard and finite-window residual grammar are now explicit enough for the second-round score. Exact conserved functionals remain conditional on action-level derivation and finite-window residual evaluation.
+The bookkeeping standard and finite-window residual grammar support the dated score. Exact conserved functionals remain conditional on action-level derivation and finite-window residual evaluation.
 
 Executable status: [finite-window-conservation-residual.mjs](../../../scripts/equation-mapping/finite-window-conservation-residual.mjs) now evaluates $\mathcal R_{01-05}^{\mathfrak B}(W)$ as a same-root finite-window conservation packet. The attempt fixture [finite-window-conservation-attempt.v1.json](../../../scripts/equation-mapping/finite-window-conservation-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, `nextBlocker: missing_accepted_branch_chart`, and passing numeric checks for same-root signatures, energy, momentum, angular momentum, event ledger, boundary flux, wake crosswalk, and no-double-count residuals. Those numeric passes are not score evidence because the required branch-chart and conservation rows remain `attempt`.
 
@@ -800,7 +800,7 @@ $$
 
 ### Closure Status
 
-Current `6/23 b` scores: `4` for effective metric, weak-clock, and PPN rows; `3` for the geodesic row.
+Current `6/23` scores: `4` for effective metric, weak-clock, and PPN rows; `3` for the geodesic row.
 
 The map is equation-level, but coefficient closure and shared-record enforcement remain open.
 
@@ -871,7 +871,7 @@ The row must keep atomic orbital scale, Fermi spacing, and material Noether brai
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The standard formula families and native carriers are now named in the focused packet, but no accepted compact-region retained carrier or dense-matter equation-of-state bridge exists. No score change for `EQ-07` through `EQ-10` follows from adding this suffix row.
 
@@ -1103,7 +1103,7 @@ The source quadrupole, inspiral chirp, orbital decay, strain flux, radiated ener
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The standard formula families and native carriers are now named in the focused packet, but no accepted gravitational-wave source carrier, source-backed effective metric tensor row, or final remnant/ringdown retained label exists. No score change for `EQ-11` or adjacent metric rows follows from adding this suffix row.
 
@@ -1425,7 +1425,7 @@ The Noether sea state, $c_\gamma$, and response kernels are base or constitutive
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The row is high priority because many mature equations already consume $h$ or $\hbar$. It remains low-scored because the current material uses those constants as bridge readouts or residual inputs; it does not yet derive the action unit from retained braid geometry.
 
@@ -3067,7 +3067,7 @@ K_{\mathrm{det}}(x)\,d\mu_a(x)
 \mathcal R_{\sigma}.
 $$
 
-The `6/23 b` common-architecture refinement factors this as a projection of the finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$. That carrier holds the retained window, transition map, branch measure, coarse-graining, detector kernel, outcome partition, optional corridor family, and no-hidden-retune witness once, so rate and form-factor rows cannot be normalized independently.
+The `6/23` common-architecture refinement factors this as a projection of the finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$. That carrier holds the retained window, transition map, branch measure, coarse-graining, detector kernel, outcome partition, optional corridor family, and no-hidden-retune witness once, so rate and form-factor rows cannot be normalized independently.
 
 ### Closure Status
 
@@ -3209,7 +3209,7 @@ Findability note: MOND and MOND-like interpolation laws belong here only as obse
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 The equation is a strong observational benchmark, and the current $\mathbb{A}\mathbb{A}\mathbb{A}$ map is now a shared constitutive-response target. It should not be imported as a new gravity ontology or as permission to bypass the effective-metric and cosmology rows.
 
@@ -3233,7 +3233,7 @@ Broaden the populated galaxy-response child into score-review observational tran
 
 Cross-cutting solver priority: the stable three-binary configuration search should consume the equation map through Equation-Map Bearing On Braid Configuration Search. The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=(f+1,f,f-1)$, $(I,M,O)=(f,f,f)$, $(I,M,O)=(4f,2f,f)$, and $(I,M,O)=(nf,mf,f)$. These are search candidates, not conclusions; acceptance should depend on the retained root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residuals emitted from the same branch record.
 
-Current executable reducer guardrail: `scripts/equation-mapping/check-emit-02-04-contract.mjs` consumes the solver report's `cases[].branchChartProjection.equationBearing` payload and maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$. The 2026-06-23 iso-frequency smoke result is `blocked_not_evaluable` with 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`. This checker sharpens the `EQ-02` through `EQ-04` reducer burden but does not justify any `6/23 b` score change.
+Current executable reducer guardrail: `scripts/equation-mapping/check-emit-02-04-contract.mjs` consumes the solver report's `cases[].branchChartProjection.equationBearing` payload and maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$. The 2026-06-23 iso-frequency smoke result is `blocked_not_evaluable` with 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`. This checker sharpens the `EQ-02` through `EQ-04` reducer burden but does not justify any `6/23` score change.
 
 1. `EQ-02` and `EQ-03`: Lorentz factor, clock/ruler retuning, and oblate spheroidal envelope. These already have the strongest visual and algebraic bridge.
 2. `EQ-04` and `EQ-04A`: energy-momentum, rest energy, and the Koide charged-lepton benchmark. This should attach the Lorentz envelope to mass-map work, then check whether one charged-lepton mass map lands near the Koide surface without direct fitting.
@@ -3257,7 +3257,7 @@ Use the compatibility-identifier `aaa-corpus-advancement` skill in team-agent mo
 Context:
 - Priority folder: `reference/priorities/mapping-equations/`.
 - Start with `reference/priorities/mapping-equations/priorities.md` and `reference/priorities/mapping-equations/equation.md`.
-- The line items in `equation.md` use dated score columns from `0` to `5`; `6/23 a` is the first-round score, and `6/23 b` records prior worker-backed score decisions where populated, not accepted-evidence authority for future score-change review. Suffix rows such as `EQ-04A`, `EQ-12A`, `EQ-22A`, and `EQ-26A` are first-class rows for tightly coupled constants or sub-equation closures that should not renumber the existing inventory.
+- The line items in `equation.md` use one dated `6/23` score from `0` to `5`. It records the retained worker-backed disposition, not accepted-evidence authority for future score-change review. Suffix rows such as `EQ-04A`, `EQ-12A`, `EQ-22A`, and `EQ-26A` are first-class rows for tightly coupled constants or sub-equation closures that should not renumber the existing inventory.
 - The current high-value bridge is:
   `Noether braid closure -> (xi, Gamma_N, chi_sea, rho_NS) -> g_eff -> (H_eff, z, D(z), P(k,z))`.
 - The collapse-scale compression bridge is now first-class. Use `reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md#collapse-scale-derivation-expansion-target` to flesh out Chandrasekhar support scaling, TOV pressure-gravity comparison, material Noether braid scale compression, compact-region energy/reaction ledgers, and the shared $\mathcal{S}_{\mathrm{mat}}\to\mathcal{S}_{\mathrm{metric}}$ projection from one retained carrier.

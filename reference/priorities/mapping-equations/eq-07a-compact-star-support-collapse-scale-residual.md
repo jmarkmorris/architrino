@@ -253,7 +253,7 @@ This residual keeps the GR comparison at the observer level. It checks the press
 
 ## Score Decision
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The score is conservative:
 

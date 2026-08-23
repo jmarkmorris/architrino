@@ -202,7 +202,7 @@ This residual deliberately sits between `EQ-11` and `EQ-29`. `EQ-29` handles rad
 
 ## Score Decision
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The score is conservative:
 

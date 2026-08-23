@@ -17,7 +17,7 @@
 - Accepted nonlinear child: [eq21-nonlinear-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json) consumed by [eq21-nonlinear-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-accepted.v1.json)
 - Accepted galaxy-response child: [eq32-galaxy-response-child-evidence.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json) consumed by [eq32-galaxy-response-child-accepted.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-accepted.v1.json)
 - Assigned IDs: `EQ-21`, `EQ-22`, `EQ-22A`, `EQ-23`, `EQ-32`
-- Status: `second-round residual packet`
+- Status: `refined residual packet`
 - Scope: priority-only; no reader-facing corpus promotion and no score-table edits in this packet
 - Claim bucket: derivation/closure target with observer-level effective summaries
 
@@ -31,11 +31,11 @@
 - BBN freezeout, light-element yields, photon loading, and neutrino rows;
 - baryonic Tully-Fisher and radial-acceleration behavior in the low-acceleration galaxy regime.
 
-The second-round residual should make hidden retuning visible. A branch may project differently into a BBN source window, a CMB last-scattering/transport record, a linear-growth record, and a galaxy low-acceleration record, but overlapping rows must share provenance and declared transformation rules. If one row changes $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, baryon loading, neutral-assembly loading, or effective readout variables independently, the packet fails even if each observable fits in isolation.
+The refined residual should make hidden retuning visible. A branch may project differently into a BBN source window, a CMB last-scattering/transport record, a linear-growth record, and a galaxy low-acceleration record, but overlapping rows must share provenance and declared transformation rules. If one row changes $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, baryon loading, neutral-assembly loading, or effective readout variables independently, the packet fails even if each observable fits in isolation.
 
 ## Packet Attack Card
 
-- Dated score snapshot: the `6/23 b` ledger records `3` for `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`; `EQ-22A` remains `2` inside the Planck blackbody core note. This packet has no score authority and does not update [equation.md](equation.md).
+- Dated score snapshot: the `6/23` ledger records `3` for `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`; `EQ-22A` remains `2` inside the Planck blackbody core note. This packet has no score authority and does not update [equation.md](equation.md).
 - Closure driver: one retained $\Theta_{\mathrm{obs}}$ record must bind source-window, readout, thermal/provenance, galaxy, and energy-momentum-angular-momentum ledger rows before growth, CMB, BBN, Planck blackbody, or RAR/BTFR comparisons can count as evidence.
 - Accepted route status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now accepts the provider-backed $\Theta_{\mathrm{obs}}$ consumer. The accepted input consumes the populated shared `EQ-11`/`EQ-20` residual, accepted `theta_W` evidence, accepted output-projection evidence, accepted `theta_cos` handoff, and accepted `delta_a_star` output projection. It reports `status=populated`, `nextBlocker=null`, no missing projection families, no missing shared keys, and `hiddenRetuneNumericPass=true`.
 - `EQ-21` child status: [eq21-growth-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-growth-transfer-child-residual.mjs) accepts the first predictive child, [eq21-matter-power-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-residual.mjs) accepts the matter-power child, [eq21-lensing-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-lensing-transfer-child-residual.mjs) accepts the CMB-lensing child, [eq21-shear-rsd-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-shear-rsd-transfer-child-residual.mjs) accepts the shear/RSD child, [eq21-halo-cluster-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-halo-cluster-transfer-child-residual.mjs) accepts the halo/cluster child, and [eq21-nonlinear-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-residual.mjs) accepts the nonlinear transfer child. The accepted inputs consume the same shared-observation parent; the matter-power child consumes the accepted $f\sigma_8$ child; the lensing child consumes the accepted parent, accepted $f\sigma_8$ child, and accepted normalized $P(k,z)$ child; the shear/RSD child consumes that accepted parent/growth/matter/lensing chain; the halo/cluster child consumes the same chain plus the accepted shear/RSD child; the nonlinear child consumes the same chain plus the accepted halo/cluster child; inherited shared keys do not retune. The accepted runs report $f\sigma_8=0.4165634684945517$, `matterPowerGridNormalizedResidual=0` with `sampleCount=6`, `cmbLensingGridNormalizedResidual=0` with `sampleCount=3`, `shearRsdGridNormalizedResidual=0` with `sampleCount=3`, `haloClusterGridNormalizedResidual=3.0204931705456123e-16` with `sampleCount=3`, and `nonlinearGridNormalizedResidual=3.0204931705456123e-16` with `sampleCount=3`.
@@ -204,7 +204,7 @@ The upstream handoff shape is executable in [effective-frw-handoff-residual.mjs]
 
 ## Shared-Observation Residual
 
-Define the second-round residual as:
+Define the refined residual as:
 
 $$
 \begin{aligned}
@@ -222,7 +222,7 @@ $$
 \end{aligned}
 $$
 
-The first four terms are the familiar observation residuals. The remaining terms are the second-round discipline:
+The first four terms are the familiar observation residuals. The remaining terms enforce the refined shared-record discipline:
 
 - $\mathcal R_{\mathrm{FRW}\to\mathrm{obs}}$ checks that the downstream readout is the upstream effective-FRW, redshift, and Friedmann projection, not a separate observer state.
 - $\mathcal{R}_{\mathrm{handoff}}$ checks that BBN, CMB, growth, and galaxy projections exchange the same shared rows.
