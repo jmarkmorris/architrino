@@ -16,9 +16,11 @@ tested observer-level electromagnetism and $\mathbb{A}\mathbb{A}\mathbb{A}$
 assembly plus Noether sea records.
 
 The forward direction asks how retained assembly geometry, exposed polarity,
-causal-wake history, photon-channel transport, and one shared Noether sea
-response recover Maxwell-level charge, current, electric and magnetic readouts,
-induction, waves, radiation, stress, and energy-momentum bookkeeping.
+causal-wake history, photon-channel transport, boundary history, and one declared
+Noether sea record recover Maxwell-level charge, current, electric and magnetic
+readouts, induction, waves, radiation, stress, and energy-momentum bookkeeping.
+That record must preserve the distinction between a sea that remains within its
+reference tolerance and a nontrivial sea response.
 
 The inverse direction uses simple solved electromagnetic cases as constraints on
 the native structure. It asks what a current loop, translating charge, neutral
@@ -65,8 +67,9 @@ or the `EQ-26A` score.
 The focused inverse-method packet is
 [Inferring Braid Requirements](inferring-braid-requirements.md). It converts
 existing effective behaviors into graded requirements on source assemblies,
-matter and receiver braids, near-to-far Noether sea response, propagating
-carriers, and causal boundary history. It is a pre-derivation constraint
+matter and receiver braids, the near-to-far Noether sea record and any derived
+response, propagating carriers, and causal boundary history. It is a
+pre-derivation constraint
 artifact for `EMAP-001` through `EMAP-004`, not a new equation or benchmark
 inventory and not evidence that any candidate geometry is retained.
 
@@ -86,9 +89,10 @@ $$
 not the equation rows, benchmark provenance, or native retained records that
 populate the individual sets.
 
-Plainly: this lane asks which assembly-and-sea records survive all required
-electromagnetic comparisons at once. The contributing workstreams still own
-the formulas, experiments, and evidence used to answer that question.
+Plainly: this lane asks which source, assembly, causal-history, boundary, and sea
+records survive all required electromagnetic comparisons at once. The
+contributing workstreams still own the formulas, experiments, and evidence used
+to answer that question.
 
 - This lane owns electromagnetic case integration, inverse-constraint design,
   cross-row same-record requirements, the source/moment/field matrix, and the
@@ -118,8 +122,8 @@ rule.
 
 At the observer level, Physical Observers made from assemblies must recover
 Maxwell behavior in its validated continuum regimes. A successful map must
-derive all effective field rows from one source-backed assembly and Noether sea
-record without per-equation retuning.
+derive all effective field rows from one source-backed assembly, causal-history,
+boundary, and declared Noether sea record without per-equation retuning.
 
 Plainly: failure of a single architrino record to look like a Maxwell field is
 not a theory failure because the field chart is not defined there. Failure of a
@@ -148,11 +152,12 @@ objects remain in [work-queue.md](work-queue.md), and dated handoffs remain in
 - no accepted photon_gate_A_input_output feeding the EQ-13 effective EM rows;
 - no derived exposed-current density from polarity, shielding, and retained
   path history; and
-- no shared Noether sea electromagnetic constitutive response with independent
-  Maxwell benchmarks;
+- no derived nontrivial Noether sea electromagnetic response, or bound showing
+  that such a response is unnecessary, across independent Maxwell benchmarks;
 - no accepted `theta_gamma_packet`, geometry-derived action period, or
   scheme-pinned `charge_exposure_row` for the fine-structure coupling map.
 
 Closure goal: recover observer-level electromagnetism from retained assembly
-geometry and Noether sea response while using solved electromagnetic cases as
-inverse constraints on braid and electron structure.
+geometry, causal wakes, boundary history, and any required Noether sea response
+while using solved electromagnetic cases as inverse constraints on braid and
+electron structure.

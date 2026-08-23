@@ -4,7 +4,7 @@ This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, anomaly cancellation, running couplings, and null results for non-baseline channels. This chapter is a working emergence map, not the formal symmetry theorem chapter. Its job is to show what must be recovered and which substrate records are allowed to carry that recovery before exact closure is finished.
 
-The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one retained assembly and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
+The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one declared source-assembly, causal-history, boundary, and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
 
 Readers who want the particle dictionary before this emergence map can read [Quantum Number Mapping](./fermions/quantum-number-mapping.md) and [Particle Masses](./particle-masses.md) first.
 
@@ -22,7 +22,7 @@ One useful assembly-level picture is that long-lived Noether sea units arise whe
 
 ## Field Language as Effective Bookkeeping
 
-Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for Noether sea state and assembly state, not a second substrate ontology.
+Standard Model fields are often treated as fundamental entities. Here, field language is an **effective bookkeeping tool** for source and assembly history, boundaries, and any resolved Noether sea state, not a second substrate ontology.
 
 The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state perspective and the Physical Observer.
 

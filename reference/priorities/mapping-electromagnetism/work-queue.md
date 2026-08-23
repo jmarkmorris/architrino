@@ -72,9 +72,10 @@ score, or retained-evidence decision.
   Mapping supplies the current EQ-13 and EQ-27 row contracts; neither their
   attempt fixtures nor priority prose supplies accepted source evidence.
 - **Completion:** A focused matrix packet separates internal rotation axis,
-  exposed-current magnetic moment, and Noether sea field response; all six
-  cases have explicit parity predictions, same-record requirements, and
-  failure conditions; no Maxwell or electron-structure claim is promoted.
+  exposed-current magnetic moment, observer-level magnetic projection, and its
+  direct-wake versus sea-response provenance; all six cases have explicit parity
+  predictions, same-record requirements, and failure conditions; no Maxwell or
+  electron-structure claim is promoted.
 
 ## Deferred / blocked
 
@@ -108,9 +109,12 @@ score, or retained-evidence decision.
 
 - **Status:** Deferred / blocked
 - **Priority object:** noether_sea_electromagnetic_constitutive_map
-- **Request / acceptance:** Derive one weak-regime Noether sea response family
-  serving effective permittivity, permeability, impedance, wave speed,
-  dispersion, magnetic circulation, and material-boundary response.
+- **Request / acceptance:** Determine whether one nontrivial weak-regime Noether
+  sea response family is required for effective permittivity, permeability,
+  impedance, wave speed, dispersion, magnetic circulation, and material-boundary
+  response. If required, derive it from retained sea braids; if not, bound the
+  sea contribution within the declared reference tolerance while the direct
+  source-history projection recovers the same rows.
 - **Pre-derivation requirements:**
   [Inferring Braid Requirements](inferring-braid-requirements.md) separates
   deduced effective requirements, inferred native requirements, and candidate

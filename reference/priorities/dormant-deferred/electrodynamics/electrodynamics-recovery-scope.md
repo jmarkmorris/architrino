@@ -23,9 +23,9 @@ rule being tested and its independent proof.
 
 | Family | First target | Native burden | Completion boundary |
 | --- | --- | --- | --- |
-| Static response | Closed-surface electric response and no-isolated-magnetic-source regime | Retained polarity plus shared Noether sea and apparatus projection | One declared weak-gradient branch reaches an independent analytic benchmark |
-| Moving-source response | Velocity-dependent and inductive observer record | Causal-root geometry, transmitter-side weighting, assembly response, shared medium state | One branch-certified moving-source benchmark matches without a primitive magnetic acceleration rule |
-| Wave transport | Finite-speed, polarization, impedance, and dispersion record | Time-dependent assembly and Noether sea response with boundary data | One independently checked propagation problem predicts phase and amplitude in a declared regime |
+| Static response | Closed-surface electric response and no-isolated-magnetic-source regime | Retained polarity, causal history, declared Noether sea record, and apparatus projection | One declared weak-gradient branch reaches an independent analytic benchmark |
+| Moving-source response | Velocity-dependent and inductive observer record | Causal-root geometry, transmitter-side weighting, assembly response, and direct-versus-sea provenance | One branch-certified moving-source benchmark matches without a primitive magnetic acceleration rule |
+| Wave transport | Finite-speed, polarization, impedance, and dispersion record | Time-dependent causal history, boundary data, and any derived Noether sea response | One independently checked propagation problem predicts phase and amplitude in a declared regime |
 | Radiation | Far-zone transport separated from the always-on wake | Closed source, recoil, wake, medium, remnant, and outgoing-carrier ledger | One event record closes its accounts and recovers an independent radiation observable |
 | Material response | Reflection, transmission, absorption, and boundary conversion | Shared constitutive state and surface/interface rules | Two response classes follow from one state family without per-case retuning |
 | Precision interface | Selected QED amplitude, spectrum, or null channel | Declared projection from assembly and Noether sea records | Versioned comparison includes uncertainty budget and a falsifier |

@@ -132,7 +132,7 @@ The working ontology is therefore:
 $$
 \text{architrino paths and causal wakes}
 \longrightarrow
-\text{retained assembly and sea response}
+\text{retained assembly, boundary, and declared sea record}
 \longrightarrow
 \text{effective observer record}.
 $$
