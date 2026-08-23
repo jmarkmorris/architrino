@@ -5,7 +5,7 @@
 - Kind: `priority-packet`
 - Status: `draft`
 - Parent packet: [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](eq-02-04-lorentz-energy-packet.md)
-- Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
+- Common architecture: [Shared Equation And Mapping Architecture](equation-common-architecture.md)
 - Owned IDs: `EQ-02`, `EQ-03`, `EQ-04`
 - Related downstream ID: `EQ-04A`
 - Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)

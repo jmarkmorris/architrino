@@ -64,7 +64,7 @@ or the `EQ-26A` score.
 
 ## Scope And Ownership
 
-The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture-2026-06-23-c.md)
+The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md)
 defines this lane as a domain integrator. For an electromagnetic benchmark set
 $\mathcal B_{\mathrm{EM}}$, this lane owns the same-record intersection
 

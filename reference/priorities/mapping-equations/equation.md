@@ -985,7 +985,7 @@ These are not substrate laws in AAA. They are observer-level recovery targets. T
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 The recovery burden is much larger than the weak-field clock and PPN rows. Current material has the shared constitutive interface, not a full Einstein-equation analogue.
 
@@ -1172,7 +1172,7 @@ Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ belongs here as a Gate 
 
 ### Closure Status
 
-Current `6/23 b` scores: `3` for photon energy/null transport and `3` for Maxwell and wave equations.
+Current `6/23` scores: `3` for photon energy/null transport and `3` for Maxwell and wave equations.
 
 Executable status: [photon-packet-transfer-residual.mjs](../../../scripts/equation-mapping/photon-packet-transfer-residual.mjs) now evaluates the direct `EQ-12` photon packet-transfer residual. Its attempt fixture [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json) reports `status: blocked_missing_rows`, `nextBlocker: missing_accepted_theta_gamma_packet`, `packetNumericPass: true`, and `negativeControlPassCount: 4`; no score change follows because the photon packet rows remain attempt-level. [EQ-12 Theta-Gamma Packet Source Shell](eq-12-theta-gamma-packet-source-shell.md) carries the Direct Geometry Layer and source-guard route for the photon packet; priority/source-map prose, attempts, probes, and other non-evidence sources remain rejected, and the first accepted evidence object is still a source-backed $\Theta_\gamma$ carrier. [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs) also reports an `EQ-13` effective EM gate projection on the same $\mathsf e_{\gamma e}^{0}$ carrier used by `EQ-12`, `EQ-26`, `EQ-28`, and `EQ-29`; that gate still blocks at `missing_accepted_photon_gate_A_input_output`. The [EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](eq-13-28-e-gamma-e0-gate-a-source-field-map.md) now carries a Direct Geometry Layer binding Gate A, native event rows, effective EM gate rows, recoil rows, shared constants, and source-channel boundaries to the same event carrier.
 
@@ -1494,7 +1494,7 @@ Solved Schrödinger, Klein-Gordon, Dirac, and spinor wave families should be min
 
 ### Closure Status
 
-Current `6/23 b` scores: `3` for Schrodinger/Born-current continuity and `2` for Dirac/spinor and gauge equations.
+Current `6/23` scores: `3` for Schrodinger/Born-current continuity and `2` for Dirac/spinor and gauge equations.
 
 Current material names useful closure routes, but the deeper spinor and gauge maps remain early.
 
@@ -1721,7 +1721,7 @@ Small $R_{\nu,\mathrm{cancel}}$ is not enough. A neutral-lepton branch must also
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 The standard oscillation equations are precise, the local neutrino chapter already supplies a geometric phase-operator recovery target, and the iso-frequency packet now names the common-clock three-binary interpretation. The missing object is a retained neutral-lepton Noether braid branch that derives $H_{3B}^{(\nu)}$, $U_{\mathrm{PMNS}}$, and the two independent phase gaps from the same row set.
 
@@ -1949,7 +1949,7 @@ The native hypothesis routes dark energy to Noether sea state:
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 The mechanism is staged as a shared constitutive target, not merely a loose analogy. A fitted $\Lambda$ is still not a derivation.
 
@@ -2076,7 +2076,7 @@ The CMB packet must join:
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 The current material now has a shared observation-record scaffold, but the equation-level transfer pipeline remains a priority target.
 
@@ -2198,7 +2198,7 @@ A nonzero $\mu_\gamma^\theta$ over finite windows is therefore a physical leakag
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The surrounding CMB and thermodynamic rows are already at `3`, but this row starts lower because the Planck spectrum itself has not yet been derived from retained mode counting and finite-window thermalization. A fitted blackbody temperature is not enough: the row must show why the photon occupation law, two transverse modes, zero chemical potential, and thermalization depth share one record.
 
@@ -2300,7 +2300,7 @@ The recombination fraction, Thomson rate, visibility, sound horizon, Silk dampin
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The standard formula families and native carriers are now named in the focused packet, but no accepted recombination/acoustic carrier, shared thermal/provenance record, photon channel, neutrino channel, Noether sea state, or event ledger exists. No score change for `EQ-21`, `EQ-22`, `EQ-22A`, `EQ-23`, `EQ-24`, or `EQ-25` follows from adding this suffix row.
 
@@ -2350,7 +2350,7 @@ BBN is an effective source-window and thermal-record constraint. The Noether sea
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 The constraint rows and shared source-window dependencies are explicit, but the native source-window mechanism is not predictive enough yet.
 
@@ -2463,7 +2463,7 @@ Key AAA carriers:
 
 ### Closure Status
 
-Current `6/23 b` score: `3`.
+Current `6/23` score: `3`.
 
 This is necessary for CMB, measurement, irreversibility, and statistical mechanics. The mapping now has a finite-window pushforward target, but no populated closure calculation yet.
 
@@ -2663,7 +2663,7 @@ The strongest falsifier is the single-period test: fit $\alpha(0)$, an atomic fi
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The target is observationally sharp and structurally central, but current material has not derived charge normalization, electromagnetic response, $\hbar$, and photon-channel speed from one retained exposure/coupling domain. The running of $\alpha$ is therefore a high-priority closure target, not a solved result.
 
@@ -2922,7 +2922,7 @@ The local inverse-Compton row, signed path-frequency increment, thermal SZ row, 
 
 ### Closure Status
 
-Current `6/23 b` score: `2`.
+Current `6/23` score: `2`.
 
 The standard formula families and native carriers are now named in the focused packet, but no accepted path-frequency exchange carrier, photon Gate A/B handoff, electron-medium population row, Noether sea path-history row, or finite-window thermal record exists. No score change for `EQ-12`, `EQ-17`, `EQ-22`, `EQ-22A`, `EQ-28`, or `EQ-29` follows from adding this suffix row.
 
