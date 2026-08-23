@@ -26,9 +26,40 @@ F6c is not yet a retained braid. It is a symmetry-protected family of complete
 eight-member histories on which the Master Equation can be evaluated and from
 which a retained branch may be sought.
 
-Plainly: F6c is a precisely defined six-knob motion template for eight
+Plainly: F6c is a precisely defined six-coordinate motion template for eight
 architrinos. It is a candidate architecture, not yet a demonstrated particle
 or stable assembly.
+
+## Reader Roadmap
+
+The document follows one dependency chain. Later claims depend on the earlier
+steps and should not be read as independent assumptions:
+
+1. **Choose the scaffold.** Four balanced tetrahedral axes provide the body
+   frame.
+2. **Place the members.** Each axis receives one positrino track and one
+   electrino track, producing eight member paths.
+3. **Reduce the coordinates.** The four members in each polarity sector share
+   one axial scale, one transverse radius, and one phase. The complete shape
+   therefore uses six coordinates.
+4. **Derive the geometry.** The member map gives exact centering, envelope,
+   polarity-dipole, face-channel, and current-axis identities.
+5. **Test the dynamics.** Symmetry proves that the Master Equation acceleration
+   remains tangent to the F6c history surface while the declared causal-root
+   conditions hold. Bounded EOM-solver records then measure what particular
+   histories do on that surface.
+6. **Keep promotion separate.** A finite evolution, a current-like diagnostic,
+   or a neutral-volume seed does not by itself establish binding, recurrence,
+   stability, electric current, magnetism, spin, or particle identity.
+
+The core F6c argument runs through [Current Evidence Boundary](#current-evidence-boundary).
+Appendix A supplies optional historical geometry, and Appendix B supplies an
+optional comparison with spin-foam mathematics. Neither appendix is needed to
+follow the F6c derivation.
+
+Plainly: first define the paths, then prove what their geometry guarantees,
+then measure how the paths evolve. Physical interpretation comes only after
+those three stages succeed.
 
 ## Vocabulary
 
@@ -43,11 +74,42 @@ or stable assembly.
 | phase \(\theta_\sigma\) | The shared progress coordinate around the four tracks in sector \(\sigma\), after fixed module signs and phase offsets are applied. |
 | cadence \(\dot\theta_\sigma\) | The phase rate. It may change sign, so circulation can slow, stop, or reverse. |
 | spherical envelope | The sphere on which every member track of one polarity sector lies at a declared instant. It is a geometric surface, not a material shell. |
-| current axis | The body-frame line on which the polarity-weighted internal current moment lies. It is not a translation direction and is not yet a proven spin axis. |
+| current axis | Short local label for the body-frame line selected by the polarity-weighted internal motion-moment diagnostic. It is not a translation direction, a demonstrated electric-current direction, or a proven spin axis. |
 
 Plainly: a sector is a four-member polarity group, a module is one axis-associated
 positrino/electrino track pair, and the word envelope describes where the paths
 fit geometrically rather than a substance surrounding them.
+
+Throughout this document, `current moment`, `sector current`, and `current
+axis` are compact names for the derived F6c motion-moment diagnostic defined
+below. They do not assert effective electric-charge transport, amperage, a
+magnetic moment, or a magnetic field.
+
+Plainly: in this file, “current” is shorthand for a specific signed geometry
+calculation. Whether that calculation becomes an observer-level electric or
+magnetic source remains an open recovery target.
+
+## Symbol Guide
+
+| Symbol | Meaning |
+| --- | --- |
+| \(i\in\{0,1,2,3\}\) | Module index. Each value selects one tetrahedral axis and its two polarity-associated tracks. |
+| \(\sigma\in\{+1,-1\}\) | Primitive-polarity label: \(+1\) for a positrino and \(-1\) for an electrino. |
+| \(\hat{\mathbf n}_i\) | Unit vector along module \(i\)'s tetrahedral axis. A hat marks a unit vector. |
+| \(\mathbf u_i,\mathbf v_i\) | Two perpendicular unit vectors spanning the circular track plane normal to \(\hat{\mathbf n}_i\). |
+| \(s_i\) | Fixed circulation sign assigned to module \(i\). |
+| \(\phi_i\) | Fixed phase offset locating module \(i\) around its track. |
+| \(h_\sigma,\rho_\sigma,\theta_\sigma\) | Sector axial scale, transverse radius, and shared phase. |
+| \(\mathbf X_{i\sigma}(T)\) | Position in the Euclidean void of member \((i,\sigma)\) at absolute time \(T\), measured from the F6c assembly center unless a lab-frame translation is explicitly added. |
+| \(\dot h_\sigma,\dot\rho_\sigma,\dot\theta_\sigma\) | Absolute-time derivatives. A dot means \(d/dT\). |
+| \(\mathbf r_i(\psi),\mathbf t_i(\psi)\) | Unit radial and tangential directions in module \(i\)'s track plane at phase \(\psi\). |
+| \(\mathbf m_{\mathrm{cur}}\) | Polarity-weighted internal motion moment. The name is local shorthand, not a measured electric current. |
+| \(I_\sigma\) | Sector \(\sigma\)'s contribution to the \(x\)-component of \(\mathbf m_{\mathrm{cur}}\). |
+| \(c_f\) | Primitive causal-wake speed. Numerical records in this document use normalized units with \(c_f=1\). |
+
+Plainly: \(i\) answers “which of the four axes?”, while \(\sigma\) answers
+“which polarity on that axis?” The remaining symbols specify the shared sector
+shape and how it changes with absolute time.
 
 ## Tetrahedral Frame
 
@@ -665,6 +727,48 @@ Define the polarity-weighted current moment
 \dot{\mathbf X}_{i\sigma}.
 \]
 
+The F6c member coordinates are measured from the assembly center, so
+\(\mathbf X_{i\sigma}\) and \(\dot{\mathbf X}_{i\sigma}\) in this equation are
+internal position and internal velocity. The cross product is a kinematic
+moment: it weights sideways motion by its lever arm from the center. For a
+simple transverse circle of radius \(\rho\), its magnitude reduces to
+
+\[
+\left\|
+\mathbf X_\perp\mathbin{\times}\dot{\mathbf X}_\perp
+\right\|
+=
+\rho^2|\dot\theta|.
+\]
+
+No mass, mechanical angular momentum, force, or electromagnetic law enters
+this definition. In the complete F6c expression, circulation and breathing
+shear can both contribute because each circular track is offset from the
+assembly center.
+
+Plainly: “moment” means lever-arm-weighted internal motion. A member moving
+sideways around the center contributes strongly; translating the whole F6c
+chart is not the motion being measured.
+
+The factor \(\sigma=+1\) for a positrino and \(\sigma=-1\) for an electrino is
+what makes the sum polarity-weighted. Equal geometric motions by opposite
+polarities tend to subtract. Opposite geometric circulation can reverse both
+the cross-product sign and the polarity sign, allowing the two sectors to add:
+
+\[
+(+1)(+\hat{\mathbf x})
++
+(-1)(-\hat{\mathbf x})
+=
+2\hat{\mathbf x}.
+\]
+
+This schematic sign example suppresses the unequal magnitudes and breathing
+terms present in a general F6c state.
+
+Plainly: neutrality counts equal positive and negative inventory. It does not
+require every polarity-weighted pattern of internal motion to cancel.
+
 For arbitrary differentiable F6c coordinate histories,
 
 \[
@@ -672,6 +776,26 @@ For arbitrary differentiable F6c coordinate histories,
 =
 m_x(T)\hat{\mathbf x}.
 \]
+
+`Axial` means that tetrahedral symmetry cancels the transverse components and
+leaves only the body-frame \(x\) component. `Nonzero` means only that the eight
+signed contributions fail to cancel completely, so \(m_x\ne0\). It does not
+mean that net charge crosses a surface or that an observer would measure an
+electric current.
+
+Plainly: eight internal motions can balance the assembly center and polarity
+dipole while leaving one signed, direction-dependent motion remainder along
+the body \(x\) line.
+
+The internal and axial classifications are directly checkable by substituting
+the exact member map into the defining sum. Any surviving uniform-translation
+term or nonzero \(y\) or \(z\) component would falsify those classifications.
+Whether the remaining \(x\) component predicts an observer-level electric or
+magnetic response is a separate source--sea--receiver closure test.
+
+Plainly: the geometry calculation itself can be checked now. Its proposed
+electromagnetic significance cannot be accepted until a receiver responds in
+the required way on the same causal history.
 
 The direction line is exact for the declared sign partition. The magnitude is
 not constant and is jointly produced by circulation and breathing shear. It
@@ -684,11 +808,22 @@ zero centroid velocity. It is also not yet a proven assembly-spin axis,
 magnetic moment, or spinor axis. Those are downstream recovery targets that
 require a retained history and an observer-level projection.
 
-Plainly: the axis tells us where one signed internal-circulation readout points.
-It does not tell us where the whole object moves, and it does not yet prove
-particle spin.
+Plainly: the axis tells us where one polarity-weighted internal-motion
+diagnostic points. It does not tell us where the whole object moves, prove
+electric current or a magnetic field, or establish particle spin.
 
 ## Current Persistence Can Be A Sector Handoff
+
+This section has two evidence layers. The rate-space equations are exact
+instantaneous consequences of the F6c coordinate map. The release censuses and
+continuations that follow are measured, bounded EOM-solver results. They test
+particular histories; they do not promote F6c to a retained braid.
+
+Plainly: the first part explains the available directions of motion at one
+instant. The second part reports what selected complete histories actually did
+for a finite time.
+
+### Exact Instantaneous Rate Geometry
 
 For each polarity sector define
 
@@ -699,7 +834,37 @@ For each polarity sector define
 \rho_\sigma\dot\theta_\sigma).
 \]
 
-The exact axial sector current has the form
+Let \(I_\sigma\) denote sector \(\sigma\)'s contribution to the axial
+polarity-weighted motion moment. For compact notation, define
+
+\[
+\alpha=\theta_++\frac{\pi}{6},
+\qquad
+\beta=\theta_-+\frac{\pi}{3}.
+\]
+
+The exact shape-dependent coefficient vectors are
+
+\[
+\begin{aligned}
+\mathbf a_+
+={}&
+\left(
+-\sqrt6\rho_+\sin\alpha,
+\sqrt6h_+\sin\alpha,
+\sqrt6h_+\cos\alpha+\sqrt3\rho_+
+\right),\\
+\mathbf a_-
+={}&
+\left(
+\sqrt6\rho_-\cos\beta,
+-\sqrt6h_-\cos\beta,
+\sqrt6h_-\sin\beta-\sqrt3\rho_-
+\right).
+\end{aligned}
+\]
+
+The exact axial sector contribution then has the form
 
 \[
 I_\sigma
@@ -723,21 +888,39 @@ s_\sigma\frac43
 \right).
 \]
 
+Here \(s_+=-1\) and \(s_-=+1\). The vector \(\mathbf q_\sigma\) lists the
+sector's axial-breathing rate, radial-breathing rate, and tangential rate.
+The vector \(\mathbf a_\sigma\) is a shape-dependent coefficient derived from
+the F6c member map. Its direction tells which mixture of the three rates most
+efficiently changes \(I_\sigma\). In \(\dot I_\sigma\), the first term changes
+because the shape-dependent coefficient rotates as the shape changes; the
+second changes because the Master Equation accelerates the three rates.
+The sector sign \(s_\sigma\) is distinct from the four module circulation
+signs \(s_i\) in the member map.
+
+Plainly: a sector can support the same instantaneous diagnostic with different
+mixtures of axial breathing, radial breathing, and circulation. The diagnostic
+changes either because the shape changes which mixture matters or because the
+rates themselves change.
+
 For the combined six-coordinate rate vector, a specified instantaneous total
-current defines a five-dimensional affine hyperplane. The unique
-minimum-Euclidean-norm carrier lies parallel to the combined current row; its
-orthogonal complement is exactly current-neutral. This leaves five rate
-directions available for breathing, corridor protection, and return control
-without changing that instantaneous current at fixed shape.
+current defines a five-dimensional affine hyperplane: a flat five-dimensional
+slice of the six-dimensional rate space that need not pass through the origin.
+The unique rate vector with the smallest Euclidean norm lies parallel to the
+combined current coefficient direction. Every direction perpendicular to that
+coefficient is current-neutral, meaning that it changes the internal motion
+without changing the instantaneous total current diagnostic at fixed shape.
+There are five such independent directions.
 
 Adding one pair-distance-rate condition leaves a four-dimensional affine rate
-space. The minimum-norm joint carrier is obtained by projecting the desired
-current and corridor rate through their two exact linear rows. At the selected
-guarded release shape, the current-only carrier would close the limiting pair
-at rate \(-0.200974\); the observed geometry opened it at \(+0.195976\). The
-minimum collective rate norm rose from \(0.333269\) for current alone to
-\(0.368445\) for current plus a nonclosing boundary and \(0.455370\) for current
-plus the observed opening rate.
+space. The minimum-norm joint rate vector is obtained by projecting the desired
+current and corridor rate through their two exact linear coefficient
+directions. At the selected guarded release shape, the current-only
+minimum-norm rate vector would close the limiting pair at rate \(-0.200974\);
+the observed geometry opened it at \(+0.195976\). The minimum collective rate
+norm rose from \(0.333269\) for current alone to \(0.368445\) for current plus
+a nonclosing boundary and \(0.455370\) for current plus the observed opening
+rate.
 
 Thus current-neutral motion is not merely unused capacity. For this shape it
 is required to prevent the current-efficient direction from closing the pair.
@@ -751,6 +934,14 @@ handoffs that also passed the sector-speed-flow guard. Those 12 retained
 joint-neutral space after measured current and corridor rate were both
 removed. The local screen is deliberately oversampled, so these counts define
 a motif rather than a basin measure.
+
+Plainly: the slowest way to produce the desired current-like diagnostic can
+drive two members together. Protecting their separation requires adding motion
+that is invisible to that diagnostic. The measured counts show that this
+conflict recurs in the bounded sample, but they do not say how much of the full
+F6c state space has this property.
+
+### Root-Certified Minimax Continuation
 
 Because the field-speed guard applies separately to each sector, the
 six-coordinate Euclidean projector is not the final speed optimum. A weighted
@@ -768,6 +959,16 @@ required amplitude was \(0.117373\), the release reconstructed both sector
 speeds as \(0.341973\), and all 64 release root rows certified at tolerance
 \(10^{-5}\).
 
+Here **minimax** means choosing the admissible rate vector that makes the
+faster of the two polarity sectors as slow as possible. A **release** is the
+fully specified state and causal prehistory from which forward evolution
+starts. Root certification means that the EOM solver found and verified every
+causal intersection required by that release under the declared tolerance.
+
+Plainly: the optimization did not ask for the smallest average speed. It
+reduced the worse of the two sector speeds, then checked that the resulting
+initial history had a complete causal-root ledger.
+
 Ordinary fixed-law evolution of that same record reached \(T=0.28\) with no
 rejected step. Positive cadence reversed near \(T=0.194854\); the maximum member
 speed over the interval was \(0.403658\); current changed from \(-0.728215\) to
@@ -782,6 +983,14 @@ pair corridor into a return. The next geometry target is dynamic rotation of
 the four-dimensional joint-neutral control space, not another static opening
 projection.
 
+### Measured Sector Handoff
+
+In this section, **sector handoff** means that the positive- and
+negative-sector contributions change substantially and oppositely while their
+sum changes much less. It describes compensation inside the
+polarity-weighted motion diagnostic. It does not describe a transfer of
+primitive architrinos between sectors.
+
 One bounded root-certified release had sector slopes
 \((-0.437531,+0.434729)\), leaving total slope only \(-0.00280243\) on total
 current \(-0.723067\). Its EOM continuation through \(T=0.240\) kept total current
@@ -790,11 +999,11 @@ negative contribution declined. The continuation then met a negative-sector
 same-polarity causal-root certification boundary before collision, a coordinate
 turn, or a \(c_f=1\) speed crossing.
 
-Plainly: a composite braid may keep a nearly steady assembly current by
-passing current-supporting work between its conjugate sectors. Each sector can
-change substantially even while their total stays nearly fixed. That handoff
-still needs protected causal-history spacing and a complete return before it
-can count as retained behavior.
+Plainly: this candidate history kept the total diagnostic nearly steady
+because one polarity sector compensated for the other. Each sector changed
+substantially even while their sum changed little. That handoff still needs
+protected causal-history spacing and a complete return before it can count as
+retained behavior.
 
 A separate guarded release showed that the solver's root-time enclosure
 pressure can rise toward its declared tolerance budget while pair distance,
@@ -818,6 +1027,14 @@ carried by breathing shear at the instant its orbital cadence reversed. A
 candidate current channel need not require permanently same-sense orbital
 motion.
 
+Plainly: the finite continuation did not end because two members collided or
+because a member crossed the \(c_f=1\) speed limit. It ended where the declared
+numerical contract could no longer certify the next causal-root enclosure.
+Changing that tolerance exposed more of the candidate geometry, but the looser
+run cannot be promoted to a tight-contract retained result.
+
+### Local Census And Mode Conversion
+
 In the deduplicated 2,299-release census, 29 geometries met the declared active
 current-handoff screen. The mechanism is therefore selective but not isolated;
 many of those rows still began with closing pair corridors, so handoff does not
@@ -839,12 +1056,17 @@ with finite pair clearance and ordinary transmitter-factor magnitude.
 
 After including the 49-row local screen, all 12 active handoffs that also had
 an opening corridor and no positive sector-speed derivative used only
-\(59.3\%\)--\(63.8\%\) of their possible alignment with the current row. Their
-current-neutral norm fractions were \(77.0\%\)--\(80.5\%\). The selected evolved
-neighbor moved from 77.99% current-neutral motion at release to 81.08% at
-\(T=0.290\). These are bounded, deliberately oversampled diagnostics, but they
-show that efficient current production and geometric control are different
-axes of the search.
+\(59.3\%\)--\(63.8\%\) of their possible alignment with the current coefficient
+direction. Their current-neutral norm fractions were
+\(77.0\%\)--\(80.5\%\). The selected evolved neighbor moved from 77.99%
+current-neutral motion at release to 81.08% at \(T=0.290\). These are bounded,
+deliberately oversampled diagnostics, but they show that efficient current
+production and geometric control are different axes of the search.
+
+Plainly: nearby examples repeatedly showed compensation between sectors, but
+most of their motion was serving geometric control rather than maximizing the
+current-like diagnostic. A handoff therefore identifies one useful relation
+among motions; it does not solve separation, return, or retention.
 
 The evolved neighbor also converted its current-neutral mode. Tangential
 motion supplied 76.82% of the neutral squared norm at release, but only 0.83%
@@ -867,6 +1089,11 @@ that turned. The fifth converted modes but reached its certification boundary
 before reversal. Breathing-dominated current-neutral motion is therefore a
 measured precursor to cadence reversal in this local family.
 
+Plainly: before circulation reversed, the part of the motion that did not
+change the current diagnostic shifted from mostly tangential motion to mostly
+breathing. That repeatable ordering is a local measured precursor, not an
+exact law for every F6c history.
+
 Opposite breathing-amplitude signs were only modestly enriched relative to the
 sampled baseline, while opening corridors were less common in active handoffs
 than in the full archive. The handoff condition is therefore a phase-space
@@ -875,6 +1102,12 @@ relation among shape, motion, and acceleration, not a sign-pattern shortcut.
 This result is a measured bounded diagnostic, not a retention or particle
 claim. The full derivation, census, numerical check, and falsifier are in
 [Current Transport, Guard Flow, And A Causal-History Boundary](inferring-braid-requirements.md#current-transport-guard-flow-and-a-causal-history-boundary).
+
+Plainly: the measured histories support one search lesson—current support,
+pair protection, and cadence reversal use coupled but distinguishable rate
+directions. The result is overturned if the named record reconstruction or
+census fails, or if the reported handoff and mode-conversion signatures do not
+reappear under the stated selection rules.
 
 ## Exact Invariants And Identities
 
@@ -894,7 +1127,7 @@ ordinary causal-root branch.
 | sector centroid | \(\sum_i\mathbf X_{i\sigma}=0\) separately for each polarity | Holds in the internal center chart. |
 | total centroid | \(\mathbf X_{\mathrm{grp}}=0\) | A common translation coordinate is outside the six-coordinate chart. |
 | centroid velocity | \(\dot{\mathbf X}_{\mathrm{grp}}=0\) | Internal-chart identity, not a theorem about a translating branch. |
-| electric dipole | \(\mathbf p=0\) identically | This is a simple polarity dipole null, not a complete effective-charge result. |
+| polarity dipole | \(\mathbf p=0\) identically | This is a simple polarity dipole null, not a complete effective-charge result. |
 | phase-averaged sector second moment | A complete uniform phase average equals \((4/3)(h_\sigma^2+\rho_\sigma^2)I\) | A phase average is not automatically a time average when breathing and cadence vary. |
 | current-axis line | \(\mathbf m_{\mathrm{cur}}=m_x\hat{\mathbf x}\) | The magnitude and sign are not invariant. |
 | equal sector-member speed | Every member in sector \(\sigma\) has \(v_\sigma^2=\dot h_\sigma^2+\dot\rho_\sigma^2+(\rho_\sigma\dot\theta_\sigma)^2\) | This is a speed identity, not a conserved speed. |
@@ -1557,6 +1790,11 @@ backreaction is enabled. A successful single-probe pocket with no viable
 six-member occupation would falsify the fermion-facing use while leaving the
 single-capture observation intact.
 
+Plainly: the calculation order moves from a map for one non-backreacting probe
+to six mutually interacting additions and finally to a fully backreacting
+fourteen-member history. Each stage can reject a candidate, but only the final
+stage can establish the proposed physical capture architecture.
+
 ## Question-By-Question Answers
 
 | Question | Current answer |
@@ -1570,12 +1808,16 @@ single-capture observation intact.
 | What is a polarity sector? | One of two four-member groups: four positrinos or four electrinos. |
 | Are module partners antipodal through the center? | Not generically. Their track centers are opposite, but the moving members are antipodal only under special equal-scale and phase-opposition conditions. |
 | What is two-versus-two circulation? | Inside each polarity sector, two modules carry one fixed circulation orientation and two carry the other. The polarity factor reverses the coordinate orientation between sectors, although independent cadence reversal means actual counterrotation is not guaranteed at every time. |
-| What is the body-fixed current axis? | The exact line of the polarity-weighted internal current moment for the chosen circulation partition. It is neither a translation axis nor yet a proven spin axis. |
+| What is the body-fixed current axis? | The body-frame line on which the polarity-weighted internal motion moment lies for the chosen circulation partition. “Nonzero” means incomplete cancellation of the signed internal-motion contributions. It does not establish transported electric charge, an electric current, a magnetic field, or a spin axis. |
 | What are tetrahedral axes? | The four center-to-vertex directions of a regular tetrahedron, used as body-frame reference directions and local track normals. |
 | What are the invariants? | The complete current list appears in [Exact Invariants And Identities](#exact-invariants-and-identities); sizes, speeds, current magnitude, binding, and recurrence are specifically not included. |
 | What are the symmetries? | The undecorated axes have 24 tetrahedral maps; exactly eight preserve the decorated F6c chart, with four proper and four improper maps, plus a separate global polarity-conjugation comparison. |
 | Why was F6c introduced? | It was the minimal symmetry-preserving repair after the F6b fixed-circle acceleration residual demanded separate axial, radial, and cadence motion for the two polarity sectors. |
 | Are there neutral volumes that could capture six architrinos? | None have been calculated or proved. The strongest seed is the equal-scale central octahedron's six axial vertices: a symmetry-natural pair plus four transverse sites, all inside both reference spheres. The fermion-facing target is a collective basin with a declared particle-dependent polarity vector, not six independent point equilibria. A physical claim requires backreacting fourteen-member retention if F6c remains intact, or a fully ledgered capture-and-reorganization history. |
+
+Plainly: the table is a compact review of the core chain. Its exact statements
+come from the member map and symmetry; its assembly, capture, and
+electromagnetic interpretations remain open.
 
 ## Current Evidence Boundary
 
@@ -1607,6 +1849,13 @@ Plainly: F6c is a strong geometry result and a disciplined search space. It is
 not yet a physical braid result.
 
 ## Appendix A — History Of Two Intersecting Tetrahedra
+
+This appendix is optional background. It identifies the classical geometry
+formed by the F6c track centers at equal axial scale; it does not contribute a
+binding or acceleration mechanism.
+
+Plainly: the historical eight-pointed star helps identify the scaffold's
+shape, but it does not explain the architrino motion.
 
 ### The Classical Equal-Scale Compound
 
@@ -1813,7 +2062,21 @@ establishes the disputed 1609 naming, if the Pacioli or Jamnitzer attribution is
 corrected by the cited scholarship, or if an Escher source documents a generic
 relative-twist construction rather than the dual compound.
 
+Plainly: the coordinate statements can be checked algebraically. The dates and
+attributions depend on historical sources, and the claimed motivation is an
+interpretation of those sources.
+
 ## Appendix B — Possible Relation To Spin-Foam Theory
+
+This appendix is an optional advanced comparison. It asks whether some
+mathematical bookkeeping used for tetrahedral quantum geometry could later
+help describe an effective geometry recovered from F6c. None of that
+bookkeeping is used to derive the F6c member paths or their Master Equation
+acceleration.
+
+Plainly: a reader can skip this appendix without losing the F6c argument. The
+comparison supplies questions for a later effective theory, not ingredients
+for the present substrate model.
 
 ### Governing Comparison Boundary
 
@@ -2313,6 +2576,11 @@ change of dimension.
 | \(6j\) pentagon identity and Pachner 2–3 move | Possible refinement check for a future network of assembly cells | No present state-sum or triangulation identity. |
 | Spin-foam sum over labeled histories | F6c supplies deterministic delayed evolution for a declared complete causal-history record | Different mathematical objects; no amplitude correspondence. |
 
+Plainly: only the F6c scaffold closure and face-channel kinematics in this
+table are derived here. Every spin-network identification, quantization rule,
+shared-face interpretation, curvature variable, or amplitude correspondence
+remains absent or explicitly proposed.
+
 ### The Most Productive Research Direction
 
 The closest defensible relation is not “F6c is a spin foam.” It is that
@@ -2376,6 +2644,10 @@ This appendix would be falsified or materially revised by any of the following:
   pair; or
 - a proof that a proposed effective assembly network does or does not satisfy a
   declared local refinement identity.
+
+Plainly: the comparison remains useful only while its boundary stays visible.
+A matching algebraic pattern is not yet a shared physical object, a quantum
+label, or an emergent spacetime geometry.
 
 ## Local Provenance
 
