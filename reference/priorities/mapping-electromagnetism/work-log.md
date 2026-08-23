@@ -11,6 +11,35 @@ geometric and electromagnetic ideas.
 
 ## Log Entries
 
+### 2026-08-23 — Electric, magnetic, and cross-sector braid-requirement pass
+
+- Dispositioned all six residual electric-field recommendations without
+  creating new queue objects: one matrix is implemented, two extensions are
+  merged conditionally, and three items remain behind explicit retained-branch
+  or constitutive prerequisites.
+- Expanded the requirement ledger through electric source identity, magnetic
+  source/current decomposition, exposure-transfer continuity, closed
+  root-resolved history networks, moment and gradient response, holonomy,
+  material topology, radiation, and shared constitutive response.
+- Added a magnetic source--sea--receiver--observer reduction and derived the
+  weak-response skew constraint: a velocity-linear no-work group response has
+  an antisymmetric leading kernel; any symmetric part requires a separately
+  ledgered energy-transfer channel.
+- Audited all 39 substantive equation packets and all 26 substantive benchmark
+  cases for additional geometry constraints. Consolidated them into an
+  identity-labeled framed causal-history bundle with ordered frames, path
+  transport, basin measures, controlled graph transitions, and complete
+  finite-window ledgers.
+- Added a 22-row local research-priority ranking with explicit support from
+  equations and benchmarks. The ranking is not an equation maturity score,
+  evidence decision, or retained-geometry claim.
+- Kept the fixed-law physical continuation blocked on one accepted EOM-evolved
+  retained common-history source--sea--receiver family. Pair capture and
+  backreaction remain barred without same-record certified conjugate product
+  basins.
+- Changed no queue lifecycle, equation maturity score, benchmark authority,
+  retained-braid claim, constitutive closure, or reader-facing corpus claim.
+
 ### 2026-08-22 — Fixed-law weak-response and first-transition evaluator
 
 - Implemented a score-neutral fixed-law source-continuation evaluator for one

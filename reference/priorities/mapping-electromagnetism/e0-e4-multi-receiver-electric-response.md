@@ -395,6 +395,33 @@ prescribed surrogate as a neutron or retained electron.
 
 ## Execution Boundary And Next Artifact
 
+### Merged Retained-Assembly Extension
+
+After one receiver class has an accepted retained $E0$ baseline and a weak
+$E1$--$E4$ response, continue that same branch family through four additional
+source preparations without changing the per-hit law or private response
+coefficients:
+
+1. reverse the stationary source polarity and recover the Stark/polarizability
+   transformation rows;
+2. sweep source cadence through the declared frequency band and record response
+   magnitude, phase, native modes, and energy transfer;
+3. compare a uniform source window with a controlled gradient while preserving
+   the receiver branch and source-family identity; and
+4. increase source amplitude to the first certified loss of retention,
+   classifying reversible deformation, metastable escape, collision, root
+   transition, and branch loss separately.
+
+The extension is part of this packet rather than a new queue object. It cannot
+run on the neutral nucleon surrogate as a physical nucleon benchmark, and it
+must not equate the first retention loss with electron--positron pair
+production.
+
+Plainly: once a real retained receiver exists, the next electric sweep asks how
+one assembly reverses, resonates, responds to a gradient, and finally leaves
+its original branch. Until then, another prescribed sweep would test only the
+record format.
+
 No current script implements this packet. The first executable version should
 consume one canonical common-history record and four receiver definitions,
 generate Stage-A matched-event rows and Stage-B one-receiver forks, and fail

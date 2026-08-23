@@ -80,6 +80,25 @@ constraints and records what they imply for admissible braid geometry.
 Plainly: equations and benchmarks supply the constraints. This packet supplies
 the disciplined bridge from those effective facts to native braid requirements.
 
+## Disposition Of The Six Residual Recommendations
+
+The 2026-08-22 thread audit identified six recommendations that had been
+proposed but not formally routed. They are dispositioned here without creating
+new queue objects:
+
+| Recommendation | Disposition | Unblock or owning artifact |
+| --- | --- | --- |
+| Long-wavelength response-mode matrix for counting independent bulk fields | Deferred | Resume only after `EMAP-004` supplies a candidate constitutive operator whose small-$(\omega,\mathbf k)$ spectrum can be computed from resolved braid histories. Until then the matrix would classify an authored response model rather than the Noether sea. |
+| `D1` trapped-electron behavior-to-braid matrix | Deferred | Resume after `EMAP-001` and `EMAP-003` supply enough source and electron/positron magnetic geometry to distinguish orbit, ordered-frame, moment, sea, and receiver contributions without importing a magnetic field. |
+| Initial electric field-identity matrix | Implemented below | The [Electric Field-Identity Matrix](#electric-field-identity-matrix) compares direct-wake, sea-essential, and mixed realizations on one requirement set. |
+| Retained-assembly sweep through Stark reversal, frequency response, gradient response, and first retention loss | Merged | The extension contract now belongs to the [$E0$--$E4$ multi-receiver packet](e0-e4-multi-receiver-electric-response.md#merged-retained-assembly-extension). It remains blocked on a retained receiver branch. |
+| Dedicated proton/neutron polarizability comparison benchmark | Deferred | Resume after a retained neutral-composite carrier exists. The current $R_0$ receiver remains a geometry-neutral surrogate and must not be relabeled as a neutron. |
+| Strong-field timing and path-length ledger for internal-speed inference | Conditionally merged | The [fixed-law continuation packet](fixed-law-source-continuation.md#conditional-internal-speed-extension) owns the rows, but activates them only if one retained transition record supplies precursor identity, path length, cycle time, formation time, and source-coherence time. |
+
+Plainly: every recommendation now has one owner and one reason for being active,
+merged, or deferred. Deferral means that the proposed artifact cannot yet
+answer its physical question; it does not erase the requirement.
+
 ## Foundational Requirements
 
 A physical situation requires a complete matter, sea, and boundary record
@@ -811,7 +830,44 @@ electric pattern. Then let real candidate sea braids respond without changing
 the rules. The sea is essential only if turning off that derived response
 breaks a required electric behavior that the full evolution restores.
 
-## Initial Effective-Field Requirement Ledger
+### Electric Field-Identity Matrix
+
+The first electric comparison uses three realization families on the same
+source, boundary, receiver, projection, and tolerance record:
+
+- `DW`: direct-wake dominant;
+- `SE`: sea-essential; and
+- `MX`: mixed direct-wake and sea response.
+
+The entries below are burdens, not predictions. `Required` means that the
+family must produce the row to remain viable; `null` means the named component
+must converge below tolerance; and `derived response` means the sea state must
+arise from resolved histories under the unchanged Master Equation.
+
+| Electric requirement and owner | `DW` burden | `SE` burden | `MX` burden | Decisive same-record discriminator |
+| --- | --- | --- | --- | --- |
+| Polarity-odd receiver response and source conjugation (`BR-E-01`, `BR-E-02`; `EQ-13`) | Source-tagged causal hits carry the sign and polar direction; responsive-sea increment is null. | Direct hits alone fail at least one declared sign or magnitude row; a derived polar sea response supplies it. | Direct hits fix the leading sign while the derived sea state changes magnitude, range, or boundary behavior. | Compare `E1`, `E2`, and `E3` under source and receiver conjugation with transmitter identities retained. |
+| Sourced divergence and exposed neutrality (`BR-E-02`; `EQ-13`) | Coarse-grained source provenance produces the sourced residual without a sea charge assignment. | The derived sea response is necessary to reproduce screening or the local source relation. | Source provenance fixes net sign while sea reorganization redistributes the effective source row. | Replace the source by an exposed-neutral conjugate assembly without changing geometry or the projection. |
+| Stationary curl null and inverse-square/range behavior (`BR-E-03`; `EQ-01`, `EQ-13`) | The fixed source-history projection supplies both rows under causal-window refinement. | The direct projection misses at least one row and the derived sea state restores it. | Direct wakes establish leading range while sea response supplies boundaries, screening, or finite-environment corrections. | Near/environment/far sea knockout plus spatial and causal-window refinement. |
+| Boundary dependence, storage, and source-removal relaxation (`BR-E-03`; `EQ-05`, `EQ-24`) | No persistent local response remains after the last source history and boundary contribution clear, except receiver motion already acquired. | A bounded sea state retains and later returns or exports the response through a closed ledger. | Direct acceleration clears causally while sea storage or relaxation supplies a separately timed remainder. | `E4` with source, sea, wake, energy, momentum, angular-momentum, and boundary rows continued together. |
+| Receiver-independent field identity (`BR-EB-05`; $E0$--$E4$ packet) | One source-history projection serves every receiver; receiver geometry changes only its response. | One derived sea projection serves every receiver. | One shared direct-plus-sea projection serves every receiver. | Substitute a neutral sea braid, electron/positron conjugates, and a neutral composite while holding the Stage-A environment literally fixed. |
+| Uniform-field translation versus internal deformation (`BR-E-07`; $E0$--$E4$ packet) | Constituent source hits alone separate the group and internal projections. | Sea-mediated differential drive is necessary for bounded deformation or cancellation. | Direct exposed-polarity response drives translation while sea coupling materially changes internal deformation or restoration. | Report group, rigid orientation, non-rigid deformation, and signed internal polarity coordinates separately. |
+| Neutral gradient response (`BR-E-08`) | Unequal direct source histories across the assembly produce the net gradient response. | A spatially varying derived sea state is necessary. | Both direct nonuniformity and sea response survive their independent knockouts. | Compare uniform and controlled-gradient source families on the same retained receiver branch. |
+| Dynamic polarizability and resonance (`BR-E-09`; `EQ-12`, `EQ-26`) | Delayed constituent-hit geometry produces the frequency and phase response with no sea mode. | A derived collective sea mode is necessary for the resonance or phase lag. | Matter and sea modes hybridize on one fixed coupling record. | Frequency sweep with fixed coefficients, branch identity, source geometry family, and energy-transfer ledger. |
+| Weak-to-strong geometric nonlinearity (`BR-E-04`; strong-field benchmark) | Source/receiver root geometry produces the first nonlinear departure while sea response remains null. | The first departure is a derived sea transition. | The first departure changes both receiver geometry and sea response on one continuation. | Fixed-law source continuation with root, inactive-gap, return-stability, collision, and branch-status margins. |
+| Retention loss, pair assembly, and backreaction (`BR-E-05`, `BR-E-06`, `BR-E-10`; `EQ-28`) | Existing inventory is routed through direct source-driven capture and the complete source ledger backreacts. | Certified conjugate product basins and backreaction require a derived sea transition. | Product capture consumes a coupled matter--sea precursor and continues every source, sea, product, remnant, wake, and boundary row. | Pair capture remains barred until the same accepted record supplies certified conjugate basins and exact identity partition. |
+
+No family presently passes this matrix. The direct-only rows can be evaluated
+first, but failure or success there cannot decide sea necessity unless the
+responsive comparison uses an EOM-evolved candidate sea braid rather than an
+authored constitutive response.
+
+Plainly: the matrix makes the three stories compete on the same questions. A
+sea model wins a row only when a derived sea change restores something the
+unchanged direct history cannot produce; a direct model wins only when the sea
+correction genuinely converges away.
+
+## Effective-Field Requirement Ledger
 
 The following rows begin the reverse-engineering work. They are requirements
 from effective recovery targets, not established microscopic mechanisms.
@@ -829,14 +885,25 @@ from effective recovery targets, not established microscopic mechanisms.
 | `BR-E-09` | Dynamic polarizability varies in magnitude and phase with driving frequency and exposes resonant excitation or absorption on one retained branch. | Deduced observer-level recovery requirement; native modes inferred | One coupling rule and one branch family must produce the frequency response from internal geometry, delayed histories, and mode coupling without per-frequency retuning. | A private coefficient or geometry for each frequency, or resonances with no retained native mode or ledgered energy transfer, fails. |
 | `BR-E-10` | Increasing electric amplitude can open field-ionization, tunneling, or other loss-of-retention channels with a derived rate and ordering relative to pair assembly. | Deduced observer-level recovery requirement; native branch-loss mechanism inferred | One evolving assembly and source history must connect bounded deformation to metastable escape, branch loss or reorganization, and any later pair-assembly channel while retaining identity provenance. | A hard scenario switch, unexplained constituent disappearance, or an assumed universal ordering between braid loss and pair production fails. |
 | `BR-B-01` | Magnetic response transforms as an axial object under spatial reflection. | Deduced requirement | The native record must contain two-direction geometry, circulation, handedness, or an equivalent antisymmetric history construction. A single radial hit is insufficient by itself. | Axis-preserving circulation reversal and mirror controls must separate axial order from mere alignment. |
-| `BR-B-02` | The effective magnetic divergence vanishes in the Maxwell regime. | Deduced requirement | Closed circulation, an antisymmetric projection, topology, or another derived identity must eliminate a magnetic-source residual without defining it away. | If the null follows only because $\mathbf B$ was constructed as a curl, the native geometric obligation remains unproved. |
-| `BR-B-03` | Translation current, internal circulation, and changing electric response can contribute to one magnetic projection with distinct reversals. | Deduced recovery requirement; native carrier inferred | One shared causal-history and sea response map must accept all source classes without separate magnetic mechanisms. | Drift reversal, circulation reversal, and exposure-reconfiguration controls must produce the predeclared independent parities. |
-| `BR-B-04` | The magnetic part of the effective receiver response has the declared no-work behavior while changing direction and exchanging momentum. | Deduced recovery requirement | Receiver geometry and the source/sea ledger must explain directional response, recoil, radiation, and energy transfer without a primitive $\mathbf v\times\mathbf B$ rule. | A fit that changes receiver energy in the nominal no-work limit or leaves source/sea recoil unbooked fails. |
+| `BR-B-02` | The effective magnetic divergence vanishes in the Maxwell regime. | Deduced requirement | A closed root-resolved source, wake, sea, and boundary history network or another derived identity must eliminate the magnetic-source residual without defining it away. A closed internal matter loop alone is insufficient. | If the null follows only because $\mathbf B$ was constructed as a curl, or unmatched history edges are omitted, the native geometric obligation remains unproved. |
+| `BR-B-03` | Translation current, internal circulation, conservative exposure transfer, and changing electric response can contribute to one magnetic projection with distinct reversals. | Deduced recovery requirement; native carrier inferred | One shared causal-history and sea response map must accept all source classes without separate magnetic mechanisms, and exposure changes must remain continuity-complete. | Drift reversal, circulation reversal, and exposure-reconfiguration controls must produce the predeclared independent parities without apparent charge creation. |
+| `BR-B-04` | The leading weak magnetic receiver response has the declared no-work behavior while changing direction and exchanging momentum. | Deduced recovery requirement | The velocity-linear group-response kernel must be skew, while any radiation, material loss, source recoil, or other energy channel is reported separately. No primitive $\mathbf v\times\mathbf B$ rule is admitted. | A nonzero symmetric kernel with no separately ledgered energy-transfer channel, or unbooked source/sea recoil, fails. |
+| `BR-B-05` | Exposed translation and internal circulation contribute to one conserved current record. | Deduced recovery requirement; exposure law inferred | Constituent worldlines, exposure, center translation, and internal circulation must remain separately auditable while summing to one coarse-grained current. Exposure changes require an identity-routed transfer current rather than apparent charge creation. | A candidate whose magnetic source changes when the same worldlines are merely regrouped, or whose exposure changes violate continuity, fails. |
+| `BR-B-06` | Magnetic divergence and Faraday closure hold without defining the effective magnetic readout as a curl. | Deduced recovery requirement; two-chain carrier inferred | Oriented causal-history faces must form a closed inter-braid, wake-history, or resolved-sea two-chain with paired internal edges and explicit boundary exports. Closed circulation inside isolated braids is insufficient. | Any unmatched face edge must appear as a root-attributable divergence or induction residual; silently deleting it rejects the construction. |
+| `BR-B-07` | Orbital and intrinsic magnetic moments, precession, leading $g=2$, and anomalous residuals share one ordered-frame and exposed-current geometry. | Deduced `EQ-15`/`EQ-27` recovery requirement; physical framing inferred | A retained non-gauge ordered-frame loop, its $\mathbb Z_2$ lift, angular-momentum ledger, exposure-current moment map, and residual dressing must remain on one record. | Assigned spin labels, an inserted moment vector, or separate fitted $g$ values fail even when the precession curve agrees. |
+| `BR-B-08` | Magnetic gradients produce spatial splitting and discrete outcome channels while closing apparatus recoil and angular momentum. | Deduced Stern--Gerlach recovery requirement; basin geometry inferred | A gradient-coupled ordered-frame response must feed a separatrix and stable outgoing basins rather than a continuous smear or an external measurement postulate. | Continuous unresolved output, missing apparatus ledger, or imported spinor probabilities fail. |
+| `BR-B-09` | A shielded magnetic source changes loop phase even when the local effective magnetic strength on the receiver paths is null. | Deduced Aharonov--Bohm recovery requirement; native transport inferred | The retained source, shielding, boundary, and receiver paths must define a nonlocal causal-history holonomy; local endpoint state alone is insufficient. | If the shift disappears whenever local $\mathbf B$ is null, or if a primitive vector potential is inserted, the map fails. |
+| `BR-B-10` | Magnetic material response can exhibit robust integer or fractional Hall plateaus and edge/bulk separation. | Deduced material-scale requirement; substrate implication speculative | The collective material and sea state needs a stable invariant or equivalent basin structure, a gap/localization mechanism, and compatible edge transport. | Plateau fitting without a perturbation-stable invariant, localization, gap, or equivalent global structure fails. |
+| `BR-B-11` | Curved charged-assembly motion in a magnetic environment produces radiation, polarization, source depletion, and cooling on one event record. | Deduced `EQ-29` recovery requirement; source mechanism inferred | The charged branch, anisotropic sea state, photon carrier, recoil, wake, remnant, and source-depletion rows must share one event and one no-retune witness. | Benchmark power or spectrum without the same source-depletion and photon/recoil ledger is non-closing. |
+| `BR-B-12` | Axial magnetic order remains distinguishable from ordinary alignment or birefringent anisotropy. | Deduced parity and control requirement | The native record needs independent circulation reversal, mirror, orientation-randomization, and propagation-polarization controls. | A scalar or headless alignment tensor that survives circulation reversal cannot by itself satisfy the magnetic-moment rows. |
+| `BR-B-13` | Material domains, hysteresis, screening, flux calibration, persistent current, and critical response remain distinguishable from background Noether sea behavior. | Deduced material-response requirement; collective carrier inferred | One material assembly/sea/boundary record must expose domain order, memory, transport, screening, dissipation, and critical branch changes without assigning them to an otherwise unchanged ambient sea. | A candidate that reproduces material response only by changing the background sea law, or cannot close boundary and source recoil, fails. |
 | `BR-EB-01` | Changing electric and magnetic projections satisfy the reciprocal Maxwell induction structure. | Deduced recovery requirement | One evolving source, wake, boundary, and sea record must generate both time-coupled projections. | Separate case-fitted laws for electric-to-magnetic and magnetic-to-electric change fail the same-record test. |
 | `BR-EB-02` | Electric and magnetic projections mix under observer motion while the native event history remains one record. | Deduced recovery requirement | The projection must recover Lorentzian observer behavior from absolute-time substrate dynamics without treating relativistic spacetime as the substrate. | A candidate requiring different native histories solely because the observer changes fails. |
 | `BR-EB-03` | A source-free transverse disturbance propagates with the required polarization, dispersion, and phase relations. | Deduced recovery requirement | A photon-channel packet, coupled sea mode, continuing causal-history pattern, or derived combination must carry the disturbance after it leaves the source region. | A disturbance that exists only while the source cell is directly occupied cannot recover free propagation. |
 | `BR-EB-04` | Effective electromagnetic energy, momentum, and stress have one closed control-volume account. | Deduced recovery requirement | Source, matter, sea, carrier, receiver, and boundary ledgers must reproduce the effective flux and stress rows without adding field energy as primitive substance. | Any unexplained energy, recoil, angular momentum, or sea update is a failure even when field residuals are small. |
 | `BR-EB-05` | The same electromagnetic environment supports Maxwell, magnetic-moment, fine-structure, photon, material, and benchmark consumers. | Inferred same-record requirement | One response family and one provenance chain must serve the consumers without private coefficients or scenario-specific geometry. | If every consumer needs an unrelated sea state or a separately fitted projection, the proposed common electromagnetic response fails. |
+| `BR-EB-06` | Electric and magnetic readouts are compatible components of one antisymmetric spacetime history record. | Inferred native requirement from `EQ-13` and the finite-braid Maxwell map | Time--space and space--space faces of one root-resolved causal-history two-chain must use one smoothing rule, normalization, record identity, and boundary ledger. | Separate electric and magnetic carriers with no same-record induction, observer-mixing, or edge-adjacency map fail this candidate unification. |
+| `BR-EB-07` | The sourced Maxwell rows, impedance, propagation, screening, and boundary response arise from one constitutive Noether sea map. | Deduced common-consumer burden; carrier form inferred | A resolved-sea response must map exposed density/current and direct history into the common two-chain with one coefficient family and an explicit weak-regime spectrum. | Case-specific permittivity, permeability, propagation, or boundary coefficients with no shared retained sea state fail. |
 
 Rows `BR-E-04` through `BR-E-06` are instantiated together in the
 [Strong-Field Electromagnetic
@@ -850,7 +917,291 @@ does not yet decide whether electric behavior is polar sea displacement,
 whether magnetic behavior is axial circulation, or whether both are
 projections of one deeper causal response.
 
-## Initial Competing Realization Families
+## Magnetic Field Reduction
+
+### Source Record
+
+The magnetic investigation begins from exposed constituent worldlines, not
+from a primitive magnetic source. For assembly $A$ and constituent $a$, retain
+polarity $q_{Aa}$, exposure $e_{Aa}$, position $\mathbf x_{Aa}$, velocity
+$\mathbf v_{Aa}$, center velocity $\mathbf V_A$, ordered internal frame, and
+the complete causal-root history. One shared coarse-graining then separates
+translation and internal current without changing the underlying record:
+
+$$
+\mathbf J_\ell
+=
+\mathbf J_{\ell,\mathrm{tr}}
++
+\mathbf J_{\ell,\mathrm{int}}.
+$$
+
+Translation of exposed inventory, exposed internal circulation, and a
+conservative exposure reconfiguration are therefore source classes of one
+current problem. A scalar exposure change at fixed noncirculating centers does
+not by itself supply the two spatial directions needed for an axial readout;
+the second direction must come from actual motion, ordered internal geometry,
+or a resolved sea-history face.
+
+Plainly: moving visible polarity and circulating visible polarity are two
+parts of one worldline ledger. Merely changing a visibility number is not a
+circulation unless the record shows the oriented route by which it changed.
+
+### Candidate Common Carrier
+
+The strongest existing electromagnetic synthesis is a finite oriented
+spacetime history two-chain
+
+$$
+\mathfrak C_W
+=
+\sum_{f\in\mathcal F_W}w_f f,
+$$
+
+whose faces retain emitting and receiving identities, causal-root ids,
+$W^{\mathrm{acc}}=1/|D_t|$, direct or sea-response role, oriented edge ids,
+spacetime area, and boundary provenance. With one frozen smoothing and
+normalization, its time--space faces can project the electric chart while its
+space--space faces project the magnetic chart. In this candidate architecture,
+
+$$
+d\mathsf F_\ell
+=
+Z_FG_\ell*\operatorname{PD}(\partial\mathfrak C_W),
+$$
+
+so magnetic-divergence and Faraday residuals expose unmatched history edges.
+This is a conditional geometric identity, not evidence that the EOM solver or
+a retained Noether sea supplies the required faces. The sourced Maxwell rows
+remain blocked on a constitutive map from exposed density/current and direct
+history to the complete chain.
+
+Plainly: electric and magnetic behavior may be two orientations of one sheet
+of causal history. Paired edges explain the homogeneous equations; they do
+not yet determine response strength, screening, impedance, or phase.
+
+### Receiver And Moment Burdens
+
+A fixed arriving Master Equation hit has no instantaneous receiver-velocity
+multiplier. Magnetic receiver behavior must therefore emerge from a sequence
+of delayed hits, receiver displacement and ordered-frame evolution between
+hits, internal assembly response, sea dynamics, or a combination of these.
+The minimum control family reverses source current, receiver drift, receiver
+circulation, and mirror orientation independently. It reports group
+translation, internal deformation, orientation, work, recoil, radiation, and
+angular momentum separately.
+
+`EQ-15` and `EQ-27`, the Zeeman benchmark, and the Stern--Gerlach benchmark add
+a stricter burden. The same retained ordered-frame loop and exposed-current
+map must support a nontrivial $\mathbb Z_2$ lift, $4\pi$ restoration, magnetic
+moment, leading-$g$ relation, anomalous residual, spectral splitting,
+polarization, gradient response, and discrete output basins. These targets do
+not establish that exposed same-sign sites occupy any particular position in
+the braid.
+
+Plainly: the substrate contains delayed radial acceleration contributions, not
+a tiny magnetic-force arrow. The observed sideways response and moment must
+come from how a structured receiver evolves across many such contributions.
+
+### Weak-Response Skew Lemma
+
+For one fixed source, sea, and boundary history, write the leading
+motion-dependent group acceleration of a receiver as
+
+$$
+\delta A_{\mathrm{grp}}^{i}
+=
+\sigma_{\mathrm{recv}}K^{i}{}_{j}V^j
++
+O(\lVert\mathbf V\rVert^2,\epsilon_{\mathrm{nl}}),
+$$
+
+where $K$ is an effective response kernel extracted from native causal
+history, not a primitive field law. The weak magnetic no-work target requires
+
+$$
+V_i\delta A_{\mathrm{grp}}^{i}=0
+\qquad\text{for every }\mathbf V.
+$$
+
+Decompose $K=S+A$ with $S^T=S$ and $A^T=-A$. Since
+$\mathbf V^TA\mathbf V=0$, the all-$\mathbf V$ no-work condition implies
+$\mathbf V^TS\mathbf V=0$ and therefore $S=0$. Thus
+
+$$
+K_{ij}=-K_{ji},
+\qquad
+K_{ij}=\varepsilon_{ijk}b_{\mathrm{eff}}^k
+$$
+
+in three spatial dimensions. This derives a recovery constraint: the leading
+weak magnetic group response is an oriented two-plane or skew response. It
+does not make $\mathbf b_{\mathrm{eff}}$ a substrate field and does not decide
+whether direct history, the Noether sea, or their coupling carries the
+orientation. A symmetric part is permitted only when its corresponding
+energy-transfer channel is separately present in the event ledger.
+
+Plainly: weak magnetic bending must act like an infinitesimal rotation, not a
+stretch. That gives candidate braids a direct rejection test: estimate the
+velocity-response matrix and reject an unexplained symmetric part.
+
+### Nonlocal, Material, And Radiation Controls
+
+Three benchmark families prevent the local axial-state picture from becoming
+too narrow:
+
+- Aharonov--Bohm requires path-history holonomy around a shielded source even
+  when the local effective magnetic readout on the paths is null.
+- Quantum Hall behavior requires a perturbation-stable collective invariant or
+  equivalent edge/bulk basin structure at material scale; it is not direct
+  evidence for a fundamental braid knot type.
+- Synchrotron and related radiation require the curved charged branch,
+  anisotropic sea state, emitted carrier, source depletion, recoil, wake,
+  remnant, polarization, and cooling to close on one event ledger.
+
+Together with circulation and mirror controls, these cases distinguish local
+axial order, nonlocal loop memory, collective material topology, and outgoing
+carrier production. None may be substituted for another merely because all
+are described with an observer-level $\mathbf B$.
+
+Plainly: magnetism is constrained by more than how a compass-like object turns.
+Loop phase, robust edge transport, and radiation each test a different part of
+the same proposed source--history--sea architecture.
+
+## Cross-Sector Geometry Requirements
+
+The equation and benchmark inventories impose requirements that are not
+specifically electric or magnetic but sharply constrain every candidate braid:
+
+| ID | Cross-sector inference | Grade | Principal owners | Falsifier |
+| --- | --- | --- | --- | --- |
+| `BR-X-01` | Identity-labeled active causal-root graph with continuous ordinary transport and classified fold, collision, escape, capture, and reaction transitions. | Exact for root identity and ordinary transport; universal surgery language inferred. | `EQ-01`, `EQ-05`, `EQ-28`, `EQ-31`; strong-field response; radiation and decay cases. | An accepted event cannot be represented by one consistent pre/post root and identity graph with boundary-complete ledgers. |
+| `BR-X-02` | A retained geometry requires a dynamical branch, regular root chart, return or recovery behavior, and finite-window ledger closure; drawn topology alone is insufficient. | Exact acceptance boundary. | Master Equation and Noether-braid owners; `EQ-01`, `EQ-02`, `EQ-31`. | A prescribed loop is accepted as retained without dynamical evolution and return/stability evidence. |
+| `BR-X-03` | Retained fermionic geometry carries an ordered frame or equivalent non-gauge orientation history with nontrivial $2\pi/4\pi$ lift behavior. | Deduced recovery requirement; realization inferred. | `EQ-15`, `EQ-27`; Stern--Gerlach, Malus, Bell, and Zeeman. | All spinor, exchange, polarization, and moment rows close from a gauge-trivial ordered-frame history. |
+| `BR-X-04` | Noether sea response admits scalar, vector, tensor, anisotropic, relaxation, and memory readouts on one state. | Deduced cross-row burden; component independence open. | `EQ-06`, `EQ-07`--`EQ-11A`, `EQ-17`--`EQ-25`, `EQ-32`; clock, lensing, Shapiro, Fizeau, and wave benchmarks. | A retained scalar density-plus-delay sea state closes every listed row with no hidden per-observable structure. |
+| `BR-X-05` | Coherent path transport composes along paths and preserves nonlocal loop class or holonomy. | Deduced recovery requirement; operator inferred. | `EQ-12`, `EQ-14`, `EQ-16A`; Aharonov--Bohm, interferometry, Sagnac, and neutrino oscillation. | A strictly local endpoint function with no path record closes all loop and interference cases. |
+| `BR-X-06` | Outcome and lifetime recovery uses basin, separatrix, invariant-measure, and first-exit-corridor geometry before detector classification. | Deduced for the deterministic-measure program; physical state space inferred. | `EQ-14`, `EQ-30`, `EQ-31`; Stern--Gerlach, Bell, scattering, resonance, and decay. | Accepted deterministic outcomes and branching fractions require no stable partition, corridor, or equivalent exit structure. |
+| `BR-X-07` | Photon geometry has exactly two free transverse response channels, packet identity, and helicity/angular-momentum ledgers across emission, propagation, and capture. | Deduced photon recovery requirement; particular planar pair remains candidate-only. | `EQ-12`; Malus, blackbody, Casimir, and interferometry. | A retained free carrier requires a third polarization or loses identity or helicity between event stages. |
+| `BR-X-08` | Matter assemblies have compression-adaptive exclusion and packing geometry with distinct internal scale, envelope, cadence, exposure, and inter-assembly spacing. | Inferred native requirement. | `EQ-03`, `EQ-04`, `EQ-07A`, `EQ-30`, `EQ-31`; Lorentz, compact-star, and form-factor constraints. | One rigid scale-free geometry closes motion, dense packing, support loss, and scattering without hidden state variables. |
+| `BR-X-09` | Thermal and blackbody recovery uses ensemble connectivity, mode capacity, exchange routes, accessible-state measure, and boundary flux. | Deduced ensemble requirement; microscopic realization inferred. | `EQ-22`, `EQ-22A`, `EQ-25`; blackbody, temperature, entropy, and Brownian cases. | One isolated braid with no ensemble measure or exchange graph supplies temperature and the Planck distribution. |
+| `BR-X-10` | Neutral-lepton geometry may share a common cadence while retaining a non-scalar residual phase operator and at least two independent gaps. | Inferred, neutrino-specific. | `EQ-16A`; neutrino oscillation. | Equal-frequency retained candidates necessarily erase all residual phase gaps or allow only equal spacing. |
+| `BR-X-11` | Weak and strong sectors require exposure, shielding, chirality, overlap, and reaction-corridor geometry rather than fitted sector labels. | Inferred and presently underconstrained. | `EQ-16`, `EQ-23A`; neutrino and reaction provenance lanes. | Accepted sector recovery uses no stable exposure, shielding, corridor, chirality, or equivalent branch-selection structure. |
+
+Plainly: these rows do not choose a knot, link, planar pair, or six-body family.
+They state the jobs any proposed geometry must perform before visual appeal can
+count as physical progress.
+
+### Framed Causal-History Bundle
+
+A compact joint test object for the strongest rows is
+
+$$
+\mathfrak B_W
+=
+\left(
+G_W,
+\{F_a\},
+\{U_\gamma\},
+\mu_W,
+\mathcal L_W
+\right),
+$$
+
+where $G_W$ is the identity-labeled active-root graph, $F_a\in SO(3)$ is an
+ordered assembly frame, $U_\gamma$ is path-history transport, $\mu_W$ is the
+finite-window basin measure, and $\mathcal L_W$ is the complete identity,
+polarity, action, energy, momentum, angular-momentum, wake, medium, remnant,
+and boundary ledger. A first certificate would test root transport, path
+concatenation, loop holonomy, $\mathbb Z_2$ lift parity, separatrix measure,
+and ledger closure on one record.
+
+This bundle is a proposed certificate shape, not a claim that all components
+are independent or that one retained braid already realizes them.
+
+Plainly: keep one labeled causal network, attach the orientation and path
+memory the experiments demand, and allow topology changes only when the same
+record explains exactly what changed and where every conserved quantity went.
+
+## Ranked Geometry-Inference Summary
+
+This table is a local research-priority ranking, not an equation maturity,
+acceptance, evidence, or retained-geometry score. Four integer coordinates run
+from $0$ to $4$: independent-owner breadth $I$, power to discriminate
+geometries $D$, proximity to native records $P$, and inverse-step uncertainty
+$U$, where larger $U$ means greater uncertainty. The score is
+
+$$
+S_{\mathrm{geom}}
+=
+8I+7D+6P+4(4-U),
+\qquad
+0\le S_{\mathrm{geom}}\le100.
+$$
+
+The score prioritizes requirements that are broadly supported, eliminate many
+candidates, attach closely to Master Equation or retained-branch records, and
+make a comparatively small inverse leap. Ties are intentional.
+
+| Rank | Geometry inference | Supporting equations and benchmarks | $(I,D,P,U)$ | $S_{\mathrm{geom}}$ |
+| ---: | --- | --- | ---: | ---: |
+| 1 | Weak magnetic group response is a skew, multi-direction history kernel; any symmetric part needs a separately ledgered energy channel. | `EQ-01`, `EQ-13`, `EQ-27`, `EQ-29`; Lorentz suite, Zeeman, Stern--Gerlach, synchrotron. | $(4,4,4,0)$ | 100 |
+| 2 | Identity-labeled causal-root graph with continuous transport and classified fold, collision, escape, capture, and reaction transitions. | `EQ-01`, `EQ-05`, `EQ-28`, `EQ-31`; strong-field response, binary-pulsar decay, gravitational waves. | $(4,4,4,1)$ | 96 |
+| 3 | Exposed source geometry separates translation, internal circulation, and conservative exposure transfer while preserving continuity. | `EQ-05`, `EQ-06`, `EQ-13`, `EQ-24`; Zeeman, Hall, Fizeau, finite-braid Maxwell families. | $(4,4,4,1)$ | 96 |
+| 4 | Assembly readout separates group translation, rigid orientation, non-rigid deformation, and signed internal polarity response. | `EQ-01`, `EQ-24`, `EQ-26`, `EQ-30`; Stark/polarizability rows, Stern--Gerlach, form-factor constraints. | $(4,4,4,1)$ | 96 |
+| 5 | Homogeneous electromagnetic recovery uses a closed root-resolved inter-braid, wake, sea, and boundary history network; a closed matter loop alone is insufficient. | `EQ-13`; finite-braid Maxwell map, Aharonov--Bohm, Lorentz suite. | $(4,4,3,1)$ | 90 |
+| 6 | Fermionic assemblies carry a non-gauge ordered frame or framed loop with nontrivial $\mathbb Z_2$ lift and $4\pi$ restoration. | `EQ-15`, `EQ-27`; Stern--Gerlach, Malus, Bell, Zeeman. | $(4,4,3,1)$ | 90 |
+| 7 | Deterministic outcomes, scattering, widths, and lifetimes require basin, separatrix, invariant-measure, and first-exit-corridor geometry. | `EQ-14`, `EQ-30`, `EQ-31`; Stern--Gerlach, Bell, interferometry, resonance and decay cases. | $(4,4,3,1)$ | 90 |
+| 8 | Pair formation and backreaction are identity-preserving inventory repartitions into certified conjugate retained basins with complete source, sea, product, recoil, remnant, and boundary ledgers. | `EQ-05`, `EQ-28`, `EQ-29`; strong-field response and vacuum-sensitive precision bundle. | $(4,4,3,1)$ | 90 |
+| 9 | One fixed per-hit law continues from weak signed response to its first native root, stability, collision, or branch boundary. | `EQ-01`, `EQ-24`, `EQ-28`, `EQ-31`; strong-field response. | $(3,4,4,1)$ | 88 |
+| 10 | One Noether sea cell supplies scalar, vector, tensor, anisotropic, relaxation, and memory readouts without per-observable hidden structure. | `EQ-06`--`EQ-11A`, `EQ-17`--`EQ-25`, `EQ-32`; clock, lensing, Shapiro, Fizeau, wave, and cosmology benchmarks. | $(4,4,3,2)$ | 86 |
+| 11 | Magnetic moment and precession arise from the same exposed-current and ordered-frame geometry that supplies the leading-$g$ relation and anomalous residual. | `EQ-15`, `EQ-26`, `EQ-27`; Zeeman, Stern--Gerlach, Lamb shift/$g-2$. | $(4,4,3,2)$ | 86 |
+| 12 | Coherent transport composes along paths and retains nonlocal loop holonomy even when local effective field strength is null. | `EQ-12`, `EQ-14`, `EQ-16A`; Aharonov--Bohm, interferometry, Sagnac, neutrino oscillation. | $(4,4,2,1)$ | 84 |
+| 13 | Direct-wake, sea-essential, and mixed electromagnetic realizations compete on one source, boundary, receiver, projection, and tolerance record. | `EQ-01`, `EQ-06`, `EQ-13`, `EQ-24`; $E0$--$E4$, Lorentz, Zeeman, Fizeau. | $(3,4,4,2)$ | 84 |
+| 14 | Axial circulation, polar displacement, and symmetric trace-free alignment remain independently reversible projections, even if one sea state carries all three. | `EQ-13`, `EQ-24`, `EQ-27`; birefringence, Zeeman, strong-field response, Malus. | $(3,4,3,2)$ | 78 |
+| 15 | A photon carrier has exactly two free transverse channels, persistent packet identity, and helicity/angular-momentum ledgers. | `EQ-12`, `EQ-29`; Malus, blackbody, Casimir, interferometry. | $(4,3,2,1)$ | 77 |
+| 16 | Matter assemblies have compression-adaptive exclusion and packing geometry with independently tracked internal scale, envelope, cadence, exposure, and inter-assembly spacing. | `EQ-03`, `EQ-04`, `EQ-07A`, `EQ-30`, `EQ-31`; Lorentz, compact-star, and form-factor constraints. | $(4,3,2,1)$ | 77 |
+| 17 | Boundary-conditioned static response, dynamic polarizability, resonance, absorption, relaxation, and first retention loss arise from one fixed branch family. | `EQ-24`, `EQ-26`, `EQ-29`, `EQ-31`; Casimir, Stark/polarizability rows, blackbody, strong-field response. | $(3,3,3,1)$ | 75 |
+| 18 | Thermal and blackbody recovery uses ensemble connectivity, mode capacity, exchange routes, accessible-state measure, and boundary flux. | `EQ-22`, `EQ-22A`, `EQ-25`; blackbody, temperature, entropy, Brownian motion. | $(3,3,2,1)$ | 69 |
+| 19 | Weak and strong effective sectors use exposure, shielding, chirality, overlap, and reaction-corridor geometry rather than fitted sector labels. | `EQ-16`, `EQ-23A`; neutrino and reaction-provenance lanes. | $(3,3,2,3)$ | 61 |
+| 20 | Neutral-lepton geometry can share a common cadence while retaining a non-scalar residual phase operator with two independent gaps. | `EQ-16A`; neutrino oscillation. | $(2,3,2,2)$ | 57 |
+| 21 | Collective material geometry supports perturbation-stable invariants, domains, memory, screening, persistent currents, and compatible edge/bulk structure without relabeling them as ambient-sea behavior. | `EQ-24`, `EQ-30`; quantum Hall, Aharonov--Bohm, and material magnetic-response constraints. | $(3,3,1,3)$ | 55 |
+| 22 | A charged-lepton mass-root geometry may later be tested for a Koide-type trace/traceless relation after the mass map is independently fixed. | `EQ-04A`. | $(1,1,1,4)$ | 21 |
+
+Plainly: the ranking says where a geometry test can eliminate the most wrong
+architectures with the least speculative leap. It does not say that the
+highest-ranked geometry has been found or that a low-ranked constraint is
+false.
+
+## Inventory Coverage And Gaps
+
+The campaign traversed all 39 substantive equation packets and all 26
+substantive benchmark cases. Every equation row contributed either a geometry
+constraint, a shared carrier or ledger obligation, a scale-separation rule, or
+a downstream compatibility check. `EQ-04A` remains a deliberately weak
+diagnostic until an independent charged-lepton mass map exists.
+
+Three benchmark gaps should remain visible without creating premature queue
+objects:
+
+1. no dedicated static/dynamic electric polarizability, Stark, neutral-gradient,
+   or proton/neutron comparison packet exists; `BR-E-07` through `BR-E-10` and
+   the merged $E0$--$E4$ extension hold those requirements until retained
+   carriers exist;
+2. no dedicated parity-violation, beta-decay, or muon-decay packet presently
+   sharpens the weak-sector chirality inference; and
+3. no dedicated confinement, hadron-spectroscopy, jet, deep-inelastic, or
+   lattice comparison packet presently sharpens strong-sector braid geometry.
+
+These are coverage gaps, not permission to infer their missing geometry from
+observer-level theory. Add a packet only when it protects a tested observable
+or accepted mathematical constraint and has a current carrier capable of
+answering it.
+
+Plainly: the current map is broad enough to rank the geometry burdens, but its
+weakest sectors still lack the clean experiments that would distinguish one
+native architecture from another.
+
+## Competing Realization Families
 
 The following hypotheses remain live and mutually distinguishable:
 
@@ -1034,27 +1385,42 @@ explicit. It cannot declare that the required geometry exists.
 10. What smallest accepted retained braid record would eliminate the largest
     class of candidate electromagnetic realizations?
 
-## First Concrete Pass
+## Current Concrete Pass And Blocker
 
-The first pass is electric-only. It should refine `BR-E-01` through `BR-E-03`,
-add the stationary curl, range, energy-storage, and receiver-independence rows,
-and construct three competing native records:
+The requirement-mining pass now covers electric, magnetic, induction,
+radiation, moment, holonomy, material, and cross-sector geometry. The electric
+field-identity matrix, magnetic source--sea--receiver reduction, weak-response
+skew lemma, cross-sector framed causal-history bundle, and ranked summary are
+all present at report grade. The six residual recommendations each have an
+owner or explicit prerequisite.
 
-1. a direct-wake-dominant record;
-2. a polarity-differential sea-response record; and
-3. a mixed direct-wake and sea-response record.
+The fixed-law continuation instrument also evaluates a signed weak regime and
+its first native geometric transition while keeping pair capture and
+backreaction fail-closed. Its prescribed fixture is `candidate_only`; it is an
+implementation check, not physical electromagnetic evidence.
 
-Each record should face the same source-conjugation, reflection, neutrality,
-range, stationary-curl, energy, relaxation, receiver-substitution, and
-same-record consumer requirements. Magnetic, induction, radiation, and
-photon-channel rows remain outside this first pass except as declared nulls.
-No coefficient or geometry may be retuned between rows. The outcome may be a
-negative classification showing that none of the three electric families is
-sufficient.
+The single highest-value evidence blocker is now one accepted, EOM-evolved,
+retained common-history source--sea--receiver family capable of populating the
+field-identity and translation/deformation rows without coefficient or
+geometry retuning. After that branch exists:
 
-The next implementation artifact is a populated field-identity matrix inside
-this file or a focused sibling table only when the row count becomes too large
-for readable maintenance.
+1. evaluate direct-wake, sea-essential, and mixed electric dispositions;
+2. estimate the magnetic velocity-response kernel and its symmetric and skew
+   parts under the independent reversal matrix;
+3. test closure of the root-resolved history two-chain and attribute every
+   unmatched edge;
+4. continue the same fixed law through the first certified transition; and
+5. attempt pair capture or backreaction only if that same record supplies
+   certified conjugate product basins and exact inventory partition.
+
+The response-mode matrix, trapped-electron `D1` matrix, dedicated nucleon
+polarizability comparison, and internal-speed inference remain behind their
+declared prerequisites. No additional prescribed geometry sweep can remove
+the retained-branch blocker.
+
+Plainly: the constraint scaffolding is ready. The next advance must come from
+one real retained evolution that lets the competing electric and magnetic
+stories fail on the same data.
 
 Closure goal: infer the smallest shared source, matter, sea, carrier, receiver,
 and boundary braid requirements capable of producing effective electric and

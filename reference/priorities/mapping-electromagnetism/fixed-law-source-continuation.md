@@ -253,3 +253,32 @@ Until this manifest exists, the current blocker remains
 Plainly: implementation closure is complete for the evaluator. Physical
 continuation remains blocked on the branch that the EOM solver must actually
 evolve.
+
+## Conditional Internal-Speed Extension
+
+An internal-speed inference is not part of the current candidate continuation.
+It becomes admissible only when one accepted retained transition record supplies
+all of these same-record quantities:
+
+- precursor branch identity and its survival or loss time;
+- identity-resolved architrino path lengths during the transition;
+- an independently defined ordinary internal cycle time;
+- pair-assembly or alternative product-formation time;
+- source spatial and temporal coherence windows; and
+- restoration, first-retention-loss, and product-capture event times.
+
+Only then may the record test a relation such as
+
+$$
+v_{mathrm{int}}
+=
+\frac{L_{mathrm{path}}}{\tau_{mathrm{cycle}}}
+$$
+
+and determine whether product formation actually samples that ordinary cycle.
+Schwinger-scale agreement alone supplies neither $L_{mathrm{path}}$ nor
+$\tau_{mathrm{cycle}}$ and therefore cannot establish high internal speed.
+
+Plainly: timing without distance is not speed, and pair-formation time is not
+automatically the braid's ordinary circulation time. These rows remain dormant
+until the same retained record measures both connections.
