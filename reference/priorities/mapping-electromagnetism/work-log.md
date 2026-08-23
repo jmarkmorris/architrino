@@ -11,6 +11,22 @@ geometric and electromagnetic ideas.
 
 ## Log Entries
 
+### 2026-08-22 — $E0$--$E4$ multi-receiver electric-response packet
+
+- Extended the direct-wake versus sea-response protocol across a neutral sea
+  braid, electron/positron conjugate receivers, and a neutral nucleon surrogate.
+- Separated passive common-event diagnostics from live one-receiver forks that
+  share a source/sea history prefix but retain receiver-dependent backreaction.
+- Defined mass-free group-centroid translation, rigid-orientation alignment,
+  normalized non-rigid deformation, signed internal polarity moment,
+  transmitter-tagged source/sea increments, conjugation controls, and distinct
+  $E4$ tests for cessation of group acceleration and internal return.
+- Added the focused packet under the existing blocked `EMAP-004` object rather
+  than creating another queue obligation. No queue lifecycle, equation score,
+  retained-branch claim, solver implementation, or corpus claim changed.
+- Execution remains blocked on retained neutral sea-braid, electron/positron,
+  and neutral-composite branches plus complete same-update causal-wake accounts.
+
 ### 2026-08-22 — Braid-requirement inference packet created
 
 - Created

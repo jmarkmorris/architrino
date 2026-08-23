@@ -124,6 +124,12 @@ score, or retained-evidence decision.
   the same constitutive state to $\alpha_{\mathrm{ref}}$ and
   $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ while preserving
   Equation Mapping ownership of `EQ-26A` evidence and score decisions.
+- **Electric-response experiment:**
+  [$E0$--$E4$ Multi-Receiver Electric Response](e0-e4-multi-receiver-electric-response.md)
+  predeclares one common-history diagnostic and matched live-evolution forks for
+  a neutral sea braid, electron/positron conjugate receivers, and a neutral
+  nucleon surrogate, with group translation and internal deformation reported
+  separately.
 - **Depends on:** accepted assembly source rows, photon transport rows, and at
   least two independent electromagnetic benchmark classes. The fine-structure
   application additionally depends on an accepted `theta_gamma_packet`, a

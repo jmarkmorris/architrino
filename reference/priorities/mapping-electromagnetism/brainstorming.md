@@ -4185,3 +4185,992 @@ polar and axial projections can be identified with effective $\mathbf E$ and
 $\mathbf B$, then use the existing Maxwell, magnetic-moment, fine-structure,
 photon, material-response, and benchmark rows to constrain or falsify that
 record without creating a new benchmark program.
+
+## Session 18 — Assembly Translation Versus Internal Electric Deformation (2026-08-22)
+
+### Neutrality Does Not By Itself Prove Exact Cancellation
+
+For a neutral retained assembly, opposite receiver polarities make a leading
+weak-field cancellation plausible, but the signed inventory alone does not
+prove zero collective acceleration. Exact cancellation also requires the two
+polarity sectors to sample equivalent source histories, exposure, shielding,
+positions, phases, and assembly-response weights. A source gradient across the
+assembly, unequal exposure, boundary response, or internal asymmetry can leave
+a nonzero common projection even when the signed inventory is zero.
+
+The native distinction should therefore be made with projections of the same
+resolved constituent hit ledger. Let $\mathcal P_{\mathrm{tr},A}$ denote the
+derived translational projection for retained assembly $A$ and
+$\mathcal P_{\mathrm{int},A}=1-\mathcal P_{\mathrm{tr},A}$ its internal
+complement. Then the two questions are
+
+$$
+\mathbf D_{A,\mathrm{tr}}^E
+=
+\mathcal P_{\mathrm{tr},A}
+\left[\{\mathbf A_a^{\mathrm{src}}\}_{a\in A}\right],
+\qquad
+\mathbf D_{A,\mathrm{int}}^E
+=
+\mathcal P_{\mathrm{int},A}
+\left[\{\mathbf A_a^{\mathrm{src}}\}_{a\in A}\right].
+$$
+
+These symbols name a required decomposition; they do not yet define the
+assembly center coordinate or prove that either projector exists for an
+uncertified braid. The translational projector must be derived from a retained
+assembly record rather than assigned mass weights to massless architrinos.
+
+Plainly: a neutral object can have little or no net acceleration while its
+positive and negative parts move slightly relative to one another. Neutrality
+supports cancellation of the leading common motion, not rigidity.
+
+### Weak-Field Stretch Is A Relative-Response Claim
+
+The proposed electric stretching effect is strongest when stated as a
+polarity-differential internal response. In a symmetric weak-field regime,
+$\mathbf D_{A,\mathrm{tr}}^E$ may vanish or be very small while
+$\mathbf D_{A,\mathrm{int}}^E$ changes relative displacement, phase, exposure,
+orientation, cadence, or envelope geometry. This applies to a neutral Noether
+sea braid, a neutral internal braid inside a charged fermion, and a neutral
+composite such as the neutron, but the magnitude and pattern need not be the
+same across those assemblies.
+
+Comparing external acceleration directly with constituent momentum is not
+dimensionally sufficient. Useful native smallness diagnostics include the
+field-induced relative velocity accumulated over one certified internal period
+$\tau_A$,
+
+$$
+\eta_{v,E}(A)
+=
+\frac{
+\max_{a\in A}
+\left\|\Delta\mathbf V_{a,\mathrm{rel}}^E(\tau_A)\right\|
+}{v_{\mathrm{int},A}},
+$$
+
+and a normalized geometric deformation,
+
+$$
+\eta_{g,E}(A)
+=
+\frac{
+d_{\Gamma}
+\left(
+\Gamma_A^{E},
+\Gamma_A^{0}
+\right)
+}{R_A}.
+$$
+
+Here $d_{\Gamma}$ must be a declared geometry distance on two same-phase
+assembly records, and $R_A$ is a declared assembly scale. These are diagnostics,
+not a static spring model. A response calculation must perturb a certified
+relative-periodic branch with its delayed history intact; it must not linearize
+about a configuration that is not a realized retained branch.
+
+Plainly: “minor deformation” should mean a small fractional change in the
+internal motion or geometry over a stated interval, not merely that the
+external acceleration sounds small compared with an unrelated momentum value.
+
+### Neutral And Charged Assembly Response Classes
+
+The first assembly-level taxonomy is:
+
+| Assembly class | Leading weak uniform-field translation | Internal response allowed | Gradient or strong-field response |
+| --- | --- | --- | --- |
+| Neutral symmetric braid | zero only under matched exposure and response | polarity-sector separation, phase and exposure redistribution, envelope strain | translation from gradients, higher moments, asymmetric exposure, or branch change |
+| Neutral composite such as a neutron | no net-charge translation at observer level | induced electric dipole and higher internal deformation | dielectrophoretic motion, excitation, radiation, or breakup |
+| Charged composite such as a proton | nonzero charge-odd translation | electric polarizability and internal deformation coexist with translation | excitation, radiation, pair channels, or breakup |
+| Charged lepton candidate | charge-odd assembly translation through its exposed polarity inventory | deformation of its neutral braid core and axial layer is allowed but presently unmeasured | precision-dipole, scattering, radiation, and pair-production rows bound the response |
+
+The geometry-neutral parent requirement is a protected six-unit same-sign
+polarity inventory whose effective exposure supplies the leading charge-odd
+response. `Exposed` means visible to the source-coupling projection after
+shielding; it does not mean spatially outside the braid. The six units may be
+internal to the braid, externally coupled, embedded in retained path history,
+or realized by a non-axial branch. The six-site axial layer is one candidate
+realization of that parent requirement, not the canonical location of charge.
+The neutral braid sector may still carry a much smaller
+polarity-differential strain.
+
+The entire retained assembly accelerates only through its coupled response;
+the charge-bearing inventory does not move an otherwise detached neutral sector
+by fiat. Under complete polarity conjugation, the electron and positron
+translational response must reverse, while any polarity-even deformation
+magnitude should agree in the same conjugate environment. Whether the internal
+polar deformation itself reverses or is mapped by a combined
+polarity-and-source conjugation must be declared by the resolved geometry.
+
+Plainly: an electron can translate and deform at the same time. Its net charge
+controls the leading direction of translation; it does not imply that the
+internal braid remains perfectly rigid.
+
+### Observer-Level Evidence That Constrains The Native Picture
+
+These measurements are effective comparison targets, not microscopic premises:
+
+- The 2026 Particle Data Group proton average is
+  $\alpha_{E1}^{p}=(11.5\pm0.4)\times10^{-4}\,\mathrm{fm}^3$. The high-statistics
+  MAMI real-Compton analysis separately reported a value near the same scale.
+  This establishes a small but nonzero proton electric polarizability, not a
+  literal constituent displacement geometry. Sources: [PDG proton electric
+  polarizability](https://pdgprod.lbl.gov/pdgprod/pdgLive/DataBlock.action?home=sumtabB&node=S016EPL)
+  and [MAMI proton Compton measurement](https://doi.org/10.1103/PhysRevLett.128.132503).
+- A deuteron-Compton extraction found
+  $\alpha_{E1}^{n}=11.55\pm1.25_{\mathrm{stat}}\pm0.20_{\mathrm{BSR}}
+  \pm0.80_{\mathrm{th}}$ in units of $10^{-4}\,\mathrm{fm}^3$ for the neutron.
+  The neutron therefore has a nonzero induced electric response despite zero
+  net charge. Source: [neutron polarizability extraction](https://arxiv.org/abs/1409.3705).
+- Background-electric-field lattice QCD calculations extract nucleon energy
+  shifts and polarizabilities from quark and gauge-field records. They show that
+  a constant external-field calculation can isolate internal response, while
+  also warning that charged-particle acceleration, magnetic moments, finite
+  volume, and sea-quark coupling must be separated. Sources:
+  [background-field nucleon method](https://arxiv.org/abs/1001.1131) and
+  [sea-quark contribution calculation](https://arxiv.org/abs/1407.2687).
+- The current neutron permanent electric-dipole bound is
+  $|d_n|<1.8\times10^{-26}\,e\,\mathrm{cm}$ at 90 percent confidence, while its
+  induced polarizability is nonzero. A permanent spin-aligned charge asymmetry
+  and a field-induced reversible deformation are therefore distinct benchmark
+  rows. Source: [PSI neutron EDM measurement](https://doi.org/10.1103/PhysRevLett.124.081803).
+- Virtual Compton scattering measures momentum-dependent generalized proton
+  polarizabilities. This supplies a scale-sensitive response target rather than
+  only one zero-frequency coefficient. Source: [proton generalized
+  polarizabilities](https://doi.org/10.1103/PhysRevC.86.015210).
+
+The near equality in scale of proton and neutron electric polarizabilities is a
+particularly useful inverse constraint. Net-charge translation differs
+radically between the two, but internal electric susceptibility does not.
+Therefore the native translational channel cannot be used as the internal
+deformation channel without additional assembly geometry.
+
+Plainly: the proton moves as a charged object and also distorts internally. The
+neutron does not have the leading charged-object motion, but it still distorts.
+That is almost exactly the separation needed for the braid program.
+
+### How Far Existing Strong-Field Results Reach
+
+For electrons, precision experiments have not established a spatial internal
+electric deformation. The current electron electric-dipole bound,
+$|d_e|<4.1\times10^{-30}\,e\,\mathrm{cm}$ at 90 percent confidence, constrains a
+permanent spin-aligned asymmetry rather than an ordinary reversible
+polarizability. Source: [HfF$^+$ electron-EDM analysis](https://doi.org/10.1103/PhysRevA.108.012804).
+Strong-field QED instead predicts acceleration, radiation, nonlinear vacuum
+response, and eventually electron-positron pair creation. The Schwinger scale
+
+$$
+E_{\mathrm{S}}
+=
+\frac{m_e^2c^3}{e\hbar}
+\simeq
+1.3\times10^{18}\,\mathrm{V/m}
+$$
+
+is therefore a coupled vacuum-plus-pair-production benchmark, not direct
+evidence that an individual electron has been stretched. Source:
+[Schwinger's constant-field calculation](https://doi.org/10.1103/PhysRev.82.664).
+
+### What Nonlinear Vacuum Response Means
+
+In observer-level Maxwell electrodynamics, the weak-field vacuum response is
+linear: scaling the source field scales the response, independent solutions
+superpose, and the constitutive coefficients do not depend on field amplitude.
+Strong-field QED predicts an effective action with higher-order field
+invariants, schematically
+
+$$
+\mathcal L_{\mathrm{eff}}
+=
+\mathcal L_{\mathrm{Maxwell}}
++c_1\left(F_{\mu\nu}F^{\mu\nu}\right)^2
++c_2\left(F_{\mu\nu}\widetilde F^{\mu\nu}\right)^2
++\cdots.
+$$
+
+This is an observer-level recovery target, not an architrino-level law. Its
+physical consequences include amplitude-dependent polarization and propagation,
+photon--photon scattering, vacuum birefringence in an external background, and
+eventually a nonperturbative instability to real electron--positron pair
+production. `Vacuum polarization` in this standard description refers to the
+effective response conventionally represented by virtual charged-pair loops;
+it does not establish virtual particles or a QFT vacuum as
+$\mathbb{A}\mathbb{A}\mathbb{A}$ substrate ontology.
+
+Plainly: at low field strength, doubling the imposed field approximately
+doubles the response. At sufficiently high field strength, the environment no
+longer behaves like an unchanged linear transmission channel: the response
+depends on amplitude, light can interact with light through the background,
+and the field can transfer enough energy into real charged pairs to alter the
+field that produced them.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the minimal nonlinear requirement is that
+one fixed native projection be allowed to satisfy
+
+$$
+\Pi_{\mathrm{EM}}
+\left[\lambda\mathcal H_{\mathrm{src}},
+\Theta_{\mathrm{sea}},
+\mathcal H_{\partial\Omega}\right]
+\ne
+\lambda
+\Pi_{\mathrm{EM}}
+\left[\mathcal H_{\mathrm{src}},
+\Theta_{\mathrm{sea}},
+\mathcal H_{\partial\Omega}\right]
+$$
+
+outside the weak-response regime, without inserting an amplitude-dependent
+per-hit law. The nonlinearity must arise from resolved changes in source
+assemblies, causal-root population, exposure and shielding, retained matter or
+sea geometry, boundary response, or newly opened assembly channels. The test
+must preserve the direct-wake, sea-mediated, and mixed alternatives until their
+provenance is measured.
+
+### Schwinger Pair Production As An Assembly-Coupling Requirement
+
+The Schwinger scale is not a primitive field threshold assigned to an
+architrino, nor is it a sharp observer-level on/off boundary. It is the
+characteristic scale in a rate law that the coupled native system must recover.
+In the slowly varying uniform-field limit, the leading dependence is
+schematically
+
+$$
+w(E)
+\propto
+E^2
+\exp\!\left(-\pi\frac{E_{\mathrm S}}{E}\right).
+$$
+
+Pair production is therefore possible below $E_{\mathrm S}$ but exponentially
+suppressed; it becomes important only when field strength, spatial extent, and
+duration make the integrated yield appreciable. Since the ontic architrino
+inventory is fixed, electron--positron pair production cannot mean creation of
+new architrinos. It must mean a field-driven reorganization or recruitment of
+existing
+architrino-bearing records into two oppositely charged retained assemblies.
+Which inventory supplies those assemblies---ambient Noether sea braids,
+pre-existing unresolved matter records, source-coupled histories, or another
+native reservoir---remains open.
+
+A successful strong-electric-field branch must jointly recover:
+
+1. the transition from weak approximately linear response to nonlinear
+   amplitude-dependent response;
+2. the Schwinger exponential field dependence and its characteristic scale in
+   the appropriate slowly varying uniform-field limit;
+3. an electron and positron with opposite protected six-unit polarity
+   inventories, without assuming where those units reside geometrically;
+4. exact architrino identity provenance and net polarity conservation;
+5. the energy, momentum, angular momentum, recoil, and boundary ledger for pair
+   assembly and subsequent acceleration;
+6. backreaction, because the produced charged assemblies and any changed sea
+   or source state must reduce, screen, redistribute, or otherwise update the
+   effective field record; and
+7. continuity with photon-assisted and spatially or temporally varying strong
+   field regimes without fitting an unrelated pair-production mechanism to each
+   case.
+
+The native regime taxonomy should distinguish bounded elastic braid
+deformation, reversible polarization, inelastic excitation, loss of branch
+retention or breakup, and charge-conjugate pair assembly. Those thresholds need
+not coincide, but they must emerge from one coupling architecture rather than
+from scenario labels.
+
+Plainly: the high electric field must not merely pull harder on a pre-existing
+electron. It must eventually change which retained assemblies exist, while
+showing exactly where their architrinos came from and where the field's energy
+went.
+
+**Claim level:** the QED nonlinear and Schwinger behaviors are observer-level
+recovery requirements; their braid, sea, and provenance implementation is an
+inferred native burden with several live carrier hypotheses.
+
+**Falsifiers:** a linear response at every amplitude; pair creation by adding
+new architrino identities; an electron and positron without opposite conserved
+polarity inventories; no source or medium backreaction; or a threshold inserted
+as a special per-hit switch rather than derived from coupled assembly dynamics.
+
+**Promotion target:** after a retained strong-field calculation exists, the
+Gauge Structure Emergence, Electron, Reactions, and Noether Sea chapters.
+
+**Next artifact:** a strong-$E$ regime ledger that sweeps one source history and
+one coupling rule across elastic deformation, nonlinear response, loss of
+retention, pair assembly, and backreaction, with transmitter and architrino
+identity provenance retained throughout.
+
+At nucleon size $R_N\sim1\,\mathrm{fm}$, an observer-level electric potential
+difference of $1\,\mathrm{MeV}$ across the object corresponds in order of
+magnitude to $E\sim10^{21}\,\mathrm{V/m}$; a $100\,\mathrm{MeV}$ hadronic-scale
+disturbance corresponds to $E\sim10^{23}\,\mathrm{V/m}$. Macroscopic static
+fields encounter strong QED pair-production response well before they cleanly
+apply such a uniform potential drop across an isolated nucleon. Consequently,
+Compton scattering, virtual Compton scattering, nuclear Coulomb fields, and
+lattice background fields are more informative about nucleon structure than a
+literal laboratory capacitor at those strengths.
+
+Plainly: experiments do reveal nucleon deformability, but usually through
+scattering and energy shifts rather than by holding one proton or neutron in a
+fantastically strong uniform static field and imaging its shape.
+
+### Additional Electric Behaviors Worth Adding Now
+
+Four electric-response families add independent geometric constraints without
+requiring four new benchmark packets immediately.
+
+1. **Static Stark response and electric polarizability.** For an ordinary
+   nondegenerate state with no permanent electric dipole, the leading
+   observer-level response has the form
+
+   $$
+   \mathbf p_{\mathrm{ind}}=\alpha_E\mathbf E,
+   \qquad
+   \Delta U=-\frac12\alpha_E|\mathbf E|^2+\cdots.
+   $$
+
+   Plainly: reversing the field reverses the induced internal separation, but
+   not the leading energy shift. A candidate braid geometry must reproduce
+   both parities from one constituent history and return when the field is
+   removed.
+
+2. **Dynamic polarizability.** Replacing a static source by a frequency sweep
+   makes the response magnitude and phase frequency-dependent and introduces
+   resonant excitation and absorption. This is more discriminating than a
+   single static deformation because it exposes internal timescales and mode
+   symmetries. The native calculation must use one retained branch and one
+   coupling rule across the sweep, rather than fitting a separate response at
+   each frequency.
+
+3. **Neutral translation in a field gradient.** A neutral but polarizable
+   assembly can have zero leading translation in a uniform field yet translate
+   when $|\mathbf E|^2$ varies across it. This provides a clean same-assembly
+   separation between net-polarity translation, internal deformation, and a
+   spatial-gradient response. At the architrino level the required result must
+   emerge from unequal causal-hit histories across the assembly, not from
+   importing an effective dipole-force law.
+
+4. **Field ionization and retention loss.** Increasing field strength can take
+   a bound assembly through reversible deformation, metastable leakage or
+   tunneling, and constituent or subassembly escape. This is the missing
+   intermediate regime between weak polarizability and wholesale
+   charge-conjugate pair assembly. The escape rate and threshold behavior must
+   emerge from the retained geometry and source history rather than a special
+   scenario switch.
+
+Photon--photon scattering and vacuum birefringence remain important nonlinear
+electric-background consumers, but they are already represented in the
+vacuum-effect benchmark bundle. They should constrain the same nonlinear
+response record rather than receive an unrelated electric mechanism. Proton
+and neutron electric polarizabilities are also strong later candidates for a
+dedicated comparison packet because they test charged and neutral composite
+assemblies under the same electric projection.
+
+**Claim level:** these are observer-level recovery requirements. Their use to
+infer constituent displacement, restoring geometry, internal modes, and
+retention loss is an inferred native burden.
+
+**Falsifiers:** the induced separation and energy shift have the same reversal
+parity; a neutral uniform-field cancellation is used to predict zero gradient
+response; each driving frequency receives a private coupling; or ionization is
+implemented as an externally inserted field threshold.
+
+**Next artifact:** extend one retained-assembly source history through static
+field reversal, a frequency sweep, a controlled field gradient, and increasing
+amplitude through the first loss-of-retention event.
+
+### What Pair Production Does Not Establish About Internal Braid Speed
+
+The Schwinger scale does **not** by itself establish that architrinos in a braid
+move at high speed. Observer-level experiments and rate calculations constrain
+electron--positron yield, field dependence, formation conditions, and
+backreaction. They do not observe a precursor braid, its internal speed, or a
+competing braid-decay channel. Therefore the statement that pair production is
+seen *before braid decay* is not presently an empirical ordering. The
+instrument has no braid-decay observable from which that ordering could be
+read.
+
+Pair production may recruit or reorganize ambient Noether-sea inventory, alter
+an existing braid, assemble a pair from another native reservoir, or combine
+these channels. In some of those possibilities the pair-production event is
+itself a loss or change of a precursor branch. Assuming that an identifiable
+braid survives until a later, separate decay would prejudge the geometry and
+the reaction pathway.
+
+The speed inference would require an independently derived internal length and
+cadence relation, schematically
+
+$$
+v_{\mathrm{int}}
+\sim
+\frac{L_{\mathrm{braid}}}{\tau_{\mathrm{cycle}}}.
+$$
+
+Plainly: the strong-field rate can place an upper bound on how long pair
+assembly may take while the imposed field remains coherent. It cannot convert
+that time into an internal speed until the native calculation also supplies
+the distance traveled and shows that pair-formation cadence is tied to the
+ordinary braid cycle.
+
+A defensible conditional result is narrower. If one fixed native model shows
+that pair assembly uses a precursor braid of known scale, requires motion over
+a known fraction of that scale, and completes within a derived formation time,
+then the recovered Schwinger behavior can bound its internal cadence and speed.
+If the same model also shows the precursor branch remains retained throughout,
+one may compare pair-assembly time with its restoration or breakup time. None
+of those connecting derivations currently exists.
+
+What the strong-field target does require now is:
+
+1. reachable, retained electron and positron branches with opposite conserved
+   polarity inventories;
+2. a pair-assembly cadence compatible with the field's spatial and temporal
+   coherence;
+3. exact provenance for the pre-existing architrinos recruited into both
+   products;
+4. one coupling architecture spanning weak deformation, nonlinear response,
+   retention loss or reorganization, pair assembly, and backreaction; and
+5. separate measurable native labels for precursor survival, precursor branch
+   loss, and recruitment from an unrelated inventory.
+
+**Claim level:** the absence of a present high-speed inference is derived from
+the missing observable and missing length--cadence map. High internal speed is
+a live branch hypothesis, not a result of the Schwinger benchmark.
+
+**Falsifier for a future speed claim:** an independent retained solution that
+fixes $L_{\mathrm{braid}}$ and $\tau_{\mathrm{cycle}}$, connects that cycle to
+the measured pair-formation rate, and yields a reproducible internal speed
+bound would replace this non-inference with a quantitative conclusion.
+
+**Next artifact:** a strong-field event ledger with explicit times for source
+coherence, reversible response, restoration, first retention loss, and pair
+assembly, plus architrino path length and identity provenance for every proposed
+carrier channel.
+
+### Strongest New Synthesis And Proof Burden
+
+**Claim level:** inferred assembly mechanism constrained by observer-level
+measurements. The strongest defensible synthesis is that effective electric
+response factorizes into at least two projections of one constituent hit
+record:
+
+1. a charge-odd translational projection governed at leading order by exposed
+   net polarity; and
+2. an internal polarizability projection governed by differential constituent
+   response and retained restoring geometry.
+
+The proton-neutron comparison requires the second projection to remain nonzero
+when the first vanishes. The neutron-EDM comparison additionally requires a
+neutral equilibrium branch with essentially no permanent polar first moment
+while permitting a reversible induced polar moment and an even-in-field energy
+shift.
+
+**Assumptions and proof burden:** derive the translational and internal
+projections from one retained assembly record; preserve architrino identity and
+delayed histories; distinguish uniform-field, gradient, and time-dependent
+sources; show bounded weak-field return rather than secular braid destruction;
+recover charge conjugation for electron and positron; and match at least one
+nucleon polarizability row without importing quark or spring ontology into the
+substrate calculation.
+
+**Falsifiers:** exact neutrality used as the sole proof of cancellation;
+receiver-specific definitions of the field; an electron/positron conjugate pair
+whose translation does not reverse; a neutron model with zero internal electric
+response; a charged model in which all constituent response is rigid translation;
+or a response obtained by linearizing about a non-retained configuration.
+
+**Promotion target:** after a retained assembly calculation exists, the
+Architrino, Electron, Nucleon Structure, and Gauge Structure Emergence chapters.
+
+**Focused artifact:** the
+[$E0$--$E4$ Multi-Receiver Electric Response](e0-e4-multi-receiver-electric-response.md)
+packet extends the protocol across a neutral sea braid, electron/positron
+conjugate receivers, and a neutral nucleon surrogate. It records separately the
+group translation, rigid orientation, polarity-sector response, normalized
+non-rigid deformation, post-source relaxation, and branch retention on a common
+diagnostic history and matched live-evolution forks.
+
+Closure goal: derive and measure separate translational and internal electric
+response projections on one retained assembly history, then test whether the
+same native decomposition can support charged-lepton acceleration, neutral
+braid strain, nonzero nucleon polarizability, strong-field nonlinearity, and
+charge-conjugate pair assembly without importing an electric force law or
+privileging one charged-inventory geometry.
+
+## Session 19 — One Fixed Coupling Across Weak Response, Strong Nonlinearity, And Pair Assembly (2026-08-22)
+
+### Closure Question
+
+Can one unchanged Master Equation coupling remain approximately linear under a
+weak electric source preparation, become nonlinear solely because the causal
+geometry and retained assemblies change, and then route a branch transition
+into retained electron and positron assemblies while preserving every
+architrino identity and closing backreaction?
+
+The answer is not yet a retained solution, but there is one coherent candidate
+architecture worth attempting. Its central choice is to keep the per-hit law
+fixed and put every regime change into the evolving absolute record: source
+assembly histories, causal-root geometry, Noether sea response, receiver
+assembly geometry, and branch capture.
+
+**Claim level:** the fixed-law architecture and its weak-response lemma below
+are a derivation scaffold. Geometric strong-field departure is an inferred
+continuation. Capture into electron and positron basins is a speculative branch
+route until those retained product branches and a provenance-complete transition
+are produced by the EOM solver.
+
+### One Absolute Record And One Per-Hit Law
+
+Let $\zeta$ label a physical source preparation---for example, increased charge
+separation or increased exposed source inventory---rather than an electric field
+inserted into the substrate law. The finite-window absolute record is
+
+$$
+S_{\zeta}(T)
+=
+\left(
+\mathcal H_{\mathrm{src}}^{\zeta},
+\mathcal H_{\mathrm{sea}},
+\mathcal H_{\mathrm{asm}},
+\mathcal H_{\partial\Omega},
+\mathcal L_{\mathrm{wake}}
+\right).
+$$
+
+Plainly: $\zeta$ changes how the source is physically prepared. It does not
+change the Master Equation or multiply a causal hit by a field-strength
+coefficient.
+
+Every architrino in this record obeys the same Master Equation. Transmitter
+tags permit its acceleration record to be partitioned for diagnosis as
+
+$$
+\mathbf A_i
+=
+\mathbf A_{i,\mathrm{internal}}
++
+\mathbf A_{i,\mathrm{src}}
++
+\mathbf A_{i,\mathrm{sea}}
++
+\mathbf A_{i,\partial\Omega},
+$$
+
+but all four terms are sums of the same radial, delayed, transmitter-weighted
+per-hit contributions. `Exposure` and `shielding` are therefore measured
+cancellation properties of the complete tagged sum; they are not extra
+per-hit multipliers.
+
+Plainly: a source architrino, a sea architrino, and an architrino already inside
+the receiver do not use different interaction laws. Their histories and
+geometries make their summed effects different.
+
+The observer-level electric readout remains a projection of the source, sea,
+and boundary history,
+
+$$
+\mathbf E_{\mathrm{eff}}^{\zeta}
+=
+\Pi_E
+\left[
+\mathcal H_{\mathrm{src}}^{\zeta},
+\mathcal H_{\mathrm{sea}},
+\mathcal H_{\partial\Omega}
+\right].
+$$
+
+This projection must be calibrated by conjugate and neutral probes and then
+shown to be receiver-independent within its declared effective regime. It is a
+readout of $S_{\zeta}$, not an input to any individual architrino.
+
+Plainly: the calculation varies a real source and lets every path respond. The
+quantity later called $\mathbf E$ is reconstructed from that evolved record.
+
+### Weak-Response Lemma From A Retained Return Map
+
+Take a retained source-plus-sea-plus-assembly branch at $\zeta=0$ and a
+Poincare section that removes group translation and neutral phase directions.
+Let $\delta z_n$ be the internal history-section displacement after return $n$.
+If the active causal roots remain simple and the section return is smooth, the
+same EOM evolution has the local form
+
+$$
+\delta z_{n+1}
+=
+M_0\delta z_n
++
+\zeta\mathbf b
++
+\mathcal O
+\left(
+\|\delta z_n\|^2
++
+|\zeta|\,\|\delta z_n\|
++
+\zeta^2
+\right).
+$$
+
+Here $M_0$ is the transverse return derivative of the unperturbed retained
+branch and $\mathbf b$ is the first source-loading derivative of the same
+return map. If
+
+$$
+\rho\!\left(M_0\vert_{E_\perp}\right)<1,
+$$
+
+then $I-M_0$ is invertible on the transverse section. The implicit-function
+theorem gives a unique nearby returned branch with
+
+$$
+\delta z_*(\zeta)
+=
+\zeta
+\left(I-M_0\right)^{-1}\mathbf b
++
+\mathcal O(\zeta^2).
+$$
+
+Plainly: a genuinely retained branch responds approximately linearly to a
+small source change because its stable return geometry has a differentiable
+nearby continuation. No microscopic linear electric law has been assumed.
+
+This is a conditional native explanation for the weak-response regime. It is
+stronger than saying that small fields are usually linear: it identifies the
+specific mathematical conditions---fixed root identities, differentiable
+history dependence, and a stable transverse return---that make linearity
+follow. If source reversal and complete polarity conjugation supply the needed
+symmetry, polar observables are odd while leading scalar energy shifts are
+even:
+
+$$
+\mathbf P(-\zeta)=-\mathbf P(\zeta),
+\qquad
+\Delta U(-\zeta)=\Delta U(\zeta).
+$$
+
+Plainly: the same return map can produce a displacement that reverses with the
+source and an energy change that does not, matching the parity structure needed
+for ordinary electric polarizability.
+
+### Strong Response As Geometric Departure, Not A New Law
+
+As $|\zeta|$ grows, the full EOM changes the quantities already present in the
+Master Equation and branch chart:
+
+1. transmitter and receiver paths change the hit directions and separations;
+2. $D_t$ changes the arriving-surface density
+   $W^{\mathrm{acc}}=c_f/|D_t|$;
+3. active causal roots move, approach folds, appear, or disappear;
+4. previously inactive root gaps shrink;
+5. Noether sea orientation, strain, cadence, and density change;
+6. internal cancellation changes what is diagnosed as exposure or shielding;
+   and
+7. the return derivative becomes $M(\zeta)$ rather than $M_0$.
+
+These are geometric nonlinearities of the unchanged delayed law. A useful
+departure residual on a continued branch is
+
+$$
+\mathcal R_{\mathrm{geom}}(\zeta)
+=
+\frac{
+\left\|
+\delta z_*(\zeta)
+-
+\zeta\left(I-M_0\right)^{-1}\mathbf b
+\right\|
+}{
+\left\|
+\zeta\left(I-M_0\right)^{-1}\mathbf b
+\right\|
++\varepsilon
+}.
+$$
+
+Plainly: this residual measures when the actual evolved geometry stops
+following the weak-field tangent. Growth is permitted; inserting a new
+strong-field coefficient is not.
+
+The weak branch reaches a native transition boundary when at least one of its
+own certificate conditions fails or reaches a declared transition stratum,
+for example
+
+$$
+\nu_J\downarrow0,
+\qquad
+\inf_{g_a^{ij}\in\mathcal G^{\mathrm{inact}}}g_a^{ij}\downarrow0,
+\qquad
+\lambda_{\mathrm{sec}}\downarrow0.
+$$
+
+A simple causal-root fold may route through the existing finite-impulse
+transition treatment; loss of the transverse stability margin may route to a
+different retained basin; a collision-floor or unresolved singular failure
+must remain quarantined. None of these outcomes is automatically pair
+production.
+
+Plainly: the strong-field threshold is the source loading at which a measured
+piece of the old branch geometry changes status. It is not a number pasted onto
+the Master Equation.
+
+### Pair Production As Capture Into Two Conjugate Retained Basins
+
+Let $\Phi_W^{\zeta}$ be the complete EOM evolution over interaction window $W$.
+Suppose independently certified retained basin families
+$\mathcal B_{e^-}$ and $\mathcal B_{e^+}$ exist, with
+$\mathcal B_{e^+}$ the complete polarity-conjugate branch of
+$\mathcal B_{e^-}$. Define a pair-output region that also retains every remnant
+and medium row,
+
+$$
+\mathcal B_{\mathrm{pair}}
+=
+\mathcal B_{e^-}
+\times
+\mathcal B_{e^+}
+\times
+\mathcal B_{\mathrm{rem/sea}}.
+$$
+
+The candidate pair channel is then the capture set
+
+$$
+\mathcal C_{\mathrm{pair}}(\zeta,W)
+=
+\left\{
+z_0\in\Gamma_{\mathrm{prepared}}
+:
+\Phi_W^{\zeta}(z_0)
+\in
+\mathcal B_{\mathrm{pair}}
+\right\}.
+$$
+
+Plainly: pair production means that some fully specified initial source and sea
+histories evolve into two retained conjugate assemblies. It does not mean that
+an electric field creates new architrinos.
+
+For an ensemble of unresolved but physically prepared phase records with
+declared measure $\mu_W$, the candidate observer-level rate is a coarse-grained
+capture measure,
+
+$$
+w_{\mathbb{A}\mathbb{A}\mathbb{A}}(\zeta)
+\propto
+\frac{
+\mu_W\!\left(\mathcal C_{\mathrm{pair}}(\zeta,W)\right)
+}{
+\operatorname{Vol}(W)\,\Delta T_W
+}.
+$$
+
+This does not assume the Schwinger exponential. It produces a native quantity
+whose field dependence can be tested against it. After the effective field
+projection and prefactor convention are fixed, the required comparison is
+schematically
+
+$$
+-\ln
+\left[
+\frac{w_{\mathbb{A}\mathbb{A}\mathbb{A}}(E)}{w_0(E)}
+\right]
+\longrightarrow
+\pi\frac{E_{\mathrm S}}{E}
+$$
+
+in the slowly varying uniform-field regime.
+
+Plainly: an exponentially small pair rate would have to emerge because only an
+exponentially small part of the prepared native history ensemble reaches the
+pair basins. The calculation must discover that scaling; it may not install it.
+
+This formulation also leaves the precursor question open. The captured
+architrinos may come from one neutral braid, several ambient braids, another
+resolved remnant, or a mixed inventory. A pair event may preserve, split,
+reclassify, or destroy a precursor branch. Those are different provenance
+outcomes of the same coupling architecture, not interchangeable descriptions.
+
+### Exact Inventory Routing
+
+Let $I_{\Omega}$ be the fixed set of architrino identities in the closed event
+region plus all identities crossing its boundary. Before and after the event it
+must admit two exact partitions,
+
+$$
+I_{\Omega}
+=
+I_{\mathrm{src}}
+\sqcup
+I_{\mathrm{sea}}
+\sqcup
+I_{\mathrm{other}}
+=
+I_{\mathrm{src}}'
+\sqcup
+I_{\mathrm{sea}}'
+\sqcup
+I_{e^-}
+\sqcup
+I_{e^+}
+\sqcup
+I_{\mathrm{rem}}.
+$$
+
+Every identity appears exactly once on each side after boundary crossings are
+included, and the polarity ledger requires
+
+$$
+\sum_{a\in I_{\Omega}}q_a
+\bigg|_{T_a}
+=
+\sum_{a\in I_{\Omega}}q_a
+\bigg|_{T_b},
+\qquad
+Q_{e^-}+Q_{e^+}=0.
+$$
+
+Plainly: the event changes association and branch membership, not the number or
+kind of architrinos. The electron and positron must receive opposite protected
+six-unit polarity inventories, but this architecture does not assume that
+those units are axial, external, or even spatially exposed in the same way.
+
+If no available source, sea, and remnant partition contains the inventories
+needed for both retained products, the proposed pair channel is impossible for
+that prepared record. This is an early combinatorial falsifier before any rate
+fit.
+
+### Backreaction Is Automatic Only When The Products Rejoin The Same Record
+
+Once the electron and positron branches are captured, their architrinos remain
+ordinary transmitters and receivers in $S_{\zeta}$. Their new paths alter later
+causal hits, the source assemblies recoil or discharge, and the Noether sea
+changes its density, orientation, strain, cadence, excitation, recruitment,
+and return rows. Define the event ledger vector
+
+$$
+\mathfrak L
+=
+\left(
+E,
+\mathbf p,
+\mathbf J,
+N_+,
+N_-,
+\mathcal H_{\mathrm{wake}}
+\right).
+$$
+
+The coupled event must satisfy
+
+$$
+\Delta\mathfrak L_{\mathrm{src}}
++
+\Delta\mathfrak L_{\mathrm{sea}}
++
+\Delta\mathfrak L_{e^-}
++
+\Delta\mathfrak L_{e^+}
++
+\Delta\mathfrak L_{\mathrm{rem}}
++
+\mathfrak F_{\partial\Omega}
++
+\mathfrak R_{\mathrm{event}}
+=0
+$$
+
+within declared tolerance, with each row derived from the same causal update.
+The observer-level field change is then a projection difference
+
+$$
+\Delta\mathbf E_{\mathrm{eff}}
+=
+\Pi_E[S_{\zeta}(T_b)]
+-
+\Pi_E[S_{\zeta}(T_a)],
+$$
+
+not the disappearance of a primitive field substance. Screening is one possible
+sign of this change; local enhancement, redistribution, oscillation, radiation,
+and boundary transfer must remain visible when the geometry produces them.
+
+Plainly: pair production and field backreaction are one event only if the new
+electron and positron immediately participate in the same evolving causal
+network that assembled them. Computing pairs in a frozen background is not
+closure.
+
+### What This Architecture Achieves Now
+
+1. **Weak approximate linearity:** conditionally derived from a differentiable,
+   stable retained return map.
+2. **Strong geometric nonlinearity:** supplied without modifying the per-hit law
+   by changing paths, causal roots, arrival weights, sea state, cancellation,
+   and return stability.
+3. **A native threshold concept:** the first certified branch-chart boundary or
+   basin-access change under source continuation.
+4. **A pair-production mechanism class:** deterministic capture of pre-existing
+   identities into two conjugate retained basins, with observer rates obtained
+   by coarse-graining prepared initial histories.
+5. **Backreaction:** the products, source, sea, remnant, wake, and boundary rows
+   continue in one Master Equation record.
+
+Only the first item has a conditional mathematical derivation here. Items 2--5
+are a coherent proof route, not evidence that the required retained branches or
+transitions exist.
+
+### Falsifiers And Decisive Failure Modes
+
+- The weak source sweep changes active roots immediately or has no stable
+  returned continuation, so the claimed linear regime never exists.
+- Approximate linearity requires an inserted electric coefficient rather than
+  the derivative of one source-preparation family.
+- Strong nonlinearity appears only after changing the per-hit coupling,
+  regulator, source definition, or Noether sea coefficients between amplitudes.
+- The declared transition has no causal-root, inactive-gap, return-stability,
+  collision, or basin-boundary event in the native record.
+- No retained electron and positron basin pair exists, or the two product
+  branches are not complete polarity conjugates.
+- Product identities cannot be partitioned from the pre-event source, sea, and
+  remnant inventory.
+- A fitted pair rate has no native capture set or does not approach the required
+  strong-field dependence on a controlled uniform-field window.
+- The produced assemblies are evaluated in a frozen background, or their
+  acceleration and the effective-field update use different event histories.
+- Energy, momentum, angular momentum, polarity, wake history, recoil, medium,
+  or boundary rows remain unexplained.
+
+### Promotion Targets And First Executable Artifact
+
+**Promotion targets:** after successful retained calculations, the Master
+Equation, Noether Sea, Electron, Gauge Structure Emergence, Radiation, Reaction
+Ledger, and Energy chapters. No reader-facing promotion is warranted from this
+scaffold alone.
+
+**First executable artifact:** a score-neutral strong-electric-source
+branch-continuation packet using $c_f=1$ that:
+
+1. prepares one source family $S_{\zeta}$ without changing the per-hit law;
+2. follows one candidate retained receiver-plus-sea history from $\zeta=0$
+   through a weak signed pair and an increasing-amplitude sweep;
+3. records transmitter tags, root identities, $D_t$, $D_r$,
+   $W^{\mathrm{acc}}$, inactive gaps, return derivative, sea state, and all
+   wake accounts at every step;
+4. measures the weak tangent, $\mathcal R_{\mathrm{geom}}$, reversibility, and
+   the first certified branch-chart boundary;
+5. enumerates the post-boundary continuation classes without labeling any of
+   them pair production unless both retained conjugate product basins and exact
+   identity routing are present; and
+6. if a pair channel exists, continues the source, sea, products, remnants, and
+   boundaries together to measure the capture rate and backreaction.
+
+The current first blocker is not the Schwinger fit. It is the absence of an
+accepted EOM-evolved retained source-plus-sea-plus-receiver branch, followed by
+the absence of certified retained electron and positron product basins. A
+diagnostic run on a prescribed candidate could test the packet shape, but it
+must report `candidate_only` and cannot establish physical pair production.
+
+Closure goal: implement the fixed-law source-continuation packet through its
+weak tangent and first native branch boundary, preserving full transmitter,
+root, sea, wake, and identity records; attempt pair capture and backreaction
+only if certified conjugate product basins become available on the same record.
