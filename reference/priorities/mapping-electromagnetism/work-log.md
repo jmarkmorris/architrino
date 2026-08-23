@@ -11,6 +11,28 @@ geometric and electromagnetic ideas.
 
 ## Log Entries
 
+### 2026-08-22 — Fixed-law weak-response and first-transition evaluator
+
+- Implemented a score-neutral fixed-law source-continuation evaluator for one
+  $c_f=1$ source family with fixed law, coefficient, regulator, projection,
+  tolerance, common-history, and identity bindings.
+- Computed the weak signed tangent, checked it against a second signed pair,
+  measured geometric departure, and selected the first sampled native margin
+  boundary.
+- Added fail-closed pair logic: pair capture and backreaction cannot run unless
+  the accepted retained source record supplies certified electron and positron
+  basins with opposite protected six-unit inventories and reciprocal
+  conjugation.
+- The prescribed diagnostic passes its fixed-record and weak-response checks,
+  reaches an inactive-root-gap boundary at $\zeta=0.70$, and reports
+  `candidate_only_first_transition_reached`. It does not attempt pair capture.
+- Eight focused tests pass, including hidden-retune, incomplete-signed-pair,
+  missing-transition, cross-record-basin, and uncertified-pair negative
+  controls. No queue lifecycle, equation score,
+  retained-branch claim, or reader-facing corpus claim changed.
+- Physical population remains blocked on an accepted EOM-evolved retained
+  source--sea--receiver branch.
+
 ### 2026-08-22 — $E0$--$E4$ multi-receiver electric-response packet
 
 - Extended the direct-wake versus sea-response protocol across a neutral sea

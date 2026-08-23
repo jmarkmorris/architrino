@@ -130,6 +130,13 @@ score, or retained-evidence decision.
   a neutral sea braid, electron/positron conjugate receivers, and a neutral
   nucleon surrogate, with group translation and internal deformation reported
   separately.
+- **Fixed-law continuation:**
+  [Fixed-Law Source Continuation](fixed-law-source-continuation.md) implements a
+  score-neutral evaluator for the weak signed tangent, geometric-departure
+  residual, first native transition, and fail-closed pair/backreaction gate.
+  Its checked-in run is `candidate_only`; physical population remains blocked
+  on an accepted EOM-evolved retained source--sea--receiver branch and, for any
+  pair attempt, same-record certified conjugate product basins.
 - **Depends on:** accepted assembly source rows, photon transport rows, and at
   least two independent electromagnetic benchmark classes. The fine-structure
   application additionally depends on an accepted `theta_gamma_packet`, a

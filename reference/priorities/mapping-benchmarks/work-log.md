@@ -6,6 +6,20 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-22 Shared-record strong-field electromagnetic benchmark
+
+- Added a focused benchmark that binds photon--photon scattering, vacuum
+  birefringence, amplitude-dependent polarization and propagation,
+  electron--positron pair production, and pair backreaction to one versioned
+  source, sea, boundary, photon, pair, detector, and provenance record.
+- Made coverage an all-five-components predicate; no weighted scalar may hide
+  a failed behavior row.
+- Routed the packet through existing queue row `XTM-006` and existing equation
+  owners rather than creating a duplicate executable task.
+- Preserved QED equations and observations as effective recovery targets, not
+  substrate premises, and changed no benchmark status or equation maturity
+  score.
+
 ### 2026-08-22 Priority owner renamed to mapping-benchmarks
 
 Renamed the priority directory from

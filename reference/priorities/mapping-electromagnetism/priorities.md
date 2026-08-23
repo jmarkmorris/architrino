@@ -73,6 +73,14 @@ pre-derivation constraint
 artifact for `EMAP-001` through `EMAP-004`, not a new equation or benchmark
 inventory and not evidence that any candidate geometry is retained.
 
+The focused executable continuation packet is
+[Fixed-Law Source Continuation](fixed-law-source-continuation.md). It evaluates
+one source-loading family through its weak signed response and first native
+geometric transition while rejecting hidden retuning and refusing pair capture
+or backreaction without same-record certified conjugate product basins. Its
+present prescribed fixture is `candidate_only` and changes no score or retained
+branch claim.
+
 ## Scope And Ownership
 
 The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md)

@@ -4495,10 +4495,12 @@ as a special per-hit switch rather than derived from coupled assembly dynamics.
 **Promotion target:** after a retained strong-field calculation exists, the
 Gauge Structure Emergence, Electron, Reactions, and Noether Sea chapters.
 
-**Next artifact:** a strong-$E$ regime ledger that sweeps one source history and
-one coupling rule across elastic deformation, nonlinear response, loss of
-retention, pair assembly, and backreaction, with transmitter and architrino
-identity provenance retained throughout.
+**Benchmark artifact:** the
+[Strong-Field Electromagnetic Response](../mapping-benchmarks/strong-field-electromagnetic-response.md)
+packet now requires one source history and one coupling rule across elastic
+photon--photon scattering, birefringence, amplitude-dependent propagation,
+pair assembly, and backreaction, with transmitter and architrino identity
+provenance retained throughout.
 
 At nucleon size $R_N\sim1\,\mathrm{fm}$, an observer-level electric potential
 difference of $1\,\mathrm{MeV}$ across the object corresponds in order of
@@ -5147,8 +5149,10 @@ Equation, Noether Sea, Electron, Gauge Structure Emergence, Radiation, Reaction
 Ledger, and Energy chapters. No reader-facing promotion is warranted from this
 scaffold alone.
 
-**First executable artifact:** a score-neutral strong-electric-source
-branch-continuation packet using $c_f=1$ that:
+**Focused executable artifact:** the
+[Fixed-Law Source Continuation](fixed-law-source-continuation.md) packet now
+implements a score-neutral strong-electric-source continuation evaluator using
+$c_f=1$ that:
 
 1. prepares one source family $S_{\zeta}$ without changing the per-hit law;
 2. follows one candidate retained receiver-plus-sea history from $\zeta=0$
@@ -5164,7 +5168,10 @@ branch-continuation packet using $c_f=1$ that:
 6. if a pair channel exists, continues the source, sea, products, remnants, and
    boundaries together to measure the capture rate and backreaction.
 
-The current first blocker is not the Schwinger fit. It is the absence of an
+The checked-in candidate-only fixture exercises the weak tangent and reaches a
+prescribed inactive-root-gap boundary while correctly skipping pair capture.
+It is an implementation diagnostic, not evidence for a retained branch or a
+physical transition. The current first blocker is not the Schwinger fit. It is the absence of an
 accepted EOM-evolved retained source-plus-sea-plus-receiver branch, followed by
 the absence of certified retained electron and positron product basins. A
 diagnostic run on a prescribed candidate could test the packet shape, but it

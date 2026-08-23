@@ -838,6 +838,13 @@ from effective recovery targets, not established microscopic mechanisms.
 | `BR-EB-04` | Effective electromagnetic energy, momentum, and stress have one closed control-volume account. | Deduced recovery requirement | Source, matter, sea, carrier, receiver, and boundary ledgers must reproduce the effective flux and stress rows without adding field energy as primitive substance. | Any unexplained energy, recoil, angular momentum, or sea update is a failure even when field residuals are small. |
 | `BR-EB-05` | The same electromagnetic environment supports Maxwell, magnetic-moment, fine-structure, photon, material, and benchmark consumers. | Inferred same-record requirement | One response family and one provenance chain must serve the consumers without private coefficients or scenario-specific geometry. | If every consumer needs an unrelated sea state or a separately fitted projection, the proposed common electromagnetic response fails. |
 
+Rows `BR-E-04` through `BR-E-06` are instantiated together in the
+[Strong-Field Electromagnetic
+Response](../mapping-benchmarks/strong-field-electromagnetic-response.md)
+benchmark. That packet also binds photon--photon scattering and birefringence
+to the same source, sea, photon, pair, and provenance history; it changes none
+of the requirement grades recorded here.
+
 Plainly: the table records what any successful geometry must accomplish. It
 does not yet decide whether electric behavior is polar sea displacement,
 whether magnetic behavior is axial circulation, or whether both are
