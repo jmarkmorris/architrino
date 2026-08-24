@@ -307,3 +307,13 @@
 - Proved that the scalar-envelope mass of every source-centered ball is $4\pi R$, independent of $\beta$, and used almost-everywhere density convergence plus Scheffé's lemma to obtain local total-variation convergence of the vector measures as $\beta\uparrow1$.
 - Identified the limit as the exact ordinary trailing measure and proved that the plane-, line-, and point-supported singular residual is zero. The nonisolated source fibre has zero carrier measure because it occupies one zero-area propagation direction.
 - Kept the theorem separate from the two-dimensional Topo slice, point-source evaluation, self-action, contact-event measures, nonuniform paths, continuation, and adoption of a field-speed ceiling.
+
+## 2026-08-24 — Positive-waiting-time delayed ignition proved locally
+
+- Closed the positive side of the trailing-front activation dichotomy in the proposed isolated exact-mirror restart and declared absolutely continuous, almost-everywhere solution class.
+- For every waiting time $u_*>0$, reduced the first activated partner root to $s(t)=E(t)/2$ in normalized $c_f=1$ units because that emission lies inside the preceding straight stored segment.
+- Reduced the active branch to the smooth local system $E'=m$, $m'=K/[2(t-E/2)^2]$ with $E(u_*)=m(u_*)=0$, and used standard local ODE existence to obtain $m'(u_*^+)=K/(2u_*^2)>0$.
+- Proved the complete local ledger: one new isolated positive-delay partner root per receiver with $D_t=2$ and $D_r=m>0$, no new same-transmitter root, no owned-family re-billing, and no transverse or external row.
+- Embedded the scalar branch in the full isolated two-label vector restart by exact mirror symmetry. The straight trace and every $u_*$-branch share the complete history through $u_*$, so continuation is multivalued in the declared class.
+- Preserved the claim boundary: no ceiling or contact law was adopted; immediate $u_*=0$ ignition remains excluded in the stated class; thin event-adjacent cascades remain unclassified; and no reversal, return, breather, stability, conservation, or physical conclusion was proved.
+- Updated the live theorem, mathematics packet, compatibility decision, readiness record, priorities, work queue, restart note, and brainstorming capture. Independent theorem and measure-typing review and the selection-law decision remain open.
