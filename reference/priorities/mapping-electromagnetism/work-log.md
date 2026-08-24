@@ -6,6 +6,17 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 
 ## Log Entries
 
+### 2026-08-24 — F6c nonlinear return-map continuation
+
+- Added a bounded nonlinear return-map instrument around the strongest prescribed-harmonic seed, using the harmonic result only to choose the initial-history neighborhood and ranking only forward EOM-solver histories.
+- Varied four independent axial/radial breathing-phase offsets, both sector cadences, and cross-sector phase over 20 guarded rows with normalized $c_f=1$; every retained row records the exact direct or reflected proper-rotation action, lifted winding, all six coordinates and rates, labeled-history equivalence, root guards, pair clearance, speed allocation, member provenance, and symmetry leakage.
+- Found 11 rows with a declared nontrivial excursion-and-turn marker, three with a radial turn, nine with a cadence turn, and none with both a radial and cadence turn on one certified history. No row entered a nonzero direct winding cell.
+- Improved the closest reflected-action RMS from the stored-census value of about $0.535$ to $0.4433731616$ at $T=0.173$. The remaining positive cadence mismatch was $1.238145546$ and the negative radial-rate mismatch was $0.315202721$, so the row is not a return.
+- Recorded the reflected action as the proper rotation $\operatorname{diag}(-1,-1,1)$ with same-polarity module permutation $(0,1,2,3)\mapsto(3,2,1,0)$. It is a quotient-history comparison and not a labeled-history return.
+- Preserved the guarded causal contract on the closest row: 64 certified release root rows, single-root multiplicity on recorded accepted snapshots, minimum transmitter-factor magnitude $0.676913$, minimum pair distance $0.235318$, maximum member speed $0.568810c_f$, and normalized F6c velocity leakage below $3.37\times10^{-15}$.
+- Reproduced the closest event at the same sampled time with half the integration step, half the root tolerance, and half the history-segment step. The refined RMS was $0.4433731395$, a coarse-to-refined change of $2.21\times10^{-8}$.
+- Classified the result as a measured bounded-search near-miss. It supplies neither retention, stability, a clock, energy closure, particle identity, Lorentz recovery, nor a global nonexistence result.
+
 ### 2026-08-23 — F6c current transport and causal-history guard
 
 - Extended the root-certified release census from snapshot current capacity to pair-distance flow, sector speed flow, rate-vector curvature, and exact current derivative without changing the fixed Master Equation law.

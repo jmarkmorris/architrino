@@ -5555,17 +5555,17 @@ maximum member speed $0.968961c_f$, and opposite-polarity corridor $0.2749050$.
 
 Plainly: the favorable phase rows repeatedly approach a positive-sector radius maximum while the negative sector continues to expand and accelerate. The failure is structured, not random: phase chooses the corridor and cadence transfer, but a circular prehistory does not supply the missing breathing phase needed to close both sectors.
 
-#### F6c Breathing-Section Bias
+#### A Generic Breathing Section Has One Scalar Crossing
 
-Every ordinary release above begins from a fixed-radius circular prehistory, which imposes four simultaneous section conditions at release:
+A fixed-radius circular prehistory imposes four simultaneous section conditions at release:
 
 $$
 \dot h_+=\dot h_-=\dot\rho_+=\dot\rho_-=0.
 $$
 
-A generic periodic six-coordinate history has only one freely selectable time origin. One time shift can generically place the history on one scalar section, such as $\dot\rho_+=0$, but not on four independent turning sections at once. Simultaneous satisfaction of all four conditions requires an additional synchronization or symmetry that has not been derived. This is a dimension counting inference, not a nonexistence theorem.
+A generic periodic six-coordinate history has only one freely selectable time origin. One time shift can generically place the history on one scalar section, such as $\dot\rho_+=0$, but not on four independent turning sections at once. Simultaneous satisfaction of all four conditions selects an exceptional synchronized subset unless a derived symmetry supplies that synchronization. This is a dimension-counting inference, not a nonexistence theorem.
 
-The evolved $(2.0,2.0,\pi/2)$ history demonstrates the distinction at its positive-radius section. Near $T=0.19425$ it had
+The evolved $(2.0,2.0,\pi/2)$ history provides a measured example at its positive-radius section. Near $T=0.19425$ it had
 
 $$
 \dot\rho_+\approx-2.87\times10^{-5},
@@ -5577,7 +5577,7 @@ $$
 
 with sector cadences $(1.206147,3.101637)$. This is not a periodic return or a new seed certificate; it is a measured example of a legitimate one-coordinate section carrying nonzero motion in the other breathing coordinates.
 
-Plainly: the circular search has been asking a prospective breathing braid to arrive at four turning points simultaneously. That is an exceptional event, not the generic way to cut a periodic trajectory. The next F6c search must prescribe and certify a breathing path history, choose one Poincare section, and allow the other three axial/radial rates to be nonzero. Continued tuning of fixed circles is now a low-value path.
+Plainly: a return search should prescribe and certify a breathing path history, choose one Poincare section, and normally allow the other three axial and radial rates to remain nonzero. Four simultaneous turning points are exceptional unless an additional synchronization is proved.
 
 Claim grade: measured EOM-solver diagnostics on three bounded release screens, seven distinct evolved releases, and one finite-time refinement, plus an inferred section-dimension argument; not an independent oracle, retained braid, stability result, particle identity, or global basin. Falsifier: failure to reproduce the coordinate records from the declared seeds, nonconvergent turn times or coordinates under further refinement, loss of complete roots, a nonvanishing symmetry leakage under refinement, or a certified breathing return family whose trajectories generically cross all four zero-rate sections simultaneously.
 
