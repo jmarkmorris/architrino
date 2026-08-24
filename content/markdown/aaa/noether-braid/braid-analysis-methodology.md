@@ -10,6 +10,8 @@ $$
 (T,\mathbf X)=(T,X^1,X^2,X^3).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d8a0d1e2beec2131)
+
 ## Analysis Record
 
 Every published candidate analysis must identify one source record. At minimum that record carries:
@@ -49,6 +51,8 @@ r_j=\|\mathbf r_j\|,
 \widehat{\mathbf r}_j=\frac{\mathbf r_j}{r_j},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e799824be9554103)
+
 and the causal constraint
 
 $$
@@ -56,6 +60,8 @@ g_j(T,\mathbf X;T_t)
 =
 r_j(T,\mathbf X;T_t)-c_f(T-T_t).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f19abad336f3ba8e)
 
 The active emission-time roots are
 
@@ -66,6 +72,8 @@ $$
 T_t<T:g_j(T,\mathbf X;T_t)=0
 \right\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b6a121886318a05b)
 
 The source-normalized signed wake equation is
 
@@ -82,6 +90,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-20e0de54f61b12e3)
+
 for the declared retained-history start $T_{\min}$. For fixed source record $S$ and protocol $P$, the resulting scalar $\mathcal W(T,\mathbf X)$ is the causal-wake map. It records signed causal-wake exposure under the declared source normalization. It is not by itself energy, potential, or acceleration.
 
 For simple roots, define the transmitter-side factor
@@ -91,6 +101,8 @@ D_{t,j}
 =
 c_f-\widehat{\mathbf r}_j\cdot\mathbf V_j(T_t).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ee434d278de0fc08)
 
 The delta integral collapses to
 
@@ -104,6 +116,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f7a2872bbe3e6d42)
+
 when $|D_{t,j}|>0$ on every retained root. A root with $D_{t,j}=0$ is a caustic-like chart boundary and must be routed through the declared fold or regularization treatment rather than silently clipped.
 
 Total path speed above $c_f$ does not by itself invalidate this reduction. It removes the global shortcut that proves $g_j$ strictly increasing from a whole-path speed bound, but the event can still contain finitely many transverse roots with either sign of $D_{t,j}$. The event-specific root policy therefore partitions the retained emission-time interval and, on each partition, uses declared bounds on speed, acceleration, distance, and the derivative
@@ -115,6 +129,8 @@ D_{t,j}
 =
 c_f-\widehat{\mathbf r}_j\cdot\mathbf V_j(T_t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3f7ac54e0860fd3a)
 
 to certify one of two dispositions:
 
@@ -133,6 +149,8 @@ $$
 \frac{|q_j|}{4\pi r_j^2|D_{t,j}|}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b8f9f2a4191b5281)
+
 separates weak net exposure caused by cancellation from weak exposure caused by small individual contributions. The pointwise signed-cancellation ratio
 
 $$
@@ -141,6 +159,8 @@ $$
 \frac{|\mathcal W(T,\mathbf X)|}
 {\mathcal W_{\mathrm{abs}}(T,\mathbf X)+\varepsilon_{\mathcal W}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1e52bfd7bdd58151)
 
 lies near zero when the signed contributions cancel and near one when they reinforce, subject to the declared denominator floor $\varepsilon_{\mathcal W}>0$.
 
@@ -160,6 +180,8 @@ R_j\left[
 \right].
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2de02b2d369f91aa)
+
 At an arbitrary event $(T,\mathbf X)$, define
 
 $$
@@ -170,11 +192,15 @@ A_j=\mathbf d_j\cdot\mathbf u_j,
 B_j=\mathbf d_j\cdot\mathbf v_j,
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c43c716286202ab0)
+
 $$
 H_j=\sqrt{A_j^2+B_j^2},
 \qquad
 \delta_j=\operatorname{atan2}(B_j,A_j).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-61ccf6bc23419b70)
 
 The causal-root condition then reduces exactly to the scalar equation
 
@@ -186,6 +212,8 @@ c_f^2(T-T_t)^2
 -2R_jH_j\cos(\omega_jT_t+\phi_j-\delta_j)
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-00ad37719d748130)
 
 for each transmitter $j$. Thus the full spatial problem does not require evolving the source: at each requested $(T,\mathbf X)$, solve this one-dimensional delayed-time equation over the retained history, substitute all certified roots into $\mathcal W$ or $\mathbf A_p$, and sum the six endpoint contributions. A translating orbit is handled by placing the declared center path $\mathbf C_j(T_t)$ directly in the original causal equation; the fixed-center reduction above applies in a co-translating coordinate chart only when that chart and its conversion back to absolute coordinates are stated.
 
@@ -207,6 +235,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-450e402b2ac14c29)
+
 under the canonical simple-root acceleration convention of the Master Equation. The stationary probe is a comparison instrument, not an added source in the braid record. Positive- and negative-polarity probe responses must be reported separately when their distinction matters.
 
 For a moving diagnostic probe $\mathbf X_p(T)$, the same arriving-hit strength applies at its current position. Its velocity changes root playback through
@@ -220,6 +250,8 @@ D_{r,j}
 =
 c_f-\widehat{\mathbf r}_j\cdot\mathbf V_p(T),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-639b558f96b531cf)
 
 but $D_{r,j}$ does not multiply the instantaneous acceleration.
 
@@ -237,6 +269,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-48521c1fd99cce8c)
+
 Self-hit acceleration, when active, is recorded separately as $\mathbf A_i^{\mathrm{self}}(T)$. This separation prevents a geometry with strong self-hit support from being mistaken for one stabilized by inter-architrino exchange.
 
 Over the complete orbital or return cycle,
@@ -244,6 +278,8 @@ Over the complete orbital or return cycle,
 $$
 T_0\le T<T_0+T_{\mathrm{ret}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-387e54177ff768a5)
 
 the internal report must retain each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
 
@@ -263,6 +299,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bd35bd7213eae37d)
+
 under the declared self-hit convention. This is a pointwise comparison between the acceleration required by the prescribed path and the acceleration supplied by the analytical causal-hit sum. Its peak, RMS, mean vector, phase dependence, and per-binary decomposition are legitimate prescribed-record measures. If the self-hit term or another accepted acceleration contribution is unavailable, the result must be labeled a partial mismatch rather than a complete Master Equation residual. A small mismatch measures compatibility of the declared chart with the evaluated acceleration contributions; it does not establish stability.
 
 When the declared isolated acceleration inventory is certified complete, summing these rows gives a stronger falsification-only reduction. Define
@@ -273,11 +311,15 @@ $$
 \sum_i \mathbf A_i(T)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a3dbf374c52a2605)
+
 for the evaluated canonical-kernel acceleration supplied to every declared architrino. If the prescribed kinematics satisfy
 
 $$
 \sum_i \frac{d^2\mathbf X_i}{dT^2}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ab18edbcaca5670d)
 
 pointwise, as occurs for antipodal prescribed pairs about inertially moving centers, then any exact solution on that prescribed history must satisfy
 
@@ -286,6 +328,8 @@ $$
 \mathbf S_A(T)=0
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bfbe66e65d843015)
 
 at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
 
@@ -314,6 +358,8 @@ E_2(W)
 \right]^{1/2},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-114a9d058c00b424)
+
 where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the adjudication threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
 
 Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
@@ -329,6 +375,8 @@ E_\infty(W_{1/2}^{(2)})
 \right\},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c261ebabc6589fa6)
+
 and
 
 $$
@@ -342,6 +390,8 @@ E_2(W_P)^2
 |G_1|+|G_2|
 }.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2bc4b23304c70db2)
 
 Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract.
 
@@ -411,6 +461,8 @@ $$
 \,dA\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5b13ed230f4f5388)
+
 and the corresponding uncancelled norm $\mathcal L_{\mathrm{raw}}(R)$ formed by replacing the net vector with the sum of constituent response magnitudes before squaring. Then
 
 $$
@@ -419,6 +471,8 @@ $$
 \frac{\mathcal L_{\mathrm{ext}}(R)}
 {\mathcal L_{\mathrm{raw}}(R)+\varepsilon_L}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c091ecaa794c4b50)
 
 is a geometry-response exposure fraction. It measures external cancellation under a declared probe and surface convention. It is analytically computable from a prescribed record and is not the apparent-energy fraction.
 
@@ -435,6 +489,8 @@ f_{j,T_t}(T,\mathbf X)
 \widehat{\mathbf r}_j\cdot\widehat{\mathbf n}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5cdacddfb9e7882c)
+
 where $\widehat{\mathbf n}$ is the outward unit normal. The signed, raw, and residual complete-cycle measures are
 
 $$
@@ -447,6 +503,8 @@ f_{j,T_t}(T,\mathbf X)
 \,dA\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-21fb6a55b1345889)
+
 $$
 F_{\mathrm{raw}}(R)
 =
@@ -456,6 +514,8 @@ F_{\mathrm{raw}}(R)
 \left|f_{j,T_t}(T,\mathbf X)\right|
 \,dA\,dT
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-621040bc250ec783)
 
 and
 
@@ -471,6 +531,8 @@ f_{j,T_t}(T,\mathbf X)
 \,dA\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3beaede78df94500)
+
 The raw measure takes absolute values before transmitter contributions are superposed. The residual measure superposes the signed contributions first and then takes the absolute value. Their ratio
 
 $$
@@ -478,6 +540,8 @@ $$
 =
 \frac{F_{\mathrm{res}}(R)}{F_{\mathrm{raw}}(R)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34d872d3fa9ec86f)
 
 is admitted only when $F_{\mathrm{raw}}(R)$ exceeds the predeclared positive floor. The triangle inequality then gives $0 \le \eta_{\mathcal W,\mathrm{flux}}(R) \le 1$. Values near zero indicate strong local signed cancellation over the complete cycle; values near one indicate that little of the raw normal wake flux cancels.
 
@@ -492,6 +556,8 @@ $$
 N_{\mathrm{raw}}(V_2\setminus V_1,T)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bdd8559a176dbb70)
+
 If the prescribed paths, retained history, and in-transit wake measure all return after $T_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
 
 $$
@@ -499,6 +565,8 @@ F_{\mathrm{raw}}(R)
 =
 T_{\mathrm{ret}}\sum_j|q_j|.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-127c3043301fa2f7)
 
 This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $T_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
 
@@ -521,6 +589,8 @@ f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
 \,dA\,dT.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1e595c1c6b986e6)
+
 The coefficient retains temporal phase, angular mode, enclosing radius, transmitter identity, and root ordinal. Form the raw and net coefficient magnitudes only after every transmitter-root coefficient exists:
 
 $$
@@ -533,6 +603,8 @@ A_{\mathrm{net},\ell mn}(R)
 \left|\sum_a\widetilde f_{a,\ell mn}(R)\right|.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4b11106e26ccda2)
+
 For $A_{\mathrm{raw},\ell mn}$ above the declared effective coefficient floor, define
 
 $$
@@ -541,6 +613,8 @@ $$
 \frac{A_{\mathrm{net},\ell mn}(R)}
 {A_{\mathrm{raw},\ell mn}(R)}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cf11e32029fb0890)
 
 The triangle inequality gives $0 \le \eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R) \le 1$. A value near zero identifies strong phase-sensitive cancellation in one temporal-harmonic and angular-mode channel. A value near one identifies little cancellation in that channel. The reducer also reports the Euclidean norm over the retained angular modes for each temporal harmonic and evaluates those rows across the declared enclosing radii.
 
@@ -581,6 +655,8 @@ A degree of freedom is an independently variable source coordinate whose change 
 $$
 R_a^2=h_a^2+\rho_a^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d25b45684b031b0c)
 
 are independent. Here $R_a$ is the endpoint distance from the binary midpoint, $h_a$ is the axial half-separation, and $\rho_a$ is the transverse orbit radius measured from the binary axis. The phrase “orbit radius from the axis” therefore means $\rho_a$, not $R_a$, except on a zero-axial-offset locus where $h_a=0$ and $\rho_a=R_a$.
 
@@ -656,6 +732,8 @@ $$
 \right\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6d2001fa252a0ee2)
+
 A Monte Carlo campaign draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
 
 $$
@@ -663,6 +741,8 @@ $$
 =
 \mathbf G\!\left[S(\boldsymbol\theta^{(k)});P\right].
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bad8e277d9a3d067)
 
 The common protocol $P$ must remain fixed across the compared sample. A changed source definition, measure, probe set, history depth, root policy, boundary, or normalization requires an impact review and invalidates every affected score. The campaign must recompute those scores before they re-enter the comparison population.
 
@@ -740,6 +820,8 @@ R_{\mathrm{test}}
 \frac{N_{\mathrm{verified}}}{t_{\mathrm{elapsed}}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fe9e90c74f31c35a)
+
 where $R_{\mathrm{test}}$ is reported in verified tests per hour. A worker count is an implementation setting, not a throughput prediction. The useful count is the measured maximum before processor scheduling, memory pressure, compression, or storage contention makes another worker counterproductive.
 
 Machine-specific benchmarks and dated price observations belong in operational campaign records rather than this reader-facing method. The portable rule is to use a bounded dynamic queue, measure worker scaling on every selected platform, and remeasure whenever the protocol, member mix, runtime, or machine changes. Interruptible cloud execution is appropriate only after every completed point is checkpointed independently, an interrupted point can be retried without changing its identity, and duplicate results are rejected by case hash. On-demand and interruptible runs must be priced and reported separately.
@@ -766,6 +848,8 @@ K_{\mathrm{compute}}
 \sum_i p_i h_i
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0fe62ed06ad9f221)
+
 where $p_i$ is the actual instance price in dollars per billed hour and $h_i$ is its billed duration. Total campaign cost is
 
 $$
@@ -776,6 +860,8 @@ K_{\mathrm{compute}}
 +K_{\mathrm{network}}
 +K_{\mathrm{operations}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e0961207c46d7b81)
 
 The measured price-performance quantities are
 
@@ -788,6 +874,8 @@ C_{\mathrm{million}}
 =
 \frac{10^6}{P_{\mathrm{test}}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d7e40d0ed1fa813d)
 
 Thus $P_{\mathrm{test}}$ is verified tests per dollar and $C_{\mathrm{million}}$ is dollars per million verified tests. Billed startup time, idle capacity, failed or preempted attempts, retries, compact-output storage, network transfer, deterministic merge, and final verification all remain in the denominator. Quoting core count times a local single-worker rate is only a capacity estimate and must not be reported as measured cloud throughput.
 
@@ -811,11 +899,15 @@ $$
 \xi_1<\xi_2<\cdots<\xi_{N_w},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cf756e051aab49c9)
+
 and spacings
 
 $$
 d_m=\xi_{m+1}-\xi_m>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-79c627eaede20738)
 
 For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
 
@@ -832,11 +924,15 @@ $$
 \right],
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4caf4daecfa06c59)
+
 $$
 \theta_m(T)=q_m\omega_mT+\phi_m,
 \qquad
 q_m\in\{+1,-1\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-58a036628b028ba8)
 
 The binary-counterpart map $\pi$ must be a fixed-point-free involution,
 
@@ -845,6 +941,8 @@ $$
 \qquad
 \pi(m)\ne m,
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-07f4eb1c6f27b3a0)
 
 and every pair must declare its polarities, radii, frequencies, phases, circulation relation, axial midpoint, axial separation, and exact constraint. A pairing label has no analytical effect unless it changes a declared path or polarity.
 
@@ -856,6 +954,8 @@ P_k=(2k-1,2k),
 \mu_k=\frac{\xi_{2k-1}+\xi_{2k}}{2}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4f111536748b6e55)
+
 For a twelve-worldline Family-C source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline Family-B scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
 
 $$
@@ -866,6 +966,8 @@ $$
 +(\mu_k+\epsilon_k)\hat{\mathbf n}
 +\boldsymbol\delta_k(T),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-50864fece8656c97)
 
 where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$ are exact source coordinates. The adjacent-pair association map and binary-counterpart map remain separate.
 
@@ -879,6 +981,8 @@ $$
 +\zeta_a\hat{\mathbf n}
 +\boldsymbol\delta_a(T).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cb5911cb4a64d87d)
 
 Every retained positive causal delay from transmitter $a$ to receiver $b$ satisfies
 
@@ -895,6 +999,8 @@ $$
 u>0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-315f6279cd8807c5)
+
 This equation covers every ordered transmitter-receiver pair in the declared source inventory, including Accessory Configuration sites when present. It is generally transcendental because the causally delayed transmitter phase contains $u$. A stationary transverse transmitter reduces the squared equation to a quadratic in $u$. Equal frequency, equal radius, rational frequency ratios, or reflection symmetry can reduce the number of distinct equations or pair contribution rows, but they do not generally remove the delayed phase. Rotating sectors therefore require certified retained-root enumeration.
 
 For each declared worldline, compare prescribed acceleration with the master-equation acceleration from the complete declared source inventory:
@@ -905,6 +1011,8 @@ $$
 \ddot{\mathbf Z}^{\mathrm{prescribed}}_a(T)
 -\mathbf A^{\mathrm{ME}}_a(T).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d72539efdf9773d2)
 
 Report axial, radial, and tangential projections separately over the complete return period. Pointwise rows, signed cycle averages, RMS values, maxima, primary/refined differences, and source-resolved contributions are all required. Cancellation in one projection cannot conceal failure in another. A converged residual remains a prescribed-path analytical result; it is not stability, retention, binding, or physical realization.
 
@@ -941,6 +1049,8 @@ A_{\mathrm{ext,peak}},
 S_{\boldsymbol\theta}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2619367386ede276)
 
 where $S_{\boldsymbol\theta}$ is the declared sensitivity of the wake measures to source-coordinate changes. Prescribed-period closure, minimum separation, and the root-transversality margin are validity gates or annotations rather than performance rewards.
 

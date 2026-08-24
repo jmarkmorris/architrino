@@ -16,10 +16,7 @@ The architrino position is this: physical entities and causal dynamics are prima
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
-Each subject is assessed by the same substantive questions: what it treats as
-fundamental, which explanatory success survives, where an informational or
-computational description outruns its physical implementation, and what
-$\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
+Each subject is assessed by the same substantive questions: what it treats as fundamental, which explanatory success survives, where an informational or computational description outruns its physical implementation, and what $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
 
 ## Information as Ontology
 
@@ -55,6 +52,8 @@ $$
 \mathcal{F}_{\mathrm{QM}},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-93be2aa6f4ff9b3f)
+
 where $\mathcal{A}_{\mathrm{op}}$ is an operational axiom set and $\mathcal{F}_{\mathrm{QM}}$ the recovered quantum formalism. It does not by itself establish
 
 $$
@@ -62,6 +61,8 @@ $$
 \Longrightarrow
 \mathcal{O}_{\mathrm{sub}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4decc92d0d110ef4)
 
 where $\mathcal{O}_{\mathrm{sub}}$ is a unique substrate ontology. Likewise, an entanglement-to-geometry map can be a required effective reconstruction without making qubits ontologically prior to the physical system whose partitions, interactions, and records define the entanglement. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore constructive: derive the operational axioms and entanglement structure from assembly dynamics and apparatus access, or fail against the same reconstruction constraints.
 
@@ -79,17 +80,23 @@ $$
 P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1724f7f3e86a4b1)
+
 without identifying the effective model $M_{\mathrm{eff}}$ or the ontological reading $O_{\mathrm{ont}}$ that would explain the forecast. A correlation result should therefore remain at the effective-description level unless it is paired with a mechanism map
 
 $$
 \pi_{\mathrm{ont}}:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}}\right)\mapsto O_{\mathrm{ont}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-63d748be045676e8)
+
 and a stated residual $R_{\mathrm{fail}}$ that could reject that map. In observational-equivalence language, if distinct candidate substrate states $S$ and $S'$ remain indistinguishable under the encoding chain,
 
 $$
 \|E(S)-E(S')\|\le\varepsilon
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3f3e4a8982a48238)
 
 then the available information has not selected one ontology. The prediction may be useful, but it has not become the substance of the world.
 
@@ -131,6 +138,8 @@ p_s =
 {\mu_{\Theta_s}(\Omega_s)}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1a03ae69579a437)
+
 A physical lower-bound claim must be stated against that record, for example as a device-level entropy accounting condition
 
 $$
@@ -142,6 +151,8 @@ $$
 \ge
 k_B\log(1/p_s)-\epsilon_s
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3da45544db415a12)
 
 The symbols do not define a new law. They express the burden: the same record that defines success must also supply the entropy, work, heat, and boundary terms used to claim a cost.
 
@@ -205,6 +216,8 @@ S_{t+\Delta t}
 S_t,\mathcal{H}_{W}(S_t),\Theta_{\mathrm{sea}}(t),c
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e6f87b468bf6ec1f)
 where $\mathcal{H}_{W}(S_t)$ is the retained path-history window and $c$ is the surrounding assembly or environmental context. This is computable in principle, but its meaning is physical: the assembly's realized structure constrains the future basin geometry. That is why life-like and agency-like discussions should not reduce persistence to an information count alone.
 
 Its transition relevance is high because computational ontology keeps attention on update law rather than on static formal summary. That is useful during a replacement period, especially when one is trying to derive effective continuum behavior from lower-level organization. Still, the transition use is conditional. Computation should guide model construction, not terminate ontological analysis. The critical distinction is between a process that is computable and a process whose essence is exhausted by being called computation.
@@ -258,6 +271,8 @@ $$
 \le 1
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-16511f1a0035dc31)
+
 Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. This residual is not a new gate; it states why continuum criticism alone is insufficient. The proposed substrate must recover the mature effective stack.
 
 The audit applies to $\mathbb{A}\mathbb{A}\mathbb{A}$ itself without exemption:
@@ -273,6 +288,8 @@ $$
 \mathcal{R}_{\mathrm{NS}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
 \right).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-22eea2c35a2f52da)
 
 If any normalized row exceeds its declared tolerance, the fact that the substrate uses finite entities, finite causal speed, or discrete assembly records supplies no compensating evidence. The discrete critique succeeds only when the same proposed ontology closes the effective stack more tightly than the continuum description it aims to replace.
 
@@ -350,6 +367,8 @@ $$
 \quad\Longleftrightarrow\quad
 M(w)\ \text{halts}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c71c3eef0c5606ab)
 then no general algorithm can decide that reachability question for every encoded input. The retained lesson is methodological rather than ontological: a lawful deterministic model may contain questions that outrun algorithmic decision, but that does not make the physical substrate identical to computation or turn computability limits into the substance of the world.
 
 ### Core Commitments

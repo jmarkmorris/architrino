@@ -19,11 +19,7 @@ This lane organizes a possible paper on open problems in physics, astronomy, ast
 
 The lane is priority-control only. The draft document itself has moved to `content/markdown/aaa/philosophy-history` so it can be surfaced by the Solving the Crisis scene. This control file decides which public open problems are strong enough for a readable technical answer, which are only directional, and which should stay out of the paper until the native proof stack matures.
 
-Scientific derivations, instruments, source acquisition, and sector-specific
-closure tasks do not remain here. They belong to the scientific or operational
-workstream named in the promotion map. This lane consumes those owners' current
-status; it does not duplicate their queues or retain a second theory
-brainstorming backlog.
+Scientific derivations, instruments, source acquisition, and sector-specific closure tasks do not remain here. They belong to the scientific or operational workstream named in the promotion map. This lane consumes those owners' current status; it does not duplicate their queues or retain a second theory brainstorming backlog.
 
 ## Selection Rule
 

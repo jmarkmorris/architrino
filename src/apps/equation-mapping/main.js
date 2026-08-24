@@ -1,4 +1,6 @@
 import { mountEquationMappingApp } from "./EquationMappingRuntime.js";
+import { createEquationMappingRegistryApi } from "./EquationMappingRegistry.js";
+import { loadEquationMappingCorpusRecords } from "./EquationMappingCorpusLoader.js";
 
 function reportEquationMappingBootstrapError(error, documentLike = globalThis.document, windowLike = globalThis.window) {
   const message = error instanceof Error ? error.message : String(error);
@@ -18,13 +20,31 @@ function reportEquationMappingBootstrapError(error, documentLike = globalThis.do
   appElement.append(banner);
 }
 
-if (typeof document !== "undefined") {
+async function bootstrapEquationMapping(documentLike = globalThis.document, windowLike = globalThis.window) {
   try {
-    const runtime = mountEquationMappingApp();
-    if (typeof window !== "undefined") {
-      window.__ARCHITRINO_EQUATION_MAPPING_RUNTIME__ = runtime;
+    const corpusRecords = await loadEquationMappingCorpusRecords(windowLike?.fetch?.bind(windowLike));
+    const registryApi = createEquationMappingRegistryApi({ corpusRecords });
+    if (windowLike) {
+      Object.defineProperty(windowLike, "ArchitrinoEquationMapping", {
+        configurable: false,
+        enumerable: true,
+        writable: false,
+        value: registryApi,
+      });
+    }
+    const runtime = mountEquationMappingApp({
+      document: documentLike,
+      window: windowLike,
+      documents: registryApi.list().map((page) => page.document),
+    });
+    if (windowLike) {
+      windowLike.__ARCHITRINO_EQUATION_MAPPING_RUNTIME__ = runtime;
     }
   } catch (error) {
-    reportEquationMappingBootstrapError(error, document, window);
+    reportEquationMappingBootstrapError(error, documentLike, windowLike);
   }
+}
+
+if (typeof document !== "undefined") {
+  bootstrapEquationMapping(document, window);
 }

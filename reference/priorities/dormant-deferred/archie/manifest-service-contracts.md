@@ -498,8 +498,7 @@ The future implementation should include fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema validators, and endpoint tests for the Archie service.
+Closure goal: Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema validators, and endpoint tests for the Archie service.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [ai-communication-standards.md](ai-communication-standards.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 

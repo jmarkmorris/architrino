@@ -503,6 +503,8 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 $$
 P(A,B\mid a,b,\lambda)\ne P(A\mid a,\lambda)P(B\mid b,\lambda),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-33641f115dae2045)
 for the completed retained record $\lambda$, while preserving measurement independence and setting-independent one-wing marginals. A shared preparation is not sufficient if it merely screens the two apparatus responses into independent local laws.
 
 **Resolution tests.** Use loophole-free Bell tests, CHSH values, analyzer-angle dependence, Malus' law, delayed-choice variants, detector efficiencies, and source statistics. Closure must show why the model does not allow controllable superluminal signaling.

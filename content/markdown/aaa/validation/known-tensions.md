@@ -87,10 +87,14 @@ $$
 \frac{(\rho_1-\rho_2)(x_{\mathrm{eff}}^i)(\rho_1-\rho_2)(y_{\mathrm{eff}}^i)}
 {\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}\,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e427327b2d9dcf27)
 with the collapse-time estimate
 $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f84f0cdfb8311821)
 The useful comparison pressure is the tension between local free-fall equivalence and linear superposition when the two branches carry measurably different mass distributions. The validation burden is to compare $\tau_{\text{meas}}$ for demonstrated massive-superposition records against $\tau_G$ and ordinary environmental decoherence. Spatially separated BEC records containing roughly $10^9$ to $10^{10}$ atoms are a forecast target, not an achieved interference class. The comparison must preserve the $\mathbb{A}\mathbb{A}\mathbb{A}$ claim that branch selection is finite-time threshold resolution rather than fundamental gravitational collapse. Any collapse variant that predicts persistent spontaneous heating must also pass low-background and compact-object heating bounds before it can serve even as a comparison baseline.
 
 ### Spacetime cluster
@@ -148,6 +152,8 @@ $$
 \mathcal{C}_{\mathrm{cosmology}}
 \neq \varnothing
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9f42e80cbbf30a6b)
 
 If that intersection becomes empty after quantitative work is done, the implementation is rejected even if many individual chapters remain suggestive. The detailed sector predicates, benchmark tolerances, and promotion-fiber test are recorded in [Failure Criteria](failure-criteria.md).
 

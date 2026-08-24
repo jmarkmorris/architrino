@@ -10,9 +10,7 @@ The angular-momentum and spin closure lane already identifies Stern-Gerlach resp
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `ordered_frame_coordinate` — Define the effective spinor coordinate from Noether braid ordered-frame history. Status: `draft`.
 2. `apparatus_kernel` — Construct $K_{\pm}^{\mathrm{SG}}$ from apparatus coupling and branch-sum impulse. Status: `draft`.

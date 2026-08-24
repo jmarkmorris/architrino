@@ -18,11 +18,15 @@ $$
 |\Psi\rangle_{AB} \neq |\phi\rangle_A \otimes |\chi\rangle_B
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3d60fad3debb4f7)
+
 The canonical example is the spin-singlet state of two spin-$\tfrac{1}{2}$ particles:
 
 $$
 |\Psi^-\rangle = \frac{1}{\sqrt{2}}\bigl(|\!\uparrow\rangle_A |\!\downarrow\rangle_B - |\!\downarrow\rangle_A |\!\uparrow\rangle_B\bigr)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6691ff13ef00d83f)
 
 Neither particle possesses a definite spin state individually; the state is irreducibly relational. Upon measuring particle $A$ along any axis and obtaining a result, the state of particle $B$ is instantaneously determined—regardless of the spatial separation between $A$ and $B$.
 
@@ -33,6 +37,8 @@ Einstein, Podolsky, and Rosen (1935) argued that perfect correlations at a dista
 $$
 |S| \leq 2 \quad \text{(Bell-CHSH inequality for local hidden variables)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6a0c0a5ebfd97a1c)
 
 Quantum mechanics predicts $|S| = 2\sqrt{2}$, and experiments confirm this violation. The standard conclusion is that no theory satisfying **Bell locality** (the outcomes at $A$ depend only on settings and hidden variables at $A$, not on the distant setting at $B$) and **measurement independence** (the choice of measurement settings is uncorrelated with the hidden variables) can reproduce all quantum predictions.
 
@@ -66,6 +72,8 @@ $$
 \Gamma(T) = \bigl\{(\mathbf X_i(T),\, \mathbf V_i(T),\, q_i)\bigr\}_{i=1}^{N}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-171464b8518e51cd)
+
 and the Master Equation determines its future evolution given path-history data, with deterministic multistability at threshold regimes.
 
 Ordinary entanglement in this framework is not a primitive relation between distant systems. It is a **derived consequence** of three features of the underlying dynamics:
@@ -85,6 +93,8 @@ At the absolute time $T_0$ of the source event, the parent assembly fragments in
 $$
 \Gamma_{\text{parent}}(T_0^-) \;\longrightarrow\; \Gamma_A(T_0^+),\; \Gamma_B(T_0^+) \quad \text{subject to conservation constraints.}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2d675b05adfcaec3)
 
 The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward, recorded in the pair-provenance ledger inherited from the shared causal past. The ledger is the gating record, not the Bell-violation carrier: correlations recorded at the source alone stay inside the Bell-local bound, and the declared live substrate-causal $c_f$ coordination channel, gated by this provenance, carries the nonfactorizable response during the measurement window.
 
@@ -122,6 +132,8 @@ $$
 P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b8aee0df88a25d2f)
+
 where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail. Joint geometric constraints in $\lambda$ (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) correlate the wings but cannot by themselves break the factorized form: any shared record is part of $\lambda$, so if each wing is resolved by a purely local kernel the account stays Bell-local. The declared route instead couples the two apparatus-response maps through a live substrate-causal $c_f$ coordination channel during the measurement window, gated by the pair provenance. Coordination outside the effective photon cone is allowed when $c_f > c_0$; faster-than-$c_f$ influence and controllable observer signaling are forbidden. The pair-provenance ledger by itself is not yet the proof. The proof must derive the coupled response law and show that its observer-level compression fails Bell's factorized form while preserving no-signaling.
 
 The common-cause version of the same warning is sharper: conditioning on a shared source event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus the coupled apparatus-response law on the $c_f$ coordination channel must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
@@ -142,6 +154,8 @@ $$
 \big)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-22ccef0f4a00489b)
+
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
 Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record, the two detector couplings, and the live $c_f$ coordination channel. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md), and the kernel must be a normalized record law:
@@ -151,6 +165,8 @@ K_{ab}^{AB}\ge0,
 \qquad
 \sum_{a,b=\pm1}K_{ab}^{AB}=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-43f3a404c59d147c)
 
 If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether sea microstates, the observer-level joint response target is
 
@@ -176,6 +192,8 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1d14d8655fd60d9)
+
 Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested singlet joint law while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. The compact singlet residual is
 
 $$
@@ -192,6 +210,8 @@ P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 \right|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-573026a3445c159c)
+
 This single target implies the unbiased marginals and the correlation $E=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B$ only after the record law is normalized. Product form belongs only as a failure audit:
 
 $$
@@ -206,6 +226,8 @@ P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 \right|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-96aad0888fa7d59a)
+
 If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
 
 The threshold-pullback warning is sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
@@ -217,6 +239,8 @@ K_A^a(\hat{\mathbf m}_A;\Pi,\zeta_A)
 K_B^b(\hat{\mathbf m}_B;\Pi,\zeta_B)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f3cae44665a26596)
+
 then after integrating $\zeta_A,\zeta_B$ the model has
 
 $$
@@ -227,6 +251,8 @@ p_A(a|\hat{\mathbf m}_A,\Pi)
 p_B(b|\hat{\mathbf m}_B,\Pi)
 d\rho_{\mathrm{src}}(\Pi)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-414f5c05be8ff89c)
 
 so the standard CHSH proof applies. The Bell task is therefore not to repeat the one-wing threshold theorem twice. It is to derive the non-product joint response or non-restartable provenance compression that survives this no-go while keeping the local marginals screenable.
 
@@ -241,6 +267,8 @@ D_{\mathrm{TV}}\!\left(
 \rho_{AB}^{\mathrm{prov}}(\lambda_{AB}^{\mathrm{prov}})
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b0c855d902619ca0)
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the live $c_f$-coupled apparatus-response law gated by the pair-provenance ledger, not from allowing the settings to preselect the hidden-variable ensemble.
 
@@ -260,6 +288,8 @@ P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
 \right|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7152b3cb4aa9389c)
+
 with the analogous $\Delta_{\mathrm{NS}}^{B}$ for the other wing, and
 
 $$
@@ -270,6 +300,8 @@ $$
 E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-38eaeed33eab91b0)
 
 These residuals keep the observable constraint separate from the interpretation. The data product is the tested Bell correlation with no-signaling marginals; the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must earn that data product without importing a superdeterministic assumption.
 
@@ -306,6 +338,8 @@ P(a|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d7d410b771687920)
+
 and an admissible model must make this marginal independent of $\hat{\mathbf m}_B$. This independence is required because:
 
 1. The source-provenance distribution is set at the source event and does not depend on the distant setting $\hat{\mathbf m}_B$,
@@ -333,6 +367,8 @@ ab\,C(x,y)
 a,b\in\{-1,+1\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-715fc50c4636a871)
+
 with $1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0$. The local channels $m_A$ and $m_B$ carry only local settings; the only setting-pair term is the correlation channel $C(x,y)$. A product-screened pair provenance gives $C_{\mathrm{prod}}(x,y)=\int A_x(\Pi)B_y(\Pi)d\rho_{\mathrm{src}}(\Pi)$, so the live nonlocality question is whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can derive a non-product $C(x,y)$ while preserving the local marginals.
 
 This can be recorded as a screenable marginal residual. For settings $\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B$ and outcomes $a,b$, define
@@ -346,6 +382,8 @@ $$
 \sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b949f770a2246495)
 The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\le\epsilon_{\mathrm{NS}}$ and the analogous $B$-side residual. This residual keeps the non-separable ontology from becoming an operational signal channel.
 
 ---
@@ -433,6 +471,8 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
   \qquad
   a,b\in\{-1,+1\}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c43fd6312283be1)
   which yields
   $$
   E_{\mathrm{SG}}
@@ -443,6 +483,8 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
   =
   -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-89c9b46fd8526964)
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../crisis-in-physics.md), especially its Bell and measurement sections.

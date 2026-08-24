@@ -10,19 +10,13 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
 \qquad
 D_{\mathrm{cert}}=\left[\frac{1}{2},4\pi\right].
 $$
-This packet writes the $a_{\mathrm{A1}}$ root-window, inactive-gap,
-transmitter-side floor, self-coincidence, and finite-memory records. It supplies
-no canonical action or conservation evidence.
+This packet writes the $a_{\mathrm{A1}}$ root-window, inactive-gap, transmitter-side floor, self-coincidence, and finite-memory records. It supplies no canonical action or conservation evidence.
 
-Claim level. Priority topology packet for the retained $3+1$ root chart. The
-transmitter-side rebuild must reproduce any retained topology it consumes and
-must add same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, and signed playback
-before any physical interpretation.
+Claim level. Priority topology packet for the retained $3+1$ root chart. The transmitter-side rebuild must reproduce any retained topology it consumes and must add same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, and signed playback before any physical interpretation.
 
 ## Candidate Definition
 
-Use the same isolated symmetric variable-pitch spiral history as the VP-1 packet,
-but with the larger pitch amplitude
+Use the same isolated symmetric variable-pitch spiral history as the VP-1 packet, but with the larger pitch amplitude
 $$
 a=a_{\mathrm{A1}}=0.204.
 $$
@@ -78,13 +72,11 @@ $$
 \qquad
 \frac{\partial F_s}{\partial\Delta}=-\frac{J_{11}}{b(\theta)}.
 $$
-Since $b(\theta)>0$, a signed active Jacobian interval fixes the monotonicity of
-the root equation inside the corresponding active window.
+Since $b(\theta)>0$, a signed active Jacobian interval fixes the monotonicity of the root equation inside the corresponding active window.
 
 ## Proposed Active Windows
 
-The sampled scan at $a=0.204$ reported stable active counts
-partner $3$, self $1$, with sampled active-root ranges:
+The sampled scan at $a=0.204$ reported stable active counts partner $3$, self $1$, with sampled active-root ranges:
 $$
 P_1=[2.5713450531078994,2.663900309079577],
 $$
@@ -112,19 +104,15 @@ $$
 \approx
 1.571400166,
 $$
-so the active roots are not near a sampled fold. The interval-window Jacobian
-floor below is more conservative because it covers the full padded rectangles,
-not only the sampled root curves.
+so the active roots are not near a sampled fold. The interval-window Jacobian floor below is more conservative because it covers the full padded rectangles, not only the sampled root curves.
 
 ## Interval Cover Used
 
 The finite-cover check used:
 
 - boundary sign rows: $1024$ uniform $\theta$ slabs over $I_\ast$;
-- active Jacobian rows: $256$ uniform $\theta$ slabs and $256$ uniform $\Delta$
-  slabs per active window;
-- inactive complement rows: $256$ uniform $\theta$ slabs and $512$ uniform
-  $\Delta$ slabs per inactive complement interval.
+- active Jacobian rows: $256$ uniform $\theta$ slabs and $256$ uniform $\Delta$ slabs per active window;
+- inactive complement rows: $256$ uniform $\theta$ slabs and $512$ uniform $\Delta$ slabs per inactive complement interval.
 
 No checked interval box touched zero in the rows reported below.
 
@@ -141,19 +129,13 @@ The active boundary signs are:
 
 The active Jacobian rows on the padded windows are:
 
-| Label | Interval Jacobian row | Certified $|J|$ support |
-| --- | ---: | ---: |
-| $P_1$ | $3.68716858750136\le J_{12}\le4.431676467309756$ | $|J_{12}|\ge3.6871685875013593$ |
-| $P_2$ | $-2.3490890666655564\le J_{12}\le-1.5675458135817848$ | $|J_{12}|\ge1.5675458135817846$ |
-| $P_3$ | $1.262499729917764\le J_{12}\le2.247802759764517$ | $|J_{12}|\ge1.2624997299177638$ |
-| $S_1$ | $4.178866881884487\le J_{11}\le4.822357388971106$ | $|J_{11}|\ge4.1788668818844865$ |
+| Label | Interval Jacobian row | Certified $|J|$ support | | --- | ---: | ---: | | $P_1$ | $3.68716858750136\le J_{12}\le4.431676467309756$ | $|J_{12}|\ge3.6871685875013593$ | | $P_2$ | $-2.3490890666655564\le J_{12}\le-1.5675458135817848$ | $|J_{12}|\ge1.5675458135817846$ | | $P_3$ | $1.262499729917764\le J_{12}\le2.247802759764517$ | $|J_{12}|\ge1.2624997299177638$ | | $S_1$ | $4.178866881884487\le J_{11}\le4.822357388971106$ | $|J_{11}|\ge4.1788668818844865$ |
 
 Therefore the usable packet-level Jacobian floor is
 $$
 \nu_{\mathrm{cert}}^{\mathrm{A1}}=1.20.
 $$
-The stricter displayed interval lower endpoint is $1.2624997299177638$, attained
-by the padded $P_3$ rectangle in this cover.
+The stricter displayed interval lower endpoint is $1.2624997299177638$, attained by the padded $P_3$ rectangle in this cover.
 
 ## Inactive Complement Rows
 
@@ -190,8 +172,7 @@ Thus the inactive signed gap supported by this packet is
 $$
 g_{\mathrm{inactive}}^{\mathrm{A1}}\ge0.0129.
 $$
-This proves, at priority-packet level, that no unlisted partner or self root
-exists in $I_\ast\times D_{\mathrm{cert}}$ outside the four retained windows.
+This proves, at priority-packet level, that no unlisted partner or self root exists in $I_\ast\times D_{\mathrm{cert}}$ outside the four retained windows.
 
 ## Excluded Self-Coincidence Row
 
@@ -212,8 +193,7 @@ $$
 \sqrt{8e^{-0.102}(1-\cos(1/2))}-\frac{2}{7}
 =0.6546965362251012\ldots>0.
 $$
-The endpoint $\Delta=0$ remains the excluded self-coincidence row, not an active
-self-force branch.
+The endpoint $\Delta=0$ remains the excluded self-coincidence row, not an active self-force branch.
 
 ## Finite-Memory Estimate
 
@@ -260,43 +240,20 @@ $$
 
 ## Proof Obligations For Executable Replacement
 
-The sampled A1 rows are ready to be replaced by executable interval rows only
-when the runner or a typed sidecar emits the following rows with the same
-candidate constants:
+The sampled A1 rows are ready to be replaced by executable interval rows only when the runner or a typed sidecar emits the following rows with the same candidate constants:
 
-1. `active_root_continuation`: the four padded windows above, with boundary sign
-   intervals and signed Jacobian intervals proving exactly one simple root in
-   each active tube for every $\theta\in I_\ast$.
-2. `root_count_stability`: the six inactive complement boxes above, with
-   strict interval signs and a declared inactive floor
-   $g_{\mathrm{inactive}}^{\mathrm{A1}}>0$.
-3. `jacobian_floor`: the retained active Jacobian floor
-   $\nu_J\ge1.20$, or a sharper outward lower endpoint if the runner uses a
-   narrower root enclosure than the padded rectangles.
-4. `self_coincidence_clearance`: the analytic row
-   $F_s(\theta,\Delta)/\Delta\ge0.6546965362251012\ldots$ on
-   $0<\Delta\le1/2$.
-5. `finite_memory`: the corridor-specific bound
-   $B_{\mathrm{mem}}^{\mathrm{A1}}=8.860302120379817<4\pi$ and the retained
-   active-window maximum $7.12<B_{\mathrm{mem}}^{\mathrm{A1}}$.
-6. `root_transport`: the $C^1$ root-offset residual must be evaluated on the
-   same retained active identities before the chart can be promoted as a full
-   branch-history certificate.
-7. `radial_turn` and `tangential_drive`: the companion
-   [spiral-a1-restart](spiral-a1-restart.md) packet derives same-box
-   $W^{\mathrm{acc}}=c_f/|D_t|$ intervals and keeps $D_r/D_t$ as playback.
-   Outward aggregates, action, and conservation remain separate obligations.
+1. `active_root_continuation`: the four padded windows above, with boundary sign intervals and signed Jacobian intervals proving exactly one simple root in each active tube for every $\theta\in I_\ast$.
+2. `root_count_stability`: the six inactive complement boxes above, with strict interval signs and a declared inactive floor $g_{\mathrm{inactive}}^{\mathrm{A1}}>0$.
+3. `jacobian_floor`: the retained active Jacobian floor $\nu_J\ge1.20$, or a sharper outward lower endpoint if the runner uses a narrower root enclosure than the padded rectangles.
+4. `self_coincidence_clearance`: the analytic row $F_s(\theta,\Delta)/\Delta\ge0.6546965362251012\ldots$ on $0<\Delta\le1/2$.
+5. `finite_memory`: the corridor-specific bound $B_{\mathrm{mem}}^{\mathrm{A1}}=8.860302120379817<4\pi$ and the retained active-window maximum $7.12<B_{\mathrm{mem}}^{\mathrm{A1}}$.
+6. `root_transport`: the $C^1$ root-offset residual must be evaluated on the same retained active identities before the chart can be promoted as a full branch-history certificate.
+7. `radial_turn` and `tangential_drive`: the companion [spiral-a1-restart](spiral-a1-restart.md) packet derives same-box $W^{\mathrm{acc}}=c_f/|D_t|$ intervals and keeps $D_r/D_t$ as playback. Outward aggregates, action, and conservation remain separate obligations.
 
 ## Packet Verdict
 
-Root-window verdict: `topology-diagnostic-only`. The active-root, inactive-gap,
-Jacobian-floor, self-coincidence, and finite-memory rows above certify the
-retained $P_1,P_2,P_3,S_1$ chart at priority-packet level under the displayed
-finite-cover arithmetic.
+Root-window verdict: `topology-diagnostic-only`. The active-root, inactive-gap, Jacobian-floor, self-coincidence, and finite-memory rows above certify the retained $P_1,P_2,P_3,S_1$ chart at priority-packet level under the displayed finite-cover arithmetic.
 
-Repository verdict: `transmitter_side_acceleration_rebuilt`. No deleted sidecar
-or generated report is an active authority for this chart.
+Repository verdict: `transmitter_side_acceleration_rebuilt`. No deleted sidecar or generated report is an active authority for this chart.
 
-Promotion decision: priority-only for closure. The A1 retained root chart is not
-ready for reader-facing corpus promotion as a closure result until outward
-aggregates and accepted causal wake accounts are emitted.
+Promotion decision: priority-only for closure. The A1 retained root chart is not ready for reader-facing corpus promotion as a closure result until outward aggregates and accepted causal wake accounts are emitted.

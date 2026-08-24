@@ -1,25 +1,12 @@
 # Albert Einstein Field-Speed Ceiling Review Response
 
-**Review identifier:** `FSC-001-AE-2026-08-01`
-**Review source:** [complete Albert Einstein review](albert-einstein-review-2026-08-01.md)
-**Reviewer lens:** [Albert Einstein specialist role](../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md)
-**Response date:** 2026-08-01
-**Response authority:** independent mathematical disposition and scoped packet
-integration
-**Theory status:** no ceiling, contact law, continuation, contact measure,
-Lorentz result, retained assembly, or canonical change adopted or advanced
+**Review identifier:** `FSC-001-AE-2026-08-01` **Review source:** [complete Albert Einstein review](albert-einstein-review-2026-08-01.md) **Reviewer lens:** [Albert Einstein specialist role](../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md) **Response date:** 2026-08-01 **Response authority:** independent mathematical disposition and scoped packet integration **Theory status:** no ceiling, contact law, continuation, contact measure, Lorentz result, retained assembly, or canonical change adopted or advanced
 
 ## Response method
 
-The source review is preserved unchanged. Each of its eight substantive
-findings receives one explicit disposition below. A finding is integrated
-only to the strongest grade supported by an independent check against the
-live packet. Proposed standard-physics comparisons remain recovery heuristics,
-not primitive premises.
+The source review is preserved unchanged. Each of its eight substantive findings receives one explicit disposition below. A finding is integrated only to the strongest grade supported by an independent check against the live packet. Proposed standard-physics comparisons remain recovery heuristics, not primitive premises.
 
-Plainly: this response keeps the useful mathematics, corrects two
-overstatements, rejects one false lemma, and leaves every adoption boundary in
-place.
+Plainly: this response keeps the useful mathematics, corrects two overstatements, rejects one false lemma, and leaves every adoption boundary in place.
 
 ## Finding dispositions
 
@@ -34,14 +21,11 @@ place.
 | 7. Velocity-atom minimization | **Deferred as a speculative event selector; pass-through claim rejected.** | Zero atom can be proposed only after a compatible outgoing history exists. It yields at most a velocity-preserving contact one-jet and cannot select a right-hand path or labeled pass-through. It also does not reproduce the regular response without the radial-reaction law. Covariance is retained as a candidate event-law obligation, not an adopted law. |
 | 8. Silent ceiling and drifting mirror | **Partially accepted; diagnostic queued behind prerequisites.** | On the same retained regular history, the closed and open equations coincide before saturation; model-level equivalence still needs uniqueness. The claim that close encounters generically reach the cap is rejected because MEC-007 remains `Awaiting verification`. A drifting-mirror residual is queued as FSC-008 only after FSC-006, FSC-007, and a declared emergent boost comparison map. |
 
-Plainly: Findings 1–3 simplify the regular mathematics. Findings 5–8 remain
-alternates or downstream targets. Finding 4 cannot be used to bypass the
-undefined contact measure.
+Plainly: Findings 1–3 simplify the regular mathematics. Findings 5–8 remain alternates or downstream targets. Finding 4 cannot be used to bypass the undefined contact measure.
 
 ## Correction to Finding 4
 
-Let $\hat{\mathbf v}=\mathbf e_z$, $\lambda_n=n$, $\mathbf B_n=\mathbf0$,
-and
+Let $\hat{\mathbf v}=\mathbf e_z$, $\lambda_n=n$, $\mathbf B_n=\mathbf0$, and
 
 $$
 \mathbf u_n
@@ -72,34 +56,19 @@ $$
 }
 $$
 
-does not converge. The scalar magnitude condition in the review therefore
-does not imply vector convergence. The proposed limit formula also cannot add
-an independent "backward part" of $\mathbf B$: once the divergent leading
-radial component is positive, the projection removes the entire net positive
-radial component, including any finite negative radial summand.
+does not converge. The scalar magnitude condition in the review therefore does not imply vector convergence. The proposed limit formula also cannot add an independent "backward part" of $\mathbf B$: once the divergent leading radial component is positive, the projection removes the entire net positive radial component, including any finite negative radial summand.
 
-Claim grade: `derived counterexample`. It falsifies the review's lemma exactly
-as stated. A replacement theorem would at least have to require convergence
-of the transverse vector $\lambda_n\mathbf u_n^\perp$, then declare a new
-domain for the response on divergent raw ledgers. The packet does neither.
+Claim grade: `derived counterexample`. It falsifies the review's lemma exactly as stated. A replacement theorem would at least have to require convergence of the transverse vector $\lambda_n\mathbf u_n^\perp$, then declare a new domain for the response on divergent raw ledgers. The packet does neither.
 
-Plainly: a sideways remainder can keep the same size while rotating forever.
-Knowing only its size does not give a limiting direction. More importantly,
-the current proposal never authorizes applying the cap to an infinite raw
-ledger in the first place.
+Plainly: a sideways remainder can keep the same size while rotating forever. Knowing only its size does not give a limiting direction. More importantly, the current proposal never authorizes applying the cap to an infinite raw ledger in the first place.
 
 ## Corrected strict sub-wake theorem
 
-Fix $\epsilon\in(0,1)$ and suppose every retained velocity satisfies
-$\|\mathbf V\|\le(1-\epsilon)c_f$. For a distinct ordered channel at a
-receiver event with current separation $r_0>0$, assume the transmitter history
-is retained for arbitrarily early emission times. Then:
+Fix $\epsilon\in(0,1)$ and suppose every retained velocity satisfies $\|\mathbf V\|\le(1-\epsilon)c_f$. For a distinct ordered channel at a receiver event with current separation $r_0>0$, assume the transmitter history is retained for arbitrarily early emission times. Then:
 
 1. $D_t\ge\epsilon c_f$, so $g(s)$ is strictly increasing;
-2. $g(s)\to-\infty$ sufficiently far into the retained past and
-   $g(T_r^-)=r_0>0$, so exactly one simple root exists;
-3. the root delay obeys
-   $T_r-S\le r_0/(\epsilon c_f)$;
+2. $g(s)\to-\infty$ sufficiently far into the retained past and $g(T_r^-)=r_0>0$, so exactly one simple root exists;
+3. the root delay obeys $T_r-S\le r_0/(\epsilon c_f)$;
 4. a self channel has no positive-delay root; and
 5. on the distinct simple branch,
 
@@ -111,49 +80,27 @@ $$
 \frac{2-\epsilon}{\epsilon}.
 $$
 
-Claim grade: `derived alternate theorem`. These conclusions do not bound the
-inverse-square kernel uniformly as $r_0\to0$, prove that the coupled ledger
-map is locally Lipschitz, or select the exact $c_f$ model as an
-$\epsilon\to0$ limit.
+Claim grade: `derived alternate theorem`. These conclusions do not bound the inverse-square kernel uniformly as $r_0\to0$, prove that the coupled ledger map is locally Lipschitz, or select the exact $c_f$ model as an $\epsilon\to0$ limit.
 
-Plainly: keeping transmitters strictly slower than their wakes makes each
-ordinary root easy to find, but it does not solve close-range acceleration or
-the coupled delayed evolution.
+Plainly: keeping transmitters strictly slower than their wakes makes each ordinary root easy to find, but it does not solve close-range acceleration or the coupled delayed evolution.
 
 ## Queue and compatibility effect
 
-- FSC-006 is restricted to cap-admissible perturbations. Its primary
-  per-channel degeneration is one simple root with $D_t\to0^+$ approaching a
-  characteristic interval; the open-domain fold calculation remains only a
-  negative control.
-- FSC-007 records the frozen constrained layer as closed and leaves the
-  history-to-ledger map and coupled fixed point open.
-- FSC-008 records a drifting-mirror preferred-frame residual as deferred on
-  FSC-006, FSC-007, and a declared emergent boost comparison map.
-- The compatibility decision now states that the closed proposal removes
-  same-channel super-field root multiplicity and self-hit mechanisms; every
-  dependent corpus mechanism needs re-derivation.
-- The strict sub-wake sibling, gain family, and velocity-atom selector remain
-  brainstorming material only.
+- FSC-006 is restricted to cap-admissible perturbations. Its primary per-channel degeneration is one simple root with $D_t\to0^+$ approaching a characteristic interval; the open-domain fold calculation remains only a negative control.
+- FSC-007 records the frozen constrained layer as closed and leaves the history-to-ledger map and coupled fixed point open.
+- FSC-008 records a drifting-mirror preferred-frame residual as deferred on FSC-006, FSC-007, and a declared emergent boost comparison map.
+- The compatibility decision now states that the closed proposal removes same-channel super-field root multiplicity and self-hit mechanisms; every dependent corpus mechanism needs re-derivation.
+- The strict sub-wake sibling, gain family, and velocity-atom selector remain brainstorming material only.
 
-No queue item is advanced. No receiver contact measure, event outcome,
-continuation, Lorentz recovery, conservation account, retained assembly, or
-physical conclusion follows.
+No queue item is advanced. No receiver contact measure, event outcome, continuation, Lorentz recovery, conservation account, retained assembly, or physical conclusion follows.
 
 ## Review readiness
 
-The Einstein pass improves the regular-chart foundation and narrows the
-admissible FSC-006 degeneration. It does not make the packet ready for a
-system-wide well-posedness or broader theory review. The next exact gates are:
+The Einstein pass improves the regular-chart foundation and narrows the admissible FSC-006 degeneration. It does not make the packet ready for a system-wide well-posedness or broader theory review. The next exact gates are:
 
-1. FSC-006: prove or refute a finite, source-provenanced receiver-measure
-   limit for cap-admissible single-root approaches to the characteristic
-   contact interval; and
-2. FSC-007: prove the complete history-to-ledger map is locally Lipschitz on a
-   declared regular chart and close the coupled position-history fixed point.
+1. FSC-006: prove or refute a finite, source-provenanced receiver-measure limit for cap-admissible single-root approaches to the characteristic contact interval; and
+2. FSC-007: prove the complete history-to-ledger map is locally Lipschitz on a declared regular chart and close the coupled position-history fixed point.
 
 No successor reviewer was contacted or started.
 
-Closure goal: complete FSC-006 without replacing the finite raw ledger by an
-undeclared quotient response, then complete the remaining coupled FSC-007
-ledger-map theorem.
+Closure goal: complete FSC-006 without replacing the finite raw ledger by an undeclared quotient response, then complete the remaining coupled FSC-007 ledger-map theorem.

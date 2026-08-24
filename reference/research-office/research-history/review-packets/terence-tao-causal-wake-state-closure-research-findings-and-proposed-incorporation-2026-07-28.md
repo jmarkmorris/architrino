@@ -10,48 +10,20 @@ Closure goal: Preserve the complete causal-wake-state closure research as assess
 
 ## Consolidated research finding
 
-The research narrows the causal wake-state closure problem but does not
-resolve it. The strongest current conclusions are:
+The research narrows the causal wake-state closure problem but does not resolve it. The strongest current conclusions are:
 
-1. finite accumulated acceleration at coincident same-transmitter root birth
-   is governed by the exact weighted-integrability condition, not by a
-   necessary power-law bound;
-2. analytic maturity in the exact linear birth variable may first have a
-   nonzero cubic term, but neither cubic order, its coefficient, nor a
-   transition scale is selected;
-3. an exact point-local reception cannot change an ordinary
-   $L^1(dT_e\,d\boldsymbol\omega)$ wake account by a finite amount;
-4. a uniformly distributed finite account on a declared shrinking spherical
-   cap converges weak-* to a finite atom; its density diverges while its total
-   measure remains finite, and the exact higher-order coefficient depends on
-   the declared patch geometry;
-5. radial receiver acceleration does not force radial wake momentum unless
-   the reception map is sector-blind or a separate booking condition imposes
-   radial transfer;
-6. same-point angular booking cancels identically and selects no transfer
-   direction, whereas emission-center booking imposes radial transfer if
-   event-wise angular closure is required;
-7. if emission-center closure requires every finite momentum-account increment
-   between every pair of velocities in a connected open domain to be collinear
-   with that velocity increment, then the momentum-account map is affine,
-   $\mathbf p(\mathbf V)=a\mathbf V+\mathbf b$; normalization at rest or
-   rotational equivariance removes $\mathbf b$ under the stated domain
-   assumptions;
-8. atom visibility is selected by the observation operator, but the supplied
-   source does not prove that the available choices reduce to an exhaustive
-   two-horn dilemma;
-9. finite impulse alone establishes neither existence nor uniqueness for the
-   state-dependent delayed evolution; the state modulus, branch rule, event
-   ordering, jump-map regularity, history phase space, and account
-   representation remain constitutive obligations; and
-10. no retained finding derives a photon Gate B restriction, physical
-   conservation law, retained
-   branch, wake ontology, or solver update.
+1. finite accumulated acceleration at coincident same-transmitter root birth is governed by the exact weighted-integrability condition, not by a necessary power-law bound;
+2. analytic maturity in the exact linear birth variable may first have a nonzero cubic term, but neither cubic order, its coefficient, nor a transition scale is selected;
+3. an exact point-local reception cannot change an ordinary $L^1(dT_e\,d\boldsymbol\omega)$ wake account by a finite amount;
+4. a uniformly distributed finite account on a declared shrinking spherical cap converges weak-* to a finite atom; its density diverges while its total measure remains finite, and the exact higher-order coefficient depends on the declared patch geometry;
+5. radial receiver acceleration does not force radial wake momentum unless the reception map is sector-blind or a separate booking condition imposes radial transfer;
+6. same-point angular booking cancels identically and selects no transfer direction, whereas emission-center booking imposes radial transfer if event-wise angular closure is required;
+7. if emission-center closure requires every finite momentum-account increment between every pair of velocities in a connected open domain to be collinear with that velocity increment, then the momentum-account map is affine, $\mathbf p(\mathbf V)=a\mathbf V+\mathbf b$; normalization at rest or rotational equivariance removes $\mathbf b$ under the stated domain assumptions;
+8. atom visibility is selected by the observation operator, but the supplied source does not prove that the available choices reduce to an exhaustive two-horn dilemma;
+9. finite impulse alone establishes neither existence nor uniqueness for the state-dependent delayed evolution; the state modulus, branch rule, event ordering, jump-map regularity, history phase space, and account representation remain constitutive obligations; and
+10. no retained finding derives a photon Gate B restriction, physical conservation law, retained branch, wake ontology, or solver update.
 
-Plainly: the research replaces several broad claims with exact conditional
-statements and counterexamples. The central missing choice is still the
-mathematical representation of reception transfers, followed by one complete
-predeclared update on that representation.
+Plainly: the research replaces several broad claims with exact conditional statements and counterexamples. The central missing choice is still the mathematical representation of reception transfers, followed by one complete predeclared update on that representation.
 
 ## Detailed Research Findings
 
@@ -129,8 +101,7 @@ That counterexample does not establish that such a constitutive relation is phys
 
 There is a further state-class issue. If a reception is exactly localized at one pair \((T_t,\boldsymbol\omega_{\mathsf h})\), then ordinary \(L^1\) density fields cannot record a finite account transfer through a pointwise change. The account state must instead support atoms, finite patches, or nonlocal redistribution.
 
-**Grade:** derived conditional theorem; inferred operational quotient.
-**Falsifier:** exhibit a Markov present state that identifies two independently updatable, reception-distinguishable directions yet uniquely predicts both future receptions. A regular one-variable constitutive encoding already falsifies any unconditional claim that the three outputs must be independent coordinates.
+**Grade:** derived conditional theorem; inferred operational quotient. **Falsifier:** exhibit a Markov present state that identifies two independently updatable, reception-distinguishable directions yet uniquely predicts both future receptions. A regular one-variable constitutive encoding already falsifies any unconditional claim that the three outputs must be independent coordinates.
 
 ### 3.2 Coincident-birth asymptotic audit
 
@@ -227,8 +198,7 @@ Plainly: a nonlinear relation between the root derivative and time changes the m
 
 Therefore “analytic in \(z\) implies cubic first” is valid only after proving \(\beta=1\). For general \(\beta\), the first analytic order is the least integer strictly greater than \(2/\beta\).
 
-**Grade:** derived.
-**Falsifier:** direct evaluation of the weighted integral contradicting any stated convergence classification, or a certified birth asymptotic showing that \(z/T\) does not stay between positive finite bounds.
+**Grade:** derived. **Falsifier:** direct evaluation of the weighted integral contradicting any stated convergence classification, or a certified birth asymptotic showing that \(z/T\) does not stay between positive finite bounds.
 
 ### 3.3 Nonuniqueness and the missing scale
 
@@ -284,8 +254,7 @@ The minimal extra selector is not another endpoint condition. It is a predeclare
 
 **No-go statement.** Nonnegativity, finite birth impulse, recovery of \(M=1\) on a regular domain, and any finite collection of endpoint matching conditions leave an infinite family of maturity laws with different impulses. No unique transition follows from those conditions alone.
 
-**Grade:** derived nonuniqueness; the two laws are inverse constructions used only as counterexamples.
-**Falsifier:** derive, from an allowed supplied primitive, an additional functional equation whose unique solution satisfies all boundary and integrability requirements without introducing a free scale or fitted datum.
+**Grade:** derived nonuniqueness; the two laws are inverse constructions used only as counterexamples. **Falsifier:** derive, from an allowed supplied primitive, an additional functional equation whose unique solution satisfies all boundary and integrability requirements without introducing a free scale or fitted datum.
 
 ### 3.4 Conservation compatibility
 
@@ -414,8 +383,7 @@ Euclidean rotations and translations justify scalar dependence on speed, vector 
 
 Post hoc cancellation is vacuous because for any chosen differentiable \(K\) and \(P\), one may define wake increments by the negatives above. Choices such as \(K(s)=0\), \(K(s)=s^4\), or any other regular scalar produce different “conserved” ledgers for the same motion. Agreement then reports only how the ledger was defined.
 
-**Grade:** derived compatibility identities; derived conditional point-event no-go; derived conditional linear-\(P\) theorem.
-**Falsifier:** a finite local point update of ordinary densities that changes their stated integrals; or a nonlinear rotationally covariant \(P\) whose arbitrary radial increments are always radial and whose transported local wake momentum preserves angular account without extra angular support.
+**Grade:** derived compatibility identities; derived conditional point-event no-go; derived conditional linear-\(P\) theorem. **Falsifier:** a finite local point update of ordinary densities that changes their stated integrals; or a nonlinear rotationally covariant \(P\) whose arbitrary radial increments are always radial and whose transported local wake momentum preserves angular account without extra angular support.
 
 ### 3.5 Trilemma adjudication
 
@@ -443,8 +411,7 @@ Plainly: its value is the initial capacity minus the cumulative receiver energy-
 
 It is bounded below for all admissible histories only if those partial sums are uniformly bounded above or a replenishment/boundary rule is supplied. If \(\Delta K_j\ge\varepsilon>0\) infinitely often, then \(b_n\to-\infty\). An active wake component similarly needs an invariant bounded state set or a predeclared Lyapunov/capacity estimate; mere local update existence does not prevent blow-up or unbounded ledger drift.
 
-**Grade:** derived visibility theorem; inferred terminology split.
-**Falsifier:** two histories with identical transmitter history and root geometry but different visible wake states that nonetheless produce the same acceleration for every allowed future reception, while visibility remains operationally nontrivial.
+**Grade:** derived visibility theorem; inferred terminology split. **Falsifier:** two histories with identical transmitter history and root geometry but different visible wake states that nonetheless produce the same acceleration for every allowed future reception, while visibility remains operationally nontrivial.
 
 ### 3.6 Positive-emission-capacity obstruction
 
@@ -482,8 +449,7 @@ The logically distinct escape routes within the allowed primitives are:
 
 Allowing the account to run to \(-\infty\) is an algebraic escape only; it fails lower boundedness.
 
-**Grade:** derived finite- and infinite-window account statements.
-**Falsifier:** a lower-bounded, globally conserved account with nonintegrable strictly positive isolated emission and no debit, return, or boundary term.
+**Grade:** derived finite- and infinite-window account statements. **Falsifier:** a lower-bounded, globally conserved account with nonintegrable strictly positive isolated emission and no debit, return, or boundary term.
 
 ### 3.7 Well-posedness architecture
 
@@ -522,8 +488,7 @@ Under these assumptions, one may solve by causal method of steps: transport the 
 
 Exact point updates make ordinary function spaces unsuitable for the account variables; point evaluation also is not defined on a generic \(L^1\) equivalence class. The state must either use continuous directional fields with finite-patch updates, or measure-valued accounts with a declared atomic reception rule.
 
-**Grade:** inferred theorem architecture, based on standard mathematical sufficiency logic but not proved for an unseen concrete map.
-**Falsifier:** a supplied map meeting these hypotheses that nevertheless admits two continuations from the same state, or a missing hypothesis exposed by a concrete finite-time failure.
+**Grade:** inferred theorem architecture, based on standard mathematical sufficiency logic but not proved for an unseen concrete map. **Falsifier:** a supplied map meeting these hypotheses that nevertheless admits two continuations from the same state, or a missing hypothesis exposed by a concrete finite-time failure.
 
 ## 4. Strongest derived result
 
@@ -543,9 +508,7 @@ Then:
 - the local account must be atomic, patch-supported, or nonlocally redistributed;
 - under the atomic strictly local option, angular compatibility for all receptions forces \(P(s)=a s\), with \(a\) an undetermined account coefficient.
 
-**Claim grade:** derived, conditional mathematical theorem.
-**Scope:** representation and local account compatibility only; it establishes neither physical momentum nor a conserved realized branch.
-**Operator-checkable falsifier:** provide a concrete predeclared local reception map satisfying all seven assumptions with ordinary densities and a finite integral change, or with nonlinear \(P\) and no compensating angular support, then directly evaluate the energy, momentum, and angular totals through reception and subsequent free propagation.
+**Claim grade:** derived, conditional mathematical theorem. **Scope:** representation and local account compatibility only; it establishes neither physical momentum nor a conserved realized branch. **Operator-checkable falsifier:** provide a concrete predeclared local reception map satisfying all seven assumptions with ordinary densities and a finite integral change, or with nonlinear \(P\) and no compensating angular support, then directly evaluate the energy, momentum, and angular totals through reception and subsequent free propagation.
 
 ## 5. Unsafe inference audit
 
@@ -655,19 +618,13 @@ The supplied packet does not determine:
 
 ## Coincident-Birth Asymptotic Findings
 
-1. The exact quadratic prescribed control proves that the endpoint-born root has
-   $z=aT$ **exactly**, with $a=\alpha/c_f$, not merely asymptotically.
+1. The exact quadratic prescribed control proves that the endpoint-born root has $z=aT$ **exactly**, with $a=\alpha/c_f$, not merely asymptotically.
 
-2. The generic smooth-crossing analysis proves only
-   $z=(\alpha/c_f)t+O(t^2)$.
+2. The generic smooth-crossing analysis proves only $z=(\alpha/c_f)t+O(t^2)$.
 
-3. The sharp maturity condition is weighted integrability. The live implication
-   from weighted integrability to $O(T^{2+\delta})$ is false under the declared
-   nonnegative, locally regular class.
+3. The sharp maturity condition is weighted integrability. The live implication from weighted integrability to $O(T^{2+\delta})$ is false under the declared nonnegative, locally regular class.
 
-4. Cubic suppression is sufficient and is the first possible nonzero analytic
-   order. It is not necessary in the general locally regular class, and no cubic
-   maturity function is selected by current primitives.
+4. Cubic suppression is sufficient and is the first possible nonzero analytic order. It is not necessary in the general locally regular class, and no cubic maturity function is selected by current primitives.
 
 Plainly: the exact prescribed path gives a clean linear coordinate conversion, but the strongest general requirement on maturity is an integral condition, not a pointwise power law. Cubic behavior becomes mandatory only after adding analyticity as an assumption.
 
@@ -785,8 +742,7 @@ $$
 
 Plainly: $z$ is exactly linear on this control. In normalized numerical units, $c_f=1$ and $a=\alpha$, but the derivation should retain symbolic $c_f$.
 
-For same-transmitter reception, $\sigma=+1$ and
-$K_i=\kappa|q_i|^2>0$. The canonical contribution is
+For same-transmitter reception, $\sigma=+1$ and $K_i=\kappa|q_i|^2>0$. The canonical contribution is
 
 $$
 \mathbf A_{\mathrm{v1}}(T)
@@ -832,8 +788,7 @@ for some sufficiently small $\varepsilon>0$.
 
 Plainly: this weighted integral, not a particular power law, is the complete local finiteness criterion for a nonnegative maturity on the exact control.
 
-For the generic smooth crossing in the same owner, with
-$t=T_r-T_0\to0^+$,
+For the generic smooth crossing in the same owner, with $t=T_r-T_0\to0^+$,
 
 $$
 \tau_*(t)=2t+O(t^2),
@@ -1328,16 +1283,11 @@ Plainly: the next step is not another broad conservation discussion; it is a cho
 | Positive-emission obstruction | Useful clarification | Finite-window balance is exact, while infinite growth requires a nonintegrable positive emission rate. Grade: derived bookkeeping estimate, physical interpretation missing. | A lower-bounded global account sustains nonintegrable positive isolated emission without debit, return, or boundary term. |
 | Well-posedness architecture | Testable route | Finite impulse alone does not control state sensitivity, event accumulation, or branch selection. Grade: inferred theorem architecture, not a proof for an unspecified map. | A declared update satisfies the proposed state-space, Lipschitz, event, and integral assumptions but has two local continuations. |
 
-Plainly: only the weighted-integrability statement is an unconditional
-correction to the current owner. The measure and momentum results are rigorous
-only after their stated representation and locality assumptions are chosen.
+Plainly: only the weighted-integrability statement is an unconditional correction to the current owner. The measure and momentum results are rigorous only after their stated representation and locality assumptions are chosen.
 
 ## Decisive next research calculation
 
-After the operator selects an admissible reception-account measure class,
-execute one oblique point-reception control with $c_f=1$, a finite
-$\Delta\mathbf V\parallel\boldsymbol\omega$, and a predeclared wake debit. The
-record must report:
+After the operator selects an admissible reception-account measure class, execute one oblique point-reception control with $c_f=1$, a finite $\Delta\mathbf V\parallel\boldsymbol\omega$, and a predeclared wake debit. The record must report:
 
 1. motion- and wake-momentum increments;
 2. instantaneous angular balance at the reception point;
@@ -1346,51 +1296,32 @@ record must report:
 5. later-receiver visibility; and
 6. the state-sensitivity integral through any coincident-birth continuation.
 
-Pass requires all balances to follow from the predeclared map, finite total
-variation or finite patch norm, bounded scalar account, no future receiver
-input, and recovery of the canonical regular acceleration. Failure of any item
-closes that representation-and-map candidate negatively.
+Pass requires all balances to follow from the predeclared map, finite total variation or finite patch norm, bounded scalar account, no future receiver input, and recovery of the canonical regular acceleration. Failure of any item closes that representation-and-map candidate negatively.
 
-Plainly: this single oblique test forces momentum, angular momentum, bounded
-energy, visibility, and local uniqueness to confront the same update rather
-than being repaired in separate ledgers.
+Plainly: this single oblique test forces momentum, angular momentum, bounded energy, visibility, and local uniqueness to confront the same update rather than being repaired in separate ledgers.
 
 ## Non-promotions and remaining blocker
 
 - Do not promote the internal persona analysis as external expert authority.
 - Do not promote weighted integrability into a selected maturity function.
-- Do not promote cubic order into a nonzero cubic coefficient, a transition
-  scale, or a complete law.
-- Do not promote a Radon atom, finite patch, or nonlocal kernel into wake
-  ontology merely because it fixes a representation problem.
+- Do not promote cubic order into a nonzero cubic coefficient, a transition scale, or a complete law.
+- Do not promote a Radon atom, finite patch, or nonlocal kernel into wake ontology merely because it fixes a representation problem.
 - Do not call post hoc residual cancellation conservation.
-- Do not infer that line-of-action acceleration automatically closes angular
-  momentum.
-- Do not interpret the coefficient $a$ in the conditional quadratic family as
-  primitive architrino mass.
-- Do not change the Master Equation, EOM solver, retained-branch status, or
-  downstream recovery claims from this note.
+- Do not infer that line-of-action acceleration automatically closes angular momentum.
+- Do not interpret the coefficient $a$ in the conditional quadratic family as primitive architrino mass.
+- Do not change the Master Equation, EOM solver, retained-branch status, or downstream recovery claims from this note.
 
-The smallest unresolved theory decision is whether MEC-002 may represent exact
-reception transfers by finite Radon measures with atoms. If that representation
-is rejected, exact point-local transfer is closed negatively for ordinary
-$L^1(dT_e\,d\boldsymbol\omega)$ accounts; the remaining mathematical routes are
-a derived finite patch or an explicitly nonlocal redistribution/action
-construction.
+The smallest unresolved theory decision is whether MEC-002 may represent exact reception transfers by finite Radon measures with atoms. If that representation is rejected, exact point-local transfer is closed negatively for ordinary $L^1(dT_e\,d\boldsymbol\omega)$ accounts; the remaining mathematical routes are a derived finite patch or an explicitly nonlocal redistribution/action construction.
 
-Plainly: choosing the measure class does not solve conservation, but the theory
-cannot even state a finite exact reception transfer until that representation
-question is answered.
+Plainly: choosing the measure class does not solve conservation, but the theory cannot even state a finite exact reception transfer until that representation question is answered.
 
-Final movement: **the blocker is narrowed and a testable route is specified**.
-The owning priority is not resolved.
+Final movement: **the blocker is narrowed and a testable route is specified**. The owning priority is not resolved.
 
 ## Final Adjudicated Findings
 
 ### Representation theorem and retained-vector counterexample
 
-The research contains the full stabilizer proof for the
-one-vector equivariance theorem and the more general two-term counterexample
+The research contains the full stabilizer proof for the one-vector equivariance theorem and the more general two-term counterexample
 
 $$
 \Delta\boldsymbol\pi
@@ -1405,19 +1336,11 @@ $$
 \right).
 $$
 
-Plainly: the first term is radial, while the second is the transverse part of
-an available retained-history velocity. The second term shows exactly why
-rotational equivariance does not force radial transfer once the reception map
-may inspect another vector.
+Plainly: the first term is radial, while the second is the transverse part of an available retained-history velocity. The second term shows exactly why rotational equivariance does not force radial transfer once the reception map may inspect another vector.
 
-This matches the independently completed partial-assessment theorem and counterexample.
-The external result is therefore a **corroborating duplicate**, not independent
-physical evidence. Its claim grade remains **derived mathematical result,
-conditional on sector blindness for the radial conclusion**.
+This matches the independently completed partial-assessment theorem and counterexample. The external result is therefore a **corroborating duplicate**, not independent physical evidence. Its claim grade remains **derived mathematical result, conditional on sector blindness for the radial conclusion**.
 
-Falsifier: exhibit a sector-blind, proper-rotation-equivariant one-vector map
-with a nonzero transverse output, or show that the displayed two-vector
-counterexample fails rotational covariance.
+Falsifier: exhibit a sector-blind, proper-rotation-equivariant one-vector map with a nonzero transverse output, or show that the displayed two-vector counterexample fails rotational covariance.
 
 ### Exact angular-booking identities
 
@@ -1429,8 +1352,7 @@ $$
 -\mathbf X_r\times\Delta\mathbf p_r.
 $$
 
-Plainly: receiver credit and wake debit use the same lever arm, so they cancel
-for every transfer direction. This booking convention cannot force radiality.
+Plainly: receiver credit and wake debit use the same lever arm, so they cancel for every transfer direction. This booking convention cannot force radiality.
 
 For emission-center booking, the residual is
 
@@ -1442,9 +1364,7 @@ $$
 R\boldsymbol\omega_{\mathsf h}\times\Delta\mathbf p_r.
 $$
 
-Plainly: changing the debit point from the reception point to the emission
-center leaves the radius crossed with the transfer. Event-wise closure then
-requires a radial transfer when $R>0$.
+Plainly: changing the debit point from the reception point to the emission center leaves the radius crossed with the transfer. Event-wise closure then requires a radial transfer when $R>0$.
 
 For later free propagation with constant stored momentum,
 
@@ -1457,24 +1377,15 @@ $$
 c_f\boldsymbol\omega\times\boldsymbol\pi.
 $$
 
-Plainly: a nonradial stored momentum makes the angular account change as the
-wake element moves outward; radial stored momentum makes this particular rate
-zero.
+Plainly: a nonradial stored momentum makes the angular account change as the wake element moves outward; radial stored momentum makes this particular rate zero.
 
-These are **derived account identities under the stated booking and
-propagation assumptions**. They were already derived in the internal
-follow-on analysis, so the new independent derivation corroborates rather than extends the
-research note. They remain accounting mathematics, not a derived physical
-conservation law.
+These are **derived account identities under the stated booking and propagation assumptions**. They were already derived in the internal follow-on analysis, so the new independent derivation corroborates rather than extends the research note. They remain accounting mathematics, not a derived physical conservation law.
 
-Falsifier: direct substitution into the declared debit, lever arm, and
-free-propagation definitions produces a different residual or derivative.
+Falsifier: direct substitution into the declared debit, lever arm, and free-propagation definitions produces a different residual or derivative.
 
 ### Finite-increment affine rigidity with an explicit richness hypothesis
 
-Let $D\subseteq\mathbb R^3$ be a connected open velocity domain and let
-$\mathbf p:D\to\mathbb R^3$. Assume that for every pair
-$\mathbf u,\mathbf w\in D$,
+Let $D\subseteq\mathbb R^3$ be a connected open velocity domain and let $\mathbf p:D\to\mathbb R^3$. Assume that for every pair $\mathbf u,\mathbf w\in D$,
 
 $$
 \mathbf p(\mathbf w)-\mathbf p(\mathbf u)
@@ -1482,8 +1393,7 @@ $$
 \mathbf w-\mathbf u.
 $$
 
-Plainly: every finite change in the momentum account is required to point along
-the corresponding finite change in velocity, for every pair in the domain.
+Plainly: every finite change in the momentum account is required to point along the corresponding finite change in velocity, for every pair in the domain.
 
 For a non-collinear triple $\mathbf u,\mathbf v,\mathbf w$, write
 
@@ -1501,12 +1411,9 @@ $$
 \end{aligned}
 $$
 
-Plainly: each edge of the velocity triangle has an account increment parallel
-to that edge, with a scalar multiplier that could initially depend on the
-edge.
+Plainly: each edge of the velocity triangle has an account increment parallel to that edge, with a scalar multiplier that could initially depend on the edge.
 
-Adding the last two increments and comparing the two independent triangle
-directions gives
+Adding the last two increments and comparing the two independent triangle directions gives
 
 $$
 \lambda_{uw}
@@ -1516,12 +1423,9 @@ $$
 \lambda_{uv}.
 $$
 
-Plainly: a closed non-collinear triangle cannot support three different
-parallel scaling factors while preserving additivity of the account map.
+Plainly: a closed non-collinear triangle cannot support three different parallel scaling factors while preserving additivity of the account map.
 
-Every collinear pair can be joined to an off-axis point inside the open domain,
-locally and then through overlapping open neighborhoods. The common factor is
-therefore constant on the connected domain:
+Every collinear pair can be joined to an off-axis point inside the open domain, locally and then through overlapping open neighborhoods. The common factor is therefore constant on the connected domain:
 
 $$
 \mathbf p(\mathbf V)
@@ -1529,31 +1433,19 @@ $$
 a\mathbf V+\mathbf b.
 $$
 
-Plainly: the only map satisfying the all-pairs collinearity rule is one common
-scalar rescaling of velocity plus a fixed offset.
+Plainly: the only map satisfying the all-pairs collinearity rule is one common scalar rescaling of velocity plus a fixed offset.
 
-If $\mathbf0\in D$ and $\mathbf p(\mathbf0)=\mathbf0$, then
-$\mathbf b=\mathbf0$. Proper-rotation equivariance on a rotation-invariant
-domain also removes a fixed nonzero vector offset. Thus
+If $\mathbf0\in D$ and $\mathbf p(\mathbf0)=\mathbf0$, then $\mathbf b=\mathbf0$. Proper-rotation equivariance on a rotation-invariant domain also removes a fixed nonzero vector offset. Thus
 
 $$
 \mathbf p(\mathbf V)=a\mathbf V.
 $$
 
-Plainly: after the account is normalized at rest, its vector value is a single
-constant times velocity. The theorem does not determine the sign or magnitude
-of that constant and does not make it primitive architrino mass.
+Plainly: after the account is normalized at rest, its vector value is a single constant times velocity. The theorem does not determine the sign or magnitude of that constant and does not make it primitive architrino mass.
 
-Verdict: **mathematical advance and corroborating proof**, conditional on
-emission-center booking, event-wise angular closure, and the strong richness
-condition above. No continuity assumption is needed under the all-pairs
-hypothesis. The source's looser phrase that admissible pairs “fill an open
-connected domain in both slots” should be replaced by the explicit all-pairs
-condition, or by a separately proved triangle-connected increment graph.
+Verdict: **mathematical advance and corroborating proof**, conditional on emission-center booking, event-wise angular closure, and the strong richness condition above. No continuity assumption is needed under the all-pairs hypothesis. The source's looser phrase that admissible pairs “fill an open connected domain in both slots” should be replaced by the explicit all-pairs condition, or by a separately proved triangle-connected increment graph.
 
-Falsifier: a non-affine map on a connected open domain satisfying the displayed
-collinearity condition for every pair, or failure of additivity on one
-non-collinear triangle.
+Falsifier: a non-affine map on a connected open domain satisfying the displayed collinearity condition for every pair, or failure of additivity on one non-collinear triangle.
 
 ### Observation operators and atomic visibility
 
@@ -1569,49 +1461,31 @@ $$
 \mu_{\mathrm{at}}
 $$
 
-is a valid representation tool once a finite Radon account and reference
-measure are declared.
+is a valid representation tool once a finite Radon account and reference measure are declared.
 
-Plainly: the account can then be separated into ordinary density, diffuse
-singular, and atomic parts, but that separation alone says nothing about which
-parts later dynamics can read.
+Plainly: the account can then be separated into ordinary density, diffuse singular, and atomic parts, but that separation alone says nothing about which parts later dynamics can read.
 
 Three proposed observation classes can be assessed only conditionally:
 
-1. The exact-point functional
-   $\mathcal O_h[\mu]=\mu(\{h\})$ sees atoms and discards non-atomic parts at
-   that point by definition.
-2. A nonnegative approximate-identity kernel sees an atom and can diverge as
-   its width shrinks if its center value scales as
-   $K_\rho(0)\asymp\rho^{-k}$.
-3. A functional that explicitly factors through
-   $\mu_{\mathrm{ac}}$ discards atoms by construction.
+1. The exact-point functional $\mathcal O_h[\mu]=\mu(\{h\})$ sees atoms and discards non-atomic parts at that point by definition.
+2. A nonnegative approximate-identity kernel sees an atom and can diverge as its width shrinks if its center value scales as $K_\rho(0)\asymp\rho^{-k}$.
+3. A functional that explicitly factors through $\mu_{\mathrm{ac}}$ discards atoms by construction.
 
-Plainly: atoms are neither intrinsically visible nor intrinsically inert. The
-answer is selected by the observation rule coupled to the wake account.
+Plainly: atoms are neither intrinsically visible nor intrinsically inert. The answer is selected by the observation rule coupled to the wake account.
 
-The second result does **not** follow from kernel normalization alone.
-Nonnegativity, concentration, local profile, and a lower bound at the sampled
-point must be stated. Likewise, the claim that later self-hit geometry
-automatically reproduces an earlier atomic reception coordinate is not proved
-by the owning packet. A self-hit root references a past emission, but a later
-root need not revisit the same emission-direction coordinate without an
-additional recurrence argument.
+The second result does **not** follow from kernel normalization alone. Nonnegativity, concentration, local profile, and a lower bound at the sampled point must be stated. Likewise, the claim that later self-hit geometry automatically reproduces an earlier atomic reception coordinate is not proved by the owning packet. A self-hit root references a past emission, but a later root need not revisit the same emission-direction coordinate without an additional recurrence argument.
 
 Verdict:
 
 - Lebesgue decomposition: **useful mathematical clarification**.
-- Operator-dependent visibility: **mathematical advance, conditional on each
-  declared operator**.
-- Universal kernel divergence from normalization: **unsupported as stated;
-  repairable with approximate-identity hypotheses**.
+- Operator-dependent visibility: **mathematical advance, conditional on each declared operator**.
+- Universal kernel divergence from normalization: **unsupported as stated; repairable with approximate-identity hypotheses**.
 - Automatic root–atom recurrence: **unsupported inference**.
 
 
 ### Final atom-visibility adjudication
 
-For a bounded linear functional $\mathcal O$ on finite Radon measures,
-linearity gives
+For a bounded linear functional $\mathcal O$ on finite Radon measures, linearity gives
 
 $$
 \mathcal O[\mu+m\delta_p]-\mathcal O[\mu]
@@ -1619,47 +1493,28 @@ $$
 m\,\mathcal O[\delta_p].
 $$
 
-Plainly: an atomic update is visible exactly when the declared reader assigns a
-nonzero value to that point mass.
+Plainly: an atomic update is visible exactly when the declared reader assigns a nonzero value to that point mass.
 
-If $\mathcal O[\delta_p]=0$ for every $p$ in a declared realizable set, total-
-variation continuity makes $\mathcal O$ vanish on the closed atomic subspace
-generated by those Dirac measures. This means that $\mathcal O$ factors
-through the quotient by that atomic subspace. It does **not** imply that
-$\mathcal O$ factors through the absolutely continuous part alone:
-singular-continuous content may remain visible.
+If $\mathcal O[\delta_p]=0$ for every $p$ in a declared realizable set, total- variation continuity makes $\mathcal O$ vanish on the closed atomic subspace generated by those Dirac measures. This means that $\mathcal O$ factors through the quotient by that atomic subspace. It does **not** imply that $\mathcal O$ factors through the absolutely continuous part alone: singular-continuous content may remain visible.
 
-Plainly: a reader can ignore all point masses while still reading other
-singular structure. The source's AC-factoring class is one stronger choice,
-not the only atom-blind choice.
+Plainly: a reader can ignore all point masses while still reading other singular structure. The source's AC-factoring class is one stronger choice, not the only atom-blind choice.
 
 Verdicts:
 
-- visibility depends on the observation operator: **derived mathematical
-  clarification**;
+- visibility depends on the observation operator: **derived mathematical clarification**;
 - atomic blindness as an explicit operator property: **safe correction**;
-- equivalence of atom blindness with AC-only factoring: **false as stated;
-  narrow to quotienting by the relevant atomic subspace**;
-- structural recurrence of every reception atom under self-hit:
-  **unsupported inference**;
-- reduction to a fixed-patch-versus-AC-reader dilemma: **rejected as
-  non-exhaustive**.
+- equivalence of atom blindness with AC-only factoring: **false as stated; narrow to quotienting by the relevant atomic subspace**;
+- structural recurrence of every reception atom under self-hit: **unsupported inference**;
+- reduction to a fixed-patch-versus-AC-reader dilemma: **rejected as non-exhaustive**.
 
-Other admissible mathematical possibilities remain open, including a bounded
-atom-aware operator, a singular-continuous reader, nonlocal redistribution, a
-derived finite patch, or a nonlinear saturating observation map. Listing
-these does not select them as ontology.
+Other admissible mathematical possibilities remain open, including a bounded atom-aware operator, a singular-continuous reader, nonlocal redistribution, a derived finite patch, or a nonlinear saturating observation map. Listing these does not select them as ontology.
 
-Claim grade: **priority-only conditional mathematics**. Falsifier: an
-exhaustive theorem from the allowed primitives
-proving that every bounded causal observation/update pair falls into exactly
-the two proposed horns.
+Claim grade: **priority-only conditional mathematics**. Falsifier: an exhaustive theorem from the allowed primitives proving that every bounded causal observation/update pair falls into exactly the two proposed horns.
 
 
 ### Finite-patch weak-* limit
 
-If $\varepsilon$ is defined as the Euclidean transverse radius of a spherical
-cap on a shell of radius $r$, then
+If $\varepsilon$ is defined as the Euclidean transverse radius of a spherical cap on a shell of radius $r$, then
 
 $$
 \theta_\varepsilon
@@ -1677,13 +1532,9 @@ $$
 \right).
 $$
 
-Plainly: under this cap convention, the leading solid angle is patch area
-divided by radius squared. A planar disc viewed from the center would use
-$\arctan(\varepsilon/r)$ and would have a different higher-order correction,
-so the geometry must be declared.
+Plainly: under this cap convention, the leading solid angle is patch area divided by radius squared. A planar disc viewed from the center would use $\arctan(\varepsilon/r)$ and would have a different higher-order correction, so the geometry must be declared.
 
-For a uniform finite account $\Delta Q$ on any shrinking patch family with
-diameter tending to zero and controlled shape,
+For a uniform finite account $\Delta Q$ on any shrinking patch family with diameter tending to zero and controlled shape,
 
 $$
 \Delta\mu_\varepsilon
@@ -1691,8 +1542,7 @@ $$
 \Delta Q\,\delta_{\boldsymbol\omega_{\mathsf h}}.
 $$
 
-Plainly: the density becomes tall while its support shrinks, but the total
-account stays finite and converges to a point mass.
+Plainly: the density becomes tall while its support shrinks, but the total account stays finite and converges to a point mass.
 
 The leading density is
 
@@ -1700,19 +1550,11 @@ $$
 \frac{\Delta Q\,r^2}{\pi\varepsilon^2}
 $$
 
-Plainly: this coefficient applies to the stated circular spherical-cap
-convention; different shapes preserve the inverse-area scaling but change the
-coefficient.
+Plainly: this coefficient applies to the stated circular spherical-cap convention; different shapes preserve the inverse-area scaling but change the coefficient.
 
-This is therefore a **derived conditional scaling**, and the weak-* atom is a
-**derived measure limit**. The wake-thickness regulator $\eta$ is absent from
-this angular marginal by construction. Regulator-path independence on the
-full emission-label-by-direction space still requires a declared joint law;
-it cannot be inferred from the marginal calculation.
+This is therefore a **derived conditional scaling**, and the weak-* atom is a **derived measure limit**. The wake-thickness regulator $\eta$ is absent from this angular marginal by construction. Regulator-path independence on the full emission-label-by-direction space still requires a declared joint law; it cannot be inferred from the marginal calculation.
 
-Authority limit: the geometric definition must be fixed before this scaling is
-used, and a fixed nonzero $\varepsilon$ is not a physical constant without a
-constitutive derivation.
+Authority limit: the geometric definition must be fixed before this scaling is used, and a fixed nonzero $\varepsilon$ is not a physical constant without a constitutive derivation.
 
 
 ### Local well-posedness counterexample and corrected theorem burden
@@ -1727,8 +1569,7 @@ T^{-1/2}\operatorname{sgn}(S)\sqrt{|S|},
 S(0)=0
 $$
 
-Plainly: the time multiplier is integrable near zero, while the square-root
-state response fails the uniqueness modulus.
+Plainly: the time multiplier is integrable near zero, while the square-root state response fails the uniqueness modulus.
 
 It has the zero solution and, for every $a\ge0$,
 
@@ -1740,11 +1581,9 @@ S_a(T)
 \right)^2.
 $$
 
-Plainly: each displayed $S_a$ can wait at zero for an arbitrary time and then
-leave, even though the time envelope is integrable.
+Plainly: each displayed $S_a$ can wait at zero for an arbitrary time and then leave, even though the time envelope is integrable.
 
-Direct differentiation verifies the family for $T>a$. The state modulus
-$\omega(s)=\sqrt s$ fails the Osgood divergence condition because
+Direct differentiation verifies the family for $T>a$. The state modulus $\omega(s)=\sqrt s$ fails the Osgood divergence condition because
 
 $$
 \int_{0^+}\frac{ds}{\sqrt s}
@@ -1752,152 +1591,75 @@ $$
 \infty.
 $$
 
-Plainly: finite accumulated size does not prevent branching when nearby states
-are separated by a non-unique state response.
+Plainly: finite accumulated size does not prevent branching when nearby states are separated by a non-unique state response.
 
-Verdict: **derived counterexample**. It independently establishes that an
-$L^1$ time envelope alone does not imply uniqueness.
+Verdict: **derived counterexample**. It independently establishes that an $L^1$ time envelope alone does not imply uniqueness.
 
-The proposed Q5 theorem is not yet a valid theorem for the wake-state system.
-Its useful core is the Osgood/Bihari uniqueness route on a continuous
-evolution segment. The full claim additionally needs:
+The proposed Q5 theorem is not yet a valid theorem for the wake-state system. Its useful core is the Osgood/Bihari uniqueness route on a continuous evolution segment. The full claim additionally needs:
 
-1. one actual Banach history phase space—the proposed present state augmented
-   by a $C^0$ history segment is not finite-dimensional;
+1. one actual Banach history phase space—the proposed present state augmented by a $C^0$ history segment is not finite-dimensional;
 2. existence hypotheses appropriate to that space;
-3. single-valued event maps with their own continuity or Osgood/Lipschitz
-   controls;
+3. single-valued event maps with their own continuity or Osgood/Lipschitz controls;
 4. continuous and transverse event-time/root maps;
-5. a nonaccumulation or controlled-Zeno theorem stronger than summable impulse
-   magnitudes; and
-6. a BV or càdlàg solution class if reception produces genuine jumps, rather
-   than the asserted $W^{1,1}$ class.
+5. a nonaccumulation or controlled-Zeno theorem stronger than summable impulse magnitudes; and
+6. a BV or càdlàg solution class if reception produces genuine jumps, rather than the asserted $W^{1,1}$ class.
 
-Plainly: controlling the differential equation between receptions does not
-control how solutions cross receptions. Both pieces must be part of one
-well-posedness proof.
+Plainly: controlling the differential equation between receptions does not control how solutions cross receptions. Both pieces must be part of one well-posedness proof.
 
-This agrees with the nearby conditional finite-$\eta$ well-posedness scaffold
-in `content/markdown/aaa/dynamics/master-equation.md`, which uses an
-infinite-dimensional history space and explicitly leaves verification of the
-state-dependent-delay framework open.
+This agrees with the nearby conditional finite-$\eta$ well-posedness scaffold in `content/markdown/aaa/dynamics/master-equation.md`, which uses an infinite-dimensional history space and explicitly leaves verification of the state-dependent-delay framework open.
 
-Authority limit: the counterexample and obligation list do not prove Theorem
-Q5 for the wake-state system.
+Authority limit: the counterexample and obligation list do not prove Theorem Q5 for the wake-state system.
 
 
 ### Photon guard, final scope, and priority effect
 
-The Finding F guard is safe: center-relative radial sector accounts do not constrain
-assembly-level angular structure or photon Gate B. No photon cross-reference
-should be added.
+The Finding F guard is safe: center-relative radial sector accounts do not constrain assembly-level angular structure or photon Gate B. No photon cross-reference should be added.
 
-The strongest accepted result remains the conditional affine-rigidity theorem
-from the finite-increment analysis, with the explicit all-pairs or triangle-connected richness
-hypothesis. The source's correction list is otherwise accepted only to the
-extent recorded above.
+The strongest accepted result remains the conditional affine-rigidity theorem from the finite-increment analysis, with the explicit all-pairs or triangle-connected richness hypothesis. The source's correction list is otherwise accepted only to the extent recorded above.
 
-The proposed four-way observation-by-booking numerical calculation is
-**diagnostic only** and not decisive. The four cases differ because their
-operators and booking rules are defined differently; replaying those
-definitions on a prescribed history would demonstrate model behavior, not
-select a constitutive axiom or provide independent physical evidence. Its
-assumed guaranteed root–atom recurrence is also unproved.
+The proposed four-way observation-by-booking numerical calculation is **diagnostic only** and not decisive. The four cases differ because their operators and booking rules are defined differently; replaying those definitions on a prescribed history would demonstrate model behavior, not select a constitutive axiom or provide independent physical evidence. Its assumed guaranteed root–atom recurrence is also unproved.
 
-The highest-value next calculation remains construction-level: declare one
-complete MEC-002 reception representation, observation map, booking
-convention, event map, and boundary update; then perform the oblique reception
-balance and birth state-sensitivity calculation on that same predeclared
-system. Pass and fail conditions remain those stated in the consolidated
-proposed changes and detailed findings.
+The highest-value next calculation remains construction-level: declare one complete MEC-002 reception representation, observation map, booking convention, event map, and boundary update; then perform the oblique reception balance and birth state-sensitivity calculation on that same predeclared system. Pass and fail conditions remain those stated in the consolidated proposed changes and detailed findings.
 
-Plainly: the research has sharpened the proof burden. It has
-not selected the missing constitutive update.
+Plainly: the research has sharpened the proof burden. It has not selected the missing constitutive update.
 
 ## Proposed Changes
 
 ### Batch A — owning priority corrections
 
-Target:
-`reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md`
-and its directly dependent priority summaries.
+Target: `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md` and its directly dependent priority summaries.
 
-1. Replace the claimed implication from finite weighted impulse to
-   $M(T)=O(T^{2+\delta})$ with the exact weighted-integrability condition.
-   State that the pointwise bound is sufficient but not necessary and that,
-   for nonnegative nondecreasing $M$, integrability implies $M=o(T^2)$ while
-   that pointwise limit remains insufficient.
-2. Record the exact linear relation $z=(\alpha/c_f)T$ on the prescribed birth
-   chart and preserve cubic order only as the first possible analytic order;
-   for a general chart $z\sim aT^\beta$, retain the conditional criterion
-   $\beta k>2$.
-3. Add the logarithmic counterexample and an explicit cubic-versus-quartic
-   nonuniqueness pair. Distinguish stored $m$, which the homogeneous transport
-   law carries unchanged, from a reception-time effective coupling; any
-   age-changing stored maturity requires a sourced law or constitutive output
-   map.
-4. Declare whether reception accounts are ordinary densities, finite Radon
-   measures, finite patches, or nonlocal redistributions.
-5. Add the sector-blind equivariance theorem, its retained-history
-   counterexample, and the exact same-point, emission-center, and
-   free-propagation angular identities.
-6. Add the finite-increment affine-rigidity theorem only with the explicit
-   all-pairs or triangle-connected richness hypothesis, and state that the
-   theorem is conditional on emission-center booking rather than a consequence
-   of radial acceleration.
-7. Require every measure-valued account proposal to declare its observation
-   operator; atom visibility cannot be classified from the measure class
-   alone.
-8. Add the finite-cap scaling and weak-* atomic limit only after declaring the
-   exact cap geometry; keep the transverse patch radius, wake thickness, and
-   emission-time regulator distinct.
-9. State well-posedness as a one-sided birth-normal-form problem requiring a
-   predeclared branch rule, a declared history phase space, integrable state
-   sensitivity, regular event-time and jump maps, and a solution class
-   compatible with any jumps.
-10. Record the Q6 guard: this account analysis supplies no photon Gate B
-    consequence.
+1. Replace the claimed implication from finite weighted impulse to $M(T)=O(T^{2+\delta})$ with the exact weighted-integrability condition. State that the pointwise bound is sufficient but not necessary and that, for nonnegative nondecreasing $M$, integrability implies $M=o(T^2)$ while that pointwise limit remains insufficient.
+2. Record the exact linear relation $z=(\alpha/c_f)T$ on the prescribed birth chart and preserve cubic order only as the first possible analytic order; for a general chart $z\sim aT^\beta$, retain the conditional criterion $\beta k>2$.
+3. Add the logarithmic counterexample and an explicit cubic-versus-quartic nonuniqueness pair. Distinguish stored $m$, which the homogeneous transport law carries unchanged, from a reception-time effective coupling; any age-changing stored maturity requires a sourced law or constitutive output map.
+4. Declare whether reception accounts are ordinary densities, finite Radon measures, finite patches, or nonlocal redistributions.
+5. Add the sector-blind equivariance theorem, its retained-history counterexample, and the exact same-point, emission-center, and free-propagation angular identities.
+6. Add the finite-increment affine-rigidity theorem only with the explicit all-pairs or triangle-connected richness hypothesis, and state that the theorem is conditional on emission-center booking rather than a consequence of radial acceleration.
+7. Require every measure-valued account proposal to declare its observation operator; atom visibility cannot be classified from the measure class alone.
+8. Add the finite-cap scaling and weak-* atomic limit only after declaring the exact cap geometry; keep the transverse patch radius, wake thickness, and emission-time regulator distinct.
+9. State well-posedness as a one-sided birth-normal-form problem requiring a predeclared branch rule, a declared history phase space, integrable state sensitivity, regular event-time and jump maps, and a solution class compatible with any jumps.
+10. Record the Q6 guard: this account analysis supplies no photon Gate B consequence.
 
-Plainly: Batch A repairs the proof record and makes the representation fork
-explicit. It does not choose a maturity law, account measure, or conservation
-mechanism.
+Plainly: Batch A repairs the proof record and makes the representation fork explicit. It does not choose a maturity law, account measure, or conservation mechanism.
 
-Promotion classification: `promote now` inside the owning priority research
-record; `defer with blocker` for reader-facing wake-state claims.
+Promotion classification: `promote now` inside the owning priority research record; `defer with blocker` for reader-facing wake-state claims.
 
 ### Batch B — reader-facing kinetic-account corrections
 
-Targets:
-`content/markdown/aaa/dynamics/energy.md`,
-`content/markdown/aaa/dynamics/effective-lagrangian.md`, and
-`content/markdown/aaa/dynamics/master-equation.md`.
+Targets: `content/markdown/aaa/dynamics/energy.md`, `content/markdown/aaa/dynamics/effective-lagrangian.md`, and `content/markdown/aaa/dynamics/master-equation.md`.
 
-1. Retain the existing work-power compatibility equation
-   $P'(s)=K'(s)/s$ and add its near-zero domain assumptions in
-   `content/markdown/aaa/dynamics/energy.md`.
-2. In Energy, add the kinetic-Lagrangian reconstruction
-   $\ell_K(s)=sP(s)-K(s)$ under the stated differentiability assumptions.
-3. In Energy, add the ontology-neutral conditional theorem that arbitrary
-   oblique radial increments can remain radial in momentum-account space only
-   when $P(s)=as$, and hence $K(s)=as^2/2$ under work-power compatibility and
-   $K(0)=0$.
-4. In `content/markdown/aaa/dynamics/effective-lagrangian.md`, state that a
-   generalized kinetic chart requires revariation of the complete action and
-   cannot be obtained by substituting $K$ directly as the kinetic Lagrangian.
-   In `content/markdown/aaa/dynamics/master-equation.md`, preserve Energy as
-   the authority and add only the corresponding scope sentence.
+1. Retain the existing work-power compatibility equation $P'(s)=K'(s)/s$ and add its near-zero domain assumptions in `content/markdown/aaa/dynamics/energy.md`.
+2. In Energy, add the kinetic-Lagrangian reconstruction $\ell_K(s)=sP(s)-K(s)$ under the stated differentiability assumptions.
+3. In Energy, add the ontology-neutral conditional theorem that arbitrary oblique radial increments can remain radial in momentum-account space only when $P(s)=as$, and hence $K(s)=as^2/2$ under work-power compatibility and $K(0)=0$.
+4. In `content/markdown/aaa/dynamics/effective-lagrangian.md`, state that a generalized kinetic chart requires revariation of the complete action and cannot be obtained by substituting $K$ directly as the kinetic Lagrangian. In `content/markdown/aaa/dynamics/master-equation.md`, preserve Energy as the authority and add only the corresponding scope sentence.
 
-Plainly: Batch B corrects mathematical scope in the existing kinetic-account
-scaffold. The coefficient $a$ is bookkeeping and is not primitive architrino
-mass.
+Plainly: Batch B corrects mathematical scope in the existing kinetic-account scaffold. The coefficient $a$ is bookkeeping and is not primitive architrino mass.
 
-Promotion classification: `promote now` as safe mathematical clarification,
-subject to reconciliation with concurrent edits in those files.
+Promotion classification: `promote now` as safe mathematical clarification, subject to reconciliation with concurrent edits in those files.
 
 ### Canonical routing of unresolved questions
 
-The live work queue owns the questions below. This packet does not change their
-status or acceptance criteria.
+The live work queue owns the questions below. This packet does not change their status or acceptance criteria.
 
 | Unresolved question | Live owner and current status | Next acceptance test |
 | --- | --- | --- |
@@ -1907,15 +1669,9 @@ status or acceptance criteria.
 | Pairwise root, emission, and boundary ownership; no double booking; and the pairwise prerequisite for any later superposition extension | [MEC-005 — pairwise causal-root ledger closure](../../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure), `Queued` | A separately authored verifier accepts the declared two-Architrino encounter's full root census, finite ordered-bundle stratification, multiplicity, acceleration-operator rows, boundary flux, provenance, no-double-booking rows, and matched incoming/outgoing observable. MEC-005 supplies neither a signed account map nor a many-body superposition theorem. |
 | Acceleration-operator completeness across regular partner roots, admitted self roots, folds, and boundaries, including whether one complete action or causal-wake account derives the same operator | [MEC-005](../../../priorities/master-equation-closure/work-queue.md#mec-005--pairwise-causal-root-ledger-closure), `Queued`, owns the root-by-root readiness gate; [MEC-001](../../../priorities/master-equation-closure/work-queue.md#mec-001--characteristic-tail-action-adjudication), `Awaiting verification`, owns the current characteristic-tail action candidate | The kinematic gate requires an independent oracle for the regular partner row, any admitted self row, and a fold or boundary negative control. A conservation interpretation additionally requires the same accepted action or MEC-002 update to derive the acceleration operator, signed account maps, and boundary fluxes; MEC-001 must first repair and independently vary its complete self-diagonal functional. |
 
-The exact prescribed quadratic birth chart already fixes
-$z=(\alpha/c_f)T$; it is not an unresolved queue item. General maturity-law
-selection remains with MEC-002, while continuation for the selected update
-remains with MEC-003. Photon Gate B, retained-branch, stability, and EOM solver
-authority remain explicit non-promotions rather than new queue claims.
+The exact prescribed quadratic birth chart already fixes $z=(\alpha/c_f)T$; it is not an unresolved queue item. General maturity-law selection remains with MEC-002, while continuation for the selected update remains with MEC-003. Photon Gate B, retained-branch, stability, and EOM solver authority remain explicit non-promotions rather than new queue claims.
 
-Plainly: every open construction or proof question now points to its live
-owner and next test. The routes sharpen the blockers but do not satisfy a
-queue completion condition.
+Plainly: every open construction or proof question now points to its live owner and next test. The routes sharpen the blockers but do not satisfy a queue completion condition.
 
 ## Final Evidence Boundary
 
@@ -1923,5 +1679,4 @@ The retained mathematics sharpens the causal wake-state closure programme but do
 
 Plainly: the research has made the missing choices explicit. It has not made those choices for the theory.
 
-Closure goal:
-Select one complete causal wake-state reception law and prove or refute its finite-transfer, angular-booking, observation, and birth-uniqueness conditions without importing observer-level conservation as a premise.
+Closure goal: Select one complete causal wake-state reception law and prove or refute its finite-transfer, angular-booking, observation, and birth-uniqueness conditions without importing observer-level conservation as a premise.

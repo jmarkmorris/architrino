@@ -18,9 +18,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ should map interference into assembly and wake 
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `phase_history_functional` — Define a path-history phase or action functional from causal-wake records. Status: `draft`.
 2. `which_path_disturbance` — Model detector coupling as a material/assembly ledger update that changes the basin partition. Status: `draft`.

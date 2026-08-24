@@ -40,6 +40,8 @@ $$
 \right).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-89de8a476c67ea48)
+
 These entries are diagnostics that may be computed from a taxonomy member's record. They are not additional columns in the canonical taxonomy, and they do not by themselves prove that the delayed dynamics admit a stable branch. Retention and certification are evidence statuses, not configuration axes.
 
 
@@ -67,6 +69,8 @@ $$
 \sum_i \sigma_i=0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0d4777bc34bf095e)
+
 This inventory says only that the candidate has the required polarity count and a shared causal-return ledger. It does not assume exact binary pairs, an A1 or B1 member, an orthogonal angular-momentum frame, or a protected topological class.
 
 ## Angular-Momentum Frame
@@ -87,6 +91,8 @@ $$
 a\in\{1,2,3\},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-546cbfd8c8c4df45)
+
 with derived plane normals $\hat{\mathbf n}_a$ when the Hodge-dual direction is nonzero. The frame is volumetric only when
 
 $$
@@ -98,6 +104,8 @@ D_{\mathrm{plane}}
 \end{bmatrix}
 \ne 0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-076741cd1d035236)
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
@@ -115,6 +123,8 @@ $$
 -1, & \text{negative-handed}.
 \end{cases}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9b098d4abd199e3b)
 
 When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, handedness is not assigned as a rank-three property. It may still have planar chirality, circulation signs, or other lower-rank orientation diagnostics, but those are separate rows.
 
@@ -154,6 +164,8 @@ $$
 \qquad
 a\in\{1,2,3\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f81a3fabcdf88bab)
 The plane normal $\hat{\mathbf n}_a$ is the Euclidean Hodge-dual direction extracted from that class,
 $$
 \hat{\mathbf n}_a
@@ -161,6 +173,8 @@ $$
 \frac{\star[\omega_J^{(a)}]}
 {\|\star[\omega_J^{(a)}]\|},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be4f8cbb0b5d28a1)
 whenever the numerator is nonzero. The Hodge dual is applied to a representative after the branch ledger row is declared; a refinement that changes the dual direction is a different retained row, not the same class. Thus axis language means a ledger direction derived from the retained branch record. It is not an assumption that constituent paths are axial, circular, or disjoint.
 
 ## Why Three Retained Rows
@@ -175,9 +189,19 @@ $$
 \ge
 \delta_{\mathrm{plane}}>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7ffd8fe796a2b478)
 It is the frame-bundle analogue of the Jacobian and separatrix floors used elsewhere: the map from three retained plane normals to an oriented internal frame loses conditioning when this determinant approaches zero. The wall $D_{\mathrm{plane}}=0$ is therefore the coplanar or horizon-aligned stratum where the frame ceases to be rank three. In current sector language, this is the boundary between a volumetric near-orthogonal sector and a planar cyclic sector; the solver must determine which side a retained branch actually occupies.
 
 This is a statement about a derived orientation frame, not a claim that the constituent architrino paths are axial. The actual six paths may be braided, quasiperiodic, chaotic, shell-supported, or otherwise noncircular while still emitting retained angular-momentum rows from which principal directions can be extracted. Axis language in this chapter therefore means a ledger or envelope direction derived from the branch record, not a primitive path pattern.
+
+The instantaneous position rank of one polarity sector is a different object from the retained branch-frame rank. Let $\mathbf X_{\sigma,a}^{\mathrm{rel}}\in\mathbb R^3$, $a\in\{1,2,3\}$, be the positions of the three members of polarity $\sigma$ relative to the declared branch center. If that polarity sector is separately centered there, then $\sum_{a=1}^{3}\mathbf X_{\sigma,a}^{\mathrm{rel}}=\mathbf0$, so $\mathbf X_{\sigma,3}^{\mathrm{rel}}=-(\mathbf X_{\sigma,1}^{\mathrm{rel}}+\mathbf X_{\sigma,2}^{\mathrm{rel}})$ and $\dim\operatorname{span}\{\mathbf X_{\sigma,1}^{\mathrm{rel}},\mathbf X_{\sigma,2}^{\mathrm{rel}},\mathbf X_{\sigma,3}^{\mathrm{rel}}\}\le2$. A separately centered three-member polarity sector is therefore necessarily planar.
+
+Plainly: three same-polarity members can form a centered triangle, but their instantaneous positions cannot by themselves supply a three-axis volumetric frame.
+
+This rank bound does not impose an eight-member lower bound on a Noether braid. The six-body rank-three criterion is carried by three retained angular-momentum rows and their nonzero $D_{\mathrm{plane}}$, not by requiring either polarity sector's three instantaneous position vectors to span $\mathbb R^3$. Four members are the smallest inventory that allows one polarity sector to be both separately centered and noncoplanar, so an eight-member neutral inventory becomes minimal only under the stronger requirement that both polarity sectors independently possess such position scaffolds. Neither the Master Equation nor the realization-independent retention contract currently imposes that requirement. A later retention theorem deriving separate centered rank-three support for each polarity sector would overturn this architectural conclusion; no current retained-branch result supplies that premise.
+
+Plainly: six members can still carry three-dimensional organization through the complete moving assembly and its retained ledgers. Eight become necessary only if each polarity group must independently form its own centered three-dimensional position scaffold, which is not an established requirement.
 
 The claim is not that every stable assembly must have three exact binary rows. The broader [Noether braid](noether-braid.md) class permits six-body branches before exact binary grouping is certified. The three-row exact-binary search inside that class is the minimal exact-binary architecture that can test full three-dimensional frame closure.
 
@@ -187,6 +211,8 @@ $$
 \subset
 \mathcal{N}_{6\text{-body}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ffa1be7fc09df1b)
 A six-body branch belongs to this sublocus only when its retained angular-momentum record admits three independent rows, or equivalently a rank-three frame extraction with $D_{\mathrm{plane}}\ne0$. A planar, oblate, or lower-rank Noether braid may still be stable, but it is not a promoted rank-three Noether braid branch until the three-row frame condition is met.
 
 ## General Branch State
@@ -207,10 +233,14 @@ s_a,\,
 \right)
 \right\}_{a=1}^{3}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-52aaf4e9c8b9c69e)
 Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ is the scalar tangential speed or speed statistic, $\phi_a$ is the phase origin or offset, $\hat{\mathbf n}_a$ is the orbital-plane normal, and $\mathcal{L}_a$ is the active causal-root ledger data for that layer. On a circular carrier chart,
 $$
 s_a=2\pi f_a r_a.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-66c7505fe834530a)
 This identity is kinematic only. It does not select the frequencies, radii, speeds, energies, phase offsets, plane orientations, or causal-root ledgers.
 
 The practical search should treat the branch energy row $E_a$, angular-momentum row, phase data, and causal-root ledger $\mathcal{L}_a$ as primary retained data. The radius and speed are then constrained by the selected carrier chart, conservation laws, and the branch's energy closure. In simple circular rows, fixed $f_a$ and $E_a$ may determine an admissible $r_a$ and $s_a$ after the kinetic, binding, and wake-energy terms are specified. In noncircular rows, the same energy may correspond to a bounded family of paths with the same return frequency but different local speed profile. Thus energy is central, but it is not by itself a complete coordinate on the Noether braid configuration space.
@@ -225,6 +255,8 @@ $$
 \quad
 \text{relative to the declared Noether sea record.}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-468f27fccced0ff0)
 The full branch record should therefore be read as
 $$
 B_{3B}
@@ -238,6 +270,8 @@ B_{3B}
 \theta_{\mathrm{sea}}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5bc389cbfcbbe424)
 where $\mathbf{P}_{\mathfrak B}$ and $\mathbf{J}_{\mathfrak B}$ are the branch-total momentum and angular-momentum ledgers, and $\theta_{\mathrm{sea}}$ is the local Noether sea response record used to compare moving branches.
 
 This distinction matters for the equivalence-principle and Lorentz-closure programs. In a validated low-energy regime, uniform group velocity should not become an observable composition-dependent force merely because two assemblies carry different internal plane orientations. That is an effective recovery target: the moving branch must retune its clock, ruler, and signal rows so that preferred-frame leakage stays below the declared bounds. It is not a reason to omit $\mathbf{V}_{\mathrm{grp}}$ from the dynamics. The correct statement is that $\mathbf{V}_{\mathrm{grp}}$ is a separate branch-transport variable whose observable leakage must be suppressed by common-channel closure.
@@ -262,6 +296,8 @@ g\cdot B_{3B}
 \le
 \epsilon_{\mathrm{cert}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-480088493d92e4da)
 on the same retained branch chart $\mathfrak B$, with the non-symmetry return directions carrying a positive stability margin. The metric $d_{\mathfrak B}$ must compare the same branch rows: causal-root ledger, energy/action ledger, angular-momentum rows, phase data, plane-orientation data, response-center motion, group velocity, Noether sea record, and assembly topological charge.
 
 This residual-and-Floquet requirement is the braid instance of the absolute-time clock certificate, not an imported spacetime premise; see [Absolute Time Defense](../foundations/absolute-time-defense.md#absolute-time-global-foliation-and-proper-time).
@@ -280,6 +316,8 @@ $$
 \to
 \frac{1}{\gamma},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9d3c9f95b1a200f9)
 with preferred-frame leakage bounded by the declared $\epsilon_{\mathrm{LV}}$ or two-way anisotropy diagnostic. The observer components are produced through a derived moving-assembly map,
 $$
 C_{\mathrm{obs}}
@@ -292,6 +330,8 @@ C_{\mathrm{obs}}
 C_{\mathrm{branch}}
 +O(\epsilon_{\mathrm{LV}}),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-009b182c8f2f956c)
 when Lorentz closure applies. Here $C_{\mathrm{branch}}$ is the branch-intrinsic component vector being exported, such as an energy-momentum, angular-momentum, clock, or ruler row, and $C_{\mathrm{obs}}$ is the corresponding effective observer-chart component vector. The map $\Lambda_{\mathrm{eff}}$ is the effective export map, not the reduced A1 closure label $\Lambda_{A1}$. The export may dress those components, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
 
 ## Momentum And Principal-Direction Decomposition
@@ -310,6 +350,8 @@ $$
 +
 \mathbf{J}_{\mathrm{wake}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d3a75f9a7fe32c24)
 The mechanical and wake terms must use the same endpoint convention as the retained branch chart; otherwise the axis comparison is only a visualization.
 
 When $\|\mathbf{P}_{\mathfrak B}\|>0$, the unit vector
@@ -318,12 +360,16 @@ $$
 =
 \frac{\mathbf{P}_{\mathfrak B}}{\|\mathbf{P}_{\mathfrak B}\|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1e4efa818c864546)
 is the transport axis. When $\|\mathbf{J}_{\mathfrak B}\|>0$, the unit vector
 $$
 \hat{\mathbf e}_{J}
 =
 \frac{\mathbf{J}_{\mathfrak B}}{\|\mathbf{J}_{\mathfrak B}\|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c46b5c6477a09713)
 is the branch's total angular-momentum axis. The three retained plane normals $\hat{\mathbf n}_a$ should then be read as a principal-direction decomposition of $\mathbf{J}_{\mathfrak B}$, not as arbitrary visual decoration and not as a claim that the paths themselves lie on axes. A simple diagnostic is the angular-momentum closure vector
 $$
 \mathcal{R}_{J\mathrm{-axis}}
@@ -335,6 +381,8 @@ $$
 {\left\|\sum_{a=1}^{3}w_a\hat{\mathbf n}_a\right\|}
 \right\|,
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-212a7291d9ffd6c0)
 where the weights $w_a$ are declared branch-action, branch-angular-momentum, or energy-row weights and the weighted normal sum is required to be nonzero. This is not yet a theorem: it is the axis-alignment row a solver must populate before claiming that the three retained rows faithfully decompose the assembly's conserved angular momentum.
 
 The stronger faithful-decomposition test is spectral. Build the symmetric branch angular-momentum frame tensor
@@ -344,6 +392,8 @@ $$
 \sum_{a=1}^{3}
 J_a\,\hat n_a^i\hat n_a^j,
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cafb587d98c45e8f)
 with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. This is an orthogonality-sensitive test: when the normals are not mutually orthogonal, the eigenvectors of $\mathsf{J}_{\mathfrak B}^{ij}$ need not coincide with $\{\hat{\mathbf n}_a\}$ even if the retained weights are nonzero. If two $J_a$ are equal within tolerance, the certificate must use an eigenvalue-gap condition or a subspace-match criterion rather than a unique eigenvector match. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
 
 The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz closure asks whether the family-declared envelope deforms with a longitudinal-to-transverse ratio
@@ -354,6 +404,8 @@ $$
 \qquad
 R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e8668088a844ee9)
 while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [B1](braid-family-b.md#b1) common-axis internal geometry into a Family-A oblate response; B1's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](braid-envelope-geometry.md#envelope-forms).
 
 ## Unordered Layer Semantics
@@ -367,6 +419,8 @@ $$
 \mathcal T_a=(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal L_a)
 \right\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ab2bce47505ddacb)
 The symmetric group $S_3$ acts on this space by permuting the three support-row records:
 $$
 \pi\cdot(\mathcal T_1,\mathcal T_2,\mathcal T_3)
@@ -375,6 +429,8 @@ $$
 \qquad
 \pi\in S_3.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2f8295388bcf6d4f)
 Two rows may therefore be the same physical candidate up to a relabeling even when they appear as distinct solver outputs.
 
 The default search policy is to keep $\widetilde{\mathcal C}_{3B}$ unquotiented. Repeated $S_3$-related solutions are useful confirmation that the solver is finding a symmetric sector rather than a one-off artifact. An analysis tool may later isolate one representative sector by computing a permutation-invariant key,
@@ -384,6 +440,8 @@ $$
 \operatorname{sort}_{a=1}^{3}
 \operatorname{fingerprint}(\mathcal T_a),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-85b0d9d4f7e5553b)
 but that quotient is an analysis summary, not the search domain. No branch is rejected merely because a symmetric relabeling has already appeared.
 
 When branch counts, continuation-family cardinalities, or basin weights are reported, the quotient must be applied explicitly. If a physical branch has stabilizer subgroup $\operatorname{Stab}_{S_3}(B)$, then its orbit size in the unquotiented cover is
@@ -391,6 +449,8 @@ $$
 \frac{|S_3|}
 {|\operatorname{Stab}_{S_3}(B)|}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0275c66ce622e777)
 The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$, the regularized Master Equation continuation set over window $W$ and mollifier $\eta$, or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct certified braids.
 
 The general configuration ratios are
@@ -403,6 +463,8 @@ E_1:E_2:E_3,
 \qquad
 s_1:s_2:s_3.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d023f19b206ca968)
 These ratios are reported in the current layer labels. They are not sorted ratios and they carry no inequality unless a retained branch later assigns a role order.
 
 The branch-search problem is to find retained stable states
@@ -411,10 +473,14 @@ $$
 \in
 \widetilde{\mathcal C}_{3B}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-24d2483e55654913)
 over this full variable set, then compare their energy differentials
 $$
 \Delta E_{ab}=E_a-E_b
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-03064306fb64deeb)
 and ledger decompositions on the same retained row set. The doubling-frequency, iso-frequency, and broader integer-ratio families are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of it. Field-speed hinge occupancy is a separate speed-regime axis on the same branch rows, not a frequency-ratio family.
 
 ## Super-Field-Speed Carrier Rows
@@ -423,10 +489,14 @@ The general search naturally includes carrier speeds above the causal wake propa
 $$
 s_a=2\pi f_a r_a,
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e95b2a36692e0225)
 fixing one row of the search does not fix the others. Even an iso-frequency family
 $$
 f_1=f_2=f_3
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-82d6cb37d54143db)
 can have different radii, energies, speeds, phases, and active root ledgers:
 $$
 r_1:r_2:r_3
@@ -437,6 +507,8 @@ s_1:s_2:s_3
 \ne
 1:1:1.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4a24939ad4325217)
 If one retained lever arm is large enough at the common frequency, then that layer has $s_a>c_f$.
 
 This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, acceleration-Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full Noether braid configuration space rather than preselecting a single speed hierarchy.
@@ -445,8 +517,9 @@ In a certified row, the important event is not speed alone but the appearance of
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
-This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
-A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7e20fb680994f77b)
+This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge. A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 Family B realizes this decoupling directly. In [B1](braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](braid-b1-symmetry.md). No family ordering is asserted.
 
@@ -471,6 +544,8 @@ P_{\mathrm{return}}
 \wedge
 P_{\mathrm{sea}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de895ac374708440)
 Here $P_{\mathrm{root}}$ requires persistent causal-root ledgers with positive root floors except at declared caustic transits, $P_{\mathrm{phase}}$ requires bounded phase-offset drift, $P_{\mathrm{energy}}$ requires a closed branch-energy row, $P_{\mathrm{return}}$ requires a Floquet, Conley, or comparable return certificate, and $P_{\mathrm{sea}}$ requires the same branch to remain coherent under the background Noether sea response generated by like assemblies. This last predicate is the bridge from an isolated branch search to a stable medium of assemblies.
 
 The result of this search should be an atlas of stable regions in $\widetilde{\mathcal C}_{3B}$, not a single preferred row. Patterns may include doubling-frequency locks, iso-frequency families, integer-ratio families such as `3:2:1`, field-speed hinge-occupancy regimes, planar degenerations, and mixed regimes where one or more layers run above $c_f$ while the whole assembly remains a retained delayed branch. If a stable region is $S_3$-symmetric, the atlas may also report the corresponding quotient-sector representative, but the unquotiented evidence should remain available.
@@ -509,6 +584,8 @@ B;\left(\mathbf X_p,\mathbf V_p,\tau_p,\phi_p\right)_{p=1}^{6}
 \right\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ce065758fe30b8fa)
+
 The retention predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. It must preserve the braid ledger while giving all six accessory architrinos bounded delayed-return rows, finite energy exchange, and bounded phase drift. Six visually plausible positions are not an Accessory Configuration branch certificate.
 
 Topologically, admissible capture preserves the braid's assembly topological charge while augmenting the complete assembly record with a six-site accessory ledger. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
@@ -526,6 +603,8 @@ B
 \right).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eb54a4bd5a3e554b)
+
 An axial six-site organization is one possible derived Accessory Configuration, not its definition. The retained calculation must decide the polarity assignment, placement, and path geometry.
 
 ## Frame Orthogonality And Framing Anisotropy
@@ -541,6 +620,8 @@ w_a
 -\frac{1}{3}h^{ij}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c0d04cdbdcdff6c5)
 Writing $\lambda_a=w_a-\frac{1}{3}$ separates this into two channels:
 $$
 Q_A^{ij}
@@ -560,6 +641,8 @@ Q_A^{ij}
 \qquad
 \sum_a\lambda_a=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7b3c07bc0c52c066)
 where the first term measures non-orthogonal-frame leakage and the second term measures spectral-weight anisotropy. The weights are branch data, not parameters chosen after the fact.
 
 The reachable theorem target is therefore two-part:
@@ -580,6 +663,8 @@ $$
 \quad\Longrightarrow\quad
 \|Q_A\|\to0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d7830ecb93a1c1cd)
 while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. Both parts remain theorem targets; no measured family comparison currently bears on them.
 
 ## Relation To The Doubling-frequency Chapter
@@ -592,10 +677,14 @@ $$
 \subset
 \widetilde{\mathcal C}_{3B}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0f13229a9feb66f6)
 Iso-frequency, unequal-radius candidates occupy a different row:
 $$
 \mathcal{C}_{f=f=f}
 =
 \{B\in\widetilde{\mathcal C}_{3B}:f_1=f_2=f_3\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d96fce80820a63fa)
 Both rows are legitimate until the retained-branch certificates decide which, if either, survives. The general Noether braid search keeps the mathematics wide enough for the solver to discover stable configurations rather than forcing every stable Noether braid into a preselected frequency pattern.

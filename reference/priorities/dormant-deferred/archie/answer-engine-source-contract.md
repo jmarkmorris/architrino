@@ -184,8 +184,7 @@ The future implementation should include answer-engine fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Answer Engine Source Contract into retrieval rules, claim-label assignment tests, unsupported-answer fixtures, and manifest population checks.
+Closure goal: Turn the Answer Engine Source Contract into retrieval rules, claim-label assignment tests, unsupported-answer fixtures, and manifest population checks.
 
 Use this packet, [assistant-mode-contract.md](assistant-mode-contract.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
 

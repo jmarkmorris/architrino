@@ -2,10 +2,8 @@
 
 ## Status
 
-- Claim grade: derived acceleration-weight intervals plus measured turn-center
-  diagnostic.
-- Acceleration rebuild: complete for the retained $P_1,P_2,P_3,S_1$ chart at
-  the turn center.
+- Claim grade: derived acceleration-weight intervals plus measured turn-center diagnostic.
+- Acceleration rebuild: complete for the retained $P_1,P_2,P_3,S_1$ chart at the turn center.
 - Action and conservation: blocked because no accepted causal wake state exists.
 - Branch verdict: no promoted A1 pass or failure.
 
@@ -29,13 +27,7 @@ $$
 I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right].
 $$
 
-The retained active roots are $P_1,P_2,P_3,S_1$. The
-[root-window certificate](spiral-a1-root-window-certificate.md) supplies their
-active intervals, inactive gaps, transmitter-side floors, self-coincidence
-clearance, and finite-memory bound. The
-[root-transport proof](spiral-a1-root-transport-interval-proof.md) supplies the
-exact signed playback identity. Those are topology inputs; they are not action
-or conservation evidence.
+The retained active roots are $P_1,P_2,P_3,S_1$. The [root-window certificate](spiral-a1-root-window-certificate.md) supplies their active intervals, inactive gaps, transmitter-side floors, self-coincidence clearance, and finite-memory bound. The [root-transport proof](spiral-a1-root-transport-interval-proof.md) supplies the exact signed playback identity. Those are topology inputs; they are not action or conservation evidence.
 
 ## Canonical branch quantities
 
@@ -68,29 +60,19 @@ The receiver-side factor is not multiplied into the acceleration.
 
 ## Derived acceleration-weight intervals
 
-On this nondimensional spiral chart, the certified Jacobian $J_\alpha$ equals
-$D_{t,\alpha}/c_f$. Therefore the already-certified outward bounds imply
+On this nondimensional spiral chart, the certified Jacobian $J_\alpha$ equals $D_{t,\alpha}/c_f$. Therefore the already-certified outward bounds imply
 
 $$
 W_\alpha^{\mathrm{acc}}=\frac{1}{|J_\alpha|}.
 $$
 
-| Root | Certified $|D_t|/c_f$ interval | Derived $W^{\mathrm{acc}}$ interval |
-| --- | ---: | ---: |
-| $P_1$ | $[3.68716858750136,4.431676467309756]$ | $[0.2256482411061584,0.27121081563500143]$ |
-| $P_2$ | $[1.5675458135817848,2.3490890666655564]$ | $[0.42569692830738953,0.6379398875207587]$ |
-| $P_3$ | $[1.262499729917764,2.247802759764517]$ | $[0.4448788914667768,0.7920793773675796]$ |
-| $S_1$ | $[4.178866881884487,4.822357388971106]$ | $[0.2073674593855349,0.23929931923293127]$ |
+| Root | Certified $|D_t|/c_f$ interval | Derived $W^{\mathrm{acc}}$ interval | | --- | ---: | ---: | | $P_1$ | $[3.68716858750136,4.431676467309756]$ | $[0.2256482411061584,0.27121081563500143]$ | | $P_2$ | $[1.5675458135817848,2.3490890666655564]$ | $[0.42569692830738953,0.6379398875207587]$ | | $P_3$ | $[1.262499729917764,2.247802759764517]$ | $[0.4448788914667768,0.7920793773675796]$ | | $S_1$ | $[4.178866881884487,4.822357388971106]$ | $[0.2073674593855349,0.23929931923293127]$ |
 
-Claim grade: **derived** by monotone interval inversion of the existing
-transmitter-side bounds. A retained root whose $1/|J_\alpha|$ falls outside the
-displayed reciprocal interval would falsify the calculation.
+Claim grade: **derived** by monotone interval inversion of the existing transmitter-side bounds. A retained root whose $1/|J_\alpha|$ falls outside the displayed reciprocal interval would falsify the calculation.
 
 ## Turn-center diagnostic
 
-At $\theta=0$, the canonical closed spiral formulas give the following point
-values. The executable instrument is
-[a1-transmitter-side-turn-diagnostic.mjs](../../../scripts/eom/a1-transmitter-side-turn-diagnostic.mjs).
+At $\theta=0$, the canonical closed spiral formulas give the following point values. The executable instrument is [a1-transmitter-side-turn-diagnostic.mjs](../../../scripts/eom/a1-transmitter-side-turn-diagnostic.mjs).
 
 | Root | $\Delta$ | $D_t/c_f$ | $W^{\mathrm{acc}}$ | $D_r/D_t$ | Radial contribution | Tangential contribution |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -119,8 +101,7 @@ $$
 \Gamma_\ast=0.007531097562883709.
 $$
 
-A constant angular rate requires $B_\theta=0$, which this point calculation does
-not satisfy. A variable angular rate would require the local slope
+A constant angular rate requires $B_\theta=0$, which this point calculation does not satisfy. A variable angular rate would require the local slope
 
 $$
 \left.\frac{d}{d\theta}\log\dot\theta\right|_{\theta=0}
@@ -130,19 +111,11 @@ $$
 -1.007266373742323.
 $$
 
-Claim grade: **measured diagnostic**. The JavaScript instrument evaluates the
-displayed canonical formulas; it is not an independent reference for the
-physical law. An outward interval evaluation that contains
-$B_\theta=0$ would overturn any attempted constant-rate exclusion, so this
-packet does not promote that exclusion.
+Claim grade: **measured diagnostic**. The JavaScript instrument evaluates the displayed canonical formulas; it is not an independent reference for the physical law. An outward interval evaluation that contains $B_\theta=0$ would overturn any attempted constant-rate exclusion, so this packet does not promote that exclusion.
 
 ## Action and causal wake accounts
 
-The transmitter-side acceleration rebuild does not supply action, energy,
-momentum, or angular momentum. The
-[independent causal wake-state analysis](analysis-independent-causal-wake-state.md)
-shows that the current primitives do not determine the required maturity law,
-motion-account functions, emission capacity, or reception transfer.
+The transmitter-side acceleration rebuild does not supply action, energy, momentum, or angular momentum. The [independent causal wake-state analysis](analysis-independent-causal-wake-state.md) shows that the current primitives do not determine the required maturity law, motion-account functions, emission capacity, or reception transfer.
 
 Consequently this A1 packet must report
 
@@ -158,12 +131,6 @@ branch_promotion = blocked
 
 ## Falsifiers and promotion boundary
 
-The rebuild fails if a retained label changes, an inactive gap or
-transmitter-side floor closes, the acceleration consumes $D_r$, the playback
-record is substituted for $W^{\mathrm{acc}}$, or a physical verdict is inferred
-from the point diagnostic.
+The rebuild fails if a retained label changes, an inactive gap or transmitter-side floor closes, the acceleration consumes $D_r$, the playback record is substituted for $W^{\mathrm{acc}}$, or a physical verdict is inferred from the point diagnostic.
 
-Promotion requires outward radial and tangential aggregates, outward signed
-playback bounds, an accepted causal wake state, and all three conserved accounts
-on the same retained branch update. Until then A1 remains a topology-supported
-acceleration diagnostic, not a certified physical branch.
+Promotion requires outward radial and tangential aggregates, outward signed playback bounds, an accepted causal wake state, and all three conserved accounts on the same retained branch update. Until then A1 remains a topology-supported acceleration diagnostic, not a certified physical branch.

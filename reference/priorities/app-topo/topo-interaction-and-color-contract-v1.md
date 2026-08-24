@@ -28,9 +28,7 @@ Changing $\beta$ changes the prescribed geometry. Changing a single-source scena
 
 Plainly: speed chooses the prescribed geometry. In a pair, Perspective chooses whose surroundings are being inspected. Choosing Electrino displays only the positrino wake; choosing Positrino displays only the electrino wake.
 
-The TOPO-002 preview uses the accepted prescribed causal-root geometry to place
-one explicitly non-scientific comparison envelope around the displayed source.
-For source-relative coordinates
+The TOPO-002 preview uses the accepted prescribed causal-root geometry to place one explicitly non-scientific comparison envelope around the displayed source. For source-relative coordinates
 
 $$
 u=x-2/3,

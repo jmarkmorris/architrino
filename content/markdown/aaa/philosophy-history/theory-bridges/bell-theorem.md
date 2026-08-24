@@ -33,11 +33,15 @@ $$
 a = A(\hat{m}_A, \lambda), \quad b = B(\hat{m}_B, \lambda)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1006346b3e1950a7)
+
 **Assumption 2 (Bell Locality).** The outcome at each detector depends only on the local measurement setting and the shared hidden variable, not on the distant setting:
 
 $$
 A(\hat{m}_A, \lambda) \text{ is independent of } \hat{m}_B, \quad B(\hat{m}_B, \lambda) \text{ is independent of } \hat{m}_A
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-640ecc71275003eb)
 
 This is the factorizability condition. For stochastic theories it generalizes to:
 
@@ -45,11 +49,15 @@ $$
 P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dee07ba7c14fc214)
+
 **Assumption 3 (Measurement Independence).** The hidden variable $\lambda$ is statistically independent of the freely chosen measurement settings:
 
 $$
 \rho(\lambda \,|\, \hat{m}_A, \hat{m}_B) = \rho(\lambda)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-913721470d021a70)
 
 ### The CHSH Inequality
 
@@ -59,17 +67,23 @@ $$
 E(\hat{m}_A, \hat{m}_B) = \int_\Lambda A(\hat{m}_A, \lambda)\, B(\hat{m}_B, \lambda)\, \rho(\lambda)\, d\lambda
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cbf23f5828ec3492)
+
 For any four measurement settings $\hat{m}_A, \hat{m}_A', \hat{m}_B, \hat{m}_B'$, the CHSH combination:
 
 $$
 S = E(\hat{m}_A, \hat{m}_B) - E(\hat{m}_A, \hat{m}_B') + E(\hat{m}_A', \hat{m}_B) + E(\hat{m}_A', \hat{m}_B')
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-18fc91eefed223a9)
+
 satisfies:
 
 $$
 |S| \leq 2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d5a62cdcec08ec08)
 
 This bound holds for any local, realistic, measurement-independent hidden-variable theory, regardless of the specific form of $A$, $B$, or $\rho$.
 
@@ -81,11 +95,15 @@ $$
 E_{\text{QM}}(\hat{m}_A, \hat{m}_B) = -\hat{m}_A \cdot \hat{m}_B = -\cos\theta_{AB}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-160b39564a6c579f)
+
 where $\theta_{AB}$ is the angle between the two measurement axes. With the optimal choice of settings ($\theta = \pi/4$ increments), this yields:
 
 $$
 |S_{\text{QM}}| = 2\sqrt{2} \approx 2.828
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02ca713a5d1fe762)
 
 which violates the CHSH bound. The value $2\sqrt{2}$ is the **Tsirelson bound**, the maximum achievable by any quantum state.
 
@@ -97,10 +115,14 @@ The CHSH inequality is the main statistical benchmark, but it is not the only Be
 $$
 \mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d37a0ffe81d173e2)
 Quantum mechanics assigns product signs $\chi_C\in\{-1,+1\}$ for those contexts such that
 $$
 \prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5c587e011fd281ef)
 Any context-independent local assignment of predetermined values $x_A,y_A,x_B,y_B,x_C,y_C\in\{-1,+1\}$ gives product $+1$, because every local value appears twice when the four context products are multiplied. This is the all-or-nothing GHZ obstruction: a model cannot pass by reproducing only a Bell average while carrying one fixed local value table across all contexts.
 
 For an $\mathbb{A}\mathbb{A}\mathbb{A}$ record model, the corresponding residual is
@@ -112,6 +134,8 @@ $$
 1-\chi_C E_\theta(C)
 \right]_+
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ce48d89e43da7413)
 where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and the coupled substrate-response kernels on the declared $c_f$ coordination channel, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
 
 **Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
@@ -120,11 +144,15 @@ P(U_1=1,U_2=1)=0,
 \qquad
 P(D_1=1,U_2=0)=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-84c44955b3870301)
 $$
 P(U_1=0,D_2=1)=0,
 \qquad
 P(D_1=1,D_2=1)>0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7dc9328b2315179f)
 Local realism turns the positive $D_1=D_2=1$ event into a forbidden $U_1=U_2=1$ event. A compact validation margin is
 $$
 \Delta_{\mathrm{Hardy}}
@@ -139,6 +167,8 @@ P_\theta(D_1=1,U_2=0)
 P_\theta(U_1=0,D_2=1)
 \right]_+
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0c1e63f033c00ce8)
 The target is not to import Hardy's notation as ontology. The target is to make the declared joint record measure reproduce the zero constraints and the positive event while preserving measurement independence and no-signaling.
 
 ### Experimental Status
@@ -167,11 +197,15 @@ $$
 \text{(Realism)} \;\wedge\; \text{(Bell Locality)} \;\wedge\; \text{(Measurement Independence)} \;\Rightarrow\; |S| \leq 2
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bbb443ff089f30f7)
+
 The contrapositive is:
 
 $$
 |S| > 2 \;\Rightarrow\; \neg\text{(Realism)} \;\vee\; \neg\text{(Bell Locality)} \;\vee\; \neg\text{(Measurement Independence)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-748eb1c8a377b1fc)
 
 Experiment confirms $|S| > 2$. Therefore at least one assumption is false. The interpretive question is: *which one?*
 
@@ -207,6 +241,8 @@ $$
 P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) \neq P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a2e237ea5aa9fad)
+
 while still preserving no-signaling. The mechanism for that failure must be derived from the angular-momentum ledger and the detector coupling, not inserted by terminology.
 
 A shared past is not enough by itself. If a declared common-past record $C$ screens the two wings into independent one-wing laws while measurement independence and no-signaling hold, the model has re-entered the Bell-local class. A useful residual for this check is
@@ -220,6 +256,8 @@ P(a,b\mid \hat{m}_A,\hat{m}_B,C),
 P(a\mid \hat{m}_A,C)P(b\mid \hat{m}_B,C)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f6e375346c8f5cab)
 
 Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
 
@@ -235,6 +273,8 @@ $$
 \mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_s}
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f68952cfe4b1f884)
 
 If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, the coupled substrate-response law on the declared $c_f$ channel, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
 
@@ -254,6 +294,8 @@ D_{\mathrm{TV}}\!\left(
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1660e6e1df3c94d)
+
 where $D_{\mathrm{TV}}$ is total-variation distance on the hidden-variable distribution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ route requires $\Delta_{\mathrm{MI}}$ to vanish, or at minimum to remain below an explicitly reported experimental and simulation tolerance $\epsilon_{\mathrm{MI}}$. Otherwise the mechanism has drifted into a measurement-independence denial rather than the pair-provenance route stated above.
 
 No-signaling leakage is the second guardrail:
@@ -269,6 +311,8 @@ P(a\mid \hat{m}_A,\hat{m}_B)
 P(a\mid \hat{m}_A,\hat{m}'_B)
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72733d1e463afa69)
 
 with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance.
 
@@ -289,6 +333,8 @@ ab\,C(x,y)
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d4088c4e76e8afe8)
+
 where
 
 $$
@@ -298,6 +344,8 @@ m_B=\sum_{a,b}bP(a,b|x,y),
 \qquad
 C=\sum_{a,b}abP(a,b|x,y)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-26c49f80a5def559)
 
 No-signaling is exactly the condition that the local channels reduce to $m_A(x)$ and $m_B(y)$. The only term then allowed to carry both settings without operational signaling is the correlation channel:
 
@@ -316,11 +364,15 @@ ab\,C(x,y)
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-79655565ea3b898f)
+
 with positivity condition
 
 $$
 1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6cf3d3902873db34)
 
 For the singlet target,
 
@@ -332,6 +384,8 @@ m_B(y)=0,
 C(x,y)=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5dba8c19de879071)
+
 Product-screened response is the special subclass
 
 $$
@@ -341,6 +395,8 @@ C_{\mathrm{prod}}(x,y)
 A_x(\Pi)B_y(\Pi)\,
 d\rho_{\mathrm{src}}(\Pi)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e088fc72a966092d)
 
 Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
 
@@ -356,6 +412,8 @@ P(a,b|x,y,B\prec_T A)
 \right|
 \le\epsilon_{\mathrm{ord}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0fa61fc5aabf1a90)
 This condition is not implied by setting-independent marginals. The marginals can be local while a correlation-timing residual still leaks the absolute simultaneity structure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell closure must therefore preserve both marginal invariance and ordering invariance.
 
 Correlation recovery is the third guardrail:
@@ -368,6 +426,8 @@ $$
 E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-78799adf149925fc)
 
 The target is therefore not simply "$|S|>2$." The target is simultaneous recovery of the tested Bell correlations, preservation of no-signaling, and preservation of measurement independence while the observer-level compression still fails Bell's factorized local-response form.
 
@@ -389,6 +449,8 @@ T_B+\tau_B-T_A-\frac{d_{AB}}{c_f},
 =
 T_A+\tau_A-T_B-\frac{d_{AB}}{c_f}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f4c89cf49d574fd7)
 If both margins are negative, neither wing's causal wake can enter the other wing's record-closure window before the relevant record closes. If either margin is nonnegative, the experiment lies in a wake-reach exposure window. This matters whenever $c_f>c_\gamma$: a pair can be spacelike by the dressed photon-channel record while still allowing primitive causal-wake reach during the measurement window. A Bell closure must therefore either keep the record windows mutually outside $c_f$ causal-wake reach or prove that any such reach leaves $\Delta_{\mathrm{ord}}$ below the coincidence-timing and correlation-residual tolerance.
 
 Using the preferred-motion null-test residual $\mathcal{R}_{\mathrm{PF\text{-}bundle}}$ from [PPN Parameters](../../spacetime/ppn-parameters.md#preferred-motion-null-test-bundle), a Bell candidate $\theta$ over a validity window $W$ must therefore satisfy
@@ -405,6 +467,8 @@ $$
 \mathcal{R}_{\mathrm{PF\text{-}bundle}}(\theta;W)\le\epsilon_{\mathrm{LV}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f3b7ed10741376df)
+
 This is the intersection of the Bell and Lorentz recovery surfaces, not a separate escape route. A global record that reproduces the CHSH value by inserting frame-dependent analyzer calibration, coincidence-window bias, clock drift, or signal-timing leakage has failed the preferred-frame leakage handoff even if its probability table looks quantum.
 
 ### Record-Reconstruction Guardrail
@@ -415,6 +479,8 @@ For a record map
 $$
 \pi_{AB}:\mathcal{M}_{AB}\to\mathcal{R}_A\times\mathcal{R}_B
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9b3b03195c45671d)
 the required joint distribution is
 $$
 P(a,b\mid\hat{m}_A,\hat{m}_B)
@@ -423,6 +489,8 @@ P(a,b\mid\hat{m}_A,\hat{m}_B)
 \pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ac83dd80104abf75)
 The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage. In the strongest form, marginal preservation is supplied by local-setting relabeling invariance of $\mu_*^{AB}$ rather than by a cancellation added after the joint law is fitted:
 $$
 \Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
@@ -438,6 +506,8 @@ $$
 \Delta_{\mathrm{Hardy}}>0
 \text{ in the calibrated Hardy regime.}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-935d0e4ce997bbfd)
 Thus record reconstruction is the output surface of the Bell program, not a substitute for the pair-provenance and apparatus-response derivation.
 
 ### Why Angular Momentum Must Come First
@@ -449,6 +519,8 @@ The non-separability of $\lambda$ requires a precise physical account. In $\math
 $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-68633e25abee2239)
 
 That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether braids redistribute action across all three indexed binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
@@ -468,6 +540,8 @@ T_{\mathrm{sep}},
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8bec4e03dd6f2929)
+
 where $B_{\mathrm{parent}}^-$ is the pre-fragmentation parent branch, $W_{\mathrm{src}}$ is the source event window, $t_{\mathrm{sep}}$ is the separation time, $\Sigma_{\mathrm{src}}$ is the source separatrix or accepted branch condition, $\mu_{\mathrm{src}}$ is the source-side measure, and $\Gamma_{\mathrm{src}}^{\mathrm{loc}}$ records local source geometry. The retained pair-provenance distribution is
 
 $$
@@ -481,6 +555,8 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 C_{\mathrm{pair}*}^{\mathrm{sing}}
 \mu_{\mathrm{src}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ab42fd245c52acfb)
 
 Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\mathrm{pair}*}^{\mathrm{sing}}$ is the singlet-pair construction or conditioning map. Later detector settings are excluded fields of $P_{\mathrm{src}}^{\mathrm{sing}}$; if they enter this source record, the model has moved into measurement-independence failure rather than Bell closure.
 
@@ -496,11 +572,15 @@ $$
 E(\hat{\mathbf m}_A, \hat{\mathbf m}_B) = -\cos\theta_{AB}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f4f11b30b3b118e4)
+
 **Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction, distributed uniformly over the unit sphere:
 
 $$
 \hat{\mathbf n}_A=-\hat{\mathbf n}_B
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-422826c8b83cfee1)
 
 The deterministic local response
 
@@ -520,6 +600,8 @@ B(\hat{\mathbf m}_B,\hat{\mathbf n}_B)
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a0d0371b5075b00b)
+
 gives the conserved-opposite-axis correlation
 
 $$
@@ -527,6 +609,8 @@ E_{\mathrm{axis}}(\theta)
 =
 -1+\frac{2\theta}{\pi}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6ba11a7a2e93fb53)
 
 which is **linear** in $\theta$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
 
@@ -541,6 +625,8 @@ P_\theta(\mathbf{r}|\mathbf{s})
 K_i(r_i|s_i,\Pi)\,
 d\rho_{\mathrm{prov}}(\Pi)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a62c5825ec300d8)
 That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
 
 ### Threshold-Pullback Product-Screening No-Go
@@ -556,6 +642,8 @@ K_A^a(x;\Pi,\zeta_A)
 K_B^b(y;\Pi,\zeta_B)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7817346c53ea8fe7)
+
 with $d\nu_{A,x}$, $d\nu_{B,y}$, and $d\rho_{\mathrm{src}}(\Pi)$ setting-independent in the Bell sense. After integrating unresolved local record variables, define
 
 $$
@@ -568,6 +656,8 @@ p_B(b|y,\Pi)
 \int K_B^b(y;\Pi,\zeta_B)\,d\nu_{B,y}(\zeta_B)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-15ded3e0c815a133)
+
 Then the observed law becomes
 
 $$
@@ -579,6 +669,8 @@ p_B(b|y,\Pi)
 d\rho_{\mathrm{src}}(\Pi)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c5f49030d686dfd)
+
 For $\pm1$ outcomes, set
 
 $$
@@ -586,6 +678,8 @@ A_x(\Pi)=\sum_{a=\pm1}a\,p_A(a|x,\Pi),
 \qquad
 B_y(\Pi)=\sum_{b=\pm1}b\,p_B(b|y,\Pi)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b0e86f246f3a8ce6)
 
 so $A_x(\Pi),B_y(\Pi)\in[-1,1]$. For each $\Pi$,
 
@@ -602,6 +696,8 @@ A_{x'}B_{y'}
 \le 2
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02130c4c444e307c)
+
 Integrating over $d\rho_{\mathrm{src}}(\Pi)$ gives the CHSH bound $|S|\le2$. Therefore independent local threshold-pullback kernels can recover one-wing probabilities but cannot recover the singlet Bell law. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell packet must locate nonseparability in the derived joint response kernel, in a non-restartable pair-provenance compression, or in another explicitly stated structure that is not equivalent to the product form above, while still preserving measurement independence and no-signaling.
 
 The no-go is quantitative in the natural per-cell residual. If a candidate table is within $\Delta_{\mathrm{prod}}$ of a product-screened table for each outcome-setting cell, then each correlator differs by at most $4\Delta_{\mathrm{prod}}$, and the CHSH expression obeys
@@ -609,6 +705,8 @@ The no-go is quantitative in the natural per-cell residual. If a candidate table
 $$
 |S|\le 2+16\Delta_{\mathrm{prod}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58f695e1c89c407d)
 
 At the CHSH-optimal singlet settings, a completed table within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law must therefore satisfy
 
@@ -622,6 +720,8 @@ $$
 \frac{\sqrt2-1}{8}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-59a14007401f52a4)
+
 Thus exact singlet recovery requires
 
 $$
@@ -631,6 +731,8 @@ $$
 \approx
 0.0518
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e791e27245a15289)
 
 in this residual normalization. Driving the product-screening residual to zero and driving the singlet residual to zero are mutually incompatible closure targets.
 
@@ -657,6 +759,8 @@ T_W
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-41cea2ce322ae0ff)
+
 let the derived joint response kernel satisfy
 
 $$
@@ -671,6 +775,8 @@ K_{ab}^{\theta}
 \qquad
 \sum_{a,b=\pm1}K_{ab}^{\theta}=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02573f2a94e738c9)
 
 The record law is
 
@@ -689,6 +795,8 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b580a5a75e5b9905)
+
 The singlet residual is
 
 $$
@@ -705,6 +813,8 @@ P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 \right|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eeb7103ae33f6ef8)
+
 If this residual is small, normalization, unbiased one-wing marginals, and the correlation
 
 $$
@@ -714,6 +824,8 @@ E_\theta(\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 =
 -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a065485e6a52b69)
 
 follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
 

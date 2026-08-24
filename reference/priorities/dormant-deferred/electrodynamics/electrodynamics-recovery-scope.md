@@ -2,9 +2,7 @@
 
 ## Purpose
 
-This parked packet preserves the initial boundary proposed for a possible
-electrodynamics recovery program. It is a planning reference, not an active
-contract, derivation, task queue, or validation gate.
+This parked packet preserves the initial boundary proposed for a possible electrodynamics recovery program. It is a planning reference, not an active contract, derivation, task queue, or validation gate.
 
 ## Layer Contract
 
@@ -15,9 +13,7 @@ contract, derivation, task queue, or validation gate.
 | Observer-level recovery | Electric and magnetic response, potentials, Maxwell-level continuity, induction, waves, material optics, radiation, and QED observables | Reuse as premises for the substrate dynamics |
 | Validation | Independent closed forms, separately authored instruments, measured benchmarks, uncertainty records, and falsifiers | Golden fixtures or replays derived from the same implementation as proof of physical correctness |
 
-Plainly: native dynamics belong on the input side; familiar electrodynamics
-belongs on the output and test side. The same result cannot serve as both the
-rule being tested and its independent proof.
+Plainly: native dynamics belong on the input side; familiar electrodynamics belongs on the output and test side. The same result cannot serve as both the rule being tested and its independent proof.
 
 ## Initial Recovery Families
 
@@ -30,26 +26,17 @@ rule being tested and its independent proof.
 | Material response | Reflection, transmission, absorption, and boundary conversion | Shared constitutive state and surface/interface rules | Two response classes follow from one state family without per-case retuning |
 | Precision interface | Selected QED amplitude, spectrum, or null channel | Declared projection from assembly and Noether sea records | Versioned comparison includes uncertainty budget and a falsifier |
 
-Plainly: this table preserves possible test families. None is active, and none
-is complete until a native derivation reaches independent evidence under
-explicit assumptions.
+Plainly: this table preserves possible test families. None is active, and none is complete until a native derivation reaches independent evidence under explicit assumptions.
 
 ## Ownership Boundary
 
-If reactivated, this lane would integrate an electrodynamics recovery program.
-It does not take ownership away from Master Equation Closure, Equation Mapping,
-the EOM solver, photon/radiation work, gauge-structure emergence, or source
-mining. Those live owners retain any native law, benchmark map, solver
-capability, carrier derivation, or source record relevant to the parked ideas.
+If reactivated, this lane would integrate an electrodynamics recovery program. It does not take ownership away from Master Equation Closure, Equation Mapping, the EOM solver, photon/radiation work, gauge-structure emergence, or source mining. Those live owners retain any native law, benchmark map, solver capability, carrier derivation, or source record relevant to the parked ideas.
 
-Plainly: electrodynamics is the integration destination, not a reason to
-duplicate the work or authority of the lanes that supply its inputs.
+Plainly: electrodynamics is the integration destination, not a reason to duplicate the work or authority of the lanes that supply its inputs.
 
 ## Reactivation Boundary
 
-Do not turn this reference into a deliverable until the operator explicitly
-reactivates the lane. The first accepted task would need a versioned matrix
-whose rows name:
+Do not turn this reference into a deliverable until the operator explicitly reactivates the lane. The first accepted task would need a versioned matrix whose rows name:
 
 1. the observer-level quantity or identity;
 2. the allowed native input record;
@@ -58,5 +45,4 @@ whose rows name:
 5. the exact falsifier; and
 6. the owning workstream for every missing prerequisite.
 
-Closure goal: keep this scope parked until an explicit reactivation decision
-and a concrete evidence-bearing input justify a new queue item.
+Closure goal: keep this scope parked until an explicit reactivation decision and a concrete evidence-bearing input justify a new queue item.

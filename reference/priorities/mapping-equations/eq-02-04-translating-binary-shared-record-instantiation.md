@@ -647,8 +647,7 @@ The existing retained-record negative controls test retune failures, including t
 
 For `EQ-04A`, this same evidence object has one downstream consequence: it can supply the first lawful mass-shell and exposure carrier for a charged-lepton generation-by-shielding mass map. Koide does not feed back into the accepted-branch test. It is a later residual on the mass map produced from that test. Therefore the closure order is:
 
-1. one validated finite-memory relative-periodic point enclosed by a declared
-   validation box;
+1. one validated finite-memory relative-periodic point enclosed by a declared validation box;
 2. a separately controlled lift of that point to one full delayed history;
 3. source-backed `S_eq` retained-domain identity on that validated point;
 4. validated continuation over a drift interval before any connection claim;
@@ -656,44 +655,19 @@ For `EQ-04A`, this same evidence object has one downstream consequence: it can s
 6. nested shell or charged-lepton branch-family specialization of the same mass response;
 7. `EQ-04A` Koide mass-root residual with zero hidden retune.
 
-If the next solver pass cannot produce the full retained-domain fixture, the
-only useful partial win is one validated relative-periodic point enclosed by a
-declared validation box or a durable row evaluated on that point. The
-highest-value row remains
-`raw_labeled_rows_preserved_on_retained_history`; the next Noether sea row is
-`Noether_sea_record_bound_to_S_eq`. Either row is useful only if it rides on
-the same certified point/full-history support, is source-backed, is bound to the
-same `domainId` and `commonCarrierId`, and leaves verification incomplete in
-the current evaluators for every still-missing row.
+If the next solver pass cannot produce the full retained-domain fixture, the only useful partial win is one validated relative-periodic point enclosed by a declared validation box or a durable row evaluated on that point. The highest-value row remains `raw_labeled_rows_preserved_on_retained_history`; the next Noether sea row is `Noether_sea_record_bound_to_S_eq`. Either row is useful only if it rides on the same certified point/full-history support, is source-backed, is bound to the same `domainId` and `commonCarrierId`, and leaves verification incomplete in the current evaluators for every still-missing row.
 
-This rule prevents a common failure mode: treating a numerically coherent
-attempt packet as accepted branch evidence. The current arithmetic passes at
-$\beta_f=0.6$ and $\gamma_f=1.25$ are valuable diagnostics, but they stay
-score-neutral until point existence, full-history persistence,
-truncation/refinement controls, and row bindings are source-backed.
+This rule prevents a common failure mode: treating a numerically coherent attempt packet as accepted branch evidence. The current arithmetic passes at $\beta_f=0.6$ and $\gamma_f=1.25$ are valuable diagnostics, but they stay score-neutral until point existence, full-history persistence, truncation/refinement controls, and row bindings are source-backed.
 
 ### Connection And No-Retune Target
 
-A validation box can prove one relative-periodic point; it is not an invariant
-cell, trapping region, branch segment, stability result, or basin measure. A
-full-history lift can support pointwise coframe extraction at one drift.
-Connection transport requires a separately validated continuation of that same
-full history over a drift interval. Stability, trapping, and basin claims remain
-later independent theorems.
+A validation box can prove one relative-periodic point; it is not an invariant cell, trapping region, branch segment, stability result, or basin measure. A full-history lift can support pointwise coframe extraction at one drift. Connection transport requires a separately validated continuation of that same full history over a drift interval. Stability, trapping, and basin claims remain later independent theorems.
 
-Shared support does not by itself prove no-retune. The no-retune target is
-frozen-source held-out parallelism: the clock, envelope, two-way signal, energy,
-momentum, mass-shell, phase, and Noether sea rows must be predictions of one
-source-identified connection over a held-out connected drift block, not
-separately tuned fibers above the same carrier label.
+Shared support does not by itself prove no-retune. The no-retune target is frozen-source held-out parallelism: the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea rows must be predictions of one source-identified connection over a held-out connected drift block, not separately tuned fibers above the same carrier label.
 
 Research input: [No-Retune Transport Beyond Drift-Only Holonomy](../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) proposes a source-identified, frozen-source held-out transport test and a point-first dependency ladder. It is priority-only research guidance; it does not populate this packet's retained support, branch continuation, connection, or acceptance rows.
 
-Research input: [Invariant-Cell Coframe
-Certificate](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
-corrects the point theorem, proof order, support terminology, and dynamic
-identity obligation. It is reference evidence only; the coupled executable
-contract migration remains owned by `EQM-001`.
+Research input: [Invariant-Cell Coframe Certificate](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) corrects the point theorem, proof order, support terminology, and dynamic identity obligation. It is reference evidence only; the coupled executable contract migration remains owned by `EQM-001`.
 
 Use the one-dimensional drift base
 
@@ -719,13 +693,7 @@ T^A_u
 de^A_u+\omega^A{}_{B,u}\wedge e^B_u.
 $$
 
-In the current producer, both zero and nonzero values of the field labeled
-$T^A_u$ remain diagnostic: zero is a negative-control guardrail, while a
-dressed wake-tail or self-hit-asymmetric nonzero value is only a source-side
-defect observable. Neither is Cartan torsion, nor may a nonzero value be called
-a wake-tail invariant, until a soldered geometry gives the displayed
-expression its geometric basis. The phase-holonomy field likewise remains
-diagnostic until a source-derived phase-return conjugacy class is defined.
+In the current producer, both zero and nonzero values of the field labeled $T^A_u$ remain diagnostic: zero is a negative-control guardrail, while a dressed wake-tail or self-hit-asymmetric nonzero value is only a source-side defect observable. Neither is Cartan torsion, nor may a nonzero value be called a wake-tail invariant, until a soldered geometry gives the displayed expression its geometric basis. The phase-holonomy field likewise remains diagnostic until a source-derived phase-return conjugacy class is defined.
 
 The coframe construction has a hard forbidden-input declaration. It may reference $c_f$, $u$, $\mathcal L_{\mathrm{root}}(u)$, $\mathcal L_{\mathrm{wake}}(u)$, and retained boundary history. It may not reference $\gamma_f(u)$, the Lorentz target coefficients, the shell residual, or any fitted clock/envelope row as an input. Under this discipline, $\gamma_f$ can be compared only after the coframe is built.
 
@@ -749,10 +717,7 @@ $$
 
 within the certified arithmetic and truncation band.
 
-That reciprocity product is scale-dependent under independent leg rescaling:
-$e^0\mapsto ae^0$, $e^\parallel\mapsto be^\parallel$,
-$e^\perp\mapsto ce^\perp$ changes it by $ab/c$. Before it can be evaluated,
-the source record must freeze six conditions:
+That reciprocity product is scale-dependent under independent leg rescaling: $e^0\mapsto ae^0$, $e^\parallel\mapsto be^\parallel$, $e^\perp\mapsto ce^\perp$ changes it by $ab/c$. Before it can be evaluated, the source record must freeze six conditions:
 
 1. one named internal return event fixes the clock against the rest period;
 2. one declared equal-time rule selects the longitudinal boundary events;
@@ -761,45 +726,27 @@ the source record must freeze six conditions:
 5. all three legs share one rest calibration; and
 6. no leg is rescaled after any moving-branch row is inspected.
 
-A `leg_rescaled_coframe` negative control must change one leg after construction
-and fail the reciprocity row while leaving the frozen source record unchanged.
-The existing gamma-insertion and reciprocal-unextracted controls do not test
-this freedom.
+A `leg_rescaled_coframe` negative control must change one leg after construction and fail the reciprocity row while leaving the frozen source record unchanged. The existing gamma-insertion and reciprocal-unextracted controls do not test this freedom.
 
 The witness split should be explicit:
 
 - $W_{\mathrm{supp}}$ is the set-level shared-support witness. It asks whether all rows live on the same accepted support, `domainId`, and `commonCarrierId`.
-- $W_{\parallel}$ is frozen-source held-out parallelism over a connected drift
-  block; $W_{\mathrm{end}}$ is its endpoint form when only independently
-  extracted endpoints are available.
-- $W_{\mathrm{loop}}$ is reserved for a genuine loop after a second retained
-  continuation modulus exists.
-- $W_{\mathrm{NR}}$ is only the composite no-retune label combining the primary
-  parallelism row with any later nontrivial loop row.
+- $W_{\parallel}$ is frozen-source held-out parallelism over a connected drift block; $W_{\mathrm{end}}$ is its endpoint form when only independently extracted endpoints are available.
+- $W_{\mathrm{loop}}$ is reserved for a genuine loop after a second retained continuation modulus exists.
+- $W_{\mathrm{NR}}$ is only the composite no-retune label combining the primary parallelism row with any later nontrivial loop row.
 
-$W_{\mathrm{supp}}=0$ is necessary. On the one-dimensional drift base,
-curvature, loop composition, and a return along the same path are trivial and
-cannot certify no-retune. The current machine field `W_hol` is therefore a
-diagnostic guardrail pending the separately authorized contract migration; it
-must not be read as the primary no-retune theorem.
+$W_{\mathrm{supp}}=0$ is necessary. On the one-dimensional drift base, curvature, loop composition, and a return along the same path are trivial and cannot certify no-retune. The current machine field `W_hol` is therefore a diagnostic guardrail pending the separately authorized contract migration; it must not be read as the primary no-retune theorem.
 
-The current producer-level scalar guardrail splits support transport from
-holonomy transport. Passing both scalar checks, zero torsion, or zero phase
-holonomy is diagnostic only. Every claimed held-out row needs an independently
-implemented endpoint projection, and at least one representative action class
-needs an analytic or genuinely independent correctness reference. Shared
-implementation paths establish parity, not correctness.
+The current producer-level scalar guardrail splits support transport from holonomy transport. Passing both scalar checks, zero torsion, or zero phase holonomy is diagnostic only. Every claimed held-out row needs an independently implemented endpoint projection, and at least one representative action class needs an analytic or genuinely independent correctness reference. Shared implementation paths establish parity, not correctness.
 
-For any proposed smooth-chart continuation, let
-$d_J=\min_{q,\theta}|D_{t,q}(0,\theta)|$ on the complete rest ledger and suppose
+For any proposed smooth-chart continuation, let $d_J=\min_{q,\theta}|D_{t,q}(0,\theta)|$ on the complete rest ledger and suppose
 
 $$
 |D_{t,q}(u,\theta)-D_{t,q}(0,\theta)|
 \le M|u|+Cu^2
 $$
 
-with dimensionless $M\ge0$ and inverse-speed $C\ge0$. A sufficient fold-free
-bound is
+with dimensionless $M\ge0$ and inverse-speed $C\ge0$. A sufficient fold-free bound is
 
 $$
 |u|<u_{\mathrm{safe}}
@@ -810,10 +757,7 @@ u_0,\,
 \right]
 $$
 
-for $C>0$, with $d_J/M$ replacing the fraction when $C=0$ and $M>0$.
-Because $D_t$ depends on the unknown first-order orbit correction, $M$ cannot
-generally be measured from frozen rest geometry; numerical evaluation remains
-deferred until the branch and derivative records exist.
+for $C>0$, with $d_J/M$ replacing the fraction when $C=0$ and $M>0$. Because $D_t$ depends on the unknown first-order orbit correction, $M$ cannot generally be measured from frozen rest geometry; numerical evaluation remains deferred until the branch and derivative records exist.
 
 The mass-shell row should also be expressed as a regulator-free coframe norm before normalized residuals are used. With unit energy-momentum covector
 
@@ -881,13 +825,7 @@ D,\Theta_D,S_{\mathrm{eq}},\iota_D,\{\Pi_r\}_{r\in S_{\mathrm{eq}}},\mathcal R_D
 \right),
 $$
 
-where $D$ is the validated relative-periodic point enclosed by the declared
-validation box, and $\Theta_D$ contains the same
-$\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier consumed by the clock,
-envelope, two-way signal, energy, momentum, rest-mass, mass-shell, phase, and
-Noether sea rows. A single event is admissible only as that proven point, not as
-a standalone crossing. Neither box width nor point existence establishes an
-invariant set, branch segment, stability, trapping, or basin measure.
+where $D$ is the validated relative-periodic point enclosed by the declared validation box, and $\Theta_D$ contains the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ carrier consumed by the clock, envelope, two-way signal, energy, momentum, rest-mass, mass-shell, phase, and Noether sea rows. A single event is admissible only as that proven point, not as a standalone crossing. Neither box width nor point existence establishes an invariant set, branch segment, stability, trapping, or basin measure.
 
 A necessary set-level condition can be stated as a fiber product over the common carrier. For this packet, write $\mathcal C_u=\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ and require
 

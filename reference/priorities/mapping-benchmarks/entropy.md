@@ -11,9 +11,7 @@
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/priorities.md).

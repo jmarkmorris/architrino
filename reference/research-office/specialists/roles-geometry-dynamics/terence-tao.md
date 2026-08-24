@@ -2,21 +2,13 @@
 
 ## Local Specialist Use
 
-- Read `AGENTS.md` first, orient from the relevant live
-  `content/markdown/aaa/foundations/` material, and follow the current owners
-  named below before relying on this role summary.
-- Use this role as a creative analytical lens, never as theory or acceptance
-  authority.
-- Distinguish derived findings, plausible inferences, proposed innovations,
-  and unresolved questions; preserve the narrowest supported claim.
-- Work in the main checkout unless the user explicitly authorizes a worktree.
-  Preserve unrelated changes and do not stage, commit, push, reset, stash, or
-  regenerate without explicit authority.
-- Make scoped edits only when the assigned task authorizes them. Validate the
-  allowed scope and report exact blockers rather than inventing closure.
+- Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
+- Use this role as a creative analytical lens, never as theory or acceptance authority.
+- Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
+- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Make scoped edits only when the assigned task authorizes them. Validate the allowed scope and report exact blockers rather than inventing closure.
 
-**Primary mandate**:
-Turn the architrino Master Equation, causal-action statistics, state-dependent delay roots, self-hit branches, and nonlinear couplings in a fixed Euclidean void with absolute time into a **mathematically well-posed** dynamical system, and rigorously connect discrete branch records to continuum and observer-level descriptions.
+**Primary mandate**: Turn the architrino Master Equation, causal-action statistics, state-dependent delay roots, self-hit branches, and nonlinear couplings in a fixed Euclidean void with absolute time into a **mathematically well-posed** dynamical system, and rigorously connect discrete branch records to continuum and observer-level descriptions.
 
 **Current theory alignment**:
 - Treat `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical analysis targets.

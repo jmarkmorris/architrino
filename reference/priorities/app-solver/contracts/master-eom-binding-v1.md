@@ -17,22 +17,15 @@ The two `fail-closed` labels above are retained binding values. In current human
 
 ## Scope
 
-This binding defines the current acceleration multiplier, causal-root equation,
-retained-history obligation, signed root grading, root-completeness proof, and
-signed root-playback derivative.
+This binding defines the current acceleration multiplier, causal-root equation, retained-history obligation, signed root grading, root-completeness proof, and signed root-playback derivative.
 
 The corrected physical statement is:
 
-> A causal surface arriving now was emitted from the transmitter's retained
-> past. Its instantaneous acceleration strength is set by transmitter-side
-> surface density. Receiver velocity changes how the root is replayed and how
-> later reception geometry evolves; it does not change the strength of the
-> surface that has already arrived.
+> A causal surface arriving now was emitted from the transmitter's retained past. Its instantaneous acceleration strength is set by transmitter-side surface density. Receiver velocity changes how the root is replayed and how later reception geometry evolves; it does not change the strength of the surface that has already arrived.
 
 ## Causal Root and Playback
 
-For receiver $i$ at reception time $T_r$ and transmitter $j$ at emission time
-$T_t<T_r$, define
+For receiver $i$ at reception time $T_r$ and transmitter $j$ at emission time $T_t<T_r$, define
 
 $$
 \mathbf r_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
@@ -60,8 +53,7 @@ $$
 }.
 $$
 
-This signed ratio is root-transport data only. In particular, $D_r=0$ is a
-stationary point of the tracked emission time, not a silent acceleration branch.
+This signed ratio is root-transport data only. In particular, $D_r=0$ is a stationary point of the tracked emission time, not a silent acceleration branch.
 
 ## Sharp Transmitter-Side Acceleration
 
@@ -93,10 +85,7 @@ $$
 }.
 $$
 
-The total acceleration is the linear sum over every certified causal root in
-the retained history. Same-transmitter roots use the same equation; only the
-coincident endpoint is excluded, and its branch birth is not automatically
-accepted.
+The total acceleration is the linear sum over every certified causal root in the retained history. Same-transmitter roots use the same equation; only the coincident endpoint is excluded, and its branch birth is not automatically accepted.
 
 ## Finite-Width Transmitter-Side Acceleration
 
@@ -126,8 +115,7 @@ c_f\,\mathbf K_{\epsilon_c}(\mathbf r_{ij}(T_r,T_t))
 }.
 $$
 
-On a compact common domain of isolated complete roots, positive separation,
-and a positive transmitter-side floor, the sharp limit is
+On a compact common domain of isolated complete roots, positive separation, and a positive transmitter-side floor, the sharp limit is
 
 $$
 \int c_f\,\mathbf K_0(\mathbf r_{ij})\delta(g_{ij})\,dT_t
@@ -152,11 +140,7 @@ The transmitter-side correction does not weaken any singular-event gate.
 | Cusp, higher stratum, persistent $D_t=0$, or regulator-dependent transition | Verification incomplete under the existing uncertified-event route. |
 | Retained-history boundary contact | Return insufficient history; do not relabel it as a fold. |
 
-The coincident same-transmitter rule is required by the exact quadratic control
-$\mathbf X(T)=\hat{\mathbf e}(c_fT+\alpha T^2/2)$. Its nontrivial self root
-satisfies $T_t=-T_r$, $r=2c_fT_r$, and $D_t=\alpha T_r$. The v1 acceleration
-therefore scales as $T_r^{-3}$, so its impulse diverges at birth. This is a
-derived falsifier of automatic endpoint continuation, not a numerical artifact.
+The coincident same-transmitter rule is required by the exact quadratic control $\mathbf X(T)=\hat{\mathbf e}(c_fT+\alpha T^2/2)$. Its nontrivial self root satisfies $T_t=-T_r$, $r=2c_fT_r$, and $D_t=\alpha T_r$. The v1 acceleration therefore scales as $T_r^{-3}$, so its impulse diverges at birth. This is a derived falsifier of automatic endpoint continuation, not a numerical artifact.
 
 ## Machine Contract
 
@@ -167,32 +151,20 @@ The v1 sharp acceleration record carries:
 - `root_playback`: $D_r/D_t$;
 - `acceleration_weight`: $c_f/|D_t|$.
 
-The finite-width record sets root-local optional fields to null and consumes
-the constant $c_f$ multiplier in the integral. Pair acceleration certificates
-and reconstruction certificates use schema version `v1`.
+The finite-width record sets root-local optional fields to null and consumes the constant $c_f$ multiplier in the integral. Pair acceleration certificates and reconstruction certificates use schema version `v1`.
 
 ## Independent Controls
 
 Promotion requires all of the following:
 
-1. Static transmitter: $D_t=c_f$, hence $W^{\mathrm{acc}}=1$ and the ordinary
-   signed inverse-square result.
-2. Receiver playback turn: $D_r=0$ with a static transmitter gives the same
-   nonzero acceleration as a stationary receiver at the same event.
-3. Receiver with $D_r<0$: acceleration is not clamped and remains independent
-   of receiver velocity at fixed geometry.
-4. Sharp/finite-width common-domain convergence using independently authored
-   reference-kernel mathematics.
+1. Static transmitter: $D_t=c_f$, hence $W^{\mathrm{acc}}=1$ and the ordinary signed inverse-square result.
+2. Receiver playback turn: $D_r=0$ with a static transmitter gives the same nonzero acceleration as a stationary receiver at the same event.
+3. Receiver with $D_r<0$: acceleration is not clamped and remains independent of receiver velocity at fixed geometry.
+4. Sharp/finite-width common-domain convergence using independently authored reference-kernel mathematics.
 5. Exact coincident-birth asymptotic above, which must remain not advanced.
 
-C++/Python parity checks implementations. It does not by itself prove the law;
-the stationary-transmitter and quadratic-history controls supply the independent
-analytic references.
+C++/Python parity checks implementations. It does not by itself prove the law; the stationary-transmitter and quadratic-history controls supply the independent analytic references.
 
 ## Non-Claims
 
-This binding does not establish a finite accepted coincident same-transmitter
-transition, global same-transmitter continuation, or closed energy, momentum, and
-angular momentum. Those remain promotion gates for the wider wake-state and
-action program. They do not block the scoped receiver-factor correction because
-the v1 solver does not advance at the unresolved transition.
+This binding does not establish a finite accepted coincident same-transmitter transition, global same-transmitter continuation, or closed energy, momentum, and angular momentum. Those remain promotion gates for the wider wake-state and action program. They do not block the scoped receiver-factor correction because the v1 solver does not advance at the unresolved transition.

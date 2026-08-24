@@ -39,11 +39,15 @@ $$
 P_{\mathrm{syn}} = \frac{4}{3}\sigma_T c\,U_B\,\gamma^2
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e4160624af592502)
+
 with magnetic energy density
 
 $$
 U_B=\frac{B^2}{8\pi}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aec046c00aefc21b)
 
 Magnetic-field expressions in this chapter use Gaussian units; the radiation-zone angular and total-power targets below are quoted in SI with explicit $\epsilon_0$. Each display is internally consistent within its declared system, and constants must not be mixed across systems.
 
@@ -53,11 +57,15 @@ $$
 E_{\gamma,\mathrm{syn}} \sim h\nu_c \propto \gamma^2 B
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ed82a7bf474887f)
+
 For pitch angle $\alpha$, a standard critical-frequency expression is
 
 $$
 \nu_c = \frac{3}{2}\gamma^2\frac{eB}{2\pi m_e c}\sin\alpha
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1f79f6da2093da4e)
 
 For isotropic pitch-angle distributions, $\langle\sin\alpha\rangle = \pi/4$, so the ensemble-averaged characteristic frequency becomes $\nu_c \approx (3e/16 m_e c)\gamma^2 B$.
 
@@ -66,6 +74,8 @@ An operational energy-loss (cooling) timescale relation is
 $$
 \tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a323ffe1b97df9dd)
 
 Here $\tau_{\mathrm{syn}}$ denotes a characteristic energy-loss timescale ($E/|dE/dt|$), distinct from the instantaneous synchrotron power rate $P_{\mathrm{syn}}$.
 
@@ -85,6 +95,8 @@ j_\nu \propto \begin{cases}
 \end{cases}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b9c3b8dbea91403e)
+
 Here $\nu_{\mathrm{max}} \propto \gamma_{\mathrm{max}}^2 B$ is the maximum synchrotron frequency set by the highest injected Lorentz factor. The middle slope alone must not be extended below $\nu_m$ or above the cooling break.
 
 In the fast-cooling regime ($\tau_{\mathrm{syn}} < \tau_{\mathrm{esc}}$), electrons cool to a break Lorentz factor
@@ -92,6 +104,8 @@ In the fast-cooling regime ($\tau_{\mathrm{syn}} < \tau_{\mathrm{esc}}$), electr
 $$
 \gamma_{\mathrm{cool}} \approx \frac{6\pi m_e c}{\sigma_T B^2 t_{\mathrm{esc}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6175116390eb6d7d)
 
 and, with $\nu_m=\nu_c(\gamma_{\min})$ the injection frequency of the minimum injected Lorentz factor $\gamma_{\min}$, the fast-cooling spectrum has the standard three-segment form
 
@@ -102,6 +116,8 @@ j_\nu \propto \begin{cases}
 \nu^{-p/2}, & \nu > \nu_m.
 \end{cases}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1509956092cf52e8)
 
 The $-1/2 \to -p/2$ break sits at the injection frequency $\nu_m$, not at $\nu_c(\gamma_{\mathrm{cool}})$.
 
@@ -115,6 +131,8 @@ S_\nu^{\mathrm{ssa}}
 \frac{j_\nu}{\alpha_\nu^{\mathrm{ssa}}},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d93aee8fd229eedf)
+
 a homogeneous optically thick power-law source approaches the standard $I_\nu\propto\nu^{5/2}$ branch below its self-absorption turnover. The same charged-transport event family must generate $j_\nu$, $\alpha_\nu^{\mathrm{ssa}}$, and the source function; otherwise emission and absorption have been fitted independently. Plasma suppression, including the observer-level Razin-Tsytovich limit, is a separate transport recovery and must not be hidden inside the self-absorption coefficient.
 
 ## Core Channels (Inclusion Rule)
@@ -125,8 +143,7 @@ This chapter uses a dominant-channel rule: include reactions/channels that contr
 - $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon pair-production channel in dense radiation fields, distinct from Schwinger vacuum pair production).
 - Secondary-loop channel: newly produced $e^\pm$ re-enter synchrotron emission, closing the cascade.
 
-Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
-This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
+Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them. This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
 
 ## Radiation Inheritance
 
@@ -144,6 +161,8 @@ $$
 \text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7577cbec246f202a)
+
 The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether braid velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
 
 $$
@@ -155,6 +174,8 @@ $$
 \qquad
 a\in\{1,2,3\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b4332d9cf3c37357)
 
 The corresponding residual norm specializes the shared radiation residual:
 
@@ -174,6 +195,8 @@ G_{\text{grad}},
 \mathbf{V}_{\text{curved}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ba1184981f472f21)
 
 Here $\Gamma_{e^\pm}(T)$ is the charged assembly microstate; $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data; $\mathcal{V}_{\mathrm{NS}}$ is the anisotropic Noether sea state provisionally mapped to the observer-level $B$ field; and $G_{\text{grad}}$ records the gradient forcing that skews delay loops. This equation is not a derivation of synchrotron radiation. It names the residual functional that must later recover the validated frequency, power, cooling-break, and polarization limits.
 
@@ -195,6 +218,8 @@ J_{\text{loc}}
 E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bb43b2bd72ee9989)
+
 The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
 
 $$
@@ -204,6 +229,8 @@ $$
 =
 \frac{3}{2}\gamma^2\frac{eB_{\mathrm{eff}}}{2\pi m_e c}\sin\alpha
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-51eba6dbe379aab4)
 
 in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic amplitude reconstructed from $\mathcal{V}_{\mathrm{NS}}$. The $\gamma^2B$ scaling must come from the coupled velocity-deformation and anisotropic-state map, not from tuning $\mathcal{S}_{\gamma,*}$ after the fact.
 
@@ -244,6 +271,8 @@ $$
 \mathcal Q\in\{E,\mathbf p,\mathbf J\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ff7680b64eda969a)
+
 Pair-production cascade vertices close the incoming photon ledger and then recruit identity-routed charged-assembly content from the named target or Noether sea reservoir; they do not treat photon energy alone as an identity source.
 
 This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, standard polarization limits, and Breit-Wheeler behavior in validated regimes before any Noether sea-dependent deviation is treated as physical. The polarization basis, transverse angular-momentum ledger, and linear-polarization limits are photon Gate B consumers from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), not a local derivation of photon helicity.
@@ -264,6 +293,8 @@ $$
 \right]
 \right\rangle_{x_{\mathrm{eff}}^i\in K}^{1/2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-76c8e0c9627088f2)
 where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment, after accounting for Faraday rotation, beam averaging, and turbulent depolarization, would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
 
@@ -280,6 +311,8 @@ $$
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f5ba8d661bd2a9a3)
+
 and the total-power target
 
 $$
@@ -287,6 +320,8 @@ P_{\perp,\mathrm{std}}
 =
 \frac{q^2\gamma^4\|\mathbf{a}_\perp\|^2}{6\pi\epsilon_0c^3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3490e3f8e44afe77)
 
 The channel residual is
 
@@ -299,6 +334,8 @@ $$
 \Delta_{\gamma,\mathrm{flux}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b1a9e7b2750d57fb)
 
 with $\Delta_{\gamma,\mathrm{flux}}$ inherited from [Radiation](radiation.md). In validated weak homogeneous limits, all components must tend to zero without retuning the $B\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map.
 - Rate closure: recover standard synchrotron and Breit-Wheeler limits in validated regimes.
@@ -341,6 +378,8 @@ I_{\nu}^{\mathrm{IC}},
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-341f21dbefe125fb)
+
 where $I_{\nu}^{\mathrm{syn}}$ and $I_{\nu}^{\mathrm{IC}}$ are the synthetic synchrotron and inverse-Compton maps, $\Pi_{\nu}$ and $\psi_{\nu}$ are the linear-polarization fraction and angle, $\nu_{\mathrm{br}}$ is the cooling-break frequency, and $\Delta_{\mathrm{pol}}^{K}$ is evaluated on knots or shock-compressed regions. A source model passes this benchmark only if the same electron transport, $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map, and photon event ledger recover both the radio synchrotron and X-ray inverse-Compton morphology without separately tuning the field map for each band.
 
 This source packet also disciplines composition claims. The observed synchrotron continuum proves the presence of relativistic charged leptons and an ordered effective magnetic component, but it does not by itself decide whether the bulk jet is electron-proton, electron-positron, or mixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, composition is therefore a downstream identity-routing and inertia-loading problem, not a result that can be read directly from the synchrotron channel alone.
@@ -367,6 +406,8 @@ This file uses the following provisional mapping targets.
 $$
 \sigma_{\gamma\gamma} = \frac{\pi r_e^2}{2}\left(1-\beta^2\right)\left[\left(3-\beta^4\right)\ln\left(\frac{1+\beta}{1-\beta}\right) - 2\beta(2-\beta^2)\right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-275707859b37a0e9)
 (where $\beta = \sqrt{1-4m_e^2c^4/s}$) to within factor-of-2 accuracy across the range $4m_e^2c^4 < s < 100m_e^2c^4$ used in cascade modeling. Deviations larger than this bound would constitute observable new physics and require dedicated experimental tests beyond astrophysical inference.
 
 These mapping targets are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
@@ -397,11 +438,15 @@ $$
 \mathcal{C}_{\mathrm{cas}} \equiv \left(\frac{\tau_{\mathrm{esc}}}{\tau_{\mathrm{syn}}}\right) \left(\frac{L}{L_{\gamma\gamma}}\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7449c337cd365bf6)
+
 where
 
 $$
 L_{\gamma\gamma} \equiv (n_\gamma \sigma_{\gamma\gamma})^{-1}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7b571f94ead81a99)
 
 is the photon-photon mean free path and $L$ is the characteristic source size.
 
@@ -430,9 +475,13 @@ Z_{\mathrm{endpoint},X}
 +Y_{X,\mathrm{path}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e2d9f8e741f2a1ce)
+
 $$
 I_{\nu}^{\mathrm{obs}}(R) = (1+z_X)^{-3} \, I_{\nu(1+z_X)}^{\mathrm{em}}(E)\,\mathcal{T}(\nu,E\rightarrow R)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1d2109501424b0d2)
 
 Here $I_\nu^{\mathrm{em}}(E)$ is the source-side specific intensity assembled by integrating $j_\nu$ and absorption through the emitting column. The $(1+z_X)^{-3}$ law applies to this mapped intensity because $I_\nu/\nu^3$ is invariant; it does not by itself map a volume emissivity without the column and volume factors. The function $\mathcal{T}(\nu,E\rightarrow R)$ is the cumulative transfer function including absorption (for example, $e^{-\tau_{\gamma\gamma}(\nu,z)}$ for pair production on extragalactic background light) and any intervening scattering. The signed $Y_{X,\mathrm{path}}$ term must carry any Compton/Sunyaev-Zeldovich-like frequency exchange rather than being folded into a primitive expansion factor or hidden inside $\mathcal{T}$. For nearby sources ($z_X \ll 1$) with negligible path exchange, $\mathcal{T} \approx 1$.
 
@@ -448,11 +497,15 @@ $$
 \omega_p^2=\frac{n_{\mathrm{car}}q^2}{m\epsilon_0}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-772117694e1ea48c)
+
 For $\omega > \omega_p$, the transparent branch must recover
 
 $$
 \omega^2=\omega_p^2+c^2k^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ac3cff5bf8e5bdd1)
 
 while $\omega < \omega_p$ is an evanescent or reflected transport row with $k=i\kappa_{\mathrm{ev}}$ rather than a lost photon ledger. Absorbing conductors use $k=k_1+ik_2$ and add an attenuation factor schematically of the form
 
@@ -461,6 +514,8 @@ $$
 =
 \exp\!\left[-2\int_{\mathrm{path}}k_2(\omega,s)\,ds\right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34c0239a48b401b7)
 
 If $\epsilon_{\mathrm{eff}}(\omega)=0$ produces a longitudinal plasma oscillation, the cascade record routes it into medium excitation or plasmon-like content. It is not counted as a free photon branch and it cannot repair a failed Gate B no-longitudinal-mode check.
 
@@ -474,11 +529,15 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{obs}} \approx \frac{6\pi m_e c}{\sigma_T B^2\gamma}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5adba000797d941e)
+
 For ontology-level bookkeeping, use the conversion
 
 $$
 dT = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi_{\text{eff}})\,d\tau_{\mathrm{asm}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cacc475e84329389)
 
 where $T$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. A $dT/d\tau_{\mathrm{asm}}$ ratio requires a declared clock map; $\Gamma_{\mathrm{eff}}$ is this chapter's working name for the projected cadence-stretch conversion $\Gamma_N$ of [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), with $\Gamma_{\mathrm{eff}}\to\Gamma_N\to\gamma$ in the homogeneous moving branch — one subscript away from the microstate symbol $\Gamma_{e^\pm}$ but a different object. Then
 
@@ -488,6 +547,8 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{abs}}=\Gamma_{\mathrm{eff}}\,\tau_{\mathrm{syn}}^{\mathrm{asm}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-03cc899056a134f5)
+
 Toy mapping example (local weak-gravity zone): if $\gamma=10^4$, $B=1\,\mathrm{G}$, and $\Gamma_{\mathrm{eff}}\approx\gamma$, then
 
 $$
@@ -495,6 +556,8 @@ $$
 \qquad
 \tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2997ff94cf43b4c7)
 
 Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
 

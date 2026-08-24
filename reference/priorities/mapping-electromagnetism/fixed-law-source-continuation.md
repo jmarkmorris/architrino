@@ -3,34 +3,19 @@
 ## Status And Ownership
 
 - Owner: `EMAP-004`, the Noether sea electromagnetic constitutive map.
-- Status: executable score-neutral continuation evaluator implemented;
-  EOM-solver population remains blocked on an accepted retained
-  source--sea--receiver branch.
-- Current claim grade: `candidate_only`. The checked-in prescribed return-map
-  fixture tests the evaluator and pair gate; it is not retained geometry or
-  electromagnetic evidence.
+- Status: executable score-neutral continuation evaluator implemented; EOM-solver population remains blocked on an accepted retained source--sea--receiver branch.
+- Current claim grade: `candidate_only`. The checked-in prescribed return-map fixture tests the evaluator and pair gate; it is not retained geometry or electromagnetic evidence.
 - Numerical convention: $c_f=1$ in every continuation row.
 
-This packet implements the Session 19 continuation contract through the weak
-signed response and first recorded geometric transition. It does not insert an
-electric field or amplitude-dependent coefficient into the Master Equation.
-The source-loading coordinate $\zeta$ changes the declared physical source
-preparation while the per-hit law, coefficients, regulator, projection,
-tolerances, common history prefix, and architrino identity inventory remain
-fixed.
+This packet implements the Session 19 continuation contract through the weak signed response and first recorded geometric transition. It does not insert an electric field or amplitude-dependent coefficient into the Master Equation. The source-loading coordinate $\zeta$ changes the declared physical source preparation while the per-hit law, coefficients, regulator, projection, tolerances, common history prefix, and architrino identity inventory remain fixed.
 
-Plainly: the machinery for asking whether one unchanged causal law responds
-linearly at first and then reaches a geometric boundary now runs. The present
-input is a prescribed diagnostic, not the missing physical branch.
+Plainly: the machinery for asking whether one unchanged causal law responds linearly at first and then reaches a geometric boundary now runs. The present input is a prescribed diagnostic, not the missing physical branch.
 
 ## Executable Artifacts
 
-- Evaluator:
-  [fixed-law-source-continuation.mjs](../../../scripts/mapping-electromagnetism/fixed-law-source-continuation.mjs)
-- Candidate-only input:
-  [fixed-law-source-continuation-candidate.v1.json](../../../scripts/mapping-electromagnetism/fixed-law-source-continuation-candidate.v1.json)
-- Test:
-  [fixed-law-source-continuation.test.js](../../../tests/fixed-law-source-continuation.test.js)
+- Evaluator: [fixed-law-source-continuation.mjs](../../../scripts/mapping-electromagnetism/fixed-law-source-continuation.mjs)
+- Candidate-only input: [fixed-law-source-continuation-candidate.v1.json](../../../scripts/mapping-electromagnetism/fixed-law-source-continuation-candidate.v1.json)
+- Test: [fixed-law-source-continuation.test.js](../../../tests/fixed-law-source-continuation.test.js)
 
 Run the current diagnostic with:
 
@@ -40,9 +25,7 @@ node scripts/mapping-electromagnetism/fixed-law-source-continuation.mjs \
   --require-transition --pretty
 ```
 
-Plainly: `--require-transition` fails when the input never reaches a declared
-native boundary. Reaching a boundary does not by itself make the input retained
-or identify the boundary with pair production.
+Plainly: `--require-transition` fails when the input never reaches a declared native boundary. Reaching a boundary does not by itself make the input retained or identify the boundary with pair production.
 
 ## Fixed-Record Contract
 
@@ -59,10 +42,7 @@ Every amplitude row must bind to the same values of:
 | `commonHistoryPrefixId` | Common source, sea, receiver, and boundary history prefix |
 | `architrinoIdentityDigest` | Fixed pre-continuation architrino inventory |
 
-Each row must also carry source, sea, receiver, and wake-history identifiers;
-transmitter tags; a nonempty internal state vector; root identities; $D_t$,
-$D_r$, and $W^{\mathrm{acc}}$; and the four transition margins. The evaluator
-checks
+Each row must also carry source, sea, receiver, and wake-history identifiers; transmitter tags; a nonempty internal state vector; root identities; $D_t$, $D_r$, and $W^{\mathrm{acc}}$; and the four transition margins. The evaluator checks
 
 $$
 W^{\mathrm{acc}}=\frac{1}{|D_t|}
@@ -70,14 +50,11 @@ $$
 
 because this numerical packet fixes $c_f=1$.
 
-Plainly: changing the source geometry is allowed. Changing the interaction
-rule, readout definition, tolerances, inventory, or initial-history family
-between amplitudes is hidden retuning and rejects the record.
+Plainly: changing the source geometry is allowed. Changing the interaction rule, readout definition, tolerances, inventory, or initial-history family between amplitudes is hidden retuning and rejects the record.
 
 ## Weak Signed Response
 
-Let $z(\zeta)$ denote the declared transverse internal state on the same return
-section. From the smallest available signed pair $\pm h$, the evaluator forms
+Let $z(\zeta)$ denote the declared transverse internal state on the same return section. From the smallest available signed pair $\pm h$, the evaluator forms
 
 $$
 \mathbf b_h
@@ -99,14 +76,9 @@ z(\zeta)-z(0)-\zeta\mathbf b_h
 }.
 $$
 
-The weak row passes only when at least two signed pairs are present and the
-maximum residual remains below the fixed weak-linearity tolerance. This is the
-finite-record implementation of the retained-return-map lemma; it does not
-prove that the supplied baseline is retained.
+The weak row passes only when at least two signed pairs are present and the maximum residual remains below the fixed weak-linearity tolerance. This is the finite-record implementation of the retained-return-map lemma; it does not prove that the supplied baseline is retained.
 
-Plainly: one signed pair estimates the local direction of response and another
-checks it. A single two-point chord cannot certify a linear regime by checking
-itself.
+Plainly: one signed pair estimates the local direction of response and another checks it. A single two-point chord cannot certify a linear regime by checking itself.
 
 ## First Geometric Transition
 
@@ -124,8 +96,7 @@ z(\zeta)-z(0)-\zeta\mathbf b_h
 }
 $$
 
-and selects the smallest sampled $\zeta>0$ at which at least one declared
-native margin reaches its boundary:
+and selects the smallest sampled $\zeta>0$ at which at least one declared native margin reaches its boundary:
 
 $$
 \zeta_*
@@ -148,34 +119,21 @@ The transition classification remains explicit:
 - collision boundary requiring quarantine; or
 - another declared branch-status change.
 
-Plainly: the first transition is whatever native certificate changes status
-first. It is not automatically a strong-field threshold, branch decay, or
-electron--positron pair event.
+Plainly: the first transition is whatever native certificate changes status first. It is not automatically a strong-field threshold, branch decay, or electron--positron pair event.
 
 ## Pair-Capture And Backreaction Gate
 
-Pair capture is eligible only when the same record supplies all of the
-following:
+Pair capture is eligible only when the same record supplies all of the following:
 
 1. an accepted retained source--sea--receiver branch;
-2. a certified retained electron basin with protected polarity inventory
-   $-6$;
-3. a certified retained positron basin with protected polarity inventory
-   $+6$;
+2. a certified retained electron basin with protected polarity inventory $-6$;
+3. a certified retained positron basin with protected polarity inventory $+6$;
 4. reciprocal electron/positron conjugate-branch identifiers; and
-5. one common record identifier for the continuation and both basin
-   certificates.
+5. one common record identifier for the continuation and both basin certificates.
 
-If any item is absent, an included pair-attempt record is rejected and no
-backreaction row is evaluated. If the gate passes, a supplied attempt must
-retain the fixed-law and identity bindings, exact identity partition, net
-polarity, source/sea/product/remnant/boundary continuation, and event-ledger
-residual. The evaluator never manufactures an attempt merely because basin
-certificates exist.
+If any item is absent, an included pair-attempt record is rejected and no backreaction row is evaluated. If the gate passes, a supplied attempt must retain the fixed-law and identity bindings, exact identity partition, net polarity, source/sea/product/remnant/boundary continuation, and event-ledger residual. The evaluator never manufactures an attempt merely because basin certificates exist.
 
-Plainly: the code can neither call a geometric transition “pair production”
-nor evaluate screening unless independently certified electron and positron
-destinations already exist on the same retained record.
+Plainly: the code can neither call a geometric transition “pair production” nor evaluate screening unless independently certified electron and positron destinations already exist on the same retained record.
 
 ## Current Candidate-Only Result
 
@@ -203,10 +161,7 @@ The executable report returns:
 | Overall status | `candidate_only_first_transition_reached` |
 | Score decision | no score change |
 
-Plainly: the candidate data exercise the complete weak-response and
-first-transition calculation. They say nothing about where a real retained
-assembly would transition because the data were prescribed to test the
-instrument.
+Plainly: the candidate data exercise the complete weak-response and first-transition calculation. They say nothing about where a real retained assembly would transition because the data were prescribed to test the instrument.
 
 ## Verification Reach
 
@@ -222,34 +177,44 @@ The test suite establishes implementation behavior for:
 - pair and backreaction evaluation after every gate condition passes; and
 - failure when no first transition is supplied.
 
-These same-change tests verify the implementation contract. They are not an
-independent physical oracle and do not validate the prescribed return map, a
-retained assembly, a Noether sea constitutive law, or pair production.
+These same-change tests verify the implementation contract. They are not an independent physical oracle and do not validate the prescribed return map, a retained assembly, a Noether sea constitutive law, or pair production.
 
-Plainly: the tests show that the evaluator follows its declared rules,
-including the refusal to overclaim. The next evidence must come from an EOM
-solver record rather than another hand-authored fixture.
+Plainly: the tests show that the evaluator follows its declared rules, including the refusal to overclaim. The next evidence must come from an EOM solver record rather than another hand-authored fixture.
 
 ## EOM-Solver Population Boundary
 
-The next admissible input is a normalized manifest assembled from one
-EOM-solver source-loading family. It must provide:
+The next admissible input is a normalized manifest assembled from one EOM-solver source-loading family. It must provide:
 
 - an accepted retained baseline and complete retained-history prefix;
-- EOM-solver continuation rows for the signed weak pair and increasing
-  positive $\zeta$;
-- fixed per-hit, coefficient, regulator, projection, tolerance, and inventory
-  fingerprints;
+- EOM-solver continuation rows for the signed weak pair and increasing positive $\zeta$;
+- fixed per-hit, coefficient, regulator, projection, tolerance, and inventory fingerprints;
 - transmitter-tagged root and wake ledgers at every row;
-- an accepted return-section derivative or an equivalent accepted transverse
-  state projection; and
-- the first EOM-certified transversality, inactive-gap, stability, collision,
-  or branch-status boundary.
+- an accepted return-section derivative or an equivalent accepted transverse state projection; and
+- the first EOM-certified transversality, inactive-gap, stability, collision, or branch-status boundary.
 
-The evaluator deliberately has no fallback that upgrades a prescribed input.
-Until this manifest exists, the current blocker remains
-`missing_accepted_eom_evolved_retained_source_sea_receiver_branch`.
+The evaluator deliberately has no fallback that upgrades a prescribed input. Until this manifest exists, the current blocker remains `missing_accepted_eom_evolved_retained_source_sea_receiver_branch`.
 
-Plainly: implementation closure is complete for the evaluator. Physical
-continuation remains blocked on the branch that the EOM solver must actually
-evolve.
+Plainly: implementation closure is complete for the evaluator. Physical continuation remains blocked on the branch that the EOM solver must actually evolve.
+
+## Conditional Internal-Speed Extension
+
+An internal-speed inference is not part of the current candidate continuation. It becomes admissible only when one accepted retained transition record supplies all of these same-record quantities:
+
+- precursor branch identity and its survival or loss time;
+- identity-resolved architrino path lengths during the transition;
+- an independently defined ordinary internal cycle time;
+- pair-assembly or alternative product-formation time;
+- source spatial and temporal coherence windows; and
+- restoration, first-retention-loss, and product-capture event times.
+
+Only then may the record test a relation such as
+
+$$
+v_{mathrm{int}}
+=
+\frac{L_{mathrm{path}}}{\tau_{mathrm{cycle}}}
+$$
+
+and determine whether product formation actually samples that ordinary cycle. Schwinger-scale agreement alone supplies neither $L_{mathrm{path}}$ nor $\tau_{mathrm{cycle}}$ and therefore cannot establish high internal speed.
+
+Plainly: timing without distance is not speed, and pair-formation time is not automatically the braid's ordinary circulation time. These rows remain dormant until the same retained record measures both connections.

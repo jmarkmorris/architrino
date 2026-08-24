@@ -23,9 +23,7 @@ This packet keeps photon, quantum, spinor, gauge, and neutrino equations in the 
 
 ## 2026-06-23 Maturity Assessment
 
-This table preserves the dated assessment that informed the `6/23` ledger.
-It is not retained evidence and does not update [equation.md](equation.md), the
-sole current score authority.
+This table preserves the dated assessment that informed the `6/23` ledger. It is not retained evidence and does not update [equation.md](equation.md), the sole current score authority.
 
 | ID | 6/23 score | Rationale |
 | --- | --- | --- |

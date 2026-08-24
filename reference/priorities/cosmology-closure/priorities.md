@@ -19,12 +19,7 @@ Convert the current cosmology story from narrative strength to equation-level cl
 
 This file remains the control surface for deferred cosmology closure. No sibling detailed priority file is needed until component-interface work resumes.
 
-This lane owns observer-level inventories, production and free-streaming
-benchmarks, and CMB / BBN / growth / lensing transfer residuals. Speculative
-candidate assemblies, release channels, and dark-visible re-entry mechanisms
-remain owned by [dark-sector](../dark-sector/priorities.md). A candidate may
-enter this lane only through a declared cosmology interface and residual; that
-routing does not promote the candidate or merge the two workstreams.
+This lane owns observer-level inventories, production and free-streaming benchmarks, and CMB / BBN / growth / lensing transfer residuals. Speculative candidate assemblies, release channels, and dark-visible re-entry mechanisms remain owned by [dark-sector](../dark-sector/priorities.md). A candidate may enter this lane only through a declared cosmology interface and residual; that routing does not promote the candidate or merge the two workstreams.
 
 ## Promotion Map
 

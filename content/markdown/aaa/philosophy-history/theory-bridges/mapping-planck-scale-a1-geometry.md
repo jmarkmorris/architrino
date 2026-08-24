@@ -28,6 +28,8 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >    $$
 >    \sin\theta = \frac{c_f}{v_{\text{eff}}} \quad (\;v_{\text{eff}} > c_f\;),
 >    $$
+
+>    [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ce76abe9949ade35)
 >    so for orthogonal components near $c_f$ ($v_{\text{eff}} \approx \sqrt{2}\,c_f$), $\theta \approx 45^\circ$.
 > 4. The wedge modifies the delay-feedback geometry, constraining which loops can close; the terminal aligned mode is the last wedge-compatible, phase-locked configuration.
 > 5. The assembly acquires the **minimum closed-cycle action** $\mathcal{A}_{\text{align}}^{\text{cycle}}$, identified with the universal quantum $h$ (not a system-specific lower bound), together with the radian-normalized rotational-action variable $I_{\text{align}}=\mathcal{A}_{\text{align}}^{\text{cycle}}/(2\pi)$, and an **alignment radius** $R_{\text{align}}$, defined by the Planck-alignment circumference $2\pi R_{\text{align}} = \ell_P$:
@@ -38,6 +40,8 @@ We propose that the Planck scale corresponds, in the architrino architecture, to
 >      \qquad
 >      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
 >    $$
+
+>    [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-41d758d7986297f8)
 > 
 
 These identifications are **conjectured mappings**, not definitions. They must eventually be derived from the master equations and compared to empirical values.
@@ -59,6 +63,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7605eb4f0e60ca0)
+
 The first term is the wavelength-limited localization scale. The second term is the gravitational-radius scale associated with the same energy concentration. The minimum occurs when the two constraints meet,
 
 $$
@@ -66,6 +72,8 @@ E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 \qquad
 \ell_{\mathrm{probe,min}} \sim O(\ell_P)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-929784cb04482038)
 
 Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This motivates testing $\ell_P$ as the observed trace of an A1 alignment horizon rather than treating it as proof that spacetime is made of smaller static beads.
 
@@ -79,36 +87,50 @@ $$
 +
 \frac{G\,\Delta p}{c_f^3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8839b4806295f0ad)
 The first term is the standard wavelength or Fourier-localization limit; the second is the displacement or horizon-facing uncertainty induced by concentrating the probe energy into the same region. Minimizing this comparison gives
 $$
 \Delta p_{\mathrm{cross}}^2\sim\frac{\hbar c_f^3}{G},
 \qquad
 \Delta x_{\mathrm{eff,min}}\sim O(\ell_P)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1421dba4163b077c)
 In this chapter the formula is not a new uncertainty postulate and not evidence for primitive spatial discreteness. It is a second route to the same recovery target: any branch that claims sub-Planck localization must explain why the same action scale, effective gravitational coupling, and observer-channel speed do not turn the attempted measurement into horizon-interface or alignment behavior.
 
 The dimensional-analysis route reaches the same comparison scale. Up to convention factors, the only length built from $G$, $\hbar$, and $c_f$ is
 $$
 \ell_P \sim \sqrt{\frac{\hbar G}{c_f^3}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e101ac2c84d0c1a8)
 In this chapter, that relation is a benchmark object rather than an ontology postulate. The derivation burden is to show why one retained alignment branch supplies the effective gravitational coupling, action scale, and low-energy photon-channel speed that enter the observer-level estimate.
 
 The same collapse-and-crossing logic supplies a power-output comparison. For a region of size $R$, the fastest ordinary exterior export has crossing time
 $$
 \Delta t_{\min}\sim \frac{R}{c}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8939547d6e728cc7)
 while the largest energy localized before black-hole formation is, up to convention factors,
 $$
 E_{\max}\sim \frac{R c^4}{G}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a6023c4623a2907)
 Dividing cancels the size of the region:
 $$
 L_P\sim \frac{E_{\max}}{\Delta t_{\min}}\sim \frac{c^5}{G}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-626420e59ba7003f)
 For a radiationlike channel with $p=E/c$, the associated momentum-flow scale is
 $$
 F_P\sim\frac{L_P}{c}\sim\frac{c^4}{G}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df3f3d10d91b132f)
 
 This is valuable because $\hbar$ does not enter. The Planck luminosity is therefore not a matter-wave postulate; it is a classical strong-field recovery target linking a limiting signal channel to gravitational collapse. In this chapter $c$ is the inherited observer-level speed in the standard comparison formula. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to show how the relevant weak homogeneous observer channel is exported from $c_f$ and the Noether sea response, then to show why further energy concentration routes into horizon-interface alignment, interior self-hit continuation, or failed exterior export rather than unlimited luminosity.
 
@@ -116,6 +138,8 @@ Hawking evaporation gives a useful but weaker endpoint pressure. The standard sc
 $$
 L_H\sim\frac{\hbar c^6}{G^2M^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-20059cfdda18115e)
 approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substitution sits exactly where semiclassical black-hole theory is no longer trusted. It should be used as a consistency pressure on terminal release, not as a completed endpoint model.
 
 **Regime clarification (to prevent speed-label conflicts):**
@@ -132,23 +156,24 @@ We treat the Planck relations as constraints on a **specific alignment geometry*
 $$
 2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b7c45990b0a8f56e)
 So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
-With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
-Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
+With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant. Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
 
 **Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the declared reference orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
-Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors.
-Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0991b825730743a5)
+Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors. Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
 
 This leaves three coherent origin stories to keep in view:
 1. **One-constant ontology:** a deeper invariance in the delay-geometry produces both $c_f$ and $h$, with $G$ a composite of those.
 2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
-3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
-We keep these as open threads while we test whether alignment alone can lock the scale.
+3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation. We keep these as open threads while we test whether alignment alone can lock the scale.
 
 ### Planck Units as binary-3 Mappings (Alignment State)
 
@@ -181,16 +206,22 @@ $$
 v_{\text{eff}}(\theta) \;=\; \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\bigr|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d8d8261ce6d2523a)
+
 with $\theta$ the orbital phase and the “forward sector” the subset where the tangential velocity projects along $\mathbf{v}_{\text{trans}}$.
 
 We define the **kinematic alignment horizon** as the locus where the forward-sector components satisfy
 $$
 v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\theta) \to c_f
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02979d1415f8f591)
 so the component speeds approach the wake-speed limit at the onset of flattening. The combined forward-sector speed is a separate diagnostic:
 $$
 v_{\text{eff}}(\theta)=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-74ba6ae243b70343)
 When $v_{\text{eff}}>c_f$, the same geometry supports the Mach-wedge analysis used above; when $v_{\text{eff}}\lesssim c_f$, the claim is only one-way update starvation along the saturated forward component.
 
 At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
@@ -203,6 +234,8 @@ Actual Planck alignment requires closure of the **action-response loop**:
   $$
   \Delta t_{\text{one-way}} = d / c_f
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d07d4e7d7d290d4e)
 - **Round-trip response**: the full delay between an emitted wake and its subsequent influence on the emitter’s own trajectory after the assembly has responded and moved.
 
 A stable, phase-locked mode must satisfy a **closure condition** on this round-trip delay combined with orbital motion. Schematic:
@@ -210,6 +243,8 @@ A stable, phase-locked mode must satisfy a **closure condition** on this round-t
 $$
 \Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9cb9aed88c6fb05e)
 
 for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to A1 structure.
 
@@ -270,8 +305,7 @@ This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/fre
 
 **Failure mode:** If simulations or analytic work reveal:
 - a continuum of stable modes beyond the aligned state, or
-- multiple distinct aligned endpoints,
-then the “single top rung” picture must be modified or abandoned.
+- multiple distinct aligned endpoints, then the “single top rung” picture must be modified or abandoned.
 
 ---
 
@@ -287,9 +321,7 @@ In the low-energy / weak-alignment regime:
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations:
-> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
-> This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
+> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations: a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it. This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
 A rigorous mapping from the detailed A1 phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
@@ -334,17 +366,20 @@ Because an A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cyc
   - the coupling $\kappa$ (A6),
   - and the causal speed $c_f$ (A1).
 
-> **Conjectured Mapping (Cycle Action and Angular Momentum):**
-> The closed-cycle action associated with this aligned state,
+> **Conjectured Mapping (Cycle Action and Angular Momentum):** The closed-cycle action associated with this aligned state,
 > $$
 >   \mathcal{A}_{\text{align}}^{\text{cycle}} \equiv 2\pi I(n_{\text{max}}),
 > $$
+
+> [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a3debc8e9fb5f284)
 > is proposed to **coincide with** the Planck action quantum $h$:
 > $$
 >   \mathcal{A}_{\text{align}}^{\text{cycle}} \stackrel{\text{hyp.}}{\approx} h,
 >   \qquad
 >   I_{\text{align}}\equiv I(n_{\text{max}}) \stackrel{\text{hyp.}}{\approx} \hbar.
 > $$
+
+> [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-297f22d69fd18d11)
 > This must ultimately be derived from the architrino master equation and checked numerically.
 
 If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, or if different retained frequency rows require incompatible action quanta after the same record partition is declared, this identification fails.
@@ -357,32 +392,44 @@ Let
 $$
 Q_{\mathrm{align}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-473e6bac00905d55)
 denote the retained topological and phase-lock data of the aligned A1 branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
 $$
 \mathcal{A}_{\text{cycle}}[\Gamma]
 \ge
 \mathcal{B}(Q_{\mathrm{align}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4c019f7d379850b6)
 for all admissible histories
 $$
 \Gamma
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dbc6f4ea00fc0953)
 in the same sector. Planck alignment would become much stronger if the terminal aligned mode were shown to saturate the bound,
 $$
 \mathcal{A}_{\text{align}}^{\text{cycle}}
 =
 \mathcal{B}(Q_{\mathrm{align}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-69e8caff8df663a5)
 and if the saturation equations reduced to explicit first-order delay-geometry closure conditions, such as field-speed component saturation, finite branch ledger closure, and zero holonomy after one cycle.
 
 The failure test is equally important. If no sectorwise lower bound exists, or if the aligned branch is not the minimizer within its own
 $$
 Q_{\mathrm{align}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-473e6bac00905d55-2)
 sector, then the identification
 $$
 \mathcal{A}_{\text{align}}^{\text{cycle}}\stackrel{\text{hyp.}}{\approx}h
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a582512424358de5)
 remains only a dimensional and operational mapping rather than a dynamical derivation.
 
 ### Alignment Radius: $R_{\text{align}}$ and $\ell_P$
@@ -393,17 +440,23 @@ $$
 R_{\text{align}} \equiv r_3(n_{\text{max}})
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a136742d4217e335)
+
 Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants (using $h = 2\pi\hbar$ with $f$):
 
 $$
 \ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-039644b028e5ea7e)
+
 > **Empirical Check (Length):**  
 > We compare the dynamically derived alignment radius $R_{\text{align}}$ to the empirical Planck length divided by $2\pi$:
 > $$
 >  R_{\text{align}} \stackrel{\text{hyp.}}{\approx} \ell_P^{\text{(emp)}}/(2\pi),
 > $$
+
+> [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ff9450b7d0b47137)
 > assuming A-cf-match.
 
 Equivalently, within the architrino theory we can invert the relation to define an **effective gravitational constant**:
@@ -411,6 +464,8 @@ Equivalently, within the architrino theory we can invert the relation to define 
 $$
 G_{\text{eff}} \equiv \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-50caff046410b6d9)
 
 Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $R_{\text{align}}$ from first principles, then compare $G_{\text{eff}}$ to the measured $G$.
 
@@ -455,6 +510,8 @@ a_{\theta}
 \longrightarrow
 \frac{1}{4}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b0e706d900ae41ea)
 where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal A1 alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
 
 We deliberately use “condensate-like” here; a full condensate claim would require:

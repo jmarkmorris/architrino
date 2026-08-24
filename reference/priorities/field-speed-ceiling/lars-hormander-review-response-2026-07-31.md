@@ -1,51 +1,23 @@
 # Lars Hörmander Field-Speed Ceiling Review and Response
 
-**Review identifier:** `FSC-001-LH-2026-07-31`
-**Reviewer:** Lars Hörmander
-**Review mode:** completed read-only distributional-formulation review
-**Captured:** 2026-07-31 from the operator-supplied review handoff
-**Response authority:** Field-Speed priority packet only
-**Theory status:** no ceiling, contact law, regulator-independent limit,
-continuation, or canonical change adopted
+**Review identifier:** `FSC-001-LH-2026-07-31` **Reviewer:** Lars Hörmander **Review mode:** completed read-only distributional-formulation review **Captured:** 2026-07-31 from the operator-supplied review handoff **Response authority:** Field-Speed priority packet only **Theory status:** no ceiling, contact law, regulator-independent limit, continuation, or canonical change adopted
 
 ## Review scope
 
-The review examined the ordinary isolated-root coarea construction, the
-nonisolated mirror-collinear contact stratum, the proposed zero-impulse event
-coefficient, the event guard and ownership interface, the receiver-side
-measure problem, and the FSC-005 near-contact theorem target.
+The review examined the ordinary isolated-root coarea construction, the nonisolated mirror-collinear contact stratum, the proposed zero-impulse event coefficient, the event guard and ownership interface, the receiver-side measure problem, and the FSC-005 near-contact theorem target.
 
-Reviewer conclusions are mathematical review input, not theory authority. The
-operator-supplied review text is preserved first, followed by a disposition
-matrix that assigns exactly one response to every substantive finding.
+Reviewer conclusions are mathematical review input, not theory authority. The operator-supplied review text is preserved first, followed by a disposition matrix that assigns exactly one response to every substantive finding.
 
 ## Operator-supplied review text
 
-1. The nonisolated coincidence family is correctly outside ordinary
-   isolated-root coarea rows.
-2. Type and keep distinct the source point-emission measure, receiver
-   causal-root acceleration measure, and contact-event atomic velocity update.
-3. Zero atomic impulse is a proposed event coefficient, not a distributional
-   cancellation or finite-part conclusion; record nonzero source provenance
-   despite the zero event atom.
-4. Strengthen guard and ownership: both ordered channels, a half-open
-   branch/event convention, source labels separately retained,
-   $s=T_{\mathrm c}$ separate from the $s<T_{\mathrm c}$ family, competing
-   strata routing, parameterization-independent aggregation, and an outgoing
-   record if restart is claimed.
-5. Add receiver-side contact measure decomposition as an unresolved
-   obligation; correct any wording that says wake semantics are complete.
-6. Specify a topology and prove or refute perturbative splitting and weak
-   convergence of source-provenanced receiver measures, not merely root
-   counts.
-7. Revise the FSC-005 separating-trace target with correct $s_\delta$ versus
-   emission-retention wording, a sign hypothesis, both channels, competing
-   strata, a BV/Radon or equivalent solution class, a complete-ledger
-   asymptotic/no-leading-cancellation condition, and an exact limited
-   conclusion.
-8. Downgrade readiness: the packet is not ready for a Tao-style
-   well-posedness review as a posed evolution problem. It is ready only for
-   narrower distributional-formulation work.
+1. The nonisolated coincidence family is correctly outside ordinary isolated-root coarea rows.
+2. Type and keep distinct the source point-emission measure, receiver causal-root acceleration measure, and contact-event atomic velocity update.
+3. Zero atomic impulse is a proposed event coefficient, not a distributional cancellation or finite-part conclusion; record nonzero source provenance despite the zero event atom.
+4. Strengthen guard and ownership: both ordered channels, a half-open branch/event convention, source labels separately retained, $s=T_{\mathrm c}$ separate from the $s<T_{\mathrm c}$ family, competing strata routing, parameterization-independent aggregation, and an outgoing record if restart is claimed.
+5. Add receiver-side contact measure decomposition as an unresolved obligation; correct any wording that says wake semantics are complete.
+6. Specify a topology and prove or refute perturbative splitting and weak convergence of source-provenanced receiver measures, not merely root counts.
+7. Revise the FSC-005 separating-trace target with correct $s_\delta$ versus emission-retention wording, a sign hypothesis, both channels, competing strata, a BV/Radon or equivalent solution class, a complete-ledger asymptotic/no-leading-cancellation condition, and an exact limited conclusion.
+8. Downgrade readiness: the packet is not ready for a Tao-style well-posedness review as a posed evolution problem. It is ready only for narrower distributional-formulation work.
 
 ## Complete finding record and response matrix
 
@@ -74,9 +46,7 @@ $$
 \quad\text{by proposed postulate}.
 $$
 
-It does not imply that a source measure vanishes, that a receiver measure
-cancels, or that the nonisolated contact stratum has a zero finite part. In
-particular, the separately labeled source records
+It does not imply that a source measure vanishes, that a receiver measure cancels, or that the nonisolated contact stratum has a zero finite part. In particular, the separately labeled source records
 
 $$
 \mathsf E_{1,T_{\mathrm c}}\ne0,
@@ -86,37 +56,23 @@ $$
 
 remain in provenance even though the proposed event atom is zero.
 
-Plainly: a zero coefficient on the velocity jump does not erase either
-emission and does not evaluate the unresolved received contact measure.
+Plainly: a zero coefficient on the velocity jump does not erase either emission and does not evaluate the unresolved received contact measure.
 
 ## Remaining obligations after response
 
 1. Construct the declared history/trajectory topology and its admissible set.
 2. Define the receiver-side contact and competing-stratum vector measures.
-3. Prove or refute parameterization-independent perturbative splitting and
-   weak-* convergence with uniform local total-variation control.
-4. Prove that both ordered FSC-005 channels have the required root,
-   transversality, sign, and complete-ledger leading asymptotic, or provide an
-   admissible counterexample.
-5. Supply compatible outgoing retained-history, source, ownership, and
-   receiver-measure records before posing a restart.
-6. Only after those objects exist, pose existence, uniqueness, or continuous
-   dependence for a projected state-dependent-delay evolution.
+3. Prove or refute parameterization-independent perturbative splitting and weak-* convergence with uniform local total-variation control.
+4. Prove that both ordered FSC-005 channels have the required root, transversality, sign, and complete-ledger leading asymptotic, or provide an admissible counterexample.
+5. Supply compatible outgoing retained-history, source, ownership, and receiver-measure records before posing a restart.
+6. Only after those objects exist, pose existence, uniqueness, or continuous dependence for a projected state-dependent-delay evolution.
 
 None of these obligations is advanced by the review response itself.
 
 ## Response boundary
 
-No Hörmander finding was omitted or rejected. Findings 1–5, 7, and 8 were
-accepted and implemented. Finding 6 was accepted as a queued
-formulation/theorem target. No reviewer was contacted during this response,
-no Tao review was started, and nothing was published.
+No Hörmander finding was omitted or rejected. Findings 1–5, 7, and 8 were accepted and implemented. Finding 6 was accepted as a queued formulation/theorem target. No reviewer was contacted during this response, no Tao review was started, and nothing was published.
 
-The response does not adopt a ceiling or contact law, select general contact
-semantics, claim a regulator-independent limit or finite-part value, choose a
-continuation, or assert conservation, stability, physical realization, MEC
-advancement, or closure-score movement.
+The response does not adopt a ceiling or contact law, select general contact semantics, claim a regulator-independent limit or finite-part value, choose a continuation, or assert conservation, stability, physical realization, MEC advancement, or closure-score movement.
 
-Closure goal: complete the FSC-006 source-provenanced receiver-measure
-formulation and its weak-limit test before requesting any well-posedness
-review.
+Closure goal: complete the FSC-006 source-provenanced receiver-measure formulation and its weak-limit test before requesting any well-posedness review.

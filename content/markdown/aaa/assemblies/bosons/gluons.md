@@ -1,7 +1,6 @@
 # Gluons and the Strong Force: Geometric Origins
 
-**Scope:** Definition of color charge, gluon structure, and confinement.
-This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../gauge-symmetries.md).
+**Scope:** Definition of color charge, gluon structure, and confinement. This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../gauge-symmetries.md).
 
 The standard gluon is a gauge-boson carrier of the strong interaction. This chapter keeps that role as the observer-level recovery target, but asks for the physical implementation underneath it. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a gluon channel is a color-corridor event in the Noether sea: it routes axis exceptionality, flux-tube strain, recoil, and conserved ledgers between color-exposed quark assemblies.
 
@@ -87,6 +86,8 @@ a_{\mathrm{out}},
 \mathcal Q_{\mathrm{recoil}}
 \right).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a9c75365af7d9e6f)
 Here $a_{\mathrm{in}}$ and $a_{\mathrm{out}}$ name the exceptional-axis sectors before and after the corridor acts, $\Delta A_{\mathrm{ax}}$ records any axial-inventory rerouting, $\mathcal Q_{\mathrm{corr}}$ records the corridor payload, $\mathcal Q_{\mathrm{tube}}$ records the Noether sea flux-tube strain, and $\mathcal Q_{\mathrm{recoil}}$ records the balancing response of the source, target, and surrounding hadron. The allowed-actions rule from [Quarks](../fermions/quarks.md#allowed-gluon-actions) constrains $\Delta A_{\mathrm{ax}}$: it may describe within-flavor captive-potential transfer or axis-sector rerouting, but it must preserve the total six-site axial inventory, electric charge, generation tier, and selected down-family sector rather than licensing a strong flavor change.
 
 For each routed quantity
@@ -97,6 +98,8 @@ $$
 E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{tube}
 \right\},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7abb81e30b22492e)
 the closure burden is
 $$
 \mathcal L_{\mathrm{color}}(\mathsf e;\mathcal Q)
@@ -112,6 +115,8 @@ $$
 \Delta\mathcal Q_{\mathrm{recoil}}
 =0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-150d7aa903eba2aa)
 This is a provenance target, not a new interaction law. It prevents the gluon story from stopping at "color changed" by requiring the same record to bind axis exceptionality, axial inventory, energy, momentum, angular momentum, polarity, path history, and flux-tube strain for one color-reconfiguration event.
 
 ### The 8 Gluon Modes (Recovering the Octet Count, Bookkeeping)
@@ -126,6 +131,8 @@ The octet count comes from the color-basis operator space.
   $$
   \frac{R\bar{R}+G\bar{G}+B\bar{B}}{\sqrt{3}}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-90656043e4dc42e1)
   is totally symmetric. It carries no net color change and is required not to interact as an open color mode.
 - **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
 
@@ -152,10 +159,14 @@ Quarks are confined because an open color corridor stores energy in the surround
   $$
   \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-87debac3510b4cac)
   If $E_{\mathrm{coh}}\sim 1\;\mathrm{GeV}$ and $L_{\mathrm{coh}}\sim 1\;\mathrm{fm}$ — inputs set by the QCD benchmark, not derived here — then
   $$
   \sigma \sim 1\;\mathrm{GeV/fm}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a3a58292fb5f505c)
 - **Result:** the energy grows approximately linearly with separation, $V \propto r$, until it becomes cheaper to create a new quark-antiquark pair than to keep stretching the corridor.
 
 This is the standard flux-tube observable pressure translated into Noether sea language, not an import of perturbative string ontology. The string-tension scale is useful because QCD and lattice calculations already treat the approximately linear static potential as a non-perturbative benchmark. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to extract $\sigma_{\mathrm{eff}}$ from the same medium shear/torsion record that also suppresses free color and produces a finite closed-braid excitation scale.
@@ -175,6 +186,8 @@ $$
 \sim
 \exp[-\sigma_{\mathrm{eff}}(\theta)R\,T]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-51ff1806d86f953c)
 in the confining window. At the assembly level, this says that an open color corridor must accumulate energy proportional to the swept corridor area in the comparison geometry, while a closed singlet branch avoids that open-sector cost. A gluon-corridor story that cannot be read through this gauge-invariant diagnostic has not yet recovered QCD confinement.
 
 ### The Color Singlet (White)
@@ -189,6 +202,8 @@ A proton candidate such as $(u_R,u_G,d_B)$ has a schematic color-singlet assignm
   $$
   3\otimes 3\otimes 3 \supset 1
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e5f369e14a755963)
 - **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether sea. The composite is therefore transparent in the color channel at large distances.
 
 ---

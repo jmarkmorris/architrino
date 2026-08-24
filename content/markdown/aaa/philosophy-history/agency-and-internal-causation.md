@@ -39,6 +39,8 @@ c_\Omega^{\mathrm{ext}}(T)
 N_{\mathrm{sea}}|_{\partial\Omega}(T)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e34b946cead405a5)
 where $\mathcal{H}_{\bar\Omega\rightarrow\Omega}^{<T}$ contains source histories outside $\Omega$ that can contribute incoming wakes, $\mathcal{B}_{\partial\Omega}$ is the boundary-wake record, and the last term is the Noether sea boundary condition. The internal state and internal history belong to the preparation variable, not to the fixed context.
 
 ## Biological and Artificial Embodiments
@@ -83,12 +85,16 @@ X_\Omega(T),
 N_{\text{sea}}|_{\Omega}(T)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dc22ebc0bce39ce0)
 The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
 A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. For a time window $W_T$, let $P_{c_\Omega^{\mathrm{ext}},x,W_T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state and its retained internal history are prepared as $x$. A Switch or Decider claim has measurable internal content only if there are admissible internal preparations $x_a$ and $x_b$ such that
 $$
 D\!\left(P_{c_\Omega^{\mathrm{ext}},x_a,W_T},P_{c_\Omega^{\mathrm{ext}},x_b,W_T}\right)\ge\epsilon_I
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-32f84ec61a4818c1)
 where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same external context $c_\Omega^{\mathrm{ext}}(T)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed external context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
 
 ## Will as Threshold Setting

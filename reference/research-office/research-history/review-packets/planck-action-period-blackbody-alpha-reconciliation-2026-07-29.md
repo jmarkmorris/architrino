@@ -1,5 +1,4 @@
-Closure goal:
-Consolidate the Planck-action, retained-orbit, blackbody, and fine-structure review sequence into one current research record, preserve every still-useful finding and falsifier, and route each surviving question to the live owner without promoting a toy orbit, an imported variational structure, or an attempt-level residual.
+Closure goal: Consolidate the Planck-action, retained-orbit, blackbody, and fine-structure review sequence into one current research record, preserve every still-useful finding and falsifier, and route each surviving question to the live owner without promoting a toy orbit, an imported variational structure, or an attempt-level residual.
 
 # Planck Action Period, Blackbody, and Fine-Structure Coupling: Research Findings and Proposed Changes
 

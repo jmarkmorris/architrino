@@ -3,36 +3,17 @@
 ## Status and answer
 
 - Claim grade: `derived exact boundary-measure theorem`.
-- Scope: one eternally and uniformly translating labeled transmitter, one
-  fixed translation direction, $0\leq\beta<1$, and the canonical
-  inverse-square causal-surface kernel in normalized units $c_f=1$.
-- Topology: local total variation of vector-valued spatial Radon measures;
-  therefore also weak convergence against every smooth compactly supported
-  test function.
-- Result: as $\beta\uparrow1$, the complete source-provenanced spatial receiver
-  measure has a locally finite limit independent of the chosen sequence of
-  speeds. The limit is exactly the known ordinary measure on the strict
-  trailing half-space. Its singular residual is the zero measure. Because the
-  source history is eternal, the measure has infinite total variation over all
-  of $\mathbb R^3$; the finite statement is on compact receiver regions and
-  against compactly supported tests.
+- Scope: one eternally and uniformly translating labeled transmitter, one fixed translation direction, $0\leq\beta<1$, and the canonical inverse-square causal-surface kernel in normalized units $c_f=1$.
+- Topology: local total variation of vector-valued spatial Radon measures; therefore also weak convergence against every smooth compactly supported test function.
+- Result: as $\beta\uparrow1$, the complete source-provenanced spatial receiver measure has a locally finite limit independent of the chosen sequence of speeds. The limit is exactly the known ordinary measure on the strict trailing half-space. Its singular residual is the zero measure. Because the source history is eternal, the measure has infinite total variation over all of $\mathbb R^3$; the finite statement is on compact receiver regions and against compactly supported tests.
 
-Plainly: for this declared straight-path family, the leading root pile-up does
-not leave a hidden point or plane measure. The complete boundary measure is the
-ordinary trailing measure, although the pointwise ordinary formula remains
-undefined at the source itself.
+Plainly: for this declared straight-path family, the leading root pile-up does not leave a hidden point or plane measure. The complete boundary measure is the ordinary trailing measure, although the pointwise ordinary formula remains undefined at the source itself.
 
 ## 1. Type of the measure
 
-The core mathematics packet defines an ordinary receiver measure in source
-time at one fixed receiver event. This theorem forms the corresponding
-**spatial family of receiver measures at one fixed absolute time** and keeps
-the transmitter label and emission age in its carrier before taking the
-spatial marginal. It does not replace or retype the fixed-receiver object.
+The core mathematics packet defines an ordinary receiver measure in source time at one fixed receiver event. This theorem forms the corresponding **spatial family of receiver measures at one fixed absolute time** and keeps the transmitter label and emission age in its carrier before taking the spatial marginal. It does not replace or retype the fixed-receiver object.
 
-Fix a reception time $T$, put the transmitter's current position at the
-origin, and let $\mathbf e$ be its unit translation direction. For
-$0\leq\beta<1$, prescribe the all-past path
+Fix a reception time $T$, put the transmitter's current position at the origin, and let $\mathbf e$ be its unit translation direction. For $0\leq\beta<1$, prescribe the all-past path
 
 $$
 \mathbf X_\beta(T-\tau)=-\beta\tau\mathbf e,
@@ -46,8 +27,7 @@ $$
 \Gamma_{ij}=\kappa\,\sigma_{ji}|q_jq_i|.
 $$
 
-For emission age $\tau$ and propagation direction
-$\boldsymbol\omega\in\mathbb S^2$, define the arrival map
+For emission age $\tau$ and propagation direction $\boldsymbol\omega\in\mathbb S^2$, define the arrival map
 
 $$
 \Phi_\beta(\tau,\boldsymbol\omega)
@@ -70,9 +50,7 @@ $$
 \,d\Omega\,d\tau.
 $$
 
-Its spatial marginal is the vector-valued Radon measure
-$\boldsymbol{\mathsf M}_{ij}^{\beta}$ defined, for
-$\varphi\in C_c^\infty(\mathbb R^3)$, by
+Its spatial marginal is the vector-valued Radon measure $\boldsymbol{\mathsf M}_{ij}^{\beta}$ defined, for $\varphi\in C_c^\infty(\mathbb R^3)$, by
 
 $$
 \boxed{
@@ -88,13 +66,9 @@ $$
 }.
 $$
 
-Both objects contain only positive-delay receiver contributions. The nonzero
-point-emission measure $\mathsf E_{j,T}$ at $\tau=0$ remains a separately typed
-source object and is not added to receiver acceleration by this construction.
+Both objects contain only positive-delay receiver contributions. The nonzero point-emission measure $\mathsf E_{j,T}$ at $\tau=0$ remains a separately typed source object and is not added to receiver acceleration by this construction.
 
-The measure $d\Omega$ is not a new emission law. It is the ordinary spherical
-area element that appears when the canonical spatial delta integral is put in
-polar coordinates around each emission site. Indeed,
+The measure $d\Omega$ is not a new emission law. It is the ordinary spherical area element that appears when the canonical spatial delta integral is put in polar coordinates around each emission site. Indeed,
 
 $$
 \begin{aligned}
@@ -118,15 +92,9 @@ r_\beta=\|\mathbf r_\beta\|,
 \end{aligned}
 $$
 
-The radial factor $r^2$ in $d^3\mathbf y=r^2dr\,d\Omega$ cancels the
-canonical inverse-square factor, and the radial delta sets $r=\tau$. This
-gives the boxed pushforward formula exactly.
+The radial factor $r^2$ in $d^3\mathbf y=r^2dr\,d\Omega$ cancels the canonical inverse-square factor, and the radial delta sets $r=\tau$. This gives the boxed pushforward formula exactly.
 
-Plainly: every emission time and every point on its spherical wakefront is
-included once after emission. Source time is retained in the lifted record,
-while the spatial marginal answers what complete receiver measure is present
-around the moving source at time $T$. The current source delta is preserved in
-its own ledger and is not silently retyped as a receiver row.
+Plainly: every emission time and every point on its spherical wakefront is included once after emission. Source time is retained in the lifted record, while the spatial marginal answers what complete receiver measure is present around the moving source at time $T$. The current source delta is preserved in its own ledger and is not silently retyped as a receiver row.
 
 ## 2. Equivalence with the ordinary ledger for $\beta<1$
 
@@ -148,8 +116,7 @@ $$
 \sqrt{u^2+(1-\beta^2)\|\mathbf z\|^2}.
 $$
 
-For $\mathbf y\ne\mathbf0$ and $0\leq\beta<1$, the causal equation has the
-unique positive emission age
+For $\mathbf y\ne\mathbf0$ and $0\leq\beta<1$, the causal equation has the unique positive emission age
 
 $$
 \tau_\beta
@@ -181,8 +148,7 @@ $$
 \tau^2(1-\beta\boldsymbol\omega\cdot\mathbf e).
 $$
 
-It is therefore one-to-one away from the source and gives the ordinary-ledger
-density
+It is therefore one-to-one away from the source and gives the ordinary-ledger density
 
 $$
 \boxed{
@@ -200,11 +166,9 @@ d\boldsymbol{\mathsf M}_{ij}^{\beta}(\mathbf y)
 }.
 $$
 
-Thus the pre-collapse source-provenanced measure and the canonical isolated-
-root row agree exactly at every ordinary point for $\beta<1$.
+Thus the pre-collapse source-provenanced measure and the canonical isolated- root row agree exactly at every ordinary point for $\beta<1$.
 
-Plainly: this is not a regulator that changes individual wakes. It is the same
-canonical row written before and after the ordinary coarea collapse.
+Plainly: this is not a regulator that changes individual wakes. It is the same canonical row written before and after the ordinary coarea collapse.
 
 ## 3. Exact-speed candidate
 
@@ -241,29 +205,19 @@ d\boldsymbol{\mathsf M}_{ij}^{\mathrm{trail}}(\mathbf y)
 }.
 $$
 
-The strict leading half-space and the off-source transverse plane $u=0$ have
-no positive causal root. The only remaining boundary fibre is
+The strict leading half-space and the off-source transverse plane $u=0$ have no positive causal root. The only remaining boundary fibre is
 
 $$
 (0,\infty)\times\{\mathbf e\},
 $$
 
-which maps entirely to the current source point $\mathbf y=\mathbf0$. It has
-zero $d\tau\,d\Omega$ measure because the single direction
-$\{\mathbf e\}$ has zero spherical area. Hence the exact pushforward creates
-no source-point atom.
+which maps entirely to the current source point $\mathbf y=\mathbf0$. It has zero $d\tau\,d\Omega$ measure because the single direction $\{\mathbf e\}$ has zero spherical area. Hence the exact pushforward creates no source-point atom.
 
-Plainly: infinitely many emission ages share the source point, but they occupy
-only one propagation direction. Root multiplicity alone is not receiver
-measure; the complete carrier assigns that fibre zero measure.
+Plainly: infinitely many emission ages share the source point, but they occupy only one propagation direction. Root multiplicity alone is not receiver measure; the complete carrier assigns that fibre zero measure.
 
 ## 4. Local total-variation limit
 
-First keep source provenance. For every
-$\Psi\in C_c^\infty((-\infty,T)\times\mathbb R^3)$, compact support in the
-source-time coordinate confines $\tau$ to a bounded interval. The arrival maps
-$\Phi_\beta$ converge uniformly to $\Phi_1$ on that interval crossed with
-$\mathbb S^2$, so dominated convergence gives
+First keep source provenance. For every $\Psi\in C_c^\infty((-\infty,T)\times\mathbb R^3)$, compact support in the source-time coordinate confines $\tau$ to a bounded interval. The arrival maps $\Phi_\beta$ converge uniformly to $\Phi_1$ on that interval crossed with $\mathbb S^2$, so dominated convergence gives
 
 $$
 \widetilde{\boldsymbol{\mathsf M}}_{ij}^{\beta}
@@ -271,18 +225,11 @@ $$
 \widetilde{\boldsymbol{\mathsf M}}_{ij}^{1}
 $$
 
-against every such smooth test. The limiting lifted measure is the direct
-$\beta=1$ pushforward. Its nonordinary fibre has zero carrier measure, so the
-lifted limit has no additional source-point component.
+against every such smooth test. The limiting lifted measure is the direct $\beta=1$ pushforward. Its nonordinary fibre has zero carrier measure, so the lifted limit has no additional source-point component.
 
-Plainly: keeping emission time in the record does not create a hidden event
-measure. Every bounded source-time window converges directly, including its
-source label and propagation direction.
+Plainly: keeping emission time in the record does not create a hidden event measure. Every bounded source-time window converges directly, including its source label and propagation direction.
 
-The spatial marginal requires an additional all-past estimate because a
-compact receiver region can be reached from arbitrarily old emissions when
-$\beta$ is close to one. Remove the bounded direction vector and the channel
-coefficient to define the nonnegative scalar envelope
+The spatial marginal requires an additional all-past estimate because a compact receiver region can be reached from arbitrarily old emissions when $\beta$ is close to one. Remove the bounded direction vector and the channel coefficient to define the nonnegative scalar envelope
 
 $$
 d\mathsf N_\beta(\mathbf y)
@@ -334,9 +281,7 @@ I_1(\mathbf y)
 \frac{2}{\rho^2}\mathbf1_{\{u<0\}}.
 $$
 
-The transverse plane $u=0$ is the only off-source set where pointwise
-convergence to the exact ordinary chart need not hold, and that plane has
-three-dimensional Lebesgue measure zero. Moreover,
+The transverse plane $u=0$ is the only off-source set where pointwise convergence to the exact ordinary chart need not hold, and that plane has three-dimensional Lebesgue measure zero. Moreover,
 
 $$
 \int_{B_R} I_\beta\,d^3\mathbf y
@@ -352,9 +297,7 @@ $$
 \|I_\beta-I_1\|_{L^1(B_R)}\longrightarrow0.
 $$
 
-Since $\|\boldsymbol\omega_\beta\|=1$ and
-$\boldsymbol\omega_\beta\to\boldsymbol\omega_1$ almost everywhere on
-$u<0$, the estimate
+Since $\|\boldsymbol\omega_\beta\|=1$ and $\boldsymbol\omega_\beta\to\boldsymbol\omega_1$ almost everywhere on $u<0$, the estimate
 
 $$
 \begin{aligned}
@@ -387,9 +330,7 @@ $$
 \longrightarrow0.
 $$
 
-Because every compact subset of $\mathbb R^3$ lies in some $B_R$, the
-convergence holds in local total variation. In particular, for every
-$\varphi\in C_c^\infty(\mathbb R^3)$,
+Because every compact subset of $\mathbb R^3$ lies in some $B_R$, the convergence holds in local total variation. In particular, for every $\varphi\in C_c^\infty(\mathbb R^3)$,
 
 $$
 \lim_{\beta\uparrow1}
@@ -402,13 +343,9 @@ $$
 \right\rangle.
 $$
 
-This proof holds for every sequence $\beta_n\uparrow1$ and therefore makes the
-limit approximation-independent within the declared family of uniform
-straight translations with the fixed all-past source measure.
+This proof holds for every sequence $\beta_n\uparrow1$ and therefore makes the limit approximation-independent within the declared family of uniform straight translations with the fixed all-past source measure.
 
-Plainly: the thin forward region does not hide mass. Its shrinking angular
-width exactly offsets its long lookback time, while the total local mass stays
-$4\pi R$ and moves into the ordinary trailing density.
+Plainly: the thin forward region does not hide mass. Its shrinking angular width exactly offsets its long lookback time, while the total local mass stays $4\pi R$ and moves into the ordinary trailing density.
 
 ## 5. Decomposition and closure verdict
 
@@ -431,20 +368,11 @@ $$
 }.
 $$
 
-Therefore the direct exact-speed trailing geometry is the complete boundary
-object for this canonical three-dimensional spatial receiver measure. There
-is no additional plane-supported, line-supported, or source-point Radon
-measure.
+Therefore the direct exact-speed trailing geometry is the complete boundary object for this canonical three-dimensional spatial receiver measure. There is no additional plane-supported, line-supported, or source-point Radon measure.
 
-This result is dimension-sensitive. The density $2/\rho^2$ is locally
-integrable in three dimensions, but its restriction as an area density on a
-two-dimensional display plane is not locally integrable at the source. The
-Topo plane is a diagnostic slice of the three-dimensional density, not the
-measure used in this theorem.
+This result is dimension-sensitive. The density $2/\rho^2$ is locally integrable in three dimensions, but its restriction as an area density on a two-dimensional display plane is not locally integrable at the source. The Topo plane is a diagnostic slice of the three-dimensional density, not the measure used in this theorem.
 
-Plainly: the result closes the straight, eternal, uniform-speed boundary test.
-It does not turn the source point into an ordinary receiver sample, and it does
-not supply any missing contact-event or continuation rule.
+Plainly: the result closes the straight, eternal, uniform-speed boundary test. It does not turn the source point into an ordinary receiver sample, and it does not supply any missing contact-event or continuation rule.
 
 ## 6. Claim boundary and falsifiers
 
@@ -453,32 +381,19 @@ This theorem does not:
 - adopt a path-speed ceiling or apply the proposed constrained response;
 - assign self-action or partner action at the current source point;
 - define a pointwise value on the degenerate source fibre;
-- resolve the mirror-coincidence receiver-time measure, an outgoing history,
-  or any nonordinary contact;
+- resolve the mirror-coincidence receiver-time measure, an outgoing history, or any nonordinary contact;
 - prove the same limit for accelerated or otherwise nonuniform paths;
-- cover a $\beta$-dependent retained-history cutoff, source weight, angular
-  weight, or altered wake kernel; or
-- import the plane-supported Maxwell limit from the Azzurli--Lechner
-  comparison.
+- cover a $\beta$-dependent retained-history cutoff, source weight, angular weight, or altered wake kernel; or
+- import the plane-supported Maxwell limit from the Azzurli--Lechner comparison.
 
 The result is falsified within its declared scope by any of the following:
 
-1. a failure of the pushforward measure to reproduce the canonical simple-root
-   density for some $\beta<1$;
-2. a source-centered ball for which the complete scalar-envelope mass differs
-   from $4\pi R$;
-3. a smooth compactly supported test function and two sequences
-   $\beta_n\uparrow1$ giving different limits;
-4. a nonzero weak residual after subtraction of the displayed trailing
-   measure; or
-5. a proof that the canonical inverse-square spatial delta integral carries an
-   additional source or angular measure not present in the Master Equation.
+1. a failure of the pushforward measure to reproduce the canonical simple-root density for some $\beta<1$;
+2. a source-centered ball for which the complete scalar-envelope mass differs from $4\pi R$;
+3. a smooth compactly supported test function and two sequences $\beta_n\uparrow1$ giving different limits;
+4. a nonzero weak residual after subtraction of the displayed trailing measure; or
+5. a proof that the canonical inverse-square spatial delta integral carries an additional source or angular measure not present in the Master Equation.
 
-Plainly: changing the history class or the source measure would be a different
-theorem. No such change is needed, or licensed, for the exact uniform-path
-result proved here.
+Plainly: changing the history class or the source measure would be a different theorem. No such change is needed, or licensed, for the exact uniform-path result proved here.
 
-Closure goal: treat the exact-speed trailing measure as the complete weak-limit
-boundary object for the declared uniform-translation spatial test, while
-keeping point receiver events and nonuniform/contact limits as separate open
-problems.
+Closure goal: treat the exact-speed trailing measure as the complete weak-limit boundary object for the declared uniform-translation spatial test, while keeping point receiver events and nonuniform/contact limits as separate open problems.

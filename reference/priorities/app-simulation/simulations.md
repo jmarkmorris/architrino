@@ -151,8 +151,7 @@ The minimal first executable artifact is `field_speed_action_self_hit_scan/v0`: 
 
 ### V0 Source-Row Binding
 
-The first v0 row must bind to an action-increment source before any scan output
-is interpreted. The binding object is
+The first v0 row must bind to an action-increment source before any scan output is interpreted. The binding object is
 
 $$
 \mathcal{B}_{c_f}^{v0}
@@ -167,13 +166,7 @@ $$
 \right).
 $$
 
-The `endpoint_eligibility` value is inherited from the nested shell braid
-action-increment protocol. Because that protocol sets
-$\mathcal{T}_{\mathrm{acc}}=\varnothing$ until both endpoint packets have
-matching ledger identity, matching active-root convention, positive Jacobian
-floors, finite transmitter-side acceleration-contribution intervals, inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation
-pullback, and refinement records, the field-speed scan has only two legal
-pre-acceptance modes:
+The `endpoint_eligibility` value is inherited from the nested shell braid action-increment protocol. Because that protocol sets $\mathcal{T}_{\mathrm{acc}}=\varnothing$ until both endpoint packets have matching ledger identity, matching active-root convention, positive Jacobian floors, finite transmitter-side acceleration-contribution intervals, inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback, and refinement records, the field-speed scan has only two legal pre-acceptance modes:
 
 | Source verdict | Meaning | Allowed v0 interpretation |
 | --- | --- | --- |
@@ -181,24 +174,9 @@ pre-acceptance modes:
 | `diagnostic_rejected_endpoint_source` | The named `branch_row_id` is present in the action-increment packet but rejected by endpoint eligibility or conservation pullback. | May emit only `diagnostic-only` or a Not advanced disposition. |
 | `source_row_binding_open` | No named action-increment row and matching hashes exist. | The scan artifact is incomplete and cannot vote on action spacing, self-hit well-posedness, or `candidate_h_recovery`. |
 
-This binding rule is not an additional promotion gate. It is the row-identity
-bridge between `action_increment_rows.csv` and `field_speed_approach_scan.csv`.
-If a run only has a visual branch, an unversioned notebook row, or a row whose
-root ledger and conservation pullback hashes differ, the correct v0 result is
-`source_row_binding_open` before any near-$c_f$ behavior is interpreted.
+This binding rule is not an additional promotion gate. It is the row-identity bridge between `action_increment_rows.csv` and `field_speed_approach_scan.csv`. If a run only has a visual branch, an unversioned notebook row, or a row whose root ledger and conservation pullback hashes differ, the correct v0 result is `source_row_binding_open` before any near-$c_f$ behavior is interpreted.
 
-Current fixture boundary, 2026-06-28. The repository contains the shape-only
-fixture packet under
-`scripts/nested-shell-braid/fixtures/action-increment-packet/`. Its
-`action_increment_rows.csv` includes two fixture rows with `status=accepted`,
-but `cluster_summary.json` declares `promotion_status:
-fixture-shape-only`. Therefore those rows may validate parser shape and
-failure-code plumbing only. They do not satisfy `accepted_transition_source`,
-do not bind to a retained branch certificate, and do not authorize
-`field_speed_action_self_hit_scan/v0` to vote on `candidate_h_recovery`.
-Current live v0 status remains `source_row_binding_open` until a non-fixture
-action-increment packet emits matching root-ledger and conservation-pullback
-hashes.
+Current fixture boundary, 2026-06-28. The repository contains the shape-only fixture packet under `scripts/nested-shell-braid/fixtures/action-increment-packet/`. Its `action_increment_rows.csv` includes two fixture rows with `status=accepted`, but `cluster_summary.json` declares `promotion_status: fixture-shape-only`. Therefore those rows may validate parser shape and failure-code plumbing only. They do not satisfy `accepted_transition_source`, do not bind to a retained branch certificate, and do not authorize `field_speed_action_self_hit_scan/v0` to vote on `candidate_h_recovery`. Current live v0 status remains `source_row_binding_open` until a non-fixture action-increment packet emits matching root-ledger and conservation-pullback hashes.
 
 Minimum non-fixture `accepted_transition_source` object:
 
@@ -212,11 +190,7 @@ Minimum non-fixture `accepted_transition_source` object:
 | `negative_control_ref` | Control required for advancement showing mismatched root or conservation hashes reject. | absent |
 | `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
 
-Current source-binding report object: `field_speed_action_self_hit_scan_source_binding_report/v0`.
-It now embeds the priority-only acceptance artifact
-`field_speed_action_self_hit_scan_source_acceptance_contract/v0`, which orders
-the same-record source requirements and reports the first blocking field before
-any scan output is interpreted.
+Current source-binding report object: `field_speed_action_self_hit_scan_source_binding_report/v0`. It now embeds the priority-only acceptance artifact `field_speed_action_self_hit_scan_source_acceptance_contract/v0`, which orders the same-record source requirements and reports the first blocking field before any scan output is interpreted.
 
 | Field | Current reading | Verdict |
 | --- | --- | --- |
@@ -230,28 +204,9 @@ any scan output is interpreted.
 | `negative_control_ref` | absent | hash-mismatch control required before advancement still required |
 | `candidate_h_recovery_vote` | not authorized | no simulation vote |
 
-Executable report status, 2026-06-28:
-`scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-report.mjs`
-emits and validates the source-binding report object. Running it on the fixture
-packet with `--branch-row-id fixture-B12-B13-a` produces
-`source_verdict=diagnostic_rejected_endpoint_source`,
-`first_failure=source_row_binding_open`,
-`first_required_source_field=transition_source_ref`,
-`first_missing_or_rejected_failure_code=fixture_shape_only_packet_not_source`,
-`source_acceptance_contract.status=blocked`, and
-`candidate_h_recovery_vote=not_authorized`.
+Executable report status, 2026-06-28: `scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-report.mjs` emits and validates the source-binding report object. Running it on the fixture packet with `--branch-row-id fixture-B12-B13-a` produces `source_verdict=diagnostic_rejected_endpoint_source`, `first_failure=source_row_binding_open`, `first_required_source_field=transition_source_ref`, `first_missing_or_rejected_failure_code=fixture_shape_only_packet_not_source`, `source_acceptance_contract.status=blocked`, and `candidate_h_recovery_vote=not_authorized`.
 
-The fixture packet, blocked source-contract fixture, and rank-2 transition-source
-attempt at
-`scripts/nested-shell-braid/fixtures/action-increment-source-contract-rank2-transition-source-attempt.json`
-can test parser, failure-code, and source-binding behavior, but they do not
-satisfy `accepted_transition_source`. The rank-2 attempt intentionally provides
-a populated transition shell with no accepted branch-state source; the checker
-therefore fails at the accepted-source boundary while keeping the benchmark
-policy clean. The first executable closure move is a non-fixture action-increment
-row with a retained branch certificate, matching active-root and
-conservation-pullback hashes, and a failing negative control for mismatched
-hashes.
+The fixture packet, blocked source-contract fixture, and rank-2 transition-source attempt at `scripts/nested-shell-braid/fixtures/action-increment-source-contract-rank2-transition-source-attempt.json` can test parser, failure-code, and source-binding behavior, but they do not satisfy `accepted_transition_source`. The rank-2 attempt intentionally provides a populated transition shell with no accepted branch-state source; the checker therefore fails at the accepted-source boundary while keeping the benchmark policy clean. The first executable closure move is a non-fixture action-increment row with a retained branch certificate, matching active-root and conservation-pullback hashes, and a failing negative control for mismatched hashes.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 
@@ -821,8 +776,7 @@ $$
 \mathsf{promotion\_status}
 \big).
 $$
-where $\mathcal{T}_{\eta}$ is present whenever the run crosses a fold-layer, separator, or active-root status window. Proof packets may consume a transition-sensitive run only if the simulation handoff carries the same transition record required by the run protocol.
-It must state whether every expected active root was matched under $\Delta t$, $\Delta h$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value. A proof-program packet may cite a Tier 1 run only through this handoff; a plot, best-fit branch, or un-hashed table is not simulation support for a theorem target.
+where $\mathcal{T}_{\eta}$ is present whenever the run crosses a fold-layer, separator, or active-root status window. Proof packets may consume a transition-sensitive run only if the simulation handoff carries the same transition record required by the run protocol. It must state whether every expected active root was matched under $\Delta t$, $\Delta h$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value. A proof-program packet may cite a Tier 1 run only through this handoff; a plot, best-fit branch, or un-hashed table is not simulation support for a theorem target.
 
 ## Numerical Promotion Lemma
 

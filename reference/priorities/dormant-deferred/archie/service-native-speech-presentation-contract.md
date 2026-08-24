@@ -247,8 +247,7 @@ The future implementation should include speech/presentation fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Service-Native Speech And Presentation Contract into speech-sync schemas, provider-agnostic speech service boundaries, presentation artifact schemas, accessibility checks, voice-identity guardrails, and token/privacy checks that render plainly to users.
+Closure goal: Turn the Service-Native Speech And Presentation Contract into speech-sync schemas, provider-agnostic speech service boundaries, presentation artifact schemas, accessibility checks, voice-identity guardrails, and token/privacy checks that render plainly to users.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

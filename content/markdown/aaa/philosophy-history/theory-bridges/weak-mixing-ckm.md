@@ -27,10 +27,14 @@ Quark flavor change in charged-current weak interactions is governed by one unit
 $$
 V_{\mathrm{CKM}}=U_{uL}^\dagger U_{dL}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b8be66f867c0c43)
 It enters the Lagrangian as
 $$
 \mathcal{L}_{CC}=\frac{g}{\sqrt{2}}\;\bar u_i\gamma^\mu(1-\gamma^5)V_{ij}d_j\,W^+_\mu+\text{h.c.}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7a10c055cd7875b)
 This is the statement that weak-interaction eigenstates are not aligned with mass eigenstates.
 
 Interpretation of the angles and phase (with the hierarchical view used in this document):
@@ -45,10 +49,14 @@ The Standard Model source of this matrix is the simultaneous diagonalization pro
 $$
 y_u\mapsto D_u,\qquad y_d\mapsto D_d
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b33805adf4132204)
 but the left-handed rotations need not agree:
 $$
 V_{\mathrm{CKM}}=U_{uL}^{\dagger}U_{dL}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b3e33e4cd1ba5a4e)
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation must therefore recover one mass-basis operator and one weak-basis operator whose mismatch produces this unitary matrix. If the assembly model fits CKM entries without first defining those two bases from the same shielding and weak-coupling-triad record, it has only reproduced a table of numbers.
 
 ### How to read CKM rows (first-year guide)
@@ -56,14 +64,19 @@ Mass eigenstates are the definite-mass quark states $(u,c,t)$ and $(d,s,b)$. A c
 $$
 \lvert d^{(w)}_u\rangle=V_{ud}\lvert d\rangle+V_{us}\lvert s\rangle+V_{ub}\lvert b\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad80150ad80f4e50)
 $$
 \lvert d^{(w)}_c\rangle=V_{cd}\lvert d\rangle+V_{cs}\lvert s\rangle+V_{cb}\lvert b\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1f85f1480ff6459f)
 $$
 \lvert d^{(w)}_t\rangle=V_{td}\lvert d\rangle+V_{ts}\lvert s\rangle+V_{tb}\lvert b\rangle
 $$
-The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
-Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-35e15681477181d8)
+The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing. Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at support vectors $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch. The component order follows the persistent binary indices and does not encode a radius order.
 
@@ -86,15 +99,13 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../assemblies/particle-masses.md).
 
-Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
-Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
+Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation. Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
 
 Noether sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
 
-Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch.
-Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
+Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch. Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
 This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
 
@@ -120,6 +131,8 @@ $$
 \text{weak-reaction provenance}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-61410d70c0cdf98d)
+
 This is stronger than a loose analogy among chapters, but it is still a derivation target. The accepted synthesis is that weak `V-A` selection, flavor mixing, and weak-corridor bookkeeping are three readouts of the same exposure problem. To close the route, the corpus needs one operator-level model that does four jobs without changing definitions between them:
 
 - identify which polar sites are exposed to a charged corridor for a moving assembly,
@@ -131,6 +144,8 @@ The minimal mathematical object is therefore not only a mixing matrix. It is a c
 $$
 \bigl(R_{\mathrm{rel}},\alpha,c;\ \Sigma_{\mathrm{WCT}};\ \mathcal{W}_{\pm};\ \mathcal{P}_{ij}\bigr)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-890da6007ef7d954)
 where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed Noether braid frame, $(\alpha,c)$ record the branch and color-sector data, $\Sigma_{\mathrm{WCT}}$ is the weak-coupling-triad domain, $\mathcal{W}_{\pm}$ is the charged-corridor action on that domain, and $\mathcal{P}_{ij}$ is the admissible provenance-path set used in the overlap sum. The first proof step is to define these objects for one controlled channel, such as $d\to u$ in free-neutron beta reaction, before trying to claim the full CKM or PMNS hierarchy.
 
 ## First beta exposure operator: $d\to u$
@@ -143,6 +158,8 @@ Let the six polar sites of the active quark be
 $$
 S=\{H_+,H_-,M_+,M_-,L_+,L_-\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3641b9806abb98dd)
 with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether braid frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether sea.
 
 The finite-state exposure score for handedness $h\in\{L,R\}$ is
@@ -151,11 +168,15 @@ $$
 =E_{\mathrm{front}}\!\left(\hat{\mathbf n}_a(R_{\mathrm{rel}})\cdot\hat{\mathbf v}\right)
 E_{\mathrm{phase}}^{(h)}(a)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c10bd549d505fa67)
 where $E_{\mathrm{front}}=1$ on the leading side and $0$ in the wake in this first model, while $E_{\mathrm{phase}}^{(h)}$ records whether the corridor spiral can lock to the local path-history phase. The exposed weak-coupling-triad domain is then
 $$
 \Sigma_{\mathrm{WCT}}^{(h)}
 =\{a\in S\mid \eta_a^{(h)}=1\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3f1bb375d69f696d)
 
 This gate is the weak-sector term of the spinor-to-metric compatibility residual in [Angular Momentum and Spin](angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). If $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ is the exposure class predicted by the ordered-frame spinor/helicity ledger on record window $W$, the local mismatch can be written
 $$
@@ -173,6 +194,8 @@ d_{\Sigma}\!\left(
 +
 \sum_{a\in S}\left(\eta_a^{(R)}\right)^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-72395bfa90671f75)
 The last term records right-handed charged-current leakage in the hard-gate model, or its declared smooth replacement if later simulations soften the exposure function. The weak sector may consume the spinor ledger only when this residual stays below tolerance using the same $\theta$ that also supplies the CKM overlap and beta-reaction provenance record.
 
 Equivalently, the handed exposure class must be the weak consumer projection $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)=\Pi_{\mathrm{weak}}\mathcal L_\star(\theta;W,r_\star)$ of the same retained spinor-label pullback record. It is not a separately selected handedness label that can be tuned after the CKM and beta-reaction rows have been chosen.
@@ -190,12 +213,16 @@ $$
 \varepsilon_{\mathbf J}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2abd51cb0569849e)
+
 If these rows are missing, the weak exposure model remains a validation target for handedness, not an independent derivation of left/right selection.
 
 The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3\epsilon_-$. The right-handed channel is blocked at this finite-state level:
 $$
 \mathcal{W}_{-}^{du}\lvert d_R;c,\alpha\rangle=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a7cfe3867b7abaf)
 with later simulations allowed to replace this hard zero by a bounded suppression factor if the wake geometry requires a smooth exposure model.
 
 For the active left-handed branch, write the down-like and up-like states as
@@ -203,10 +230,14 @@ $$
 \lvert d_L;c,\alpha\rangle
 =\lvert C_{(1,1,1)};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_-;\ c,\alpha\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aef2661c665e6d0e)
 $$
 \lvert u_L;c,\alpha\rangle
 =\lvert C_{(1,1,1)};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_+;\ c,\alpha\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1a617773e8655676)
 Here $C_{(1,1,1)}$ is the candidate generation-I Noether-braid record with all three persistent support indices occupied, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program. The support vector does not identify a taxonomy member.
 
 The first beta exposure operator is
@@ -217,11 +248,15 @@ $$
 \otimes
 \lvert W^-;\Delta A_W=3(\epsilon_- - \epsilon_+)\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1745200abd863634)
 Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the candidate Generation-I support vector $(1,1,1)$. The $W^-$ state records the opposite transaction to the quark-side $3\epsilon_-\to3\epsilon_+$ change:
 $$
 \Delta Q_q=3(\epsilon_+-\epsilon_-)=6\epsilon=e,\qquad
 \Delta Q_{W^-}=3(\epsilon_- - \epsilon_+)=-6\epsilon=-e
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eeab2194da42da6f)
 
 In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino braid material must still be identified from local Noether sea or incoming-assembly provenance in the reaction ledger.
 
@@ -251,14 +286,15 @@ A\lambda^3(1-\rho - i\eta) & -A\lambda^2 & 1
 \lambda\approx0.225,\ A\approx0.83,\ \rho\approx0.14,\ \eta\approx0.35
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-839679e79f1c8fbc)
+
 ### Charged $W$ corridor (architrino budget, descriptive)
 
 Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether braids ($3\epsilon_+ + 3\epsilon_-$ each)** plus a **six-charge excess** that carries net charge $\pm e$:
 - $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the declared exposed sites of the two cores.
 - $W^-$ payload: $3\epsilon_+ + 9\epsilon_-$ (net $-6(e/6)=-e$).
 
-The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
-Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
+The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget. Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
 
 ### CKM Benchmark (Rounded Magnitudes)
 
@@ -271,6 +307,8 @@ c & 0.225 & 0.973 & 0.041\\
 t & 0.0087 & 0.040 & 0.999
 \end{array}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6de36216d03e5897)
 The values are rounded for readability and serve as a compact benchmark for the shielding-tier mapping. Uncertainty handling and global-fit ranges belong in the validation data layer rather than in this reader-facing comparison table.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ indexed shielding-support view
@@ -286,6 +324,8 @@ V_{ij} & \text{d }(1,1,1) & \text{s }(1,1,0) & \text{b }(1,0,0)\\
 \text{t }(1,0,0) & \text{tiny} & \text{medium-low} & \text{high}
 \end{array}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e2ea8ae41177c961)
 
 Legend: $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$ are candidate occupancy vectors on persistent support indices $1,2,3$. They do not encode inner/middle/outer radius roles. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
 
@@ -311,10 +351,14 @@ $$
 \left|J^{Z,\theta}_{ij}\right|^2
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-61c1fc60661a2dd6)
 and the Standard Model recovery target is
 $$
 \mathcal{R}_{\mathrm{FCNC}}^{\mathrm{tree}}(\theta)=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07fa5f8de8678db0)
 
 Loop-level flavor-changing neutral currents are not zero; they are suppressed by unitarity and mass splittings. For a benchmark such as $b\to s\gamma$, the branch must reproduce the GIM cancellation structure
 $$
@@ -323,10 +367,14 @@ $$
 \sum_{i=u,c,t}
 V_{ib}(\theta)V_{is}^{*}(\theta)\,f_i(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0d900c75c6325d3a)
 with exact cancellation when the loop functions are equal:
 $$
 \sum_{i=u,c,t}V_{ib}V_{is}^{*}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4238bf980a5a0ed4)
 The nonzero Standard Model amplitude is then controlled by mass-dependent differences among the $f_i$, not by a tree-level neutral weak corridor. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a provenance gate: neutral corridors may transmit phase and energy, but they must not directly change generation labels unless the event ledger includes the charged-current loop history that carries the CKM factors.
 
 ## CKM geometric-overlap minimal model
@@ -338,18 +386,21 @@ $$
 \lvert d_i^{(w)}\rangle=\sum_{j\in\{d,s,b\}}V_{ij}\lvert d_j^{(m)}\rangle,\qquad
 V_{ij}\equiv\langle d_j^{(m)}\vert d_i^{(w)}\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-165d504b5f1278b7)
 On the weak-coupling-triad domain $\Sigma_{\mathrm{WCT}}$, model this overlap as
 $$
 V_{ij}=\int_{\Sigma_{\mathrm{WCT}}}\psi_{j,m}^{d*}(x)\,\psi_{i,w}^{d}(x)\,d\mu(x)
 $$
-Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea.
-$a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel.
-At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$.
-then use the standard unitary decomposition
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b533fb1f4dbfd8d)
+Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea. $a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel. At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$. then use the standard unitary decomposition
 $$
 V=R_{23}(\theta_{23})\,R_{13}(\theta_{13},\delta)\,R_{12}(\theta_{12}),
 \qquad s_{ij}\equiv\sin\theta_{ij}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4237f713a0df97de)
 
 The comparison value of any larger generation symmetry is therefore a benchmark, not an import. The CKM/generation closure check should require one shared branch record $\theta$ to satisfy
 $$
@@ -365,6 +416,8 @@ d_{\mathrm{rep}}\!\left(
 \right)
 +\mathcal R_{\mathrm{null}}(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e779845e1f2a805d)
 The residual accepts a candidate only when the same shielding-tier record gives unitary mixing, the observed CKM hierarchy and CP invariant, unchanged Standard Model gauge representation across the three charged-fermion tiers, and no added-channel leakage. A comparison framework that reproduces one angle, one phase, or the number three is not yet a $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
 Assumptions introduced in this section ($\mathbb{A}\mathbb{A}\mathbb{A}$ side):
@@ -379,14 +432,16 @@ s_{23}=e^{-\kappa_{23}},\qquad
 s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=\xi\,s_{12}s_{23},
 \quad \xi\equiv e^{-\sigma}\in(0,1]
 $$
-This captures hierarchy with three real parameters for magnitudes.
-Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport.
-Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58898312379d9609)
+This captures hierarchy with three real parameters for magnitudes. Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport. Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
 
 Holonomy closure postulate (no extra phase fit):
 $$
 \cos\delta=\xi=\frac{s_{13}}{s_{12}s_{23}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ccc19aa7c2baec0f)
 Interpretation: the same nonlocal suppression that attenuates direct $1\leftrightarrow3$ overlap fixes the geometric holonomy angle; in provenance terms, $\delta$ is the loop phase accumulated around closed generation-path cycles.
 
 Parameter counting (why three calibration inputs): a unitary $3\times3$ CKM matrix has four physical parameters $(\theta_{12},\theta_{23},\theta_{13},\delta)$. The closure postulate $\cos\delta=s_{13}/(s_{12}s_{23})$ removes one independent degree of freedom, leaving three independent inputs.
@@ -399,13 +454,16 @@ Using PDG central magnitudes as calibration inputs
 $$
 s_{12}=\lvert V_{us}\rvert=0.225,\quad s_{23}=\lvert V_{cb}\rvert=0.041,\quad s_{13}=\lvert V_{ub}\rvert=0.0037
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1f26ada8d78b598)
 gives
 $$
 \kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad \xi=0.401
 $$
 
-> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$.
-> Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,{}^\circ$ (standard CKM phase convention), this is within $1\sigma$.
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-abbd720bd46fe80f)
+
+> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$. Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,{}^\circ$ (standard CKM phase convention), this is within $1\sigma$.
 
 Predictions not used in calibration:
 
@@ -419,24 +477,32 @@ $$
 \end{array}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4c92118f14fe1099)
+
 where $c_{ij}\equiv\sqrt{1-s_{ij}^2}$. The resulting magnitude matrix is numerically close to the PDG central hierarchy, and the phase/Jarlskog emerge from the overlap geometry rather than an independent CP fit parameter.
 
 The basis-invariant CP check is stronger than reading off one phase convention. If $Y_u$ and $Y_d$ are the Hermitian mass-basis operators represented by the branch, define
 $$
 C_{\mathrm{CP}}(\theta)=[Y_u(\theta),Y_d(\theta)]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d4090a6228c26c78)
 The Standard Model comparison requires
 $$
 \det C_{\mathrm{CP}}(\theta)
 \propto
 -2i\,F_u(\theta)F_d(\theta)J(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c6753645420b5fa8)
 with
 $$
 F_u=(y_t-y_c)(y_t-y_u)(y_c-y_u),
 \qquad
 F_d=(y_b-y_s)(y_b-y_d)(y_s-y_d)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f0031504b7007c0)
 Thus CP violation must vanish if any same-type Yukawa eigenvalues coincide, if any mixing angle collapses, or if the holonomy phase is removable by a basis redefinition. This gives the geometry a falsifier: the proposed CKM holonomy must reproduce $J$ as a rephasing-invariant commutator measure, not merely as a fitted angle in one matrix convention.
 
 ### Uncertainty propagation for holonomy closure
@@ -445,20 +511,28 @@ Define
 $$
 x \equiv \cos\delta_{\text{pred}}=\frac{s_{13}}{s_{12}s_{23}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7bcfbc6155d16954)
 For input vector
 $$
 \mathbf{s}=(s_{12},s_{23},s_{13})^\top
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5b3db1c498241e5c)
 with covariance matrix $\Sigma_s$, use first-order propagation
 $$
 \sigma_x^2 = \nabla_{\mathbf{s}}x^\top\,\Sigma_s\,\nabla_{\mathbf{s}}x
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-559dae22e5b2e7df)
 with Jacobian
 $$
 \frac{\partial x}{\partial s_{13}}=\frac{1}{s_{12}s_{23}}=\frac{x}{s_{13}},\qquad
 \frac{\partial x}{\partial s_{12}}=-\frac{s_{13}}{s_{12}^2s_{23}}=-\frac{x}{s_{12}},\qquad
 \frac{\partial x}{\partial s_{23}}=-\frac{s_{13}}{s_{12}s_{23}^2}=-\frac{x}{s_{23}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c3dc77499c2440a)
 
 So
 $$
@@ -473,6 +547,8 @@ x^2\!\left[
 +2\frac{\mathrm{Cov}(s_{12},s_{23})}{s_{12}s_{23}}
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44149cd8a5906d8a)
 If correlations are unavailable, set off-diagonal covariances to zero.
 
 Map to phase uncertainty via
@@ -481,6 +557,8 @@ $$
 \sigma_{\delta,\text{pred}}=\frac{\sigma_x}{\sqrt{1-x^2}}
 \quad(\text{radians})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f82449f05dd53124)
 valid away from $|x|\approx1$. Near boundaries, use Monte Carlo propagation with clipping $x\in[-1,1]$.
 
 ### Confidence-interval closure test
@@ -491,11 +569,15 @@ I_x^{(p)}=
 \big[\max(-1,x-z_p\sigma_x),\ \min(1,x+z_p\sigma_x)\big]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6dd0f6f6b2fd99c6)
+
 If an external phase estimate $\delta_{\text{ext}}\pm\sigma_{\delta,\text{ext}}$ is available, convert it to
 $$
 x_{\text{ext}}=\cos\delta_{\text{ext}},\qquad
 \sigma_{x,\text{ext}}=|\sin\delta_{\text{ext}}|\,\sigma_{\delta,\text{ext}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fea3a85e7073aaac)
 Define residual and pull:
 $$
 r_x \equiv x-x_{\text{ext}},\qquad
@@ -503,16 +585,19 @@ Z_{\text{closure}}\equiv
 \frac{|r_x|}{\sqrt{\sigma_x^2+\sigma_{x,\text{ext}}^2}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-81e8dc7f5543860b)
+
 **Pass criterion (closure holds at CL $p$):**
 $$
 Z_{\text{closure}}\le z_p
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5ae9e3d4365d2966)
 Equivalent interval criterion: $I_x^{(p)}$ overlaps $I_{x,\text{ext}}^{(p)}$.
 
 This upgrades the CKM closure check from central-value comparison to a statistically testable confidence-interval statement.
 
-Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries
-$\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
+Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
 
 Calibration anchors: $\lvert V_{us}\rvert,\ \lvert V_{cb}\rvert,\ \lvert V_{ub}\rvert$.
 
@@ -534,6 +619,8 @@ t & 0.0087 & 0.040 & 0.999
 \end{array}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b4ff7602db8530e)
+
 $^{*}$ calibrated inputs; all other entries are post-fit predictions.
 
 Equivalent one-line prediction:
@@ -541,6 +628,8 @@ $$
 J^2=c_{12}^2c_{23}^2c_{13}^4\,s_{12}^2s_{23}^2s_{13}^2
 \left(1-\frac{s_{13}^2}{s_{12}^2s_{23}^2}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4010f0a861eb22f2)
 so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are calibrated, $J$ is fixed.
 
 ## Working hypotheses
@@ -632,16 +721,22 @@ $$
 \mathcal{L}_{\mathrm{trans}}
 \bigl(\rho_{\text{NS}}(\mathbf X,T),\nabla_{\mathbf X}\rho_{\text{NS}}(\mathbf X,T),\text{shielding},\text{wake exposure}\bigr)\,ds
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b86c1979f700b05b)
 rather than fitting them from CKM inputs.
 
 Then derive the phase via geometric holonomy:
 $$
 \delta=\oint_{\mathcal{C}_{123}}\omega
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ffc16c004aa7ee40)
 and test whether
 $$
 \cos\delta=\frac{s_{13}}{s_{12}s_{23}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a2ce8cd34aa27c67)
 is a theorem of the transport bundle, not a postulate.
 
 ### Statistical acceptance rule
@@ -650,11 +745,15 @@ For
 $$
 x\equiv \cos\delta_{\mathrm{pred}}=\frac{s_{13}}{s_{12}s_{23}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f1fb40d3cf8cb4a)
 and covariance $\Sigma_s$ from the calibration inputs, require closure pull
 $$
 Z_{\mathrm{closure}}=
 \frac{|x-x_{\mathrm{ext}}|}{\sqrt{\sigma_x^2+\sigma_{x,\mathrm{ext}}^2}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5df55e0f64636f57)
 to satisfy $Z_{\mathrm{closure}}\le z_p$ at the chosen confidence level.
 
 ### PMNS handoff

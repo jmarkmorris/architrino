@@ -12,6 +12,8 @@ $$
 W_{o'\leftarrow o}^{\mathrm{acc}}(T_r;T_t)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-79f5d2581fbf221a)
+
 ## Decomposition and Energetics
 
 - Decomposition at a hit:
@@ -19,9 +21,7 @@ $$
   - A single hit changes $V_r$ but not $\mathbf V_\perp$ instantaneously.
 
 - Power and work:
-  - The signed instantaneous acceleration-power proxy is
-    $\mathbf A\cdot\mathbf V=(\mathbf A\cdot\hat{\mathbf r})V_r$.
-    It reduces to $\|\mathbf A\|V_r$ only for a repulsive contribution directed along $+\hat{\mathbf r}$; an attractive contribution carries the opposite sign.
+  - The signed instantaneous acceleration-power proxy is $\mathbf A\cdot\mathbf V=(\mathbf A\cdot\hat{\mathbf r})V_r$. It reduces to $\|\mathbf A\|V_r$ only for a repulsive contribution directed along $+\hat{\mathbf r}$; an attractive contribution carries the opposite sign.
   - For the specific kinetic proxy $K_{\mathrm{spec}}=\tfrac12\|\mathbf V\|^2$, the per-hit rate is $dK_{\mathrm{spec}}/dT=\mathbf A\cdot\mathbf V$. An energy-valued bookkeeping row must instead declare the universal conversion $\mu_{\text{arch}}$ and use $K_\mu=\tfrac12\mu_{\text{arch}}\|\mathbf V\|^2$, so $dK_\mu/dT=\mu_{\text{arch}}\mathbf A\cdot\mathbf V$.
   - Orthogonal motion contributes no instantaneous acceleration power. A fixed-transmitter benchmark may identify the radial integral with a potential-energy change, but moving-transmitter, self-hit, and open-boundary histories require the constructive wake/history and boundary terms in [Delay Dynamics Energy](delay-dynamics-energy.md).
 

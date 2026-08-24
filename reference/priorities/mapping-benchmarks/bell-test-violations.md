@@ -10,9 +10,7 @@ Bell is a hard replacement constraint, not an ontology shortcut. The corpus alre
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `pair_provenance` — Define the complete source-pair ledger and shared conservation record. Status: `draft`.
 2. `local_response_kernels` — Construct local apparatus kernels $K_A,K_B$ from target and apparatus state. Status: `draft`.

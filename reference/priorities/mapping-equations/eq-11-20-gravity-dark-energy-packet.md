@@ -689,9 +689,7 @@ The first calculation should use a weak solar-system window $W_{\odot}$ for $R_\
 
 ## 2026-06-23 Maturity Assessment
 
-This table preserves the dated assessment that informed the `6/23` ledger.
-It is not retained evidence and does not update [equation.md](equation.md), the
-sole current score authority.
+This table preserves the dated assessment that informed the `6/23` ledger. It is not retained evidence and does not update [equation.md](equation.md), the sole current score authority.
 
 | ID | 6/23 score | Reason |
 | --- | --- | --- |

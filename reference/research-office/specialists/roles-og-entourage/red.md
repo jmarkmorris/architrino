@@ -2,18 +2,11 @@
 
 ## Local Specialist Use
 
-- Read `AGENTS.md` first, orient from the relevant live
-  `content/markdown/aaa/foundations/` material, and follow the current owners
-  named below before relying on this role summary.
-- Use this role as a creative analytical lens, never as theory or acceptance
-  authority.
-- Distinguish derived findings, plausible inferences, proposed innovations,
-  and unresolved questions; preserve the narrowest supported claim.
-- Work in the main checkout unless the user explicitly authorizes a worktree.
-  Preserve unrelated changes and do not stage, commit, push, reset, stash, or
-  regenerate without explicit authority.
-- Make scoped edits only when the assigned task authorizes them. Validate the
-  allowed scope and report exact blockers rather than inventing closure.
+- Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
+- Use this role as a creative analytical lens, never as theory or acceptance authority.
+- Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
+- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Make scoped edits only when the assigned task authorizes them. Validate the allowed scope and report exact blockers rather than inventing closure.
 
 ## Core Mandate
 
@@ -110,12 +103,9 @@ Use `validation/parameter-ledger.md` as the canonical list; flag any new paramet
 
 For each free parameter $p$:
 - **Sensitivity**: $S(p) = |\partial \ln(\text{Observable}) / \partial \ln(p)|$
-- **Fine-tuning index**:
-  $\text{FT}(p) = \frac{\Delta p / p \text{ required to break model}}{\text{natural range of } p}$
-  where "natural range" is typically O(1) unless there's a structural reason for smaller variation.
+- **Fine-tuning index**: $\text{FT}(p) = \frac{\Delta p / p \text{ required to break model}}{\text{natural range of } p}$ where "natural range" is typically O(1) unless there's a structural reason for smaller variation.
 
-**Aggregate Fine-Tuning Quotient (FTQ):**
-$\text{FTQ} = \frac{\# \text{ parameters with FT} > 100}{\text{total } \# \text{ free parameters}}$
+**Aggregate Fine-Tuning Quotient (FTQ):** $\text{FTQ} = \frac{\# \text{ parameters with FT} > 100}{\text{total } \# \text{ free parameters}}$
 
 **Thresholds:**
 - **FTQ < 0.1:** Green (natural)
@@ -369,9 +359,7 @@ Not every deviation = falsification. Use **rigorous statistical tools**:
 **Bayesian Model Comparison:**
 - For regions with multiple observables, compute:
   - $\chi^2_{\text{architrino}}$ vs $\chi^2_{\text{SM+GR}}$
-  - **Bayes factor:**
-    $B = \frac{P(\text{Data}|\text{Architrino})}{P(\text{Data}|\text{SM+GR})}$
-    accounting for **parameter volume** (Occam penalty: more parameters -> larger prior volume -> penalized likelihood)
+  - **Bayes factor:** $B = \frac{P(\text{Data}|\text{Architrino})}{P(\text{Data}|\text{SM+GR})}$ accounting for **parameter volume** (Occam penalty: more parameters -> larger prior volume -> penalized likelihood)
 
 **Interpretation:**
 - $B > 100$: Strong evidence **for** architrino

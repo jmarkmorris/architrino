@@ -16,6 +16,8 @@ $$
 q\in\{+1,-1\},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54d313539812c1d4)
+
 where $f$ is the common frequency, $\phi_a$ is the binary phase relative to the braid-level zero point, and $q$ is the common circulation sense. The binary half-separation vector is
 
 $$
@@ -31,6 +33,8 @@ h_a\hat{\mathbf n}_B
 \right].
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-04282641cf34ccfa)
+
 The two endpoint paths are
 
 $$
@@ -39,6 +43,8 @@ $$
 \mathbf X_{a2}(T)=\mathbf C(T)-\mathbf d_a(T).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be542cb4c4f261ed)
+
 These equations make the B1 restrictions explicit: the endpoints of each neutral binary remain antipodal about the common braid center; all three binaries use the same axis, frequency, and circulation sense; and the radii, axial half-separations, transverse orbit radii, and phases may differ by binary.
 
 The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Binary](braid-taxonomy.md#individual-binary) coordinate section. The internal speed of either endpoint of binary $a$ is
@@ -46,6 +52,8 @@ The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Bi
 $$
 s_a=2\pi f\rho_a.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9436c6e91de8ff69)
 
 Thus internal speed is controlled by transverse orbit radius rather than by total binary radius alone. If a display derives the optional angle $\alpha_a=\operatorname{atan2}(h_a,\rho_a)$, the same relation is $s_a=2\pi fR_a\cos\alpha_a$. The angle is not a primary taxonomy coordinate.
 
@@ -89,11 +97,15 @@ $$
 (2\pi f)^2\sum_{a=1}^{3}\rho_a^2
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-203e10f143bbff54)
+
 for the declared common frequency $f>0$. Active-candidate eligibility requires
 
 $$
 \mathcal K_{\perp}>0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b841a65a4eff2317)
 
 or, equivalently, $\sum_a\rho_a^2>0$. This is a taxonomy nondegeneracy condition: it requires at least one binary to have internal transverse motion. It is not a retention, stability, binding, energy, or physical-realization result.
 
@@ -123,6 +135,8 @@ h_a=R_a
 \text{for every }a\in\{1,2,3\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fdb492c8ebf10b7a)
+
 Its endpoint paths remain the exact B1 coordinate-boundary equations
 
 $$
@@ -135,6 +149,8 @@ $$
 \mathbf C(T)-R_a\hat{\mathbf n}_B.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ebaf153c4e2667f7)
+
 This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. The stable `B1.4` identifier and its prescribed source and record remain a deprecated axial-limit null control for historical reproducibility. It is not an active taxonomy member, a Borg catalog selection, a future sweep candidate, or a comparative-ranking participant.
 
 ## Axial Translation
@@ -146,6 +162,8 @@ $$
 =
 \mathbf C(0)+s_{\mathrm{grp}}T\hat{\mathbf n}_B,
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b1c5b16e8a9576b1)
 
 each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 

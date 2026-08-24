@@ -29,6 +29,8 @@ Methodological priority:
   \cdot
   \mathbf V_i(T')\,dT'
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-bf602e9a8aeaade5)
   with the same replacement by $\mu_K(\|\mathbf V_i\|)$ when the primitive kinetic scalar is used. For a circular branch, the period-averaged integrand reduces to $\mu_{\text{arch}}s_b\langle A_{\eta,b}^{\mathrm{tan}}\rangle_{P_b}$ in the quadratic proxy.
 - The adiabatic consistency check is branch preservation under slow drift. Along a quasi-static path $\gamma:\lambda\mapsto(R(\lambda),s(\lambda),b)$ that does not cross a root-ledger threshold, the work-integral energy change should match the energy difference inferred from the neighboring solved branch family:
   $$
@@ -48,6 +50,8 @@ Methodological priority:
   \varepsilon
   }
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-e723374df0c8beb5)
   Here $E_b^{(\eta)}(\lambda)$ denotes the candidate branch energy extracted at fixed $\lambda$ by the same declared construction route. The test is valid only while the same signed causal-root ledger persists with positive Jacobian and inactive-root gap floors. A jump in the ledger is a bifurcation, not a failure of adiabatic energy consistency.
   - Branch-virial theorem target: separate the kinematic virial identity from the stronger classical potential virial theorem. On a fixed finite-$\eta$ branch chart $b$ over an averaging window $W=[T_a,T_b]$, define the branch virial diagnostic
   $$
@@ -57,6 +61,8 @@ Methodological priority:
   \mu_{\text{arch}}\,
   \mathbf X_i(T)\cdot\mathbf V_i(T)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-1676e7d52ade38b1)
   and the quadratic kinetic bookkeeping scalar
   $$
   T_{\mu,b}^{(\eta)}(T)
@@ -66,6 +72,8 @@ Methodological priority:
   \mu_{\text{arch}}\,
   \|\mathbf V_i(T)\|^2
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-8bc11bdeb4e4414f)
   Before the branch average is formed, retain the root-resolved virial rows
   $$
   V_{i\leftarrow j,T_t}^{(\eta)}(T)
@@ -75,6 +83,8 @@ Methodological priority:
   \cdot
   \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_t)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-e5ad6762bf0280ae)
   and the corresponding delivered-power rows
   $$
   P_{i\leftarrow j,T_t}^{(\eta)}(T)
@@ -84,6 +94,8 @@ Methodological priority:
   \cdot
   \mathbf V_i(T)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-b5085d10a50323f5)
   for every retained source/root hit $T_t\in\mathcal C_{ij,b}^{(\eta)}(T)$. The net virial term is then the ledger-preserving sum
   $$
   \sum_i
@@ -95,8 +107,9 @@ Methodological priority:
   \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
   V_{i\leftarrow j,T_t}^{(\eta)}(T)
   $$
-  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived aggregation over the retained records.
-  When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-7e4ad858f88cfece)
+  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived aggregation over the retained records. When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
   2T_{\mu,b}^{(\eta)}
@@ -114,6 +127,8 @@ Methodological priority:
   T_b-T_a
   }
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-8c35f444d2dc9497)
   The branch-virial closure target is the special bounded or periodic case in which the right-hand side is zero or below the declared tolerance:
   $$
   \mathcal{R}_{\mathrm{vir},b}^{(\eta)}(W)
@@ -130,19 +145,17 @@ Methodological priority:
   \le
   \epsilon_{\mathrm{vir}}
   $$
-  This is not yet the classical potential statement. The reduction to
-  $\langle 2T-pU\rangle=0$ additionally requires a branch-local potential
-  $U_b^{(\eta)}$ whose scale variation is controlled by a homogeneity degree
-  $p$,
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-71d5f0000e02ad98)
+  This is not yet the classical potential statement. The reduction to $\langle 2T-pU\rangle=0$ additionally requires a branch-local potential $U_b^{(\eta)}$ whose scale variation is controlled by a homogeneity degree $p$,
   $$
   U_b^{(\eta)}(\lambda\mathbf X)
   =
   \lambda^p U_b^{(\eta)}(\mathbf X)
   $$
-  together with a proof that the same branch acceleration is generated by that
-  potential over $W$. A scale/virial residual that contains zero is therefore
-  diagnostic only until it supplies the same-domain scale generator, homogeneity
-  degree, and branch coordinate needed for this stronger reduction.
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-81cfa99d0635cea7)
+  together with a proof that the same branch acceleration is generated by that potential over $W$. A scale/virial residual that contains zero is therefore diagnostic only until it supplies the same-domain scale generator, homogeneity degree, and branch coordinate needed for this stronger reduction.
 - Velocity-regime scope for the branch-virial target:
   - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, transmitter-side factors, and transmitter-side acceleration weights still remain in the acceleration term.
   - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
@@ -158,15 +171,21 @@ Symmetric two-body on a line (exact DDE; challenges):
   $$
   \frac{r(T)+r(T_t)}{2} \;=\; T - T_t,\qquad T_t<T
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-e3608150113cf43c)
   or, writing $\Delta(T)=T-T_t>0$ implicitly,
   $$
   r(T) + r\!\big(T-\Delta(T)\big) \;=\; 2\,\Delta(T)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-beb22c39a4d20983)
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
   \frac{d^2 r}{dT^2} \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(T) + r(T-\Delta(T))\big)^2}
   W^{\mathrm{acc}}(T)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-450e0dfa223303b2)
   with $\Delta(T)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
 Integral (delta) form selecting the causal root:
@@ -177,8 +196,9 @@ Integral (delta) form selecting the causal root:
   \mathrm{sgn}\!\big(X_1(T)-X_2(T-\Delta)\big)}
   {\lvert X_1(T)-X_2(T-\Delta)\rvert^{2}}\; d\Delta
   $$
-  whose evaluation selects the causal delay $\Delta(T)$. The delta change of variables contributes
-  $c_f/\lvert c_f-\hat{\mathbf r}\cdot\mathbf V_2(T-\Delta)\rvert=W^{\mathrm{acc}}$ automatically. Multiplying by another $W^{\mathrm{acc}}$ after evaluating the integral would double-count the transmitter-side Jacobian.
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-aed5720ddeb2bf44)
+  whose evaluation selects the causal delay $\Delta(T)$. The delta change of variables contributes $c_f/\lvert c_f-\hat{\mathbf r}\cdot\mathbf V_2(T-\Delta)\rvert=W^{\mathrm{acc}}$ automatically. Multiplying by another $W^{\mathrm{acc}}$ after evaluating the integral would double-count the transmitter-side Jacobian.
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.

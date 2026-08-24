@@ -33,10 +33,7 @@ This is the canonical execution ledger for accepted benchmark mappings. Each row
 
 For XTM-002 through XTM-010, completion requires one versioned benchmark packet with source, carrier, residual, and falsifier; narrative similarity is insufficient.
 
-Queue order is an attention order, not a proof chain. A benchmark row may
-depend on another row only when it consumes a named accepted carrier produced
-there; sharing a convention, equation family, or nearby subject does not create
-such a dependency.
+Queue order is an attention order, not a proof chain. A benchmark row may depend on another row only when it consumes a named accepted carrier produced there; sharing a convention, equation family, or nearby subject does not create such a dependency.
 
 ## Awaiting verification
 

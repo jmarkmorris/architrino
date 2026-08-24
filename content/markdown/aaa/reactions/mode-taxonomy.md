@@ -50,25 +50,17 @@ The reaction row therefore records a Standard Model prediction as a structured o
 
 ### Canonical Stepwise Workflow
 
-1. **Define observer-level channel**
-Use the standard reaction statement first (for example $e^- + Z \rightarrow e^- + Z + \gamma$ or $\gamma + \gamma \rightarrow e^+ + e^-$).
+1. **Define observer-level channel** Use the standard reaction statement first (for example $e^- + Z \rightarrow e^- + Z + \gamma$ or $\gamma + \gamma \rightarrow e^+ + e^-$).
 
-2. **Set validated closure targets**
-Declare the required observer-level closures before ontology mapping:
+2. **Set validated closure targets** Declare the required observer-level closures before ontology mapping:
 - kinematic threshold closure,
 - differential/total rate closure,
 - energy-momentum closure,
 - timing/frame closure.
 
-3. **Initialize assembly state**
-Represent each incoming participant as an assembly state tuple:
-`(identity, provenance path, charge sector, momentum, local Noether sea state)`.
-Path history is part of identity bookkeeping in absolute time.
+3. **Initialize assembly state** Represent each incoming participant as an assembly state tuple: `(identity, provenance path, charge sector, momentum, local Noether sea state)`. Path history is part of identity bookkeeping in absolute time.
 
-4. **Characterize local Noether sea state**
-Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
-Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
+4. **Characterize local Noether sea state** Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear: $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$. Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
@@ -81,6 +73,8 @@ $$
 \hat{\mathbf{V}}_A=\frac{\mathbf{V}_A}{\|\mathbf{V}_A\|}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f749e629ce4f75fc)
+
 A minimal transverse-channel map is
 $$
 A_{\perp,A}^{i}(T)
@@ -90,6 +84,8 @@ A_{\perp,A}^{i}(T)
 \mathcal{K}_{Ak}\!\left(T;T_t,\mathcal{V}_{\mathrm{NS}},R_A\right)
 \hat r_{Ak,j}(T;T_t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-89a7192db3da63be)
 
 The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the transmitter-side acceleration-weight factor of the $W^{\mathrm{acc}}$ family, the polarity sign, and the local Noether sea anisotropy/vorticity response; the transmitter-side (causal) Jacobian $D_t$ enters only as the transversality and root-density data that make each causal root legal, not as a separate multiplicative factor stacked on $W^{\mathrm{acc}}$ (which already carries the $1/D_t$ branch density). It is named $\mathcal{K}$ rather than $W$ because it is a channel-level composite, not the canonical per-hit acceleration weight alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse acceleration is to be recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
 
@@ -109,6 +105,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ba312b24b795bddb)
+
 where the continuity component is
 
 $$
@@ -118,6 +116,8 @@ $$
 +
 \nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-452b366787f8f374)
 
 and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
 
@@ -130,17 +130,17 @@ $$
 =0
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9d522820850a7f72)
+
 with $\chi_{\mathrm g}$ the gauge function, subscripted to keep it distinct from the delay-factor family $\chi_{\text{sea}}$, $\chi_\gamma$, $\chi_{\mathrm{eff}}$.
 
 The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
 
-5. **Evaluate wake-strain trigger**
-Compute whether interaction forcing crosses the relevant mode boundary.
+5. **Evaluate wake-strain trigger** Compute whether interaction forcing crosses the relevant mode boundary.
 - If below threshold: no mode-lock event, energy routes into transport/heating/scattering channels.
 - If above threshold: mode-lock event allowed and channel-specific nucleation/relock proceeds.
 
-6. **Apply channel-specific lock rule**
-Select the mode family:
+6. **Apply channel-specific lock rule** Select the mode family:
 - planar-mode for photon emission channels,
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
@@ -171,14 +171,13 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7b6389e8d8494465)
+
 Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
 
-7. **Execute provenance-conserving relock**
-Update assembly graph by relocking existing substrate content.
-No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
+7. **Execute provenance-conserving relock** Update assembly graph by relocking existing substrate content. No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
 
-8. **Enforce local conservation**
-Close event-level budgets:
+8. **Enforce local conservation** Close event-level budgets:
 - $\sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}$,
 - $\sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}$,
 - spin/angular-momentum ledger balance for emitted, absorbed, or converted vector modes,
@@ -186,9 +185,7 @@ Close event-level budgets:
 
 The spin/angular-momentum line is a conservation requirement. Its channel-specific content must be supplied by the angular-momentum ledger, photon Gate B, the massive-vector corridor model, or the spin-statistics proof as appropriate.
 
-9. **Project back to observer-level outputs**
-Compute spectra, cross-sections, rates, and timing in standard variables.
-Accept mapping only if closure targets from Step 2 are recovered within validated limits.
+9. **Project back to observer-level outputs** Compute spectra, cross-sections, rates, and timing in standard variables. Accept mapping only if closure targets from Step 2 are recovered within validated limits.
 
 ### Detailed Scenario A: Bremsstrahlung Channel
 
@@ -208,18 +205,26 @@ $$
 e^\pm + Z \rightarrow e^\pm + Z + \gamma
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-df6eee7222616d8d)
+
 $$
 p^\mu_{e,\mathrm{in}} + p^\mu_{Z,\mathrm{in}} = p^\mu_{e,\mathrm{out}} + p^\mu_{Z,\mathrm{out}} + k^\mu_{\gamma}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-47c0f5549f5ccada)
 
 $$
 \sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88ff383d1656ebfe)
+
 $$
 \left(\frac{d\sigma}{dk}\right)_{\mathrm{map}} \rightarrow \left(\frac{d\sigma}{dk}\right)_{\mathrm{std}}
 \quad \text{(validated limit)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2234c027eda6b60d)
 
 ### Detailed Scenario B: Synchrotron Emission and Pair-Loaded Loop
 
@@ -246,18 +251,26 @@ P_{\mathrm{syn}}=\frac{4}{3}\sigma_T c\,U_B\,\gamma^2,
 U_B=\frac{B^2}{8\pi}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3188bc68d54493d1)
+
 $$
 \tau_{\mathrm{syn}} \sim \frac{E_e}{P_{\mathrm{syn}}} \propto \frac{1}{\gamma B^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f6999760323a2911)
 
 $$
 s=(k_1+k_2)^2 \ge 4m_e^2
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-983a302c7545ca17)
+
 $$
 \sigma_{\gamma\gamma,\mathrm{map}}(s) \rightarrow \sigma_{\gamma\gamma,\mathrm{BW}}(s)
 \quad \text{(validated limit)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-da9a4c71cb774c8c)
 
 ### Detailed Scenario C: Pair Production as Standalone Conversion
 
@@ -276,18 +289,26 @@ $$
 \gamma + \gamma \rightarrow e^+ + e^-
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b085125ff6c1bafc)
+
 $$
 s=(k_1+k_2)^2=2E_1E_2(1-\cos\theta)\ge 4m_e^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9b851271dd15de01)
 
 $$
 k_1^\mu+k_2^\mu=p^\mu_{e^-}+p^\mu_{e^+}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e24a26c65e73f194)
+
 $$
 \sigma_{\gamma\gamma,\mathrm{map}}(s) \rightarrow \sigma_{\gamma\gamma,\mathrm{BW}}(s)
 \quad \text{(validated limit)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-da9a4c71cb774c8c-2)
 
 ### Detailed Scenario D: Weak-Channel Transition (Terminology Boundary)
 
@@ -306,6 +327,8 @@ $$
 \quad \text{(validated limit)}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9124b64811fc0bce)
+
 Here $\mathcal{M}$ is standard amplitude notation for the comparison row, not the timespace manifold $\mathcal{M}$.
 
 $$
@@ -313,6 +336,8 @@ $$
 \qquad
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-112c86834436b765)
 
 For weak-channel rows that report a mass, width, branching fraction, lifetime, or mixing entry, the observer-facing comparison must keep the published uncertainty convention as part of the target. A compact residual is
 
@@ -327,6 +352,8 @@ C_{\mathrm{weak}}^{-1/2}
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-375afdbe6ba0b446)
+
 where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
 
 For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
@@ -335,6 +362,8 @@ $$
 \rightarrow
 -\frac{4G_F}{\sqrt 2}\,J_+^\mu J^-_\mu
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-411cbec73e234e62)
 with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-reaction and muon-reaction limits (SM labels: `beta decay`, `muon decay`) while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
 
 $$
@@ -342,6 +371,8 @@ $$
 \qquad
 \sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0c0c70834a1feab9)
 
 ### Practical Authoring Rule for `reactions/*.md`
 

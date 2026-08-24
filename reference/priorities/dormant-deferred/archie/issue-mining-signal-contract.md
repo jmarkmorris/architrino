@@ -240,8 +240,7 @@ The future implementation should include issue-mining fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Connect issue-mining clusters, noise summaries, fix queues, and action-broker result classes into observability/public-status metadata while preserving private-prompt exclusion and no hidden writes.
+Closure goal: Connect issue-mining clusters, noise summaries, fix queues, and action-broker result classes into observability/public-status metadata while preserving private-prompt exclusion and no hidden writes.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

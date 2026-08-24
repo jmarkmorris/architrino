@@ -42,9 +42,7 @@ Thus gravitational redshift is a clock-rate comparison produced by Noether sea r
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `clock_channel` — Define the assembly clock observable $\omega_{\text{clk}}(\Gamma,\mathcal{M}_{\mathrm{sea}})$ and its weak-field expansion. Status: `draft`.
 2. `potential_match` — Prove or bound $\Delta\omega_{\text{clk}}/\omega_0=\Delta\Phi_{\text{eff}}/c_0^2+O(\Phi_{\text{eff}}^2/c_0^4)$ in the observer weak-field branch, while keeping $c_f$ reserved for primitive delayed-root equations. Status: `draft`.

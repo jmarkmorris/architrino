@@ -31,6 +31,8 @@ The modular-exponentiation stage is the hardest place to keep the comparison hon
 $$
 f(x)=a^x\bmod N
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-670c164773e4c6e6)
 is implemented by controlled assembly couplings rather than by abstract gate labels alone.
 
 This is where implementation cannot be skipped. The standard algorithm may treat modular exponentiation as a reversible operation in a circuit. The assembly account must say which physical carriers are coupled, how long the coupling remains coherent, which causal wakes carry the interaction, and which apparatus record confirms that the operation actually entered the intended channel.
@@ -55,8 +57,9 @@ For any newly established two-register coupling, abstract gate identity does not
 $$
 \tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_0}+\tau_{\mathrm{settle}}
 $$
-Here $c_0$ is the calibrated asymptotic observer-sector value of the dressed assembly-channel speed $c_{\mathrm{eff}}$ in the laboratory regime, not the primitive wake speed $c_f$. The two symbols are not universally identical: $c_{\mathrm{eff}}(\mathbf X,T)$ may vary with the declared Noether sea state, while $c_0$ is the observer calibration used by the apparatus bound. Control signals traverse the dressed assembly network in the Noether sea, so the tighter apparatus bound uses the effective channel speed rather than the substrate carrier speed. The propagation term is directly calibrated once $d_{\mathrm{ctrl}}$ and $c_0$ are known; the native burden is to derive $\tau_{\mathrm{settle}}$ and its scaling with coupling strength, Noether sea density $\rho_{\mathrm{NS}}$, and susceptibility $\chi_{\mathrm{sea}}$.
-Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f18880dda062717d)
+Here $c_0$ is the calibrated asymptotic observer-sector value of the dressed assembly-channel speed $c_{\mathrm{eff}}$ in the laboratory regime, not the primitive wake speed $c_f$. The two symbols are not universally identical: $c_{\mathrm{eff}}(\mathbf X,T)$ may vary with the declared Noether sea state, while $c_0$ is the observer calibration used by the apparatus bound. Control signals traverse the dressed assembly network in the Noether sea, so the tighter apparatus bound uses the effective channel speed rather than the substrate carrier speed. The propagation term is directly calibrated once $d_{\mathrm{ctrl}}$ and $c_0$ are known; the native burden is to derive $\tau_{\mathrm{settle}}$ and its scaling with coupling strength, Noether sea density $\rho_{\mathrm{NS}}$, and susceptibility $\chi_{\mathrm{sea}}$. Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
 Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model. The comparison is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
 $$
@@ -66,6 +69,8 @@ $$
 \qquad
 \tau_{\mathrm{decoh}}(\rho_{\text{NS}},\chi_{\text{sea}},\mathcal{H}_{\mathrm{reg}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a3af9e43f43dd49b)
 where $\tau_{\mathrm{gate}}$ is the controlled operation time, $\tau_{\mathrm{corr}}$ is the full syndrome-extraction and recovery cycle, and $\tau_{\mathrm{decoh}}$ is the medium- and path-history-dependent coherence time of the encoded assembly network with register path-history ledger $\mathcal{H}_{\mathrm{reg}}$. All three are apparatus-clock readouts in the effective chart, not substrate absolute-time intervals.
 
 The decoherence time is not a free phenomenological constant in the native record model. For a declared environment coarse-graining $\mathcal Q_{\mathrm{env}}$, retained access region $W_{\mathrm{env}}$, persistence time $T_{\mathrm{rec}}$, and candidate environment record basin $B_{k_{\mathrm{env}}}$ for the register channel, define it as the first passage at which the reduced register becomes restartable and that environment record becomes autonomous:
@@ -83,18 +88,24 @@ $$
 \le\varepsilon_{\mathrm{rec}}
 \right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-28c79cbc5db20ea9)
 Before that first passage, $\Delta_{\mathrm{div}}=O(1)$ marks live path-history dependence that cannot be restarted from the reduced register state alone. The necessary validation inequality is
 $$
 p_{\mathrm{cyc}}(\theta)
 \le
 p_{\mathrm{th}}(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2f2ada6e6823170e)
 where $p_{\mathrm{cyc}}(\theta)$ is the physical error probability per correction cycle derived or independently measured for hardware-and-noise context $\theta$, and $p_{\mathrm{th}}(\theta)$ is the threshold of the declared code and decoder under that same error model. In a weak, approximately memoryless regime,
 $$
 p_{\mathrm{cyc}}(\theta)
 \approx
 \frac{\tau_{\mathrm{gate}}+\tau_{\mathrm{corr}}}{\tau_{\mathrm{decoh}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d4c7beb34c242578)
 so the operational time-scale condition is $(\tau_{\mathrm{gate}}+\tau_{\mathrm{corr}})/\tau_{\mathrm{decoh}}\lesssim p_{\mathrm{th}}$, which is much stronger than merely requiring the ratio to be below one. The threshold must be predicted from the declared physical error channel or calibrated independently; it may not be replaced by unity. The correction operation must also close its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether sea decoherence channel must be in calibrated laboratory conditions.
 
 That increasing-distance success is now an observed constraint rather than a wholly open possibility. A superconducting surface-code memory operated below threshold showed a logical-error suppression factor $\Lambda=2.14\pm0.02$ when code distance increased by two ([Google Quantum AI and Collaborators, 2025](https://doi.org/10.1038/s41586-024-08449-y)). This observer-level result does not identify a Noether sea mechanism. It requires any register model to permit the measured suppression and long-cycle stability in the calibrated regime, and it bounds any proposed deterministic decoherence channel strongly enough that increasing code distance must improve rather than degrade the logical record over the tested range.

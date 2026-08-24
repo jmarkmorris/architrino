@@ -19,10 +19,14 @@ This note records a constrained geometric hypothesis for fermion assemblies in $
 $$
 \sin^2\theta_{\mathrm{inc}}=\frac14
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5edccdb229904559)
 so that
 $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f84e0453c283de3)
 
 This is intentionally narrower than a claim that the three indexed binary axes themselves tilt or precess into new orientations. The candidate braid scaffold remains the kinematic frame; no taxonomy member is assigned by this weak-sector construction. What changes is the orientation of the **principal axial frame** and therefore the orientation of the **weak-coupling triad** relative to the fixed core frame.
 
@@ -46,12 +50,16 @@ $$
 \mathcal{F}_{\text{core}} = \{\hat{\mathbf{e}}_1,\hat{\mathbf{e}}_2,\hat{\mathbf{e}}_3\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c1acaba5503643fa)
+
 ### 2. Axial Frame
 
 The six axial architrinos define a second frame through their coarse-grained polarity moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
 $$
 \mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8213c54afee874f5)
 
 For a perfectly symmetric ideal lepton-like axial layer, the axial moment record is isotropic, so no independent axial frame is distinguished; the core frame supplies the natural zero-misalignment convention. This ideal count does not establish that a dynamically relaxed branch remains isotropic: the accepted record must still show that displacement, wake dressing, and Noether sea response do not generate an anisotropic residue. For a quark-like axial layer with axis exceptionality, the axial moment record can select a nontrivial axial frame; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
 
@@ -61,6 +69,8 @@ R_{\text{rel}} \in SO(3),
 \qquad
 \mathcal{F}_{\text{ax}} = R_{\text{rel}}\,\mathcal{F}_{\text{core}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-22ec8cf7ba57449f)
 
 This note proposes that physically stable fermion assemblies use only a restricted subset of such rotations.
 
@@ -81,10 +91,14 @@ The natural equilibrium statement is
 $$
 R_{\text{rel}} = I
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e8754f7e3c8b409a)
 or equivalently a vanishing misalignment angle
 $$
 \alpha = 0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-42b29e1153c74876)
 
 This should be read as the **isotropic limit** of the axial geometry, not as a separate dynamical law. In plain terms: when all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
 
@@ -106,12 +120,16 @@ This means the axial layer does not merely carry a net observer-level charge. It
 $$
 M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-64ea267ec4594462)
 where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
 Because $M_{ij}$ is even under $\mathbf{n}\mapsto-\mathbf{n}$, it detects signed same-polarity dyad loading but is blind to a perfectly antipodal mixed polar dyad. A mixed dyad with one $\epsilon_+$ and one $\epsilon_-$ cancels in $M_{ij}$ even though it is exactly the local axis-exceptional structure that matters for up-type quarks and one down-type family. The complementary odd moment is therefore required:
 $$
 d_i = \sum_{a=1}^{6}q_a\,n_i^{(a)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8f7ad26b23d4ce3a)
 A same-polarity polar dyad gives no contribution to $d_i$, while a mixed polar dyad contributes a vector $\pm2\epsilon\,\hat{\mathbf n}$ according to which pole carries which polarity. The axial frame should therefore be read from the joint moment record $(M_{ij},d_i)$, not from $M_{ij}$ alone.
 
 This also limits what the idealized on-axis polarity count can prove. In the symmetric charged-lepton limit $M_{ij}$ is proportional to the identity and $d_i=0$, so the axial frame is not separately distinguished. In an idealized quark pattern, $(M_{ij},d_i)$ can identify the exceptional axis while still remaining diagonal or axis-aligned in the core frame. The actual misalignment diagnostic belongs to the displaced equilibrium selected by the effective energy, with the off-diagonal axial-tensor load measured after the polar-site directions have relaxed:
@@ -120,6 +138,8 @@ $$
 =
 \sum_{i\ne j}|M_{ij}|^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3fcc2166922a10db)
 The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$ on that relaxed record, or equivalently a joint principal frame for $(M_{ij},d_i)$ that is rotated away from $\mathcal{F}_{\text{core}}$. If $\mathcal{R}_{\mathrm{off}}=0$ while $d_i$ selects a core axis or the eigenvalues of $M_{ij}$ differ, the axial layer is exceptional or anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
@@ -132,10 +152,14 @@ A useful existing hook in the current $\mathbb{A}\mathbb{A}\mathbb{A}$ notes is 
 $$
 \sin^2\theta_{\mathrm{inc}} = \frac14
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fcc32a1815545064)
 This implies the candidate geometric branch increment
 $$
 \theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fdac9415d858788b)
 
 The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value) would require
 
@@ -147,6 +171,8 @@ $$
 -0.0185,
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-36f825eb57314c52)
+
 a downward correction of about $7.4\%$ relative to the bare value. Its exact value is scheme- and observable-dependent, but the sign and scale show that electroweak dressing is a substantive derivation rather than a negligible finishing term.
 
 Define a discrete family of candidate equilibrium misalignment angles
@@ -154,12 +180,16 @@ $$
 \alpha_n = n\,\theta_{\mathrm{inc}} = n\frac{\pi}{6},
 \qquad n\in\mathbb{Z}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e13894ed6eaf46d7)
 Equivalently, $\alpha_n=n\times30^\circ$ for reader-facing degree notation. In energy or action functionals below, $\alpha$ and $\theta_{\mathrm{inc}}$ are radians.
 
 Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
 $$
 \alpha \in \{0,30^\circ,60^\circ,90^\circ\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-05db8b7b6faffd21)
 with additional identifications made by symmetry.
 
 This set is explicitly pre-quotient. In particular, the $90^\circ$ entry survives only if pole reversal and axis-flip equivalences do not reduce it to a lower representative.
@@ -209,6 +239,8 @@ Then a first-pass rotation may be written as
 $$
 R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d04ee9f83c934a45)
 where:
 
 - $R_{\text{axis}}$ chooses the exceptional-axis sector,
@@ -269,6 +301,8 @@ E_{\text{cross}}(\alpha,\phi_c)
 E_{\text{wake}}(\alpha)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fcf42691abb94518)
+
 Here:
 
 - $E_{\text{polarity}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
@@ -280,16 +314,22 @@ The discrete-angle hypothesis is the statement that
 $$
 \frac{\partial E_{\text{eff}}}{\partial \alpha}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b82fb0a95a119a76)
 at
 $$
 \alpha = n\theta_{\mathrm{inc}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1f1c79e6bbb2fe7b)
 and that these stationary points are true minima for the stable branches.
 
 A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
 E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c9c917aaf96da80f)
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the branch increment.
 
 ### Closure handoff
@@ -340,6 +380,8 @@ Extended picture proposed here:
 $$
 (c,\alpha)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3b9683707138550b)
 
 In this sense, color answers the question
 
@@ -415,6 +457,8 @@ The sharpened hypothesis is:
 $$
 \theta_{\mathrm{inc}}=30^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-32098856e80d51f2)
 with color providing an independent exceptional-axis label.
 
 In short: do not rotate the scaffold; rotate the axial frame. Then ask whether the six-pole electroweak geometry selects discrete quark misalignment angles as part of the same underlying assembly logic.

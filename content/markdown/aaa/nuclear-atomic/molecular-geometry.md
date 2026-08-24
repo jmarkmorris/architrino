@@ -46,6 +46,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a8a41fe393b8ba9)
+
 with one bonding-corridor record $\mathcal B_{\mathrm{bond},k}$ per realized bond.
 
 Equilibrium molecular geometry is the stationary branch
@@ -58,6 +60,8 @@ $$
 \frac{\partial^2\mathcal E_{\mathrm{mol}}}{\partial R_A^i\partial R_B^j}
 \succeq 0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8af2343fe5f88db3)
 
 after removing overall translation and rotation modes: linear molecules reduce by five zero modes, nonlinear molecules by six. A rigid stable geometry requires $\mathcal H\succ0$ on the reduced space; the semidefinite boundary case is admitted only when a declared soft mode, such as a near-free torsion, remains. The Hessian $\mathcal H$ is the molecular analogue of the lattice dynamical matrix: its eigenvalues give the local vibrational stiffnesses, while its eigenvectors identify stretching, bending, and torsional response. This supplies a concrete way to test bond lengths and angles without importing an orbital-hybridization template as the cause.
 
@@ -74,6 +78,8 @@ $$
 \mathcal H_{Ck,Bj}\,
 u_{s,Bj}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fa2efe0a271db22d)
 
 where $u_{s,Ai}$ are the displacement-eigenvector components of mode $s$ and $M$ is the observer-level mass-response matrix of the participating nuclei or molecular fragments. For numerical work the equivalent symmetric mass-weighted form $M^{-1/2}\mathcal H M^{-1/2}$ has the same eigenvalues. The normal-mode spectrum is therefore a validation surface for the same corridor, exclusion, and medium-response functional that fixes shape. A geometry fit fails if it recovers equilibrium angles only by using one functional while vibrational frequencies require an unrelated stiffness map.
 
@@ -96,6 +102,8 @@ $$
 \approx
 104.5^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2602f15ed942ed30)
 
 from methane through ammonia to water. The corridor-plus-exclusion functional must recover this pattern without inserting lone-pair or hybridization templates as substrate causes. Ethane adds the first soft-mode case: the same Hessian and branch functional should recover a finite hindered-rotation barrier and the associated torsional mode rather than classifying the motion as either perfectly rigid or freely rotating.
 

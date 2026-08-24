@@ -12,40 +12,27 @@
 
 ## Purpose
 
-This contract defines when an EOM calculation is numerically resolved well
-enough to extend an accepted retained history. It applies to the independent
-oracle, CPU prototypes, production CPU kernels, GPU and multi-GPU kernels,
-distributed execution, checkpoint continuation, and every precision-escalation
-path.
+This contract defines when an EOM calculation is numerically resolved well enough to extend an accepted retained history. It applies to the independent oracle, CPU prototypes, production CPU kernels, GPU and multi-GPU kernels, distributed execution, checkpoint continuation, and every precision-escalation path.
 
-Performance is measured only on accepted or correctly rejected work. A backend
-does not become faster by publishing a step whose root count, branch identity,
-sign decisions, error budget, or history continuation is unresolved.
+Performance is measured only on accepted or correctly rejected work. A backend does not become faster by publishing a step whose root count, branch identity, sign decisions, error budget, or history continuation is unresolved.
 
 ## Certification Object
 
-The unit of acceptance is an immutable coupled-history step. For a proposed
-advance from $T_n$ to $T_{n+1}$, the numeric certificate covers:
+The unit of acceptance is an immutable coupled-history step. For a proposed advance from $T_n$ to $T_{n+1}$, the numeric certificate covers:
 
 1. every history value and interpolation enclosure consumed by the step;
 2. every ordered transmitter-receiver pair, including same-transmitter pairs;
-3. every admitted causal root and a root-free certificate for the retained
-   complement;
+3. every admitted causal root and a root-free certificate for the retained complement;
 4. every $D_t$, $D_r$, polarity, core-kernel, and acceleration contribution;
 5. the deterministic or enclosed accumulation of those contributions;
 6. the local truncation and propagation error of the coupled advance;
 7. the appended history segment and all continuation-critical controller state.
 
-The step is accepted atomically or rejected atomically. A diagnostic record
-computed after the state advance cannot certify the state that was actually
-advanced.
+The step is accepted atomically or rejected atomically. A diagnostic record computed after the state advance cannot certify the state that was actually advanced.
 
 ## Scale And Coordinate Declaration
 
-Every run declares physical units and a scale map before numerical work begins.
-The map contains at least a length scale $L_\star$, time scale $T_\star$, charge
-scale $Q_\star$, velocity scale $V_\star=L_\star/T_\star$, and acceleration
-scale $A_\star=L_\star/T_\star^2$. Dimensionless working variables are
+Every run declares physical units and a scale map before numerical work begins. The map contains at least a length scale $L_\star$, time scale $T_\star$, charge scale $Q_\star$, velocity scale $V_\star=L_\star/T_\star$, and acceleration scale $A_\star=L_\star/T_\star^2$. Dimensionless working variables are
 
 $$
 \widetilde{\mathbf X}
@@ -61,15 +48,9 @@ $$
 \frac{\mathbf V}{V_\star}
 $$
 
-The origin $\mathbf O$, epoch $T_{\mathrm{epoch}}$, and scales are recorded
-with the history slab they govern. A scale change is a certified coordinate
-transformation of the same physical history, never a change in the Master
-Equation.
+The origin $\mathbf O$, epoch $T_{\mathrm{epoch}}$, and scales are recorded with the history slab they govern. A scale change is a certified coordinate transformation of the same physical history, never a change in the Master Equation.
 
-Pair geometry is evaluated in one declared local frame. When two history
-segments use different origins or scales, their transform into the pair frame
-must be exact or enclosed before subtraction. Subtracting two large global
-coordinates and hoping their small separation survives is prohibited.
+Pair geometry is evaluated in one declared local frame. When two history segments use different origins or scales, their transform into the pair frame must be exact or enclosed before subtraction. Subtracting two large global coordinates and hoping their small separation survives is prohibited.
 
 ## Absolute-Time Representation
 
@@ -79,11 +60,7 @@ $$
 T=T_{\mathrm{epoch}}+\tau
 $$
 
-The epoch remains fixed over a declared history slab. Local offsets, step
-endpoints, emission times, and brackets are compared without first collapsing
-them into one lower-precision scalar. An implementation may use integer ticks,
-dyadic offsets, floating-point expansions, arbitrary precision, or another
-representation only when it preserves the required ordering and enclosure.
+The epoch remains fixed over a declared history slab. Local offsets, step endpoints, emission times, and brackets are compared without first collapsing them into one lower-precision scalar. An implementation may use integer ticks, dyadic offsets, floating-point expansions, arbitrary precision, or another representation only when it preserves the required ordering and enclosure.
 
 The following condition is mandatory:
 
@@ -91,10 +68,7 @@ $$
 T_{n+1}>T_n
 $$
 
-must be certified in the time representation itself. A step that rounds back
-to $T_n$, changes ordering under precision escalation, or cannot distinguish an
-emission time from a boundary is rejected. Repeated floating-point addition to
-a large absolute epoch is not an accepted time integrator.
+must be certified in the time representation itself. A step that rounds back to $T_n$, changes ordering under precision escalation, or cannot distinguish an emission time from a boundary is rejected. Repeated floating-point addition to a large absolute epoch is not an accepted time integrator.
 
 ## Discrete And Continuous Decisions
 
@@ -108,24 +82,16 @@ The following must be exact or certified by non-overlapping enclosures:
 - causal-root count and root identity;
 - membership inside the retained history interval;
 - the sign of $D_t$ away from a declared fold chart;
-- active, inactive, excluded-coincidence, unresolved, and certified-pruned
-  classifications;
+- active, inactive, excluded-coincidence, unresolved, and certified-pruned classifications;
 - branch creation, continuation, merger, and memory-boundary exit;
 - timestep acceptance or rejection;
 - precision-route and backend-route decisions.
 
-A point estimate cannot decide a discrete record when its certified enclosure
-contains the decision boundary.
+A point estimate cannot decide a discrete record when its certified enclosure contains the decision boundary.
 
 ### Continuous Quantities
 
-Positions, velocities, accelerations, emission times, interpolation values,
-branch strengths, regulator contributions, and integrated states carry either
-a rigorous enclosure or a declared error estimate whose validation class is
-recorded. The independent oracle uses arbitrary-precision interval or ball
-arithmetic for the acceptance envelope. A production backend may use a cheaper
-estimate only after the oracle demonstrates that the estimate is conservative
-on the promoted workload.
+Positions, velocities, accelerations, emission times, interpolation values, branch strengths, regulator contributions, and integrated states carry either a rigorous enclosure or a declared error estimate whose validation class is recorded. The independent oracle uses arbitrary-precision interval or ball arithmetic for the acceptance envelope. A production backend may use a cheaper estimate only after the oracle demonstrates that the estimate is conservative on the promoted workload.
 
 ## Error-Budget Ledger
 
@@ -158,21 +124,13 @@ G_n E_n
 \sum_k C_{n,k}E_{n,k}
 $$
 
-where $G_n$ is the local history-to-history amplification bound and $C_{n,k}$
-maps each stage error into the accepted state. The oracle may evaluate these
-coefficients by interval automatic differentiation, higher-precision
-perturbation bounds, or an analytically derived Lipschitz estimate. A backend
-may not set them to one without evidence.
+where $G_n$ is the local history-to-history amplification bound and $C_{n,k}$ maps each stage error into the accepted state. The oracle may evaluate these coefficients by interval automatic differentiation, higher-precision perturbation bounds, or an analytically derived Lipschitz estimate. A backend may not set them to one without evidence.
 
-The caller supplies a total accepted-state budget. The run policy partitions
-that budget among stages and records unused margin. A stage may borrow margin
-only through an explicit recomputation of the propagated total. Hidden
-per-kernel tolerances are prohibited.
+The caller supplies a total accepted-state budget. The run policy partitions that budget among stages and records unused margin. A stage may borrow margin only through an explicit recomputation of the propagated total. Hidden per-kernel tolerances are prohibited.
 
 ## Required Condition Indicators
 
-The engine evaluates condition indicators before accepting a point-format
-result.
+The engine evaluates condition indicators before accepting a point-format result.
 
 | Decision or quantity | Required indicator |
 | --- | --- |
@@ -186,11 +144,7 @@ result.
 | Integrator step | Estimated or enclosed local error divided by the allocated step budget. |
 | History propagation | Bound on amplification from the input-history enclosure to the output-history enclosure. |
 
-An infinite or undefined indicator is not automatically a failure of the
-physical law. It selects a different numeric chart: finite-width caustic
-integration, zero-result enclosure, local coordinates, or higher precision.
-The run fails only when the required chart cannot be certified within its
-declared resource limits.
+An infinite or undefined indicator is not automatically a failure of the physical law. It selects a different numeric chart: finite-width caustic integration, zero-result enclosure, local coordinates, or higher precision. The run fails only when the required chart cannot be certified within its declared resource limits.
 
 ## Precision Ladder
 
@@ -205,18 +159,11 @@ The common precision ladder is:
 | Interval or ball arithmetic | Certified enclosures for roots, signs, branch decisions, state values, and oracle outputs. |
 | Exact or adaptive predicates | Sign, order, coincidence, topology, and other discrete decisions that admit an exact formulation. |
 
-These levels may be composed. For example, an arbitrary-precision midpoint may
-carry a ball radius, or a binary64 bulk reduction may terminate in a
-long-accumulator certificate. The nominal type name is not evidence; achieved
-precision, rounding behavior, and enclosure width are recorded.
+These levels may be composed. For example, an arbitrary-precision midpoint may carry a ball radius, or a binary64 bulk reduction may terminate in a long-accumulator certificate. The nominal type name is not evidence; achieved precision, rounding behavior, and enclosure width are recorded.
 
 ## Escalation Unit And Triggers
 
-The smallest independent unit that can be recomputed without changing accepted
-inputs is escalated first: predicate, interpolation evaluation, root bracket,
-interaction row, reduction bin, correction solve, or complete candidate step.
-Escalation never substitutes values from a different model, regulator, history,
-or timestep.
+The smallest independent unit that can be recomputed without changing accepted inputs is escalated first: predicate, interpolation evaluation, root bracket, interaction row, reduction bin, correction solve, or complete candidate step. Escalation never substitutes values from a different model, regulator, history, or timestep.
 
 Escalation is mandatory when any of the following occurs:
 
@@ -231,11 +178,7 @@ Escalation is mandatory when any of the following occurs:
 - the propagated accepted-state enclosure exceeds the caller's budget;
 - a nonfinite value appears without a certified mathematical interpretation.
 
-If increasing precision shows that $D_t=0$ is a real event, the record leaves
-the sharp chart and enters the finite-width fold route. If it shows that
-$D_r=0$ with $D_t\ne0$, the root remains active, its signed playback turns
-through zero, and its transmitter-factor acceleration remains ordinary.
-Precision escalation must not erase either event.
+If increasing precision shows that $D_t=0$ is a real event, the record leaves the sharp chart and enters the finite-width fold route. If it shows that $D_r=0$ with $D_t\ne0$, the root remains active, its signed playback turns through zero, and its transmitter-factor acceleration remains ordinary. Precision escalation must not erase either event.
 
 ## Root Certification
 
@@ -244,24 +187,16 @@ For every ordered pair, root work proceeds as:
 1. partition the retained emission-time interval into certified search cells;
 2. enclose $g_{ij}$ on each cell;
 3. discard a cell only when its enclosure excludes zero;
-4. isolate a simple root with a certified method such as interval Newton or a
-   safeguarded bracket plus derivative enclosure;
+4. isolate a simple root with a certified method such as interval Newton or a safeguarded bracket plus derivative enclosure;
 5. certify uniqueness and the sign of $D_t$ on the final root interval;
-6. merge or separate neighboring root intervals only through certified overlap
-   and topology rules;
+6. merge or separate neighboring root intervals only through certified overlap and topology rules;
 7. certify the unclaimed complement root free.
 
-Continuation supplies candidates, not completeness. Near multiple roots or
-folds, the sharp root method yields to the bound finite-width law and event
-subdivision. Maximum precision without a certified root count returns
-numeric_root_count_uncertified and rejects the coupled step.
+Continuation supplies candidates, not completeness. Near multiple roots or folds, the sharp root method yields to the bound finite-width law and event subdivision. Maximum precision without a certified root count returns numeric_root_count_uncertified and rejects the coupled step.
 
 ## History Interpolation
 
-Every history segment records its interpolation basis, coefficient precision,
-time chart, continuity class, derivative availability, and error enclosure.
-Interpolation is permitted only inside accepted retained segments. Extrapolation
-cannot supply a causal root or acceleration record.
+Every history segment records its interpolation basis, coefficient precision, time chart, continuity class, derivative availability, and error enclosure. Interpolation is permitted only inside accepted retained segments. Extrapolation cannot supply a causal root or acceleration record.
 
 The interpolation enclosure includes:
 
@@ -271,34 +206,24 @@ The interpolation enclosure includes:
 - truncation or reconstruction remainder;
 - transformation into the pair's local scale and coordinate frame.
 
-Dense output used by a multirate method is part of the accepted history and
-must satisfy the same contract as step endpoints.
+Dense output used by a multirate method is part of the accepted history and must satisfy the same contract as step endpoints.
 
 ## Accumulation And Reproducibility
 
-Ordered-pair contributions are reduced under a versioned policy. The baseline
-certificate uses a fixed logical ordering and one of:
+Ordered-pair contributions are reduced under a versioned policy. The baseline certificate uses a fixed logical ordering and one of:
 
 - pairwise or binned summation with an enclosure;
 - compensated summation with an independently justified residual bound;
 - floating-point expansion or long accumulator;
 - stricter-precision or interval accumulation.
 
-Compensation alone is not a certificate. The selected method must bound
-cancellation and overflow. Parallel scheduling may vary, but the logical bins,
-merge tree, and rounding policy are deterministic or the final enclosure must
-contain every allowed schedule result.
+Compensation alone is not a certificate. The selected method must bound cancellation and overflow. Parallel scheduling may vary, but the logical bins, merge tree, and rounding policy are deterministic or the final enclosure must contain every allowed schedule result.
 
-Single-thread, multithread, GPU, and distributed runs must agree on every
-discrete decision. Their continuous enclosures must overlap and satisfy the
-same accepted-state budget.
+Single-thread, multithread, GPU, and distributed runs must agree on every discrete decision. Their continuous enclosures must overlap and satisfy the same accepted-state budget.
 
 ## GPU And Heterogeneous Precision
 
-Accelerators may compute bulk candidates in their fastest promoted format.
-Rows whose indicators or enclosures fail the bulk gate are compacted with their
-original inputs and returned to a stricter device kernel or host precision
-service. The stricter result replaces the candidate under the same row identity.
+Accelerators may compute bulk candidates in their fastest promoted format. Rows whose indicators or enclosures fail the bulk gate are compacted with their original inputs and returned to a stricter device kernel or host precision service. The stricter result replaces the candidate under the same row identity.
 
 A GPU point result cannot finalize:
 
@@ -309,9 +234,7 @@ A GPU point result cannot finalize:
 - a reduction whose enclosure exceeds budget;
 - a candidate step whose accept/reject decision changes on replay.
 
-Transfer compaction, difficult-row replay, and final assembly are included in
-performance measurements. Reporting only the regular GPU kernel excludes the
-cost that determines accepted EOM throughput.
+Transfer compaction, difficult-row replay, and final assembly are included in performance measurements. Reporting only the regular GPU kernel excludes the cost that determines accepted EOM throughput.
 
 ## Multirate And Many-Order Timesteps
 
@@ -324,9 +247,7 @@ Fast and slow histories may use different step schedules only when:
 - event detection can subdivide every affected rate group;
 - convergence toward a resolved common-step reference is demonstrated.
 
-A reduced slow-sector law is a separate approximation with its own measured
-error envelope. It cannot be introduced as a scheduling optimization of the
-canonical Master Equation.
+A reduced slow-sector law is a separate approximation with its own measured error envelope. It cannot be introduced as a scheduling optimization of the canonical Master Equation.
 
 ## Run Numeric Policy
 
@@ -334,8 +255,7 @@ Every request declares or resolves to a versioned policy containing:
 
 - physical units and all nondimensional scales;
 - epoch, local-time, and coordinate-frame representation;
-- target absolute and relative budgets for position, velocity, root time,
-  acceleration, and retained history;
+- target absolute and relative budgets for position, velocity, root time, acceleration, and retained history;
 - stage-budget allocation;
 - initial and maximum precision in bits;
 - permitted precision levels and libraries;
@@ -347,8 +267,7 @@ Every request declares or resolves to a versioned policy containing:
 - CPU, accelerator, and distributed backend permissions;
 - resource limits required for advancement.
 
-Defaults may exist only inside a named policy version. Every result records the
-fully resolved values rather than only the policy name.
+Defaults may exist only inside a named policy version. Every result records the fully resolved values rather than only the policy name.
 
 ## Failure Codes
 
@@ -369,8 +288,7 @@ At minimum, the numeric layer can reject with:
 - numeric_precision_limit_exhausted;
 - numeric_resource_limit_exhausted.
 
-Failure returns the best enclosures and provenance accumulated so far, but no
-candidate history segment is labeled accepted or canonical.
+Failure returns the best enclosures and provenance accumulated so far, but no candidate history segment is labeled accepted or canonical.
 
 ## Acceptance Tests
 
@@ -378,8 +296,7 @@ The independent oracle and every promoted backend must pass:
 
 1. epoch-shift invariance across steps many orders below the absolute epoch;
 2. origin and scale-map invariance for identical physical histories;
-3. manufactured root problems with known counts, tangencies, close pairs, and
-   root-free complements;
+3. manufactured root problems with known counts, tangencies, close pairs, and root-free complements;
 4. $D_t$ sign and fold routing under increasing precision;
 5. $D_r$ zero-crossing with uninterrupted root activity and acceleration;
 6. core-coincidence zero-extension and $\epsilon_c$ refinement;
@@ -388,24 +305,15 @@ The independent oracle and every promoted backend must pass:
 9. cross-precision enclosure nesting or justified overlap;
 10. single-thread and worker-count replay;
 11. CPU, GPU, and difficult-row-return agreement;
-12. checkpoint/restart with identical discrete decisions and overlapping
-    accepted-state enclosures;
-13. deliberate maximum-precision and resource-limit failures that publish no
-    accepted step.
+12. checkpoint/restart with identical discrete decisions and overlapping accepted-state enclosures;
+13. deliberate maximum-precision and resource-limit failures that publish no accepted step.
 
 ## Freeze Boundary
 
-This contract is frozen as the numeric acceptance requirement for EOM v0.
-Implementation choices may exceed it, but weakening a discrete certificate,
-error budget, escalation route, or condition required for advancement requires an explicit
-contract amendment or successor version.
+This contract is frozen as the numeric acceptance requirement for EOM v0. Implementation choices may exceed it, but weakening a discrete certificate, error budget, escalation route, or condition required for advancement requires an explicit contract amendment or successor version.
 
-The contract does not select a language, numeric library, integrator, CPU
-layout, or accelerator API. Those decisions follow independent-oracle and
-representative benchmark evidence.
+The contract does not select a language, numeric library, integrator, CPU layout, or accelerator API. Those decisions follow independent-oracle and representative benchmark evidence.
 
 ## Priority Disposition
 
-This packet is priority-only. It defines the numeric authority that the
-independent oracle and later production implementations must satisfy; it does
-not itself promote a physical trajectory, application result, or closure claim.
+This packet is priority-only. It defines the numeric authority that the independent oracle and later production implementations must satisfy; it does not itself promote a physical trajectory, application result, or closure claim.

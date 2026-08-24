@@ -4,6 +4,8 @@ Potential wake contributions from all sources superpose linearly. The net potent
 $$
 \Phi_{\text{net}}=\sum_i\Phi_i
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-7b385746e404ec84)
 The total acceleration on an architrino at any instant is the vector sum of the contributions from every intersecting causal wake surface. Operationally, every architrino is continuously immersed in the superposed wakes of all others and, when the same-transmitter root condition permits, its own. Calculating the path-history integral requires isolating each causal emission event, evaluating the transmitter-side $W^{\mathrm{acc}}/r^2$ acceleration kernel at that emission, and then summing under a declared finite active horizon, screening rule, cancellation argument, or summation prescription.
 
 The simple rule is: add every causal wake contribution that actually reaches the receiver, but do not pretend that distance alone solves the infinite-background problem. A local simulation must say how far-field wakes are cut off, screened, canceled, summarized, or subtracted.

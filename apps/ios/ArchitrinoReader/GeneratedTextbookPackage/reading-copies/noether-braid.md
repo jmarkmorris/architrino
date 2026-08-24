@@ -25,6 +25,8 @@ $$
 \sum_{i=1}^{6}\sigma_i=0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3aa40ddac12db18c)
+
 Equivalently, the compact inventory is $3\epsilon_+ + 3\epsilon_-$. This ledger is imposed before any binary partition, member assignment, or reference fixture. Each architrino has three attractive opposite-polarity channels and two repulsive same-polarity channels among the other five sites. The $3+2$ count is an inventory fact, not a compressed acceleration law; the net acceleration must still be assembled from the retained causal roots and path history.
 
 Before a family chart is selected, the intrinsic path of architrino $i$ may be represented by a closed arclength curve
@@ -35,6 +37,8 @@ $$
 \left\|\mathbf Y_i'(s)\right\|=1,
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-234280b4040c395e)
+
 with physical trajectory
 
 $$
@@ -44,6 +48,8 @@ $$
 \qquad
 0<\nu_-\leq\nu_i(T)\leq\nu_+<\infty.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-53e7eac1f9efc366)
 
 Thus the base class permits changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows. A retained neutral braid must still return to a closed causal ledger within the declared recovery tolerance. Families A and B inherit this six-site neutral inventory before adding member coordinates. Family C instead declares a twelve-worldline neutral inventory, while each exact B1 or B1.3 component on its C3–C6 loci inherits the six-site base inventory.
 
@@ -138,6 +144,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-69d77fe708161a59)
+
 The inventory row fixes which architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, transmitter-side acceleration weights, and lines of action assembled from the true path histories rather than from a compressed acceleration law. The tail, dynamics, action, and Noether rows demand that the delayed accelerations, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The framing row carries the deformation-stable framed-path record, including the declared relation $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor. The event and stability rows demand that framing-wall or root-topology crossings are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
@@ -170,6 +178,8 @@ P_{\mathrm{stab}}
 P_{\mathrm{conv}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e4481a28161fec1f)
+
 Every predicate must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the result is a ledger mismatch, not a retention result. The neutral-braid statement of this certificate, with the base-family notation, is given in [Base-Family Certificate Instantiation](#base-family-certificate-instantiation); any prescribed taxonomy member inherits the same rows and may compress the all-pairs ledger only after its reduction map proves how the compressed entries are inherited.
 
 ### The First-Failure Ladder
@@ -187,6 +197,8 @@ $$
 \mathrm{repair\_or\_rejection}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-288e1570a7b23a05)
 
 The ladder shape carries the scene's central reading rule. Rows through convergence block branch retention; case-reduction and observer-export rows classify downstream structure only after the required rows close. A favorable Lorentz, photon, topology, mass-map, or envelope-geometry diagnostic therefore cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row — and symmetrically, a negative diagnostic remains scoped to the branch chart and assumptions that produced it. The margin entry keeps quantitative failures honest: a row that fails by a certified interval is worth more to the program than a row that merely lacks evidence, because it either rejects a chart or names the exact quantity a repair must move.
 
@@ -273,6 +285,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-baa9e2ba72b260fc)
+
 The corresponding retention predicate is
 
 $$
@@ -303,6 +317,8 @@ P_{\mathrm{stab}}
 P_{\mathrm{conv}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3c39155da0c56488)
+
 Every predicate in this conjunction must use the same source-pair policy, same-transmitter policy, memory depth, support descriptor, action convention, framing convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
 
 The root row begins with all ordered distinct source pairs. With $I=\{1,\ldots,6\}$,
@@ -315,6 +331,8 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a5fe6b6fa38cd0cc)
+
 Same-transmitter rows $(i,i)$ are governed by the declared same-transmitter policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive transmitter-site counts for each receiver are inventory facts, not a compressed acceleration law. The acceleration contribution must still be assembled from the actual retained causal roots, delays, Jacobian floors, transmitter-side acceleration weights, and line-of-action vectors for these ordered pairs. A prescribed taxonomy member can reduce this ledger only after its reduction map proves how the compressed entries are inherited from the all-pairs ledger.
 
 For Family C, let $I_C=\{1,\ldots,12\}$. Its uncompressed ordered distinct-pair ledger is
@@ -325,6 +343,8 @@ $$
 \qquad
 |\Pi_{\mathrm{all}}^{C}|=132.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1be1255a6bb5bbd5)
 C3 through C6 may expose two exact B1 or B1.3 component ledgers, but those component rows do not replace the 132-pair Family-C ledger unless a proved reduction map accounts for every cross-component pair. An associated Accessory Configuration remains a separate inventory and certificate input rather than part of these twelve defining worldlines.
 
 The certificate should report the first blocking row as
@@ -340,6 +360,8 @@ $$
 \mathrm{repair\_or\_rejection}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2cebd92863a852e6)
 
 Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
 
@@ -379,11 +401,15 @@ $$
 \mathbf V_{\mathrm{grp}}(T)=\frac{d\mathbf X_{\mathrm{grp}}}{dT}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d904167760477ca)
+
 and
 
 $$
 s_{\mathrm{grp}}(T)=\left\|\mathbf V_{\mathrm{grp}}(T)\right\|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-95bdb78df2e065e3)
 
 For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group translation speed is distinct from the internal orbital speeds of the constituent architrinos.
 
@@ -406,11 +432,15 @@ $$
 \mathbf c_a(T)=\frac{\mathbf X_{a1}(T)+\mathbf X_{a2}(T)}{2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-af80fc6b9098e165)
+
 and
 
 $$
 \mathbf d_a(T)=\frac{\mathbf X_{a1}(T)-\mathbf X_{a2}(T)}{2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f931453ca490e885)
 
 Given an oriented binary-axis unit vector $\hat{\mathbf n}_a(T)$, choose the endpoint and axis orientations so that the axial coordinate is nonnegative, and define
 
@@ -418,11 +448,15 @@ $$
 h_a(T)=\mathbf d_a(T)\mathbin{\cdot}\hat{\mathbf n}_a(T)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e1db153090a7b1b4)
+
 and
 
 $$
 \rho_a(T)=\left\|\mathbf d_a(T)-h_a(T)\hat{\mathbf n}_a(T)\right\|
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ff4e923b309d743e)
 
 Here $h_a$ is the **axial half-separation**, and $\rho_a$ is the **transverse orbit radius**. The binary radius is the endpoint distance from the binary midpoint:
 
@@ -430,11 +464,15 @@ $$
 R_a(T)=\left\|\mathbf d_a(T)\right\|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a4f1d483cd9c3dcf)
+
 The axial and transverse coordinates decompose that radius according to
 
 $$
 R_a^2(T)=h_a^2(T)+\rho_a^2(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e8a3d840a05b45cb)
 
 Frequency and phase belong to the individual binary. Every binary phase is specified relative to the same braid-level zero point.
 
@@ -458,6 +496,8 @@ $$
 \alpha_a(T)=\operatorname{atan2}\!\left(h_a(T),\rho_a(T)\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7370beb6a5dd27fc)
+
 This angle is not a primary taxonomy coordinate.
 
 The taxonomy table uses fixed-coordinate prescribed time dependence as an idealized characteristic. Other possible time dependences, including breathing, precession, and other deformations, lie outside its present scope.
@@ -469,6 +509,8 @@ Family A is the original Noether core geometry. Its member distinctions and symm
 $$
 \hat{\mathbf n}_a^{(0)}\mathbin{\cdot}\hat{\mathbf n}_b^{(0)}=\delta_{ab}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dc0698974d816a97)
 
 The near-rest axes define the equal-component braid direction
 
@@ -484,6 +526,8 @@ $$
 }{\sqrt3}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c503c8d479e5b97e)
+
 Family A translates along this direction:
 
 $$
@@ -491,6 +535,8 @@ $$
 =
 s_{\mathrm{grp}}(T)\hat{\mathbf u}_A
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eb1a02975552b756)
 
 Let $\lambda_A\in[0,1]$ denote the prescribed Family-A flattening coordinate. The near-rest endpoint is $\lambda_A=0$. As $\lambda_A$ increases, the three binary axes converge toward the translation direction. The flat endpoint is
 
@@ -504,6 +550,8 @@ $$
 \hat{\mathbf u}_A
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7c26273e22e0a49b)
+
 The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
 
 `A1` is the zero-axial-offset Family-A member. All three binary midpoints coincide with the braid center, and each binary has
@@ -516,6 +564,8 @@ h_a=0,
 \rho_a=R_a.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c27b4c6a30d3c46b)
+
 Thus the electrino and positrino of binary $a$ traverse the same geometric circle in the plane through the braid center orthogonal to $\hat{\mathbf n}_a$, while occupying antipodal points at every common time. The phrase "same plane" applies within each binary; the three Family-A binary planes remain distinct whenever their axes are distinct.
 
 The A1 indices $a\in\{1,2,3\}$ are persistent record identities, not a sorting by radius, frequency, speed, or any derived dynamical role. Their radii satisfy
@@ -525,6 +575,8 @@ R_a>0,
 \qquad
 a\in\{1,2,3\},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4fbf50c5a263d344)
 
 and may be assigned independently, including equal values. The three frequencies are also independently assignable. If an evolved branch later supplies a field-speed carrier, a boundary-leading path, or another distinguished role, that role is a diagnostic derived from the branch record and does not relabel the binaries.
 
@@ -543,6 +595,8 @@ h_1=h_2=h_3=0,
 \right\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-62fadd3c557fddc1)
+
 for each shared constrained-variant suffix $n\in\{1,2,3,4\}$. The unsuffixed A1 member is the corresponding zero-axial-offset subset of unsuffixed A3. A2 is selected by its cyclic symmetry constraints and occupies a symmetric locus within the A3 coordinate space; it is not renamed by this subset relation.
 
 ### Family B: Coincident Binary Axes
@@ -559,6 +613,8 @@ $$
 \mathbf X_{\mathrm{grp}}(T),
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-88366a3b96d55a67)
+
 and one common oriented axis:
 
 $$
@@ -570,6 +626,8 @@ $$
 =
 \hat{\mathbf n}_B
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-826e6fcf880fff95)
 
 `B1` is the fixed-coordinate common-frequency co-rotating member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
 
@@ -594,6 +652,8 @@ $$
 \qquad
 d_C>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1a7a7eba2516442)
 
 An optional six-architrino Accessory Configuration is separate declared inventory and does not change the C1 through C6 identifier. These members define prescribed geometry classes only; they do not assert a binding or retention mechanism.
 
@@ -760,6 +820,8 @@ h_a=0,
 \rho_a=R_a.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1527409c4a34726)
+
 The two architrinos therefore remain antipodal while traversing the same geometric circle, whose center is the braid center. The three binary circles need not share one plane: at the near-rest endpoint their plane normals are the three mutually orthogonal Family-A axes.
 
 A1 does not require the exact cyclic binary-permutation symmetry of A2. When its binary coordinates differ, a spatial rotation cannot map one binary onto another with different geometry. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not by itself establish spatial equivalence.
@@ -795,6 +857,8 @@ $$
 R_a^2=h_a^2+\rho_a^2.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e6f31f81fbb0c72)
+
 For endpoint sign $\sigma\in\{+1,-1\}$, the center of the endpoint's circular path is
 
 $$
@@ -804,6 +868,8 @@ $$
 +
 \sigma h_a\hat{\mathbf n}_a.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d58d2d8ae9db1d0c)
 
 Thus $h_a>0$ separates the two endpoint orbit centers by $2h_a\hat{\mathbf n}_a$, even though the endpoint positions remain antipodal about the binary midpoint at every common time. A3 permits $h_a=0$, so A1 is its exact zero-axial-offset subset rather than a disjoint class.
 
@@ -823,6 +889,8 @@ For every shared suffix $n\in\{1,2,3,4\}$,
 $$
 A1.n=A3.n\mathbin{\cap}\{h_1=h_2=h_3=0\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-63d084e7f4c1ef0c)
 
 #### A1, A2, and A3 Relations
 
@@ -901,6 +969,8 @@ k_a\in\mathbb{Z},
 a\in\{1,2,3\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a5a46315f91ed2e)
+
 The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. When ordinary layer frequency is used below, $\omega_a=2\pi f_a$. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
 
 On the retuning hypothesis below, an accepted energy-level change is a one-$h_{\mathrm{act}}$ closed-cycle action transaction that moves the A1 record from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned braid should therefore carry information about the braid's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the braid.
@@ -921,6 +991,8 @@ A_N=Nh_{\mathrm{act}},
 E_N=A_N f_N
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-466985b3a3cee37b)
+
 Here $h_{\mathrm{act}}$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $f_N$ is a representative cadence extracted from the closed A1 branch. A one-$h_{\mathrm{act}}$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh_{\mathrm{act}}$. The accepted branch may answer through one or more of the cadence, binary radii, envelope scale, envelope ratio, orientation, strain, and inter-binary wake-exchange variables. The inter-binary ledgers $\mathcal{G}_{12},\mathcal{G}_{13},\mathcal{G}_{23}$ are defined in [Reduced A1 Closure Label](#reduced-a1-closure-label):
 
 $$
@@ -931,6 +1003,8 @@ $$
 (f_N',\ R_1',R_2',R_3',\ \lambda',\ \xi',\ \mathcal{G}_{12}',\mathcal{G}_{13}',\mathcal{G}_{23}')
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9fe0ad2987524582)
+
 In the simplest fixed-speed layer estimate,
 
 $$
@@ -938,6 +1012,8 @@ v_a\sim 2\pi R_a f_a,
 \qquad
 a\in\{1,2,3\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1176817d073586af)
 
 If a branch keeps $v_a$ approximately fixed while accepting the transaction, then
 
@@ -948,6 +1024,8 @@ R_a f_a\approx\text{constant},
 \qquad
 \Delta f_a<0\Rightarrow\Delta R_a>0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0024771558386806)
 
 The proof target is the constrained map, not only this sign rule. On a fixed branch chart $q$, collect the logarithmic retuning variables into
 
@@ -961,11 +1039,15 @@ $$
 \right)_q^{T}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ff5e6da23986d0a5)
+
 Let $A_{\mathrm{cyc},q}(\mathbf{y},\mathcal{G})$ be the closed-cycle action ledger on that chart, and let
 
 $$
 \mathcal{C}_q(\mathbf{y},\mathcal{G})=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c9288d5bee522f49)
 
 collect the integer phase-closure, causal-root, separator, inter-layer wake-exchange, and stability conditions that define the branch. A first-order accepted retuning with action sign $s_{\mathrm{act}}\in\{+1,-1\}$ must satisfy
 
@@ -977,6 +1059,8 @@ D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 s_{\mathrm{act}}h_{\mathrm{act}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-23074096f2709cfc)
+
 together with the branch-preservation condition
 
 $$
@@ -985,6 +1069,8 @@ D\mathcal{C}_q[\Delta\mathbf{y}]
 \Delta\mathcal{C}_{\mathcal{G}}
 =0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ffc5a96889b2ef66)
 
 If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-braid drift.
 
@@ -1000,6 +1086,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-40fc9548777d0c6f)
+
 where $\Lambda_{A1}$ is defined in [Reduced A1 Closure Label](#reduced-a1-closure-label), and $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
 
 $$
@@ -1013,6 +1101,8 @@ w_3^{(q)}\Delta\ln f_3,
 \qquad
 w_1^{(q)}+w_2^{(q)}+w_3^{(q)}=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-50b05367cdb69e52)
 
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full A1 record need not put the entire transaction into a single binary. One binary may tighten while another expands, and the path-history envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
@@ -1032,6 +1122,8 @@ A_N=Nh_{\mathrm{act}},
 N\in\mathbb{Z}_{>0}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-43a67fd474edd1e9)
+
 For any declared binary channel $a\in\{1,2,3\}$, write its action allocation as
 
 $$
@@ -1041,11 +1133,15 @@ I_a=N_a\hbar_{\mathrm{act}}
 =p_a^{(q)}N\frac{h_{\mathrm{act}}}{2\pi}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f80c3ce2d933e6d)
+
 Here $p_a^{(q)}$ is the branch share carried by binary $a$ and $\hbar_{\mathrm{act}}\equiv h_{\mathrm{act}}/(2\pi)$. With the reduced circular-action chart
 
 $$
 I_a=\mu_a^{\mathrm{rot}}R_a v_a
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-11338919eb39c5f7)
 
 Here $\mu_a^{\mathrm{rot}}$ is an effective rotational branch-response coefficient for this reduced chart. It is not a primitive mass assigned to architrinos; it is a bookkeeping response factor that must ultimately be extracted from the same branch record used by the mass-map program.
 
@@ -1059,11 +1155,15 @@ R_a(N)\,v_a(N)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39233f2eeeed92df)
+
 This is the part fixed directly by the $Nh_{\mathrm{act}}$ action ledger. It says that a higher rest level must carry a larger radius-speed product in the selected channel, but it does not by itself decide whether the extra product appears as larger radius, higher speed, or both. The separate functions $R_a(N)$, $v_a(N)$, and
 
 $$
 f_a(N)=\frac{v_a(N)}{2\pi R_a(N)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-30cd902023a4c007)
 
 therefore require one more branch-closure equation.
 
@@ -1072,6 +1172,8 @@ One possible closure is a branch-pinned speed, stated as a chart hypothesis only
 $$
 v_a=\beta_ac_f
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-979fcda1f1b85602)
 
 with fixed $\beta_a$, then
 
@@ -1088,6 +1190,8 @@ f_a(N)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5060bd279aa4a162)
+
 This special branch gives
 
 $$
@@ -1100,6 +1204,8 @@ f_a\propto N^{-1}.
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-124e9fc52ad688b3)
+
 A different closure comes from a bare inverse-square radial balance. If the delayed root ledger reduces to
 
 $$
@@ -1107,6 +1213,8 @@ $$
 =
 \frac{K_a}{4R_a^2}\mathcal{B}_a(\beta_a;\Lambda_{A1,a})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df0d3ce2d80f15ce)
 
 Here the factor $1/(4R_a^2)$ is the inverse-square factor for an opposite member at diameter $d=2R_a$. The coefficient $K_a$ is the reduced channel coupling combination, $\mathcal{B}_a(\beta_a;\Lambda_{A1,a})$ is the dimensionless delayed-root radial balance factor, and $\Lambda_{A1,a}$ is the selected channel sublabel inherited from the reduced A1 closure label. If $\mathcal{B}_a$ is approximately constant on the compared segment, then the same action product gives
 
@@ -1120,6 +1228,8 @@ f_a\propto N^{-3}.
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ab2d6498b25d0e57)
+
 Thus the $Nh_{\mathrm{act}}$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether sea return terms decide the actual rest-level scaling.
 
 If the selected binary channel instead carries a declared energy projection
@@ -1127,6 +1237,8 @@ If the selected binary channel instead carries a declared energy projection
 $$
 E_a(N)=\zeta_a^{(q)}\mu_a^{\mathrm{rot}}v_a^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f147536cff657cf7)
 
 then
 
@@ -1143,6 +1255,8 @@ R_a(N)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-de3fbc5658b0addb)
+
 This form is the safest way to use any external energy-level equation: insert the branch energy projection $E_a(N)$, then derive the corresponding channel radius and speed.
 
 The same chart also gives a packing readout for the Noether sea, but the packing scale must be extracted from all six paths rather than from a preselected binary. In a nearly spherical exclusion-envelope approximation, let
@@ -1153,11 +1267,15 @@ R_{\mathrm{excl}}
 \alpha_{\mathrm{env}}^{(q)}R_{\mathrm{env}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7094ddb0f620e8dc)
+
 where $R_{\mathrm{env}}$ is a branch-derived characteristic radius of the full path-history envelope and $\alpha_{\mathrm{env}}^{(q)}$ converts it into the selected exclusion-interface threshold. Equal exclusion-envelope center contact then occurs at
 
 $$
 d_{\mathrm{nn}}=2R_{\mathrm{excl}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-029054146da0f4b3)
 
 and the densest ordinary equal-sphere center density is
 
@@ -1167,6 +1285,8 @@ $$
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4aba4f836f7c1f40)
+
 The density symbol functions as packing notation for this chart, distinct from the physical Noether sea density field $\rho_{\text{NS}}(\mathbf X,T)$; the $\#$ marks a center number density for the relevant Noether braid exclusion envelopes. Therefore the packing curve inherits the radius closure:
 
 $$
@@ -1174,6 +1294,8 @@ $$
 \propto
 R_{\mathrm{env}}(N)^{-3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e23505a2f3f89efd)
 
 If the branch independently proves that one selected channel $a$ controls $R_{\mathrm{env}}$ with a fixed proportionality, then its fixed-speed estimate gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while its bare inverse-square estimate with approximately constant $\mathcal{B}_a$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. Without that boundary-leading certificate, the single-channel exponents do not transfer to packing. These are branch diagnostics, not competing definitions of a Noether braid.
 
@@ -1184,6 +1306,8 @@ p_a^{(q)},\ \mu_a^{\mathrm{rot}},\ \alpha_{\mathrm{env}}^{(q)},\ \mathcal{B}_a(\
 \longrightarrow
 p_a(q,\theta_{\mathrm{env}}),\ \mu_a^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_{\mathrm{env}}(q,\theta_{\mathrm{env}}),\ \mathcal{B}_a(\beta_a;\Lambda_{A1,a},\theta_{\mathrm{env}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d24e06ff6d7a7a39)
 
 The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroidal envelope rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
 
@@ -1202,6 +1326,8 @@ k_1,k_2,k_3;\
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6f87b8ef688d5b56)
+
 Here $k_1,k_2,k_3$ are the binary winding counts over the chosen return period. The binary ledgers $\mathcal{G}_1,\mathcal{G}_2,\mathcal{G}_3$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-binary ledgers $\mathcal{G}_{12},\mathcal{G}_{13},\mathcal{G}_{23}$ record delayed exchange roots and phase-lock constraints between binary pairs. The branch label $\chi_c$ records braid chirality derived from the indexed path record, for example through $\operatorname{Wr}_c$ or a multi-component causal-writhe parity; it must not be inferred from a high/middle/low radius ordering.
 
 The assembly counts are explicit aggregations of those ledgers:
@@ -1210,6 +1336,8 @@ N_s(\Lambda_{A1})
 =
 \sum_{a=1}^{3}N_s(\mathcal G_a),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0224bdc46eb807e1)
 $$
 M_p(\Lambda_{A1})
 =
@@ -1217,6 +1345,8 @@ M_p(\Lambda_{A1})
 +
 \sum_{1\le a<b\le3}M_p^{\mathrm{inter}}(\mathcal G_{ab}).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a928c7281453dbf)
 Here $\mathcal G_a$ carries the within-binary self and partner roots, while $\mathcal G_{ab}$ carries the directed cross-binary roots. Any compressed count must reproduce these transmitter-identity partitions.
 
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{A1}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
@@ -1233,6 +1363,8 @@ $$
 =
 \left\{a:\text{a retained same-transmitter root row exists on }W\right\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-167197368d858bea)
 These sets preserve the binary indices and derive their roles from the retained record. The alignment-restricted label is the theorem-target restriction
 $$
 \Lambda_{A1}^{\mathrm{align}}
@@ -1245,6 +1377,8 @@ $$
 \text{precession ceases}
 }}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd44ee6068b2a48b)
 with the remaining admissible entries inherited from the binary ledgers, inter-binary ledgers, chirality entry, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
 $$
 \mathcal{L}_U(\theta_{\mathrm{env}})
@@ -1259,6 +1393,8 @@ $$
 /
 \sim_{\mathrm{env},\theta_{\mathrm{env}},W}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7ce5f2a90fb08bba)
 Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 
 ##### Geometry and Exclusion Envelope
@@ -1299,15 +1435,9 @@ The collective motion, or **group velocity**, of a Noether braid assembly determ
 
 ##### A1 Dynamics
 
-The A1 mechanism program — how a three-layer assembly could keep compatible branch
-records as one moving delayed system, with same-record closure across period, active-root ledger,
-deformation map, medium response, observer export, and event ledger — is an open
-obligation, not carried in this chapter. The realization-independent
-machinery lives with the shared mathematics in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels).
-Results enter this chapter only when established at their stated claim level.
+The A1 mechanism program — how a three-layer assembly could keep compatible branch records as one moving delayed system, with same-record closure across period, active-root ledger, deformation map, medium response, observer export, and event ledger — is an open obligation, not carried in this chapter. The realization-independent machinery lives with the shared mathematics in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels). Results enter this chapter only when established at their stated claim level.
 
-For the strong-field continuation, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and
-[Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
+For the strong-field continuation, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
 ### A2 Symmetry and Return Response
 
@@ -1329,17 +1459,23 @@ $$
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-77d5d9c718258b2a)
+
 This seed lies on a common sphere, so it is the maximal-symmetry Family-A member: the A2 reference fixture defined in [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md#a2). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
 
 $$
 (g\cdot\mathbf X)_\ell(t)=M_g\,\mathbf X_{g^{-1}\ell}(t)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9eba84bb602f7e55)
+
 and because point inversion commutes with every permutation matrix, the groups are direct products: the zero-angular-momentum group $G_0=S_3\times\langle\iota\rangle$ of order twelve, and the body-diagonal rotating group $G_{\mathrm{rot}}=C_3\times\langle\iota\rangle$ of order six, where $C_3=\langle\varrho\rangle$ is the three-fold rotation about the body diagonal
 
 $$
 \hat{\mathbf n}=\frac{(1,1,1)}{\sqrt3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ba5cebce63ffa12)
 
 No physical process relabels an electrino as a positrino: every architrino is unique, with its own provenance and path history. The operations above are comparison maps between two possible configurations of the universe. If one configuration solves the delayed dynamics, its transformed twin solves it too. When the seed happens to be its own twin, the twins' shared trajectory is constrained, and that constraint is the entire content of the channel.
 
@@ -1355,6 +1491,8 @@ $$
 \sigma_\ell\sigma_{\ell'}\,\kappa\,
 \frac{W(T_t)}{\left(d^2+\varepsilon^2\right)^{3/2}}\;\mathbf d
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6705a6df8d92128d)
 
 where $\mathbf d=\mathbf X_\ell(T_r)-\mathbf X_{\ell'}(T_t)$ with $d=\|\mathbf d\|$, the causal roots $T_t$ solve $d=c_f(T_r-T_t)$ within the retained history window, $\varepsilon$ is the softening, $\kappa$ the coupling, and the acceleration weight is $W=c_f/|D_t|$ on a sign-certified transmitter-side Jacobian floor. Receiver-side velocity remains in the signed root-playback record $D_r/D_t$ but not in this instantaneous acceleration kernel.
 
@@ -1381,6 +1519,8 @@ $$
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4efe7ee838766689)
+
 a closed two-function state-dependent delay system in $(a,b)$. On the body-diagonal rotating channel,
 
 $$
@@ -1390,6 +1530,8 @@ $$
 \qquad
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c33b86bf2a28f578)
 
 a closed three-function reduced system in $\epsilon_{+,x}$ alone. Once the branch also carries group velocity along $\hat{\mathbf n}$, translation breaks $\iota$ while preserving $C_3$, and the reduction needs two representative worldlines, $\epsilon_{+,x}$ and $\epsilon_{-,x}$.
 
@@ -1419,6 +1561,8 @@ $$
 3\left(\hat{\mathbf n}\cdot\left(\epsilon_{+,x}-\epsilon_{-,x}\right)\right)\hat{\mathbf n}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-082b053380ee5012)
+
 The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the Family-A chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
 
 #### Momentum Screw and Helicity
@@ -1432,6 +1576,8 @@ $$
 \qquad
 \mathbf J_{\mathrm{kin}}\parallel\hat{\mathbf n}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e591bc40d4b27b4)
 
 The body-diagonal direction is therefore the central axis of the branch's momentum screw: the unique direction that carries both linear and angular kinematic momentum, with the transport state reduced to the two scalars $P_\parallel$ and $J_\parallel$. The displayed $\mathbf P_{\mathrm{kin}}=\sum_i\mathbf v_i$ is an equal-weight linear diagnostic, not a primitive mass sum. For an isotropic momentum function, replace each velocity by $P(\|\mathbf v_i\|)\hat{\mathbf v}_i$; equal site speeds and the same projector symmetry preserve the axial direction conclusions. Their origin-independent combination $\mathbf J\cdot\mathbf P$ — helicity in normalized form, screw pitch in geometric form — is the natural combined label, since an origin shift changes $\mathbf J$ only by a term orthogonal to $\mathbf P$. In delayed dynamics the particle-only momenta are not separately conserved; the causal wakes carry momentum and angular momentum of their own, and conservation is a statement about the combined particle and wake ledger. On the channel, symmetry fixes the momentum directions exactly while the magnitudes exchange with the wake ledger.
 
@@ -1453,6 +1599,8 @@ $$
 }{R}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0879e008fffe5d50)
+
 A candidate recovery entry must declare tolerances and show
 
 $$
@@ -1466,6 +1614,8 @@ $$
 \qquad
 0\leq\theta_{\mathrm{recov}}<1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1c906dd7bb567512)
 
 for $T,T+T_{\mathrm{recov}}\in J$. Here $T_{\mathrm{recov}}$ is the declared recovery time, $\theta_{\mathrm{recov}}$ is the dimensionless recovery contraction factor, and $\varepsilon_{\mathrm{drive}}$ is the driving residue. This is a certificate target, not an established A2 property.
 
@@ -1516,6 +1666,8 @@ v_a = 2\pi f_a r_a = \beta_a c_f,
 c_f>0
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e96d68c55bfa26ef)
+
 Equivalently,
 $$
 f_a=\frac{v_a}{2\pi r_a},
@@ -1525,10 +1677,11 @@ r_a=\frac{v_a}{2\pi f_a},
 v_a=2\pi f_a r_a
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e60fb027d3fbd019)
+
 Plain language: for any one binary carrier, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
 
-This identity is exact. It is not an assumption, and it does not select a lock by itself.
-The logical spine is therefore:
+This identity is exact. It is not an assumption, and it does not select a lock by itself. The logical spine is therefore:
 
 1. **Kinematics:** $v_a=2\pi f_a r_a$ relates speed, frequency, and radius without introducing topology.
 2. **Integer closure:** Assumption 2 is the only place where the integer pair $(m,n)$ enters; it turns frequency commensurability into return-map degree/holonomy data.
@@ -1544,6 +1697,8 @@ v_h^{\mathrm{car}}=c_f,
 \qquad
 \beta_h^{\mathrm{car}}=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc8a2f18393b8b3e)
 For compact notation, the algebra below writes $v_h=c_f$ and $\beta_h=1$ for this carrier value.
 
 The branch-level motion may have microscopic crossings
@@ -1552,6 +1707,8 @@ v_h(T)=c_f+\delta v_h(T),
 \qquad
 \langle \delta v_h\rangle_W=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5390c7ab577ac84d)
 over the declared window $W$. Each regularized crossing of the $J_h^{t}(\theta_h)=0$ boundary is a caustic transit with finite impulse
 $$
 \Delta\mathbf{V}_{h,j}
@@ -1561,10 +1718,11 @@ $$
 \qquad
 \left\|\Delta\mathbf{V}_{h,j}\right\|<\infty
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ded68219009abda5)
 rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
-This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
-It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
+This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
 
 #### Assumption 2 (Exact Integer Phase Closure)
 
@@ -1574,16 +1732,24 @@ m,n\in\mathbb{N},
 \qquad
 1<m<n
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b17b3862a4a76728)
 such that
 $$
 \theta_3(T+P_3)=\theta_3(T)+2\pi
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1e3ee755bb462b90)
 $$
 \theta_2(T+P_3)=\theta_2(T)+2\pi m
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-887d0ec76c657a3b)
 $$
 \theta_1(T+P_3)=\theta_1(T)+2\pi n
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b8f2660b620aa775)
 
 Therefore the indexed frequency triplet is $f_1:f_2:f_3=n:m:1$, with $f_2=m f_3$ and $f_1=n f_3$.
 
@@ -1597,9 +1763,13 @@ The lock is not just commensurate in frequency. It also carries fixed relative p
 $$
 \phi_{23}(T)\equiv \theta_2(T)-m\theta_3(T)=\phi_{23}^\ast
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-84f096c688ac1560)
 $$
 \phi_{13}(T)\equiv \theta_1(T)-n\theta_3(T)=\phi_{13}^\ast
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b8a789367e3abbdf)
 with constants $\phi_{23}^\ast,\phi_{13}^\ast$.
 
 Plain language: the binaries keep the same timing relationship cycle after cycle rather than drifting through one another.
@@ -1618,6 +1788,8 @@ d\theta_2-m\,d\theta_3,
 d\theta_1-n\,d\theta_3
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ea01a6be817aff43)
+
 Exact integer phase closure says the covering degrees over one binary-3 cycle are
 
 $$
@@ -1625,6 +1797,8 @@ $$
 \qquad
 \frac{1}{2\pi}\oint_{S^1_3}d\theta_1=n
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cfcc793ba6e188ac)
 
 or equivalently
 
@@ -1636,6 +1810,8 @@ $$
 (\mathrm{mod}\ 2\pi)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1455388f78e96d9)
+
 on the locked branch. Fixed relative phase then says these one-forms are flat on the retained return chart: their integrated values do not drift, and the constants $\phi_{23}^\ast,\phi_{13}^\ast$ are the residual flat-connection data. The discrete and continuous pieces should be kept separate:
 
 $$
@@ -1644,23 +1820,25 @@ $$
 (\phi_{23}^\ast,\phi_{13}^\ast)=\text{flat-connection moduli}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0d13a35f804b687)
+
 Thus the lock is a flat relative-phase connection with integer holonomy, not a literal first Chern class over the binary-3 phase circle. In the language of [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-return degree data that make the reduced action-angle chart globally replayable rather than merely local.
 
 The phase-bundle picture also requires genuine three-dimensional binary-plane independence. Use the canonical ordered-normal determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame).
 
-The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment.
-For a promoted finite-$\eta$ chart this is a conditioning floor,
+The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment. For a promoted finite-$\eta$ chart this is a conditioning floor,
 $$
 |D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5037aab430c37416)
 It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal Noether braid phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
 
 #### Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)
 
 Among the admissible binary-3-normalized integer locks $(1:m:n)$, the physically selected lock is assumed to be the one whose phase bundle admits the flattest replayable connection while minimizing exposed causal-wake leakage. The cycle-averaged cancellation of a low-order causal-wake multipole or effective potential signal is the effective diagnostic for that deeper bundle condition.
 
-This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, candidate-carrier impulse record, and finite-$\eta$ return map.
-The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
+This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, candidate-carrier impulse record, and finite-$\eta$ return map. The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
 
 For a declared comparison chart, candidate binary $h$ is the curvature carrier. Between caustic events the locked triple is modeled as flat phase transport. At its regularized caustics, the connection acquires concentrated curvature,
 
@@ -1675,6 +1853,8 @@ $$
 \Omega_{\mathrm{reg}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34848497603093d1)
+
 where $\theta_{h,j}^{\ast}$ are the candidate-carrier caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{h,j}$ and its wake-history increment on the retained branch. Any energy-routing fulcrum is therefore geometric and branch-derived: transfers may concentrate at the carrier caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
 A minimal test functional can be written before committing to a particular lock. Let $(q_1,q_2,q_3)=(n,m,1)$, with phase variables $\theta_k(T)=q_k\omega_3 T+\phi_k$ and $\omega_3=2\pi f_3$. For a low-order truncation depth $L$, define
@@ -1685,9 +1865,9 @@ S_L(T)
 A_{k,\ell}(\beta_k,r_k,\eta,D_t,D_r,W^{\mathrm{acc}},J_k^{t})\,
 e^{i\ell(q_k\omega_3 T+\phi_k)}
 $$
-The coefficients $A_{k,\ell}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ transmitter-side acceleration-weight, branch-transversality, and causal-wake ledger used to test the candidate lock.
-They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
-For the caustic-grazing candidate carrier this extraction is not an ordinary smooth Fourier coefficient. A carrier harmonic must carry the caustic transversality weight of the window while keeping transmitter-side acceleration/action strength on the same retained record, schematically
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6233800de291e313)
+The coefficients $A_{k,\ell}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ transmitter-side acceleration-weight, branch-transversality, and causal-wake ledger used to test the candidate lock. They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential. For the caustic-grazing candidate carrier this extraction is not an ordinary smooth Fourier coefficient. A carrier harmonic must carry the caustic transversality weight of the window while keeping transmitter-side acceleration/action strength on the same retained record, schematically
 
 $$
 A_{h,\ell}
@@ -1701,8 +1881,9 @@ w_{h,\ell}^{r}(\theta_h)
 e^{-i\ell\theta_h}\,d\theta_h
 $$
 
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{h,\ell}^{r}$ the branch-derived numerator computed from the same retained $D_t$, $D_r$, and $W^{\mathrm{acc}}$ row for that harmonic channel. The $J_h^{t}$ factor is a caustic-window transversality weight, not a substitute for transmitter-side acceleration weight. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{h,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite candidate-carrier impulse deposits the right spectral weight into the first common resonance block.
-The cycle-averaged cancellation score over one binary-3 reference window starting at $T_\ast$ is
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bca27ce5edad2566)
+
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{h,\ell}^{r}$ the branch-derived numerator computed from the same retained $D_t$, $D_r$, and $W^{\mathrm{acc}}$ row for that harmonic channel. The $J_h^{t}$ factor is a caustic-window transversality weight, not a substitute for transmitter-side acceleration weight. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{h,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite candidate-carrier impulse deposits the right spectral weight into the first common resonance block. The cycle-averaged cancellation score over one binary-3 reference window starting at $T_\ast$ is
 $$
 C_L(m,n;\phi)
 =
@@ -1714,24 +1895,31 @@ C_L(m,n;\phi)
 A_{k,\ell}e^{i\ell\phi_k}
 \right|^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4f475be1c41774e5)
 The doubling-frequency claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
 
 **Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two binaries only when their finite harmonic supports overlap:
 $$
 \nu\in q_k\{1,\ldots,L\}\cap q_b\{1,\ldots,L\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-655390add6980257)
 for distinct binary indices $k$ and $b$. If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the doubling-frequency candidate $(m,n)=(2,4)$, the first binary-3/binary-2 overlap is $\nu=2$ via $(3,\ell=2)$ and $(2,\ell=1)$; the first all-binary overlap is
 $$
 \nu=4
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d8be52738bddeb0f)
 via $(3,\ell=4)$, $(2,\ell=2)$, and $(1,\ell=1)$. Thus this functional can select $1:2:4$ only if $L\ge4$ and the $\nu=4$ block has nontrivial branch-derived amplitudes. A complete cancellation of that all-binary block additionally requires the amplitude magnitudes to satisfy the polygon condition
 $$
 \max(|A_{3,4}|,|A_{2,2}|,|A_{1,1}|)
 \le
 \text{sum of the other two}
 $$
-The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock.
-The selection therefore has two independent requirements. The topological requirement is that the all-binary resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted carrier contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b33d301f9b4bf84)
+The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock. The selection therefore has two independent requirements. The topological requirement is that the all-binary resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted carrier contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
 
 Topologically, the same $\nu=4$ statement says the doubling-frequency lock is the first common cover of the three phase circles. The covering maps can be written
 
@@ -1743,11 +1931,14 @@ S^1_2
 S^1_1
 $$
 
-when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each indexed phase circle double-covers its reference neighbor. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins.
-Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d53b597636de7439)
+
+when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each indexed phase circle double-covers its reference neighbor. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins. Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
 $$
 S^1\xleftarrow{\times 2}S^1\xleftarrow{\times 2}S^1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5d41d7dbdb178969)
 among non-identity integer towers. This is why the doubling-frequency family is also the natural candidate for a renormalization-style fixed point in the truncation analysis: repeated double covering is the simplest scale-similar phase organization.
 
 #### Non-Assumptions
@@ -1758,8 +1949,7 @@ The doubling-frequency-lock analysis does **not** assume:
 - any radius ordering or self-similar radius relation,
 - or the specific frequency lock $1:2:4$ at the outset.
 
-Those are possible special cases or later outcomes, not starting axioms here.
-Only exact integer closure is studied here. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
+Those are possible special cases or later outcomes, not starting axioms here. Only exact integer closure is studied here. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
 
 #### Immediate Consequences
 
@@ -1769,6 +1959,8 @@ Let
 $$
 (q_1,q_2,q_3)=(n,m,1).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca254f0e7889a344)
 The exact identity gives every characteristic radius relative to the binary-3 reference radius:
 $$
 r_a
@@ -1781,6 +1973,8 @@ r_a
 \qquad
 a\in\{1,2,3\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3057c660ac699eb3)
 If the candidate carrier is binary $h$, Assumption 1 adds only $\beta_h=1$. It does not order the other radii. Thus the frequency ratio and one field-speed condition still leave the remaining speed factors to be determined by the branch dynamics.
 
 #### Proposition 1 (Exterior Integer Lock Formulas)
@@ -1789,6 +1983,8 @@ Under Assumptions 1-2,
 $$
 f_1:f_2:f_3 = n:m:1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-42abafe8aa247b4d)
 and
 $$
 r_1:r_2:r_3
@@ -1796,10 +1992,14 @@ r_1:r_2:r_3
 \frac{\beta_1}{n}:\frac{\beta_2}{m}:\beta_3.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-69fcc8c7b3370a8c)
+
 **Proof.** The frequency ratio is exactly Assumption 2. The radius ratios follow from
 $$
 r_a=\frac{\beta_a c_f}{2\pi f_a}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1068d33780e493b7)
 together with $(f_1,f_2,f_3)=(nf_3,mf_3,f_3)$. The carrier choice adds $\beta_h=1$ only after $h$ is declared. $\square$
 
 The geometry is controlled by integer phase closure plus a separately declared caustic-grazing carrier condition. The proposition makes no claim about which integer pair or carrier index is dynamically preferred.
@@ -1812,16 +2012,22 @@ m=2,
 \qquad
 n=4
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99d23427c622cdad)
 then
 $$
 f_1:f_2:f_3 = 4:2:1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e7f9e081e0c18557)
 but the radius ratios become
 $$
 r_1:r_2:r_3
 =
 \frac{\beta_1}{4}:\frac{\beta_2}{2}:\beta_3.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b738b1fe51b74e26)
 
 So the doubling-frequency lock is a viable candidate pattern, but it does **not** by itself imply equal-speed geometry, and it does **not** by itself imply a self-similar radius law unless further assumptions are added.
 
@@ -1861,6 +2067,8 @@ The cancellation functional uses a finite harmonic depth
 $$
 L
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9e18cffffd15920c)
 That truncation must be certified rather than assumed. The useful analogy from renormalization-group reasoning is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits a field-theory RG flow, but that discarded modes must be shown irrelevant for the decision being made.
 
 The branch geometry predicts which modes are most dangerous. Smooth noncarrier binaries should have rapidly decaying coefficients,
@@ -1872,6 +2080,8 @@ C e^{-c\ell},
 \qquad b\ne h
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cd8f6915729836af)
+
 on an analytic replayable chart. The candidate carrier instead has an algebraic pre-cutoff tail because its impulse is phase-localized:
 
 $$
@@ -1880,10 +2090,14 @@ $$
 C_{\eta}\,\ell^{-p_{\mathrm{fold}}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9cf2183dec4bd245)
+
 with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized carrier impulse through the retained branch record; it is not the unintegrated acceleration or potential row. In a local fold coordinate $x=\theta_h-\theta_{h,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $\ell^{-3/2}$. The corresponding unintegrated acceleration-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
 $$
 p_{\mathrm{fold}}=\frac{3}{2}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-23f4ee80322d8464)
 A cusp or higher catastrophe would change this exponent and therefore change the truncation budget. The finite-depth proof must therefore report the carrier-caustic spectral exponent or cutoff, not only assert that high harmonics are small. In the RG analogy, the smooth noncarrier harmonics are irrelevant tails, while the carrier caustic block is the marginal channel that can still affect selection beyond the first all-binary block.
 
 For a candidate lock $(m,n)$, define the tail score
@@ -1896,14 +2110,20 @@ T_L(m,n)
 A_{k,\ell}e^{i\ell\phi_k}
 \right|^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c739705ac308222e)
 where
 $$
 L_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-403988a484298f5c)
 is the largest resonance block retained in the selection audit. The finite-depth proof must supply a bound
 $$
 T_L(m,n)\le \varepsilon_L
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4a3d14a520734218)
 uniformly over the admissible branch chart and then compare the winner gap
 $$
 \Delta C_L
@@ -1911,22 +2131,30 @@ $$
 \min_{(m,n)\ne(m_\ast,n_\ast)}
 \big(C_L(m,n)-C_L(m_\ast,n_\ast)\big)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-741585d3951e8fc6)
 against the truncation error. A lock is selected by the finite calculation only if
 $$
 \Delta C_L>2\varepsilon_L
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-045f1a85c9f81356)
 For the generic $A_2$ fold exponent, the carrier tail dominates the smooth noncarrier tails:
 $$
 |A_{h,\ell}|^2=O(\ell^{-3}),
 \qquad
 \varepsilon_L=O(L_{\mathrm{eff}}^{-2}).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1c9febadd4de975e)
 Thus a practical finite-depth certificate must choose $L_{\mathrm{eff}}$ large enough that the bound implied by $L_{\mathrm{eff}}^{-2}$ is less than $\frac12\Delta C_L$ on the same branch chart. This is a stopping rule for the selection calculation, not a new assumption about which lock wins.
 
 This turns "higher harmonics are small" into a checkable theorem target tied to the same branch-derived amplitudes used in
 $$
 C_L
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ccdd30ab74935a28)
 
 #### Reduced-Theorem Target
 
@@ -1943,6 +2171,8 @@ Equivalently, for each candidate $(m,n)$ one should construct a return map
 $$
 P_{\eta,m,n}:\mathcal{S}_{m,n}\to\mathcal{S}_{m,n}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8572c49528b34fe3)
 on the retained branch chart and require
 $$
 \Delta_{m,n}
@@ -1950,6 +2180,8 @@ $$
 1-\max_{i\notin G}|\mu_i(P_{\eta,m,n})|
 >0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-babb4c1dbcc00902)
 off the neutral symmetry directions $G$.
 
 Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the binary phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-transversality floors, caustic-impulse rows, candidate-carrier index, and history variables needed to evaluate one binary-3-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
@@ -1966,8 +2198,9 @@ T_{\mathrm{flat}}
 G_{\mathrm{rel}}
 $$
 
-where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the global spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{23},\delta\phi_{13})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift.
-The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99b74565951aed05)
+
+where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the global spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{23},\delta\phi_{13})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift. The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
 $$
 \Theta(T)
 =
@@ -1976,6 +2209,8 @@ $$
 \phi_{13}(T)-\phi_{13}^\ast
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-747678d85346703b)
 has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
 
 If the minimizer turns out to be the binary-3-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the doubling-frequency hierarchy would be a derived selection result rather than a starting assumption.
@@ -1998,6 +2233,8 @@ M_p,\,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-796643e7e09d8333)
+
 with flat phase connection, positive Floquet gap off $G$, and $|D_{\mathrm{plane}}|$ bounded away from zero outside the horizon-alignment locus. The doubling-frequency conjecture is the sharper claim that $(N_s,M_p,(2,4))$ is the minimal-curvature such class in the exterior/horizon-transition regime.
 
 #### Recurrence Diagnostic
@@ -2006,6 +2243,8 @@ The finite-$\eta$ return-map test should also reject transient near-locks. For a
 $$
 z_i=(\boldsymbol{\psi}_i,\mathbf{r}^{\mathrm{bin}}_i,\boldsymbol{\beta}_i,\mathcal{R}^{\mathrm{rec}}_i,h_i,\hat{\mathbf{n}}_{1,i},\hat{\mathbf{n}}_{2,i},\hat{\mathbf{n}}_{3,i})\in\mathcal{S}_{m,n}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a41b4401ef7e3a44)
 Define a recurrence matrix
 $$
 Q^{(\epsilon)}_{ij}
@@ -2019,6 +2258,8 @@ d_{\mathcal{S}}(z_i,z_j)<\epsilon
 |D_{\mathrm{plane},i}-D_{\mathrm{plane},j}|<\epsilon_D
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b2de705baf0c671a)
 where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$, while the holonomy-defect coordinate is not quotiented:
 
 $$
@@ -2030,6 +2271,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-747678d85346703b-2)
+
 A candidate $1{:}2$ row, or a chained $1{:}2{:}4$ row, is recurrence-positive only if returned-section hits recur at the declared binary-3-period multiples, the recurrence period agrees with the winding and active-branch ledger, the relative-phase defect $\Theta$ recurs to zero, the plane determinant stays in the nondegenerate domain, the candidate-carrier assignment is stable under refinement or its transition is explicitly recorded, the recurrence structure persists under timestep, history-resolution, and $\eta$ refinement, and nearby trials that fail the non-symmetry Floquet gap do not pass this recurrence check. This separates point recurrence from true phase-lock recurrence.
 
 #### Ancillary Symmetry Check
@@ -2039,6 +2282,8 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a51f0171fd91214c)
+
 This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal rank-three bundle studied in this chapter. In compact form:
 
 $$
@@ -2046,6 +2291,8 @@ $$
 \longleftrightarrow
 \text{coplanar cyclic sector}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4c34babac066f273)
 
 whereas
 
@@ -2055,11 +2302,14 @@ $$
 \text{near-orthogonal }T^3\text{ sector}
 $$
 
-The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
-The separating wall is the plane-degeneracy condition
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a50aa3db26d742a)
+
+The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above. The separating wall is the plane-degeneracy condition
 $$
 D_{\mathrm{plane}}=0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b6ac679d0cad5e11)
 On one side, the near-orthogonal sector carries three independent phase circles and covering data. On the wall, the phase chart collapses into a coplanar cyclic configuration where cancellation is representation-theoretic inside one plane. Crossing this wall is therefore a change in cancellation topology, not a smooth deformation inside one sector. The reachable theorem target is that the doubling-frequency sector and the coplanar $\mathbb{Z}_3$ sector cannot be connected by a path that preserves both $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ and a positive non-symmetry Floquet gap.
 
 For a neighboring closure problem, see [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
@@ -2082,6 +2332,8 @@ $$
 q\in\{+1,-1\},
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54d313539812c1d4)
+
 where $f$ is the common frequency, $\phi_a$ is the binary phase relative to the braid-level zero point, and $q$ is the common circulation sense. The binary half-separation vector is
 
 $$
@@ -2097,6 +2349,8 @@ h_a\hat{\mathbf n}_B
 \right].
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04282641cf34ccfa)
+
 The two endpoint paths are
 
 $$
@@ -2105,6 +2359,8 @@ $$
 \mathbf X_{a2}(T)=\mathbf C(T)-\mathbf d_a(T).
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-be542cb4c4f261ed)
+
 These equations make the B1 restrictions explicit: the endpoints of each neutral binary remain antipodal about the common braid center; all three binaries use the same axis, frequency, and circulation sense; and the radii, axial half-separations, transverse orbit radii, and phases may differ by binary.
 
 The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Binary](../../../../markdown/aaa/noether-braid/braid-taxonomy.md#individual-binary) coordinate section. The internal speed of either endpoint of binary $a$ is
@@ -2112,6 +2368,8 @@ The radius decomposition $R_a^2=h_a^2+\rho_a^2$ is defined in the [Individual Bi
 $$
 s_a=2\pi f\rho_a.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9436c6e91de8ff69)
 
 Thus internal speed is controlled by transverse orbit radius rather than by total binary radius alone. If a display derives the optional angle $\alpha_a=\operatorname{atan2}(h_a,\rho_a)$, the same relation is $s_a=2\pi fR_a\cos\alpha_a$. The angle is not a primary taxonomy coordinate.
 
@@ -2155,11 +2413,15 @@ $$
 (2\pi f)^2\sum_{a=1}^{3}\rho_a^2
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-203e10f143bbff54)
+
 for the declared common frequency $f>0$. Active-candidate eligibility requires
 
 $$
 \mathcal K_{\perp}>0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b841a65a4eff2317)
 
 or, equivalently, $\sum_a\rho_a^2>0$. This is a taxonomy nondegeneracy condition: it requires at least one binary to have internal transverse motion. It is not a retention, stability, binding, energy, or physical-realization result.
 
@@ -2189,6 +2451,8 @@ h_a=R_a
 \text{for every }a\in\{1,2,3\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fdb492c8ebf10b7a)
+
 Its endpoint paths remain the exact B1 coordinate-boundary equations
 
 $$
@@ -2201,6 +2465,8 @@ $$
 \mathbf C(T)-R_a\hat{\mathbf n}_B.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ebaf153c4e2667f7)
+
 This limit has $\mathcal K_{\perp}=0$: frequency, phase, and circulation labels do not create internal motion, and translation of $\mathbf C(T)$ only transports the static axial arrangement. The stable `B1.4` identifier and its prescribed source and record remain a deprecated axial-limit null control for historical reproducibility. It is not an active taxonomy member, a Borg catalog selection, a future sweep candidate, or a comparative-ranking participant.
 
 ### Axial Translation
@@ -2212,6 +2478,8 @@ $$
 =
 \mathbf C(0)+s_{\mathrm{grp}}T\hat{\mathbf n}_B,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b1c5b16e8a9576b1)
 
 each non-axial endpoint follows an exact screw path: axial translation plus circular motion about the same axis. The axial and transverse velocity components are orthogonal, so the exact site-speed split is the channel kinematics developed in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-internal-motion-speed-budget-lemma). A mechanism that fixes the total speed budget remains an open branch hypothesis.
 
@@ -2247,17 +2515,23 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b512dd169d4151dd)
+
 where $\hat{\mathbf n}_C$ is the common axis of all twelve architrino worldlines. Assign persistent indices
 
 $$
 m\in\{1,\ldots,12\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aee3b66945615003)
+
 and strictly ordered axial coordinates
 
 $$
 \xi_1<\xi_2<\cdots<\xi_{12}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2906606dee811b1c)
 
 The adjacent spacings and total train length are
 
@@ -2267,17 +2541,23 @@ d_m=\xi_{m+1}-\xi_m>0,
 m\in\{1,\ldots,11\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2596f73f93a2c254)
+
 and
 
 $$
 L_C=\xi_{12}-\xi_1=\sum_{m=1}^{11}d_m.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-867390011c64e68b)
+
 The spacing vector
 
 $$
 \mathbf d_C=(d_1,\ldots,d_{11})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d5fbf3807a2fffea)
 
 is a primary Family-C coordinate because it changes the exact causal delays between architrino worldlines. A common shift of every $\xi_m$ is absorbed into the assembly center and does not create a thirteenth axial coordinate.
 
@@ -2288,6 +2568,8 @@ $$
 =
 \mathbf C_0+s_{\mathrm{grp}}T\hat{\mathbf n}_C.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-27664d32dd3bca91)
 
 Worldline $m$ is
 
@@ -2303,6 +2585,8 @@ $$
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-797e910f52f511c6)
+
 with
 
 $$
@@ -2313,11 +2597,15 @@ q_m\omega_mT+\phi_m,
 q_m\in\{+1,-1\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8de2892fd5227395)
+
 The twelve radii $\rho_m>0$, angular frequencies $\omega_m>0$, phases $\phi_m$, and circulation senses $q_m$ are independently declared unless a member row constrains them. A complete-return record must declare a period $P_C>0$ satisfying
 
 $$
 \frac{\omega_mP_C}{2\pi}\in\mathbb Z
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-75d719c7d6c79a80)
 
 for every $m$.
 
@@ -2329,6 +2617,8 @@ $$
 \pi:\{1,\ldots,12\}\to\{1,\ldots,12\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2389123cd27a8b4f)
+
 satisfying
 
 $$
@@ -2336,6 +2626,8 @@ $$
 \qquad
 \pi(m)\ne m.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02df9e1c24fa8c02)
 
 The six unordered pairs $\{m,\pi(m)\}$ are the six neutral binaries. For each pair, the record declares opposite endpoint polarities and explicitly states the radius, frequency, phase, circulation, axial-midpoint, and axial-separation relations. The binary map is not inferred from axial adjacency, drawing color, or an optional Accessory Configuration.
 
@@ -2359,6 +2651,8 @@ m\in\{1,\ldots,12\},
 q_C\in\{+1,-1\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2c260fe4c04b56e4)
+
 C1 retains the full ordered-spacing, radius, frequency, phase, and binary-pairing coordinates. It does not require equal radii, equal spacings, equal frequencies, reflection symmetry, or decomposition into two B1 components.
 
 ### C2
@@ -2371,6 +2665,8 @@ $$
 \mathcal I_2=\{7,\ldots,12\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8a976e0e99f3631d)
+
 and imposes
 
 $$
@@ -2380,6 +2676,8 @@ q_m=q_C
 q_m=-q_C
 \quad\text{for }m\in\mathcal I_2.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-daa9269995d3967c)
 
 The subsets define the circulation relation only. Neither subset is required to be a complete B1 braid, and binary counterparts may remain within one subset or cross between them when the source record declares the map exactly.
 
@@ -2401,11 +2699,15 @@ $$
 d_C>0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b9a0d3e6a07fc5ba)
+
 For each component, let $(R_{ba},h_{ba},\rho_{ba},\phi_{ba})$ be its B1 binary coordinates, with
 
 $$
 R_{ba}^2=h_{ba}^2+\rho_{ba}^2.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-11c4b58e679a0c2a)
 
 The half-separation vector is
 
@@ -2420,6 +2722,8 @@ h_{ba}\hat{\mathbf n}_C
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3909271a6331315f)
+
 and the endpoint worldlines are
 
 $$
@@ -2427,6 +2731,8 @@ $$
 \qquad
 \mathbf X_{ba-}(T)=\mathbf C_b(T)-\mathbf s_{ba}(T).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6fb5a1df2182a13e)
 
 Each component separately inherits the complete B1 common-midpoint, common-axis, common-frequency, common-circulation, antipodality, and polarity-conjugacy relations. The source record declares the bijection between these twelve endpoint labels and the persistent Family-C indices $m$.
 
@@ -2446,6 +2752,8 @@ b\in\{1,2\},
 a\in\{1,2,3\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2360831584533f3b)
+
 C5 retains the common-circulation relation. C6 retains the opposite-component-circulation relation. The axial center separation $d_C$, component frequencies, internal phases, and relative phase remain declared coordinates unless a source record constrains them.
 
 ### Exact Causal-Delay Relation
@@ -2463,6 +2771,8 @@ c_fu,
 u>0
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c2bef069b542523f)
+
 where
 
 $$
@@ -2474,6 +2784,8 @@ $$
 +\sin\theta_m(T)\hat{\mathbf e}_2
 \right].
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3f1ae82c3759a4c8)
 
 This equation is exact for the prescribed chart and generally transcendental because $u$ appears inside the transmitter phase. Closed-form reduction is available only on separately demonstrated symmetric boundaries. Otherwise, prescribed-path analysis must enumerate every retained positive root without evolving any path.
 
@@ -2529,6 +2841,8 @@ $$
 \right).
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-89de8a476c67ea48)
+
 These entries are diagnostics that may be computed from a taxonomy member's record. They are not additional columns in the canonical taxonomy, and they do not by themselves prove that the delayed dynamics admit a stable branch. Retention and certification are evidence statuses, not configuration axes.
 
 ### Family-B Example: B1
@@ -2554,6 +2868,8 @@ $$
 \sum_i \sigma_i=0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0d4777bc34bf095e)
+
 This inventory says only that the candidate has the required polarity count and a shared causal-return ledger. It does not assume exact binary pairs, an A1 or B1 member, an orthogonal angular-momentum frame, or a protected topological class.
 
 ### Angular-Momentum Frame
@@ -2574,6 +2890,8 @@ $$
 a\in\{1,2,3\},
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-546cbfd8c8c4df45)
+
 with derived plane normals $\hat{\mathbf n}_a$ when the Hodge-dual direction is nonzero. The frame is volumetric only when
 
 $$
@@ -2585,6 +2903,8 @@ D_{\mathrm{plane}}
 \end{bmatrix}
 \ne 0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-076741cd1d035236)
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
@@ -2602,6 +2922,8 @@ $$
 -1, & \text{negative-handed}.
 \end{cases}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9b098d4abd199e3b)
 
 When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, handedness is not assigned as a rank-three property. It may still have planar chirality, circulation signs, or other lower-rank orientation diagnostics, but those are separate rows.
 
@@ -2640,6 +2962,8 @@ $$
 \qquad
 a\in\{1,2,3\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f81a3fabcdf88bab)
 The plane normal $\hat{\mathbf n}_a$ is the Euclidean Hodge-dual direction extracted from that class,
 $$
 \hat{\mathbf n}_a
@@ -2647,6 +2971,8 @@ $$
 \frac{\star[\omega_J^{(a)}]}
 {\|\star[\omega_J^{(a)}]\|},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-be4f8cbb0b5d28a1)
 whenever the numerator is nonzero. The Hodge dual is applied to a representative after the branch ledger row is declared; a refinement that changes the dual direction is a different retained row, not the same class. Thus axis language means a ledger direction derived from the retained branch record. It is not an assumption that constituent paths are axial, circular, or disjoint.
 
 ### Why Three Retained Rows
@@ -2661,9 +2987,19 @@ $$
 \ge
 \delta_{\mathrm{plane}}>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7ffd8fe796a2b478)
 It is the frame-bundle analogue of the Jacobian and separatrix floors used elsewhere: the map from three retained plane normals to an oriented internal frame loses conditioning when this determinant approaches zero. The wall $D_{\mathrm{plane}}=0$ is therefore the coplanar or horizon-aligned stratum where the frame ceases to be rank three. In current sector language, this is the boundary between a volumetric near-orthogonal sector and a planar cyclic sector; the solver must determine which side a retained branch actually occupies.
 
 This is a statement about a derived orientation frame, not a claim that the constituent architrino paths are axial. The actual six paths may be braided, quasiperiodic, chaotic, shell-supported, or otherwise noncircular while still emitting retained angular-momentum rows from which principal directions can be extracted. Axis language in this chapter therefore means a ledger or envelope direction derived from the branch record, not a primitive path pattern.
+
+The instantaneous position rank of one polarity sector is a different object from the retained branch-frame rank. Let $\mathbf X_{\sigma,a}^{\mathrm{rel}}\in\mathbb R^3$, $a\in\{1,2,3\}$, be the positions of the three members of polarity $\sigma$ relative to the declared branch center. If that polarity sector is separately centered there, then $\sum_{a=1}^{3}\mathbf X_{\sigma,a}^{\mathrm{rel}}=\mathbf0$, so $\mathbf X_{\sigma,3}^{\mathrm{rel}}=-(\mathbf X_{\sigma,1}^{\mathrm{rel}}+\mathbf X_{\sigma,2}^{\mathrm{rel}})$ and $\dim\operatorname{span}\{\mathbf X_{\sigma,1}^{\mathrm{rel}},\mathbf X_{\sigma,2}^{\mathrm{rel}},\mathbf X_{\sigma,3}^{\mathrm{rel}}\}\le2$. A separately centered three-member polarity sector is therefore necessarily planar.
+
+Plainly: three same-polarity members can form a centered triangle, but their instantaneous positions cannot by themselves supply a three-axis volumetric frame.
+
+This rank bound does not impose an eight-member lower bound on a Noether braid. The six-body rank-three criterion is carried by three retained angular-momentum rows and their nonzero $D_{\mathrm{plane}}$, not by requiring either polarity sector's three instantaneous position vectors to span $\mathbb R^3$. Four members are the smallest inventory that allows one polarity sector to be both separately centered and noncoplanar, so an eight-member neutral inventory becomes minimal only under the stronger requirement that both polarity sectors independently possess such position scaffolds. Neither the Master Equation nor the realization-independent retention contract currently imposes that requirement. A later retention theorem deriving separate centered rank-three support for each polarity sector would overturn this architectural conclusion; no current retained-branch result supplies that premise.
+
+Plainly: six members can still carry three-dimensional organization through the complete moving assembly and its retained ledgers. Eight become necessary only if each polarity group must independently form its own centered three-dimensional position scaffold, which is not an established requirement.
 
 The claim is not that every stable assembly must have three exact binary rows. The broader [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) class permits six-body branches before exact binary grouping is certified. The three-row exact-binary search inside that class is the minimal exact-binary architecture that can test full three-dimensional frame closure.
 
@@ -2673,6 +3009,8 @@ $$
 \subset
 \mathcal{N}_{6\text{-body}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ffa1be7fc09df1b)
 A six-body branch belongs to this sublocus only when its retained angular-momentum record admits three independent rows, or equivalently a rank-three frame extraction with $D_{\mathrm{plane}}\ne0$. A planar, oblate, or lower-rank Noether braid may still be stable, but it is not a promoted rank-three Noether braid branch until the three-row frame condition is met.
 
 ### General Branch State
@@ -2693,10 +3031,14 @@ s_a,\,
 \right)
 \right\}_{a=1}^{3}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-52aaf4e9c8b9c69e)
 Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ is the scalar tangential speed or speed statistic, $\phi_a$ is the phase origin or offset, $\hat{\mathbf n}_a$ is the orbital-plane normal, and $\mathcal{L}_a$ is the active causal-root ledger data for that layer. On a circular carrier chart,
 $$
 s_a=2\pi f_a r_a.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-66c7505fe834530a)
 This identity is kinematic only. It does not select the frequencies, radii, speeds, energies, phase offsets, plane orientations, or causal-root ledgers.
 
 The practical search should treat the branch energy row $E_a$, angular-momentum row, phase data, and causal-root ledger $\mathcal{L}_a$ as primary retained data. The radius and speed are then constrained by the selected carrier chart, conservation laws, and the branch's energy closure. In simple circular rows, fixed $f_a$ and $E_a$ may determine an admissible $r_a$ and $s_a$ after the kinetic, binding, and wake-energy terms are specified. In noncircular rows, the same energy may correspond to a bounded family of paths with the same return frequency but different local speed profile. Thus energy is central, but it is not by itself a complete coordinate on the Noether braid configuration space.
@@ -2711,6 +3053,8 @@ $$
 \quad
 \text{relative to the declared Noether sea record.}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-468f27fccced0ff0)
 The full branch record should therefore be read as
 $$
 B_{3B}
@@ -2724,6 +3068,8 @@ B_{3B}
 \theta_{\mathrm{sea}}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5bc389cbfcbbe424)
 where $\mathbf{P}_{\mathfrak B}$ and $\mathbf{J}_{\mathfrak B}$ are the branch-total momentum and angular-momentum ledgers, and $\theta_{\mathrm{sea}}$ is the local Noether sea response record used to compare moving branches.
 
 This distinction matters for the equivalence-principle and Lorentz-closure programs. In a validated low-energy regime, uniform group velocity should not become an observable composition-dependent force merely because two assemblies carry different internal plane orientations. That is an effective recovery target: the moving branch must retune its clock, ruler, and signal rows so that preferred-frame leakage stays below the declared bounds. It is not a reason to omit $\mathbf{V}_{\mathrm{grp}}$ from the dynamics. The correct statement is that $\mathbf{V}_{\mathrm{grp}}$ is a separate branch-transport variable whose observable leakage must be suppressed by common-channel closure.
@@ -2748,6 +3094,8 @@ g\cdot B_{3B}
 \le
 \epsilon_{\mathrm{cert}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-480088493d92e4da)
 on the same retained branch chart $\mathfrak B$, with the non-symmetry return directions carrying a positive stability margin. The metric $d_{\mathfrak B}$ must compare the same branch rows: causal-root ledger, energy/action ledger, angular-momentum rows, phase data, plane-orientation data, response-center motion, group velocity, Noether sea record, and assembly topological charge.
 
 This residual-and-Floquet requirement is the braid instance of the absolute-time clock certificate, not an imported spacetime premise; see [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md#absolute-time-global-foliation-and-proper-time).
@@ -2766,6 +3114,8 @@ $$
 \to
 \frac{1}{\gamma},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d3c9f95b1a200f9)
 with preferred-frame leakage bounded by the declared $\epsilon_{\mathrm{LV}}$ or two-way anisotropy diagnostic. The observer components are produced through a derived moving-assembly map,
 $$
 C_{\mathrm{obs}}
@@ -2778,6 +3128,8 @@ C_{\mathrm{obs}}
 C_{\mathrm{branch}}
 +O(\epsilon_{\mathrm{LV}}),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-009b182c8f2f956c)
 when Lorentz closure applies. Here $C_{\mathrm{branch}}$ is the branch-intrinsic component vector being exported, such as an energy-momentum, angular-momentum, clock, or ruler row, and $C_{\mathrm{obs}}$ is the corresponding effective observer-chart component vector. The map $\Lambda_{\mathrm{eff}}$ is the effective export map, not the reduced A1 closure label $\Lambda_{A1}$. The export may dress those components, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
 
 ### Momentum And Principal-Direction Decomposition
@@ -2796,6 +3148,8 @@ $$
 +
 \mathbf{J}_{\mathrm{wake}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3a75f9a7fe32c24)
 The mechanical and wake terms must use the same endpoint convention as the retained branch chart; otherwise the axis comparison is only a visualization.
 
 When $\|\mathbf{P}_{\mathfrak B}\|>0$, the unit vector
@@ -2804,12 +3158,16 @@ $$
 =
 \frac{\mathbf{P}_{\mathfrak B}}{\|\mathbf{P}_{\mathfrak B}\|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1e4efa818c864546)
 is the transport axis. When $\|\mathbf{J}_{\mathfrak B}\|>0$, the unit vector
 $$
 \hat{\mathbf e}_{J}
 =
 \frac{\mathbf{J}_{\mathfrak B}}{\|\mathbf{J}_{\mathfrak B}\|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c46b5c6477a09713)
 is the branch's total angular-momentum axis. The three retained plane normals $\hat{\mathbf n}_a$ should then be read as a principal-direction decomposition of $\mathbf{J}_{\mathfrak B}$, not as arbitrary visual decoration and not as a claim that the paths themselves lie on axes. A simple diagnostic is the angular-momentum closure vector
 $$
 \mathcal{R}_{J\mathrm{-axis}}
@@ -2821,6 +3179,8 @@ $$
 {\left\|\sum_{a=1}^{3}w_a\hat{\mathbf n}_a\right\|}
 \right\|,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-212a7291d9ffd6c0)
 where the weights $w_a$ are declared branch-action, branch-angular-momentum, or energy-row weights and the weighted normal sum is required to be nonzero. This is not yet a theorem: it is the axis-alignment row a solver must populate before claiming that the three retained rows faithfully decompose the assembly's conserved angular momentum.
 
 The stronger faithful-decomposition test is spectral. Build the symmetric branch angular-momentum frame tensor
@@ -2830,6 +3190,8 @@ $$
 \sum_{a=1}^{3}
 J_a\,\hat n_a^i\hat n_a^j,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cafb587d98c45e8f)
 with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. This is an orthogonality-sensitive test: when the normals are not mutually orthogonal, the eigenvectors of $\mathsf{J}_{\mathfrak B}^{ij}$ need not coincide with $\{\hat{\mathbf n}_a\}$ even if the retained weights are nonzero. If two $J_a$ are equal within tolerance, the certificate must use an eigenvalue-gap condition or a subspace-match criterion rather than a unique eigenvector match. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
 
 The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz closure asks whether the family-declared envelope deforms with a longitudinal-to-transverse ratio
@@ -2840,6 +3202,8 @@ $$
 \qquad
 R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5e8668088a844ee9)
 while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not convert the [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) common-axis internal geometry into a Family-A oblate response; B1's member-declared rest envelope and its moving-envelope projection are separate records in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#envelope-forms).
 
 ### Unordered Layer Semantics
@@ -2853,6 +3217,8 @@ $$
 \mathcal T_a=(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal L_a)
 \right\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ab2bce47505ddacb)
 The symmetric group $S_3$ acts on this space by permuting the three support-row records:
 $$
 \pi\cdot(\mathcal T_1,\mathcal T_2,\mathcal T_3)
@@ -2861,6 +3227,8 @@ $$
 \qquad
 \pi\in S_3.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f8295388bcf6d4f)
 Two rows may therefore be the same physical candidate up to a relabeling even when they appear as distinct solver outputs.
 
 The default search policy is to keep $\widetilde{\mathcal C}_{3B}$ unquotiented. Repeated $S_3$-related solutions are useful confirmation that the solver is finding a symmetric sector rather than a one-off artifact. An analysis tool may later isolate one representative sector by computing a permutation-invariant key,
@@ -2870,6 +3238,8 @@ $$
 \operatorname{sort}_{a=1}^{3}
 \operatorname{fingerprint}(\mathcal T_a),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-85b0d9d4f7e5553b)
 but that quotient is an analysis summary, not the search domain. No branch is rejected merely because a symmetric relabeling has already appeared.
 
 When branch counts, continuation-family cardinalities, or basin weights are reported, the quotient must be applied explicitly. If a physical branch has stabilizer subgroup $\operatorname{Stab}_{S_3}(B)$, then its orbit size in the unquotiented cover is
@@ -2877,6 +3247,8 @@ $$
 \frac{|S_3|}
 {|\operatorname{Stab}_{S_3}(B)|}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0275c66ce622e777)
 The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$, the regularized Master Equation continuation set over window $W$ and mollifier $\eta$, or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct certified braids.
 
 The general configuration ratios are
@@ -2889,6 +3261,8 @@ E_1:E_2:E_3,
 \qquad
 s_1:s_2:s_3.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d023f19b206ca968)
 These ratios are reported in the current layer labels. They are not sorted ratios and they carry no inequality unless a retained branch later assigns a role order.
 
 The branch-search problem is to find retained stable states
@@ -2897,10 +3271,14 @@ $$
 \in
 \widetilde{\mathcal C}_{3B}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24d2483e55654913)
 over this full variable set, then compare their energy differentials
 $$
 \Delta E_{ab}=E_a-E_b
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03064306fb64deeb)
 and ledger decompositions on the same retained row set. The doubling-frequency, iso-frequency, and broader integer-ratio families are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of it. Field-speed hinge occupancy is a separate speed-regime axis on the same branch rows, not a frequency-ratio family.
 
 ### Super-Field-Speed Carrier Rows
@@ -2909,10 +3287,14 @@ The general search naturally includes carrier speeds above the causal wake propa
 $$
 s_a=2\pi f_a r_a,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e95b2a36692e0225)
 fixing one row of the search does not fix the others. Even an iso-frequency family
 $$
 f_1=f_2=f_3
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-82d6cb37d54143db)
 can have different radii, energies, speeds, phases, and active root ledgers:
 $$
 r_1:r_2:r_3
@@ -2923,6 +3305,8 @@ s_1:s_2:s_3
 \ne
 1:1:1.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4a24939ad4325217)
 If one retained lever arm is large enough at the common frequency, then that layer has $s_a>c_f$.
 
 This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, acceleration-Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full Noether braid configuration space rather than preselecting a single speed hierarchy.
@@ -2931,8 +3315,9 @@ In a certified row, the important event is not speed alone but the appearance of
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
-This is the layerwise specialization of the [signed causal-root complex](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
-A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e20fb680994f77b)
+This is the layerwise specialization of the [signed causal-root complex](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge. A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 Family B realizes this decoupling directly. In [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md). No family ordering is asserted.
 
@@ -2956,6 +3341,8 @@ P_{\mathrm{return}}
 \wedge
 P_{\mathrm{sea}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-de895ac374708440)
 Here $P_{\mathrm{root}}$ requires persistent causal-root ledgers with positive root floors except at declared caustic transits, $P_{\mathrm{phase}}$ requires bounded phase-offset drift, $P_{\mathrm{energy}}$ requires a closed branch-energy row, $P_{\mathrm{return}}$ requires a Floquet, Conley, or comparable return certificate, and $P_{\mathrm{sea}}$ requires the same branch to remain coherent under the background Noether sea response generated by like assemblies. This last predicate is the bridge from an isolated branch search to a stable medium of assemblies.
 
 The result of this search should be an atlas of stable regions in $\widetilde{\mathcal C}_{3B}$, not a single preferred row. Patterns may include doubling-frequency locks, iso-frequency families, integer-ratio families such as `3:2:1`, field-speed hinge-occupancy regimes, planar degenerations, and mixed regimes where one or more layers run above $c_f$ while the whole assembly remains a retained delayed branch. If a stable region is $S_3$-symmetric, the atlas may also report the corresponding quotient-sector representative, but the unquotiented evidence should remain available.
@@ -2994,6 +3381,8 @@ B;\left(\mathbf X_p,\mathbf V_p,\tau_p,\phi_p\right)_{p=1}^{6}
 \right\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ce065758fe30b8fa)
+
 The retention predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. It must preserve the braid ledger while giving all six accessory architrinos bounded delayed-return rows, finite energy exchange, and bounded phase drift. Six visually plausible positions are not an Accessory Configuration branch certificate.
 
 Topologically, admissible capture preserves the braid's assembly topological charge while augmenting the complete assembly record with a six-site accessory ledger. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
@@ -3011,6 +3400,8 @@ B
 \right).
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eb54a4bd5a3e554b)
+
 An axial six-site organization is one possible derived Accessory Configuration, not its definition. The retained calculation must decide the polarity assignment, placement, and path geometry.
 
 ### Frame Orthogonality And Framing Anisotropy
@@ -3026,6 +3417,8 @@ w_a
 -\frac{1}{3}h^{ij}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c0d04cdbdcdff6c5)
 Writing $\lambda_a=w_a-\frac{1}{3}$ separates this into two channels:
 $$
 Q_A^{ij}
@@ -3045,6 +3438,8 @@ Q_A^{ij}
 \qquad
 \sum_a\lambda_a=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7b3c07bc0c52c066)
 where the first term measures non-orthogonal-frame leakage and the second term measures spectral-weight anisotropy. The weights are branch data, not parameters chosen after the fact.
 
 The reachable theorem target is therefore two-part:
@@ -3065,6 +3460,8 @@ $$
 \quad\Longrightarrow\quad
 \|Q_A\|\to0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d7830ecb93a1c1cd)
 while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. Both parts remain theorem targets; no measured family comparison currently bears on them.
 
 ### Relation To The Doubling-frequency Chapter
@@ -3077,12 +3474,16 @@ $$
 \subset
 \widetilde{\mathcal C}_{3B}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f13229a9feb66f6)
 Iso-frequency, unequal-radius candidates occupy a different row:
 $$
 \mathcal{C}_{f=f=f}
 =
 \{B\in\widetilde{\mathcal C}_{3B}:f_1=f_2=f_3\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d96fce80820a63fa)
 Both rows are legitimate until the retained-branch certificates decide which, if either, survives. The general Noether braid search keeps the mathematics wide enough for the solver to discover stable configurations rather than forcing every stable Noether braid into a preselected frequency pattern.
 
 ## B1 Hypotheses and Discrete Symmetry
@@ -3105,12 +3506,16 @@ The face-opposite A2 seed has a second exact chart on the body-diagonal axis $\h
 $$
 h=\frac{R}{\sqrt3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fc7bcb8b643c7fc8)
 and transverse radius
 $$
 \rho=R\sqrt{\frac23},
 \qquad
 \frac{h}{\rho}=\frac{1}{\sqrt2}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
 The three equal-radius path pairs share that axis, a common angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric B1 sublocus. The same prescribed worldlines admit an A2 rotating-channel chart and a B1 chart; the labels describe coordinate structures and do not duplicate the physical inventory.
 
 This overlap is independent of the Family-A $\lambda_A=1$ boundary. It also does not certify retention. The [scoped anti-damping results](../../../../markdown/aaa/noether-braid/braid-mathematics.md#scoped-anti-damping-results) derive axial no-balance for a polarity-segregated interior fixed-coordinate two-ring chart, so that chart cannot be an equilibrium under those assumptions. The all-equatorial boundary remains the only fixed-coordinate B1-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
@@ -3126,6 +3531,8 @@ Claim level: **analytical (derivation grade) for the declared kernel's discrete-
 $$
 \chi=\operatorname{sign}(\mathbf p\cdot\mathbf S),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fb282f2daf21e3eb)
 
 the declared chiral invariant of that prescribed member. Its transformation law is forced by the vector characters above:
 
@@ -3146,6 +3553,8 @@ c_{\mathrm{pol}}
 \qquad
 \chi=o_{\mathrm{PA}}c_{\mathrm{pol}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9860f65e88fc9cff)
 
 Thus $C$ reverses $c_{\mathrm{pol}}$ at fixed $o_{\mathrm{PA}}$, while $P$ reverses $o_{\mathrm{PA}}$ at fixed $c_{\mathrm{pol}}$. With left/right defined by the sign of $\chi$, $C$ maps a left braid to a right polarity-conjugate braid on the same pro/anti orientation; $CP$ maps it to a left polarity-conjugate braid on the mirrored orientation. This is exact covariance of the declared kernel plus definition-level sign bookkeeping. It does not establish formation, branch retention, or $CP$ conservation in weak reaction channels.
 
@@ -3171,30 +3580,13 @@ The results divide by strength, and the division is stated with each result. Exa
 
 This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the bounded-weight inverse-square escape lemma, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), and [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md). The realization-independent proof obligations live in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
-**Represented-history atlas boundary.** An atlas row describes a declared
-retained history, not an unbounded past. It
-must name the retained interval, prehistory, complete transmitter inventory,
-and any fixed spatial enclosure. On a bounded history whose transmitters remain
-uniformly below $c_f$, whose pairwise separations stay positive, and whose root
-inventory is complete, the sharp causal-root map is transverse and finite. A
-nontrivial same-transmitter root is excluded on the strictly sub-field-speed
-interval, and the represented history can be reconstructed across time from
-its declared charts while those hypotheses persist.
+**Represented-history atlas boundary.** An atlas row describes a declared retained history, not an unbounded past. It must name the retained interval, prehistory, complete transmitter inventory, and any fixed spatial enclosure. On a bounded history whose transmitters remain uniformly below $c_f$, whose pairwise separations stay positive, and whose root inventory is complete, the sharp causal-root map is transverse and finite. A nontrivial same-transmitter root is excluded on the strictly sub-field-speed interval, and the represented history can be reconstructed across time from its declared charts while those hypotheses persist.
 
-These statements do not bound an omitted finite-width Gaussian tail, cover an
-undeclared transmitter, or extend automatically to a drifting enclosure or an
-unbounded past. Without a separately checked quantitative tail theorem, the
-certified quantity stops at the declared retained-interval integral.
+These statements do not bound an omitted finite-width Gaussian tail, cover an undeclared transmitter, or extend automatically to a drifting enclosure or an unbounded past. Without a separately checked quantitative tail theorem, the certified quantity stops at the declared retained-interval integral.
 
-Scalar rows extracted from the history are diagnostics. They may distinguish a
-declared negative control, but they do not by themselves classify topology,
-prove persistence or stability, identify a physical assembly, or select a
-particle interpretation. Those conclusions require their own branch and
-reconstruction certificates.
+Scalar rows extracted from the history are diagnostics. They may distinguish a declared negative control, but they do not by themselves classify topology, prove persistence or stability, identify a physical assembly, or select a particle interpretation. Those conclusions require their own branch and reconstruction certificates.
 
-Plainly: a finite history can be classified exactly within its stated window.
-Nothing in that classification silently supplies the missing past or turns a
-diagnostic number into a physical fate.
+Plainly: a finite history can be classified exactly within its stated window. Nothing in that classification silently supplies the missing past or turns a diagnostic number into a physical fate.
 
 ### Substrate and Effective Levels
 
@@ -3236,12 +3628,16 @@ c_\star^2
 \qquad
 \gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-813718eb5b450e1e)
 Thus an observer-export clock or ruler row must extract
 $$
 \frac{c_{\perp}}{c_\star}
 =
 \frac{1}{\gamma_\star}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06d44856fc2aaa8a)
 from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
 
 #### Transverse Internal-Motion Speed-Budget Lemma
@@ -3253,6 +3649,8 @@ $$
 =
 \mathbf V_{\mathrm{grp}}+\mathbf v_i^{\mathrm{int}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8772dafac2550ec6)
 
 The exact native speed identity is
 
@@ -3266,6 +3664,8 @@ $$
 2\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4a9a2a8b27b58b89)
+
 If the internal motion is transverse to the group translation at every instant, then the cross term vanishes and the site speed is the exact quadrature
 
 $$
@@ -3278,6 +3678,8 @@ u=\|\mathbf V_{\mathrm{grp}}\|,
 v_{\mathrm{int},i}=\|\mathbf v_i^{\mathrm{int}}\|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-358a1ee6eb1d1c92)
+
 If a branch additionally pins the total site speed to $\|\mathbf V_i\|=\beta_{\mathrm{pin}} c_f$, the available internal speed is forced to
 
 $$
@@ -3285,6 +3687,8 @@ v_{\mathrm{int},i}(u)
 =
 \sqrt{\beta_{\mathrm{pin}}^2c_f^2-u^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4cb81593b9f3a036)
 
 The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_{\mathrm{pin}}$ is a separate branch hypothesis, not an established retention mechanism. The A2 body-diagonal rotating channel and the B1 axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
 
@@ -3314,6 +3718,8 @@ m_0(A)c_{\text{eff}}^2
 \zeta(A)E_{\text{internal}}(A)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a55435f686ee6e79)
+
 where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed braid dynamics.
 
 ### Hinge Equation Sketch
@@ -3322,22 +3728,29 @@ where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledg
 $$
 \frac{d^2\mathbf X_i}{dT^2}(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-692ba4f073f377a6)
 with delay constraints (causal roots):
 $$
 \|\mathbf X_j(T_{p,k})-\mathbf X_i(T)\|=c_f\,(T-T_{p,k}), \quad
 \|\mathbf X_i(T_{s,m})-\mathbf X_i(T)\|=c_f\,(T-T_{s,m})
 $$
-where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed.
-The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-16b10a9ff072c882)
+where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed. The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
 and $s=\|\mathbf V\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
 $$
 \delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0751d8f251047510)
 with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
 $$
 \ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4fa3a02b273b8067)
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
 The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the broader causal-closure program. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
@@ -3348,10 +3761,14 @@ Let $R(T)>0$ be a declared outward scalar coordinate on an interval where $\dot 
 $$
 \ddot R\ge-\frac{K}{R^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-734d14f24aba55d3)
 for a constant $K>0$. Then
 $$
 \mathcal E_R=\frac12\dot R^2-\frac{K}{R}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-66a2f296a9e85423)
 is nondecreasing, because
 $$
 \frac{d\mathcal E_R}{dT}
@@ -3359,10 +3776,14 @@ $$
 \dot R\left(\ddot R+\frac{K}{R^2}\right)
 \ge0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b18d6235a0cd67f2)
 If at some $T_\ast$,
 $$
 \dot R(T_\ast)^2>\frac{2K}{R(T_\ast)},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f70a0ffb870211fa)
 then $\mathcal E_R(T_\ast)>0$ and $\dot R$ cannot later reach zero while the hypotheses remain valid. This is an escape certificate for that scalar chart, not a family-general no-binding theorem.
 
 A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The A2 isolated-release channel is one conditional application route; see [A2 Symmetry and Return Response](../../../../markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
@@ -3375,6 +3796,8 @@ $$
 \sim
 \mathcal{D}_{A1}^{\mathrm{grad}}(W)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-887f9f2ccc91af88)
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
 The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
@@ -3406,6 +3829,8 @@ $$
 +u\,\hat{\mathbf n}\,t
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cee7b95fd49948bc)
+
 with angular rate $\omega$ and axial drift $u$. On the channel the free data reduce to the representative worldlines of the equivariant reduction, and the natural branch coordinate is the screw pitch, equivalently the pair $(u,\omega)$ with the channel radius.
 
 A constant-lag reduction makes the ansatz tractable, and it is a derivation. On the rotating-wave ansatz, every directed-pair causal delay is constant in time: splitting any initial separation into axial and transverse parts relative to $\hat{\mathbf n}$, the rotation acts only on the transverse part and the drift only on the axial part, so the separation norm between reception time $T_r$ and transmitter emission time $T_r-\tau$ depends on $\tau$ alone. Each directed pair's root residual
@@ -3417,6 +3842,8 @@ F_{ij}(\tau)
 +\left(\Delta_\parallel+u\tau\right)^2
 -c_f^2\tau^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8057c1cf9dcfdba7)
 
 is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
@@ -3460,6 +3887,8 @@ $$
 \mathbf X_p^{\mathrm{acc}}(T)-\mathbf X_{\mathrm{grp}}(T).
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b50b49b84d139346)
+
 The first configuration data are the net accessory polarity and polarity-signed spatial moments,
 
 $$
@@ -3467,6 +3896,8 @@ Q_{\mathrm{acc}}=\sum_{p=1}^{6}\tau_p,
 \qquad
 \mathbf p_{\mathrm{acc}}=\sum_{p=1}^{6}\tau_p\mathbf r_p,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad2b57b336dc8988)
 
 with higher moments built from the same six signed positions. These moments are derived readouts of a specified Accessory Configuration. They do not determine the six trajectories, prove confinement, or establish a retained assembly.
 
@@ -3485,6 +3916,8 @@ The phrase **absolute observer position** means a coordinate probe at an event $
 $$
 (T,\mathbf X)=(T,X^1,X^2,X^3).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d8a0d1e2beec2131)
 
 ### Analysis Record
 
@@ -3525,6 +3958,8 @@ r_j=\|\mathbf r_j\|,
 \widehat{\mathbf r}_j=\frac{\mathbf r_j}{r_j},
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e799824be9554103)
+
 and the causal constraint
 
 $$
@@ -3532,6 +3967,8 @@ g_j(T,\mathbf X;T_t)
 =
 r_j(T,\mathbf X;T_t)-c_f(T-T_t).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f19abad336f3ba8e)
 
 The active emission-time roots are
 
@@ -3542,6 +3979,8 @@ $$
 T_t<T:g_j(T,\mathbf X;T_t)=0
 \right\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b6a121886318a05b)
 
 The source-normalized signed wake equation is
 
@@ -3558,6 +3997,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-20e0de54f61b12e3)
+
 for the declared retained-history start $T_{\min}$. For fixed source record $S$ and protocol $P$, the resulting scalar $\mathcal W(T,\mathbf X)$ is the causal-wake map. It records signed causal-wake exposure under the declared source normalization. It is not by itself energy, potential, or acceleration.
 
 For simple roots, define the transmitter-side factor
@@ -3567,6 +4008,8 @@ D_{t,j}
 =
 c_f-\widehat{\mathbf r}_j\cdot\mathbf V_j(T_t).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee434d278de0fc08)
 
 The delta integral collapses to
 
@@ -3580,6 +4023,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7a2872bbe3e6d42)
+
 when $|D_{t,j}|>0$ on every retained root. A root with $D_{t,j}=0$ is a caustic-like chart boundary and must be routed through the declared fold or regularization treatment rather than silently clipped.
 
 Total path speed above $c_f$ does not by itself invalidate this reduction. It removes the global shortcut that proves $g_j$ strictly increasing from a whole-path speed bound, but the event can still contain finitely many transverse roots with either sign of $D_{t,j}$. The event-specific root policy therefore partitions the retained emission-time interval and, on each partition, uses declared bounds on speed, acceleration, distance, and the derivative
@@ -3591,6 +4036,8 @@ D_{t,j}
 =
 c_f-\widehat{\mathbf r}_j\cdot\mathbf V_j(T_t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3f7ac54e0860fd3a)
 
 to certify one of two dispositions:
 
@@ -3609,6 +4056,8 @@ $$
 \frac{|q_j|}{4\pi r_j^2|D_{t,j}|}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b8f9f2a4191b5281)
+
 separates weak net exposure caused by cancellation from weak exposure caused by small individual contributions. The pointwise signed-cancellation ratio
 
 $$
@@ -3617,6 +4066,8 @@ $$
 \frac{|\mathcal W(T,\mathbf X)|}
 {\mathcal W_{\mathrm{abs}}(T,\mathbf X)+\varepsilon_{\mathcal W}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1e52bfd7bdd58151)
 
 lies near zero when the signed contributions cancel and near one when they reinforce, subject to the declared denominator floor $\varepsilon_{\mathcal W}>0$.
 
@@ -3636,6 +4087,8 @@ R_j\left[
 \right].
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2de02b2d369f91aa)
+
 At an arbitrary event $(T,\mathbf X)$, define
 
 $$
@@ -3646,11 +4099,15 @@ A_j=\mathbf d_j\cdot\mathbf u_j,
 B_j=\mathbf d_j\cdot\mathbf v_j,
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c43c716286202ab0)
+
 $$
 H_j=\sqrt{A_j^2+B_j^2},
 \qquad
 \delta_j=\operatorname{atan2}(B_j,A_j).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-61ccf6bc23419b70)
 
 The causal-root condition then reduces exactly to the scalar equation
 
@@ -3662,6 +4119,8 @@ c_f^2(T-T_t)^2
 -2R_jH_j\cos(\omega_jT_t+\phi_j-\delta_j)
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-00ad37719d748130)
 
 for each transmitter $j$. Thus the full spatial problem does not require evolving the source: at each requested $(T,\mathbf X)$, solve this one-dimensional delayed-time equation over the retained history, substitute all certified roots into $\mathcal W$ or $\mathbf A_p$, and sum the six endpoint contributions. A translating orbit is handled by placing the declared center path $\mathbf C_j(T_t)$ directly in the original causal equation; the fixed-center reduction above applies in a co-translating coordinate chart only when that chart and its conversion back to absolute coordinates are stated.
 
@@ -3683,6 +4142,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-450e402b2ac14c29)
+
 under the canonical simple-root acceleration convention of the Master Equation. The stationary probe is a comparison instrument, not an added source in the braid record. Positive- and negative-polarity probe responses must be reported separately when their distinction matters.
 
 For a moving diagnostic probe $\mathbf X_p(T)$, the same arriving-hit strength applies at its current position. Its velocity changes root playback through
@@ -3696,6 +4157,8 @@ D_{r,j}
 =
 c_f-\widehat{\mathbf r}_j\cdot\mathbf V_p(T),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-639b558f96b531cf)
 
 but $D_{r,j}$ does not multiply the instantaneous acceleration.
 
@@ -3713,6 +4176,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-48521c1fd99cce8c)
+
 Self-hit acceleration, when active, is recorded separately as $\mathbf A_i^{\mathrm{self}}(T)$. This separation prevents a geometry with strong self-hit support from being mistaken for one stabilized by inter-architrino exchange.
 
 Over the complete orbital or return cycle,
@@ -3720,6 +4185,8 @@ Over the complete orbital or return cycle,
 $$
 T_0\le T<T_0+T_{\mathrm{ret}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-387e54177ff768a5)
 
 the internal report must retain each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
 
@@ -3739,6 +4206,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd35bd7213eae37d)
+
 under the declared self-hit convention. This is a pointwise comparison between the acceleration required by the prescribed path and the acceleration supplied by the analytical causal-hit sum. Its peak, RMS, mean vector, phase dependence, and per-binary decomposition are legitimate prescribed-record measures. If the self-hit term or another accepted acceleration contribution is unavailable, the result must be labeled a partial mismatch rather than a complete Master Equation residual. A small mismatch measures compatibility of the declared chart with the evaluated acceleration contributions; it does not establish stability.
 
 When the declared isolated acceleration inventory is certified complete, summing these rows gives a stronger falsification-only reduction. Define
@@ -3749,11 +4218,15 @@ $$
 \sum_i \mathbf A_i(T)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a3dbf374c52a2605)
+
 for the evaluated canonical-kernel acceleration supplied to every declared architrino. If the prescribed kinematics satisfy
 
 $$
 \sum_i \frac{d^2\mathbf X_i}{dT^2}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ab18edbcaca5670d)
 
 pointwise, as occurs for antipodal prescribed pairs about inertially moving centers, then any exact solution on that prescribed history must satisfy
 
@@ -3762,6 +4235,8 @@ $$
 \mathbf S_A(T)=0
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bfbe66e65d843015)
 
 at every evaluation time. This follows directly by summing the individual equations of motion; it introduces no force, mass, momentum, return-map, or stability assumption.
 
@@ -3790,6 +4265,8 @@ E_2(W)
 \right]^{1/2},
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-114a9d058c00b424)
+
 where $G_W$ is the declared time grid in window $W$. Any sampled member residual above the adjudication threshold falsifies that exact isolated prescribed history even when $\sum_i\mathbf R_i^{\mathrm{path}}=0$. A sampled near-zero is only a search diagnostic and must survive time-grid refinement and independent causal-root residual checks.
 
 Plainly: two wrong accelerations can cancel in the total. Checking every architrino separately prevents that cancellation from hiding a bad prescribed record.
@@ -3805,6 +4282,8 @@ E_\infty(W_{1/2}^{(2)})
 \right\},
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c261ebabc6589fa6)
+
 and
 
 $$
@@ -3818,6 +4297,8 @@ E_2(W_P)^2
 |G_1|+|G_2|
 }.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2bc4b23304c70db2)
 
 Thus one half-cycle is useful only as a staged early rejector. Candidate search minimizes the refined full-cycle $E_\infty$ first and refined full-cycle $E_2$ second, while retaining both half-cycle peaks and their imbalance as diagnostics. One favorable half cannot support positive selection; both halves are required, and the window split changes no return-symmetry or taxonomy contract.
 
@@ -3887,6 +4368,8 @@ $$
 \,dA\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5b13ed230f4f5388)
+
 and the corresponding uncancelled norm $\mathcal L_{\mathrm{raw}}(R)$ formed by replacing the net vector with the sum of constituent response magnitudes before squaring. Then
 
 $$
@@ -3895,6 +4378,8 @@ $$
 \frac{\mathcal L_{\mathrm{ext}}(R)}
 {\mathcal L_{\mathrm{raw}}(R)+\varepsilon_L}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c091ecaa794c4b50)
 
 is a geometry-response exposure fraction. It measures external cancellation under a declared probe and surface convention. It is analytically computable from a prescribed record and is not the apparent-energy fraction.
 
@@ -3911,6 +4396,8 @@ f_{j,T_t}(T,\mathbf X)
 \widehat{\mathbf r}_j\cdot\widehat{\mathbf n}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5cdacddfb9e7882c)
+
 where $\widehat{\mathbf n}$ is the outward unit normal. The signed, raw, and residual complete-cycle measures are
 
 $$
@@ -3923,6 +4410,8 @@ f_{j,T_t}(T,\mathbf X)
 \,dA\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-21fb6a55b1345889)
+
 $$
 F_{\mathrm{raw}}(R)
 =
@@ -3932,6 +4421,8 @@ F_{\mathrm{raw}}(R)
 \left|f_{j,T_t}(T,\mathbf X)\right|
 \,dA\,dT
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-621040bc250ec783)
 
 and
 
@@ -3947,6 +4438,8 @@ f_{j,T_t}(T,\mathbf X)
 \,dA\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3beaede78df94500)
+
 The raw measure takes absolute values before transmitter contributions are superposed. The residual measure superposes the signed contributions first and then takes the absolute value. Their ratio
 
 $$
@@ -3954,6 +4447,8 @@ $$
 =
 \frac{F_{\mathrm{res}}(R)}{F_{\mathrm{raw}}(R)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-34d872d3fa9ec86f)
 
 is admitted only when $F_{\mathrm{raw}}(R)$ exceeds the predeclared positive floor. The triangle inequality then gives $0 \le \eta_{\mathcal W,\mathrm{flux}}(R) \le 1$. Values near zero indicate strong local signed cancellation over the complete cycle; values near one indicate that little of the raw normal wake flux cancels.
 
@@ -3968,6 +4463,8 @@ $$
 N_{\mathrm{raw}}(V_2\setminus V_1,T)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bdd8559a176dbb70)
+
 If the prescribed paths, retained history, and in-transit wake measure all return after $T_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
 
 $$
@@ -3975,6 +4472,8 @@ F_{\mathrm{raw}}(R)
 =
 T_{\mathrm{ret}}\sum_j|q_j|.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-127c3043301fa2f7)
 
 This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $T_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
 
@@ -3997,6 +4496,8 @@ f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
 \,dA\,dT.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e1e595c1c6b986e6)
+
 The coefficient retains temporal phase, angular mode, enclosing radius, transmitter identity, and root ordinal. Form the raw and net coefficient magnitudes only after every transmitter-root coefficient exists:
 
 $$
@@ -4009,6 +4510,8 @@ A_{\mathrm{net},\ell mn}(R)
 \left|\sum_a\widetilde f_{a,\ell mn}(R)\right|.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c4b11106e26ccda2)
+
 For $A_{\mathrm{raw},\ell mn}$ above the declared effective coefficient floor, define
 
 $$
@@ -4017,6 +4520,8 @@ $$
 \frac{A_{\mathrm{net},\ell mn}(R)}
 {A_{\mathrm{raw},\ell mn}(R)}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cf11e32029fb0890)
 
 The triangle inequality gives $0 \le \eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R) \le 1$. A value near zero identifies strong phase-sensitive cancellation in one temporal-harmonic and angular-mode channel. A value near one identifies little cancellation in that channel. The reducer also reports the Euclidean norm over the retained angular modes for each temporal harmonic and evaluates those rows across the declared enclosing radii.
 
@@ -4057,6 +4562,8 @@ A degree of freedom is an independently variable source coordinate whose change 
 $$
 R_a^2=h_a^2+\rho_a^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d25b45684b031b0c)
 
 are independent. Here $R_a$ is the endpoint distance from the binary midpoint, $h_a$ is the axial half-separation, and $\rho_a$ is the transverse orbit radius measured from the binary axis. The phrase “orbit radius from the axis” therefore means $\rho_a$, not $R_a$, except on a zero-axial-offset locus where $h_a=0$ and $\rho_a=R_a$.
 
@@ -4132,6 +4639,8 @@ $$
 \right\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6d2001fa252a0ee2)
+
 A Monte Carlo campaign draws prescribed instantiations $\boldsymbol\theta^{(k)}\in\Theta_M$, builds the exact source record $S(\boldsymbol\theta^{(k)})$, and runs the analytical programs to obtain
 
 $$
@@ -4139,6 +4648,8 @@ $$
 =
 \mathbf G\!\left[S(\boldsymbol\theta^{(k)});P\right].
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bad8e277d9a3d067)
 
 The common protocol $P$ must remain fixed across the compared sample. A changed source definition, measure, probe set, history depth, root policy, boundary, or normalization requires an impact review and invalidates every affected score. The campaign must recompute those scores before they re-enter the comparison population.
 
@@ -4216,6 +4727,8 @@ R_{\mathrm{test}}
 \frac{N_{\mathrm{verified}}}{t_{\mathrm{elapsed}}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fe9e90c74f31c35a)
+
 where $R_{\mathrm{test}}$ is reported in verified tests per hour. A worker count is an implementation setting, not a throughput prediction. The useful count is the measured maximum before processor scheduling, memory pressure, compression, or storage contention makes another worker counterproductive.
 
 Machine-specific benchmarks and dated price observations belong in operational campaign records rather than this reader-facing method. The portable rule is to use a bounded dynamic queue, measure worker scaling on every selected platform, and remeasure whenever the protocol, member mix, runtime, or machine changes. Interruptible cloud execution is appropriate only after every completed point is checkpointed independently, an interrupted point can be retried without changing its identity, and duplicate results are rejected by case hash. On-demand and interruptible runs must be priced and reported separately.
@@ -4242,6 +4755,8 @@ K_{\mathrm{compute}}
 \sum_i p_i h_i
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0fe62ed06ad9f221)
+
 where $p_i$ is the actual instance price in dollars per billed hour and $h_i$ is its billed duration. Total campaign cost is
 
 $$
@@ -4252,6 +4767,8 @@ K_{\mathrm{compute}}
 +K_{\mathrm{network}}
 +K_{\mathrm{operations}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e0961207c46d7b81)
 
 The measured price-performance quantities are
 
@@ -4264,6 +4781,8 @@ C_{\mathrm{million}}
 =
 \frac{10^6}{P_{\mathrm{test}}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d7e40d0ed1fa813d)
 
 Thus $P_{\mathrm{test}}$ is verified tests per dollar and $C_{\mathrm{million}}$ is dollars per million verified tests. Billed startup time, idle capacity, failed or preempted attempts, retries, compact-output storage, network transfer, deterministic merge, and final verification all remain in the denominator. Quoting core count times a local single-worker rate is only a capacity estimate and must not be reported as measured cloud throughput.
 
@@ -4287,11 +4806,15 @@ $$
 \xi_1<\xi_2<\cdots<\xi_{N_w},
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cf756e051aab49c9)
+
 and spacings
 
 $$
 d_m=\xi_{m+1}-\xi_m>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-79c627eaede20738)
 
 For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
 
@@ -4308,11 +4831,15 @@ $$
 \right],
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4caf4daecfa06c59)
+
 $$
 \theta_m(T)=q_m\omega_mT+\phi_m,
 \qquad
 q_m\in\{+1,-1\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58a036628b028ba8)
 
 The binary-counterpart map $\pi$ must be a fixed-point-free involution,
 
@@ -4321,6 +4848,8 @@ $$
 \qquad
 \pi(m)\ne m,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07f4eb1c6f27b3a0)
 
 and every pair must declare its polarities, radii, frequencies, phases, circulation relation, axial midpoint, axial separation, and exact constraint. A pairing label has no analytical effect unless it changes a declared path or polarity.
 
@@ -4332,6 +4861,8 @@ P_k=(2k-1,2k),
 \mu_k=\frac{\xi_{2k-1}+\xi_{2k}}{2}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4f111536748b6e55)
+
 For a twelve-worldline Family-C source, six additional architrino worldlines may be declared as an Accessory Configuration only when all six polarities and complete paths are supplied. A three-worldline Family-B scaling control is not an Accessory Configuration. An additional path associated with slot $P_k$ has the form
 
 $$
@@ -4342,6 +4873,8 @@ $$
 +(\mu_k+\epsilon_k)\hat{\mathbf n}
 +\boldsymbol\delta_k(T),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-50864fece8656c97)
 
 where the axial offset $\epsilon_k$ and transverse path $\boldsymbol\delta_k(T)$ are exact source coordinates. The adjacent-pair association map and binary-counterpart map remain separate.
 
@@ -4355,6 +4888,8 @@ $$
 +\zeta_a\hat{\mathbf n}
 +\boldsymbol\delta_a(T).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cb5911cb4a64d87d)
 
 Every retained positive causal delay from transmitter $a$ to receiver $b$ satisfies
 
@@ -4371,6 +4906,8 @@ $$
 u>0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-315f6279cd8807c5)
+
 This equation covers every ordered transmitter-receiver pair in the declared source inventory, including Accessory Configuration sites when present. It is generally transcendental because the causally delayed transmitter phase contains $u$. A stationary transverse transmitter reduces the squared equation to a quadratic in $u$. Equal frequency, equal radius, rational frequency ratios, or reflection symmetry can reduce the number of distinct equations or pair contribution rows, but they do not generally remove the delayed phase. Rotating sectors therefore require certified retained-root enumeration.
 
 For each declared worldline, compare prescribed acceleration with the master-equation acceleration from the complete declared source inventory:
@@ -4381,6 +4918,8 @@ $$
 \ddot{\mathbf Z}^{\mathrm{prescribed}}_a(T)
 -\mathbf A^{\mathrm{ME}}_a(T).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d72539efdf9773d2)
 
 Report axial, radial, and tangential projections separately over the complete return period. Pointwise rows, signed cycle averages, RMS values, maxima, primary/refined differences, and source-resolved contributions are all required. Cancellation in one projection cannot conceal failure in another. A converged residual remains a prescribed-path analytical result; it is not stability, retention, binding, or physical realization.
 
@@ -4417,6 +4956,8 @@ A_{\mathrm{ext,peak}},
 S_{\boldsymbol\theta}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2619367386ede276)
 
 where $S_{\boldsymbol\theta}$ is the declared sensitivity of the wake measures to source-coordinate changes. Prescribed-period closure, minimum separation, and the root-transversality margin are validity gates or annotations rather than performance rewards.
 
@@ -4509,6 +5050,8 @@ P_{\mathrm{pack}}(\Omega,T)
 \operatorname{tr} S_{\mathrm{excl}}(\mathbf X,T)\,d^3X
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6f4df3ac04a85bfd)
+
 Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
 
 This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the member-specific exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. A B1 consumer projects its envelope from the common-axis paths, while an A1 consumer uses its near-spherical-to-oblate response. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
@@ -4533,6 +5076,8 @@ D_{a,X}(\mathbf X,T)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c4bd1ce4ef31d222)
+
 The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a transmitter constituent $j$ at emission time $T_t$, define
 
 $$
@@ -4545,6 +5090,8 @@ g_{\mathbf Xj}(T;T_t)
 r_{\mathbf Xj}(T;T_t)-c_f(T-T_t)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e369c630f8b1cb9c)
+
 $$
 J_{\mathbf Xj}(T;T_t)
 =
@@ -4555,6 +5102,8 @@ J_{\mathbf Xj}(T;T_t)
 =
 \{T_t<T:g_{\mathbf Xj}(T;T_t)=0\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-565087d4d00ff675)
 
 Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\text{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_t;T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_t;T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_t)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
 
@@ -4570,6 +5119,8 @@ D_{r,\mathbf Xj}^{(X)}(T;T_t)
 c_f-\mathbf V_{\mathrm{probe},X}(\mathbf X,T)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_t)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7299f8740a5b9694)
+
 and
 
 $$
@@ -4577,6 +5128,8 @@ W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)
 \equiv
 \frac{c_f}{|D_{t,\mathbf Xj}(T;T_t)|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-341ac44eba2604dd)
 
 as the transmitter-side acceleration weight on the same root record. Then the simple-root diagnostic is
 
@@ -4591,6 +5144,8 @@ w_{j,a}^{\mathrm{lock}}(T_t;T)
 {r_{\mathbf Xj}^2(T;T_t)}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-906d721d7225c2ee)
+
 and
 
 $$
@@ -4603,6 +5158,8 @@ w_j^{\mathrm{sea}}(T_t;T)
 \frac{\alpha_{j,X}(\mathbf X,T;T_t)W_{\mathbf Xj}^{\mathrm{acc},X}(T;T_t)}
 {r_{\mathbf Xj}^2(T;T_t)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99185c292dfab3f1)
 
 These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record
 
@@ -4621,6 +5178,8 @@ q_j,\,
 \right)_{(\mathbf X,T;T_t)}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c32e08955dcab4ff)
+
 Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the transmitter branch and $\Lambda_j$ is the closure label or neutral braid label available on that branch. The locked weight is the assembly projector
 
 $$
@@ -4633,6 +5192,8 @@ w_{j,a}^{\mathrm{lock}}(T_t;T)
 \mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-197e667da3878918)
 
 where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a(T)$ and zero for a rejected branch in the exact ledger limit. A regularized branch chart may replace this sharp value by
 
@@ -4654,6 +5215,8 @@ d_{\Lambda_a}^2
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-978763202cb96e16)
+
 where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance mismatch against the accepted assembly ledger. The ambient weight is the complement projector
 
 $$
@@ -4666,6 +5229,8 @@ w_j^{\mathrm{sea}}(T_t;T)
 \mathcal{B}_{\mathbf Xj}^{(T_t)}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24509915a63bf851)
 
 where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral braid equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
 
@@ -4688,6 +5253,8 @@ $$
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-88dcff7b795a752a)
+
 For any neutral braid branch quantity $f_k(T)$, write the ambient window average after resolved assembly ledgers have been removed as
 
 $$
@@ -4701,6 +5268,8 @@ K_\ell(\mathbf X-\mathbf{X}_k(T))f_k(T)
 K_\ell(\mathbf X-\mathbf{X}_k(T))
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07ff692f168e1b81)
 
 Let $\nu_k$ be the cadence variable of neutral braid $k$, let $\bar\nu_{\mathrm{sea}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and let $\sigma_{\nu,\ell}^2=\left\langle(\nu-\bar\nu_{\mathrm{sea}}^{(\ell)})^2\right\rangle_{\mathrm{sea},\ell}$. The cadence residual of the candidate branch is
 
@@ -4716,6 +5285,8 @@ $$
 \sqrt{\sigma_{\nu,\ell}^2+\epsilon_\nu^2}
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5edae661eda74388)
 
 Let $\mathcal N_{\ell}^{\setminus\mathrm{res}}$ be the neutral-pairing residual and $\mathbf P_{\ell}^{\setminus\mathrm{res}}$ the orientation/polarization residual of the same window after resolved assembly ledgers have been removed. The window-balance residual is
 
@@ -4734,6 +5305,8 @@ $$
 \epsilon_P^2
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d9a09050f8d7a0f0)
 
 The ambient acceptance is then
 
@@ -4758,6 +5331,8 @@ $$
 \right)
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-51249ff31cd13c76)
 
 This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral braid cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit parameters. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
 
@@ -4785,6 +5360,8 @@ Q_X
 \right\|_X
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b9bad59db24dfc4b)
+
 The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. The intensity $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios. The dimensional coupling $\kappa$ and polarity factors enter only through retained channel entries that already require them, such as the signed acceleration used by penetration. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after acceleration signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the transmitter branch record.
 
 The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf Xj}^{(T_t)}$ plus derived local entries computed from the same branch. For the clock channel,
@@ -4802,6 +5379,8 @@ J_{\mathbf Xj},\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6e7d7b3caa169fd9)
 
 where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\text{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
 
@@ -4821,6 +5400,8 @@ q_j,\,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a63ddeb8b176992b)
+
 where $\mathcal{L}_{j}^{\mathrm{corr}}$ is the declared strong, weak, color, electromagnetic, or material corridor ledger, $\mathcal{P}_{j}^{\mathrm{prov}}$ is the provenance record of participating architrinos and energy entries, and $\Theta_j^{\mathrm{strain}}$ is the line-defect or medium-strain entry when the corridor calculation requires one. The quotient $Q_{\mathrm{corridor}}$ may remove only corridor-basis relabelings that preserve the recovered reaction channel, provenance ledger, and line-defect energy.
 
 For packing,
@@ -4839,6 +5420,8 @@ R_{\perp,j},\,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-676036fdd1fafea9)
+
 where $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ is the local exclusion-stress entry and $(R_{\parallel,j},R_{\perp,j},\lambda_j,\xi_j)$ are the envelope entries exposed by the branch. Packing deliberately discards attraction/repulsion sign after the exclusion magnitude and stress tensor are retained, because the benchmark is stable adjacency rather than signed acceleration along one path.
 
 For penetration along a declared test path with tangent $\hat{\mathbf{u}}$ at $\mathbf X$,
@@ -4856,6 +5439,8 @@ J_{\mathbf Xj},\,
 \Lambda_j
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-039c84c7f73b1fe3)
 
 where $\mathbf{a}_{\mathbf X\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
 
@@ -4876,6 +5461,8 @@ $$
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
 \right\|_{\mathrm{phase}}^2}{\epsilon_{\mathrm{phase}}^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f1fa18ef26fd21ab)
 
 For a declared reaction corridor with oriented corridor record $\hat{\mathbf c}_X$,
 
@@ -4898,6 +5485,8 @@ $$
 +
 \frac{\left\|\Theta_j^{\mathrm{strain}}\right\|^2}{\epsilon_{\Theta}^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-136208a6927949ea)
 
 For packing, signs of attraction and repulsion have already been quotiented out, but exclusion magnitude and shape remain:
 
@@ -4927,6 +5516,8 @@ $$
 \frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3cc3305cd81ddde2)
+
 Here each $\Delta\ln$ term is measured relative to the declared same-member branch reference for the channel: the retained rest branch of the member under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous A1 record is one possible A1 calibration branch; it is not the reference for a B1 calculation.
 
 For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
@@ -4942,6 +5533,8 @@ a_{\parallel,j}
 -
 a_{\parallel,j}\hat{\mathbf u}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6158e32912c99c90)
 
 The dominance norm is
 
@@ -4960,6 +5553,8 @@ $$
 +
 \frac{\left(\Delta\ln|J_{\mathbf Xj}|\right)^2}{\epsilon_J^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9984df16179cb133)
 
 The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
 
@@ -4987,6 +5582,8 @@ $$
 \right\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-097fced51c1ca56c)
+
 This definition makes the $\epsilon$ values derived chart scales: they are how far a retained ledger entry may move before the declared channel readout changes by more than the accepted tolerance. The practical first estimates are:
 
 $$
@@ -4996,6 +5593,8 @@ $$
 \qquad
 \epsilon_\chi=\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4e211ddec3218d4d)
 
 for clock scans;
 
@@ -5008,6 +5607,8 @@ $$
 =
 \Delta_{\mathrm{prov},X}^{\mathrm{tol}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e6c51ab39d77c678)
 
 for corridor scans, with exact provenance closure represented by the limit $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}\to0$ after regularization; and
 
@@ -5029,6 +5630,8 @@ $$
 \Delta\ln\xi^{\mathrm{stab}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1c5748ca3288605)
+
 for packing scans, where the stable ranges are measured over accepted neighboring-braid branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
 
 $$
@@ -5044,6 +5647,8 @@ a_{\perp,\mathrm{tol}}
 =
 \Delta\phi_{\mathrm{path}}^{\mathrm{tol}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1cb2181c47c7e07b)
 
 Thus tolerance derivation is a ledger-replay problem. A hydrogen line, packing calculation, or penetration test may choose a different channel tolerance because it asks a different stability question, but it may not retune the tolerance after seeing the observable.
 
@@ -5085,6 +5690,8 @@ d_{\mathrm{prov}}^2
 {\epsilon_{\mathrm{cons}}^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1d35ab61a33bfbb6)
+
 Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
 
 For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf Xj})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
@@ -5099,6 +5706,8 @@ $$
 D_{a,X}(\mathbf X,T)=D_X
 \right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-55278e54a86b6e9a)
 
 The level-set threshold is not universal. A penetration calculation, packing calculation, clock-coupling calculation, and reaction-corridor calculation choose different $D_X$ values because they test different stability criteria. A useful ordering of first thresholds is
 
@@ -5115,6 +5724,8 @@ D_{\mathrm{penetration}}
 <
 1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee9177a571a425fe)
 
 Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether braid or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,T)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
 
@@ -5134,12 +5745,16 @@ H_a(\hat{\mathbf m};W)
 \hat{\mathbf m}\mathbin{\cdot}
 \left(\mathbf X_{aj}(T)-\mathbf X_{\mathrm{grp}}(T)\right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-89aafdc4b2c8e842)
 and the full path-history support by
 $$
 H_{\mathrm{env}}(\hat{\mathbf m};W)
 =
 \max_{a\in\{1,2,3\}}H_a(\hat{\mathbf m};W).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a95f5f4756939763)
 An index is boundary-leading in direction $\hat{\mathbf m}$ only when it attains this maximum on the retained record. The maximizer may depend on direction or time, may be nonunique, and does not relabel the binary. Under the prescribed compression response, the union of all six paths produces the flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
 In low-stress A1 prose, "A1 envelope" means this effective path-history envelope, not a literal material surface.
@@ -5150,12 +5765,16 @@ For either family, use $R_{\parallel}$ for the semiaxis along the declared famil
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3d77ce3fdd0bd0f3)
 so $\xi=1$ denotes a spherical envelope, $\xi>1$ denotes a fusiform envelope elongated along the parallel axis, and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis. A family label must accompany any rest-envelope value of $\xi$.
 
 Use
 $$
 \lambda\equiv\frac{R_{\perp}}{R_{\perp,0}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ce95cf622b5d9db6)
 for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to braid envelope geometry: $\xi$ records shape and $\lambda$ records scale.
 
 The oblate spheroidal envelope volume is
@@ -5166,6 +5785,8 @@ V_{\mathrm{env}}(v)
 \frac{4\pi}{3}R_{\perp}^2(v)R_{\parallel}(v)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3e2737d0578d0b50)
+
 Relative to the declared rest envelope,
 
 $$
@@ -5173,6 +5794,8 @@ $$
 =
 \lambda^3(v)\,\xi(v)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-42219d941e2bd344)
 
 This identity is geometric. If a homogeneous moving branch independently closes the Lorentz projection $\xi(v)=1/\gamma_{\mathrm{eff}}(v)+O(\epsilon_{\mathrm{LV}})$, then
 
@@ -5183,12 +5806,16 @@ $$
 +O(\epsilon_{\mathrm{LV}})
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ed296930498af1b1)
+
 and the zero-extra-scale subclass $\lambda=1$ reduces to $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)=1/\gamma_{\mathrm{eff}}+O(\epsilon_{\mathrm{LV}})$. The volume law does not establish $\lambda=1$ or Lorentz closure; it exposes the packing and exclusion-volume quantity once those branch relations are supplied.
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3070bac4118bc111)
 but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not determine B1's rest-envelope aspect ratio.
 
 ### Lorentz Projection Role
@@ -5203,6 +5830,8 @@ $$
 =
 \frac{1}{\xi_q(v)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-59914dc6e5c6b742)
 but the branch $q$ is accepted only when all three binary ledgers also retune consistently with clock closure, conservation, and preferred-frame leakage bounds.
 
 The direct Lorentz-to-geometry map comes from a closed return cycle. In a homogeneous cell, define
@@ -5211,8 +5840,9 @@ $$
 \equiv
 \frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
-Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart.
-The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
+Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 T_{\parallel}
 =
@@ -5222,12 +5852,16 @@ T_{\parallel}
 =
 \frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
 while the transverse causal-budget return time is
 $$
 T_{\perp}
 =
 \frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
 Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
@@ -5237,12 +5871,16 @@ $$
 \frac{1}{\gamma_{\text{eff}}(v)}
 +O(\epsilon_{\mathrm{LV}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-54df338e8e9033cd)
 The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_{\mathrm{ref}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f80c6c5e569c99b5)
 and that the admitted branches satisfy
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
@@ -5250,6 +5888,8 @@ $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 +O(\epsilon_{\mathrm{LV}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-277a6d51ffcecf41)
 The envelope is therefore the visible projection of the retained causal-root ledger, not an independently assigned Lorentz surface.
 
 ### Retuning Projection to Envelope Variables
@@ -5267,6 +5907,8 @@ $$
 \right)^{T}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7528aa39e3a75875)
+
 denote the logarithmic semiaxis record of branch $q$. The envelope projection is a branch-dependent map
 
 $$
@@ -5279,6 +5921,8 @@ $$
 \mathcal{L}_{\mathrm{root}},\mathcal{L}_{\mathrm{wake}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d9838cedbc63b78a)
 
 where the axes, root ledger, and wake ledger are part of the branch data. The induced geometry increments are therefore
 
@@ -5294,6 +5938,8 @@ $$
 \Delta\ln R_{\perp,q}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-214b7336f7cd4528)
+
 If one binary $a_{\mathrm{env}}$ is uniquely boundary-leading over the relevant directions and window, the projection reduces to the useful estimate
 
 $$
@@ -5307,6 +5953,8 @@ $$
 -
 \Delta\ln R_{\perp,a_{\mathrm{env}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b770f470c5c45133)
 
 This approximation is a projection estimate, not a branch proof. It fails when the maximizer changes with direction or time, when more than one binary contributes at the same order, or when root-history, axis precession, or neighbor-induced strain changes the interface independently of a single radius. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
@@ -5370,10 +6018,14 @@ M_p,\,
 c_1
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5c3ef0e6336e0fea)
 where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the established phase-entry slot of the retained resonance lock. In this chapter that slot means return-map degree data unless a later two-torus curvature chart is explicitly supplied. For a promoted lock with a three-phase chart this last entry is usually a pair
 $$
 c_1=(m,n)\in\mathbb{Z}^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-95061d2c99d113a9)
 rather than a scalar integer: $m$ and $n$ are the binary-2 and binary-1 winding numbers over one binary-3 reference period.
 
 This compact form records the count data most directly emitted by a branch solver. The conserved refinement is
@@ -5386,6 +6038,8 @@ D_p,\,
 c_1
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-16765cc9e26c59b6)
 where $D_{\mathrm{self}}$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_p$ can change by opposite-sign fold-pair birth or death, while $D_{\mathrm{self}}$ and $D_p$ are the degree-like data preserved by generic fold surgery. A promoted report should therefore carry both the compact assembly topological charge and its signed-degree refinement.
 
 This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
@@ -5410,6 +6064,8 @@ C_{s,-}(\mathfrak B)
 =
 \mathbb{Z}\langle b_\ell:\text{self root},\ J_\ell<0\rangle.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5c4a043e82570230)
 For the partner-hit sector,
 $$
 C_{p,+}(\mathfrak B)
@@ -5420,6 +6076,8 @@ C_{p,-}(\mathfrak B)
 =
 \mathbb{Z}\langle b_\ell:\text{partner root},\ J_\ell<0\rangle.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0c0fdc8e22b6c1be)
 The unsigned ledgers are
 $$
 N_s
@@ -5430,6 +6088,8 @@ M_p
 =
 \operatorname{rank}_{\mathbb{Z}} C_{p,+}+\operatorname{rank}_{\mathbb{Z}} C_{p,-}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-744eda06a9dbfe18)
 The signed degrees
 $$
 D_{\mathrm{self}}
@@ -5440,6 +6100,8 @@ D_p
 =
 \operatorname{rank}_{\mathbb{Z}} C_{p,+}-\operatorname{rank}_{\mathbb{Z}} C_{p,-}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-79c1729b162dfe77)
 are not extra entries in the compact assembly topological charge, but they are required side data and form the conserved-degree refinement $[\mathfrak B]_{\mathrm{deg}}$. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
 
 Equivalently, each source sector is a $\mathbb{Z}_2$-graded two-term root module, inheriting the signed causal-root-complex reading from [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex):
@@ -5450,6 +6112,8 @@ C_{\sigma,+}\oplus C_{\sigma,-},
 \qquad
 \sigma\in\{s,p\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee9b2f7ea455aa30)
 The unsigned ledgers $N_s$ and $M_p$ are ranks of a chosen presentation. They are useful live-channel counts, but they are not the conserved quantities across fold-pair surgery. The conserved local degree is the Euler characteristic
 $$
 \chi(C_{\sigma,\bullet})
@@ -5458,6 +6122,8 @@ $$
 =
 D_\sigma.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-018d03fd646916ed)
 A generic fold birth adds one positive and one negative generator, so the presentation rank changes by two while $\chi(C_{\sigma,\bullet})$ is unchanged.
 
 The geometric reading is intersection-theoretic. On a lifted finite-memory strip, each connected retained causal-locus component has an oriented intersection number with a generic receiver-time fiber. Let $\mathcal L_\sigma$ be the retained causal-locus chain in sector $\sigma\in\{s,p\}$ and let $F_{T_\ast}$ be a generic receiver-time fiber at fixed absolute time $T_\ast$. Then
@@ -5466,29 +6132,39 @@ D_\sigma
 =
 \left\langle[\mathcal L_\sigma],[F_{T_\ast}]\right\rangle.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7dd719d8e4b1d442)
 On a regular one-parameter family with parameter $\mu$,
 $$
 \frac{d}{d\mu}
 \left\langle[\mathcal L_\sigma(\mu)],[F_{T_\ast}]\right\rangle
 =0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fc16157e93b25807)
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_{\mathrm{self}}$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This sector restriction is $D_\sigma=\left.\chi_{\mathrm{root}}\right|_\sigma=\chi(C_{\sigma,\bullet})$ for $\sigma\in\{s,p\}$, the self and partner parts of the causal-root ledger in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry). This is also the bridge to [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight supply the signed root degrees used by the assembly topological charge.
 
 The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta_1,\theta_2,\theta_3$ be the phase coordinates attached to the persistent binary indices. Exact integer closure over one binary-3 reference period $P_3$ means
 $$
 \theta_3(T+P_3)=\theta_3(T)+2\pi,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3cc6546c59b0a3ae)
 $$
 \theta_2(T+P_3)=\theta_2(T)+2\pi m,
 \qquad
 \theta_1(T+P_3)=\theta_1(T)+2\pi n.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-23c93d1f7f4dbdf2)
 Equivalently, the relative-phase one-forms
 $$
 \vartheta_2=d\theta_2-m\,d\theta_3,
 \qquad
 \vartheta_1=d\theta_1-n\,d\theta_3
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f63f94e5cace664a)
 have integer holonomy and become flat on a promoted phase-locked branch. Let $\rho_3:S^1_3\to\mathfrak B$ be one retained binary-3 return cycle. The shorthand
 $$
 c_1[\theta_1,\theta_2,\theta_3]
@@ -5499,21 +6175,26 @@ c_1[\theta_1,\theta_2,\theta_3]
 \right)
 =(m,n)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c78f8a7682e27ddf)
 records this phase-return degree data. The doubling-frequency `4:2:1` candidate is the binary-3-normalized case $(m,n)=(2,4)$, equivalently $f_1:f_2:f_3=4:2:1$.
 
 The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the binary-3 phase circle. Such bundles over $S^1_3$ are topologically trivial because $H^2(S^1_3;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$
 (m,n)\in[S^1_3,S^1]\times[S^1_3,S^1]\cong\mathbb{Z}^2,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-10d19f31b5dec1bf)
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
 The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A3.3 member and its A1.3 zero-axial-offset locus. They are not generic Noether braid data. In particular, [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
 
-The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame).
-The degree pair is admissible only when
+The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame). The degree pair is admissible only when
 $$
 |D_{\mathrm{plane}}|\ge \delta_{\mathrm{plane}}>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4d637ca60065d414)
 When this floor fails, the three phases no longer supply an independent return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
 
 ### Candidate Definition
@@ -5541,12 +6222,16 @@ c_1[\theta_1,\theta_2,\theta_3]
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d612f31fe86154a1)
 For a Noether braid branch without a phase-return chart, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until that chart exists.
 
 A useful refinement is a branch-preserving chirality label
 $$
 \chi_{\mathrm{fr}}\in\mathbb{Z}_2.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-05af92406596673b)
 The richer ordered-braid chirality label $\chi_c$ is introduced in [Reduced A1 Closure Label](../../../../markdown/aaa/noether-braid/braid-a1-dynamics.md#reduced-a1-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. The marker's canonical source is the framing row of the [retained-branch certificate](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md#the-retained-branch-certificate), which carries the framed-path record $Lk=\operatorname{Wr}+\operatorname{Tw}$, the framing sign, and its positive conditioning floor on the same ledger identity as the root and phase-return data. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ### Invariance And Allowed Transitions
@@ -5557,6 +6242,8 @@ $$
 \qquad
 \Delta D_{\mathrm{self}}=\Delta D_p=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f8eaf6b785ebc880)
 for an ordinary fold-pair event. In the sector where the fold occurs, the unsigned count changes by $\pm2$ while both signed degrees remain unchanged.
 
 Cusp or higher singular strata are not automatically governed by the generic fold law. They require a separate regularized normal form before their ledger surgery can be promoted. Likewise, $c_1=(m,n)$ remains fixed under deformation only while the return-map degree pair is unchanged, the relative-phase connection stays flat, and the plane-independence floor remains positive. A loss of resonance lock, a plane-degeneracy transition, or a branch-fold event that changes the return chart can change the phase entry.
@@ -5571,6 +6258,8 @@ $$
 \cup
 \Sigma_{\mathrm{plane}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df13a5d2dce37ca8)
 with $\Sigma_{\mathrm{frame}}$ added when $\chi_{\mathrm{fr}}$ is part of the certified report. Away from intersections these are transverse codimension-one walls, so exactly one entry of the compact label or one certified refinement changes. Codimension-two intersections encode simultaneous events, such as a cusp, a root-plus-phase transition, or a plane-plus-phase transition; those require their own normal form before any ledger surgery is inferred.
 
 The transition catalogue therefore has a native form:
@@ -5600,6 +6289,8 @@ c_1,\,
 \chi_{\mathrm{fr}}\ \text{when certified}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fff95cc207445792)
 together with its stability margins, energy/wake ledger, and gluing status.
 
 The intended use is constrained:
@@ -5609,8 +6300,7 @@ The intended use is constrained:
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
-Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue.
-Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
+Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue. Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
 
 ### Simulation Extraction
 

@@ -1,5 +1,4 @@
-Closure goal:
-Consolidate the pre-July-28 `EQ-02` through `EQ-04A` retained-evidence, coframe, source-contract, and transport reviews into one current research record, preserve their useful numerical and geometric findings, and route every surviving question through the point-first existence, full-history persistence, drift-continuation, no-retune, and downstream Koide proof order.
+Closure goal: Consolidate the pre-July-28 `EQ-02` through `EQ-04A` retained-evidence, coframe, source-contract, and transport reviews into one current research record, preserve their useful numerical and geometric findings, and route every surviving question through the point-first existence, full-history persistence, drift-continuation, no-retune, and downstream Koide proof order.
 
 # EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide: Research Findings and Proposed Changes
 

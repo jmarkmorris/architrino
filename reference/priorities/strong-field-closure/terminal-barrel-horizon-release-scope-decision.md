@@ -1,8 +1,6 @@
 # Terminal Barrel, Horizon Alignment, And Release Scope Decision
 
-**Decision:** split the four claims by evidence (operator option (a), 2026-07-11).
-**Claim level:** one conditional kinematic theorem target, one horizon boundary-condition theorem target, and two speculation watchlists.
-**Authority boundary:** this decision fixes dispositions and proof boundaries. It does not identify the terminal barrel with a physical horizon, identify a horizon with a light ring, establish a `4:2:1` law, create a dark-sector ontology, authorize a new build, or promote any of these claims into corpus prose.
+**Decision:** split the four claims by evidence (operator option (a), 2026-07-11). **Claim level:** one conditional kinematic theorem target, one horizon boundary-condition theorem target, and two speculation watchlists. **Authority boundary:** this decision fixes dispositions and proof boundaries. It does not identify the terminal barrel with a physical horizon, identify a horizon with a light ring, establish a `4:2:1` law, create a dark-sector ontology, authorize a new build, or promote any of these claims into corpus prose.
 
 ## Dispositions
 

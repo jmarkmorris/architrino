@@ -1,18 +1,12 @@
 # Architrino
 
-Architrino is the source repository for `architrino.com`. It combines the
-$\mathbb{A}\mathbb{A}\mathbb{A}$ theory corpus, the interactive Architrino
-Assembly Architecture web app, generated textbook/scene artifacts, and a set of
-standalone research and visualization applications.
+Architrino is the source repository for `architrino.com`. It combines the $\mathbb{A}\mathbb{A}\mathbb{A}$ theory corpus, the interactive Architrino Assembly Architecture web app, generated textbook/scene artifacts, and a set of standalone research and visualization applications.
 
-The repo is intentionally content-heavy. Most public pages are not handwritten
-HTML pages; they are scene JSON files that point to markdown, generated graph
-manifests, and browser runtimes.
+The repo is intentionally content-heavy. Most public pages are not handwritten HTML pages; they are scene JSON files that point to markdown, generated graph manifests, and browser runtimes.
 
 ## Run Locally
 
-Use the local web server so browser ES modules, JSON, markdown, images, and WASM
-assets load with the same path model as the deployed site.
+Use the local web server so browser ES modules, JSON, markdown, images, and WASM assets load with the same path model as the deployed site.
 
 ```bash
 node scripts/dev/start-local-dev.mjs
@@ -30,14 +24,11 @@ To use another port:
 PORT=5174 node scripts/dev/start-local-dev.mjs
 ```
 
-There is no `npm install` step for ordinary local serving. The root app is
-served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`,
-and the standalone HTML entrypoints in the repo root.
+There is no `npm install` step for ordinary local serving. The root app is served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`, and the standalone HTML entrypoints in the repo root.
 
 ## Web App
 
-The default web app is the Architrino Assembly Architecture scene navigator.
-Its root scene is:
+The default web app is the Architrino Assembly Architecture scene navigator. Its root scene is:
 
 ```text
 content/scenes/architrino_assembly_architecture.json
@@ -58,23 +49,18 @@ The root scene organizes the corpus into these top-level areas:
 - Philosophy-History
 - Project, documentation, applications, and outreach material
 
-The navigator renders the explicit scene network as interactive sphere layouts.
-Users can descend into scene children, open linked markdown, search the scene
-manifest, use the textbook table of contents, and open standalone apps from app
-scenes.
+The navigator renders the explicit scene network as interactive sphere layouts. Users can descend into scene children, open linked markdown, search the scene manifest, use the textbook table of contents, and open standalone apps from app scenes.
 
 Basic controls:
 
 - Click or tap a sphere to enter a linked scene or open its action.
 - Drag to pan.
 - Pinch or trackpad-pinch to zoom.
-- Use the toolbar for search, home, back/forward navigation, document view, PDF
-  export, and textbook navigation where available.
+- Use the toolbar for search, home, back/forward navigation, document view, PDF export, and textbook navigation where available.
 
 ## Public Applications
 
-The public Applications scene is the source of truth for the app list shown in
-the navigator:
+The public Applications scene is the source of truth for the app list shown in the navigator:
 
 ```text
 content/scenes/archie/applications.json
@@ -98,9 +84,7 @@ Standalone app launch routing lives in:
 src/apps/navigator/StandaloneAppLaunchRuntime.js
 ```
 
-App runtime code is under `src/apps/`. EOM under `src/eom/` is the endorsed
-solver and sole forward production target. New app and simulation work
-routes through its contracts and recorded datasets.
+App runtime code is under `src/apps/`. EOM under `src/eom/` is the endorsed solver and sole forward production target. New app and simulation work routes through its contracts and recorded datasets.
 
 ## Content Model
 
@@ -110,9 +94,7 @@ Canonical authored content lives under:
 content/markdown/aaa/
 ```
 
-The main corpus folders cover foundations, dynamics, Noether Braid, spacetime,
-assemblies, nuclear and atomic structure, reactions, quantum, cosmology,
-validation, philosophy-history, proof programs, and project-facing guides.
+The main corpus folders cover foundations, dynamics, Noether Braid, spacetime, assemblies, nuclear and atomic structure, reactions, quantum, cosmology, validation, philosophy-history, proof programs, and project-facing guides.
 
 Scene files live under:
 
@@ -120,16 +102,14 @@ Scene files live under:
 content/scenes/
 ```
 
-Scene files define the explicit navigation network. Authored scene fields
-include:
+Scene files define the explicit navigation network. Authored scene fields include:
 
 - `objects[]`
 - `objects[].subScenes[]`
 - `objects[].markdownPath`
 - `objects[].markdownSection`
 
-Generated artifacts are derived from those authored sources. Do not hand-edit
-generated files during ordinary content work.
+Generated artifacts are derived from those authored sources. Do not hand-edit generated files during ordinary content work.
 
 Important generated outputs include:
 
@@ -154,8 +134,7 @@ node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
 ```
 
-Regenerate generated content only when a check reports drift or when the work
-requires refreshed generated output:
+Regenerate generated content only when a check reports drift or when the work requires refreshed generated output:
 
 ```bash
 node scripts/validate-content.mjs --write
@@ -191,45 +170,29 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 - `*.html` at the repo root: standalone browser app entrypoints.
 - `src/apps/architrino/`: scene navigator runtime.
 - `src/apps/`: standalone application runtimes and app-specific modules.
-- `src/services/`, `src/runtime/`, `src/domain/`: shared runtime, service, and
-  domain helpers.
+- `src/services/`, `src/runtime/`, `src/domain/`: shared runtime, service, and domain helpers.
 - `content/markdown/aaa/`: authored corpus markdown.
 - `content/scenes/`: authored scene JSON plus generated scene index.
-- `content/graph/`: generated scene graph, runtime routes, and textbook TOC
-  manifests.
+- `content/graph/`: generated scene graph, runtime routes, and textbook TOC manifests.
 - `content/generated/`: generated reading copies and review PDFs.
-- `reference/op/agent-startup-orientation.generated.md`: generated compact
-  startup orientation for repo agents.
-- `scripts/`: validators, generators, solver/proof tooling, and local dev
-  utilities.
-- `tests/`: Node and Python tests for runtime, content, solver, and proof
-  artifacts.
-- `reference/`: operator procedures, priority workstreams, architectural
-  decisions, research notes, and non-public staging material.
+- `reference/op/agent-startup-orientation.generated.md`: generated compact startup orientation for repo agents.
+- `scripts/`: validators, generators, solver/proof tooling, and local dev utilities.
+- `tests/`: Node and Python tests for runtime, content, solver, and proof artifacts.
+- `reference/`: operator procedures, priority workstreams, architectural decisions, research notes, and non-public staging material.
 - `apps/ios/`: iOS reader project and reader assets used by the web app.
 
 ## Deployment
 
-The public site is deployed through GitHub Pages with `CNAME` set for
-`architrino.com`. The deployed site should be treated as a generated-content
-consumer: update authored markdown and scenes first, refresh generated outputs
-when required, then verify the manifest and integrity checks before publishing.
+The public site is deployed through GitHub Pages with `CNAME` set for `architrino.com`. The deployed site should be treated as a generated-content consumer: update authored markdown and scenes first, refresh generated outputs when required, then verify the manifest and integrity checks before publishing.
 
 ## Commit And Push Checks
 
 Git hooks are configured through `.githooks`.
 
-The pre-commit hook checks content references, the scene graph, textbook reading
-copies, receiver-weighted compatibility status, current Master Equation terminology,
-notation drift, and animator runtime
-wiring.
+The pre-commit hook checks content references, the scene graph, textbook reading copies, receiver-weighted compatibility status, current Master Equation terminology, notation drift, and animator runtime wiring.
 
-The pre-push hook runs the Content Integrity gate and animator runtime wiring
-audit.
+The pre-push hook runs the Content Integrity gate and animator runtime wiring audit.
 
 ## License
 
-Project-authored code and documents are licensed under the [MIT License](LICENSE),
-Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images,
-and derivatives retain their own licenses and attribution requirements; see
-[Licenses, Attribution & Source Use](content/markdown/aaa/archie/licenses-attributions.md).
+Project-authored code and documents are licensed under the [MIT License](LICENSE), Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images, and derivatives retain their own licenses and attribution requirements; see [Licenses, Attribution & Source Use](content/markdown/aaa/archie/licenses-attributions.md).

@@ -1,9 +1,6 @@
 # Weak Flavor Event-Ledger Benchmark Packet
 
-Status: priority-only source-mined benchmark packet
-Date mined: July 1, 2026
-Claim level: equation-mapping input, not accepted retained evidence
-Primary consumers: [Weak-Sector Gauge Closure](weak-sector-gauge-closure.md), [Precision Electroweak Gauge-Running Benchmark Packet](precision-electroweak-gauge-running-benchmark-packet.md), [EQ-16 Weak Visible Branch-Ledger Source-Field Map](../mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md), [EQ-16A Neutrino Common-Clock Phase Packet](../mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md), [PDG Particle Mass, Width, Lifetime, And Scheme Benchmark Map](../source-mining/pdg-particle-mass-width-lifetime-benchmark-map.md), [Collider Detector Provenance And Event Reconstruction](../source-mining/collider-detector-provenance-event-reconstruction.md), and [VBF Photon Missing-Transverse-Momentum Event Ledger](vbf-photon-missing-transverse-momentum-event-ledger.md).
+Status: priority-only source-mined benchmark packet Date mined: July 1, 2026 Claim level: equation-mapping input, not accepted retained evidence Primary consumers: [Weak-Sector Gauge Closure](weak-sector-gauge-closure.md), [Precision Electroweak Gauge-Running Benchmark Packet](precision-electroweak-gauge-running-benchmark-packet.md), [EQ-16 Weak Visible Branch-Ledger Source-Field Map](../mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md), [EQ-16A Neutrino Common-Clock Phase Packet](../mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md), [PDG Particle Mass, Width, Lifetime, And Scheme Benchmark Map](../source-mining/pdg-particle-mass-width-lifetime-benchmark-map.md), [Collider Detector Provenance And Event Reconstruction](../source-mining/collider-detector-provenance-event-reconstruction.md), and [VBF Photon Missing-Transverse-Momentum Event Ledger](vbf-photon-missing-transverse-momentum-event-ledger.md).
 
 ## Purpose
 

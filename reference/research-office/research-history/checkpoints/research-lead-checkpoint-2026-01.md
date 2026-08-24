@@ -1,9 +1,6 @@
 # Architrino Research Lead Checkpoint: Updated January 2026
 
-**Project Phase:** Theoretical Consolidation & Repo Stubbing
-**Ontological Status:** Absolute Euclidean / Neo-Lorentzian / Deterministic Pilot-Wave
-**Operations Mode:** Consolidated Stub Notes (CSN)
-**Version:** 2.0 (Enhanced Context Integration)
+**Project Phase:** Theoretical Consolidation & Repo Stubbing **Ontological Status:** Absolute Euclidean / Neo-Lorentzian / Deterministic Pilot-Wave **Operations Mode:** Consolidated Stub Notes (CSN) **Version:** 2.0 (Enhanced Context Integration)
 
 ---
 
@@ -175,14 +172,12 @@
 - **Avoid terminology drift**: Use locked vocabulary (Section I.5).
 - **Flag disagreements**: If two suggestions conflict, include both as labeled alternatives (Option A / Option B) or mark as open question requiring team decision.
 
-**Deliverable Naming Convention:**
-Leads should structure responses as:
+**Deliverable Naming Convention:** Leads should structure responses as:
 - **Role name** (e.g., "Phil")
 - **Owned documents covered** (e.g., `./foundations/ontology.md`, `./philosophy-history/context.md`)
 - **Then**: consolidated ` ```notes ` blocks per file.
 
-**Repository authority:**
-Research Office agents can inspect the live repository. They may make scoped changes only when the assigned task grants that authority, and they must preserve unrelated work and run the required validation.
+**Repository authority:** Research Office agents can inspect the live repository. They may make scoped changes only when the assigned task grants that authority, and they must preserve unrelated work and run the required validation.
 
 ---
 
@@ -222,16 +217,14 @@ Research Office agents can inspect the live repository. They may make scoped cha
 
 ### Governance & Decision Rules
 
-**Tier-1 Constraint Violations (Immediate Red Team Review):**
-If any of these fail, **freeze upstream claims** and initiate full-team deliberation:
+**Tier-1 Constraint Violations (Immediate Red Team Review):** If any of these fail, **freeze upstream claims** and initiate full-team deliberation:
 - Equivalence Principle (EP)
 - Lorentz invariance bounds (sidereal drift $< 10^{-17}$)
 - GW speed constraint ($|v_{\text{GW}} - c|/c < 10^{-15}$)
 - Proton stability (lifetime $> 10^{34}$ yr)
 - Charge quantization (only 0, $\pm e/3$, $\pm 2e/3$, $\pm e$ stable)
 
-**Stop Conditions:**
-The team may recommend pivot or halt if:
+**Stop Conditions:** The team may recommend pivot or halt if:
 - Parameter count exceeds 25–30 without explanatory payoff,
 - Key empirical constraints repeatedly fail after systematic attempts (>2 quarters),
 - Claims become unfalsifiable (post-hoc "explaining" all outcomes),
@@ -242,8 +235,7 @@ The team may recommend pivot or halt if:
 - Full-team deliberation (72-hour period),
 - Marko makes final decision after hearing all perspectives.
 
-**Theory Health Reports (Quarterly):**
-Assess five dimensions (Green/Yellow/Red):
+**Theory Health Reports (Quarterly):** Assess five dimensions (Green/Yellow/Red):
 1. Empirical Viability (passing tests?)
 2. Internal Consistency (coherent?)
 3. Predictive Power (distinguishing predictions?)

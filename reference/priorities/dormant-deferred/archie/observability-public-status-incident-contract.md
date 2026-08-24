@@ -234,8 +234,7 @@ The future implementation should include observability fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Observability Public Status And Incident Contract into privacy-safe event schemas, metrics, public-status fields, incident records, diagnostics redaction, issue-mining handoff rules, and regression fixtures for the Archie service.
+Closure goal: Turn the Observability Public Status And Incident Contract into privacy-safe event schemas, metrics, public-status fields, incident records, diagnostics redaction, issue-mining handoff rules, and regression fixtures for the Archie service.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

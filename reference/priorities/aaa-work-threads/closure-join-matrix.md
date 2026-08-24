@@ -223,11 +223,7 @@ The repeated grammar is:
 - If a priority task introduces a variable already present in this file, add the task to the corresponding row rather than creating a new coordination surface.
 - If two workstreams use different names for the same join object, normalize to the established project term before promoting prose into `content/markdown/aaa`.
 - If a task cannot name a join key, classify it as product/app/admin work or as an under-specified theory task.
-- Do not treat a local sector result as mature until the active sector owners
-  show that their accepted conditions remain mutually compatible. The archived
-  [closure-intersection-ledger](../dormant-deferred/validation-gates/closure-intersection-ledger.md)
-  may supply a reference schema, but it does not own or certify the current
-  result.
+- Do not treat a local sector result as mature until the active sector owners show that their accepted conditions remain mutually compatible. The archived [closure-intersection-ledger](../dormant-deferred/validation-gates/closure-intersection-ledger.md) may supply a reference schema, but it does not own or certify the current result.
 
 ## First Product-Join Queries
 

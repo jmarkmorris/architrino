@@ -6,6 +6,8 @@ $$
 =
 \big\{\,T_t<T_r\mid \|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|=T_r-T_t\,\big\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-9435e7c724a2ce9d)
 Local sub-field-speed transversality guarantees a unique smooth root branch near a given root. It does not by itself make the global set $\mathcal C_o(T_r)$ a singleton. Global uniqueness follows when $\|\mathbf V_o(T_t)\|<c_f$ throughout the entire searched history interval; histories that reach or exceed $c_f$ may admit folds or multiple solutions, including self-hits when $o'=o$.
 
 Clarification: "Multi-valued" means that, for a fixed reception time $T_r$, there can be more than one emission time $T_t$ that satisfies the causal-distance condition. This multiplicity requires the transmitter history to reach or exceed field speed somewhere on the searched interval; tangency can occur at equality. If $\|\mathbf V_o\|<c_f$ everywhere on that interval, $F(T_t;T_r)$ is strictly increasing in $T_t$ and the causal root is unique.

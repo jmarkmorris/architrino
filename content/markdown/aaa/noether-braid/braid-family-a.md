@@ -38,6 +38,8 @@ h_a=0,
 \rho_a=R_a.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a1527409c4a34726)
+
 The two architrinos therefore remain antipodal while traversing the same geometric circle, whose center is the braid center. The three binary circles need not share one plane: at the near-rest endpoint their plane normals are the three mutually orthogonal Family-A axes.
 
 A1 does not require the exact cyclic binary-permutation symmetry of A2. When its binary coordinates differ, a spatial rotation cannot map one binary onto another with different geometry. An integer frequency ratio can make the full prescribed figure repeat after a common period, but it does not by itself establish spatial equivalence.
@@ -73,6 +75,8 @@ $$
 R_a^2=h_a^2+\rho_a^2.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7e6f31f81fbb0c72)
+
 For endpoint sign $\sigma\in\{+1,-1\}$, the center of the endpoint's circular path is
 
 $$
@@ -82,6 +86,8 @@ $$
 +
 \sigma h_a\hat{\mathbf n}_a.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d58d2d8ae9db1d0c)
 
 Thus $h_a>0$ separates the two endpoint orbit centers by $2h_a\hat{\mathbf n}_a$, even though the endpoint positions remain antipodal about the binary midpoint at every common time. A3 permits $h_a=0$, so A1 is its exact zero-axial-offset subset rather than a disjoint class.
 
@@ -101,6 +107,8 @@ For every shared suffix $n\in\{1,2,3,4\}$,
 $$
 A1.n=A3.n\mathbin{\cap}\{h_1=h_2=h_3=0\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-63d084e7f4c1ef0c)
 
 ## A1, A2, and A3 Relations
 

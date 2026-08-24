@@ -18,9 +18,7 @@ The case pressures the mass map and effective metric at the same time. $\mathbb{
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `deflection_integral` — Define a Noether sea optical-path or effective-geodesic deflection integral. Status: `draft`.
 2. `mass_exposure_map` — Connect lensing mass to the exposure quotient and medium-response tensor. Status: `draft`.

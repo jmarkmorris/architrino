@@ -57,23 +57,33 @@ The first mathematical warning that ordinary compact matter could lose its suppo
 $$
 p_F\sim \hbar n_e^{1/3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2acede6571965af4)
 and the pressure law depends on whether those electrons are nonrelativistic or relativistic. In the nonrelativistic regime,
 $$
 P_e\propto n_e^{5/3}\propto \rho^{5/3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54ae1732b25d188b)
 while in the relativistic regime,
 $$
 P_e\propto n_e^{4/3}\propto \rho^{4/3}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0e92f7b7ec506d4b)
+
 The electrons in this standard calculation are not ordinary atomic-orbital electrons. The white-dwarf branch begins after ordinary atoms have lost their everyday chemical identity: nuclei remain as identifiable ionic matter over much of the star, while the electrons form a delocalized pressure reservoir through the whole compact region. The relevant length scale is therefore not the Bohr radius of an atom but the inter-electron spacing,
 $$
 \ell_e\sim n_e^{-1/3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2432811fe4970e37)
 Compression lowers $\ell_e$, and Fermi-state counting forces the highest occupied electron momentum upward. The nonrelativistic-to-relativistic border is controlled by
 $$
 x_F\equiv\frac{p_F}{m_ec}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a54823296b97e107)
 with $x_F\ll1$ giving the $5/3$ pressure law and $x_F\gtrsim1$ moving the reservoir into the relativistic $4/3$ law. Equivalently,
 $$
 n_{e,\mathrm{rel}}
@@ -85,6 +95,8 @@ n_{e,\mathrm{rel}}
 \sim
 \mu_e m_u n_{e,\mathrm{rel}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-007f8f237e7aa63b)
 which is approximately $10^6\mu_e\,\mathrm{g}/\mathrm{cm}^3$, or about $2\times10^6\,\mathrm{g}/\mathrm{cm}^3$ for carbon/oxygen material with $\mu_e\approx2$.
 
 This is not a curve fit over diverse stellar observations. The exponents come from quantum state counting plus the energy-momentum relation: the number of filled momentum states gives $p_F\propto n_e^{1/3}$; nonrelativistic energy $E\sim p^2/(2m_e)$ gives $P\propto n_e^{5/3}$; relativistic energy $E\sim pc$ gives $P\propto n_e^{4/3}$. Observations test the resulting mass-radius and stability picture, but the scaling itself is a mathematical consequence of the Fermi reservoir model.
@@ -97,10 +109,14 @@ $$
 \qquad
 P_{\mathrm{grav}}\sim\frac{GM^2}{R^4}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-06bf39f8c51cdb2c)
 Nonrelativistic electron pressure scales like $M^{5/3}/R^5$, so it rises faster than the gravitational pressure estimate as $R$ decreases. A smaller equilibrium radius can still be found. Relativistic electron pressure scales like $M^{4/3}/R^4$, the same radius dependence as the gravity estimate. Once the coefficient balance is lost, no smaller white-dwarf radius restores support. That is the standard origin of the Chandrasekhar mass scale,
 $$
 M_{\mathrm{Ch}}\approx \frac{5.83}{\mu_e^2}M_\odot
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-048d262cc174f759)
 with $\mu_e$ the nucleons-per-electron composition factor. In a collapsing iron core, electron capture lowers the electron fraction $Y_e=1/\mu_e$, so the effective support limit falls as the active core is already compressed.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading is that the Chandrasekhar calculation is not merely a historical astrophysics result. It is an observer-level signature of an assembly support channel losing authority. In the white-dwarf candidate mapping, volumetric electron-braid envelopes would supply effective exclusion and packing response while nuclei remain identifiable. As compression drives the electron population into the relativistic regime, additional inward work no longer returns as a proportionally stronger outward support law. The same work is increasingly routed into cadence, exposed response, heat, neutrino channels, nuclear breakup, Noether sea stress, and remnant bookkeeping.
@@ -117,6 +133,8 @@ $$
 \ln\lambda_A(t)
 \right\rangle_{\Omega}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0c2c048da19789a2)
 The energy is not created by the shrinkage. It is binding work and reaction work entering the local ledger:
 $$
 \Delta E_{\mathrm{bind}}
@@ -135,6 +153,8 @@ $$
 +
 \Delta E_{\mathrm{rem}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-57dd0d1d6af8d73b)
 This is a ledger identity target, not yet a derived equation of state. It says which channels must be accounted for before one may claim that material Noether braids have scaled down rather than merely that a standard pressure formula was imported.
 
 The strong claim is that this material scale ledger should also project into the effective spatial-compliance ledger used by the metric description. If $\gamma_{ij}^{\mathrm{eff}}$ is the observer-level spatial compliance metric and $h_{ij}$ is the fixed Euclidean spatial metric, the corresponding isotropic scale readout is
@@ -148,6 +168,8 @@ $$
 {\det h_{ij}}
 \right\rangle_{\Omega}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d7be45d3e9739137)
 The factor $1/6$ appears because an isotropic spatial metric factor $\gamma_{ij}^{\mathrm{eff}}=a^2h_{ij}$ gives a determinant ratio $a^6$. The closure target is not that $\mathcal{S}_{\mathrm{mat}}$ and $\mathcal{S}_{\mathrm{metric}}$ merely correlate after fitting. The same retained compact-region record must generate the electron-support failure, the assembly scale compression, the Noether sea response, and the effective metric readout without hidden retuning.
 
 ### Iron-Core Collapse Handoff
@@ -157,6 +179,8 @@ For an iron-group stellar core, the central Standard Model transition is electro
 $$
 p+e^-\rightarrow n+\nu_e
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5429a198451682c1)
 
 The outgoing neutrino is not just an abstract missing-energy label in this bookkeeping. In the lepton-sector canon, a [neutrino](../assemblies/fermions/neutrinos.md) is a near-photon neutral assembly: a near-planar polarity-conjugate Noether braid pairing close to the photon channel but not fully locked into the photon mode. That explains why the neutrino channel is high-speed and weakly exposed while still carrying an internal-binary phase ledger capable of oscillation. In a collapse ledger, the neutrino row must therefore carry energy, momentum, angular momentum, weak provenance, and near-photon phase information, not merely remove scalar energy from the core.
 
@@ -182,6 +206,8 @@ $$
 \text{strong Noether sea constitutive regime}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-15cc7662c65d031b)
+
 ### Neutron-Star Branch as a Radial Test
 
 The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch in the candidate mapping as long as volumetric neutron-rich matter support has not been forced into terminal Family-A alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
@@ -200,6 +226,8 @@ S_{ij}(r),
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2690b70a39bcba0a)
+
 where $\Omega_r$ is the compact interior region retained by the comparison and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}$ records the local energy, momentum, angular-momentum, reaction, neutrino, stress, heat, medium-update, and remnant rows needed for that region. The exterior region samples the same record through redshift, orbital motion, lensing, and signal-delay channels. The surface is not a hard boundary of the Euclidean void; it is the branch boundary where exterior Noether sea response starts coupling to neutron-rich packed matter, charged layers, radiation channels, magnetic stresses when present, and surface transport.
 
 The pulsar version of this branch makes the bookkeeping sharper. A Crab-like neutron star is not only a dense sphere; it is a retained compact-source record whose exterior exports include surface spectral redshift, X-ray/optical/radio channel selection, rotational period, spin-down power, magnetic-axis beaming, and the supernova/nebular remnant ledger. Standard angular-momentum, magnetic-flux, and rotational-energy-loss calculations are therefore useful recovery targets. They preserve what the conventional model gets right: collapse amplifies rotation and magnetic field, and the observed pulse train is a line-of-sight sample of a rotating magnetized source. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is narrower: the same $\Theta_{\mathrm{NS}}(r)$ and boundary/source ledger should project to those timing, spectrum, and energy-loss observables without separately fitting a clock, a beam, a redshift, and a remnant energy budget.
@@ -217,6 +245,8 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r)}\ \text{closes}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4a48bcd54b8e14ca)
+
 for all retained radii $0\le r\le R_*$. Here $v_3$ is the binary-3 speed in the relevant branch record, $s_n$ is the packing-headroom diagnostic when a pressure-packing model is being used, and $\mathcal{R}_H$ is the strong-field regularity residual. The $s_n$ condition should be read as a candidate pressure-response target until a neutron-star dense-matter branch supplies the corresponding $K_{\mathrm{pack}}$, packing ceiling, and branch residuals.
 
 The center of an ideal nonrotating neutron star is therefore not automatically horizon-like. The first radial gradients vanish there by symmetry, while pressure, stress, cadence stretch, and packing pressure can be maximal. If scalar density response is exhausted while $v_3<c_f$, the response must route into shape, strain, contact, transport, or dense-matter branch change. If the same record forces $v_3\to c_f$ and activates the horizon-interface condition, the neutron-star branch has ended and the continuation belongs to the horizon-interface branch below.
@@ -231,6 +261,8 @@ v_2 = c_f,
 v_3 \to c_f
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec122bbcc77f4753)
+
 with binaries 2 and 3 becoming coplanar and collinear with binary 1 at alignment and precession ceasing in that limit.
 
 This condition fixes the local meaning of the horizon in the framework. The horizon is not merely a geometric surface drawn inside an effective metric. It is the constitutive interface where terminal alignment is reached and where ordinary volumetric assemblies are compressed into a boundary-like state. Planck-scale language maps to this alignment condition only after an explicit derivation supplies the scale relation; without that derivation, the observer-level Planck scale and the native alignment row remain separate closure objects.
@@ -244,6 +276,8 @@ $$
 \partial J^{-}\!\left(\mathscr{I}^{+}\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-60d48323cabd63f6)
+
 This definition depends on the full future development of the effective spacetime. It is therefore not a local surface that a finite-time observer or one simulation slice can identify by inspection. In dynamical collapse, accretion, or merger cases, the event horizon can be located only by the global escape structure of null trajectories.
 
 The apparent horizon is the more local comparison surface. In layer-explicit comparison notation, the chosen GR slice is $\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$, not an absolute slice $\Sigma_T$. On that effective spatial slice it is the outer boundary of the trapped region, with outgoing null expansion at the boundary and ingoing null expansion still inward,
@@ -252,6 +286,8 @@ $$
 \qquad
 \theta_-^{\mathrm{eff}}<0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f71f571b5477c5ec)
 
 This makes apparent horizons useful for simulations and local compact-object diagnostics, but it also makes them slice-dependent. The $\mathbb{A}\mathbb{A}\mathbb{A}$ horizon interface is neither of these GR objects by definition. It is the local constitutive condition $F_H=0$ on a strong-field record. The closure burden is that the same record should export both a local trapped-surface/apparent-horizon comparison and the global finite-access event-horizon comparison when the observer-level regime calls for them:
 $$
@@ -262,6 +298,8 @@ F_H(\theta_{\Omega,W})=0
 \mathcal{H}_{\mathrm{event}}^{\mathrm{eff}}(\theta_{\Omega,W})
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0bcc5d9ac959d830)
 
 This is a projection target, not a new ontology. If the local interface can match an apparent horizon only by changing the record used for exterior escape, or if the global event-horizon comparison requires a different strong-field record from the local trapped-surface comparison, the black-hole model has split into two fitted stories.
 
@@ -275,6 +313,8 @@ r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
 \qquad
 r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1982ac22d600e47d)
 Here $r_s$ is the Schwarzschild comparison radius, $r_{\mathrm{ph}}$ is the null photon-orbit radius, and $r_{\mathrm{ISCO}}$ is the innermost stable circular orbit for massive test bodies. These are effective-metric recovery targets, not claims that the Euclidean void contains a geometric hole.
 
 The same packet should retain the curvature-singularity diagnostic only as a comparison warning:
@@ -285,6 +325,8 @@ R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}
 =
 \frac{48G^2M^2}{c_0^4 r^6}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1510cf23d6cbc374)
 The native model is expected to replace the $r\to0$ divergence with finite maximum-curvature bookkeeping, while leaving the exterior weak-field and ringdown observables intact.
 
 Horizon language also has rotating and charged comparison meanings. For rotating or charged comparison branches, Cauchy-horizon instability, exterior no-hair coarse-graining by $(M,\mathbf{J},Q)$, and ergoregion/frame-dragging records remain comparison constraints on the same strong-field state, not independent ontologies.
@@ -303,6 +345,8 @@ $$
 -\Delta E_{\mathrm{in}}
 \right\|_W
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0426ec2f3ec00c2e)
 The pass condition is not horizon absence. It is that $\mathcal{R}_{N\text{-}\mathrm{body}}$ stays within the declared tolerance while the same $\theta_W$ also recovers lensing, timing, ringdown, and horizon-scale imaging. If a burst, merger, or accretion model needs one record for exterior no-hair behavior and a separate record for the many-body energy release, then the compact-object closure has split into fitted stories.
 
 ### Horizon-Scale Imaging Benchmark
@@ -324,6 +368,8 @@ A^{\mathrm{cl}}_{ijkl}(t),
 \Pi_{\mathrm{circ}}(\varphi,t)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a25c19a951a9a265)
 Here $D_{\mathrm{ring}}$ is the bright-ring diameter, $f_w$ is the fractional ring width, $C_{\mathrm{dep}}$ is the interior brightness-depression contrast, $\mathcal{V}_{ij}$ are baseline visibilities, $\Phi^{\mathrm{cl}}$ and $A^{\mathrm{cl}}$ are closure quantities, and $\Pi_{\mathrm{lin}}$ and $\Pi_{\mathrm{circ}}$ record resolved polarization. These quantities belong to the effective observational layer. They constrain the same strong-field branch record that defines the horizon interface, but they do not replace that constitutive condition.
 
 The current benchmark values are sharp enough to state the separation. For M87$^*$, the 2017 EHT analysis found a stable asymmetric ring with diameter about $42\pm3\,\mu\mathrm{as}$, a central brightness depression, and visibility-domain crescent fits with fractional width below $0.5$. Later multiepoch analyses keep the diameter stable while brightness and polarization vary. For Sgr A$^*$, the data are harder because the source varies on intrahour timescales and the Galactic-center line of sight scatters the image, but independent imaging and modeling analyses still recover a thick ring with $D_{\mathrm{ring}}\approx51.8\pm2.3\,\mu\mathrm{as}$.
@@ -335,6 +381,8 @@ $$
 \frac{D_{\mathrm{ring}}^\theta-D_{\mathrm{ring}}^{\mathrm{Kerr}}}
 {D_{\mathrm{ring}}^{\mathrm{Kerr}}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fd3af5fc9fa9d5b6)
 evaluated at the same exterior mass-to-distance ratio and with the same plasma-transfer nuisance model. The corresponding Schwarzschild comparison diameters are approximately $39.7\,\mu\mathrm{as}$ for M87$^*$ and $53.3\,\mu\mathrm{as}$ for Sgr A$^*$, so the present diameter rows already impose a few-percent, roughly four-percent-at-$1\sigma$ scale test. A native near-horizon $c_{\mathrm{eff}}$ profile must therefore predict $\delta_{\mathrm{ring}}^\theta$; quoting the observed diameter without this forward value does not test the branch.
 
 The closure lesson is that geometry-facing and environment-facing terms must not be conflated. The compact ring scale and brightness depression test the effective photon-path and capture map. The azimuthal brightness, fractional width, resolved polarization, Faraday rotation, and jet-base emission test the surrounding plasma, magnetic-like stress, scattering, and release-channel environment. A native black-hole branch fails the benchmark if it can fit the visual image only by changing the mass-to-distance map, if it matches the image while failing the visibility-domain data, or if it treats variable plasma structure as evidence that the horizon-interface condition itself has changed.
@@ -365,6 +413,8 @@ v_3\to c_f,\quad
 S_H\sim k_B\log\left|\mathcal{B}_{H}\right|
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e5bcf18d4ef2e35a)
+
 This is not a claim that the Euclidean void becomes quantized geometry. It is a benchmark on the native strong-field branch: when the effective comparison says that a probe has become a black hole, the same Noether sea state must activate the alignment condition, finite maximum-curvature bookkeeping, and entropy/release-channel ledger used below. If short-distance recovery requires an independent ultraviolet story that bypasses those variables, the black-hole closure has split from the rest of the spacetime program.
 
 #### Probe-to-Horizon Residual
@@ -390,6 +440,8 @@ k_B\log|\mathcal{B}_H|
 \mathcal{R}_{\mathrm{release}}(E;\theta)
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-df0bcc96fc1c39a7)
 Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted horizon-interface labels carry finite maximum-curvature rows, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
 
 The closure condition is $\mathcal{R}_{E\to H}(\theta)\le\epsilon_{E\to H}$ using the same strong-field branch record that recovers exterior compact-object observables. A model fails this gate if it claims arbitrarily short-distance resolution in the active compact-object regime, or if it activates the horizon scale while leaving maximum-curvature labels, entropy capacity, or release-channel accounting undefined.
@@ -406,12 +458,16 @@ R_H(E;\theta)
 \simeq
 \frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0e31985dc46b988d)
 The horizon-interface handoff begins when
 $$
 \frac{\hbar c_0}{E}
 \le
 \frac{2G_{\mathrm{eff}}(\theta)E}{c_0^4}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8f7d2964609139f3)
 or equivalently
 $$
 E
@@ -422,6 +478,8 @@ E_H(\theta)
 \frac{\hbar c_0^5}{2G_{\mathrm{eff}}(\theta)}
 \right)^{1/2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-61567ff3b806695e)
 This is an observer-level comparison estimate, not a proof that the Euclidean void has Planck-scale cells. Its purpose is to decide when the record should stop being interpreted as a shorter-distance particle probe and start being routed through horizon-interface bookkeeping.
 
 The worked classification is:
@@ -467,6 +525,8 @@ Y_{\gamma,H}
 \frac{\nu_{\gamma,j}^{+}}{\nu_{\gamma,j}^{-}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2275067c4f631322)
+
 so $\Delta Y_{\gamma,H,j}<0$ records a blueshift segment and $\Delta Y_{\gamma,H,j}>0$ records a redshift segment relative to the local comparison clock. Interior-facing segments can therefore drive photon-channel packets to energies not directly sampled by exterior observers, while exterior-facing segments may redshift those packets before they become visible or before they are thermalized into a background. The corresponding energy ledger is
 $$
 \mathcal{R}_{H\gamma\text{-}\mathrm{ex}}
@@ -482,6 +542,8 @@ h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
 \right|
 }{\epsilon_{E,j}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bea79aae833e0aba)
 where $\Delta E_{H,j}$ is the horizon-interface or interior strong-field row and the other terms record medium, recoil, and remnant exchange. A high-energy photon output claim is admissible only when this residual closes and the outgoing packet still carries the required photon Gate A and Gate B handoffs. If those handoffs fail, the channel has become absorption, re-emission, pair production, or another release reaction.
 
 This is the disciplined version of the "roiling horizon" intuition. The horizon interface may contain intense photon-channel and photon-adjacent activity, and some of it may be routed into jets, diffuse radiative outflow, dark-sector escape, or later visible conversion. But each proposed route must state the release selector, the energy-frequency ledger, the polarization and angular-momentum handoff, and the coupling to the surrounding Noether sea. Otherwise the claim has only renamed black-hole radiation rather than deriving a strong-field transport channel.
@@ -498,6 +560,8 @@ A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\cap H_{\mathrm{eff}}(\th
 A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-367da2519bbdddca)
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
 A useful way to state the native task is through a horizon-interface label ensemble. Let $\lambda_i^H$ denote a retained horizon-interface ledger label selected by the strong-field record. Such a label may include neutral Noether braid closure rows, charged assembly rows, and allowed interface-channel rows; its charge and polarity ledger has exterior scalar readout $q_i$. For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
@@ -516,6 +580,8 @@ v_3\to c_f,\quad
 \right\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7c826b4d89e6c657)
+
 The use of $c_0$ in the energy row marks the observer-level exterior calibration of the no-hair label; a local $c_{\text{eff}}$ row belongs to the constitutive map that produces the exterior record. In plain language, $\mathcal{B}_{H}$ is the set of strong-field horizon-interface ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
 
 The corresponding thermodynamic closure target is
@@ -528,6 +594,8 @@ S_H
 \stackrel{\text{target}}{\sim}
 \frac{k_B A_H}{4A_{\text{align}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a0474422355f3878)
 where $A_H$ is the observer-level horizon area and $A_{\text{align}}$ is the alignment-area scale from the Planck-alignment program, with the numerical and $2\pi$ conventions fixed by that derivation rather than by definition here. Page-curve recovery then becomes a release-channel theorem: outward channels must preserve enough phase, axial-pattern, and path-history information from $\mathcal{B}_{H}$ to make evaporation or recycling unitary at the effective quantum level, while still appearing thermal to coarse exterior measurements.
 
 The coefficient in this target is not a literal claim that one alignment patch carries $e^{1/4}$ independent states. The local target is an area-normalized block entropy density. For a connected block $U$ of horizon-adjacent alignment patches, let $\mathcal{L}_U^H(\theta)$ be the retained alignment-compatible label set induced by the same strong-field record and let $A_H(U)$ be the observer-level area represented by that block. The local density target is
@@ -548,6 +616,8 @@ a_H(\theta)
 \longrightarrow
 \frac{1}{4}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-19a8f15c78b69c28)
 with boundary corrections vanishing in the large-block limit. This is the local calculation that must make the global area law credible; the raw statement $s_{\mathrm{align}}^H\to1/4$ is only the special case $a_H\to1$.
 
 ### Temperature, First Law, and Release Timescale
@@ -559,12 +629,16 @@ T_H^{\mathrm{Schw}}
 \frac{\hbar c_0^3}
 {8\pi k_B G_{\mathrm{eff}}(\theta)M}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-595180c0fee2caf6)
 For a stationary rotating or charged comparison, the same record must recover the first-law row
 $$
 d(Mc_0^2)
 =
 T_H\,dS_H+\Omega_H\,dJ+\Phi_H\,dQ.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f19a23ada400f439)
 These are observer-level recovery targets, not architrino-level premises. The native horizon-interface calculation must obtain $T_H$ from the release-channel spectrum and show that its derivative of the counted $S_H$ satisfies the same row.
 
 The nonrotating, massless-species comparison timescale is
@@ -574,6 +648,8 @@ t_{\mathrm{evap}}^{\mathrm{Schw}}
 \frac{5120\pi G_{\mathrm{eff}}(\theta)^2M^3}
 {\hbar c_0^4},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fc366fc0d5b369c3)
 with greybody factors and the available species ledger modifying the coefficient. Define the Page-time comparison by the first crossing at which the observer-accessible radiation entropy equals the remaining horizon entropy. The finite-boundary endpoint must supply both that crossing and a release or recycling completion time from the same $\mathcal B_H$ and outgoing-channel ledger. Without those times, “Page-curve recovery” and a finite endpoint are qualitative labels rather than predictions.
 
 This global horizon ensemble must be compatible with the local boundary-wake entropy density used in [Emergent Metric](emergent-metric.md#local-horizon-recovery-target). For a compact region $\Omega$ whose boundary intersects the horizon interface, let $\pi_{\partial\Omega}^{(O)}$ be the Physical Observer projection from strong-field horizon-interface labels to retained boundary-wake labels, and write $\mathcal{B}_{H}(\theta)$ for the horizon-interface ensemble selected by the same strong-field record. The proof route requires
@@ -592,6 +668,8 @@ $$
 \le
 \epsilon_{\mathrm{proj}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-96df6da257e74e42)
 for the same strong-field record $\theta$ restricted to the observer window and the same block or patch family. If the local boundary density and the global horizon-interface count require different records, the entropy target has split into two fitted stories. If they agree, the black-hole area law is no longer an isolated assumption; it becomes the compact strong-field version of the local boundary-factorization theorem target.
 
 The words "thermal," "scrambled," and "recoverable" are therefore readout-channel claims, not direct ontology labels. For a Physical Observer $O$, let $\mathcal{K}_{O}^{\mathrm{rad}}$ denote the declared radiation readout kernel and let $\mathcal{R}_{O}$ denote the physical reference resources used to compare outgoing quanta. A horizon-interface ledger state $\lambda\in\mathcal{B}_{H}(M,\mathbf{J},Q)$ reaches the observer through a channel of the schematic form
@@ -604,6 +682,8 @@ Y_O
 \mathcal{B}_{\partial\Omega}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a3ca900a44782acf)
 Before a black-hole information claim is promoted, the comparison packet must say which $\mathcal{K}_{O}^{\mathrm{rad}}$, reference resources, access region, and finite boundary data make the outgoing channel meaningful. A coarse exterior channel may legitimately see an approximately thermal distribution while a richer correlated reference channel retains structure, but that difference is a statement about observer-accessible records. It does not import a boundary CFT, many-copy tomography story, or external reference frame as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
 The same packet should also carry a detailed-balance comparison rather than treating CPT language as an ontological shortcut. Let $\mathcal{L}_{H}$ be the declared set of horizon-interface formation and release ledger channels for a compact region $\Omega$. For a candidate strong-field record $\theta$, require
@@ -625,6 +705,8 @@ k_B\log|\mathcal{B}_{H}^{(O)}|+S_{\mathrm{out}}^{(O)}
 +
 d_{\mathrm{CPT}}\!\left(\mathcal{R}_{\mathrm{CPT}}(\theta),0\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e8a4f2ac7071d66d)
 The pass condition is $\mathcal{R}_{H,\mathrm{bal}}(\theta)\le\epsilon_H$ using the same branch record that recovers exterior compact-object observables. This does not assert a literal mirror universe, a white-hole ontology, or a final-state boundary postulate. It says that if the effective comparison invokes CPT or thermal equilibrium, the native horizon-interface release ledger must exhibit the corresponding formation/release balance within the declared observer access channel.
 
 The species puzzle supplies a separate entropy guardrail. If $N_{\mathrm{spect}}$ counts effective spectator species that do not enter the native closure labels, release channels, or null-result ledger, then horizon entropy should be insensitive to those labels:
@@ -635,6 +717,8 @@ $$
 \le
 \epsilon_{\mathrm{spect}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-31df12d1a524d733)
 If an added species is physically real, it must change $\mathcal{B}_{H}$, $S_{\mathrm{out}}^{(O)}$, a release-channel row, or $\mathcal{R}_{\mathrm{null}}$. If it changes none of those records, it is an effective-description label and may not be used to tune black-hole entropy.
 
 The classical area-increase result supplies a direct benchmark for this target. In the standard exterior description, a clean merger comparison has
@@ -643,12 +727,16 @@ A_{H,\mathrm{final}}
 \ge
 A_{H,1}+A_{H,2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-46d672c308e2a126)
 under the usual classical assumptions. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is not that area is a primitive substance. It is that the horizon-interface label capacity and outgoing-channel entropy must reproduce the same nondecreasing observer-level bookkeeping in the regime where GR is already validated. A schematic closure check is
 $$
 S_{H,\mathrm{final}}^{(O)}
 \ge
 S_{H,1}^{(O)}+S_{H,2}^{(O)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d798e93fbafaf192)
 for the classical area-theorem benchmark. The separate generalized-entropy row is
 $$
 S_{H,\mathrm{final}}^{(O)}
@@ -657,6 +745,8 @@ S_{H,\mathrm{final}}^{(O)}
 S_{H,1}^{(O)}+S_{H,2}^{(O)}
 +S_{\mathrm{out,initial}}^{(O)}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a3340b512985091a)
 Accessible radiation, waves, and release channels belong in the second row; subtracting them from the first would make the classical check weaker than the theorem it is meant to recover.
 
 GW250114 is the clean modern example of this comparison. The useful input is the event packet: near-equal $\sim33M_\odot$ progenitors, low spins, a high signal-to-noise post-merger record with the dominant quadrupolar ringdown mode and first overtone, and an inferred final area larger than the sum of the initial areas. That packet strengthens the area-law and Kerr-ringdown benchmarks, but it does not change the claim level. The native burden is still to recover nondecreasing horizon-interface label capacity and damped ringdown labels from the same source-event record, not to import the event horizon as primitive ontology.
@@ -667,6 +757,8 @@ $$
 \subseteq
 \mathcal{B}_{H}(M,\mathbf{J},Q)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-024f038488722d93)
 where $O$ denotes a Physical Observer and $\mathcal{B}_{H}^{(O)}(t)$ is the subset of horizon-interface ledger states indistinguishable to that observer's finite records, clocks, and exterior channels at time $t$. The corresponding comparison target is
 $$
 S_{H}^{(O)}(t)
@@ -675,6 +767,8 @@ k_B\log\left|\mathcal{B}_{H}^{(O)}(t)\right|
 +
 S_{\mathrm{out}}^{(O)}(t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9b11b8b1039d4149)
 where $S_{\mathrm{out}}^{(O)}(t)$ summarizes the entropy of accessible outgoing channels. This equation is not a new ontology. It is a bookkeeping target: the native horizon-interface model should explain how the area-like ledger term and the outgoing-channel entropy combine into a finite observer-level entropy, and how that combined quantity can reproduce Page-curve behavior without importing islands, replica wormholes, or a boundary CFT as primitive structure.
 
 In the same notation, the region-anchored entropy target is
@@ -685,6 +779,8 @@ k_B\log\left|\mathcal{L}_{\gamma_A}^{(O)}(t)\right|
 +
 S_{\mathrm{out},A}^{(O)}(t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6d39dc579866753c)
 The proof burden is to define the observer-relative label ensemble $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native horizon-interface, boundary-wake, and release-channel records. When $\eta_H(A;\theta)\to1$, this target must reduce to the horizon-interface ledger target above; when $\eta_H(A;\theta)=0$, it remains an access-region entropy comparison and should not be promoted as black-hole horizon entropy.
 
 This also disciplines the local semiclassical version of the information paradox. A statement that a horizon-straddling correlation has been lost is only a promoted comparison claim after the access region, reference resources, boundary wake data, and readout channel have been declared. Local QFT pair language remains useful near a smooth effective horizon, but it is an approximation to an observer-level calculation. The native black-hole closure must say which Physical Observer could recover which part of the release record, and which finite boundary data make that recovery meaningful.
@@ -703,6 +799,8 @@ U_N\circ\cdots\circ U_1(\Lambda_a)=\Lambda_b,\
 U_i\in\mathcal{U}_{\mathrm{loc}}
 \right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9b294a6c4b9707c1)
 where $\mathcal{U}_{\mathrm{loc}}$ is the permitted set of local horizon-interface, assembly, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
 
 The comparison burden is then:
@@ -710,6 +808,8 @@ $$
 S_H^{(O)}(t)\ \text{approximately saturates while}\
 \mathcal{C}_{H}^{(O)}(t)\ \text{can continue to grow}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-27fa1274700d8bd2)
 without breaking exterior no-hair behavior, Page-compatible release accounting, or finite-boundary-data regularity. If this growth can be matched only by importing a literal boundary CFT, an AdS interior ontology, or an independent hidden state not present in $\mathcal{B}_{H}^{(O)}(t)$, then the complexity comparison has not been translated into the native black-hole closure.
 
 ### Finite-Boundary Endpoint Closure
@@ -730,12 +830,16 @@ X_\Omega(T_f),
 S_{\mathrm{out}}^{(O)}(T_f)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-145a368c973339ce)
 Here $X_\Omega$, $\mathcal{H}_{\Omega}^{<T}$, and $\mathcal{B}_{\partial\Omega}$ are the finite-region variables from [Observer Framework](observer-framework.md#ontic-and-epistemic-levels). The closure requirement is not that a particular remnant, bounce, or asymptotic boundary story be adopted. It is that the same finite boundary data determine a finite strong-field continuation:
 $$
 F_H=0,\qquad
 \mathcal{R}_H(\Omega)<\infty,\qquad
 0<\left|\mathcal{B}_{H}^{(O)}(T_f)\right|<\infty
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8ad9379519181dba)
 with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
 
 This gives a compact comparison rule for evaporation and endpoint proposals. A proposal can be used as a comparison framework if it sharpens one of those finite-ledger checks. It should not be promoted into the ontology unless the same native horizon-interface variables produce the continuation without an arbitrary endpoint branch or a separate asymptotic bookkeeping rule.
@@ -746,6 +850,8 @@ As a heuristic geometric picture, the horizon can also be described as a **dimen
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-28e787792b6dc456)
 This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space. The horizon pinch, the light-speed limit of the Lorentz axis ratio in [Lorentz Kinematics](lorentz-kinematics.md), and the planar coherent-channel limit in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md) all carry a charted ratio $\xi\to0$, but that numerical coincidence does not identify them. They become one geometric endpoint only if a single retained family record derives the same supported geometry and compatible exchange holonomy across the three charts. Until then, the common endpoint is a conditional closure hypothesis.
 
 ## Cosmological Embedding and Horizon Regularity
@@ -762,6 +868,8 @@ F_H=0,
 \qquad
 v_2=c_f,\quad v_3\to c_f
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6d5ffe5db48ca3e7)
 
 This chapter supplies the horizon-interface label ensemble $\{\lambda_i^H\}$ defined above as the finite continuation-label family required by the canonical condition, and $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
@@ -807,6 +915,8 @@ $$
 +R_{M,\mathrm{app}},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-47d26a0d30a824e4)
+
 with the hidden rows expanded when a release channel is being tested. The point is not that the compact object violates conservation. The point is that the observer-facing mass label is a projection of a larger strong-field, shielding, release, and medium-coupling record.
 
 ## Mass-Scale Traversal
@@ -825,6 +935,8 @@ A_H(M;\theta)
 4\pi R_H^2(M;\theta)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-62064b3ef3ff0630)
+
 The native strong-field interpretation does not treat $R_H$ or $A_H$ as primitive geometry of the Euclidean void. They are observer-level readouts of the same horizon-interface condition $v_2=c_f,\ v_3\to c_f$. Still, their scaling organizes which closure burden dominates. The interface label capacity scales schematically like
 
 $$
@@ -832,6 +944,8 @@ N_{\mathrm{align}}(M;\theta)
 \sim
 \frac{A_H(M;\theta)}{A_{\mathrm{align}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dd008719f47864f6)
 
 while the exterior tidal or curvature pressure at the horizon scales, in the same comparison limit, like
 
@@ -842,6 +956,8 @@ $$
 \propto
 M^{-2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a7c3ebaa44b1c5d2)
 
 This gives a compact mass-scale rule. Small black holes concentrate the traversal into a tiny region with steep local gradients, high comparison temperature, and release-channel pressure. Stellar-mass or intermediate black holes are the clean collapse-ladder case: the record must pass from compact matter through the neutron-star branch or its failure into the horizon-interface branch. Supermassive black holes have comparatively gentle local horizon gradients but enormous interface capacity, long-lived recycling, and the strongest coupling to the ambient Noether sea embedding.
 
@@ -865,6 +981,8 @@ r_{\mathrm{dam}}
 \theta_{\mathrm{mat}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e3ced3a967c4feac)
 If the object is horizon-like in the observer comparison, $R_X$ is bounded by the effective horizon scale $R_H(M_X;\theta)$; if it is a native maximum-curvature defect, $R_X$ is instead supplied by the core-interface branch. Either way, the material claim must pass through the same energy-deposition, acoustic, thermal, and defect-survival record before it is used as evidence for a compact dark-sector branch.
 
 The scale map is a classification aid, not a new gate. It says which existing black-hole burdens become sharp as $M$ changes: small black holes emphasize endpoint and release accounting, intermediate-mass black holes emphasize collapse continuity, and supermassive black holes emphasize embedded recycling and Noether sea state source terms.
@@ -926,6 +1044,8 @@ $$
 \right).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0dcde99b02fc2c01)
+
 This does not make the Euclidean void rotate. It states the recovery target: the observer-level dragging of local inertial frames must be reconstructed from compact-source angular momentum, Noether sea flow and anisotropy, and the same interface record used by jets or diffuse release.
 
 Observer-level jet phenomenology supplies three compact constraints on this selection problem. First, powerful collimated outflows are strongly associated with compact accretors and disks, so the native record must include an inflow, disk, or boundary-layer source of energy and angular momentum. Second, across young stellar objects, microquasars, and active galactic nuclei, the characteristic jet speed is usually of order the escape or Keplerian speed at the launch region:
@@ -941,6 +1061,8 @@ v_{\mathrm{esc}}(R_{\mathrm{launch}})
 =
 \left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3dd87967d27be21f)
 
 This is an effective launch benchmark, not a claim that Newtonian escape speed is substrate ontology. It says that the same strong-field or disk-interface record that powers release must also set the observed launch speed scale. Third, collimation must survive propagation through the ambient Noether sea. A minimal release-channel packet should therefore record
 
@@ -958,6 +1080,8 @@ $$
 \mathcal{R}_{v,\mathrm{jet}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-859f25945f10c7a8)
 
 where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $dE_{\mathrm{out}}/dt_{\mathrm{eff}}$ and $d\mathbf J_{\mathrm{out}}/dt_{\mathrm{eff}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
 
@@ -977,6 +1101,8 @@ M,\mathbf{J},
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c1ed7053c4c26c75)
+
 where $R_{\inf}$ is the observer-level black-hole influence scale, $\Phi_{\mathrm{BH}}^{\mathrm{obs}}$ is the standard black-hole magnetic-flux comparison diagnostic rather than substrate field ontology, $\mathcal{A}_{\mathrm{NS}}$ is the mapped Noether sea anisotropy and loading state, and $\Sigma_{\mathrm{wind}}$ records disk-wind or sheath confinement. The local selector must then produce one channel record
 
 $$
@@ -994,6 +1120,8 @@ R_{\mathrm{diss}},
 \mathcal{F}_{\mathrm{fb}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2f0181e05879e30d)
 
 Here $\Gamma_j$ is the observer-level bulk Lorentz factor, $\sigma_j$ is the observer-level magnetization comparison ratio, $f_p$ is the proton or baryon loading fraction, $R_{\mathrm{ACZ}}$ is the acceleration-and-collimation-zone scale, $R_{\mathrm{diss}}$ is the main dissipation radius or family of radii, $\mathcal{H}_{\mathrm{shock}}$ records recollimation shocks, hot spots, bow shocks, and Mach-disk-like structures, $\mathcal{S}_{\mathrm{rad}}$ records the synchrotron, Compton, hadronic, pair-cascade, cosmic-ray, and neutrino channels retained by the comparison, and $\mathcal{F}_{\mathrm{fb}}$ records environmental heating, cavity, cocoon, bubble, and duty-cycle effects. The native burden is that these outputs come from one horizon-interface, disk-interface, wind, and Noether sea loading record, not from separate fitted stories for launch, radio emission, gamma emission, and galaxy feedback.
 
@@ -1044,6 +1172,8 @@ d_{\mathrm{fb}}\!\left(
 \end{aligned}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ca7eb4b60f6070a1)
+
 The pass condition $\mathcal{R}_{\mathrm{AGN\,jet}}(\theta)\le\epsilon_{\mathrm{AGN\,jet}}$ is a benchmark on release-channel closure. It captures six source signals at once. First, black-hole spin is necessary-looking but insufficient unless the disk, inflow, and surrounding Noether sea loading sustain the ordered stress needed for launch. Second, collimation over radii from near $R_{\mathrm{launch}}$ toward $R_{\inf}$ must be attributed either to disk wind, sheath, gas pressure, or the mapped anisotropy state $\mathcal{A}_{\mathrm{NS}}$, not to an unspecified funnel. Third, high-power jets may become proton-dominated or baryon-loaded enough that $f_p$ controls cosmic-ray, neutrino, and hadronic cascade channels. Fourth, FR-I and FR-II behavior must be separated by the same propagation record: weak or disrupted jets dissipate near the black-hole/galaxy transition and become plumes or bubbles, while powerful jets keep relativistic kinetic power to terminal hot spots. Fifth, shocks, reconnection-like comparison regions, pair production, and pair cascades are radiation-channel benchmarks, not independent sources of free energy. Sixth, source age and environment matter: a jet engine, lobe, cocoon, and duty cycle must all close the same energy, momentum, angular-momentum, provenance, and medium-update ledger.
 
 This residual also states a useful failure mode. A model that matches a near-hole jet image but cannot account for hot spots, lobes, cosmic-ray or neutrino limits, and environmental heating has not closed the AGN release channel. Conversely, a model that fits large radio lobes while leaving launch selection unrelated to spin, accretion, wind/sheath confinement, and $\mathcal{A}_{\mathrm{NS}}$ has only fit the downstream plume. The whole point of the AGN packet is to force the release selector to connect the black-hole branch, disk-interface branch, propagation branch, radiation branch, and feedback branch with one declared state record.
@@ -1073,6 +1203,8 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7b2c74a42bd36f70)
+
 This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the Noether sea and then relax toward lower-energy Noether sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
 
 ## Cosmological Coupling Hypothesis
@@ -1082,6 +1214,8 @@ One modern comparison target is the claim that some dormant supermassive black h
 $$
 M_{\mathrm{BH}}(a) \propto a^{K}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6cbc9d3673eb8afa)
 
 with $K$ measuring the effective coupling strength.
 
@@ -1126,6 +1260,8 @@ D_{\mathrm{QSO}}^{\mathrm{obs}},
 \right]
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-899780ec86ee1574)
 where $D_{\mathrm{QSO}}^{\mathrm{obs}}$ is the observer-level quasar spectrum and mass-inference packet, while the projection $\Pi_{\mathrm{QSO}}$ must use the same formation, inflow, release, and Noether sea delay histories that the cosmology module uses for redshift and source-age comparison. If a model infers the quasar age with one clock and redshift map, grows the black hole with another history, and assigns the released medium loading with a third, the high-redshift quasar has exposed a split record rather than a closed black-hole source account.
 
 This is one reason the black-hole contribution in $\mathbb{A}\mathbb{A}\mathbb{A}$ should remain subordinate to the Noether sea ontology. The Noether sea is still the quantity that carries the cosmological state. Black holes matter because they may be concentrated engines for changing that state, not because they replace the state itself.

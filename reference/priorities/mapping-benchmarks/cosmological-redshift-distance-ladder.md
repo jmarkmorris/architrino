@@ -490,9 +490,7 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `redshift_factorization_record` — Derive or falsify the candidate map $1+z_X\approx(\Gamma_{N,E}/\Gamma_{N,R})\mathcal{P}_{E\to R}/(B_X\mathcal{L}_{E\to R})$ from the shared Noether sea core cadence, source-branch, launch-geometry, and path-history records. Status: `draft`.
 2. `time_dilation_gate` — Require supernova light-curve dilation and spectral redshift to use the same $\mathcal{Z}$ record. Status: `draft`.

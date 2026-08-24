@@ -24,21 +24,26 @@ The orientation label does not assign matter versus antimatter. Global polarity 
 
 At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
 
-At the continuum-medium level, represent local Noether braid density with canonical symbols
-$(\rho_{\text{NS}}, n)$ as two coupled components:
+At the continuum-medium level, represent local Noether braid density with canonical symbols $(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
 \rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) + \rho_{-}(\mathbf X,T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8b71698c0f19606e)
 $$
 n(\mathbf X,T)\equiv \frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-97ffe36cc3e2158c)
 
 The total density can stay smooth while the two orientation populations differ locally. Here the subscripts $+$ and $-$ label pro/anti orientation populations, not architrino polarity and not matter/antimatter. Their difference is represented by a bounded imbalance
 
 $$
 \Delta\rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) - \rho_{-}(\mathbf X,T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-065ce48e2e3776f9)
 
 where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local orientation bias, but not unlimited domination by one ordered orientation. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti orientation dynamics.
 

@@ -18,9 +18,7 @@ The proof owner is photon Gate B, not this cross-theory card. The current corpus
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `transverse_support` — Derive the free photon ledger in $\operatorname{im}P_{\perp}$ and reject a physical longitudinal free photon mode. Status: `draft`.
 2. `linear_analyzer_projector` — Derive the material accepted-channel projector $A^a{}_{b}=\hat a^a\hat a_b$ from the oriented analyzer assembly. Status: `draft`.

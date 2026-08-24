@@ -1,46 +1,30 @@
 # Coincidence open-interval convergence and endpoint residue
 
-**Status:** conditional convergence theorem and exact mirror residue completed.
-**Claim grade:** derived on each declared labeled injective simple branch under
-the explicit branch-collapse, moving-trace, kernel-convergence, positive-
-$D_r$, and competing-stratum separation hypotheses below. No endpoint measure,
-coincidence response, outgoing history, or right trace is supplied.
+**Status:** conditional convergence theorem and exact mirror residue completed. **Claim grade:** derived on each declared labeled injective simple branch under the explicit branch-collapse, moving-trace, kernel-convergence, positive- $D_r$, and competing-stratum separation hypotheses below. No endpoint measure, coincidence response, outgoing history, or right trace is supplied.
 
 ## Purpose
 
-This note closes the retargeted FSC-006a question. The ordinary receiver
-measure has a well-defined, parameterization-independent local limit on every
-compact subset of the open approach interval. In the exact mirror chart its
-total variation has the endpoint residue
+This note closes the retargeted FSC-006a question. The ordinary receiver measure has a well-defined, parameterization-independent local limit on every compact subset of the open approach interval. In the exact mirror chart its total variation has the endpoint residue
 
 $$
 \frac{K}{2c_f^2}.
 $$
 
-The same calculation proves that these ordinary measures cannot converge to a
-finite vector-Radon measure on any neighborhood that contains the coincidence
-endpoint. The endpoint therefore remains separately owned event data.
+The same calculation proves that these ordinary measures cannot converge to a finite vector-Radon measure on any neighborhood that contains the coincidence endpoint. The endpoint therefore remains separately owned event data.
 
-This theorem concerns the ordinary simple-root rows approaching coincidence.
-It is not the finite raw source-history measure used by the proposed common
-impulse-event aggregation law.
+This theorem concerns the ordinary simple-root rows approaching coincidence. It is not the finite raw source-history measure used by the proposed common impulse-event aggregation law.
 
-Plainly: ordinary wake receptions settle to one definite measure everywhere
-before the final zero-range point. Their size nevertheless grows too strongly
-to become a finite ordinary measure at that point. The rate of growth has one
-exact coefficient, which is the endpoint residue.
+Plainly: ordinary wake receptions settle to one definite measure everywhere before the final zero-range point. Their size nevertheless grows too strongly to become a finite ordinary measure at that point. The rate of growth has one exact coefficient, which is the endpoint residue.
 
 ## One labeled branch and its two representations
 
-Fix one ordered source--receiver channel $i\leftarrow j$, retain its source
-label and polarity, and write
+Fix one ordered source--receiver channel $i\leftarrow j$, retain its source label and polarity, and write
 
 $$
 U_s=(T_{\mathrm c}-W,T_{\mathrm c})
 $$
 
-for the open source-time approach interval. Let the $n$th ceiling-admissible
-resolution contain an injective ordinary simple-root branch
+for the open source-time approach interval. Let the $n$th ceiling-admissible resolution contain an injective ordinary simple-root branch
 
 $$
 s=S_n(T),
@@ -48,8 +32,7 @@ s=S_n(T),
 T=T_n(s),
 $$
 
-with $D_{t,n},D_{r,n}>0$. After the exact simple-branch change of variables,
-its source-clock density is
+with $D_{t,n},D_{r,n}>0$. After the exact simple-branch change of variables, its source-clock density is
 
 $$
 \mathbf f_n(s)
@@ -70,8 +53,7 @@ d\boldsymbol\mu_n(s)
 \mathbf f_n(s)\,ds.
 $$
 
-For a compact interval $J\Subset U_s$, the corresponding receiver-time
-measure is the pushforward
+For a compact interval $J\Subset U_s$, the corresponding receiver-time measure is the pushforward
 
 $$
 \boldsymbol\eta_{n,J}
@@ -82,19 +64,15 @@ $$
 \right).
 $$
 
-The source-clock and receiver-time forms are the same ordinary rows expressed
-with different clocks. No event update is included in either measure.
+The source-clock and receiver-time forms are the same ordinary rows expressed with different clocks. No event update is included in either measure.
 
 ## Explicit convergence hypotheses
 
 For every compact $J\Subset U_s$, assume:
 
-1. **eventual branch coverage:** $J$ lies in the source domain of the $n$th
-   branch for all sufficiently large $n$;
-2. **branch collapse:**
-   $\sup_{s\in J}|T_n(s)-T_{\mathrm c}|\to0$;
-3. **moving-trace and kernel convergence:** for one limit kernel
-   $\mathbf K_\ast(T_{\mathrm c},s)$,
+1. **eventual branch coverage:** $J$ lies in the source domain of the $n$th branch for all sufficiently large $n$;
+2. **branch collapse:** $\sup_{s\in J}|T_n(s)-T_{\mathrm c}|\to0$;
+3. **moving-trace and kernel convergence:** for one limit kernel $\mathbf K_\ast(T_{\mathrm c},s)$,
 
    $$
    \mathbf K_{ij}^{(n)}(T_n(\cdot),\cdot)
@@ -113,13 +91,9 @@ For every compact $J\Subset U_s$, assume:
    $$
 
    with a common floor $D_{r,n},D_{r,\ast}\ge d_J>0$ there; and
-5. **ownership:** the channel label and polarity do not change, and every
-   simultaneous or competing stratum remains in its own labeled measure
-   rather than being merged into $\boldsymbol\mu_n$.
+5. **ownership:** the channel label and polarity do not change, and every simultaneous or competing stratum remains in its own labeled measure rather than being merged into $\boldsymbol\mu_n$.
 
-These are stronger than uniform path convergence plus $L^1$ velocity
-convergence alone. In particular, they state the moving-time trace and kernel
-limits that the earlier candidate topology did not imply.
+These are stronger than uniform path convergence plus $L^1$ velocity convergence alone. In particular, they state the moving-time trace and kernel limits that the earlier candidate topology did not imply.
 
 ## Local convergence theorem
 
@@ -151,8 +125,7 @@ $$
 }
 $$
 
-Hence $\boldsymbol\mu_n\to\boldsymbol\mu_\ast$ in the local weak-* topology
-of labeled vector-Radon measures on $U_s$.
+Hence $\boldsymbol\mu_n\to\boldsymbol\mu_\ast$ in the local weak-* topology of labeled vector-Radon measures on $U_s$.
 
 To prove the result, use the positive $D_r$ floor to write
 
@@ -177,11 +150,9 @@ D_{r,\ast}(T_{\mathrm c},\cdot)
 \end{aligned}
 $$
 
-Both terms tend to zero. For absolutely continuous vector measures, this
-$L^1$ convergence is exactly total-variation norm convergence.
+Both terms tend to zero. For absolutely continuous vector measures, this $L^1$ convergence is exactly total-variation norm convergence.
 
-For the receiver-time representation, branch collapse gives, for every
-continuous test function $\boldsymbol\varphi$,
+For the receiver-time representation, branch collapse gives, for every continuous test function $\boldsymbol\varphi$,
 
 $$
 \begin{aligned}
@@ -208,18 +179,13 @@ $$
 }
 $$
 
-This atom is the limit of one fixed, positive-range truncation. It is not a
-finite limit of the complete branch as the truncation is removed.
+This atom is the limit of one fixed, positive-range truncation. It is not a finite limit of the complete branch as the truncation is removed.
 
-Plainly: choose any portion of the incoming history that stays a definite
-distance from coincidence. Every honest resolving family delivers the same
-rows from that portion, and those arrival times collapse to the coincidence
-time. The theorem says this precisely and retains the source label.
+Plainly: choose any portion of the incoming history that stays a definite distance from coincidence. Every honest resolving family delivers the same rows from that portion, and those arrival times collapse to the coincidence time. The theorem says this precisely and retains the source label.
 
 ## Parameterization independence
 
-The measure $\boldsymbol\mu_n$ is obtained from the receiver-time row by an
-exact change of variables:
+The measure $\boldsymbol\mu_n$ is obtained from the receiver-time row by an exact change of variables:
 
 $$
 \frac{\mathbf K_n}{D_{t,n}}\,dT
@@ -227,15 +193,9 @@ $$
 \frac{\mathbf K_n}{D_{r,n}}\,ds.
 $$
 
-If the same branch is described by any increasing parameter $\theta$, both
-sides push forward to the same labeled measure. Total variation is likewise
-preserved under an injective reparameterization. The limit and the residue
-below are therefore properties of the measure, not of the parameter used to
-calculate it.
+If the same branch is described by any increasing parameter $\theta$, both sides push forward to the same labeled measure. Total variation is likewise preserved under an injective reparameterization. The limit and the residue below are therefore properties of the measure, not of the parameter used to calculate it.
 
-The cutoff is defined by the model's absolute lookback time
-$\tau=T_{\mathrm c}-s$, equivalently by causal range $r=c_f\tau$. It is not a
-freely chosen coordinate cutoff.
+The cutoff is defined by the model's absolute lookback time $\tau=T_{\mathrm c}-s$, equivalently by causal range $r=c_f\tau$. It is not a freely chosen coordinate cutoff.
 
 ## Exact mirror residue
 
@@ -292,12 +252,9 @@ $$
 }
 $$
 
-The value is independent of $\rho_0$. Since the cutoff can equally be written
-$r\ge c_f\rho$, it is also independent of how the same branch is
-parameterized.
+The value is independent of $\rho_0$. Since the cutoff can equally be written $r\ge c_f\rho$, it is also independent of how the same branch is parameterized.
 
-The local convergence theorem makes the perturbation-family consistency test
-an iterated-limit theorem:
+The local convergence theorem makes the perturbation-family consistency test an iterated-limit theorem:
 
 $$
 \boxed{
@@ -312,27 +269,19 @@ $$
 }
 $$
 
-The order matters: first resolve the ordinary branch on every fixed positive-
-range truncation, then remove the truncation. Reversing the order asks each
-approximant to own the unresolved endpoint and is not this theorem.
+The order matters: first resolve the ordinary branch on every fixed positive- range truncation, then remove the truncation. Reversing the order asks each approximant to own the unresolved endpoint and is not this theorem.
 
-Plainly: the last part of the ordinary wake measure is infinite, but its
-leading strength is not arbitrary. Multiply the accumulated variation by the
-remaining absolute time to coincidence and the result approaches exactly
-$K/(2c_f^2)$.
+Plainly: the last part of the ordinary wake measure is infinite, but its leading strength is not arbitrary. Multiply the accumulated variation by the remaining absolute time to coincidence and the result approaches exactly $K/(2c_f^2)$.
 
 ## No finite-Radon endpoint limit
 
-Suppose, contrary to the claim, that the untruncated receiver measures
-converge weak-* in a finite vector-Radon space on a closed neighborhood
-$N\ni T_{\mathrm c}$. Uniform boundedness would give
+Suppose, contrary to the claim, that the untruncated receiver measures converge weak-* in a finite vector-Radon space on a closed neighborhood $N\ni T_{\mathrm c}$. Uniform boundedness would give
 
 $$
 \sup_n|\boldsymbol\eta_n|(N)<\infty.
 $$
 
-For every fixed $\rho>0$, injectivity of $T_n$ and local total-variation
-convergence give
+For every fixed $\rho>0$, injectivity of $T_n$ and local total-variation convergence give
 
 $$
 \lim_{n\to\infty}
@@ -345,8 +294,7 @@ $$
 \right).
 $$
 
-The right side is unbounded as $\rho\downarrow0$, contradicting the uniform
-finite bound. Hence
+The right side is unbounded as $\rho\downarrow0$, contradicting the uniform finite bound. Hence
 
 $$
 \boxed{
@@ -354,29 +302,18 @@ $$
 }
 $$
 
-This is a no-go theorem for an ordinary endpoint measure, not a terminal-
-motion theorem. An endpoint atom, a common impulse-event aggregate, or another
-event datum must be separately typed and cannot be obtained by silently
-calling the divergent ordinary branch a finite Radon measure.
+This is a no-go theorem for an ordinary endpoint measure, not a terminal- motion theorem. An endpoint atom, a common impulse-event aggregate, or another event datum must be separately typed and cannot be obtained by silently calling the divergent ordinary branch a finite Radon measure.
 
 ## Relation to the common impulse-event measure
 
 The two objects answer different questions:
 
-- $\boldsymbol\mu_\ast$ is the locally finite ordinary receiver measure on
-  the open positive-range approach interval. Its endpoint variation diverges.
-- The common impulse-event measure is a proposed finite signed aggregation of
-  the two retained raw source-history records on the exact nonordinary event
-  carrier. Under exact mirror symmetry, those matched event records cancel.
+- $\boldsymbol\mu_\ast$ is the locally finite ordinary receiver measure on the open positive-range approach interval. Its endpoint variation diverges.
+- The common impulse-event measure is a proposed finite signed aggregation of the two retained raw source-history records on the exact nonordinary event carrier. Under exact mirror symmetry, those matched event records cancel.
 
-The present theorem neither proves nor refutes that proposed event law. It
-keeps the ordinary approach rows, source labels, polarities, and every
-competing wake contribution intact until the separately owned event boundary.
+The present theorem neither proves nor refutes that proposed event law. It keeps the ordinary approach rows, source labels, polarities, and every competing wake contribution intact until the separately owned event boundary.
 
-Plainly: the ordinary rows approaching the event can diverge in total
-variation while the separately defined equal-and-opposite event records add
-to zero. One is an approach measure; the other is a proposed event operation.
-They must not be substituted for one another.
+Plainly: the ordinary rows approaching the event can diverge in total variation while the separately defined equal-and-opposite event records add to zero. One is an approach measure; the other is a proposed event operation. They must not be substituted for one another.
 
 ## Claim boundary and falsifiers
 
@@ -384,22 +321,13 @@ The following are derived under the explicit hypotheses above:
 
 1. local total-variation, hence local weak-*, convergence on $U_s$;
 2. the fixed-far-part receiver-time atom;
-3. the exact mirror residue $K/(2c_f^2)$ and its iterated family-consistency
-   identity; and
-4. nonexistence of a finite vector-Radon limit on a closed endpoint
-   neighborhood.
+3. the exact mirror residue $K/(2c_f^2)$ and its iterated family-consistency identity; and
+4. nonexistence of a finite vector-Radon limit on a closed endpoint neighborhood.
 
-The theorem is falsified by a labeled injective simple-root family satisfying
-all five hypotheses for which the local total-variation limit or the iterated
-residue differs. It does not claim that every ceiling-admissible perturbation
-automatically satisfies the moving-trace and kernel hypotheses; a family that
-fails them is outside this theorem and must be separately classified.
+The theorem is falsified by a labeled injective simple-root family satisfying all five hypotheses for which the local total-variation limit or the iterated residue differs. It does not claim that every ceiling-admissible perturbation automatically satisfies the moving-trace and kernel hypotheses; a family that fails them is outside this theorem and must be separately classified.
 
-No coincidence-event update, outgoing retained history, right trace, passage,
-rebound, conservation law, stability result, or general unequal-wake
-cancellation follows.
+No coincidence-event update, outgoing retained history, right trace, passage, rebound, conservation law, stability result, or general unequal-wake cancellation follows.
 
 ## Closure goal
 
-Completed for FSC-006a: use this theorem as the positive-range input to the
-separately queued exact-event family completion and right-trace selection.
+Completed for FSC-006a: use this theorem as the positive-range input to the separately queued exact-event family completion and right-trace selection.

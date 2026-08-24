@@ -37,16 +37,22 @@ W_{ij}^{\mathrm{acc}}
 =
 \frac{c_f}{|D_{t,ij}|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-328843ac57852422)
 Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T_r-T_t)$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's reception point $\mathbf X_i(T_r)$. $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the transmitter-side factor and $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ is the receiver-side factor. The acceleration weight depends only on $D_t$; the signed root-playback derivative $m_{ij}=D_{r,ij}/D_{t,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T_r-T_t)$ in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$ is the transmitter-side causal-root transversality Jacobian, and $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$. It is the density-of-states factor of the causal-root map, and $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$ is the active acceleration weight. The ordinary simple-root acceleration contribution is valid away from the Whitney-fold set
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_t} F_{ij}=0\},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-756246cb5822ff4b)
 while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the simple-root floor stated above before the schematic acceleration law is treated as an ordinary simple-root contribution rather than a catastrophe-theoretic transition.
 
 In dimensional form $\kappa$ has units
 $$
 [\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-445f2c45b9f4defc)
 where $\mathrm{Q}$ denotes the polarity unit. The coupling is recorded in the [Parameter Ledger](../validation/parameter-ledger.md#layer-i-substrate-and-kernel-parameters) and defined by the [Master Equation](../dynamics/master-equation.md); any later force-like variable is effective bookkeeping after an assembly response coefficient has been introduced, not primitive architrino inertia.
 
 This supplies a substrate universality seed: no individual architrino carries a separate inertial coefficient, so same-branch primitive response is governed by the same acceleration normalization. The mass-map and Noether sea programs must still show that assembly inertia and gravitational response preserve weak-equivalence bounds; see [General Relativity](../spacetime/general-relativity.md) and [Particle Masses](../assemblies/particle-masses.md).
@@ -78,10 +84,14 @@ q_a=\sigma_a\epsilon,
 \qquad
 \sigma_a\in\{-1,+1\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-550a901c0cd4cbe3)
 The observer-level electron-charge benchmark is then
 $$
 |e|=6\epsilon
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34db20aed0b8ea56)
 
 The two polarity names are:
 
@@ -98,20 +108,15 @@ The axial-layer model is one charged-fermion realization of that parent target. 
 $$
 \lvert G_{\mathrm{ax}}\text{-orbit}\rvert=6,
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4f0c84bfd575224)
 with each orbit site carrying a fixed polarity sign. If assembly closure retains exactly that six-unit inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why a charged-fermion Noether braid supplies six protected axial polar sites, or whether a more general non-axial six-unit carrier is required, belongs to [Quantum Number Mapping](../assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
 
 ## Wake Response and Effective Electromagnetic Fields
 
-An individual architrino does not receive an electric or magnetic field as an
-additional substrate input. It receives the causal-root acceleration
-contributions defined by the Master Equation. Effective field language becomes
-available only after those source-provenanced contributions and any derived
-assembly, Noether sea, and boundary response have been projected into a
-receiver-independent continuum record.
+An individual architrino does not receive an electric or magnetic field as an additional substrate input. It receives the causal-root acceleration contributions defined by the Master Equation. Effective field language becomes available only after those source-provenanced contributions and any derived assembly, Noether sea, and boundary response have been projected into a receiver-independent continuum record.
 
-There is nevertheless a useful bridge to electric response. For one declared
-source history, evaluate the source-driven acceleration on matched hypothetical
-receiver states that differ only by polarity. Define
+There is nevertheless a useful bridge to electric response. For one declared source history, evaluate the source-driven acceleration on matched hypothetical receiver states that differ only by polarity. Define
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -123,6 +128,8 @@ $$
 \mathbf A_{-}^{\mathrm{src}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e451e990f77f54d3)
 
 and
 
@@ -137,6 +144,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3865d67991bd26a9)
+
 so that
 
 $$
@@ -149,27 +158,13 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-The labels `even` and `odd` refer to receiver-polarity reversal. They do not
-refer to spatial parity. One actual architrino has one fixed polarity; the
-matched pair is a comparison instrument, not a co-located physical pair. If
-the even term vanishes in an isolated electric regime, the two receiver
-polarities acquire equal-and-opposite source-driven accelerations. This is the
-native electric-sign analogue, but it remains a decomposition of the causal-hit
-ledger rather than an imported $q\mathbf E/m$ law.
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54f4896f741bb5ca)
 
-There is no corresponding primitive magnetic vector in one radial hit. A
-magnetic readout must be recovered from organized multi-source and multi-root
-history, moving or circulating assembly geometry, any derived Noether sea and
-boundary response, and an observer-level projection. Whether the sea is
-essential, modifies a direct source-history response, or remains within its
-balanced reference tolerance is a constitutive closure target rather than a
-definition of either field.
+The labels `even` and `odd` refer to receiver-polarity reversal. They do not refer to spatial parity. One actual architrino has one fixed polarity; the matched pair is a comparison instrument, not a co-located physical pair. If the even term vanishes in an isolated electric regime, the two receiver polarities acquire equal-and-opposite source-driven accelerations. This is the native electric-sign analogue, but it remains a decomposition of the causal-hit ledger rather than an imported $q\mathbf E/m$ law.
 
-Plainly: the electric-like sign difference is already visible when the same
-source history is evaluated against the two architrino polarities. The smooth
-electric field is the later common map of that response. Magnetic behavior
-requires additional organized geometry; neither field is a new substance or
-an extra term in the architrino equation of motion.
+There is no corresponding primitive magnetic vector in one radial hit. A magnetic readout must be recovered from organized multi-source and multi-root history, moving or circulating assembly geometry, any derived Noether sea and boundary response, and an observer-level projection. Whether the sea is essential, modifies a direct source-history response, or remains within its balanced reference tolerance is a constitutive closure target rather than a definition of either field.
+
+Plainly: the electric-like sign difference is already visible when the same source history is evaluated against the two architrino polarities. The smooth electric field is the later common map of that response. Magnetic behavior requires additional organized geometry; neither field is a new substance or an extra term in the architrino equation of motion.
 
 ## Provenance and Persistence
 
@@ -192,6 +187,8 @@ Observer-level indistinguishability is therefore a quotient, not erasure of subs
 $$
 \Pi_{\mathrm{obs}}:S(T)\to\bar S(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0367eed81efc7a54)
 denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
 $$
 \left\lVert
@@ -202,6 +199,8 @@ $$
 \le
 \epsilon_{\mathrm{prov}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4dc7c3b0f711d259)
 This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). The coarse leakage residual and the fine exchange-sign carrier are different objects: $\epsilon_{\mathrm{prov}}$ bounds label leakage through $\Pi_{\mathrm{obs}}$, while the substrate carrier for an exchange sign must live in the joint framed-braid class, including protected rows such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when those rows are part of the branch certificate; see [Absolute Time](absolute-time.md#provenance-and-identity-through-time). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
 
 ## Non-Creation and Non-Destruction
@@ -235,6 +234,8 @@ K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
 \subseteq
 \left\{\|\mathbf X-\mathbf X_a(T_t)\|=c_f(T-T_t)\right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1812cedf5e03f747)
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, transmitter-side factors, transmitter-side acceleration weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the transmitter identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-transceiver causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
@@ -272,15 +273,21 @@ $$
 \qquad
 T\mapsto\mathbf X_a(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-442568aaf97724bf)
 where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-39bfce941c4e965e)
+
 The worldline is at least absolutely continuous so that
 $$
 \mathbf V_a(T)=\frac{d\mathbf X_a}{dT}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f73ec1b1ba468c78)
 exists almost everywhere and is piecewise continuous in regular regimes.
 
 Because architrinos are point entities, multiple architrinos may occupy the same spatial coordinate at the same absolute time without volume exclusion. Collision regularization and received-hit kernels belong to the dynamics layer.
@@ -324,6 +331,8 @@ A stationary architrino, with
 $$
 \mathbf V_a=\mathbf{0}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-49449cb9e308e424)
 emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
 
 Over a diagnostic interval $I$, the relevant complete-state object is the transmitter-tagged center curve
@@ -332,8 +341,9 @@ Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
 \mathbf Z_a(s)=\mathbf X_a(s),
 $$
-where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$.
-Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4cade1897de0abb9)
+where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$. Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-transmitter wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from transmitter-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 

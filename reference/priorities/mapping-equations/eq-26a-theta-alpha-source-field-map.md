@@ -40,14 +40,9 @@ No score changes.
 
 ## Mathematical Contract Ownership
 
-The [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
-owns the mathematical factorization, shared carrier, required-row semantics,
-benchmark ladder, Direct Geometry and Evidence Map, and multi-anchor falsifier.
-This file retains the exact source-attempt field ids, checker contract, blocker
-order, and `EQ-26A` advancement controls.
+The [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md) owns the mathematical factorization, shared carrier, required-row semantics, benchmark ladder, Direct Geometry and Evidence Map, and multi-anchor falsifier. This file retains the exact source-attempt field ids, checker contract, blocker order, and `EQ-26A` advancement controls.
 
-The source-attempt fixture names the first local alpha surface without claiming
-accepted evidence:
+The source-attempt fixture names the first local alpha surface without claiming accepted evidence:
 
 | Field | Source-attempt value |
 | --- | --- |
@@ -61,8 +56,7 @@ accepted evidence:
 | `expectedFirstBlocker` | `missing_accepted_theta_gamma_packet` |
 | `localFirstChildBlocker` | `missing_accepted_charge_exposure_row` |
 
-Plainly: these ids describe the present attempt surface and expected blocker.
-They do not mark any row accepted or supply the source evidence themselves.
+Plainly: these ids describe the present attempt surface and expected blocker. They do not mark any row accepted or supply the source evidence themselves.
 
 Checker-contract finding: [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json) already exercises this contract. The current run is score-neutral: it reports `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and `15/15` negative controls passing. The local charge exposure, alpha coupling, wake/dressing, running, source-provenance, and no-hidden-retune rows remain `attempt`, so no score change follows from the alpha arithmetic or the source-attempt shape.
 
@@ -86,19 +80,8 @@ To check the current source-attempt fixture, run:
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json --summary --pretty
 ```
 
-Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`,
-`scoreDecision=no_score_increase`, `alphaRunningPass=true`, and all 15 negative controls
-passing. The same command with `--require-populated` must exit nonzero.
+Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and all 15 negative controls passing. The same command with `--require-populated` must exit nonzero.
 
 Until parent photon/action support and local charge/coupling rows are accepted, the correct result remains no score change.
 
-The shared Planck/alpha runner now rejects priority packets, authored AAA prose,
-generated files, attempt files, toy files, probe files, source-evidence-probe
-files, mock files, negative-control files, and temporary paths as accepted
-retained evidence. The coordination-source control marks `theta_gamma_packet`
-accepted-looking while sourcing it only to the theta-gamma priority packet; it
-must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason
-`source_not_durable`. The sibling probe-source control points the same
-accepted-looking parent at a `source-evidence-probe` JSON and must fail the same
-way. Probe files can sharpen blockers, but they cannot be the retained source
-object for $\Theta_\gamma$.
+The shared Planck/alpha runner now rejects priority packets, authored AAA prose, generated files, attempt files, toy files, probe files, source-evidence-probe files, mock files, negative-control files, and temporary paths as accepted retained evidence. The coordination-source control marks `theta_gamma_packet` accepted-looking while sourcing it only to the theta-gamma priority packet; it must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason `source_not_durable`. The sibling probe-source control points the same accepted-looking parent at a `source-evidence-probe` JSON and must fail the same way. Probe files can sharpen blockers, but they cannot be the retained source object for $\Theta_\gamma$.

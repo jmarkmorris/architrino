@@ -4,14 +4,7 @@ This file is the chronological work log for the `app-topo` priority area. Use [p
 
 ## Log Entries
 
-- Made the circular-binary retained history adaptive to the current visible
-  extent, orbital radius, and speed. The warmup is the smallest whole number of
-  orbits that brackets both source roots across the visible frame, so the
-  opening source phase remains unchanged. Defined the approaching-collinear
-  input as infinite stationary prehistory at the existing 20% and 80% start
-  positions followed by an instantaneous prescribed launch at replay time
-  zero; CPU and GPU paths now show both histories throughout the frame. These
-  are prescribed display inputs, not EOM evolution or natural-motion claims.
+- Made the circular-binary retained history adaptive to the current visible extent, orbital radius, and speed. The warmup is the smallest whole number of orbits that brackets both source roots across the visible frame, so the opening source phase remains unchanged. Defined the approaching-collinear input as infinite stationary prehistory at the existing 20% and 80% start positions followed by an instantaneous prescribed launch at replay time zero; CPU and GPU paths now show both histories throughout the frame. These are prescribed display inputs, not EOM evolution or natural-motion claims.
 
 - Shortened the unified left-panel slider labels to `Speed`, `Topo count`, `Shading`, `Topo fade`, and `Scale`, and aligned every slider on the same row as its title. Slider values, scientific/display ownership, keyboard behavior, and the Purple-to-White neutral-background endpoints are unchanged.
 

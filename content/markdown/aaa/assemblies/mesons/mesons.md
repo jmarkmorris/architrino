@@ -37,19 +37,16 @@ Plainly, the meson is the temporary bridge state the strong sector can afford. I
 
 ## The Pions ($\pi^+, \pi^-, \pi^0$): The Nuclear Exchange Packet
 
-**Standard Model Role:**
-Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be populated and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
+**Standard Model Role:** Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be populated and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/fermi-dirac-and-bose-einstein-statistics.md) and [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
 *   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid are hypothesized to achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark would be destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
-**Dynamical Role:**
-In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
+**Dynamical Role:** In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
 *   **Mechanism hypothesis:** A proton interacts with the Noether sea, associating a local candidate braid into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
 *   **Topology hypothesis:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger candidate-braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
@@ -69,19 +66,16 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 
 ## The Kaons ($K^+, K^-, K^0, \bar{K}^0$): The Generation Mixer
 
-**Standard Model Role:**
-Kaons are the lightest mesons containing a **strange or anti-strange branch** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
+**Standard Model Role:** Kaons are the lightest mesons containing a **strange or anti-strange branch** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Kaon candidate connects a **Generation-I full-shielding braid scaffold** (for example, $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). The taxonomy member of each scaffold is unassigned. The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** A Kaon candidate connects a **Generation-I full-shielding braid scaffold** (for example, $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). The taxonomy member of each scaffold is unassigned. The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
 *   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen-I candidate scaffold presents a hypothesized three-cycle support boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen-II candidate scaffold presents a reduced two-cycle boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries would force the flux manifold to twist. Let $\vartheta_{\mathrm{tw}}(s)$ denote the local twist density along the tube. Unlike the pion (net $\int \vartheta_{\mathrm{tw}}(s)\,ds=0$), the candidate kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that would set the CP-odd asymmetry and keep the tube from relaxing to a straight, cancellation-friendly lock.
 *   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated twist density along the tube is the phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned weak-coupling triads setting the barrier height.
 *   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero twist density; $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}} = \int_0^{\ell_{\mathrm{tube}}} \vartheta_{\mathrm{tw}}(s)\,ds$ is that required twist integrated along the tube. CP-even pieces track $\vartheta_{\mathrm{tw}}(s)^2$; CP-odd pieces track $\text{sign}(\vartheta_{\mathrm{tw}}(s))$, so the asymmetry is geometric, not inserted.
 
-**Dynamical Role:**
-Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
+**Dynamical Role:** Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
 
 ### CP/phase hook (Kaons)
 - The Gen-I to selected Gen-II shielding mismatch is hypothesized to introduce a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II cycle to a declared Gen-I support site.
@@ -110,11 +104,9 @@ All binding, phase-lock, and stability claims in this chapter are mechanism hypo
 
 ## The Rho Mesons ($\rho$): The Spin-$1$ Counterparts
 
-**Standard Model Role:**
-The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but is a **vector meson** (spin-1). It is much heavier ($\sim 770$ MeV) and, in Standard Model language, decays almost instantly into two pions.
+**Standard Model Role:** The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but is a **vector meson** (spin-1). It is much heavier ($\sim 770$ MeV) and, in Standard Model language, decays almost instantly into two pions.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-In the current hadron-level shorthand, if the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** In the current hadron-level shorthand, if the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
 
 *   **Configuration:** The two constituent braids in the Rho assembly are treated as aligned (spin-$1$) rather than anti-aligned (spin-$0$), or the flux tube possesses a higher vibrational mode. This is a spin-channel mapping target until the vector-mode angular-momentum proof is complete.
 *   **Instability (Morse lens):** In the energy landscape the Rho is a saddle of Morse index 1 (or higher): forces balance, but there is at least one unstable direction (flux-unwinding mode). Dissociation is the deterministic slide down that unstable manifold into the stable pion basin (stability criterion in action).
@@ -123,11 +115,9 @@ In the current hadron-level shorthand, if the Pion is the ground state of the $q
 
 ## Delta Baryons ($\Delta^{++}, \Delta^+, \Delta^0, \Delta^-$)
 
-**Standard Model Role:**
-These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
+**Standard Model Role:** These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Noether braid assembly (like a proton) but with the three constituent braids treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** A Delta baryon is a standard Noether braid assembly (like a proton) but with the three constituent braids treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
 
 *   **Decorations / Pauli:** In the $\Delta^{++}$, three identical candidate $u$-braids occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so exceptionality appears once on each indexed axis across the three candidate scaffolds. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 5\times10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
@@ -218,8 +208,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Candidate baryon scaffolds (proton-like permutations)*
-$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},1}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each indexed axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
+*Candidate baryon scaffolds (proton-like permutations)* $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},1}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each indexed axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
 
 *Meson quark–antiquark pairing*  
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).

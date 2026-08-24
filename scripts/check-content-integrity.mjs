@@ -17,6 +17,10 @@ const CHECKS = [
     args: ["scripts/build-scene-graph.mjs", "--check", "--strict"],
   },
   {
+    name: "Validate corpus equation links, source context, and symbol registry",
+    args: ["scripts/build-equation-mapping-corpus.mjs", "--check"],
+  },
+  {
     name: "Audit title/source filename sync",
     args: ["scripts/audit-title-filename-sync.mjs"],
   },

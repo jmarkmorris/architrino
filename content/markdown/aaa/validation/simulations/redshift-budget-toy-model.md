@@ -30,6 +30,8 @@ $$
 Y_{X,0}=0
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-262fcd74d54db9f3)
+
 and advances by
 
 $$
@@ -39,6 +41,8 @@ Y_{X,j}
 +
 \alpha_{\mathrm{prop},X,j}\Delta s_j
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-36fa591663237b70)
 
 The fixture then reconstructs the logarithmic redshift budget
 
@@ -54,6 +58,8 @@ Z_X
 -\ln D_v
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8cdca5def216b3bc)
+
 The observed receiver-facing frequency and photon energy are
 
 $$
@@ -66,6 +72,8 @@ E_{\mathrm{obs},X}
 h\nu_{\mathrm{obs},X}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a5160b7940772df7)
+
 This is not an untracked photon-energy loss model. $Y_{X,N}$ is the path-history phase-cadence stretch left after endpoint cadence, source-branch shift, and launch geometry have been declared.
 
 The path-history term is signed. A positive increment in $Y_X$ is a redward frequency depletion relative to the clean emitted line, while a negative increment is a blueward frequency boost. For a segment-level exchange row,
@@ -76,6 +84,8 @@ $$
 -\ln
 \frac{\nu_{X,j}^{+}}{\nu_{X,j}^{-}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d90174afa41f1ed8)
 
 with $\nu_{X,j}^{-}$ and $\nu_{X,j}^{+}$ measured in the same local comparison convention before and after the exchange. Sunyaev-Zeldovich-like mock rows should therefore be represented as signed exchange events rather than as a new expansion variable: a hot or coherently moving intervening medium may produce $\Delta Y_{X,j}^{\mathrm{ex}}<0$, while a lower-energy absorbing or relaxing segment may produce $\Delta Y_{X,j}^{\mathrm{ex}}>0$.
 
@@ -94,6 +104,8 @@ E_\gamma(\nu_{X,j}^{+})-E_\gamma(\nu_{X,j}^{-})
 }{E_{\mathrm{tol}}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9cfc061db347e0cb)
+
 Here $E_\gamma(\nu)$ is the declared photon-channel energy map and $E_{\mathrm{tol}}>0$ is a predeclared tolerance with units of energy. The observer-level relation $E_\gamma=h\nu$ is a recovery benchmark, not a substrate input. The signs of the $\Delta E$ terms are ledger signs, not assumptions about the outcome. A photon boost is allowed only when the intervening medium or target record supplies the energy; a photon depletion is allowed only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization entry.
 
 For cosmology-facing packets, the same replay should expose whether the redshift channel also supplies the standard time-dilation and flux factors. The comparison target is
@@ -110,6 +122,8 @@ F
 \qquad
 d_L=(1+z_X)^2D_A
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ed2d332ff83e42bf)
 These are observer-level distance-ladder diagnostics. A path law that shifts line frequencies but does not dilate packet cadence, or that loses flux without the two redshift factors and angular-distance reciprocity, is not an acceptable cosmological redshift replacement.
 
 ## Input Packet
@@ -146,6 +160,8 @@ $$
 \frac{\Omega_{N0}}{\Omega_N}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13a3a8f06b1c1980)
+
 In JSON, this is supplied as `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or the weak-field proxy `Phi_N_over_c0_squared`, for which the fixture uses $\Gamma_N\approx1-\Phi_N/c_0^2$. Scalar `Gamma_N_E` and `Gamma_N_R` values remain valid fallbacks for older or hand-written scenarios.
 
 Launch records compute the low-speed source/receiver geometry factor from the radial endpoint velocity,
@@ -160,8 +176,9 @@ D_v
 \sqrt{\frac{1-\beta_r}{1+\beta_r}}
 $$
 
-where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback.
-This observer-level launch factor is not either causal-root factor from the Master Equation: it must not be serialized as the transmitter-side $D_t$, the receiver-side $D_r$, or the signed root-playback ratio $D_r/D_t$.
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0f2c441127207ad6)
+
+where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback. This observer-level launch factor is not either causal-root factor from the Master Equation: it must not be serialized as the transmitter-side $D_t$, the receiver-side $D_r$, or the signed root-playback ratio $D_r/D_t$.
 
 The continuity-transport extension uses the segment packet
 
@@ -190,6 +207,8 @@ p_{\sigma,X}\sigma_{X,j}
 \mathcal R_{\mathrm{coh},X,j}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-807179b1743cc166)
+
 In JSON, `continuity_transport_by_line` supplies `p_theta_row`, `D_gamma_theta`, `p_nu`, `f_N`, `S_BH`, `S_GW`, `R_eq`, `partial_nu_J_nu`, `p_u`, `div_u_sea`, `p_sigma`, `sigma_projection`, and `R_coh` as needed. The fixture logs the resulting pieces as `continuity.theta_gradient`, `continuity.cadence_residual`, `continuity.flow_divergence`, `continuity.anisotropic_response`, and `continuity.coherence_residue`. Legacy named `transport_terms_by_line` values are still accepted as explicit additions, but a promotable transport scenario should prefer the continuity packet whenever it is claiming to test Noether sea equilibrium transport.
 
 ## Coefficient-Row Validation Notes
@@ -208,6 +227,8 @@ b_R
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cbaa709a5d87fc7e)
+
 with the weak static condition $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, or $b_n a_n+b_\chi(1+\gamma_{\mathrm{PPN}})+b_\lambda a_\lambda+b_R a_R=1$ when the shared clock/signal delay closure is imposed. This fixture does not determine the individual endpoint coefficients; it checks whether endpoint records are replayed as endpoint cadence rather than hidden inside propagation or source factors.
 
 The launch extraction tests the separate relative-motion term. In a homogeneous record with no source-branch or path-history contribution, the replay must reduce to
@@ -217,6 +238,8 @@ Z_X=-\ln D_v,
 \qquad
 Y_{X,N}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ff72ac7abe8a8156)
 
 The scalar launch fallback and `launch_record` extractor therefore validate the sign and ownership of the motion term. A scenario fails the coefficient-row reading if it needs a nonzero propagation packet to recover a clean relative-motion redshift.
 
@@ -230,6 +253,8 @@ p_{u,X},\,
 p_{\sigma,X}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-014a4ac66ecbb7a1)
 
 After endpoint, source-branch, and launch corrections have been subtracted, the residual must be
 
@@ -247,6 +272,8 @@ Z_{\mathrm{prop},X}
 \Delta s_j
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a65bb5e5a0781b4)
+
 The mock rows constrain products of coefficients with declared segment records; they do not by themselves fix $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. Those freedoms are falsified by the diagnostics already exposed here: chromaticity residuals, image-bundle variance, time-dilation residuals, nonzero laboratory residuals, or a need to replace the continuity packet with unrelated named terms.
 
 The dark-energy coefficient extension uses
@@ -262,6 +289,8 @@ $$
 +\lambda_{\mathrm{BH}}^X q_{\mathrm{BH}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7a2ad8800789faee)
 
 In JSON, `lambda_row` supplies the four dimensionless coefficients and `q_DE_per_s` supplies the corresponding rate entries in inverse seconds. The script divides by the declared photon-channel speed, using `c_gamma_km_s` when present and otherwise `c0_km_s`, to convert the result into a path coefficient in $\mathrm{Mpc}^{-1}$. A packet may instead supply `q_DE_per_mpc` when the rate has already been converted into path units.
 

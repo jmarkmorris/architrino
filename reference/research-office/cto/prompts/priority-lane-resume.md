@@ -47,13 +47,7 @@ Maintain the priority-lane split:
 - put dated proof attempts, status, and handoff notes in `work-log.md`
 - use focused sibling files for long specs, certificates, evidence packets, or derivations
 
-If a queue item is completed, remove it from the live queue, record the result in
-`work-log.md` when it has durable handoff value, and renumber following items.
-Move a brainstorming idea into `work-queue.md` only after it becomes an accepted,
-testable task with a named acceptance condition. If a substantive theory
-advancement is made, decide whether it belongs directly in
-`content/markdown/aaa`, in the priority lane, or only in the closeout with a
-reason.
+If a queue item is completed, remove it from the live queue, record the result in `work-log.md` when it has durable handoff value, and renumber following items. Move a brainstorming idea into `work-queue.md` only after it becomes an accepted, testable task with a named acceptance condition. If a substantive theory advancement is made, decide whether it belongs directly in `content/markdown/aaa`, in the priority lane, or only in the closeout with a reason.
 
 ## Validation
 

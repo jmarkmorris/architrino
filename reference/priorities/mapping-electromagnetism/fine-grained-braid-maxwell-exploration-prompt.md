@@ -146,6 +146,4 @@ End with a `Closure goal:` line naming the strongest surviving mapping, its exac
 
 Classification: `priority-only`.
 
-Promote now: no. This prompt redirects electromagnetic exploration from
-device-scale implementations to equation-first finite-braid residuals; it is
-not Maxwell recovery evidence.
+Promote now: no. This prompt redirects electromagnetic exploration from device-scale implementations to equation-first finite-braid residuals; it is not Maxwell recovery evidence.

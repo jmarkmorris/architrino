@@ -208,8 +208,7 @@ The future implementation should include action fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Connect action-broker result classes and confirmation events into observability/public-status sandbox fixtures without exposing private prompt text, provider payloads, account history, credentials, or source-authority effects.
+Closure goal: Connect action-broker result classes and confirmation events into observability/public-status sandbox fixtures without exposing private prompt text, provider payloads, account history, credentials, or source-authority effects.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

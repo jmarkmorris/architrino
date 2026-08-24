@@ -10,9 +10,7 @@ This is an event-ledger and radiation-reaction gate. $\mathbb{A}\mathbb{A}\mathb
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `quadrupole_limit` — Recover the leading quadrupole power law as an effective limit. Status: `draft`.
 2. `timing_ledger` — Record orbital energy, angular momentum, spin, recoil, pulse propagation, and medium update rows. Status: `draft`.

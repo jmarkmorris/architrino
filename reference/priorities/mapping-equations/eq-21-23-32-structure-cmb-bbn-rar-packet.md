@@ -12,8 +12,7 @@
 
 ## Local Source Basis
 
-- [Cosmology Transfer-Function Closure](../cosmology-closure/priorities.md) supplies the shared comparison record
-  $\theta_{\mathrm{sea}}=(\theta_{\mathrm{clock}},\theta_{\mathrm{prop}},\theta_{\mathrm{therm}},\theta_{\mathrm{ac}},\theta_{\mathrm{growth}},\theta_{\mathrm{frame}})$ and the residual rows for CMB, BAO, supernova/$H_0$, weak lensing/RSD, and kSZ force-law profiles.
+- [Cosmology Transfer-Function Closure](../cosmology-closure/priorities.md) supplies the shared comparison record $\theta_{\mathrm{sea}}=(\theta_{\mathrm{clock}},\theta_{\mathrm{prop}},\theta_{\mathrm{therm}},\theta_{\mathrm{ac}},\theta_{\mathrm{growth}},\theta_{\mathrm{frame}})$ and the residual rows for CMB, BAO, supernova/$H_0$, weak lensing/RSD, and kSZ force-law profiles.
 - [Closure Intersection Ledger](../dormant-deferred/validation-gates/closure-intersection-ledger.md) supplies the cross-sector guardrail: BBN photon loading, CMB thermalization, redshift handoff, frame correction, and structure growth must use compatible $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance rows.
 - [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [Dark Matter](../../../content/markdown/aaa/cosmology/dark-matter.md) already contain the needed observer-level residual shapes. This packet keeps them internal to the equation-mapping priority and does not edit reader-facing files.
 

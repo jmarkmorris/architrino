@@ -35,12 +35,16 @@ $$
 \qquad
 \rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c69723565da73081)
 The branch pair is interference-preserving only if the apparatus and environment have not produced an autonomous which-path record. The gravitational or effective-metric channel therefore becomes a constraint through the response difference
 $$
 \Delta h_A(t_{\mathrm{eff}})
 =
 h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-375d225ad5501528)
 where $A$ labels the resolved detector response channel and $\theta$ is the shared effective-metric constitutive record.
 
 The which-path diagnostic is
@@ -52,6 +56,8 @@ $$
 N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}};\theta)\,
 \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-50e88c5154061093)
 Here $N_{AB}$ is the observer-level covariance decomposed in [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold). It summarizes unresolved deterministic boundary histories and calibrated detector/environment residuals; it is not an ontological randomness postulate.
 
 ## Minimal Response Model
@@ -63,6 +69,8 @@ $$
 =
 1
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e4d48d120889744e)
 For branch separation $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$ around center $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, set
 $$
 \begin{aligned}
@@ -78,6 +86,8 @@ x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})+\frac{d_{\mathrm{eff}}
 \right).
 \end{aligned}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4fd6fbfe6f73ce2f)
 Let $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for redshift, Shapiro delay, lensing, gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The branch response is
 $$
 h_A(t_{\mathrm{eff}};\rho_k,\theta)
@@ -86,6 +96,8 @@ h_A(t_{\mathrm{eff}};\rho_k,\theta)
 G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 \rho_k(x_{\mathrm{eff}}^i,t'_{\mathrm{eff}})\,d^3x_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2dbca964292c79b2)
 Therefore
 $$
 \Delta h_A(t_{\mathrm{eff}})
@@ -96,6 +108,8 @@ G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 \rho_1(x_{\mathrm{eff}}^i,t'_{\mathrm{eff}})-\rho_2(x_{\mathrm{eff}}^i,t'_{\mathrm{eff}})
 \right]d^3x_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-302094ee722b2d79)
 When $\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|$ is small relative to the packet scale,
 $$
 \rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})-\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
@@ -105,6 +119,8 @@ $$
 +
 O(\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|^3)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fd544e0647db09fe)
 so the leading branch response is
 $$
 \Delta h_A(t_{\mathrm{eff}})
@@ -115,6 +131,8 @@ d_{\mathrm{eff}}^i(t'_{\mathrm{eff}})
 G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 \partial_i\varphi_\sigma(x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t'_{\mathrm{eff}}))\,d^3x_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0e4a6803bb07bbdd)
 This gives the first closure equation: a mass displacement history should map to a predicted detector-channel separation before any interpretive claim about classical or quantum spacetime is introduced.
 
 ## Mediated Entanglement Comparison
@@ -132,6 +150,8 @@ U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)
 \,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 +O(c_0^{-2})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c958539326c1fe1e)
 The branch phase is then
 $$
 \Phi_{ab}(T_W;\theta)
@@ -140,6 +160,8 @@ $$
 \int_0^{T_W}
 U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)\,dt_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be3fcd29783bff71)
 Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
 $$
 \Delta\Phi_{\mathrm{ent}}(T_W;\theta)
@@ -147,6 +169,8 @@ $$
 \Phi_{++}(T;\theta)+\Phi_{--}(T;\theta)
 -\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-445d12e9377697cc)
 For the ideal equal-amplitude two-branch packet, a first witness target is
 $$
 C_{\mathrm{GIE}}(T_W;\theta)
@@ -155,6 +179,8 @@ C_{\mathrm{GIE}}(T_W;\theta)
 \sin\frac{\Delta\Phi_{\mathrm{ent}}(T;\theta)}{2}
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a2fd3ef591382d1e)
 This formula is an observer-level benchmark. It does not say that the Euclidean void is quantized, that the effective metric is fundamental, or that a graviton field is the native substrate. It says that the same gravity-side constitutive record must produce the branch phase that standard low-energy descriptions would attribute to gravitational mediation.
 
 The comparison is meaningful only when the non-gravitational residual is bounded. Let $\mathcal{R}_{\mathrm{nongrav}}$ collect calibrated electromagnetic, spin-spin, Casimir, thermal, vibration, and apparatus cross-talk contributions to the same entanglement witness. A run can be used as a gravity-side validation target only if
@@ -163,6 +189,8 @@ $$
 \le
 \varepsilon_{\mathrm{iso}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-513877d2a0e424f8)
 with $\varepsilon_{\mathrm{iso}}$ declared by the apparatus class and retained alongside the covariance record $N_{AB}$.
 
 ## Input Record Schema
@@ -210,6 +238,8 @@ $$
 S_{AB}^{-1}\,
 \Delta h_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-176db1732240ec6c)
 This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $G_A$, and $S_{AB}$ are supplied.
 
 ## Worked Acceleration Bound
@@ -220,12 +250,16 @@ $$
 \le
 \frac{2G_{\mathrm{eff}}(\theta)M d_0}{R^3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5f1d153305299ef6)
 For a white acceleration readout covariance $N(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_a\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability obeys
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \le
 \frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T_W}{R^6S_a}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-574ade487f4f363b)
 With benchmark values
 $$
 M=10^{-14}\,\mathrm{kg},\qquad
@@ -233,10 +267,14 @@ d_0=10^{-6}\,\mathrm{m},\qquad
 R=10^{-3}\,\mathrm{m},\qquad
 T_W=1\,\mathrm{s}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-054b99eaa3208ed3)
 and an aggressive acceleration-noise amplitude
 $$
 S_a^{1/2}=10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7830ae65acb464c1)
 the bound is
 $$
 \mathcal{D}_{\mathrm{grav}}
@@ -250,6 +288,8 @@ $$
 \frac{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}{S_a^{1/2}}
 \right)^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-966cd853ccca3102)
 For a which-path threshold of order unity, this run is deep in the weak-probe class. Solving the same bound for the mass needed to reach $\mathcal{D}_{\mathrm{grav}}\sim\varepsilon_{\mathrm{wp}}$ gives
 $$
 M_{\mathrm{crit}}
@@ -257,6 +297,8 @@ M_{\mathrm{crit}}
 \frac{R^3}{2G_{\mathrm{eff}}(\theta)d_0}
 \sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T_W}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-67400247e859d41c)
 or, in the same benchmark geometry,
 $$
 M_{\mathrm{crit}}
@@ -270,6 +312,8 @@ M_{\mathrm{crit}}
 \right)
 \left(\frac{1\,\mathrm{s}}{T_W}\right)^{1/2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cba1f5370733d869)
 This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
 
 ## Acceptance Criteria
@@ -280,6 +324,8 @@ $$
 \le
 \varepsilon_{\mathrm{wp}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-baf70e8bcbab6b6a)
 For a mediated-entanglement run, the same record must also satisfy
 $$
 C_{\mathrm{GIE}}(T_W;\theta)
@@ -290,6 +336,8 @@ C_{\mathrm{obs}}-\varepsilon_C,
 \le
 \varepsilon_{\mathrm{iso}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f6c04406d9dbf53e)
 This combined gate preserves the observable without overclaiming the interpretation: the run tests whether the retained gravity-side constitutive record can generate the observed branch correlation while avoiding premature which-path record formation.
 
 If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
@@ -301,6 +349,8 @@ $$
 \le
 \varepsilon_{\mathrm{rec}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bd4cb4ebf205ebde)
 The failure condition is strict. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while interference visibility remains high and no record-autonomy condition is satisfied, the effective-metric response has overproduced observable which-path information.
 
 The same $\theta$ must also remain compatible with the gravity-side ledger: redshift, Shapiro delay, lensing, PPN parameters, gravitational-wave speed, dispersion, detector-mode bounds, and compact-source ring/shadow extrapolations. A parameter set that fits the massive-superposition channel only by changing the weak-field metric record is not a valid closure.
@@ -323,6 +373,8 @@ C_{\mathrm{GIE}},
 \Delta_{\mathrm{rec}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3454fb0e13ca120b)
 The inputs are the branch mass scale, packet width, separation history, coherence window, detector response kernel, covariance decomposition, record variable, separatrix, and two-probe branch histories when present. The outputs are the gravitational distinguishability, interference visibility, entangling phase, mediated-entanglement witness, finite measurement time, and record-autonomy residual.
 
 The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{grav}}$ estimate. The mediated-entanglement comparison supplies the first branch-phase target. Full packet closure still requires one numerical or analytic instance that computes the retained outputs from a shared constitutive record and reports whether the branch pair is weak-probe, mediated-entangling, record-forming, or falsifying.

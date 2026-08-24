@@ -121,6 +121,8 @@ Default paragraph pattern:
 
 Prefer medium-length paragraphs. Avoid both one-sentence fragment chains and extremely long blocks unless the material genuinely requires them.
 
+In Markdown source, keep each prose paragraph and each prose-bearing list item on one physical line. Do not manually hard-wrap prose to a fixed column. Retain separate physical lines only where Markdown structure, display mathematics, code, tables, quotations, or an intentional explicit hard break requires them.
+
 ## Heading Standard
 
 Use headings to organize instruction, not merely to decorate the page.

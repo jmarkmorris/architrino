@@ -32,11 +32,15 @@ $$
 \mu^-\to e^-+\bar\nu_e+\nu_\mu
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eaa485f10839e7a4)
+
 and
 
 $$
 \tau^-\to \ell^-+\bar\nu_\ell+\nu_\tau
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bf46346f045e945f)
 
 are observer-level event-ledger targets. Here $\ell\in\{e,\mu\}$ in the tau channel. These channels do not prove that a heavier lepton simply turns into lighter particles by label replacement. A closed $\mathbb{A}\mathbb{A}\mathbb{A}$ record must identify the incoming heavy charged-lepton branch, the finite $W^-$ corridor transaction, the outgoing charged-lepton axial inventory, the neutral-lepton near-photon weak ledgers, and every recoil or medium row needed for energy, momentum, angular momentum, charge, and identity routing. The associated generation step must also satisfy the scaffold-count ledger in [Quantum Number Mapping](./quantum-number-mapping.md#generation-step-scaffold-ledger).
 

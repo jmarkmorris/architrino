@@ -1,28 +1,14 @@
 # Master-Equation Closure Work Queue
 
-This is the canonical execution ledger for the characteristic-tail action
-adjudication, the three coupled Master-Equation closure obligations, and the
-pairwise causal-root accounting, receiver-gradient, and mirror close-approach
-boundary foundations needed to audit conserved-account maps without duplicate
-attribution, an incomplete acceleration operator, or an unowned singular
-encounter.
+This is the canonical execution ledger for the characteristic-tail action adjudication, the three coupled Master-Equation closure obligations, and the pairwise causal-root accounting, receiver-gradient, and mirror close-approach boundary foundations needed to audit conserved-account maps without duplicate attribution, an incomplete acceleration operator, or an unowned singular encounter.
 
 Review provenance: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../research-office/research-history/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md) routes its variational and same-update balance questions to `MEC-001`, `MEC-002`, and `MEC-004`; it supplies no action, wake state, conserved account, or status change.
 
-Review provenance: [Causal Wake-State Closure Research Findings and Proposed
-Incorporation](../../research-office/research-history/review-packets/terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md)
-routes its representation, observation, booking, event, boundary,
-well-posedness, account, root-provenance, and acceleration-operator questions
-to `MEC-002` through `MEC-005` and `MEC-001` as recorded below; it supplies no
-constitutive update, accepted account closure, or status change.
+Review provenance: [Causal Wake-State Closure Research Findings and Proposed Incorporation](../../research-office/research-history/review-packets/terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md) routes its representation, observation, booking, event, boundary, well-posedness, account, root-provenance, and acceleration-operator questions to `MEC-002` through `MEC-005` and `MEC-001` as recorded below; it supplies no constitutive update, accepted account closure, or status change.
 
 ## Wake-Reception Review Action Register
 
-This register owns every deferred action from [Wake Reception Transfer, Motion
-Accounts, and Coincident-Birth
-Maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md).
-It creates no priority object and changes no status. The review packet is
-reference evidence; execution belongs to the existing MEC owners below.
+This register owns every deferred action from [Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md). It creates no priority object and changes no status. The review packet is reference evidence; execution belongs to the existing MEC owners below.
 
 | Packet item | Live owner and current status | Acceptance action |
 | --- | --- | --- |
@@ -47,10 +33,7 @@ reference evidence; execution belongs to the existing MEC owners below.
 | Momentum closure under the angular-pin assumptions | MEC-004, `Deferred / blocked`, after MEC-005 | Execute Leg 3 with nonsymmetric root provenance and require the same update to close momentum and angular momentum. |
 | Finite-core regulators in the admitted class | MEC-003, `Deferred / blocked`; MEC-001, `Awaiting verification`, only if the candidate changes the action-level self core | Predeclare the regulator class and require identical birth impulse and continuation under refinement; separately amend and vary any changed action candidate before citing it. |
 
-Plainly: every deferred review question now has a live owner and a test.
-Cross-owner rows are handoffs between existing obligations, not new queues.
-MEC-006 is a conditional derivative dependency, while MEC-007 separately owns
-the mirror close-approach causal-root boundary program.
+Plainly: every deferred review question now has a live owner and a test. Cross-owner rows are handoffs between existing obligations, not new queues. MEC-006 is a conditional derivative dependency, while MEC-007 separately owns the mirror close-approach causal-root boundary program.
 
 ## Ranked Next Objects
 
@@ -127,23 +110,10 @@ the mirror close-approach causal-root boundary program.
 
 - **Status:** Awaiting verification
 - **Priority object:** `characteristic_tail_action_adjudication`
-- **Request / acceptance:** Freeze one characteristic-tail candidate and
-  execute an independently checked complete receiver-plus-transmitter
-  variation before downstream simulation or promotion work.
-- **Evidence:** The receiver-gradient identity survives. Direct variation and
-  an independently authored finite-difference action check reproduce the
-  future-transmitter coefficient on the regular cross-worldline sector.
-- **Blocker:** `CT-FH-1` retains all nontrivial $i=j$, $t>s$ self-history terms
-  while excluding only $t=s$. For every $C^1$ history the separation approaches
-  zero at that diagonal, contradicting the declared positive separation floor,
-  and the finite-width kernel gives a nonintegrable self contribution. The
-  displayed static transverse histories are therefore not admissible histories
-  of the whole frozen action.
-- **Completion:** Freeze a finite self-diagonal or core prescription, name it
-  as a new candidate if it changes `CT-FH-1`, and independently vary that
-  complete functional. Record whether the future coefficient and transverse
-  control survive or are removed under the repaired pair, endpoint, and
-  variation conventions, then issue `CONFIRMED` or `OVERTURNED`.
+- **Request / acceptance:** Freeze one characteristic-tail candidate and execute an independently checked complete receiver-plus-transmitter variation before downstream simulation or promotion work.
+- **Evidence:** The receiver-gradient identity survives. Direct variation and an independently authored finite-difference action check reproduce the future-transmitter coefficient on the regular cross-worldline sector.
+- **Blocker:** `CT-FH-1` retains all nontrivial $i=j$, $t>s$ self-history terms while excluding only $t=s$. For every $C^1$ history the separation approaches zero at that diagonal, contradicting the declared positive separation floor, and the finite-width kernel gives a nonintegrable self contribution. The displayed static transverse histories are therefore not admissible histories of the whole frozen action.
+- **Completion:** Freeze a finite self-diagonal or core prescription, name it as a new candidate if it changes `CT-FH-1`, and independently vary that complete functional. Record whether the future coefficient and transverse control survive or are removed under the repaired pair, endpoint, and variation conventions, then issue `CONFIRMED` or `OVERTURNED`.
 
 ## Verified
 

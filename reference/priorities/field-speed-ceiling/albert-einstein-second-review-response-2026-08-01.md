@@ -1,26 +1,12 @@
 # Albert Einstein Second Field-Speed Ceiling Review Response
 
-**Review identifier:** `FSC-001-AE2-2026-08-01`
-**Review source:** [complete Albert Einstein second review](albert-einstein-second-review-2026-08-01.md)
-**Reviewer lens:** [Albert Einstein specialist role](../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md)
-**Response date:** 2026-08-01
-**Response authority:** independent mathematical disposition and scoped packet
-integration
-**Theory status:** no ceiling, contact law, continuation, contact measure,
-Lorentz result, retained assembly, or canonical change adopted or advanced
+**Review identifier:** `FSC-001-AE2-2026-08-01` **Review source:** [complete Albert Einstein second review](albert-einstein-second-review-2026-08-01.md) **Reviewer lens:** [Albert Einstein specialist role](../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md) **Response date:** 2026-08-01 **Response authority:** independent mathematical disposition and scoped packet integration **Theory status:** no ceiling, contact law, continuation, contact measure, Lorentz result, retained assembly, or canonical change adopted or advanced
 
 ## Response method
 
-The second-review source is preserved unchanged. Every integration-audit item,
-new theorem, program reformulation, and structural observation receives an
-explicit disposition below. The numerical spot-checks remain nondurable
-float64 diagnostics and are not promoted as evidence.
+The second-review source is preserved unchanged. Every integration-audit item, new theorem, program reformulation, and structural observation receives an explicit disposition below. The numerical spot-checks remain nondurable float64 diagnostics and are not promoted as evidence.
 
-Plainly: the second pass supplies useful exact geometry and two strong change-
-of-variable estimates. This response keeps those results while refusing three
-shortcuts: leading-term cancellation is not a full finite-measure theorem,
-per-channel root classification is not a complete event law, and one
-conditional encounter is not the only possible ceiling-activation test.
+Plainly: the second pass supplies useful exact geometry and two strong change- of-variable estimates. This response keeps those results while refusing three shortcuts: leading-term cancellation is not a full finite-measure theorem, per-channel root classification is not a complete event law, and one conditional encounter is not the only possible ceiling-activation test.
 
 ## Finding dispositions
 
@@ -39,10 +25,7 @@ conditional encounter is not the only possible ceiling-activation test.
 | 6. MEC-007 falsifiability gate | **Partially accepted; exclusivity rejected.** | A ceiling differs from the open law only on histories that reach or start on the boundary. MEC-007 is the packet's current conditional finite-time activation test for sub-cap mirror data and remains `Awaiting verification`. It is not the only possible activating history, and failure of this one encounter would not make the ceiling globally unfalsifiable. |
 | 7. One-sided zero-range problem | **Accepted only for the proved conditional charts.** | On the half-open incoming cap segment, the forward partner contribution is removed after each finite ledger is formed. The exact contact still has no ordinary ledger value and uses a separate proposed reset. On the prescribed straight separating trace, the backward $\delta^{-2}$ contribution is retained. Extending that outgoing conclusion to every separating trace remains FSC-005. |
 
-Plainly: the strongest new result is the exact per-channel geometry. The
-strongest program reduction is the TV-transfer identity, which separates a
-finite far part from the mirror chart's zero-range tail. Neither result chooses
-what an event does.
+Plainly: the strongest new result is the exact per-channel geometry. The strongest program reduction is the TV-transfer identity, which separates a finite far part from the mirror chart's zero-range tail. Neither result chooses what an event does.
 
 ## Correct finite-ledger response statement
 
@@ -54,8 +37,7 @@ $$
 \min(a_\parallel,0)\hat{\mathbf v}+\mathbf A_\perp
 $$
 
-where $a_\parallel=\hat{\mathbf v}\mathbin{\cdot}\mathbf A$. Orthogonality and
-the scalar $1$-Lipschitz map $x\mapsto\min(x,0)$ give
+where $a_\parallel=\hat{\mathbf v}\mathbin{\cdot}\mathbf A$. Orthogonality and the scalar $1$-Lipschitz map $x\mapsto\min(x,0)$ give
 
 $$
 \|\mathcal W_{\mathbf V}(\mathbf A)
@@ -64,11 +46,7 @@ $$
 \|\mathbf A-\mathbf B\|.
 $$
 
-If $\hat{\mathbf v}^{(n)}\to\hat{\mathbf v}$, every $\mathbf A^{(n)}$ is a
-finite ledger, and the transverse vectors and retained backward scalars are
-defined relative to $\hat{\mathbf v}^{(n)}$, then the effective responses
-converge exactly when those two components converge. This statement neither
-requires nor defines an infinite-ledger response.
+If $\hat{\mathbf v}^{(n)}\to\hat{\mathbf v}$, every $\mathbf A^{(n)}$ is a finite ledger, and the transverse vectors and retained backward scalars are defined relative to $\hat{\mathbf v}^{(n)}$, then the effective responses converge exactly when those two components converge. This statement neither requires nor defines an infinite-ledger response.
 
 For a leading FSC-005 coefficient,
 
@@ -80,18 +58,13 @@ $$
 \lambda\ge0.
 $$
 
-This equivalence removes the leading $\delta^{-2}$ obstruction only. A finite
-effective Radon measure additionally requires locally integrable control of
-the projected remainder.
+This equivalence removes the leading $\delta^{-2}$ obstruction only. A finite effective Radon measure additionally requires locally integrable control of the projected remainder.
 
-Plainly: the cap can erase an arbitrarily large forward leading term from each
-legitimate finite ledger. It cannot erase an uncontrolled sideways or
-backward remainder, and the cancellation does not create a measure at contact.
+Plainly: the cap can erase an arbitrarily large forward leading term from each legitimate finite ledger. It cannot erase an uncontrolled sideways or backward remainder, and the cancellation does not create a measure at contact.
 
 ## Correct FSC-006 split
 
-On a simple branch $S(T)$ for which $D_t,D_r>0$, change variables from reception
-time to emission time:
+On a simple branch $S(T)$ for which $D_t,D_r>0$, change variables from reception time to emission time:
 
 $$
 \int_B
@@ -101,39 +74,20 @@ $$
 \frac{\|\mathbf K(T(S),s)\|}{D_r(T(S),s)}\,ds.
 $$
 
-Thus a positive range floor and a positive $D_r$ floor give uniform total-
-variation control independent of a vanishing $D_t$ floor. In the declared
-mirror-contact geometry, $D_r=2c_f$ and
-$r=c_f(T_{\mathrm c}-s)$, so the transferred density is proportional to
-$(T_{\mathrm c}-s)^{-2}$. Every truncation
-$s\le T_{\mathrm c}-\rho$ is finite, while the limit $\rho\downarrow0$ diverges.
+Thus a positive range floor and a positive $D_r$ floor give uniform total- variation control independent of a vanishing $D_t$ floor. In the declared mirror-contact geometry, $D_r=2c_f$ and $r=c_f(T_{\mathrm c}-s)$, so the transferred density is proportional to $(T_{\mathrm c}-s)^{-2}$. Every truncation $s\le T_{\mathrm c}-\rho$ is finite, while the limit $\rho\downarrow0$ diverges.
 
-Claim grade: `derived for the transfer identity and mirror localization`.
-FSC-006a must still prove the proposed far-part weak-* limit under explicit
-uniform branch-collapse, receiver left-trace convergence, kernel convergence,
-label retention, and competing-stratum assumptions. FSC-006b/FSC-005 owns the
-remaining zero-range tail and complete-ledger sign calculation.
+Claim grade: `derived for the transfer identity and mirror localization`. FSC-006a must still prove the proposed far-part weak-* limit under explicit uniform branch-collapse, receiver left-trace convergence, kernel convergence, label retention, and competing-stratum assumptions. FSC-006b/FSC-005 owns the remaining zero-range tail and complete-ledger sign calculation.
 
-Plainly: the small transmitter Jacobian makes the instantaneous row large, but
-it also compresses the receiver-time window carrying that row. Away from zero
-range those effects cancel in total variation. The inverse-square endpoint is
-the remaining mirror-contact singularity.
+Plainly: the small transmitter Jacobian makes the instantaneous row large, but it also compresses the receiver-time window carrying that row. Away from zero range those effects cancel in total variation. The inverse-square endpoint is the remaining mirror-contact singularity.
 
 ## Readiness and queue effect
 
 - FSC-006a is the immediate narrow theorem target; it is not yet a result.
-- FSC-006b/FSC-005 owns the joint zero-range problem, including both channels,
-  leading and remainder control, competing strata, and response sign.
-- FSC-007 uses automatic per-channel root count and the root-stability lemma,
-  but still needs the row-gradient and contraction proof.
-- MEC-007 remains a conditional activation test. FSC-008 remains blocked on a
-  verified activating history, FSC-006/FSC-007, and an emergent boost map.
-- The event-law obligation now has a finite per-channel geometry catalogue,
-  while all dispositions remain unselected outside the one narrow collinear
-  postulate.
+- FSC-006b/FSC-005 owns the joint zero-range problem, including both channels, leading and remainder control, competing strata, and response sign.
+- FSC-007 uses automatic per-channel root count and the root-stability lemma, but still needs the row-gradient and contraction proof.
+- MEC-007 remains a conditional activation test. FSC-008 remains blocked on a verified activating history, FSC-006/FSC-007, and an emergent boost map.
+- The event-law obligation now has a finite per-channel geometry catalogue, while all dispositions remain unselected outside the one narrow collinear postulate.
 
 No successor reviewer was contacted or started.
 
-Closure goal: prove FSC-006a's far-part limit with the added trace and branch-
-collapse hypotheses, then resolve the joint FSC-006b/FSC-005 zero-range tail
-without applying the response to an infinite raw ledger.
+Closure goal: prove FSC-006a's far-part limit with the added trace and branch- collapse hypotheses, then resolve the joint FSC-006b/FSC-005 zero-range tail without applying the response to an infinite raw ledger.

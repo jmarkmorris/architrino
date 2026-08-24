@@ -5,6 +5,10 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { loadVendoredCommonJsBundle } from "./load-vendored-commonjs-bundle.mjs";
+import {
+  ARCHITRINO_WEB_BASE_URL,
+  toArchitrinoWebUrl,
+} from "./ios-textbook-link-routing.mjs";
 
 const ROOT_DIR = process.cwd();
 const TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
@@ -21,7 +25,6 @@ const PACKAGE_VERSION_PREFIX = "1.0.0";
 const SEARCH_SNIPPET_LENGTH = 220;
 const SEARCH_MARKDOWN_SNIPPET_LENGTH = 360;
 const SEARCH_INDEX_SCHEMA_VERSION = 1;
-const ARCHITRINO_WEB_BASE_URL = "https://architrino.com";
 const REFERENCE_MARKDOWN_DOCUMENTS = [
   {
     id: "archie-terminology-usage",
@@ -989,21 +992,6 @@ function resolveLink(sourceMarkdownPath, target) {
     resolvedPath: normalizeRelPath(rel),
     ext: path.extname(rel).toLowerCase(),
   };
-}
-
-function toArchitrinoWebUrl(rawTarget, resolvedPath) {
-  const trimmed = String(rawTarget || "").trim();
-  const anchorMatch = trimmed.split("#", 2);
-  const anchor = anchorMatch.length > 1 ? `#${anchorMatch[1]}` : "";
-  const targetBasename = path.basename(String(resolvedPath || "").trim(), path.extname(resolvedPath || ""));
-  const slug = targetBasename ? targetBasename.toLowerCase() : "";
-  if (!slug) {
-    return null;
-  }
-  if (slug === "ideal-braid") {
-    return `${ARCHITRINO_WEB_BASE_URL}/ideal-braid${anchor}`;
-  }
-  return `${ARCHITRINO_WEB_BASE_URL}/${slug}${anchor}`;
 }
 
 function toArchitrinoSceneWebUrl(resolvedPath) {

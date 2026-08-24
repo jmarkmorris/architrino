@@ -15,6 +15,8 @@ $$
 Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-209d4a0656bd323e)
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 
 Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it investigates horizon structure as a candidate constitutive interface along the prescribed Family-A response: three binary axes run from mutual orthogonality toward the group-translation direction as $\lambda_A$ increases. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself. The black-hole assignment, dynamics, stability, and retention remain unproved.

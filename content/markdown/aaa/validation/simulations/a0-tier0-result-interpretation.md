@@ -35,6 +35,8 @@ For this protocol only, the source-record layer aliases map to persistent indice
 $$
 I\leftrightarrow1,\qquad M\leftrightarrow2,\qquad O\leftrightarrow3.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cf884bbe20f012b6)
 The machine-readable fields use persistent indices. The aliases describe the declared radial role on this one chart and do not relabel the taxonomy.
 
 | `z_lambda` entry | Row semantics |
@@ -81,6 +83,8 @@ $$
 \mathcal{R}_{\text{Floquet}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae45d430bea6eace)
 Each entry carries value, tolerance, status, role, and note fields. The companion `residual_values` object mirrors only the values; omitted Tier 0 components remain null rather than disappearing.
 
 The Tier 0 residual surface deliberately includes entries that are not computed at Tier 0:
@@ -157,6 +161,8 @@ $$
 \text{eligible for Tier 1 continuation}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2ce658272c030da8)
+
 not
 
 $$
@@ -164,5 +170,7 @@ $$
 \quad\Longrightarrow\quad
 \text{accepted } A_0 \text{ attractor}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04837b449761ec48)
 
 This boundary is the main protection against premature mass-map promotion.

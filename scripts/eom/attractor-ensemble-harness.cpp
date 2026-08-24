@@ -124,6 +124,8 @@ struct SeedRow {
   double phase;
   double speed;
   int sense;
+  double tilt_x = 0.0;
+  double tilt_y = 0.0;
 };
 
 // phase0-shell-v1 declared seed family (identical constants to the Phase 0
@@ -149,6 +151,100 @@ std::vector<SeedRow> seed_rows(std::size_t population, std::size_t offset) {
     row.speed = 0.35 + 0.30 * lds(k, kAlphaSpeed);
     row.sense = lds(k, kAlphaSense) < 0.5 ? 1 : -1;
     rows.push_back(row);
+  }
+  return rows;
+}
+
+std::vector<SeedRow> f6c_balanced_tetrahedral_rows(
+    double positive_rate, double negative_rate, double negative_theta,
+    double breathing_rate, double cycle_phase, double positive_h_amplitude,
+    double negative_h_amplitude, double positive_rho_amplitude,
+    double negative_rho_amplitude, double positive_phase_amplitude,
+    double negative_phase_amplitude, double positive_h_phase_offset,
+    double negative_h_phase_offset, double positive_rho_phase_offset,
+    double negative_rho_phase_offset) {
+  constexpr double kScale = 0.3;
+  constexpr std::array<std::array<double, 3>, 4> kAxes = {{
+      {{1.0, 1.0, 1.0}},
+      {{1.0, -1.0, -1.0}},
+      {{-1.0, 1.0, -1.0}},
+      {{-1.0, -1.0, 1.0}},
+  }};
+  constexpr std::array<int, 4> kCirculationSigns = {-1, -1, 1, 1};
+  constexpr std::array<double, 4> kPhases = {
+      0.0, kPi, 4.0 * kPi / 3.0, kPi / 3.0};
+  std::vector<SeedRow> rows;
+  rows.reserve(8U);
+  for (std::size_t module = 0; module < kAxes.size(); ++module) {
+    const double inverse_norm = 1.0 / std::sqrt(3.0);
+    const double nx = kAxes[module][0] * inverse_norm;
+    const double ny = kAxes[module][1] * inverse_norm;
+    const double nz = kAxes[module][2] * inverse_norm;
+    const double tilt_x = -std::asin(ny);
+    const double tilt_y = std::atan2(nx, nz);
+    const double cos_x = std::cos(tilt_x);
+    const double sin_x = std::sin(tilt_x);
+    const double cos_y = std::cos(tilt_y);
+    const double sin_y = std::sin(tilt_y);
+    const double transverse_norm = std::hypot(nx, ny);
+    const std::array<double, 3> desired_u = {
+        -ny / transverse_norm, nx / transverse_norm, 0.0};
+    const std::array<double, 3> rotated_x = {cos_y, 0.0, -sin_y};
+    const std::array<double, 3> rotated_y = {
+        sin_y * sin_x, cos_x, cos_y * sin_x};
+    const auto dot3 = [](const auto& left, const auto& right) {
+      return left[0] * right[0] + left[1] * right[1] +
+          left[2] * right[2];
+    };
+    const double frame_phase = std::atan2(
+        dot3(rotated_y, desired_u), dot3(rotated_x, desired_u));
+    for (const int polarity : {+1, -1}) {
+      const double rate = polarity > 0 ? positive_rate : negative_rate;
+      const double h_amplitude = polarity > 0
+          ? positive_h_amplitude : negative_h_amplitude;
+      const double rho_amplitude = polarity > 0
+          ? positive_rho_amplitude : negative_rho_amplitude;
+      const double phase_amplitude = polarity > 0
+          ? positive_phase_amplitude : negative_phase_amplitude;
+      const double h_phase_offset = polarity > 0
+          ? positive_h_phase_offset : negative_h_phase_offset;
+      const double rho_phase_offset = polarity > 0
+          ? positive_rho_phase_offset : negative_rho_phase_offset;
+      const double endpoint_h =
+          kScale + h_amplitude * std::sin(cycle_phase + h_phase_offset);
+      const double endpoint_rho =
+          kScale + rho_amplitude * std::sin(cycle_phase + rho_phase_offset);
+      const double endpoint_h_rate =
+          h_amplitude * breathing_rate *
+              std::cos(cycle_phase + h_phase_offset);
+      const double endpoint_rho_rate =
+          rho_amplitude * breathing_rate *
+              std::cos(cycle_phase + rho_phase_offset);
+      const double endpoint_theta_rate =
+          rate - phase_amplitude * breathing_rate * std::sin(cycle_phase);
+      const double endpoint_speed = std::sqrt(
+          std::pow(endpoint_rho * endpoint_theta_rate, 2) +
+          std::pow(endpoint_h_rate, 2) +
+          std::pow(endpoint_rho_rate, 2));
+      const double sector_theta =
+          cycle_phase + phase_amplitude * std::cos(cycle_phase) +
+          (polarity > 0 ? 0.0 : negative_theta);
+      const double sector_phase =
+          static_cast<double>(polarity * kCirculationSigns[module]) *
+          sector_theta;
+      rows.push_back({
+          std::to_string(module) + (polarity > 0 ? "+" : "-"),
+          polarity > 0 ? kCharge : kNegativeCharge,
+          endpoint_rho,
+          static_cast<double>(polarity) * endpoint_h,
+          kPhases[module] + frame_phase + sector_phase,
+          endpoint_speed,
+          (endpoint_theta_rate >= 0.0 ? 1 : -1) * polarity *
+              kCirculationSigns[module],
+          tilt_x,
+          tilt_y,
+      });
+    }
   }
   return rows;
 }
@@ -395,9 +491,205 @@ eom::RetainedHistory circular_history(
           .angular_speed = token(angular_speed),
           .tangential_speed = token(row.speed),
           .phase = token(row.phase),
-          .tilt_x = "0",
-          .tilt_y = "0",
+          .tilt_x = token(row.tilt_x),
+          .tilt_y = token(row.tilt_y),
       });
+}
+
+struct F6cHarmonicState {
+  Vector3 position;
+  Vector3 velocity;
+};
+
+F6cHarmonicState f6c_harmonic_state(
+    std::size_t module, int polarity, double time,
+    double positive_rate, double negative_rate, double negative_theta,
+    double breathing_rate, double cycle_phase, double positive_h_amplitude,
+    double negative_h_amplitude, double positive_rho_amplitude,
+    double negative_rho_amplitude, double positive_phase_amplitude,
+    double negative_phase_amplitude, double positive_h_phase_offset,
+    double negative_h_phase_offset, double positive_rho_phase_offset,
+    double negative_rho_phase_offset) {
+  constexpr double kScale = 0.3;
+  constexpr std::array<std::array<double, 3>, 4> kAxes = {{
+      {{1.0, 1.0, 1.0}},
+      {{1.0, -1.0, -1.0}},
+      {{-1.0, 1.0, -1.0}},
+      {{-1.0, -1.0, 1.0}},
+  }};
+  constexpr std::array<int, 4> kCirculationSigns = {-1, -1, 1, 1};
+  constexpr std::array<double, 4> kPhases = {
+      0.0, kPi, 4.0 * kPi / 3.0, kPi / 3.0};
+  const double inverse_norm = 1.0 / std::sqrt(3.0);
+  const std::array<double, 3> axis = {
+      kAxes[module][0] * inverse_norm,
+      kAxes[module][1] * inverse_norm,
+      kAxes[module][2] * inverse_norm,
+  };
+  const double transverse_norm = std::hypot(axis[0], axis[1]);
+  const std::array<double, 3> local_u = {
+      -axis[1] / transverse_norm,
+      axis[0] / transverse_norm,
+      0.0,
+  };
+  const std::array<double, 3> local_v = {
+      axis[1] * local_u[2] - axis[2] * local_u[1],
+      axis[2] * local_u[0] - axis[0] * local_u[2],
+      axis[0] * local_u[1] - axis[1] * local_u[0],
+  };
+  const double angular_rate = polarity > 0 ? positive_rate : negative_rate;
+  const double h_amplitude = polarity > 0
+      ? positive_h_amplitude : negative_h_amplitude;
+  const double rho_amplitude = polarity > 0
+      ? positive_rho_amplitude : negative_rho_amplitude;
+  const double phase_amplitude = polarity > 0
+      ? positive_phase_amplitude : negative_phase_amplitude;
+  const double h_phase_offset = polarity > 0
+      ? positive_h_phase_offset : negative_h_phase_offset;
+  const double rho_phase_offset = polarity > 0
+      ? positive_rho_phase_offset : negative_rho_phase_offset;
+  const double breathing_argument = breathing_rate * time + cycle_phase;
+  const double h_argument = breathing_argument + h_phase_offset;
+  const double rho_argument = breathing_argument + rho_phase_offset;
+  const double h = kScale + h_amplitude * std::sin(h_argument);
+  const double rho =
+      kScale + rho_amplitude * std::sin(rho_argument);
+  const double h_rate =
+      h_amplitude * breathing_rate * std::cos(h_argument);
+  const double rho_rate =
+      rho_amplitude * breathing_rate * std::cos(rho_argument);
+  const double theta = angular_rate * time + cycle_phase +
+      phase_amplitude * std::cos(breathing_argument) +
+      (polarity > 0 ? 0.0 : negative_theta);
+  const double theta_rate = angular_rate -
+      phase_amplitude * breathing_rate * std::sin(breathing_argument);
+  const double psi = kPhases[module] +
+      static_cast<double>(polarity * kCirculationSigns[module]) * theta;
+  const double psi_rate =
+      static_cast<double>(polarity * kCirculationSigns[module]) * theta_rate;
+  const std::array<double, 3> radial = {
+      local_u[0] * std::cos(psi) + local_v[0] * std::sin(psi),
+      local_u[1] * std::cos(psi) + local_v[1] * std::sin(psi),
+      local_u[2] * std::cos(psi) + local_v[2] * std::sin(psi),
+  };
+  const std::array<double, 3> tangent = {
+      -local_u[0] * std::sin(psi) + local_v[0] * std::cos(psi),
+      -local_u[1] * std::sin(psi) + local_v[1] * std::cos(psi),
+      -local_u[2] * std::sin(psi) + local_v[2] * std::cos(psi),
+  };
+  F6cHarmonicState result;
+  result.position = {
+      static_cast<double>(polarity) * h * axis[0] + rho * radial[0],
+      static_cast<double>(polarity) * h * axis[1] + rho * radial[1],
+      static_cast<double>(polarity) * h * axis[2] + rho * radial[2],
+  };
+  result.velocity = {
+      static_cast<double>(polarity) * h_rate * axis[0] +
+          rho_rate * radial[0] + rho * psi_rate * tangent[0],
+      static_cast<double>(polarity) * h_rate * axis[1] +
+          rho_rate * radial[1] + rho * psi_rate * tangent[1],
+      static_cast<double>(polarity) * h_rate * axis[2] +
+          rho_rate * radial[2] + rho * psi_rate * tangent[2],
+  };
+  return result;
+}
+
+eom::RetainedHistory f6c_harmonic_history(
+    const SeedRow& row, std::size_t module, int polarity, double depth,
+    double segment_step, double positive_rate, double negative_rate,
+    double negative_theta, double breathing_rate, double cycle_phase,
+    double positive_h_amplitude, double negative_h_amplitude,
+    double positive_rho_amplitude, double negative_rho_amplitude,
+    double positive_phase_amplitude, double negative_phase_amplitude,
+    double positive_h_phase_offset, double negative_h_phase_offset,
+    double positive_rho_phase_offset, double negative_rho_phase_offset) {
+  const std::size_t segment_count = static_cast<std::size_t>(
+      std::ceil(depth / segment_step));
+  const double step = depth / static_cast<double>(segment_count);
+  const double angular_rate = polarity > 0 ? positive_rate : negative_rate;
+  const double h_amplitude = polarity > 0
+      ? positive_h_amplitude : negative_h_amplitude;
+  const double rho_amplitude = polarity > 0
+      ? positive_rho_amplitude : negative_rho_amplitude;
+  const double phase_amplitude = polarity > 0
+      ? positive_phase_amplitude : negative_phase_amplitude;
+  const double maximum_radius = 0.3 + std::abs(rho_amplitude);
+  const double breathing = std::abs(breathing_rate);
+  const double phase_one =
+      std::abs(angular_rate) + std::abs(phase_amplitude) * breathing;
+  const double phase_two = std::abs(phase_amplitude) * std::pow(breathing, 2);
+  const double phase_three = std::abs(phase_amplitude) * std::pow(breathing, 3);
+  const double phase_four = std::abs(phase_amplitude) * std::pow(breathing, 4);
+  const double radius_one = std::abs(rho_amplitude) * breathing;
+  const double radius_two = std::abs(rho_amplitude) * std::pow(breathing, 2);
+  const double radius_three = std::abs(rho_amplitude) * std::pow(breathing, 3);
+  const double radius_four = std::abs(rho_amplitude) * std::pow(breathing, 4);
+  const double fourth_derivative_bound =
+      std::abs(h_amplitude) * std::pow(breathing, 4) +
+      radius_four + 4.0 * phase_one * radius_three +
+      (6.0 * phase_two + 6.0 * std::pow(phase_one, 2)) * radius_two +
+      (4.0 * phase_three + 12.0 * phase_one * phase_two +
+       4.0 * std::pow(phase_one, 3)) * radius_one +
+      (phase_four + 4.0 * phase_one * phase_three +
+       3.0 * std::pow(phase_two, 2) +
+       6.0 * std::pow(phase_one, 2) * phase_two +
+       std::pow(phase_one, 4)) * maximum_radius;
+  const double position_error =
+      fourth_derivative_bound * std::pow(step, 4) / 384.0 + 1e-12;
+  const double velocity_error =
+      fourth_derivative_bound * std::pow(step, 3) + 1e-11;
+  std::vector<eom::CubicHistorySegment> segments;
+  segments.reserve(segment_count);
+  for (std::size_t index = 0; index < segment_count; ++index) {
+    const double start = -depth + static_cast<double>(index) * step;
+    const double end = index + 1U == segment_count
+        ? 0.0
+        : -depth + static_cast<double>(index + 1U) * step;
+    const double duration = end - start;
+    const auto left = f6c_harmonic_state(
+        module, polarity, start, positive_rate, negative_rate,
+        negative_theta, breathing_rate, cycle_phase, positive_h_amplitude,
+        negative_h_amplitude, positive_rho_amplitude,
+        negative_rho_amplitude, positive_phase_amplitude,
+        negative_phase_amplitude, positive_h_phase_offset,
+        negative_h_phase_offset, positive_rho_phase_offset,
+        negative_rho_phase_offset);
+    const auto right = f6c_harmonic_state(
+        module, polarity, end, positive_rate, negative_rate,
+        negative_theta, breathing_rate, cycle_phase, positive_h_amplitude,
+        negative_h_amplitude, positive_rho_amplitude,
+        negative_rho_amplitude, positive_phase_amplitude,
+        negative_phase_amplitude, positive_h_phase_offset,
+        negative_h_phase_offset, positive_rho_phase_offset,
+        negative_rho_phase_offset);
+    const std::array<double, 3> left_position = {
+        left.position.x, left.position.y, left.position.z};
+    const std::array<double, 3> left_velocity = {
+        left.velocity.x, left.velocity.y, left.velocity.z};
+    const std::array<double, 3> right_position = {
+        right.position.x, right.position.y, right.position.z};
+    const std::array<double, 3> right_velocity = {
+        right.velocity.x, right.velocity.y, right.velocity.z};
+    eom::CubicCoefficientTokens coefficients;
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const double displacement = right_position[axis] - left_position[axis];
+      coefficients[axis] = {
+          token(left_position[axis]),
+          token(left_velocity[axis]),
+          token((3.0 * displacement / duration -
+                 2.0 * left_velocity[axis] - right_velocity[axis]) /
+                duration),
+          token((-2.0 * displacement / duration +
+                 left_velocity[axis] + right_velocity[axis]) /
+                (duration * duration)),
+      };
+    }
+    segments.emplace_back(
+        token(start), token(end), coefficients,
+        token(position_error), token(velocity_error));
+  }
+  return eom::RetainedHistory(
+      row.path_id + "-harmonic-breathing-prehistory", std::move(segments));
 }
 
 // Straight constant-velocity prehistory arriving at the same release state:
@@ -508,6 +800,21 @@ struct Options {
   std::string prehistory = "circular";
   double binary_separation = 1.0;
   double binary_speed = 0.25;
+  double f6c_positive_rate = 1.0;
+  double f6c_negative_rate = 1.0;
+  double f6c_negative_theta = 0.0;
+  double f6c_breathing_rate = 0.0;
+  double f6c_cycle_phase = 0.0;
+  double f6c_positive_h_amplitude = 0.0;
+  double f6c_negative_h_amplitude = 0.0;
+  double f6c_positive_rho_amplitude = 0.0;
+  double f6c_negative_rho_amplitude = 0.0;
+  double f6c_positive_phase_amplitude = 0.0;
+  double f6c_negative_phase_amplitude = 0.0;
+  double f6c_positive_h_phase_offset = 0.0;
+  double f6c_negative_h_phase_offset = 0.0;
+  double f6c_positive_rho_phase_offset = 0.0;
+  double f6c_negative_rho_phase_offset = 0.0;
   std::string binary_angle = "0";
   std::string refinement = "R0";
   std::string campaign1_grid_manifest;
@@ -553,6 +860,21 @@ std::string harness_resume_fingerprint(
            options.prehistory,
            token(options.binary_separation),
            token(options.binary_speed),
+           token(options.f6c_positive_rate),
+           token(options.f6c_negative_rate),
+           token(options.f6c_negative_theta),
+           token(options.f6c_breathing_rate),
+           token(options.f6c_cycle_phase),
+           token(options.f6c_positive_h_amplitude),
+           token(options.f6c_negative_h_amplitude),
+           token(options.f6c_positive_rho_amplitude),
+           token(options.f6c_negative_rho_amplitude),
+           token(options.f6c_positive_phase_amplitude),
+           token(options.f6c_negative_phase_amplitude),
+           token(options.f6c_positive_h_phase_offset),
+           token(options.f6c_negative_h_phase_offset),
+           token(options.f6c_positive_rho_phase_offset),
+           token(options.f6c_negative_rho_phase_offset),
            options.binary_angle,
            options.refinement,
            token(options.step),
@@ -694,7 +1016,8 @@ void write_interval_vector(
 
 void write_release_acceleration_atomic(
     const std::filesystem::path& path,
-    const eom::NativeAccelerationSnapshotCertificate& snapshot) {
+    const eom::NativeAccelerationSnapshotCertificate& snapshot,
+    const std::string& schema) {
   const auto temporary_path = path.string() + ".tmp";
   std::ofstream output(temporary_path, std::ios::trunc);
   if (!output) {
@@ -702,7 +1025,9 @@ void write_release_acceleration_atomic(
         "failed to open release acceleration temporary file");
   }
   output << std::setprecision(17)
-         << "{\"schema\":\"stationary_binary_release_acceleration/v0\""
+         << "{\"schema\":";
+  write_json_string(output, schema);
+  output
          << ",\"evidenceBoundary\":"
             "\"EOM-solver diagnostic; not an independent oracle\""
          << ",\"status\":";
@@ -1326,6 +1651,51 @@ void write_census_row(
     }
     ++histogram[bin > 0 ? bin - 1 : 0];
   }
+  double maximum_root_time_pressure_ratio = 0.0;
+  double minimum_transmitter_factor_magnitude =
+      std::numeric_limits<double>::infinity();
+  double minimum_same_polarity_root_gap =
+      std::numeric_limits<double>::infinity();
+  double minimum_opposite_polarity_root_gap =
+      std::numeric_limits<double>::infinity();
+  std::size_t maximum_root_multiplicity = 0;
+  for (const auto& step : chunk.steps) {
+    if (step.status != "accepted" || !step.accepted_snapshot.has_value()) {
+      continue;
+    }
+    maximum_root_time_pressure_ratio = std::max(
+        maximum_root_time_pressure_ratio, step.root_time_pressure_ratio);
+    for (const auto& pair : step.accepted_snapshot->root_certificates) {
+      std::vector<std::pair<double, double>> brackets;
+      brackets.reserve(pair.certificate.roots.size());
+      for (const auto& root : pair.certificate.roots) {
+        const double lower = std::stod(root.lower);
+        const double upper = std::stod(root.upper);
+        brackets.emplace_back(lower, upper);
+        const double factor_lower = std::stod(
+            root.transmitter_factor_lower);
+        const double factor_upper = std::stod(
+            root.transmitter_factor_upper);
+        minimum_transmitter_factor_magnitude = std::min(
+            minimum_transmitter_factor_magnitude,
+            std::min(std::abs(factor_lower), std::abs(factor_upper)));
+      }
+      maximum_root_multiplicity = std::max(
+          maximum_root_multiplicity, brackets.size());
+      std::sort(brackets.begin(), brackets.end());
+      const bool same_polarity = !pair.receiver_path_id.empty() &&
+          !pair.transmitter_path_id.empty() &&
+          pair.receiver_path_id.back() == pair.transmitter_path_id.back();
+      for (std::size_t index = 1; index < brackets.size(); ++index) {
+        const double gap = std::max(
+            0.0, brackets[index].first - brackets[index - 1].second);
+        double& class_minimum = same_polarity
+            ? minimum_same_polarity_root_gap
+            : minimum_opposite_polarity_root_gap;
+        class_minimum = std::min(class_minimum, gap);
+      }
+    }
+  }
   output << "],\"escaperCount\":" << escaper_count
          << ",\"speedHistogramEdges\":[";
   for (std::size_t index = 0; index < kSpeedBinEdges.size(); ++index) {
@@ -1348,6 +1718,27 @@ void write_census_row(
   output << ",\"acceptedSteps\":" << chunk.accepted_step_count
          << ",\"rejectedSteps\":" << chunk.rejected_step_count
          << ",\"mpfrPairs\":" << chunk.timing.root_mpfr_pair_count
+         << ",\"maximumRootTimePressureRatio\":"
+         << maximum_root_time_pressure_ratio
+         << ",\"minimumTransmitterFactorMagnitude\":";
+  if (std::isfinite(minimum_transmitter_factor_magnitude)) {
+    output << minimum_transmitter_factor_magnitude;
+  } else {
+    output << "null";
+  }
+  output << ",\"minimumSamePolarityRootGap\":";
+  if (std::isfinite(minimum_same_polarity_root_gap)) {
+    output << minimum_same_polarity_root_gap;
+  } else {
+    output << "null";
+  }
+  output << ",\"minimumOppositePolarityRootGap\":";
+  if (std::isfinite(minimum_opposite_polarity_root_gap)) {
+    output << minimum_opposite_polarity_root_gap;
+  } else {
+    output << "null";
+  }
+  output << ",\"maximumRootMultiplicity\":" << maximum_root_multiplicity
          << ",\"chunkWallSeconds\":" << chunk.timing.total_wall_seconds
          << ",\"cumulativeWallSeconds\":" << cumulative_wall_seconds
          << "}}\n";
@@ -1442,6 +1833,49 @@ void write_manifest(
            << ",\"refinement\":";
     write_json_string(output, options.refinement);
     output << '}';
+  } else if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
+    output << ",\"f6cCoordinate\":{\"hPositive\":"
+           << 0.3 + options.f6c_positive_h_amplitude *
+                  std::sin(options.f6c_cycle_phase +
+                           options.f6c_positive_h_phase_offset)
+           << ",\"rhoPositive\":"
+           << 0.3 + options.f6c_positive_rho_amplitude *
+                  std::sin(options.f6c_cycle_phase +
+                           options.f6c_positive_rho_phase_offset)
+           << ",\"hNegative\":"
+           << 0.3 + options.f6c_negative_h_amplitude *
+                  std::sin(options.f6c_cycle_phase +
+                           options.f6c_negative_h_phase_offset)
+           << ",\"rhoNegative\":"
+           << 0.3 + options.f6c_negative_rho_amplitude *
+                  std::sin(options.f6c_cycle_phase +
+                           options.f6c_negative_rho_phase_offset)
+           << ",\"positiveRate\":"
+           << options.f6c_positive_rate
+           << ",\"negativeRate\":" << options.f6c_negative_rate
+           << ",\"negativeTheta\":" << options.f6c_negative_theta
+           << ",\"breathingRate\":" << options.f6c_breathing_rate
+           << ",\"cyclePhase\":" << options.f6c_cycle_phase
+           << ",\"positiveHAmplitude\":"
+           << options.f6c_positive_h_amplitude
+           << ",\"negativeHAmplitude\":"
+           << options.f6c_negative_h_amplitude
+           << ",\"positiveRhoAmplitude\":"
+           << options.f6c_positive_rho_amplitude
+           << ",\"negativeRhoAmplitude\":"
+           << options.f6c_negative_rho_amplitude
+           << ",\"positivePhaseAmplitude\":"
+           << options.f6c_positive_phase_amplitude
+           << ",\"negativePhaseAmplitude\":"
+           << options.f6c_negative_phase_amplitude
+           << ",\"positiveHPhaseOffset\":"
+           << options.f6c_positive_h_phase_offset
+           << ",\"negativeHPhaseOffset\":"
+           << options.f6c_negative_h_phase_offset
+           << ",\"positiveRhoPhaseOffset\":"
+           << options.f6c_positive_rho_phase_offset
+           << ",\"negativeRhoPhaseOffset\":"
+           << options.f6c_negative_rho_phase_offset << '}';
   }
   output << ",\"evidence\":{\"eomEvidenceStatus\":"
             "\"executable_architecture_evidence\""
@@ -1477,7 +1911,12 @@ void write_manifest(
              << ",\"height\":" << row.height
              << ",\"phase\":" << row.phase
              << ",\"speed\":" << row.speed
-             << ",\"sense\":" << row.sense << '}';
+             << ",\"sense\":" << row.sense;
+      if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
+        output << ",\"tiltX\":" << row.tilt_x
+               << ",\"tiltY\":" << row.tilt_y;
+      }
+      output << '}';
     }
   }
   output << "]}\n";
@@ -1564,6 +2003,46 @@ int main(int argc, char** argv) {
         argc, argv, "binary-separation", options.binary_separation);
     options.binary_speed = option_double(
         argc, argv, "binary-speed", options.binary_speed);
+    options.f6c_positive_rate = option_double(
+        argc, argv, "f6c-positive-rate", options.f6c_positive_rate);
+    options.f6c_negative_rate = option_double(
+        argc, argv, "f6c-negative-rate", options.f6c_negative_rate);
+    options.f6c_negative_theta = option_double(
+        argc, argv, "f6c-negative-theta", options.f6c_negative_theta);
+    options.f6c_breathing_rate = option_double(
+        argc, argv, "f6c-breathing-rate", options.f6c_breathing_rate);
+    options.f6c_cycle_phase = option_double(
+        argc, argv, "f6c-cycle-phase", options.f6c_cycle_phase);
+    options.f6c_positive_h_amplitude = option_double(
+        argc, argv, "f6c-positive-h-amplitude",
+        options.f6c_positive_h_amplitude);
+    options.f6c_negative_h_amplitude = option_double(
+        argc, argv, "f6c-negative-h-amplitude",
+        options.f6c_negative_h_amplitude);
+    options.f6c_positive_rho_amplitude = option_double(
+        argc, argv, "f6c-positive-rho-amplitude",
+        options.f6c_positive_rho_amplitude);
+    options.f6c_negative_rho_amplitude = option_double(
+        argc, argv, "f6c-negative-rho-amplitude",
+        options.f6c_negative_rho_amplitude);
+    options.f6c_positive_phase_amplitude = option_double(
+        argc, argv, "f6c-positive-phase-amplitude",
+        options.f6c_positive_phase_amplitude);
+    options.f6c_negative_phase_amplitude = option_double(
+        argc, argv, "f6c-negative-phase-amplitude",
+        options.f6c_negative_phase_amplitude);
+    options.f6c_positive_h_phase_offset = option_double(
+        argc, argv, "f6c-positive-h-phase-offset",
+        options.f6c_positive_h_phase_offset);
+    options.f6c_negative_h_phase_offset = option_double(
+        argc, argv, "f6c-negative-h-phase-offset",
+        options.f6c_negative_h_phase_offset);
+    options.f6c_positive_rho_phase_offset = option_double(
+        argc, argv, "f6c-positive-rho-phase-offset",
+        options.f6c_positive_rho_phase_offset);
+    options.f6c_negative_rho_phase_offset = option_double(
+        argc, argv, "f6c-negative-rho-phase-offset",
+        options.f6c_negative_rho_phase_offset);
     options.binary_angle = option_string(
         argc, argv, "binary-angle", options.binary_angle);
     options.refinement = option_string(
@@ -1631,10 +2110,15 @@ int main(int argc, char** argv) {
       options.root_max_depth = refinement.root_max_depth;
       options.chunk_steps = refinement.chunk_steps;
       options.delay_horizon = options.history_depth;
+    } else if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
+      options.population = 8;
+      options.prehistory = options.f6c_breathing_rate > 0.0
+          ? "harmonic-breathing" : "circular";
     } else if (options.seed_family != "phase0-shell-v1") {
       throw std::invalid_argument(
           "seed-family must be phase0-shell-v1, "
-          "campaign1-subfield-binary-v1, or stationary-rest-binary-v1");
+          "campaign1-subfield-binary-v1, stationary-rest-binary-v1, or "
+          "f6c-balanced-tetrahedral-v1");
     }
     options.run_id = option_string(
         argc, argv, "run-id",
@@ -1647,11 +2131,113 @@ int main(int argc, char** argv) {
             ? "stationary-rest-d1-H" +
                   campaign1_scalar_id(options.history_depth) + "-" +
                   options.refinement
+            : options.seed_family == "f6c-balanced-tetrahedral-v1"
+            ? "f6c-balanced-tetrahedral-p" +
+                  campaign1_scalar_id(options.f6c_positive_rate) + "-n" +
+                  campaign1_scalar_id(options.f6c_negative_rate) + "-th" +
+                  campaign1_scalar_id(options.f6c_negative_theta) +
+                  (options.f6c_breathing_rate > 0.0
+                       ? "-br" + campaign1_scalar_id(
+                                      options.f6c_breathing_rate) +
+                             "-cp" + campaign1_scalar_id(
+                                         options.f6c_cycle_phase) +
+                             "-hp" + campaign1_scalar_id(
+                                         options.f6c_positive_h_amplitude) +
+                             "-hm" + campaign1_scalar_id(
+                                         options.f6c_negative_h_amplitude) +
+                             "-rp" + campaign1_scalar_id(
+                                         options.f6c_positive_rho_amplitude) +
+                             "-rm" + campaign1_scalar_id(
+                                         options.f6c_negative_rho_amplitude) +
+                             "-tp" + campaign1_scalar_id(
+                                         options.f6c_positive_phase_amplitude) +
+                             "-tm" + campaign1_scalar_id(
+                                         options.f6c_negative_phase_amplitude) +
+                             "-hhp" + campaign1_scalar_id(
+                                          options.f6c_positive_h_phase_offset) +
+                             "-hhm" + campaign1_scalar_id(
+                                          options.f6c_negative_h_phase_offset) +
+                             "-hrp" + campaign1_scalar_id(
+                                          options.f6c_positive_rho_phase_offset) +
+                             "-hrm" + campaign1_scalar_id(
+                                          options.f6c_negative_rho_phase_offset)
+                       : "") +
+                  "-v1"
             : "attractor-ensemble-n" + std::to_string(options.population) +
                   "-s" + std::to_string(options.seed_offset) + "-" +
                   options.prehistory);
     if (options.population % 2 != 0) {
       throw std::invalid_argument("population must be even (neutral mix)");
+    }
+    if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
+      const std::array<double, 12> breathing_values = {
+          options.f6c_breathing_rate,
+          options.f6c_cycle_phase,
+          options.f6c_positive_h_amplitude,
+          options.f6c_negative_h_amplitude,
+          options.f6c_positive_rho_amplitude,
+          options.f6c_negative_rho_amplitude,
+          options.f6c_positive_phase_amplitude,
+          options.f6c_negative_phase_amplitude,
+          options.f6c_positive_h_phase_offset,
+          options.f6c_negative_h_phase_offset,
+          options.f6c_positive_rho_phase_offset,
+          options.f6c_negative_rho_phase_offset,
+      };
+      if (!(options.f6c_positive_rate > 0.0) ||
+          !(options.f6c_negative_rate > 0.0) ||
+          !std::isfinite(options.f6c_negative_theta) ||
+          !std::all_of(
+              breathing_values.begin(), breathing_values.end(),
+              [](double value) { return std::isfinite(value); }) ||
+          options.f6c_breathing_rate < 0.0) {
+        throw std::invalid_argument(
+            "F6c rates must be positive and all F6c coordinates finite");
+      }
+      const bool has_amplitude =
+          options.f6c_positive_h_amplitude != 0.0 ||
+          options.f6c_negative_h_amplitude != 0.0 ||
+          options.f6c_positive_rho_amplitude != 0.0 ||
+          options.f6c_negative_rho_amplitude != 0.0 ||
+          options.f6c_positive_phase_amplitude != 0.0 ||
+          options.f6c_negative_phase_amplitude != 0.0;
+      if (options.f6c_breathing_rate == 0.0 && has_amplitude) {
+        throw std::invalid_argument(
+            "F6c breathing amplitudes require a positive breathing rate");
+      }
+      const auto valid_sector = [breathing_rate = options.f6c_breathing_rate](
+                                    double angular_rate,
+                                    double h_amplitude,
+                                    double rho_amplitude,
+                                    double phase_amplitude) {
+        if (!(std::abs(h_amplitude) < 0.3) ||
+            !(std::abs(rho_amplitude) < 0.3)) {
+          return false;
+        }
+        const double maximum_speed = std::sqrt(
+            std::pow(std::abs(h_amplitude) * breathing_rate, 2) +
+            std::pow(std::abs(rho_amplitude) * breathing_rate, 2) +
+            std::pow(
+                (0.3 + std::abs(rho_amplitude)) *
+                    (angular_rate +
+                     std::abs(phase_amplitude) * breathing_rate),
+                2));
+        return maximum_speed < 1.0;
+      };
+      if (!valid_sector(
+              options.f6c_positive_rate,
+              options.f6c_positive_h_amplitude,
+              options.f6c_positive_rho_amplitude,
+              options.f6c_positive_phase_amplitude) ||
+          !valid_sector(
+              options.f6c_negative_rate,
+              options.f6c_negative_h_amplitude,
+              options.f6c_negative_rho_amplitude,
+              options.f6c_negative_phase_amplitude)) {
+        throw std::invalid_argument(
+            "F6c harmonic prehistory must keep h and rho positive and the "
+            "conservative member-speed bound strictly below c_f=1");
+      }
     }
     if (options.seed_family == "phase0-shell-v1" &&
         options.prehistory != "circular" && options.prehistory != "straight") {
@@ -1703,10 +2289,27 @@ int main(int argc, char** argv) {
         : std::nullopt;
     const bool stationary_binary =
         options.seed_family == "stationary-rest-binary-v1";
+    const bool f6c_balanced_tetrahedral =
+        options.seed_family == "f6c-balanced-tetrahedral-v1";
     const auto rows = campaign1_coordinate.has_value()
         ? campaign1_rows(*campaign1_coordinate)
         : stationary_binary
         ? stationary_binary_rows()
+        : f6c_balanced_tetrahedral
+        ? f6c_balanced_tetrahedral_rows(
+              options.f6c_positive_rate, options.f6c_negative_rate,
+              options.f6c_negative_theta, options.f6c_breathing_rate,
+              options.f6c_cycle_phase,
+              options.f6c_positive_h_amplitude,
+              options.f6c_negative_h_amplitude,
+              options.f6c_positive_rho_amplitude,
+              options.f6c_negative_rho_amplitude,
+              options.f6c_positive_phase_amplitude,
+              options.f6c_negative_phase_amplitude,
+              options.f6c_positive_h_phase_offset,
+              options.f6c_negative_h_phase_offset,
+              options.f6c_positive_rho_phase_offset,
+              options.f6c_negative_rho_phase_offset)
         : seed_rows(options.population, options.seed_offset);
     std::vector<eom::NativeCoupledPathInput> paths =
         campaign1_coordinate.has_value()
@@ -1719,10 +2322,33 @@ int main(int argc, char** argv) {
     if (!campaign1_coordinate.has_value() && !stationary_binary) {
       paths.reserve(rows.size());
       for (const auto& row : rows) {
+        const int polarity = row.charge == kCharge ? +1 : -1;
+        const std::size_t module = static_cast<std::size_t>(
+            std::stoul(row.path_id.substr(0, row.path_id.size() - 1U)));
         paths.push_back({
             row.path_id,
             row.charge,
-            options.prehistory == "circular"
+            f6c_balanced_tetrahedral &&
+                    options.prehistory == "harmonic-breathing"
+                ? f6c_harmonic_history(
+                      row, module, polarity, options.history_depth,
+                      options.history_segment_step,
+                      options.f6c_positive_rate,
+                      options.f6c_negative_rate,
+                      options.f6c_negative_theta,
+                      options.f6c_breathing_rate,
+                      options.f6c_cycle_phase,
+                      options.f6c_positive_h_amplitude,
+                      options.f6c_negative_h_amplitude,
+                      options.f6c_positive_rho_amplitude,
+                      options.f6c_negative_rho_amplitude,
+                      options.f6c_positive_phase_amplitude,
+                      options.f6c_negative_phase_amplitude,
+                      options.f6c_positive_h_phase_offset,
+                      options.f6c_negative_h_phase_offset,
+                      options.f6c_positive_rho_phase_offset,
+                      options.f6c_negative_rho_phase_offset)
+                : options.prehistory == "circular"
                 ? circular_history(
                       row, options.history_depth, options.history_segment_step)
                 : straight_history(row, options.history_depth)});
@@ -1824,9 +2450,12 @@ int main(int argc, char** argv) {
       }
       const auto snapshot = eom::certify_native_acceleration_snapshot(
           request_template, initial, "0");
-      if (stationary_binary) {
+      if (stationary_binary || f6c_balanced_tetrahedral) {
         write_release_acceleration_atomic(
-            release_acceleration_path, snapshot);
+            release_acceleration_path, snapshot,
+            stationary_binary
+                ? "stationary_binary_release_acceleration/v0"
+                : "f6c_release_acceleration/v0");
       }
       std::size_t unresolved = 0;
       for (const auto& row : snapshot.root_certificates) {

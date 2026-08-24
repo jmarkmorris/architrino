@@ -1,5 +1,4 @@
-Closure goal:
-Record the Lorentz-closure research findings for the translating maximum-curvature binary, discharge or harden each side condition, and convert the result into named corpus and priority changes plus an ordered computation programme whose first three steps are certificates rather than experiments.
+Closure goal: Record the Lorentz-closure research findings for the translating maximum-curvature binary, discharge or harden each side condition, and convert the result into named corpus and priority changes plus an ordered computation programme whose first three steps are certificates rather than experiments.
 
 # Research Findings And Proposed Changes: Translating-Binary Lorentz Closure
 
@@ -497,24 +496,13 @@ Curvature, loop holonomy, and the cocycle law are automatically trivial on the o
 
 ## Proposed Changes
 
-**Readiness gate.** The retained items below are claim grades, exact scope
-conditions, negative results, corrected formulas, or priority-record
-clarifications. They can be applied without claiming that a translating branch,
-complete wake update, conserved ledger, or Lorentz recovery exists. Items that
-need those objects are moved to
-[Disposition of Open Questions](#disposition-of-open-questions).
+**Readiness gate.** The retained items below are claim grades, exact scope conditions, negative results, corrected formulas, or priority-record clarifications. They can be applied without claiming that a translating branch, complete wake update, conserved ledger, or Lorentz recovery exists. Items that need those objects are moved to [Disposition of Open Questions](#disposition-of-open-questions).
 
-**Applied disposition, 2026-07-29.** A1–A5, A7, B1–B6, and B8 now live in
-their named corpus, priority, and work-log owners at the packet's stated
-authority. Every deferred programme item and open question is recorded in the
-canonical [July 28 translating-binary review action
-register](../../../priorities/mapping-equations/work-queue.md#july-28-translating-binary-review-action-register).
-This packet is reference evidence only and owns no outstanding action.
+**Applied disposition, 2026-07-29.** A1–A5, A7, B1–B6, and B8 now live in their named corpus, priority, and work-log owners at the packet's stated authority. Every deferred programme item and open question is recorded in the canonical [July 28 translating-binary review action register](../../../priorities/mapping-equations/work-queue.md#july-28-translating-binary-review-action-register). This packet is reference evidence only and owns no outstanding action.
 
 ### Batch A — reader-facing corpus corrections
 
-Items A1 through A5 are scoped corrections. A7 is retained only as a
-conditional theorem and exact no-go under its stated hypotheses.
+Items A1 through A5 are scoped corrections. A7 is retained only as a conditional theorem and exact no-go under its stated hypotheses.
 
 1. **A1 — `content/markdown/aaa/spacetime/lorentz-kinematics.md`, closed-return derivation section.** Add an explicit `> Claim grade:` line. The section already carries the correct caveat that the axial-factor selection is not a stability theorem, but the file's only graded claims sit elsewhere. Grade the selection as derived conditional on a single-speed closed return and orientation independence, with the falsifier from Finding 13.
 2. **A2 — same file, same section.** Add the two-root itinerary condition of Finding 13 and the statement that the reduction is exact only for fixed, non-orbiting, co-moving endpoints.
@@ -542,10 +530,7 @@ conditional theorem and exact no-go under its stated hypotheses.
 
 ## Deferred Computation Programme
 
-The programme below remains a preserved research design, not an apply-now
-change. Its execution and any work-queue success-marker replacement remain
-owned by `EQM-001` and the dependency rows in
-[Disposition of Open Questions](#disposition-of-open-questions).
+The programme below remains a preserved research design, not an apply-now change. Its execution and any work-queue success-marker replacement remain owned by `EQM-001` and the dependency rows in [Disposition of Open Questions](#disposition-of-open-questions).
 
 Work in normalized wake-speed units, $c_f=1$. The second-order programme is legitimate only after three certificates close. Run the three gating certificates in this order; the first two are cheap and either can end the programme locally. After Certificate 3, return to Finding 16 to extend the rest-ledger Jacobian certificate to a positive-drift neighbourhood.
 
@@ -610,9 +595,7 @@ with $\varepsilon_G$ the certified root residual and $C_J\sqrt{\varepsilon_G}$ c
 | B7 — replace the `EQM-001` success marker with the ordered programme | [`EQM-001` Lorentz envelope closure](../../../priorities/mapping-equations/work-queue.md), status `Queued` | The programme has not passed its first retained-ledger certificate. Replacing the success marker now would make an unexecuted research design look like the accepted completion boundary. | After operator review of the ordered certificates, update the existing queue row without changing its lifecycle status and retain the live Lorentz-energy and shared-record backlinks. |
 | Certificates 1–3, neighbourhood extension, and continuation run | `EQM-001`, status `Queued`, through the `draft` shared-record and `priority-only` Lorentz-energy owners | No accepted rest ledger or retained branch exists. Complete root provenance is required where all-root or account conclusions are made (`MEC-005`, `Queued`), and the $M,C$ derivative enclosure must use an accepted receiver/self acceleration gradient where applicable (`MEC-006`, `Awaiting verification`). | Establish accepted `S_eq` support, close the root inventory and adjoint dimension count, solve $\boldsymbol\rho_1$, independently validate every derivative used in $u_{\mathrm{safe}}$, then run only inside the certified chart. |
 
-Plainly: these items remain legitimate research. The gate prevents their
-representation, execution order, or conditional estimates from being mistaken
-for an accepted wake model, branch, or Lorentz result.
+Plainly: these items remain legitimate research. The gate prevents their representation, execution order, or conditional estimates from being mistaken for an accepted wake model, branch, or Lorentz result.
 
 | Open question | Live owner and status | Next acceptance test | Routing disposition |
 | --- | --- | --- | --- |
@@ -652,5 +635,4 @@ The derivations use only the declared substrate assumptions carried throughout t
 
 *Plainly: the algebra in this file was checked here rather than taken on trust, but no part of it has been tested against a running simulation of the actual law.*
 
-Closure goal:
-Measure the rest-ledger fold margin, validate the fixed-ledger Fredholm chart, compute the first- and second-order continuation coefficients, and stop at the first failed certificate before attempting a translating-branch or Lorentz-recovery claim.
+Closure goal: Measure the rest-ledger fold margin, validate the fixed-ledger Fredholm chart, compute the first- and second-order continuation coefficients, and stop at the first failed certificate before attempting a translating-branch or Lorentz-recovery claim.

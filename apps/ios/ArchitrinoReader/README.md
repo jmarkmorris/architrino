@@ -19,8 +19,7 @@ The goal is to keep v1 focused on chapter-bundled offline textbook reading on iP
 1. `ios_project_scaffold`
    - Source scaffold files and `.xcodeproj` are in place under `ArchitrinoReader.xcodeproj/`.
    - Default scheme: `ArchitrinoReader`; generated app product: `Architrino.app`.
-   - Local no-signing validation command:
-     `xcodebuild -project apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj -scheme ArchitrinoReader -configuration Debug -destination generic/platform=iOS -derivedDataPath "${TMPDIR:-/tmp}/architrino-reader-derived-data" CODE_SIGNING_ALLOWED=NO build`
+   - Local no-signing validation command: `xcodebuild -project apps/ios/ArchitrinoReader/ArchitrinoReader.xcodeproj -scheme ArchitrinoReader -configuration Debug -destination generic/platform=iOS -derivedDataPath "${TMPDIR:-/tmp}/architrino-reader-derived-data" CODE_SIGNING_ALLOWED=NO build`
 2. `content_bundle_schema_v1`
    - Manifest schema: `textbook_bundle_schema_v1.json`
 3. `content_export_script`

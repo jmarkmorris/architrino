@@ -1,32 +1,16 @@
 # Detailed Branch-Closure Program
 
-Claim level: priority-only technical program. This focused packet preserves the
-long-form circular, spiral, branch-chart, response-tensor, Lorentz/GR, and
-falsifier mathematics that should not crowd the live queue. Current rank,
-status, blockers, and routing live in [priorities.md](../priorities.md).
+Claim level: priority-only technical program. This focused packet preserves the long-form circular, spiral, branch-chart, response-tensor, Lorentz/GR, and falsifier mathematics that should not crowd the live queue. Current rank, status, blockers, and routing live in [priorities.md](../priorities.md).
 
 ## Program Boundary
 
-This packet is not a queue or status ledger. It owns the detailed mathematical
-program behind the compact tracker: the branch cohomology target, retained
-history charts, circular and spiral obstruction routes, branch-chart closure
-object, bare-void response tensor, moving-assembly extraction, medium-response
-contract, and falsifiers. The transmitter-side acceleration, signed-playback,
-causal wake-state, and restart rules are defined in [priorities.md](../priorities.md),
-[the wake-state analysis](../analysis-independent-causal-wake-state.md), and the A1
-and VP-1 rebuild packets.
+This packet is not a queue or status ledger. It owns the detailed mathematical program behind the compact tracker: the branch cohomology target, retained history charts, circular and spiral obstruction routes, branch-chart closure object, bare-void response tensor, moving-assembly extraction, medium-response contract, and falsifiers. The transmitter-side acceleration, signed-playback, causal wake-state, and restart rules are defined in [priorities.md](../priorities.md), [the wake-state analysis](../analysis-independent-causal-wake-state.md), and the A1 and VP-1 rebuild packets.
 
 ## Current Theorem Order
 
 The downstream branch-program root is the first certified braid. The causal-action theorem spine, signed delay-map theorem pack, circular obstruction, and forward-root-starvation propositions give the architecture a closed grammar, but they do not yet exhibit a stable assembly. Every downstream coefficient program inherits that absence: mass, Lorentz/GR coefficients, quantum Born weights, spin-statistics, and cosmology can develop forms and residual routing, but they cannot promote coefficient-level derivations until at least one certified braid exists.
 
-The immediate target is not a transmitter-side circular or spiral no-go.
-Circular and spiral records that do not carry $W^{\mathrm{acc}}=c_f/|D_t|$,
-separate signed playback, and the required causal wake accounts are topology or
-transversality diagnostics only. The preferred constructive search is still a
-collinear breather or a non-circular signed-sheet branch with $s\ge\pi/2$, where
-the negative self-sheet can supply an internal tangential cancellation channel.
-The branch-level cohomology target is
+The immediate target is not a transmitter-side circular or spiral no-go. Circular and spiral records that do not carry $W^{\mathrm{acc}}=c_f/|D_t|$, separate signed playback, and the required causal wake accounts are topology or transversality diagnostics only. The preferred constructive search is still a collinear breather or a non-circular signed-sheet branch with $s\ge\pi/2$, where the negative self-sheet can supply an internal tangential cancellation channel. The branch-level cohomology target is
 $$
 [\omega_T]
 +
@@ -57,24 +41,13 @@ Form-level mappings may be claimed now only with their inherited blockers. The G
 
 The updated [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) promotes the causal-root complex, singular-stratum routing, local-to-global branch-chart gluing target, finite-continuation cardinality, starvation scale for forward partner rows, and finite-window wake-escapement boundary identity into the core closure grammar. A local residual or pointwise branch trace is not enough unless the retained chart also reports signed root-complex data, fold versus higher-stratum routing, finite memory, overlap/gluing consistency where a global claim is made, and boundary wake-history charges on the same retained row set.
 
-Practical condition: active proof and simulation packets should treat retained
-root topology as conditional geometry only. Acceleration, action, power,
-wake-history, and pass/fail conclusions restart under the transmitter-side
-Master EOM and need same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, signed
-playback, and causal wake-account evidence.
+Practical condition: active proof and simulation packets should treat retained root topology as conditional geometry only. Acceleration, action, power, wake-history, and pass/fail conclusions restart under the transmitter-side Master EOM and need same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, signed playback, and causal wake-account evidence.
 
 ### Local Reconstruction And Regulator Rows
 
 The [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) refinement sharpens the same closure burden. A promoted branch certificate should report the branch-chart local inverse data behind $\mathfrak B(\Gamma,\mathcal S;h,\eta,\epsilon_c)$, the $H^0$ global-section count for finite continuation, any $\check H^1$ gluing obstruction, separate $\eta$ versus $\epsilon_c$ regulator status, finite-window degree changes caused by memory-boundary starvation, and any $\ell=2$ quadrupole leakage $Q_A$ when a moving-loop Lorentz checkpoint is used.
 
-Practical condition: use `force_action_restart_required` wherever a row
-uses branch strength. Existing circular, spiral, A1, transport, finite-collar,
-and action-kernel rows may survive only as topology or analytic setup when they
-do not supply a force/action conclusion. The promotion threshold is higher: no
-branch chart is theorem-level until local reconstruction conditioning, gluing,
-regulator separation, memory-boundary degree bookkeeping, no-proliferation
-scope, transmitter-side acceleration weights, signed playback, and causal wake
-accounts are reported on the same retained state.
+Practical condition: use `force_action_restart_required` wherever a row uses branch strength. Existing circular, spiral, A1, transport, finite-collar, and action-kernel rows may survive only as topology or analytic setup when they do not supply a force/action conclusion. The promotion threshold is higher: no branch chart is theorem-level until local reconstruction conditioning, gluing, regulator separation, memory-boundary degree bookkeeping, no-proliferation scope, transmitter-side acceleration weights, signed playback, and causal wake accounts are reported on the same retained state.
 
 ## Promotion Map
 
@@ -100,23 +73,13 @@ and defines the corresponding energy, momentum, and angular-momentum wake-histor
 
 This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM. The corpus now states this as a concrete branch-chart conservation test rather than as an open handoff phrase: the required output is the retained-chart pullback of the three Noether totals, with exact wake-history charges separated from work-integral and torque-projection diagnostics.
 
-`spiral_turning_conditions` remains active only as retained-root topology and
-turn-center context. The A1 acceleration-weight intervals and turn-center point
-diagnostic have now been rebuilt with $W^{\mathrm{acc}}=c_f/|D_t|$ and separate
-$D_r/D_t$ playback. Outward radial and tangential aggregates, action, and all
-three conserved accounts remain not advanced. VP-1 remains a transmitter-side
-rebuild target.
+`spiral_turning_conditions` remains active only as retained-root topology and turn-center context. The A1 acceleration-weight intervals and turn-center point diagnostic have now been rebuilt with $W^{\mathrm{acc}}=c_f/|D_t|$ and separate $D_r/D_t$ playback. Outward radial and tangential aggregates, action, and all three conserved accounts remain not advanced. VP-1 remains a transmitter-side rebuild target.
 
-The A1 finite-collar continuation now starts from the derived acceleration-weight
-intervals in [spiral-a1-restart.md](../spiral-a1-restart.md). The next usable
-artifact is an outward evaluation of the radial and tangential aggregates on the
-same retained boxes, followed by the accepted causal wake accounts. Point values
-alone do not license A1 outward constants or a constant-rate verdict.
+The A1 finite-collar continuation now starts from the derived acceleration-weight intervals in [spiral-a1-restart.md](../spiral-a1-restart.md). The next usable artifact is an outward evaluation of the radial and tangential aggregates on the same retained boxes, followed by the accepted causal wake accounts. Point values alone do not license A1 outward constants or a constant-rate verdict.
 
 ## Live Targets
 
-- First accepted causal wake-state construction and first outward A1 aggregate
-  certificate using transmitter-side acceleration and separate playback.
+- First accepted causal wake-state construction and first outward A1 aggregate certificate using transmitter-side acceleration and separate playback.
 - First certified-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
 - Numerical branch-chart evaluation of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms under the stated pullback contract.
 - Bare-void branch response tensor for isolated assemblies, computed from branch-chart momentum susceptibility before Noether sea dressing.
@@ -124,10 +87,7 @@ alone do not license A1 outward constants or a constant-rate verdict.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
 - Binary perturbation-response classification: on a retained binary chart, decide whether a finite perturbation is absorbed as same-branch phase response, same-regime radius/cadence retuning, or a branch transition.
-- Emission-flux/Jacobian conservation: show that constant transmitter-provenanced
-  causal-wake emission over a wake surface supplies $c_f/|D_t|$ on simple-root
-  charts while preserving emitted polarity weight; keep $D_r/D_t$ as signed
-  playback only.
+- Emission-flux/Jacobian conservation: show that constant transmitter-provenanced causal-wake emission over a wake surface supplies $c_f/|D_t|$ on simple-root charts while preserving emitted polarity weight; keep $D_r/D_t$ as signed playback only.
 
 ## Emission-Flux / Jacobian Conservation Target
 
@@ -160,23 +120,16 @@ q_j\,
 \frac{1}
 {r_{ij}^2(t,s_\ell)\left|\partial_s g_{ij}(t,s_\ell)\right|}
 $$
-up to the same normalization convention that absorbs the factor of $c_f$ into
-$\kappa$. This is the transmitter-side emission-density meaning of the branch
-law: constant emission cadence is not a separate acceleration assumption, while
-transmitter motion changes the received density through $D_t$.
+up to the same normalization convention that absorbs the factor of $c_f$ into $\kappa$. This is the transmitter-side emission-density meaning of the branch law: constant emission cadence is not a separate acceleration assumption, while transmitter motion changes the received density through $D_t$.
 
-Signed-playback action audit. The branch density above is not by itself the
-receiver-path action rate. On a retained smooth branch $s=s_\ell(t)$,
+Signed-playback action audit. The branch density above is not by itself the receiver-path action rate. On a retained smooth branch $s=s_\ell(t)$,
 $$
 \frac{ds_\ell}{dt}
 =
 \frac{c_f-\hat{\mathbf r}_{ij}(t,s_\ell)\cdot\mathbf v_i(t)}
 {c_f-\hat{\mathbf r}_{ij}(t,s_\ell)\cdot\mathbf v_j(s_\ell)}
 $$
-so a transmitter-emission cadence mapped to a moving receiver path carries the
-signed playback derivative $D_r/D_t$. Action, power, wake-history charges, or
-finite-window conservation may consume that playback record, but they may not
-reuse it as instantaneous acceleration strength.
+so a transmitter-emission cadence mapped to a moving receiver path carries the signed playback derivative $D_r/D_t$. Action, power, wake-history charges, or finite-window conservation may consume that playback record, but they may not reuse it as instantaneous acceleration strength.
 
 Promotion conditions:
 
@@ -249,16 +202,12 @@ The first simulation packet should scan perturbation amplitude, injection phase,
 - Circular self-branch count grows only linearly.
 - The circular and spiral legacy branch tables survive only as topology, root-count, inactive-gap, finite-memory, and transversality diagnostics.
 - No circular, VP-1, or A1 tangential/radial no-go is active as Master EOM evidence until its acceleration is redriven with same-record $D_t$, $D_r$, $W^{\mathrm{acc}}=c_f/|D_t|$, and signed-playback intervals.
-- Circular and spiral generated certificate artifacts are purged from the
-  active workstream. Any replacement runner must emit same-record $D_t$, $D_r$,
-  $W^{\mathrm{acc}}$, signed playback, aggregates, and negative controls.
+- Circular and spiral generated certificate artifacts are purged from the active workstream. Any replacement runner must emit same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, signed playback, aggregates, and negative controls.
 
 ## Chapter State To Preserve
 
 - The null separatrix and Jacobian-null surface now function as an amplitude wall for the self branch, not by themselves as a proof of circular closure.
-- The exact partner-only circular formulas may be used as geometry identities,
-  but circular tangential-positivity or no-go statements require
-  transmitter-side acceleration weights before they count as Master EOM evidence.
+- The exact partner-only circular formulas may be used as geometry identities, but circular tangential-positivity or no-go statements require transmitter-side acceleration weights before they count as Master EOM evidence.
 - The non-circular spiral benchmark now retains the variable-pitch extension, corrected partner Jacobian, and self-branch Frenet analogue as root-geometry diagnostics. Radial-turn and weighted tangential-drive tests restart from transmitter-side acceleration and separate playback.
 
 ## Parallel Tracks
@@ -268,17 +217,12 @@ The first simulation packet should scan perturbation amplitude, injection phase,
 
 ## Circular Work Order
 
-Status update. The circular branch-history packet is topology-only. Its root
-brackets, inactive gaps, finite-memory rows, and Jacobian-null finite-crossing
-criteria remain diagnostic. The circular task is to redrive the same retained
-branches with transmitter-side acceleration before asserting any circular
-no-go, existence result, or non-circular baseline obstruction.
+Status update. The circular branch-history packet is topology-only. Its root brackets, inactive gaps, finite-memory rows, and Jacobian-null finite-crossing criteria remain diagnostic. The circular task is to redrive the same retained branches with transmitter-side acceleration before asserting any circular no-go, existence result, or non-circular baseline obstruction.
 
 1. Preserve the checked root-bracket inclusion rows and inactive-gap ledger as topology diagnostics.
 2. Recompute every partner and self branch with same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, and signed playback.
 3. Rebuild circular radial and tangential residuals from transmitter-side acceleration only.
-4. Do not import circular finite-band passes or tail constants into the
-   transmitter-side Master EOM.
+4. Do not import circular finite-band passes or tail constants into the transmitter-side Master EOM.
 5. Use the rebuilt circular result as a baseline only after the acceleration calculation passes negative controls that vary $D_r$ without changing fixed-geometry acceleration.
 
 ## Circular Derivative-Sensitive Branch-History Packet
@@ -370,13 +314,7 @@ Here $T_{\bullet,\alpha}$ and $R_{\bullet,\alpha}$ are the circular tangential a
 
 ## Circular Transmitter-Side Rebuild Target
 
-The large-$\beta$ residual computation, sampled finite-band table,
-generated interval pass matrix, and tail constant packets are purged from the
-active workstream. Circular closure now restarts from the analytic root
-equations plus a new transmitter-side certificate that emits same-record $D_t$,
-$D_r$, $W^{\mathrm{acc}}$, signed playback, radial and tangential aggregates,
-and negative controls. Until that replacement exists, circular finite-band and
-large-$\beta$ rows are not Master EOM evidence.
+The large-$\beta$ residual computation, sampled finite-band table, generated interval pass matrix, and tail constant packets are purged from the active workstream. Circular closure now restarts from the analytic root equations plus a new transmitter-side certificate that emits same-record $D_t$, $D_r$, $W^{\mathrm{acc}}$, signed playback, radial and tangential aggregates, and negative controls. Until that replacement exists, circular finite-band and large-$\beta$ rows are not Master EOM evidence.
 
 ## Circular Jacobian-Null Finite-Crossing Packet
 

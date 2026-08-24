@@ -188,9 +188,7 @@ sampled across $s<c_f$, $s\approx c_f$, and $s>c_f$ when those regimes are admis
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `field_speed_binary_speed_sweep` — Compute the branch-resolved opposite-polarity binary energy record across sub-field-speed, hinge, and super-field-speed regimes before using hinge intuition in photon or blackbody claims. Status: `draft`.
 2. `mode_count_gate` — Define the allowed photon-channel mode density from Gate A/B geometry, including the maximum-curvature or Planck-alignment scale only where the local variables justify it. Status: `draft`.

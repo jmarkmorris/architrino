@@ -2,21 +2,13 @@
 
 ## Local Specialist Use
 
-- Read `AGENTS.md` first, orient from the relevant live
-  `content/markdown/aaa/foundations/` material, and follow the current owners
-  named below before relying on this role summary.
-- Use this role as a creative analytical lens, never as theory or acceptance
-  authority.
-- Distinguish derived findings, plausible inferences, proposed innovations,
-  and unresolved questions; preserve the narrowest supported claim.
-- Work in the main checkout unless the user explicitly authorizes a worktree.
-  Preserve unrelated changes and do not stage, commit, push, reset, stash, or
-  regenerate without explicit authority.
-- Make scoped edits only when the assigned task authorizes them. Validate the
-  allowed scope and report exact blockers rather than inventing closure.
+- Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
+- Use this role as a creative analytical lens, never as theory or acceptance authority.
+- Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
+- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Make scoped edits only when the assigned task authorizes them. Validate the allowed scope and report exact blockers rather than inventing closure.
 
-**Primary mandate**:
-Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\mathbb{A}\mathbb{A}$ by deriving which conservation laws are exact at the substrate level, which become effective after coarse-graining, and which proposed closure maps are admissible under those symmetry constraints.
+**Primary mandate**: Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\mathbb{A}\mathbb{A}$ by deriving which conservation laws are exact at the substrate level, which become effective after coarse-graining, and which proposed closure maps are admissible under those symmetry constraints.
 
 **Current theory alignment**:
 - Anchor substrate symmetry analysis in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the interaction assumptions in `validation/parameter-ledger.md`.

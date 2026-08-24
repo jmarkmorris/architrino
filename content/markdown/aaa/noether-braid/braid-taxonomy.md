@@ -30,11 +30,15 @@ $$
 \mathbf V_{\mathrm{grp}}(T)=\frac{d\mathbf X_{\mathrm{grp}}}{dT}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7d904167760477ca)
+
 and
 
 $$
 s_{\mathrm{grp}}(T)=\left\|\mathbf V_{\mathrm{grp}}(T)\right\|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-95bdb78df2e065e3)
 
 For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group translation speed is distinct from the internal orbital speeds of the constituent architrinos.
 
@@ -57,11 +61,15 @@ $$
 \mathbf c_a(T)=\frac{\mathbf X_{a1}(T)+\mathbf X_{a2}(T)}{2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-af80fc6b9098e165)
+
 and
 
 $$
 \mathbf d_a(T)=\frac{\mathbf X_{a1}(T)-\mathbf X_{a2}(T)}{2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f931453ca490e885)
 
 Given an oriented binary-axis unit vector $\hat{\mathbf n}_a(T)$, choose the endpoint and axis orientations so that the axial coordinate is nonnegative, and define
 
@@ -69,11 +77,15 @@ $$
 h_a(T)=\mathbf d_a(T)\mathbin{\cdot}\hat{\mathbf n}_a(T)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1db153090a7b1b4)
+
 and
 
 $$
 \rho_a(T)=\left\|\mathbf d_a(T)-h_a(T)\hat{\mathbf n}_a(T)\right\|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ff4e923b309d743e)
 
 Here $h_a$ is the **axial half-separation**, and $\rho_a$ is the **transverse orbit radius**. The binary radius is the endpoint distance from the binary midpoint:
 
@@ -81,11 +93,15 @@ $$
 R_a(T)=\left\|\mathbf d_a(T)\right\|
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a4f1d483cd9c3dcf)
+
 The axial and transverse coordinates decompose that radius according to
 
 $$
 R_a^2(T)=h_a^2(T)+\rho_a^2(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e8a3d840a05b45cb)
 
 Frequency and phase belong to the individual binary. Every binary phase is specified relative to the same braid-level zero point.
 
@@ -109,6 +125,8 @@ $$
 \alpha_a(T)=\operatorname{atan2}\!\left(h_a(T),\rho_a(T)\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7370beb6a5dd27fc)
+
 This angle is not a primary taxonomy coordinate.
 
 The taxonomy table uses fixed-coordinate prescribed time dependence as an idealized characteristic. Other possible time dependences, including breathing, precession, and other deformations, lie outside its present scope.
@@ -120,6 +138,8 @@ Family A is the original Noether core geometry. Its member distinctions and symm
 $$
 \hat{\mathbf n}_a^{(0)}\mathbin{\cdot}\hat{\mathbf n}_b^{(0)}=\delta_{ab}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dc0698974d816a97)
 
 The near-rest axes define the equal-component braid direction
 
@@ -135,6 +155,8 @@ $$
 }{\sqrt3}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c503c8d479e5b97e)
+
 Family A translates along this direction:
 
 $$
@@ -142,6 +164,8 @@ $$
 =
 s_{\mathrm{grp}}(T)\hat{\mathbf u}_A
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eb1a02975552b756)
 
 Let $\lambda_A\in[0,1]$ denote the prescribed Family-A flattening coordinate. The near-rest endpoint is $\lambda_A=0$. As $\lambda_A$ increases, the three binary axes converge toward the translation direction. The flat endpoint is
 
@@ -155,6 +179,8 @@ $$
 \hat{\mathbf u}_A
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7c26273e22e0a49b)
+
 The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
 
 `A1` is the zero-axial-offset Family-A member. All three binary midpoints coincide with the braid center, and each binary has
@@ -167,6 +193,8 @@ h_a=0,
 \rho_a=R_a.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c27b4c6a30d3c46b)
+
 Thus the electrino and positrino of binary $a$ traverse the same geometric circle in the plane through the braid center orthogonal to $\hat{\mathbf n}_a$, while occupying antipodal points at every common time. The phrase "same plane" applies within each binary; the three Family-A binary planes remain distinct whenever their axes are distinct.
 
 The A1 indices $a\in\{1,2,3\}$ are persistent record identities, not a sorting by radius, frequency, speed, or any derived dynamical role. Their radii satisfy
@@ -176,6 +204,8 @@ R_a>0,
 \qquad
 a\in\{1,2,3\},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4fbf50c5a263d344)
 
 and may be assigned independently, including equal values. The three frequencies are also independently assignable. If an evolved branch later supplies a field-speed carrier, a boundary-leading path, or another distinguished role, that role is a diagnostic derived from the branch record and does not relabel the binaries.
 
@@ -194,6 +224,8 @@ h_1=h_2=h_3=0,
 \right\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-62fadd3c557fddc1)
+
 for each shared constrained-variant suffix $n\in\{1,2,3,4\}$. The unsuffixed A1 member is the corresponding zero-axial-offset subset of unsuffixed A3. A2 is selected by its cyclic symmetry constraints and occupies a symmetric locus within the A3 coordinate space; it is not renamed by this subset relation.
 
 ## Family B: Coincident Binary Axes
@@ -210,6 +242,8 @@ $$
 \mathbf X_{\mathrm{grp}}(T),
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88366a3b96d55a67)
+
 and one common oriented axis:
 
 $$
@@ -221,6 +255,8 @@ $$
 =
 \hat{\mathbf n}_B
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-826e6fcf880fff95)
 
 `B1` is the fixed-coordinate common-frequency co-rotating member. Its binaries may have different radii, axial half-separations, transverse orbit radii, and phases, but share one midpoint, one axis, one frequency, and one circulation sense. The coincident-axis relation distinguishes Family B from Family A; the family identifier does not assert that either geometry is dynamically retained.
 
@@ -245,6 +281,8 @@ $$
 \qquad
 d_C>0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f1a7a7eba2516442)
 
 An optional six-architrino Accessory Configuration is separate declared inventory and does not change the C1 through C6 identifier. These members define prescribed geometry classes only; they do not assert a binding or retention mechanism.
 

@@ -1,7 +1,6 @@
 # Geometry and Dynamics Role Packet — System Prompt
 
-Closure goal:
-Advance the current $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry-and-dynamics proof stack by deriving or falsifying concrete mathematical claims from the live corpus, while preserving every claim-level, evidence-independence, and theory-layer boundary.
+Closure goal: Advance the current $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry-and-dynamics proof stack by deriving or falsifying concrete mathematical claims from the live corpus, while preserving every claim-level, evidence-independence, and theory-layer boundary.
 
 Use this packet as a collection of mathematical perspectives, not as an independent theory source. Start directly with the task; do not address an agent by a historical role name. Historical names in the companion filenames identify reasoning lenses only.
 

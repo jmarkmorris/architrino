@@ -335,6 +335,8 @@ n(\mathbf X,T),\,
 \qquad
 \beta_{\text{eff}}\equiv\frac{v}{c_{\text{eff}}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f91527347e6756c4)
 Here $v$ is drift speed relative to the Euclidean-void rest frame before observer export, not a speed already measured by Einstein synchronization. Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits.
 
 The velocity-sector condition is not only the square-root form: absolute-frame $v$ may enter the substrate equation, but after observer export it must appear only in combinations inseparable from synchronization, clock, ruler, and signal-channel records. Equivalence-principle recovery is precisely the demand that both sectors derive from one Noether sea response and one assembly-clock map, not from two fitted clock laws.
@@ -569,6 +571,8 @@ The finite-time form of that claim is a threshold law, not a consciousness law. 
 $$
 \tau_c=\inf\{t>0:\Sigma(X_t)=0\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f76f5752d441dfdd)
 The model may treat the pre-record state as an effective branch envelope only until the apparatus kernel, coarse-graining, access region, and record window identify a durable basin. A collapse account that gives Born weights from one model, heating bounds from another, and record formation from a third has not closed the measurement event.
 
 If the internal channel has not yet produced a durable record, then the effective wavefunction may still carry an unresolved branch envelope for that declared setup. But that is a statement about record formation, not about a cat occupying incompatible macroscopic realities. The correct question is not "when does consciousness collapse the state?" It is: when did the apparatus become a stable record-bearing system, and which observer has access to that record?
@@ -685,6 +689,8 @@ $$
 \longrightarrow
 \text{weak-reaction provenance}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a0104b2651def83)
 The same exposed axial geometry must carry left-channel selection, weak-basis versus mass-basis overlap, CKM/PMNS weights and phases, and event-level provenance of weak reactions. If those rows require separate definitions, electroweak and flavor recovery has only been reorganized.
 
 ### Chapter Thirty-Six. Nicola Cabibbo, Makoto Kobayashi, And Toshihide Maskawa: Mixing Without A Generation Mechanism
@@ -831,11 +837,15 @@ E_{\mathrm{arch}}(t)
 \frac{dE_{\mathrm{tot}}}{dT}=0
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-33cf08bc0d02c67b)
+
 where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This global form is available only if the universe-state energy is finite or convergently summable on the constant-$t$ leaf. If an unbounded populated Noether sea does not admit that global sum, the safe statement is the bounded-region continuity law
 
 $$
 \partial_T\rho_E+\nabla_{\mathbf X}\cdot\mathbf{S}_E=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3fdb460cf081a540)
 
 or, for a finite region $\Omega$ after boundary flux is included,
 
@@ -844,6 +854,8 @@ $$
 +\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
 =0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e2011777c4a44718)
 
 Here $\rho_E$ is the local energy density and $\mathbf{S}_E$ is the energy-flux density for the particle, causal-wake, and Noether sea rows retained in the comparison window. The global equation remains the stronger conservation target; the local continuity equation is the fallback that the redshift arc actually needs.
 
@@ -857,6 +869,8 @@ E_{\mathrm{emit}}-E_{\mathrm{obs}}
 E_{\mathrm{emit}}\frac{z}{1+z}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9e0d82e8a074e44e)
+
 After source, recoil, remnant, and boundary rows have been separated, a pure transparent-path redshift must close
 
 $$
@@ -864,6 +878,8 @@ $$
 +\Delta E_{\mathrm{sea,path}}
 =0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-87bbe915069e4148)
 
 This is not a rescue term. The sink is constrained by the same observations that made crude tired-light fail. It may not re-radiate into the transparent channel, blur images, distort the background spectrum, or break observed $(1+z)$ time dilation. It must accumulate along path history with the same constitutive response that recovers distance ladders, Tolman behavior, CMB blackbody and acoustic structure, lensing, and growth. Its spatial gradient may become part of the dark-sector budget, or it may over-predict lensing and structure; either way it is computable.
 
@@ -1058,6 +1074,8 @@ $$
 R_{\mathrm{GW}\gamma}\equiv
 \frac{c_{\mathrm{GW}}^{\mathrm{eff}}-c_\gamma}{c_\gamma}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4dfb0eede4523580)
 with $\lvert R_{\mathrm{GW}\gamma}\rvert\lesssim10^{-15}$ at the GW170817/GRB 170817A scale after source-emission lag and path conventions are declared. Equivalently, the same Noether sea response, including the $\chi_{\text{sea}}$ row that dresses photon-channel timing to $c_\gamma$, must dress the effective gravitational channel to the same weak-field limiting speed. A black-hole signal account that lets $c_{\mathrm{GW}}^{\mathrm{eff}}$ and $c_\gamma$ drift through independent Noether sea responses has already failed the preferred-frame leakage wall.
 
 Her chaos and black-hole-pair work sharpens the same issue. Close compact-object dynamics can be exquisitely sensitive to initial conditions, orbital phase, spin, dissipation, and instability. Standard relativity turns that into waveform modeling and template control. The Architrino architecture reads it as a warning that source history is not a decorative detail. The path history, basin structure, and release channel determine which observer-level waveform becomes visible.

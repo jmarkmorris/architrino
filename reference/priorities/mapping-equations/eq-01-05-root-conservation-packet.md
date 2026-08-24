@@ -433,9 +433,7 @@ These candidates are reusable enough to become independent equation rows or name
 
 ## 2026-06-23 Maturity Assessment
 
-This table restates the dated ledger assessment for packet alignment. It is not
-retained evidence and has no score authority; current scores are owned by
-[equation.md](equation.md).
+This table restates the dated ledger assessment for packet alignment. It is not retained evidence and has no score authority; current scores are owned by [equation.md](equation.md).
 
 | ID | Recorded `6/23` assessment | Reason |
 | --- | --- | --- |

@@ -6,195 +6,39 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas, insights, concep
 
 ## Log Entries
 
-- 2026-08-09: Proved the canonical moving-single-root identity
-  $\Phi_b=C_b\operatorname{sgn}(D_b)/r_b$ and
-  $-\nabla_{\mathbf X_r}\Phi_b=\mathbf A_b$ on one connected regular
-  fixed-reception chart with fixed retained history, $r_b>0$, and $D_b\ne0$.
-  A separately structured $c_f=1$ circular-history verifier solved every
-  perturbed root by certified Newton iteration, differentiated scalar values
-  with two numerical stencils, and compared them with the unchanged canonical
-  ledger record. Across five refinements the largest component residual was
-  $2.12\times10^{-12}$ and the largest stencil disagreement was
-  $5.93\times10^{-13}$; a raw $1/r_b^2$ negative control missed by $0.513$.
-  Promoted the regular per-row theorem into the Master Equation while retaining
-  finite scalar superposition at conditional-derivation grade. No global
-  scalar, chart gluing, singular continuation, action, conservation account,
-  infinite-source limit, or EOM solver acceptance was established.
+- 2026-08-09: Proved the canonical moving-single-root identity $\Phi_b=C_b\operatorname{sgn}(D_b)/r_b$ and $-\nabla_{\mathbf X_r}\Phi_b=\mathbf A_b$ on one connected regular fixed-reception chart with fixed retained history, $r_b>0$, and $D_b\ne0$. A separately structured $c_f=1$ circular-history verifier solved every perturbed root by certified Newton iteration, differentiated scalar values with two numerical stencils, and compared them with the unchanged canonical ledger record. Across five refinements the largest component residual was $2.12\times10^{-12}$ and the largest stencil disagreement was $5.93\times10^{-13}$; a raw $1/r_b^2$ negative control missed by $0.513$. Promoted the regular per-row theorem into the Master Equation while retaining finite scalar superposition at conditional-derivation grade. No global scalar, chart gluing, singular continuation, action, conservation account, infinite-source limit, or EOM solver acceptance was established.
 
-- 2026-07-30: Split the mirror-symmetric collinear close-approach and
-  causal-root boundary program out of MEC-006 into the new MEC-007
-  `mirror_close_approach_causal_root_boundary` owner. MEC-006 now retains only
-  the fixed-reception receiver-position acceleration gradient, its verified
-  regular-domain tensor, and its singular derivative boundary. MEC-007 owns the
-  stationary-mirror first-field-speed result at positive delayed range, the
-  admissible-history pre-coordinate-coincidence first-exit theorem, the
-  pre-boundary root and measure ledger, exact same-event admission question,
-  conditional diagnostic sandbox, and the unchanged-sharp-law post-threshold
-  obstruction. Both rows remain `Awaiting verification`; the obstruction
-  remains `Not advanced`. Reconciled MEC-002, MEC-003, MEC-004, and MEC-005
-  dependencies without selecting a continuation, passage, rebound, boundary
-  value, account map, conservation result, physical realization, MEC closure,
-  or acceptance.
+- 2026-07-30: Split the mirror-symmetric collinear close-approach and causal-root boundary program out of MEC-006 into the new MEC-007 `mirror_close_approach_causal_root_boundary` owner. MEC-006 now retains only the fixed-reception receiver-position acceleration gradient, its verified regular-domain tensor, and its singular derivative boundary. MEC-007 owns the stationary-mirror first-field-speed result at positive delayed range, the admissible-history pre-coordinate-coincidence first-exit theorem, the pre-boundary root and measure ledger, exact same-event admission question, conditional diagnostic sandbox, and the unchanged-sharp-law post-threshold obstruction. Both rows remain `Awaiting verification`; the obstruction remains `Not advanced`. Reconciled MEC-002, MEC-003, MEC-004, and MEC-005 dependencies without selecting a continuation, passage, rebound, boundary value, account map, conservation result, physical realization, MEC closure, or acceptance.
 
-- 2026-07-29: Added the separately authored MEC-005 bounded
-  structural-contract stage for
-  `mec005_two_history_causal_root_ledger_certificate/v1` and nine focused
-  tests. The stage checks the exact four ordered bundles, declared finite
-  entity sets, stable identity, multiplicity, reciprocal incidence, unique
-  ownership, boundary quarantine, exact `/v1` leaf labels, and implemented
-  negative controls. Its report names the unimplemented structural obligations
-  and independent raw-history mathematics, so it always reports
-  `Verification incomplete`, `Not advanced`, consumer-disabled, and `Queued`.
-  Reconciled the independent-oracle root-completeness schema documentation from
-  `/v0` to its live emitted and tested `/v1`; the separate piecewise-cubic v0
-  history-representation label remains unchanged. No boundary semantics, update
-  law, continuation, account map, or conservation claim was selected.
+- 2026-07-29: Added the separately authored MEC-005 bounded structural-contract stage for `mec005_two_history_causal_root_ledger_certificate/v1` and nine focused tests. The stage checks the exact four ordered bundles, declared finite entity sets, stable identity, multiplicity, reciprocal incidence, unique ownership, boundary quarantine, exact `/v1` leaf labels, and implemented negative controls. Its report names the unimplemented structural obligations and independent raw-history mathematics, so it always reports `Verification incomplete`, `Not advanced`, consumer-disabled, and `Queued`. Reconciled the independent-oracle root-completeness schema documentation from `/v0` to its live emitted and tested `/v1`; the separate piecewise-cubic v0 history-representation label remains unchanged. No boundary semantics, update law, continuation, account map, or conservation claim was selected.
 
-- 2026-07-28: Withheld independent verification of the worldline-only
-  characteristic-tail adjudication and moved MEC-001 to `Awaiting
-  verification`. The receiver-gradient identity and the
-  $-\mathbf F_a^{\mathrm{future}}/2$ regular cross-worldline coefficient both
-  survived direct derivation. A separately authored finite-difference
-  cross-pair action check at $c_f=1$ converged to the predicted transverse
-  coefficient under independent refinements of regulator width, time spacing,
-  action-probe amplitude, and future-bump amplitude. The frozen whole action is
-  nevertheless undefined on its declared self sector: retaining every $i=j$,
-  $t>s$ pair while excluding only $t=s$ contradicts the positive separation
-  floor and produces a nonintegrable near-diagonal tail for $C^1$ histories.
-  The earlier same-day negative-closure entry below is therefore provisional,
-  not verification evidence. No reader-facing identity, Master Equation,
-  causal-wake ontology, conservation claim, or EOM solver behavior changed.
+- 2026-07-28: Withheld independent verification of the worldline-only characteristic-tail adjudication and moved MEC-001 to `Awaiting verification`. The receiver-gradient identity and the $-\mathbf F_a^{\mathrm{future}}/2$ regular cross-worldline coefficient both survived direct derivation. A separately authored finite-difference cross-pair action check at $c_f=1$ converged to the predicted transverse coefficient under independent refinements of regulator width, time spacing, action-probe amplitude, and future-bump amplitude. The frozen whole action is nevertheless undefined on its declared self sector: retaining every $i=j$, $t>s$ pair while excluding only $t=s$ contradicts the positive separation floor and produces a nonintegrable near-diagonal tail for $C^1$ histories. The earlier same-day negative-closure entry below is therefore provisional, not verification evidence. No reader-facing identity, Master Equation, causal-wake ontology, conservation claim, or EOM solver behavior changed.
 
-- 2026-07-28: Completed the reader-facing characteristic-tail convergence
-  pass. The dynamics corpus now preserves the exact characteristic-direction
-  receiver-gradient identity while no longer treating that integral as an
-  accepted action, Noether-charge kernel, causal-wake update, or branch
-  certificate input. The complete action adjudication remains in
-  `characteristic-tail.md`; no Master Equation acceleration term, wake
-  ontology, EOM solver behavior, or conservation claim was changed.
+- 2026-07-28: Completed the reader-facing characteristic-tail convergence pass. The dynamics corpus now preserves the exact characteristic-direction receiver-gradient identity while no longer treating that integral as an accepted action, Noether-charge kernel, causal-wake update, or branch certificate input. The complete action adjudication remains in `characteristic-tail.md`; no Master Equation acceleration term, wake ontology, EOM solver behavior, or conservation claim was changed.
 
-- 2026-07-28: Closed the worldline-only characteristic-tail action negatively.
-  The frozen `CT-FH-1` candidate retains the exact receiver-gradient identity,
-  but complete variation produces a future-reception coefficient when the
-  varied point appears as a transmitter. An independent future-only transverse
-  bump changes the present Euler coefficient while preserving the complete
-  state through that time. Exact auxiliary elimination preserves the same
-  reduced Euler derivative, so localization cannot turn this action into the
-  missing causal wake state. No Master Equation, wake ontology, EOM solver,
-  conservation, branch, fold, or coincident-birth claim was changed or
-  promoted. MEC-002 is now the first live closure object.
+- 2026-07-28: Closed the worldline-only characteristic-tail action negatively. The frozen `CT-FH-1` candidate retains the exact receiver-gradient identity, but complete variation produces a future-reception coefficient when the varied point appears as a transmitter. An independent future-only transverse bump changes the present Euler coefficient while preserving the complete state through that time. Exact auxiliary elimination preserves the same reduced Euler derivative, so localization cannot turn this action into the missing causal wake state. No Master Equation, wake ontology, EOM solver, conservation, branch, fold, or coincident-birth claim was changed or promoted. MEC-002 is now the first live closure object.
 
-- 2026-07-24: Completed the no-edit preservation audit for the circular
-  self-hit energy-balance and causal-wake follow-on. The durable findings and
-  their authority remain:
-  1. **Derived:** every nondegenerate uniform-circular self-hit root has an
-     outward radial projection, so self-hit can supply a collapse barrier but
-     not circular centripetal support. This is owned by the circular self-hit
-     sections of `master-equation.md`, `binary-dynamics.md`, and `energy.md`.
-  2. **Derived scope boundary:** the reported tangential power is the
-     acceleration-kinematic rate $\mathbf A\cdot\mathbf V$; momentum is not an
-     input to that sign calculation, and an energy-rate reading requires the
-     optional universal $\mu_{\text{arch}}$ account convention. This is owned
-     by `master-equation.md`.
-  3. **Derived on the declared chart:** the principal circular self-hit
-     tangential contribution changes sign exactly at
-     $\beta_f=\pi/2$. The result is not a non-circular, multi-body, or
-     alternative-line-of-action speed theorem. This is owned by
-     `master-equation.md` and `binary-dynamics.md`.
-  4. **Derived equations; measured numerical instances:** the complete
-     absolute-value root census contains fold-born pairs beginning near
-     $\beta_f=4.60334$ and $7.78971$ and contains five self roots at
-     $\beta_f=8$. This is owned by `master-equation.md` and
-     `binary-dynamics.md`.
-  5. **Measured diagnostic:** on $1<\beta_f<20$, the principal-partner plus
-     all-self ledger has no tangential zero, while the complete
-     partner-plus-self simple-root ledger has algebraic circular candidates
-     beginning near $\beta_f=3.07036$ with inward net radial acceleration.
-     This corrects the restricted-ledger nonexistence reading but does not
-     certify retained dynamics. The two dynamics chapters own the result.
-  6. **Derived acceptance boundary:** algebraic acceleration balance is not a
-     stability or retained-branch result. Fold-event continuation, retained
-     history, wake-boundary closure, and a return-map or delay-spectrum
-     certificate remain required. This boundary is owned by the maximum-
-     curvature sections of the two dynamics chapters.
-  7. **Measured counterfactual:** the inertially extrapolated direction removes
-     the canonical simultaneous balance points and supplies no replacement
-     inward-radial tangential zero on $1<\beta_f<20$. It is a sensitivity
-     diagnostic, not authority to replace the canonical wake-surface normal.
-     This is owned by the two dynamics chapters.
-  8. **Derived necessity:** a coincident-birth maturity factor must satisfy the
-     exact weighted condition
-     $M\in L^1((0,L),T^{-3}dT)$. A more-than-quadratic pointwise bound is
-     sufficient but not necessary; on the exact linear birth chart, cubic is
-     only the first possible nonzero analytic order. The current primitives
-     select no unique maturity function. This is owned by
-     `analysis-independent-causal-wake-state.md`.
-  9. **Unproven proposal:** the particular clipped-cubic maturity,
-     $\mathbf p=\mu_{\text{arch}}\mathbf V$ account choice, and
-     reception-depletion law are preserved only in `brainstorming.md`.
-     They are not accepted ontology, a derived momentum law, or an
-     account-complete Master Equation.
-  No reader-facing claim was raised in authority by this preservation pass.
+- 2026-07-24: Completed the no-edit preservation audit for the circular self-hit energy-balance and causal-wake follow-on. The durable findings and their authority remain:
+  1. **Derived:** every nondegenerate uniform-circular self-hit root has an outward radial projection, so self-hit can supply a collapse barrier but not circular centripetal support. This is owned by the circular self-hit sections of `master-equation.md`, `binary-dynamics.md`, and `energy.md`.
+  2. **Derived scope boundary:** the reported tangential power is the acceleration-kinematic rate $\mathbf A\cdot\mathbf V$; momentum is not an input to that sign calculation, and an energy-rate reading requires the optional universal $\mu_{\text{arch}}$ account convention. This is owned by `master-equation.md`.
+  3. **Derived on the declared chart:** the principal circular self-hit tangential contribution changes sign exactly at $\beta_f=\pi/2$. The result is not a non-circular, multi-body, or alternative-line-of-action speed theorem. This is owned by `master-equation.md` and `binary-dynamics.md`.
+  4. **Derived equations; measured numerical instances:** the complete absolute-value root census contains fold-born pairs beginning near $\beta_f=4.60334$ and $7.78971$ and contains five self roots at $\beta_f=8$. This is owned by `master-equation.md` and `binary-dynamics.md`.
+  5. **Measured diagnostic:** on $1<\beta_f<20$, the principal-partner plus all-self ledger has no tangential zero, while the complete partner-plus-self simple-root ledger has algebraic circular candidates beginning near $\beta_f=3.07036$ with inward net radial acceleration. This corrects the restricted-ledger nonexistence reading but does not certify retained dynamics. The two dynamics chapters own the result.
+  6. **Derived acceptance boundary:** algebraic acceleration balance is not a stability or retained-branch result. Fold-event continuation, retained history, wake-boundary closure, and a return-map or delay-spectrum certificate remain required. This boundary is owned by the maximum- curvature sections of the two dynamics chapters.
+  7. **Measured counterfactual:** the inertially extrapolated direction removes the canonical simultaneous balance points and supplies no replacement inward-radial tangential zero on $1<\beta_f<20$. It is a sensitivity diagnostic, not authority to replace the canonical wake-surface normal. This is owned by the two dynamics chapters.
+  8. **Derived necessity:** a coincident-birth maturity factor must satisfy the exact weighted condition $M\in L^1((0,L),T^{-3}dT)$. A more-than-quadratic pointwise bound is sufficient but not necessary; on the exact linear birth chart, cubic is only the first possible nonzero analytic order. The current primitives select no unique maturity function. This is owned by `analysis-independent-causal-wake-state.md`.
+  9. **Unproven proposal:** the particular clipped-cubic maturity, $\mathbf p=\mu_{\text{arch}}\mathbf V$ account choice, and reception-depletion law are preserved only in `brainstorming.md`. They are not accepted ontology, a derived momentum law, or an account-complete Master Equation. No reader-facing claim was raised in authority by this preservation pass.
 
-- 2026-07-22: Normalized braid terminology across canon, current priority
-  packets, and app contracts. `Eigen-braid spectrum` now names only the
-  discrete-mode theorem target; candidate braid and certified braid name
-  certificate status. Reduced the live Master Equation queue to three coupled
-  future obligations: the causal wake update law, a finite coincident
-  same-transmitter transition, and energy, momentum, and angular momentum
-  accounts on that same update. No new wake law, transition, conservation
-  result, certified braid, or observer-recovery claim was derived or promoted.
+- 2026-07-22: Normalized braid terminology across canon, current priority packets, and app contracts. `Eigen-braid spectrum` now names only the discrete-mode theorem target; candidate braid and certified braid name certificate status. Reduced the live Master Equation queue to three coupled future obligations: the causal wake update law, a finite coincident same-transmitter transition, and energy, momentum, and angular momentum accounts on that same update. No new wake law, transition, conservation result, certified braid, or observer-recovery claim was derived or promoted.
 
-- 2026-07-20: Completed the receiver-factor authority audit. The obsolete
-  receiver-weighted branch-strength, restart-ledger, and wake-action packets
-  were moved under `history/`; current shared trackers and branch packets now
-  distinguish transmitter-side acceleration $c_f/|D_t|$ from signed playback
-  $D_r/D_t$. The completed audit task was removed from the live queue and all
-  later items were renumbered. Historical numerical results retain only the
-  topology or instrumentation reach stated in their records.
+- 2026-07-20: Completed the receiver-factor authority audit. The obsolete receiver-weighted branch-strength, restart-ledger, and wake-action packets were moved under `history/`; current shared trackers and branch packets now distinguish transmitter-side acceleration $c_f/|D_t|$ from signed playback $D_r/D_t$. The completed audit task was removed from the live queue and all later items were renumbered. Historical numerical results retain only the topology or instrumentation reach stated in their records.
 
-- 2026-07-20: Executed the independently evolving causal wake-state route. The
-  derived result is a minimum information requirement: direction-resolved
-  coupling, scalar energy, vector momentum, and explicit boundary flux. The
-  same-transmitter endpoint requires exact weighted integrability; a stronger
-  pointwise power bound is only sufficient. The current primitives do not
-  select the maturity law, motion-account maps, emission capacity, or reception
-  transfer. The route therefore closed
-  negatively under the current primitive set; no ontology, canon, EOM solver,
-  transition, or conservation claim was promoted.
+- 2026-07-20: Executed the independently evolving causal wake-state route. The derived result is a minimum information requirement: direction-resolved coupling, scalar energy, vector momentum, and explicit boundary flux. The same-transmitter endpoint requires exact weighted integrability; a stronger pointwise power bound is only sufficient. The current primitives do not select the maturity law, motion-account maps, emission capacity, or reception transfer. The route therefore closed negatively under the current primitive set; no ontology, canon, EOM solver, transition, or conservation claim was promoted.
 
-- 2026-07-20: Rebuilt the retained A1 turn-center acceleration with
-  transmitter-side weights and separate signed playback. Reciprocal interval
-  inversion gives certified acceleration-weight bounds for $P_1,P_2,P_3,S_1$;
-  the executable point diagnostic gives
-  $B_r=-0.005994753660055432$ and
-  $B_\theta=-0.00758582133246552$. The point result is diagnostic, not an
-  outward aggregate certificate. A1 action, conservation, outward constants,
-  and branch promotion remain blocked on the missing causal wake construction.
+- 2026-07-20: Rebuilt the retained A1 turn-center acceleration with transmitter-side weights and separate signed playback. Reciprocal interval inversion gives certified acceleration-weight bounds for $P_1,P_2,P_3,S_1$; the executable point diagnostic gives $B_r=-0.005994753660055432$ and $B_\theta=-0.00758582133246552$. The point result is diagnostic, not an outward aggregate certificate. A1 action, conservation, outward constants, and branch promotion remain blocked on the missing causal wake construction.
 
-- 2026-07-16: Consolidated the lane around the first missing
-  `receiver_normal_branch_strength_certificate/v0` object. The live tracker was
-  reduced to queue, blocker, routing, and promotion state; the former long-form
-  tracker became `branch-closure-program.md`; 22 overlapping A1/VP-1 restart
-  shells were replaced by `spiral-a1-restart.md` and `spiral-vp1-restart.md`;
-  and the six packets with distinct topology, interval, finite-memory,
-  Jacobian, or root-transport evidence were retained. No branch verdict or
-  corpus promotion was added.
+- 2026-07-16: Consolidated the lane around the first missing `receiver_normal_branch_strength_certificate/v0` object. The live tracker was reduced to queue, blocker, routing, and promotion state; the former long-form tracker became `branch-closure-program.md`; 22 overlapping A1/VP-1 restart shells were replaced by `spiral-a1-restart.md` and `spiral-vp1-restart.md`; and the six packets with distinct topology, interval, finite-memory, Jacobian, or root-transport evidence were retained. No branch verdict or corpus promotion was added.
 
-- 2026-07-16: Re-homed the pressure-dependent Noether sea constitutive response
-  as a focused shared packet in this lane. The packet now states one same-record
-  pressure-to-density/delay/cadence/strain/medium-response map, its
-  receiver-normal intake, first executable finite-difference packet, consumer
-  routing, and falsifiers. Status remains `defer-with-blocker`; no coefficient
-  or corpus claim was promoted.
+- 2026-07-16: Re-homed the pressure-dependent Noether sea constitutive response as a focused shared packet in this lane. The packet now states one same-record pressure-to-density/delay/cadence/strain/medium-response map, its receiver-normal intake, first executable finite-difference packet, consumer routing, and falsifiers. Status remains `defer-with-blocker`; no coefficient or corpus claim was promoted.
 
-- 2026-07-19: Ranked `independent_causal_wake_state_closure` first after the
-  scoped receiver-factor migration. The live tracker now requires one causal
-  state update to reproduce transmitter-side acceleration on regular charts,
-  cross coincident same-transmitter birth finitely, and close energy, momentum,
-  and angular momentum without residual-defined bookkeeping. Receiver-weighted
-  certificate packets lost current acceleration/action authority; retained root
-  geometry and $D_r/D_t$ playback remain reusable within their declared reach.
-  Added [independent-causal-wake-state-closure.md](independent-causal-wake-state-closure.md)
-  as the focused derivation and falsifier packet. No ontology or corpus claim
-  was promoted.
+- 2026-07-19: Ranked `independent_causal_wake_state_closure` first after the scoped receiver-factor migration. The live tracker now requires one causal state update to reproduce transmitter-side acceleration on regular charts, cross coincident same-transmitter birth finitely, and close energy, momentum, and angular momentum without residual-defined bookkeeping. Receiver-weighted certificate packets lost current acceleration/action authority; retained root geometry and $D_r/D_t$ playback remain reusable within their declared reach. Added [independent-causal-wake-state-closure.md](independent-causal-wake-state-closure.md) as the focused derivation and falsifier packet. No ontology or corpus claim was promoted.

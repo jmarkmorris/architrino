@@ -2,8 +2,7 @@
 
 This file is the canonical control surface for the overall `reference/priorities` ranking. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream tracker, not in directory names.
 
-The pre-split monolith is retained in Git history rather than as a live
-priority document.
+The pre-split monolith is retained in Git history rather than as a live priority document.
 
 ## Scoring System
 
@@ -29,34 +28,15 @@ priority document.
 
 ## Audit Scope — 2026-07-26
 
-This active-only audit read every immediate top-level
-`reference/priorities/*/priorities.md` tracker, the current directory inventory,
-the top-six closure join, and the current EOM/Braid acceptance boundaries. The
-numeric table includes 23 top-level owner directories and four separately
-ranked shared theorem packets. `aaa-work-threads` is the control surface and
-`app-simulation` is a routing index, so neither receives a numeric rank.
+This active-only audit read every immediate top-level `reference/priorities/*/priorities.md` tracker, the current directory inventory, the top-six closure join, and the current EOM/Braid acceptance boundaries. The numeric table includes 24 top-level owner directories and four separately ranked shared theorem packets. `aaa-work-threads` is the control surface and `app-simulation` is a routing index, so neither receives a numeric rank.
 
-Every child of `dormant-deferred` is excluded regardless of whether its parked
-tracker still contains historical rank metadata. A top-level tracker remains
-in the active inventory even when its internal status is `deferred` or
-`watchlist`; moving that directory under `dormant-deferred` is the action that
-removes it from this table.
+Every child of `dormant-deferred` is excluded regardless of whether its parked tracker still contains historical rank metadata. A top-level tracker remains in the active inventory even when its internal status is `deferred` or `watchlist`; moving that directory under `dormant-deferred` is the action that removes it from this table.
 
-The audit preserves component scores for unchanged marginal objects, removes
-eight archived rows, adds the previously unranked top-level `app-mcp` owner,
-and re-sorts the remaining winners contiguously. The former
-`eom-attractor-search` packet is now distributed between EOM's reusable
-instrument packet and Braid Program's scientific campaign packet.
+The audit preserves component scores for unchanged marginal objects, removes eight archived rows, adds the previously unranked top-level `app-mcp` owner, and re-sorts the remaining winners contiguously. The former `eom-attractor-search` packet is now distributed between EOM's reusable instrument packet and Braid Program's scientific campaign packet.
 
 ## Operator Discussion Queue
 
-- **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) —
-  `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive
-  domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and
-  evolution semantics. This crosses the Master Equation, MEC-007, EOM solver,
-  Braid prescribed diagnostics, and several reader-facing closure hypotheses.
-  It changes no existing theory status while the compatibility map is pending.
-  See [its work queue](../field-speed-ceiling/work-queue.md).
+- **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) — `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and evolution semantics. This crosses the Master Equation, MEC-007, EOM solver, Braid prescribed diagnostics, and several reader-facing closure hypotheses. It changes no existing theory status while the compatibility map is pending. See [its work queue](../field-speed-ceiling/work-queue.md).
 
 ## Unified Priority Table
 
@@ -86,38 +66,43 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 20 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
 | 21 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
 | 22 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
-| 23 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 24 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 25 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
-| 26 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
+| 23 | App | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `curated_carousel_promotion_review`: one editorially valuable carousel/callout promotion from the complete corpus registry | 4.0 | 1.15 | 0 | 1.00 | 0.25 | 3 | 0.80 | 0.92 | 4 | 3 | 3 | 4 | 3.5 | 0.26 |
+| 24 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 25 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
+| 26 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
+| 27 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
 
 ## Active-Only Rerank Movement — 2026-07-26
 
-- The top ten are unchanged. Their marginal objects and component scores remain
-  current enough that removing archived rows does not alter their relative
-  order.
-- Eight `dormant-deferred` rows were removed:
-  `app-equation-mapping`, `information-relay-machines`, `validation-gates`,
-  `lissajou`, `media-videos`, `media-images`, `media-comics`, and
-  `media-posts`.
-- `app-mcp` enters at rank `20` on
-  `named_http_client_conformance`. Its score is for the remaining named-client
-  verification object, not for the already completed local service and
-  loopback adapter.
-- The active rows below rank `16` were renumbered contiguously without changing
-  component scores: `open-problems` is now `17`, `source-mining` `18`,
-  `cosmology-closure` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`,
-  `operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and
-  `aaa-futures` `27`.
-- Borg and Strong-Field now expose machine-checkable local rank-`1` objects.
-  This changes queue representation, not their scores or evidence grade.
+- The top ten are unchanged. Their marginal objects and component scores remain current enough that removing archived rows does not alter their relative order.
+- Eight `dormant-deferred` rows were removed: `app-equation-mapping`, `information-relay-machines`, `validation-gates`, `lissajou`, `media-videos`, `media-images`, `media-comics`, and `media-posts`.
+- `app-mcp` enters at rank `20` on `named_http_client_conformance`. Its score is for the remaining named-client verification object, not for the already completed local service and loopback adapter.
+- The active rows below rank `16` were renumbered contiguously without changing component scores: `open-problems` is now `17`, `source-mining` `18`, `cosmology-closure` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`, `operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and `aaa-futures` `27`.
+- Borg and Strong-Field now expose machine-checkable local rank-`1` objects. This changes queue representation, not their scores or evidence grade.
 
 ## App Ideas Owner Removal — 2026-07-27
 
-- `app-ideas` was removed after its accepted concepts and implementation
-  packets were transferred to Causal Delay Feedback and Borg.
-- The surviving rows below its former rank were shifted upward by one without
-  changing their component scores or evidence grades.
+- `app-ideas` was removed after its accepted concepts and implementation packets were transferred to Causal Delay Feedback and Borg.
+- The surviving rows below its former rank were shifted upward by one without changing their component scores or evidence grades.
+
+## Equation Mapping App Promotion — 2026-08-23
+
+- `app-equation-mapping` moved from `dormant-deferred` into the active top-level inventory at operator direction.
+- Its local rank-1 object is now `equation_page_api_access`, not the former seed-expansion object. The new inferred attention score is based on a bounded versioned read-only contract, stable-ID retrieval, canonical page-link resolution, and cross-surface integration validation.
+- The promotion inserts the app at rank `17`; lower rows shift by one without changing their component scores or evidence grades.
+- This is an execution-priority change only. It does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
+
+## Equation Mapping Link Contract Closure — 2026-08-24
+
+- `equation_page_api_access` is verified across the canonical web corpus, generated textbook reading copies, and iOS public-web link bundle, so it no longer receives remaining-value credit.
+- The app's next unresolved object is `symbol_definition_disclosure`. Its rank-18 inferred attention score reflects a useful but downstream accessibility and explanation surface with moderate implementation and cross-device validation burden.
+- `open-problems` moves to rank `17`; all other rows retain their prior order. This rerank changes execution attention only and does not change any equation claim, proof status, corpus authority, or equation-mapping score.
+
+## Equation Mapping Full-Corpus Baseline Closure — 2026-08-24
+
+- `symbol_definition_disclosure` and `author_equation_registration_workflow` are verified across all 4,587 corpus display-equation occurrences, so they no longer receive remaining-value credit.
+- The app's next unresolved object is `curated_carousel_promotion_review`. Every equation already has the same search, address, source, and symbol baseline; this object is only an editorial decision about whether one equation merits carousel placement and curated callouts.
+- `app-equation-mapping` moves to rank `23`; `source-mining`, `cosmology-closure`, `app-mcp`, `archie`, and `app-ios` each move up one rank without score changes. The rerank changes execution attention only and does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
 
 ## Current Focus
 
@@ -129,11 +114,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Operator Burden Triage
 
-The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`,
-`15-16`, and `19`. Lower-cost inspection, app, and coordination surfaces are
-led by ranks `7`, `9`, `14`, `17-18`, and `20-25`. A lower-cost row may produce
-visible progress sooner, but it does not outrank the derivation spine unless a
-concrete upstream result is ready for it to inspect, validate, or publish.
+The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`, `15-16`, and `20`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `9`, `14`, `17-19`, and `21-26`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
 
 The `dormant-deferred` archive and all of its children are unscored.
 
@@ -143,10 +124,8 @@ The routed next actions now live in [work-queue.md](work-queue.md). Each impleme
 
 ## Organization Status
 
-- The numeric ranks are contiguous and include every top-level rankable owner
-  plus the four explicitly ranked shared packets.
-- No `dormant-deferred` child appears in the numeric table or active discussion
-  queue.
+- The numeric ranks are contiguous and include every top-level rankable owner plus the four explicitly ranked shared packets.
+- No `dormant-deferred` child appears in the numeric table or active discussion queue.
 - Legacy braid directories stay archived; Braid Program owns scientific search campaigns, EOM owns reusable execution capability, and the former attractor-search packet is distributed between those two canonical owners.
 - The former `app-simulation` directory is a routing index, not a ranked owner; its preserved protocol detail advances only through the named canonical lane.
 - [closure-join-matrix.md](closure-join-matrix.md) remains the shared-object dependency view, and [inventory.md](inventory.md) remains the detailed file map.

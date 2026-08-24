@@ -8,87 +8,42 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-07-27 — App Ideas owner removed
 
-- Removed the `app-ideas` priority directory after its actionable concepts and
-  implementation packets had been transferred to Causal Delay Feedback and
-  Borg.
-- Removed App Ideas from the active inventory and unified ranking, then closed
-  the resulting rank gap without changing any surviving row's component
-  scores or evidence grade.
-- Removed live related-priority links to the deleted owner. The dated Causal
-  Delay Feedback and Borg work-log entries remain as the transfer history.
-- Promotion triage: `priority-only`; no authored $\mathbb{A}\mathbb{A}\mathbb{A}$
-  prose, implementation claim, or closure score changed.
+- Removed the `app-ideas` priority directory after its actionable concepts and implementation packets had been transferred to Causal Delay Feedback and Borg.
+- Removed App Ideas from the active inventory and unified ranking, then closed the resulting rank gap without changing any surviving row's component scores or evidence grade.
+- Removed live related-priority links to the deleted owner. The dated Causal Delay Feedback and Borg work-log entries remain as the transfer history.
+- Promotion triage: `priority-only`; no authored $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, implementation claim, or closure score changed.
 
 ### 2026-07-26 — Active work queues separated from strategy and brainstorming
 
-- Added or standardized `work-queue.md` for all 25 immediate active priority
-  owners. Twenty-two owners gained a queue and the three existing active queues
-  gained the shared ranked-object and lifecycle method.
-- Moved accepted executable tasks and local task ranking out of each owner's
-  `priorities.md`; those trackers now retain strategy, current state, score
-  metadata, routing, blockers, and promotion state.
-- Moved task-shaped entries out of `brainstorming.md` while preserving
-  non-task hypotheses, questions, source fragments, and deferred concepts
-  there.
-- Updated the active inventory, priority README, priority-lane resume prompt,
-  startup-orientation generator source, and ranking validator. The validator
-  now requires a queue for every active owner, rejects legacy task-section
-  headings in strategy and brainstorming files, and checks ranked local winners
-  against `work-queue.md`.
-- No priority score, global rank, proof status, campaign fate, branch
-  disposition, or closure-score row changed. Promotion triage:
-  `priority-only`.
+- Added or standardized `work-queue.md` for all 25 immediate active priority owners. Twenty-two owners gained a queue and the three existing active queues gained the shared ranked-object and lifecycle method.
+- Moved accepted executable tasks and local task ranking out of each owner's `priorities.md`; those trackers now retain strategy, current state, score metadata, routing, blockers, and promotion state.
+- Moved task-shaped entries out of `brainstorming.md` while preserving non-task hypotheses, questions, source fragments, and deferred concepts there.
+- Updated the active inventory, priority README, priority-lane resume prompt, startup-orientation generator source, and ranking validator. The validator now requires a queue for every active owner, rejects legacy task-section headings in strategy and brainstorming files, and checks ranked local winners against `work-queue.md`.
+- No priority score, global rank, proof status, campaign fate, branch disposition, or closure-score row changed. Promotion triage: `priority-only`.
 
 ### 2026-07-26 — EOM priority owner renamed to app-solver
 
-- Renamed `reference/priorities/app-solver/` as the rank-`1` solver owner and
-  updated the unified table, inventory, closure join, downstream owner links,
-  live contracts, and path-sensitive tests.
-- Kept the engine name `EOM solver` and preserved its ownership split:
-  reusable execution here, scientific campaigns in Braid Program, and theory
-  acceptance in the owning closure lane.
-- Preserved the original `app-eom` path literals in three immutable
-  parallel-stream pilot provenance files rather than rewriting a historical
-  lock, report, or checksum inventory.
-- The local winner, component scores, and global rank are unchanged. Promotion
-  triage: `priority-only`; no authored AAA prose or numerical claim changed.
+- Renamed `reference/priorities/app-solver/` as the rank-`1` solver owner and updated the unified table, inventory, closure join, downstream owner links, live contracts, and path-sensitive tests.
+- Kept the engine name `EOM solver` and preserved its ownership split: reusable execution here, scientific campaigns in Braid Program, and theory acceptance in the owning closure lane.
+- Preserved the original `app-eom` path literals in three immutable parallel-stream pilot provenance files rather than rewriting a historical lock, report, or checksum inventory.
+- The local winner, component scores, and global rank are unchanged. Promotion triage: `priority-only`; no authored AAA prose or numerical claim changed.
 
 ### 2026-07-26 — Open Problems reduced to paper control
 
-- Audited the Open Problems queue and brainstorming packet against the current
-  owner map.
-- Kept its rank-`1` `claim_level_audit`, test-contract control, and deployed
-  paper maintenance; completed its section route map and merged the redundant
-  paper claim filter into the two controls that enforce it.
-- Routed source refresh to Source Mining, the architecture scale bridge and
-  Lorentz acceptance to Mapping Benchmarks, the drift-relaxation capability
-  to EOM, and the axis-count proof gap to Standard Model Closure.
-- Removed the local theory brainstorming file after preserving current
-  obligations at their owners and documenting stale or already-promoted
-  entries in the Open Problems work log.
-- The winning object and score did not change, so no global rerank was
-  required. Promotion triage: `priority-only`; no authored AAA prose changed.
+- Audited the Open Problems queue and brainstorming packet against the current owner map.
+- Kept its rank-`1` `claim_level_audit`, test-contract control, and deployed paper maintenance; completed its section route map and merged the redundant paper claim filter into the two controls that enforce it.
+- Routed source refresh to Source Mining, the architecture scale bridge and Lorentz acceptance to Mapping Benchmarks, the drift-relaxation capability to EOM, and the axis-count proof gap to Standard Model Closure.
+- Removed the local theory brainstorming file after preserving current obligations at their owners and documenting stale or already-promoted entries in the Open Problems work log.
+- The winning object and score did not change, so no global rerank was required. Promotion triage: `priority-only`; no authored AAA prose changed.
 
 ### 2026-07-26 — Active-only inventory and rerank
 
-- Rebuilt [inventory.md](inventory.md) from the live top-level directory tree:
-  23 ranked owners, four separately ranked shared packets, two unranked
-  control/routing surfaces, and 15 children under `dormant-deferred`.
-- Removed all eight previously ranked `dormant-deferred` rows from the unified
-  table and excluded dormant discussion items from the active discussion
-  queue.
-- Added top-level `app-mcp` at rank `20` on the remaining
-  `named_http_client_conformance` object. Completed service, fixture, and
-  loopback work received no remaining value credit.
-- Preserved component scores for unchanged marginal objects, renumbered the
-  active rows contiguously, and synchronized tracker metadata. The top ten did
-  not move.
-- Made Borg and Strong-Field local winners machine-checkable, reopened App
-  Ideas selection after Causal Delay Feedback was deferred, refreshed the
-  top-six closure join, and repaired current archive routing.
-- Claim grade: inferred attention allocation and priority-only organization.
-  No proof, campaign fate, branch, coefficient, app acceptance, or
-  closure-score row was promoted.
+- Rebuilt [inventory.md](inventory.md) from the live top-level directory tree: 23 ranked owners, four separately ranked shared packets, two unranked control/routing surfaces, and 15 children under `dormant-deferred`.
+- Removed all eight previously ranked `dormant-deferred` rows from the unified table and excluded dormant discussion items from the active discussion queue.
+- Added top-level `app-mcp` at rank `20` on the remaining `named_http_client_conformance` object. Completed service, fixture, and loopback work received no remaining value credit.
+- Preserved component scores for unchanged marginal objects, renumbered the active rows contiguously, and synchronized tracker metadata. The top ten did not move.
+- Made Borg and Strong-Field local winners machine-checkable, reopened App Ideas selection after Causal Delay Feedback was deferred, refreshed the top-six closure join, and repaired current archive routing.
+- Claim grade: inferred attention allocation and priority-only organization. No proof, campaign fate, branch, coefficient, app acceptance, or closure-score row was promoted.
 
 ### 2026-07-26 — Causal Delay Feedback and Roots deferred
 

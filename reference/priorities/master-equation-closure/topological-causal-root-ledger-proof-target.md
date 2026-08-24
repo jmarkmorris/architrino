@@ -5,45 +5,25 @@
 - Kind: `priority`
 - Claim level: `priority-only theorem target`
 - Workstream: [master-equation-closure](priorities.md)
-- Topology layer: EOM-independent priority-only proof program. A chosen EOM may
-  consume the retained ledger later, but it is not an input assumption here.
-- Downstream corpus destinations if accepted by a future EOM consumer:
-  [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md),
-  [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md),
-  and the relevant branch-certificate packets.
-- Promotion status: not promoted. This packet records a candidate proof route and
-  working mathematics for discussion and refinement.
+- Topology layer: EOM-independent priority-only proof program. A chosen EOM may consume the retained ledger later, but it is not an input assumption here.
+- Downstream corpus destinations if accepted by a future EOM consumer: [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the relevant branch-certificate packets.
+- Promotion status: not promoted. This packet records a candidate proof route and working mathematics for discussion and refinement.
 
 ## Purpose
 
-This packet captures a topology-oriented proof route suggested by the causal-root
-and self-hit discussion. The target is not a new force law and does not assume a
-chosen EOM. The immediate target is to decide whether branch admissibility can
-be stated as an EOM-independent causal-root ledger condition: the same retained
-path-history record must account for causal-root intersections, root-count
-changes, boundary strata, and declared same-record routes before any downstream
-force, action, wake-history, medium-response, or cross-sector consumer may use
-the row.
+This packet captures a topology-oriented proof route suggested by the causal-root and self-hit discussion. The target is not a new force law and does not assume a chosen EOM. The immediate target is to decide whether branch admissibility can be stated as an EOM-independent causal-root ledger condition: the same retained path-history record must account for causal-root intersections, root-count changes, boundary strata, and declared same-record routes before any downstream force, action, wake-history, medium-response, or cross-sector consumer may use the row.
 
 The proof laboratory is a neutral finite 3-torus
 $$
 T_L^3=\mathbb{R}^3/(L\mathbb{Z})^3
 $$
-with periodic boundary conditions. The 3-torus is used as a compact,
-boundaryless, flat model. It is not being asserted as physical cosmology.
+with periodic boundary conditions. The 3-torus is used as a compact, boundaryless, flat model. It is not being asserted as physical cosmology.
 
 ## Working Thesis
 
 The candidate topological claim is:
 
-> For a declared retained history window on $T_L^3$, causal-hit ledgers are
-> stable intersection records. Root counts can change only through declared
-> boundary strata: endpoint exclusion, memory-window entry or exit, causal-root
-> caustic $J=0$, collision/core regularization, or winding/seam ownership.
-> A branch can be offered to any downstream EOM consumer only when those boundary
-> strata are absent, paired, or routed into the same retained source record. An
-> EOM label, force-law label, or sector-specific residual cannot substitute for
-> the retained topological ledger object.
+> For a declared retained history window on $T_L^3$, causal-hit ledgers are stable intersection records. Root counts can change only through declared boundary strata: endpoint exclusion, memory-window entry or exit, causal-root caustic $J=0$, collision/core regularization, or winding/seam ownership. A branch can be offered to any downstream EOM consumer only when those boundary strata are absent, paired, or routed into the same retained source record. An EOM label, force-law label, or sector-specific residual cannot substitute for the retained topological ledger object.
 
 This separates the topology-native rows from the downstream consumer rows:
 
@@ -61,21 +41,9 @@ This separates the topology-native rows from the downstream consumer rows:
 
 The smallest topology-native theorem target is:
 
-> Given a retained path-history window $W$ on $T_L^3$, with winding-labeled
-> causal-root rows and a positive simple-root floor away from declared strata,
-> root identities persist under time continuation, and the root count can change
-> only at endpoint, memory-window, caustic $J=0$, collision/core, winding/seam,
-> or omitted-row boundary strata. A branch is topology-admissible for downstream
-> consumption only when every such boundary contribution is absent, paired, or
-> routed into the same retained source record.
+> Given a retained path-history window $W$ on $T_L^3$, with winding-labeled causal-root rows and a positive simple-root floor away from declared strata, root identities persist under time continuation, and the root count can change only at endpoint, memory-window, caustic $J=0$, collision/core, winding/seam, or omitted-row boundary strata. A branch is topology-admissible for downstream consumption only when every such boundary contribution is absent, paired, or routed into the same retained source record.
 
-This theorem target deliberately excludes the choice of acceleration law,
-branch-strength law, action functional, medium-response coefficients, or
-observer-facing signal speed. Those are downstream consumers. The missing
-topology-native proof object is an oriented boundary operator on retained
-winding-labeled root rows, plus a same-record routing map that records whether
-each boundary contribution is absent, paired, or routed without invoking an EOM
-or force-law label.
+This theorem target deliberately excludes the choice of acceleration law, branch-strength law, action functional, medium-response coefficients, or observer-facing signal speed. Those are downstream consumers. The missing topology-native proof object is an oriented boundary operator on retained winding-labeled root rows, plus a same-record routing map that records whether each boundary contribution is absent, paired, or routed without invoking an EOM or force-law label.
 
 ## EOM Boundary Audit
 
@@ -107,8 +75,7 @@ $$
 \mathbf{x}_a(t)=\tilde{\mathbf{x}}_a(t)\bmod L.
 $$
 
-For a receiver $i$ at time $t$, source $j$ at emission time $s<t$, and winding
-class $n\in\mathbb{Z}^3$, define the lifted causal-root function
+For a receiver $i$ at time $t$, source $j$ at emission time $s<t$, and winding class $n\in\mathbb{Z}^3$, define the lifted causal-root function
 $$
 G_{ij,n}(t,s)
 =
@@ -129,11 +96,7 @@ G_{ij,n}(t,s)=0,
 \qquad s<t.
 $$
 
-The winding class $n$ records which periodic image of the source wake reaches
-the receiver. In a retained packet, $n$ is ledger data, not a coordinate
-artifact. If a shorter representative replaces a longer representative across a
-periodic seam, the certificate must record whether this is only a relabeling of
-the same physical root or a genuine retained-ledger boundary.
+The winding class $n$ records which periodic image of the source wake reaches the receiver. In a retained packet, $n$ is ledger data, not a coordinate artifact. If a shorter representative replaces a longer representative across a periodic seam, the certificate must record whether this is only a relabeling of the same physical root or a genuine retained-ledger boundary.
 
 The simple-root Jacobian is
 $$
@@ -156,9 +119,7 @@ $$
 }.
 $$
 
-This is a topology-native source-velocity transversality row that any downstream
-simple-root EOM consumer must respect. A root with $J_{ij,n}=0$ is a caustic
-boundary, not an ordinary simple-root row.
+This is a topology-native source-velocity transversality row that any downstream simple-root EOM consumer must respect. A root with $J_{ij,n}=0$ is a caustic boundary, not an ordinary simple-root row.
 
 ## Candidate Lemma 1: Compact Pair-Contact
 
@@ -166,8 +127,7 @@ Let
 $$
 D_L=\frac{\sqrt{3}}{2}L
 $$
-be the diameter of the flat cubic 3-torus. For distinct simultaneous positions
-$\mathbf{x}_i(t)\ne\mathbf{x}_j(t)$, define the torus distance
+be the diameter of the flat cubic 3-torus. For distinct simultaneous positions $\mathbf{x}_i(t)\ne\mathbf{x}_j(t)$, define the torus distance
 $$
 d_L(t,s)=
 \min_{n\in\mathbb{Z}^3}
@@ -199,17 +159,11 @@ H_{ij}(\tau)<0
 \text{for some }\tau\le h.
 $$
 
-Thus, by continuity, at least one pairwise causal root exists inside the
-retained window.
+Thus, by continuity, at least one pairwise causal root exists inside the retained window.
 
 ### Interpretation
 
-This is the compact-space version of pairwise causal contact. It does not hold
-as stated in noncompact Euclidean space. In noncompact space, a source moving
-super-field-speed toward a receiver can outrun all prior wakes relevant to that
-receiver event, leaving no past emission root. On the compact torus, the
-bounded distance supplies a sign change once the memory window is longer than
-the torus light-crossing time.
+This is the compact-space version of pairwise causal contact. It does not hold as stated in noncompact Euclidean space. In noncompact space, a source moving super-field-speed toward a receiver can outrun all prior wakes relevant to that receiver event, leaving no past emission root. On the compact torus, the bounded distance supplies a sign change once the memory window is longer than the torus light-crossing time.
 
 ### First Failure Modes
 
@@ -233,9 +187,7 @@ $$
 c_f|J_{ij,n}(t,s_\ell(t))|
 \ge c_f\nu_J>0
 $$
-on a time interval. Then the implicit-function theorem gives a continuous
-root branch $s_\ell(t)$ over that interval. The root count in the retained
-winding class is locally stable.
+on a time interval. Then the implicit-function theorem gives a continuous root branch $s_\ell(t)$ over that interval. The root count in the retained winding class is locally stable.
 
 Root count can change only when one of the following boundaries is reached:
 
@@ -250,16 +202,13 @@ Root count can change only when one of the following boundaries is reached:
 
 ## Candidate Lemma 3: Self-Hit Is Not Pair-Contact
 
-Self-hit uses the same root topology, but with source identity equal to receiver
-identity:
+Self-hit uses the same root topology, but with source identity equal to receiver identity:
 $$
 G_{ii,n}(t,s)=0,
 \qquad s<t.
 $$
 
-The trivial endpoint $s=t$, $n=0$ is excluded. Therefore the compact
-pair-contact lemma does not automatically prove self-hit. For small
-$\tau=t-s$, the same-transmitter torus distance behaves locally like
+The trivial endpoint $s=t$, $n=0$ is excluded. Therefore the compact pair-contact lemma does not automatically prove self-hit. For small $\tau=t-s$, the same-transmitter torus distance behaves locally like
 $$
 d_L(t,t-\tau)
 =
@@ -274,11 +223,7 @@ d_L(t,t-\tau)-c_f\tau
 (\|\mathbf v_i(t)\|-c_f)\tau+O(\tau^2).
 $$
 
-A strict sub-field-speed interval therefore has no nearby simple self-hit root.
-A super-field-speed arc supplies the local sign needed for a candidate
-self-hit onset, but a retained branch still must provide the same-transmitter root,
-positive transmitter-side Jacobian floor or caustic route, finite transmitter-side acceleration contribution, finite memory, and action/energy
-ledger closure.
+A strict sub-field-speed interval therefore has no nearby simple self-hit root. A super-field-speed arc supplies the local sign needed for a candidate self-hit onset, but a retained branch still must provide the same-transmitter root, positive transmitter-side Jacobian floor or caustic route, finite transmitter-side acceleration contribution, finite memory, and action/energy ledger closure.
 
 This keeps the existing distinction intact:
 
@@ -295,10 +240,7 @@ $$
 \qquad
 q_a\in\{-\epsilon,+\epsilon\},
 $$
-the compact box has no spatial boundary and no net primitive polarity. This
-does not prove stability, mass, Lorentz behavior, quantum weights, or Noether
-sea response. It gives a clean neutral laboratory in which every retained
-source-provenanced causal-root row has one of the following statuses:
+the compact box has no spatial boundary and no net primitive polarity. This does not prove stability, mass, Lorentz behavior, quantum weights, or Noether sea response. It gives a clean neutral laboratory in which every retained source-provenanced causal-root row has one of the following statuses:
 
 1. accepted simple root with winding owner,
 2. caustic or fold boundary,
@@ -307,29 +249,18 @@ source-provenanced causal-root row has one of the following statuses:
 5. inactive-root gap,
 6. rejected missing row.
 
-The useful mathematical question is whether the total retained root ledger has
-zero unaccounted boundary after the action, wake-history, and medium-response
-pullbacks are applied.
+The useful mathematical question is whether the total retained root ledger has zero unaccounted boundary after the action, wake-history, and medium-response pullbacks are applied.
 
 ## Candidate Closed-Ledger Conjecture
 
-Let $\mathcal{R}^{\mathrm{act}}$ be the active causal-root rows in a retained
-branch chart on $T_L^3$, and let $\partial\mathcal{R}^{\mathrm{act}}$ denote
-the formal boundary generated by caustics, memory-window crossings, endpoint
-events, core events, winding transfers, and omitted-row gaps. A candidate branch
-is topology-admissible only if the topology-native boundary has no unaccounted
-row:
+Let $\mathcal{R}^{\mathrm{act}}$ be the active causal-root rows in a retained branch chart on $T_L^3$, and let $\partial\mathcal{R}^{\mathrm{act}}$ denote the formal boundary generated by caustics, memory-window crossings, endpoint events, core events, winding transfers, and omitted-row gaps. A candidate branch is topology-admissible only if the topology-native boundary has no unaccounted row:
 $$
 \partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}
 =0
 $$
-where zero means every boundary contribution is absent, paired, or routed into
-the same retained source record by an explicit boundary-stratum row. This first
-condition does not use an EOM.
+where zero means every boundary contribution is absent, paired, or routed into the same retained source record by an explicit boundary-stratum row. This first condition does not use an EOM.
 
-The downstream cross-sector conjecture is stronger. Once action, wake-history,
-and medium-response consumers are supplied, a branch can be consumed by the full
-closed-ledger stack only if
+The downstream cross-sector conjecture is stronger. Once action, wake-history, and medium-response consumers are supplied, a branch can be consumed by the full closed-ledger stack only if
 $$
 \partial\mathcal{R}^{\mathrm{act}}
 +
@@ -341,16 +272,12 @@ $$
 =
 0
 $$
-on the same retained history record, with any residual routed to the declared
-cross-sector acceptance failure
+on the same retained history record, with any residual routed to the declared cross-sector acceptance failure
 $$
 \mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}.
 $$
 
-This is a working conjecture, not a canonized law. The topology-native term can
-be developed before choosing an EOM; the remaining terms are downstream
-same-record consumers. The terms need precise definitions before this becomes
-theorem-grade:
+This is a working conjecture, not a canonized law. The topology-native term can be developed before choosing an EOM; the remaining terms are downstream same-record consumers. The terms need precise definitions before this becomes theorem-grade:
 
 | Term | Needed definition |
 | --- | --- |
@@ -362,21 +289,13 @@ theorem-grade:
 
 ## Candidate Definition 5: Noether Sea Compatibility Boundary
 
-The Lorentz/GR residual handoff already requires one Noether sea response
-record
+The Lorentz/GR residual handoff already requires one Noether sea response record
 $$
 \mathcal{M}_{\mathrm{sea}}^{ab}
 $$
-or bridge equivalent to supply normalized density, delay, effective potential,
-stress, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$,
-$c_{\text{eff}}$, and $c_\gamma$ projections. The topological ledger adds a
-same-history condition to that handoff: the medium-response record must be
-read from the same retained branch chart that supplies the active roots,
-inactive gaps, Jacobian floors, finite-memory window, regulator state, and
-wake-history event ledger.
+or bridge equivalent to supply normalized density, delay, effective potential, stress, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$, $c_{\text{eff}}$, and $c_\gamma$ projections. The topological ledger adds a same-history condition to that handoff: the medium-response record must be read from the same retained branch chart that supplies the active roots, inactive gaps, Jacobian floors, finite-memory window, regulator state, and wake-history event ledger.
 
-For a retained branch chart $\mathfrak B$, define the medium-response source
-record as
+For a retained branch chart $\mathfrak B$, define the medium-response source record as
 $$
 \Theta_{\mathrm{sea}}(\mathfrak B)
 =
@@ -386,11 +305,7 @@ q,\ W,\ h,\ \eta,\ \epsilon_c,\ \mathcal{R}^{\mathrm{act}},
 \mathcal{P}_{\mathrm{sea}}
 \right),
 $$
-where $q$ is the branch class, $W$ is the retained comparison window,
-$\mathcal{P}_{\mathrm{sea}}$ denotes the projection maps that read clock,
-ruler, signal-speed, weak-field metric, and photon-channel rows from the
-Noether sea response object, and the other rows are the retained topological
-ledger rows that any downstream EOM or medium-response consumer must reference.
+where $q$ is the branch class, $W$ is the retained comparison window, $\mathcal{P}_{\mathrm{sea}}$ denotes the projection maps that read clock, ruler, signal-speed, weak-field metric, and photon-channel rows from the Noether sea response object, and the other rows are the retained topological ledger rows that any downstream EOM or medium-response consumer must reference.
 
 The candidate boundary is the residual vector
 $$
@@ -425,17 +340,11 @@ $$
 \Theta_{\mathrm{sea}}(\mathfrak B)
 \text{ is accepted by the Lorentz/GR medium-response handoff.}
 $$
-If any component is nonzero, the topological closed-ledger conjecture fails
-closed even if the primitive causal roots, action residual, and wake-history
-charges close. This is the precise form of the current blocker: the root
-ledger can be executable while the Noether sea response projection is still
-unproved.
+If any component is nonzero, the topological closed-ledger conjecture fails closed even if the primitive causal roots, action residual, and wake-history charges close. This is the precise form of the current blocker: the root ledger can be executable while the Noether sea response projection is still unproved.
 
 ### Lorentz/GR Handoff Test
 
-The smallest test against the Lorentz/GR residual handoff is not a new gate.
-It is a population check for the existing `medium_response`, `event_ledger`,
-`speed_convention`, and dependency-gate rows:
+The smallest test against the Lorentz/GR residual handoff is not a new gate. It is a population check for the existing `medium_response`, `event_ledger`, `speed_convention`, and dependency-gate rows:
 
 | Handoff row | Required same-history check |
 | --- | --- |
@@ -445,71 +354,46 @@ It is a population check for the existing `medium_response`, `event_ledger`,
 | `G4_effective_metric_and_shift` | Derives lapse, shift, spatial compliance, and signal-speed projections from the same response object. |
 | `G7_null_row_audit` | Emits blocked or failed rows instead of silently omitting a sector whose response projection is missing. |
 
-This test promotes no coefficient. It only decides whether the proposed
-medium-response row is compatible with the same retained causal-root ledger.
+This test promotes no coefficient. It only decides whether the proposed medium-response row is compatible with the same retained causal-root ledger.
 
 ## Large-Box Limit
 
-The $T_L^3$ proof is useful only if its compactness assumptions are explicit.
-There are two different limits:
+The $T_L^3$ proof is useful only if its compactness assumptions are explicit. There are two different limits:
 
 | Limit | Meaning | Risk |
 | --- | --- | --- |
 | Fixed $h$, $L\to\infty$ | Local noncompact limit. | Compact pair-contact no longer guarantees roots once $D_L/c_f>h$. |
 | $h_L>D_L/c_f$ while $L\to\infty$ | Whole-box contact limit. | Memory depth grows with box size and may not describe local branch packets. |
 
-The safe route is to use $T_L^3$ first as a finite proof laboratory for root
-ledger topology, then isolate which lemmas survive on a fixed finite local
-window as $L\to\infty$. Any claim that depends on wraparound roots must be
-marked compact-box only unless a local noncompact replacement is supplied.
+The safe route is to use $T_L^3$ first as a finite proof laboratory for root ledger topology, then isolate which lemmas survive on a fixed finite local window as $L\to\infty$. Any claim that depends on wraparound roots must be marked compact-box only unless a local noncompact replacement is supplied.
 
 ## First Proof Steps
 
-1. Prove the compact pair-contact lemma with torus distance and memory
-   condition $h>D_L/c_f$.
-2. Rewrite it on universal-cover lifts with explicit winding ownership
-   $n\in\mathbb{Z}^3$.
-3. Prove simple-root stability by the implicit-function theorem on each
-   winding class.
-4. Classify root-count changes by endpoint, memory edge, caustic, core, seam,
-   and omitted-row strata.
-5. State the self-hit criterion separately and show why strict sub-field-speed
-   same-transmitter arcs do not supply nearby self-hit roots.
-6. Test whether the topology-native ledger condition gives downstream
-   branch-chart consumers the same retained source-record identity burden
-   without adding a new force, gate, or ontology.
+1. Prove the compact pair-contact lemma with torus distance and memory condition $h>D_L/c_f$.
+2. Rewrite it on universal-cover lifts with explicit winding ownership $n\in\mathbb{Z}^3$.
+3. Prove simple-root stability by the implicit-function theorem on each winding class.
+4. Classify root-count changes by endpoint, memory edge, caustic, core, seam, and omitted-row strata.
+5. State the self-hit criterion separately and show why strict sub-field-speed same-transmitter arcs do not supply nearby self-hit roots.
+6. Test whether the topology-native ledger condition gives downstream branch-chart consumers the same retained source-record identity burden without adding a new force, gate, or ontology.
 
 ## What This Could Advance
 
-- Explain why the top-ranked workstreams keep asking for the same retained
-  branch/history/certificate identity instead of independent sector facts.
-- Turn shock-like causal-root onset into a controlled caustic-boundary theorem
-  target.
+- Explain why the top-ranked workstreams keep asking for the same retained branch/history/certificate identity instead of independent sector facts.
+- Turn shock-like causal-root onset into a controlled caustic-boundary theorem target.
 - Separate compact-box pair contact from noncompact root starvation.
-- Preserve the distinction between self-hit and multi-hit while showing they
-  are instances of the same root-intersection topology.
-- Provide a mathematical route for the branch-level cohomology target already
-  used in the master-equation closure queue.
+- Preserve the distinction between self-hit and multi-hit while showing they are instances of the same root-intersection topology.
+- Provide a mathematical route for the branch-level cohomology target already used in the master-equation closure queue.
 
 ## What This Does Not Yet Prove
 
 - It does not certify a braid.
 - It does not prove stable self-hit assemblies.
-- It does not derive Noether sea response, mass, Lorentz behavior, quantum
-  weights, or Standard Model coefficients.
+- It does not derive Noether sea response, mass, Lorentz behavior, quantum weights, or Standard Model coefficients.
 - It does not make $T_L^3$ physical cosmology.
-- It does not replace A1 outward constants, branch certificates, action
-  residuals, or cross-sector validation.
-- It does not prove that photon constituents are super-field-speed in an
-  accepted branch; it only records why the speed split must be audited.
-- It does not prove that middle-binary hinge crossings form a physical
-  telegraph signal; it only records the root-count topology that could make
-  such pulse patterns meaningful.
+- It does not replace A1 outward constants, branch certificates, action residuals, or cross-sector validation.
+- It does not prove that photon constituents are super-field-speed in an accepted branch; it only records why the speed split must be audited.
+- It does not prove that middle-binary hinge crossings form a physical telegraph signal; it only records the root-count topology that could make such pulse patterns meaningful.
 
 ## Disposition
 
-Priority-only. This is a strong proof-route candidate because it turns the
-shock-front, pair-contact, multi-hit, self-hit, and six-item admissibility
-questions into one topological ledger problem. It should stay in
-`reference/priorities` until the boundary operator, closed-ledger conjecture,
-and large-box limit are made precise enough for theorem-grade corpus prose.
+Priority-only. This is a strong proof-route candidate because it turns the shock-front, pair-contact, multi-hit, self-hit, and six-item admissibility questions into one topological ledger problem. It should stay in `reference/priorities` until the boundary operator, closed-ledger conjecture, and large-box limit are made precise enough for theorem-grade corpus prose.

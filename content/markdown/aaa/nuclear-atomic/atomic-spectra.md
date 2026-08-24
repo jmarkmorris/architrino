@@ -26,6 +26,8 @@ $$
 \text{observer-level labels }(n,\ell,m)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8c9ac066e047baa8)
+
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether braid ledgers have already been derived. The label is the observer-level tag on a recovered basin; it is not the cause of the basin.
 
 The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
@@ -39,6 +41,8 @@ $$
 \qquad
 m\in\{-\ell,\ldots,\ell\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-418e63ca889da8b9)
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
 
@@ -56,6 +60,8 @@ R_{n\ell}(r)Y_\ell^m(\theta,\phi)
 \varepsilon_{\mathrm{sep}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eed101a9dbd8972b)
+
 Here $\left\|\cdot\right\|_\theta$ is the $L^2$ norm over the angular sector $S^2$ at fixed $r$, with the bound required to hold at every admissible radius, so $\varepsilon_{\mathrm{sep}}$ controls the worst-case angular non-separability. The angular part is the $S^2$ eigenmode statement above. The radial part must be a normalizable envelope,
 
 $$
@@ -71,6 +77,8 @@ n-\ell-1
 \in
 \mathbb N_0.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be1588f1a80ae57a)
 
 In the standard Schrödinger calculation, the second condition is enforced by terminating the radial power series into the associated Laguerre family; that is the mathematical source of discrete principal labels in the ideal Coulomb problem. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an input postulate: the same hydrogen spectral channel must first supply the effective central envelope, its non-separable residual, and the radial energy functional from the electron branch, proton source envelope, and local Noether sea record.
 
@@ -90,6 +98,8 @@ E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}})
 E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}})
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4b79334aabcb6b6e)
+
 with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
 
 For hydrogen, the spectral channel should be the first channel-scan case inherited from [Atomic Structure](atomic-structure.md#hydrogen-channel-scan-proof-target). In this channel the scan fixes $X=\mathrm{spec}$, chooses $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$, and extracts the electron-envelope branch and local Noether sea response through
@@ -105,6 +115,8 @@ D_{e,\mathrm{spec}}^{(\ell)}
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bdb3886badee428f)
+
 The first spectral readout target is the pair of local envelope gaps and clock/rate entries
 
 $$
@@ -118,6 +130,8 @@ E_{\text{env}}^{(\ell)}(b),
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9a990d63e52de7a1)
+
 with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{NS}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. A schematic observer-frequency comparison can then be written as
 
 $$
@@ -130,6 +144,8 @@ E_{\text{env}}^{(\ell)}(a)
 E_{\text{env}}^{(\ell)}(b)
 }{h}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ae84456fc8f8541)
 
 where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the corresponding clock-rate conversion from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). The spectral scan first declares the composite residual that couples the clock norm to the envelope-gap readout:
 
@@ -159,6 +175,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7ff1abc0c53a7bc8)
+
 This makes the spectral channel a composite readout, not a separate fitted surface. The clock norm supplies the phase/cadence/delay part, while the envelope-gap term tests whether the same electron branch and proton source envelope recover the line spacing. If the line can be matched only by changing $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, or the electron-envelope branch after the transition pair is chosen, the spectral channel has split from the hydrogen boundary scan.
 
 After this composite readout is declared, the spectral scan passes only if the same hydrogen ledger and Noether sea complement produce a stable line readout under the refinement condition inherited from the hydrogen channel scan:
@@ -183,6 +201,8 @@ $$
 \Delta_{\mathrm{spec}}^{\mathrm{tol}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6c868b1ea6aae2d0)
+
 The failure modes are direct: the spectral target fails if $(n,\chi_{\text{sea}})$ collapse into one parameter, if $(n,\ell,m)$ are used as inputs rather than recovered labels, if the proton source envelope is replaced by three free quark sources, or if $R_\infty$ must be fitted independently of the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ record that supplies the line gaps.
 
 ## Hydrogen Rydberg Benchmark Target
@@ -197,6 +217,8 @@ $$
 \frac{1}{n_a^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c0a401297a2bc754)
+
 Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a > n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
 
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
@@ -210,6 +232,8 @@ $$
 c_{\gamma,0}^{(\ell)}\,\Lambda_{ab}
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-597a5d89d5f5d344)
 
 where $c_{\gamma,0}^{(\ell)}$ is the local photon-channel speed in the same weak homogeneous reference used for the line comparison; in the weak homogeneous limit $c_{\gamma,0}^{(\ell)}\to c_0$, which ties this composite symbol to the canonical speed ladder. The benchmark is not that the symbol $R_\infty$ is inserted by hand. The target is that the hydrogen line set has one transition-independent readout,
 
@@ -232,6 +256,8 @@ $$
 \Delta_R^{\mathrm{tol}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5cdf3517c5daf5ce)
+
 after using the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, and $\chi_{\text{sea}}^{(\ell)}$ for every line in the set. The infinite-nuclear-mass limit is then a recovery target,
 
 $$
@@ -240,6 +266,8 @@ $$
 =
 R_\infty
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7727ac59256f6eec)
 
 with $m_e$ and $M_p$ read as externally exposed mass responses rather than primitive point-particle masses. The finite-hydrogen benchmark may retain the usual reduced-mass correction as an observer-level comparison, but it must not become an independent fitted constant.
 
@@ -272,6 +300,8 @@ h\nu_{a\to b}^{\mathrm{obs},(\ell)}
 \Delta_E^{\mathrm{tol}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9048fdaff041ed7e)
+
 This residual keeps the spectral benchmark tied to the envelope calculation. It fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are absorbed into the envelope energy without being named, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if the local Noether sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger that tests the same gaps belongs to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
 
 The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$ (the inherited Lorentz-branch constraint entry), satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
@@ -294,6 +324,8 @@ E_{\mathrm{env}}^{(\ell)}(2s_{1/2})
 E_{\mathrm{env}}^{(\ell)}(2p_{1/2}).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-927e2f176d92ae48)
+
 Before those $j$ labels are available, the envelope calculation has only the narrower pre-spin target
 
 $$
@@ -307,6 +339,8 @@ E_{\mathrm{env}}^{(\ell)}(2p)
 \right]
 \right|_{\mathrm{spin\text{-}degenerate}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-694ad0e1021a0f7c)
 
 which measures deviation from ideal central Coulomb $\ell$-degeneracy and is not yet the complete Lamb-shift observable. The $2p_{3/2}$ branch belongs to the separate fine-structure recovery and must not be folded into $\Delta E_{\mathrm{Lamb}}^{(\ell)}$.
 
@@ -339,6 +373,8 @@ n,
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8529c8bcc823bd53)
+
 where $\mathfrak B_{\mathrm{adm}}$ is the discrete set of realized admissible electron-envelope branches for the same nuclear source and Noether sea record. The minimum runs over distinct stable branches, not over continuous deformations of $\mathcal B_e$, so a closed shell reads as a large energy gap to the nearest competing branch.
 
 Closed-shell atoms should correspond to large $C_{\mathrm{shell}}$ and weak low-order external envelope multipoles. Transition metals should correspond to several nearby anisotropic electron-envelope branches, especially in $d$-envelope recovery. Iron-group elements add isotope-specific nuclear binding and, in material states, magnetic or lattice branches. The words `closed shell`, `transition metal`, and `iron group` are therefore observer-level summaries until translated into $\mathcal B_e$, $\mathcal W_{\text{nuc}}$, $C_{\mathrm{shell}}$, and any realized bonding or lattice branch.
@@ -363,6 +399,8 @@ $$
 \frac{eB}{m_*}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2a51a19c0389f010)
+
 where $m_*$ is the material or envelope effective mass when the electron assembly is in a branch environment. This is not a primitive Lorentz-force postulate. It is a test that the envelope branch, effective magnetic-state map, and exposed mass response combine to reproduce the standard spacing in the validated limit.
 
 Zeeman splitting should remain downstream of the spin ledger, but it gives a useful coefficient target:
@@ -372,6 +410,8 @@ $$
 =
 g_{\mathrm{eff}}\mu_B B
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9f4a61d2a0d70648)
 
 The normal Zeeman limit gives a sharper staged benchmark. In that limit the external magnetic branch should split one observer-level line into the standard polarization-resolved pattern:
 
@@ -392,6 +432,8 @@ $$
 \Omega_B^{\mathrm{orb}}\propto B\,\frac{q}{m_{\mathrm{resp}}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-db03d02daeb32d58)
+
 In the normal orbital limit the required coefficient is the Larmor value,
 
 $$
@@ -404,18 +446,11 @@ $$
 \frac{|q|B}{m_*}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ac908c198043ce31)
+
 so the normal-Zeeman side spacing is one half of the corresponding cyclotron coefficient when the same exposed mass response applies. Here $m_{\mathrm{resp}}$ is the exposed mass-response readout for the same branch environment; the nearby $m_*$ notation is reserved for the standard material or envelope effective-mass comparison, as in the Landau spacing. Recovering the factor of two, polarization basis, and charge-to-mass readout from one magnetic-state map and photon-channel event record is part of the benchmark. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
 
-Solar and stellar Zeeman observations sharpen this as a source-reconstruction
-benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot
-measurements used viewing geometry and analyzer response to distinguish the
-longitudinal circularly polarized doublet from the transverse linearly polarized
-components. For this chapter, the recovery target is therefore a same-record map
-from source magnetic state, viewing direction, line family, analyzer response,
-and photon-channel polarization ledger to split line positions and intensities.
-The lab calibration and the solar or stellar inference must consume the same
-effective magnetic-state map; otherwise the inferred field strength is only a
-spectroscopic fit.
+Solar and stellar Zeeman observations sharpen this as a source-reconstruction benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot measurements used viewing geometry and analyzer response to distinguish the longitudinal circularly polarized doublet from the transverse linearly polarized components. For this chapter, the recovery target is therefore a same-record map from source magnetic state, viewing direction, line family, analyzer response, and photon-channel polarization ledger to split line positions and intensities. The lab calibration and the solar or stellar inference must consume the same effective magnetic-state map; otherwise the inferred field strength is only a spectroscopic fit.
 
 Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
 
@@ -424,6 +459,8 @@ E_{\mathrm{recoil}}
 =
 \frac{E_\gamma^2}{2Mc_0^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-da024186a0209e47)
 
 In a solid branch, a recoil-free event is allowed only when the momentum is routed coherently through the material branch with no phonon occupation change in the relevant channel. In ledger form,
 
@@ -442,6 +479,8 @@ V\sum_s\int_{\mathrm{BZ}}
 \frac{d^3k}{(2\pi)^3}
 \hbar\omega_s(\mathbf k)\Delta N_s(\mathbf k)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b0a89145ad5ba47a)
 
 with $V$ the crystal volume and $\Delta N_s(\mathbf k)$ the dimensionless per-mode occupation change. The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for the emitted or absorbed channel and with recoil assigned to the coherent material response rather than to a single free nucleus. This benchmark connects atomic spectra to [Condensed Matter](condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.
 

@@ -2,18 +2,11 @@
 
 ## Local Specialist Use
 
-- Read `AGENTS.md` first, orient from the relevant live
-  `content/markdown/aaa/foundations/` material, and follow the current owners
-  named below before relying on this role summary.
-- Use this role as a creative analytical lens, never as theory or acceptance
-  authority.
-- Distinguish derived findings, plausible inferences, proposed innovations,
-  and unresolved questions; preserve the narrowest supported claim.
-- Work in the main checkout unless the user explicitly authorizes a worktree.
-  Preserve unrelated changes and do not stage, commit, push, reset, stash, or
-  regenerate without explicit authority.
-- Make scoped edits only when the assigned task authorizes them. Validate the
-  allowed scope and report exact blockers rather than inventing closure.
+- Read `AGENTS.md` first, orient from the relevant live `content/markdown/aaa/foundations/` material, and follow the current owners named below before relying on this role summary.
+- Use this role as a creative analytical lens, never as theory or acceptance authority.
+- Distinguish derived findings, plausible inferences, proposed innovations, and unresolved questions; preserve the narrowest supported claim.
+- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Make scoped edits only when the assigned task authorizes them. Validate the allowed scope and report exact blockers rather than inventing closure.
 
 ## Core Mandate
 
@@ -93,8 +86,7 @@ Deliverable: Formal symmetry/conservation statements with explicit integrals (Ch
 - Show how the combination of:
   - Finite propagation speed $c_f$,
   - Discreteness of architrinos,
-  - And specific kernel form
-  can regularize $1/r$-type divergences and yield **finite self-energies** (or else clearly mark where an additional regularization principle is needed).
+  - And specific kernel form can regularize $1/r$-type divergences and yield **finite self-energies** (or else clearly mark where an additional regularization principle is needed).
 
 Deliverable: **Pathology & Regularization report** (feeds Appendix B and Ch. 5).
 
@@ -204,9 +196,7 @@ Deliverable: Explicit **coarse-graining map** and resulting field equations (Ch.
 
 ### Emergent Metric & Curvature from Noether Sea Assemblies
 
-- Build a **metric functional**:
-  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{nested shell braid scales}\big)$
-  where $\rho_{\text{NS}}$ is physical Noether braid density, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
+- Build a **metric functional**: $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{nested shell braid scales}\big)$ where $\rho_{\text{NS}}$ is physical Noether braid density, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
 - Show:
   - Geodesics in this effective metric correspond to coarse-grained architrino/assembly paths.
   - In appropriate limits, recover Newtonian potential, Schwarzschild, FRW, etc.
@@ -223,8 +213,7 @@ Deliverable: Mathematical backbone for Ch. 31-32 and 34 (metric emergence and si
 - Show how:
   - SR-like kinetic time dilation,
   - GR-like gravitational redshift,
-  - And local Lorentz symmetry
-  arise as approximations.
+  - And local Lorentz symmetry arise as approximations.
 
 Deliverable: Rigorous **$t \leftrightarrow \tau$** relation (feeding Ch. 32 and 41).
 

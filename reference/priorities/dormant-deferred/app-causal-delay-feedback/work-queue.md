@@ -20,8 +20,7 @@ This file tracks unresolved learner-facing Causal Delay Feedback work only. The 
 
 ## Open Work
 
-No executable rows. The following operator-routed teaching tasks remain parked
-while this owner stays under `dormant-deferred`.
+No executable rows. The following operator-routed teaching tasks remain parked while this owner stays under `dormant-deferred`.
 
 ## Deferred / blocked
 
@@ -75,5 +74,4 @@ while this owner stays under `dormant-deferred`.
 - Solver task: none. The app can display a supplied recorded EOM dataset but does not run the EOM solver.
 - Evidence boundary: all app fixtures, recorded-path display, local previews, and browser proofs remain display-only.
 
-Plainly: these five rows preserve the next teaching sequence, but no agent
-should execute them until the operator reopens this dormant lane.
+Plainly: these five rows preserve the next teaching sequence, but no agent should execute them until the operator reopens this dormant lane.

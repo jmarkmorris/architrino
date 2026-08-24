@@ -17,8 +17,7 @@ Status: completed.
 
 Results:
 
-- The complete coincident same-source impulse has a finite-window lower bound proportional to
-  $\min(c_f/(\alpha\epsilon_c^2),L/(\eta\epsilon_c))$ and therefore diverges on every joint regulator-removal path.
+- The complete coincident same-source impulse has a finite-window lower bound proportional to $\min(c_f/(\alpha\epsilon_c^2),L/(\eta\epsilon_c))$ and therefore diverges on every joint regulator-removal path.
 - A fixed positive core makes the prescribed transition finite but is not accepted by the current point-transceiver ontology, which supplies no physical core scale or near-origin saturation rule.
 - The retained-history update is sufficient for causal acceleration but does not determine the architrino kinetic function, momentum function, or predeclared wake accounts.
 - Defining wake-account changes as the negative accumulated motion changes closes conservation only by construction and fails the non-circularity gate.

@@ -11,9 +11,7 @@
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `standard_temperature_baseline` - Keep thermodynamic, kinetic, statistical, radiation, cosmological, and horizon-temperature meanings separated before mapping them into $\mathbb{A}\mathbb{A}\mathbb{A}$. Status: `draft`. Depends on: none.
 2. `ensemble_temperature_definition` - Convert the radiation chapter's ensemble-temperature relation into a reusable condition for when temperature is available. Status: `draft`. Depends on: [entropy](entropy.md).

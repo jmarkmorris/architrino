@@ -1,8 +1,6 @@
 # Electroweak Bosons: Photons, W/Z, and Higgs
 
-**Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
-**Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
-This chapter is the bosonic-side companion to [Gauge Structure Emergence](../gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md).
+**Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors. **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes. This chapter is the bosonic-side companion to [Gauge Structure Emergence](../gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md).
 
 Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
@@ -93,6 +91,8 @@ $$
 \tau_{T\to L}\simeq \frac{d}{c_f-c_\gamma}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6619d62108e0d4bc)
+
 The forward catch-up delay $\tau_{T\to L}$ is the dangerous term because it diverges at fixed $d$ as $c_\gamma\to c_f$. Gate A must therefore prove a finite phase-locking branch, not merely assume one:
 $$
 \omega\frac{d}{c_f-c_\gamma}
@@ -103,6 +103,8 @@ $$
 k\in\mathbb{Z}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-84fd039a38168750)
+
 The non-dispersive candidate is the proportional-collapse branch
 $$
 d(\omega,\delta_\gamma)
@@ -111,6 +113,8 @@ d(\omega,\delta_\gamma)
 \qquad
 \delta_\gamma\equiv1-\frac{c_\gamma}{c_f}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a6c09100f8819a58)
 with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c_\gamma)=O(1)$ while forcing $d\to0$ as $c_\gamma\to c_f$. A fixed-$d$ branch would generally make the photon channel frequency-dependent and is therefore a failure mode unless a separate cancellation is derived.
 
 Gate A is closed only when this branch proves the following recoveries in the same speed convention:
@@ -128,6 +132,8 @@ c_{\text{eff}}
 c_0
 +O(\epsilon_{\text{LV}}c_0)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02c2a6ca01d6524e)
 The weak homogeneous photon branch must derive this relation from the same Noether sea response record used by clock and ruler synchronization. A separately tuned photon-channel speed would leave Lorentz closure branch-split rather than structurally intact.
 
 Gate A also owns the long-baseline photon time-of-flight check in [Constraint Ledger](../../validation/constraint-ledger.md#photon-time-of-flight-dispersion-gate). If a candidate branch permits frequency-dependent photon-channel delay, its accumulated prediction for two photon phase frequencies must be
@@ -141,6 +147,8 @@ $$
 \chi_\gamma(\omega_b,\mathbf X,T)
 }{c_0}\,d\ell
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9795f09957437af0)
 The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homogeneous branch after the same $c_\gamma$ and $\chi_\gamma$ record has recovered local synchronization. A branch that requires a different photon speed for time-of-flight events than for clock, ruler, or scattering comparisons has not closed Gate A.
 
 #### Gate B Theorem Scaffold: Polarization and Spin
@@ -156,6 +164,8 @@ P_{\perp}^{ab}
 =
 h^{ab}-\hat{e}^a\hat{e}^b
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b5d35327cacfa898)
 
 Let $P_{\parallel}^{ab}=\hat{e}^a\hat{e}^b$ be the complementary longitudinal projector. Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
 
@@ -180,6 +190,8 @@ P_{\perp}
 P_{\parallel}
 \mathbf a_{\gamma}^{\mathrm{sub}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8546d32d2cc1321e)
 
 The first two substrate residuals check static charge-like cancellation and longitudinal leakage:
 
@@ -219,6 +231,8 @@ q_{C(\mathfrak B)}^{\mathrm{eff}}
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c039f4aaf09952a6)
+
 A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating polarity-conjugate planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
@@ -231,6 +245,8 @@ a_u\hat{\mathbf{u}}+a_v\hat{\mathbf{v}},
 |a_u|^2+|a_v|^2=1
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-82a8491c85cde8cc)
+
 Linear polarization is the real-axis case. Circular polarization is the quarter-cycle relation represented by
 
 $$
@@ -242,6 +258,8 @@ $$
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-10b645344aff6091)
+
 The standard polarization kinds are observer-level summaries of this same transverse ledger, not separate photon species. After removing an irrelevant common phase, write
 $$
 a_u=A_u e^{i\phi_u},
@@ -252,6 +270,8 @@ A_u^2+A_v^2=1,
 \qquad
 \delta=\phi_v-\phi_u
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-24ea674e2ba30f8a)
 Then linear polarization is the phase-aligned case $\delta=0$ or $\pi$, so the ledger can be represented by a real transverse axis. Circular polarization is the equal-amplitude quarter-cycle case $A_u=A_v=1/\sqrt2$ and $\delta=\pm\pi/2$. Elliptical polarization is the remaining coherent case: both transverse components are retained with a stable relative phase, with linear and circular polarization appearing as limiting cases of the same ledger.
 
 Unpolarized and partially polarized light are ensemble or source-window summaries. For a distribution $\rho$ over retained transverse photon ledgers, define the normalized ensemble transverse record
@@ -266,6 +286,8 @@ C_{\rho}^{ab}
 \qquad
 h_{ab}C_{\rho}^{ab}=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cde77f8ad7e6879e)
 A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
 The polarity-conjugate planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
@@ -279,6 +301,8 @@ $$
 +
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58029f169c2ed1e2)
 
 with
 
@@ -302,6 +326,8 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44b925c8b3763465)
+
 A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf k}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
 An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{k}}_\gamma$, the closure target is
@@ -320,6 +346,8 @@ P_{\text{pass}}
 \cos^2\theta
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e905b419c47742c2)
+
 Gate B is not closed by writing this standard projection formula, but the native measure has a precise form. Let $a_\perp^a$ be the incoming transverse planar-pair ledger and define its positive action norm by
 
 $$
@@ -328,6 +356,8 @@ $$
 h_{ab}\,\overline{a_\perp^a}a_\perp^b
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-955e1a7a270e1230)
+
 The analyzer's accepted material channel is the rank-one transverse projector
 
 $$
@@ -335,6 +365,8 @@ A^a{}_{b}=\hat a^a\hat a_b,
 \qquad
 A^a{}_{b}P_{\perp}^{b}{}_{c}=A^a{}_{c}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6951623e7b34be3d)
 
 The signed overlap $\hat a_a a_\perp^a$ is only the coherent capture amplitude. The material capture measure is the positive accepted action fraction:
 
@@ -348,6 +380,8 @@ $$
 {\mathcal{I}_{\perp}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-864069f8a275709a)
+
 The rejected channel is
 
 $$
@@ -360,6 +394,8 @@ R^a{}_{b}=P_{\perp}^{a}{}_{b}-A^a{}_{b},
 \mu_{\text{pass}}+\mu_{\text{rej}}=1
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-93da94ab2cd89f9c)
+
 For linear polarization this reduces to $\mu_{\text{pass}}=\cos^2\theta$ and $\mu_{\text{rej}}=\sin^2\theta$. For circular helicity states $\boldsymbol{\epsilon}_{\pm}$ it gives $\mu_{\text{pass}}=1/2$ for any linear analyzer axis.
 
 The next Gate B step is the material analyzer projector. The analyzer assembly supplies $\hat{\mathbf a}$ through its oriented capture geometry, not through a free observer label. In the ideal linear-analyzer limit its accepted channel is the one-dimensional transverse family
@@ -371,11 +407,15 @@ $$
 \subset\operatorname{im}P_{\perp}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ee44d3bfe2e64677)
+
 so the accepted projector is rank one inside $P_{\perp}$. If the accepted channel had rank two it would pass the full transverse ledger; if it had rank zero it would not pass a photon channel. The rejected component
 
 $$
 a_{\text{rej}}^a=R^a{}_{b}a_\perp^b
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-711a969815930c6c)
 
 must route into reflection, absorption, scattering, heat, or another allowed material ledger update. It is not a hidden longitudinal photon channel, and each event must close local energy, momentum, angular momentum, material-record, wake, and Noether sea recoil ledgers.
 
@@ -391,6 +431,8 @@ H\!\left(\mu_{\text{pass}}-\eta_{\hat{\mathbf a}}(\zeta)\right),
 \mu_{\text{pass}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bff181508a16a924)
+
 The reduced substrate origin is the analyzer's record-window return dynamics. $\Theta_{\hat{\mathbf a}}$ is the quotient of calibrated analyzer microstates during a local capture attempt, $d\nu_{\hat{\mathbf a}}$ is the invariant occupation measure of the material return map $T_s$, and $\eta_{\hat{\mathbf a}}$ is the pass-basin threshold coordinate
 
 $$
@@ -401,6 +443,8 @@ $$
 \zeta\in\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})
 \right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a0e137a50cc944c6)
 
 The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
 
@@ -416,6 +460,8 @@ T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf k})\,
 a_{\perp,\mathrm{in}}^b
 +r_\Omega^a,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5d84907ba1de22b6)
 where $T_\Omega$ is the effective response of the material branch $\Omega$ and $r_\Omega^a$ carries capture, heat, scattering, or remnant leakage. In this notation:
 
 | Optical effect | Material return-map reading | Required ledger behavior |
@@ -433,6 +479,8 @@ $$
 \qquad
 \sum_{a=\pm}P(a,b\mid\alpha,\beta)=P(b\mid\beta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a9f1c09011bff237)
 
 The correlation target depends on the prepared photon-pair state, but the usual polarization tests require a $\cos 2(\alpha-\beta)$ angle dependence up to the sign and phase convention of that state. A model may use pair provenance and contextual local analyzer coupling, but it must not permit the remote analyzer setting to send a usable signal through the photon ledger.
 
@@ -482,6 +530,8 @@ E_{\mathrm{sh}\to W/Z},
 \mathcal Q_{\mathrm{sea}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a206cb853fb81661)
 Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, the superscript $0$ marks the leading event-window contribution after the surrounding baseline has been subtracted, and closure requires a balance of the form
 $$
 \Delta\mathcal Q_{\mathrm{src}}^{0}
@@ -496,6 +546,8 @@ $$
 +
 \mathcal Q_{\mathrm{rem}}^{0}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b8cfae978cac162)
 This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
 
 The exposed-energy burden is therefore stricter than saying that the weak corridor is heavy. The Standard Model $W/Z$ scale must be recovered as the apparent energy cost of a routed event in which shielded assembly energy becomes corridor stiffness and bounded Noether sea participation:
@@ -507,6 +559,8 @@ E_{\mathrm{stiff}}^{\mathrm{corr}}
 +E_{\mathrm{sea}}^{\mathrm{bound}}
 +O(\epsilon_{\mathrm{corr}}).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c61fb51b5bd596fb)
 The same event record must also recover low-energy weak rates after the corridor is integrated out. If the apparent $W/Z$ mass scale is fit separately from the corridor payload, axial-inventory routing, and recoil/medium rows, the weak channel has imported a mass parameter rather than deriving one.
 
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
@@ -543,11 +597,12 @@ J_+^\mu J^-_\mu,
 \qquad
 G_F=\frac{1}{\sqrt 2\,v_{\mathrm{EW}}^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6680351e14acff71)
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 ### Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
-    For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
+*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation. For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
     $$
     M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2
     =
@@ -559,6 +614,8 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
     +
     \Delta E_{\mathrm{sea}}^{\mathrm{bound}}(\mathcal W).
     $$
+
+    [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad806f6796c31ede)
     The terms must be read inside the same event ledger as the weak-corridor payload: corridor stiffness, shielded internal energy exposed during the transition, and bounded Noether sea participation together produce the measured peak and width. The target is not a persistent assembly rest mass, and it does not allow the Standard Model value to be inserted independently of the weak-corridor provenance record.
 *   **Environment Dependence as a bounded closure target:**
     *   Because a $W/Z$ corridor is a dynamic bundle, its effective width and peak position may depend on Noether sea density, compliance, drift, and tethering stiffness only through the same medium-response record that recovers ordinary electroweak precision behavior.
@@ -591,6 +648,8 @@ g_{H,A}^{\mathrm{eff}}(\theta)
 {\partial \varphi}
 \right|_{\varphi=0}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e49c7697a56ce569)
 The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
 
 At the electroweak-boson level, the scalar benchmark is also a channel ledger. For collider energy $s$, final-state channel $c$, detector category $k$, and production route $p\in\{\mathrm{ggF},\mathrm{VBF},WH/ZH,t\bar tH\}$, the observer-level event-count target has the schematic form
@@ -606,6 +665,8 @@ N_{s,c,k}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
 +
 B_{s,c,k}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6fa3d61869f35d49)
 The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gamma\gamma$, and $H\to WW^{(*)}$. The $\gamma\gamma$ channel is especially important for this chapter because it disfavors a spin-$1$ assignment while keeping the photon channel itself a separate transverse planar-pair ledger.
 
 ---
@@ -639,6 +700,8 @@ $$
 +
 \mathcal I_{\mathrm{sea}}^{\mathrm{ret}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7cb83ccd7ebb9a75)
 with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
 - The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon polarity-conjugate braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a typed neutral two-braid source plus the required axial split -> fermion + antifermion -> the source assembly bookkeeping relaxes back into the Noether sea.
@@ -651,11 +714,15 @@ Define charged-corridor operators acting on weak basis states:
 $$
 \mathcal{W}_\pm:\ \mathcal{H}_{\mathrm{weak}}\to \mathcal{H}_{\mathrm{weak}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2e8cc82defd86132)
 with effective amplitudes weighted by overlap matrices:
 $$
 \mathcal{M}_{q}\propto V_{\mathrm{CKM}},\qquad
 \mathcal{M}_{\ell}\propto U_{\mathrm{PMNS}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-84e82419daf83c23)
 
 Operational closure requirement:
 - corridor association / dissociation must preserve charge and polarity ledgers,

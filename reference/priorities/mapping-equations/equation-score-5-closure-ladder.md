@@ -33,19 +33,7 @@ Formula matching is not enough. A row that matches a standard equation by changi
 
 Accepted retained rows must also carry durable source evidence. Reducer rows marked `accepted`, `populated`, or `passed` cannot count toward score review when their source reference is priority prose, authored AAA prose, generated files or generated reading copies, mocks, toys, attempts, probes, source-evidence probes, negative controls, temporary paths, directory paths, missing files, placeholders, self-source shells, or source-contract shells.
 
-For retained event/domain lanes, the common score-review test is the acceptance
-vector $\mathbf A_R(\mathfrak D_R)$. Its first failed coordinate
-$B_R(\mathfrak D_R)$ is the reducer's first blocker. The first branch theorem is
-one validated relative-periodic point: on a Poincare section $\Sigma_N$, apply
-interval Newton or Krawczyk to the square group-reduced residual
-$F_{N,u}=P_{N,u}-g\mathbin{\cdot}x$ over a validation box $B_{N,u}$. The
-inclusion encloses a point, not an invariant cell, stable branch, trapping
-region, or basin. Full-history persistence, drift continuation, and stability
-are separate ordered gates. For `EQ-02` through `EQ-04`, same-carrier support is
-still only the set-level shadow; the primary no-retune theorem is frozen-source
-held-out parallelism. Drift-only loop holonomy, torsion, and phase holonomy
-remain diagnostics until a second retained modulus and the coupled contract
-migration exist.
+For retained event/domain lanes, the common score-review test is the acceptance vector $\mathbf A_R(\mathfrak D_R)$. Its first failed coordinate $B_R(\mathfrak D_R)$ is the reducer's first blocker. The first branch theorem is one validated relative-periodic point: on a Poincare section $\Sigma_N$, apply interval Newton or Krawczyk to the square group-reduced residual $F_{N,u}=P_{N,u}-g\mathbin{\cdot}x$ over a validation box $B_{N,u}$. The inclusion encloses a point, not an invariant cell, stable branch, trapping region, or basin. Full-history persistence, drift continuation, and stability are separate ordered gates. For `EQ-02` through `EQ-04`, same-carrier support is still only the set-level shadow; the primary no-retune theorem is frozen-source held-out parallelism. Drift-only loop holonomy, torsion, and phase holonomy remain diagnostics until a second retained modulus and the coupled contract migration exist.
 
 ## Shared Score-5 Carriers
 
@@ -153,17 +141,7 @@ If that run passes, it creates a real path for `EQ-02`, `EQ-03`, and `EQ-04` to 
 
 The current score-neutral runner is [eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs). Its attempt fixture inherits the `S_eq` same-branch blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, reports `no_score_increase`, and keeps `EQ-02`, `EQ-03`, and `EQ-04` at `4` because the numerically passing residual rows are still `attempt` rows. The runner now includes separate gamma-free coframe checks: at $\beta_f=0.6$, the coframe reciprocity diagnostic reports $e^0_u(\partial_t)=1.25$, $e^\parallel_u/e^\perp_u=0.8$, and product $1$, while `coframeExtraction` remains `not_evaluated` until accepted wake-return extraction evidence exists. `gamma_inserted_coframe` catches reciprocity produced by forbidden $\gamma_f$ input, and `reciprocal_unextracted_coframe` catches reciprocal legs without extraction source, support binding, or holonomy evidence.
 
-The retained-domain attempt still must be replaced by a source-backed validation
-box enclosing one relative-periodic point under
-$\mathcal K_{F_{N,u}}(\bar x,B_{N,u})\subset\operatorname{int}(B_{N,u})$,
-followed by a separately controlled full-history lift. Step-backed refinement,
-root-itinerary identity, calibrated negative controls, and durable sources
-remain required. Only then may the raw-label and Noether sea rows become
-source-bound coordinates of one carrier. Drift transport follows only after
-validated continuation of that full history; its primary no-retune test is
-frozen-source held-out parallelism with independent endpoint projections.
-Legacy machine field names remain unchanged until the coupled migration. The
-coframe construction remains gamma-free, and `EQ-04A` remains downstream.
+The retained-domain attempt still must be replaced by a source-backed validation box enclosing one relative-periodic point under $\mathcal K_{F_{N,u}}(\bar x,B_{N,u})\subset\operatorname{int}(B_{N,u})$, followed by a separately controlled full-history lift. Step-backed refinement, root-itinerary identity, calibrated negative controls, and durable sources remain required. Only then may the raw-label and Noether sea rows become source-bound coordinates of one carrier. Drift transport follows only after validated continuation of that full history; its primary no-retune test is frozen-source held-out parallelism with independent endpoint projections. Legacy machine field names remain unchanged until the coupled migration. The coframe construction remains gamma-free, and `EQ-04A` remains downstream.
 
 Parallel solver hook: the stable three-binary configuration search now emits an `equationBearing` payload with $\mathcal R_{\mathrm{cfg}}(\mathfrak a)$ structure for each candidate branch-chart projection. That hook does not raise any row score by itself; it makes the score-5 ladder consumable by the branch-selection solver and keeps the $(f,f,f)$ candidate on equal footing with the offset and hierarchy families until retained residuals decide.
 

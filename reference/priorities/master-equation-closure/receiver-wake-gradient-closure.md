@@ -7,66 +7,26 @@
 - Priority object: `receiver_wake_gradient_closure`
 - Claim level: `priority-only derivation and proof design`
 - Workstream: [master-equation-closure](priorities.md)
-- Related queue items:
-  [MEC-001 characteristic-tail action adjudication](work-queue.md#mec-001--characteristic-tail-action-adjudication),
-  [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md),
-  and
-  [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
-- Routed research input:
-  [wake reception, transfer, and maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md)
-  invokes MEC-006 only when a reception candidate actually consumes a
-  receiver/self acceleration-gradient row; it is not a blanket gate on
-  allocation research.
-- External review evidence: operator-supplied independent mathematical audit
-  of the regular fixed-reception Jacobian and singular-boundary extension
-  problem, received 2026-07-29. No public source identity or durable external
-  artifact was supplied.
-- Finite-width review input: operator-supplied mathematical review of
-  constant-time emission and causal-defect mollification, received 2026-07-29.
-  Its nonuniqueness argument is incorporated below with corrected
-  regular-domain and coincident-boundary scope.
+- Related queue items: [MEC-001 characteristic-tail action adjudication](work-queue.md#mec-001--characteristic-tail-action-adjudication), [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md), and [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
+- Routed research input: [wake reception, transfer, and maturity](../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) invokes MEC-006 only when a reception candidate actually consumes a receiver/self acceleration-gradient row; it is not a blanket gate on allocation research.
+- External review evidence: operator-supplied independent mathematical audit of the regular fixed-reception Jacobian and singular-boundary extension problem, received 2026-07-29. No public source identity or durable external artifact was supplied.
+- Finite-width review input: operator-supplied mathematical review of constant-time emission and causal-defect mollification, received 2026-07-29. Its nonuniqueness argument is incorporated below with corrected regular-domain and coincident-boundary scope.
 - Current disposition: `INCOMPLETE`
 - Promotion status: not promoted
 
 ## Finding
 
-The canonical regular partner-root acceleration operator already contains the
-arriving direction, inverse-square surface dilution, polarity sign, and
-transmitter-side root-Jacobian weight. Its complete receiver-position gradient
-for one declared simple root is derived below. The gradient is a tensor
-sensitivity of that operator; it is not an omitted acceleration contribution
-and must not be added to the operator.
+The canonical regular partner-root acceleration operator already contains the arriving direction, inverse-square surface dilution, polarity sign, and transmitter-side root-Jacobian weight. Its complete receiver-position gradient for one declared simple root is derived below. The gradient is a tensor sensitivity of that operator; it is not an omitted acceleration contribution and must not be added to the operator.
 
-The regular partner-root receiver gradient is closed analytically under fixed
-reception time, fixed retained transmitter history, positive separation, and a
-nonzero transmitter factor. The external audit independently rederived that
-open-domain tensor. The separately structured numerical verifier
-[`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs)
-also accepts static, constant-velocity, and uniform-circular three-dimensional
-controls without importing the analytic tensor scaffold or the EOM solver
-sensitivity implementation.
+The regular partner-root receiver gradient is closed analytically under fixed reception time, fixed retained transmitter history, positive separation, and a nonzero transmitter factor. The external audit independently rederived that open-domain tensor. The separately structured numerical verifier [`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs) also accepts static, constant-velocity, and uniform-circular three-dimensional controls without importing the analytic tensor scaffold or the EOM solver sensitivity implementation.
 
-The same instantaneous receiver formula applies to one positive-delay
-same-history root only when the past transmitter point is held fixed and the
-root has certified separation and transmitter-factor floors. It does not
-define the trivial self diagonal, a fold, a coincident same-transmitter birth,
-or the full functional derivative in which current and past points belong to
-one varied history. Without a predeclared core or diagonal rule, no uniform
-receiver/self gradient exists for the exhibited positive-delay family as it
-approaches the diagonal. The external audit also proves that the open-domain
-mathematics does not select a unique fold, coincident-birth, or self-diagonal
-boundary extension.
+The same instantaneous receiver formula applies to one positive-delay same-history root only when the past transmitter point is held fixed and the root has certified separation and transmitter-factor floors. It does not define the trivial self diagonal, a fold, a coincident same-transmitter birth, or the full functional derivative in which current and past points belong to one varied history. Without a predeclared core or diagonal rule, no uniform receiver/self gradient exists for the exhibited positive-delay family as it approaches the diagonal. The external audit also proves that the open-domain mathematics does not select a unique fold, coincident-birth, or self-diagonal boundary extension.
 
-Plainly: the ordinary partner-root derivative can be written completely. It
-includes the fact that moving the receiver changes which past emission time is
-selected. Independent analytic and numerical checks now support that regular
-result. They do not repair the unresolved self diagonal or turn a scalar wake
-picture into an accepted action.
+Plainly: the ordinary partner-root derivative can be written completely. It includes the fact that moving the receiver changes which past emission time is selected. Independent analytic and numerical checks now support that regular result. They do not repair the unresolved self diagonal or turn a scalar wake picture into an accepted action.
 
 ## Scope And Nonclaims
 
-This packet derives one fixed-reception spatial derivative and designs its
-smallest symmetric two-body check. It does not establish:
+This packet derives one fixed-reception spatial derivative and designs its smallest symmetric two-body check. It does not establish:
 
 - a new acceleration law or a correction to the Master Equation;
 - an accepted scalar potential or action;
@@ -77,21 +37,11 @@ smallest symmetric two-body check. It does not establish:
 - a finite fold or coincident same-transmitter continuation; or
 - closure of MEC-001, MEC-005, or MEC-007.
 
-The stationary mirror first-boundary theorem, complete pre-boundary root and
-singularity ledger, same-event root-admission question, and unchanged
-sharp-law post-threshold obstruction are owned separately by
-[MEC-007](mirror-close-approach-causal-root-boundary.md). They are not
-MEC-006 verification or completion evidence.
+The stationary mirror first-boundary theorem, complete pre-boundary root and singularity ledger, same-event root-admission question, and unchanged sharp-law post-threshold obstruction are owned separately by [MEC-007](mirror-close-approach-causal-root-boundary.md). They are not MEC-006 verification or completion evidence.
 
-MEC-005 may use this result only as an acceleration-operator readiness
-obligation. Its two-body conservation interpretation remains gated on an
-accepted MEC-006 receiver/self gradient, the separate MEC-001 action
-adjudication where that route is invoked, and the independently derived wake
-and boundary accounts already required by MEC-002 and MEC-004.
+MEC-005 may use this result only as an acceleration-operator readiness obligation. Its two-body conservation interpretation remains gated on an accepted MEC-006 receiver/self gradient, the separate MEC-001 action adjudication where that route is invoked, and the independently derived wake and boundary accounts already required by MEC-002 and MEC-004.
 
-Plainly: this work checks how one legal acceleration row changes under a small
-receiver displacement. It does not say what account that row carries or
-whether a two-body encounter conserves anything.
+Plainly: this work checks how one legal acceleration row changes under a small receiver displacement. It does not say what account that row carries or whether a two-body encounter conserves anything.
 
 ## Live Authority Boundary
 
@@ -133,10 +83,7 @@ r-c_f(T-s)
 0.
 $$
 
-Plainly: $C_{ij}$ carries the coupling and polarity sign. The vector
-$\mathbf n$ points from the transmitter's past emission point to the receiver.
-The factor $c_f/|D|$ measures the density of arriving causal surfaces in the
-transmitter-time collapse. A simple root requires both $r>0$ and $D\ne0$.
+Plainly: $C_{ij}$ carries the coupling and polarity sign. The vector $\mathbf n$ points from the transmitter's past emission point to the receiver. The factor $c_f/|D|$ measures the density of arriving causal surfaces in the transmitter-time collapse. A simple root requires both $r>0$ and $D\ne0$.
 
 The receiver-time playback derivative is a different object:
 
@@ -150,22 +97,11 @@ D_r
 c_f-\mathbf n\cdot\mathbf V_i(T).
 $$
 
-Plainly: $ds/dT$ says how the selected past emission time moves when reception
-time advances along the receiver history. It is not an extra acceleration
-weight and it is not the receiver-position derivative derived below.
+Plainly: $ds/dT$ says how the selected past emission time moves when reception time advances along the receiver history. It is not an extra acceleration weight and it is not the receiver-position derivative derived below.
 
-The pure scalar $1/r$ action route remains incomplete in the live corpus
-because varying its causal selector produces an additional interior
-derivative-of-constraint term. The characteristic-tail kernel in MEC-001 has
-an exact receiver-gradient identity, but its frozen whole functional is
-undefined on its retained self diagonal. Neither result changes the canonical
-regular acceleration operator above.
+The pure scalar $1/r$ action route remains incomplete in the live corpus because varying its causal selector produces an additional interior derivative-of-constraint term. The characteristic-tail kernel in MEC-001 has an exact receiver-gradient identity, but its frozen whole functional is undefined on its retained self diagonal. Neither result changes the canonical regular acceleration operator above.
 
-Plainly: three questions must stay separate. The Master Equation says what one
-arriving root contributes. A spatial sensitivity says how that contribution
-changes when the receiver is moved. An action asks whether one whole-history
-scalar produces the same law and its boundary terms. Success in one question
-does not answer the others.
+Plainly: three questions must stay separate. The Master Equation says what one arriving root contributes. A spatial sensitivity says how that contribution changes when the receiver is moved. An action asks whether one whole-history scalar produces the same law and its boundary terms. Success in one question does not answer the others.
 
 ## External Audit Scope Map
 
@@ -191,12 +127,9 @@ $$
 
 which is exactly the root-time derivative used below.
 
-Plainly: the review and the live packet use differently scaled names for the
-same signed simple-root denominator. Converting the notation makes their
-root-time derivatives identical.
+Plainly: the review and the live packet use differently scaled names for the same signed simple-root denominator. Converting the notation makes their root-time derivatives identical.
 
-The audit allows a generalized $C^1$ source amplitude $B(s)$ multiplying the
-regular row. Its product rule adds
+The audit allows a generalized $C^1$ source amplitude $B(s)$ multiplying the regular row. Its product rule adds
 
 $$
 \left.
@@ -207,15 +140,9 @@ $$
 \mathbf n\,B'(s)\,\delta s
 $$
 
-in the live speed-denominator convention, after any fixed normalization is
-absorbed into $B$. The canonical Architrino row instead has
-$B=C_{ij}=\kappa\sigma_{ij}|q_iq_j|$, constant on the retained history, so
-$B'(s)=0$.
+in the live speed-denominator convention, after any fixed normalization is absorbed into $B$. The canonical Architrino row instead has $B=C_{ij}=\kappa\sigma_{ij}|q_iq_j|$, constant on the retained history, so $B'(s)=0$.
 
-Plainly: the review checked a slightly more general amplitude than the live
-operator needs. Its extra amplitude-derivative term vanishes in the canonical
-specialization. This evidence does not introduce time-varying Architrino
-polarity or a new source law.
+Plainly: the review checked a slightly more general amplitude than the live operator needs. Its extra amplitude-derivative term vanishes in the canonical specialization. This evidence does not introduce time-varying Architrino polarity or a new source law.
 
 The review's verified scope is:
 
@@ -223,23 +150,16 @@ The review's verified scope is:
 - one isolated simple partner root;
 - $r>0$ and $|D|\ge D_{\min}>0$;
 - frozen $C^2$ transmitter history;
-- a $C^1$ generalized source amplitude, specialized here to constant
-  $C_{ij}$; and
+- a $C^1$ generalized source amplitude, specialized here to constant $C_{ij}$; and
 - fixed coupling sign and fixed $c_f$.
 
-It does not verify receiver-time playback, complete history variation, a
-positive-delay same-history rule, or any singular-boundary extension.
+It does not verify receiver-time playback, complete history variation, a positive-delay same-history rule, or any singular-boundary extension.
 
-Plainly: the audit is independent evidence for the regular tensor only. Its
-failure-regime analysis is evidence that more input is required at the
-boundary, not evidence for one preferred input.
+Plainly: the audit is independent evidence for the regular tensor only. Its failure-regime analysis is evidence that more input is required at the boundary, not evidence for one preferred input.
 
 ## Declared Differentiation Problem
 
-Hold the reception time $T$ fixed. Hold the retained transmitter history
-$\mathbf X_j(\cdot)$ fixed as a function. Let the receiver coordinate
-$\mathbf x=\mathbf X_i(T)$ vary in an open neighborhood on which one selected
-root $s=s(\mathbf x)$ remains simple and isolated. Assume
+Hold the reception time $T$ fixed. Hold the retained transmitter history $\mathbf X_j(\cdot)$ fixed as a function. Let the receiver coordinate $\mathbf x=\mathbf X_i(T)$ vary in an open neighborhood on which one selected root $s=s(\mathbf x)$ remains simple and isolated. Assume
 
 $$
 r\ge r_{\min}>0,
@@ -253,9 +173,7 @@ $$
 
 where $\mathbf a=\ddot{\mathbf X}_j(s)$.
 
-Plainly: the derivative follows one named root, not whichever root a solver
-happens to return after perturbation. The separation and transmitter-factor
-floors keep the calculation away from collision and fold boundaries.
+Plainly: the derivative follows one named root, not whichever root a solver happens to return after perturbation. The separation and transmitter-factor floors keep the calculation away from collision and fold boundaries.
 
 Use the matrix convention
 
@@ -267,8 +185,7 @@ $$
 \frac{\partial A_{ij,a}}{\partial x_b}.
 $$
 
-Plainly: each column records the change in the three acceleration components
-when one receiver coordinate is perturbed.
+Plainly: each column records the change in the three acceleration components when one receiver coordinate is perturbed.
 
 ## Root-Time And Delayed-History Derivatives
 
@@ -314,10 +231,7 @@ $$
 \frac{\mathbf P\mathbf M}{r}.
 $$
 
-Plainly: moving the receiver also moves the selected emission time. The matrix
-$\mathbf M$ is the delayed-history correction to the direct displacement
-change. The projector $\mathbf P$ removes the radial component when the
-line-of-action direction changes.
+Plainly: moving the receiver also moves the selected emission time. The matrix $\mathbf M$ is the delayed-history correction to the direct displacement change. The projector $\mathbf P$ removes the radial component when the line-of-action direction changes.
 
 The transmitter velocity is evaluated at the moving root, so
 
@@ -349,8 +263,7 @@ $$
 \frac{\mathbf n\cdot\mathbf a}{D}\mathbf n.
 $$
 
-Equivalently, with
-$\mathbf v_\perp=\mathbf P\mathbf v$,
+Equivalently, with $\mathbf v_\perp=\mathbf P\mathbf v$,
 
 $$
 \mathbf d
@@ -365,10 +278,7 @@ $$
 \right)\mathbf n.
 $$
 
-Plainly: the first term records the change in the line of action relative to
-the transmitter velocity. The second records how shifting the emission time
-changes that velocity through the transmitter acceleration. Omitting either
-term gives an incomplete gradient on a general delayed history.
+Plainly: the first term records the change in the line of action relative to the transmitter velocity. The second records how shifting the emission time changes that velocity through the transmitter acceleration. Omitting either term gives an incomplete gradient on a general delayed history.
 
 ## Complete One-Root Receiver Gradient
 
@@ -415,17 +325,9 @@ $$
 }
 $$
 
-Plainly: $\mathbf N$ differentiates the arriving direction. The
-$2\mathbf h/r$ term differentiates inverse-square dilution. The
-$\mathbf d/D$ term differentiates the transmitter-side root-Jacobian weight.
-Together they are the full spatial sensitivity of the declared one-root
-operator.
+Plainly: $\mathbf N$ differentiates the arriving direction. The $2\mathbf h/r$ term differentiates inverse-square dilution. The $\mathbf d/D$ term differentiates the transmitter-side root-Jacobian weight. Together they are the full spatial sensitivity of the declared one-root operator.
 
-An equivalent parameter form is useful for implementation checks. For any
-fixed-time perturbation parameter $\xi$, let
-$\mathbf b_i=\partial_\xi\mathbf X_i(T)$,
-$\mathbf b_j=\partial_\xi\mathbf X_j(s)$ at fixed $s$, and
-$\mathbf c_j=\partial_\xi\mathbf v_j(s)$ at fixed $s$. Then
+An equivalent parameter form is useful for implementation checks. For any fixed-time perturbation parameter $\xi$, let $\mathbf b_i=\partial_\xi\mathbf X_i(T)$, $\mathbf b_j=\partial_\xi\mathbf X_j(s)$ at fixed $s$, and $\mathbf c_j=\partial_\xi\mathbf v_j(s)$ at fixed $s$. Then
 
 $$
 s_\xi
@@ -475,15 +377,11 @@ C_{ij}\frac{c_f}{|D|}
 }
 $$
 
-Plainly: this second box is the same derivative written one perturbation at a
-time. It exposes the exact chain used by the live EOM sharp-root sensitivity:
-root time, delayed transmitter position, direction, transmitter factor, and
-acceleration weight all change on the same retained record.
+Plainly: this second box is the same derivative written one perturbation at a time. It exposes the exact chain used by the live EOM sharp-root sensitivity: root time, delayed transmitter position, direction, transmitter factor, and acceleration weight all change on the same retained record.
 
 ### Static-transmitter control
 
-For $\mathbf v=\mathbf a=\mathbf0$, one has
-$D=c_f$, $\mathbf M=\mathbf I$, $\mathbf d=\mathbf0$, and
+For $\mathbf v=\mathbf a=\mathbf0$, one has $D=c_f$, $\mathbf M=\mathbf I$, $\mathbf d=\mathbf0$, and
 
 $$
 \nabla_{\mathbf x}\mathbf A_{ij}
@@ -494,9 +392,7 @@ $$
 \right).
 $$
 
-Plainly: the general formula reduces to the ordinary derivative of
-$C_{ij}\mathbf R/r^3$. Failure of this reduction falsifies the tensor formula
-before any delayed-history test is attempted.
+Plainly: the general formula reduces to the ordinary derivative of $C_{ij}\mathbf R/r^3$. Failure of this reduction falsifies the tensor formula before any delayed-history test is attempted.
 
 ## Moving-Root Scalar Identity And Its Boundaries
 
@@ -517,17 +413,11 @@ $$
 \frac{\mathbf n}{r^2}.
 $$
 
-Plainly: root-constrained differentiation produces the signed factor $1/D$,
-not the unsigned acceleration weight $1/|D|$. On a fixed one-sign branch one
-can rewrite the canonical row using the branch sign, but that rewrite does not
-define a smooth scalar across a fold and does not supply a complete
-whole-history action.
+Plainly: root-constrained differentiation produces the signed factor $1/D$, not the unsigned acceleration weight $1/|D|$. On a fixed one-sign branch one can rewrite the canonical row using the branch sign, but that rewrite does not define a smooth scalar across a fold and does not supply a complete whole-history action.
 
 ### Moving-Single-Root Scalar-Gradient Theorem
 
-Fix the reception time, one retained transmitter history, and a connected open
-receiver chart $U$. Assume that the selected causal root $s_b(\mathbf x)$ is
-unique and differentiable on $U$, and that
+Fix the reception time, one retained transmitter history, and a connected open receiver chart $U$. Assume that the selected causal root $s_b(\mathbf x)$ is unique and differentiable on $U$, and that
 
 $$
 r_b(\mathbf x)\ge r_{\min}>0,
@@ -549,10 +439,7 @@ D_b
 \end{aligned}
 $$
 
-Plainly: this theorem stays inside one ordinary branch. The active past event
-moves smoothly when the receiver moves, while separation and the transmitter
-factor stay away from their singular values. The signed coupling $C_b$ is
-fixed for that admitted row.
+Plainly: this theorem stays inside one ordinary branch. The active past event moves smoothly when the receiver moves, while separation and the transmitter factor stay away from their singular values. The signed coupling $C_b$ is fixed for that admitted row.
 
 The causal constraint and its receiver derivative are
 
@@ -577,12 +464,9 @@ dg_b
 \frac{c_f}{D_b}\mathbf n_b.
 $$
 
-Plainly: moving the receiver changes both the separation and which emission
-time solves the causal equation. Differentiating the selected root accounts
-for both changes and supplies the signed factor $1/D_b$.
+Plainly: moving the receiver changes both the separation and which emission time solves the causal equation. Differentiating the selected root accounts for both changes and supplies the signed factor $1/D_b$.
 
-Because $D_b$ is continuous and nonzero on the connected chart, its sign
-$\epsilon_b=\operatorname{sgn}(D_b)$ is constant there. Define
+Because $D_b$ is continuous and nonzero on the connected chart, its sign $\epsilon_b=\operatorname{sgn}(D_b)$ is constant there. Define
 
 $$
 \Phi_b(\mathbf x)
@@ -608,41 +492,15 @@ C_b
 \end{aligned}
 $$
 
-Plainly: the branch sign converts the signed root derivative into the absolute
-transmitter weight already present in the Master Equation. The result is the
-existing acceleration row written as a local scalar gradient; it is not a new
-acceleration term.
+Plainly: the branch sign converts the signed root derivative into the absolute transmitter weight already present in the Master Equation. The result is the existing acceleration row written as a local scalar gradient; it is not a new acceleration term.
 
-Claim grade: **derived on one connected regular moving-simple-root chart**.
-The derivation is falsified by a certified regular-chart point where
-$\mathbf A_b+\nabla_{\mathbf x}\Phi_b\ne\mathbf0$. It does not cross
-$D_b=0$ or $r_b=0$, glue distinct root charts, define a singular self root, or
-establish a whole-history action or global scalar.
+Claim grade: **derived on one connected regular moving-simple-root chart**. The derivation is falsified by a certified regular-chart point where $\mathbf A_b+\nabla_{\mathbf x}\Phi_b\ne\mathbf0$. It does not cross $D_b=0$ or $r_b=0$, glue distinct root charts, define a singular self root, or establish a whole-history action or global scalar.
 
-Plainly: the exact local identity is proved under its stated hypotheses. Its
-boundaries are part of the theorem, so it cannot be extended past a fold,
-source, coincidence, or self diagonal merely by continuing the displayed
-formula.
+Plainly: the exact local identity is proved under its stated hypotheses. Its boundaries are part of the theorem, so it cannot be extended past a fold, source, coincidence, or self diagonal merely by continuing the displayed formula.
 
-The separately structured executable check
-[`verify-moving-single-root-scalar-gradient.mjs`](../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs)
-uses $c_f=1$, a moving uniform-circular transmitter, a certified receiver ball
-of radius $0.02$, the analytic floors $D_b\ge0.72$ and $r_b\ge1.0722$, and
-five finite-difference refinements of the scalar. The scalar side
-solves the moving root by a certified Newton iteration and never calls the
-analytic gradient or the EOM solver sensitivity. The ledger side uses the
-unchanged circular-root record from
-[`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs)
-and the canonical acceleration row. Across the five refinements, the largest
-component residual was $2.12\times10^{-12}$ and the largest disagreement
-between the two numerical gradient stencils was $5.93\times10^{-13}$. The raw
-$1/r_b^2$ scalar negative control left a component residual of $0.513$.
+The separately structured executable check [`verify-moving-single-root-scalar-gradient.mjs`](../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs) uses $c_f=1$, a moving uniform-circular transmitter, a certified receiver ball of radius $0.02$, the analytic floors $D_b\ge0.72$ and $r_b\ge1.0722$, and five finite-difference refinements of the scalar. The scalar side solves the moving root by a certified Newton iteration and never calls the analytic gradient or the EOM solver sensitivity. The ledger side uses the unchanged circular-root record from [`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs) and the canonical acceleration row. Across the five refinements, the largest component residual was $2.12\times10^{-12}$ and the largest disagreement between the two numerical gradient stencils was $5.93\times10^{-13}$. The raw $1/r_b^2$ scalar negative control left a component residual of $0.513$.
 
-Plainly: a numerical gradient of scalar values computed from freshly solved
-moving roots agrees with an unchanged acceleration-ledger construction to the
-declared tolerance. The wrong radial scalar fails visibly. This measured check
-tests the implementation of the proved identity on one regular chart; it does
-not prove the theorem or any global extension by numerical agreement alone.
+Plainly: a numerical gradient of scalar values computed from freshly solved moving roots agrees with an unchanged acceleration-ledger construction to the declared tolerance. The wrong radial scalar fails visibly. This measured check tests the implementation of the proved identity on one regular chart; it does not prove the theorem or any global extension by numerical agreement alone.
 
 Similarly,
 
@@ -655,55 +513,29 @@ $$
 
 which has the wrong radial scaling for the canonical acceleration.
 
-Plainly: neither a bare $1/r$ nor a bare $1/r^2$ scalar is the complete
-receiver/self gradient problem. The first omits the full action variation and
-the absolute transmitter weight; the second differentiates to an inverse-cube
-row. Differentiating the received surface density itself would produce the
-tensor above, not another acceleration to add to the Master Equation.
+Plainly: neither a bare $1/r$ nor a bare $1/r^2$ scalar is the complete receiver/self gradient problem. The first omits the full action variation and the absolute transmitter weight; the second differentiates to an inverse-cube row. Differentiating the received surface density itself would produce the tensor above, not another acceleration to add to the Master Equation.
 
-The live pure scalar action result is stronger than this scaling comparison.
-Receiver variation of
-$\delta_\eta(g)/r$ also differentiates the causal selector and leaves an
-interior derivative-of-constraint residual. The characteristic-tail identity
-removes that residual only for its declared receiver-coordinate kernel. MEC-001
-shows that the same candidate still needs a finite self-diagonal prescription
-and complete receiver-plus-transmitter variation.
+The live pure scalar action result is stronger than this scaling comparison. Receiver variation of $\delta_\eta(g)/r$ also differentiates the causal selector and leaves an interior derivative-of-constraint residual. The characteristic-tail identity removes that residual only for its declared receiver-coordinate kernel. MEC-001 shows that the same candidate still needs a finite self-diagonal prescription and complete receiver-plus-transmitter variation.
 
-Plainly: a correct local gradient identity is not enough to establish an
-action. The transmitter occurrence, endpoint terms, retained history, and self
-sector must all belong to one finite functional.
+Plainly: a correct local gradient identity is not enough to establish an action. The transmitter occurrence, endpoint terms, retained history, and self sector must all belong to one finite functional.
 
 ## Partner Root, Same-History Root, And Diagonal Boundary
 
-For $i\ne j$, the boxed receiver gradient is complete on the declared regular
-root chart. It contains no receiver velocity because reception time is fixed.
-Receiver velocity enters only when differentiating along the receiver history,
-where $ds/dT=D_r/D$.
+For $i\ne j$, the boxed receiver gradient is complete on the declared regular root chart. It contains no receiver velocity because reception time is fixed. Receiver velocity enters only when differentiating along the receiver history, where $ds/dT=D_r/D$.
 
-For $i=j$ and a positive-delay root $s<T$, the same boxed expression is valid
-as an instantaneous receiver-coordinate derivative if:
+For $i=j$ and a positive-delay root $s<T$, the same boxed expression is valid as an instantaneous receiver-coordinate derivative if:
 
-1. the retained past point $\mathbf X_i(s)$ is held fixed during the
-   instantaneous receiver perturbation;
+1. the retained past point $\mathbf X_i(s)$ is held fixed during the instantaneous receiver perturbation;
 2. the root is isolated and remains on the same branch;
 3. $r\ge r_{\min}>0$ and $|D|\ge D_{\min}>0$;
 4. the declared self-pair convention admits the root; and
 5. the perturbation does not cross a core, fold, memory, or diagonal boundary.
 
-Plainly: a past point on the same history can act as the fixed transmitter
-record for this local derivative. That does not make the present and past
-points independent in a variation of the entire history.
+Plainly: a past point on the same history can act as the fixed transmitter record for this local derivative. That does not make the present and past points independent in a variation of the entire history.
 
-The general parameter formula, not the receiver-only specialization, is
-required when a perturbation changes both $\mathbf X_i(T)$ and
-$\mathbf X_i(s)$. The full same-history functional derivative also collects
-every occurrence of the varied point in receiver and transmitter roles. That
-is the MEC-001 receiver-plus-transmitter problem, not a missing term in the
-instantaneous acceleration.
+The general parameter formula, not the receiver-only specialization, is required when a perturbation changes both $\mathbf X_i(T)$ and $\mathbf X_i(s)$. The full same-history functional derivative also collects every occurrence of the varied point in receiver and transmitter roles. That is the MEC-001 receiver-plus-transmitter problem, not a missing term in the instantaneous acceleration.
 
-Plainly: the local Jacobian asks what happens if the current receiver point is
-moved while its stored past is frozen. A whole-history variation moves the
-curve itself and therefore has additional past and future incidences.
+Plainly: the local Jacobian asks what happens if the current receiver point is moved while its stored past is frozen. A whole-history variation moves the curve itself and therefore has additional past and future incidences.
 
 The regular formula has the explicit bound
 
@@ -746,11 +578,9 @@ $$
 \right].
 $$
 
-Plainly: positive separation and transmitter-factor floors make the regular
-gradient finite. Removing either floor removes this guarantee.
+Plainly: positive separation and transmitter-factor floors make the regular gradient finite. Removing either floor removes this guarantee.
 
-An explicit same-history family proves that the missing uniform near-diagonal
-bound is not merely an artifact of the estimate. Set $c_f=1$ and
+An explicit same-history family proves that the missing uniform near-diagonal bound is not merely an artifact of the estimate. Set $c_f=1$ and
 
 $$
 \mathbf X(t)
@@ -792,22 +622,11 @@ $$
 \frac{|C|}{8a\tau^4}.
 $$
 
-Plainly: every $\tau>0$ row is a positive-delay simple root, but the root
-approaches the trivial diagonal and transmitter-factor boundary as
-$\tau\to0^+$. The acceleration and its receiver gradient diverge with explicit
-powers, so no uniform self-inclusive continuation follows from the regular
-formula.
+Plainly: every $\tau>0$ row is a positive-delay simple root, but the root approaches the trivial diagonal and transmitter-factor boundary as $\tau\to0^+$. The acceleration and its receiver gradient diverge with explicit powers, so no uniform self-inclusive continuation follows from the regular formula.
 
-At the trivial self diagonal, $r=0$ and $\mathbf n$ is undefined. At a fold,
-$D=0$ and the implicit root derivative is undefined. At a coincident
-same-transmitter birth, the two failures can occur together. As a
-positive-delay self root approaches the diagonal, the displayed bound diverges
-at least through inverse powers of $r_{\min}$ and may also diverge through
-$D_{\min}$. No undeclared limiting value is assigned.
+At the trivial self diagonal, $r=0$ and $\mathbf n$ is undefined. At a fold, $D=0$ and the implicit root derivative is undefined. At a coincident same-transmitter birth, the two failures can occur together. As a positive-delay self root approaches the diagonal, the displayed bound diverges at least through inverse powers of $r_{\min}$ and may also diverge through $D_{\min}$. No undeclared limiting value is assigned.
 
-Plainly: the regular root formula is not a diagonal prescription. A fixed core,
-diagonal exclusion, or separately derived near-origin wake rule must be chosen
-before a self-inclusive gradient can be called complete.
+Plainly: the regular root formula is not a diagonal prescription. A fixed core, diagonal exclusion, or separately derived near-origin wake rule must be chosen before a self-inclusive gradient can be called complete.
 
 ## Singular-Boundary Obstruction
 
@@ -817,10 +636,7 @@ $$
 g(u,\lambda)=u^2-\lambda,
 $$
 
-with two simple roots $u_\pm=\pm\sqrt{\lambda}$ for $\lambda>0$. The signed
-root factors have opposite signs, but the canonical acceleration weight uses
-their absolute values. The two incident acceleration rows therefore reinforce
-rather than cancel:
+with two simple roots $u_\pm=\pm\sqrt{\lambda}$ for $\lambda>0$. The signed root factors have opposite signs, but the canonical acceleration weight uses their absolute values. The two incident acceleration rows therefore reinforce rather than cancel:
 
 $$
 \mathbf A_+ + \mathbf A_-
@@ -833,42 +649,19 @@ O\!\left(\lambda^{-1/2}\right),
 O\!\left(\lambda^{-3/2}\right).
 $$
 
-These powers belong to the ordinary-fold normal form only. They are not a
-claim about every multiple-root geometry.
+These powers belong to the ordinary-fold normal form only. They are not a claim about every multiple-root geometry.
 
-Plainly: taking the absolute root factor makes the two sides of an ordinary
-fold add. The acceleration row and its transverse derivative diverge as the
-roots merge.
+Plainly: taking the absolute root factor makes the two sides of an ordinary fold add. The acceleration row and its transverse derivative diverge as the roots merge.
 
-The open-domain expression does not determine a unique distributional
-extension across the fold. If one extension is admitted, adding a distribution
-supported on the fold boundary leaves every open-domain value unchanged.
-Choosing its coefficient, derivative order, or reference scale is an
-additional boundary assumption.
+The open-domain expression does not determine a unique distributional extension across the fold. If one extension is admitted, adding a distribution supported on the fold boundary leaves every open-domain value unchanged. Choosing its coefficient, derivative order, or reference scale is an additional boundary assumption.
 
-For a coincident birth with $r\to0$ while $|D|$ remains bounded away from zero,
-a symmetric distributional prescription can define a distributional
-gradient, but it does not supply a pointwise acceleration-gradient value for
-evolution. Non-symmetric regularizations can change the finite boundary part.
-The regular tensor therefore cannot select among those prescriptions.
+For a coincident birth with $r\to0$ while $|D|$ remains bounded away from zero, a symmetric distributional prescription can define a distributional gradient, but it does not supply a pointwise acceleration-gradient value for evolution. Non-symmetric regularizations can change the finite boundary part. The regular tensor therefore cannot select among those prescriptions.
 
-For the explicit same-history family above, the acceleration diverges as
-$\tau^{-3}$, its transverse receiver gradient as $\tau^{-4}$, and its
-longitudinal receiver gradient as $\tau^{-5}$. Those exponents are proved only
-for that exhibited family. Their nonintegrable behavior also prevents that
-family from acquiring a distributional time-boundary value without a
-subtraction, core, or other new rule.
+For the explicit same-history family above, the acceleration diverges as $\tau^{-3}$, its transverse receiver gradient as $\tau^{-4}$, and its longitudinal receiver gradient as $\tau^{-5}$. Those exponents are proved only for that exhibited family. Their nonintegrable behavior also prevents that family from acquiring a distributional time-boundary value without a subtraction, core, or other new rule.
 
-Plainly: distribution theory can describe some singular rows, but it does not
-automatically produce the pointwise number required by an evolution update.
-In the exhibited self family, even the direct distributional route needs an
-extra assumption.
+Plainly: distribution theory can describe some singular rows, but it does not automatically produce the pointwise number required by an evolution update. In the exhibited self family, even the direct distributional route needs an extra assumption.
 
-The external audit therefore verifies the regular tensor and proves a
-boundary-extension obstruction, not a boundary prescription. In the excluded
-region the operational disposition remains `Not advanced`: it must return an
-unresolved boundary row, never zero, a selected branch, or an undeclared finite
-part.
+The external audit therefore verifies the regular tensor and proves a boundary-extension obstruction, not a boundary prescription. In the excluded region the operational disposition remains `Not advanced`: it must return an unresolved boundary row, never zero, a selected branch, or an undeclared finite part.
 
 ## Continuous Emission Does Not Select A Finite Width
 
@@ -878,8 +671,7 @@ $$
 d\mu=\rho_s\,ds.
 $$
 
-On a source-history segment with nonzero speed,
-$d\ell=\|\mathbf v(s)\|\,ds$, the same measure has the path-length chart
+On a source-history segment with nonzero speed, $d\ell=\|\mathbf v(s)\|\,ds$, the same measure has the path-length chart
 
 $$
 d\mu
@@ -887,14 +679,9 @@ d\mu
 \frac{\rho_s}{\|\mathbf v(s)\|}\,d\ell.
 $$
 
-Plainly: the inverse-speed density is the Jacobian of a coordinate change. It
-does not multiply the time-chart measure a second time, and it introduces no
-time or length scale. At a source turning point the path-length chart
-degenerates while the absolute-time chart remains valid.
+Plainly: the inverse-speed density is the Jacobian of a coordinate change. It does not multiply the time-chart measure a second time, and it introduces no time or length scale. At a source turning point the path-length chart degenerates while the absolute-time chart remains valid.
 
-One candidate finite-width regulator class replaces the sharp causal
-constraint by a normalized causal-defect profile. For
-$\phi\in L^1(\mathbb R)$ with $\int\phi(u)\,du=1$, define
+One candidate finite-width regulator class replaces the sharp causal constraint by a normalized causal-defect profile. For $\phi\in L^1(\mathbb R)$ with $\int\phi(u)\,du=1$, define
 
 $$
 \phi_w(u)
@@ -915,17 +702,11 @@ C_{ij}c_f
 \frac{\mathbf n(T,s)}{r(T,s)^2}\,ds.
 $$
 
-Here $w$ has units of length because $g=r-c_f(T-s)$ does. A temporal profile
-with width $\tau$ belongs to the same regulator class after a declared profile
-change and $w=c_f\tau$.
+Here $w$ has units of length because $g=r-c_f(T-s)$ does. A temporal profile with width $\tau$ belongs to the same regulator class after a declared profile change and $w=c_f\tau$.
 
-Plainly: this formula describes a possible smearing of reception around the
-causal surface. Constant-time emission does not choose the profile, its width,
-its support, or its matching rule, so the formula is a regulator family rather
-than a derived wake law.
+Plainly: this formula describes a possible smearing of reception around the causal surface. Constant-time emission does not choose the profile, its width, its support, or its matching rule, so the formula is a regulator family rather than a derived wake law.
 
-On an isolated simple-root chart, use $u=g(T,s)$ as the integration
-coordinate. The regulated row has the local form
+On an isolated simple-root chart, use $u=g(T,s)$ as the integration coordinate. The regulated row has the local form
 
 $$
 \mathbf A^{(w)}_{ij}
@@ -947,19 +728,11 @@ $$
 C_{ij}\frac{c_f}{r^2|D|}\mathbf n
 $$
 
-whenever the simple-root chart and a dominated-convergence bound hold. If
-$\mathbf H$ is sufficiently smooth and the needed profile moments are finite,
-the leading correction is generically $O(w)$; it is $O(w^2)$ for a centered
-even profile.
+whenever the simple-root chart and a dominated-convergence bound hold. If $\mathbf H$ is sufficiently smooth and the needed profile moments are finite, the leading correction is generically $O(w)$; it is $O(w^2)$ for a centered even profile.
 
-Plainly: normalized profiles recover the sharp row in the zero-width limit.
-At a fixed nonzero width they generally modify even a regular row because the
-geometry and root factor vary across the profile support. Exact exterior
-matching would require another declared construction; it does not follow from
-compact support alone.
+Plainly: normalized profiles recover the sharp row in the zero-width limit. At a fixed nonzero width they generally modify even a regular row because the geometry and root factor vary across the profile support. Exact exterior matching would require another declared construction; it does not follow from compact support alone.
 
-At an ordinary fold with local form
-$g\approx\kappa_2(s-s_\ast)^2$, $\kappa_2>0$, the profile integral contains
+At an ordinary fold with local form $g\approx\kappa_2(s-s_\ast)^2$, $\kappa_2>0$, the profile integral contains
 
 $$
 \int
@@ -969,42 +742,21 @@ $$
 \int\phi(x^2)\,dx.
 $$
 
-The coefficient depends on the profile. The independently executed
-$[\lambda+a\epsilon^2]^{-1/2}$ comparison above already measures different
-boundary coefficients for $a=1/4$ and $a=1$ despite their common sharp
-open-domain limit.
+The coefficient depends on the profile. The independently executed $[\lambda+a\epsilon^2]^{-1/2}$ comparison above already measures different boundary coefficients for $a=1/4$ and $a=1$ despite their common sharp open-domain limit.
 
-Plainly: a fixed nonzero profile may soften the fold evaluation, but the
-finite answer is not selected by the regular operator. The disagreement of
-equally admissible regulators proves that open-domain recovery does not derive
-a boundary value.
+Plainly: a fixed nonzero profile may soften the fold evaluation, but the finite answer is not selected by the regular operator. The disagreement of equally admissible regulators proves that open-domain recovery does not derive a boundary value.
 
-Causal-defect smearing also leaves the factor
-$\mathbf n/r^2$ inside the integral. It therefore does not by itself define
-the self diagonal or guarantee a finite coincident encounter or finite
-impulse. Any such claim needs an additional spatial source profile,
-near-origin rule, or derived wake-state transition and its own convergence
-proof.
+Causal-defect smearing also leaves the factor $\mathbf n/r^2$ inside the integral. It therefore does not by itself define the self diagonal or guarantee a finite coincident encounter or finite impulse. Any such claim needs an additional spatial source profile, near-origin rule, or derived wake-state transition and its own convergence proof.
 
-Plainly: smoothing the root collapse and smoothing the inverse-square
-near-origin singularity are different mathematical operations. Success at a
-fold cannot be reused as a self-diagonal prescription.
+Plainly: smoothing the root collapse and smoothing the inverse-square near-origin singularity are different mathematical operations. Success at a fold cannot be reused as a self-diagonal prescription.
 
-The dimensions of the regular row permit the candidate length
-$|C_{ij}|/c_f^2$. Nothing in the supplied operator makes that amplitude scale
-control the support of the causal kernel. Using
-$w=\beta|C_{ij}|/c_f^2$ would add an amplitude-to-geometry coupling, leave the
-dimensionless coefficient $\beta$ free, and still leave the profile free.
+The dimensions of the regular row permit the candidate length $|C_{ij}|/c_f^2$. Nothing in the supplied operator makes that amplitude scale control the support of the causal kernel. Using $w=\beta|C_{ij}|/c_f^2$ would add an amplitude-to-geometry coupling, leave the dimensionless coefficient $\beta$ free, and still leave the profile free.
 
-Plainly: dimensional availability is not a derivation. Under the current
-continuous-emission picture, the sharp zero-width constraint is selected and
-every positive width introduces at least a scale and a profile as new
-constitutive input.
+Plainly: dimensional availability is not a derivation. Under the current continuous-emission picture, the sharp zero-width constraint is selected and every positive width introduces at least a scale and a profile as new constitutive input.
 
 ## Boundary-Treatment Option Matrix
 
-No option in this table is selected or accepted. The table records the new
-assumption each option would introduce and the obligations it would inherit.
+No option in this table is selected or accepted. The table records the new assumption each option would introduce and the obligations it would inherit.
 
 | Candidate treatment | New assumption | Regular-domain compatibility | Pointwise evolution value | Regulator dependence and verification obligation | MEC-005 provenance consequence | MEC-004 signed-account consequence | Acceptance condition and falsifier |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1020,11 +772,7 @@ assumption each option would introduce and the obligations it would inherit.
 | Remove all self roots | Same-history roots are excluded by definition. | Changes the live self-hit inclusion rule even where a self root is regular. | Defines absence, not the missing boundary value. | No numerical regulator, but requires a new operator-level exclusion proof and regression over all self rows. | Omits the self-root bundle rather than accounting for it. | Cannot establish a closed account for an encounter class removed by declaration. | Rejected without explicit operator revision; falsified by any admitted positive-delay self root under the live rule. |
 | Derived wake-state or core transition | A new state and update law is derived that reduces to the regular operator outside the boundary region. | Potentially compatible if exact regular reduction is proved. | Potentially, if the update is complete. | Must derive its scale and be regulator invariant at the claimed grade; requires an independent oracle and boundary-crossing tests. | Emission, reception, root transfer, and boundary-state ownership must be unique and exhaustive. | MEC-004 maps must be separately derived on the identical state update and cannot be inferred from closure residuals. | The only listed research class capable in principle of meeting all requirements; it remains unselected and falsifies if regular reduction, unique provenance, or regulator independence fails. |
 
-Plainly: the current mathematics selects none of these treatments. Boundary
-quarantine is the only authorized operational behavior, but it records an
-unresolved row rather than closing it. A derived wake-state or core transition
-could in principle close the pointwise update, but it still needs a separate
-derivation and independent evidence.
+Plainly: the current mathematics selects none of these treatments. Boundary quarantine is the only authorized operational behavior, but it records an unresolved row rather than closing it. A derived wake-state or core transition could in principle close the pointwise update, but it still needs a separate derivation and independent evidence.
 
 ## Minimal Symmetric Two-Body Protocol
 
@@ -1048,37 +796,22 @@ $$
 \right).
 $$
 
-At reception time $T=0$, isolate the unique partner root in the predeclared
-bracket $s\in[-6,0)$ for each ordered pair. Use
-$C_{12}=C_{21}=-1$ for the normalized diagnostic row.
+At reception time $T=0$, isolate the unique partner root in the predeclared bracket $s\in[-6,0)$ for each ordered pair. Use $C_{12}=C_{21}=-1$ for the normalized diagnostic row.
 
-Plainly: the histories are mirror images, but the transmitter is neither
-static nor collinear with the arriving direction. The row therefore exercises
-root-time motion, direction change, the transmitter-factor derivative, and
-the transmitter-acceleration term.
+Plainly: the histories are mirror images, but the transmitter is neither static nor collinear with the arriving direction. The row therefore exercises root-time motion, direction change, the transmitter-factor derivative, and the transmitter-acceleration term.
 
 For each ordered root:
 
 1. solve $g(0,s)=0$ with an independently bracketed scalar root solver;
-2. evaluate the boxed analytic tensor without using an EOM solver sensitivity
-   output;
-3. perturb one receiver coordinate at a time by
-   $\epsilon\in\{10^{-2},3\cdot10^{-3},10^{-3},3\cdot10^{-4},
-   10^{-4},3\cdot10^{-5},10^{-5}\}$;
+2. evaluate the boxed analytic tensor without using an EOM solver sensitivity output;
+3. perturb one receiver coordinate at a time by $\epsilon\in\{10^{-2},3\cdot10^{-3},10^{-3},3\cdot10^{-4}, 10^{-4},3\cdot10^{-5},10^{-5}\}$;
 4. re-isolate the same root after each perturbation;
-5. compare the analytic tensor with the centered finite difference of the
-   canonical acceleration row;
+5. compare the analytic tensor with the centered finite difference of the canonical acceleration row;
 6. require second-order convergence before roundoff dominates;
-7. require
-   $\mathbf A_{12}+\mathbf A_{21}=\mathbf0$ and
-   $\nabla\mathbf A_{12}=\nabla\mathbf A_{21}$ under the mirror map; and
-8. run negative controls with a bracket containing a second root, $D=0$, or
-   $r=0$, each of which must return `Not advanced`.
+7. require $\mathbf A_{12}+\mathbf A_{21}=\mathbf0$ and $\nabla\mathbf A_{12}=\nabla\mathbf A_{21}$ under the mirror map; and
+8. run negative controls with a bracket containing a second root, $D=0$, or $r=0$, each of which must return `Not advanced`.
 
-Plainly: the test differentiates the actual regular-root operator after
-re-solving the delay equation. It does not compare against a scalar surrogate,
-reuse the analytic root derivative inside the root solver, or assign a finite
-answer at a singular row.
+Plainly: the test differentiates the actual regular-root operator after re-solving the delay equation. It does not compare against a scalar surrogate, reuse the analytic root derivative inside the root solver, or assign a finite answer at a singular row.
 
 ### Executed diagnostic
 
@@ -1122,8 +855,7 @@ $$
 \end{pmatrix}.
 $$
 
-Plainly: these are measured values for one prescribed diagnostic, not a
-retained branch or solver-acceptance result.
+Plainly: these are measured values for one prescribed diagnostic, not a retained branch or solver-acceptance result.
 
 The maximum absolute centered-difference error across the tensor was
 
@@ -1137,23 +869,13 @@ The maximum absolute centered-difference error across the tensor was
 | $3\times10^{-5}$ | $8.638476\times10^{-11}$ |
 | $10^{-5}$ | $1.144465\times10^{-11}$ |
 
-The mirror acceleration sum and mirror tensor difference were both zero at the
-reported arithmetic precision.
+The mirror acceleration sum and mirror tensor difference were both zero at the reported arithmetic precision.
 
-Plainly: the error falls quadratically until floating-point roundoff becomes
-visible. This supports the hand derivative on the prescribed row, but the
-calculation was authored within this task and is not the separately authored
-acceptance verifier required below.
+Plainly: the error falls quadratically until floating-point roundoff becomes visible. This supports the hand derivative on the prescribed row, but the calculation was authored within this task and is not the separately authored acceptance verifier required below.
 
 ## Independently Structured Three-Dimensional Verification
 
-The standalone verifier
-[`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs)
-does not import the analytic Jacobian scaffold, EOM solver sensitivities, or
-the diagnostic implementation above. It evaluates the canonical acceleration
-row directly, re-solves the root after every receiver perturbation, and uses
-centered differences with Richardson extrapolation. The circular-history
-control also uses a separately coded five-point stencil.
+The standalone verifier [`verify-receiver-wake-gradient.mjs`](../../../scripts/equation-mapping/verify-receiver-wake-gradient.mjs) does not import the analytic Jacobian scaffold, EOM solver sensitivities, or the diagnostic implementation above. It evaluates the canonical acceleration row directly, re-solves the root after every receiver perturbation, and uses centered differences with Richardson extrapolation. The circular-history control also uses a separately coded five-point stencil.
 
 The executed controls were:
 
@@ -1164,31 +886,13 @@ The executed controls were:
 | Constant-velocity transmitter, bracketed root | Independently bracketed scalar solve | $9.78\times10^{-12}$ |
 | Uniform circular transmitter | Non-affine three-dimensional history with delayed transmitter acceleration | $1.77\times10^{-11}$ |
 
-The closed-form and bracketed constant-velocity roots agreed within
-$1.4\times10^{-14}$. For the circular control, the maximum difference between
-the extrapolated centered-difference tensor and the five-point tensor was
-$2.96\times10^{-13}$.
+The closed-form and bracketed constant-velocity roots agreed within $1.4\times10^{-14}$. For the circular control, the maximum difference between the extrapolated centered-difference tensor and the five-point tensor was $2.96\times10^{-13}$.
 
-The same verifier evaluated the ordinary fold model with two members of the
-regularizer family
-$[\lambda+a\epsilon^2]^{-1/2}$, using $a=1/4$ and $a=1$. At the boundary,
-they gave acceleration-row coefficients in ratio $2$ and transverse derivative
-coefficients in ratio $8$, although both reproduce the same sharp open-domain
-expression at every fixed $\lambda>0$ as $\epsilon\to0$. The verifier
-therefore reports
-`boundary_prescription_not_selected`.
+The same verifier evaluated the ordinary fold model with two members of the regularizer family $[\lambda+a\epsilon^2]^{-1/2}$, using $a=1/4$ and $a=1$. At the boundary, they gave acceleration-row coefficients in ratio $2$ and transverse derivative coefficients in ratio $8$, although both reproduce the same sharp open-domain expression at every fixed $\lambda>0$ as $\epsilon\to0$. The verifier therefore reports `boundary_prescription_not_selected`.
 
-Plainly: three different transmitter histories and two independent numerical
-stencils agree with the regular tensor after every root is solved again. Two
-equally open-domain-compatible fold regulators disagree at the boundary, so a
-numerical limit does not choose a prescription.
+Plainly: three different transmitter histories and two independent numerical stencils agree with the regular tensor after every root is solved again. Two equally open-domain-compatible fold regulators disagree at the boundary, so a numerical limit does not choose a prescription.
 
-This is independently structured numerical evidence, not a second analytic
-proof. Its target tensors are frozen from the documented analytic formula, but
-its comparison path does not implement that formula. The operator-supplied
-external audit supplies the independent analytic derivation. Together they
-verify the fixed-reception regular tensor on the declared open domain; neither
-establishes a self-diagonal, fold, or coincident-birth evolution value.
+This is independently structured numerical evidence, not a second analytic proof. Its target tensors are frozen from the documented analytic formula, but its comparison path does not implement that formula. The operator-supplied external audit supplies the independent analytic derivation. Together they verify the fixed-reception regular tensor on the declared open domain; neither establishes a self-diagonal, fold, or coincident-birth evolution value.
 
 The executed commands were:
 
@@ -1197,60 +901,35 @@ node scripts/equation-mapping/verify-receiver-wake-gradient.mjs
 node --test tests/receiver-wake-gradient-verifier.test.mjs
 ```
 
-Both completed successfully. The measured claim is limited to the declared
-regular controls and the demonstrated fold-regulator disagreement.
+Both completed successfully. The measured claim is limited to the declared regular controls and the demonstrated fold-regulator disagreement.
 
 ## Live Implementation Correspondence
 
-The EOM solver path in
-[`DelayedRootSensitivity.cpp`](../../../src/eom/src/DelayedRootSensitivity.cpp)
-computes the parameter derivative of emission time and propagates it into the
-delayed displacement. The path in
-[`SharpAccelerationSensitivity.cpp`](../../../src/eom/src/SharpAccelerationSensitivity.cpp)
-then differentiates the direction, transmitter factor, absolute acceleration
-weight, and inverse-square vector. Its generic parameter equations match the
-second boxed form above.
+The EOM solver path in [`DelayedRootSensitivity.cpp`](../../../src/eom/src/DelayedRootSensitivity.cpp) computes the parameter derivative of emission time and propagates it into the delayed displacement. The path in [`SharpAccelerationSensitivity.cpp`](../../../src/eom/src/SharpAccelerationSensitivity.cpp) then differentiates the direction, transmitter factor, absolute acceleration weight, and inverse-square vector. Its generic parameter equations match the second boxed form above.
 
-The existing independent Decimal test checks one one-dimensional sharp-root
-sensitivity coefficient and rejects a transmitter-factor interval containing
-zero. It does not independently verify the full three-dimensional
-receiver-coordinate tensor, a positive-delay same-history row, a diagonal
-negative control, or the mathematical rule separately from the implementation.
+The existing independent Decimal test checks one one-dimensional sharp-root sensitivity coefficient and rejects a transmitter-factor interval containing zero. It does not independently verify the full three-dimensional receiver-coordinate tensor, a positive-delay same-history row, a diagonal negative control, or the mathematical rule separately from the implementation.
 
-The new standalone verifier is independent of this EOM solver code path. Its
-regular controls support the same tensor without reusing the implementation,
-while its fold comparison deliberately declines to produce a boundary value.
+The new standalone verifier is independent of this EOM solver code path. Its regular controls support the same tensor without reusing the implementation, while its fold comparison deliberately declines to produce a boundary value.
 
-Plainly: the live code contains all regular chain-rule pieces, and the new
-standalone comparison checks them without importing that code. This closes the
-regular numerical sub-obligation but does not close MEC-006's boundary
-obligation or grant EOM solver acceptance.
+Plainly: the live code contains all regular chain-rule pieces, and the new standalone comparison checks them without importing that code. This closes the regular numerical sub-obligation but does not close MEC-006's boundary obligation or grant EOM solver acceptance.
 
 ## Acceptance And Falsifiers
 
-The regular fixed-reception partner-root sub-obligation is independently
-verified at evidence-only authority by the external analytic audit and the
-standalone numerical verifier. It covers:
+The regular fixed-reception partner-root sub-obligation is independently verified at evidence-only authority by the external analytic audit and the standalone numerical verifier. It covers:
 
 1. the static-transmitter tensor;
 2. a constant-velocity closed-form root and an independently bracketed root;
 3. a non-affine uniform-circular three-dimensional history;
 4. root re-resolution after every receiver perturbation;
-5. the distinction between fixed-reception spatial differentiation,
-   receiver-time playback, and whole-history variation; and
+5. the distinction between fixed-reception spatial differentiation, receiver-time playback, and whole-history variation; and
 6. an explicit fold-regulator disagreement.
 
-Overall MEC-006 completion still requires an explicitly authorized boundary
-candidate that:
+Overall MEC-006 completion still requires an explicitly authorized boundary candidate that:
 
-1. defines whether its output is a pointwise update, an event map, or only a
-   distribution;
-2. preserves the canonical regular acceleration operator on its declared open
-   domain;
-3. records all incident root and boundary provenance exactly once under
-   MEC-005;
-4. supplies independently derived MEC-004 signed-account maps if any account
-   claim is later attempted;
+1. defines whether its output is a pointwise update, an event map, or only a distribution;
+2. preserves the canonical regular acceleration operator on its declared open domain;
+3. records all incident root and boundary provenance exactly once under MEC-005;
+4. supplies independently derived MEC-004 signed-account maps if any account claim is later attempted;
 5. passes its option-specific regulator, path, and boundary-crossing tests;
 6. rejects or explains the exhibited positive-delay self family; and
 7. returns `Not advanced` outside its proved domain.
@@ -1258,76 +937,34 @@ candidate that:
 A finite-width candidate must additionally:
 
 1. distinguish causal-defect smoothing from any spatial near-origin profile;
-2. recover the sharp row and verified receiver gradient on a predeclared
-   zero-width ladder;
-3. measure rather than suppress dependence on at least two inequivalent
-   profiles and two widths;
+2. recover the sharp row and verified receiver gradient on a predeclared zero-width ladder;
+3. measure rather than suppress dependence on at least two inequivalent profiles and two widths;
 4. demonstrate any claimed finite encounter impulse by converged quadrature;
-5. preserve both incident root identities and assign an overlapping support
-   interval exactly once under MEC-005; and
-6. state what independent wake-state law fixes both the scale and profile
-   before calling either derived.
+5. preserve both incident root identities and assign an overlapping support interval exactly once under MEC-005; and
+6. state what independent wake-state law fixes both the scale and profile before calling either derived.
 
-The derivation is falsified if any accepted regular control shows that the
-boxed tensor omits a root-time, direction, inverse-square, transmitter-factor,
-or delayed-transmitter-acceleration term. The universal self-compatible claim
-is falsified by any admitted approach to the diagonal for which the proposed
-gradient lacks a uniform bound or depends on an undeclared regulator path.
+The derivation is falsified if any accepted regular control shows that the boxed tensor omits a root-time, direction, inverse-square, transmitter-factor, or delayed-transmitter-acceleration term. The universal self-compatible claim is falsified by any admitted approach to the diagonal for which the proposed gradient lacks a uniform bound or depends on an undeclared regulator path.
 
-Plainly: the regular tensor has now passed independent analytic and numerical
-review. MEC-006 remains incomplete because every boundary value in the option
-matrix either changes the operator, depends on an unchosen scale or
-prescription, or fails to define a pointwise update.
+Plainly: the regular tensor has now passed independent analytic and numerical review. MEC-006 remains incomplete because every boundary value in the option matrix either changes the operator, depends on an unchosen scale or prescription, or fails to define a pointwise update.
 
 ## Dependency And Conclusion
 
 The exact conclusion is:
 
-- **Regular partner-root receiver gradient:** `INDEPENDENTLY VERIFIED` on the
-  declared fixed-reception open domain, at evidence-only authority.
-- **Positive-delay same-history instantaneous receiver gradient:**
-  `CONDITIONAL`, valid only under a frozen self convention and positive
-  separation and transmitter-factor floors.
-- **Trivial diagonal, fold, and coincident same-transmitter gradient:**
-  `BLOCKED`; the simple-root expression does not apply and the mathematics
-  does not select a unique extension.
-- **Complete self-compatible receiver/whole-history gradient:**
-  `INCOMPLETE`; no boundary option is selected, derived, or accepted.
-- **Finite wake width from constant-time continuous emission:** `NOT DERIVED`;
-  causal-defect mollification adds a scale and profile, and it does not by
-  itself close the coincident boundary.
-- **Pure scalar $1/r$ or $1/r^2$ replacement:** `REFUTED` as a complete route
-  under the distinctions above.
+- **Regular partner-root receiver gradient:** `INDEPENDENTLY VERIFIED` on the declared fixed-reception open domain, at evidence-only authority.
+- **Positive-delay same-history instantaneous receiver gradient:** `CONDITIONAL`, valid only under a frozen self convention and positive separation and transmitter-factor floors.
+- **Trivial diagonal, fold, and coincident same-transmitter gradient:** `BLOCKED`; the simple-root expression does not apply and the mathematics does not select a unique extension.
+- **Complete self-compatible receiver/whole-history gradient:** `INCOMPLETE`; no boundary option is selected, derived, or accepted.
+- **Finite wake width from constant-time continuous emission:** `NOT DERIVED`; causal-defect mollification adds a scale and profile, and it does not by itself close the coincident boundary.
+- **Pure scalar $1/r$ or $1/r^2$ replacement:** `REFUTED` as a complete route under the distinctions above.
 - **MEC-006 overall:** `INCOMPLETE`.
 
-MEC-006 sharpens MEC-001 rather than replacing it. MEC-001 owns the complete
-receiver-plus-transmitter variation and the finite self-diagonal definition of
-the characteristic-tail candidate. MEC-006 owns the fixed-reception spatial
-sensitivity of the canonical acceleration row and its self-root admissibility
-boundary.
+MEC-006 sharpens MEC-001 rather than replacing it. MEC-001 owns the complete receiver-plus-transmitter variation and the finite self-diagonal definition of the characteristic-tail candidate. MEC-006 owns the fixed-reception spatial sensitivity of the canonical acceleration row and its self-root admissibility boundary.
 
-MEC-006 also sharpens MEC-005 rather than replacing it. MEC-005 owns root
-enumeration, multiplicity, provenance, and boundary attribution. MEC-006 owns
-the derivative of each admitted regular acceleration row. Any future boundary
-derivative rule must retain both incident root identities, give the derivative
-boundary transition a single owner, and prohibit duplicate booking as both a
-root row and a boundary row.
+MEC-006 also sharpens MEC-005 rather than replacing it. MEC-005 owns root enumeration, multiplicity, provenance, and boundary attribution. MEC-006 owns the derivative of each admitted regular acceleration row. Any future boundary derivative rule must retain both incident root identities, give the derivative boundary transition a single owner, and prohibit duplicate booking as both a root row and a boundary row.
 
-MEC-007 separately owns the mirror close-approach event geometry, incoming
-first-boundary theorems, same-event measure test, and unchanged-law
-post-threshold obstruction. MEC-006 applies to that program only if a
-calculation consumes a receiver/self acceleration-gradient row.
+MEC-007 separately owns the mirror close-approach event geometry, incoming first-boundary theorems, same-event measure test, and unchanged-law post-threshold obstruction. MEC-006 applies to that program only if a calculation consumes a receiver/self acceleration-gradient row.
 
-MEC-004 remains separate. No boundary acceleration-gradient prescription
-supplies a signed account value. If a future boundary update is accepted,
-MEC-004 must derive its signed maps on that identical update rather than
-constructing them from a residual. MEC-005's two-body conservation
-interpretation remains gated on MEC-007's unresolved encounter boundary, on an
-accepted MEC-006 self-compatible derivative disposition wherever such rows are
-consumed, and on the separately required account closure on the same encounter
-record.
+MEC-004 remains separate. No boundary acceleration-gradient prescription supplies a signed account value. If a future boundary update is accepted, MEC-004 must derive its signed maps on that identical update rather than constructing them from a residual. MEC-005's two-body conservation interpretation remains gated on MEC-007's unresolved encounter boundary, on an accepted MEC-006 self-compatible derivative disposition wherever such rows are consumed, and on the separately required account closure on the same encounter record.
 
-Plainly: the regular mathematical derivative is now independently checked
-term by term. The unresolved problem is confined to singular-boundary
-semantics. Choosing among the listed options would add a new assumption, so
-this evidence-only pass does not make that choice.
+Plainly: the regular mathematical derivative is now independently checked term by term. The unresolved problem is confined to singular-boundary semantics. Choosing among the listed options would add a new assumption, so this evidence-only pass does not make that choice.

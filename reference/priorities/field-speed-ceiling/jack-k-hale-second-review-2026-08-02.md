@@ -1,11 +1,6 @@
 # Jack K. Hale Second Review: Field-Speed Ceiling Mathematics Packet, Sections 1–11
 
-**Review identifier:** `FSC-001-JKH2-2026-08-02`
-**Reviewer lens:** [Jack K. Hale — Hereditary Dynamics and Delay-System Analyst](../../research-office/specialists/roles-geometry-dynamics/jack-k-hale.md)
-**Review date:** 2026-08-02
-**Review target:** [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md), from the top through the end of Section 11. Sections 12 and later are out of scope. Section 11 currently contains 11.1 (with 11.1.1–11.1.3) and 11.2; no Section 11.3 exists in the reviewed text.
-**Prior review:** [first Hale review and response, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md). Findings disposed there (axiom labeling, conditional forward invariance, event-postulate labeling, reset guard/map/codomain formalization, one-jet limitation, conditional $\delta^{-2}$ obstruction, the seven formulation obligations, the typed event interface, and the queued near-contact theorem target) are **not re-raised**. This review addresses the current text, especially the newly written or revised Sections 10 and 11.
-**Claim level:** review findings only — nothing here is adopted or advanced into canon. Every finding is graded and carries an operator-checkable falsifier.
+**Review identifier:** `FSC-001-JKH2-2026-08-02` **Reviewer lens:** [Jack K. Hale — Hereditary Dynamics and Delay-System Analyst](../../research-office/specialists/roles-geometry-dynamics/jack-k-hale.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md), from the top through the end of Section 11. Sections 12 and later are out of scope. Section 11 currently contains 11.1 (with 11.1.1–11.1.3) and 11.2; no Section 11.3 exists in the reviewed text. **Prior review:** [first Hale review and response, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md). Findings disposed there (axiom labeling, conditional forward invariance, event-postulate labeling, reset guard/map/codomain formalization, one-jet limitation, conditional $\delta^{-2}$ obstruction, the seven formulation obligations, the typed event interface, and the queued near-contact theorem target) are **not re-raised**. This review addresses the current text, especially the newly written or revised Sections 10 and 11. **Claim level:** review findings only — nothing here is adopted or advanced into canon. Every finding is graded and carries an operator-checkable falsifier.
 
 ## Verification log
 

@@ -72,7 +72,4 @@ Volumes are a **reader-facing** organization; the convergence lanes and priority
 
 ## Ownership
 
-Claim-level integrity, promotion decisions, and canonical placement are the CSO
-sphere. Regeneration mechanics, validation gates, and the build of the volume
-partition are the CTO sphere. The volume architecture and any major
-re-sequencing are ratified with the operator (CEO) before execution.
+Claim-level integrity, promotion decisions, and canonical placement are the CSO sphere. Regeneration mechanics, validation gates, and the build of the volume partition are the CTO sphere. The volume architecture and any major re-sequencing are ratified with the operator (CEO) before execution.

@@ -19,9 +19,7 @@ The relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ signal is a Noether sea delay map:
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `null_delay_integral` — Define $\Delta t=\int_{\mathrm{path}}\chi_{\text{sea}}\,d\ell/c_f$ relative to the far-field baseline. Status: `draft`.
 2. `ppn_gamma_match` — Extract $\gamma_{\text{PPN}}$ from the effective metric map and compare against Shapiro bounds. Status: `draft`.

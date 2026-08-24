@@ -18,9 +18,7 @@ The Sagnac case is valuable because $\mathbb{A}\mathbb{A}\mathbb{A}$ has absolut
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `loop_path_history` — Define the closed-loop causal-wake path-history functional $\mathcal{P}_{\circlearrowleft,\circlearrowright}$. Status: `draft`.
 2. `rotation_observable` — Derive $\Delta t\propto\boldsymbol{\Omega}\cdot\mathbf{A}$ from rotating receiver and path geometry. Status: `draft`.

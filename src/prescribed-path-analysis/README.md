@@ -21,23 +21,9 @@ The V1/V2 protocol field `failClosedGates` and policy identifiers ending in `/fa
 
 ## Current Root Domain
 
-The active policy is
-`all-retained-roots/event-specific-isolation-certified.v2`. It partitions each
-transmitter/event retained interval and uses residual and derivative bounds to
-certify every partition as root-free or monotonic. Every sign-changing
-monotonic partition is bisected, so a super-field-speed path may contribute
-multiple roots and may include transverse branches with either derivative
-sign. Total path speed is diagnostic under this policy, not an acceptance
-gate.
+The active policy is `all-retained-roots/event-specific-isolation-certified.v2`. It partitions each transmitter/event retained interval and uses residual and derivative bounds to certify every partition as root-free or monotonic. Every sign-changing monotonic partition is bisected, so a super-field-speed path may contribute multiple roots and may include transverse branches with either derivative sign. Total path speed is diagnostic under this policy, not an acceptance gate.
 
-The event does not advance when the subdivision depth or candidate-interval bound
-is exhausted with a possible root or fold unresolved. The thrown
-`CausalRootEnumerationError` carries
-`code: "causal_root_enumeration_incomplete"` plus transmitter, event, retained
-interval, and unresolved-partition details. The legacy
-`all-retained-simple-roots/sub-field-speed-certified.v1` policy remains
-supported for provenance-bound fixtures and retains its strict sub-field-speed
-precondition.
+The event does not advance when the subdivision depth or candidate-interval bound is exhausted with a possible root or fold unresolved. The thrown `CausalRootEnumerationError` carries `code: "causal_root_enumeration_incomplete"` plus transmitter, event, retained interval, and unresolved-partition details. The legacy `all-retained-simple-roots/sub-field-speed-certified.v1` policy remains supported for provenance-bound fixtures and retains its strict sub-field-speed precondition.
 
 ## Complete Protocol Schema
 
@@ -84,78 +70,29 @@ The result claim grade is `derived`: it is conditional on the prescribed source 
 
 ## A1.1 Continuous Ratio–Phase Root Inventory
 
-`evaluateA11ContinuousRootInventory({ protocol })` owns the diagnostic-only
-A1.1 continuous ratio–phase inventory. Its V1 protocol is locked to the
-operator-approved middle-pinned ratio box, $\chi_n=9/4$, symmetric phase
-baseline, all $36$ ordered endpoint channels, and the nine-rule fail-closed
-root/fold policy.
+`evaluateA11ContinuousRootInventory({ protocol })` owns the diagnostic-only A1.1 continuous ratio–phase inventory. Its V1 protocol is locked to the operator-approved middle-pinned ratio box, $\chi_n=9/4$, symmetric phase baseline, all $36$ ordered endpoint channels, and the nine-rule fail-closed root/fold policy.
 
-This instrument uses prescribed exact circles and its own outward-rounded
-interval implementation. It does not call the EOM solver, use EOM interval
-machinery, or evolve paths. Every root-free cell, simple-root-sheet cell,
-boundary stratum, and unresolved partition is preserved in the full topology
-ledger. If a possible root or fold remains after a declared depth or cell
-limit, the result is `drawn-not-evaluated` with `score: null`.
+This instrument uses prescribed exact circles and its own outward-rounded interval implementation. It does not call the EOM solver, use EOM interval machinery, or evolve paths. Every root-free cell, simple-root-sheet cell, boundary stratum, and unresolved partition is preserved in the full topology ledger. If a possible root or fold remains after a declared depth or cell limit, the result is `drawn-not-evaluated` with `score: null`.
 
-The secondary
-`recomputeA11SquaredCausalResidual(...)` path evaluates
-$\lVert\mathbf x_r-\mathbf x_t\rVert^2-\delta^2$ from direct coordinates. It
-does not participate in interval certification decisions. Because both
-implementations entered in the same change, their agreement is a diagnostic
-implementation-parity control rather than independent mathematical
-acceptance.
+The secondary `recomputeA11SquaredCausalResidual(...)` path evaluates $\lVert\mathbf x_r-\mathbf x_t\rVert^2-\delta^2$ from direct coordinates. It does not participate in interval certification decisions. Because both implementations entered in the same change, their agreement is a diagnostic implementation-parity control rather than independent mathematical acceptance.
 
-Plainly: the A1.1 instrument can certify or reject pieces of the frozen
-drawing-level parameter family and can expose its own incomplete reach. It
-cannot establish an EOM-retained braid, stability, energy, or physical
-realization.
+Plainly: the A1.1 instrument can certify or reject pieces of the frozen drawing-level parameter family and can expose its own incomplete reach. It cannot establish an EOM-retained braid, stability, energy, or physical realization.
 
 ## Pointwise Summed-Acceleration Screen
 
-The complete-cycle moving-endpoint reducer reports
-`pointwiseSummedAccelerationNecessaryCondition`. At each common observation
-time it sums the evaluated canonical-kernel acceleration over every declared
-receiver worldline, the independently prescribed path accelerations, and their
-equation residual. It reuses the retained causal-root event packets; it does
-not sample frozen phases or invoke a second root solver.
+The complete-cycle moving-endpoint reducer reports `pointwiseSummedAccelerationNecessaryCondition`. At each common observation time it sums the evaluated canonical-kernel acceleration over every declared receiver worldline, the independently prescribed path accelerations, and their equation residual. It reuses the retained causal-root event packets; it does not sample frozen phases or invoke a second root solver.
 
-The zero-sum screen is evaluated only when the packet certifies every retained
-root from the declared isolated architrino-worldline inventory and strict
-sub-field speed excludes a positive-delay same-worldline root. It also requires
-the prescribed accelerations to sum to zero within the declared tolerance.
-Otherwise the row is explicitly inapplicable. Noether-sea response and
-undeclared external worldlines remain outside the certified scope.
+The zero-sum screen is evaluated only when the packet certifies every retained root from the declared isolated architrino-worldline inventory and strict sub-field speed excludes a positive-delay same-worldline root. It also requires the prescribed accelerations to sum to zero within the declared tolerance. Otherwise the row is explicitly inapplicable. Noether-sea response and undeclared external worldlines remain outside the certified scope.
 
-A nonzero summed evaluated acceleration beyond the declared tolerance and
-numerical-convergence allowance falsifies only the exact isolated prescribed
-history. A zero result is recorded as `not-falsified-by-this-screen`; it does
-not establish a branch, taxonomy member, stability, retention, or physical
-realization.
+A nonzero summed evaluated acceleration beyond the declared tolerance and numerical-convergence allowance falsifies only the exact isolated prescribed history. A zero result is recorded as `not-falsified-by-this-screen`; it does not establish a branch, taxonomy member, stability, retention, or physical realization.
 
 ## Pointwise Member-Residual Search Screen
 
-The same certified moving-endpoint packets also report
-`pointwiseMemberResidualSearchScreen`. This reducer preserves every
-per-architrino prescribed-path equation residual and summarizes the first
-declared half-cycle, second declared half-cycle, and full cycle. It catches
-equal-and-opposite member errors that disappear in the summed-acceleration
-screen.
+The same certified moving-endpoint packets also report `pointwiseMemberResidualSearchScreen`. This reducer preserves every per-architrino prescribed-path equation residual and summarizes the first declared half-cycle, second declared half-cycle, and full cycle. It catches equal-and-opposite member errors that disappear in the summed-acceleration screen.
 
-On the same sample grid, the full-cycle peak is exactly the worse of the two
-half-cycle peaks. The full-cycle RMS is the row-count-weighted combination of
-the two half-cycle RMS values. A coverage search may therefore evaluate one
-half first and reject early, but it must evaluate the other half before ranking
-or retaining an apparent near-zero. Compact scores rank the refined full-cycle
-peak first and refined full-cycle RMS second; half-cycle values and their
-imbalance remain diagnostics.
+On the same sample grid, the full-cycle peak is exactly the worse of the two half-cycle peaks. The full-cycle RMS is the row-count-weighted combination of the two half-cycle RMS values. A coverage search may therefore evaluate one half first and reject early, but it must evaluate the other half before ranking or retaining an apparent near-zero. Compact scores rank the refined full-cycle peak first and refined full-cycle RMS second; half-cycle values and their imbalance remain diagnostics.
 
-The member screen is inapplicable unless the declared isolated acceleration
-inventory is certified complete. A residual above threshold falsifies only the
-exact prescribed history. A sampled near-zero is diagnostic search guidance
-until it survives further time-grid refinement, retained raw-ledger review,
-and an independently authored causal-root residual check. The reducer neither
-changes the accepted return-symmetry group nor makes a taxonomy or branch
-existence claim.
+The member screen is inapplicable unless the declared isolated acceleration inventory is certified complete. A residual above threshold falsifies only the exact prescribed history. A sampled near-zero is diagnostic search guidance until it survives further time-grid refinement, retained raw-ledger review, and an independently authored causal-root residual check. The reducer neither changes the accepted return-symmetry group nor makes a taxonomy or branch existence claim.
 
 Run the bounded stratified endpoint-only search with:
 
@@ -163,14 +100,7 @@ Run the bounded stratified endpoint-only search with:
 node scripts/eom/run-endpoint-residual-search.mjs
 ```
 
-The runner evaluates one catalog-reference, two local-neighborhood, and three
-full bounded-taxonomy draws per active member at 12/24 cycle samples. It then
-reevaluates the eight lowest complete-inventory member residuals plus up to
-eight summed-cancellation cases at 48/96 samples. Every eligible row must pass
-the complete-inventory certificate and a separately recomputed geometric
-causal-root residual check. The default output stays under
-`.local-data/braid-analysis/endpoint-residual-search/`; it is diagnostic and
-does not enter the accepted analytical database.
+The runner evaluates one catalog-reference, two local-neighborhood, and three full bounded-taxonomy draws per active member at 12/24 cycle samples. It then reevaluates the eight lowest complete-inventory member residuals plus up to eight summed-cancellation cases at 48/96 samples. Every eligible row must pass the complete-inventory certificate and a separately recomputed geometric causal-root residual check. The default output stays under `.local-data/braid-analysis/endpoint-residual-search/`; it is diagnostic and does not enter the accepted analytical database.
 
 ## Local Evaluation
 
@@ -190,11 +120,7 @@ Run the solver-free gate-adjudication and targeted resolution ladders with:
 node scripts/eom/adjudicate-analytical-gates.mjs
 ```
 
-The default report is
-`.local-data/braid-analysis/gate-adjudication/targeted-resolution-ladders.v1.json`.
-The harness retains all four declared surface radii for the B1.3, B1.1, and C1
-surface ladders, uses an outer-radius sensitivity pilot for A1.2 and A2, and
-emits progress heartbeats without invoking path evolution or the EOM solver.
+The default report is `.local-data/braid-analysis/gate-adjudication/targeted-resolution-ladders.v1.json`. The harness retains all four declared surface radii for the B1.3, B1.1, and C1 surface ladders, uses an outer-radius sensitivity pilot for A1.2 and A2, and emits progress heartbeats without invoking path evolution or the EOM solver.
 
 ## Compact Monte Carlo Coverage
 
@@ -209,35 +135,13 @@ node scripts/eom/run-compact-monte-carlo.mjs \
   --output .local-data/braid-analysis/compact-monte-carlo/coverage-v1.json
 ```
 
-Use `--families A,B,C` or `--members A1.2,B1.3,C5` to select a bounded matrix.
-The default coverage grid uses 12 primary and 24 refined cycle samples with
-$8\times16$ and $12\times24$ angular grids. `--resolution full` uses the
-checked-in complete-cycle protocol. Both lanes require `fieldSpeed: 1`.
+Use `--families A,B,C` or `--members A1.2,B1.3,C5` to select a bounded matrix. The default coverage grid uses 12 primary and 24 refined cycle samples with $8\times16$ and $12\times24$ angular grids. `--resolution full` uses the checked-in complete-cycle protocol. Both lanes require `fieldSpeed: 1`.
 
-The runner validates and hashes each sampled exact source, evaluates one shared
-source-analysis session, and records the sampled specification, protocol hash,
-implementation hashes, compact score, measured stage costs, and exact rerun
-instruction. It does not construct or serialize full result packets, recompute
-source-invariant period-closure and separation rows for every event batch,
-evaluate source sensitivity, retain raw event ledgers, invoke the EOM solver,
-perform independent acceptance, or publish a database generation.
+The runner validates and hashes each sampled exact source, evaluates one shared source-analysis session, and records the sampled specification, protocol hash, implementation hashes, compact score, measured stage costs, and exact rerun instruction. It does not construct or serialize full result packets, recompute source-invariant period-closure and separation rows for every event batch, evaluate source sensitivity, retain raw event ledgers, invoke the EOM solver, perform independent acceptance, or publish a database generation.
 
-The default `full-taxonomy` sampler varies every permitted coordinate type
-through a declared bounded measure while constructing each member directly on
-its constraint manifold. This includes coupled and independent radii and
-frequencies, axial/transverse decompositions, phases, Family-A flattening,
-Family-C spacing and order, circulation, polarity, and bounded common
-translation. Use `--sampler local-reference` only for compatibility with the
-earlier pipeline-performance fixture.
+The default `full-taxonomy` sampler varies every permitted coordinate type through a declared bounded measure while constructing each member directly on its constraint manifold. This includes coupled and independent radii and frequencies, axial/transverse decompositions, phases, Family-A flattening, Family-C spacing and order, circulation, polarity, and bounded common translation. Use `--sampler local-reference` only for compatibility with the earlier pipeline-performance fixture.
 
-Every valid draw produces a row. If analytical evaluation cannot certify a
-possible root or fold, the row remains in the table with its exact sampled
-source, null score, `drawn-not-evaluated` status, reason code, and structured
-failure details. Run `--calibrate` to evaluate identical full-taxonomy draws at
-the coverage and full numerical resolutions and report false negatives, false
-positives, inconclusive rows, and per-gate disagreements. These rows remain
-diagnostic coverage only; selected cases must be rerun through the raw-evidence
-and independent-acceptance lane before any catalog acceptance claim.
+Every valid draw produces a row. If analytical evaluation cannot certify a possible root or fold, the row remains in the table with its exact sampled source, null score, `drawn-not-evaluated` status, reason code, and structured failure details. Run `--calibrate` to evaluate identical full-taxonomy draws at the coverage and full numerical resolutions and report false negatives, false positives, inconclusive rows, and per-gate disagreements. These rows remain diagnostic coverage only; selected cases must be rerun through the raw-evidence and independent-acceptance lane before any catalog acceptance claim.
 
 ## Independent Checks
 
