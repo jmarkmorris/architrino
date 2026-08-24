@@ -21,6 +21,8 @@ $$
 \}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ae0906211b8f859b)
+
 be the sector set. A candidate promoted closure is a record $\theta\in\mathfrak{X}$ whose shared coordinates include
 
 $$
@@ -38,6 +40,8 @@ A,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dec17fd95fce165f)
+
 where $A$ is the assembly or branch family, $\Gamma$ is the assembly microstate, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{R}$ is the active residual family, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\zeta$ is shielding or exposure data, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether sea response object, and $\{B_i\}$ is the basin or channel partition. Sector-local coordinates $Z_S(\theta)$ record the benchmark variables, theorem assumptions, provenance rows, and tolerances used by sector $S$.
 
 For each sector $S$, fix a gate predicate $P_S:\mathfrak{X}\to\{0,1\}$, a benchmark map $\mathcal{B}_S:\mathfrak{X}\to\mathfrak{B}_S$, a validated benchmark region $\mathfrak{B}^{\mathrm{obs}}_S\subseteq\mathfrak{B}_S$, a benchmark metric $d_S$, a tolerance $\epsilon_S$, and a no-go pass predicate $\mathcal{G}_S:\mathfrak{X}\to\{0,1\}$. Define the distance from a benchmark point to the validated region by
@@ -47,6 +51,8 @@ $$
 =
 \inf_{b'\in\mathfrak{B}^{\mathrm{obs}}_S}d_S(b,b')
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ff05dd41fc1da9a3)
 
 The sector acceptance set is the mathematical subset
 
@@ -64,6 +70,8 @@ P_S(\theta)=1,\quad
 \right\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4e2ee8e8c2cc7a0)
+
 The shared acceptance intersection is
 
 $$
@@ -71,6 +79,8 @@ $$
 =
 \bigcap_{S\in\mathfrak{S}}\mathcal{C}_S
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-297152e984480f6c)
 
 A closure attempt survives the validation gate only as an element of $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$. A sector result that lies in one $\mathcal{C}_S$ but in no element of the full intersection remains a local result rather than a promoted $\mathbb{A}\mathbb{A}\mathbb{A}$ closure.
 
@@ -97,6 +107,8 @@ $$
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3cf57c3864ae23fe)
+
 This rule does not make the validation suite less severe. It prevents a residual-bearing closure record from being rejected by a criticism that has not identified which accepted observable, mathematical consistency condition, or no-go assumption has actually changed.
 
 ### Null-Result Residual for Added Channels
@@ -114,11 +126,15 @@ $$
 [x]_+\equiv\max(x,0)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-faae5e242e82d710)
+
 A promoted record must satisfy
 
 $$
 \mathcal{R}_{\mathrm{null}}(\theta)=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8936ac4a31efb763)
 
 using the same shared coordinates $\theta_{\mathrm{join}}$ that recover the positive benchmarks. A channel may avoid this gate only by being outside the validated comparison domain, by being an exactly unobservable gauge redundancy, or by being proven absent in the accepted branch family. It is not enough to add a large symmetry, partner family, hidden transport dimension, or unstable reaction corridor and then tune it below every bound with sector-specific parameters.
 
@@ -135,6 +151,8 @@ $$
 \pi_{\mathrm{shared}}\theta_+
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ba8fc2bca7b714c9)
 where $\pi_{\mathrm{shared}}$ keeps the common Noether sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
 $$
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
@@ -148,6 +166,8 @@ $$
 \lambda_{\mathrm{split}}\Delta_{\mathrm{shared}}(e;\theta)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-563febb2371718fa)
 The original promotion condition is recovered by requiring $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0$. This form rejects a second failure mode: a channel can be numerically hidden but still fail because its suppression uses a different shared record from the one that fit the observed sector.
 
 | Added-channel family | Example observable $O_e(\theta)$ | Null data product | Same-record requirement |
@@ -174,6 +194,8 @@ v_-(\omega,\hat{\mathbf{k}};\theta)
 }{c_0}
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be440df4c80c8d28)
 The photon/effective-metric record can be promoted only when $\mathcal{R}_{\mathrm{biref}}(\theta)\le\epsilon_{\mathrm{biref}}$ in the declared weak homogeneous regime and when the same $\theta$ also supplies the clock, ruler, signal, and metric coefficients used for the positive GR-facing benchmarks. If birefringence is numerically hidden by switching to a different channel record than the one used for lensing, Shapiro delay, spectra, or photon synchronization, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ fails even if the split is individually small.
 
 #### Null-Result Ownership Matrix
@@ -195,6 +217,8 @@ For proton-instability corridors, convert every current partial-mean-life lower 
 $$
 \Gamma_{p,c}^{\max}=\frac{1}{\tau_c^{\min}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d3bddeffcc50cf81)
 The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p\to e^+\pi^0)>2.4\times10^{34}\,\mathrm{yr}$ and proton neutrino/kaon modes near $5.9\times10^{33}\,\mathrm{yr}$ at 90% confidence. These numbers are comparison anchors, not permanent constants; a closure packet should cite the current experimental source when the hadronic gate is evaluated.
 
 ## Sector Acceptance Sets
@@ -222,11 +246,15 @@ $$
 \right\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-071b8555e1818934)
+
 **Lemma.** A local sector result $c$ is promotable through the validation gate if and only if $c\in\pi_S(\mathcal{C}_S)$ and
 
 $$
 \operatorname{Ext}_S(c)\ne\varnothing
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8559df833249e0d2)
 
 Proof route: if $c$ is promoted, the promoted record must retain the sector-$S$ result and pass every sector gate, so it is an element of $\operatorname{Ext}_S(c)$. Conversely, any $\theta\in\operatorname{Ext}_S(c)$ is a shared closure record whose sector-$S$ projection equals $c$ and whose weak, quantum, gravity, hadronic, radiation, and cosmology predicates all pass; therefore the local result has survived the validation gate. If the fiber is empty, the result is blocked by at least one sector predicate, benchmark region, no-go record, or failure condition.
 
@@ -239,6 +267,8 @@ $$
 =
 \mathcal{C}_T\cap I(c)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f33de09893345388)
 
 An incompatibility witness from sector $S$ to sector $T$ is the object
 
@@ -259,6 +289,8 @@ d_T,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-20f6249a882cd82b)
+
 where
 
 $$
@@ -269,6 +301,8 @@ $$
 \inf_{\theta\in I(c),\,P_T(\theta)=1,\,\mathcal{G}_T(\theta)=1}
 \operatorname{dist}_{d_T}\!\left(\mathcal{B}_T(\theta),\mathfrak{B}^{\mathrm{obs}}_T\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8d60299fd03e1e3d)
 
 The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It damages the target gate when $\mathcal{C}_T\!\mid c\ne\varnothing$ but $\delta_T(c)$ removes a required tolerance margin, forces a hidden sector-specific parameter split, or leaves a required ledger row undefined.
 

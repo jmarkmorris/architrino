@@ -30,6 +30,8 @@ The vector fixes the direction of the net acceleration. What it does not fix is 
     \qquad
     [\hat{\mathbf{u}}]=\{\hat{\mathbf{u}},-\hat{\mathbf{u}}\},
     $$
+
+    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-20664d22782d3770)
     where $A_R\ge0$ is the net magnitude assigned to that component and $[\hat{\mathbf{u}}]$ is the unoriented axis through the receiver. A single surrogate lift chooses a side coordinate $\lambda\ne0$, a stationary surrogate position, and a source polarity:
     $$
     \mathbf X_{\mathrm{sur}}=\mathbf X_{o'}(T)-\lambda\hat{\mathbf{u}},
@@ -38,16 +40,22 @@ The vector fixes the direction of the net acceleration. What it does not fix is 
     \qquad
     \hat{\mathbf{r}}_{\lambda}=\operatorname{sgn}(\lambda)\hat{\mathbf{u}}.
     $$
+
+    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-383675d093e32642)
     The surrogate contribution is
     $$
     \mathbf A_{\mathrm{sur}}=A_R\sigma_{\mathrm{sur}}\hat{\mathbf{r}}_{\lambda}.
     $$
+
+    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-6329e70c98e750c0)
     It is unchanged under
     $$
     (\lambda,\sigma_{\mathrm{sur}})
     \sim
     (-\lambda,-\sigma_{\mathrm{sur}}),
     $$
+
+    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-04196174cb6f1e33)
     or, with receiver polarity fixed, by moving the surrogate to the opposite ray and flipping the surrogate source polarity. This recast is an inference device, not a claim that the original source inventory contained a single architrino.
 
   - What helps (over time or with more views):

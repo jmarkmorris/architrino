@@ -1,4 +1,5 @@
 import { createSeedEquationMapDocuments } from "./EquationMappingData.js";
+import { normalizeEquationMapDocuments } from "./EquationMappingData.js";
 
 export const EQUATION_MAPPING_REGISTRY_SCHEMA = "equation-mapping-registry.v1";
 export const EQUATION_MAPPING_PAGE_PATH = "equation-mapping.html";
@@ -59,10 +60,10 @@ export function createEquationMapSemanticId(documentId = "", title = "") {
   if (SEMANTIC_ID_OVERRIDES[documentId]) {
     return SEMANTIC_ID_OVERRIDES[documentId];
   }
-  const semanticId = String(documentId).replace(/^eq-\d+[a-z]?-/u, "");
-  return semanticId && semanticId !== documentId
-    ? semanticId
-    : createStableSlug(title, documentId);
+  const stableDocumentId = String(documentId).trim();
+  const promotedSemanticId = stableDocumentId.replace(/^eq-\d+[a-z]?-/u, "");
+  if (promotedSemanticId && promotedSemanticId !== stableDocumentId) return promotedSemanticId;
+  return stableDocumentId || createStableSlug(title);
 }
 
 export function getEquationMapDocumentAliases(document = {}) {
@@ -90,7 +91,7 @@ export function createEquationMapPageHref(documentOrId, pagePath = EQUATION_MAPP
   return semanticId ? `${pagePath}#${encodeURIComponent(semanticId)}` : pagePath;
 }
 
-function createRegistryPages() {
+function createPromotedRegistryPages() {
   const documents = createSeedEquationMapDocuments();
   const documentIds = new Set(documents.map((document) => document.id));
   const bindingsById = new Map();
@@ -134,8 +135,92 @@ function createRegistryPages() {
   }));
 }
 
-export function createEquationMappingRegistryApi() {
-  const pages = createRegistryPages();
+function createBasicEquationMapDocument(record = {}) {
+  return {
+    id: record.semanticId,
+    title: record.title,
+    subject: record.subject,
+    formulaTeX: record.formulaTeX,
+    formulaParts: [{
+      id: "formula",
+      kind: "math",
+      tex: record.formulaTeX,
+      anchorId: "formula",
+    }],
+    anchors: [{ id: "formula", label: "Equation", searchText: record.searchText }],
+    overlays: [],
+    promoted: false,
+    source: record.source,
+    symbols: record.symbols,
+    searchText: record.searchText,
+    claimLevel: "source-context",
+  };
+}
+
+export function createEquationMappingDocuments(corpusRecords = []) {
+  const promotedDocuments = createSeedEquationMapDocuments();
+  if (!Array.isArray(corpusRecords) || corpusRecords.length === 0) {
+    return promotedDocuments;
+  }
+  const promotedBySemanticId = new Map(
+    promotedDocuments.map((document) => [createEquationMapSemanticId(document.id, document.title), document])
+  );
+  const documents = corpusRecords.map((record) => {
+    const promotedDocument = promotedBySemanticId.get(record.semanticId);
+    if (!promotedDocument) return createBasicEquationMapDocument(record);
+    return {
+      ...promotedDocument,
+      promoted: true,
+      source: record.source,
+      symbols: record.symbols,
+      searchText: record.searchText,
+    };
+  });
+  const representedPromotedIds = new Set(corpusRecords.map((record) => record.semanticId));
+  promotedDocuments.forEach((document) => {
+    const semanticId = createEquationMapSemanticId(document.id, document.title);
+    if (!representedPromotedIds.has(semanticId)) documents.push(document);
+  });
+  return freezeValue(normalizeEquationMapDocuments(documents));
+}
+
+function createCorpusRegistryPages(corpusRecords = []) {
+  if (!Array.isArray(corpusRecords) || corpusRecords.length === 0) {
+    return createPromotedRegistryPages();
+  }
+  const documents = createEquationMappingDocuments(corpusRecords);
+  const documentBySemanticId = new Map(
+    documents.map((document) => [createEquationMapSemanticId(document.id, document.title), document])
+  );
+  const semanticIds = new Set();
+  const pages = corpusRecords.map((record) => {
+    if (semanticIds.has(record.semanticId)) {
+      throw new Error(`Duplicate Equation Mapping semantic ID "${record.semanticId}".`);
+    }
+    semanticIds.add(record.semanticId);
+    const document = documentBySemanticId.get(record.semanticId);
+    if (!document) {
+      throw new Error(`Equation Mapping corpus record "${record.semanticId}" has no normalized document.`);
+    }
+    return {
+      schema: EQUATION_MAPPING_REGISTRY_SCHEMA,
+      id: document.id,
+      semanticId: record.semanticId,
+      title: document.title,
+      subject: document.subject,
+      claimLevel: document.claimLevel,
+      promoted: document.promoted,
+      pageHref: `${EQUATION_MAPPING_PAGE_PATH}#${encodeURIComponent(record.semanticId)}`,
+      source: document.source,
+      symbols: document.symbols,
+      document,
+    };
+  });
+  return freezeValue(pages);
+}
+
+export function createEquationMappingRegistryApi({ corpusRecords = [] } = {}) {
+  const pages = createCorpusRegistryPages(corpusRecords);
   const documents = pages.map((page) => page.document);
   const pagesByDocumentId = new Map(pages.map((page) => [page.id, page]));
   const get = (requestedId) => {

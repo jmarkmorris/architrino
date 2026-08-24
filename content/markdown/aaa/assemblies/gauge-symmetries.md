@@ -37,6 +37,8 @@ U(1)_Y\times SU(2)_L\times SU(3)_c,
 Q=T_3+\frac{Y}{2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e60c842d3adea99a)
+
 together with the observed charge assignments, chiral weak couplings, anomaly cancellations, running couplings, and mixing data consumed by the fermion and reaction chapters.
 
 This chapter uses the weak-hypercharge convention in the displayed relation. Sources that use $Q=T^3_L+Y_{\mathrm{SM}}$ must be converted by $Y=2Y_{\mathrm{SM}}$ before their charge tables or anomaly coefficients are compared to this residual. A compact residual for this chapter is
@@ -60,6 +62,8 @@ d_{\mathrm{chiral}}\!\left(
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4340276771619a0f)
+
 where $d_{\mathrm{rep}}$ checks representation and charge bookkeeping, $d_{\mathrm{run}}$ checks the scale-dependent effective couplings, and $d_{\mathrm{chiral}}$ checks the weak-coupling-triad exposure record against observed charged-current handedness. This chapter's bridge is promotable only if
 
 $$
@@ -67,6 +71,8 @@ $$
 \qquad\text{and}\qquad
 \mathcal{R}_{\mathrm{null}}(\theta)=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6b002ae8ece50288)
 
 with $\mathcal{R}_{\mathrm{null}}$ defined in [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels). Thus larger group unification, supersymmetry, Kaluza-Klein-style geometry, and similar constructions remain comparison frameworks unless an $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record recovers the observed gauge sector while also suppressing every added observable channel from the same shared state variables.
 
@@ -81,6 +87,8 @@ W_\mu\sim U W_\mu U^{-1}+\frac{i}{g_2}U\partial_\mu U^{-1},
 \qquad
 G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-13316968984b4020)
 The $U(1)$ parameter is normalized consistently with the sector convention below, so $g_1$ remains explicit rather than being absorbed into $\alpha$. This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
 
 Global symmetries and gauge redundancies have different tests. For a genuine global transformation $\delta\Psi=\epsilon X(\Psi)$, the regularized effective action gives a Noether current through
@@ -91,6 +99,8 @@ $$
 \qquad
 \partial_\mu J^\mu=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9bb18d704ce4909e)
 on solutions. In the quantum/effective bridge this becomes a Ward-identity recovery target for the coarse-grained generating functional. A local gauge redundancy, by contrast, is acceptable only if the unphysical directions are quotiented out and no anomalous gauge variation remains.
 
 The anomaly ledger for a candidate branch record $\theta$ is therefore
@@ -106,10 +116,14 @@ N_{2,\mathrm{Weyl}}\bmod 2,
 \mathcal{A}_{[\mathrm{grav}]^2U(1)_Y}
 \right)_\theta
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cebb275d46fea303)
 For the Standard Model recovery gate this vector must equal
 $$
 \mathcal{A}_{\mathrm{gauge}}(\theta)=(0,0,0,0,0,0)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2caea01285fdabb9)
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
 
 Chiral gauge structure also constrains how this bridge may be regulated. A finite lattice, cutoff, or discrete branch approximation is not automatically a physical explanation of the Standard Model because weak handedness and gauge anomaly cancellation must survive the regulator. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a cutoff is admissible only as an approximation to one retained branch and observer-level gauge record. It fails if left-handed weak exposure, charge bookkeeping, anomaly cancellation, locality, and unitarity can be made compatible only by changing the underlying Noether sea state, axial inventory, or reaction provenance from row to row.
@@ -131,6 +145,8 @@ g_3(\mu;\theta),
 \bigr)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7acf81a61afd7016)
+
 where $\mu$ is the observer-level probe scale and $\theta$ is the retained branch and constitutive record. The term $d_{\mathrm{run}}$ measures the distance between this output and the observed running record across a declared scale window; it is not permission to fit each sector independently at one reference energy.
 
 Near-convergence at high scale may be tracked as a comparison diagnostic by
@@ -151,6 +167,8 @@ $$
 \frac{g_i^2(\mu;\theta)}{4\pi}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b19d6be99a5b03f3)
+
 This diagnostic is subordinate to $d_{\mathrm{run}}$ and $\mathcal{R}_{\mathrm{null}}$. A small $\Delta_{\mathrm{meet}}$ does not promote a grand-unified container unless the same branch record recovers the observed low-energy gauge record, reproduces the scale dependence, and explains the absence of mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs in the tested regime.
 
 For a proposed symmetry container $C$, a compact audit form is
@@ -161,6 +179,8 @@ w_g\mathcal{R}_{\mathrm{gauge}}(\theta)
 +w_f\mathcal{R}_{\mathrm{fact}}(\theta)
 +w_0\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-60e832831cb199bb)
 where $\mathcal{R}_{\mathrm{fact}}$ measures failure of the recovered observer-level scattering and gauge sector to factor into the validated spacetime and internal-gauge records once those effective records exist. The container is only comparison language unless one shared $\theta$ drives all terms below tolerance; in particular, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}=0$ must follow from the accepted branch family rather than from sector-specific hiding parameters.
 
 The same filter applies to especially elegant symmetry containers, including grand-unified and exceptional-group embeddings. It is not enough for a larger algebra to contain $U(1)_Y\times SU(2)_L\times SU(3)_c$ or to organize one generation of fermions. The promoted record must also explain why mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, and other non-baseline outputs are absent in the tested regime. If those absences require separate masses, thresholds, compactification choices, or sector-specific suppressions, the construction remains a comparison framework rather than an $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge closure.
@@ -172,10 +192,14 @@ If the effective action is invariant under
 $$
 \Psi \mapsto e^{i\alpha}\Psi,\qquad \alpha\in\mathbb{R}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88fc4c3f087c3a8a)
 then there exists a conserved current $j^\mu$ such that
 $$
 \partial_\mu j^\mu=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c997a8a80b006f32)
 
 *Proof sketch:* Apply Noether's theorem in the regularized variational setting; invariance under constant phase shifts yields the continuity equation.
 
@@ -184,11 +208,15 @@ For local $\alpha(x)$, invariance requires a compensating field $A_\mu$ and cova
 $$
 D_\mu=\partial_\mu-i g_1 A_\mu
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9a0d1052e557f099)
 with $U(1)$ gauge transform
 $$
 \Psi\mapsto e^{i\alpha(x)}\Psi,\qquad
 A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aa7c2557657d3751)
 Here $A_\mu$ is the generic $U(1)_Y$ connection before electroweak mixing, not the already-mixed photon connection.
 
 ### Aharonov-Bohm Holonomy Benchmark
@@ -203,6 +231,8 @@ $$
 =
 \mathbf{0}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2478579fd6c6c50e)
 the coarse-grained wake/action ledger must still produce the observer-level phase shift
 $$
 \Delta\phi_{\mathrm{AB}}^{\mathbb{A}\mathbb{A}\mathbb{A}}
@@ -217,6 +247,8 @@ $$
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
 \pmod{2\pi}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-87c3ddb9f4b398df)
 Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. The equality also carries a calibration burden: a validated branch must identify the emergent phase quantum with the measured one on this benchmark window, $\hbar_{\mathrm{eff}}=\hbar$, rather than fitting two independent phase scales. A useful residual is
 $$
 \Delta_{\mathrm{AB}}
@@ -228,6 +260,8 @@ $$
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-303a339b8e81f4d6)
 When the benchmark is evaluated as a concrete interferometer packet, the force-free and phase requirements should be checked together rather than fitted separately. For a branch record $\theta$, one compact validation residual is
 $$
 \mathcal{V}_{\mathrm{AB}}(\theta)
@@ -245,6 +279,8 @@ w_\phi
 2\pi N
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ed2dcdfb29c76484)
 with $w_F$ and $w_\phi$ fixed by the declared interferometer tolerance. The benchmark passes only when $\mathcal{V}_{\mathrm{AB}}(\theta)\le\varepsilon_{\mathrm{AB}}$ for the same wake/action ledger, so a model cannot trade a hidden local force for phase recovery or tune the phase apart from the local electromagnetic-force record.
 
 The U(1) closure passes this benchmark only if $\Delta_{\mathrm{AB}}$ remains below the declared interferometric tolerance while the same effective connection also preserves charge continuity and ordinary electromagnetic force recovery. If the phase recovery requires a local force on the arms, a separate phase fit, or a literal promotion of $A_\mu$ to substrate ontology, this gauge bridge has failed at the AB gate.
@@ -267,6 +303,8 @@ $$
 2\pi N
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7085ca2178a29614)
 Here $F_{\mathrm{eff}}$ is the observer-level curvature recovered from the same effective gauge record used for force and phase transport. The integer $N$ records the allowed $2\pi$ ambiguity of the phase, not an independent hidden sector.
 
 A compact sector check inside the same target is useful when the benchmark includes disconnected flux sectors or instanton-like sectors rather than a single loop. Let $\mathcal{C}_{\mathrm{top}}$ be the declared family of observer-level gauge-topology sectors, and let $\mathcal{O}_{\mathrm{SM}}(s)$ be the corresponding Standard Model comparison record for sector $s$. The same wake/action ledger may define
@@ -286,6 +324,8 @@ d_{\mathrm{obs}}\!\left(
 \right)
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d15e501b45aa5af9)
 Here $\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}$ is only the sector label extracted from the retained causal-wake/action record. It is not an independent topological charge assigned after the effective gauge description has already been fitted.
 
 The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ and any declared $\Delta_{\mathrm{sector}}$ stay below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether sea variables for force, phase, and charge recovery.
@@ -299,18 +339,24 @@ If physics is invariant under
 $$
 \psi_L(x)\mapsto U_2(x)\psi_L(x),\qquad U_2(x)\in SU(2)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8174965f15888f12)
 then the derivative must be promoted to
 $$
 D_\mu\psi_L
 =
 \left(\partial_\mu-i g_2 W_\mu^a\frac{\tau^a}{2}\right)\psi_L
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d2f039773e1d296c)
 with curvature
 $$
 F_{\mu\nu}^a
 =
 \partial_\mu W_\nu^a-\partial_\nu W_\mu^a+g_2\epsilon^{abc}W_\mu^bW_\nu^c
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-abaa56fa2138ac7b)
 Here $\epsilon^{abc}$ is the $SU(2)$ Levi-Civita structure constant; it is unrelated to the polarity-unit magnitude $\epsilon$ used in axial-inventory bookkeeping.
 
 *Proof sketch:* Standard principal-connection construction for local non-Abelian basis changes; the commutator term follows from non-commutativity of $SU(2)$ generators.
@@ -326,6 +372,8 @@ U_3\in SU(3),\qquad
 D_\mu=\partial_\mu-i g_3 G_\mu^a T^a
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-218e64f89bfca649)
+
 ## Minimal Effective Gauge Lagrangian
 
 Under (G1)-(G4), the lowest-order local gauge-covariant continuum form is
@@ -338,6 +386,8 @@ $$
 +\bar\Psi\,i\gamma^\mu D_\mu\Psi
 +\cdots
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-57c72afc5264eac5)
 where omitted terms are higher-order constitutive corrections from the Noether sea.
 
 This is an emergent effective description, not a claim that gauge fields are ontologically fundamental.

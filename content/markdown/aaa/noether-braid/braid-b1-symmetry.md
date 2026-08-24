@@ -18,12 +18,16 @@ The face-opposite A2 seed has a second exact chart on the body-diagonal axis $\h
 $$
 h=\frac{R}{\sqrt3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fc7bcb8b643c7fc8)
 and transverse radius
 $$
 \rho=R\sqrt{\frac23},
 \qquad
 \frac{h}{\rho}=\frac{1}{\sqrt2}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
 The three equal-radius path pairs share that axis, a common angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric B1 sublocus. The same prescribed worldlines admit an A2 rotating-channel chart and a B1 chart; the labels describe coordinate structures and do not duplicate the physical inventory.
 
 This overlap is independent of the Family-A $\lambda_A=1$ boundary. It also does not certify retention. The [scoped anti-damping results](braid-mathematics.md#scoped-anti-damping-results) derive axial no-balance for a polarity-segregated interior fixed-coordinate two-ring chart, so that chart cannot be an equilibrium under those assumptions. The all-equatorial boundary remains the only fixed-coordinate B1-family locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
@@ -39,6 +43,8 @@ Claim level: **analytical (derivation grade) for the declared kernel's discrete-
 $$
 \chi=\operatorname{sign}(\mathbf p\cdot\mathbf S),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fb282f2daf21e3eb)
 
 the declared chiral invariant of that prescribed member. Its transformation law is forced by the vector characters above:
 
@@ -59,6 +65,8 @@ c_{\mathrm{pol}}
 \qquad
 \chi=o_{\mathrm{PA}}c_{\mathrm{pol}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9860f65e88fc9cff)
 
 Thus $C$ reverses $c_{\mathrm{pol}}$ at fixed $o_{\mathrm{PA}}$, while $P$ reverses $o_{\mathrm{PA}}$ at fixed $c_{\mathrm{pol}}$. With left/right defined by the sign of $\chi$, $C$ maps a left braid to a right polarity-conjugate braid on the same pro/anti orientation; $CP$ maps it to a left polarity-conjugate braid on the mirrored orientation. This is exact covariance of the declared kernel plus definition-level sign bookkeeping. It does not establish formation, branch retention, or $CP$ conservation in weak reaction channels.
 

@@ -56,6 +56,8 @@ Noether braids compress toward maximum-curvature states. Proton/neutron assembli
 $$
 \rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30e1c5c21c995879)
 for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point. Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
@@ -78,6 +80,8 @@ $$
 - \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ccff45d27ba9dd3)
+
 The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
 
 For a local-reactor, recycling, or compact-object comparison branch, the network also needs a source-channel energy partition. Let $s$ label source channels and let $E_s^\theta$ be the energy carried into the declared BBN window by baryons, photons, neutrino-sector excitations, compact-object release, or Noether sea work terms. The branch supplies an acceptable thermal record only if
@@ -95,6 +99,8 @@ N_{\mathrm{eff}}^\theta,\,
 \frac{s_\gamma^\theta}{n_b^\theta}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-adff5f84f61e3323)
 is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate fit parameters to the outputs.
 
 The multi-channel reading is useful only when it is made provenance-explicit. High-energy compact-object release, supernova-like processing, jet channels, quasar or blazar environments, and ordinary stellar processing may all be source leads for later abundance history, but none of them replaces the BBN comparison surface unless it enters a declared source-window record
@@ -111,6 +117,8 @@ n_{\nu,s}(t),
 \mathcal{E}_{i,s}
 \right)_s.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c047808244f4a655)
 The yields are then acceptable only if D/H, $Y_p$, lithium, $\eta_{b\gamma}$, and $N_{\text{eff}}$ are all computed from the same channel-weighted record. A branch that treats one source family as an explanation for helium, another as an explanation for lithium, and a third as a photon-loading fix without a shared source-window ledger has not improved on the one-time-origin story; it has split the provenance.
 
 The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
@@ -120,12 +128,16 @@ t
 \frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
 \left(\frac{1\ \mathrm{MeV}}{k_BT_{\mathrm{temp}}}\right)^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7a76b30502e7a057)
 where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
 $$
 \frac{n_n}{n_p}
 \approx
 \exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT_{\mathrm{temp}}}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9a894c0b2375e38e)
 until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
 $$
 \frac{n_D}{n_p}
@@ -134,6 +146,8 @@ $$
 \left(\frac{k_BT_{\mathrm{temp}}}{m_p c_0^2}\right)^{3/2}
 \exp\!\left(\frac{E_D}{k_BT_{\mathrm{temp}}}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5d124b91adcd4eb2)
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
 
 ### Weak-Rate and Relativistic-Species Gate
@@ -154,6 +168,8 @@ p+e^-\to n+\nu_e,\\
 p+e^-+\bar{\nu}_e\to n.
 \end{cases}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e624672373de783c)
 The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
 $$
 \lambda_{n\to p}^{\theta}(T_{\mathrm{temp}})
@@ -162,6 +178,8 @@ $$
 \sim
 H_{\mathrm{eff,BBN}}^\theta(T_{\mathrm{temp}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a34b812929f48825)
 where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
 $$
 H_{\mathrm{eff,BBN}}^\theta
@@ -174,6 +192,8 @@ H_{\mathrm{eff,BBN}}^\theta
 +\cdots
 \right)^{1/2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8821f40ec36ed562)
 so the relativistic-species residual must be tracked as
 $$
 N_{\text{eff}}^\theta
@@ -181,6 +201,8 @@ N_{\text{eff}}^\theta
 \frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
 {\rho_{\nu,1}^\theta}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e9237a193c1a0868)
 The equilibrium neutron-to-proton comparison then reads
 $$
 \frac{n_n^\theta}{n_p^\theta}
@@ -190,6 +212,8 @@ $$
 -\xi_{\nu_e}^\theta
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fb9e55095714519e)
 where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
@@ -256,6 +280,8 @@ $$
 \frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2d553828c3fbd6c4)
 The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether sea record carried into [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Gravitational Waves](../spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
 
 The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
@@ -269,6 +295,8 @@ n_n^X(\tau,s)\,
 \langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T_{\mathrm{temp}}(\tau,s),\rho(\tau,s))\,
 d\tau
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fda82c84820ce47f)
 and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T_{\mathrm{temp}},\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
 $$
 \mathcal{R}_{\mathrm{exp},X}
@@ -276,6 +304,8 @@ $$
 \max_i
 \frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-15cf2016b6de39e6)
 where $\mathcal{E}_{i,\mathrm{eff}}^X$ is the channel-weighted exposure reaching the BBN comparison surface. A SMBH-local or fixed-void replacement branch fails this gate if it matches final D/H, $Y_p$, or lithium while its integrated exposure requires a different density-temperature timing record than the one used for photon loading, weak freeze-out, and the CMB handoff.
 
 Compact-object comparison branches add a sharper injection test. If the branch contains a small-mass tail with late release near the BBN window, record the injected spectrum as
@@ -285,6 +315,8 @@ $$
 \int \psi_X(M,t)\,
 \Gamma_{\mathrm{release}}^X(E,t;M)\,dM
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1a3c5a58a4df14ab)
 where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
 
 If the compact branch evaporates, releases, or otherwise injects energy before or during the BBN window, the sharper residual is
@@ -299,6 +331,8 @@ $$
 \frac{\|\Delta f_\nu^X(E,t)\|}{\epsilon_\nu}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1cc2859b3073bde0)
 Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
 
 ## Observable-Mapping Goals (Interpretation-Scoped)

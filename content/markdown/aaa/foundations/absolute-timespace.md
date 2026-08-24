@@ -25,10 +25,14 @@ The absolute timespace background is the Cartesian product
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c17d24f0e7ad8f22)
 with coordinates
 $$
 (T,\mathbf X)=(T,X,Y,Z)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e5f04fb02ab4af94)
 
 Each point in $\mathcal{M}$ represents an event: a fixed location $\mathbf X$ in the Euclidean void at a definite instant $T$.
 
@@ -46,6 +50,8 @@ $$
 \Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7c8132d11e3e8cd2)
+
 Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent at the substrate level.
 
 An object or assembly traces a worldline through the product background:
@@ -55,6 +61,8 @@ $$
 T\mapsto(T,\mathbf X(T))
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e40c37105a39c7cc)
+
 Worldlines are graphs over $T$: there is no admissible parametrization in which $T$ decreases, so closed timelike curves and backward-time propagation are excluded by construction, and there is no fundamental reparametrization freedom that replaces the absolute time parameter.
 
 > **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $T$. A worldline passes through one slice at each instant.
@@ -63,6 +71,8 @@ On a fixed slice, the canonical universe-now notation is
 $$
 \mathbb{U}_{\text{now}} \equiv S(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-905ffb69b4d67db6)
 
 This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
@@ -79,6 +89,8 @@ H_T,
 \mathcal{B}_T
 \big)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b8f87e751d9129e0)
 Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ## Newton-Cartan Data
@@ -90,16 +102,22 @@ $$
 dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a)
+
 This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$.
 
 The spatial metric on each slice is
 $$
 h=dX^2+dY^2+dZ^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-15c89c7543c55597)
 with Cartesian components
 $$
 h_{ij}=\delta_{ij}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5bc8229205e63bfc)
 
 The metric $h$ acts only on spatial vectors tangent to $\Sigma_T$. Time and space are therefore encoded separately by $(dT,h)$.
 
@@ -110,10 +128,14 @@ $$
 \nabla h=0
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e8d2d2a37022aee)
+
 These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dT,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dT,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
 $$
 \Gamma^\lambda_{\mu\nu}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ced9e1e9a19afbc8)
 
 Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
 
@@ -121,6 +143,8 @@ More geometrically, the compatible-connection freedom is an affine gauge freedom
 $$
 \Omega^1(\mathcal{M})\otimes\mathfrak{so}(3)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-92b456bc0c19791a)
 with the corresponding boost or acceleration terms supplying the usual non-inertial chart data. Thus the family of compatible descriptions is a torsor over the inertial-gauge data, while the wake law selects the unique flat representative in the $c_f$-isotropic frame. Rotating-frame Christoffel symbols are therefore pure-gauge representatives of that same flat $\nabla$; their Riemann curvature remains zero.
 
 ### Non-Inertial Coordinate Terms
@@ -137,6 +161,8 @@ R(T)\left[
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99a7e5771cb12c88)
+
 The terms proportional to $2\boldsymbol{\Omega}\times\mathbf V'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$, and $(d\boldsymbol{\Omega}/dT)\times\mathbf X'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
 
 The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no transmitter identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
@@ -145,6 +171,8 @@ Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a 
 $$
 \mathcal{P}[\mathcal{T}_{\mathrm{inertial}}]=\varnothing
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fbcfc376e5f01a61)
 A physical wake-mediated transverse term must instead satisfy $\mathcal{P}[\mathcal{T}]\ne\varnothing$ after reduction to the retained branch record. This separates connection-gauge content from the image of the causal-wake provenance map.
 
 ## No Fundamental 4D Metric
@@ -169,10 +197,14 @@ d_{\text{spatial}}(\mathbf X_1,\mathbf X_2)
 \sqrt{\delta_{ij}(X_1^i-X_2^i)(X_1^j-X_2^j)}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ed111c880d463cf)
+
 Temporal duration between events is
 $$
 \Delta T=|T_2-T_1|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-102dc50f1575f4b3)
 
 Spatial arc length along a path $\mathbf X(T)$ from $T_1$ to $T_2$ is
 $$
@@ -188,10 +220,14 @@ L[\mathbf X;T_1,T_2]
 }\,dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5517bcd09102947b)
+
 A relativistic 4D arc length such as
 $$
 s=\int\sqrt{\left|g_{\mu\nu}\,dx^\mu dx^\nu\right|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b3f429e785a987e8)
 with the sign of the integrand fixed by the declared signature convention, is a standard comparison form, not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Velocity, Acceleration, and Momentum
@@ -201,10 +237,14 @@ $$
 \mathbf V(T)=\frac{d\mathbf X}{dT}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-03592408a97d58ff)
+
 Speed is
 $$
 \|\mathbf V\|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1d4a67bf31ec688e)
 
 Acceleration is
 $$
@@ -213,12 +253,16 @@ $$
 \frac{d^2\mathbf X}{dT^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b022bab9465b2ae3)
+
 At the observer level, the usual low-velocity bookkeeping forms are
 $$
 \mathbf p=m\mathbf V,
 \qquad
 K=\frac{1}{2}m\|\mathbf V\|^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-672b055f139227e2)
 Here $m$ is an effective assembly-response coefficient, not substrate data; its derivation and possible anisotropy are stated below.
 
 Causal-root hits produce accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, acceleration, or clock dilation by itself.
@@ -242,6 +286,8 @@ $$
 \delta\Omega^j
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-03b78cbf7ecefc3c)
+
 Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 The isotropy of $\mathcal{M}^{\mathrm{resp}}_{ij}$ is an assembly-geometry claim, not an unexplained smallness assumption. If the symmetry group of the retained trajectory bundle and closed causal-history ledger has no preferred axis on the probed scale, the tensor response can reduce to $m\delta_{ij}$. If the branch retains an axial layer, six-site axial frame, or other framed orientation data, the leading correction is a quadrupole-like orientational residual in $\mathcal{M}^{\mathrm{resp}}_{ij}$ unless shielding and averaging cancel it. The branch-level carrier can be represented by a symmetric trace-free framing tensor
@@ -252,6 +298,8 @@ Q_A^{ij}
 \hat n^i\hat n^j-\frac{1}{3}h^{ij}
 \right\rangle_A^{\mathrm{frame}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e2f115e364e4de37)
 where the average is taken over the retained framed trajectory bundle or declared axial frame of the assembly. The Hughes-Drever row below is therefore a direct constraint on residual orientational symmetry breaking in the assembly framing.
 
 ### Framing-Quadrupole Economy Theorem Target
@@ -275,6 +323,8 @@ $$
 \hat n^j}{m}
 \right|
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a5215f9ae9b96d4e)
 after mapping the assembly response onto the tested matter-sector coefficients. The benchmark is not a single universal number: SME translations are species- and coefficient-dependent, with Hughes-Drever and clock-comparison rows reaching roughly the $10^{-27}$-class matter-anisotropy scale or stronger in several spin-coupling channels. Passing the scalar-mass limit therefore means driving the projected matter response below the declared Hughes-Drever/clock-comparison row, not only asserting isotropy in prose.
 
 ## Galilean Kinematic Structure
@@ -288,12 +338,16 @@ T'=T+T_0,
 \mathbf X'=\mathbf X
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8987a5718e9a16e3)
+
 Spatial translation:
 $$
 T'=T,
 \qquad
 \mathbf X'=\mathbf X+\mathbf X_0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-382eb44a0069c60c)
 
 Rotation:
 $$
@@ -304,12 +358,16 @@ T'=T,
 R\in SO(3)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-255b2a33ef41d60e)
+
 Galilean boost:
 $$
 T'=T,
 \qquad
 \mathbf X'=\mathbf X+\mathbf V_0T
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2b31d19894e289a8)
 
 The transformation preserves simultaneity slices because $T'=T$ up to a constant shift.
 
@@ -329,6 +387,8 @@ c_f(T-T_t),
 \qquad
 T_t<T
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-87cc85fb442bdb06)
 Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf U=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
 This preferred frame is not curvature of the background. It is a structural consequence of the wake law: finite-speed causal wake propagation fixes $c_f$ relative to the void, and Noether sea and assembly dynamics build on that distinguished frame.
@@ -361,10 +421,14 @@ A=(T_A,\mathbf X_A),
 \qquad
 B=(T_B,\mathbf X_B)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5284a40dafc30538)
 event $A$ can causally precede $B$ only if
 $$
 T_A<T_B
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e37ea6c0628046e5)
 
 A wake emitted at $(T_t,\mathbf X_{\mathrm{em}})$ reaches points on the causal wake surface
 $$
@@ -373,10 +437,14 @@ $$
 T>T_t
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e07376a5400d1530)
+
 The filled causal future of that emission is
 $$
 \{(T,\mathbf X):T\geq T_t,\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_t)\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1d76ea7bd73813c1)
 
 The equality surface is an expanding causal isochron: at each later $T$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
@@ -388,12 +456,16 @@ F_{ij}(T_r,T_t)
 \qquad
 T_t<T_r
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-24ab0b04a66ba894)
 with active causal-root set
 $$
 \mathcal{C}_{ij}(T_r)
 =
 \{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e9bc8f92cc4493ea)
 The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
 $$
 \left|
@@ -406,12 +478,16 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-66377babb203934c)
 where
 $$
 \mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0beea2d96374e0e7)
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
 On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating $F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
@@ -421,6 +497,8 @@ $$
 \frac{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_i(T_r)}
 {c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-44c0a4132a111eae)
 This identity is not a new coupling constant. It distinguishes the transmitter-side causal-root Jacobian from the rate at which a moving receiver path samples the same emitted causal wake sequence. A stationary receiver in the Euclidean-void rest frame sets the numerator to $c_f$; radial receiver motion changes the receiver-side action or wake-history rate and must be recorded when a proof uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
@@ -443,6 +521,8 @@ N_+(A)-N_-(A)
 \sum_{T_t\in\mathcal{C}_{ij}}
 \operatorname{sgn}\!\left(\partial_{T_t}F_{ij}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-085c6e60abf7246e)
 with the sums taken over the retained self-hit and partner-hit rows on the branch chart. The two components detect different failure channels. Generic fold events create or annihilate root pairs of opposite Jacobian sign, so they change the unsigned count $N=N_++N_-$ by $\pm 2$ while leaving $\chi_{\mathrm{root}}$ invariant; this is the fold-pair surgery conservation recorded in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md). A near-threshold fold cascade therefore appears as jumps in $(N_+,N_-)$, while a jump in $\chi_{\mathrm{root}}(A)$ signals a root crossing the chart or memory boundary, a pair-set change, or a degeneracy outside the generic fold class. A structural-integrity failure near the wake-speed threshold should appear in this sign-resolved ledger rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 
 This structural-integrity claim is the central Lorentz-closure theorem target for this chapter and is restated as Theorem G in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It must prove more than the qualitative statement that assemblies fail mechanically near $c_f$. A successful recovered observer branch must show that the matter-assembly limiting speed, Noether sea dressed clock/ruler speed, photon-channel speed, and weak-homogeneous calibration speed collapse to one common limit:
@@ -456,6 +536,8 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-526d35d9d534becb)
 The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation. It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
@@ -472,12 +554,16 @@ $$
 =
 \left(1-\frac{v_{\mathrm{eff}}^2}{c_0^2}\right)^{-1/2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c2c28880e4a680bb)
 The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v_{\mathrm{eff}})$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
 $$
 \mathcal{D}(v_{\mathrm{eff}})=\exp\!\left(\varphi_{\text{eff}}K\right),
 \qquad
 \tanh\varphi_{\text{eff}}=\frac{v_{\mathrm{eff}}}{c_0},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d47aad562c4e8ad1)
 with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order; the rapidity parameter $\varphi_{\text{eff}}$ matches the observer-level convention in [Special Relativity and the Noether Braid](../philosophy-history/theory-bridges/special-relativity-noether-braid.md) and makes the one-parameter family additive if the branch composes boosts. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
 
 ## Coordinates and Forbidden Transformations
@@ -504,15 +590,21 @@ $$
 dT
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a-2)
+
 The spatial volume element on a slice is
 $$
 dV=dX\,dY\,dZ
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fdb88434d089d358)
+
 The product measure is
 $$
 d\mathcal{V}=dT\,dX\,dY\,dZ=dT\,dV
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-37d05577c7335e04)
 
 The spatial gradient is
 $$
@@ -524,6 +616,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-03dd2099e7af4a10)
+
 The spatial Laplacian is
 $$
 \Delta f
@@ -533,10 +627,14 @@ $$
 \delta^{ij}\partial_i\partial_j f
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fbae59b43cba1665)
+
 The temporal derivative is
 $$
 \frac{\partial}{\partial T}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-625579eac01c110e)
 
 All dynamical equations should make clear which derivatives are temporal, which are spatial, and when a calculation is using an effective metric approximation rather than substrate geometry.
 
@@ -559,6 +657,8 @@ $$
 \|\mathbf X_j(T_t)-\mathbf X_i(T_r)\|<R}}
 \mathbf A_{ij}(T_r;T_t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-58b42e746cbf75dd)
 with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed transmitter history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
@@ -575,14 +675,20 @@ $$
 \le
 C\,e^{-\|\mathbf{r}-\mathbf{r}'\|/\ell}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7e63fec8490556b9)
 or a comparable summable vector-correlation bound. Partition space outside a fixed local ball into receiver-centered shells of thickness comparable to $\ell$, and group sources into neutral cells of diameter $O(\ell)$. Let $S_n$ be the vector acceleration contribution from shell $n$ after subtracting the local neutral mean. A shell at radius $r_n\sim n\ell$ contains $N_n=O(n^2)$ effectively independent cells, so signed fluctuations scale like $\sqrt{N_n}=O(n)$ while each cell contribution carries the inverse-square factor $O(r_n^{-2})=O(n^{-2})$. Hence
 $$
 \mathbb{E}\|S_n\|^2=O(n^{-2})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4b531110b8f53f7b)
 under the declared mixing bound, and therefore
 $$
 \sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1036eabe49f53f39)
 The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even when scalar polarity neutrality holds. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
 
 The first inhomogeneous obligation is isolated in [Noether Sea](../spacetime/noether-sea.md). For a weak density gradient $\rho_{\mathrm{NS}}=\rho_0+\mathbf g_\rho\cdot\mathbf X+\cdots$, the neutral-cell multipole and the conditional shell mean must be derived and shown convergent. The homogeneous variance theorem therefore does not by itself imply an acceleration proportional to $-\nabla\rho_{\mathrm{NS}}$, fix the sign or coefficient of a weak-gradient response, or close the gravity, clock, and ruler maps.
@@ -617,6 +723,8 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d8fd4033b3daa123)
 with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ gives the component export
 $$
 g^{\mathrm{eff}}_{00}
@@ -631,6 +739,8 @@ g^{\mathrm{eff}}_{ij}
 =
 B_{ij}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a20b3912bb43ea2b)
 This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether sea state and Physical Observer assemblies into effective spacetime language.
 
 ## Role in $\mathbb{A}\mathbb{A}\mathbb{A}$

@@ -168,6 +168,8 @@ $$
 \operatorname{sign}(\mathbf p\cdot\mathbf S)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d1eb63e6aa052ed1)
+
 denote the polarity-weighted handedness when the polarity dipole $\mathbf p$ is nonzero. Define the polarity-assignment sign on that chart by
 
 $$
@@ -177,6 +179,8 @@ c_{\mathrm{pol}}
 \qquad
 \chi_{\mathrm{pol}}=o_{\mathrm{PA}}c_{\mathrm{pol}}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3923ecd52c10f674)
 
 Then $C$ leaves $o_{\mathrm{PA}}$ fixed and reverses $c_{\mathrm{pol}}$; $P$ reverses $o_{\mathrm{PA}}$ and leaves $c_{\mathrm{pol}}$ fixed; both reverse $\chi_{\mathrm{pol}}$; and $CP$ preserves $\chi_{\mathrm{pol}}$. This factorization is definition-level symmetry bookkeeping on a chart where both signs exist. It is not a retained-branch theorem, and it does not manufacture either sign when the underlying orientation or dipole is absent.
 
@@ -212,6 +216,8 @@ $$
 \mathbf r_t=\mathbf X_r(T_r)-\mathbf X_t(T_t).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2e23f88469d83d13)
+
 The corresponding factors are
 
 $$
@@ -220,11 +226,15 @@ D_t=c_f-\hat{\mathbf r}_t\cdot\mathbf V_t(T_t),
 D_r=c_f-\hat{\mathbf r}_t\cdot\mathbf V_r(T_r),
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f2154af5114cf473)
+
 with exact root playback
 
 $$
 \frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88969056b8a4fbfe)
 
 Use `transmitter-side factor` for $D_t$ and `receiver-side factor` for $D_r$. Use `root-playback derivative` for the signed ratio $D_r/D_t$. In the canonical acceleration law, use `transmitter-side acceleration weight` for $W^{\mathrm{acc}}=c_f/|D_t|$. Never describe $D_r/D_t$ as an acceleration weight.
 
@@ -476,6 +486,8 @@ R_{\mathrm{axis}},
 R_{\mathrm{plane}}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5835bbbeb0e2e8d4)
 
 where $\mathcal L_{\mathrm{pair}}$ identifies the common assembly ledger; $R_C$ declares the polarity-conjugation relation; $R_o$ declares the pro/anti-orientation relation when that orientation exists; $R_{\omega}$ declares relative circulation; $R_{\mathrm{axis}}$ declares the axis relation; and $R_{\mathrm{plane}}$ declares planarity. An omitted row is unknown, not false. This is a relation record, not a new braid family or particle species.
 

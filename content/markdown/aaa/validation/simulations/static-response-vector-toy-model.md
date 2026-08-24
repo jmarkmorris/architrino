@@ -31,11 +31,15 @@ $$
 \ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}=a_R\frac{U}{c_0^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-de1046c46595692a)
+
 The cadence-stretch row must satisfy
 
 $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-953a48797990d736)
 
 while the inverse clock-rate row must satisfy
 
@@ -43,11 +47,15 @@ $$
 \omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae41bab5f949f37c)
+
 The row-inverse condition checks
 
 $$
 b_i+\omega_i=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1c43cb618b3469c0)
 
 for $i\in\{n,\chi,\lambda,R\}$.
 
@@ -57,6 +65,8 @@ $$
 a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-755895c36f9de785)
+
 so the shared clock/signal delay residual is
 
 $$
@@ -64,6 +74,8 @@ $$
 =
 a_\chi-a_\chi^{\mathrm{sig}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aaed5ebd81e127ec)
 
 The branch is shared-delay closed only when $\Delta_\chi^{\mathrm{clk\text{-}sig}}=0$ within the declared tolerance.
 
@@ -75,6 +87,8 @@ $$
 a_\chi^{\mathrm{sig}}=2
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-002feaffad73d597)
+
 while the clock/dynamical endpoint row still satisfies the cadence and inverse-clock equations below. A response vector that changes the dynamical acceleration but leaves $a_\chi^{\mathrm{sig}}\neq2$ is a split clock/signal branch: it may fit rotation curves or hydrostatic motion, but it cannot yet claim the lensing mass equality required by cluster and galaxy-galaxy weak-lensing tests.
 
 ## Minimal Shared-Delay Packet
@@ -84,6 +98,8 @@ The first admissible static endpoint packet is the shared scalar delay response 
 $$
 A_\chi\equiv1+\gamma_{\mathrm{PPN}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-15c18a8f6475836f)
 
 The minimal response vector is
 
@@ -103,6 +119,8 @@ A_\chi,\,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b4087c75dcc2e063)
+
 with cadence row
 
 $$
@@ -120,6 +138,8 @@ A_\chi^{-1},\,
 0
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-45336e0578f5886a)
 
 and inverse clock-rate row
 
@@ -139,6 +159,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7fa5ee9f40685ed2)
+
 For the GR-matching branch, this gives $A_\chi=2$, $a_\chi=2$, $b_\chi=1/2$, and $\omega_\chi=-1/2$. The `shared_delay_clean_gr_branch` row in the mock packet is exactly this replay. The `density_scale_compensated_branch` row samples the remaining compensated family, where nonzero $a_n$, $a_\lambda$, or $a_R$ are allowed only if the same cadence row still satisfies $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ and the inverse row remains $\omega_i=-b_i$.
 
 ## Pressure Bridge
@@ -156,6 +178,8 @@ $$
 \right)_r
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0eb6c3085236f38)
+
 and checks the pressure version of the cadence row:
 
 $$
@@ -167,6 +191,8 @@ b_n\delta\ln n_r
 +b_R\delta\ln R_r
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b46f88398900ea10)
+
 The pressure cadence residual is
 
 $$
@@ -175,6 +201,8 @@ $$
 \widehat{\delta\ln\Gamma}_{N,r}^{P}
 -\delta\ln\Gamma_{N,r}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-57966ac8e89f2e87)
 
 The inverse clock-rate row must also close:
 
@@ -190,6 +218,8 @@ $$
 +\delta\ln\Gamma_{N,r}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-101e700c091ae24f)
+
 When `derive_response` is `gamma_normalized`, the fixture also forms a normalized static-equivalent response vector
 
 $$
@@ -197,6 +227,8 @@ a_i^{P\to\Gamma}
 =
 \frac{\delta g_i^P}{\delta\ln\Gamma_N}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d8828178bd959776)
 
 This normalization makes pressure rows replayable by the same endpoint arithmetic, but it does not convert pressure loading into a gravitational PPN branch. The `gamma_eff_sweep` diagnostic is only an algebraic comparison against $a_\chi^{\mathrm{sig}}=1+\gamma_{\mathrm{PPN}}$; a pressure-normalized value that closes for some formal $\gamma_{\mathrm{PPN}}$ is not a solar-system Shapiro result.
 
@@ -285,6 +317,8 @@ b_R
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-02bdd1e32326471a)
+
 Second, the density/scale-compensated row also passes the endpoint and inverse-row checks:
 
 $$
@@ -317,11 +351,15 @@ b_R
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eff82b8a77ad6499)
+
 because
 
 $$
 0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a2e5034aebc68bd6)
 
 This is an admissibility witness for the compensated static family, not a derivation of those numbers.
 
@@ -338,6 +376,8 @@ $$
 \right)^T
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c0ee41fb50bd9e25)
+
 so no single $\chi_{\text{sea}}$ coefficient can satisfy both
 
 $$
@@ -345,6 +385,8 @@ b_\chi(2)=1,
 \qquad
 b_\chi(0.6)=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-794a88ddcbadfd48)
 
 The current validation status is therefore conditional. Nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ are not required by the endpoint row itself. They become necessary only if an independent branch record, such as hydrogen spectral refinement or pressure-response replay, supplies non-$\chi_{\text{sea}}$ response that must share the same $\Gamma_N$ row. The next proof obligation is to replace the toy nonzero entries with branch-derived density, envelope-scale, or $R_{\text{braid}}$ response rather than treating them as fit parameters.
 

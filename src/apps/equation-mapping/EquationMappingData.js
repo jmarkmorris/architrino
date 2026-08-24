@@ -14,15 +14,24 @@ export const CANVAS_COLORS = Object.freeze([
 
 export const SUBJECT_GROUPS = Object.freeze([
   "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+  "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ foundations",
   "Classical mechanics",
   "Relativity and effective metric",
   "Conservation and Noether structure",
   "Cosmology and astrophysics",
   "Statistical mechanics and thermodynamics",
   "Quantum and QFT",
+  "Noether braid",
+  "Assemblies",
+  "Nuclear and atomic assemblies",
+  "Reactions",
+  "Validation",
+  "Theory bridges and history",
+  "Archie references",
 ]);
 
 export const CLAIM_LEVELS = Object.freeze([
+  "source-context",
   "candidate-commentary",
   "accepted-source-reference",
   "accepted-aaa-derivation",
@@ -53,6 +62,29 @@ function normalizeText(value, fallback = "") {
 
 function normalizeOptionalText(value) {
   return String(value ?? "").trim();
+}
+
+function normalizeEquationSource(source = {}) {
+  return {
+    status: normalizeText(source.status, "linked"),
+    sourcePath: normalizeOptionalText(source.sourcePath),
+    sourceHeading: normalizeOptionalText(source.sourceHeading),
+    startLine: Number.isSafeInteger(source.startLine) ? source.startLine : null,
+    endLine: Number.isSafeInteger(source.endLine) ? source.endLine : null,
+    sourceHref: normalizeOptionalText(source.sourceHref),
+    contextBefore: normalizeOptionalText(source.contextBefore),
+    contextAfter: normalizeOptionalText(source.contextAfter),
+  };
+}
+
+function normalizeEquationSymbol(symbol = {}, index = 0) {
+  return {
+    id: normalizeText(symbol.id, `symbol-${index + 1}`),
+    tex: normalizeText(symbol.tex, "?"),
+    definition: normalizeText(symbol.definition, "Definition unavailable."),
+    scope: normalizeOptionalText(symbol.scope),
+    definitionSource: normalizeOptionalText(symbol.definitionSource),
+  };
 }
 
 function normalizePercent(value, fallback = 0) {
@@ -219,6 +251,12 @@ export function normalizeEquationMapDocument(document = {}, index = 0) {
     formulaParts,
     anchors,
     overlays,
+    promoted: document.promoted !== false,
+    source: normalizeEquationSource(document.source),
+    symbols: Array.isArray(document.symbols)
+      ? document.symbols.map((symbol, symbolIndex) => normalizeEquationSymbol(symbol, symbolIndex))
+      : [],
+    searchText: normalizeOptionalText(document.searchText),
     backgroundId: normalizeBackgroundId(document.backgroundId),
     claimLevel: normalizeClaimLevel(document.claimLevel),
     calloutPlacementMode: normalizeCalloutPlacementMode(document.calloutPlacementMode),
@@ -1587,6 +1625,12 @@ export function getEquationSearchText(document = {}) {
     document.subject,
     document.formulaTeX,
     document.claimLevel,
+    document.searchText,
+    document.source?.sourcePath,
+    document.source?.sourceHeading,
+    document.source?.contextBefore,
+    document.source?.contextAfter,
+    ...(document.symbols ?? []).map((symbol) => `${symbol.tex} ${symbol.definition} ${symbol.scope}`),
     ...(document.anchors ?? []).map((anchor) => `${anchor.label} ${anchor.searchText}`),
     ...(document.overlays ?? []).map((overlay) => `${overlay.title} ${overlay.searchText}`),
   ].join(" ");

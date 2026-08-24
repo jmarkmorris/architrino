@@ -41,6 +41,8 @@ The corpus uses both $v$ and $c_f$ for field speed in different chapters. This l
 $$
 c_f
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fd14eacc9dd4bd4a)
 as the canonical symbol for the physical wake speed. Numerical instantiations use $c_f=1$; a generic velocity symbol must not replace it.
 
 ### Parameter versus field
@@ -104,12 +106,16 @@ Z_X
 =
 \frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{X_{\mathrm{CODATA}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-513d15a756279280)
 where $u(X)$ is the quoted standard uncertainty. If $X$ is exact by SI definition, the residual is not a measurement residual. The closure test is instead whether the same substrate-to-observer unit map recovers the exact convention while also passing the adjusted measured rows that depend on it.
 
 The uncertainty convention is also fixed. A standard uncertainty $u(y)$ is an estimated standard deviation for the result $y$, and the relative standard uncertainty is
 $$
 u_r(y)=\frac{u(y)}{|y|}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f39bec73110a44c8)
 for $y\ne0$. When the quoted distribution is approximately Gaussian, $y\pm u(y)$ is the one-standard-uncertainty comparison interval, not a broad tolerance band to be enlarged after a fit.
 
 Useful 2022 CODATA rows for the closure stack are:
@@ -161,12 +167,16 @@ M_H^{\mathrm{ledger}}=126.0\,\mathrm{GeV},
 \qquad
 \sigma_{\mu_H}^{\mathrm{ledger}}=0.3
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f283da4c13fc3b29)
 with the channel set
 $$
 \mathcal{C}_{H}^{\mathrm{ATLAS\,2012}}
 =
 \{ZZ^{(*)}\to4\ell,\gamma\gamma,WW^{(*)}\to\ell\nu\ell\nu\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-797be6d4c83539ce)
 The corresponding validation contribution is
 $$
 \mathcal{R}_{H,\mathrm{ATLAS\,2012}}(\theta)
@@ -189,6 +199,8 @@ $$
 +
 \mathcal{R}_{\mathrm{excluded\,scalar}}(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4e92a4c55241055e)
 Here $M_H^{\mathrm{breath}}(\theta)$ is the predicted scalar or breathing-mode mass from the same branch record, $\mu_H^{\mathrm{eff}}(\theta)$ is the observer-level production-and-branching normalization, and $Z_c$ records the declared channel significance or likelihood contribution. This row does not identify the Higgs with a named native mode, does not update to a current world-average mass, and must not be used as a branch-search, shielding, or mass-map input. Higgs-sector closure requires the residual to close after the branch, shielding, channel, and detector-provenance records have been fixed independently.
 
 ### Naturalness and sensitivity
@@ -198,6 +210,8 @@ $$
 \mathrm{FTQ}(p)=
 \frac{\Delta p/p}{\Delta \mathrm{obs}/\mathrm{obs}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3d0c9994146c3809)
 as the default sensitivity diagnostic.
 
 Here $\Delta p/p$ is the fractional perturbation of a parameter or closure output, and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional perturbation of the observable being tested. Values $\mathrm{FTQ}(p)>10$ should be treated as fine-tuning pressure unless a discrete topology, symmetry, attractor basin, or measured benchmark explains the sensitivity.
@@ -218,6 +232,8 @@ The exact bare two-body kernel has no independent dimensionless tuning constant 
 $$
 (c_f,\kappa,\epsilon)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6762729b0329ae98)
 spans the base dimensions $(\mathrm{L},\mathrm{T},\mathrm{Q})$ because
 $$
 [c_f]=\mathrm{L}\,\mathrm{T}^{-1},
@@ -226,6 +242,8 @@ $$
 \qquad
 [\epsilon]=\mathrm{Q}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-91f5f3fec832e76d)
 It therefore defines canonical two-body units
 $$
 Q_*=\epsilon,
@@ -234,10 +252,14 @@ R_*=\frac{\kappa\epsilon^2}{c_f^2},
 \qquad
 T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2b6eafb45d37a37a)
 For $\tilde{\mathbf X}=\mathbf X/R_*$, $\tilde T=T/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
 $$
 \tilde R_{ij}=\tilde T-\tilde T_t
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f4ca714a9893ed48)
 and
 $$
 \frac{d^2\tilde{\mathbf X}_i}{d\tilde T^2}
@@ -248,6 +270,8 @@ $$
 {\tilde R_{ij}^2}
 \hat{\mathbf R}_{ij}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec1cfba383b1b28c)
 up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
 
 Consequently, every dimensionless output of the isolated bare two-body problem is a pure branch-geometry result: root multiplicities, branch-birth thresholds, maximum-curvature speed ratios, residual signs, and any certified radius in units of $R_*$. This does not certify that a stable maximum-curvature binary exists. It says that if a certified two-body branch produces such a number, that number is computed by the root ledger and stability problem rather than fitted by changing a Layer-I dimensionless constant.
@@ -322,6 +346,8 @@ The regularized exact law uses the kernel-side set
 $$
 (c_f,\epsilon,\kappa,\eta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dc8084e941317a8f)
 A representative regularized form is
 $$
 \frac{d^2\mathbf X_a}{dT^2}
@@ -333,6 +359,8 @@ $$
 \delta_\eta\!\big(R_{ab}(T;T_t)-c_f(T-T_t)\big)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-996e953dc8ddbd9e)
+
 This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.
 
 ### 2. Charge reconstruction
@@ -341,10 +369,14 @@ The substrate-to-observer charge bookkeeping map is
 $$
 |e| = 6\epsilon Z_e
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-83891c7a130507c1)
 with canonical normalization choice
 $$
 Z_e=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fbc107b8e0be0ee6)
 
 This relation is important because it shows that the elementary charge magnitude is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
 
@@ -356,12 +388,16 @@ The constitutive spacetime layer uses
 $$
 \rho_{\text{NS}}(\mathbf X,T)=\rho_{\text{NS},0}\,n(\mathbf X,T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e6cb05ef8b933aa2)
 and
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)
 =
 c_0^2\ln\!\big(\Omega(x_{\mathrm{eff}}^i)\xi(x_{\mathrm{eff}}^i)\big)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-01d5073d69f34580)
 
 Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed. The prefactor $c_0^2$ belongs to the observer-sector potential calibration; in the weak homogeneous branch, $c_f$ and $c_0$ differ only by $O(\epsilon_{\mathrm{LV}}c_0)$.
 
@@ -371,6 +407,8 @@ $$
 \mapsto
 g_{\mu\nu}^{\text{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-949080302d1377fa)
 
 ### 4. Weak-field PPN extraction
 
@@ -383,10 +421,14 @@ $$
 1-(1+\gamma_{\mathrm{PPN}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_f^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b18b7ff2a38aea93)
 and
 $$
 \beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1d4f4c3826849997)
 
 Preferred-frame leakage is encoded by
 $$
@@ -395,12 +437,16 @@ $$
 \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-130d0ee5eb8ed77b)
+
 The three displayed PPN coefficients vanish exactly when
 $$
 \Xi_1=\Xi_2=\Xi_3=0
 \quad\Longleftrightarrow\quad
 \alpha_1=\alpha_2=\alpha_3=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a89e0bc1240ed7ec)
 The coefficient $\Xi_4$ is not constrained by this three-parameter map. Full zero-leakage closure additionally requires either the independent condition $\Xi_4=0$ or a separately declared observable that extracts $\Xi_4$.
 
 ### 5. Mass map
@@ -411,6 +457,8 @@ m_{\text{inertial}}(A)
 \approx
 \alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ba82b34369d50270)
 with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit separately for each particle.
 
 This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
@@ -429,12 +477,16 @@ p_{\text{int}}^a
 \frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7bf6d5e1a3792c98)
+
 Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor $\mathcal{M}_{\text{sea}}^{ab}$ is not a particle-specific fit parameter. It is a constitutive closure target for the Noether sea response map.
 
 The first closure gate for this relation is the reference attractor $A_0$. It must report geometry, winding, root-ledger, stability, internal-energy, shielding, medium-response, and mass-facing outputs before any observed particle mass or charged-lepton ratio is used as a benchmark. The mass-facing output is the calibration-free combination
 $$
 \frac{\zeta(A_0)E_{\text{internal}}(A_0)}{E_0}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fe1b1bb03918ffaa)
 together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
 
 The compact finite-coordinate no-go is a status blocker inside $\mathcal{P}_{A_0}$, not an additional free parameter and not a benchmark input. It requires a predeclared branch-chart revision before Tier 1 continuation can be interpreted as progress toward the mass-facing output above.
@@ -449,12 +501,16 @@ I_{\text{align}} \stackrel{\text{hyp.}}{\approx} \hbar,
 \qquad
 2\pi R_{\text{align}} = \ell_P
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-568a4acff58ea768)
 and the effective gravity-side alignment estimate
 $$
 G_{\text{eff}}
 \equiv
 \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d720a95e23e61e03)
 
 These are not yet closed derivations. They are the alignment-side targets connecting geometric closure to $(h,G)$.
 
@@ -466,10 +522,14 @@ $$
 \qquad
 \theta_W^{\text{bare}}=30^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cbd33793a8a0a990)
 and the discrete axial-frame branch hypothesis
 $$
 \alpha_n=n\,\theta_W^{\text{bare}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d3abedfdd180d1fe)
 
 This means the quark-sector use of $\alpha$ is a geometric branch label tied to a candidate bare electroweak increment, not yet a finished derivation of the measured weak angle.
 
@@ -521,6 +581,8 @@ In compact form, the closure target is a nonempty shared parameter set
 $$
 \mathcal{P}_{\text{shared}} \neq \varnothing
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-889bfc545ab9c36b)
 where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive set that survives particle, spacetime, and quantum-side tests simultaneously.
 
 ## Related Chapters

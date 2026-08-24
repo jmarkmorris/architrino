@@ -3470,6 +3470,30 @@ whereas the near-rest Family-A nested-binary chart uses three mutually orthogona
 
 Plainly: an orthogonal XYZ frame uses the minimum three arrows. A tetrahedral frame uses four equally balanced arrows, so losing any one arrow does not define the whole construction, but all four together still carry only three independent directional components.
 
+### Conditional Minimality Of The Eight-Member Inventory
+
+Three-dimensional space does not require eight architrinos, and F6c does not generate or define the three substrate dimensions. Every architrino position is already a vector in the Euclidean void. The eight-member count enters only after imposing the stronger F6c design condition that each polarity sector separately have an equal-status, centered, noncoplanar directional scaffold.
+
+For three same-polarity direction vectors, exact sector centering would require
+
+$$
+\mathbf n_1+\mathbf n_2+\mathbf n_3=\mathbf0.
+$$
+
+Then $\mathbf n_3=-(\mathbf n_1+\mathbf n_2)$, so the three vectors span at most a plane. Four is therefore the smallest equal-weight sector inventory that can be centered and still span all three spatial dimensions. The regular tetrahedral frame realizes the stronger isotropic identities
+
+$$
+\sum_{i=0}^{3}\hat{\mathbf n}_i=\mathbf0,
+\qquad
+\sum_{i=0}^{3}\hat{\mathbf n}_i\hat{\mathbf n}_i^{\mathsf T}=\frac43I_3.
+$$
+
+Pairing one positrino track and one electrino track with each of those four axes then gives the F6c $4{:}4$ inventory. Its eight-member count is therefore minimal only **conditional on separate centered noncoplanar symmetry in both polarity sectors**. It is not minimal for three-dimensional orientation, neutrality, or a three-row internal ledger: a $3{:}3$ six-member braid can supply those collectively through three opposite-polarity rows.
+
+Plainly: six members are enough to build an XYZ-like neutral assembly. Eight become the minimum only after demanding that the four positrinos alone and the four electrinos alone each form their own balanced three-dimensional scaffold. Whether nature or the Master Equation requires that extra sector-by-sector balance remains open.
+
+Claim level: **derived** for the planar obstruction to a centered three-member sector and for the tetrahedral identities; **inferred** that separate sector isotropy is useful to F6c symmetry closure; **open** whether that condition is physically necessary. A retained, stable, root-complete $3{:}3$ branch with the required three-row action and causal ledgers would falsify any claim that eight members are necessary. The next artifact is a constraint audit that marks each F6c identity as requiring four members per polarity, requiring only whole-assembly symmetry, or having a direct $3{:}3$ replacement; its promotion target is the F6c-versus-Family-A architecture comparison after a retained branch exists.
+
 ### Opposite-Edge-Pair Bridge To The Three Nested Rows
 
 There is a second exact relation that is closer to the nested-binary intuition. The four tetrahedral module labels form the vertices of the complete graph \(K_4\). Its six edges admit one exact decomposition into three perfect matchings, meaning three ways to pair all four vertices without reuse:

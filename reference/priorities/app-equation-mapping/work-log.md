@@ -6,6 +6,15 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-24 — Full-corpus equation baseline, symbols, and author workflow verified
+
+- Inventoried all 198 canonical Markdown files and registered all 4,587 display-equation occurrences. Each occurrence now has a stable semantic ID carried by an ordinary source-relative Markdown link and a generated read-only Equation Mapping page with formula TeX, source heading, line span, nearby context, search text, and symbol records.
+- Generated 29,590 structured symbol records. The runtime uses the same records for hover and keyboard-focus help and for the click/tap-accessible scrollable symbols-and-source panel; records distinguish locally detected definitions from explicitly labeled shared-notation inference.
+- Extended search and the read-only registry/API across all 4,587 pages. Non-promoted results open the same baseline equation/source/symbol surface without carousel or editor controls; the existing 23 promoted pages retain carousel placement and curated callouts. Promotion now means editorial mapping only, not a higher equation status.
+- Added author-owned automation: authors maintain the canonical equation and local symbol prose, while `build-equation-mapping-corpus.mjs --write` preserves or assigns IDs, inserts new links, and rebuilds the registry. Its check mode rejects coverage and drift failures and now runs in the content-integrity suite.
+- Regenerated 12 textbook reading copies and the strict iOS textbook package. Browser QA verified a non-promoted direct page, hover/click symbol access, the scrollable source panel, all-corpus search, a promoted carousel page, and hash/back-forward synchronization; a hash-routing defect discovered during QA was fixed before closure.
+- Moved `AEM-002` and `AEM-003` to verified. The remaining local rank-1 object is optional curated carousel promotion review; no equation claim, proof status, corpus authority, or equation-mapping score changed.
+
 ### 2026-08-24 — AEM-001 ordinary-link and registry contract verified
 
 - Added the versioned read-only Equation Mapping registry interface, exposed it on the live app page, and preserved the app's direct hash route and app-owned document authority.

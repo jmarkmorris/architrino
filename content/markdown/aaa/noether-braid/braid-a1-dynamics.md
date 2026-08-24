@@ -58,6 +58,8 @@ k_a\in\mathbb{Z},
 a\in\{1,2,3\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a5a46315f91ed2e)
+
 The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. When ordinary layer frequency is used below, $\omega_a=2\pi f_a$. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
 
 On the retuning hypothesis below, an accepted energy-level change is a one-$h_{\mathrm{act}}$ closed-cycle action transaction that moves the A1 record from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned braid should therefore carry information about the braid's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the braid.
@@ -78,6 +80,8 @@ A_N=Nh_{\mathrm{act}},
 E_N=A_N f_N
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-466985b3a3cee37b)
+
 Here $h_{\mathrm{act}}$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $f_N$ is a representative cadence extracted from the closed A1 branch. A one-$h_{\mathrm{act}}$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh_{\mathrm{act}}$. The accepted branch may answer through one or more of the cadence, binary radii, envelope scale, envelope ratio, orientation, strain, and inter-binary wake-exchange variables. The inter-binary ledgers $\mathcal{G}_{12},\mathcal{G}_{13},\mathcal{G}_{23}$ are defined in [Reduced A1 Closure Label](#reduced-a1-closure-label):
 
 $$
@@ -88,6 +92,8 @@ $$
 (f_N',\ R_1',R_2',R_3',\ \lambda',\ \xi',\ \mathcal{G}_{12}',\mathcal{G}_{13}',\mathcal{G}_{23}')
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9fe0ad2987524582)
+
 In the simplest fixed-speed layer estimate,
 
 $$
@@ -95,6 +101,8 @@ v_a\sim 2\pi R_a f_a,
 \qquad
 a\in\{1,2,3\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1176817d073586af)
 
 If a branch keeps $v_a$ approximately fixed while accepting the transaction, then
 
@@ -105,6 +113,8 @@ R_a f_a\approx\text{constant},
 \qquad
 \Delta f_a<0\Rightarrow\Delta R_a>0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0024771558386806)
 
 The proof target is the constrained map, not only this sign rule. On a fixed branch chart $q$, collect the logarithmic retuning variables into
 
@@ -118,11 +128,15 @@ $$
 \right)_q^{T}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ff5e6da23986d0a5)
+
 Let $A_{\mathrm{cyc},q}(\mathbf{y},\mathcal{G})$ be the closed-cycle action ledger on that chart, and let
 
 $$
 \mathcal{C}_q(\mathbf{y},\mathcal{G})=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c9288d5bee522f49)
 
 collect the integer phase-closure, causal-root, separator, inter-layer wake-exchange, and stability conditions that define the branch. A first-order accepted retuning with action sign $s_{\mathrm{act}}\in\{+1,-1\}$ must satisfy
 
@@ -134,6 +148,8 @@ D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 s_{\mathrm{act}}h_{\mathrm{act}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-23074096f2709cfc)
+
 together with the branch-preservation condition
 
 $$
@@ -142,6 +158,8 @@ D\mathcal{C}_q[\Delta\mathbf{y}]
 \Delta\mathcal{C}_{\mathcal{G}}
 =0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ffc5a96889b2ef66)
 
 If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-braid drift.
 
@@ -157,6 +175,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-40fc9548777d0c6f)
+
 where $\Lambda_{A1}$ is defined in [Reduced A1 Closure Label](#reduced-a1-closure-label), and $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
 
 $$
@@ -170,6 +190,8 @@ w_3^{(q)}\Delta\ln f_3,
 \qquad
 w_1^{(q)}+w_2^{(q)}+w_3^{(q)}=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-50b05367cdb69e52)
 
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full A1 record need not put the entire transaction into a single binary. One binary may tighten while another expands, and the path-history envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
@@ -189,6 +211,8 @@ A_N=Nh_{\mathrm{act}},
 N\in\mathbb{Z}_{>0}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-43a67fd474edd1e9)
+
 For any declared binary channel $a\in\{1,2,3\}$, write its action allocation as
 
 $$
@@ -198,11 +222,15 @@ I_a=N_a\hbar_{\mathrm{act}}
 =p_a^{(q)}N\frac{h_{\mathrm{act}}}{2\pi}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5f80c3ce2d933e6d)
+
 Here $p_a^{(q)}$ is the branch share carried by binary $a$ and $\hbar_{\mathrm{act}}\equiv h_{\mathrm{act}}/(2\pi)$. With the reduced circular-action chart
 
 $$
 I_a=\mu_a^{\mathrm{rot}}R_a v_a
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-11338919eb39c5f7)
 
 Here $\mu_a^{\mathrm{rot}}$ is an effective rotational branch-response coefficient for this reduced chart. It is not a primitive mass assigned to architrinos; it is a bookkeeping response factor that must ultimately be extracted from the same branch record used by the mass-map program.
 
@@ -216,11 +244,15 @@ R_a(N)\,v_a(N)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-39233f2eeeed92df)
+
 This is the part fixed directly by the $Nh_{\mathrm{act}}$ action ledger. It says that a higher rest level must carry a larger radius-speed product in the selected channel, but it does not by itself decide whether the extra product appears as larger radius, higher speed, or both. The separate functions $R_a(N)$, $v_a(N)$, and
 
 $$
 f_a(N)=\frac{v_a(N)}{2\pi R_a(N)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30cd902023a4c007)
 
 therefore require one more branch-closure equation.
 
@@ -229,6 +261,8 @@ One possible closure is a branch-pinned speed, stated as a chart hypothesis only
 $$
 v_a=\beta_ac_f
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-979fcda1f1b85602)
 
 with fixed $\beta_a$, then
 
@@ -245,6 +279,8 @@ f_a(N)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5060bd279aa4a162)
+
 This special branch gives
 
 $$
@@ -257,6 +293,8 @@ f_a\propto N^{-1}.
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-124e9fc52ad688b3)
+
 A different closure comes from a bare inverse-square radial balance. If the delayed root ledger reduces to
 
 $$
@@ -264,6 +302,8 @@ $$
 =
 \frac{K_a}{4R_a^2}\mathcal{B}_a(\beta_a;\Lambda_{A1,a})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-df0d3ce2d80f15ce)
 
 Here the factor $1/(4R_a^2)$ is the inverse-square factor for an opposite member at diameter $d=2R_a$. The coefficient $K_a$ is the reduced channel coupling combination, $\mathcal{B}_a(\beta_a;\Lambda_{A1,a})$ is the dimensionless delayed-root radial balance factor, and $\Lambda_{A1,a}$ is the selected channel sublabel inherited from the reduced A1 closure label. If $\mathcal{B}_a$ is approximately constant on the compared segment, then the same action product gives
 
@@ -277,6 +317,8 @@ f_a\propto N^{-3}.
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ab2d6498b25d0e57)
+
 Thus the $Nh_{\mathrm{act}}$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether sea return terms decide the actual rest-level scaling.
 
 If the selected binary channel instead carries a declared energy projection
@@ -284,6 +326,8 @@ If the selected binary channel instead carries a declared energy projection
 $$
 E_a(N)=\zeta_a^{(q)}\mu_a^{\mathrm{rot}}v_a^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f147536cff657cf7)
 
 then
 
@@ -300,6 +344,8 @@ R_a(N)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de3fbc5658b0addb)
+
 This form is the safest way to use any external energy-level equation: insert the branch energy projection $E_a(N)$, then derive the corresponding channel radius and speed.
 
 The same chart also gives a packing readout for the Noether sea, but the packing scale must be extracted from all six paths rather than from a preselected binary. In a nearly spherical exclusion-envelope approximation, let
@@ -310,11 +356,15 @@ R_{\mathrm{excl}}
 \alpha_{\mathrm{env}}^{(q)}R_{\mathrm{env}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7094ddb0f620e8dc)
+
 where $R_{\mathrm{env}}$ is a branch-derived characteristic radius of the full path-history envelope and $\alpha_{\mathrm{env}}^{(q)}$ converts it into the selected exclusion-interface threshold. Equal exclusion-envelope center contact then occurs at
 
 $$
 d_{\mathrm{nn}}=2R_{\mathrm{excl}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-029054146da0f4b3)
 
 and the densest ordinary equal-sphere center density is
 
@@ -324,6 +374,8 @@ $$
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4aba4f836f7c1f40)
+
 The density symbol functions as packing notation for this chart, distinct from the physical Noether sea density field $\rho_{\text{NS}}(\mathbf X,T)$; the $\#$ marks a center number density for the relevant Noether braid exclusion envelopes. Therefore the packing curve inherits the radius closure:
 
 $$
@@ -331,6 +383,8 @@ $$
 \propto
 R_{\mathrm{env}}(N)^{-3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e23505a2f3f89efd)
 
 If the branch independently proves that one selected channel $a$ controls $R_{\mathrm{env}}$ with a fixed proportionality, then its fixed-speed estimate gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while its bare inverse-square estimate with approximately constant $\mathcal{B}_a$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. Without that boundary-leading certificate, the single-channel exponents do not transfer to packing. These are branch diagnostics, not competing definitions of a Noether braid.
 
@@ -341,6 +395,8 @@ p_a^{(q)},\ \mu_a^{\mathrm{rot}},\ \alpha_{\mathrm{env}}^{(q)},\ \mathcal{B}_a(\
 \longrightarrow
 p_a(q,\theta_{\mathrm{env}}),\ \mu_a^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_{\mathrm{env}}(q,\theta_{\mathrm{env}}),\ \mathcal{B}_a(\beta_a;\Lambda_{A1,a},\theta_{\mathrm{env}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d24e06ff6d7a7a39)
 
 The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroidal envelope rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
 
@@ -359,6 +415,8 @@ k_1,k_2,k_3;\
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6f87b8ef688d5b56)
+
 Here $k_1,k_2,k_3$ are the binary winding counts over the chosen return period. The binary ledgers $\mathcal{G}_1,\mathcal{G}_2,\mathcal{G}_3$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-binary ledgers $\mathcal{G}_{12},\mathcal{G}_{13},\mathcal{G}_{23}$ record delayed exchange roots and phase-lock constraints between binary pairs. The branch label $\chi_c$ records braid chirality derived from the indexed path record, for example through $\operatorname{Wr}_c$ or a multi-component causal-writhe parity; it must not be inferred from a high/middle/low radius ordering.
 
 The assembly counts are explicit aggregations of those ledgers:
@@ -367,6 +425,8 @@ N_s(\Lambda_{A1})
 =
 \sum_{a=1}^{3}N_s(\mathcal G_a),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0224bdc46eb807e1)
 $$
 M_p(\Lambda_{A1})
 =
@@ -374,6 +434,8 @@ M_p(\Lambda_{A1})
 +
 \sum_{1\le a<b\le3}M_p^{\mathrm{inter}}(\mathcal G_{ab}).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3a928c7281453dbf)
 Here $\mathcal G_a$ carries the within-binary self and partner roots, while $\mathcal G_{ab}$ carries the directed cross-binary roots. Any compressed count must reproduce these transmitter-identity partitions.
 
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{A1}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
@@ -390,6 +452,8 @@ $$
 =
 \left\{a:\text{a retained same-transmitter root row exists on }W\right\}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-167197368d858bea)
 These sets preserve the binary indices and derive their roles from the retained record. The alignment-restricted label is the theorem-target restriction
 $$
 \Lambda_{A1}^{\mathrm{align}}
@@ -402,6 +466,8 @@ $$
 \text{precession ceases}
 }}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bd44ee6068b2a48b)
 with the remaining admissible entries inherited from the binary ledgers, inter-binary ledgers, chirality entry, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
 $$
 \mathcal{L}_U(\theta_{\mathrm{env}})
@@ -416,6 +482,8 @@ $$
 /
 \sim_{\mathrm{env},\theta_{\mathrm{env}},W}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7ce5f2a90fb08bba)
 Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 
 ### Geometry and Exclusion Envelope

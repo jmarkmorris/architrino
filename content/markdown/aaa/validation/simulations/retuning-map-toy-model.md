@@ -36,6 +36,8 @@ $$
 \right)^T
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6016bd6fa4dec409)
+
 Given a positive semidefinite retuning-cost matrix $\mathbf{K}^{\mathrm{ret}}_q$, the fixture solves
 
 $$
@@ -47,6 +49,8 @@ $$
 \Delta\mathbf{y}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2f2be58ed4c74128)
+
 subject to
 
 $$
@@ -56,6 +60,8 @@ D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 =
 \sigma h
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8850fe0716bb5eeb)
 
 and the declared linearized branch constraints. The layer-speed diagnostics are then checked through
 
@@ -69,6 +75,8 @@ $$
 a\in\{1,2,3\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-161a0863a2c781cf)
+
 The specified algorithm applies the candidate source-record speed gates below. These branch roles do not assign an A1 or other taxonomy member:
 
 $$
@@ -78,6 +86,8 @@ s_1'>c_f,
 \qquad
 s_3'<c_f
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-665a2b9b2bcfaf55)
 
 The representative Noether braid cadence increment is
 
@@ -93,6 +103,8 @@ w_3\Delta\ln\nu_3,
 w_1+w_2+w_3=1
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd4ef1008dbdcd71)
+
 For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per braid, the first current estimate is
 
 $$
@@ -103,6 +115,8 @@ f_N r_\sigma\Delta\nu_N^{(q,\sigma)}
 +
 O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f914069606810168)
 
 ## Input Packet
 

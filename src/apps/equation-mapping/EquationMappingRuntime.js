@@ -852,6 +852,8 @@ export class EquationMappingRuntime {
     this.searchOpen = false;
     this.settingsOpen = false;
     this.editorOpen = false;
+    this.referencePanelOpen = false;
+    this.activeSymbolId = this.activeDocument.symbols[0]?.id ?? "";
     this.searchQuery = "";
     this.anchorElements = new Map();
     this.overlayElements = new Map();
@@ -883,8 +885,10 @@ export class EquationMappingRuntime {
     }
     this.handleResize = () => this.scheduleEquationLayout();
     this.handleKeyDown = (event) => this.handleDocumentKeyDown(event);
+    this.handleHashChange = () => this.syncActiveDocumentFromLocation();
     this.window?.addEventListener?.("resize", this.handleResize);
     this.window?.addEventListener?.("keydown", this.handleKeyDown);
+    this.window?.addEventListener?.("hashchange", this.handleHashChange);
     this.render();
     return this;
   }
@@ -892,6 +896,7 @@ export class EquationMappingRuntime {
   destroy() {
     this.window?.removeEventListener?.("resize", this.handleResize);
     this.window?.removeEventListener?.("keydown", this.handleKeyDown);
+    this.window?.removeEventListener?.("hashchange", this.handleHashChange);
   }
 
   persistSettings() {
@@ -955,18 +960,41 @@ export class EquationMappingRuntime {
     this.activeDocumentId = nextDocument.id;
     this.activeAnchorId = nextDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
+    this.activeSymbolId = nextDocument.symbols[0]?.id ?? "";
+    if (!nextDocument.promoted) this.editorOpen = false;
     this.expandedSubjectIds.add(nextDocument.subject);
     replaceLocationHashForDocument(this.window, nextDocument);
     this.persistSettings();
     this.render();
   }
 
+  syncActiveDocumentFromLocation() {
+    const requestedDocumentId = readLocationHashId(this.window);
+    const documentId = resolveEquationMapDocumentId(this.documents, requestedDocumentId);
+    if (!documentId || documentId === this.activeDocument.id) return false;
+    const nextDocument = this.documents.find((document) => document.id === documentId);
+    if (!nextDocument) return false;
+    this.activeDocumentId = nextDocument.id;
+    this.activeAnchorId = nextDocument.anchors[0]?.id ?? "";
+    this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
+    this.activeSymbolId = nextDocument.symbols[0]?.id ?? "";
+    if (!nextDocument.promoted) this.editorOpen = false;
+    this.expandedSubjectIds.add(nextDocument.subject);
+    this.persistSettings();
+    this.render();
+    return true;
+  }
+
   getVisibleDocumentList() {
     return this.documents;
   }
 
+  getCarouselDocumentList() {
+    return this.documents.filter((document) => document.promoted);
+  }
+
   getDocumentByOffset(offset) {
-    const list = this.getVisibleDocumentList();
+    const list = this.getCarouselDocumentList();
     const currentIndex = list.findIndex((document) => document.id === this.activeDocument.id);
     if (currentIndex < 0) {
       return null;
@@ -1138,16 +1166,19 @@ export class EquationMappingRuntime {
         this.persistSettings();
         this.render();
       });
-      const itemList = createElement(this.document, "div", "equation-mapping-index-items");
-      entries.forEach((entry) => {
-        const button = createElement(this.document, "button", "equation-mapping-index-item");
-        button.type = "button";
-        button.classList.toggle("is-active", entry.id === this.activeDocument.id);
-        button.append(createElement(this.document, "span", "", entry.title));
-        button.addEventListener("click", () => this.setActiveDocument(entry.id));
-        itemList.append(button);
-      });
-      group.append(toggle, itemList);
+      group.append(toggle);
+      if (isExpanded) {
+        const itemList = createElement(this.document, "div", "equation-mapping-index-items");
+        entries.forEach((entry) => {
+          const button = createElement(this.document, "button", "equation-mapping-index-item");
+          button.type = "button";
+          button.classList.toggle("is-active", entry.id === this.activeDocument.id);
+          button.append(createElement(this.document, "span", "", entry.title));
+          button.addEventListener("click", () => this.setActiveDocument(entry.id));
+          itemList.append(button);
+        });
+        group.append(itemList);
+      }
       groups.append(group);
     });
     index.append(header, groups);
@@ -1163,6 +1194,7 @@ export class EquationMappingRuntime {
   renderEquationCarousel() {
     const carousel = createElement(this.document, "nav", "equation-mapping-carousel");
     carousel.setAttribute("aria-label", "Equation navigation");
+    carousel.hidden = !this.activeDocument.promoted;
     carousel.append(
       this.renderCarouselButton("previous", -1, "Previous equation"),
       this.renderCarouselButton("next", 1, "Next equation")
@@ -1207,12 +1239,6 @@ export class EquationMappingRuntime {
         this.editorOpen = false;
         this.render();
       }, this.searchOpen),
-      this.renderIconButton("edit", "Edit map", () => {
-        this.editorOpen = !this.editorOpen;
-        this.searchOpen = false;
-        this.settingsOpen = false;
-        this.render();
-      }, this.editorOpen),
       this.renderIconButton("settings", "Canvas settings", () => {
         this.settingsOpen = !this.settingsOpen;
         this.searchOpen = false;
@@ -1220,6 +1246,18 @@ export class EquationMappingRuntime {
         this.render();
       }, this.settingsOpen)
     );
+    if (this.activeDocument.promoted) {
+      const settingsButton = controls.lastChild;
+      controls.insertBefore(
+        this.renderIconButton("edit", "Edit map", () => {
+          this.editorOpen = !this.editorOpen;
+          this.searchOpen = false;
+          this.settingsOpen = false;
+          this.render();
+        }, this.editorOpen),
+        settingsButton
+      );
+    }
     if (this.searchOpen) {
       controls.append(this.renderSearchPanel());
     }
@@ -1256,12 +1294,29 @@ export class EquationMappingRuntime {
       this.render();
     });
     const results = createElement(this.document, "div", "equation-mapping-search-results");
-    filterEquationMapDocuments(this.documents, this.searchQuery).forEach((entry) => {
+    const matches = this.searchQuery.trim()
+      ? filterEquationMapDocuments(this.documents, this.searchQuery)
+      : [];
+    if (!this.searchQuery.trim()) {
+      results.append(createElement(
+        this.document,
+        "p",
+        "equation-mapping-empty",
+        `Search all ${this.documents.length.toLocaleString()} corpus equations by formula, symbol, topic, or source.`
+      ));
+    }
+    matches.slice(0, 100).forEach((entry) => {
       const button = createElement(this.document, "button", "equation-mapping-search-result");
       button.type = "button";
       button.append(
         createElement(this.document, "strong", "", entry.title),
-        createInlineMathTextElement(this.window, this.document, "span", "", entry.subject)
+        createInlineMathTextElement(this.window, this.document, "span", "", entry.subject),
+        createElement(
+          this.document,
+          "small",
+          "",
+          [entry.source?.sourceHeading, entry.source?.sourcePath].filter(Boolean).join(" · ")
+        )
       );
       button.addEventListener("click", () => {
         this.searchOpen = false;
@@ -1269,8 +1324,16 @@ export class EquationMappingRuntime {
       });
       results.append(button);
     });
-    if (!results.childElementCount) {
+    if (this.searchQuery.trim() && matches.length === 0) {
       results.append(createElement(this.document, "p", "equation-mapping-empty", "No equations found."));
+    }
+    if (matches.length > 100) {
+      results.append(createElement(
+        this.document,
+        "p",
+        "equation-mapping-empty",
+        `Showing the first 100 of ${matches.length.toLocaleString()} matches. Refine the search to narrow the list.`
+      ));
     }
     panel.append(input, results);
     setTimeout(() => input.focus?.(), 0);
@@ -1458,7 +1521,13 @@ export class EquationMappingRuntime {
     pointerSvg.classList.add("equation-mapping-pointer-layer");
     pointerSvg.setAttribute("aria-hidden", "true");
     this.pointerSvg = pointerSvg;
-    stage.append(pointerSvg, this.renderEquationTitle(), this.renderEquation(), this.renderOverlayLayer());
+    stage.append(
+      pointerSvg,
+      this.renderEquationTitle(),
+      this.renderEquation(),
+      this.renderOverlayLayer()
+    );
+    if (this.referencePanelOpen) stage.append(this.renderReferencePanel());
     return stage;
   }
 
@@ -1466,7 +1535,128 @@ export class EquationMappingRuntime {
     const title = createElement(this.document, "div", "equation-mapping-equation-title");
     this.equationTitleElement = title;
     title.append(createElement(this.document, "strong", "", this.activeDocument.title));
+    const referenceButton = createElement(
+      this.document,
+      "button",
+      "equation-mapping-reference-toggle",
+      "ⓘ Symbols & source"
+    );
+    referenceButton.type = "button";
+    referenceButton.setAttribute("aria-expanded", String(this.referencePanelOpen));
+    referenceButton.addEventListener("click", () => {
+      this.referencePanelOpen = !this.referencePanelOpen;
+      this.render();
+    });
+    title.append(referenceButton);
     return title;
+  }
+
+  renderSymbolStrip() {
+    const strip = createElement(this.document, "div", "equation-mapping-symbol-strip");
+    strip.setAttribute("aria-label", "Equation symbols");
+    if (this.activeDocument.symbols.length === 0) {
+      strip.append(createElement(this.document, "span", "equation-mapping-symbol-empty", "No variable symbols"));
+      return strip;
+    }
+    this.activeDocument.symbols.forEach((symbol) => {
+      const button = createElement(this.document, "button", "equation-mapping-symbol-chip");
+      button.type = "button";
+      button.title = symbol.definition;
+      button.dataset.definition = symbol.definition;
+      button.setAttribute("aria-label", `${symbol.tex}: ${symbol.definition}`);
+      button.classList.toggle("is-active", symbol.id === this.activeSymbolId && this.referencePanelOpen);
+      renderMath(this.window, button, symbol.tex, { displayMode: false });
+      button.addEventListener("click", () => {
+        this.activeSymbolId = symbol.id;
+        this.referencePanelOpen = true;
+        this.render();
+      });
+      strip.append(button);
+    });
+    return strip;
+  }
+
+  renderReferencePanel() {
+    const panel = createElement(this.document, "aside", "equation-mapping-reference-panel");
+    panel.setAttribute("aria-label", "Equation symbols and source context");
+    const header = createElement(this.document, "header", "equation-mapping-reference-panel-header");
+    header.append(createElement(this.document, "strong", "", "Symbols & source"));
+    const close = createElement(this.document, "button", "equation-mapping-reference-close", "×");
+    close.type = "button";
+    close.title = "Close symbols and source";
+    close.setAttribute("aria-label", close.title);
+    close.addEventListener("click", () => {
+      this.referencePanelOpen = false;
+      this.render();
+    });
+    header.append(close);
+
+    const source = this.activeDocument.source;
+    const sourceSection = createElement(this.document, "section", "equation-mapping-reference-section");
+    sourceSection.append(createElement(this.document, "h2", "", "Source context"));
+    const sourceLink = createElement(this.document, "a", "equation-mapping-source-link", source.sourceHeading || "Open source");
+    sourceLink.href = source.sourceHref || source.sourcePath;
+    sourceSection.append(sourceLink);
+    sourceSection.append(createElement(
+      this.document,
+      "p",
+      "equation-mapping-source-path",
+      [source.sourcePath, source.startLine ? `lines ${source.startLine}–${source.endLine ?? source.startLine}` : ""]
+        .filter(Boolean)
+        .join(" · ")
+    ));
+    if (source.contextBefore) {
+      sourceSection.append(createInlineMathTextElement(
+        this.window,
+        this.document,
+        "p",
+        "equation-mapping-source-excerpt",
+        source.contextBefore
+      ));
+    }
+    if (source.contextAfter) {
+      sourceSection.append(createInlineMathTextElement(
+        this.window,
+        this.document,
+        "p",
+        "equation-mapping-source-excerpt",
+        source.contextAfter
+      ));
+    }
+
+    const symbolsSection = createElement(this.document, "section", "equation-mapping-reference-section");
+    symbolsSection.append(createElement(this.document, "h2", "", "Symbol definitions"));
+    if (this.activeDocument.symbols.length === 0) {
+      symbolsSection.append(createElement(
+        this.document,
+        "p",
+        "equation-mapping-empty",
+        "This equation contains no variable symbols requiring definitions."
+      ));
+    }
+    this.activeDocument.symbols.forEach((symbol) => {
+      const item = createElement(this.document, "article", "equation-mapping-symbol-definition");
+      item.classList.toggle("is-active", symbol.id === this.activeSymbolId);
+      const symbolElement = createElement(this.document, "strong", "equation-mapping-symbol-definition-tex");
+      renderMath(this.window, symbolElement, symbol.tex, { displayMode: false });
+      item.append(
+        symbolElement,
+        createInlineMathTextElement(this.window, this.document, "p", "", symbol.definition)
+      );
+      const definitionBasis = symbol.definitionSource === "source-context"
+        ? "local source context"
+        : "shared corpus notation";
+      item.append(createElement(
+        this.document,
+        "small",
+        "",
+        [symbol.scope ? `Scope: ${symbol.scope}` : "", `Definition basis: ${definitionBasis}`].filter(Boolean).join(" · ")
+      ));
+      symbolsSection.append(item);
+    });
+
+    panel.append(header, sourceSection, symbolsSection);
+    return panel;
   }
 
   renderEquation() {
@@ -1531,7 +1721,7 @@ export class EquationMappingRuntime {
       }
       equation.append(partElement);
     });
-    equationShell.append(equation);
+    equationShell.append(equation, this.renderSymbolStrip());
     return equationShell;
   }
 

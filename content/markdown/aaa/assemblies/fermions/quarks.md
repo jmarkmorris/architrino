@@ -35,10 +35,14 @@ The total constituent count of a quark is therefore
 $$
 N_{\text{quark}} = N_{\text{braid}} + 6
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0195af62a01fdc6b)
 with
 $$
 N_{\text{braid}} \in \{6,4,2\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cca1c4e5c36b7bb5)
 for Generations I, II, and III respectively. Here $N_{\text{braid}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
 
 - Generation I quark: 12 architrinos.
@@ -70,10 +74,14 @@ All up-type quarks share the same six-site axial count:
 $$
 5\epsilon_+ + 1\epsilon_-
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b1f7a88e9029bf66)
 That gives net charge
 $$
 Q = \frac{5-1}{6}e = +\frac{2}{3}e
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-862dad1da898bead)
 
 At axis level, the canonical up-type structure is:
 
@@ -85,16 +93,22 @@ $$
 \big((\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_+),(\epsilon_+,\epsilon_+)\big)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bfcf10cab758c200)
+
 ### Down-type template
 
 All down-type quarks share the same six-site axial count:
 $$
 2\epsilon_+ + 4\epsilon_-
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ca8bdff68a4533c4)
 That gives net charge
 $$
 Q = \frac{2-4}{6}e = -\frac{1}{3}e
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-33c1c6e8ffdbadbc)
 
 The down-type sector admits two allowed axis-pattern families:
 
@@ -102,10 +116,14 @@ The down-type sector admits two allowed axis-pattern families:
    $$
    \big((\epsilon_+,\epsilon_+),(\epsilon_-,\epsilon_-),(\epsilon_-,\epsilon_-)\big)
    $$
+
+   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d1e411e23a32c36)
 2. Family II: one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_-,\epsilon_-),(\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_-)\big)
    $$
+
+   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6c13f7a7d043ffc2)
 
 Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The catalog does not assign $d$, $s$, and $b$ to separate families as a settled rule.
 
@@ -121,10 +139,14 @@ For right-handed quarks:
   $$
   T_3 = 0
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e021f2a9523c201b)
 - and the weak hypercharge is determined directly by
   $$
   Y = 2Q
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-04d4ef5262aa0ed0)
 
 This gives the standard singlet assignments:
 
@@ -151,10 +173,14 @@ In this bookkeeping:
   $$
   T_3 = +\frac{1}{2}, \qquad Y = +\frac{1}{3}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ba25e79f03f58d30)
 - the down-type branch carries
   $$
   T_3 = -\frac{1}{2}, \qquad Y = +\frac{1}{3}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-01af42fbf433e4e7)
 
 This gives the standard doublet bookkeeping:
 
@@ -182,10 +208,14 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
   $$
   1\epsilon_+,5\epsilon_-,\qquad Q=-\frac{2}{3}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-56fe0008e30972a9)
 - anti-down family $(\bar d,\bar s,\bar b)$:
   $$
   4\epsilon_+,2\epsilon_-,\qquad Q=+\frac{1}{3}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ea88ab24a448161b)
 
 The geometric implementation candidate then reads:
 
@@ -209,6 +239,8 @@ $$
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-772ed405fd3eb304)
+
 #### Left-handed antiquark bookkeeping
 
 For the left-handed polarity-conjugate antimatter branch, the same mirror logic gives:
@@ -224,6 +256,8 @@ $$
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0bee4b2bafc7ed4c)
+
 The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate antimatter lookup system. Once the matter sector is specified, the polarity-conjugate antimatter sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by a polarity-conjugate retained branch, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
 
 The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the matter-branch rows are declared. The open claim is the substrate implementation: a polarity-conjugate retained branch, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
@@ -234,10 +268,14 @@ The larger comparative map embeds the six-site axial-inventory ledger directly i
 $$
 (T_3,Y)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-462a99f3f8bceb14)
 while electric charge appears on the diagonal through
 $$
 Q = T_3 + \frac{Y}{2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b019b1d4b7984d4f)
 
 For quarks, this gives a compact map:
 
@@ -308,18 +346,26 @@ For any quark flavor $q$, the color space is the ordered basis
 $$
 \mathcal{H}^{\text{color}}_q = \mathrm{span}\{|q_1\rangle, |q_2\rangle, |q_3\rangle\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e011ea95dd2d916)
 where $|q_1\rangle$, $|q_2\rangle$, and $|q_3\rangle$ mean that the exceptional axis sits on indexed axis 1, 2, or 3 respectively.
 
 This basis may be identified with the conventional color labels by the fixed phase convention
 $$
 |q_1\rangle \leftrightarrow \text{Red} \leftrightarrow 0^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f742ed0a807cbf75)
 $$
 |q_2\rangle \leftrightarrow \text{Green} \leftrightarrow 120^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b2f63c07975910a3)
 $$
 |q_3\rangle \leftrightarrow \text{Blue} \leftrightarrow 240^\circ
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4f34ed514536f110)
 
 The exact angular labels are conventional. What matters geometrically is that the three states are separated by the three-way axis choice and behave as the triplet basis of the color sector.
 
@@ -354,6 +400,8 @@ The two orderings
 $$
 (\epsilon_+,\epsilon_-)\quad\text{and}\quad(\epsilon_-,\epsilon_+)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c7f61d2fe99d2f12)
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
 The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with the polarity-conjugate antimatter branch, giving the anti-red, anti-green, and anti-blue states. Its pro/anti ordered orientation is inherited unchanged under that conjugation.
@@ -424,6 +472,8 @@ $$
 |u_2\rangle \leftrightarrow |u_3\rangle,\qquad
 |u_1\rangle \leftrightarrow |u_3\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-57dafda2a8c456dc)
 and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion. For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ### Generator picture
@@ -432,6 +482,8 @@ With the ordered basis $(1,2,3)$ fixed, the color action is represented by
 $$
 U \in SU(3)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a8ee260cc9e6e344)
 because the transformation must preserve norm, remain within the one-axis-exceptionality sector, and have unit determinant after removing the unobservable overall phase.
 
 The eight gluon modes are then the eight traceless generators of this action. In axis language:
@@ -468,6 +520,8 @@ $$
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a558bb5371ee2234)
+
 where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern, from the BESIII $J/\psi\to\Lambda\bar{\Lambda}$-class spin-correlation measurement, is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an import of QCD vacuum ontology or a claim that "nothing" creates particles. The native branch must connect, in one event record, the strong-collision work input, the local Noether sea participation, the quark-level axial and color records, the confinement or hadronization route into color-singlet hyperons, feed-down and remnant rows, and the final weak-decay detector readout. In schematic form the benchmark asks for
@@ -484,6 +538,8 @@ I_{\mathrm{had}},
 \Delta R
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a0eab6c5942f968)
 
 where $I_{\mathrm{had}}$ is the selected hadronization route. The readout $P_{\Lambda\bar{\Lambda}}^{\mathrm{obs}}$ should be large in the short-range bin and tend to zero when the pair separation is large enough for decoherence, dilution, or unrelated production histories to dominate. A quark-sector closure that reproduces hadron spectra while losing this spin-correlation provenance would still be incomplete.
 

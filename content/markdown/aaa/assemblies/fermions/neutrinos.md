@@ -56,6 +56,8 @@ $$
 +
 \delta\Omega_{\mathrm{bin}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-43455336df35e401)
 where $\omega_{\nu 0}\mathbf{1}$ is the large near-photon common propagation term and $\delta\Omega_{\mathrm{bin}}$ is the residual internal-binary phase operator. The common term is why the neutrino is a high-speed neutral channel. The residual term is why it can oscillate instead of becoming a photon-channel packet.
 
 **This split is referent-pending, and the mark is not a formality.** $\delta\Omega_{\mathrm{bin}}$ is defined as the departure from the photon lock, so it is well posed exactly when that lock is an equilibrium the assembly occupies. The declared family does not bind, so the split currently has no located base point to be a departure *from*. The consequence is specific and worth stating plainly: no property of $\delta\Omega_{\mathrm{bin}}$ — its magnitude, its spectrum, its symmetry character — can be measured or argued about before a lock closes, because a perturbation about a non-equilibrium has no referent at any anchoring, magnitude, or sign. The split is retained as the intended construction and as the shape the closure program targets. It is not yet a decomposition of a retained object, and it should not be used as a premise.
@@ -67,6 +69,8 @@ E_{\nu,\mathrm{int}}
 E_{\nu,\mathrm{exp}}(T)
 +E_{\nu,\mathrm{sh}}(T),
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3297348da6caaa42)
 where $E_{\nu,\mathrm{exp}}(T)$ is the weak-channel exposed part and $E_{\nu,\mathrm{sh}}(T)$ is the internally shielded part of the same retained branch. The state $|\psi_\nu(T)\rangle$ lives in the three-mode residual-binary space on which $H_{\mathrm{geo}}$ acts. Because $H_{\mathrm{geo}}$ carries mass-squared-response units rather than energy units, the weak-projected response must first be mapped into an energy-facing phase row for a declared ultrarelativistic comparison energy $E_\nu$:
 $$
 \mu_{\nu,W}^2(T)
@@ -77,6 +81,8 @@ $$
 \equiv
 \frac{\mu_{\nu,W}^2(T)}{2E_\nu}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2d748b8012a897ed)
 A compact closure target is
 $$
 \mathcal{R}_{\nu,\mathrm{shield}}
@@ -94,6 +100,8 @@ E_{\nu,\mathrm{exp}}+E_{\nu,\mathrm{sh}}
 \right)
 \right\|,
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-03ceda953bfdddd6)
 with $\Pi_W$ the weak-exposure projector on the near-photon branch. This does not make the neutrino's mass a hidden-energy label. It states that the tiny observer-facing mass and oscillation signal must come from the same exposed fraction that the weak channel samples, while the total retained internal ledger remains conserved during free propagation.
 
 The three residual internal binaries should remain visible in the closure record before PMNS fitting begins. A resolved near-photon branch may be written schematically as
@@ -115,6 +123,8 @@ E_{\nu,\mathrm{exp}}(T)
 \sum_{\ell=1}^{3}
 \zeta_{\ell W}(T)E_{\ell}(T).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fcfb96e421e278bc)
 Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
 
 Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar polarity-conjugate lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
@@ -154,6 +164,8 @@ H_{\mathrm{geo}}=
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \varpi_3
 \end{pmatrix}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-91879a44ba03295f)
 with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar polarity-conjugate braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
 Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\varpi_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
@@ -162,6 +174,8 @@ H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger,\qquad
 \Lambda=\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3),\qquad
 |\nu_\alpha\rangle=\sum_i U_{\alpha i}|\nu_i\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cac4da89653d1c29)
 Thus $\lambda_i$ is not an energy eigenvalue; it is the geometric counterpart of a mass-squared propagation response, and $\Delta\lambda_{ij}=\lambda_i-\lambda_j$.
 
 Vacuum oscillation probabilities follow:
@@ -171,9 +185,13 @@ P_{\alpha\to\beta}(L,E)=
 -4\sum_{i<j}\Re\!\left[U_{\alpha i}U_{\beta i}^*U_{\alpha j}^*U_{\beta j}\right]\sin^2\Delta_{ij}
 +2\sum_{i<j}\Im\!\left[U_{\alpha i}U_{\beta i}^*U_{\alpha j}^*U_{\beta j}\right]\sin(2\Delta_{ij})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-779fcc2e064faeab)
 $$
 \Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f86c5bad6a561cfc)
 The displayed CP-odd sign fixes the neutrino convention for the basis above. Antineutrino comparisons use the complex-conjugated mixing matrix, so the CP-odd term changes sign; in matter, the charged-current part of the matter potential also reverses sign.
 
 The two-basis distinction is part of the recovery target, not optional notation. Weak reactions create and detect flavor-basis states $|\nu_\alpha\rangle$, while propagation follows the eigenbasis $|\nu_i\rangle$ of $H_{\mathrm{geo}}$. In the two-state limit this reduces to the benchmark form
@@ -183,6 +201,8 @@ P_{\nu_e\to\nu_\mu}(L,E)
 \sin^2(2\theta)\,
 \sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b964eb17aee3bb04)
 using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
 
 The experimental implementation makes this split operational. A long-baseline beam creates a flavor-tagged neutrino through a weak reaction, lets the neutral branch propagate over a declared baseline, and reads the detector flavor from the charged products of the rare interaction that finally occurs. The beamline may be described as a muon-neutrino source, but in the propagation interval the retained state is not a flavor eigenstate; it is a superposition of mass-response eigencomponents whose relative phases change with $L/E$ and with the intervening matter record. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is therefore one event ledger with source, propagation, and detector rows: source flavor tag, energy spectrum, baseline, in-medium phase correction, detector flavor tag, recoil, and missing neutral-lepton row must all refer to the same near-photon branch history. Oscillation measurements then constrain eigenvalue gaps and ordering pressure, not the absolute mass scale by themselves.
@@ -191,6 +211,8 @@ Matter correction enters through a flavor-structured operator sourced by the loc
 $$
 n(\mathbf X,T)\equiv\frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-33d3c4be7249a212)
 but the MSW-facing correction must also sample the embedded electron, proton, and neutron assembly content through the weak-exposure projector. Let $\theta_{\mathrm{sea}}(\mathbf X,T)$ denote that local Noether sea record, including $n(\mathbf X,T)$ and the matter-assembly content relevant to coherent weak scattering. The effective operator is
 $$
 H_{\mathrm{eff}}^{\alpha\beta}
@@ -204,6 +226,8 @@ V_{\mathrm{mat}}^{\alpha\beta}
 E_\nu
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-20f0b4c4aef5206b)
 where $V_{\mathrm{mat}}^{\alpha\beta}$ is a flavor-structured mass-squared-response operator. In the Standard Model comparison limit it must reduce, up to the oscillation-irrelevant identity part, to the charged-current MSW row,
 $$
 V_{\mathrm{mat}}^{\alpha\beta}
@@ -216,6 +240,8 @@ V_{\mathrm{CC}}(n_e(\mathbf X,T)) & 0 & 0\\
 \end{pmatrix}^{\alpha\beta}
 +2E_\nu V_{\mathrm{NC}}(\mathbf X,T)\delta^{\alpha\beta}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a07a3dea8d8edd2d)
 Here $n_e$ is the local electron density in the matter record. The charged-current term tracks that electron density, while the neutral-current identity term contributes only a common phase unless sterile or right-handed branches are being compared. The full matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 
 Closure criterion for this chapter: one near-photon geometric phase-operator family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](./weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../validation/constraint-ledger.md).
@@ -246,4 +272,6 @@ m_{\mathrm{lightest}}\to 0,
 \qquad
 \sum_i m_i \approx 0.06\,\mathrm{eV}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-839f7e31d1c8b412)
 paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter the mass-sum and sterile-branch values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum or a detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry. The suppressed neutrinoless double-beta rate is not a discriminator target in the same sense — it is the prediction of the Dirac/Majorana gate above on the $C$-odd branch, and a contrary signal would force revision beyond the neutral-lepton geometry, reaching the $C$-parity of the chirality invariant on which the exact-$CP$ derivation also rests.

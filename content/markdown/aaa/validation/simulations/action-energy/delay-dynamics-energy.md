@@ -10,6 +10,8 @@ Fix a finite retained system over a time window $W=[T_a,T_b]$, a spatial window 
 $$
 \mathfrak{B}(\Gamma,\mathcal{S};H_{\mathrm{hist}},\eta,\epsilon_c)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-4bb181a0010ce0c0)
 for the same active causal-root rows used by the [Master Equation](../../../dynamics/master-equation.md). The retained history at time $T$ is the segment
 $$
 X_T
@@ -23,6 +25,8 @@ a\in A_\Omega,\,
 -H_{\mathrm{hist}}\le\theta\le0
 \right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-3a71609f8761a10f)
 with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly. Here $A_\Omega$ is the retained architrino index set for the window, not a new kind of assembly.
 
 A promoted delay-energy functional has the form
@@ -35,6 +39,8 @@ E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 +
 E_{\mathrm{sea},\Omega}^{(\eta)}(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-0b89f3a69cbb51f2)
 where $K_{\mu}^{(\eta)}$ is the declared mechanical kinetic bookkeeping proxy, $E_{\text{wake},\mathfrak{B}}^{(\eta)}$ is the causal-history interaction contribution, and $E_{\mathrm{sea},\Omega}^{(\eta)}$ is included only when retained Noether sea degrees of freedom are part of the window. None of these terms is allowed to absorb an unreported boundary flux or unresolved reaction channel.
 
 Observer-level gravitational potential energy is therefore a comparison construct, not a fourth primitive term. When a Newtonian or general-relativistic benchmark writes a gravitational-potential term, this chapter must not carry that term into an $\mathbb{A}\mathbb{A}\mathbb{A}$ action as a primitive. Over a declared window it has to be reconstructed on the same branch chart from the existing packet: $K_{\mu}^{(\eta)}$, $E_{\text{wake},\mathfrak{B}}^{(\eta)}$, any retained $E_{\mathrm{sea},\Omega}^{(\eta)}$, and the boundary-flux row required by finite-window balance. Until that reconstruction is supplied, the gravitational potential remains an effective comparison label rather than an action-level energy.
@@ -56,6 +62,8 @@ E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 \partial_{T_1}
 \mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(T_1,T_t)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-b18404360b9e9267)
 is the candidate in-flight causal-history charge. This is the route developed in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-a-time-boundary) and [Effective Lagrangian](../../../dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws). It becomes theorem-level only when the same action also gives the accepted acceleration law and the endpoint leakage residual vanishes.
 
 ### Work-Integral Route
@@ -73,6 +81,8 @@ U_\ast
 \cdot
 \mathbf V_i(T')\,dT'
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-9fec1cfc2a8e2139)
 This route is trajectory-local. It is useful for simulations and branch replay, but it is not an off-shell conserved charge unless the same action and boundary convention have already been declared.
 
 #### Binary Branch Work Ledger
@@ -87,6 +97,8 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 \cdot
 \mathbf V_i(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-1d2aea80ef648845)
 The same row must also be available before superposition. For each retained source/root hit $(i,j,T_t)$ on the branch chart, define the root-resolved delivered power
 $$
 P_{i\leftarrow j,T_t}^{(\eta)}(T)
@@ -96,6 +108,8 @@ P_{i\leftarrow j,T_t}^{(\eta)}(T)
 \cdot
 \mathbf V_i(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-87675bd20c2fe1a8)
 so that
 $$
 P_{b,\mathrm{work}}^{(\eta)}(T)
@@ -105,6 +119,8 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
 P_{i\leftarrow j,T_t}^{(\eta)}(T)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-7d54e85f39a0ca25)
 on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar. The work-integral route then reconstructs the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
@@ -114,6 +130,8 @@ U_b(T_\ast)
 \int_{T_\ast}^{T}
 P_{b,\mathrm{work}}^{(\eta)}(T')\,dT'
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-9e8999683a519427)
 For a primitive kinetic scalar, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_i\|)$ inside the sum. This is the operational binary definition: the wake-history row is whatever balances the delivered branch work along the realized trajectory, after the window, regulator, and branch ledger have been declared.
 
 On a circular benchmark with speed $s_b$, the radial component is orthogonal to the receiver velocity, so the branch power is the tangential row:
@@ -127,6 +145,8 @@ P_{b,\mathrm{work}}^{(\eta)}
 A_{\eta,b}^{\mathrm{tan}}
 \right\rangle_{P_b}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-df0c816928641a89)
 for the quadratic proxy. A nonzero value is not by itself an energy-conservation failure; it is the quantity that the boundary flux, recoil row, or constructed wake-history term must balance. A stable binary claim must therefore compute this row on the same branch chart as the motion residuals before invoking a Noether-style conserved energy.
 
 ### Boundary-Flux Route
@@ -144,6 +164,8 @@ P_{\mathrm{ext},\Omega}^{(\eta)}
 +
 \mathcal{R}_{E,\Omega}^{(\eta)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-7b791109cb7df0be)
 where $\mathbf{J}_E^{(\eta)}$ records causal-wake escapement, assembly crossings, and declared medium exchange through the retained boundary. The flux term is not a new substrate field; it is the boundary part of the retained causal-history ledger.
 
 ## Crosswalk Residual
@@ -176,6 +198,8 @@ $$
 \varepsilon
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-d5decd3fbd04c168)
 where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dT$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the acceleration residual.
 
 ## Conservation Residual
@@ -202,6 +226,8 @@ E_{\mathrm{sea},\Omega}^{(\eta)}
 -
 W_{\partial\Omega}^{(\eta)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-8a842cfc126e9669)
 The normalized diagnostic is
 $$
 \epsilon_E^{(\eta)}(W;\mathfrak{B})
@@ -230,6 +256,8 @@ W_{\partial\Omega}^{(\eta)}
 \varepsilon
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-9940d732ab394ab3)
 An exact isolated conservation claim requires $\epsilon_E^{(\eta)}\to0$, $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ when applicable, and stable branch floors as $\eta$ and the numerical/history-window resolution are refined.
 
 ## No-Double-Counting Rule

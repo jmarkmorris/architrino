@@ -36,6 +36,8 @@ F_C
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ad9a010be26d16b5)
+
 The fields mean:
 
 | Field | Meaning | Question it answers |
@@ -61,6 +63,8 @@ B_C^{\mathrm{obs}}
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5ea8979e8bfcf120)
+
 Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record, $d_C$ is the comparison metric appropriate to the inherited concept, and $B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
 
 The important burden is the origin of both $\theta$ and the projection map. If either is selected after seeing the benchmark, the result is benchmark fitting. For a disciplined comparison, the projection is fixed on a calibration record $D_C^{\mathrm{cal}}$ that is disjoint from the recovery benchmark. The following expression states the calibration rule.
@@ -73,6 +77,8 @@ L_C^{\mathrm{cal}}\!\left(\Pi;D_C^{\mathrm{cal}}\right),
 \qquad
 D_C^{\mathrm{cal}}\cap B_C^{\mathrm{obs}}=\varnothing .
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-21a383726edb6b76)
 
 The frozen map $\Pi_C^\star$ must then be shared across every benchmark family that claims the same observer channel. A separate map for each clock type, spectral line, lensing observable, or detector family is hidden retuning, not recovery. If $\theta$ is generated from the Master EOM, assembly closure, Noether sea response, and declared record channel before comparison, and if $\Pi_C^\star$ is calibrated independently and frozen before the benchmark is opened, then a small $\mathcal{R}_C$ can become evidence of implementation closure.
 
@@ -193,6 +199,8 @@ $$
 \phi(r,T)=\frac{q_0}{4\pi r}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6bc66b01432d9c94)
+
 Taking a spatial gradient connects that amplitude to inverse-square acceleration scaling under the declared fixed-history calibration. In the full delayed dynamics, however, the following equation remains the accepted branch law.
 
 $$
@@ -204,6 +212,8 @@ $$
 {R_{ij}^2(T;T_t)}
 \hat{\mathbf R}_{ij}(T;T_t).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6dd1a98c25f53a45)
 
 The pure scalar $1/r$ action scaffold is not yet an unconditional foundation because its variation leaves a receiver-side constraint residual on generic branches unless a stationarity condition or invariant counterterm closes the Euler derivative. That failure does not demote the Master EOM. It demotes the claim that the scalar $1/r$ scaffold alone explains the Master EOM.
 
@@ -309,6 +319,8 @@ Y_{\mathcal{Q},W}(T)
 \right),
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1a5f21ab71b6e120)
+
 Here $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window. In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation may have the following form.
@@ -318,6 +330,8 @@ $$
 =
 F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2cf1f1125281cee5)
 
 Its credibility remains at the bulk level until the following projection residual is controlled.
 
@@ -331,6 +345,8 @@ F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(T)\right)
 \right\|_{\mathcal{Q},W}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eca6c7207590acf8)
+
 It becomes credible as an individual-assembly guide only after the following separate assembly-level residual is controlled.
 
 $$
@@ -343,6 +359,8 @@ $$
 \Pi_A^{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
 \right\|_A.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c5c02e4d173b2fab)
 
 Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the individual-assembly value inferred from the bulk equation. If $\mathcal{R}_{\mathrm{bulk}}$ is small while $\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population law. If both residuals are small in the declared regime, the bulk equation may serve as an effective assembly-level guide, but only in that regime.
 

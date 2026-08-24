@@ -49,6 +49,8 @@ K_{\mathrm{frag}}
 +\Delta E_{\mathrm{sea}},
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99fa22483822e626)
+
 where the daughter masses $M_d$, emitted product masses $M_b$, fragment kinetic energy, prompt-neutron kinetic energy, prompt photon output, medium internal excitation already transferred by the event cutoff, bulk recoil of the surrounding target, lattice, containment, or apparatus, and the local Noether sea update all belong to the exposed nuclear ledger. The fragment and neutron kinetic rows already contain the daughter-product motion; $K_{\mathrm{env-recoil}}^{\mathrm{prompt}}$ is only the momentum transferred outside those products and is zero for an isolated event with no external receiver. Later thermalization is a downstream reclassification of the prompt kinetic and medium-excitation channels, not another sibling energy release. Daughter beta-family reactions and antineutrino output belong to later ledgers or to an explicitly extended observation window. This time boundary prevents prompt kinetic energy from being counted again as asymptotic heat. The accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
 
 ### Fusion Reaction Ledger Benchmark
@@ -60,6 +62,8 @@ $$
 \to
 {}^4\mathrm{He}+n+\Delta E.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6e4ca4aff83606ce)
 
 In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
 
@@ -75,6 +79,8 @@ K_{\alpha}
 +K_{\mathrm{env-recoil}}^{\mathrm{prompt}}
 +\Delta E_{\mathrm{sea}},
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2c80d685ce6455fc)
 
 after the branch convention for $c_{\text{eff}}$ and the environment is declared. The right side names where the exposed binding-energy difference leaves the prompt event: kinetic energy of the helium and neutron products, possible prompt photon output, medium excitation transferred by the event cutoff, bulk recoil transferred to the surrounding target, lattice, containment, or apparatus, and the local Noether sea update. The environment-recoil row is zero for an isolated event and must not duplicate motion already counted in $K_{\alpha}$ or $K_n$. These entries must not be silently collapsed into one release value before the prompt ledger closes. Later thermalization is a downstream reclassification of those transferred channels, not another sibling energy release; delayed daughter reactions belong to later ledgers. The surviving nucleons still carry their own internal branch histories. A stronger claim that fusion exposes quark-level or architrino-level shielded energy would require a separate particle-level reaction ledger.
 
@@ -103,6 +109,8 @@ E_{\text{nuc}}
 +E_{\text{shell}}
 +E_{\text{sea-pol}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3cd4f815f3736a71)
 with $A=Z+N$.
 
 Here:
@@ -126,6 +134,8 @@ E_{\text{res-strong}}^{pp}
 E_{\text{res-strong}}^{nn}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f2519938cb692cd4)
+
 with each contribution computed from the realized corridor inventory and spin-statistics sector. This corridor-composition response is only one part of the asymmetry recovery: the exclusion and shell ledgers must also supply the occupancy cost of maintaining unequal proton-side and neutron-side filling. After coarse-graining, the combined corridor-composition and occupancy/statistics response must recover a positive asymmetry cost proportional to $(N-Z)^2/A$ in the applicable smooth-nucleus limit. That observer-level dependence is a joint recovery target for the nuclear functional, not a premise inserted into the substrate dynamics or assigned wholly to the residual-strong corridor term.
 
 Then the binding energy is
@@ -135,6 +145,8 @@ B
 \sum_{a=1}^{A} M_a c_{\text{eff}}^2
 -E_{\text{nuc}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-20c092bedaa315ca)
 
 Binding requires the negative medium-plus-residual-strong terms to outweigh the positive Coulomb and exclusion costs.
 
@@ -151,6 +163,8 @@ $$
 V_{\text{res-strong}}(r)
 <0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6c62adeb884f6273)
 for separations in the nuclear window, with the attraction strongest where meson-like exchange is cheap but direct core overlap is still avoided.
 
 ### Short-range exclusion
@@ -162,6 +176,8 @@ V_{\text{excl}}(r)\to +\infty
 r\to r_{\text{core}}^{+}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-61ddda21fda3cb40)
+
 This is the geometric origin of the short-range nuclear hard core. The literal infinity is schematic shorthand: the assembly-level over-compression cost is steep but finite, ending in a branch transition near the self-hit threshold rather than an infinite wall.
 
 ### Coulomb repulsion
@@ -170,6 +186,8 @@ For proton-proton channels, add the ordinary repulsive term
 $$
 V_{\text{Coul}}(r)\approx +\frac{e^2}{4\pi\epsilon_{\text{eff}}\,r}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9a4ce224fa6d1c9f)
 at effective level. Here $\epsilon_{\text{eff}}$ is an in-medium dressing of the observer-level $\epsilon_0$ response described in [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md), not the polarity unit $\epsilon=|e|/6$. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
 
 ### Sea polarization
@@ -193,10 +211,14 @@ V_{\text{excl}}(r)
 +V_{\pi/\text{corr}}(r)
 +V_{\text{sea-pol}}(r)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8eaaf6a3deb8ae12)
 where $c \in \{pp, pn, nn\}$ labels the two-nucleon channel and $V_{\text{Coul}}$ is present only in the $pp$ channel, with
 $$
 V_{\pi/\text{corr}}(r)+V_{\text{sea-pol}}(r)<0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d5ff97bc4d848a7b)
 through the binding window.
 
 This is enough structure to explain why nuclei are finite-sized bound objects rather than collapsed lumps or diffuse neutral gases.
@@ -208,12 +230,16 @@ $$
 d = p+n
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7f0fde4634d7f114)
+
 In this language, the deuteron should exist if the proton-neutron channel admits
 $$
 E_{pn}^{\text{bound}}
 <
 M_p c_{\text{eff}}^2 + M_n c_{\text{eff}}^2
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d3cbfe56ae476763)
 
 The qualitative reasons this channel is favored are:
 
@@ -244,6 +270,8 @@ $$
 \text{finite corridor capacity + exclusion cost}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dddca010ec49aab7)
+
 ## Why Alpha-Like Structures Should Be Special
 
 A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the assembly picture because it combines:
@@ -266,6 +294,8 @@ $$
 \qquad
 t_{1/2}=\frac{\ln 2}{\lambda_{\alpha}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7d8a7b9cb9c4adc7)
 
 Here $\nu_{\mathrm{hit}}$ is the effective barrier-sampling frequency of the bound alpha-like cluster, $P_{\mathrm{esc}}$ is the finite-window escape probability, and $\lambda_{\alpha}$ is the observer-level emission constant. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this probability cannot be inserted as formal wavefunction leakage alone. It must be recovered as a basin measure over deterministic nuclear assembly histories that cross the retained separatrix tube, while the energy ledger still routes the outgoing alpha assembly, daughter remnant, recoil, photon output if present, medium exchange, and Noether sea update.
 
@@ -297,6 +327,8 @@ $$
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6f03f03d3b55fc80)
+
 Here $\mathcal I_{\mathrm{iso}}$ is the isotope inventory, $\mathcal B_{\mathrm{meta}}$ is the retained metastable nuclear branch record, $\mathcal C_{\mathrm{route}}$ names the alpha, beta/lepton, neutron, gamma/photon, neutrino, or non-radiative route family, and $\lambda_{\mathrm{route}}$ is the observer-level rate or half-life extracted from the retained route. A quantitative recovery requires one parent/daughter/product event ledger that names emitted products, recoil, heat, photon rows when present, the Noether sea update, path-history provenance, and the shielded-energy boundary without hidden loss. Until such a record is supplied, the metastability account is an effective organizing statement and a derivation target, not a native half-life derivation.
 
 ## Beta Stability Interface
@@ -305,6 +337,8 @@ Nuclear binding is tied to weak stability because a nucleus can trade between pr
 $$
 n \to p + e^- + \bar\nu_e
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-53d27094f56b1c47)
 or by the proton-side channels, positron emission $p \to n + e^+ + \nu_e$ and electron capture $p + e^- \to n + \nu_e$, inside the bound environment.
 
 So a realistic nuclear theory here must eventually combine:

@@ -147,6 +147,8 @@ D_{a,X}(\mathbf X,T)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-18f2bd0c3197fe3c)
+
 with locked and ambient contributions built from the same causal-root kernel, Jacobian floors, transmitter-side acceleration weights, branch records, channel projections, and ledger-derived tolerance scales. This justifies raising Axiom+Notation, Cross-Regime Bridge, Internal Constituent Dynamics, and Coverage+Interface Readiness, while keeping the claim below full closure because the interface diagnostic is still a recovery target rather than a validated medium-response theorem.
 
 The Noether sea branch embedding also improves the master-equation bridge. Local assembly branches are now stated as retained branches inside a surrounding Noether sea state and nearby-assembly record:
@@ -157,6 +159,8 @@ $$
 B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
 \right)=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dfb8aaa1c558b9f7)
 
 with the force-ledger split
 
@@ -171,6 +175,8 @@ F_{i,\mathrm{asm}}
 +
 F_{i,\partial\Omega}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-64aa745a32efae86)
 
 This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
 

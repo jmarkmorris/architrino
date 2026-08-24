@@ -75,18 +75,18 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 143 | `488a5d1c0b308fc8` |
-| [README.md](../../README.md) | 236 | `1cc6104030c3886b` |
+| [AGENTS.md](../../AGENTS.md) | 142 | `b9798f8a903f32bd` |
+| [README.md](../../README.md) | 199 | `86c6199ae0fc3eef` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `688e42e5fd54a5eb` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 115 | `fb3252f11b92dee3` |
 | [reference/op/README.md](README.md) | 32 | `eb2e04fad03e9bda` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 216 | `a6b6ad0c387cdbba` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `a12ec1f00ca37b55` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 62 | `8ef56e3ef81ff0c8` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 29 | `889e7ee37c9f9f72` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 499 | `e84e279b056d9bab` |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 1013 | `082ee90b0cede01d` |
+| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 837 | `72b90a36d51b3b4d` |
 | [reference/priorities/README.md](../priorities/README.md) | 48 | `37f38d7f5b1a072c` |
 | [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 44 | `18ff91313e71ee93` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 76 | `40ee7728d1d26857` |
@@ -97,9 +97,9 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | 66 | `c7bc649dd4a09f9c` |
 | [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | 59 | `4c2ae8888fd20722` |
 | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 59 | `fef7b4e05ccc9501` |
-| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 79 | `b003a1d04dc09176` |
-| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 402 | `66f501b316e762ae` |
-| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 307 | `7888bf61937e3bfd` |
+| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 73 | `ce8fd06fb4b75567` |
+| [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 404 | `d9a7898049b9b4de` |
+| [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 337 | `1cc94ce1f9a56b5a` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 148 | `cea6a6b2b9de2d22` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 600 | `86e16b7f8907266c` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 608 | `6757c3e5d6af2f9f` |
 | [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 176 | `69be8edfb2299217` |

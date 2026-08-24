@@ -15,12 +15,16 @@ Delay equation and exact reduction:
   $$
   \frac{d^2X}{dT^2} \;=\; \kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(T)^2}W^{\mathrm{acc}}(T)\,\mathrm{sgn}\!\big(X(T)-X_c\big)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-bb516dea67c24324)
   With $\sigma_{qq'}=-1$, writing $K=\kappa\,|q q'|>0$ and $r=\lvert X-X_c\rvert$, the radial ODE is
   $$
   \frac{d^2r}{dT^2} \;=\; -\,\frac{K}{r(T)^2}W^{\mathrm{acc}}(T),
   \qquad
   W^{\mathrm{acc}}(T)=1
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-3ca850ee2b457e94)
   in field-speed units.
 
 Solvability status:

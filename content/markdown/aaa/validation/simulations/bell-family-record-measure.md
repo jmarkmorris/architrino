@@ -57,11 +57,15 @@ $$
 E(x,y)=\sum_{a,b=\pm1}ab\,P(a,b|x,y)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-71254ad87038302b)
+
 and the convention
 
 $$
 S=E(A_0,B_0)-E(A_0,B_1)+E(A_1,B_0)+E(A_1,B_1)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2146fac9d103d6dd)
 
 The gate reports both the local-bound excess
 
@@ -71,6 +75,8 @@ $$
 \left[|S|-2\right]_+
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1546459b8c9dbe9e)
+
 and the Tsirelson excess
 
 $$
@@ -79,6 +85,8 @@ $$
 \left[|S|-2\sqrt{2}\right]_+
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-787cfba82c912754)
+
 For GHZ, the script uses the context signs in [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md#bell-family-strengthenings-ghz-and-hardy):
 
 $$
@@ -86,6 +94,8 @@ $$
 \qquad
 \prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5a08dfcbc8537c99)
 
 and computes
 
@@ -97,6 +107,8 @@ $$
 1-\chi_C E(C)
 \right]_+
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c2658ae1bc60a210)
 
 For Hardy, it consumes the setting and context convention owned by [No-Go Theorems](../no-go-theorems.md#applicability-map): $U_i$ and $D_i$ are the two calibrated binary settings on wing $i$, and the four terms below come from four distinct setting pairs. It computes the positive margin
 
@@ -114,6 +126,8 @@ P(U_1=0,D_2=1)
 \right]_+
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e7d367805a1941b2)
+
 No-signaling is evaluated as the maximum one-party marginal drift between contexts that keep that party's setting fixed:
 
 $$
@@ -128,6 +142,8 @@ P(r_i|s_i,\mathbf{s}'_{-i})
 \right|
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-054fa35178229131)
+
 Measurement-independence leakage is represented by a declared provenance label distribution in each context:
 
 $$
@@ -139,6 +155,8 @@ D_{\mathrm{TV}}\!\left(
 \rho_{\mathrm{prov}}(\Pi|\mathbf{s}_0)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f884ee6c0c0f4ee6)
 
 where $\mathbf{s}_0$ is the packet baseline. A real closure packet should replace this toy provenance distribution with the pair-provenance ledger described below.
 
@@ -157,6 +175,8 @@ d\rho_{\mathrm{prov}}(\Pi)
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3b844a3d59fa9d1a)
+
 Here $\Delta_{\mathrm{screen}}=0$ is not a success for Bell closure. It means the proposed table has collapsed back into the screened common-cause model excluded by the Bell-family gate. A closure candidate must avoid that collapse while still keeping $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ within tolerance.
 
 ## Generated Pair-Provenance Path
@@ -173,6 +193,8 @@ $$
 w_k=\frac{1}{N}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f02225be9fbe350f)
+
 and two local deterministic apparatus kernels:
 
 $$
@@ -183,6 +205,8 @@ a=\operatorname{sgn}\cos(A_i-\phi_k)
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e2f163fcaadd409)
+
 $$
 K_B(b|B_j,\Pi_k)
 =
@@ -190,6 +214,8 @@ K_B(b|B_j,\Pi_k)
 b=\operatorname{sgn}\cos(B_j-\phi_k-\pi)
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-99e20024a6549477)
 
 The generated table is then
 
@@ -201,6 +227,8 @@ w_k
 K_A(a|A_i,\Pi_k)
 K_B(b|B_j,\Pi_k)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-974c75a4bc0c2af8)
 
 This is a useful negative control because it has explicit pair provenance, explicit local kernels, clean no-signaling, and clean measurement independence, but it still reaches only the classical-axis correlation. The product-screening residual is zero by construction, so the `product_screening_escape` gate must fail with `bell.product_screening_collapse`.
 
@@ -236,6 +264,8 @@ K_i(r_i|s_i,\Pi)\,
 d\rho_{\mathrm{prov}}(\Pi)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7c60ad066ae4fbef)
+
 is still a Bell-local product form when $d\rho_{\mathrm{prov}}(\Pi)$ is independent of the settings and $\Pi$ is a complete common-past screen. Such a model cannot pass CHSH, GHZ, and Hardy as a family. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ closure must therefore derive a stronger object:
 
 $$
@@ -246,6 +276,8 @@ P_\theta(\mathbf{r}|\mathbf{s})
 B_{\mathbf{r}}^{\mathbf{s}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a64d345d5c74e75e)
 
 where $B_{\mathbf{r}}^{\mathbf{s}}$ is the record-basin subset for the declared preparation, pair or multiplet provenance, local apparatus kernels, coarse-graining, and record window. This is the same measurement discipline used in [Measurement Ontology](../../quantum/measurement-ontology.md#born-rule-interface), but lifted from single-assembly basin weights to a Bell-family joint record measure.
 

@@ -23,6 +23,8 @@ $$
 \sum_{i=1}^{6}\sigma_i=0.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3aa40ddac12db18c)
+
 Equivalently, the compact inventory is $3\epsilon_+ + 3\epsilon_-$. This ledger is imposed before any binary partition, member assignment, or reference fixture. Each architrino has three attractive opposite-polarity channels and two repulsive same-polarity channels among the other five sites. The $3+2$ count is an inventory fact, not a compressed acceleration law; the net acceleration must still be assembled from the retained causal roots and path history.
 
 Before a family chart is selected, the intrinsic path of architrino $i$ may be represented by a closed arclength curve
@@ -33,6 +35,8 @@ $$
 \left\|\mathbf Y_i'(s)\right\|=1,
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-234280b4040c395e)
+
 with physical trajectory
 
 $$
@@ -42,6 +46,8 @@ $$
 \qquad
 0<\nu_-\leq\nu_i(T)\leq\nu_+<\infty.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-53e7eac1f9efc366)
 
 Thus the base class permits changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows. A retained neutral braid must still return to a closed causal ledger within the declared recovery tolerance. Families A and B inherit this six-site neutral inventory before adding member coordinates. Family C instead declares a twelve-worldline neutral inventory, while each exact B1 or B1.3 component on its C3–C6 loci inherits the six-site base inventory.
 

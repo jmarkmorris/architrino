@@ -30,6 +30,8 @@ Equations of motion (canonical delayed law; two-body, $c_f=1$):
   \quad
   r_{12}=\big|X_1(T)-X_2(T_t)\big|
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-21b743159cf3e3b1)
   $$
   A_2(T)
   \;=\;
@@ -38,6 +40,8 @@ Equations of motion (canonical delayed law; two-body, $c_f=1$):
   \quad
   r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-2c5b3d8a9fb366b7)
   Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, $H(0)=0$ excludes $T_t=T$, and $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
 Relative-coordinate DDE:
@@ -48,6 +52,8 @@ Relative-coordinate DDE:
   -\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_2(T)}W_{12}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(s_{12}(T;T_t)\big)}{r_{12}^2}
   +\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_1(T)}W_{21}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(s_{21}(T;T_t)\big)}{r_{21}^2}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-770f081643146eb7)
   with the two absolute distances fixed by their respective causal-root conditions. For an ordered symmetric history with $X_1>0>X_2$, the first signed separation is positive and the second is negative, so both displayed terms are negative and the instantaneous separation accelerates inward. No exact closed-form solution is presently known for the coupled DDE system.
 
 Nonlinear history-anchored form (vector notation for clarity):
@@ -58,6 +64,8 @@ Nonlinear history-anchored form (vector notation for clarity):
   \mathbf A_2(T)\;=\;-\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{acc}}\,
   \frac{\mathbf X_2(T)-\mathbf X_1\!\big(T_t^{(1\to 2)}\big)}{\big\|\mathbf X_2(T)-\mathbf X_1\!\big(T_t^{(1\to 2)}\big)\big\|^3}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-4c0bb2e2964b4da3)
   The attachment points are the partners’ path-history locations at their respective causal emission times; linearizations and small-parameter expansions are intentionally omitted.
 
 Central-origin kinematics (1D positions and velocities; symmetric two-body frame)
@@ -66,11 +74,15 @@ Central-origin kinematics (1D positions and velocities; symmetric two-body frame
   $$
   r(T) \equiv X_1(T) - X_2(T) > 0
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-7e10678a75233e78)
   Positions relative to the central origin are then
   $$
   X_1(T) = \tfrac{1}{2}\,r(T),\qquad
   X_2(T) = -\,\tfrac{1}{2}\,r(T)
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-4c4fa207618fc9e4)
 - Velocities follow by differentiation:
   $$
   V_1(T) = \frac{dX_1}{dT}
@@ -79,12 +91,16 @@ Central-origin kinematics (1D positions and velocities; symmetric two-body frame
   V_2(T) = \frac{dX_2}{dT}
   = -\,\tfrac{1}{2}\,\frac{dr}{dT}
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-67a4cf4a320971d3)
 - Symmetric initial conditions (example):
   $$
   X_1(0)=\tfrac{r_0}{2},\quad
   X_2(0)=-\tfrac{r_0}{2},\quad
   V_1(0)=V_2(0)=0
   $$
+
+  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-e0defb4c22d7efd2)
 
 Deliverables:
 - Exact DDE statements and causal-root definitions suitable for analysis and computation.

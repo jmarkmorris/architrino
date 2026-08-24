@@ -34,6 +34,8 @@ $$
 =\gamma_f
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bf8d1d2184997fd8)
+
 This is a visualization assignment, not a definition of $\gamma_f$ and not a result from evolved braid dynamics. The app uses geometry as a dictionary for the Lorentz kinematics, while leaving the derivation burden in the theory documents.
 
 ## What the App Shows
@@ -46,6 +48,8 @@ $$
 =
 \frac{(1,1,1)}{\sqrt{3}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ef6d57164647837d)
 as that direction. The binary orbital normals then tilt toward $\hat{\mathbf{n}}$ as the oblate spheroidal envelope contracts along $\hat{\mathbf{n}}$. Near the limit $\beta_f\to1$, the displayed orbit planes approach a common plane orthogonal to the assembly momentum direction, so a viewer looking along $\hat{\mathbf{n}}$ should see the orbits approach concentric circles.
 
 This is a visualization hypothesis, not a completed theorem. The app makes the proposed convergence visible so that later simulation, return-cycle, and branch-ledger work can test whether the convergence follows from the underlying dynamics.
@@ -67,6 +71,8 @@ $$
 R_{\parallel}=R_{\perp}\sqrt{1-\beta_f^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f1a175014292a76b)
+
 That is why the same number appears as both the relative-length factor and the flattening ratio. The app should be read as a direct geometry map:
 $$
 \beta_f
@@ -76,6 +82,8 @@ $$
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-11df81b53b13b4b0)
+
 In ordinary geometry language, $\beta_f$ is the eccentricity of the oblate spheroidal envelope in this simplified display. The physical claim is narrower: if the Noether braid realizes Lorentz-compatible closure with no additional scale channel, then the measured semiaxes determine $\beta_f$, $\gamma_f$, and $\xi$ through the equations above.
 
 The visible oblate spheroidal envelope should be read as the assembly-level envelope exposed by the full Noether braid, not as a solid body filled by any one indexed binary. In the no-extra-scale lesson state,
@@ -84,24 +92,32 @@ R_{\perp}=R_0
 \qquad
 R_{\parallel}=\frac{R_0}{\gamma_f}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f64231e75556379f)
 so the relative envelope volume follows the same inverse Lorentz factor:
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
 \frac{1}{\gamma_f}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ba7e98758f16c775)
 If a later lesson exposes a separate scale channel $\lambda$, then
 $$
 R_{\perp}=\lambda R_0
 \qquad
 R_{\parallel}=\frac{\lambda R_0}{\gamma_f}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d89f8ca174aafd04)
 and the volume ratio becomes
 $$
 \frac{V_{\mathrm{env}}(v)}{V_{\mathrm{env}}(0)}
 =
 \frac{\lambda^3}{\gamma_f}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8ee8c0b6dd56540b)
 The scale channel is separate from the Lorentz shape channel: $\gamma_f$ fixes the axis ratio, while $\lambda$ changes the absolute size.
 
 ## Time And Return Cycles
@@ -115,12 +131,16 @@ $$
 \gamma_f\Delta\tau
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-65e4a107534883e6)
+
 This does not mean a small object contains an infinitely long literal path inside it. Time dilation is a comparison between cycle counts in two frames. As $\beta_f$ approaches $1$, the moving cycle must spend more and more of the causal budget keeping up with the translated assembly, leaving less closing capacity for the internal return cycle. In the ideal Lorentz formula, the outside-frame period therefore grows without bound:
 $$
 \gamma_f\to\infty
 \quad\text{as}\quad
 \beta_f\to1
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9f1b603daf898efb)
 
 In the app, this is a limit-state display. It marks the mathematical boundary of the Lorentz law, not a claim that a finite material assembly actually reaches the field-speed limit.
 
@@ -131,6 +151,8 @@ $$
 m_0=1\qquad c_f=1
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3ed9b193ea8ec081)
+
 With that normalization:
 $$
 E_0=m_0c_f^2=1
@@ -140,10 +162,14 @@ E_{\text{CM}}=\gamma_f m_0c_f^2=\gamma_f
 \Delta E_{\text{CM}}=(\gamma_f-1)m_0c_f^2
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d45064b82d93f10b)
+
 The app also shows the center-of-mass mass-equivalent form
 $$
 \frac{E_{\text{CM}}}{c_f^2}=\gamma_f m_0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d85359bc0986a7f5)
 
 That readout is not saying that invariant rest mass changes. It is showing observer-facing center-of-mass energy expressed in mass-equivalent units. The invariant rest mass remains $m_0$; the center-of-mass energy and its mass equivalent grow with $\gamma_f$.
 
@@ -155,6 +181,8 @@ $$
 =
 \frac{\sqrt{1-\beta_f^2}}{c_f^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7a0f3dda2d2a2e6b)
 falls in lockstep with the length-contraction factor because the denominator is total center-of-mass energy while the numerator is the fixed rest mass.
 
 ## Control Meanings
@@ -183,6 +211,8 @@ $$
 v_{\mathrm{path}} = 2\pi R f
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4f63d4f370cb6da4)
+
 The path-speed ratio row divides that path speed by the app's field-speed reference. In the current normalized display, the source record declares binary 2 as the reference channel and sets $c_f$ to its current path speed, so binary 2 reads $1.00$ by definition while the values for binaries 1 and 3 are derived from their radii and frequencies. This is a display normalization, not a taxonomy-assigned role.
 
 ## Claim Level
@@ -205,5 +235,7 @@ $$
 \qquad
 L_{\parallel}=L_0\xi
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-98da274f82ff2dd5)
 
 Those are the quantities that return-cycle closure and Lorentz kinematics must recover from the underlying causal-root ledger.

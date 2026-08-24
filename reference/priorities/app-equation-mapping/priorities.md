@@ -10,11 +10,11 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `18`
-- Value: `1.89`
-- Cost: `3.7`
-- ROI: `0.51`
-- Status: `active-symbol-definitions`
+- Rank: `23`
+- Value: `0.92`
+- Cost: `3.5`
+- ROI: `0.26`
+- Status: `active-carousel-promotion-review`
 
 ## Current
 
@@ -24,14 +24,14 @@ The app is intended to feel like a simple static equation annotation surface: on
 
 The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
-The live executable queue is maintained in [work-queue.md](work-queue.md). The ordinary Markdown link plus structured registry/API contract now binds the equations already supported by the app to their canonical corpus occurrences. The next delivery object is structured symbol-definition disclosure.
+The live executable queue is maintained in [work-queue.md](work-queue.md). The ordinary Markdown link plus structured registry/API contract now binds every one of the 4,587 corpus display-equation occurrences to a searchable, addressable, source-grounded read-only page with symbol access. The next delivery object is optional editorial promotion of selected equations into the 23-entry carousel.
 
 ## Accepted Link, Definition, And Authoring Direction
 
-- Ordinary Markdown links are the portable source-level binding. Each link immediately follows the selected canonical display equation and opens the app by a stable semantic page ID.
-- The app registry/API is the structured authority for equation-page discovery, normalized document retrieval, canonical links, source bindings, and later symbol-definition records. Markdown links point into that authority; they do not duplicate it.
-- Symbol help will use progressive disclosure from one record: concise text on pointer hover or keyboard focus, with the same contextual definition available in a scrollable detail panel for click, tap, accessibility, and longer explanation. A shared definition may be reused, but the equation response must resolve it into a complete contextual definition.
-- Equation registration is author-owned. An author adding or materially revising a supported equation supplies the stable ID, app record, canonical Markdown link, source binding, contextual symbol definitions or references, duplicate-occurrence disposition, and focused validation result in the same change.
+- Ordinary Markdown links are the portable source-level binding. Each link immediately follows its display-equation occurrence and opens the app by a stable semantic page ID.
+- The generated registry/API is the structured authority for equation-page discovery, normalized document retrieval, canonical links, source bindings, search text, and symbol records. Markdown remains the equation and context authority; the generated registry does not create a second authoring surface.
+- Every equation receives the same baseline: formula rendering, search, direct addressing, source context, hover/focus symbol help, and a click/tap-accessible scrollable symbols-and-source panel. Promotion changes only carousel placement and additional curated callouts/editorial mapping.
+- Equation registration is author-owned but mechanically light. Authors add or revise the equation and define symbols in local prose; the generator preserves or assigns the stable ID, inserts the ordinary link for a new occurrence, creates the basic app record, and rejects incomplete or stale coverage.
 - The operational and API details live in [registry-and-authoring-contract.md](registry-and-authoring-contract.md).
 
 ## Objective
@@ -61,14 +61,14 @@ The first useful version should let the operator:
 - Route target: `equation-mapping.html`.
 - Runtime target: focused modules under `src/apps/equation-mapping/`.
 - Priority owner: this folder.
-- Source data target: a small app-owned equation-map document format, with seeded examples drawn from active equation-mapping priority rows only after those rows are explicitly selected for app review.
+- Source data target: a generated corpus-wide equation registry plus a small app-owned promoted-overlay document format.
 - UI form: a full-viewport equation canvas with a collapsible left subject index, a compact top-right control group, and a small settings panel.
 
 ## Implemented Baseline
 
 - Route: [equation-mapping.html](../../../equation-mapping.html).
 - Runtime: [EquationMappingData.js](../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../src/apps/equation-mapping/main.js).
-- Seed document: `poisson-weak-field-source-map`.
+- Corpus baseline: 4,587 generated read-only equation pages with 29,590 symbol records; 23 pages are promoted for carousel/editorial mapping.
 - Static layer model: equation TeX parts, named anchors, overlay comments, pointer-line side, section-line placement, subject area, claim level, and background setting.
 - UI: centered equation layer, collapsible subject index, top-right home/search/edit/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
 - Editor: local draft editing for formula-section labels/formula text/search text, overlay comment title/status/text/equation, pointer target, section-line placement, and comment placement.

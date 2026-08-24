@@ -11,6 +11,8 @@ Event-aware integration (practical algorithm):
      $$
      \mathbf A_{o'\leftarrow o}(T_r;T_t)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{acc}}\,\hat{\mathbf{r}}
      $$
+
+     [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-af40ad24c32aee01)
    - Sum over all transmitters and all roots (superposition).
 
 3. Time stepping:

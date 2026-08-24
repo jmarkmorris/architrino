@@ -53,6 +53,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f7099125d1a07598)
+
 The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm{bc}}$ for the apparatus class and when the same energy, momentum, and record channels are retained. Passing this residual says that two implementations realize the same effective boundary condition for a specific test; it does not import quantum-vacuum ontology, analog-medium ontology, or a new Noether sea mechanism.
 
 ## Historical Ladder
@@ -142,6 +144,8 @@ v_c^{\mathrm{cmp}}
 =
 \min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9a964a662ac2f6a3)
 In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
 
 The longer Berezhiani-Khoury theory paper sharpens the comparison into source-side technical criteria. Its useful contribution for this bridge is not the dark-matter ontology, but the way it ties phase behavior, an order-parameter phase, a phonon effective action, a two-component finite-temperature description, and observational failure modes into one calculable structure:
@@ -173,6 +177,8 @@ $$
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dca6852cdb137876)
+
 This residual is a comparison handoff, not a doctrine. If no native $a_{\text{mode}}$ or matter-coupling channel has been derived, the residual is undefined and the MOND-like comparison fails the technical test.
 
 The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate comparison: a source can have only contact coupling in vacuum and still acquire an effective long-range interaction after it is submerged in a coherent condensate. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is a handoff criterion, not an ontology import. A Noether sea comparison may borrow the logic only when a coherent background variable, a collective mode, and a source-coupling operator are all named on the Noether sea side.
@@ -195,6 +201,8 @@ $$
 g_A\,S_A\,\mathcal{D}_{\text{coh}}q_{\text{coh}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c341b2e42f3517af)
+
 with $q_{\text{coh}}$, $\mathcal{D}_{\text{coh}}$, and $g_A$ derived or explicitly declared as comparison placeholders. A useful range residual for a declared radial window $W$ is then
 
 $$
@@ -209,6 +217,8 @@ $$
 +\varepsilon
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-60437dd3e0e88de7)
 
 This residual is undefined unless $a_{\text{sea-mode}}$, $a_0$, and $\ell_{\text{sea}}$ have native definitions. The failure condition is equally important: if no coherent $q_{\text{coh}}$ exists, if $\mathcal{D}_{\text{coh}}$ is only a borrowed phonon operator, if the source pushes the local Noether sea state outside the linear response window, or if the coupling sign destabilizes the collective mode, then the BEC analogy must be rejected for that calculation.
 
@@ -231,6 +241,8 @@ e^a{}_i,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1c72f2934fe35be0)
+
 followed by the ADM/Cartan reconstruction target
 
 $$
@@ -240,6 +252,8 @@ $$
 \longrightarrow
 g^{\text{eff}}_{\mu\nu}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-470bce0f8d6ba42c)
 
 The resulting observer-level line element has the shared target form
 
@@ -252,6 +266,8 @@ ds_{\mathrm{eff}}^2
 \left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-62700d3d3c48cae0)
 
 This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
 
@@ -278,6 +294,8 @@ v_c,
 \Gamma_{\text{matter}\leftrightarrow\text{mode}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2bbbd35105ea1c52)
 
 Here $\Theta_{\text{def}}$ is a declared deformation parameter or residual measuring whether the ordinary source leaves the coherent background in its linear response regime. Without such a coherent-phase data object, `superfluid` and `BEC` should remain comparison labels in this bridge, not terms used in canonical Noether sea mechanism prose.
 
@@ -350,5 +368,7 @@ $$
 \longrightarrow
 \text{effective spacetime}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c12a0ce8f0582e40)
 
 That is why analogy belongs here. Mechanism chapters should inherit the disciplined result: use the native Noether sea variables first, and use outside spacetime models only when they name a concrete equation, test, or failure mode.

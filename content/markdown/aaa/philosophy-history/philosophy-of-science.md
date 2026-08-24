@@ -47,6 +47,8 @@ P_{\mathrm{ctrl}},
 P_{\mathrm{retune}}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-957383f52e801bb1)
 Here the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. A replacement theory earns explanatory compression only by moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$.
 
 A related constructor-set audit is required whenever inherited theories are recast. Observations and successful formal constraints are retained as evidence and benchmark pressure, while the ontology attached to them must be re-earned. The following audit asks which primitive substrate, branch record, and observer-export map can recover the data with the fewest independent assumptions.
@@ -61,6 +63,8 @@ $$
 \mathcal{R}_{\mathrm{rec}}
 \right).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34a6417cf4cb9fbd)
 Here $\mathcal{O}_{\mathrm{data}}$ records the observation family, $\mathcal{F}_{\mathrm{formal}}$ records inherited mathematical constraints worth preserving, $\mathcal{S}_{\mathrm{sub}}$ is the proposed substrate record, $\Pi_{\mathrm{obs}}$ is the observer export, and $\mathcal{R}_{\mathrm{rec}}$ is the recovery residual. The rule is forward-only: keep the data, recover the successful formalism where it is tested, and let ontology pass only through the constructor and recovery rows.
 
 ---
@@ -214,6 +218,8 @@ $$
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)=0,\quad
 \mathcal{S}_{\mathrm{retune}}(\theta)=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7372dd166d8a8c9b)
 Here $\mathcal{E}_{\mathrm{obs}}$ is the nonempty set of observational or standard-theory contacts, $\mathcal{R}_{\mathrm{rec}}$ is the relevant recovery residual, $\mathcal{R}_{\mathrm{null}}^{\mathrm{op}}$ is the operational null-result residual from [Failure Criteria](../validation/failure-criteria.md#null-result-residual-for-added-channels), and $\mathcal{S}_{\mathrm{retune}}$ records whether separate parameter choices are being used to pass different benchmarks. The rule is not anti-speculative; it simply keeps speculation in the comparison layer until it earns recovery, null-result discipline, and no-retuning closure.
 
 The same rule explains the methodological value of historical near-misses such as asymptotic-freedom discovery stories. A radical formal move may begin as a change of dimension, sign, or regularization scheme, but it becomes physics only when the result is written in a form other researchers can check and use. For $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding lesson is direct: dissatisfaction with quantum ontology, continuum excess, or black-hole paradoxes does not by itself promote a replacement. The replacement must calculate a known benchmark, expose the residual that disciplines it, and explain why the older effective theory succeeded.
@@ -351,6 +357,8 @@ E_W
 \right),
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c9847a7ab1c019a3)
+
 where the components denote anomaly load, ontology debt, patch density, progress latency, theory proliferation, and effective-success imbalance. The components are not commensurate by default, so $\mathbf I_W$ is a diagnostic profile rather than a scalar crisis score. Summing or ranking them requires a measurement rule, normalization, comparison window, and weights fixed before the desired verdict is known.
 
 The companion crisis chapter supplies the present many-to-many crosswalk:
@@ -425,6 +433,8 @@ R_{\mathrm{fail}}
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a954540e1c5991ed)
+
 Here $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selection assumptions, $K_{\mathrm{cal}}$ records calibration and nuisance modeling, $M_{\mathrm{eff}}$ is the effective formal model, $O_{\mathrm{ont}}$ is the ontological reading under review, and $R_{\mathrm{fail}}$ is the residual pattern that would reject the proposed reinterpretation. This keeps crisis governance from sliding into either uncritical consensus defense or unconstrained heterodoxy.
 
 The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
@@ -441,6 +451,8 @@ $$
 {\epsilon_i}
 \le 1
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a4c0a7d7d6fce46e)
 
 Intermediate stages may therefore be reported as live analysis, failed alarms, revised calibrations, or submitted-but-unaccepted claims without pretending that the final interpretation followed immediately from a single reading. The important discipline is that each stage states which part of the inference record has changed and which residuals still block promotion.
 
@@ -468,6 +480,8 @@ R_{\mathrm{fail}}
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e1690a0ac37c308f)
+
 Here $\Delta C$ denotes a declared change to the corresponding coordinate of the inference record.
 
 Large heterogeneous correlation systems sharpen this rule rather than replacing it. A useful forecast can have the following map.
@@ -476,11 +490,15 @@ $$
 P:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}}\right)\mapsto \widehat{D}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2d10a1c7322ffbc3)
+
 Even then, the system may fail to state why the forecast works. Under crisis governance, it remains an effective predictor until it supplies a mechanism-facing interpretation map.
 
 $$
 \pi_{\mathrm{ont}}:\left(D,A_{\mathrm{inst}},K_{\mathrm{cal}},M_{\mathrm{eff}}\right)\mapsto O_{\mathrm{ont}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9ff08aedbe7a5b6b)
 
 It must also supply a nonempty residual pattern $R_{\mathrm{fail}}$ that could reject that interpretation. High predictive accuracy therefore improves the status of $M_{\mathrm{eff}}$ but does not, by itself, promote $O_{\mathrm{ont}}$ into settled ontology.
 
@@ -496,6 +514,8 @@ $$
 \le 1
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-964cbd249bf4f265)
+
 For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The following guard requires observable leverage or derivational necessity under the same apparatus and calibration record.
 
 $$
@@ -509,6 +529,8 @@ $$
 o\ \text{is required to derive the retained } M_{\mathrm{eff}}
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a4f47a305062c1ae)
 
 If neither condition holds, the component may remain a comparison device, coordinate choice, or calculational convenience, but it has not earned ontology. This rule preserves the empirical-adequacy warning without adopting blanket anti-realism: hidden structure can be promoted, but only when it changes the recoverable record or is indispensable to deriving the effective machinery being retained.
 
@@ -644,11 +666,15 @@ $$
 K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-352727ce26aa10d2)
+
 The following equation gives the reduced lower-level flow constrained to $K_c$.
 
 $$
 \frac{dX}{dT}=F_L(X_T),\qquad X(T)\in K_c
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a770a07a3259f402)
 
 Here $F_L$ represents the lower-level causal-wake dynamics, and $X_T$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
 
@@ -657,6 +683,8 @@ For basin-level emergence, let $B_k$ be the basin of attraction for a higher-lev
 $$
 P_c(k)=\mu_c(B_k\cap K_c)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1f69e1e5ec4421e5)
 
 This expression records how the context shifts the branch weight. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
 
@@ -785,6 +813,8 @@ $$
      {P(Q_j\mid\mathcal C)}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c9e90841f9ac4fa6)
+
 The Bayes factor $K_{ij}$ measures how differently the two packages expose themselves to the new record; the prior-odds factor states what was believed before that record was opened. If both packages assign the same likelihood to the evidence, then $K_{ij}=1$ and the evidence does not discriminate between them, however impressive the shared fit may be. If the data were used to choose the mechanism, parameters, projection, or likelihood family, they are calibration evidence rather than an independent confirmation record.
 
 This use of probability is epistemic and observer-facing. It organizes uncertainty over declared hypothesis packages and record channels; it does not make probability a substrate substance, a causal agent, or proof of primitive randomness. A deterministic complete-state account may still induce a likelihood over controlled preparation variation, inaccessible path history, apparatus response, and finite observer records. Conversely, fitting a probability distribution at the observer level does not establish that the underlying dynamics is deterministic.
@@ -805,6 +835,8 @@ $$
 \mathcal{K}
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1c53e5ca405b3d2d)
 Here $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy falsifies the packet as tested. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
 
 ### Internal Tensions

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-08-24T04:16:13.714Z",
+  "generated_at": "2026-08-24T05:08:02.798Z",
   "package_version": "1.0.0-68ab6c4f",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -206,176 +206,176 @@
       "sourcePath": "__generated__/reading-copies/atomic-and-nuclear-assemblies.html",
       "role": "chapter",
       "type": "html",
-      "size": 2051909,
-      "sha256": "b5e7a823a121f37405e8aea6201246e20cd9fc15254d5b2f1e1e3fb57e663930"
+      "size": 2074120,
+      "sha256": "492237766224c994fc785212bda1171b6563aa5e5d31f5dbeb9ce80775bb1011"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 184195,
-      "sha256": "49c77a9d1661f182ed604104e7fbfecd4ec0f5c2d5e7360fafe168ea48dc9881"
+      "size": 203567,
+      "sha256": "3515c4cd96855d1ef4a37916b9f8398f81d226adb70070d4f95e4eb1e4a89252"
     },
     {
       "path": "reading-copies/cosmology.html",
       "sourcePath": "__generated__/reading-copies/cosmology.html",
       "role": "chapter",
       "type": "html",
-      "size": 5765407,
-      "sha256": "6d6e8bbbf841ec6c09c1e7430349ea9773fb523da399be73b736171e5de08c17"
+      "size": 5816472,
+      "sha256": "3003dab39fd332786acc443ea67d6822d13c0102eb59cd99e88f9acfa819641b"
     },
     {
       "path": "reading-copies/cosmology.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 436181,
-      "sha256": "1abb9125c00f6609999c60c6564f13cd4a9eaff001a4051410979c0175311c72"
+      "size": 480725,
+      "sha256": "0f9bee569908aa4c33a0ad4e1f42b87f9b5638dfa9441a5012635570ca96f09c"
     },
     {
       "path": "reading-copies/dynamics.html",
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 12054919,
-      "sha256": "aed7cc150370bd056b41933eeec2c46b53146115aa7defbe0470c3fad6e7e5f3"
+      "size": 12177064,
+      "sha256": "f774c3ed9ca6830c5548bf700124d133a2f05fd37392ace32fe328e7ed392844"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 733985,
-      "sha256": "fbd86fa796197bc6eb6d0104e886208cd8dfb0b0b7a7c6e02c00ac6894b48c8e"
+      "size": 839722,
+      "sha256": "f029bf2ac953e50c4bfc74d81496be747cab905b660e36b747f507506ae90932"
     },
     {
       "path": "reading-copies/foundations.html",
       "sourcePath": "__generated__/reading-copies/foundations.html",
       "role": "chapter",
       "type": "html",
-      "size": 2593280,
-      "sha256": "6313748207cc620ff9c1ea37320f788550896eee245e5871cd137b1ca605a19f"
+      "size": 2621464,
+      "sha256": "8b67150f11ee9aff27f284f5479c77f1bde0015f2cfa88276b33eaa7942430e8"
     },
     {
       "path": "reading-copies/foundations.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 290425,
-      "sha256": "75c984fbaee2e9435042a108492c0bba03182ae1685067f60af0890f2b24ed11"
+      "size": 314922,
+      "sha256": "20f80fa8590a864a0f91e9023fd55b107227c20dd69b1fb9cd9b201845607e30"
     },
     {
       "path": "reading-copies/noether-braid.html",
       "sourcePath": "__generated__/reading-copies/noether-braid.html",
       "role": "chapter",
       "type": "html",
-      "size": 4706901,
-      "sha256": "f43b19fa5802807d76f918ddbc4becc5a706b5e346eebad5690ec9f69e4515ee"
+      "size": 4754916,
+      "sha256": "8c89beabd686aca5a1bb076ca11b8513e4fe007cdedb3f66b824f83135afdc50"
     },
     {
       "path": "reading-copies/noether-braid.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 405851,
-      "sha256": "bff29970728ab8fa51b30bca201924399993166dd417308a9698a09a619c91c5"
+      "size": 447729,
+      "sha256": "d337e6b13841fb98b76acefa1c15b348447eb3482f405c9893203d7126c706ba"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
       "sourcePath": "__generated__/reading-copies/noether-sea-and-effective-spacetime.html",
       "role": "chapter",
       "type": "html",
-      "size": 8479957,
-      "sha256": "d5f27b9cc06ca3b2ee8ef7807c61bcaf0422a474f4135d95dd7fdc9d46d1000e"
+      "size": 8568798,
+      "sha256": "22776d6f797736884306170e6d2f901cef1d722a912bd2f6c9468dd3c348e97e"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 559219,
-      "sha256": "b31445f9ac0eb8227d729f546dacc8fc6c81edc888437623724038b20c92d8ff"
+      "size": 636713,
+      "sha256": "10c5347859c8469e9143c47766c2f8a022802949a2af69708f0d25eda17abf50"
     },
     {
       "path": "reading-copies/philosophy-history.html",
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 10885230,
-      "sha256": "97274f808c7639f4517aa938fdf756ca06a33ca80511f9ec7563def9250ab747"
+      "size": 10990069,
+      "sha256": "c2c1c46f5dac38b8d78240e58a72dc864ece8864b5ef49b9b0d10da47e5e7fd4"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1828473,
-      "sha256": "00f42b8da22fb69987782ad1874c7b5d178a427700606959f9ff3ef9805581d4"
+      "size": 1919805,
+      "sha256": "9f5f0262f44c1a596a55482d9327982c3261bb281a6f88f2c5f9686c2ef08694"
     },
     {
       "path": "reading-copies/quantum.html",
       "sourcePath": "__generated__/reading-copies/quantum.html",
       "role": "chapter",
       "type": "html",
-      "size": 2571346,
-      "sha256": "8492763428494d37d7613d2f82411c4c66fd9091d37af837f3c169364d9c92b0"
+      "size": 2594089,
+      "sha256": "821e9a32432bb359938e70fd5b1ec635bc919bfa581afcd33e4d878c5ca8402b"
     },
     {
       "path": "reading-copies/quantum.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 233161,
-      "sha256": "0574ca46c70522b8ea26ef5096ed0ea260538acaaf28b35f9f41313487bde79c"
+      "size": 253003,
+      "sha256": "664e79226771b957db19e5cc75fe34571cf638ac3d03d8a0f663c66121451e6b"
     },
     {
       "path": "reading-copies/reactions.html",
       "sourcePath": "__generated__/reading-copies/reactions.html",
       "role": "chapter",
       "type": "html",
-      "size": 2376611,
-      "sha256": "192bc7d81df5e15be13d60009fb3f9da7f05bea54726d5079ef43d8b8bfed524"
+      "size": 2398174,
+      "sha256": "ec21af758b16ac78da501a36eb0164b50f94e4dd8daaa0bda6462649519ffe4b"
     },
     {
       "path": "reading-copies/reactions.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 201448,
-      "sha256": "47354070fad9e3398cbe5223c2e1b8d5714d01b3e78bb39052336ee4a06c4c66"
+      "size": 220246,
+      "sha256": "c8ad19a7d18cd24fb94840a3fa02bd48dbffb78baefd387f041e4ec97ff8446e"
     },
     {
       "path": "reading-copies/standard-model-assemblies.html",
       "sourcePath": "__generated__/reading-copies/standard-model-assemblies.html",
       "role": "chapter",
       "type": "html",
-      "size": 4607869,
-      "sha256": "a0b58885509d6e062f0235d0d70e9ad03da51805e07df4ecfe962db685a3fe69"
+      "size": 4649498,
+      "sha256": "fe369ff2d15dab425ec573dc69d56640a767f912fafa7ed426aed0383afd20e7"
     },
     {
       "path": "reading-copies/standard-model-assemblies.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 435962,
-      "sha256": "554dc419308b8b901304411f143baefcb33b58bf0247a361f21403827f028b95"
+      "size": 471974,
+      "sha256": "103973545c9575a8226c1037f7469f6dfc400f7768de584fd7745aa1942df0e4"
     },
     {
       "path": "reading-copies/validation.html",
       "sourcePath": "__generated__/reading-copies/validation.html",
       "role": "chapter",
       "type": "html",
-      "size": 6296481,
-      "sha256": "63c42c195281b778bd6f6fb10b747d071f50d1632285d1059b7cdd75e17ce451"
+      "size": 6344885,
+      "sha256": "127e19f516b262e8195abaca526e07c74d7a31d68a704b8f8182dec7c1b328ac"
     },
     {
       "path": "reading-copies/validation.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 546108,
-      "sha256": "0712565956a63876e84924a6c568d41de745334e2f4b87fff2790a2046448941"
+      "size": 588182,
+      "sha256": "b9372762dcdab2921f2b477c698c8b1fde71bc2b0b332c96b495855d6c4cdcb6"
     },
     {
       "path": "references/academic-style-guide.html",
@@ -414,16 +414,16 @@
       "sourcePath": "__generated__/references/mathematics-style-guide.html",
       "role": "reference",
       "type": "html",
-      "size": 342303,
-      "sha256": "b604f8ffe4ecd80cd989474f57079bcf4b14ec8c4ae24ef713302c7793cd96a7"
+      "size": 346531,
+      "sha256": "017cde7cb97a7209ddd21f02b70ea530d7f6bccbb56cd1a690222bfaa8b083ee"
     },
     {
       "path": "references/mathematics-style-guide.md",
       "sourcePath": "content/markdown/aaa/archie/mathematics-style-guide.md",
       "role": "reference",
       "type": "markdown",
-      "size": 17971,
-      "sha256": "fdb955a7073fba5cd7c79689559bd51001f9c2b23359e2cc70e40e74de3f97ce"
+      "size": 21608,
+      "sha256": "1cc94ce1f9a56b5a32b63e6a0f7dc9a8059e4fe52972cc79d2c5dabaf7f3a940"
     },
     {
       "path": "references/mathematics-terminology.html",
@@ -446,24 +446,24 @@
       "sourcePath": "__generated__/references/terminology-usage.html",
       "role": "reference",
       "type": "html",
-      "size": 214232,
-      "sha256": "ce3fce7094c2a0a939150f2fab561e615ce2456e2b4abe3c1e7f3da78a31ce58"
+      "size": 215012,
+      "sha256": "238d12f0de507275d31598a4e958ede3eab74d240b0d3debd0e66f2d440391dc"
     },
     {
       "path": "references/terminology-usage.md",
       "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
       "role": "reference",
       "type": "markdown",
-      "size": 67052,
-      "sha256": "cce54c663e9a9b1c0adf189cea68b0c926589d7df084d84babf77dac405a9e85"
+      "size": 67730,
+      "sha256": "6757c3e5d6af2f9ff27be4b5cd47b4959b572ef5c4663595d7a9e53b544d3ccf"
     },
     {
       "path": "textbook_bundle_search_index.json",
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 8786492,
-      "sha256": "7aaf42208d3cf4255c2ddd5e28027d9a926112ac21cd4396b230ff04057fae12"
+      "size": 8968789,
+      "sha256": "d4a75a848fcd743acfc57310f7af39c69aa981f2afd02785477d6a621d36e695"
     }
   ],
   "links": []

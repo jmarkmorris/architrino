@@ -12,6 +12,8 @@ $$
 W_{o'\leftarrow o}^{\mathrm{acc}}(T_r;T_t)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-79f5d2581fbf221a)
+
 ## Decomposition and Energetics
 
 - Decomposition at a hit:

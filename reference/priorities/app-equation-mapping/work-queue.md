@@ -4,37 +4,18 @@ This is the canonical execution ledger for accepted Equation Mapping app work. [
 
 ## Ranked Next Objects
 
-1. `symbol_definition_disclosure` — [AEM-002](#aem-002--symbol-definition-disclosure). Status: `Queued`.
-2. `author_equation_registration_workflow` — [AEM-003](#aem-003--author-equation-registration-workflow). Status: `Queued`.
-3. `seed_review_equations_expansion` — [AEM-004](#aem-004--seed-review-equations-expansion). Status: `Queued`.
-4. `review_packet_export` — [AEM-005](#aem-005--review-packet-export). Status: `Queued`.
+1. `curated_carousel_promotion_review` — [AEM-004](#aem-004--curated-carousel-promotion-review). Status: `Queued`.
+2. `review_packet_export` — [AEM-005](#aem-005--review-packet-export). Status: `Queued`.
 
 ## Queued
 
-### AEM-002 — Symbol-definition disclosure
+### AEM-004 — Curated carousel promotion review
 
 - **Status:** Queued
-- **Priority object:** `symbol_definition_disclosure`
-- **Request / acceptance:** Define every symbol used by each supported equation through one structured symbol-definition record. A record may reuse a shared definition, but the equation response must resolve it to a complete contextual definition. Present short definitions when the reader hovers a symbol or reaches it by keyboard focus, and make the same records available through an accessible, scrollable detail panel for touch devices, longer explanations, notation scope, and related material. Hover text and panel content must be two views of one record rather than separately authored explanations.
-- **Evidence / blocker:** The current app has named formula-section anchors and explanatory comment rectangles, but the document schema has no symbol-definition collection and the interface does not guarantee a definition for every symbol. Hover alone would exclude touch and keyboard-only use; an always-open panel would compete with the equation canvas.
-- **Completion:** The normalized document contract supports symbol records with a stable symbol ID, rendered token or expression, plain-language definition, scope or qualifiers, and one or more formula-part targets; every symbol in the selected pilot equations is covered or explicitly classified as standard punctuation/operator notation; pointer and keyboard focus reveal a concise definition; the same record opens in a scrollable detail panel; touch interaction has an explicit path; screen-reader labels are meaningful; incomplete or orphaned symbol records fail focused validation; and desktop, mobile, keyboard, and screen-reader-oriented tests pass.
-
-### AEM-003 — Author equation-registration workflow
-
-- **Status:** Queued
-- **Priority object:** `author_equation_registration_workflow`
-- **Request / acceptance:** Make equation registration an author-owned part of adding or materially revising a corpus equation. Define the smallest declarative submission process by which the author assigns or reuses a stable semantic ID, supplies the app equation record and contextual symbol definitions or shared-definition references, places the ordinary Markdown link immediately after the canonical display equation, names any intentionally unlinked duplicate occurrences, and runs one focused validation command. The workflow must not require authors to hand-edit generated artifacts or duplicate the equation in multiple authoritative stores.
-- **Evidence / blocker:** The current seed documents are authored inside the app runtime, while corpus Markdown has no declared registration checklist, source binding, or completeness validator. Requiring app specialists to discover new equations after publication would make coverage retrospective and allow drift.
-- **Completion:** A concise author procedure and copyable example identify the canonical source file, semantic ID, app-owned record, symbol-definition obligation, link form, duplicate-occurrence rule, claim level, and validation command; one validator checks ID uniqueness, link resolution, source-to-registry correspondence, and symbol coverage; contribution or review guidance assigns failures to the authoring change; and a pilot equation can be added end to end without manually editing generated output.
-- **Operational sequence:** Author the canonical display equation; register its stable and semantic IDs; supply the app record and contextual symbol definitions or shared references; add the source-relative Markdown link; classify duplicate occurrences; run the focused validator; and include the result in review. The author owns the submission, while validation owns completeness and drift detection.
-
-### AEM-004 — Seed review equations expansion
-
-- **Status:** Queued
-- **Priority object:** `seed_review_equations_expansion`
-- **Request / acceptance:** Add a small set of selected equation-mapping review documents by subject area without implying proof acceptance.
-- **Evidence / blocker:** Depends on the accepted author-registration workflow and an accepted seed-data update or local editor-created review drafts selected for promotion.
-- **Completion:** The selected documents use the app-owned schema, preserve claim-level boundaries, and pass focused Equation Mapping tests and browser review.
+- **Priority object:** `curated_carousel_promotion_review`
+- **Request / acceptance:** Review one already-searchable corpus equation for optional carousel placement and additional curated callouts without implying proof acceptance or changing its baseline equation status.
+- **Evidence / blocker:** All corpus equations already have the same search, address, source, and symbol surface. Promotion now needs only an editorial selection, claim-boundary review, and curated overlay document.
+- **Completion:** One selected equation is promoted only if its callouts add material explanatory value; its app-owned overlay record preserves the generated source and symbol data, its claim-level boundary remains explicit, and focused tests plus browser review confirm that promotion changes carousel/editorial features only.
 
 ### AEM-005 — Review packet export
 
@@ -53,6 +34,22 @@ No rows.
 No rows.
 
 ## Verified
+
+### AEM-003 — Author equation-registration workflow
+
+- **Status:** Verified
+- **Priority object:** `author_equation_registration_workflow`
+- **Request / acceptance:** Make complete equation registration an author-owned part of adding or materially revising any corpus display equation without requiring duplicated app records or hand-edited generated artifacts.
+- **Evidence:** The author contract and mathematics style guide now require local symbol definitions and preservation of an existing ordinary link. `build-equation-mapping-corpus.mjs --write` assigns a deterministic semantic ID and inserts the source-relative link for every new display-equation occurrence, then generates the basic document, source binding, search record, and symbol records. `--check` rejects missing links, duplicate IDs, stale generated data, missing source context, incomplete symbol records, or missing promoted occurrences, and the check is part of the content-integrity suite.
+- **Completion:** Satisfied on 2026-08-24. Authors maintain the canonical equation and local definitions; generation owns registration mechanics. Existing links preserve identity across equation or prose edits, every occurrence is independently addressable, and promotion is a separate optional editorial action.
+
+### AEM-002 — Symbol-definition disclosure
+
+- **Status:** Verified
+- **Priority object:** `symbol_definition_disclosure`
+- **Request / acceptance:** Give every corpus equation structured symbol access through one record used by concise hover/focus help and an accessible scrollable detail panel.
+- **Evidence:** The generated registry contains 29,590 complete symbol records across all 4,587 equation pages. Every symbol chip renders through KaTeX, exposes its definition in the hover/focus title and accessible label, and opens the shared symbols-and-source panel on click or tap. The panel renders every symbol, scope, definition basis, source path, source heading, line span, local excerpts, and source route. Records distinguish local source definitions from explicitly labeled shared-notation inferences; validator and runtime tests cover completeness, and browser QA verified both views on a non-promoted direct page.
+- **Completion:** Satisfied on 2026-08-24. The same normalized symbol records power hover, keyboard focus, touch/click, screen-reader labels, and the scrollable detail panel for every corpus equation.
 
 ### AEM-001 — Equation link and registry contract
 

@@ -45,6 +45,8 @@ x_{\mathrm{img,eff}}^i
 \Delta_{\mathrm{eff}}\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bb4748ea70db7178)
+
 where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The layer-explicit observer-chart version is
 $$
 y_{\mathrm{eff}}^i
@@ -57,6 +59,8 @@ x_{\mathrm{eff}}^i
 =
 2\kappa_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6760ae2433021768)
 
 The layer-explicit local image distortion is encoded by the Jacobian
 
@@ -72,6 +76,8 @@ $$
 \end{pmatrix}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1b01d9ecd90a6110)
+
 where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ and $j$ of the same background source, the image-to-image transformation has the local form
 
 $$
@@ -80,6 +86,8 @@ T_{ij}
 A_{\mathrm{eff}}(x_{\mathrm{eff},j}^k)^{-1}A_{\mathrm{eff}}(x_{\mathrm{eff},i}^k)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a60f05eff5c2364)
+
 This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(x_{\mathrm{eff}}^i)$ be its local Jacobian, and let
 
 $$
@@ -87,6 +95,8 @@ T_{ij}^{\theta}
 =
 A_\theta(x_{\mathrm{eff},j}^i)^{-1}A_\theta(x_{\mathrm{eff},i}^i)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-257d9007e4b4dc6f)
 
 The data-supported local part of the lensing comparison can then be recorded as
 
@@ -98,6 +108,8 @@ $$
 C_{ij}^{-1}
 \left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8c7e4dfcdf0ca5ba)
 
 where $C_{ij}$ is the covariance model for the measured image-to-image transformation. This residual tests what the multiple-image data constrain before a global mass profile is imposed.
 
@@ -112,6 +124,8 @@ w_{\mathrm{img}}(x_{\mathrm{eff}}^i)
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-31853295dd08f454)
+
 Then the inferred convergence can be reported in two pieces,
 
 $$
@@ -125,6 +139,8 @@ M_{\mathrm{extrapolated}}
 \int_\Omega
 \left(1-w_{\mathrm{img}}(x_{\mathrm{eff}}^i)\right)\kappa_\theta(x_{\mathrm{eff}}^i)\,d^2x_{\mathrm{eff}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-31703d666bcf8f81)
 
 These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether sea state record.
 
@@ -165,6 +181,8 @@ D_{\mathrm{cl}}^{\mathrm{obs}}
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-40ca8425a88434d6)
+
 Here $D_{\mathrm{cl}}^{\mathrm{obs}}$ is the retained cluster-offset data packet and $C_{\mathrm{cl}}$ records the covariance of the lensing, gas, and tracer reconstruction. The residual should be evaluated across an ensemble of merging clusters, not treated as a one-image proof. A pure medium-response branch fails this gate only when
 
 $$
@@ -173,6 +191,8 @@ $$
 >
 \varepsilon_{\mathrm{cl}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-374348bc1b94e3ef)
 
 with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
 
@@ -184,6 +204,8 @@ $$
 M_b = M_\star + M_g
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ae2442843c21bdcb)
+
 and the enclosed dynamical mass $M_{200}$ inferred from kinematics or weak gravitational lensing. Let
 
 $$
@@ -191,6 +213,8 @@ m_b^{\mathrm{obs}}(M_b)
 =
 \frac{M_b}{M_{200}^{\mathrm{obs}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f9374e2e40ca2379)
 
 record the observed baryonic mass fraction. A [2026 baryonic mass-halo mass compilation](https://arxiv.org/abs/2603.06479), assembled from kinematic and weak-lensing mass estimates across dwarfs through rich clusters, reports the empirical summary
 
@@ -204,6 +228,8 @@ f_b \simeq 0.157,
 \quad
 M_0 \simeq 5\times 10^{13}M_\odot.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a2cd930574f737f2)
 
 Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. The compilation establishes an empirical fit across its heterogeneous inference instruments; it does not establish the mechanism behind the missing condensed baryons. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
 
@@ -232,6 +258,8 @@ d_{\mathrm{shared}}\!\left(
 \right).
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1f50eb8e098d3700)
+
 Here $D_{\mathrm{BTFR}}^{\mathrm{obs}}$ is the retained baryonic Tully-Fisher data packet, $D_{\mathrm{BTFR}}^\theta$ is the branch prediction from the same medium-and-assembly record, and $M_{200}^{\theta}$ is the model's dynamical or lensing projection. The velocity ratio $q_{\mathrm{vel}}=V_{\mathrm{flat}}/V_{200}$ belongs inside the same comparison. A fit cannot remove the missing-baryon trend by retuning $q_{\mathrm{vel}}$ unless that retuning remains compatible with rotation curves, weak-lensing velocities, rich-cluster baryon closure, CMB loading, and the cluster-offset residual above.
 
 ### Shared Dark-Sector Scale Gate
@@ -251,6 +279,8 @@ F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
 +
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c0c4b78671d9b8b5)
 
 Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dark-sector comparison, and $\mathcal{R}_{\mathrm{shared}}$ is the shared calibration residual from [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). A dark-sector scale relation is promotable only if this residual stays small without assigning one Noether sea state to dark-energy data and another to dark-matter data. If the relation fits one observable family by changing $\theta_{\mathrm{sea}}$ for another, it remains an interpretation artifact rather than a substrate claim.
 
@@ -278,12 +308,16 @@ $$
 \pi b_{\max}^2\,
 \langle v_{\mathrm{rel}}\rangle
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9c752dd8f9966fd0)
 A nearby passage gives the order-of-magnitude impulse
 $$
 \Delta v_{\mathrm{test}}
 \simeq
 \frac{2GM_A}{b\,v_{\mathrm{rel}}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-00db7bd49d0b2570)
 before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
 
 A compact dark-candidate branch also admits a track-search comparison. For a candidate compact fraction $f_X$, mass $M_X$, local dark-sector density $\rho_{\mathrm{DM}}$, and relative-speed distribution with mean $\langle v_{\mathrm{rel}}\rangle$, the flux estimate is
@@ -297,6 +331,8 @@ N_{\mathrm{track}}
 =
 \Phi_X A_{\mathrm{scan}}T_{\mathrm{age}}P_{\mathrm{surv}}P_{\mathrm{det}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-38f668495f2a6a81)
 Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
 $$
 \mathcal{R}_{\mathrm{track}}
@@ -307,6 +343,8 @@ $$
 +
 \mathcal{R}_{\mathrm{ordinary}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-fb10fb66f506875f)
 The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
 
 ### Candidate B — Noether Sea Medium Response
@@ -330,6 +368,8 @@ a_0^{\mathrm{MOND}}
 \quad\text{as comparison coefficients.}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d0484585d21aa990)
+
 For a shared Noether sea record $\theta$, define the low-acceleration comparison residual
 
 $$
@@ -348,6 +388,8 @@ d_{\mathrm{RAR}}\!\left(\mathrm{RAR}^{\theta},\mathrm{RAR}^{\mathrm{obs}}\right)
 +
 \lambda\,\mathcal{R}_{\mathrm{shared}}(\theta)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a54df89975fb43e0)
 
 Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
 
@@ -390,6 +432,8 @@ S_{\mathrm{loc}}(\mathcal I_{\mathrm{loc}}),\,
 \mu(a,k)
 \right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1decb6afec2b0178)
 with every environment projection derived from one constitutive and assembly history. It earns predictive standing only if the allowed set $\mathcal O_\epsilon(\theta_{\mathrm{hyb}})$ is narrow relative to the nearby comparison family. If $a_\star$, $f$, screening, or $\mu$ can be changed independently by galaxy, cluster, CMB, lensing, and growth channel, Candidate C has widened the fit space rather than closed the dark sector.
 
 **Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
@@ -397,6 +441,8 @@ with every environment projection derived from one constitutive and assembly his
 $$
 (\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}((\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-168be3c219b73152)
 
 where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../spacetime/noether-sea.md). In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in a positive-response low-acceleration branch, the effective coupling is enhanced above $G_N$ because the Noether sea is more compliant, and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
 
@@ -417,6 +463,8 @@ a_N, & a_N\gg a_\star,\\
 f\,a_N, & a_N\ll a_\star/f^2,
 \end{cases}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a98eadec7919d4bd)
 
 where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether sea state:
 
@@ -440,6 +488,8 @@ F_\star
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-35f14dc32227b019)
+
 with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. $\mathcal{H}_{\mathrm{src/rel}}$ records compact-source, feedback, release, and capture history, while $\mathcal{T}_{\mathrm{path}}$ records transport loading that changes the local Noether sea state. The environment label is therefore not a private fit bucket: a viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
 
 A compact residual is
@@ -462,6 +512,8 @@ d_{\mathrm{shared}}\!\left(
 \right]
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5946006f7891c649)
+
 This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
 
 Berezhiani-Khoury superfluid dark matter sharpens the same comparison discipline. Its source-level claim is that one dark sector can be CDM-like in cosmology and clusters while producing a MOND-like galactic force through collective low-temperature behavior. In this chapter that signal is not an ontology import: the Noether sea is not identified with a literal superfluid, and the comparison phonon is not added as a new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituent. What survives is the environment split that any hybrid branch must explain from one shared medium-and-assembly record.
@@ -481,6 +533,8 @@ $$
 =
 1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-408eaf834a699b39)
 
 Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, and $\chi_{\text{sea}}(\mathbf X,T)$:
 
@@ -505,6 +559,8 @@ n(\mathbf X,T),
 \chi_{\text{sea}}(\mathbf X,T)
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a644b46ea4ae5cc5)
 
 The comparison target is therefore not "make a superfluid." It is the stronger phase-environment closure: galaxy environments should project toward a large low-acceleration response coordinate, cluster environments should retain a substantial CDM-like or normal component, and the cosmological background should remain pressureless enough to preserve CMB loading and growth. The MOND-like part is fixed by the radial-acceleration relation and by the BTFR limit
 
@@ -540,6 +596,8 @@ D_{\mathrm{cos+cl}}^{\mathrm{obs}},
 \end{aligned}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-31f382863d273e87)
+
 This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether sea response branch must be dynamically stable, not only curve-fit successful.
 
 The Khoury comparison reinforces the phase-environment split without importing literal superfluid ontology. A galaxy, cluster, diffuse absorber, and cosmological-background environment may project different response coordinates from one Noether sea and neutral-assembly record, but the transition between those coordinates has to be derived from $\Pi_E\theta_{\mathrm{sea}}$ rather than assigned as a separate dark-sector phase per environment.
@@ -556,6 +614,8 @@ $$
 \varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e5a400bce3431bb)
+
 and the source-side phase-coupling potential
 
 $$
@@ -566,6 +626,8 @@ M_J^4
 \frac{\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)}{2f_J}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f2d7ec44948f9738)
 
 The native branch must derive these comparison coordinates from a medium-and-assembly projection, not fit them independently:
 
@@ -588,6 +650,8 @@ n(\mathbf X,T),
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3e7dbbb0f47af501)
+
 The conversion discipline can be recorded in source-term form,
 
 $$
@@ -604,6 +668,8 @@ Q_J^\theta
 \Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b4a107dac071b917)
+
 so that the total dark-sector count $N_1+N_2$ is conserved while the relative population can evolve. The comparison background equation then becomes
 
 $$
@@ -612,6 +678,8 @@ $$
 \simeq
 \frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2ec3e848387bf574)
 
 as a source-side benchmark for late-time acceleration without adding an independent dark-energy fluid. A native $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may pass this benchmark only if the right-hand side is reconstructed from $\theta_{\mathrm{sea}}$ and $\rho_A$ through $\mathcal{J}_{\mathrm{dark}}$.
 
@@ -623,6 +691,8 @@ c_{s,\mathrm{lin}}^{2,\theta}(a,k)
 1
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5cdbb3e773980a9a)
+
 over the CMB and large-scale-structure regime, while allowing nonlinear galaxy-scale medium response to depart from pressureless CDM. Growth must be tested with both the growth factor $D(z)$ and the growth rate
 
 $$
@@ -632,6 +702,8 @@ f_{\mathrm{grow}}(z)
 =
 -\frac{d\ln D}{d\ln(1+z)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a1fd967fd6e8e34e)
 
 The paper's numerical examples show why this matters: the background history and growth factor can remain close to $\Lambda\mathrm{CDM}$ while the late-time growth rate deviates more strongly. The $\mathbb{A}\mathbb{A}\mathbb{A}$ residual should therefore not stop at an $H(z)$ fit:
 
@@ -661,6 +733,8 @@ d_f\!\left(f_{\mathrm{grow}}^\theta,f_{\mathrm{grow}}^{\mathrm{obs}}\right)
 \lambda\,\mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
 \end{aligned}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d329f9fd39d06fa8)
 
 This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether sea state and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
 
@@ -714,6 +788,8 @@ m_{\nu_R},
 \Delta N_{\mathrm{eff}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4847224167751044)
 with
 $$
 \tau_{\nu_R}\gg t_0,
@@ -726,6 +802,8 @@ $$
 \qquad
 \Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b5ba8639ea024dd6)
 Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether sea response map derives its mass and coupling suppression.
 
 ### Source-Limited WIMP/Neutralino Comparison Benchmark
@@ -750,6 +828,8 @@ m_A,
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6b471422bf5d3c24)
+
 The entries track assembly mass, relic abundance, annihilation rate, scalar and axial scattering channels for direct detection, neutrino rates from solar or terrestrial capture, and indirect antiproton, positron, and gamma-ray fluxes. The native branch may pass this benchmark only if one medium-and-assembly record predicts or bounds all entries while satisfying direct-detection, indirect-detection, collider, CMB/BBN, structure-growth, and other relevant null-result constraints. Matching $\Omega_A h^2$ alone is not dark-matter closure; the same branch must also keep scattering and annihilation channels below excluded levels or declare a detectable channel.
 
 ### Interaction Cross-Sections
@@ -773,6 +853,8 @@ $$
 \Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.26
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec21297dfc477d64)
+
 Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](./CMB.md) power spectrum: baryon loading enhances the odd (compression) peaks and suppresses the even (rarefaction) peaks, while the neutral-assembly matter loading sets the third-peak height and the overall peak-height ratios through $\Omega_A/\Omega_b$.
 
 ### Post-Decoupling Growth
@@ -782,6 +864,8 @@ Matter perturbations grow as $\delta \propto a$ in the matter-dominated era. The
 $$
 \ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-12fde09db30a8c5f)
 
 where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../spacetime/noether-sea.md). In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
 

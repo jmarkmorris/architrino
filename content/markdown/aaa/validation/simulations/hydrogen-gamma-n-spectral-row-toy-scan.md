@@ -10,6 +10,8 @@ C_{N,\mathrm H}^{(\ell)}
 \left(\Gamma_{N,\mathrm H}^{(\ell)}\right)^{-1}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-763386ea69e29115)
+
 ## Runtime Artifact
 
 Run the default executable packet with:
@@ -40,6 +42,8 @@ $$
 \frac{1}{n_a^2}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8378006f41db916f)
+
 The record-level `frequency_scale` represents the normalized $R_{\mathrm H}c_{\gamma,0}$ comparison scale. In the first scaffold it is set to one, so the executable derives
 
 $$
@@ -47,6 +51,8 @@ $$
 =
 \Lambda_{ab}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-55f8ad8906861bdd)
 
 The record-level `line_inferred_ln_Gamma_N` then supplies the line-inferred cadence stretch used to derive the replay envelope gap:
 
@@ -60,6 +66,8 @@ h
 e^{0.001}\Lambda_{ab}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f3999a86c93c8426)
+
 so every selected line infers
 
 $$
@@ -67,6 +75,8 @@ $$
 =
 0.001
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c468f682d4da342)
 
 The accepted scaffold row is the density/scale-compensated static-response row
 
@@ -81,6 +91,8 @@ $$
 1
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b1d5badb58fbbbb)
 
 with static response vector
 
@@ -100,11 +112,15 @@ a_R
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd606b5cb197f1a4)
+
 It satisfies the endpoint constraint because
 
 $$
 0.4(0.25)+0.4(2)+(-0.5)(-0.1)+1(0.05)=1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c16b16de3198a0ec)
 
 The two admissible spectral records keep different component splits while preserving the same row prediction:
 
@@ -130,6 +146,8 @@ $$
 \right)^T
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-96bed8f6f2191331)
+
 and
 
 $$
@@ -139,6 +157,8 @@ $$
 =
 0.001
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-46d308d4693eff56)
 
 This makes the packet stronger than a free mock arithmetic witness, but still below a constitutive hydrogen derivation. It checks that a declared row inherited from the static response packet can control several hydrogen line labels across two admissible records without collapsing $n$ and $\chi_{\text{sea}}$ or fitting a separate coefficient row to each transition.
 
@@ -172,6 +192,8 @@ $$
 +
 \Delta E_{\mathrm{rem}}(a,b)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-75cb6c62dd8f8dee)
 The current toy scaffold sets the correction terms to zero by declaration and therefore tests only the shared-row handling of the leading Rydberg factor. A non-toy packet must report a residual-separation check
 $$
 \mathcal{R}_{\mathrm{H,res}}^{(\ell)}
@@ -189,6 +211,8 @@ $$
 }
 \le 1
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6fd6aa7d88433d84)
 This prevents the coefficient scan from passing by absorbing known spectral physics into the cadence-stretch row. It also fixes the degeneracy burden: the leading Coulomb target must recover the $n^2$ orbital degeneracy before correction channels split it, while the fine-structure channel may depend on $j$ and the hyperfine channel may depend on nuclear-spin records.
 
 ## Compensated-Row Readout
@@ -206,6 +230,8 @@ $$
 1
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b1d5badb58fbbbb-2)
 
 with
 
@@ -231,6 +257,8 @@ $$
 \right)^T
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-96bed8f6f2191331-2)
+
 The refinement difference satisfies
 
 $$
@@ -243,6 +271,8 @@ $$
 =0
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b046ca020fb02f73)
+
 so both records give the same $\ln\Gamma_{N,\mathrm H}=0.001$ while preserving separate $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{braid}}$ entries. By contrast, the shared-delay-only control row
 
 $$
@@ -254,6 +284,8 @@ $$
 0
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c167a0768bb8224)
 
 predicts a refinement mismatch of $-0.0001$ on record $B$ in the default scaffold. This is a scan-logic falsification witness, not a hydrogen validation result: atom-local refinement can reject the minimal row when the accepted response record changes component split, but the scaffold does not yet require nonzero gravitational endpoint coefficients $a_n$, $a_\lambda$, or $a_R$ unless a constitutive hydrogen branch derives the same split from the static endpoint response.
 
@@ -286,6 +318,8 @@ $$
 \right)^T
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-715f91247a96ce2a)
+
 For each line, the packet also forms the line-inferred cadence stretch. Here $h$ is the observer-level action benchmark in the recovered spectroscopic energy-frequency relation; it is not a substrate input and cannot be fitted independently inside this scan.
 
 $$
@@ -299,6 +333,8 @@ E_{\text{env}}^{(\ell)}(b)
 h\nu_{a\to b}^{\mathrm{obs},(\ell)}
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-94c038d78f3fb9eb)
 
 This inferred value is a diagnostic readout. It is not a permission to fit a separate $\Gamma_N$ or coefficient row to the transition.
 
@@ -318,6 +354,8 @@ b_R^{\mathrm{spec}}
 \right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-65baded38ee379b1)
+
 The fixed fourth entry is the inherited Lorentz-branch constraint $b_\xi=1$. The remaining entries must satisfy the static weak-field endpoint constraint when evaluated on the same static response vector used by the clock row:
 
 $$
@@ -329,6 +367,8 @@ b_n^{\mathrm{spec}}a_n
 1
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9d9151e80a3edae2)
+
 within the declared endpoint tolerance. If the packet also supplies the inverse clock-rate row $\boldsymbol{\omega}^{\mathrm{spec}}$, then it must satisfy
 
 $$
@@ -337,6 +377,8 @@ $$
 -b_i^{\mathrm{spec}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-977f6ccceaaa5ffe)
+
 for $i\in\{n,\chi,\lambda,R\}$. A branch may additionally impose shared clock/signal delay only by declaring the same condition used in the static response vector packet:
 
 $$
@@ -344,6 +386,8 @@ a_\chi
 =
 1+\gamma_{\mathrm{PPN}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fc15015a2aa080cc)
 
 The spectral coefficient row is therefore a constrained row inherited from clock closure. It is not a spectral nuisance parameter and not a per-line normalization constant.
 
@@ -365,6 +409,8 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    \Delta_{\mathrm{row}}^{\mathrm{tol}}
    $$
 
+   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6af82e9c60457ddc)
+
 2. For each remaining row and resolution record, compute
 
    $$
@@ -373,6 +419,8 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    \mathbf{b}_{N}^{\mathrm{spec}}\cdot
    \mathbf{g}_{N,\mathrm H}^{(\ell)}
    $$
+
+   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d787a1e9d212e65b)
 
 3. Compare the row prediction to every line-inferred cadence stretch:
 
@@ -384,6 +432,8 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell)}
    $$
 
+   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-120384e63fc2a57f)
+
 4. Across refinement records, require the accepted row to keep the same predicted clock-rate conversion after the envelope-gap convergence budget is removed:
 
    $$
@@ -393,6 +443,8 @@ The minimal scan is a finite grid over the four free entries $(b_n^{\mathrm{spec
    -
    \ln\Gamma_{N,\mathrm H}^{\mathrm{row},(\ell')}
    $$
+
+   [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d32fe2a68c0de51e)
 
 The scan output is the accepted coefficient row set
 
@@ -405,6 +457,8 @@ $$
 \text{endpoint, line-set, and refinement residuals pass}
 \right\}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dd504cebf2ec8388)
 
 This set may be a point, a bounded interval family, or empty. A bounded family is still useful because it constrains the coefficient row without assigning a separate row to each spectral line.
 
@@ -429,6 +483,8 @@ $$
 \Delta_{\Gamma}^{\mathrm{tol}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa2463e037cd5e69)
+
 with the refinement check
 
 $$
@@ -447,6 +503,8 @@ $$
 \le
 \Delta_{\mathrm{row}}^{\mathrm{tol}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-25846057e51b8c2e)
 
 The stronger extraction claim requires the diameter of $\mathcal B_{\mathrm H}^{\mathrm{spec}}$ to shrink under additional independent hydrogen records or under a constitutive response calculation for $(a_n,a_\chi,a_\lambda,a_R)$. The first packet does not require that stronger claim; it only requires that a shared constrained row survive the line set.
 
@@ -469,6 +527,8 @@ $$
 \boldsymbol{\tau}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b633f489c34b06c)
 where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
 
 The certificate residual vector is
@@ -483,6 +543,8 @@ b_\xi^{\mathrm{spec}}-1,\,
 \mathcal R_{\mathrm{H,res}}
 \right)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-eb0cef5d6dcf9a1c)
 with
 $$
 \mathcal R_{\mathrm{line}}
@@ -498,6 +560,8 @@ $$
 \left|\ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)\right|+\varepsilon_\Gamma
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f393c7f4c4feebe7)
 and
 $$
 \mathcal R_{\mathrm{ref}}
@@ -516,6 +580,8 @@ $$
 \left|\mathbf b_{N}^{\mathrm{spec}}\cdot\mathbf g_{N,\mathrm H}^{(\ell)}\right|+\varepsilon_{\mathrm{row}}
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-44e1ef7dd7312079)
 Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
 
 ## Failure Tests

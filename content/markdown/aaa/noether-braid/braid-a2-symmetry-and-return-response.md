@@ -18,17 +18,23 @@ $$
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-77d5d9c718258b2a)
+
 This seed lies on a common sphere, so it is the maximal-symmetry Family-A member: the A2 reference fixture defined in [Braid Family A](braid-family-a.md#a2). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
 
 $$
 (g\cdot\mathbf X)_\ell(t)=M_g\,\mathbf X_{g^{-1}\ell}(t)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9eba84bb602f7e55)
+
 and because point inversion commutes with every permutation matrix, the groups are direct products: the zero-angular-momentum group $G_0=S_3\times\langle\iota\rangle$ of order twelve, and the body-diagonal rotating group $G_{\mathrm{rot}}=C_3\times\langle\iota\rangle$ of order six, where $C_3=\langle\varrho\rangle$ is the three-fold rotation about the body diagonal
 
 $$
 \hat{\mathbf n}=\frac{(1,1,1)}{\sqrt3}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ba5cebce63ffa12)
 
 No physical process relabels an electrino as a positrino: every architrino is unique, with its own provenance and path history. The operations above are comparison maps between two possible configurations of the universe. If one configuration solves the delayed dynamics, its transformed twin solves it too. When the seed happens to be its own twin, the twins' shared trajectory is constrained, and that constraint is the entire content of the channel.
 
@@ -44,6 +50,8 @@ $$
 \sigma_\ell\sigma_{\ell'}\,\kappa\,
 \frac{W(T_t)}{\left(d^2+\varepsilon^2\right)^{3/2}}\;\mathbf d
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6705a6df8d92128d)
 
 where $\mathbf d=\mathbf X_\ell(T_r)-\mathbf X_{\ell'}(T_t)$ with $d=\|\mathbf d\|$, the causal roots $T_t$ solve $d=c_f(T_r-T_t)$ within the retained history window, $\varepsilon$ is the softening, $\kappa$ the coupling, and the acceleration weight is $W=c_f/|D_t|$ on a sign-certified transmitter-side Jacobian floor. Receiver-side velocity remains in the signed root-playback record $D_r/D_t$ but not in this instantaneous acceleration kernel.
 
@@ -70,6 +78,8 @@ $$
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4efe7ee838766689)
+
 a closed two-function state-dependent delay system in $(a,b)$. On the body-diagonal rotating channel,
 
 $$
@@ -79,6 +89,8 @@ $$
 \qquad
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c33b86bf2a28f578)
 
 a closed three-function reduced system in $\epsilon_{+,x}$ alone. Once the branch also carries group velocity along $\hat{\mathbf n}$, translation breaks $\iota$ while preserving $C_3$, and the reduction needs two representative worldlines, $\epsilon_{+,x}$ and $\epsilon_{-,x}$.
 
@@ -108,6 +120,8 @@ $$
 3\left(\hat{\mathbf n}\cdot\left(\epsilon_{+,x}-\epsilon_{-,x}\right)\right)\hat{\mathbf n}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-082b053380ee5012)
+
 The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the accelerations inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the channel's native contribution to the energy-shielding story used by the Family-A chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
 
 ## Momentum Screw and Helicity
@@ -121,6 +135,8 @@ $$
 \qquad
 \mathbf J_{\mathrm{kin}}\parallel\hat{\mathbf n}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0e591bc40d4b27b4)
 
 The body-diagonal direction is therefore the central axis of the branch's momentum screw: the unique direction that carries both linear and angular kinematic momentum, with the transport state reduced to the two scalars $P_\parallel$ and $J_\parallel$. The displayed $\mathbf P_{\mathrm{kin}}=\sum_i\mathbf v_i$ is an equal-weight linear diagnostic, not a primitive mass sum. For an isotropic momentum function, replace each velocity by $P(\|\mathbf v_i\|)\hat{\mathbf v}_i$; equal site speeds and the same projector symmetry preserve the axial direction conclusions. Their origin-independent combination $\mathbf J\cdot\mathbf P$ — helicity in normalized form, screw pitch in geometric form — is the natural combined label, since an origin shift changes $\mathbf J$ only by a term orthogonal to $\mathbf P$. In delayed dynamics the particle-only momenta are not separately conserved; the causal wakes carry momentum and angular momentum of their own, and conservation is a statement about the combined particle and wake ledger. On the channel, symmetry fixes the momentum directions exactly while the magnitudes exchange with the wake ledger.
 
@@ -142,6 +158,8 @@ $$
 }{R}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0879e008fffe5d50)
+
 A candidate recovery entry must declare tolerances and show
 
 $$
@@ -155,6 +173,8 @@ $$
 \qquad
 0\leq\theta_{\mathrm{recov}}<1
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1c906dd7bb567512)
 
 for $T,T+T_{\mathrm{recov}}\in J$. Here $T_{\mathrm{recov}}$ is the declared recovery time, $\theta_{\mathrm{recov}}$ is the dimensionless recovery contraction factor, and $\varepsilon_{\mathrm{drive}}$ is the driving residue. This is a certificate target, not an established A2 property.
 
