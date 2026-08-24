@@ -3637,3 +3637,100 @@ The representation-equivalence proposal fails if no root-complete F6c history su
 The proposed **F6c-to-three-row frame map** has now been carried through at the exact kinematic level in [F6c Geometry](f6c-geometry.md#opposite-edge-pair-rank-three-frame). The symmetry-adapted signed opposite-edge areal-rate rows are exactly orthogonal whenever nonzero, but existing finite histories include bracketed row-zero crossings and no retained F6c return supplies the required action and causal-root ledgers. The result therefore promotes the opposite-edge construction from a geometric suggestion to a derived rank-three kinematic scaffold, while rejecting retained-ledger equivalence at the current evidence grade.
 
 Closure goal: determine whether a retained or prescribed F6c history exports a well-conditioned three-row internal response frame through its exact tetrahedral quotient, while preserving the strict distinction between 4:4 strand topology and 3:3 ledger-level equivalence.
+
+## Session 22 — Three-Binary Orbiting-Endpoint Geometry Relative To F6c (2026-08-24)
+
+### Candidate Geometry
+
+Claim level: **speculation**, with the Family-A coordinate identification below **derived** from the displayed member maps.
+
+A neutral $3{:}3$ geometry can retain the most visually distinctive F6c feature: each architrino occupies a moving point on a transverse circular track rather than remaining fixed on a binary axis. For three declared binary axes $\hat{\mathbf n}_a$ with transverse frames $(\mathbf u_a,\mathbf v_a)$, define
+
+$$
+\mathbf d_a(T)
+=
+h_a(T)\hat{\mathbf n}_a
++
+\rho_a(T)
+\left[
+\mathbf u_a\cos\theta_a(T)
++
+\mathbf v_a\sin\theta_a(T)
+\right],
+$$
+
+$$
+\mathbf X_{a,+}(T)=\mathbf C(T)+\mathbf d_a(T),
+\qquad
+\mathbf X_{a,-}(T)=\mathbf C(T)-\mathbf d_a(T).
+$$
+
+The two members of each neutral binary are antipodal about the common braid center while both endpoints orbit. With three mutually orthogonal axes, this is not a new taxonomy family: it is the existing Family-A A3 geometry. Equal axial half-separations, transverse radii, frequencies, circulation sense, and $120^\circ$ phase offsets select the cyclically symmetric A2 locus. Setting every $h_a=0$ gives the A1 boundary. Bringing all three axes onto one line reaches the Family-B B1 boundary when its other common-axis constraints also hold.
+
+Plainly: the earlier braid program already contains a six-member version with orbiting endpoints. A3 is the general three-binary form, A2 is its highly symmetric form, A1 puts each orbit through the common center, and B1 is reached when the three axes coincide.
+
+### Direct Tetrahedral-Subset Reduction
+
+A different reduction keeps three of F6c's four tetrahedral axes rather than replacing them by an orthogonal triad. If $\hat{\mathbf n}_0,\hat{\mathbf n}_1,\hat{\mathbf n}_2$ are retained and $\hat{\mathbf n}_3$ is omitted, their Gram matrix has diagonal entries $1$, off-diagonal entries $-1/3$, eigenvalues $(4/3,4/3,1/3)$, and determinant
+
+$$
+\det G_{3\mathrm{tet}}=\frac{16}{27}>0.
+$$
+
+The three axes therefore remain a well-conditioned rank-three frame, but their first and second moments become
+
+$$
+\sum_{a=0}^{2}\hat{\mathbf n}_a=-\hat{\mathbf n}_3,
+\qquad
+\sum_{a=0}^{2}\hat{\mathbf n}_a\hat{\mathbf n}_a^{\mathsf T}
+=
+\frac43I
+-
+\hat{\mathbf n}_3\hat{\mathbf n}_3^{\mathsf T}.
+$$
+
+Thus deleting one module preserves three-dimensional span but creates a distinguished missing-axis direction and loses F6c's separate-sector zero-first-moment and isotropic-second-moment identities. Pair-conjugate placement $\mathbf X_{a,-}-\mathbf C=-(\mathbf X_{a,+}-\mathbf C)$ restores whole-assembly centering module by module, but it does not restore the four-member sector identities.
+
+Plainly: three tetrahedral arrows still point in three independent directions, but they no longer balance evenly. The omitted fourth arrow leaves a preferred direction. That may be a useful exposed-response channel or a fatal anisotropy; only the dynamics and recovery tests can decide.
+
+### Where A Genuinely New Variant Begins
+
+F6c permits the positive and negative sectors to carry independent axial scales, transverse radii, phases, and rates. Transferring that feature to three binaries gives the descriptive map
+
+$$
+\mathbf X_{a,\sigma}(T)
+=
+\mathbf C(T)
++
+\sigma h_\sigma(T)\hat{\mathbf n}_a
++
+\rho_\sigma(T)
+\mathbf r_a\!\left(
+\sigma s_a\theta_\sigma(T)+\phi_a
+\right),
+\qquad
+a\in\{1,2,3\}.
+$$
+
+This map is generally not A3 because opposite-polarity partners need not remain antipodal about one binary midpoint. It is a sector-differential enlargement of the existing three-binary chart. Its phase offsets, circulation decoration, center definition, polarity dipole, current rows, exact symmetries, and invariant-surface tangent closure must all be rederived. None of F6c's $D_{2d}$ symmetry, zero-dipole identity, opposite-edge matching, or EOM-solver evidence transfers merely by deleting one module.
+
+Plainly: if each positive endpoint is always the exact opposite of its negative partner, the idea is already A3. If the two polarity sectors breathe and change cadence independently as in F6c, the idea becomes a genuinely broader six-member candidate and needs its own geometry and dynamics proof.
+
+### Why The Comparison Is Valuable
+
+The comparison isolates which ingredient carries the useful behavior:
+
+1. the four-member-per-polarity tetrahedral balance;
+2. the transverse orbiting-endpoint motion;
+3. independent polarity-sector breathing and cadence; or
+4. the three explicit neutral-binary rows.
+
+A matched EOM-solver comparison between an A2/A3-compatible pair-conjugate seed and a sector-differential $3{:}3$ seed can test whether coordinated radial and cadence turns become easier after removing the fourth module. Every candidate must retain complete causal roots, clearance, member identity, $c_f=1$ speed allocation, symmetry or declared asymmetry, and the full return action. A favorable finite turn or low residual would remain a measured search result, not retention or particle identity.
+
+Claim boundary: no $3{:}3$ orbiting-endpoint geometry discussed here is generated, retained, stable, or identified with a fermion. The exact Family-A mapping is coordinate-level. The tetrahedral-subset rank and moment identities are derived geometry. The sector-differential six-member enlargement and its possible dynamical advantage are speculation.
+
+Promotion target: the existing Family-A and F6c comparison material after a root-complete matched seed study supplies a genuine dynamical distinction. No reader-facing promotion is warranted from the geometry alone.
+
+Next artifact: write a two-column constraint audit for (1) the pair-conjugate A3/A2-compatible $3{:}3$ map and (2) the sector-differential F6c-like $3{:}3$ map, derive centroid, polarity dipole, Gram matrix, speed budget, symmetry group, and tangent-closure obligations, then release matched $c_f=1$ histories through the EOM solver.
+
+Closure goal: determine whether F6c's useful search behavior comes from orbiting endpoints and sector-differential breathing rather than from four members per polarity, using a matched pair-conjugate versus sector-differential $3{:}3$ geometry audit before any new retained-branch claim.

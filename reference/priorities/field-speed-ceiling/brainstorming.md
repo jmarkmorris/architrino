@@ -313,6 +313,22 @@ Assumptions and boundary: this census uses exact straight translation at $c_f$, 
 
 Promotion target: the straight-path wake-geometry discussion in the field-speed mathematics packet. Next artifact: extend the axis census to the source-measure pushforward versus the leading characteristic measure, using the three-dimensional foliation above as the geometric lemma.
 
+## Exact-mirror crossover: wakefront orientation and the first-slowdown gap
+
+Claim grade: `derived causal geometry on the prescribed straight-through trace, followed by an open delayed-solution question`.
+
+Before exact mirror coincidence, every ordinary partner reception accelerates each architrino inward along its field-speed velocity, so the proposed complete-ledger ceiling response removes that speed-increasing net component after superposition. At coincidence, the earlier partner fronts meet on one nonordinary characteristic family and the zero-delay endpoint is outside the ordinary positive-separation ledger. Under the separately proposed matched event law, this family contributes zero velocity impulse.
+
+After a velocity-preserving straight-through crossover, the receiver does not encounter the older partner cap as a succession of outward-side wakefronts. The older cap has no positive-time partner root on that trace; only the coincidence-time front remains frozen at the receiver, while every newly emitted partner front begins behind a receiver that is also moving at $c_f$ and therefore cannot catch it. Hence the unchanged wake law supplies no automatic deceleration on the exact straight branch.
+
+Plainly: crossing the partner does reverse which spatial side the partner occupies, but it does not by itself create a new wake reception. A wake emitted behind an architrino moving at the same speed stays behind. The architrino begins receiving backward, speed-reducing partner contributions only after its speed has already fallen below $c_f$ enough for a new front to catch it.
+
+This exposes the first-slowdown gap. Any independently supplied backward contribution would make later partner fronts catch the receiver and reinforce deceleration. In the exactly isolated mirror problem, however, the present equations have not selected the initial departure from the straight $c_f$ trace. The reduced delayed-ignition construction suggests a branch that remains straight until an arbitrary $u_*>0$ and then slows as a partner root detaches from the coincidence endpoint, but full-system existence or exclusion remains open.
+
+Assumptions and proof burden: exact mirror symmetry, the prescribed velocity-preserving contact one-jet, unchanged raw wakes, complete-ledger-before-response ordering, and no external rows. A complete result must either construct the delayed-ignition branch with its full two-label root census and event ownership, or prove an estimate excluding every such branch without assuming the positive inactive-root gap that fails here.
+
+Promotion target: the collinear outgoing-history and breather discussion in the field-speed mathematics packet. Next artifact: resolve the trailing-front activation dichotomy at full delayed-system rigor; only afterward test whether a braking branch reaches reversal and return.
+
 ## Guarded compact-object question
 
 Could a completed ceiling model admit a collective terminal contact or phase-closed compact configuration: a state in which further inward approach reaches a cap-state boundary rather than continuing to smaller internal separation? In informal terms, this is the proposed "hard clink" picture.
