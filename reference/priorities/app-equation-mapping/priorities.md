@@ -2,19 +2,19 @@
 
 ## LLM Instructions
 
-- Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../mapping-equations/priorities.md](../../mapping-equations/priorities.md).
+- Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../mapping-equations/priorities.md](../mapping-equations/priorities.md).
 - Treat app output as an explanatory working surface, not as accepted equation-mapping evidence or score movement.
 - Keep user-facing app language plain. Use `equation`, `comment`, `pointer line`, `section of the formula`, `subject`, and `background`; do not expose animation-engine or scene-language terminology.
-- Keep [requirements-and-design.md](requirements-and-design.md) stable and descriptive. Move task-shaped implementation work into `Task Queue`.
+- Keep [requirements-and-design.md](requirements-and-design.md) stable and descriptive. Move task-shaped implementation work into [work-queue.md](work-queue.md).
 
 ## Workstream Metadata
 
 - Kind: `priority-app`
 - Rank: `17`
-- Value: `2.10`
-- Cost: `2.7`
-- ROI: `0.78`
-- Status: `v1-editor`
+- Value: `2.17`
+- Cost: `2.9`
+- ROI: `0.75`
+- Status: `active-api-access`
 
 ## Current
 
@@ -22,7 +22,9 @@ This folder owns the priority packet for the equation-mapping app that helps the
 
 The app is intended to feel like a simple static equation annotation surface: one centered equation layer, explanatory overlay comments, and thin pointer lines that point to exact terms or sections of the formula.
 
-The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
+The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
+
+The live executable queue is maintained in [work-queue.md](work-queue.md).
 
 ## Objective
 
@@ -56,25 +58,21 @@ The first useful version should let the operator:
 
 ## Implemented Baseline
 
-- Route: [equation-mapping.html](../../../../equation-mapping.html).
-- Runtime: [EquationMappingData.js](../../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../../src/apps/equation-mapping/main.js).
+- Route: [equation-mapping.html](../../../equation-mapping.html).
+- Runtime: [EquationMappingData.js](../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../src/apps/equation-mapping/main.js).
 - Seed document: `poisson-weak-field-source-map`.
 - Static layer model: equation TeX parts, named anchors, overlay comments, pointer-line side, section-line placement, subject area, claim level, and background setting.
 - UI: centered equation layer, collapsible subject index, top-right home/search/edit/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
 - Editor: local draft editing for formula-section labels/formula text/search text, overlay comment title/status/text/equation, pointer target, section-line placement, and comment placement.
 - Browser QA capture filenames (not retained in this checkout): `equation-mapping-desktop-1280x720.png`, `equation-mapping-mobile-390x844.png`, and `equation-mapping-editor-desktop-1280x720.png`.
 
-## Task Queue
-
-1. `seed_review_equations_expansion` - Add a small set of selected equation-mapping review documents by subject area without implying proof acceptance. Status: `pending`. Depends on: an accepted seed-data update or local editor-created review drafts selected for promotion.
-2. `review_packet_export` - Export a static equation-map packet for review, including document JSON and a screenshot. Status: `pending`. Depends on: local editor draft state.
-
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
+| [work-queue.md](work-queue.md) | Ranked executable app tasks, lifecycle state, acceptance boundary, and completion conditions. | Equation Mapping API, runtime, data, tests, and review artifacts. |
 | [requirements-and-design.md](requirements-and-design.md) | Stable v1 requirements, layer model, visual language, subject index, settings, and implementation boundaries. | `equation-mapping.html`, `src/apps/equation-mapping/`, and selected equation-mapping review fixtures. |
 
 ## Related Priority Notes
 
-- [Equation Mapping](../../mapping-equations/priorities.md)
+- [Equation Mapping](../mapping-equations/priorities.md)

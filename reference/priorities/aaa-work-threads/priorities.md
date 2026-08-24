@@ -28,7 +28,7 @@ The pre-split monolith is retained in Git history rather than as a live priority
 
 ## Audit Scope — 2026-07-26
 
-This active-only audit read every immediate top-level `reference/priorities/*/priorities.md` tracker, the current directory inventory, the top-six closure join, and the current EOM/Braid acceptance boundaries. The numeric table includes 23 top-level owner directories and four separately ranked shared theorem packets. `aaa-work-threads` is the control surface and `app-simulation` is a routing index, so neither receives a numeric rank.
+This active-only audit read every immediate top-level `reference/priorities/*/priorities.md` tracker, the current directory inventory, the top-six closure join, and the current EOM/Braid acceptance boundaries. The numeric table includes 24 top-level owner directories and four separately ranked shared theorem packets. `aaa-work-threads` is the control surface and `app-simulation` is a routing index, so neither receives a numeric rank.
 
 Every child of `dormant-deferred` is excluded regardless of whether its parked tracker still contains historical rank metadata. A top-level tracker remains in the active inventory even when its internal status is `deferred` or `watchlist`; moving that directory under `dormant-deferred` is the action that removes it from this table.
 
@@ -60,16 +60,17 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 14 | App | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
 | 15 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
 | 16 | Workstream | [`quantum-closure`](../quantum-closure/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
-| 17 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
-| 18 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
-| 19 | Workstream | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
-| 20 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
-| 21 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
-| 22 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
-| 23 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
-| 24 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
-| 25 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
-| 26 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
+| 17 | App | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `equation_page_api_access`: versioned read-only document access and canonical page links | 5.5 | 1.25 | 0 | 1.00 | 0.35 | 4 | 0.90 | 2.17 | 4 | 2 | 3 | 3 | 2.9 | 0.75 |
+| 18 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
+| 19 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
+| 20 | Workstream | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
+| 21 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
+| 22 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
+| 23 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
+| 24 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 25 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
+| 26 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
+| 27 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
 
 ## Active-Only Rerank Movement — 2026-07-26
 
@@ -84,6 +85,13 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 - `app-ideas` was removed after its accepted concepts and implementation packets were transferred to Causal Delay Feedback and Borg.
 - The surviving rows below its former rank were shifted upward by one without changing their component scores or evidence grades.
 
+## Equation Mapping App Promotion — 2026-08-23
+
+- `app-equation-mapping` moved from `dormant-deferred` into the active top-level inventory at operator direction.
+- Its local rank-1 object is now `equation_page_api_access`, not the former seed-expansion object. The new inferred attention score is based on a bounded versioned read-only contract, stable-ID retrieval, canonical page-link resolution, and cross-surface integration validation.
+- The promotion inserts the app at rank `17`; lower rows shift by one without changing their component scores or evidence grades.
+- This is an execution-priority change only. It does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
+
 ## Current Focus
 
 - **Measured/derived:** `app-solver` has the live production kernel, independent acceptance oracle, persistent worker foundations, exact checkpoint-backed record emission, deterministic thread replay, and measured recursive block-exclusion ladders. **Inferred rank claim:** it is first because completing long-horizon bounded evolution and precision/refinement acceptance unlocks every physical campaign. **Falsifier:** demote it if the live EOM queue becomes maintenance-only or a different active lane can produce accepted dynamics without further EOM work.
@@ -94,7 +102,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Operator Burden Triage
 
-The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`, `15-16`, and `19`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `9`, `14`, `17-18`, and `20-25`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
+The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`, `15-16`, and `20`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `9`, `14`, `17-19`, and `21-26`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
 
 The `dormant-deferred` archive and all of its children are unscored.
 

@@ -1,6 +1,6 @@
 # Priorities Inventory
 
-Snapshot: 2026-08-05.
+Snapshot: 2026-08-23.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
@@ -31,16 +31,17 @@ The rank column is mirrored from the active-only unified table. Ranks `4`, `5`, 
 | 13 | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `redshift_clock_transport` | Observer-level benchmark cases mapped to explicit acceptance and failure predicates. | [Work queue](../mapping-benchmarks/work-queue.md); benchmark drafts remain sibling packets. |
 | 14 | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` | Animator-owned runtime, scene authoring, and record visualization. | [Work queue](../dormant-deferred/app-animator/work-queue.md); [design and interfaces](../dormant-deferred/app-animator/design-and-interfaces.md). |
 | 16 | [`quantum-closure`](../quantum-closure/priorities.md) | `detector_response_kernel_acceptance` | Deferred but top-level quantum recovery owner for measures, detector kernels, pair provenance, and Bell gates. | [Work queue](../quantum-closure/work-queue.md); [transfer-operator packet](../quantum-closure/transfer-operator-basin-measure.md). |
-| 17 | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` | Controls which open-problem chapters are strong enough for the deployed technical paper; scientific proof, instrument, and source work routes to its actual owner. | [Work queue](../open-problems/work-queue.md); [Solving the Crisis](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md). |
-| 18 | [`source-mining`](../source-mining/priorities.md) | `mine_source_material` | Source acquisition and convergence intake when a batch yields a concrete mathematical or corpus artifact. | [Work queue](../source-mining/work-queue.md); [mining history](../source-mining/source-mining-history.md). |
-| 19 | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` | Deferred but top-level owner for the cosmology transfer-function and observer-interface pipeline. | [Work queue](../cosmology-closure/work-queue.md); the tracker retains interfaces and promotion map. |
-| 20 | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance` | Read-only source-grounded MCP access; repository sources remain authoritative. | [Work queue](../app-mcp/work-queue.md); [client conformance](../app-mcp/client-conformance.md). |
-| 21 | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` | Single owner for the Archie persona, interface product, service platform, and source-authority boundary. | [Work queue](../dormant-deferred/archie/work-queue.md); [service architecture](../dormant-deferred/archie/service-deployment-architecture.md). |
-| 22 | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive` | iPhone/iPad release packaging and physical-device acceptance. | [Work queue](../app-ios/work-queue.md); the tracker retains completed package design. |
-| 23 | [`operations`](../operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../operations/work-queue.md); first consumer is Borg. |
-| 24 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
-| 25 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
-| 26 | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` | Low-priority future research, institutional, publication, and impact implications. | [Work queue](../dormant-deferred/aaa-futures/work-queue.md); [research revolution note](../dormant-deferred/aaa-futures/research-revolution.md). |
+| 17 | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `equation_page_api_access` | Interactive explanatory surface for stable-ID equation documents and canonical page links; it does not certify equation claims. | [Work queue](../app-equation-mapping/work-queue.md); [requirements and design](../app-equation-mapping/requirements-and-design.md). |
+| 18 | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` | Controls which open-problem chapters are strong enough for the deployed technical paper; scientific proof, instrument, and source work routes to its actual owner. | [Work queue](../open-problems/work-queue.md); [Solving the Crisis](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md). |
+| 19 | [`source-mining`](../source-mining/priorities.md) | `mine_source_material` | Source acquisition and convergence intake when a batch yields a concrete mathematical or corpus artifact. | [Work queue](../source-mining/work-queue.md); [mining history](../source-mining/source-mining-history.md). |
+| 20 | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` | Deferred but top-level owner for the cosmology transfer-function and observer-interface pipeline. | [Work queue](../cosmology-closure/work-queue.md); the tracker retains interfaces and promotion map. |
+| 21 | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance` | Read-only source-grounded MCP access; repository sources remain authoritative. | [Work queue](../app-mcp/work-queue.md); [client conformance](../app-mcp/client-conformance.md). |
+| 22 | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` | Single owner for the Archie persona, interface product, service platform, and source-authority boundary. | [Work queue](../dormant-deferred/archie/work-queue.md); [service architecture](../dormant-deferred/archie/service-deployment-architecture.md). |
+| 23 | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive` | iPhone/iPad release packaging and physical-device acceptance. | [Work queue](../app-ios/work-queue.md); the tracker retains completed package design. |
+| 24 | [`operations`](../operations/priorities.md) | `deployment_budget_contract` | Repo-wide deployment, hosting, cost, reliability, and release operations. | [Work queue](../operations/work-queue.md); first consumer is Borg. |
+| 25 | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` | Shared implementation-facing control-bar and app-chrome standardization. | [Work queue](../app-ui-guidelines/work-queue.md); [top dynamic control bar](../app-ui-guidelines/top-dynamic-control-bar.md). |
+| 26 | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` | Speculative candidate-assembly and dark-visible re-entry watchlist. | [Work queue](../dark-sector/work-queue.md); [photon-like mode packet](../dark-sector/dark-sector-photon-like-mode.md). |
+| 27 | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` | Low-priority future research, institutional, publication, and impact implications. | [Work queue](../dormant-deferred/aaa-futures/work-queue.md); [research revolution note](../dormant-deferred/aaa-futures/research-revolution.md). |
 
 ## Separately Ranked Shared Packets
 
@@ -62,14 +63,13 @@ These rows multiply several owners and therefore retain their own numeric attent
 
 ## Dormant-Deferred Archive
 
-The following 17 children are preserved but excluded from the numeric table, active discussion queue, and tracker-metadata synchronization:
+The following 16 children are preserved but excluded from the numeric table, active discussion queue, and tracker-metadata synchronization:
 
 | Archived child | Parked role |
 | --- | --- |
 | [`3x3`](../dormant-deferred/3x3/priorities.md) | Deferred binary-slot matrix note. |
 | [`aaa-journey`](../dormant-deferred/aaa-journey/priorities.md) | Legacy ideation-sequence reconstruction. |
 | [`app-causal-delay-feedback`](../dormant-deferred/app-causal-delay-feedback/priorities.md) | Completed learner app plus deferred advanced Roots and path-history teaching material. |
-| [`app-equation-mapping`](../dormant-deferred/app-equation-mapping/priorities.md) | Deferred equation-mapping app surface; the active scientific map remains top-level `mapping-equations`. |
 | [`app-lorentz-geometry`](../dormant-deferred/app-lorentz-geometry/priorities.md) | Deferred Lorentz-geometry teaching app. |
 | [`app-lattice-lab`](../dormant-deferred/app-lattice-lab/priorities.md) | Accepted Lattice Lab teaching app and its parked follow-on queue. |
 | [`electrodynamics`](../dormant-deferred/electrodynamics/priorities.md) | Parked electrodynamics recovery and primitive-dyon brainstorm; no executable queue. |
