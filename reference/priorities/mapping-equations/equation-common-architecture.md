@@ -6,12 +6,10 @@
 - Status: `priority-only`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Role: current shared method and routing owner for equation-first,
-  benchmark-first, and domain-integration mapping
+- Role: current shared method and routing owner for equation-first, benchmark-first, and domain-integration mapping
 - Origin: consolidated from the first score-neutral equation-packet pass; its score dispositions were priority-ledger decisions, not accepted retained evidence.
 - Claim level: priority-only common architecture for reusable mapping components
-- Edit boundary: shared method lives here; consumer trackers link to it rather
-  than duplicating it
+- Edit boundary: shared method lives here; consumer trackers link to it rather than duplicating it
 
 ## Purpose
 
@@ -33,8 +31,7 @@ The common components below should be treated as reusable mathematical objects, 
 
 ## Mapping Program Routing
 
-The mapping program has three complementary intake directions and one native
-evidence path. They share this architecture but retain separate ownership.
+The mapping program has three complementary intake directions and one native evidence path. They share this architecture but retain separate ownership.
 
 | Direction | Starts from | Owner | Owned output |
 | --- | --- | --- | --- |
@@ -43,38 +40,23 @@ evidence path. They share this architecture but retain separate ownership.
 | Domain integration | Several equation and benchmark constraints that must share one carrier | The domain owner, currently including [Mapping Electromagnetism](../mapping-electromagnetism/priorities.md) | Same-record intersection, cross-row consistency, inverse-geometry constraints, and domain-level failure conditions. |
 | Native derivation and evidence | Candidate assembly, causal-wake, event-ledger, and Noether sea records | Braid Program, Master Equation Closure, EOM solver, and other native owners | Retained records, derived carriers, independent validation, and acceptance evidence consumed by the three mapping directions. |
 
-These directions are not competing theories and do not duplicate authority.
-Equation Mapping owns exact equation disposition; Mapping Benchmarks owns
-benchmark definition; a domain integration lane owns the requirement that
-several such constraints use one native record; native workstreams own whether
-that record actually exists and passes its acceptance boundary.
+These directions are not competing theories and do not duplicate authority. Equation Mapping owns exact equation disposition; Mapping Benchmarks owns benchmark definition; a domain integration lane owns the requirement that several such constraints use one native record; native workstreams own whether that record actually exists and passes its acceptance boundary.
 
-Plainly: an equation row says what one formula requires, a benchmark packet
-says what one tested case requires, and a domain packet asks whether the same
-assembly-and-sea geometry can satisfy all of them. None of those mapping
-documents manufactures the retained geometry it needs.
+Plainly: an equation row says what one formula requires, a benchmark packet says what one tested case requires, and a domain packet asks whether the same assembly-and-sea geometry can satisfy all of them. None of those mapping documents manufactures the retained geometry it needs.
 
 ### Standard-Side Decomposition
 
 Every equation or benchmark intake must separate three layers:
 
-1. the measured observable or raw comparison data, including its provenance
-   and uncertainty;
-2. the effective equation or empirical regularity used to summarize that
-   record; and
+1. the measured observable or raw comparison data, including its provenance and uncertainty;
+2. the effective equation or empirical regularity used to summarize that record; and
 3. the standard interpretation or ontology attached to the equation.
 
-The first two may enter as observer-level recovery constraints. The third is a
-comparison or heuristic unless an independent closure requirement establishes
-that the interpretation itself is observable. A packet fails the import test
-when it uses the third layer as an architrino- or assembly-level premise.
+The first two may enter as observer-level recovery constraints. The third is a comparison or heuristic unless an independent closure requirement establishes that the interpretation itself is observable. A packet fails the import test when it uses the third layer as an architrino- or assembly-level premise.
 
 ### Admissible Native Record Sets
 
-Let $b$ name one equation row or benchmark. Let $\Theta_{\mathrm{native}}$
-be a declared assembly, causal-wake, event-ledger, and Noether sea record, and
-let $\Pi_b$ be the projection from that record to the comparison variables for
-$b$. Define the priority-only admissible set
+Let $b$ name one equation row or benchmark. Let $\Theta_{\mathrm{native}}$ be a declared assembly, causal-wake, event-ledger, and Noether sea record, and let $\Pi_b$ be the projection from that record to the comparison variables for $b$. Define the priority-only admissible set
 
 $$
 \mathfrak A_b(\epsilon_b)
@@ -89,10 +71,7 @@ $$
 \right\},
 $$
 
-where $\mathcal R_b$ is the declared comparison residual, $\epsilon_b$ is its
-regime-specific tolerance, and $\mathcal G_b$ is the conjunction of source,
-same-record, event-ledger, no-hidden-retune, and evidence-grade conditions.
-For a domain $D$ with required benchmark set $\mathcal B_D$, define
+where $\mathcal R_b$ is the declared comparison residual, $\epsilon_b$ is its regime-specific tolerance, and $\mathcal G_b$ is the conjunction of source, same-record, event-ledger, no-hidden-retune, and evidence-grade conditions. For a domain $D$ with required benchmark set $\mathcal B_D$, define
 
 $$
 \mathfrak A_D
@@ -101,19 +80,9 @@ $$
 \mathfrak A_b(\epsilon_b).
 $$
 
-Plainly: each equation or tested case removes native geometries that cannot
-produce its observed effective behavior. A domain recovery requires at least
-one *same* native record to survive every required filter; separately fitted
-records do not belong to the intersection.
+Plainly: each equation or tested case removes native geometries that cannot produce its observed effective behavior. A domain recovery requires at least one *same* native record to survive every required filter; separately fitted records do not belong to the intersection.
 
-Equation Mapping owns the individual equation sets $\mathfrak A_b$;
-Mapping Benchmarks owns independently specified benchmark sets and
-tolerances; the domain lane owns the intersection $\mathfrak A_D$; and the
-native workstreams own candidate $\Theta_{\mathrm{native}}$ records and their
-evidence. An empty intersection falsifies the declared shared carrier or one
-of its projections. A nonempty intersection does not establish uniqueness,
-retention, stability, or physical realization unless the native evidence
-independently establishes those claims.
+Equation Mapping owns the individual equation sets $\mathfrak A_b$; Mapping Benchmarks owns independently specified benchmark sets and tolerances; the domain lane owns the intersection $\mathfrak A_D$; and the native workstreams own candidate $\Theta_{\mathrm{native}}$ records and their evidence. An empty intersection falsifies the declared shared carrier or one of its projections. A nonempty intersection does not establish uniqueness, retention, stability, or physical realization unless the native evidence independently establishes those claims.
 
 ## Source Basis
 

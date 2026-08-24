@@ -31,12 +31,7 @@ $$
 $$
 for each coordinate $q_{\mathrm{std}}^a$. This equation is not a separate force postulate. It is the recovery condition that the chosen scalar $L_{\mathrm{std}}$ must satisfy if the action is to generate the equations of motion.
 
-Operationally, stationarity is tested by nearby trial paths
-$q_{\mathrm{std},\epsilon}^a(t_{\mathrm{std}})=q_{\mathrm{std}}^a(t_{\mathrm{std}})+\epsilon\xi^a(t_{\mathrm{std}})$ with
-$\xi^a(t_{\mathrm{std},a})=\xi^a(t_{\mathrm{std},b})=0$. Because $\xi^a$ is otherwise arbitrary,
-setting the first variation of $S_{\mathrm{std}}$ to zero forces the Euler-Lagrange expression
-itself to vanish. The action is therefore a history functional with units of
-energy times time, not an instruction to minimize instantaneous energy.
+Operationally, stationarity is tested by nearby trial paths $q_{\mathrm{std},\epsilon}^a(t_{\mathrm{std}})=q_{\mathrm{std}}^a(t_{\mathrm{std}})+\epsilon\xi^a(t_{\mathrm{std}})$ with $\xi^a(t_{\mathrm{std},a})=\xi^a(t_{\mathrm{std},b})=0$. Because $\xi^a$ is otherwise arbitrary, setting the first variation of $S_{\mathrm{std}}$ to zero forces the Euler-Lagrange expression itself to vanish. The action is therefore a history functional with units of energy times time, not an instruction to minimize instantaneous energy.
 
 A minimal recovery check is the one-dimensional harmonic oscillator. In the standard comparison form, for a mass $m$ attached to an ideal spring of stiffness $k$ with displacement $x_{\mathrm{std}}(t_{\mathrm{std}})$,
 $$
@@ -129,13 +124,7 @@ The same equations can also be read from the phase-space action
 $$
 S_H[q_{\mathrm{std}},p]=\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}\left(p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-H_{\mathrm{std}}(q_{\mathrm{std}},p,t_{\mathrm{std}})\right)dt_{\mathrm{std}}
 $$
-when variations in both $q_{\mathrm{std}}^a$ and $p_a$ are admitted and endpoint variations of
-$q_{\mathrm{std}}^a$ vanish. Variation with respect to $p_a$ gives
-$dq_{\mathrm{std}}^a/dt_{\mathrm{std}}=\partial H_{\mathrm{std}}/\partial p_a$, while variation with respect to $q_{\mathrm{std}}^a$ gives
-$dp_a/dt_{\mathrm{std}}=-\partial H_{\mathrm{std}}/\partial q_{\mathrm{std}}^a$. This is the action-level form of the
-canonical flow, and it is the part that matters when asking whether a reduced
-$\mathbb{A}\mathbb{A}\mathbb{A}$ chart is genuinely Hamiltonian rather than only
-an energy-like fit.
+when variations in both $q_{\mathrm{std}}^a$ and $p_a$ are admitted and endpoint variations of $q_{\mathrm{std}}^a$ vanish. Variation with respect to $p_a$ gives $dq_{\mathrm{std}}^a/dt_{\mathrm{std}}=\partial H_{\mathrm{std}}/\partial p_a$, while variation with respect to $q_{\mathrm{std}}^a$ gives $dp_a/dt_{\mathrm{std}}=-\partial H_{\mathrm{std}}/\partial q_{\mathrm{std}}^a$. This is the action-level form of the canonical flow, and it is the part that matters when asking whether a reduced $\mathbb{A}\mathbb{A}\mathbb{A}$ chart is genuinely Hamiltonian rather than only an energy-like fit.
 
 The conjugate momenta are more than bookkeeping in ordinary mechanics. When a coordinate is cyclic, the corresponding conjugate momentum is conserved; the same coordinate-momentum pairing later becomes the classical object used in Bohr-Sommerfeld action integrals and in canonical commutation rules. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these are recovery targets for a reduced effective chart, not permission to quantize the substrate variables directly.
 
@@ -143,27 +132,13 @@ This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the exact Master EOM i
 
 Canonical transformations sharpen the same test. In ordinary Hamiltonian mechanics, a change from $(q,p)$ to $(Q,P)$ is not automatically an equivalent mechanics; it is canonical only when the new variables preserve Hamilton's equation form, equivalently the symplectic form or Poisson brackets on the admitted phase-space functions. Generating functions are useful because they construct such transformations and can expose cyclic coordinates, conserved momenta, action-angle variables, or Hamilton-Jacobi constants. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this remains an effective-chart claim: a reduced chart may be transformed for calculation only while the same branch record keeps the canonical-chart, bracket, or symplectic residual controlled. Otherwise the transformation is a coordinate fit that has lost causal-wake history, not a bridge to operator recovery.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is
-therefore not an arbitrary instantaneous snapshot. It is a replayable or
-phase-locked branch chart: a reduced description in which the retained internal
-motion returns to a comparable section despite bounded surrounding influences.
-If a retained assembly is modeled by coarse coordinates $Q^A$ and by
-phase-bearing sub-assemblies indexed by
-$\alpha=1,\ldots,N_{\mathrm{ph}}$, the candidate chart has the form
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is therefore not an arbitrary instantaneous snapshot. It is a replayable or phase-locked branch chart: a reduced description in which the retained internal motion returns to a comparable section despite bounded surrounding influences. If a retained assembly is modeled by coarse coordinates $Q^A$ and by phase-bearing sub-assemblies indexed by $\alpha=1,\ldots,N_{\mathrm{ph}}$, the candidate chart has the form
 $$
 z_{\mathfrak B}=(Q^A,\Pi_A,\theta^\alpha,I_\alpha)
 $$
-where $\theta^\alpha$ records the sub-assembly phase and $I_\alpha$ is the
-conjugate action variable for that phase. Each retained phase-locked
-sub-assembly adds its own phase-action pair. Surrounding influences are
-admissible only when they are represented as fixed branch data, slow parameters,
-or additional coordinates over the comparison window; otherwise the chart is a
-driven open system rather than a closed Hamiltonian phase space.
+where $\theta^\alpha$ records the sub-assembly phase and $I_\alpha$ is the conjugate action variable for that phase. Each retained phase-locked sub-assembly adds its own phase-action pair. Surrounding influences are admissible only when they are represented as fixed branch data, slow parameters, or additional coordinates over the comparison window; otherwise the chart is a driven open system rather than a closed Hamiltonian phase space.
 
-On a single periodic channel, the action variable is not an arbitrary label once
-the chart is required to be canonical and the angle is required to advance
-uniformly. With the local $2\pi$ convention, the reduced action is the
-closed-cycle integral of the canonical one-form,
+On a single periodic channel, the action variable is not an arbitrary label once the chart is required to be canonical and the angle is required to advance uniformly. With the local $2\pi$ convention, the reduced action is the closed-cycle integral of the canonical one-form,
 $$
 I_\alpha
 =
@@ -176,11 +151,7 @@ $$
 =
 \frac{\partial H_{\mathrm{eff}}}{\partial I_\alpha}
 $$
-on that reduced chart. The value of this comparison is methodological: a
-replayable branch can expose frequency and harmonic content before the full
-path-history solution is written, but only if the same causal-root ledger and
-retained branch record make the closed-cycle integral and canonical residual
-stable.
+on that reduced chart. The value of this comparison is methodological: a replayable branch can expose frequency and harmonic content before the full path-history solution is written, but only if the same causal-root ledger and retained branch record make the closed-cycle integral and canonical residual stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-binary Family-A chart, the indexed phase circles need not form a trivial $T^3$ bundle over the retained branch family. Choose any declared ordering $(a,b,c)$ of the persistent binary indices. A retained return cycle of binary $a$ can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_a:S^1_a\to\mathfrak B$ denoting that return cycle,
 
@@ -231,30 +202,13 @@ r_{ij}(T;T_t)=\|\mathbf X_i(T)-\mathbf X_j(T_t)\|,
 \phi_\eta\equiv\delta_\eta
 $$
 
-With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient
-$\mu_{\text{arch}}\kappa$ gives the interaction term the same action
-dimension as the quadratic bookkeeping term. A factor
-$\kappa/c_f$ would instead leave the kernel with acceleration
-dimensions before time integration.
+With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient $\mu_{\text{arch}}\kappa$ gives the interaction term the same action dimension as the quadratic bookkeeping term. A factor $\kappa/c_f$ would instead leave the kernel with acceleration dimensions before time integration.
 
-Plainly: the same universal conversion used in the kinetic row must also
-multiply the interaction row; dividing by the wake speed does not repair the
-units.
+Plainly: the same universal conversion used in the kinetic row must also multiply the interaction row; dividing by the wake speed does not repair the units.
 
-The displayed action uses the quadratic bookkeeping kinetic Lagrangian
-$\ell_\mu(s)=\frac12\mu_{\text{arch}}s^2$. It therefore derives only the
-quadratic conjugate momentum $\mu_{\text{arch}}\mathbf V$ on the charts where
-the complete delayed variation succeeds. For a general kinetic-energy scalar
-$K(s)$, [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino)
-owns the work-power compatibility conditions and the reconstruction
-$\ell_K(s)=sP(s)-K(s)$.
+The displayed action uses the quadratic bookkeeping kinetic Lagrangian $\ell_\mu(s)=\frac12\mu_{\text{arch}}s^2$. It therefore derives only the quadratic conjugate momentum $\mu_{\text{arch}}\mathbf V$ on the charts where the complete delayed variation succeeds. For a general kinetic-energy scalar $K(s)$, [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino) owns the work-power compatibility conditions and the reconstruction $\ell_K(s)=sP(s)-K(s)$.
 
-Plainly: the energy scalar $K$ cannot be substituted directly for the kinetic
-Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$
-and then rederive the complete action variation, including the interaction
-normalization, constraint residual, boundary charge, and momentum and energy
-functionals. No general conservation claim follows from the quadratic
-calculation without that revariation.
+Plainly: the energy scalar $K$ cannot be substituted directly for the kinetic Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$ and then rederive the complete action variation, including the interaction normalization, constraint residual, boundary charge, and momentum and energy functionals. No general conservation claim follows from the quadratic calculation without that revariation.
 
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
@@ -320,8 +274,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)\,
 }
 {r_{ij}(T;T_t)^2}
 $$
-where $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ is computed on the same retained root record.
-This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
+where $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ is computed on the same retained root record. This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
 $$
@@ -460,8 +413,7 @@ $$
 $$
 Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
 
-**Energy Functional:**
-Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
+**Energy Functional:** Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
 $$
 E_{\text{tot}}(T)=K(T)+E_{\text{wake}}(T)
 $$
@@ -485,13 +437,9 @@ E_{\text{wake}}(T)
 \partial_{T_1}\mathcal{K}_{ij}^{E}(T_1,T_t)
 $$
 
-The outer minus sign matches the action convention
-$S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static
-like-polarity pair charge positive. Reversing that sign would contradict the
-positive work required to bring a repelling like-polarity pair closer.
+The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
 
-Plainly: the boundary charge must inherit both the units and the sign of the
-same action kernel.
+Plainly: the boundary charge must inherit both the units and the sign of the same action kernel.
 
 For compatible trajectory reconstruction one may use the work-integral form
 $$
@@ -523,8 +471,7 @@ Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. Fo
 
 The energy residual above is theorem-level only after the chart declares one symmetry-preserving action or independently derived causal-wake update, its endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same construction and boundary convention.
 
-**Generalized Momentum:**
-Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
+**Generalized Momentum:** Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
 
 For an effective reduction to promote a retained chart rather than fit it, it must also report vector residuals for the same branch pullback:
 $$
@@ -595,12 +542,7 @@ $$
 \frac{\mathbf{j}_q(\mathbf X',T')}{\rho_q(\mathbf X',T')}
 \qquad (\rho_q\neq 0)
 $$
-Here $\rho_q$ has polarity-density units. The emission-time delta collapse has
-already been absorbed into the delayed Eulerian density, and the discrete
-action uses the time-normalized causal constraint. No additional $1/c_f$
-therefore remains in the continuum prefactor; the same universal
-$\mu_{\text{arch}}\kappa$ conversion that supplies the discrete interaction
-action supplies this coarse-grained row.
+Here $\rho_q$ has polarity-density units. The emission-time delta collapse has already been absorbed into the delayed Eulerian density, and the discrete action uses the time-normalized causal constraint. No additional $1/c_f$ therefore remains in the continuum prefactor; the same universal $\mu_{\text{arch}}\kappa$ conversion that supplies the discrete interaction action supplies this coarse-grained row.
 
 This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional transmitter-side factor: the delayed density $\rho_q(\mathbf X',T')$ already carries the transmitter-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point transmitter, the familiar transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. A corrected delayed action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
 
@@ -775,16 +717,7 @@ $$
 $$
 for the retained two-form $\omega_{\mathcal{Q}}$, or an equivalent Poisson-bracket residual on the admitted observables. If $\epsilon_{\mathcal{Q}}$ or $\epsilon_{\omega}$ is not controlled, the local Hamiltonian is only a fitting chart, not a derived mechanics.
 
-For a replayable branch chart, this measure condition is the
-$\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of Liouville's theorem. In ordinary
-finite-dimensional Hamiltonian mechanics the phase-space flow is
-divergence-free, $\nabla_z\cdot\dot z=0$, so a phase-space volume element may
-stretch and fold but is not compressed by the exact flow. In the delayed
-setting, the analogous statement is valid only after $\mathcal{Q}$ retains the
-phase variables, causal-root ledger, wake-history record, and surrounding
-context that actually control the return map. Dropping an active sub-assembly
-phase can make a closed chart look dissipative or probabilistic merely because
-the chart has thrown away one of the variables that carries the recurrence.
+For a replayable branch chart, this measure condition is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of Liouville's theorem. In ordinary finite-dimensional Hamiltonian mechanics the phase-space flow is divergence-free, $\nabla_z\cdot\dot z=0$, so a phase-space volume element may stretch and fold but is not compressed by the exact flow. In the delayed setting, the analogous statement is valid only after $\mathcal{Q}$ retains the phase variables, causal-root ledger, wake-history record, and surrounding context that actually control the return map. Dropping an active sub-assembly phase can make a closed chart look dissipative or probabilistic merely because the chart has thrown away one of the variables that carries the recurrence.
 
 The preserved two-form is likewise not the naive instantaneous form alone. On a delayed branch the candidate symplectic structure is posited to carry a memory correction,
 

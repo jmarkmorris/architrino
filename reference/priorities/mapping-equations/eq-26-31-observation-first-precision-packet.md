@@ -21,9 +21,7 @@ This packet groups the observation-first precision rows that discipline atomic s
 
 ## 2026-06-23 Maturity Assessment
 
-This table preserves the dated assessment that informed the `6/23` ledger.
-It is not retained evidence and does not update [equation.md](equation.md), the
-sole current score authority.
+This table preserves the dated assessment that informed the `6/23` ledger. It is not retained evidence and does not update [equation.md](equation.md), the sole current score authority.
 
 | ID | 6/23 score | Reason |
 | --- | --- | --- |
@@ -214,35 +212,20 @@ Promotion condition: one hydrogen packet derives the envelope gaps, shared coeff
 
 ### Current Authority And Cross-Row Role
 
-The [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
-owns the factorization of $\alpha_{\mathrm{ref}}$ and
-$\mathcal K_{\mathrm{EM}}$, the shared carrier, benchmark ladder, dependency
-joins, and multi-anchor falsifier. The
-[EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md)
-owns exact source-attempt fields, checker controls, blocker order, and score
-review.
+The [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md) owns the factorization of $\alpha_{\mathrm{ref}}$ and $\mathcal K_{\mathrm{EM}}$, the shared carrier, benchmark ladder, dependency joins, and multi-anchor falsifier. The [EQ-26A Theta-Alpha Source-Field Map](eq-26a-theta-alpha-source-field-map.md) owns exact source-attempt fields, checker controls, blocker order, and score review.
 
 This grouped precision packet retains the cross-row binding:
 
 - `EQ-12A` must derive the action period before `EQ-26A` consumes it;
-- `EQ-26` supplies Rydberg and atomic fine-structure consumers without a
-  private alpha fit;
-- `EQ-27` treats electron $g-2$ as a withheld precision consumer rather than a
-  calibration source; and
-- `EQ-30` and `EQ-31` may consume the running coupling only after scheme,
-  threshold, source-provenance, and no-retune rows are attached.
+- `EQ-26` supplies Rydberg and atomic fine-structure consumers without a private alpha fit;
+- `EQ-27` treats electron $g-2$ as a withheld precision consumer rather than a calibration source; and
+- `EQ-30` and `EQ-31` may consume the running coupling only after scheme, threshold, source-provenance, and no-retune rows are attached.
 
-Plainly: this packet preserves how the neighboring precision rows share alpha.
-The focused map develops the mathematics, and the source-field map decides
-whether accepted evidence exists.
+Plainly: this packet preserves how the neighboring precision rows share alpha. The focused map develops the mathematics, and the source-field map decides whether accepted evidence exists.
 
 ### Executable Status
 
-[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs)
-evaluates the score-neutral `EQ-26A` sub-residual. The current attempt blocks
-first at `missing_accepted_theta_gamma_packet`; the first alpha-specific
-source-field object remains a scheme-pinned `charge_exposure_row`. No score
-changes.
+[planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs) evaluates the score-neutral `EQ-26A` sub-residual. The current attempt blocks first at `missing_accepted_theta_gamma_packet`; the first alpha-specific source-field object remains a scheme-pinned `charge_exposure_row`. No score changes.
 
 ## EQ-27: Magnetic Moment, Larmor/Cyclotron Precession, And $g-2$
 

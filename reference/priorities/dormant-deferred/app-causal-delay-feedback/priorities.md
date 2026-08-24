@@ -34,8 +34,7 @@ Plainly: maintenance means protecting the accepted teaching app, not continuing 
 
 ## Current Queue
 
-CDF-067 through CDF-071 remain `Deferred / blocked`. There is no executable
-row while this directory remains under `dormant-deferred`.
+CDF-067 through CDF-071 remain `Deferred / blocked`. There is no executable row while this directory remains under `dormant-deferred`.
 
 ## Retained Authorities
 

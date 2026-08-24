@@ -155,8 +155,7 @@ with flat relative-phase recurrence on the retained return chart. If a later cha
 
 The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A3.3 member and its A1.3 zero-axial-offset locus. They are not generic Noether braid data. In particular, [B1](braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
 
-The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md#angular-momentum-frame).
-The degree pair is admissible only when
+The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md#angular-momentum-frame). The degree pair is admissible only when
 $$
 |D_{\mathrm{plane}}|\ge \delta_{\mathrm{plane}}>0.
 $$
@@ -255,8 +254,7 @@ The intended use is constrained:
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
-Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue.
-Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
+Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue. Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
 
 ## Simulation Extraction
 

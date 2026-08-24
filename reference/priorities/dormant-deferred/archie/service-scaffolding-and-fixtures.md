@@ -275,8 +275,7 @@ This scaffold must not:
 
 ## Implementation Handoff
 
-Closure goal:
-Add observability/public-status sandbox fixtures that consume manifest, provider, token-ledger, issue-mining, and action-broker safe event classes to produce redacted status and incident records without private prompt text, provider payloads, account history, credentials, or source-authority changes.
+Closure goal: Add observability/public-status sandbox fixtures that consume manifest, provider, token-ledger, issue-mining, and action-broker safe event classes to produce redacted status and incident records without private prompt text, provider payloads, account history, credentials, or source-authority changes.
 
 Use this packet, [service-deployment-architecture.md](service-deployment-architecture.md), [manifest-service-contracts.md](manifest-service-contracts.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) as source of truth.
 

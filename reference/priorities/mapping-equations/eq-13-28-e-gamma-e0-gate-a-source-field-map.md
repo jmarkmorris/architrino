@@ -98,26 +98,11 @@ The `EQ-13` effective EM gate rows are downstream attempt rows:
 | `effective_gauge_chart_witness` | `effective-gauge-chart-witness-attempt` |
 | `photon_gate_C_compton_vertex_handoff` | `photon-gate-C-compton-vertex-handoff-attempt` |
 
-The current source-evidence control required for advancement is
-[compton-recoil-gate-a-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-coordination-source-negative-control.v1.json).
-It marks `photon_gate_A_input_output` as `accepted` while pointing the row to this
-priority map. The replay must still return `missing_accepted_photon_gate_A_input_output`
-with `accepted_without_evidence_source`, because a coordination packet is not retained
-event evidence.
+The current source-evidence control required for advancement is [compton-recoil-gate-a-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-coordination-source-negative-control.v1.json). It marks `photon_gate_A_input_output` as `accepted` while pointing the row to this priority map. The replay must still return `missing_accepted_photon_gate_A_input_output` with `accepted_without_evidence_source`, because a coordination packet is not retained event evidence.
 
-The source-object metadata control is
-[compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json).
-It marks `photon_gate_A_input_output` as accepted-looking against an evidence-class
-runner path while omitting `sourceObjectKind`, `sourceSupport`, and `evidenceFamily`.
-The replay must still return `missing_accepted_photon_gate_A_input_output` with
-`accepted_without_source_object_contract`; an evidence-class path alone is not a
-retained Gate A row.
+The source-object metadata control is [compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json). It marks `photon_gate_A_input_output` as accepted-looking against an evidence-class runner path while omitting `sourceObjectKind`, `sourceSupport`, and `evidenceFamily`. The replay must still return `missing_accepted_photon_gate_A_input_output` with `accepted_without_source_object_contract`; an evidence-class path alone is not a retained Gate A row.
 
-The current source-attempt payload is
-[compton-recoil-gate-a-source-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json).
-It adds concrete incoming/outgoing photon packet ids, frequency and wavelength rows,
-momentum rows, `h`/`c_gamma` row ids, null-branch status, and Gate A residual fields
-for `eventId=e_gamma_e_0`, but every row remains `attempt`.
+The current source-attempt payload is [compton-recoil-gate-a-source-attempt.v1.json](../../../scripts/equation-mapping/compton-recoil-gate-a-source-attempt.v1.json). It adds concrete incoming/outgoing photon packet ids, frequency and wavelength rows, momentum rows, `h`/`c_gamma` row ids, null-branch status, and Gate A residual fields for `eventId=e_gamma_e_0`, but every row remains `attempt`.
 
 ## Gate A Accepted-Object Contract
 
@@ -178,7 +163,4 @@ To check the source-object metadata control, run:
 node scripts/equation-mapping/compton-recoil-event-replay.mjs --input scripts/equation-mapping/compton-recoil-gate-a-source-contract-missing-metadata-negative-control.v1.json --summary --pretty
 ```
 
-Expected result: `comparison_replay_closed_native_rows_missing`,
-`scoreDecision=no_score_increase`, and `missing_accepted_photon_gate_A_input_output`.
-The same command with `--require-native-closed` must exit nonzero. Until a durable
-source-backed row exists, the correct result remains `missing_accepted_photon_gate_A_input_output`.
+Expected result: `comparison_replay_closed_native_rows_missing`, `scoreDecision=no_score_increase`, and `missing_accepted_photon_gate_A_input_output`. The same command with `--require-native-closed` must exit nonzero. Until a durable source-backed row exists, the correct result remains `missing_accepted_photon_gate_A_input_output`.

@@ -35,15 +35,7 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 
 ## Waiting On
 
-- Engine: the certified-traversal exact fallback now preserves admitted joint
-  histories, clearing the former `1.3699999999999966` carrier blocker. The
-  refined-prefix stationary fixture is certified through
-  `1.394999999999996`, but its next fixed `0.005` step to
-  `1.3999999999999959` fails closed because the certified joint root-time
-  width `1.0205062366854167e-05` exceeds the unchanged `1e-5` tolerance.
-  Certified root completeness through the full sub-field head-on close
-  approach and the longer transverse path still blocks Campaign 1 fate
-  booking and the sub-field breathing classification.
+- Engine: the certified-traversal exact fallback now preserves admitted joint histories, clearing the former `1.3699999999999966` carrier blocker. The refined-prefix stationary fixture is certified through `1.394999999999996`, but its next fixed `0.005` step to `1.3999999999999959` fails closed because the certified joint root-time width `1.0205062366854167e-05` exceeds the unchanged `1e-5` tolerance. Certified root completeness through the full sub-field head-on close approach and the longer transverse path still blocks Campaign 1 fate booking and the sub-field breathing classification.
 - Engine: field-speed-fold root-completeness extension — separately gates queue item 3's at/above-field-speed stage.
 
 ## Pointers

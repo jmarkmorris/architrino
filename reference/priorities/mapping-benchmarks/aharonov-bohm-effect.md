@@ -20,9 +20,7 @@ This case pressures $\mathbb{A}\mathbb{A}\mathbb{A}$ to recover gauge-like holon
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `holonomy_record` — Define a path-history holonomy functional around a shielded source region. Status: `draft`.
 2. `gauge_redundancy_map` — Separate physical path-history data from observer-level gauge descriptions. Status: `draft`.

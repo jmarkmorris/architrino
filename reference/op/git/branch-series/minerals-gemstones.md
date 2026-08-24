@@ -1,14 +1,8 @@
 # Mineral and Gemstone Branch Registry
 
-This registry freezes the minerals/gemstones branch order required by
-[codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase
-hyphenated mineral or gemstone names after `codex/`.
+This registry freezes the minerals/gemstones branch order required by [codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase hyphenated mineral or gemstone names after `codex/`.
 
-The sequence starts with common rock-forming and field-identification minerals,
-then moves into common gemstones, gem varieties, and gem materials in a curated
-common-recognition order. Entries marked as gem materials are included because
-this series covers both strict minerals and widely recognized gemstone
-materials.
+The sequence starts with common rock-forming and field-identification minerals, then moves into common gemstones, gem varieties, and gem materials in a curated common-recognition order. Entries marked as gem materials are included because this series covers both strict minerals and widely recognized gemstone materials.
 
 | Index | Kind | Mineral, gemstone, or material | Branch |
 | ---: | --- | --- | --- |

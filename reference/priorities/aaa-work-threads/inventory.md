@@ -2,31 +2,20 @@
 
 Snapshot: 2026-08-05.
 
-This is the developer-facing ownership and routing inventory for
-[reference/priorities](../README.md). The canonical numeric order lives in
-[priorities.md](priorities.md); the repeated mathematical joins live in
-[closure-join-matrix.md](closure-join-matrix.md).
+This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
 ## Inclusion Rules
 
-- An immediate top-level directory with its own `priorities.md` is part of the
-  active inventory unless it is explicitly a control or routing surface.
-- A top-level tracker may carry an internal `deferred` or `watchlist` status and
-  still remain in the active inventory. Moving the directory under
-  `dormant-deferred` is what removes it from active ranking.
-- Every child of `dormant-deferred` is archived and unscored, even when its
-  parked tracker retains historical rank metadata.
-- `aaa-work-threads` is the ranking/control surface and `app-simulation` is a
-  protocol-routing index; neither is a separately ranked owner.
-- Supporting subdirectories inherit their parent owner unless a shared theorem
-  packet is explicitly ranked in the unified table.
-- Completed objects leave the live queue. The next local marginal winner then
-  replaces the workstream's unified-table row and is rescored from scratch.
+- An immediate top-level directory with its own `priorities.md` is part of the active inventory unless it is explicitly a control or routing surface.
+- A top-level tracker may carry an internal `deferred` or `watchlist` status and still remain in the active inventory. Moving the directory under `dormant-deferred` is what removes it from active ranking.
+- Every child of `dormant-deferred` is archived and unscored, even when its parked tracker retains historical rank metadata.
+- `aaa-work-threads` is the ranking/control surface and `app-simulation` is a protocol-routing index; neither is a separately ranked owner.
+- Supporting subdirectories inherit their parent owner unless a shared theorem packet is explicitly ranked in the unified table.
+- Completed objects leave the live queue. The next local marginal winner then replaces the workstream's unified-table row and is rescored from scratch.
 
 ## Active Ranked Owners
 
-The rank column is mirrored from the active-only unified table. Ranks `4`, `5`,
-`10`, and `15` belong to shared theorem packets listed separately below.
+The rank column is mirrored from the active-only unified table. Ranks `4`, `5`, `10`, and `15` belong to shared theorem packets listed separately below.
 
 | Rank | Owner | Local rank-1 object | Present role and ownership boundary | Execution queue and focused packet |
 | ---: | --- | --- | --- | --- |
@@ -55,8 +44,7 @@ The rank column is mirrored from the active-only unified table. Ranks `4`, `5`,
 
 ## Separately Ranked Shared Packets
 
-These rows multiply several owners and therefore retain their own numeric
-attention score. They do not create another directory owner.
+These rows multiply several owners and therefore retain their own numeric attention score. They do not create another directory owner.
 
 | Rank | Packet | Owning location | Next unresolved object |
 | ---: | --- | --- | --- |
@@ -74,8 +62,7 @@ attention score. They do not create another directory owner.
 
 ## Dormant-Deferred Archive
 
-The following 17 children are preserved but excluded from the numeric table,
-active discussion queue, and tracker-metadata synchronization:
+The following 17 children are preserved but excluded from the numeric table, active discussion queue, and tracker-metadata synchronization:
 
 | Archived child | Parked role |
 | --- | --- |
@@ -97,8 +84,7 @@ active discussion queue, and tracker-metadata synchronization:
 | [`ruth-kastner`](../dormant-deferred/ruth-kastner/priorities.md) | Deferred source/interpretation packet. |
 | [`validation-gates`](../dormant-deferred/validation-gates/priorities.md) | Archived acceptance-intersection packet retained as reference, not a live ranked owner. |
 
-The pre-split monolith remains recoverable from Git history; it is not a live
-archive packet.
+The pre-split monolith remains recoverable from Git history; it is not a live archive packet.
 
 ## Maintenance Sequence
 
@@ -106,9 +92,6 @@ archive packet.
 2. Remove completed local objects and sort each active owner's queue.
 3. Carry each local rank-`1` object into the unified table.
 4. Score and sort the active owners plus explicitly ranked shared packets.
-5. Synchronize `Rank`, `Value`, `Cost`, and `ROI` metadata in tracker-backed
-   rows.
-6. Update this inventory and the closure join only when ownership or a shared
-   mathematical dependency changed.
-7. Run `node scripts/validate-priority-ranking.mjs`, strict link/content checks,
-   and `git diff --check`.
+5. Synchronize `Rank`, `Value`, `Cost`, and `ROI` metadata in tracker-backed rows.
+6. Update this inventory and the closure join only when ownership or a shared mathematical dependency changed.
+7. Run `node scripts/validate-priority-ranking.mjs`, strict link/content checks, and `git diff --check`.

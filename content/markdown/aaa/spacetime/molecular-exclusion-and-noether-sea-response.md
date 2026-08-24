@@ -12,9 +12,7 @@ When chemists use the **van der Waals (VdW) volume** of a molecule, they mean th
 
 At everyday conditions, about $1\,\mathrm{atm}$ and room temperature, air is extremely sparse. A quick estimate using van der Waals volumes shows why:
 
-Take nitrogen ($\mathrm{N}_2$) as representative. Using two equal Bondi
-spheres with radius $r_N=1.55\,\mathring{\mathrm A}$ and center separation
-$d=1.10\,\mathring{\mathrm A}$, the bonded overlap is
+Take nitrogen ($\mathrm{N}_2$) as representative. Using two equal Bondi spheres with radius $r_N=1.55\,\mathring{\mathrm A}$ and center separation $d=1.10\,\mathring{\mathrm A}$, the bonded overlap is
 
 $$
 V_{\cap}
@@ -34,12 +32,7 @@ V_{\mathrm{VdW}}
 23.6\,\mathring{\mathrm A}^3
 $$
 
-per molecule. One mole then presents a hard-core volume of about
-$23.6 \times 10^{-24}\,\mathrm{cm}^3 \times N_A
-\approx 14.2\,\mathrm{cm}^3$. One mole of an ideal gas occupies about
-$24{,}000\,\mathrm{cm}^3$ at $298\,\mathrm{K}$ and $1\,\mathrm{atm}$.
-The packing fraction is therefore about
-$14.2\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.06\%$.
+per molecule. One mole then presents a hard-core volume of about $23.6 \times 10^{-24}\,\mathrm{cm}^3 \times N_A \approx 14.2\,\mathrm{cm}^3$. One mole of an ideal gas occupies about $24{,}000\,\mathrm{cm}^3$ at $298\,\mathrm{K}$ and $1\,\mathrm{atm}$. The packing fraction is therefore about $14.2\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.06\%$.
 
 Intuition scales:
 - Average intermolecular spacing is about $3$ to $4\,\mathrm{nm}$ (from the number density above).

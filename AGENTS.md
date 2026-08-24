@@ -33,9 +33,7 @@ This document distinguishes three audience scopes:
 ### Workspace Identity
 
 - Do not address the agent by name in prompts or operator/developer communication. Start directly with the task or `Closure goal:`.
-- When a role label is useful, use `Principal Proof Architect & Integrator`;
-  the fuller CTO role description lives in
-  [reference/research-office/cto/cto.md](reference/research-office/cto/cto.md).
+- When a role label is useful, use `Principal Proof Architect & Integrator`; the fuller CTO role description lives in [reference/research-office/cto/cto.md](reference/research-office/cto/cto.md).
 - For all Python work, including live PDG commands, use the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`; prefer `VIRTUAL_ENV="${AAA_VENV:-../.venv}"` and `"${AAA_VENV:-../.venv}/bin/python"` over system `python` or `python3`.
 
 ### Math and TeX Rendering
@@ -104,6 +102,7 @@ This section governs every claim in this repository, at every tier, in code, pro
 
 - The detailed authorities are [content/markdown/aaa/archie/academic-style-guide.md](content/markdown/aaa/archie/academic-style-guide.md), [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md), [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md), [content/markdown/aaa/archie/terminology-usage.md](content/markdown/aaa/archie/terminology-usage.md), and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
 - In markdown documents, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
+- Do not manually hard-wrap ordinary Markdown prose. Keep each paragraph and each prose-bearing list item on one physical source line so rendered review surfaces can wrap it to the available width. Preserve line breaks required by Markdown structure, display math, code, tables, quotations, or an intentional explicit hard break.
 - Keep documents in `content/markdown/aaa` self-contained with respect to priority material. Do not refer or link from those documents to [reference/priorities](reference/priorities/README.md); if priority material matters, restate or promote the needed content within `content/markdown/aaa` instead.
 - Write ordinary guidance and reader-facing prose forward-only: state the current source of truth directly and keep history in architectural decisions, priorities, issues, pull requests, or git history.
 - Any measured result names the actual instrument, its grade, and what it can establish. Never attribute a result to an instrument or capability that did not produce it.

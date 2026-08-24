@@ -98,8 +98,7 @@ This is the fermion-sector consumer of the pro/anti orientation basis defined in
 
 ## Colorless Fermions: Axis Uniformity
 
-**Core rule:**
-Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+**Core rule:** Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out axis 1, 2, or 3. Quarks are colored because their axial pattern does.
 
@@ -117,14 +116,12 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ### Electron and positron
 
-- **Electron**:
-  $(\text{1},\text{2},\text{3}) = (-/-,\ -/- ,\ -/-)$
+- **Electron**: $(\text{1},\text{2},\text{3}) = (-/-,\ -/- ,\ -/-)$
   - Each axis: net $-2\epsilon$.
   - Total: $-6\epsilon=-e$.
   - All axes identical → SU(3)$_c$ singlet.
 
-- **Positron**:
-  $(+/+,\ +/+,\ +/+)$
+- **Positron**: $(+/+,\ +/+,\ +/+)$
   - Each axis: net $+2\epsilon$.
   - Total: $+6\epsilon=+e$.
   - All axes identical → singlet.
@@ -185,11 +182,9 @@ Accordingly, the axis-class dictionary is:
 
 - **Colorless**: 1,2,3 all same class, for example all negative-polarity dyads or all mixed dyads.
 - **Colored quark**: 1,2,3 pattern is one of:
-  - two background dyads and one exceptional dyad
-  where the exceptional dyad class differs from the background dyad class.
+  - two background dyads and one exceptional dyad where the exceptional dyad class differs from the background dyad class.
 
-Color degree of freedom is then:
-**which axis carries the exceptional dyad?**
+Color degree of freedom is then: **which axis carries the exceptional dyad?**
 
 
 
@@ -215,8 +210,7 @@ Define color basis:
 - $|u_2\rangle$: 2 exceptional.
 - $|u_3\rangle$: 3 exceptional.
 
-These span the color space:
-$\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
+These span the color space: $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
@@ -266,8 +260,7 @@ Thus for down‑type $d$ we again define:
 - $|d_2\rangle$: 2 exceptional.
 - $|d_3\rangle$: 3 exceptional.
 
-and:
-$\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_1\rangle,|d_2\rangle,|d_3\rangle\} \cong \mathbb{C}^3.$
+and: $\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_1\rangle,|d_2\rangle,|d_3\rangle\} \cong \mathbb{C}^3.$
 
 #### Family selection: dynamic, not arbitrary
 
@@ -312,8 +305,7 @@ $$
 $$
 be the Floquet spectral radius of nontrivial multipliers.
 
-**Theorem (Single-family low-energy survival).**
-Assume there exists $F_\star\in\{I,II\}$ such that:
+**Theorem (Single-family low-energy survival).** Assume there exists $F_\star\in\{I,II\}$ such that:
 
 1. **Local dynamical stability:** $\rho_{F_\star}<1$.
 2. **Competitor exclusion:** either $\rho_{\bar F}\ge 1$ (linearly unstable), or $\rho_{\bar F}<1$ and
@@ -332,8 +324,7 @@ so $\pi_{\bar F}\to 0$ as $T_{\mathcal Q,W}\to 0$. Hence exactly one down-family
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight. The harmonic free-energy and Kramers steps are part of the approximation burden: the reduced state-dependent delay record must admit this metastable-well reduction before the criterion becomes quantitative.
 
-**Concrete screening corollary (Family II preference test).**
-If the reduced minimum can be decomposed as
+**Concrete screening corollary (Family II preference test).** If the reduced minimum can be decomposed as
 $$
 E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{\mathrm{mix}}^{(F)}
 $$
@@ -346,14 +337,12 @@ $$
 $$
 and the stability condition $\rho_{II}<1$ holds.
 
-**Failure condition (theory-level, explicit).**
-The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
+**Failure condition (theory-level, explicit).** The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
 $$
 \rho_I<1,\qquad \rho_{II}<1,\qquad
 |\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
 $$
-for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.
-In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
+for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening. In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 
 
@@ -363,8 +352,7 @@ For any quark flavor $q$, define the color state space
 $$
 \mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_1\rangle,|q_2\rangle,|q_3\rangle\}\cong\mathbb{C}^3
 $$
-where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively.
-Fix this ordered basis and identify it with the canonical triplet basis
+where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively. Fix this ordered basis and identify it with the canonical triplet basis
 $$
 |q_1\rangle\leftrightarrow e_1,\quad |q_2\rangle\leftrightarrow e_2,\quad |q_3\rangle\leftrightarrow e_3
 $$
@@ -387,17 +375,13 @@ The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as uno
 
 ### Generator basis from axis operations
 
-Let $E_{ab}$ be matrix units in the ordered basis $(1,2,3)$, i.e.
-$(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{1,2,3\}$.
-Define Hermitian generators:
+Let $E_{ab}$ be matrix units in the ordered basis $(1,2,3)$, i.e. $(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{1,2,3\}$. Define Hermitian generators:
 $$
 T^{(x)}_{ab}\equiv \frac{1}{2}(E_{ab}+E_{ba}),\qquad
 T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
 \quad (a<b)
 $$
-giving six off-diagonal generators:
-$(12),(13),(23)$ each with $(x,y)$ components.
-Define diagonal generators:
+giving six off-diagonal generators: $(12),(13),(23)$ each with $(x,y)$ components. Define diagonal generators:
 $$
 H_1\equiv \frac{1}{2}(E_{11}-E_{22}),\qquad
 H_2\equiv \frac{1}{2\sqrt{3}}(E_{11}+E_{22}-2E_{33})

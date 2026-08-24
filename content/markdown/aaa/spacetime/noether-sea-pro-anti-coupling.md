@@ -24,8 +24,7 @@ The orientation label does not assign matter versus antimatter. Global polarity 
 
 At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
 
-At the continuum-medium level, represent local Noether braid density with canonical symbols
-$(\rho_{\text{NS}}, n)$ as two coupled components:
+At the continuum-medium level, represent local Noether braid density with canonical symbols $(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
 \rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) + \rho_{-}(\mathbf X,T)

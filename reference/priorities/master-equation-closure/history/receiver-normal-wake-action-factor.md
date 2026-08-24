@@ -1,22 +1,10 @@
 # Receiver-Normal Wake-Action Factor
 
-Status. Mandatory model-change audit for master-equation closure, A1 outward
-constants, action/wake-history closure, and solver support. This packet records
-the receiver-normal factor required by the canonical Master EOM branch law.
-Rows without the receiver-normal numerator are not force/action evidence.
-Stationary, fixed-source, or fixed-receiver reductions must be recomputed from
-this identity inside the selected retained row.
+Status. Mandatory model-change audit for master-equation closure, A1 outward constants, action/wake-history closure, and solver support. This packet records the receiver-normal factor required by the canonical Master EOM branch law. Rows without the receiver-normal numerator are not force/action evidence. Stationary, fixed-source, or fixed-receiver reductions must be recomputed from this identity inside the selected retained row.
 
-Claim level. Accepted correction to the Master EOM branch-strength law; exact
-geometry identity for smooth retained roots; downstream proof paths must restart
-their force/action rows from this law.
+Claim level. Accepted correction to the Master EOM branch-strength law; exact geometry identity for smooth retained roots; downstream proof paths must restart their force/action rows from this law.
 
-Current disposition. `priority-only` for wake-history closure. The identity
-below is accepted as the branch-strength correction, but no wake-history,
-action, power, breather, or mass-response packet promotes from it until that
-packet supplies the same retained record with accepted branch identity,
-$D_s$, $D_T$, $W^{\mathrm{rec}}$, and the derivative rows consumed by the
-packet.
+Current disposition. `priority-only` for wake-history closure. The identity below is accepted as the branch-strength correction, but no wake-history, action, power, breather, or mass-response packet promotes from it until that packet supplies the same retained record with accepted branch identity, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and the derivative rows consumed by the packet.
 
 ## Receiver-Normal Identity
 
@@ -31,21 +19,12 @@ D_{s,ij}=c_f-\hat{\mathbf r}_{ij}(T,T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{
 \qquad
 D_{T,ij}=c_f-\hat{\mathbf r}_{ij}(T,T_{\mathrm{em}})\cdot\mathbf V_i(T).
 $$
-On a retained simple-root branch $T_{\mathrm{em}}=T_{\ell,\mathrm{em}}(T)$
-with $D_{s,ij}\ne0$, implicit differentiation gives
+On a retained simple-root branch $T_{\mathrm{em}}=T_{\ell,\mathrm{em}}(T)$ with $D_{s,ij}\ne0$, implicit differentiation gives
 $$
 \frac{dT_{\ell,\mathrm{em}}}{dT}=\frac{D_{T,ij}}{D_{s,ij}}.
 $$
 
-Interpretation. $D_{s,ij}^{-1}$ is the source-normal causal-root denominator.
-It remains the transversality floor that makes a simple root legal. $D_{T,ij}$
-is the receiver-normal numerator: it says how fast the receiver path cuts
-through the source-emitted causal wake sequence. If a receiver is stationary in
-the Euclidean-void rest frame, then $D_{T,ij}=c_f$ follows by substitution in
-this equation. That reduction is a receiver-normal sanity check, not a promotion
-route for rows that omit $D_T$. In every nontrivial receiver-normal case,
-$D_{T,ij}/D_{s,ij}$ is geometry-dependent and cannot be replaced by one
-constant.
+Interpretation. $D_{s,ij}^{-1}$ is the source-normal causal-root denominator. It remains the transversality floor that makes a simple root legal. $D_{T,ij}$ is the receiver-normal numerator: it says how fast the receiver path cuts through the source-emitted causal wake sequence. If a receiver is stationary in the Euclidean-void rest frame, then $D_{T,ij}=c_f$ follows by substitution in this equation. That reduction is a receiver-normal sanity check, not a promotion route for rows that omit $D_T$. In every nontrivial receiver-normal case, $D_{T,ij}/D_{s,ij}$ is geometry-dependent and cannot be replaced by one constant.
 
 ## Proof Impact
 
@@ -59,18 +38,13 @@ constant.
 
 ## A1-Specific Target
 
-For each retained A1 label $\alpha\in\{P_1,P_2,P_3,S_1\}$, the action-ready
-same-box row should add
+For each retained A1 label $\alpha\in\{P_1,P_2,P_3,S_1\}$, the action-ready same-box row should add
 $$
 D_{T,\alpha}(\theta,p)
 =
 c_f-\hat{\mathbf r}_{\alpha}(\theta,p)\cdot\mathbf v_i(\theta,p)
 $$
-and report outward bounds $D_{T,\alpha}^{-},D_{T,\alpha}^{+}$ on the same
-$I_c\times W_\alpha$ boxes used for $D_{s,\alpha}$, inactive-cover gaps, and
-branch-sum constants. A missing $D_T$ row invalidates the force/action/
-wake-history row as closure evidence. It does not falsify root topology,
-inactive gaps, or source-normal transversality rows.
+and report outward bounds $D_{T,\alpha}^{-},D_{T,\alpha}^{+}$ on the same $I_c\times W_\alpha$ boxes used for $D_{s,\alpha}$, inactive-cover gaps, and branch-sum constants. A missing $D_T$ row invalidates the force/action/ wake-history row as closure evidence. It does not falsify root topology, inactive gaps, or source-normal transversality rows.
 
 ## Solver Acceptance Target
 
@@ -84,20 +58,13 @@ A solver-side receiver-normal row is accepted only when it reports:
 - receiver-normal factor $D_T/D_s$,
 - verification failed status for nonfinite values, small $D_s$, or small $D_T$ when the selected proof requires monotone receiver sampling.
 
-This is consumed as the branch-strength row. A separate variational proof is
-still required for action derivation, but not for using receiver-normal branch
-strength in the Master EOM.
+This is consumed as the branch-strength row. A separate variational proof is still required for action derivation, but not for using receiver-normal branch strength in the Master EOM.
 
 ## Wake-History Pullback Theorem Target
 
-Wake-history closure is not merely the presence of event rows on a retained
-ledger. A wake-history action or power packet consumes the receiver-normal
-sampling rate along a moving receiver path, so its first theorem target is a
-same-record pullback statement.
+Wake-history closure is not merely the presence of event rows on a retained ledger. A wake-history action or power packet consumes the receiver-normal sampling rate along a moving receiver path, so its first theorem target is a same-record pullback statement.
 
-For every retained branch row
-$\rho=(i,j,\ell,T,T_{\ell,\mathrm{em}})$ used by a
-wake-history increment, the row must bind
+For every retained branch row $\rho=(i,j,\ell,T,T_{\ell,\mathrm{em}})$ used by a wake-history increment, the row must bind
 $$
 D_{s,\rho},
 \qquad
@@ -111,9 +78,7 @@ D_vD_{T,\rho},
 \qquad
 D_vW_{\rho}^{\mathrm{rec}}
 $$
-to the same source/receiver ids, retained box, regulator state, event ledger,
-and source artifact hash. On a fixed $D_s,D_T$ sign stratum the reconstruction
-condition is
+to the same source/receiver ids, retained box, regulator state, event ledger, and source artifact hash. On a fixed $D_s,D_T$ sign stratum the reconstruction condition is
 $$
 D_vW_{\rho}^{\mathrm{rec}}
 =
@@ -125,9 +90,7 @@ D_{T,\rho}D_vD_{s,\rho}
 \right).
 $$
 
-The closure equation to prove is that the finite-window wake-history increment
-is a pullback of source-provenanced emitted weight through the same
-receiver-normal branch record:
+The closure equation to prove is that the finite-window wake-history increment is a pullback of source-provenanced emitted weight through the same receiver-normal branch record:
 $$
 D_v\mathcal{H}_{\mathrm{wake}}^{W}
 =
@@ -143,11 +106,4 @@ D_v\mathcal{K}_{\rho}^{(\eta,\epsilon_c)}
 +
 \mathcal{R}_{\mathrm{wake},v}^{\mathrm{rec}},
 $$
-with the same retained branch list $\mathfrak{R}_{W}^{\mathrm{ret}}$ consumed by
-the action, power, event, and Noether balance rows. A source-normal diagnostic
-alone, a terminal aggregate, or a finite-difference table after branch identity
-is erased fails with
-`receiver-normal-first-derivative-row-missing` or
-`receiver-normal-derivative-record-mismatch` rather than authorizing
-wake-history closure. A row that carries a different retained branch list exits
-as `branch-family-consumer-checksum-mismatch`.
+with the same retained branch list $\mathfrak{R}_{W}^{\mathrm{ret}}$ consumed by the action, power, event, and Noether balance rows. A source-normal diagnostic alone, a terminal aggregate, or a finite-difference table after branch identity is erased fails with `receiver-normal-first-derivative-row-missing` or `receiver-normal-derivative-record-mismatch` rather than authorizing wake-history closure. A row that carries a different retained branch list exits as `branch-family-consumer-checksum-mismatch`.

@@ -14,9 +14,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 
 ## Neutral-Atlas Review Action Register
 
-This register owns every deferred action from the [Neutral-Braid Configuration
-Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md).
-It creates no queue and changes no status.
+This register owns every deferred action from the [Neutral-Braid Configuration Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md). It creates no queue and changes no status.
 
 | Review item | Live owner and status | Acceptance action |
 | --- | --- | --- |
@@ -35,9 +33,7 @@ It creates no queue and changes no status.
 | Open — finite-width omitted-tail bound | Same explicit BP-002/EOM-contract handoff | Apply the shared T5 acceptance boundary; a retained computation is not an omitted-tail certificate. |
 | Open — candidate retention, stability, physical realization, or solver preference | BP-001, BP-003, and BP-004, each `Deferred / blocked`; MEC-002 only where a mature wake state is consumed | Apply the candidate-specific EOM evolution, complete-root, multi-prehistory, refinement, fate, and independent-instrument gates. |
 
-Plainly: atlas mathematics remains available within its declared history scope.
-Physical fate stays with the candidate-specific rows, and the Gaussian-tail
-question keeps its two-owner handoff.
+Plainly: atlas mathematics remains available within its declared history scope. Physical fate stays with the candidate-specific rows, and the Gaussian-tail question keeps its two-owner handoff.
 
 ## Queued
 
@@ -47,17 +43,9 @@ question keeps its two-owner handoff.
 - **Priority object:** `configuration_chart_completion`
 - **Request / acceptance:** Advance [configuration-chart.md](configuration-chart.md) past skeleton grade, including motion classes beyond fixed-coordinate common-frequency co-rotation.
 - **Evidence / blocker:** The chart is a search-space coordinate system, not evidence that any configuration persists.
-- **Review backlink:** The neutral-atlas action register above owns T1 and
-  T5–T11 plus the architecture questions without changing this status.
-- **Scoped action completed (2026-07-29):** [Configuration chart](configuration-chart.md)
-  now inventories every admitted A1/A2/A3, B1, and C1–C6 taxonomy subchart,
-  attaches the scope-and-provenance profile to each constrained member, and
-  records the five current campaign-restricted slices plus explicit
-  abstentions for live queue targets that lack a frozen subchart.
-- **Remaining action:** Review the inventory for omission and ratify or return
-  the chart. Ratification would fix search scope only; it would not authorize
-  a family-level negative or any retention, stability, physical-realization,
-  solver-preference, particle-identity, or EOM claim.
+- **Review backlink:** The neutral-atlas action register above owns T1 and T5–T11 plus the architecture questions without changing this status.
+- **Scoped action completed (2026-07-29):** [Configuration chart](configuration-chart.md) now inventories every admitted A1/A2/A3, B1, and C1–C6 taxonomy subchart, attaches the scope-and-provenance profile to each constrained member, and records the five current campaign-restricted slices plus explicit abstentions for live queue targets that lack a frozen subchart.
+- **Remaining action:** Review the inventory for omission and ratify or return the chart. Ratification would fix search scope only; it would not authorize a family-level negative or any retention, stability, physical-realization, solver-preference, particle-identity, or EOM claim.
 - **Completion:** Every admitted campaign family has explicit coordinates, symmetry reductions, exclusions, and ownership.
 
 ### BP-005 — Mining disposition review
@@ -83,11 +71,7 @@ question keeps its two-owner handoff.
 - **Status:** Deferred / blocked
 - **Priority object:** `collinear_breather_campaign`
 - **Request / acceptance:** Extend certified close-approach roots and rerun the unchanged stationary seed; run the at/above-field stage only after fold-root completeness.
-- **Evidence / blocker:** The refined-prefix stationary joint-history fixture
-  now certifies through `1.394999999999996`; its next fixed step fails closed
-  because the certified joint root-time width exceeds the unchanged
-  tolerance. Current runs still halt before crossing and do not establish
-  breathing.
+- **Evidence / blocker:** The refined-prefix stationary joint-history fixture now certifies through `1.394999999999996`; its next fixed step fails closed because the certified joint root-time width exceeds the unchanged tolerance. Current runs still halt before crossing and do not establish breathing.
 - **Completion:** The unchanged protocol resolves inner turn, crossing, outer turn, recapture, return, or a fail-closed no-go.
 
 ### BP-004 — Undirected ensemble campaign

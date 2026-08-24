@@ -158,8 +158,7 @@ The accepted-source guard check is:
 node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-coordination-source-negative-control.v1.json --summary --pretty
 ```
 
-Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`,
-`carrierReason=accepted_without_evidence_source`, and no score change.
+Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`, `carrierReason=accepted_without_evidence_source`, and no score change.
 
 The probe-source guard is:
 
@@ -167,8 +166,4 @@ The probe-source guard is:
 node scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs --input scripts/equation-mapping/eq28a-path-frequency-exchange-probe-source-negative-control.v1.json --summary --pretty
 ```
 
-Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`,
-`carrierReason=accepted_without_evidence_source`, and no score change. The
-same command with `--require-populated` must exit nonzero. This prevents toy or
-source-evidence-probe files from being reused as retained source evidence for
-`Theta_nu-ex`.
+Expected result: `blocked_missing_accepted_path_frequency_exchange_carrier`, `carrierReason=accepted_without_evidence_source`, and no score change. The same command with `--require-populated` must exit nonzero. This prevents toy or source-evidence-probe files from being reused as retained source evidence for `Theta_nu-ex`.

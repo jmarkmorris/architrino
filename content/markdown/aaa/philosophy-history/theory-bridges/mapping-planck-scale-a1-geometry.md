@@ -134,21 +134,18 @@ $$
 $$
 So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
-With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
-Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
+With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant. Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
 
 **Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the declared reference orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
-Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors.
-Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
+Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors. Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
 
 This leaves three coherent origin stories to keep in view:
 1. **One-constant ontology:** a deeper invariance in the delay-geometry produces both $c_f$ and $h$, with $G$ a composite of those.
 2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
-3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
-We keep these as open threads while we test whether alignment alone can lock the scale.
+3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation. We keep these as open threads while we test whether alignment alone can lock the scale.
 
 ### Planck Units as binary-3 Mappings (Alignment State)
 
@@ -270,8 +267,7 @@ This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/fre
 
 **Failure mode:** If simulations or analytic work reveal:
 - a continuum of stable modes beyond the aligned state, or
-- multiple distinct aligned endpoints,
-then the “single top rung” picture must be modified or abandoned.
+- multiple distinct aligned endpoints, then the “single top rung” picture must be modified or abandoned.
 
 ---
 
@@ -287,9 +283,7 @@ In the low-energy / weak-alignment regime:
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations:
-> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.  
-> This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
+> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations: a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it. This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
 A rigorous mapping from the detailed A1 phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
@@ -334,8 +328,7 @@ Because an A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cyc
   - the coupling $\kappa$ (A6),
   - and the causal speed $c_f$ (A1).
 
-> **Conjectured Mapping (Cycle Action and Angular Momentum):**
-> The closed-cycle action associated with this aligned state,
+> **Conjectured Mapping (Cycle Action and Angular Momentum):** The closed-cycle action associated with this aligned state,
 > $$
 >   \mathcal{A}_{\text{align}}^{\text{cycle}} \equiv 2\pi I(n_{\text{max}}),
 > $$

@@ -445,8 +445,7 @@ In a certified row, the important event is not speed alone but the appearance of
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
-This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
-A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
+This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge. A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 Family B realizes this decoupling directly. In [B1](braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](braid-b1-symmetry.md). No family ordering is asserted.
 

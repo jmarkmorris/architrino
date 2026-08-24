@@ -38,28 +38,17 @@ Equations of motion (canonical delayed law; two-body, $c_f=1$):
   \quad
   r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
-  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract),
-  $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side
-  acceleration weight on the corresponding root, $H(0)=0$ excludes $T_t=T$, and
-  $\mathrm{sgn}(\cdot)$ denotes the sign function.
+  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, $H(0)=0$ excludes $T_t=T$, and $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
 Relative-coordinate DDE:
-- Define $r(T)=X_1(T)-X_2(T)>0$. Then
-  $s_{12}(T;T_t)=X_1(T)-X_2(T_t)$ and
-  $s_{21}(T;T_t)=X_2(T)-X_1(T_t)$ are the signed delayed separations, with
-  $r_{12}=|s_{12}|$ and $r_{21}=|s_{21}|$. Subtracting the two
-  per-particle rows gives
+- Define $r(T)=X_1(T)-X_2(T)>0$. Then $s_{12}(T;T_t)=X_1(T)-X_2(T_t)$ and $s_{21}(T;T_t)=X_2(T)-X_1(T_t)$ are the signed delayed separations, with $r_{12}=|s_{12}|$ and $r_{21}=|s_{21}|$. Subtracting the two per-particle rows gives
   $$
   \frac{d^2r}{dT^2}\;=\;A_1(T)-A_2(T)
   \;=\;
   -\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_2(T)}W_{12}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(s_{12}(T;T_t)\big)}{r_{12}^2}
   +\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_1(T)}W_{21}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(s_{21}(T;T_t)\big)}{r_{21}^2}
   $$
-  with the two absolute distances fixed by their respective causal-root
-  conditions. For an ordered symmetric history with $X_1>0>X_2$, the first
-  signed separation is positive and the second is negative, so both displayed
-  terms are negative and the instantaneous separation accelerates inward.
-  No exact closed-form solution is presently known for the coupled DDE system.
+  with the two absolute distances fixed by their respective causal-root conditions. For an ordered symmetric history with $X_1>0>X_2$, the first signed separation is positive and the second is negative, so both displayed terms are negative and the instantaneous separation accelerates inward. No exact closed-form solution is presently known for the coupled DDE system.
 
 Nonlinear history-anchored form (vector notation for clarity):
   $$

@@ -1,27 +1,14 @@
 # Theory Inheritance Discipline
 
-This chapter states how inherited physics concepts may be used during
-$\mathbb{A}\mathbb{A}\mathbb{A}$ development. Its central rule is simple:
-successful mapping is not burden relief. A concept from a higher-level theory
-may be accurate, useful, or even indispensable in its tested regime while still
-failing to identify the substrate mechanism that produces the result.
+This chapter states how inherited physics concepts may be used during $\mathbb{A}\mathbb{A}\mathbb{A}$ development. Its central rule is simple: successful mapping is not burden relief. A concept from a higher-level theory may be accurate, useful, or even indispensable in its tested regime while still failing to identify the substrate mechanism that produces the result.
 
-The discipline here sits between the broad survey in [Theory Mapping](theory-mapping.md),
-the classification catalog in [Theory Differentials](theory-differentials.md),
-and the detailed per-framework mappings in [Theory Bridges](theory-bridges.md).
-It does not own the substrate ontology, the Master Equation of Motion, assembly
-definitions, validation gates, or parameter ledgers. Its job is to prevent
-inherited concepts from entering the corpus with more authority than they have
-earned.
+The discipline here sits between the broad survey in [Theory Mapping](theory-mapping.md), the classification catalog in [Theory Differentials](theory-differentials.md), and the detailed per-framework mappings in [Theory Bridges](theory-bridges.md). It does not own the substrate ontology, the Master Equation of Motion, assembly definitions, validation gates, or parameter ledgers. Its job is to prevent inherited concepts from entering the corpus with more authority than they have earned.
 
 ## Core Claim
 
-No inherited theory is trusted as ontology. Inherited theories are trusted only
-as structured evidence, mathematics, benchmark records, or comparison pressure
-after their regime and stack placement are declared.
+No inherited theory is trusted as ontology. Inherited theories are trusted only as structured evidence, mathematics, benchmark records, or comparison pressure after their regime and stack placement are declared.
 
-The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\mathbb{A}$."
-The stronger use is:
+The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\mathbb{A}$." The stronger use is:
 
 1. name the regime where the inherited concept is accurate,
 2. state the mathematics or record that survives,
@@ -29,13 +16,11 @@ The stronger use is:
 4. define the residual that would count as recovery,
 5. name the failure mode that would show the mapping has overreached.
 
-Plain language: the inherited theory can tell the program what must be
-recovered, but it cannot tell the program what the world is made of.
+Plain language: the inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
 
 ## Transfer Record
 
-For an inherited concept $C$, the comparison is disciplined only when the
-corpus can state the following transfer record.
+For an inherited concept $C$, the comparison is disciplined only when the corpus can state the following transfer record.
 
 $$
 \mathcal{T}_{\mathrm{inherit}}(C)
@@ -63,9 +48,7 @@ The fields mean:
 | $P_C$ | Reasoning provenance | Why is the equation believed, doubted, or kept directional? |
 | $F_C$ | Failure mode | What would show the mapping is only verbal or overfitted? |
 
-This is a methodology object, not a new validation gate. It is a compact way to
-keep ontology, effective description, and inference separated while the theory
-is being built.
+This is a methodology object, not a new validation gate. It is a compact way to keep ontology, effective description, and inference separated while the theory is being built.
 
 A typical residual has the following schematic form.
 
@@ -78,15 +61,9 @@ B_C^{\mathrm{obs}}
 \right)
 $$
 
-Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record,
-$d_C$ is the comparison metric appropriate to the inherited concept, and
-$B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
+Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record, $d_C$ is the comparison metric appropriate to the inherited concept, and $B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
 
-The important burden is the origin of both $\theta$ and the projection map. If
-either is selected after seeing the benchmark, the result is benchmark fitting.
-For a disciplined comparison, the projection is fixed on a calibration record
-$D_C^{\mathrm{cal}}$ that is disjoint from the recovery benchmark. The
-following expression states the calibration rule.
+The important burden is the origin of both $\theta$ and the projection map. If either is selected after seeing the benchmark, the result is benchmark fitting. For a disciplined comparison, the projection is fixed on a calibration record $D_C^{\mathrm{cal}}$ that is disjoint from the recovery benchmark. The following expression states the calibration rule.
 
 $$
 \Pi_C^\star
@@ -97,14 +74,7 @@ L_C^{\mathrm{cal}}\!\left(\Pi;D_C^{\mathrm{cal}}\right),
 D_C^{\mathrm{cal}}\cap B_C^{\mathrm{obs}}=\varnothing .
 $$
 
-The frozen map $\Pi_C^\star$ must then be shared across every benchmark family
-that claims the same observer channel. A separate map for each clock type,
-spectral line, lensing observable, or detector family is hidden retuning, not
-recovery. If $\theta$ is generated from the Master EOM, assembly closure,
-Noether sea response, and declared record channel before comparison, and if
-$\Pi_C^\star$ is calibrated independently and frozen before the benchmark is
-opened, then a small $\mathcal{R}_C$ can become evidence of implementation
-closure.
+The frozen map $\Pi_C^\star$ must then be shared across every benchmark family that claims the same observer channel. A separate map for each clock type, spectral line, lensing observable, or detector family is hidden retuning, not recovery. If $\theta$ is generated from the Master EOM, assembly closure, Noether sea response, and declared record channel before comparison, and if $\Pi_C^\star$ is calibrated independently and frozen before the benchmark is opened, then a small $\mathcal{R}_C$ can become evidence of implementation closure.
 
 ## Transfer Classes
 
@@ -118,20 +88,11 @@ Inherited concepts enter the corpus in five different ways.
 | Effective-limit concept | Conditional | Wavefunction, thermodynamics, entropy, hydrodynamics, effective metric, cosmology variables | Must declare coarse-graining, regime, and residual |
 | Directional comparison | Low to medium | Holography, MOND-like fits, inflationary language, string/LQG/SUSY programs, information/computation ontology | May guide questions, but cannot supply doctrine without a native derivation |
 
-The transfer class can change by regime. A mathematical structure may be a
-direct formal tool in one chapter, an effective-limit concept in another, and a
-directional analogy in a third. The page or section using it must make the
-local status visible. Compound transfer-class labels are not allowed. When a
-row has more than one role, the transfer class records its governing authority,
-while the separate ontology-placement and mathematical-use fields record the
-other distinctions.
+The transfer class can change by regime. A mathematical structure may be a direct formal tool in one chapter, an effective-limit concept in another, and a directional analogy in a third. The page or section using it must make the local status visible. Compound transfer-class labels are not allowed. When a row has more than one role, the transfer class records its governing authority, while the separate ontology-placement and mathematical-use fields record the other distinctions.
 
 ### Claim-Grade Ceilings
 
-Transfer class and claim grade are independent axes. Transfer class says why
-an inherited object is present; the claim grade says what the evidence
-establishes at the layer where the claim is made. The following ceilings apply
-unless a separate native derivation or independent measurement is named.
+Transfer class and claim grade are independent axes. Transfer class says why an inherited object is present; the claim grade says what the evidence establishes at the layer where the claim is made. The following ceilings apply unless a separate native derivation or independent measurement is named.
 
 | Transfer class | Substrate claim ceiling | Assembly or effective-layer ceiling | Observer-record ceiling |
 | --- | --- | --- | --- |
@@ -141,17 +102,11 @@ unless a separate native derivation or independent measurement is named.
 | Effective-limit concept | Guessed if promoted to substrate ontology | Inferred after coarse-graining, domain, and residual are controlled | Measured only for the underlying record; the interpretation remains inferred |
 | Directional comparison | Guessed | Guessed, or inferred only as a comparative constraint | Measured only when a separate benchmark record is named |
 
-The mechanical audit requires verification before advancement: a lower-layer claim cannot inherit the
-grade of a higher-layer success. A measured spectrum is still only a measured
-spectrum; the proposed substrate mechanism beneath it remains inferred or
-guessed until an independent native prediction closes the projection and
-residual.
+The mechanical audit requires verification before advancement: a lower-layer claim cannot inherit the grade of a higher-layer success. A measured spectrum is still only a measured spectrum; the proposed substrate mechanism beneath it remains inferred or guessed until an independent native prediction closes the projection and residual.
 
 ## Canonical Direct-Use Audit
 
-The current corpus uses prior-theory concepts directly only in controlled ways.
-This list is the canonical audit level for the present corpus; individual
-chapters still own their local details.
+The current corpus uses prior-theory concepts directly only in controlled ways. This list is the canonical audit level for the present corpus; individual chapters still own their local details.
 
 | Inherited concept family | Current corpus use | Transfer class | Ontology placement | Mathematical-use status | Scope discipline |
 | --- | --- | --- | --- | --- | --- |
@@ -172,26 +127,11 @@ chapters still own their local details.
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison | Methodological comparison | Record-analysis language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | Comparison only | Heuristic or formal analogy | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
-The early quantum-origin examples should be read through this transfer
-discipline as a connected benchmark bundle. Blackbody radiation tests whether
-photon-channel emission, absorption, scattering, and medium exchange recover
-detailed balance and the Planck occupation law without importing primitive mode
-quantization. The photoelectric effect tests whether material capture
-thresholds, recoil, heating, and bound-excitation rows close without treating
-photon energy as a free-standing ontology. Hydrogen line spectra test whether
-atomic envelope basins, shared spectral rows, and photon event ledgers recover
-stable lines without adding a per-line clock factor. Double-slit and
-wave-particle cases test whether unresolved path history remains live until a
-localized record forms. Together these cases are inherited benchmark records:
-they state what must be recovered, not what the substrate is.
+The early quantum-origin examples should be read through this transfer discipline as a connected benchmark bundle. Blackbody radiation tests whether photon-channel emission, absorption, scattering, and medium exchange recover detailed balance and the Planck occupation law without importing primitive mode quantization. The photoelectric effect tests whether material capture thresholds, recoil, heating, and bound-excitation rows close without treating photon energy as a free-standing ontology. Hydrogen line spectra test whether atomic envelope basins, shared spectral rows, and photon event ledgers recover stable lines without adding a per-line clock factor. Double-slit and wave-particle cases test whether unresolved path history remains live until a localized record forms. Together these cases are inherited benchmark records: they state what must be recovered, not what the substrate is.
 
 ### Constants And Unit Conventions
 
-Constants do not all inherit in the same way. A unit convention changes the
-coordinates used to report a record; a measured constant summarizes an
-observer-level relation; a dimensionless coupling is a recovery target; and a
-native parameter belongs to the substrate law only when the native ontology or
-dynamics declares it.
+Constants do not all inherit in the same way. A unit convention changes the coordinates used to report a record; a measured constant summarizes an observer-level relation; a dimensionless coupling is a recovery target; and a native parameter belongs to the substrate law only when the native ontology or dynamics declares it.
 
 | Item | Transfer class | Permitted use | Prohibited promotion |
 | --- | --- | --- | --- |
@@ -202,19 +142,11 @@ dynamics declares it.
 | $\alpha$ | Validated benchmark record | Dimensionless precision target shared by spectroscopy, recoil, and lepton-moment records | A freely inserted substrate coupling |
 | $k_B$ | Direct mathematical tool | Conversion between temperature units and energy units in a declared bulk ensemble | Thermodynamics or temperature assigned to one architrino |
 
-Numerical recovery must state which constants were fitted, which were held out,
-and which are unit conventions. A fitted value cannot then serve as an
-independent prediction in the same record family. Dimensionless residuals are
-preferred because they expose hidden unit retuning, but forming a dimensionless
-quantity does not by itself make its physical interpretation native.
+Numerical recovery must state which constants were fitted, which were held out, and which are unit conventions. A fitted value cannot then serve as an independent prediction in the same record family. Dimensionless residuals are preferred because they expose hidden unit retuning, but forming a dimensionless quantity does not by itself make its physical interpretation native.
 
 ### Worked Transfer Record: Lorentz Clock Behavior
 
-This example instantiates the seven-field record as a closure specification,
-not as a claim that Lorentz recovery has already been derived. The inherited
-target is the clock-rate relation
-$\Delta\tau/\Delta t=\sqrt{1-v^2/c_\gamma^2}$ in the inertial,
-weak-environment regime.
+This example instantiates the seven-field record as a closure specification, not as a claim that Lorentz recovery has already been derived. The inherited target is the clock-rate relation $\Delta\tau/\Delta t=\sqrt{1-v^2/c_\gamma^2}$ in the inertial, weak-environment regime.
 
 | Transfer-record field | Instantiation |
 | --- | --- |
@@ -226,30 +158,13 @@ weak-environment regime.
 | $P_C$ | Effective-limit concept: Lorentz clock behavior is a validated observer-level regularity and a recovery target, not substrate geometry |
 | $F_C$ | Failure occurs if different clock types require different projection maps, if the same map misses the shared rate curve beyond declared uncertainty, or if the construction imports a Lorentzian metric or proper-time law into the substrate dynamics |
 
-The substrate prohibition is explicit: neither the Lorentz transformation nor
-a Minkowski metric may generate the architrino or assembly trajectory. The
-native generator must first produce moving-assembly and signal records. The
-projection is calibrated on stationary clock correspondences and frozen before
-the moving-clock benchmarks are opened. The benchmark is independent only when
-its moving-clock measurements, analysis pipeline, and uncertainty model were
-not used to choose the branch record or projection. Passing one clock family
-and failing another leaves the inheritance open even if a pooled fit looks
-good.
+The substrate prohibition is explicit: neither the Lorentz transformation nor a Minkowski metric may generate the architrino or assembly trajectory. The native generator must first produce moving-assembly and signal records. The projection is calibrated on stationary clock correspondences and frozen before the moving-clock benchmarks are opened. The benchmark is independent only when its moving-clock measurements, analysis pipeline, and uncertainty model were not used to choose the branch record or projection. Passing one clock family and failing another leaves the inheritance open even if a pooled fit looks good.
 
 ## Foundational Formula Audit
 
-The foundational layer uses a short list of formulas directly, but they do not
-all have the same status. Some are substrate commitments, some are formal tools
-used to state the substrate, some are accepted native dynamics, and some are
-bookkeeping or proof scaffolds that remain subordinate to the native branch law.
+The foundational layer uses a short list of formulas directly, but they do not all have the same status. Some are substrate commitments, some are formal tools used to state the substrate, some are accepted native dynamics, and some are bookkeeping or proof scaffolds that remain subordinate to the native branch law.
 
-The important correction is the status of the familiar $1/r$ potential. The
-accepted primitive dynamics is not "a static $1/r$ field." The accepted
-primitive dynamics is the causal-root, inverse-square, receiver-local
-acceleration law with a transmitter-side acceleration weight. A $1/r$
-expression appears as a stationary/path-history
-potential calibration and as a partial Fokker-type variational scaffold, but it
-does not by itself relieve the burden of deriving or certifying the Master EOM.
+The important correction is the status of the familiar $1/r$ potential. The accepted primitive dynamics is not "a static $1/r$ field." The accepted primitive dynamics is the causal-root, inverse-square, receiver-local acceleration law with a transmitter-side acceleration weight. A $1/r$ expression appears as a stationary/path-history potential calibration and as a partial Fokker-type variational scaffold, but it does not by itself relieve the burden of deriving or certifying the Master EOM.
 
 | Formula family | Foundational expression | Current status | What it does not license |
 | --- | --- | --- | --- |
@@ -272,18 +187,13 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Work and kinetic bookkeeping | $dK/dT=\mu_K(\lVert\mathbf V\rVert)\mathbf A\cdot\mathbf V$ and optional $\mathbf F=\mu_{\text{arch}}\mathbf A$ | Assembly-level energy bookkeeping after a kinetic proxy is declared | A substrate force law, primitive particle-specific mass, or universal quadratic kinetic energy by assumption |
 | $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
 
-The $1/r$ item therefore belongs below the accepted acceleration law in the
-trust gradient. In a stationary emitter calibration, the path-history potential
-may take the following familiar form.
+The $1/r$ item therefore belongs below the accepted acceleration law in the trust gradient. In a stationary emitter calibration, the path-history potential may take the following familiar form.
 
 $$
 \phi(r,T)=\frac{q_0}{4\pi r}
 $$
 
-Taking a spatial gradient connects that amplitude to inverse-square
-acceleration scaling under the declared fixed-history calibration. In the full
-delayed dynamics, however, the following equation remains the accepted branch
-law.
+Taking a spatial gradient connects that amplitude to inverse-square acceleration scaling under the declared fixed-history calibration. In the full delayed dynamics, however, the following equation remains the accepted branch law.
 
 $$
 \frac{d^2 \mathbf X_i}{dT^2}
@@ -295,28 +205,19 @@ $$
 \hat{\mathbf R}_{ij}(T;T_t).
 $$
 
-The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
-because its variation leaves a receiver-side constraint residual on generic
-branches unless a stationarity condition or invariant counterterm closes the
-Euler derivative. That failure does not demote the Master EOM. It demotes the
-claim that the scalar $1/r$ scaffold alone explains the Master EOM.
+The pure scalar $1/r$ action scaffold is not yet an unconditional foundation because its variation leaves a receiver-side constraint residual on generic branches unless a stationarity condition or invariant counterterm closes the Euler derivative. That failure does not demote the Master EOM. It demotes the claim that the scalar $1/r$ scaffold alone explains the Master EOM.
 
 ### Reliance-Risk Rating
 
-Risk here means the risk of relying on the formula as foundational before its
-scope, proof status, and failure mode are controlled. It is not a measure of
-importance. A formula can be central and still carry high reliance risk because
-the branch, convergence, regularization, or recovery burden is heavy.
+Risk here means the risk of relying on the formula as foundational before its scope, proof status, and failure mode are controlled. It is not a measure of importance. A formula can be central and still carry high reliance risk because the branch, convergence, regularization, or recovery burden is heavy.
 
 Risk scores:
 
 - 1: low risk; mostly definitional or purely formal.
 - 2: controlled risk; explicit postulate or convention with clear boundaries.
 - 3: medium risk; usable, but easy to overextend into a stronger claim.
-- 4: high risk; requires branch, regularization, or recovery discipline before
-  broad use.
-- 5: very high risk; should not be treated as foundational without a narrow
-  certificate or separate proof.
+- 4: high risk; requires branch, regularization, or recovery discipline before broad use.
+- 5: very high risk; should not be treated as foundational without a narrow certificate or separate proof.
 
 | Formula family | Risk score | Main reliance risk | Required discipline |
 | --- | --- | --- | --- |
@@ -339,11 +240,7 @@ Risk scores:
 | Work and kinetic bookkeeping | 4 | Primitive mass and quadratic kinetic energy are not native; energy bookkeeping depends on the chosen kinetic proxy and wake term | Declare $K$, $\mu_K$, or $\mu_{\text{arch}}$ and keep observer mass as an assembly-level recovery |
 | $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Treat it as conditional until the receiver-side residual, counterterm, or stationarity condition closes |
 
-The highest-risk rows are not rejected. They are the rows where the formula is
-too valuable to use casually. The correct response is narrower authority:
-branch certificates for root formulas, convergence controls for sums,
-finite-regulator labels for regularized claims, and explicit diagnostic status
-for potential and action scaffolds.
+The highest-risk rows are not rejected. They are the rows where the formula is too valuable to use casually. The correct response is narrower authority: branch certificates for root formulas, convergence controls for sums, finite-regulator labels for regularized claims, and explicit diagnostic status for potential and action scaffolds.
 
 ## Regime And Scale Chart
 
@@ -365,54 +262,26 @@ A historical audit of prize-recognized discoveries reinforces the same rule: mid
 
 ## Non-Relief Lemma
 
-**Lemma (methodological):** A mapping from an inherited concept $C$ to an
-$\mathbb{A}\mathbb{A}\mathbb{A}$ descriptor $A_C$ does not reduce the proof
-burden unless the same branch record $\theta$ also supplies the implementation
-map $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$, keeps
-$\mathcal{R}_C(\theta)$ below the declared tolerance in $D_C$, and avoids the
-known failure mode $F_C$ with a reasoning provenance $P_C$ appropriate to the
-claim level.
+**Lemma (methodological):** A mapping from an inherited concept $C$ to an $\mathbb{A}\mathbb{A}\mathbb{A}$ descriptor $A_C$ does not reduce the proof burden unless the same branch record $\theta$ also supplies the implementation map $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$, keeps $\mathcal{R}_C(\theta)$ below the declared tolerance in $D_C$, and avoids the known failure mode $F_C$ with a reasoning provenance $P_C$ appropriate to the claim level.
 
-Proof route: a verbal or diagrammatic mapping establishes only a relation
-between labels. Benchmark recovery requires an output comparison. Implementation
-closure requires a generator. If the generator is not declared, the concept
-still sits at the comparison layer. If the generator changes between benchmark
-families, the result is hidden tuning. If the generator is native and shared
-across the relevant sectors, then the inherited concept has been recovered as
-an effective limit rather than merely named.
+Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the generator changes between benchmark families, the result is hidden tuning. If the generator is native and shared across the relevant sectors, then the inherited concept has been recovered as an effective limit rather than merely named.
 
-Plain language: a map is not a mechanism. A mechanism is a native record that
-keeps working after the comparison target changes.
+Plain language: a map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
 
 ## Reasoning Provenance Below Existing Theory
 
-The hardest inheritance cases appear when an inherited theory works above the
-level where $\mathbb{A}\mathbb{A}\mathbb{A}$ needs to reason. A formula may
-describe bulk matter, a detector record, or an ensemble statistic with high
-accuracy while still saying little about the motion of one assembly, one
-causal-root branch family, or one event ledger. In that zone, the solution is
-not yet sharp enough for doctrine. The corpus must record why an equation is
-being trusted, doubted, or used only as a directional guide.
+The hardest inheritance cases appear when an inherited theory works above the level where $\mathbb{A}\mathbb{A}\mathbb{A}$ needs to reason. A formula may describe bulk matter, a detector record, or an ensemble statistic with high accuracy while still saying little about the motion of one assembly, one causal-root branch family, or one event ledger. In that zone, the solution is not yet sharp enough for doctrine. The corpus must record why an equation is being trusted, doubted, or used only as a directional guide.
 
-This record is not a progress diary. It is reasoning provenance: the active
-chain of reasons that explains why a candidate equation is allowed to carry its
-current claim level. A useful provenance note contains:
+This record is not a progress diary. It is reasoning provenance: the active chain of reasons that explains why a candidate equation is allowed to carry its current claim level. A useful provenance note contains:
 
-1. the inherited trigger, meaning the equation, regularity, or benchmark that
-   motivated the deeper search,
-2. the native candidate, meaning the $\mathbb{A}\mathbb{A}\mathbb{A}$ equation,
-   branch condition, residual, or simulation target proposed underneath it,
-3. the reason for belief, such as a symmetry, dimensional match, conservation
-   channel, branch-counting identity, limiting case, or shared generator,
-4. the reason for doubt, such as hidden coarse-graining, missing branch
-   admissibility, ensemble dependence, caustic sensitivity, boundary flux, or a
-   record channel that has not been generated natively,
-5. the level of the claim: individual assembly, finite assembly family, bulk or
-   statistical population, observer inference, or analogy,
+1. the inherited trigger, meaning the equation, regularity, or benchmark that motivated the deeper search,
+2. the native candidate, meaning the $\mathbb{A}\mathbb{A}\mathbb{A}$ equation, branch condition, residual, or simulation target proposed underneath it,
+3. the reason for belief, such as a symmetry, dimensional match, conservation channel, branch-counting identity, limiting case, or shared generator,
+4. the reason for doubt, such as hidden coarse-graining, missing branch admissibility, ensemble dependence, caustic sensitivity, boundary flux, or a record channel that has not been generated natively,
+5. the level of the claim: individual assembly, finite assembly family, bulk or statistical population, observer inference, or analogy,
 6. the first falsifier that would demote the equation.
 
-The central question is therefore not merely "does this equation map?" The
-central question is "what makes this equation believable at this level?"
+The central question is therefore not merely "does this equation map?" The central question is "what makes this equation believable at this level?"
 
 | Equation status | What makes it believable | What would demote it |
 | --- | --- | --- |
@@ -426,17 +295,9 @@ central question is "what makes this equation believable at this level?"
 
 ## Bulk Versus Individual Assembly Behavior
 
-Bulk formulas are not automatically wrong. They are often the most accurate
-description available at the observer scale. The error is to treat a bulk
-formula as if it already describes one assembly unless the projection from
-assembly records to bulk variables has been shown.
+Bulk formulas are not automatically wrong. They are often the most accurate description available at the observer scale. The error is to treat a bulk formula as if it already describes one assembly unless the projection from assembly records to bulk variables has been shown.
 
-Let $\Gamma_A(t)$ denote the retained state of assembly $A$, and let
-$\mathcal{H}_A(t)$ denote its path-history and event record over an access
-window $W$. Let $\mathcal{A}_W$ be the assembly family sampled by that window,
-and let $\mathcal{P}_{\mathcal{Q},W}$ be the declared projection that keeps only
-the observables $\mathcal{Q}$ relevant to the inherited comparison. The
-following expression gives a schematic bulk variable.
+Let $\Gamma_A(t)$ denote the retained state of assembly $A$, and let $\mathcal{H}_A(t)$ denote its path-history and event record over an access window $W$. Let $\mathcal{A}_W$ be the assembly family sampled by that window, and let $\mathcal{P}_{\mathcal{Q},W}$ be the declared projection that keeps only the observables $\mathcal{Q}$ relevant to the inherited comparison. The following expression gives a schematic bulk variable.
 
 $$
 Y_{\mathcal{Q},W}(T)
@@ -448,9 +309,7 @@ Y_{\mathcal{Q},W}(T)
 \right),
 $$
 
-Here $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
-In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of
-assembly states, path histories, and Noether sea state.
+Here $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window. In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation may have the following form.
 
@@ -460,8 +319,7 @@ $$
 F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}\right)
 $$
 
-Its credibility remains at the bulk level until the following projection
-residual is controlled.
+Its credibility remains at the bulk level until the following projection residual is controlled.
 
 $$
 \mathcal{R}_{\mathrm{bulk}}
@@ -473,8 +331,7 @@ F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(T)\right)
 \right\|_{\mathcal{Q},W}.
 $$
 
-It becomes credible as an individual-assembly guide only after the following
-separate assembly-level residual is controlled.
+It becomes credible as an individual-assembly guide only after the following separate assembly-level residual is controlled.
 
 $$
 \mathcal{R}_{\mathrm{assembly}}
@@ -487,55 +344,28 @@ $$
 \right\|_A.
 $$
 
-Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the
-assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the
-individual-assembly value inferred from the bulk equation. If
-$\mathcal{R}_{\mathrm{bulk}}$ is small while
-$\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population
-law. If both residuals are small in the declared regime, the bulk equation may
-serve as an effective assembly-level guide, but only in that regime.
+Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the individual-assembly value inferred from the bulk equation. If $\mathcal{R}_{\mathrm{bulk}}$ is small while $\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population law. If both residuals are small in the declared regime, the bulk equation may serve as an effective assembly-level guide, but only in that regime.
 
-This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and
-detector-level formulas need special care. They may be accurate descriptions of
-records after projection while still being incomplete descriptions of the
-assembly behavior that produced those records.
+This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and detector-level formulas need special care. They may be accurate descriptions of records after projection while still being incomplete descriptions of the assembly behavior that produced those records.
 
 ## Use With Existing Comparison Documents
 
-[Theory Mapping](theory-mapping.md) should remain the compact reader map of
-major frameworks. It tells readers what the inherited theory says and how
-$\mathbb{A}\mathbb{A}\mathbb{A}$ expects to recover, reinterpret, or reject it.
+[Theory Mapping](theory-mapping.md) should remain the compact reader map of major frameworks. It tells readers what the inherited theory says and how $\mathbb{A}\mathbb{A}\mathbb{A}$ expects to recover, reinterpret, or reject it.
 
-[Theory Differentials](theory-differentials.md) should remain the classification
-catalog. It locates each concept in the comparative stack and the
-$\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the
-mapping target.
+[Theory Differentials](theory-differentials.md) should remain the classification catalog. It locates each concept in the comparative stack and the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the mapping target.
 
-[Theory Bridges](theory-bridges.md) should remain the detailed bridge
-lane. A bridge may use this chapter's transfer record to keep its mathematical
-handoff disciplined, but the bridge still has to point back to the domain
-chapters that own the underlying mechanism.
+[Theory Bridges](theory-bridges.md) should remain the detailed bridge lane. A bridge may use this chapter's transfer record to keep its mathematical handoff disciplined, but the bridge still has to point back to the domain chapters that own the underlying mechanism.
 
-[Failure Criteria](../validation/failure-criteria.md), [Parameter Ledger](../validation/parameter-ledger.md),
-and [Constraint Ledger](../validation/constraint-ledger.md) remain the places
-where validation records, benchmark families, and null-result pressure are
-made operational. This chapter should not duplicate those ledgers.
+[Failure Criteria](../validation/failure-criteria.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Constraint Ledger](../validation/constraint-ledger.md) remain the places where validation records, benchmark families, and null-result pressure are made operational. This chapter should not duplicate those ledgers.
 
 ## Writing Rule
 
-When a corpus page relies on inherited theory, the prose should answer five
-questions before the concept carries weight:
+When a corpus page relies on inherited theory, the prose should answer five questions before the concept carries weight:
 
 1. What exactly is inherited: mathematics, data, benchmark, analogy, or method?
-2. What is the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer that generates the same
-   observable or regularity?
+2. What is the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer that generates the same observable or regularity?
 3. What residual or failure mode would show that the inheritance has not closed?
-4. What reasoning provenance makes the equation believable, doubtful, or only
-   directional?
-5. Is the equation about an individual assembly, a finite assembly family, a
-   bulk or statistical population, or observer inference?
+4. What reasoning provenance makes the equation believable, doubtful, or only directional?
+5. Is the equation about an individual assembly, a finite assembly family, a bulk or statistical population, or observer inference?
 
-This rule keeps the force of inherited successes while preserving the deeper
-burden: $\mathbb{A}\mathbb{A}\mathbb{A}$ must still find the better metric,
-principle, or native mechanism when the inherited theory only supplies a successful
-effective summary.
+This rule keeps the force of inherited successes while preserving the deeper burden: $\mathbb{A}\mathbb{A}\mathbb{A}$ must still find the better metric, principle, or native mechanism when the inherited theory only supplies a successful effective summary.

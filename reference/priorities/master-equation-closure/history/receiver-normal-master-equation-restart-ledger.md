@@ -1,7 +1,6 @@
 # Receiver-Normal Master Equation Restart Ledger
 
-Status. Mandatory receiver-normal restart ledger. The canonical Master EOM uses the
-receiver-normal branch factor
+Status. Mandatory receiver-normal restart ledger. The canonical Master EOM uses the receiver-normal branch factor
 $$
 D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_j(s),
 \qquad
@@ -9,27 +8,13 @@ D_{T,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_i(t),
 \qquad
 W_{ij}^{\mathrm{rec}}=\left|D_{T,ij}/D_{s,ij}\right|.
 $$
-Any active proof, solver row, action row, force row, or certificate must carry
-this same-record receiver-normal branch strength before it can move closure.
-Rows that do not expose $D_s$, $D_T$, and $W^{\mathrm{rec}}$ on the retained
-branch record are not force/action evidence.
+Any active proof, solver row, action row, force row, or certificate must carry this same-record receiver-normal branch strength before it can move closure. Rows that do not expose $D_s$, $D_T$, and $W^{\mathrm{rec}}$ on the retained branch record are not force/action evidence.
 
-Clean-slate proof-process rule. If a proof path consumed any force, action,
-finite-certificate, no-go, margin, or pass/fail row lacking same-record $D_T$,
-restart that proof path from its first receiver-normal branch table. Do not
-promote a prior margin, constant, no-go, fixed-point claim, or pass/fail verdict
-by patching in $D_T$ later. The only admissible carryover is explicitly non-force
-geometry: root existence, retained branch labels, inactive gaps, finite-memory
-depth, and source-normal transversality. Even those rows must be re-bound to the
-same receiver-normal EOM record before a restarted proof consumes them.
+Clean-slate proof-process rule. If a proof path consumed any force, action, finite-certificate, no-go, margin, or pass/fail row lacking same-record $D_T$, restart that proof path from its first receiver-normal branch table. Do not promote a prior margin, constant, no-go, fixed-point claim, or pass/fail verdict by patching in $D_T$ later. The only admissible carryover is explicitly non-force geometry: root existence, retained branch labels, inactive gaps, finite-memory depth, and source-normal transversality. Even those rows must be re-bound to the same receiver-normal EOM record before a restarted proof consumes them.
 
 ## Receiver-Normal Promotion Rule
 
-The source-normal denominator $D_s$ is root-transversality data. It is not by
-itself branch strength. Stationary, fixed-source, or fixed-receiver reductions
-are acceptable only when they are derived directly from the receiver-normal law
-inside the declared retained row; they do not promote inherited branch-strength rows or
-inherited proof verdicts.
+The source-normal denominator $D_s$ is root-transversality data. It is not by itself branch strength. Stationary, fixed-source, or fixed-receiver reductions are acceptable only when they are derived directly from the receiver-normal law inside the declared retained row; they do not promote inherited branch-strength rows or inherited proof verdicts.
 
 Rows that survive conditionally:
 
@@ -38,8 +23,7 @@ Rows that survive conditionally:
 - inactive-gap covers,
 - finite-memory depth,
 - source-normal transversality floors,
-- root-transport rows that use only the source-normal implicit-function
-  denominator.
+- root-transport rows that use only the source-normal implicit-function denominator.
 
 Rows that must restart:
 
@@ -48,8 +32,7 @@ Rows that must restart:
 - action, power, energy, and Noether wake-history rows,
 - breather recapture and self-drive margin rows,
 - A1 outward constants,
-- generated pass/fail certificates that lack receiver-normal branch-strength
-  rows,
+- generated pass/fail certificates that lack receiver-normal branch-strength rows,
 - app or solver rows that reconstruct branch strength without $D_T$,
 - any proof process whose conclusion depended on one of those rows.
 
@@ -64,9 +47,7 @@ $$
 \frac{W_{ij,\ell}^{\mathrm{rec}}(t)}{r_{ij,\ell}(t)^2}
 \hat{\mathbf r}_{ij,\ell}(t).
 $$
-The source-normal denominator remains the root-transversality diagnostic. The
-receiver-normal factor is the branch-strength diagnostic. Those two fields must
-not be collapsed.
+The source-normal denominator remains the root-transversality diagnostic. The receiver-normal factor is the branch-strength diagnostic. Those two fields must not be collapsed.
 
 ## Global Impact Ledger
 
@@ -83,38 +64,18 @@ not be collapsed.
 
 ## Reinitiation Decisions
 
-Reinitiate the breather path, but only after the branch-strength rows are
-restated as receiver-normal inequalities. The return-map and Schauder-domain
-architecture remains the right proof shape; the numerical and analytic margins
-must be redriven.
+Reinitiate the breather path, but only after the branch-strength rows are restated as receiver-normal inequalities. The return-map and Schauder-domain architecture remains the right proof shape; the numerical and analytic margins must be redriven.
 
-Reinitiate A1 outward constants only after each retained label has same-box
-$D_T$ bounds. Existing constants do not certify action or force closure.
+Reinitiate A1 outward constants only after each retained label has same-box $D_T$ bounds. Existing constants do not certify action or force closure.
 
-Reinitiate action and Noether wake-history closure from the constrained branch
-scaffold with $W^{\mathrm{rec}}$. Do not replay branch-strength rows that omit
-$D_T$ as live proof steps.
+Reinitiate action and Noether wake-history closure from the constrained branch scaffold with $W^{\mathrm{rec}}$. Do not replay branch-strength rows that omit $D_T$ as live proof steps.
 
-Pause equation-mapping score movement until the receiver-normal Master EOM rows exist.
-Equation-mapping can still audit which rows lack receiver-normal branch
-strength, but numeric pass/fail without $D_T$ is not proof evidence.
+Pause equation-mapping score movement until the receiver-normal Master EOM rows exist. Equation-mapping can still audit which rows lack receiver-normal branch strength, but numeric pass/fail without $D_T$ is not proof evidence.
 
-Default decision. When a proof surface is ambiguous, restart it rather than
-inherit it. A restarted proof may cite the earlier topology diagnostics only as
-input obligations to be rebound, not as a completed force/action step.
+Default decision. When a proof surface is ambiguous, restart it rather than inherit it. A restarted proof may cite the earlier topology diagnostics only as input obligations to be rebound, not as a completed force/action step.
 
 ## Smallest Next Mathematical Artifact
 
-The next closure-relevant artifact is a same-record receiver-normal branch table:
-for each retained branch row, report the source-normal denominator interval,
-receiver-normal numerator interval, receiver-normal factor interval, branch
-status, and a negative control required for advancement on the same box. That table is the
-minimum object needed before any purged proof path can be rationally restarted.
+The next closure-relevant artifact is a same-record receiver-normal branch table: for each retained branch row, report the source-normal denominator interval, receiver-normal numerator interval, receiver-normal factor interval, branch status, and a negative control required for advancement on the same box. That table is the minimum object needed before any purged proof path can be rationally restarted.
 
-First-derivative extension. The first derivative-consuming restart object is
-now the priority-only
-`receiver-normal-retained-branch-family-first-derivative/v0` artifact: on the
-same retained branch-family record it must bind $D_s$, $D_T$, fixed sign
-labels, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed
-$D_vW^{\mathrm{rec}}$, geometry derivatives, the force-kernel derivative, and
-the exact retained branch-family checksum consumed downstream.
+First-derivative extension. The first derivative-consuming restart object is now the priority-only `receiver-normal-retained-branch-family-first-derivative/v0` artifact: on the same retained branch-family record it must bind $D_s$, $D_T$, fixed sign labels, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives, the force-kernel derivative, and the exact retained branch-family checksum consumed downstream.

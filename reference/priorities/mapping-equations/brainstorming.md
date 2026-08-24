@@ -77,11 +77,7 @@ For cosmology, the inventory identified:
 
 ### Electromagnetism Integration Routing
 
-The charge-neutral common-axis magnetic discussion moved on 2026-08-18 to
-[Mapping Electromagnetism](../mapping-electromagnetism/brainstorming.md).
-Equation Mapping retains the exact EQ-13, EQ-15, and EQ-27 equation rows,
-scores, source-field packets, and executable controls; the new lane owns
-cross-row electromagnetic integration and inverse benchmark design.
+The charge-neutral common-axis magnetic discussion moved on 2026-08-18 to [Mapping Electromagnetism](../mapping-electromagnetism/brainstorming.md). Equation Mapping retains the exact EQ-13, EQ-15, and EQ-27 equation rows, scores, source-field packets, and executable controls; the new lane owns cross-row electromagnetic integration and inverse benchmark design.
 
 ### Noether Sea Pressure Sign Logic And Floating Balance Point
 

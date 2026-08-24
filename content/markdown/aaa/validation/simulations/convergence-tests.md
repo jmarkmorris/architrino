@@ -65,8 +65,7 @@ Here $\xi_a$ is a sampled reception time in the transition window, $k_a$ is the 
 ### Required refinements with pass/fail thresholds
 
 1. Temporal refinement ($\Delta T$ and $\Delta T/2$, plus $\Delta T/4$ for order check):
-- Pass if $E_{\mathrm{rel}}(\Phi)\le 0.02$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.03$, and
-  $|\lambda_{\text{self},A}-\lambda_{\text{self},B}|/\max(|\lambda_{\text{self},B}|,\lambda_{\min})\le0.05$, with the rate floor $\lambda_{\min}$ declared before the run. If both rates lie below that floor, compare absolute event counts and root identities instead of reporting an undefined relative rate.
+- Pass if $E_{\mathrm{rel}}(\Phi)\le 0.02$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.03$, and $|\lambda_{\text{self},A}-\lambda_{\text{self},B}|/\max(|\lambda_{\text{self},B}|,\lambda_{\min})\le0.05$, with the rate floor $\lambda_{\min}$ declared before the run. If both rates lie below that floor, compare absolute event counts and root identities instead of reporting an undefined relative rate.
 - Estimated observed order:
 $$
 p_{\mathrm{obs}}(Y)=\log_2\!\frac{E_{\mathrm{rel}}(Y;\Delta T,\Delta T/2)}

@@ -50,9 +50,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \frac{\left|\|\mathbf X_k-\mathbf X_{i_m}(T_{t,m})\|-c_f\,(T_m-T_{t,m})\right|}
   {\max(c_f\Delta T,\varepsilon_r)}
   $$
-  where $\varepsilon_r>0$ is a predeclared floor with units of length.
-  Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and
-  $\max_m \rho_m \le 5\times 10^{-2}$.
+  where $\varepsilon_r>0$ is a predeclared floor with units of length. Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and $\max_m \rho_m \le 5\times 10^{-2}$.
 
 - **Temporal ordering check:**
   $$
@@ -60,14 +58,12 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
-- **Cross-integrator parity:**
-  For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
+- **Cross-integrator parity:** For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
   $$
   E_{\mathrm{rel}}(Y;A,B)\equiv
   \frac{\|R(Y_B)-Y_A\|_{L^2}}{\|R(Y_B)\|_{L^2}+\varepsilon_{0,Y}}
   $$
-  Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and
-  $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
+  Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
 
 - **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_T$, use
   $$
@@ -223,13 +219,10 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   up to projection, cooling, and deceleration corrections named in the packet. For synchrotron-bearing jets, the same run must emit $I_\nu^{\mathrm{syn}}$, $I_\nu^{\mathrm{IC}}$, $\Pi_\nu$, and $\psi_\nu$ maps from one effective $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ reconstruction. These are observer-level comparison variables; passing them does not promote MHD fields into substrate ontology.
 
-- **Convergence triad:** must pass temporal/history/spatial gates from
-  [convergence-tests.md](./convergence-tests.md), including null-test failure.
+- **Convergence triad:** must pass temporal/history/spatial gates from [convergence-tests.md](./convergence-tests.md), including null-test failure.
 
 ### Failure mode
-If any of the quantitative checks above fail (or if the null test does not fail),
-treat $\mathbb{U}_{\text{now}}$ outputs as numerically unreliable for self-hit claims
-until thresholds are met.
+If any of the quantitative checks above fail (or if the null test does not fail), treat $\mathbb{U}_{\text{now}}$ outputs as numerically unreliable for self-hit claims until thresholds are met.
 
 
 ### $\mathbb{U}_{\text{now}}$ as Standard Probe

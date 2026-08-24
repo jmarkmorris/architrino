@@ -365,8 +365,7 @@ $$
 \left[Q|_\gamma\right]\in\pi_1(\mathcal{Q})
 $$
 
-read up to conjugacy when $\pi_1(\mathcal{Q})$ is non-abelian, since a free loop fixes only a conjugacy class,
-or, in a phase-like branch,
+read up to conjugacy when $\pi_1(\mathcal{Q})$ is non-abelian, since a free loop fixes only a conjugacy class, or, in a phase-like branch,
 $$
 \nu_\gamma
 =

@@ -84,16 +84,9 @@ $$
 
 Here $\Gamma_e(T)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{V}_e/dT\right\|$ is the deceleration magnitude in absolute time. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
 
-The explicit deceleration argument is a path-derived assembly diagnostic, not
-an input to the canonical fixed-hit acceleration multiplier and not a derived
-radiation amplitude. At one hit the Master Equation reads transmitter position
-and velocity; a retained encounter record may estimate deceleration from the
-changing path and then test whether that history predicts the routed assembly
-transition.
+The explicit deceleration argument is a path-derived assembly diagnostic, not an input to the canonical fixed-hit acceleration multiplier and not a derived radiation amplitude. At one hit the Master Equation reads transmitter position and velocity; a retained encounter record may estimate deceleration from the changing path and then test whether that history predicts the routed assembly transition.
 
-Plainly: this provisional channel model summarizes a changing trajectory. It
-must not be read as adding an acceleration-dependent field term to each
-architrino hit.
+Plainly: this provisional channel model summarizes a changing trajectory. It must not be read as adding an acceleration-dependent field term to each architrino hit.
 
 The corresponding excitation energy is inherited from the radiation basin definition:
 

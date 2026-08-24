@@ -221,14 +221,7 @@ $$
 \widehat M_\theta
 $$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every
-classical variable. It is a domain-limited bridge: the action chart must first
-be admitted by the same retained branch record, the emitted or absorbed
-frequency must be a calibrated transition record, and the finite-difference
-step must preserve the same apparatus-accessible quantities that later become
-matrix entries. If the derivative-to-difference move is applied outside that
-declared record domain, the rule has become a formal analogy rather than an
-operator recovery.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every classical variable. It is a domain-limited bridge: the action chart must first be admitted by the same retained branch record, the emitted or absorbed frequency must be a calibrated transition record, and the finite-difference step must preserve the same apparatus-accessible quantities that later become matrix entries. If the derivative-to-difference move is applied outside that declared record domain, the rule has become a formal analogy rather than an operator recovery.
 
 ## Dirac's 1925 Poisson-Bracket Bridge
 

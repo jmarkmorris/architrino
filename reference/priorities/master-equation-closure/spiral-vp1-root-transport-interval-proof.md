@@ -1,10 +1,6 @@
 # VP-1 Root-Transport Interval Proof Packet
 
-Status. Topology diagnostic for the VP-1 root-transport residual lane. This
-packet consumes [spiral-vp1-root-jacobian-proof](spiral-vp1-root-jacobian-proof.md)
-and [spiral-vp1-inactive-memory-proof](spiral-vp1-inactive-memory-proof.md).
-It stays inside the VP-1 candidate history and supplies no canonical force/action
-evidence.
+Status. Topology diagnostic for the VP-1 root-transport residual lane. This packet consumes [spiral-vp1-root-jacobian-proof](spiral-vp1-root-jacobian-proof.md) and [spiral-vp1-inactive-memory-proof](spiral-vp1-inactive-memory-proof.md). It stays inside the VP-1 candidate history and supplies no canonical force/action evidence.
 
 Claim level. Dependent analytic certificate contract. The root-transport residual is not an independent VP-1 interval obstruction once the active root tubes, the nonzero $\partial_\Delta F$ row, and the velocity-projection convention used in $J$ are certified. It is the differentiated causal-delay identity for the same root equation.
 

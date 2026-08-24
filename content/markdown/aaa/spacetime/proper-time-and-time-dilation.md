@@ -86,9 +86,7 @@ $$
 $$
 and to generalize this map to strong-field and high-velocity conditions.
 
-Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is the canonical medium-density variable.
-The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$; use it for refractive-delay language so $n$ remains reserved for density.
-The clock-law derivation imports the [transverse causal budget lemma](../noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf X,T)$ in a local Noether sea cell.
+Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is the canonical medium-density variable. The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$; use it for refractive-delay language so $n$ remains reserved for density. The clock-law derivation imports the [transverse causal budget lemma](../noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf X,T)$ in a local Noether sea cell.
 
 ---
 
@@ -819,14 +817,11 @@ Two coupled mechanisms change the internal frequency of a Noether braid clock. T
 
 When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material drift is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
-1. **Path-length elongation:**
- Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
+1. **Path-length elongation:** Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
 
-2. **Finite causal speed:**
- Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
+2. **Finite causal speed:** Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
-3. **Shape deformation (Lorentz-link hypothesis):**
- Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
+3. **Shape deformation (Lorentz-link hypothesis):** Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
  - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
@@ -872,18 +867,15 @@ The same event can be described in the muon's effective rest chart as length con
 
 Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
 
-1. **Higher local Noether density $n(\mathbf X,T)$ (equivalently higher $\rho_{\text{NS}}$):**
- Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
+1. **Higher local Noether density $n(\mathbf X,T)$ (equivalently higher $\rho_{\text{NS}}$):** Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf X,T) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether braids).
  - From the clock's perspective, each internal wake contribution is delayed in the declared clock map.
 
-3. **Tidal distortion of Noether braid geometry:**
- Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
+3. **Tidal distortion of Noether braid geometry:** Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
-**Gravitational hypothesis:**
-To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
+**Gravitational hypothesis:** To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
 $$
 \omega(\Phi_N) \approx \omega_0\left(1 + \frac{\Phi_N}{c_0^2}\right)
 \quad \Rightarrow \quad
@@ -954,15 +946,11 @@ $$
 E_{\text{CM}}=\gamma_\star M_0c_{\text{eff}}^2,\qquad
 p_{\text{CM}}=\gamma_\star M_0v.
 $$
-Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and from the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$ and $(\gamma_{\mathrm{eff}}^{-1})^{ij}$.
-This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level.
-For definitions and interpretation, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
+Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and from the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$ and $(\gamma_{\mathrm{eff}}^{-1})^{ij}$. This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level. For definitions and interpretation, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
 
 ### Strong-Field / Horizon Alignment Note
 
-For strong-field interpretation, use the canonical event-horizon alignment condition from
-[singularity-resolution](./singularity-resolution.md#canonical-strong-field-alignment-condition).
-In this chapter, Planck-scale references inherit that same alignment definition.
+For strong-field interpretation, use the canonical event-horizon alignment condition from [singularity-resolution](./singularity-resolution.md#canonical-strong-field-alignment-condition). In this chapter, Planck-scale references inherit that same alignment definition.
 
 ---
 
@@ -1163,8 +1151,7 @@ This program fails, and the emergent-metric project is likely untenable, if any 
 
 ---
 
-**Chapter target:**
-A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a Noether braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
+**Chapter target:** A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a Noether braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
 
 ### Closure Program Interface (clock-to-PPN bridge)
 

@@ -1,5 +1,4 @@
-Closure goal:
-Integrate the externally supplied neutral-braid review into BP-002 as a scope-and-provenance overlay, while preserving Family A, Family B, Family C, and every other admitted proposal as a finite ansatz subchart.
+Closure goal: Integrate the externally supplied neutral-braid review into BP-002 as a scope-and-provenance overlay, while preserving Family A, Family B, Family C, and every other admitted proposal as a finite ansatz subchart.
 
 # BP-002 Scope-and-Provenance Overlay
 

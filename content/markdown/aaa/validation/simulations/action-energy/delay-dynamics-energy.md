@@ -23,8 +23,7 @@ a\in A_\Omega,\,
 -H_{\mathrm{hist}}\le\theta\le0
 \right\}
 $$
-with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly.
-Here $A_\Omega$ is the retained architrino index set for the window, not a new kind of assembly.
+with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly. Here $A_\Omega$ is the retained architrino index set for the window, not a new kind of assembly.
 
 A promoted delay-energy functional has the form
 $$
@@ -106,8 +105,7 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
 P_{i\leftarrow j,T_t}^{(\eta)}(T)
 $$
-on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
-The work-integral route then reconstructs the compatible causal-history interaction contribution by
+on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar. The work-integral route then reconstructs the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
 =

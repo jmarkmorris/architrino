@@ -20,9 +20,7 @@ This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `material_delay_channel` — Define material-channel delay $\chi_{\gamma,\mathrm{mat}}$ without overloading $n(\mathbf{x},t)$. Status: `draft`.
 2. `moving_material_handoff` — Recover the Fresnel coefficient from material rest-frame propagation plus effective velocity addition. Status: `draft`.

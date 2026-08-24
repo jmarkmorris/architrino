@@ -695,8 +695,7 @@ $$
 \mu_t\!\left(\pi^{-1}(\mathcal{R}_f)\right)
 }
 $$
-where $\pi$ is the declared record map for the later apparatus channel.
-This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
+where $\pi$ is the declared record map for the later apparatus channel. This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
 
 The signed-response benchmark for post-selected weak probes should therefore be stated at the ensemble level. For a declared weak-probe pointer coordinate $Y$ and accepted later record class $\mathcal{R}_f$, define the normalized conditional response
 $$
@@ -1073,8 +1072,7 @@ D_{ij}(R_{\mathrm{eff}}^i)
 =
 \frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 \gamma_{ij}^{\mathrm{eff}}}{\|R_{\mathrm{eff}}^i\|^5}
 $$
-where $\gamma_{ij}^{\mathrm{eff}}$ is the effective spatial metric of the declared observer chart and reduces to $\delta_{ij}$ in the flat weak-response limit used by this toy model.
-If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
+where $\gamma_{ij}^{\mathrm{eff}}$ is the effective spatial metric of the declared observer chart and reduces to $\delta_{ij}$ in the flat weak-response limit used by this toy model. If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \simeq

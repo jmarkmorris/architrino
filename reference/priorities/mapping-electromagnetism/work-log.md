@@ -1,1184 +1,375 @@
 # Mapping Electromagnetism Work Log
 
-This file is the chronological work log for the mapping-electromagnetism
-priority area. Use it for dated derivation attempts, comparison results,
-checker narratives, independent-review outcomes, failed paths, and handoffs.
+This file is the chronological work log for the mapping-electromagnetism priority area. Use it for dated derivation attempts, comparison results, checker narratives, independent-review outcomes, failed paths, and handoffs.
 
-Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership,
-blockers, and promotion routing; [work-queue.md](work-queue.md) for accepted
-executable tasks; and [brainstorming.md](brainstorming.md) for provisional
-geometric and electromagnetic ideas.
+Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, blockers, and promotion routing; [work-queue.md](work-queue.md) for accepted executable tasks; and [brainstorming.md](brainstorming.md) for provisional geometric and electromagnetic ideas.
 
 ## Log Entries
 
 ### 2026-08-23 — F6c current transport and causal-history guard
 
-- Extended the root-certified release census from snapshot current capacity to
-  pair-distance flow, sector speed flow, rate-vector curvature, and exact
-  current derivative without changing the fixed Master Equation law.
-- Evaluated 2,311 distinct certified releases with zero analyzer failures;
-  1,129 had a nonclosing limiting corridor and 394 also had nonincreasing
-  member speed in both sectors.
-- Demonstrated that decreasing speed is not a sufficient guard because a large
-  rate-vector derivative can sharply redirect internal motion while reducing
-  its magnitude.
-- Evolved the lowest-curvature guarded release to a durable $T=0.40$
-  checkpoint. It preserved F6c symmetry and wide pair clearance but lost 84%
-  of its axial current, separating geometric survival from current persistence.
-- Derived the exact sector-current transport identity
-  $\dot I_\sigma=s_\sigma(4/3)(\dot{\mathbf a}_\sigma\cdot\mathbf q_\sigma+
-  \mathbf a_\sigma\cdot\dot{\mathbf q}_\sigma)$ and independently checked its
-  release slopes with a $\Delta T=10^{-4}$ EOM continuation.
-- Identified a current-handoff release whose sector slopes nearly cancel:
-  $(-0.437531,+0.434729)$, giving total slope $-0.00280243$ on total current
-  $-0.723067$.
-- Continued that immutable history through $T=0.240$. Total current remained
-  within 2.8% while the two sector contributions redistributed substantially;
-  no axial, radial, or cadence turn occurred and maximum speed remained
-  $0.481639$.
-- Recorded the first failure as a four-row, symmetry-related negative-sector
-  interior-root certification boundary at 512-bit precision. Pair distance was
-  still $0.384265$, so the record supports a same-polarity causal-history
-  root-enclosure boundary rather than caustic, collision, or speed-boundary
-  language.
-- Evolved a third Pareto-frontier release combining current, clearance,
-  opening-corridor, and low-curvature guards. It retained 91.9% of its initial
-  current and pair distance $0.417130$ through $T=0.170$, then met a distinct
-  four-row cross-polarity root-enclosure failure.
-- Extended the harness census with root-time pressure, minimum certified
-  transmitter-factor magnitude, same/opposite-polarity root gaps, and maximum
-  root multiplicity. On a deterministic replay, pressure rose
-  $0.250\rightarrow0.526\rightarrow0.841\rightarrow0.982$ before the known
-  failure while minimum transmitter-factor magnitude increased, root
-  multiplicity stayed one, and spatial clearance remained nearly constant.
-- Classified root-time pressure as a tolerance-relative search and
-  continuation guard, not a native observable or proof of a physical
-  singularity. Its trend must survive root-tolerance and history-enclosure
-  refinement before supporting a geometry inference.
-- Replayed the current-handoff history as an independent same-polarity check.
-  Its pressure sequence rose
-  $0.0673\rightarrow0.2185\rightarrow0.4241\rightarrow0.7020\rightarrow
-  0.99923$ at the last accepted $T=0.24$ checkpoint before the known next-step
-  failure. Minimum transmitter-factor magnitude remained above $0.822$, every
-  ordered pair retained one root, and pair distance remained $0.384265$.
-- Promoted root-time pressure only to a two-history computational early-warning
-  candidate covering same- and cross-polarity failure rows; refinement remains
-  its explicit falsifier.
-- Ran a matched-input root-tolerance control at $2\times10^{-5}$, explicitly
-  carrying a different numerical-certification fingerprint. It passed the
-  former $T=0.240$ wall and certified to $T=0.3025$, where pressure was
-  $0.98866$ before the next-step root-enclosure failure shifted to four
-  matched-module cross-polarity rows.
-- Observed a positive-sector cadence reversal near $T=0.296899$ in that
-  comparison. Total current at $T=0.3025$ remained within $0.91\%$ of release
-  even though $\dot\theta_+=-0.02634$; breathing shear and conjugate-sector
-  current handoff carried the total.
-- Decomposed positive-sector current at $T=0.2975$ into axial breathing
-  $-0.163389$, radial breathing $-0.075468$, and tangential circulation
-  $+0.000310$. The circulation term was only 0.13% of sector-current magnitude,
-  demonstrating that the F6c current functional can persist through an orbital
-  cadence reversal by breathing shear.
-- Updated the geometry inference: a required frequency implies recurrent
-  motion but need not imply an always-forward orbit; mixed breathing,
-  circulation, sector handoff, and observable return order remain admissible.
-- Deduplicated the release archive by normalized physical release coordinates
-  and coupling, preferring the tighter root certificate over replay and
-  tolerance-control duplicates. The final census contained 2,299 geometries
-  with zero analyzer failures.
-- Found opposed sector-current derivatives in 1,079 releases, at least 90%
-  derivative cancellation in 190, and 29 members of a declared active-handoff
-  class requiring cancellation at least 0.9, exchange/current at least 0.5,
-  and fractional total-current drift at most 0.1.
-- Compared amplitude signs against the full archive. Opposite axial signs were
-  72.4% overall versus 79.3% in active handoffs; opposite radial signs were
-  63.1% versus 69.0%. Recorded these as modest, sampling-dependent enrichment,
-  not a defining handoff motif.
-- Found a stronger corridor contrast: 48.8% of all releases were nonclosing,
-  versus 27.6% of active handoffs, and only one active handoff was both opening
-  and nonaccelerating in both sectors. Current exchange and corridor safety
-  must therefore remain separate search constraints.
-- Recorded that many active-handoff rows still had closing pair corridors.
-  Handoff is a recurring selective geometry coordinate, not a survival,
-  return, or retention result.
-- Ran a focused $7\times7$ phase screen around the sole initially opening,
-  nonaccelerating active handoff. All 49 releases certified; 12 were active
-  handoffs and 11 also passed the immediate corridor and speed-flow guards.
-- Selected a neighbor with pair distance $0.419421$, opening rate $0.195976$,
-  total current $-0.728215$, fractional current derivative $0.0047485$, and
-  maximum member speed $0.388663$.
-- Continued that neighbor under the tighter $10^{-5}$ root-time contract to
-  $T=0.290$. It crossed $\dot\theta_+=0$ near $T=0.252158$ and retained 83.2%
-  of its total release current while minimum pair distance remained $0.388726$
-  and maximum member speed remained $0.520081$.
-- Decomposed its final positive-sector current as axial breathing $-0.073799$,
-  radial breathing $-0.051688$, and reversed tangential circulation
-  $+0.014554$. The breathing terms preserved the current sign through the
-  orbital reversal.
-- Recorded terminal root-time pressure $0.990342$, minimum transmitter-factor
-  magnitude $0.754191$, root multiplicity one, and a four-row matched-module
-  root-enclosure failure on the attempted step to $T=0.2925$. This is a
-  certification boundary before a complete return, not retention or a
-  physical singularity.
-- Derived the assembly-level orthogonal rate decomposition
-  $\mathbf Q=I\mathbf C/\|\mathbf C\|^2+\mathbf Q_\perp$ with
-  $\mathbf C\cdot\mathbf Q_\perp=0$. A target current fixes one linear
-  combination while leaving a five-dimensional current-neutral rate space.
-- Added an independently checked implementation of that decomposition. The
-  direct-current, orthogonality, and Pythagorean residuals passed below
-  $10^{-14}$ in the unit test and remained below $2.4\times10^{-16}$ on the
-  evolved record.
-- Recomputed the expanded 2,348-geometry census after adding the 49-row local
-  screen. Median current efficiency was 0.4180 overall, 0.5205 among 41 active
-  handoffs, and 0.6263 among the 12 active handoffs that also passed opening-
-  corridor and speed-flow guards.
-- Measured current-neutral norm fractions of 77.0%--80.5% across those 12
-  jointly guarded handoffs. The evolved neighbor moved from 77.99% at release
-  to 81.08% at $T=0.290$, supporting current-neutral motion as a distinct
-  return- and corridor-control resource rather than wasted speed.
-- Resolved a current-neutral mode conversion in that history. Tangential
-  motion contributed 76.82% of the neutral squared norm at release, then only
-  0.83% immediately after cadence reversal; axial and radial breathing supplied
-  the remaining 99.17%. Breathing still supplied 94.52% at $T=0.290$.
-- Evolved three additional guarded phase neighbors under the same strict
-  $10^{-5}$ contract. Two reproduced positive-cadence reversal at
-  $T\approx0.255007$ and $0.249785$ and reached root-enclosure boundaries at
-  $T=0.2850$ and $0.2975$; one lower-cycle-phase history reached its boundary
-  at $T=0.2375$ before reversal while preserving 104.9% of release current.
-- Interpolated the three equal-cycle-phase histories to cadence zero. Their
-  total currents spanned only $-0.634423$ to $-0.634098$ (0.051% relative),
-  while sector currents compensated and neutral motion was over 99.17%
-  breathing by squared norm.
-- Tested adjacent breathing-cycle phases at fixed negative-sector phase. Phase
-  $1.670796$ still turned at $T\approx0.258360$ before a $T=0.2725$ boundary;
-  phase $1.620796$ converted modes but reached a $T=0.2525$ boundary before
-  cadence zero. The cadence-zero current changed with cycle phase, so the
-  near-fixed $-0.63424$ current is a slice property, not a general invariant.
-- Added a five-history mode-conversion diagnostic. Every history reached at
-  most 1% tangential neutral power at $T=0.215$--$0.220$ while positive cadence
-  remained $0.184$--$0.235$; in four turning histories this led cadence zero
-  by $0.0347$--$0.0409$. Mode conversion is therefore the stronger local
-  precursor, with reversal dependent on remaining causal-root margin.
-- Derived the exact limiting-pair distance-rate row on the six-coordinate F6c
-  speed frame and the two-row minimum-norm projector for target current plus
-  target corridor rate. These two constraints leave a four-dimensional joint-
-  neutral rate space.
-- Applied the projector to the selected release. Its current-only
-  minimum-norm carrier had norm $0.333269$ but closed the limiting pair at
-  $-0.200974$. Enforcing the nonclosing boundary required norm $0.368445$;
-  enforcing the measured $+0.195976$ opening required norm $0.455370$.
-- Measured actual collective rate norm $0.532463$ and a joint-neutral residual
-  of norm $0.275963$. Recorded the projector as a root-uncertified seed
-  generator and lower bound, not as evolved or retained evidence.
-- Applied the projector across all 2,348 certified releases. Pure current
-  motion closed the measured limiting corridor in 312 of 1,154 opening rows,
-  15 of 19 opening active handoffs, and all 12 active handoffs that also passed
-  the speed-flow guard.
-- Found that those 12 jointly guarded handoffs retained 51.3%--59.4% of their
-  actual collective rate norm in the four-dimensional joint-neutral space
-  after measured current and measured corridor rate were both projected out.
-  Kept the count descriptive because eleven rows are deliberately sampled
-  local neighbors.
-- Derived the two-active-sector minimax projector for
-  $\min\max(\|\mathbf q_+\|,\|\mathbf q_-\|)$ under fixed current and corridor
-  rate. It uses a weighted constraint projector and solves the weight at equal
-  sector speeds.
-- At the selected release, reduced the lower-bound maximum member speed for
-  the measured current/opening pair from $0.409796$ under Euclidean minimization
-  to balanced speed $0.341973$. The current/nonclosing minimax bound was
-  $0.280086$.
-- Extended the F6c harmonic-history instrument with independent axial and
-  radial breathing phase offsets for each polarity sector. Defaults preserve
-  every prior shared-phase record.
-- Constructed an exact endpoint-matched harmonic prehistory for the measured-
-  opening minimax vector. Its largest breathing amplitude was $0.117373$; both
-  sector speeds reconstructed as $0.341973$; the target current and pair-rate
-  residuals stayed at floating-point roundoff; and all 64 release root rows
-  certified under the strict $10^{-5}$ contract.
-- Evolved that immutable record without rejection through $T=0.28$. Positive
-  cadence reversed near $T=0.194854$, maximum member speed stayed below
-  $0.403658$, total current retained 86.24% of its magnitude, and root-time
-  pressure reached $0.842014$.
-- Measured the limiting corridor's failure to self-regulate. It opened from
-  distance $0.419421$, turned, and reached $0.391664$ with closing rate
-  $-0.420275$ at $T=0.28$.
-- Inferred that independent breathing phases are effective seed coordinates,
-  while a static current-plus-opening projector is insufficient for return.
-  A viable braid needs delayed feedback that rotates the remaining four joint-
-  neutral directions as the active limiting pair changes.
-- Captured the resulting joint requirement: assembly-level current persistence
-  may use conjugate-sector handoff, but it must coexist with same-polarity
-  causal-history spacing, opposite-polarity corridor control, field-speed
-  margin, and a complete identity-preserving return.
-- Kept all results at exact-geometry or bounded EOM-diagnostic grade; no
-  retention, stability, particle identity, equation score, queue status, or
-  reader-facing corpus claim changed.
+- Extended the root-certified release census from snapshot current capacity to pair-distance flow, sector speed flow, rate-vector curvature, and exact current derivative without changing the fixed Master Equation law.
+- Evaluated 2,311 distinct certified releases with zero analyzer failures; 1,129 had a nonclosing limiting corridor and 394 also had nonincreasing member speed in both sectors.
+- Demonstrated that decreasing speed is not a sufficient guard because a large rate-vector derivative can sharply redirect internal motion while reducing its magnitude.
+- Evolved the lowest-curvature guarded release to a durable $T=0.40$ checkpoint. It preserved F6c symmetry and wide pair clearance but lost 84% of its axial current, separating geometric survival from current persistence.
+- Derived the exact sector-current transport identity $\dot I_\sigma=s_\sigma(4/3)(\dot{\mathbf a}_\sigma\cdot\mathbf q_\sigma+ \mathbf a_\sigma\cdot\dot{\mathbf q}_\sigma)$ and independently checked its release slopes with a $\Delta T=10^{-4}$ EOM continuation.
+- Identified a current-handoff release whose sector slopes nearly cancel: $(-0.437531,+0.434729)$, giving total slope $-0.00280243$ on total current $-0.723067$.
+- Continued that immutable history through $T=0.240$. Total current remained within 2.8% while the two sector contributions redistributed substantially; no axial, radial, or cadence turn occurred and maximum speed remained $0.481639$.
+- Recorded the first failure as a four-row, symmetry-related negative-sector interior-root certification boundary at 512-bit precision. Pair distance was still $0.384265$, so the record supports a same-polarity causal-history root-enclosure boundary rather than caustic, collision, or speed-boundary language.
+- Evolved a third Pareto-frontier release combining current, clearance, opening-corridor, and low-curvature guards. It retained 91.9% of its initial current and pair distance $0.417130$ through $T=0.170$, then met a distinct four-row cross-polarity root-enclosure failure.
+- Extended the harness census with root-time pressure, minimum certified transmitter-factor magnitude, same/opposite-polarity root gaps, and maximum root multiplicity. On a deterministic replay, pressure rose $0.250\rightarrow0.526\rightarrow0.841\rightarrow0.982$ before the known failure while minimum transmitter-factor magnitude increased, root multiplicity stayed one, and spatial clearance remained nearly constant.
+- Classified root-time pressure as a tolerance-relative search and continuation guard, not a native observable or proof of a physical singularity. Its trend must survive root-tolerance and history-enclosure refinement before supporting a geometry inference.
+- Replayed the current-handoff history as an independent same-polarity check. Its pressure sequence rose $0.0673\rightarrow0.2185\rightarrow0.4241\rightarrow0.7020\rightarrow 0.99923$ at the last accepted $T=0.24$ checkpoint before the known next-step failure. Minimum transmitter-factor magnitude remained above $0.822$, every ordered pair retained one root, and pair distance remained $0.384265$.
+- Promoted root-time pressure only to a two-history computational early-warning candidate covering same- and cross-polarity failure rows; refinement remains its explicit falsifier.
+- Ran a matched-input root-tolerance control at $2\times10^{-5}$, explicitly carrying a different numerical-certification fingerprint. It passed the former $T=0.240$ wall and certified to $T=0.3025$, where pressure was $0.98866$ before the next-step root-enclosure failure shifted to four matched-module cross-polarity rows.
+- Observed a positive-sector cadence reversal near $T=0.296899$ in that comparison. Total current at $T=0.3025$ remained within $0.91\%$ of release even though $\dot\theta_+=-0.02634$; breathing shear and conjugate-sector current handoff carried the total.
+- Decomposed positive-sector current at $T=0.2975$ into axial breathing $-0.163389$, radial breathing $-0.075468$, and tangential circulation $+0.000310$. The circulation term was only 0.13% of sector-current magnitude, demonstrating that the F6c current functional can persist through an orbital cadence reversal by breathing shear.
+- Updated the geometry inference: a required frequency implies recurrent motion but need not imply an always-forward orbit; mixed breathing, circulation, sector handoff, and observable return order remain admissible.
+- Deduplicated the release archive by normalized physical release coordinates and coupling, preferring the tighter root certificate over replay and tolerance-control duplicates. The final census contained 2,299 geometries with zero analyzer failures.
+- Found opposed sector-current derivatives in 1,079 releases, at least 90% derivative cancellation in 190, and 29 members of a declared active-handoff class requiring cancellation at least 0.9, exchange/current at least 0.5, and fractional total-current drift at most 0.1.
+- Compared amplitude signs against the full archive. Opposite axial signs were 72.4% overall versus 79.3% in active handoffs; opposite radial signs were 63.1% versus 69.0%. Recorded these as modest, sampling-dependent enrichment, not a defining handoff motif.
+- Found a stronger corridor contrast: 48.8% of all releases were nonclosing, versus 27.6% of active handoffs, and only one active handoff was both opening and nonaccelerating in both sectors. Current exchange and corridor safety must therefore remain separate search constraints.
+- Recorded that many active-handoff rows still had closing pair corridors. Handoff is a recurring selective geometry coordinate, not a survival, return, or retention result.
+- Ran a focused $7\times7$ phase screen around the sole initially opening, nonaccelerating active handoff. All 49 releases certified; 12 were active handoffs and 11 also passed the immediate corridor and speed-flow guards.
+- Selected a neighbor with pair distance $0.419421$, opening rate $0.195976$, total current $-0.728215$, fractional current derivative $0.0047485$, and maximum member speed $0.388663$.
+- Continued that neighbor under the tighter $10^{-5}$ root-time contract to $T=0.290$. It crossed $\dot\theta_+=0$ near $T=0.252158$ and retained 83.2% of its total release current while minimum pair distance remained $0.388726$ and maximum member speed remained $0.520081$.
+- Decomposed its final positive-sector current as axial breathing $-0.073799$, radial breathing $-0.051688$, and reversed tangential circulation $+0.014554$. The breathing terms preserved the current sign through the orbital reversal.
+- Recorded terminal root-time pressure $0.990342$, minimum transmitter-factor magnitude $0.754191$, root multiplicity one, and a four-row matched-module root-enclosure failure on the attempted step to $T=0.2925$. This is a certification boundary before a complete return, not retention or a physical singularity.
+- Derived the assembly-level orthogonal rate decomposition $\mathbf Q=I\mathbf C/\|\mathbf C\|^2+\mathbf Q_\perp$ with $\mathbf C\cdot\mathbf Q_\perp=0$. A target current fixes one linear combination while leaving a five-dimensional current-neutral rate space.
+- Added an independently checked implementation of that decomposition. The direct-current, orthogonality, and Pythagorean residuals passed below $10^{-14}$ in the unit test and remained below $2.4\times10^{-16}$ on the evolved record.
+- Recomputed the expanded 2,348-geometry census after adding the 49-row local screen. Median current efficiency was 0.4180 overall, 0.5205 among 41 active handoffs, and 0.6263 among the 12 active handoffs that also passed opening- corridor and speed-flow guards.
+- Measured current-neutral norm fractions of 77.0%--80.5% across those 12 jointly guarded handoffs. The evolved neighbor moved from 77.99% at release to 81.08% at $T=0.290$, supporting current-neutral motion as a distinct return- and corridor-control resource rather than wasted speed.
+- Resolved a current-neutral mode conversion in that history. Tangential motion contributed 76.82% of the neutral squared norm at release, then only 0.83% immediately after cadence reversal; axial and radial breathing supplied the remaining 99.17%. Breathing still supplied 94.52% at $T=0.290$.
+- Evolved three additional guarded phase neighbors under the same strict $10^{-5}$ contract. Two reproduced positive-cadence reversal at $T\approx0.255007$ and $0.249785$ and reached root-enclosure boundaries at $T=0.2850$ and $0.2975$; one lower-cycle-phase history reached its boundary at $T=0.2375$ before reversal while preserving 104.9% of release current.
+- Interpolated the three equal-cycle-phase histories to cadence zero. Their total currents spanned only $-0.634423$ to $-0.634098$ (0.051% relative), while sector currents compensated and neutral motion was over 99.17% breathing by squared norm.
+- Tested adjacent breathing-cycle phases at fixed negative-sector phase. Phase $1.670796$ still turned at $T\approx0.258360$ before a $T=0.2725$ boundary; phase $1.620796$ converted modes but reached a $T=0.2525$ boundary before cadence zero. The cadence-zero current changed with cycle phase, so the near-fixed $-0.63424$ current is a slice property, not a general invariant.
+- Added a five-history mode-conversion diagnostic. Every history reached at most 1% tangential neutral power at $T=0.215$--$0.220$ while positive cadence remained $0.184$--$0.235$; in four turning histories this led cadence zero by $0.0347$--$0.0409$. Mode conversion is therefore the stronger local precursor, with reversal dependent on remaining causal-root margin.
+- Derived the exact limiting-pair distance-rate row on the six-coordinate F6c speed frame and the two-row minimum-norm projector for target current plus target corridor rate. These two constraints leave a four-dimensional joint- neutral rate space.
+- Applied the projector to the selected release. Its current-only minimum-norm carrier had norm $0.333269$ but closed the limiting pair at $-0.200974$. Enforcing the nonclosing boundary required norm $0.368445$; enforcing the measured $+0.195976$ opening required norm $0.455370$.
+- Measured actual collective rate norm $0.532463$ and a joint-neutral residual of norm $0.275963$. Recorded the projector as a root-uncertified seed generator and lower bound, not as evolved or retained evidence.
+- Applied the projector across all 2,348 certified releases. Pure current motion closed the measured limiting corridor in 312 of 1,154 opening rows, 15 of 19 opening active handoffs, and all 12 active handoffs that also passed the speed-flow guard.
+- Found that those 12 jointly guarded handoffs retained 51.3%--59.4% of their actual collective rate norm in the four-dimensional joint-neutral space after measured current and measured corridor rate were both projected out. Kept the count descriptive because eleven rows are deliberately sampled local neighbors.
+- Derived the two-active-sector minimax projector for $\min\max(\|\mathbf q_+\|,\|\mathbf q_-\|)$ under fixed current and corridor rate. It uses a weighted constraint projector and solves the weight at equal sector speeds.
+- At the selected release, reduced the lower-bound maximum member speed for the measured current/opening pair from $0.409796$ under Euclidean minimization to balanced speed $0.341973$. The current/nonclosing minimax bound was $0.280086$.
+- Extended the F6c harmonic-history instrument with independent axial and radial breathing phase offsets for each polarity sector. Defaults preserve every prior shared-phase record.
+- Constructed an exact endpoint-matched harmonic prehistory for the measured- opening minimax vector. Its largest breathing amplitude was $0.117373$; both sector speeds reconstructed as $0.341973$; the target current and pair-rate residuals stayed at floating-point roundoff; and all 64 release root rows certified under the strict $10^{-5}$ contract.
+- Evolved that immutable record without rejection through $T=0.28$. Positive cadence reversed near $T=0.194854$, maximum member speed stayed below $0.403658$, total current retained 86.24% of its magnitude, and root-time pressure reached $0.842014$.
+- Measured the limiting corridor's failure to self-regulate. It opened from distance $0.419421$, turned, and reached $0.391664$ with closing rate $-0.420275$ at $T=0.28$.
+- Inferred that independent breathing phases are effective seed coordinates, while a static current-plus-opening projector is insufficient for return. A viable braid needs delayed feedback that rotates the remaining four joint- neutral directions as the active limiting pair changes.
+- Captured the resulting joint requirement: assembly-level current persistence may use conjugate-sector handoff, but it must coexist with same-polarity causal-history spacing, opposite-polarity corridor control, field-speed margin, and a complete identity-preserving return.
+- Kept all results at exact-geometry or bounded EOM-diagnostic grade; no retention, stability, particle identity, equation score, queue status, or reader-facing corpus claim changed.
 
 ### 2026-08-23 — Standard Model braid-geometry clue campaign
 
-- Extended the inverse-geometry packet beyond electric and magnetic response
-  into Standard Model morphology constraints while keeping all observer
-  equations and particle labels at recovery-target grade.
-- Separated inverse-time observables into retained recurrence, propagating
-  phase, transition/gap readout, and escape/event cadence; added observer-,
-  shape-, and delayed-history recurrence residuals.
-- Defined a common morphology record and a seven-class clue taxonomy spanning
-  inventory/counting, phase, orientation, spatial exposure, response rank,
-  reaction topology, and environmental deformation.
-- Derived that polarity conjugation, pro/anti ordered orientation, circulation
-  reversal, and spinor history parity are distinct records. One clockwise/
-  counterclockwise sign cannot supply all four.
-- Intersected current particle owners into six bounded candidate morphology
-  families without identifying any family as a retained Standard Model braid.
-- Added form-factor, compactness, polarization, elastic/inelastic, jet,
-  hadronization, and decay-angular-correlation constraints, including the rule
-  that scattering sees a sector-visible exposure measure rather than a unique
-  image of the full assembly.
-- Audited executable reach: the attractor census already supplies centroid,
-  separation, kinematic circulation, and escape rows; exact transformed-run
-  root comparisons, full shape/frame recurrence, $2\pi/4\pi$ holonomy, and
-  exchange remain unexposed or physically unavailable.
-- Added a retained-basin transition graph and finite-window survival grammar so
-  conservation, corridor existence, branching, stability, linewidth,
-  dephasing, and detector broadening cannot be substituted for one another.
-- Separated causal-root degree from spatial knot/link type and topological
-  protection from basin and exit-barrier protection. Intersecting or coincident
-  prescribed supports now require link-invariant abstention.
-- Added controlled close-relative comparisons, including charged-lepton
-  generations, pion--rho, nucleon--Delta, charged/neutral pion, neutral kaon,
-  proton/neutron, photon--$W/Z$, and electron/neutrino, as no-retuning tests of
-  shared morphology motifs.
-- Added an eight-stage candidate-elimination sequence using non-aggregated
-  `pass`/`fail`/`abstain` dispositions from identity inventory through
-  quantitative recovery; it does not alter centrally owned equation maturity
-  scores.
-- Factored the search record into reusable identity core, polarity decoration,
-  indexed frame/exposure, association/corridor graph, and support/response/
-  basin mode coordinates. The corresponding selection burden now explicitly
-  rejects overgenerated stable charge, color, and corridor combinations.
-- Added complete-record symmetry actions and exact scalar/vector/tensor
-  response decomposition, plus a sector-projection coupling grammar that keeps
-  normalization fixed under scale scans and separates charge, mass, weak,
-  strong, magnetic, and scalar projections.
-- Derived a bare-generation-distance no-go: unweighted Hamming overlap on
-  `111`, `110`, and `100` predicts equal adjacent mixing and cannot recover the
-  CKM hierarchy. Weighted index actions, orientation, exposure, or path history
-  are therefore required.
-- Derived a cycle-rank requirement for flavor holonomy: a three-node generation
-  chain has no invariant loop phase, so a claimed $CP$ holonomy needs a genuine
-  phase-bearing closing route or another closed native history.
-- Added explicit candidate-constraint intersections and assumption-visible
-  contradiction cores. These reject several simple shape families before
-  evolution or precision fitting while keeping underdetermination separate
-  from contradiction and from ordinary abstention.
-- Added relational, exchange, and measurement geometry. Exchange statistics
-  now require a complete path-class record; Stern--Gerlach requires a coupled
-  target--apparatus basin history; contextuality rejects a global value table;
-  and Bell recovery rejects every completed product-screened pair response
-  that preserves measurement independence.
-- Recorded the unresolved live-corpus choice between a finite-$c_f$ Bell
-  coordination channel and a non-restartable pair-provenance/local-apparatus
-  route outside detector-to-detector causal reach. The product no-go is firm;
-  the native relational carrier remains unsettled.
-- Added scattering-boundary requirements joining stable and resonance poles,
-  widths, factorized intermediate channels, total outgoing ledgers, amplitude
-  zeros, and spurious-singularity cancellation to actual retained or
-  metastable event geometry.
-- Strengthened null-channel pruning with provenance-preserving pair inventory,
-  the normalized right-handed exposure contradiction, strong-$CP$ dipole
-  cancellation versus weak-$CP$ holonomy, stable-yet-reorganizable color
-  topology, and same-motif suppression of unused partners and modes.
-- Derived a same-inventory hadron no-go from $\pi^+/\rho^+$ and
-  $p/\Delta^+$: constituent inventory and color closure cannot alone determine
-  angular class, mass-facing response, or survival. Recorded the absence of a
-  substantive Regge, radial, orbital, or parity-partner excitation ladder as a
-  coverage gap rather than importing a rotating-string or shell picture.
-- Converted all current contradiction cores into a non-aliasing graph and
-  role-minimum coordinate bundles. This specifies the information that
-  fermion, photon, massive-vector, scalar, hadron, and correlated-pair
-  candidates must carry without turning the rows into independent fit knobs.
-- Added electromagnetic perturbation tomography across signed uniform fields,
-  gradients, frequency scans, combined controls, and first nonlinear
-  transitions, with one response-rank record separating translation,
-  deformation, orientation, phase, and exit.
-- Added a retained-branch mode-atlas protocol. It forbids linearization about
-  unbalanced or prescribed configurations and uses fixed-law nonlinear mode
-  continuation to test whether reusable cores generate same-inventory partners,
-  resonances, coherent beats, field-selected modes, or daughter basins.
-- Added weak/flavor/$CP$ null factorization and recorded exact coverage gaps:
-  charged-lepton flavor violation and coherent muon conversion are absent as
-  owners; electron EDM and neutrinoless double beta are only partial; quark
-  neutral-current/GIM and neutron EDM have formal owners but no retained
-  carrier.
-- Added an atomic colored-transition graph and smallest comparison basis
-  spanning gross lines, allowed one-photon, suppressed-leading/two-photon,
-  hyperfine current-like, rank-two, degeneracy-lifting, and field-control rows.
-  The E1/M1/E2 matrix, Stark owner, and quadrupole atomic case remain missing.
-- Added photon/gluon/$W/Z$/scalar response-rank grammar and explicit gaps for
-  exactly-three-mode massive vectors, gluon polarization, Higgs parity/$CP$,
-  and the spin-1 identical-diphoton angular null.
-- Added the multi-probe visibility null space and a coercivity condition for
-  any claimed full-geometry size bound. Pointlikeness constrains a tested
-  exposure unless the combined probes are proved to see every admissible
-  non-gauge geometry perturbation.
-- Corrected the lifetime packet to start survival only after an explicit
-  formation-completion predicate. Added the missing top-exit versus color-
-  singlet-formation ordering as the sharpest discriminator between a retained
-  top-hadron picture and a pre-hadronic transaction antecedent.
-- Added pair-formation geometry: relative-angle two-photon threshold,
-  continuous near-threshold onset, separate two-photon/material/strong-
-  background precursor topologies, exact identity repartition into retained
-  conjugate basins, angular and polarization routing, continued backreaction,
-  and a complete inverse-event requirement.
-- Recorded that elementary pointlikeness/contact limits, top versus
-  hadronization, polarization-resolved pair production, product-spin
-  correlations, and pair-specific reciprocity lack dedicated live owners.
-- Ran three independent line-range convergence audits across the completed
-  packet. Corrected all high-severity findings: direct/sea coupling is now one
-  joint map rather than an assumed additive law; current catalog motifs are
-  separated from representation-neutral requirements; electroweak response
-  uses a declared generalized eigenproblem; lifetime measures are conditioned
-  on actual formation; top exit and hadron formation share one clock; topology
-  examples are proposed controls rather than claimed computed counterexamples;
-  the Master Equation hit weight retains its $c_f$ factor; and magnetic
-  skewness is asserted only at leading weak-response order.
-- Removed implementation-owner details from the theory packet while retaining
-  its evidence-interface obligations. Rendered all 702 dollar-delimited math
-  spans with the repository's vendored KaTeX with zero failures and reran the
-  strict content validator with zero errors and zero warnings.
-- Mined quantum-number and particle-family owners for multiplet-level geometry
-  clues. Added one complete-history family-action test covering color-basis
-  changes, weak doublets, isospin relatives, generations, same-inventory
-  excitations, and whole-history conjugation.
-- Derived that a color-family action must change the internal color projection
-  while preserving mass-facing response, electric charge, generation, weak
-  family, retention class, and laboratory rotation covariance. Added an
-  explicit invariant residual for candidate color orbits.
-- Added additive association/provenance maps for baryon and lepton observer
-  labels on declared conservation domains. These labels now remain
-  non-aliased with electric charge, unsigned constituent count, color-singlet
-  closure, and generation in the candidate filters and role bundles.
-- Revalidated after the multiplet/provenance wave: all 722 dollar-delimited
-  math spans render through vendored KaTeX with zero failures, and strict
-  content validation remains at zero errors and zero warnings.
-- Replaced visual hadron spin-alignment shorthand with a complete composite
-  angular/exchange record. Constituent and relative frames, support motion,
-  association corridors, wake/sea angular ledgers, and exchange histories now
-  jointly carry the $\pi/\rho$, nucleon/$\Delta$, $\Delta^{++}$, and
-  proton/neutron comparison burdens.
-- Added a conditional support/frame/flavor/color/corridor exchange-character
-  product, with a joint holonomy required when factorization fails. Added an
-  alignment-only contradiction core and separated color-singlet closure from
-  the complete identical-constituent exchange class.
-- Revalidated after the composite-spin wave: all 754 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Added a complete-history operation algebra for independent labels and
-  physical transactions. Rotation/color, generation/charge,
-  generation/color, conjugation/parity, color/singlet, weak/spectator, and
-  rotation/exchange pairs now require either a small commutator residual or a
-  fully ledgered noncommuting event.
-- Added an operation-compatibility contradiction core and separated correct
-  static label assignment from compatible native action composition. This
-  provides a cheap candidate filter before precision fitting.
-- Revalidated after the operation-algebra wave: all 761 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Recast the three-generation claim as an exact branch/mode-exhaustion burden.
-  Three sampled diagrams or shielding values no longer count; the fixed law
-  must produce exactly three robust retained components, isolated modes, phase
-  locks, or support-tier basins and dispose of every extra class.
-- Separated topological-index, multistable-basin, common-core mode, phase/
-  permutation-lock, and support-tier generation mechanisms by their native
-  fingerprints. Added a data-blind cross-sector generation alignment and a
-  no-continuum/no-fourth-partner test.
-- Revalidated after the generation-exhaustion wave: all 775 dollar-delimited
-  math spans render through vendored KaTeX with zero failures, and strict
-  content validation remains at zero errors and zero warnings.
-- Separated the locally constant quantized charge label from continuously
-  varying electromagnetic coupling, screening, polarization, form-factor, and
-  running responses. Added conjugation, additivity, event-routing, and
-  universal-normalization burdens for one charge index.
-- Regraded the six-unit polarity carrier as one candidate among signed
-  inventory, topology/history index, exposure eigenclass, phase/permutation
-  lock, and composite association realizations. Added no-extra-charge-class
-  and no-free-fractional-branch tests.
-- Revalidated after the charge-index wave: all 788 dollar-delimited math spans
-  render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Intersected scalar mass-facing isotropy with nonzero fermion spin/moment
-  response. Added a windowed anisotropy residual and separated static high
-  symmetry, dynamic orientation averaging, sector-projection cancellation, and
-  responsive-sea compensation as testable alternatives.
-- Added a drive-frequency/window crossover test for dynamic averaging and
-  blocked frequency-to-speed inference until the same retained record supplies
-  a path length or spatial excursion. Connected weak electric deformation to
-  phase, trace-free shape, and exposure changes that need not alter charge.
-- Revalidated after the scalar/axial wave: all 799 dollar-delimited math spans
-  render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Required the magnetic moment, ordered-frame/angular ledger, precession,
-  leading charged-lepton ratio, conjugation, and anomalous residual to share
-  one retained history. Added a non-aggregated moment/angular residual rather
-  than another weighted score.
-- Used the neutron to separate zero net charge from nonzero signed internal
-  current moment. Separated exposed circulation, distributed counterflow,
-  frame/corridor holonomy, and derived wake/sea dressing as candidate moment
-  carriers under common reversal and direct/sea controls.
-- Revalidated after the moment/angular wave: all 818 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Separated massive-particle observer helicity from retained weak chirality/
-  exposure. Added distinct ordered-frame, weak-posture, group-motion, and
-  physical source--assembly--apparatus rows plus observer-reprojection, physical
-  reversal, rest, parity, conjugation, and near-massless controls.
-- Flagged the propagation-direction weak-coupling-triad selector as viable only
-  when its direction is a physical event relation or covariant shorthand; an
-  arbitrary observer momentum sign cannot choose internal weak exposure.
-- Revalidated after the chirality/helicity wave: all 828 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Synthesized the accumulated fermion constraints into a bounded framed
-  triadic counterflow search blueprint. It requires a derived body frame,
-  nontrivial history lift, signed counterflow, three equivalent body-fixed
-  ports, an independent exactly-three generation coordinate, separate charge
-  and weak projections, identity return, event ports, and resolved sea history;
-  it does not prescribe a constituent count or select a particle geometry.
-- Added eight pre-precision rejection tests for the blueprint: frame/port
-  independence, counterflow rank, $2\pi/4\pi$ history lift, generation
-  exhaustion, observer/helicity control, retained-mode validity, event
-  provenance, and direct/frozen/responsive-sea disposition.
-- Derived a neutral-coherent fermion blueprint from the neutrino
-  source--path--detector record. It favors one stiff neutral carrier with a
-  softer internal coordinate supplying exactly three coherent modes and two
-  independent relative phase gaps; source and detector flavor are endpoint
-  weak projections rather than repeated particle replacement.
-- Kept photon adjacency as one candidate realization rather than a premise
-  because the proposed photon base lock remains unexhibited. Added mode,
-  relative-lock, identity-permutation, and derived sea-dressing alternatives,
-  plus a fixed-law eight-step source--path--detector discriminator.
-- Added neutrino contradiction cores, non-aliasing edges, role-bundle rows, and
-  open questions separating carrier identity, common translation, relative
-  phase, coherence, detector access, and material/sea response.
-- Revalidated after the two blueprint waves: all 866 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Intersected the fermion blueprint with the admitted A2, A3, B1, and C1--C4
-  charts. A2/A3 supply the strongest present body-frame/three-port rows, while
-  C2/C4 supply the clearest counter-rotation rows; no admitted chart supplies
-  both plus history lift, generation exhaustion, retention, and event/sea
-  provenance.
-- Defined four bounded local search seeds without changing the Braid Program
-  taxonomy: a near-A2 triad with independent circulation, a dual-A2 conjugate
-  counterflow cage, an A2-to-A3 mode/permutation family, and a framed triad
-  associated with a C4 counterflow module. Each has a distinct fast rejection
-  and is compared by pass/fail/abstain rows rather than a score.
-- Converted the doubled-rotation clue into an order-two physical-configuration-
-  space requirement. A nondegenerate frame may supply the mathematical
-  $\mathbb Z_2$ loop carrier, but advancement additionally requires a
-  non-gauge causal-history readout changed after $2\pi$, restored after
-  $4\pi$, and composed with the same exchange, magnetic, angular, and
-  apparatus record.
-- Separated shape and identity/history quotients so cyclic port symmetry cannot
-  erase root, wake, identity, or event provenance merely to manufacture a
-  doubled return.
-- Revalidated after the chart/topology wave: all 893 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Derived an exact equal-identity centroid/internal decomposition for
-  source-tagged constituent acceleration. It separates charged-group
-  translation from stretch, shear, breathing, frame, phase, and other internal
-  deformation without importing mass or force.
-- Derived the matched-neutral-pair result: the polarity-even source row drives
-  pair translation, while the polarity-odd row doubles in the separation
-  coordinate. Leading group cancellation therefore coexists exactly with
-  polarity-differential stretching in the electric-isolation limit.
-- Extended the decomposition to a neutral paired core plus a generic
-  noncancelling charge-facing set while preserving alternatives in which a
-  locally constant index, response eigenclass, topology/history row, or full-
-  core exposure carries charge without literal external accessory sites.
-- Replaced the invalid comparison of electric acceleration with primitive
-  architrino momentum by branch-relative velocity-increment, shape, phase,
-  frame, root-margin, and basin-distance diagnostics. Added mode projections
-  and F1--F4 weak-electric discriminators.
-- Revalidated after the assembly-electric wave: all 912 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Derived the signed current-first-moment parity of an ideal equal-radius,
-  equal-exposure, opposite-polarity circular pair. Same-sense geometric
-  circulation cancels the cycle-averaged moment; opposite circulation makes
-  polarity and circulation reversals multiply so the two contributions add.
-- Applied the result conditionally to A2-like neutral binaries: rapid symmetric
-  co-rotation and mutual orthogonality do not by themselves produce a magnetic
-  moment. A successful loop model must expose countercirculation, a derived
-  radius/cadence/exposure/center asymmetry, same-sign decoration, non-orbital
-  frame/corridor holonomy, or a derived wake/sea contribution.
-- Derived the matched-pair instantaneous group/internal split under the
-  effective leading skew response kernel. Equal constituent velocities cancel
-  the group row and drive relative response; opposite velocities reverse that
-  disposition, while full-cycle averaging remains a separate required row.
-- Added F1--F4 magnetic opportunities and failure modes, especially the risk
-  that whole-binary circulation changes leave exact within-pair cancellation
-  intact or that an apparent moment belongs to a detachable module.
-- Revalidated after the polarity/circulation wave: all 927 dollar-delimited
-  math spans render through vendored KaTeX with zero failures, and strict
-  content validation remains at zero errors and zero warnings.
-- Derived that equal-radius opposite-sense paths in one plane inevitably
-  coincide twice per cycle; initial phase can delay but not remove the
-  crossings. Parallel axial offsets provide a minimum $2|h|$ clearance but
-  create an electric first moment.
-- Constructed F5, a packet-local balanced double-dyad triad: two axially
-  reversed counterrotating dyads at distinct radii on each of three orthogonal
-  body axes. The distinct radii avoid same-plane collisions while the reversed
-  axial assignments cancel the leading cycle-averaged electric dipole.
-- Derived that the two dyad current moments add on each axis, the equal-module
-  second moments sum isotropically over an orthonormal triad, and the three
-  axial current moments add along the body diagonal preserved by cyclic port
-  permutation.
-- Recorded F5's unresolved burdens: cross-axis/root clearance, binding of the
-  two interlaced A3-like records, polar/radiative sideband leakage, moment-to-
-  angular mapping, doubled history return, exactly-three modes, charged
-  projection, and 12-identity overgeneration.
-- Added F5 to the score-free seed, electric, and magnetic comparisons and
-  revalidated: all 953 dollar-delimited math spans render with zero failures;
-  strict content validation remains at zero errors and zero warnings.
-- Ran a bounded prescribed-path F5 clearance diagnostic at $c_f=1$ with
-  $(\rho_1,\rho_2,h)=(0.25,0.40,0.20)$,
-  $(\omega_1,\omega_2)=(1,1)$, and maximum internal speed $0.40$.
-- A coarse $8^3$ phase grid followed by a separately written 343-row local
-  refinement selected offsets $(5\pi/32,-3\pi/32,-3\pi/32)$. A frozen-row
-  200,000-time-sample sweep measured minimum sampled clearance
-  $0.0706633508$, about $0.17666$ of the outer radius.
-- A 27-row $\pm0.01$ phase stencil measured worst sampled clearance
-  $0.0706300083$, so the positive sampled separation was not isolated to one
-  stencil point. This remains sampled prescribed geometry, not a continuous
-  clearance certificate, causal-root result, EOM evolution, binding, or
-  retention evidence.
-- Revalidated after recording the diagnostic: all 970 dollar-delimited math
-  spans render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Derived the exact three-mode spectrum of a Hermitian circulant operator on
-  F5's cyclic three-module orbit. The port subspace contains one common mode
-  and two oriented traveling/return modes, giving a bounded exactly-three
-  candidate mechanism without selecting it as particle generation.
-- Proved the first no-go: reflection-even real coupling leaves the two oriented
-  modes degenerate. Three distinct responses require a derived oriented
-  circulation/history/holonomy contribution while preserving cyclic port
-  equivalence.
-- Proved the second no-go: two circulant operators on the same three-port space
-  commute and share the Fourier basis, so a port-only mass/generation operator
-  and port-only weak-exposure operator cannot produce nontrivial mixing. The
-  weak projection needs an independently derived posture, event, shielding, or
-  corridor coordinate on the same retained record.
-- Preserved the full-system burden: the 12-identity branch has additional
-  modes that must be classified, and the three port modes must acquire
-  data-blind mass/lifetime/overlap fingerprints with no accepted fourth class.
-- Revalidated after the cyclic-mode wave: all 983 dollar-delimited math spans
-  render through vendored KaTeX with zero failures, and strict content
-  validation remains at zero errors and zero warnings.
-- Audited the F5 clearance survivor on the same frozen history. Its raw-center
-  second moment is isotropic, but its geometric centroid oscillates; the
-  centroid-relative tensor is anisotropic and the electric dipole has a large
-  oscillatory amplitude despite a zero cycle mean.
-- Ran a 512-row joint F5 phase grid and found improved clearance/dipole/
-  centroid/isotropy tradeoffs but no exact joint null. Proved the conditional
-  two-ring obstruction: exact stationary centroid plus exact dipole null forces
-  equal radii, which restores the same-plane counterrotation collision.
-- Constructed F6, an eight-identity tetrahedral counterflow core. Tetrahedral
-  vector and second-moment sums cancel axial dipoles and scalar anisotropy;
-  circulation characters can preserve a nonzero signed current moment.
-- Rejected promotion of F6's one-versus-three clearance survivor after the
-  same-record projection audit found oscillatory dipole, centroid motion,
-  centroid-relative anisotropy, and moment-axis drift.
-- Derived F6b, the two-versus-two balanced tetrahedral edge partition. With
-  exact phases $(0,\pi,4\pi/3,\pi/3)$, each polarity-sector position sum,
-  the total centroid, centroid velocity, and electric dipole vanish for every
-  time; the cycle-averaged trace-free second moment vanishes while the signed
-  current moment remains nonzero and exactly body-axis aligned.
-- A 200,000-sample $h=0.20$, $\rho=0.30$ audit measured clearance
-  $0.0140088666$. A 100,000-sample selected-offset comparison measured
-  clearance $0.1014611872$ at $h=\rho=0.30$, with internal speed $0.30$ in
-  $c_f=1$ units; larger $h/\rho$ increased clearance on the bounded scan.
-- Recorded the three possible two-versus-two tetrahedral partitions but did
-  not identify them with generations or color because they also rotate the
-  body-fixed moment axis and may be ordinary orientation states.
-- Revalidated after the F5/F6 joint-geometry wave: all 1,074 dollar-delimited
-  math spans render through vendored KaTeX with zero failures, and strict
-  content validation remains at zero errors and zero warnings.
-- Promoted the $h=\rho=0.30$ F6b clearance from a sampled diagnostic to an
-  exact continuous result. The 28 unordered pairs reduce to four stationary-
-  point classes with global clearance
-  $d_0=\sqrt{(9-6\sqrt2)/50}=0.101461187235\ldots>0$.
-- Derived the resulting complete-history root guarantees: exactly 56 ordered
-  partner channels at each reception time, no nontrivial self channel,
-  $D_t,D_r\ge0.70$, delay at most $0.848528$, and root distance at least
-  $\sqrt{18-12\sqrt2}/13=0.0780470671\ldots$.
-- Added a report-grade F6b prescribed-kernel diagnostic using the established
-  prescribed-path analyzer. The 128-time run materialized 7,168 root rows,
-  passed the declared analytical-validity rows, and measured aggregate
-  acceleration cancellation to $1.45\times10^{-12}$.
-- Rejected the exact isolated circular F6b history at the member level. After
-  optimizing one positive common scale with no per-member or per-time retune,
-  its member-acceleration RMS residual remained $0.299009$ against required
-  acceleration magnitude $0.30$, and some direction cosines were negative.
-  This retains the tetrahedral balance kernel as repair material but does not
-  justify ordinary release, binding, retention, or a particle assignment.
-- Dispositioned low-complexity F6b repairs. Exact dipole null fixes the neutral
-  polarity assignment up to global conjugation; a $\pi/12$ phase lattice found
-  only the declared null row; aspect/cadence, nested-shell, conjugated-shell,
-  and local-anchor scans all retained normalized member RMS residuals above
-  $0.95$ on their bounded domains.
-- Derived F6c, the polarity-resolved breathing tetrahedron. Separate
-  $h_\sigma(T)$, $\rho_\sigma(T)$, and $\theta_\sigma(T)$ for the positive and
-  negative tetrahedra preserve zero centroid, zero electric dipole, and the
-  body-fixed current axis identically while adding axial, radial, and phase
-  acceleration coordinates.
-- Measured the decisive tangent-space split on the same 7,168-root record.
-  Forcing both polarity sectors onto one three-coordinate motion leaves
-  $68.408\%$ of evaluated acceleration outside that tangent space; allowing
-  six polarity-resolved coordinates reduces the normal fraction to
-  $2.31\times10^{-15}$, with within-sector projection spreads below
-  $9.53\times10^{-13}$.
-- Recorded the six unit-coupling coordinate histories and their leading
-  harmonics. The circular prehistory drives coupled axial, radial, and phase
-  response, with opposite signed mean phase acceleration for the two polarity
-  sectors; these are prescribed-history clues, not retained frequencies.
-- Narrowed the next experiment to an ordinary EOM release with six-coordinate
-  reconstruction, off-manifold leakage, root/clearance margins, coordinate
-  turns and returns, and current-axis survival on one record.
-- Split F6c into conjugation-even common coordinates and conjugation-odd
-  polarity-differential coordinates. This supplies a falsifiable exposure
-  route for neutral and equal-and-opposite charged branches without changing
-  architrino inventory; no particle assignment was made.
-- Identified three instantaneous charge-preserving configuration directions
-  but explicitly rejected the shortcut from three coordinates to three
-  generations. A cubic reduced return spectrum requires a separately proved
-  invariant graph that slaves rates and delayed history to those coordinates.
-- Added and passed a focused regression test for the complete seven-partner
-  root inventory, shared-circle rejection, and polarity-resolved tangent
-  result. The test protects reproducibility, not independent physical truth.
-- Proved the F6c tangent structure from an exact order-four improper symmetry
-  rather than leaving it as a sampled coincidence. The generator
-  $(x,y,z)\mapsto(-x,-z,y)$ and module cycle $(0\;3\;1\;2)$ preserve each
-  polarity sector, so Euclidean equivariance closes the six-coordinate
-  surface wherever the causal-root branch remains complete.
-- Derived the exact axial current-moment formula. Its magnitude contains both
-  phase-circulation terms and the breathing shear
-  $b_\sigma=h_\sigma\dot\rho_\sigma-\dot h_\sigma\rho_\sigma$; a spin-facing
-  return frequency therefore need not be a simple fixed-ring orbit rate.
-- Ran a 512-row deterministic F6c uniform-cadence screen plus local
-  refinement. The best row retained normalized RMS acceleration residual
-  $0.836251846$; a frozen 128-time confirmation gave $0.836252421$, dominated
-  by radial mismatch. The declared domain does not contain a near-uniform
-  relative equilibrium, although the bounded screen is not a global no-go.
-- Added the declared `f6c-balanced-tetrahedral-v1` seed family to the accepted
-  EOM harness and a six-coordinate frame analyzer. Release certification
-  completed all 64 ordered receiver/transmitter certificate rows with none
-  unresolved, and within-sector acceleration projections agreed to
-  $6.13\times10^{-15}$.
-- Evolved the seed to a clean $T=0.374$ checkpoint: 321 accepted steps, no
-  rejected steps, maximum member speed $0.6871<c_f$, minimum accepted-chunk
-  pair distance $0.3132132$, and position/velocity symmetry leakage below
-  $4.84\times10^{-16}$/$1.75\times10^{-15}$. Centroid, dipole, and current-axis
-  leakage remained at roundoff scale.
-- Measured a negative-sector axial turn at $T\approx0.0236642$, a
-  polarity-selective circulation reversal at $T\approx0.1490220$, and a
-  positive-sector cadence minimum near $T=0.196$. Neither radius returned by
-  $T=0.374$, so this is evolved geometry evidence but not retention.
-- Repeated the release with half initial/minimum steps and half-size
-  prehistory segments through $T=0.2$. All coordinates agreed within
-  $1.66\times10^{-8}$, rates within $2.45\times10^{-7}$, the two turn times
-  within $1.47\times10^{-5}$, and minimum separation within
-  $5.12\times10^{-9}$. This is numerical refinement evidence, not an
-  independent Master Equation oracle.
-- Solved the two instantaneous radial-balance equations at sector cadences
-  $(2.345,1.989)$, then evolved that release through $T=0.2$. Radius loss was
-  reduced but neither sector turned, proving that release balance alone does
-  not balance the delayed return map.
-- Moved beyond the balance row. Cadences $(2.38,2.0)$ produced two tiny radial
-  maxima, and cadences $(3.0,2.5)$ produced a larger polarity-resolved
-  breathing segment while keeping maximum member speed at $0.9<c_f$. The
-  negative radius turned near $T=0.135464$; the positive radius was still
-  expanding at the clean $T=0.152$ checkpoint. Pair clearance fell to
-  $0.1940721$, so no retention follows.
-- Extended the frame analyzer from an aggregate clearance value to the actual
-  closest-pair class. The shrinking corridor is the symmetry-equivalent
-  same-polarity negative pair orbit $(0^-,1^-)$ and $(2^-,3^-)$, not an
-  opposite-polarity approach. Sector envelope radius therefore does not close
-  the internal-clearance geometry.
-- Derived exact two-edge and four-edge negative-sector distance functions in
-  $(h_-,\rho_-,\theta_-)$. The observed two-edge orbit can coincide only at
-  $h_-=\rho_-/\sqrt2$ and $\theta_-=\pi/6\pmod{2\pi}$, supplying an analytic
-  collision guard for subsequent reduced return searches. Framewise formula
-  residuals stayed below $4.45\times10^{-16}$ on the near-balanced record.
-- Added a declared negative-sector initial phase coordinate to the F6c harness
-  and screened seven phase rows at fixed cadences $(3.0,2.5)$. Phase alone
-  changed the closest-pair polarity class, the sign of radial response, and
-  release acceleration by more than an order of magnitude.
-- Evolved the best-clearance $\theta_-(0)=\pi/2$ row through $T=0.15$. Both
-  radii expanded and both heights contracted without a turn; the limiting
-  corridor became a four-member opposite-polarity edge orbit. Maximum member
-  speed reached $0.983222c_f$, so the row was stopped rather than advanced
-  toward field-speed contact.
-- Derived and instrumented the exact six-coordinate distance formula for that
-  opposite-polarity edge orbit. Framewise formula residual stayed below
-  $5.00\times10^{-16}$.
-- Screened a $4\times4$ cadence grid at $\theta_-(0)=\pi/2$. The lower-speed
-  $(2.0,2.0)$ row produced a positive-sector radial maximum near $T=0.194186$
-  but accelerated the negative cadence to $3.155066$ and reached maximum
-  member speed $0.973476c_f$ before the negative radius turned.
-- Screened nine phases at cadence $(2.0,2.0)$. No sampled row combined small
-  negative-sector phase acceleration, outward response in both radii, and
-  generous clearance; the sign-changing interval crossed a close, strongly
-  loaded geometry region.
-- Evolved the best sampled compromise $\theta_-(0)=7\pi/16$ through $T=0.2$.
-  The positive radial rate approached zero, but the negative sector continued
-  expanding and accelerating; maximum member speed reached $0.968961c_f$.
-- Identified a four-section bias in every circular-prehistory release:
-  $\dot h_+=\dot h_-=\dot\rho_+=\dot\rho_-=0$. A generic periodic
-  six-coordinate history has only one time-origin freedom, so the next search
-  must certify a breathing prehistory and use one Poincare section rather than
-  require four synchronized turns.
-- Added a certified one-frequency harmonic-breathing prehistory to the F6c EOM
-  harness. The instrument supplies analytical endpoint velocities, conservative
-  cubic-history error enclosures, positivity checks for $h_\sigma$ and
-  $\rho_\sigma$, and a conservative whole-history $c_f=1$ speed guard.
-- Corrected the acceleration diagnostic to distinguish physical moving-frame
-  projections $(H,R,Q)$ from coordinate second derivatives. In particular,
-  $\ddot\rho=R+\rho\dot\theta^2$; a negative radial projection alone is not a
-  restoring radius acceleration.
-- Screened 144 disjoint deterministic breathing rows. Of 111 admitted,
-  root-certified releases, 48 had negative radial second derivative in both
-  polarity sectors, and ten combined those derivatives with two outward radial
-  rates. These bounded counts are candidate-filter results, not basin measures.
-- Evolved one fixed double-radial-turn row through a durable $T=0.195$
-  checkpoint. It resolved positive and negative radial maxima near
-  $T=0.0476328$ and $T=0.0626490$, certified 478 accepted steps with no rejected
-  step, kept maximum speed at $0.773405c_f$, and retained pair clearance
-  $0.265661$. Neither axial rate turned.
-- Evolved the only sampled row whose release accelerations opposed all four
-  outward axial/radial rates. It resolved negative and positive axial maxima
-  near $T=0.0264644$ and $T=0.0792469$ through the durable $T=0.09$ checkpoint,
-  but neither radial rate turned. This establishes that a release-acceleration
-  screen is a direction filter, not a delayed return certificate.
-- Extended the analyzer to report complete turn sequences and the six
-  coordinate/rate endpoint deltas. The next search object is now a one-section
-  Poincare return map with analytic corridor and field-speed guards, not another
-  fixed-circle or release-only optimization.
-- Added common cycle phase to the certified harmonic-history instrument and
-  built a full-cycle self-consistency residual. Each phase compares the EOM
-  coordinate acceleration with the acceleration analytically required by the
-  same immutable harmonic history; clearance and speed remain separate guards.
-- Rejected the two finite-turn histories as self-sustaining sine waves: their
-  12-phase RMS acceleration residuals were $9.895$ and $16.208$, with minimum
-  full-cycle clearances near $0.11$.
-- Exposed an eight-phase alias: the apparent $3.773$ best-row RMS became
-  $7.022$ at frozen 16-phase confirmation. Subsequent searches therefore used
-  12 phases and required frozen 24-phase confirmation.
-- Ran 72 disjoint 12-phase global rows and two local refinements. The best
-  fixed-cadence harmonic cluster combined cadence $0.9$--$1.0$, relative phase
-  $1.1$--$1.3$, opposite axial breathing, and smaller opposite radial
-  breathing. Its frozen 24-phase RMS was $2.898$, maximum residual $10.427$,
-  clearance $0.2154$, and maximum speed $0.3194c_f$.
-- Added one periodic phase-modulation coordinate per polarity sector after the
-  residual localized primarily in cadence acceleration. Mild nearly common
-  negative modulation improved the frozen 24-phase RMS only to $2.816$.
-  Cadence breathing is therefore a supported search coordinate, but the
-  one-frequency sine/cosine waveform remains far from self-consistent.
-- Routed the confirmed parameter cluster into a nonlinear evolved Poincare
-  search, where waveform and cadence exchange must emerge from the delayed
-  dynamics rather than be imposed as a harmonic template.
-- Evolved that fixed phase-modulated seed to its first decreasing return of
-  $h_+$ to the initial $0.3$ section at $T\approx0.272383$. The remaining
-  eleven-coordinate/rate RMS residual was $0.825221$, dominated by
-  $\Delta\dot\theta_-=2.591159$; this is a section return, not recurrence.
-- Continued the same immutable record to $T=0.28625$. It remained on F6c to
-  $8.30\times10^{-16}$ normalized velocity leakage, retained pair clearance
-  $0.296293$, and reached negative-sector member speed $0.999765c_f$ before
-  the next step failed complete-root certification on all four
-  symmetry-equivalent negative self-history rows.
-- Classified the event as a measured cadence-linked root-certification
-  boundary, not a certified caustic, collision, or assembly breakup. The next
-  shooting objective must include both sector
-  cadences and a causal-root transmitter-factor margin, not only coordinate
-  recurrence, pair clearance, and member speed.
-- Screened release phase around the same immutable harmonic seed. Negative
-  release cadence acceleration reduced first-section RMS from $0.8252$ to
-  approximately $0.32$; a half-step refinement reproduced the best
-  $h_-$-section crossing time within $9.8\times10^{-7}$ and RMS within
-  $1.4\times10^{-6}$.
-- Held the section at $h_+$ and bracketed a shallow release-phase minimum:
-  phases $4.80$, $4.85$, $4.90$, and $5.05$ gave RMS $0.3221$, $0.3229$,
-  $0.3271$, and $0.3625$. The dominant residual moved from cadence runaway to
-  opposite radial-rate transfer.
-- Exposed a first-return degeneracy by reducing the prescribed radial
-  amplitudes. Zero radial amplitude gave apparent RMS $0.05741$, but only
-  after a $T=0.04271$ local recrossing with maximum section excursion
-  $9.41\times10^{-5}$ and phase advances below $0.037$ radians.
-- Extended the analyzer with crossing flight time, maximum section excursion,
-  and lifted phase advances. Future return searches must require an
-  identity/winding, ordered-frame, turn-sequence, or scale-aware excursion
-  marker rather than minimize the first scalar recrossing unconditionally.
-- Continued the zero-radial row to a recoverable $T=0.36$ checkpoint. It found
-  no larger return, reversed negative circulation, developed opposite radial
-  motion, reached $0.91983c_f$, and narrowed a symmetry-equivalent
-  opposite-polarity edge orbit to $0.21782$ while root cost rose sharply.
-- Derived the exact F6c return group by enumerating the 24 signed-coordinate
-  tetrahedral symmetries. Eight preserve the common-phase chart, four are
-  proper rotations, and those four induce only a direct phase action and a
-  reflected action with offsets $(-\pi/3,+\pi/3)$ and both cadences reversed.
-- Separated ordered path-history recurrence from orientation-quotiented shape
-  recurrence. The reflected action also permutes same-polarity modules, so it
-  cannot be declared the same braid without a separate exchange-history
-  argument.
-- Added direct winding-cell and reflected-action residuals to the trajectory
-  analyzer. The zero-radial row reached no nonzero direct winding; its closest
-  reflected state had RMS $0.844798$ at $T=0.297$, so the short scalar
-  recrossing is not an approximate symmetry return either.
-- Mined all 2,451 stored F6c manifests against the exact return actions. Fifteen
-  were usable evolved records, none reached a nonzero direct winding, and the
-  closest reflected row was the phase-$5.5$ release at its saved endpoint.
-- Continued that immutable row from $T=0.20$ to its certified boundary at
-  $T=0.251$. Its reflected RMS improved only from $0.545956$ to $0.535034$
-  while negative radial rate reached $-0.994208$ and maximum member speed
-  reached $0.998557c_f$.
-- The attempted next step failed complete-root certification on all four
-  negative self-history rows while last-chunk pair clearance remained
-  $0.312716$. Classified this as another sector-local causal-boundary failure,
-  now driven primarily by radial collapse rather than cadence runaway.
-- Strengthened the recurrence requirement: action residuals remain
-  component-resolved and causal-margin guarded; the geometry must coordinate
-  radial and cadence reversals before either sector reaches the field-speed
-  boundary.
-- Derived the exact F6c sector speed budget
-  $v_\sigma^2=\dot h_\sigma^2+\dot\rho_\sigma^2+
-  (\rho_\sigma\dot\theta_\sigma)^2$ and added its channel fractions and
-  member-speed reconstruction residual to the analyzer.
-- Quantified two distinct approaches to the same causal margin. The phase-zero
-  failure used $93.66\%$ of negative-sector squared speed tangentially; the
-  phase-$5.5$ failure used $99.13\%$ radially. The formula matched member
-  speeds within $10^{-15}$.
-- Added an independent algebraic test of the axial/radial/tangential speed
-  decomposition across both polarities and all four tetrahedral modules.
-- Identified the speed-fraction triangle plus remaining unit-speed margin as a
-  diagnostic projection for mode-exchange cycles, not a binding potential or
-  conservation law.
-- Reexpressed each exact sector current moment as a dot product between its
-  orthonormal speed-rate vector and a shape-dependent current coefficient.
-  Derived the capacity bound
-  $|m_{x,\sigma}|\le(4/3)\|\mathbf a_\sigma\|v_\sigma$.
-- Exposed a two-dimensional instantaneous current-null plane in each sector's
-  three-dimensional rate space and one maximally efficient current direction.
-  Fast internal motion therefore need not produce a large current moment.
-- Measured negative-sector current alignment fractions $0.1419$ at the
-  cadence-dominated boundary and only $0.0116$ at the radial-collapse
-  boundary. The latter consumed nearly all speed in an almost current-null
-  direction.
-- Added direct member-sum checks for both current-capacity formulas to the
-  independent F6c kinematic test; analyzer formula residual remained below
-  $10^{-15}$.
-- Derived that both reflected proper-rotation returns are order-two half-cycles
-  which send the F6c current axis to its negative, reverse both cadences, and
-  exchange same-polarity modules.
-- Separated reduced shape period from fixed-frame current period: an exact
-  reflected orbit repeats shape after $\tau$ but current only after $2\tau$,
-  with zero fixed-frame current average under exact half-cycle antisymmetry.
-- Recorded the resulting frequency discriminator without importing a spin or
-  quantum premise: shape-sensitive and current-sensitive recovery targets can
-  differ by a factor of two on this exact symmetry class.
-- Generalized the result into an observable-specific return-order rule for
-  relative periodic histories. Different projections can repeat after
-  different integer numbers of one symmetry-reduced geometric step.
-- Added an executable F6c return ledger: reflected scalar shape has order one,
-  while sector cadence and fixed-frame axial current have order two.
-- Separated the ordinary vector factor of two from the unrecovered spinor
-  $4\pi$ target. F6c would need a separately derived nontrivial ordered-history
-  lift before any fermion inference is licensed.
-- Proved exact field-free global polarity conjugation for the canonical
-  charge-product Master Equation: flipping every architrino polarity leaves
-  causal roots and unlabeled paths unchanged, preserves F6c even coordinates,
-  and reverses odd coordinates and the polarity-weighted current moment. A
-  fixed external source is excluded unless it is conjugated with the assembly.
-- Revalidated after the F6c wave: all 1,437 dollar-delimited math spans in the
-  main inference document render through vendored KaTeX with zero failures;
-  strict content validation remains at zero errors and zero warnings, and the
-  report-grade diagnostic reruns successfully.
-- Kept the campaign priority-only. No queue lifecycle, equation maturity score,
-  retained-braid claim, constitutive closure, or reader-facing corpus claim
-  changed.
+- Extended the inverse-geometry packet beyond electric and magnetic response into Standard Model morphology constraints while keeping all observer equations and particle labels at recovery-target grade.
+- Separated inverse-time observables into retained recurrence, propagating phase, transition/gap readout, and escape/event cadence; added observer-, shape-, and delayed-history recurrence residuals.
+- Defined a common morphology record and a seven-class clue taxonomy spanning inventory/counting, phase, orientation, spatial exposure, response rank, reaction topology, and environmental deformation.
+- Derived that polarity conjugation, pro/anti ordered orientation, circulation reversal, and spinor history parity are distinct records. One clockwise/ counterclockwise sign cannot supply all four.
+- Intersected current particle owners into six bounded candidate morphology families without identifying any family as a retained Standard Model braid.
+- Added form-factor, compactness, polarization, elastic/inelastic, jet, hadronization, and decay-angular-correlation constraints, including the rule that scattering sees a sector-visible exposure measure rather than a unique image of the full assembly.
+- Audited executable reach: the attractor census already supplies centroid, separation, kinematic circulation, and escape rows; exact transformed-run root comparisons, full shape/frame recurrence, $2\pi/4\pi$ holonomy, and exchange remain unexposed or physically unavailable.
+- Added a retained-basin transition graph and finite-window survival grammar so conservation, corridor existence, branching, stability, linewidth, dephasing, and detector broadening cannot be substituted for one another.
+- Separated causal-root degree from spatial knot/link type and topological protection from basin and exit-barrier protection. Intersecting or coincident prescribed supports now require link-invariant abstention.
+- Added controlled close-relative comparisons, including charged-lepton generations, pion--rho, nucleon--Delta, charged/neutral pion, neutral kaon, proton/neutron, photon--$W/Z$, and electron/neutrino, as no-retuning tests of shared morphology motifs.
+- Added an eight-stage candidate-elimination sequence using non-aggregated `pass`/`fail`/`abstain` dispositions from identity inventory through quantitative recovery; it does not alter centrally owned equation maturity scores.
+- Factored the search record into reusable identity core, polarity decoration, indexed frame/exposure, association/corridor graph, and support/response/ basin mode coordinates. The corresponding selection burden now explicitly rejects overgenerated stable charge, color, and corridor combinations.
+- Added complete-record symmetry actions and exact scalar/vector/tensor response decomposition, plus a sector-projection coupling grammar that keeps normalization fixed under scale scans and separates charge, mass, weak, strong, magnetic, and scalar projections.
+- Derived a bare-generation-distance no-go: unweighted Hamming overlap on `111`, `110`, and `100` predicts equal adjacent mixing and cannot recover the CKM hierarchy. Weighted index actions, orientation, exposure, or path history are therefore required.
+- Derived a cycle-rank requirement for flavor holonomy: a three-node generation chain has no invariant loop phase, so a claimed $CP$ holonomy needs a genuine phase-bearing closing route or another closed native history.
+- Added explicit candidate-constraint intersections and assumption-visible contradiction cores. These reject several simple shape families before evolution or precision fitting while keeping underdetermination separate from contradiction and from ordinary abstention.
+- Added relational, exchange, and measurement geometry. Exchange statistics now require a complete path-class record; Stern--Gerlach requires a coupled target--apparatus basin history; contextuality rejects a global value table; and Bell recovery rejects every completed product-screened pair response that preserves measurement independence.
+- Recorded the unresolved live-corpus choice between a finite-$c_f$ Bell coordination channel and a non-restartable pair-provenance/local-apparatus route outside detector-to-detector causal reach. The product no-go is firm; the native relational carrier remains unsettled.
+- Added scattering-boundary requirements joining stable and resonance poles, widths, factorized intermediate channels, total outgoing ledgers, amplitude zeros, and spurious-singularity cancellation to actual retained or metastable event geometry.
+- Strengthened null-channel pruning with provenance-preserving pair inventory, the normalized right-handed exposure contradiction, strong-$CP$ dipole cancellation versus weak-$CP$ holonomy, stable-yet-reorganizable color topology, and same-motif suppression of unused partners and modes.
+- Derived a same-inventory hadron no-go from $\pi^+/\rho^+$ and $p/\Delta^+$: constituent inventory and color closure cannot alone determine angular class, mass-facing response, or survival. Recorded the absence of a substantive Regge, radial, orbital, or parity-partner excitation ladder as a coverage gap rather than importing a rotating-string or shell picture.
+- Converted all current contradiction cores into a non-aliasing graph and role-minimum coordinate bundles. This specifies the information that fermion, photon, massive-vector, scalar, hadron, and correlated-pair candidates must carry without turning the rows into independent fit knobs.
+- Added electromagnetic perturbation tomography across signed uniform fields, gradients, frequency scans, combined controls, and first nonlinear transitions, with one response-rank record separating translation, deformation, orientation, phase, and exit.
+- Added a retained-branch mode-atlas protocol. It forbids linearization about unbalanced or prescribed configurations and uses fixed-law nonlinear mode continuation to test whether reusable cores generate same-inventory partners, resonances, coherent beats, field-selected modes, or daughter basins.
+- Added weak/flavor/$CP$ null factorization and recorded exact coverage gaps: charged-lepton flavor violation and coherent muon conversion are absent as owners; electron EDM and neutrinoless double beta are only partial; quark neutral-current/GIM and neutron EDM have formal owners but no retained carrier.
+- Added an atomic colored-transition graph and smallest comparison basis spanning gross lines, allowed one-photon, suppressed-leading/two-photon, hyperfine current-like, rank-two, degeneracy-lifting, and field-control rows. The E1/M1/E2 matrix, Stark owner, and quadrupole atomic case remain missing.
+- Added photon/gluon/$W/Z$/scalar response-rank grammar and explicit gaps for exactly-three-mode massive vectors, gluon polarization, Higgs parity/$CP$, and the spin-1 identical-diphoton angular null.
+- Added the multi-probe visibility null space and a coercivity condition for any claimed full-geometry size bound. Pointlikeness constrains a tested exposure unless the combined probes are proved to see every admissible non-gauge geometry perturbation.
+- Corrected the lifetime packet to start survival only after an explicit formation-completion predicate. Added the missing top-exit versus color- singlet-formation ordering as the sharpest discriminator between a retained top-hadron picture and a pre-hadronic transaction antecedent.
+- Added pair-formation geometry: relative-angle two-photon threshold, continuous near-threshold onset, separate two-photon/material/strong- background precursor topologies, exact identity repartition into retained conjugate basins, angular and polarization routing, continued backreaction, and a complete inverse-event requirement.
+- Recorded that elementary pointlikeness/contact limits, top versus hadronization, polarization-resolved pair production, product-spin correlations, and pair-specific reciprocity lack dedicated live owners.
+- Ran three independent line-range convergence audits across the completed packet. Corrected all high-severity findings: direct/sea coupling is now one joint map rather than an assumed additive law; current catalog motifs are separated from representation-neutral requirements; electroweak response uses a declared generalized eigenproblem; lifetime measures are conditioned on actual formation; top exit and hadron formation share one clock; topology examples are proposed controls rather than claimed computed counterexamples; the Master Equation hit weight retains its $c_f$ factor; and magnetic skewness is asserted only at leading weak-response order.
+- Removed implementation-owner details from the theory packet while retaining its evidence-interface obligations. Rendered all 702 dollar-delimited math spans with the repository's vendored KaTeX with zero failures and reran the strict content validator with zero errors and zero warnings.
+- Mined quantum-number and particle-family owners for multiplet-level geometry clues. Added one complete-history family-action test covering color-basis changes, weak doublets, isospin relatives, generations, same-inventory excitations, and whole-history conjugation.
+- Derived that a color-family action must change the internal color projection while preserving mass-facing response, electric charge, generation, weak family, retention class, and laboratory rotation covariance. Added an explicit invariant residual for candidate color orbits.
+- Added additive association/provenance maps for baryon and lepton observer labels on declared conservation domains. These labels now remain non-aliased with electric charge, unsigned constituent count, color-singlet closure, and generation in the candidate filters and role bundles.
+- Revalidated after the multiplet/provenance wave: all 722 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Replaced visual hadron spin-alignment shorthand with a complete composite angular/exchange record. Constituent and relative frames, support motion, association corridors, wake/sea angular ledgers, and exchange histories now jointly carry the $\pi/\rho$, nucleon/$\Delta$, $\Delta^{++}$, and proton/neutron comparison burdens.
+- Added a conditional support/frame/flavor/color/corridor exchange-character product, with a joint holonomy required when factorization fails. Added an alignment-only contradiction core and separated color-singlet closure from the complete identical-constituent exchange class.
+- Revalidated after the composite-spin wave: all 754 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Added a complete-history operation algebra for independent labels and physical transactions. Rotation/color, generation/charge, generation/color, conjugation/parity, color/singlet, weak/spectator, and rotation/exchange pairs now require either a small commutator residual or a fully ledgered noncommuting event.
+- Added an operation-compatibility contradiction core and separated correct static label assignment from compatible native action composition. This provides a cheap candidate filter before precision fitting.
+- Revalidated after the operation-algebra wave: all 761 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Recast the three-generation claim as an exact branch/mode-exhaustion burden. Three sampled diagrams or shielding values no longer count; the fixed law must produce exactly three robust retained components, isolated modes, phase locks, or support-tier basins and dispose of every extra class.
+- Separated topological-index, multistable-basin, common-core mode, phase/ permutation-lock, and support-tier generation mechanisms by their native fingerprints. Added a data-blind cross-sector generation alignment and a no-continuum/no-fourth-partner test.
+- Revalidated after the generation-exhaustion wave: all 775 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Separated the locally constant quantized charge label from continuously varying electromagnetic coupling, screening, polarization, form-factor, and running responses. Added conjugation, additivity, event-routing, and universal-normalization burdens for one charge index.
+- Regraded the six-unit polarity carrier as one candidate among signed inventory, topology/history index, exposure eigenclass, phase/permutation lock, and composite association realizations. Added no-extra-charge-class and no-free-fractional-branch tests.
+- Revalidated after the charge-index wave: all 788 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Intersected scalar mass-facing isotropy with nonzero fermion spin/moment response. Added a windowed anisotropy residual and separated static high symmetry, dynamic orientation averaging, sector-projection cancellation, and responsive-sea compensation as testable alternatives.
+- Added a drive-frequency/window crossover test for dynamic averaging and blocked frequency-to-speed inference until the same retained record supplies a path length or spatial excursion. Connected weak electric deformation to phase, trace-free shape, and exposure changes that need not alter charge.
+- Revalidated after the scalar/axial wave: all 799 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Required the magnetic moment, ordered-frame/angular ledger, precession, leading charged-lepton ratio, conjugation, and anomalous residual to share one retained history. Added a non-aggregated moment/angular residual rather than another weighted score.
+- Used the neutron to separate zero net charge from nonzero signed internal current moment. Separated exposed circulation, distributed counterflow, frame/corridor holonomy, and derived wake/sea dressing as candidate moment carriers under common reversal and direct/sea controls.
+- Revalidated after the moment/angular wave: all 818 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Separated massive-particle observer helicity from retained weak chirality/ exposure. Added distinct ordered-frame, weak-posture, group-motion, and physical source--assembly--apparatus rows plus observer-reprojection, physical reversal, rest, parity, conjugation, and near-massless controls.
+- Flagged the propagation-direction weak-coupling-triad selector as viable only when its direction is a physical event relation or covariant shorthand; an arbitrary observer momentum sign cannot choose internal weak exposure.
+- Revalidated after the chirality/helicity wave: all 828 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Synthesized the accumulated fermion constraints into a bounded framed triadic counterflow search blueprint. It requires a derived body frame, nontrivial history lift, signed counterflow, three equivalent body-fixed ports, an independent exactly-three generation coordinate, separate charge and weak projections, identity return, event ports, and resolved sea history; it does not prescribe a constituent count or select a particle geometry.
+- Added eight pre-precision rejection tests for the blueprint: frame/port independence, counterflow rank, $2\pi/4\pi$ history lift, generation exhaustion, observer/helicity control, retained-mode validity, event provenance, and direct/frozen/responsive-sea disposition.
+- Derived a neutral-coherent fermion blueprint from the neutrino source--path--detector record. It favors one stiff neutral carrier with a softer internal coordinate supplying exactly three coherent modes and two independent relative phase gaps; source and detector flavor are endpoint weak projections rather than repeated particle replacement.
+- Kept photon adjacency as one candidate realization rather than a premise because the proposed photon base lock remains unexhibited. Added mode, relative-lock, identity-permutation, and derived sea-dressing alternatives, plus a fixed-law eight-step source--path--detector discriminator.
+- Added neutrino contradiction cores, non-aliasing edges, role-bundle rows, and open questions separating carrier identity, common translation, relative phase, coherence, detector access, and material/sea response.
+- Revalidated after the two blueprint waves: all 866 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Intersected the fermion blueprint with the admitted A2, A3, B1, and C1--C4 charts. A2/A3 supply the strongest present body-frame/three-port rows, while C2/C4 supply the clearest counter-rotation rows; no admitted chart supplies both plus history lift, generation exhaustion, retention, and event/sea provenance.
+- Defined four bounded local search seeds without changing the Braid Program taxonomy: a near-A2 triad with independent circulation, a dual-A2 conjugate counterflow cage, an A2-to-A3 mode/permutation family, and a framed triad associated with a C4 counterflow module. Each has a distinct fast rejection and is compared by pass/fail/abstain rows rather than a score.
+- Converted the doubled-rotation clue into an order-two physical-configuration- space requirement. A nondegenerate frame may supply the mathematical $\mathbb Z_2$ loop carrier, but advancement additionally requires a non-gauge causal-history readout changed after $2\pi$, restored after $4\pi$, and composed with the same exchange, magnetic, angular, and apparatus record.
+- Separated shape and identity/history quotients so cyclic port symmetry cannot erase root, wake, identity, or event provenance merely to manufacture a doubled return.
+- Revalidated after the chart/topology wave: all 893 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Derived an exact equal-identity centroid/internal decomposition for source-tagged constituent acceleration. It separates charged-group translation from stretch, shear, breathing, frame, phase, and other internal deformation without importing mass or force.
+- Derived the matched-neutral-pair result: the polarity-even source row drives pair translation, while the polarity-odd row doubles in the separation coordinate. Leading group cancellation therefore coexists exactly with polarity-differential stretching in the electric-isolation limit.
+- Extended the decomposition to a neutral paired core plus a generic noncancelling charge-facing set while preserving alternatives in which a locally constant index, response eigenclass, topology/history row, or full- core exposure carries charge without literal external accessory sites.
+- Replaced the invalid comparison of electric acceleration with primitive architrino momentum by branch-relative velocity-increment, shape, phase, frame, root-margin, and basin-distance diagnostics. Added mode projections and F1--F4 weak-electric discriminators.
+- Revalidated after the assembly-electric wave: all 912 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Derived the signed current-first-moment parity of an ideal equal-radius, equal-exposure, opposite-polarity circular pair. Same-sense geometric circulation cancels the cycle-averaged moment; opposite circulation makes polarity and circulation reversals multiply so the two contributions add.
+- Applied the result conditionally to A2-like neutral binaries: rapid symmetric co-rotation and mutual orthogonality do not by themselves produce a magnetic moment. A successful loop model must expose countercirculation, a derived radius/cadence/exposure/center asymmetry, same-sign decoration, non-orbital frame/corridor holonomy, or a derived wake/sea contribution.
+- Derived the matched-pair instantaneous group/internal split under the effective leading skew response kernel. Equal constituent velocities cancel the group row and drive relative response; opposite velocities reverse that disposition, while full-cycle averaging remains a separate required row.
+- Added F1--F4 magnetic opportunities and failure modes, especially the risk that whole-binary circulation changes leave exact within-pair cancellation intact or that an apparent moment belongs to a detachable module.
+- Revalidated after the polarity/circulation wave: all 927 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Derived that equal-radius opposite-sense paths in one plane inevitably coincide twice per cycle; initial phase can delay but not remove the crossings. Parallel axial offsets provide a minimum $2|h|$ clearance but create an electric first moment.
+- Constructed F5, a packet-local balanced double-dyad triad: two axially reversed counterrotating dyads at distinct radii on each of three orthogonal body axes. The distinct radii avoid same-plane collisions while the reversed axial assignments cancel the leading cycle-averaged electric dipole.
+- Derived that the two dyad current moments add on each axis, the equal-module second moments sum isotropically over an orthonormal triad, and the three axial current moments add along the body diagonal preserved by cyclic port permutation.
+- Recorded F5's unresolved burdens: cross-axis/root clearance, binding of the two interlaced A3-like records, polar/radiative sideband leakage, moment-to- angular mapping, doubled history return, exactly-three modes, charged projection, and 12-identity overgeneration.
+- Added F5 to the score-free seed, electric, and magnetic comparisons and revalidated: all 953 dollar-delimited math spans render with zero failures; strict content validation remains at zero errors and zero warnings.
+- Ran a bounded prescribed-path F5 clearance diagnostic at $c_f=1$ with $(\rho_1,\rho_2,h)=(0.25,0.40,0.20)$, $(\omega_1,\omega_2)=(1,1)$, and maximum internal speed $0.40$.
+- A coarse $8^3$ phase grid followed by a separately written 343-row local refinement selected offsets $(5\pi/32,-3\pi/32,-3\pi/32)$. A frozen-row 200,000-time-sample sweep measured minimum sampled clearance $0.0706633508$, about $0.17666$ of the outer radius.
+- A 27-row $\pm0.01$ phase stencil measured worst sampled clearance $0.0706300083$, so the positive sampled separation was not isolated to one stencil point. This remains sampled prescribed geometry, not a continuous clearance certificate, causal-root result, EOM evolution, binding, or retention evidence.
+- Revalidated after recording the diagnostic: all 970 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Derived the exact three-mode spectrum of a Hermitian circulant operator on F5's cyclic three-module orbit. The port subspace contains one common mode and two oriented traveling/return modes, giving a bounded exactly-three candidate mechanism without selecting it as particle generation.
+- Proved the first no-go: reflection-even real coupling leaves the two oriented modes degenerate. Three distinct responses require a derived oriented circulation/history/holonomy contribution while preserving cyclic port equivalence.
+- Proved the second no-go: two circulant operators on the same three-port space commute and share the Fourier basis, so a port-only mass/generation operator and port-only weak-exposure operator cannot produce nontrivial mixing. The weak projection needs an independently derived posture, event, shielding, or corridor coordinate on the same retained record.
+- Preserved the full-system burden: the 12-identity branch has additional modes that must be classified, and the three port modes must acquire data-blind mass/lifetime/overlap fingerprints with no accepted fourth class.
+- Revalidated after the cyclic-mode wave: all 983 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Audited the F5 clearance survivor on the same frozen history. Its raw-center second moment is isotropic, but its geometric centroid oscillates; the centroid-relative tensor is anisotropic and the electric dipole has a large oscillatory amplitude despite a zero cycle mean.
+- Ran a 512-row joint F5 phase grid and found improved clearance/dipole/ centroid/isotropy tradeoffs but no exact joint null. Proved the conditional two-ring obstruction: exact stationary centroid plus exact dipole null forces equal radii, which restores the same-plane counterrotation collision.
+- Constructed F6, an eight-identity tetrahedral counterflow core. Tetrahedral vector and second-moment sums cancel axial dipoles and scalar anisotropy; circulation characters can preserve a nonzero signed current moment.
+- Rejected promotion of F6's one-versus-three clearance survivor after the same-record projection audit found oscillatory dipole, centroid motion, centroid-relative anisotropy, and moment-axis drift.
+- Derived F6b, the two-versus-two balanced tetrahedral edge partition. With exact phases $(0,\pi,4\pi/3,\pi/3)$, each polarity-sector position sum, the total centroid, centroid velocity, and electric dipole vanish for every time; the cycle-averaged trace-free second moment vanishes while the signed current moment remains nonzero and exactly body-axis aligned.
+- A 200,000-sample $h=0.20$, $\rho=0.30$ audit measured clearance $0.0140088666$. A 100,000-sample selected-offset comparison measured clearance $0.1014611872$ at $h=\rho=0.30$, with internal speed $0.30$ in $c_f=1$ units; larger $h/\rho$ increased clearance on the bounded scan.
+- Recorded the three possible two-versus-two tetrahedral partitions but did not identify them with generations or color because they also rotate the body-fixed moment axis and may be ordinary orientation states.
+- Revalidated after the F5/F6 joint-geometry wave: all 1,074 dollar-delimited math spans render through vendored KaTeX with zero failures, and strict content validation remains at zero errors and zero warnings.
+- Promoted the $h=\rho=0.30$ F6b clearance from a sampled diagnostic to an exact continuous result. The 28 unordered pairs reduce to four stationary- point classes with global clearance $d_0=\sqrt{(9-6\sqrt2)/50}=0.101461187235\ldots>0$.
+- Derived the resulting complete-history root guarantees: exactly 56 ordered partner channels at each reception time, no nontrivial self channel, $D_t,D_r\ge0.70$, delay at most $0.848528$, and root distance at least $\sqrt{18-12\sqrt2}/13=0.0780470671\ldots$.
+- Added a report-grade F6b prescribed-kernel diagnostic using the established prescribed-path analyzer. The 128-time run materialized 7,168 root rows, passed the declared analytical-validity rows, and measured aggregate acceleration cancellation to $1.45\times10^{-12}$.
+- Rejected the exact isolated circular F6b history at the member level. After optimizing one positive common scale with no per-member or per-time retune, its member-acceleration RMS residual remained $0.299009$ against required acceleration magnitude $0.30$, and some direction cosines were negative. This retains the tetrahedral balance kernel as repair material but does not justify ordinary release, binding, retention, or a particle assignment.
+- Dispositioned low-complexity F6b repairs. Exact dipole null fixes the neutral polarity assignment up to global conjugation; a $\pi/12$ phase lattice found only the declared null row; aspect/cadence, nested-shell, conjugated-shell, and local-anchor scans all retained normalized member RMS residuals above $0.95$ on their bounded domains.
+- Derived F6c, the polarity-resolved breathing tetrahedron. Separate $h_\sigma(T)$, $\rho_\sigma(T)$, and $\theta_\sigma(T)$ for the positive and negative tetrahedra preserve zero centroid, zero electric dipole, and the body-fixed current axis identically while adding axial, radial, and phase acceleration coordinates.
+- Measured the decisive tangent-space split on the same 7,168-root record. Forcing both polarity sectors onto one three-coordinate motion leaves $68.408\%$ of evaluated acceleration outside that tangent space; allowing six polarity-resolved coordinates reduces the normal fraction to $2.31\times10^{-15}$, with within-sector projection spreads below $9.53\times10^{-13}$.
+- Recorded the six unit-coupling coordinate histories and their leading harmonics. The circular prehistory drives coupled axial, radial, and phase response, with opposite signed mean phase acceleration for the two polarity sectors; these are prescribed-history clues, not retained frequencies.
+- Narrowed the next experiment to an ordinary EOM release with six-coordinate reconstruction, off-manifold leakage, root/clearance margins, coordinate turns and returns, and current-axis survival on one record.
+- Split F6c into conjugation-even common coordinates and conjugation-odd polarity-differential coordinates. This supplies a falsifiable exposure route for neutral and equal-and-opposite charged branches without changing architrino inventory; no particle assignment was made.
+- Identified three instantaneous charge-preserving configuration directions but explicitly rejected the shortcut from three coordinates to three generations. A cubic reduced return spectrum requires a separately proved invariant graph that slaves rates and delayed history to those coordinates.
+- Added and passed a focused regression test for the complete seven-partner root inventory, shared-circle rejection, and polarity-resolved tangent result. The test protects reproducibility, not independent physical truth.
+- Proved the F6c tangent structure from an exact order-four improper symmetry rather than leaving it as a sampled coincidence. The generator $(x,y,z)\mapsto(-x,-z,y)$ and module cycle $(0\;3\;1\;2)$ preserve each polarity sector, so Euclidean equivariance closes the six-coordinate surface wherever the causal-root branch remains complete.
+- Derived the exact axial current-moment formula. Its magnitude contains both phase-circulation terms and the breathing shear $b_\sigma=h_\sigma\dot\rho_\sigma-\dot h_\sigma\rho_\sigma$; a spin-facing return frequency therefore need not be a simple fixed-ring orbit rate.
+- Ran a 512-row deterministic F6c uniform-cadence screen plus local refinement. The best row retained normalized RMS acceleration residual $0.836251846$; a frozen 128-time confirmation gave $0.836252421$, dominated by radial mismatch. The declared domain does not contain a near-uniform relative equilibrium, although the bounded screen is not a global no-go.
+- Added the declared `f6c-balanced-tetrahedral-v1` seed family to the accepted EOM harness and a six-coordinate frame analyzer. Release certification completed all 64 ordered receiver/transmitter certificate rows with none unresolved, and within-sector acceleration projections agreed to $6.13\times10^{-15}$.
+- Evolved the seed to a clean $T=0.374$ checkpoint: 321 accepted steps, no rejected steps, maximum member speed $0.6871<c_f$, minimum accepted-chunk pair distance $0.3132132$, and position/velocity symmetry leakage below $4.84\times10^{-16}$/$1.75\times10^{-15}$. Centroid, dipole, and current-axis leakage remained at roundoff scale.
+- Measured a negative-sector axial turn at $T\approx0.0236642$, a polarity-selective circulation reversal at $T\approx0.1490220$, and a positive-sector cadence minimum near $T=0.196$. Neither radius returned by $T=0.374$, so this is evolved geometry evidence but not retention.
+- Repeated the release with half initial/minimum steps and half-size prehistory segments through $T=0.2$. All coordinates agreed within $1.66\times10^{-8}$, rates within $2.45\times10^{-7}$, the two turn times within $1.47\times10^{-5}$, and minimum separation within $5.12\times10^{-9}$. This is numerical refinement evidence, not an independent Master Equation oracle.
+- Solved the two instantaneous radial-balance equations at sector cadences $(2.345,1.989)$, then evolved that release through $T=0.2$. Radius loss was reduced but neither sector turned, proving that release balance alone does not balance the delayed return map.
+- Moved beyond the balance row. Cadences $(2.38,2.0)$ produced two tiny radial maxima, and cadences $(3.0,2.5)$ produced a larger polarity-resolved breathing segment while keeping maximum member speed at $0.9<c_f$. The negative radius turned near $T=0.135464$; the positive radius was still expanding at the clean $T=0.152$ checkpoint. Pair clearance fell to $0.1940721$, so no retention follows.
+- Extended the frame analyzer from an aggregate clearance value to the actual closest-pair class. The shrinking corridor is the symmetry-equivalent same-polarity negative pair orbit $(0^-,1^-)$ and $(2^-,3^-)$, not an opposite-polarity approach. Sector envelope radius therefore does not close the internal-clearance geometry.
+- Derived exact two-edge and four-edge negative-sector distance functions in $(h_-,\rho_-,\theta_-)$. The observed two-edge orbit can coincide only at $h_-=\rho_-/\sqrt2$ and $\theta_-=\pi/6\pmod{2\pi}$, supplying an analytic collision guard for subsequent reduced return searches. Framewise formula residuals stayed below $4.45\times10^{-16}$ on the near-balanced record.
+- Added a declared negative-sector initial phase coordinate to the F6c harness and screened seven phase rows at fixed cadences $(3.0,2.5)$. Phase alone changed the closest-pair polarity class, the sign of radial response, and release acceleration by more than an order of magnitude.
+- Evolved the best-clearance $\theta_-(0)=\pi/2$ row through $T=0.15$. Both radii expanded and both heights contracted without a turn; the limiting corridor became a four-member opposite-polarity edge orbit. Maximum member speed reached $0.983222c_f$, so the row was stopped rather than advanced toward field-speed contact.
+- Derived and instrumented the exact six-coordinate distance formula for that opposite-polarity edge orbit. Framewise formula residual stayed below $5.00\times10^{-16}$.
+- Screened a $4\times4$ cadence grid at $\theta_-(0)=\pi/2$. The lower-speed $(2.0,2.0)$ row produced a positive-sector radial maximum near $T=0.194186$ but accelerated the negative cadence to $3.155066$ and reached maximum member speed $0.973476c_f$ before the negative radius turned.
+- Screened nine phases at cadence $(2.0,2.0)$. No sampled row combined small negative-sector phase acceleration, outward response in both radii, and generous clearance; the sign-changing interval crossed a close, strongly loaded geometry region.
+- Evolved the best sampled compromise $\theta_-(0)=7\pi/16$ through $T=0.2$. The positive radial rate approached zero, but the negative sector continued expanding and accelerating; maximum member speed reached $0.968961c_f$.
+- Identified a four-section bias in every circular-prehistory release: $\dot h_+=\dot h_-=\dot\rho_+=\dot\rho_-=0$. A generic periodic six-coordinate history has only one time-origin freedom, so the next search must certify a breathing prehistory and use one Poincare section rather than require four synchronized turns.
+- Added a certified one-frequency harmonic-breathing prehistory to the F6c EOM harness. The instrument supplies analytical endpoint velocities, conservative cubic-history error enclosures, positivity checks for $h_\sigma$ and $\rho_\sigma$, and a conservative whole-history $c_f=1$ speed guard.
+- Corrected the acceleration diagnostic to distinguish physical moving-frame projections $(H,R,Q)$ from coordinate second derivatives. In particular, $\ddot\rho=R+\rho\dot\theta^2$; a negative radial projection alone is not a restoring radius acceleration.
+- Screened 144 disjoint deterministic breathing rows. Of 111 admitted, root-certified releases, 48 had negative radial second derivative in both polarity sectors, and ten combined those derivatives with two outward radial rates. These bounded counts are candidate-filter results, not basin measures.
+- Evolved one fixed double-radial-turn row through a durable $T=0.195$ checkpoint. It resolved positive and negative radial maxima near $T=0.0476328$ and $T=0.0626490$, certified 478 accepted steps with no rejected step, kept maximum speed at $0.773405c_f$, and retained pair clearance $0.265661$. Neither axial rate turned.
+- Evolved the only sampled row whose release accelerations opposed all four outward axial/radial rates. It resolved negative and positive axial maxima near $T=0.0264644$ and $T=0.0792469$ through the durable $T=0.09$ checkpoint, but neither radial rate turned. This establishes that a release-acceleration screen is a direction filter, not a delayed return certificate.
+- Extended the analyzer to report complete turn sequences and the six coordinate/rate endpoint deltas. The next search object is now a one-section Poincare return map with analytic corridor and field-speed guards, not another fixed-circle or release-only optimization.
+- Added common cycle phase to the certified harmonic-history instrument and built a full-cycle self-consistency residual. Each phase compares the EOM coordinate acceleration with the acceleration analytically required by the same immutable harmonic history; clearance and speed remain separate guards.
+- Rejected the two finite-turn histories as self-sustaining sine waves: their 12-phase RMS acceleration residuals were $9.895$ and $16.208$, with minimum full-cycle clearances near $0.11$.
+- Exposed an eight-phase alias: the apparent $3.773$ best-row RMS became $7.022$ at frozen 16-phase confirmation. Subsequent searches therefore used 12 phases and required frozen 24-phase confirmation.
+- Ran 72 disjoint 12-phase global rows and two local refinements. The best fixed-cadence harmonic cluster combined cadence $0.9$--$1.0$, relative phase $1.1$--$1.3$, opposite axial breathing, and smaller opposite radial breathing. Its frozen 24-phase RMS was $2.898$, maximum residual $10.427$, clearance $0.2154$, and maximum speed $0.3194c_f$.
+- Added one periodic phase-modulation coordinate per polarity sector after the residual localized primarily in cadence acceleration. Mild nearly common negative modulation improved the frozen 24-phase RMS only to $2.816$. Cadence breathing is therefore a supported search coordinate, but the one-frequency sine/cosine waveform remains far from self-consistent.
+- Routed the confirmed parameter cluster into a nonlinear evolved Poincare search, where waveform and cadence exchange must emerge from the delayed dynamics rather than be imposed as a harmonic template.
+- Evolved that fixed phase-modulated seed to its first decreasing return of $h_+$ to the initial $0.3$ section at $T\approx0.272383$. The remaining eleven-coordinate/rate RMS residual was $0.825221$, dominated by $\Delta\dot\theta_-=2.591159$; this is a section return, not recurrence.
+- Continued the same immutable record to $T=0.28625$. It remained on F6c to $8.30\times10^{-16}$ normalized velocity leakage, retained pair clearance $0.296293$, and reached negative-sector member speed $0.999765c_f$ before the next step failed complete-root certification on all four symmetry-equivalent negative self-history rows.
+- Classified the event as a measured cadence-linked root-certification boundary, not a certified caustic, collision, or assembly breakup. The next shooting objective must include both sector cadences and a causal-root transmitter-factor margin, not only coordinate recurrence, pair clearance, and member speed.
+- Screened release phase around the same immutable harmonic seed. Negative release cadence acceleration reduced first-section RMS from $0.8252$ to approximately $0.32$; a half-step refinement reproduced the best $h_-$-section crossing time within $9.8\times10^{-7}$ and RMS within $1.4\times10^{-6}$.
+- Held the section at $h_+$ and bracketed a shallow release-phase minimum: phases $4.80$, $4.85$, $4.90$, and $5.05$ gave RMS $0.3221$, $0.3229$, $0.3271$, and $0.3625$. The dominant residual moved from cadence runaway to opposite radial-rate transfer.
+- Exposed a first-return degeneracy by reducing the prescribed radial amplitudes. Zero radial amplitude gave apparent RMS $0.05741$, but only after a $T=0.04271$ local recrossing with maximum section excursion $9.41\times10^{-5}$ and phase advances below $0.037$ radians.
+- Extended the analyzer with crossing flight time, maximum section excursion, and lifted phase advances. Future return searches must require an identity/winding, ordered-frame, turn-sequence, or scale-aware excursion marker rather than minimize the first scalar recrossing unconditionally.
+- Continued the zero-radial row to a recoverable $T=0.36$ checkpoint. It found no larger return, reversed negative circulation, developed opposite radial motion, reached $0.91983c_f$, and narrowed a symmetry-equivalent opposite-polarity edge orbit to $0.21782$ while root cost rose sharply.
+- Derived the exact F6c return group by enumerating the 24 signed-coordinate tetrahedral symmetries. Eight preserve the common-phase chart, four are proper rotations, and those four induce only a direct phase action and a reflected action with offsets $(-\pi/3,+\pi/3)$ and both cadences reversed.
+- Separated ordered path-history recurrence from orientation-quotiented shape recurrence. The reflected action also permutes same-polarity modules, so it cannot be declared the same braid without a separate exchange-history argument.
+- Added direct winding-cell and reflected-action residuals to the trajectory analyzer. The zero-radial row reached no nonzero direct winding; its closest reflected state had RMS $0.844798$ at $T=0.297$, so the short scalar recrossing is not an approximate symmetry return either.
+- Mined all 2,451 stored F6c manifests against the exact return actions. Fifteen were usable evolved records, none reached a nonzero direct winding, and the closest reflected row was the phase-$5.5$ release at its saved endpoint.
+- Continued that immutable row from $T=0.20$ to its certified boundary at $T=0.251$. Its reflected RMS improved only from $0.545956$ to $0.535034$ while negative radial rate reached $-0.994208$ and maximum member speed reached $0.998557c_f$.
+- The attempted next step failed complete-root certification on all four negative self-history rows while last-chunk pair clearance remained $0.312716$. Classified this as another sector-local causal-boundary failure, now driven primarily by radial collapse rather than cadence runaway.
+- Strengthened the recurrence requirement: action residuals remain component-resolved and causal-margin guarded; the geometry must coordinate radial and cadence reversals before either sector reaches the field-speed boundary.
+- Derived the exact F6c sector speed budget $v_\sigma^2=\dot h_\sigma^2+\dot\rho_\sigma^2+ (\rho_\sigma\dot\theta_\sigma)^2$ and added its channel fractions and member-speed reconstruction residual to the analyzer.
+- Quantified two distinct approaches to the same causal margin. The phase-zero failure used $93.66\%$ of negative-sector squared speed tangentially; the phase-$5.5$ failure used $99.13\%$ radially. The formula matched member speeds within $10^{-15}$.
+- Added an independent algebraic test of the axial/radial/tangential speed decomposition across both polarities and all four tetrahedral modules.
+- Identified the speed-fraction triangle plus remaining unit-speed margin as a diagnostic projection for mode-exchange cycles, not a binding potential or conservation law.
+- Reexpressed each exact sector current moment as a dot product between its orthonormal speed-rate vector and a shape-dependent current coefficient. Derived the capacity bound $|m_{x,\sigma}|\le(4/3)\|\mathbf a_\sigma\|v_\sigma$.
+- Exposed a two-dimensional instantaneous current-null plane in each sector's three-dimensional rate space and one maximally efficient current direction. Fast internal motion therefore need not produce a large current moment.
+- Measured negative-sector current alignment fractions $0.1419$ at the cadence-dominated boundary and only $0.0116$ at the radial-collapse boundary. The latter consumed nearly all speed in an almost current-null direction.
+- Added direct member-sum checks for both current-capacity formulas to the independent F6c kinematic test; analyzer formula residual remained below $10^{-15}$.
+- Derived that both reflected proper-rotation returns are order-two half-cycles which send the F6c current axis to its negative, reverse both cadences, and exchange same-polarity modules.
+- Separated reduced shape period from fixed-frame current period: an exact reflected orbit repeats shape after $\tau$ but current only after $2\tau$, with zero fixed-frame current average under exact half-cycle antisymmetry.
+- Recorded the resulting frequency discriminator without importing a spin or quantum premise: shape-sensitive and current-sensitive recovery targets can differ by a factor of two on this exact symmetry class.
+- Generalized the result into an observable-specific return-order rule for relative periodic histories. Different projections can repeat after different integer numbers of one symmetry-reduced geometric step.
+- Added an executable F6c return ledger: reflected scalar shape has order one, while sector cadence and fixed-frame axial current have order two.
+- Separated the ordinary vector factor of two from the unrecovered spinor $4\pi$ target. F6c would need a separately derived nontrivial ordered-history lift before any fermion inference is licensed.
+- Proved exact field-free global polarity conjugation for the canonical charge-product Master Equation: flipping every architrino polarity leaves causal roots and unlabeled paths unchanged, preserves F6c even coordinates, and reverses odd coordinates and the polarity-weighted current moment. A fixed external source is excluded unless it is conjugated with the assembly.
+- Revalidated after the F6c wave: all 1,437 dollar-delimited math spans in the main inference document render through vendored KaTeX with zero failures; strict content validation remains at zero errors and zero warnings, and the report-grade diagnostic reruns successfully.
+- Kept the campaign priority-only. No queue lifecycle, equation maturity score, retained-braid claim, constitutive closure, or reader-facing corpus claim changed.
 
 ### 2026-08-23 — Electric, magnetic, and cross-sector braid-requirement pass
 
-- Dispositioned all six residual electric-field recommendations without
-  creating new queue objects: one matrix is implemented, two extensions are
-  merged conditionally, and three items remain behind explicit retained-branch
-  or constitutive prerequisites.
-- Expanded the requirement ledger through electric source identity, magnetic
-  source/current decomposition, exposure-transfer continuity, closed
-  root-resolved history networks, moment and gradient response, holonomy,
-  material topology, radiation, and shared constitutive response.
-- Added a magnetic source--sea--receiver--observer reduction and derived the
-  weak-response skew constraint: a velocity-linear no-work group response has
-  an antisymmetric leading kernel; any symmetric part requires a separately
-  ledgered energy-transfer channel.
-- Audited all 39 substantive equation packets and all 26 substantive benchmark
-  cases for additional geometry constraints. Consolidated them into an
-  identity-labeled framed causal-history bundle with ordered frames, path
-  transport, basin measures, controlled graph transitions, and complete
-  finite-window ledgers.
-- Added a 22-row local research-priority ranking with explicit support from
-  equations and benchmarks. The ranking is not an equation maturity score,
-  evidence decision, or retained-geometry claim.
-- Kept the fixed-law physical continuation blocked on one accepted EOM-evolved
-  retained common-history source--sea--receiver family. Pair capture and
-  backreaction remain barred without same-record certified conjugate product
-  basins.
-- Changed no queue lifecycle, equation maturity score, benchmark authority,
-  retained-braid claim, constitutive closure, or reader-facing corpus claim.
+- Dispositioned all six residual electric-field recommendations without creating new queue objects: one matrix is implemented, two extensions are merged conditionally, and three items remain behind explicit retained-branch or constitutive prerequisites.
+- Expanded the requirement ledger through electric source identity, magnetic source/current decomposition, exposure-transfer continuity, closed root-resolved history networks, moment and gradient response, holonomy, material topology, radiation, and shared constitutive response.
+- Added a magnetic source--sea--receiver--observer reduction and derived the weak-response skew constraint: a velocity-linear no-work group response has an antisymmetric leading kernel; any symmetric part requires a separately ledgered energy-transfer channel.
+- Audited all 39 substantive equation packets and all 26 substantive benchmark cases for additional geometry constraints. Consolidated them into an identity-labeled framed causal-history bundle with ordered frames, path transport, basin measures, controlled graph transitions, and complete finite-window ledgers.
+- Added a 22-row local research-priority ranking with explicit support from equations and benchmarks. The ranking is not an equation maturity score, evidence decision, or retained-geometry claim.
+- Kept the fixed-law physical continuation blocked on one accepted EOM-evolved retained common-history source--sea--receiver family. Pair capture and backreaction remain barred without same-record certified conjugate product basins.
+- Changed no queue lifecycle, equation maturity score, benchmark authority, retained-braid claim, constitutive closure, or reader-facing corpus claim.
 
 ### 2026-08-22 — Fixed-law weak-response and first-transition evaluator
 
-- Implemented a score-neutral fixed-law source-continuation evaluator for one
-  $c_f=1$ source family with fixed law, coefficient, regulator, projection,
-  tolerance, common-history, and identity bindings.
-- Computed the weak signed tangent, checked it against a second signed pair,
-  measured geometric departure, and selected the first sampled native margin
-  boundary.
-- Added fail-closed pair logic: pair capture and backreaction cannot run unless
-  the accepted retained source record supplies certified electron and positron
-  basins with opposite protected six-unit inventories and reciprocal
-  conjugation.
-- The prescribed diagnostic passes its fixed-record and weak-response checks,
-  reaches an inactive-root-gap boundary at $\zeta=0.70$, and reports
-  `candidate_only_first_transition_reached`. It does not attempt pair capture.
-- Eight focused tests pass, including hidden-retune, incomplete-signed-pair,
-  missing-transition, cross-record-basin, and uncertified-pair negative
-  controls. No queue lifecycle, equation score,
-  retained-branch claim, or reader-facing corpus claim changed.
-- Physical population remains blocked on an accepted EOM-evolved retained
-  source--sea--receiver branch.
+- Implemented a score-neutral fixed-law source-continuation evaluator for one $c_f=1$ source family with fixed law, coefficient, regulator, projection, tolerance, common-history, and identity bindings.
+- Computed the weak signed tangent, checked it against a second signed pair, measured geometric departure, and selected the first sampled native margin boundary.
+- Added fail-closed pair logic: pair capture and backreaction cannot run unless the accepted retained source record supplies certified electron and positron basins with opposite protected six-unit inventories and reciprocal conjugation.
+- The prescribed diagnostic passes its fixed-record and weak-response checks, reaches an inactive-root-gap boundary at $\zeta=0.70$, and reports `candidate_only_first_transition_reached`. It does not attempt pair capture.
+- Eight focused tests pass, including hidden-retune, incomplete-signed-pair, missing-transition, cross-record-basin, and uncertified-pair negative controls. No queue lifecycle, equation score, retained-branch claim, or reader-facing corpus claim changed.
+- Physical population remains blocked on an accepted EOM-evolved retained source--sea--receiver branch.
 
 ### 2026-08-22 — $E0$--$E4$ multi-receiver electric-response packet
 
-- Extended the direct-wake versus sea-response protocol across a neutral sea
-  braid, electron/positron conjugate receivers, and a neutral nucleon surrogate.
-- Separated passive common-event diagnostics from live one-receiver forks that
-  share a source/sea history prefix but retain receiver-dependent backreaction.
-- Defined mass-free group-centroid translation, rigid-orientation alignment,
-  normalized non-rigid deformation, signed internal polarity moment,
-  transmitter-tagged source/sea increments, conjugation controls, and distinct
-  $E4$ tests for cessation of group acceleration and internal return.
-- Added the focused packet under the existing blocked `EMAP-004` object rather
-  than creating another queue obligation. No queue lifecycle, equation score,
-  retained-branch claim, solver implementation, or corpus claim changed.
-- Execution remains blocked on retained neutral sea-braid, electron/positron,
-  and neutral-composite branches plus complete same-update causal-wake accounts.
+- Extended the direct-wake versus sea-response protocol across a neutral sea braid, electron/positron conjugate receivers, and a neutral nucleon surrogate.
+- Separated passive common-event diagnostics from live one-receiver forks that share a source/sea history prefix but retain receiver-dependent backreaction.
+- Defined mass-free group-centroid translation, rigid-orientation alignment, normalized non-rigid deformation, signed internal polarity moment, transmitter-tagged source/sea increments, conjugation controls, and distinct $E4$ tests for cessation of group acceleration and internal return.
+- Added the focused packet under the existing blocked `EMAP-004` object rather than creating another queue obligation. No queue lifecycle, equation score, retained-branch claim, solver implementation, or corpus claim changed.
+- Execution remains blocked on retained neutral sea-braid, electron/positron, and neutral-composite branches plus complete same-update causal-wake accounts.
 
 ### 2026-08-22 — Braid-requirement inference packet created
 
-- Created
-  [Inferring Braid Requirements](inferring-braid-requirements.md) as the
-  focused pre-derivation bridge from existing equations and benchmarks to
-  native source, matter, Noether sea, carrier, receiver, and boundary
-  requirements.
-- Consolidated the field-ontology and long-range-response discussion with the
-  fine-structure thread's absolute-record, near/environment/far sea,
-  matter-retuning, scale-separation, and no-hidden-retune insights.
-- Added an initial effective-field requirement ledger, competing realization
-  families, direct-wake versus sea-mediation controls, a reusable matrix
-  schema, and an explicit inference work order.
-- Kept the packet report-only and pre-derivation. No `EMAP` lifecycle state,
-  equation score, benchmark authority, retained-braid claim, constitutive
-  closure, or reader-facing corpus claim changed.
+- Created [Inferring Braid Requirements](inferring-braid-requirements.md) as the focused pre-derivation bridge from existing equations and benchmarks to native source, matter, Noether sea, carrier, receiver, and boundary requirements.
+- Consolidated the field-ontology and long-range-response discussion with the fine-structure thread's absolute-record, near/environment/far sea, matter-retuning, scale-separation, and no-hidden-retune insights.
+- Added an initial effective-field requirement ledger, competing realization families, direct-wake versus sea-mediation controls, a reusable matrix schema, and an explicit inference work order.
+- Kept the packet report-only and pre-derivation. No `EMAP` lifecycle state, equation score, benchmark authority, retained-braid claim, constitutive closure, or reader-facing corpus claim changed.
 
 ### 2026-08-22 — Shared mapping architecture and rank decision
 
-- Classified Mapping Electromagnetism explicitly as an unranked domain
-  integration packet rather than a separately scored derivation program.
-- Kept `EMAP-001` as the local integration winner while routing execution
-  attention through its ranked native prerequisites and exact equation owners.
-- Adopted the shared admissible-set method
-  $\mathfrak A_{\mathrm{EM}}=\bigcap_b\mathfrak A_b(\epsilon_b)$ for requiring
-  one assembly-and-sea record across electromagnetic equations and benchmarks.
-- Preserved Equation Mapping authority for exact rows and scores, Cross-Theory
-  authority for independent benchmarks, and native workstream authority for
-  retained geometry and evidence.
-- Changed no fine-structure derivation, equation score, queue status, retained
-  braid claim, or reader-facing corpus claim.
+- Classified Mapping Electromagnetism explicitly as an unranked domain integration packet rather than a separately scored derivation program.
+- Kept `EMAP-001` as the local integration winner while routing execution attention through its ranked native prerequisites and exact equation owners.
+- Adopted the shared admissible-set method $\mathfrak A_{\mathrm{EM}}=\bigcap_b\mathfrak A_b(\epsilon_b)$ for requiring one assembly-and-sea record across electromagnetic equations and benchmarks.
+- Preserved Equation Mapping authority for exact rows and scores, Cross-Theory authority for independent benchmarks, and native workstream authority for retained geometry and evidence.
+- Changed no fine-structure derivation, equation score, queue status, retained braid claim, or reader-facing corpus claim.
 
 ### 2026-08-19 — Equation-first finite-braid exploration prompt
 
-- Accepted the operator's scale correction that device-specific capacitor and
-  other apparatus implementations remain too bulk-heavy for the first native
-  electromagnetic map.
-- Created a reusable prompt centered on one finite, individually auditable
-  braid collection, one shared coarse-graining, the four Maxwell residuals,
-  and continuity.
-- Replaced device cases with density, translation, internal circulation,
-  exposure reconfiguration, propagating disturbance, and isotropic-null source
-  families.
-- Required shared coefficients, reversal controls, record identity, and
-  refinement across braid count, window, and smoothing scale without retuning.
-- Kept all outputs priority-only and routed a report-only finite-braid
-  predeclaration as the smallest next artifact.
+- Accepted the operator's scale correction that device-specific capacitor and other apparatus implementations remain too bulk-heavy for the first native electromagnetic map.
+- Created a reusable prompt centered on one finite, individually auditable braid collection, one shared coarse-graining, the four Maxwell residuals, and continuity.
+- Replaced device cases with density, translation, internal circulation, exposure reconfiguration, propagating disturbance, and isotropic-null source families.
+- Required shared coefficients, reversal controls, record identity, and refinement across braid count, window, and smoothing scale without retuning.
+- Kept all outputs priority-only and routed a report-only finite-braid predeclaration as the smallest next artifact.
 
 ### 2026-08-19 — Capacitor-mechanism microscopic reduction
 
-- Reduced the bulk charging capacitor to one prescribed charge-conserving
-  source-history cell, one structured receiver assembly, one short causal
-  reception window, and an optional retained Noether sea cell.
-- Applied the canonical Master Equation constraint that receiver velocity does
-  not alter a fixed arriving hit's instantaneous acceleration; magnetic-like
-  behavior must therefore emerge from finite-history multi-hit geometry,
-  internal assembly response, and possibly sea dynamics.
-- Defined a double-odd finite-window projector under matched source-history and
-  receiver-motion reversals, with a separate receiver-circulation version for
-  the magnetic-moment-like channel.
-- Separated direct delayed source response from sea-essential response through
-  a mathematical direct-only null control and one fixed retained-sea control.
-- Proposed rebuilding the bulk circular-capacitor profile by identical
-  one-, two-, four-, and $N$-cell refinements without retuning, targeting
-  azimuthal orientation, $B_\phi\propto r$, and the axial node.
-- Routed one report-only microcell predeclaration as the smallest next artifact;
-  no queue, solver, score, or corpus status changed.
+- Reduced the bulk charging capacitor to one prescribed charge-conserving source-history cell, one structured receiver assembly, one short causal reception window, and an optional retained Noether sea cell.
+- Applied the canonical Master Equation constraint that receiver velocity does not alter a fixed arriving hit's instantaneous acceleration; magnetic-like behavior must therefore emerge from finite-history multi-hit geometry, internal assembly response, and possibly sea dynamics.
+- Defined a double-odd finite-window projector under matched source-history and receiver-motion reversals, with a separate receiver-circulation version for the magnetic-moment-like channel.
+- Separated direct delayed source response from sea-essential response through a mathematical direct-only null control and one fixed retained-sea control.
+- Proposed rebuilding the bulk circular-capacitor profile by identical one-, two-, four-, and $N$-cell refinements without retuning, targeting azimuthal orientation, $B_\phi\propto r$, and the axial node.
+- Routed one report-only microcell predeclaration as the smallest next artifact; no queue, solver, score, or corpus status changed.
 
 ### 2026-08-19 — Literal plate charge and capacitor-state separation
 
-- Captured the positive metal plate as an electron deficit leaving existing
-  ionic-lattice charge incompletely balanced; no arriving positive carrier or
-  hole is required.
-- Restricted hole language to an effective unoccupied-electronic-state and
-  relay description whose underlying electron and material ledger remains
-  mandatory.
-- Separated plate charge, capacitor voltage, source voltage, and stored energy,
-  including the RC transient and the limited late-time condition $V_C=V_S$.
-- Recorded disconnected, AC, current-source, voltage-multiplying, loss, and
-  breakdown cases that prevent applied voltage from defining capacitor voltage
-  generally.
-- Routed one same-event $(Q_+,Q_-,V_S,V_C,I,U_C)$ row into the planned
-  metal/insulator/gap comparison; no queue, solver, score, or corpus status
-  changed.
+- Captured the positive metal plate as an electron deficit leaving existing ionic-lattice charge incompletely balanced; no arriving positive carrier or hole is required.
+- Restricted hole language to an effective unoccupied-electronic-state and relay description whose underlying electron and material ledger remains mandatory.
+- Separated plate charge, capacitor voltage, source voltage, and stored energy, including the RC transient and the limited late-time condition $V_C=V_S$.
+- Recorded disconnected, AC, current-source, voltage-multiplying, loss, and breakdown cases that prevent applied voltage from defining capacitor voltage generally.
+- Routed one same-event $(Q_+,Q_-,V_S,V_C,I,U_C)$ row into the planned metal/insulator/gap comparison; no queue, solver, score, or corpus status changed.
 
 ### 2026-08-19 — Wire explanatory-asymmetry correction
 
-- Accepted the operator's critique that the capacitor map scrutinized the gap
-  microscopically while treating the familiar wire as self-explanatory.
-- Corrected the existing capacitor table and reasoning chain to classify wire
-  current as a kinematic assembly preimage, not a derived conduction mechanism.
-- Reframed wire versus gap as two branches of assembly-filled regions sharing
-  the Noether sea: material-dressed net-charge transport versus response
-  transport without net charge.
-- Preserved the worldline-transport versus identity-preserving-relay fork and
-  separated carrier drift from signal propagation.
-- Routed a fixed-geometry metal/insulator/gap comparison as the smallest next
-  artifact; no queue, solver, score, or corpus status changed.
+- Accepted the operator's critique that the capacitor map scrutinized the gap microscopically while treating the familiar wire as self-explanatory.
+- Corrected the existing capacitor table and reasoning chain to classify wire current as a kinematic assembly preimage, not a derived conduction mechanism.
+- Reframed wire versus gap as two branches of assembly-filled regions sharing the Noether sea: material-dressed net-charge transport versus response transport without net charge.
+- Preserved the worldline-transport versus identity-preserving-relay fork and separated carrier drift from signal propagation.
+- Routed a fixed-geometry metal/insulator/gap comparison as the smallest next artifact; no queue, solver, score, or corpus status changed.
 
 ### 2026-08-19 — Ideal gap and neutral-corridor consequence
 
-- Sharpened the capacitor statement: no charged assembly crosses the ideal gap,
-  while causal history and energy-momentum still reach and change the gap.
-- Distinguished Maxwell's complete effective field answer from the open
-  $\mathbb{A}\mathbb{A}\mathbb{A}$ microscopic carrier question.
-- Derived the uniform circular-capacitor profile
-  $B_{\phi}=(\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}/2)r\,dE/dT$ and its exact
-  axial node.
-- Connected that node to the neutral-corridor hypothesis while explicitly
-  limiting the result to the capacitor source class.
-- Routed a four-radius analytic sweep as the smallest next discriminator; no
-  queue, solver, score, or corpus status changed.
+- Sharpened the capacitor statement: no charged assembly crosses the ideal gap, while causal history and energy-momentum still reach and change the gap.
+- Distinguished Maxwell's complete effective field answer from the open $\mathbb{A}\mathbb{A}\mathbb{A}$ microscopic carrier question.
+- Derived the uniform circular-capacitor profile $B_{\phi}=(\mu_{\mathrm{eff}}\epsilon_{\mathrm{eff}}/2)r\,dE/dT$ and its exact axial node.
+- Connected that node to the neutral-corridor hypothesis while explicitly limiting the result to the capacitor source class.
+- Routed a four-radius analytic sweep as the smallest next discriminator; no queue, solver, score, or corpus status changed.
 
 ### 2026-08-19 — Minimal charging-capacitor two-surface map
 
-- Built the least-bulk capacitor thought experiment directly in the
-  brainstorming notebook: one physical circuit event, one boundary loop, and
-  two spanning surfaces.
-- Derived the ideal Maxwell equality between wire conduction current and
-  changing gap electric flux while preserving the exact statement that their
-  sum, not either term separately, is surface-independent.
-- Mapped source, wire, plate, gap Noether sea, return circuit, and receiver
-  assemblies onto one event record.
-- Captured the geometric boundary-dual, causal-delay, no-required-photon, and
-  Poynting-ledger insights with explicit falsifiers.
-- Left EMAP-002 blocked and routed one four-row delay-aligned event table as the
-  smallest next artifact; no corpus promotion or solver work was performed.
+- Built the least-bulk capacitor thought experiment directly in the brainstorming notebook: one physical circuit event, one boundary loop, and two spanning surfaces.
+- Derived the ideal Maxwell equality between wire conduction current and changing gap electric flux while preserving the exact statement that their sum, not either term separately, is surface-independent.
+- Mapped source, wire, plate, gap Noether sea, return circuit, and receiver assemblies onto one event record.
+- Captured the geometric boundary-dual, causal-delay, no-required-photon, and Poynting-ledger insights with explicit falsifiers.
+- Left EMAP-002 blocked and routed one four-row delay-aligned event table as the smallest next artifact; no corpus promotion or solver work was performed.
 
 ### 2026-08-19 — Maxwell definitions and constraints on the B field
 
-- Answered the operator's request to examine $\mathbf B$ from multiple angles
-  rather than treating one magnetic-field description as exhaustive.
-- Separated Maxwell's mathematical job description from operational probe
-  laws, material constitutive response, and microscopic ontology.
-- Captured divergence, flux, circulation, induction, potential/curl, axial
-  parity, covariant field-tensor, wave, energy-momentum, apparatus-response,
-  and $\mathbf B$ versus $\mathbf H$ perspectives.
-- Recorded the central boundary: Maxwell determines admissible effective
-  behavior from sources, constitutive relations, and initial/boundary data but
-  does not specify the underlying physical substance.
-- Converted the perspectives into ten same-record obligations for the
-  $\mathbb{A}\mathbb{A}\mathbb{A}$ magnetic map.
-- Routed a Maxwell-$\mathbf B$ obligation matrix as the next companion artifact
-  for EMAP-002 without changing queue status or promoting a corpus claim.
+- Answered the operator's request to examine $\mathbf B$ from multiple angles rather than treating one magnetic-field description as exhaustive.
+- Separated Maxwell's mathematical job description from operational probe laws, material constitutive response, and microscopic ontology.
+- Captured divergence, flux, circulation, induction, potential/curl, axial parity, covariant field-tensor, wave, energy-momentum, apparatus-response, and $\mathbf B$ versus $\mathbf H$ perspectives.
+- Recorded the central boundary: Maxwell determines admissible effective behavior from sources, constitutive relations, and initial/boundary data but does not specify the underlying physical substance.
+- Converted the perspectives into ten same-record obligations for the $\mathbb{A}\mathbb{A}\mathbb{A}$ magnetic map.
+- Routed a Maxwell-$\mathbf B$ obligation matrix as the next companion artifact for EMAP-002 without changing queue status or promoting a corpus claim.
 
 ### 2026-08-18 — Physical assembly provenance for magnetic source classes
 
-- Accepted the operator's correction that transported current, changing
-  electric flux, ordered moments, and launched radiation cannot remain
-  free-standing abstractions in the electromagnetic map.
-- Recast all four as source-assembly, transmitted-record, Noether sea, and
-  receiver-assembly histories.
-- Identified a candidate unification by path-history topology: open transport,
-  accumulation or reconfiguration, closed persistent circulation, and a
-  detached propagating carrier branch.
-- Made the charging capacitor one joined assembly event whose wire and gap
-  surfaces must project to the same circulation record.
+- Accepted the operator's correction that transported current, changing electric flux, ordered moments, and launched radiation cannot remain free-standing abstractions in the electromagnetic map.
+- Recast all four as source-assembly, transmitted-record, Noether sea, and receiver-assembly histories.
+- Identified a candidate unification by path-history topology: open transport, accumulation or reconfiguration, closed persistent circulation, and a detached propagating carrier branch.
+- Made the charging capacitor one joined assembly event whose wire and gap surfaces must project to the same circulation record.
 - Kept the photon carrier at its current proposed, referent-pending grade.
-- Routed a four-case assembly-provenance matrix as a prerequisite for EMAP-002
-  without promoting a corpus claim or changing queue status.
+- Routed a four-case assembly-provenance matrix as a prerequisite for EMAP-002 without promoting a corpus claim or changing queue status.
 
 ### 2026-08-18 — Co-rotation and neutral-corridor discriminator
 
-- Captured the operator's observation that three same-sense binary rotations
-  can make the translation corridor special in a neutral sense.
-- Separated inventory neutrality, transverse first-moment cancellation,
-  translation-moment cancellation, and zero receiver response.
-- Recorded the exact common-time-factor condition under which balanced B1
-  transverse polarity moments cancel for the entire prescribed cycle.
-- Derived the ideal conjugate-pair distinction: polarity-blind geometric
-  circulation adds, while equal-exposure polarity-weighted current moments
-  cancel.
-- Identified exposure asymmetry and Noether sea dressing, rather than bare
-  co-rotation, as the candidate missing bridge to an intrinsic magnetic moment.
-- Routed a corridor-moment ledger into the next EMAP-001 artifact without
-  changing queue status or promoting a corpus claim.
+- Captured the operator's observation that three same-sense binary rotations can make the translation corridor special in a neutral sense.
+- Separated inventory neutrality, transverse first-moment cancellation, translation-moment cancellation, and zero receiver response.
+- Recorded the exact common-time-factor condition under which balanced B1 transverse polarity moments cancel for the entire prescribed cycle.
+- Derived the ideal conjugate-pair distinction: polarity-blind geometric circulation adds, while equal-exposure polarity-weighted current moments cancel.
+- Identified exposure asymmetry and Noether sea dressing, rather than bare co-rotation, as the candidate missing bridge to an intrinsic magnetic moment.
+- Routed a corridor-moment ledger into the next EMAP-001 artifact without changing queue status or promoting a corpus claim.
 
 ### 2026-08-18 — Magnetic-field ontology and cause brainstorm
 
-- Separated the operational, mathematical, and native
-  $\mathbb{A}\mathbb{A}\mathbb{A}$ questions hidden inside "what is a
-  magnetic field?"
-- Captured the candidate magnetic record as the axial dual of an antisymmetric
-  source-history and Noether sea circulation response.
-- Distinguished translating-charge and intrinsic-circulation source
-  bivectors.
-- Recorded conduction-current, changing-electric-flux, radiation,
-  ordered-material, neutral-axis, and axis-only-null cases.
-- Concluded that a neutral conduit can organize a magnetic moment but is not
-  sufficient to cause a magnetic field.
-- Retained all claims at brainstorming grade with explicit falsifiers and no
-  corpus promotion.
+- Separated the operational, mathematical, and native $\mathbb{A}\mathbb{A}\mathbb{A}$ questions hidden inside "what is a magnetic field?"
+- Captured the candidate magnetic record as the axial dual of an antisymmetric source-history and Noether sea circulation response.
+- Distinguished translating-charge and intrinsic-circulation source bivectors.
+- Recorded conduction-current, changing-electric-flux, radiation, ordered-material, neutral-axis, and axis-only-null cases.
+- Concluded that a neutral conduit can organize a magnetic moment but is not sufficient to cause a magnetic field.
+- Retained all claims at brainstorming grade with explicit falsifiers and no corpus promotion.
 
 ### 2026-08-18 — Priority area created
 
-- The operator selected Mapping Electromagnetism as the active home for
-  bidirectional electromagnetic recovery and inverse-geometry work.
+- The operator selected Mapping Electromagnetism as the active home for bidirectional electromagnetic recovery and inverse-geometry work.
 - Created the standard strategy, queue, brainstorming, and work-log files.
-- Migrated the architrino-versus-Physical-Observer layer distinction and the
-  charge-neutral common-axis magnetic hypothesis from Equation Mapping
-  brainstorming.
-- Accepted EMAP-001, the six-case common-axis source/moment/field matrix, as the
-  first queued object.
+- Migrated the architrino-versus-Physical-Observer layer distinction and the charge-neutral common-axis magnetic hypothesis from Equation Mapping brainstorming.
+- Accepted EMAP-001, the six-case common-axis source/moment/field matrix, as the first queued object.
 - Kept the lane unranked pending an explicit scoring and global-rerank decision.
-- Preserved Equation Mapping ownership of exact EQ-13/EQ-15/EQ-27 packets and
-  scores, Braid Program ownership of retained geometry, and the dormant status
-  of the historical Electrodynamics packet.
-- No Maxwell derivation, retained braid result, electron model, constitutive
-  closure, evidence score, or reader-facing corpus claim changed.
+- Preserved Equation Mapping ownership of exact EQ-13/EQ-15/EQ-27 packets and scores, Braid Program ownership of retained geometry, and the dormant status of the historical Electrodynamics packet.
+- No Maxwell derivation, retained braid result, electron model, constitutive closure, evidence score, or reader-facing corpus claim changed.

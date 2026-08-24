@@ -191,8 +191,7 @@ The future implementation should include visual fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Visual Artifact Contract into visual artifact schemas, media validators, purpose-label rendering, caption/alt-text checks, token/privacy checks, and regression fixtures for the Archie service.
+Closure goal: Turn the Visual Artifact Contract into visual artifact schemas, media validators, purpose-label rendering, caption/alt-text checks, token/privacy checks, and regression fixtures for the Archie service.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

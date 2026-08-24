@@ -2,10 +2,7 @@
 
 Status: complete proof packet for the VP-1 active-root continuation and Jacobian-floor rows.
 
-Claim level: topology diagnostic. This packet does not claim a theorem-grade
-interval proof and supplies no canonical force/action evidence. It gives active
-root labels, fixed root tubes, sampled gap and Jacobian margins that may seed a
-new transmitter-side acceleration rebuild.
+Claim level: topology diagnostic. This packet does not claim a theorem-grade interval proof and supplies no canonical force/action evidence. It gives active root labels, fixed root tubes, sampled gap and Jacobian margins that may seed a new transmitter-side acceleration rebuild.
 
 Certificate verdict: sampled-pass for the partner/self active-root continuation and Jacobian-floor rows on
 $$
@@ -17,8 +14,7 @@ No active branch exchange, root-count change, or active Jacobian-null contact wa
 
 ## Equations Used
 
-This packet uses the VP-1 history and root equations retained here as topology
-setup:
+This packet uses the VP-1 history and root equations retained here as topology setup:
 $$
 a=\frac{1}{10},
 \qquad
@@ -85,12 +81,7 @@ The executable scan used $\Delta_{\mathrm{co}}=1/2$. Across 2001 equally spaced 
 
 The sampled root ranges are:
 
-| Label | Fixed tube used for the certificate contract | Sampled $\Delta_{\min}$ | Sampled $\Delta_{\max}$ | Sampled minimum active $|J|$ |
-| --- | ---: | ---: | ---: | ---: |
-| $P_1$ | $[2.48,2.52]$ | $2.483783565495$ | $2.513210685537$ | $4.322605935726$ |
-| $P_2$ | $[4.30,4.46]$ | $4.314545257180$ | $4.446461736163$ | $1.669656880405$ |
-| $P_3$ | $[6.78,6.92]$ | $6.794516169889$ | $6.908404038645$ | $1.729219513180$ |
-| $S_1$ | $[4.80,4.90]$ | $4.816469361591$ | $4.881739408531$ | $3.872720632692$ |
+| Label | Fixed tube used for the certificate contract | Sampled $\Delta_{\min}$ | Sampled $\Delta_{\max}$ | Sampled minimum active $|J|$ | | --- | ---: | ---: | ---: | ---: | | $P_1$ | $[2.48,2.52]$ | $2.483783565495$ | $2.513210685537$ | $4.322605935726$ | | $P_2$ | $[4.30,4.46]$ | $4.314545257180$ | $4.446461736163$ | $1.669656880405$ | | $P_3$ | $[6.78,6.92]$ | $6.794516169889$ | $6.908404038645$ | $1.729219513180$ | | $S_1$ | $[4.80,4.90]$ | $4.816469361591$ | $4.881739408531$ | $3.872720632692$ |
 
 The active Jacobian floor supported by the sampled root curves is therefore
 $$
@@ -120,12 +111,7 @@ $$
 
 The following sign rows are the finite certificate contract for one and only one simple root in each fixed tube. The displayed values are sampled/optimized margins, not outward interval bounds.
 
-| Label | Lower-tube boundary sign | Upper-tube boundary sign | Tube $|J|$ support | Contract verdict |
-| --- | ---: | ---: | ---: | --- |
-| $P_1$ | $\inf_\theta F_p(\theta,2.48)\ge0.004614070870$ | $\sup_\theta F_p(\theta,2.52)\le-0.008653429673$ | $|J_{12}|\ge4.317674591130$ | one decreasing root |
-| $P_2$ | $\sup_\theta F_p(\theta,4.30)\le-0.008280277278$ | $\inf_\theta F_p(\theta,4.46)\ge0.006339817506$ | $|J_{12}|\ge1.646844756160$ | one increasing root |
-| $P_3$ | $\inf_\theta F_p(\theta,6.78)\ge0.007404400623$ | $\sup_\theta F_p(\theta,6.92)\le-0.005891750705$ | $|J_{12}|\ge1.583450277090$ | one decreasing root |
-| $S_1$ | $\inf_\theta F_s(\theta,4.80)\ge0.017949126722$ | $\sup_\theta F_s(\theta,4.90)\le-0.021310290451$ | $|J_{11}|\ge3.859089352535$ | one decreasing root |
+| Label | Lower-tube boundary sign | Upper-tube boundary sign | Tube $|J|$ support | Contract verdict | | --- | ---: | ---: | ---: | --- | | $P_1$ | $\inf_\theta F_p(\theta,2.48)\ge0.004614070870$ | $\sup_\theta F_p(\theta,2.52)\le-0.008653429673$ | $|J_{12}|\ge4.317674591130$ | one decreasing root | | $P_2$ | $\sup_\theta F_p(\theta,4.30)\le-0.008280277278$ | $\inf_\theta F_p(\theta,4.46)\ge0.006339817506$ | $|J_{12}|\ge1.646844756160$ | one increasing root | | $P_3$ | $\inf_\theta F_p(\theta,6.78)\ge0.007404400623$ | $\sup_\theta F_p(\theta,6.92)\le-0.005891750705$ | $|J_{12}|\ge1.583450277090$ | one decreasing root | | $S_1$ | $\inf_\theta F_s(\theta,4.80)\ge0.017949126722$ | $\sup_\theta F_s(\theta,4.90)\le-0.021310290451$ | $|J_{11}|\ge3.859089352535$ | one decreasing root |
 
 Because $F_\Delta=-J/b(\theta)$ and $b(\theta)>0$, the sign of $J$ fixes the root orientation inside each active tube. The active roots are simple throughout the sampled corridor, and a directed interval proof of the tube rows would certify continuation by the implicit function theorem.
 
@@ -133,14 +119,7 @@ Because $F_\Delta=-J/b(\theta)$ and $b(\theta)>0$, the sign of $J$ fixes the roo
 
 The fixed active tubes leave the following inactive complement boxes on $D_{\mathrm{cert}}$. The sampled/optimized gaps are:
 
-| Class | Complement interval in $\Delta$ | Expected sign | Sampled lower bound for $|F|$ |
-| --- | ---: | ---: | ---: |
-| Partner | $[0.50,2.48]$ | $+$ | $0.004614070870$ |
-| Partner | $[2.52,4.30]$ | $-$ | $0.008280277278$ |
-| Partner | $[4.46,6.78]$ | $+$ | $0.006339817506$ |
-| Partner | $[6.92,4\pi]$ | $-$ | $0.005891750705$ |
-| Self | $[0.50,4.80]$ | $+$ | $0.017949126722$ |
-| Self | $[4.90,4\pi]$ | $-$ | $0.021310290451$ |
+| Class | Complement interval in $\Delta$ | Expected sign | Sampled lower bound for $|F|$ | | --- | ---: | ---: | ---: | | Partner | $[0.50,2.48]$ | $+$ | $0.004614070870$ | | Partner | $[2.52,4.30]$ | $-$ | $0.008280277278$ | | Partner | $[4.46,6.78]$ | $+$ | $0.006339817506$ | | Partner | $[6.92,4\pi]$ | $-$ | $0.005891750705$ | | Self | $[0.50,4.80]$ | $+$ | $0.017949126722$ | | Self | $[4.90,4\pi]$ | $-$ | $0.021310290451$ |
 
 For the excluded self-coincidence row,
 $$

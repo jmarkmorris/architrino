@@ -1,18 +1,12 @@
 # VP-1 Inactive-Memory Proof Packet
 
-Status. Topology diagnostic for the VP-1 inactive-complement, finite-memory,
-self-coincidence, and root-transport lane. This packet stays inside the VP-1
-candidate history and does not mark `spiral_branch_chart_test` complete.
+Status. Topology diagnostic for the VP-1 inactive-complement, finite-memory, self-coincidence, and root-transport lane. This packet stays inside the VP-1 candidate history and does not mark `spiral_branch_chart_test` complete.
 
 Claim level. Partial topology support. The finite-memory inequality and the near-coincidence self row are certified for the declared VP-1 equations with
 $$
 \Delta_{\mathrm{co}}=\frac{1}{2}.
 $$
-The inactive-complement cover and root-transport residual contract are specified
-with concrete seed rows from the active-root lane, but they are not theorem-grade
-complete until a new certificate supplies outward interval active-root tubes,
-box gaps, derivative residual results, and any acceleration consumer separately
-emits same-record $D_t$ and $W_{\mathrm{acc}}=c_f/|D_t|$, with $D_r/D_t$ carried separately only for signed playback.
+The inactive-complement cover and root-transport residual contract are specified with concrete seed rows from the active-root lane, but they are not theorem-grade complete until a new certificate supplies outward interval active-root tubes, box gaps, derivative residual results, and any acceleration consumer separately emits same-record $D_t$ and $W_{\mathrm{acc}}=c_f/|D_t|$, with $D_r/D_t$ carried separately only for signed playback.
 
 ## Fixed VP-1 Domain
 

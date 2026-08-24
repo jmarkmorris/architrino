@@ -47,9 +47,7 @@ This manifest narrows the first source-acquisition object for [EQ-12 Theta-Gamma
 
 ## Intake Object Shape
 
-The future intake object must be one JSON-compatible record with schema
-`aaa-equation-map-eq12-theta-gamma-packet-retained-evidence-intake/v1`.
-The expected top-level fields are:
+The future intake object must be one JSON-compatible record with schema `aaa-equation-map-eq12-theta-gamma-packet-retained-evidence-intake/v1`. The expected top-level fields are:
 
 | Field | Acceptance requirement |
 | --- | --- |

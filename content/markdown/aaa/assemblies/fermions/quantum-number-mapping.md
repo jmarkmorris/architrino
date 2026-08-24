@@ -172,8 +172,7 @@ In the axial-layer realization, every charged-fermion six-unit carrier consists 
 
 For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon polarity-conjugate braid pair, not as a literal inventory of six bound axial sites.
 
-**Weak-coupling exposure diagnostic (hypothesis)**
-For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
+**Weak-coupling exposure diagnostic (hypothesis)** For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
 $$
 \mathcal{T}_{\mathrm{WCT}}(A,\hat{\mathbf p})
 =
@@ -865,8 +864,7 @@ Two qualifications remain useful without adding new rows to the taxonomy:
     *   Polarity conjugation does not change this orientation label, so matter and antimatter are not assigned opposite intrinsic parity by this hypothesis alone.
     *   This is a parity-closure interface, not a completed derivation of the Dirac parity eigenvalue.
 
-**Verdict:**
-The table is sufficient as a quantum-number bookkeeping dictionary. It identifies the geometry each Standard Model label is supposed to read and connects scattering-amplitude or dissociation-rate calculations to the needed representation rows. Spin, intrinsic parity, mass response, and rate normalization remain separate closure interfaces rather than completed consequences of the table alone.
+**Verdict:** The table is sufficient as a quantum-number bookkeeping dictionary. It identifies the geometry each Standard Model label is supposed to read and connects scattering-amplitude or dissociation-rate calculations to the needed representation rows. Spin, intrinsic parity, mass response, and rate normalization remain separate closure interfaces rather than completed consequences of the table alone.
 
 ## Closure Interfaces (Integration Map)
 

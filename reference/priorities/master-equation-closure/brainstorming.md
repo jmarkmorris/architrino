@@ -12,62 +12,23 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ### Local Wake Geometry Versus Superposed-Landscape Shape (2026-08-08)
 
-→ promoted to
-[Master Equation: Superposition and Local Wake Geometry](../../../content/markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry)
-(2026-08-08; moving-single-root theorem added 2026-08-09), with the proof and
-independent check in
-[Moving-Single-Root Scalar-Gradient Theorem](receiver-wake-gradient-closure.md#moving-single-root-scalar-gradient-theorem).
-The canonical per-row identity is **derived on one connected regular
-moving-simple-root chart**. Finite scalar superposition remains a
-**conditional derivation** because all rows must occupy one shared
-retained-history and boundary chart; postulated vector superposition remains
-distinct.
+→ promoted to [Master Equation: Superposition and Local Wake Geometry](../../../content/markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry) (2026-08-08; moving-single-root theorem added 2026-08-09), with the proof and independent check in [Moving-Single-Root Scalar-Gradient Theorem](receiver-wake-gradient-closure.md#moving-single-root-scalar-gradient-theorem). The canonical per-row identity is **derived on one connected regular moving-simple-root chart**. Finite scalar superposition remains a **conditional derivation** because all rows must occupy one shared retained-history and boundary chart; postulated vector superposition remains distinct.
 
-Unpromoted theorem targets: construct a matching scalar for any different
-delayed or regularized row; select and prove singular-chart treatment across
-sources, folds, coincidences, or the self diagonal; prove scalar-chart gluing;
-and justify the infinite-source limit under explicit distance, Jacobian, and
-summability bounds.
+Unpromoted theorem targets: construct a matching scalar for any different delayed or regularized row; select and prove singular-chart treatment across sources, folds, coincidences, or the self diagonal; prove scalar-chart gluing; and justify the infinite-source limit under explicit distance, Jacobian, and summability bounds.
 
 ### Concave/Inside Versus Convex/Outside Wake-Side Response Audit (2026-07-29)
 
-Claim level: **explicit speculation / existing-law audit first**. With polarity
-held fixed, test paired causal-root events to determine whether the canonical
-root normal $\hat{\mathbf r}$, inverse-square range dependence, oriented
-surface curvature, transmitter factor $D_t$, receiver incidence and playback
-$D_r/D_t$, and complete root multiplicity already distinguish reception from
-the concave/inside versus convex/outside side of a causal wake surface. Keep
-the instantaneous acceleration row separate from root playback: $D_r$ can
-reverse how a root is traversed without becoming an extra acceleration
-multiplier.
+Claim level: **explicit speculation / existing-law audit first**. With polarity held fixed, test paired causal-root events to determine whether the canonical root normal $\hat{\mathbf r}$, inverse-square range dependence, oriented surface curvature, transmitter factor $D_t$, receiver incidence and playback $D_r/D_t$, and complete root multiplicity already distinguish reception from the concave/inside versus convex/outside side of a causal wake surface. Keep the instantaneous acceleration row separate from root playback: $D_r$ can reverse how a root is traversed without becoming an extra acceleration multiplier.
 
-Plainly: First check whether the current delayed geometry already produces the
-suspected asymmetry when every causal root is retained.
+Plainly: First check whether the current delayed geometry already produces the suspected asymmetry when every causal root is retained.
 
-**Test question:** After matching polarity, delayed range, root multiplicity,
-and every canonical normal and Jacobian input, does reversing only the
-inside/outside incidence leave any acceleration difference unexplained? Only
-if it does, consider a possible new constitutive dependence on oriented wake
-side or incidence. Such a dependence would supplement rather than replace
-polarity and would require an Architrino-native derivation and an independent
-falsifier. No conclusion or promotion is asserted here.
+**Test question:** After matching polarity, delayed range, root multiplicity, and every canonical normal and Jacobian input, does reversing only the inside/outside incidence leave any acceleration difference unexplained? Only if it does, consider a possible new constitutive dependence on oriented wake side or incidence. Such a dependence would supplement rather than replace polarity and would require an Architrino-native derivation and an independent falsifier. No conclusion or promotion is asserted here.
 
 ### Reception-Active Cubic Maturity and Account-Transfer Candidate (2026-07-24)
 
-Claim level: **unproven proposal**. This note preserves one explicit candidate
-for testing the independently evolving causal-wake route. It does not change
-the derived obstruction in
-[Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md),
-does not define accepted architrino momentum, and is not a corpus or EOM solver
-update.
+Claim level: **unproven proposal**. This note preserves one explicit candidate for testing the independently evolving causal-wake route. It does not change the derived obstruction in [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md), does not define accepted architrino momentum, and is not a corpus or EOM solver update.
 
-The derived part is only the endpoint integrability condition. On the exact
-quadratic coincident self-birth control,
-$z=|D_t|/c_f=(\alpha/c_f)T$, and finite accumulated acceleration requires
-$M\in L^1((0,L),T^{-3}dT)$. A $T^{2+\delta}$ bound is sufficient but not
-necessary. If maturity is analytic in this exact linear birth coordinate, its
-first nonzero order is at least cubic; cubic is the first possible analytic
-order, not a selected law. One smallest explicit but unselected realization is
+The derived part is only the endpoint integrability condition. On the exact quadratic coincident self-birth control, $z=|D_t|/c_f=(\alpha/c_f)T$, and finite accumulated acceleration requires $M\in L^1((0,L),T^{-3}dT)$. A $T^{2+\delta}$ bound is sufficient but not necessary. If maturity is analytic in this exact linear birth coordinate, its first nonzero order is at least cubic; cubic is the first possible analytic order, not a selected law. One smallest explicit but unselected realization is
 
 $$
 b_{z_\ast}(z)
@@ -78,8 +39,7 @@ b_{z_\ast}(z)
 \end{cases}
 $$
 
-where the dimensionless transition scale $z_\ast>0$ is introduced rather than
-derived. For a surface-resolved wake element, the proposed emission state is
+where the dimensionless transition scale $z_\ast>0$ is introduced rather than derived. For a surface-resolved wake element, the proposed emission state is
 
 $$
 (m,e,\boldsymbol\pi)
@@ -87,11 +47,7 @@ $$
 \left(b_{z_\ast}(z),0,\mathbf0\right).
 $$
 
-The proposed motion-account form is conditional on additional minimality
-assumptions: isotropy, line-of-action momentum exchange, and no separate
-intrinsic wake angular-momentum variable. Writing
-$\mathbf p=P(s)\hat{\mathbf V}$ with $s=\|\mathbf V\|$, radial exchange for
-arbitrary receiver velocity requires
+The proposed motion-account form is conditional on additional minimality assumptions: isotropy, line-of-action momentum exchange, and no separate intrinsic wake angular-momentum variable. Writing $\mathbf p=P(s)\hat{\mathbf V}$ with $s=\|\mathbf V\|$, radial exchange for arbitrary receiver velocity requires
 
 $$
 P'(s)=\frac{P(s)}s,
@@ -105,9 +61,7 @@ $$
 K=\frac12\mu_{\text{arch}}\|\mathbf V\|^2.
 $$
 
-This conditional form does not derive $\mu_{\text{arch}}$ from existing
-Architrino primitives and must not be read as physical architrino mass. For one
-finite reception update, the proposed opposite wake-account increments are
+This conditional form does not derive $\mu_{\text{arch}}$ from existing Architrino primitives and must not be read as physical architrino mass. For one finite reception update, the proposed opposite wake-account increments are
 
 $$
 \Delta\boldsymbol\pi
@@ -122,8 +76,7 @@ $$
 \right).
 $$
 
-To make the added state reception-active rather than an inert residual ledger,
-the candidate depletes its maturity by
+To make the added state reception-active rather than an inert residual ledger, the candidate depletes its maturity by
 
 $$
 \Delta m
@@ -138,32 +91,16 @@ $$
 m\ge0,
 $$
 
-with transfer truncated when the available $m$ is exhausted.
-$\Pi_\ast$ is a newly introduced capacity scale per unit emitted surface
-measure. Free propagation transports $(m,e,\boldsymbol\pi)$ at $c_f$, and a
-finite retained boundary exports $e$, $\boldsymbol\pi$, and
-$\mathbf Y\times\boldsymbol\pi$.
+with transfer truncated when the available $m$ is exhausted. $\Pi_\ast$ is a newly introduced capacity scale per unit emitted surface measure. Free propagation transports $(m,e,\boldsymbol\pi)$ at $c_f$, and a finite retained boundary exports $e$, $\boldsymbol\pi$, and $\mathbf Y\times\boldsymbol\pi$.
 
 The proposal remains blocked for four independent reasons:
 
-1. $z_\ast$, $\Pi_\ast$, and $\mu_{\text{arch}}$ are not selected by the
-   present primitives.
-2. Reception-dependent $m$ lets later receivers distinguish earlier
-   receptions, so it abandons the universal transmitter-history-only
-   acceleration law.
-3. Omitting the $m$ update preserves that regular law but leaves
-   $(e,\boldsymbol\pi)$ dynamically inert and therefore only bookkeeping.
-4. Eternal constant emission creates fresh capacity without a derived global
-   lower bound. A finite transmitter capacity ends constant active emission,
-   while Noether sea replenishment moves the closure out of the bare
-   Master Equation.
+1. $z_\ast$, $\Pi_\ast$, and $\mu_{\text{arch}}$ are not selected by the present primitives.
+2. Reception-dependent $m$ lets later receivers distinguish earlier receptions, so it abandons the universal transmitter-history-only acceleration law.
+3. Omitting the $m$ update preserves that regular law but leaves $(e,\boldsymbol\pi)$ dynamically inert and therefore only bookkeeping.
+4. Eternal constant emission creates fresh capacity without a derived global lower bound. A finite transmitter capacity ends constant active emission, while Noether sea replenishment moves the closure out of the bare Master Equation.
 
-Promotion target: none until one Architrino-native construction derives the
-motion-account map, maturity scale and shape, reception update, capacity source,
-and boundary flux together. Falsifier of the obstruction: exhibit a smaller
-causal, reception-active, bounded update that preserves eternal
-motion-independent active emission and the universal transmitter-history-only
-regular law without an additional capacity source or residual-defined ledger.
+Promotion target: none until one Architrino-native construction derives the motion-account map, maturity scale and shape, reception update, capacity source, and boundary flux together. Falsifier of the obstruction: exhibit a smaller causal, reception-active, bounded update that preserves eternal motion-independent active emission and the universal transmitter-history-only regular law without an additional capacity source or residual-defined ledger.
 
 ### Import Audit of the Master-Equation Main Path (2026-07-18, operator-requested)
 
@@ -238,14 +175,11 @@ Claim level: **interpretation / derivation-target framing** from an operator bra
 
 Migrated from [topological-causal-root-ledger-proof-target.md](topological-causal-root-ledger-proof-target.md) on 2026-07-02 as part of the priority packet / brainstorming partition. These are unresolved proof-target questions and explanatory insights, not accepted theorem closure.
 
-The topology thread raised four additional questions that should remain attached
-to this proof target until they are either absorbed into a downstream EOM
-consumer stack or rejected.
+The topology thread raised four additional questions that should remain attached to this proof target until they are either absorbed into a downstream EOM consumer stack or rejected.
 
 #### Source Path Point Versus Source Path Segment
 
-At the sharp causal-root level, a causal hit is from a source-history point. The
-receiver event selects an emission time $s<t$ satisfying
+At the sharp causal-root level, a causal hit is from a source-history point. The receiver event selects an emission time $s<t$ satisfying
 $$
 G_{ij,n}(t,s)=0.
 $$
@@ -253,17 +187,9 @@ The source point
 $$
 \tilde{\mathbf{x}}_j(s)
 $$
-is the center of the causal wake surface that reaches the receiver. In that
-sharp limit, the received branch row is point-to-event: one historical source
-point to one receiver event.
+is the center of the causal wake surface that reaches the receiver. In that sharp limit, the received branch row is point-to-event: one historical source point to one receiver event.
 
-At the proof and numerical level, the point is found and weighted only by
-looking at a source path segment. The source worldline must be continuous
-enough to solve the root equation, compute the Jacobian floor, track root
-transport, and decide whether nearby roots are active or inactive. With finite
-causal-surface width $\eta>0$, the received contribution no longer collapses
-to an exact point; it comes from a finite neighborhood of the root on the source
-path. Thus the correct split is:
+At the proof and numerical level, the point is found and weighted only by looking at a source path segment. The source worldline must be continuous enough to solve the root equation, compute the Jacobian floor, track root transport, and decide whether nearby roots are active or inactive. With finite causal-surface width $\eta>0$, the received contribution no longer collapses to an exact point; it comes from a finite neighborhood of the root on the source path. Thus the correct split is:
 
 | Regime | What contributes |
 | --- | --- |
@@ -271,23 +197,13 @@ path. Thus the correct split is:
 | Finite-$\eta$ regularized branch | Small source-path neighborhoods around selected roots. |
 | Branch certification | A retained source-path segment, because root identity, gaps, Jacobian floors, and memory boundaries must persist under replay. |
 
-Plain-language version: a transmitter leaves expanding wake shells at every
-instant. A hit is like one shell touching the receiver. In the ideal sharp
-picture, that shell came from one exact place where the transmitter was. To
-know that this is a real, stable hit rather than a drawing artifact, the proof
-must inspect the nearby stretch of the transmitter's path.
+Plain-language version: a transmitter leaves expanding wake shells at every instant. A hit is like one shell touching the receiver. In the ideal sharp picture, that shell came from one exact place where the transmitter was. To know that this is a real, stable hit rather than a drawing artifact, the proof must inspect the nearby stretch of the transmitter's path.
 
 #### Photon Planar Pair Speed Split
 
-The photon channel currently describes a **coaxial contra-rotating polarity-conjugate
-planar pair** with a photon-channel propagation speed $c_\gamma$ that approaches
-$c_f$ in a weak homogeneous Noether sea. In broader medium-response contexts,
-$c_{\text{eff}}$ is the dressed limiting signal speed; the photon proof should
-keep $c_\gamma$, $c_{\text{eff}}$, and $c_f$ distinct until a common-limit
-derivation identifies them.
+The photon channel currently describes a **coaxial contra-rotating polarity-conjugate planar pair** with a photon-channel propagation speed $c_\gamma$ that approaches $c_f$ in a weak homogeneous Noether sea. In broader medium-response contexts, $c_{\text{eff}}$ is the dressed limiting signal speed; the photon proof should keep $c_\gamma$, $c_{\text{eff}}$, and $c_f$ distinct until a common-limit derivation identifies them.
 
-The topology question is about constituent architrino speeds inside the photon
-carrier. If a constituent has forward translation
+The topology question is about constituent architrino speeds inside the photon carrier. If a constituent has forward translation
 $$
 \mathbf v_{\parallel}=c_\gamma\hat{\mathbf e}
 $$
@@ -303,19 +219,9 @@ $$
 \qquad
 \|\mathbf v_a\|^2=c_\gamma^2+\|\mathbf v_\perp\|^2
 $$
-in the orthogonal idealization. If $c_\gamma$ is already close to $c_f$, any
-nonzero transverse component can make the constituent absolute speed exceed
-$c_f$ even though the photon-channel propagation speed remains at or below the
-observer-facing light speed.
+in the orthogonal idealization. If $c_\gamma$ is already close to $c_f$, any nonzero transverse component can make the constituent absolute speed exceed $c_f$ even though the photon-channel propagation speed remains at or below the observer-facing light speed.
 
-This is not automatically a contradiction. In the current architecture, $c_f$
-is the causal-wake propagation speed, not a declared speed limit for every
-architrino worldline. Downstream Master Equation packets currently provide
-examples of rows for super-field-speed source histories, self-hit, caustics, and
-multiple causal roots, but the topology layer should not depend on that EOM.
-What is not yet closed is the photon-specific proof that the coaxial planar-pair
-branch keeps its Gate A/B/C ledgers while its constituent absolute velocities
-may be super-field-speed.
+This is not automatically a contradiction. In the current architecture, $c_f$ is the causal-wake propagation speed, not a declared speed limit for every architrino worldline. Downstream Master Equation packets currently provide examples of rows for super-field-speed source histories, self-hit, caustics, and multiple causal roots, but the topology layer should not depend on that EOM. What is not yet closed is the photon-specific proof that the coaxial planar-pair branch keeps its Gate A/B/C ledgers while its constituent absolute velocities may be super-field-speed.
 
 Required photon-side rows:
 
@@ -328,31 +234,20 @@ Required photon-side rows:
 
 #### Field-Speed Hinge Telegraph Pattern
 
-The middle support band in a Noether braid is already treated as a candidate
-$c_f$ hinge. The new intuition is that a middle binary riding near the local
-field-speed threshold may have a causal-contact pattern that switches as tiny
-perturbations move it across the symmetry-breaking boundary:
+The middle support band in a Noether braid is already treated as a candidate $c_f$ hinge. The new intuition is that a middle binary riding near the local field-speed threshold may have a causal-contact pattern that switches as tiny perturbations move it across the symmetry-breaking boundary:
 $$
 \sigma_M(t)
 =
 \operatorname{sign}(v_M^{\mathrm{rel}}(t)-c_f).
 $$
 
-When $\sigma_M<0$, strict sub-field-speed same-source intervals do not supply
-nearby self-hit roots. When $\sigma_M>0$, super-field-speed curved intervals
-can admit same-source roots. At $\sigma_M=0$, the row is near a tangent or
-degenerate boundary and must be routed through the caustic or finite-$\eta$
-chart rather than treated as an ordinary simple-root row. If perturbations repeatedly
-cross this hinge, the retained causal-root ledger may look like an on/off or
-short/long pulse sequence:
+When $\sigma_M<0$, strict sub-field-speed same-source intervals do not supply nearby self-hit roots. When $\sigma_M>0$, super-field-speed curved intervals can admit same-source roots. At $\sigma_M=0$, the row is near a tangent or degenerate boundary and must be routed through the caustic or finite-$\eta$ chart rather than treated as an ordinary simple-root row. If perturbations repeatedly cross this hinge, the retained causal-root ledger may look like an on/off or short/long pulse sequence:
 $$
 0,\ 1,\ 0,\ 1,1,\ 0,\ldots
 $$
 where the symbols denote root-ledger status, not literal communication bits.
 
-This is the "telegraph" intuition: dot-dash-like contact pulses could arise
-from threshold crossings of the same causal-root topology. It is a proof target,
-not an accepted mechanism. A real row would need:
+This is the "telegraph" intuition: dot-dash-like contact pulses could arise from threshold crossings of the same causal-root topology. It is a proof target, not an accepted mechanism. A real row would need:
 
 | Required row | Purpose |
 | --- | --- |
@@ -364,14 +259,7 @@ not an accepted mechanism. A real row would need:
 
 #### Photon Speed Question And Telegraph Question Are Coupled
 
-The photon question and the middle-hinge question share one root-topology
-problem: a branch can have an observer-facing propagation speed at or below the
-effective light channel while some constituent architrino histories still cross
-the $c_f$ hinge in absolute substrate motion. If that happens, the branch must
-not hide the resulting self-hit, partner-hit, inactive-root, or caustic rows
-inside a smooth photon or middle-binary label. The causal-root ledger has to
-show whether those rows cancel, stabilize, radiate, route into action, or break
-the candidate branch.
+The photon question and the middle-hinge question share one root-topology problem: a branch can have an observer-facing propagation speed at or below the effective light channel while some constituent architrino histories still cross the $c_f$ hinge in absolute substrate motion. If that happens, the branch must not hide the resulting self-hit, partner-hit, inactive-root, or caustic rows inside a smooth photon or middle-binary label. The causal-root ledger has to show whether those rows cancel, stabilize, radiate, route into action, or break the candidate branch.
 
 ### Universal Conservation Ledger Discussion Capture 2026-07-10
 

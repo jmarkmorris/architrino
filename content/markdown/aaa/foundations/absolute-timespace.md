@@ -414,20 +414,14 @@ $$
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating
-$F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
+On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating $F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
 $$
 \frac{dT_{t,\ell}}{dT_r}
 =
 \frac{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_i(T_r)}
 {c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
-This identity is not a new coupling constant. It distinguishes the transmitter-side
-causal-root Jacobian from the rate at which a moving receiver path samples the
-same emitted causal wake sequence. A stationary receiver in the Euclidean-void
-rest frame sets the numerator to $c_f$; radial receiver motion changes the
-receiver-side action or wake-history rate and must be recorded when a proof
-uses accumulated action rather than only an event-local acceleration contribution.
+This identity is not a new coupling constant. It distinguishes the transmitter-side causal-root Jacobian from the rate at which a moving receiver path samples the same emitted causal wake sequence. A stationary receiver in the Euclidean-void rest frame sets the numerator to $c_f$; radial receiver motion changes the receiver-side action or wake-history rate and must be recorded when a proof uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 
@@ -462,8 +456,7 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation.
-It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
+The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation. It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
 =

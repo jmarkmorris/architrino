@@ -15,18 +15,8 @@ Closure goal: Test whether the local outward departure of a radially balanced, u
 
 ## Result
 
-- Derived: every radially balanced principal one-root circular release has
-  $r^{(3)}(0)=2\omega a_\theta>0$ for $0<v<c_f$.
-- Measured: sharp-chart EOM prefixes released at $0.75c_f$ and $0.99c_f$ kept
-  strictly positive radial velocity; the latter reached $0.9998750943c_f$.
-- Measured follow-up: the vector-consistent retained-history trajectory from
-  $100\,\mathrm{km/s}$ at radius $2\,\mathrm{kpc}$ reaches a radial turn near
-  $121$ million years at $2.00840092573\,\mathrm{kpc}$, without reaching
-  $170\,\mathrm{km/s}$.
-- Closed negatively: a sub-$c_f$ retained-history counterexample falsifies the
-  universal monotonic-outspiral conjecture. Later fate after the first radial
-  turn remains outside this claim.
-- Durable evidence:
-  [balanced circular-release outward-departure test](../../../priorities/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md)
-  and
-  [physical binary retained-history radial turn](../../../priorities/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md)
+- Derived: every radially balanced principal one-root circular release has $r^{(3)}(0)=2\omega a_\theta>0$ for $0<v<c_f$.
+- Measured: sharp-chart EOM prefixes released at $0.75c_f$ and $0.99c_f$ kept strictly positive radial velocity; the latter reached $0.9998750943c_f$.
+- Measured follow-up: the vector-consistent retained-history trajectory from $100\,\mathrm{km/s}$ at radius $2\,\mathrm{kpc}$ reaches a radial turn near $121$ million years at $2.00840092573\,\mathrm{kpc}$, without reaching $170\,\mathrm{km/s}$.
+- Closed negatively: a sub-$c_f$ retained-history counterexample falsifies the universal monotonic-outspiral conjecture. Later fate after the first radial turn remains outside this claim.
+- Durable evidence: [balanced circular-release outward-departure test](../../../priorities/braid-program/evidence/2026-08-10-balanced-circular-release-outward-departure.md) and [physical binary retained-history radial turn](../../../priorities/braid-program/evidence/2026-08-11-physical-binary-retained-history-radial-turn.md)

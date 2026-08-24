@@ -319,9 +319,7 @@ with the error budget allocated to named causal-root features, Noether sea dress
 
 ## 2026-06-23 Maturity Assessment
 
-This dated assessment preserves the rationale for the `6/23` ledger. It is
-not retained evidence and does not change the current scores in
-[equation.md](equation.md).
+This dated assessment preserves the rationale for the `6/23` ledger. It is not retained evidence and does not change the current scores in [equation.md](equation.md).
 
 | ID | Recorded `6/23` assessment | Justification |
 | --- | --- | --- |
@@ -331,11 +329,7 @@ not retained evidence and does not change the current scores in
 
 ## Translating-Binary Solvability And Account Boundary
 
-For $b=u/c_f$, write the periodic branch equation as
-$\mathcal F(\boldsymbol\rho,\Omega,b)=0$ and let $L$ be its complete
-linearization, including implicit variation of every retained causal root.
-Symmetry gives $a_1=0$ on the exact circular planar control, but it does not
-give $\boldsymbol\rho_1=0$. The ordered system is
+For $b=u/c_f$, write the periodic branch equation as $\mathcal F(\boldsymbol\rho,\Omega,b)=0$ and let $L$ be its complete linearization, including implicit variation of every retained causal root. Symmetry gives $a_1=0$ on the exact circular planar control, but it does not give $\boldsymbol\rho_1=0$. The ordered system is
 
 $$
 L\boldsymbol\rho_1+\mathcal F_b=0,
@@ -368,35 +362,15 @@ a_2
 },
 $$
 
-when the denominator is nonzero. Any quotient that omits the three displayed
-numerator terms, including either contribution from $\boldsymbol\rho_1$, is
-incomplete and must not be used.
+when the denominator is nonzero. Any quotient that omits the three displayed numerator terms, including either contribution from $\boldsymbol\rho_1$, is incomplete and must not be used.
 
-This reduction is declared only on a chart with finitely many retained roots,
-every root simple, a uniform positive transmitter-Jacobian floor, fixed root
-cardinality throughout the neighborhood, and a positive collision-separation
-floor. Before continuation, compare $\dim\ker L^\ast$ with the free constants
-at first and second order. More independent solvability conditions than free
-constants is a local nonexistence result, not a request for a longer run.
+This reduction is declared only on a chart with finitely many retained roots, every root simple, a uniform positive transmitter-Jacobian floor, fixed root cardinality throughout the neighborhood, and a positive collision-separation floor. Before continuation, compare $\dim\ker L^\ast$ with the free constants at first and second order. More independent solvability conditions than free constants is a local nonexistence result, not a request for a longer run.
 
-Plainly: solve the first-order shape and count equations versus available dials
-before interpreting a second-order period coefficient.
+Plainly: solve the first-order shape and count equations versus available dials before interpreting a second-order period coefficient.
 
-No conservation law has been derived for the delayed receiver-local kernel.
-The wake, boundary, energy, momentum, and angular-momentum rows are therefore
-unavailable until a predeclared MEC-002 update and its MEC-004 accounts close
-with MEC-005 provenance. Fitting a wake ledger after the moving branch is known
-has no evidential weight. In particular, $R_{\mathrm{shell}}$ is one scalar
-consequence of stronger energy and momentum readouts; it is necessary when
-those accounts exist but never sufficient by itself.
+No conservation law has been derived for the delayed receiver-local kernel. The wake, boundary, energy, momentum, and angular-momentum rows are therefore unavailable until a predeclared MEC-002 update and its MEC-004 accounts close with MEC-005 provenance. Fitting a wake ledger after the moving branch is known has no evidential weight. In particular, $R_{\mathrm{shell}}$ is one scalar consequence of stronger energy and momentum readouts; it is necessary when those accounts exist but never sufficient by itself.
 
-The corpus binary triple
-$(R_T^{\mathrm{bin}},R_\xi^{\mathrm{bin}},R_{\mathrm{shape}}^{\mathrm{bin}})$
-is the local branch-shape test. The vector
-$\mathcal R_{02-04}^{(q)}$ below is its broader same-record ledger extension.
-They are related interfaces, not interchangeable claims: the vector must carry
-the triple's branch identity and shape row before adding signal, account, shell,
-rest-invariance, or sea-response coordinates.
+The corpus binary triple $(R_T^{\mathrm{bin}},R_\xi^{\mathrm{bin}},R_{\mathrm{shape}}^{\mathrm{bin}})$ is the local branch-shape test. The vector $\mathcal R_{02-04}^{(q)}$ below is its broader same-record ledger extension. They are related interfaces, not interchangeable claims: the vector must carry the triple's branch identity and shape row before adding signal, account, shell, rest-invariance, or sea-response coordinates.
 
 ## First Mathematical Object To Add Next
 

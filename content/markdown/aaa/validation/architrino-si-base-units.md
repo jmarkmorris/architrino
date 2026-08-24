@@ -254,8 +254,7 @@ $$
 
 Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. In $\mathbb{A}\mathbb{A}\mathbb{A}$, temperature is not the internal energy of one Noether braid or the total energy stored in the Noether sea. It is an effective ensemble variable admitted when a declared coarse-graining supplies an accessible energy ledger, a measure over retained states, a fixed inventory or access variable, and a local equilibrium or thermalization condition. The general rule is the same-record entropy relation developed in [Entropy](../dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable).
 
-**Thermalized-ensemble limit:**
-In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
+**Thermalized-ensemble limit:** In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
 $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
 $$

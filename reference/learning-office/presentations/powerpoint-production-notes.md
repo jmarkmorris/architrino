@@ -99,8 +99,7 @@
     - no way to control on iPad
         - FAIL
         - maybe could try multiple times… arghhh
-    - enter immersive reader
-            - set text preferences
+    - enter immersive reader       - set text preferences
     - click on read aloud, after setting reading preferences
         - turn iPad volume down so it doesn’t record sound from iPad speaker
     - can pause the reading

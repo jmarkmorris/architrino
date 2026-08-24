@@ -155,11 +155,9 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 - Outcome: pair annihilation reduces lepton density and heats radiation.
 - Sub-phase (neutrino decoupling, $\sim 1$ s): weak interaction rate falls below expansion/relaxation; neutrinos free-stream.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
-**$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
+**$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath. **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether braids with six $\epsilon$ axial architrinos form):** Stable lepton analogs are hypothesized to form from Noether braids carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units; the formation pathway is not established. Lepton-like assemblies populate the Noether sea and mediate charge-neutralization channels.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether braids with Neutral Axial Layers):** Nearly neutral Noether braid assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether braids with six $\epsilon$ axial architrinos form):** Stable lepton analogs are hypothesized to form from Noether braids carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units; the formation pathway is not established. Lepton-like assemblies populate the Noether sea and mediate charge-neutralization channels. **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether braids with Neutral Axial Layers):** Nearly neutral Noether braid assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 ## Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.

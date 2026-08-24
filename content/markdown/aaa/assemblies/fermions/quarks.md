@@ -98,13 +98,11 @@ $$
 
 The down-type sector admits two allowed axis-pattern families:
 
-1. Family I:
-   one positive-polarity dyad and two negative-polarity dyads, i.e. permutations of
+1. Family I: one positive-polarity dyad and two negative-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_+,\epsilon_+),(\epsilon_-,\epsilon_-),(\epsilon_-,\epsilon_-)\big)
    $$
-2. Family II:
-   one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
+2. Family II: one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_-,\epsilon_-),(\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_-)\big)
    $$
@@ -194,8 +192,7 @@ The geometric implementation candidate then reads:
 - **right-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch left-handed doublets,
 - **left-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch right-handed singlets.
 
-This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
-At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
+This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks. At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
 
 #### Right-handed antiquark bookkeeping
 
@@ -427,8 +424,7 @@ $$
 |u_2\rangle \leftrightarrow |u_3\rangle,\qquad
 |u_1\rangle \leftrightarrow |u_3\rangle
 $$
-and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
-For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
+and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion. For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ### Generator picture
 

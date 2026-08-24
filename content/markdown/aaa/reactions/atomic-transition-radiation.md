@@ -311,8 +311,7 @@ The benchmark recoveries for this page are:
 - spectral line frequencies after local clock/rate conversion;
 - absorption and emission rates in the Fermi's Golden Rule limit;
 - Einstein coefficient relations and detailed balance in thermalized ensembles;
-- the hydrogen $2s\to1s$ two-photon continuum, with one vertex closing a shared ledger
-  $E_{\gamma,1}+E_{\gamma,2}=\Delta E_{2s\to1s}^{\mathrm{env}}-\Delta E_{\mathrm{recoil}}-\Delta E_{\mathrm{med}}-\Delta E_{\mathrm{rem}}$ and both photons carrying separate Gate A/B rows;
+- the hydrogen $2s\to1s$ two-photon continuum, with one vertex closing a shared ledger $E_{\gamma,1}+E_{\gamma,2}=\Delta E_{2s\to1s}^{\mathrm{env}}-\Delta E_{\mathrm{recoil}}-\Delta E_{\mathrm{med}}-\Delta E_{\mathrm{rem}}$ and both photons carrying separate Gate A/B rows;
 - Lyman-$\alpha$ resonant trapping and escape as a coupled emission-capture-transport recovery, not as a modified local line gap;
 - natural line widths as a recovery target for transition-time and basin-escape statistics;
 - recoil, Doppler, pressure, Zeeman, Stark, fine-structure, and hyperfine corrections only after the relevant transport, medium, and spin-ledger dependencies are supplied.

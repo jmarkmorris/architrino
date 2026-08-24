@@ -161,8 +161,7 @@ $$
 +\chi_{\mathrm{dd}}\beta_f\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
 \right\|
 $$
-with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$.
-The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
+with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$. The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
 
 Let $\boldsymbol{\rho}^\star(s;\beta_f)$ be a $P(\beta_f)$-periodic translating attractor. Linearization gives a delay-Floquet system
 $$
@@ -278,9 +277,7 @@ R_0\left(
 $$
 in the planar orientation where the drift direction lies in the binary plane. A clean primitive result has $\mathcal{R}_{\mathrm{bin}}=0$ or a controlled residual traceable to named branch-ledger features. A nonzero residual is not a rhetorical failure; it is the first foundation-level pressure on the Lorentz-closure program, because the binary is the first available internal clock and ruler.
 
-> Claim grade: **test definition**. No value of this residual triple has been
-> produced by evolving the delayed law at any drift speed. A prescribed or
-> algebraically deformed history does not supply that missing branch evidence.
+> Claim grade: **test definition**. No value of this residual triple has been produced by evolving the delayed law at any drift speed. A prescribed or algebraically deformed history does not supply that missing branch evidence.
 
 ### Exact substrate symmetries and delay currents
 
@@ -481,19 +478,11 @@ G_{-+}(\tau_{+-};\theta_1,u)=0,
 G_{+-}(\tau_{-+};\theta_1+\Omega_u\tau_{+-},u)=0,
 $$
 
-with a declared integer phase return, both transmitter-side weights, and the
-same evolved branch shape in both equations. The scalar reduction above is
-exact only for fixed, non-orbiting, co-moving endpoints. On an orbiting binary,
-residual phase dependence after optimizing the period falsifies it as an exact
-reduction of that itinerary.
+with a declared integer phase return, both transmitter-side weights, and the same evolved branch shape in both equations. The scalar reduction above is exact only for fixed, non-orbiting, co-moving endpoints. On an orbiting binary, residual phase dependence after optimizing the period falsifies it as an exact reduction of that itinerary.
 
-Plainly: the simple round trip works exactly only when its endpoints do not
-orbit. A binary must close two actual delayed hits on the same evolved orbit.
+Plainly: the simple round trip works exactly only when its endpoints do not orbit. A binary must close two actual delayed hits on the same evolved orbit.
 
-> Claim grade: **derived conditional** on a single-speed closed return,
-> orientation independence, and the named two-root itinerary. This is a
-> kinematic selection rule, not evidence that a translating branch exists or is
-> stable.
+> Claim grade: **derived conditional** on a single-speed closed return, orientation independence, and the named two-root itinerary. This is a kinematic selection rule, not evidence that a translating branch exists or is stable.
 
 The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
@@ -625,8 +614,7 @@ Q_{ab}^{(q)}(v)\equiv
 \sum_{i=1}^{N_q}r_{i,a}r_{i,b}
 \right\rangle_{\text{cyc},q}
 $$
-This equal-weight geometric convention is fixed before closure. It prevents the extracted shape residual from changing when an observer-level inertial-response convention is later assigned to the admitted assembly branch.
-Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q^{(q)}(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define extracted semiaxes
+This equal-weight geometric convention is fixed before closure. It prevents the extracted shape residual from changing when an observer-level inertial-response convention is later assigned to the admitted assembly branch. Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q^{(q)}(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define extracted semiaxes
 $$
 a_{\parallel,q}(v)\equiv \sqrt{q_{\parallel}(v)}\qquad
 a_{\perp,q}(v)\equiv \sqrt{\frac{q_{\perp,1}(v)+q_{\perp,2}(v)}{2}}
@@ -653,8 +641,7 @@ On the attracting manifold, use principal-frame quadratic closure
 $$
 U_{\text{eff}}=\frac{1}{2}K_{\parallel}(v)\,r_{\parallel}^2+\frac{1}{2}K_{\perp}(v)\left(r_{\perp,1}^2+r_{\perp,2}^2\right)
 $$
-Notation guardrail: in this chapter, $U_{\text{eff}}$ denotes the cycle-averaged mechanical potential on the translating attractor; it is distinct from the positive weak-field PPN variables $U$ and $U_{\Phi}$ used in [spacetime/ppn-parameters.md](./ppn-parameters.md).
-Do not identify a fixed-energy shell with a fixed-action shell. Parameterize the amplitude response by
+Notation guardrail: in this chapter, $U_{\text{eff}}$ denotes the cycle-averaged mechanical potential on the translating attractor; it is distinct from the positive weak-field PPN variables $U$ and $U_{\Phi}$ used in [spacetime/ppn-parameters.md](./ppn-parameters.md). Do not identify a fixed-energy shell with a fixed-action shell. Parameterize the amplitude response by
 $$
 a_i\propto K_i^{-p},
 \qquad
@@ -662,8 +649,7 @@ a_i\propto K_i^{-p},
 =
 \left(\frac{K_{\perp}}{K_{\parallel}}\right)^p.
 $$
-The fixed-energy harmonic scaling is $p=1/2$, while conservative adiabatic-action scaling is $p=1/4$. A strictly attracting delayed branch need not preserve either shell: its effective exponent must be extracted from the settled branch $\boldsymbol\rho^\star(s;\beta_f)$, and the constant-$p$ form below is only a local response ansatz.
-Write
+The fixed-energy harmonic scaling is $p=1/2$, while conservative adiabatic-action scaling is $p=1/4$. A strictly attracting delayed branch need not preserve either shell: its effective exponent must be extracted from the settled branch $\boldsymbol\rho^\star(s;\beta_f)$, and the constant-$p$ form below is only a local response ansatz. Write
 $$
 \frac{K_{\parallel}}{K_0}=1+k_2\beta_f^2+k_4\beta_f^4+O(\beta_f^6)+\Delta_{\parallel}^{\text{LV}}
 $$
@@ -707,8 +693,7 @@ $$
 \frac{\kappa\,\epsilon^2}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta)\|^2}\,
 W_{ij}(T,\sigma;\eta)\,d^2\sigma
 $$
-where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale.
-Set
+where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale. Set
 $$
 U_{\text{eff}}(T;\beta_f)\equiv \sum_{i<j}\mathcal{U}_{ij}(T;\beta_f)
 \qquad
@@ -717,8 +702,7 @@ K_{ab}(\beta_f)\equiv
 \frac{\partial^2 U_{\text{eff}}}{\partial r_a\partial r_b}
 \right\rangle_{\text{cyc}}
 $$
-with cycle average $\langle\cdot\rangle_{\text{cyc}}$ taken on $\boldsymbol{\rho}^\star$.
-Project to principal channels:
+with cycle average $\langle\cdot\rangle_{\text{cyc}}$ taken on $\boldsymbol{\rho}^\star$. Project to principal channels:
 $$
 K_{\parallel}=\hat{e}_{\parallel}^a K_{ab}\hat{e}_{\parallel}^b\qquad
 K_{\perp}=\frac{1}{2}(\delta^{ab}-\hat{e}_{\parallel}^a\hat{e}_{\parallel}^b)K_{ab}
@@ -1285,8 +1269,7 @@ For weak drift, slowly varying Noether sea flow, and quasi-static fields in a lo
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big)
 $$
-The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c_0$ is the declared observer-sector speed, and the $c_f\to c_0$ normalization is an obligation of the dressing map, not an input identity. Any residual $c_f$-vs-$c_0$ mismatch in this branch is bounded by the same $\epsilon_{\mathrm{LV}}$ budget that the structural-integrity closure target must drive below the experimental rows above; it is not assumed small here.
-Then the nonrelativistic geodesic limit becomes
+The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c_0$ is the declared observer-sector speed, and the $c_f\to c_0$ normalization is an obligation of the dressing map, not an input identity. Any residual $c_f$-vs-$c_0$ mismatch in this branch is bounded by the same $\epsilon_{\mathrm{LV}}$ budget that the structural-integrity closure target must drive below the experimental rows above; it is not assumed small here. Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =-\xi^{2}(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
@@ -1501,18 +1484,9 @@ m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta_f)
 $$
 Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $T_{t,m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
 
-At a generic transverse transmitter-side fold, the two newborn roots have
-acceleration magnitude proportional to
-$|T-T_\ast|^{-1/2}$. This divergence is locally integrable: the impulse across
-a shrinking window tends to zero, velocity remains continuous, and position
-remains $C^1$. Any finite observable change comes from the newborn branch
-persisting after the fold, not from the singular instant. This statement does
-not cover tangential crossings, repeated fold accumulation, simultaneous
-collision singularities, nonunique ledger continuation, or a numerical method
-that samples the singular point directly.
+At a generic transverse transmitter-side fold, the two newborn roots have acceleration magnitude proportional to $|T-T_\ast|^{-1/2}$. This divergence is locally integrable: the impulse across a shrinking window tends to zero, velocity remains continuous, and position remains $C^1$. Any finite observable change comes from the newborn branch persisting after the fold, not from the singular instant. This statement does not cover tangential crossings, repeated fold accumulation, simultaneous collision singularities, nonunique ledger continuation, or a numerical method that samples the singular point directly.
 
-> Claim grade: **derived local integrability** for a generic transverse
-> positive-separation fold; no global continuation or branch claim follows.
+> Claim grade: **derived local integrability** for a generic transverse positive-separation fold; no global continuation or branch claim follows.
 
 The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta_f)$ on a drift band $0\le\beta_f\le\beta_{\max}$ such that
 $$
@@ -1548,8 +1522,7 @@ $$
 \frac{6p+1}{72p^2}
 \right)
 $$
-and the same evolved branch must supply the common exponent $p$.
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+and the same evolved branch must supply the common exponent $p$. The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$

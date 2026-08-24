@@ -1,7 +1,6 @@
 # EOM Solver Packet
 
-This folder keeps the live solver controls at the top level and groups
-supporting material by purpose.
+This folder keeps the live solver controls at the top level and groups supporting material by purpose.
 
 - [priorities.md](priorities.md) — current objective, architecture, and acceptance boundary.
 - [work-queue.md](work-queue.md) — executable solver work and lifecycle status.

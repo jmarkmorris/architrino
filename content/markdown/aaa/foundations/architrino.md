@@ -102,16 +102,9 @@ with each orbit site carrying a fixed polarity sign. If assembly closure retains
 
 ## Wake Response and Effective Electromagnetic Fields
 
-An individual architrino does not receive an electric or magnetic field as an
-additional substrate input. It receives the causal-root acceleration
-contributions defined by the Master Equation. Effective field language becomes
-available only after those source-provenanced contributions and any derived
-assembly, Noether sea, and boundary response have been projected into a
-receiver-independent continuum record.
+An individual architrino does not receive an electric or magnetic field as an additional substrate input. It receives the causal-root acceleration contributions defined by the Master Equation. Effective field language becomes available only after those source-provenanced contributions and any derived assembly, Noether sea, and boundary response have been projected into a receiver-independent continuum record.
 
-There is nevertheless a useful bridge to electric response. For one declared
-source history, evaluate the source-driven acceleration on matched hypothetical
-receiver states that differ only by polarity. Define
+There is nevertheless a useful bridge to electric response. For one declared source history, evaluate the source-driven acceleration on matched hypothetical receiver states that differ only by polarity. Define
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -149,27 +142,11 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-The labels `even` and `odd` refer to receiver-polarity reversal. They do not
-refer to spatial parity. One actual architrino has one fixed polarity; the
-matched pair is a comparison instrument, not a co-located physical pair. If
-the even term vanishes in an isolated electric regime, the two receiver
-polarities acquire equal-and-opposite source-driven accelerations. This is the
-native electric-sign analogue, but it remains a decomposition of the causal-hit
-ledger rather than an imported $q\mathbf E/m$ law.
+The labels `even` and `odd` refer to receiver-polarity reversal. They do not refer to spatial parity. One actual architrino has one fixed polarity; the matched pair is a comparison instrument, not a co-located physical pair. If the even term vanishes in an isolated electric regime, the two receiver polarities acquire equal-and-opposite source-driven accelerations. This is the native electric-sign analogue, but it remains a decomposition of the causal-hit ledger rather than an imported $q\mathbf E/m$ law.
 
-There is no corresponding primitive magnetic vector in one radial hit. A
-magnetic readout must be recovered from organized multi-source and multi-root
-history, moving or circulating assembly geometry, any derived Noether sea and
-boundary response, and an observer-level projection. Whether the sea is
-essential, modifies a direct source-history response, or remains within its
-balanced reference tolerance is a constitutive closure target rather than a
-definition of either field.
+There is no corresponding primitive magnetic vector in one radial hit. A magnetic readout must be recovered from organized multi-source and multi-root history, moving or circulating assembly geometry, any derived Noether sea and boundary response, and an observer-level projection. Whether the sea is essential, modifies a direct source-history response, or remains within its balanced reference tolerance is a constitutive closure target rather than a definition of either field.
 
-Plainly: the electric-like sign difference is already visible when the same
-source history is evaluated against the two architrino polarities. The smooth
-electric field is the later common map of that response. Magnetic behavior
-requires additional organized geometry; neither field is a new substance or
-an extra term in the architrino equation of motion.
+Plainly: the electric-like sign difference is already visible when the same source history is evaluated against the two architrino polarities. The smooth electric field is the later common map of that response. Magnetic behavior requires additional organized geometry; neither field is a new substance or an extra term in the architrino equation of motion.
 
 ## Provenance and Persistence
 
@@ -332,8 +309,7 @@ Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
 \mathbf Z_a(s)=\mathbf X_a(s),
 $$
-where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$.
-Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
+where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$. Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-transmitter wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from transmitter-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 

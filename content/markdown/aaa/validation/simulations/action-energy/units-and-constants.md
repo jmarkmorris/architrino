@@ -18,11 +18,7 @@ Core symbols:
   - Consequence: every velocity appears as a pure number $\|\mathbf V\|$; the threshold $\|\mathbf V\|=c_f$ becomes $\|\mathbf V\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
 
 - Coupling constant ($\kappa>0$):
-  - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
-    $
-    \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf{r}},
-    $
-    larger $\kappa$ uniformly strengthens every interaction.
+  - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law, $ \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf{r}}, $ larger $\kappa$ uniformly strengthens every interaction.
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):

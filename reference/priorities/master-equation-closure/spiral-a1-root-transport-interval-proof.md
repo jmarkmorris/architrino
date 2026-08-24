@@ -8,18 +8,9 @@ b_\ast=\frac{7}{2},
 \qquad
 I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right].
 $$
-This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md),
-[spiral-a1-restart](spiral-a1-restart.md), and the VP-1
-template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md).
-It supplies no canonical action or conservation evidence.
+This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md), [spiral-a1-restart](spiral-a1-restart.md), and the VP-1 template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md). It supplies no canonical action or conservation evidence.
 
-Claim level. Dependent analytic topology contract for the retained A1 chart.
-The root-transport row is not an independent interval obstruction once the same
-A1 active root tubes, nonzero active Jacobian floor, positive $b(\theta)$, and
-velocity-projection convention used in $J$ are certified. It is the differentiated
-causal-delay identity for the retained root equation. Repository theorem-grade
-status remains pending until a transmitter-side branch certificate consumes
-these records with accepted causal wake accounts.
+Claim level. Dependent analytic topology contract for the retained A1 chart. The root-transport row is not an independent interval obstruction once the same A1 active root tubes, nonzero active Jacobian floor, positive $b(\theta)$, and velocity-projection convention used in $J$ are certified. It is the differentiated causal-delay identity for the retained root equation. Repository theorem-grade status remains pending until a transmitter-side branch certificate consumes these records with accepted causal wake accounts.
 
 ## Fixed A1 Inputs
 
@@ -93,8 +84,7 @@ $$
 \qquad
 \frac{\partial F_s}{\partial\Delta}=-\frac{J_{11}}{b(\theta)}.
 $$
-Because $b(\theta)>0$, the A1 active Jacobian floor gives a nonzero
-$\partial_\Delta F$ row on every retained active tube.
+Because $b(\theta)>0$, the A1 active Jacobian floor gives a nonzero $\partial_\Delta F$ row on every retained active tube.
 
 ## A1-Specific Dependencies
 
@@ -111,17 +101,11 @@ Thus the packet-level active floor may use
 $$
 \nu_{\mathrm{cert}}^{\mathrm{A1}}=1.20,
 $$
-with stricter displayed lower endpoint $1.2624997299177638$ on the padded
-$P_3$ rectangle. The same packet also supplies inactive complement signs,
-self-coincidence exclusion on $0<\Delta\le1/2$, and finite-memory control below
-$4\pi$. These rows are dependencies of the root-offset map because they prevent
-branch exchange, unlisted active roots, and self coincidence inside the declared
-chart.
+with stricter displayed lower endpoint $1.2624997299177638$ on the padded $P_3$ rectangle. The same packet also supplies inactive complement signs, self-coincidence exclusion on $0<\Delta\le1/2$, and finite-memory control below $4\pi$. These rows are dependencies of the root-offset map because they prevent branch exchange, unlisted active roots, and self coincidence inside the declared chart.
 
 ## Root-Transport Identity
 
-Let $\alpha$ be one retained active branch with source label $j_\alpha$ and kind
-$p$ or $s$. Put
+Let $\alpha$ be one retained active branch with source label $j_\alpha$ and kind $p$ or $s$. Put
 $$
 \mathbf{R}_\alpha(\theta,\Delta)
 =
@@ -135,8 +119,7 @@ $$
 =
 \frac{\mathbf{R}_\alpha}{L_\alpha}.
 $$
-On the certified A1 active tubes, $L_\alpha=r(\theta)\Lambda_\alpha>0$ and
-the root equation is equivalent to
+On the certified A1 active tubes, $L_\alpha=r(\theta)\Lambda_\alpha>0$ and the root equation is equivalent to
 $$
 G_\alpha(\theta,\Delta)
 \equiv
@@ -144,8 +127,7 @@ L_\alpha(\theta,\Delta)-\frac{c_f}{\Omega}\Delta
 =0.
 $$
 
-By the implicit function theorem, each certified active tube carries a unique
-$C^1$ root-offset map $\Delta_\alpha(\theta)$ satisfying
+By the implicit function theorem, each certified active tube carries a unique $C^1$ root-offset map $\Delta_\alpha(\theta)$ satisfying
 $$
 F_\alpha(\theta,\Delta_\alpha(\theta))=0,
 \qquad
@@ -215,8 +197,7 @@ $$
 
 ## Sidecar-Ready `root_transport` Row
 
-The row should be recorded as a dependent analytic pass, keyed to the A1 active
-chart rather than to sampled root data. A sidecar-compatible shape is:
+The row should be recorded as a dependent analytic pass, keyed to the A1 active chart rather than to sampled root data. A sidecar-compatible shape is:
 
 ```yaml
 root_transport:
@@ -255,32 +236,20 @@ root_transport:
     allowed_residuals: [root_transport_residual, root_transport_residual_division_free]
 ```
 
-Any replacement certificate should not classify this row from sampled roots. If a numerical
-residual audit is emitted, it is an audit of the analytic dependency row unless
-the certificate is separately certifying a transported numerical representation of
-$\Delta_\alpha(\theta)$ with an interval derivative error bound.
+Any replacement certificate should not classify this row from sampled roots. If a numerical residual audit is emitted, it is an audit of the analytic dependency row unless the certificate is separately certifying a transported numerical representation of $\Delta_\alpha(\theta)$ with an interval derivative error bound.
 
 ## Blockers and Failure Modes
 
-No independent A1 root-transport blocker remains after the active tubes are
-certified. The row is blocked only by dependency failure or convention mismatch:
+No independent A1 root-transport blocker remains after the active tubes are certified. The row is blocked only by dependency failure or convention mismatch:
 
 - an active window fails to certify exactly one simple root over $I_\ast$;
-- $\partial_\Delta F_\alpha$ contains zero, equivalently the active $J_\alpha$
-  floor closes;
-- the replacement certificate mixes root equations, source labels, Jacobian rows, or
-  velocity projections from different branch conventions;
-- the self branch touches spatial coincidence, so $L_\alpha=0$ and
-  $\hat{\mathbf r}_\alpha$ is undefined;
+- $\partial_\Delta F_\alpha$ contains zero, equivalently the active $J_\alpha$ floor closes;
+- the replacement certificate mixes root equations, source labels, Jacobian rows, or velocity projections from different branch conventions;
+- the self branch touches spatial coincidence, so $L_\alpha=0$ and $\hat{\mathbf r}_\alpha$ is undefined;
 - an inactive complement row admits an unlisted partner or self root;
 - finite-memory control fails below the declared $4\pi$ horizon;
-- sampled or finite-difference $\Delta_\alpha'$ values are promoted as
-  theorem-grade evidence without an outward interval error bound.
+- sampled or finite-difference $\Delta_\alpha'$ values are promoted as theorem-grade evidence without an outward interval error bound.
 
 ## Promotion Decision
 
-Priority capture complete; transmitter-side acceleration rebuild completed in
-[spiral-a1-restart](spiral-a1-restart.md). The A1 root-transport identity is not
-ready for authored corpus promotion as an isolated result because outward
-signed-playback intervals, radial and tangential aggregates, and accepted causal
-wake accounts remain open.
+Priority capture complete; transmitter-side acceleration rebuild completed in [spiral-a1-restart](spiral-a1-restart.md). The A1 root-transport identity is not ready for authored corpus promotion as an isolated result because outward signed-playback intervals, radial and tangential aggregates, and accepted causal wake accounts remain open.

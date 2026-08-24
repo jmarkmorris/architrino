@@ -626,8 +626,7 @@ Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(X,Y,Z)$ on the absolute slice,
-  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(\mathbf X,T)$ set by the local Noether braid configuration:
-    $c_{\text{eff}}(\mathbf X,T) < c_f \quad \text{in dense regions (near mass)}$ — the declared response-sign assumption of the weak-field branch, required for recovery rather than derived.
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(\mathbf X,T)$ set by the local Noether braid configuration: $c_{\text{eff}}(\mathbf X,T) < c_f \quad \text{in dense regions (near mass)}$ — the declared response-sign assumption of the weak-field branch, required for recovery rather than derived.
 - From the **Physical Observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
   - Shapiro delay, light bending, and perihelion precession become **refractive-medium effects** rather than curvature of the void itself.
@@ -640,8 +639,7 @@ The constitutive task is to:
    - $n(\mathbf X,T)$ (equivalently $\rho_{\text{NS}}(\mathbf X,T)$),
    - Stress/strain of the Noether sea,
    - Potential $\Phi_{\text{eff}}(\mathbf X,T)$ from matter assemblies.
-2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
-   $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
+2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy: $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
 
 ## Minimal Weak-Field Constitutive Map (for PPN Matching)
 
@@ -764,8 +762,7 @@ g^{\text{eff}}_{00}=-N^2,
 g^{\text{eff}}_{ij}=\Omega^2h_{ij}
 $$
 
-This subclass turns the first-order shape response into a sharp geometry-side
-closure target. Matching the standard positive-potential PPN rows gives
+This subclass turns the first-order shape response into a sharp geometry-side closure target. Matching the standard positive-potential PPN rows gives
 $$
 N
 =
@@ -784,11 +781,7 @@ $$
 1-(1+\gamma_{\mathrm{PPN}})\frac{U}{c_0^2}
 +O(c_0^{-4}).
 $$
-Thus $\gamma_{\mathrm{PPN}}=1$ is equivalent at first order to
-$\xi=1-2U/c_0^2+O(c_0^{-4})$ in this ADM subclass. The asymptotic condition is
-$\xi\to1$ as $U\to0$; it does not erase the first-order response that carries
-$\gamma_{\mathrm{PPN}}$. A native braid-envelope derivation of this response
-would determine $\gamma_{\mathrm{PPN}}$ rather than fit it.
+Thus $\gamma_{\mathrm{PPN}}=1$ is equivalent at first order to $\xi=1-2U/c_0^2+O(c_0^{-4})$ in this ADM subclass. The asymptotic condition is $\xi\to1$ as $U\to0$; it does not erase the first-order response that carries $\gamma_{\mathrm{PPN}}$. A native braid-envelope derivation of this response would determine $\gamma_{\mathrm{PPN}}$ rather than fit it.
 
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
 $$
@@ -818,15 +811,6 @@ $$
 $$
 which is the Newtonian limit.
 
-PPN extraction for this constitutive subclass is defined canonically in
-[ppn-parameters](./ppn-parameters.md#ppn-parameters-and-the-euclidean-anchor),
-including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map,
-and weak-field closure vector.
+PPN extraction for this constitutive subclass is defined canonically in [ppn-parameters](./ppn-parameters.md#ppn-parameters-and-the-euclidean-anchor), including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map, and weak-field closure vector.
 
-In that canonical map the exponential identity
-$N=e^{\Phi_{\mathrm{eff}}/c_0^2}$ fixes the quadratic coefficient only when the
-series is expressed in the constitutive potential $U_\Phi=-\Phi_{\mathrm{eff}}$.
-It gives $\beta_{\mathrm{PPN}}=1$ only if
-$U_\Phi=U+O(U^3/c_0^6)$, so the second-order potential-conversion coefficient
-vanishes. That conversion is a constitutive obligation, not a consequence of
-the definition $\Phi_{\mathrm{eff}}=c_0^2\ln N$.
+In that canonical map the exponential identity $N=e^{\Phi_{\mathrm{eff}}/c_0^2}$ fixes the quadratic coefficient only when the series is expressed in the constitutive potential $U_\Phi=-\Phi_{\mathrm{eff}}$. It gives $\beta_{\mathrm{PPN}}=1$ only if $U_\Phi=U+O(U^3/c_0^6)$, so the second-order potential-conversion coefficient vanishes. That conversion is a constitutive obligation, not a consequence of the definition $\Phi_{\mathrm{eff}}=c_0^2\ln N$.

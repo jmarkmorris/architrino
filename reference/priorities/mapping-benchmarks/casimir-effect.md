@@ -37,9 +37,7 @@ Here $\mathcal B_{\partial M}$ is the plate or material boundary branch, $\mathc
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `boundary_mode_record` — Define the mode restriction induced by material boundary assemblies. Status: `draft`.
 2. `force_ledger` — Close plate force, recoil, material response, and medium update without untracked energy. Status: `draft`.

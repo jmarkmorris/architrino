@@ -205,8 +205,7 @@ The future implementation should include provider-registry fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Preserve provider capability, gateway, token-ledger, issue-mining, and action-broker boundaries while adding observability/public-status sandbox fixtures with redacted provider and action classes.
+Closure goal: Preserve provider capability, gateway, token-ledger, issue-mining, and action-broker boundaries while adding observability/public-status sandbox fixtures with redacted provider and action classes.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

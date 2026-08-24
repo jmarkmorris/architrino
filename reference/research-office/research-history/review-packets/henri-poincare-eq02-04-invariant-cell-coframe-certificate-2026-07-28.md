@@ -1,5 +1,4 @@
-Closure goal:
-Establish the narrowest defensible proof ladder in place of the invariant-cell-first proposal: certify a relative-periodic point in one regular delayed-history return chart, lift it through controlled refinement, continue it over drift only when a branch is needed, and test stability or basin size only as separate stronger claims.
+Closure goal: Establish the narrowest defensible proof ladder in place of the invariant-cell-first proposal: certify a relative-periodic point in one regular delayed-history return chart, lift it through controlled refinement, continue it over drift only when a branch is needed, and test stability or basin size only as separate stronger claims.
 
 # Research Findings And Proposed Changes: Relative-Periodic Existence Before Invariant-Cell Or Coframe Claims
 
@@ -436,18 +435,9 @@ The decisive falsifier is equally narrow: if no neighborhood of the candidate ca
 
 ## Proposed Changes
 
-**Readiness gate.** Changes 1–5 are retained as terminology, theorem-domain,
-proof-order, identity, and overclaim corrections. They do not assert that a
-finite-memory point, full delayed history, drift branch, or stable set exists.
-The executable contract migration is deferred under
-[Disposition of Open Questions](#disposition-of-open-questions).
+**Readiness gate.** Changes 1–5 are retained as terminology, theorem-domain, proof-order, identity, and overclaim corrections. They do not assert that a finite-memory point, full delayed history, drift branch, or stable set exists. The executable contract migration is deferred under [Disposition of Open Questions](#disposition-of-open-questions).
 
-**Applied disposition, 2026-07-29.** Changes 1–5 now live in the `S_eq`,
-shared-record, equation-detail, and score-ladder owners at terminology and
-theorem-boundary authority only. Change 6 and every open question are recorded
-in the canonical [July 28 translating-binary review action
-register](../../../priorities/mapping-equations/work-queue.md#july-28-translating-binary-review-action-register).
-This packet is reference evidence only and owns no outstanding action.
+**Applied disposition, 2026-07-29.** Changes 1–5 now live in the `S_eq`, shared-record, equation-detail, and score-ladder owners at terminology and theorem-boundary authority only. Change 6 and every open question are recorded in the canonical [July 28 translating-binary review action register](../../../priorities/mapping-equations/work-queue.md#july-28-translating-binary-review-action-register). This packet is reference evidence only and owns no outstanding action.
 
 ### Change 1: Correct The Support Terminology
 
@@ -539,13 +529,9 @@ The affected live surfaces remain:
 - `scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs`;
 - the associated `eq02-04-invariant-cell-coframe-source-*.v1.json` fixtures and same-branch checks.
 
-The downstream no-retune transport question remains separately owned by
-[the no-retune transport research findings](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md).
-It must consume a validated drift family rather than stand in for one.
+The downstream no-retune transport question remains separately owned by [the no-retune transport research findings](elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md). It must consume a validated drift family rather than stand in for one.
 
-Plainly: the mathematical correction can be stated now. Changing the executable
-contract waits for a bounded migration in which every deliberately bad fixture
-still fails for the intended reason.
+Plainly: the mathematical correction can be stated now. Changing the executable contract waits for a bounded migration in which every deliberately bad fixture still fails for the intended reason.
 
 | Open question | Live owner and status | Next acceptance test | Routing disposition |
 | --- | --- | --- | --- |

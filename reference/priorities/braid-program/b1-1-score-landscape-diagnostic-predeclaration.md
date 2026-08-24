@@ -1,108 +1,55 @@
 # B1.1 Score-Landscape Diagnostic Predeclaration
 
-Status: coordinator-reviewed priority-only design with BP-009 machine freeze
-complete and awaiting operator review. The exact manifest, protocol, runner,
-and independent dense-root audit bindings are frozen without scoring a row.
-Analytical execution remains unauthorized. This file does not reopen or modify
-the sealed 2026-07-25 B1/Family-C campaign.
+Status: coordinator-reviewed priority-only design with BP-009 machine freeze complete and awaiting operator review. The exact manifest, protocol, runner, and independent dense-root audit bindings are frozen without scoring a row. Analytical execution remains unauthorized. This file does not reopen or modify the sealed 2026-07-25 B1/Family-C campaign.
 
-Claim grade: **measured diagnostic** for the retained-row diagnosis below;
-**declared protocol** for the proposed population, reductions, dispositions,
-and falsifiers. Every numerical instantiation uses $c_f=1$. No path evolution
-or EOM solver is in scope.
+Claim grade: **measured diagnostic** for the retained-row diagnosis below; **declared protocol** for the proposed population, reductions, dispositions, and falsifiers. Every numerical instantiation uses $c_f=1$. No path evolution or EOM solver is in scope.
 
 ## Sealed input and authority boundary
 
-The only input result is the write-once
-[B1/Family-C Monte Carlo-to-basin diagnostic](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md).
-Its predeclared handoff ceiling remains a refined full-cycle maximum pointwise
-member residual of `6`, with primary/refined relative-or-absolute change at
-most `0.05`. The old 576 draws, protocol, receipt, database rows, and zero-row
-handoff ledger remain unchanged.
+The only input result is the write-once [B1/Family-C Monte Carlo-to-basin diagnostic](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md). Its predeclared handoff ceiling remains a refined full-cycle maximum pointwise member residual of `6`, with primary/refined relative-or-absolute change at most `0.05`. The old 576 draws, protocol, receipt, database rows, and zero-row handoff ledger remain unchanged.
 
-This packet proposes a new, separately hashed B1.1 diagnostic population. It
-does not authorize another Monte Carlo campaign, a directed descent, or
-post-score point creation.
+This packet proposes a new, separately hashed B1.1 diagnostic population. It does not authorize another Monte Carlo campaign, a directed descent, or post-score point creation.
 
-Plainly: the old campaign remains closed. This proposal asks how the B1.1 score
-changes around its lowest retained row without changing the old pass line or
-calling unavailable scores failures.
+Plainly: the old campaign remains closed. This proposal asks how the B1.1 score changes around its lowest retained row without changing the old pass line or calling unavailable scores failures.
 
 ## Coordinator audit disposition
 
-The design is mathematically bounded, but it is not yet a reproducible
-executable campaign. Four execution-bearing objects are absent:
+The design is mathematically bounded, but it is not yet a reproducible executable campaign. Four execution-bearing objects are absent:
 
-1. no machine-readable 377-row manifest records the normalized-coordinate
-   tokens, materialized specifications, row order, and manifest hash;
-2. no exact complete-cycle protocol hash binds all event, root, surface,
-   spectral, and reduction fields at the declared 24/48 resolutions;
-3. no write-once runner accepts only that manifest and refuses score-dependent
-   row creation; and
-4. no separately bound dense-row root-residual instrument and implementation
-   hash is named.
+1. no machine-readable 377-row manifest records the normalized-coordinate tokens, materialized specifications, row order, and manifest hash;
+2. no exact complete-cycle protocol hash binds all event, root, surface, spectral, and reduction fields at the declared 24/48 resolutions;
+3. no write-once runner accepts only that manifest and refuses score-dependent row creation; and
+4. no separately bound dense-row root-residual instrument and implementation hash is named.
 
-The old compact database and coverage artifacts are also local operational
-data, not committed repository inputs. Their retained hashes and diagnosis are
-durable, but a clean checkout cannot treat their former local paths as an
-executable dependency.
+The old compact database and coverage artifacts are also local operational data, not committed repository inputs. Their retained hashes and diagnosis are durable, but a clean checkout cannot treat their former local paths as an executable dependency.
 
-Plainly: the prose fixes the intended chart, but there is not yet one exact
-file that a runner can consume. Running now would require inventing execution
-details after seeing the old scores, so no analytical row was evaluated in
-this pass.
+Plainly: the prose fixes the intended chart, but there is not yet one exact file that a runner can consume. Running now would require inventing execution details after seeing the old scores, so no analytical row was evaluated in this pass.
 
 Before any analytical evaluation, a manifest-freeze packet must:
 
 1. implement a pure, score-free manifest builder;
-2. retain exact hexadecimal SHA-256 counter tokens before converting them to
-   binary64 coordinates;
-3. bind the canonical B1.1 source bytes, the complete materialized center
-   specification, and the center hashes stated below;
+2. retain exact hexadecimal SHA-256 counter tokens before converting them to binary64 coordinates;
+3. bind the canonical B1.1 source bytes, the complete materialized center specification, and the center hashes stated below;
 4. emit and validate exactly 377 unique rows in the declared order;
 5. freeze the exact complete-cycle protocol and its SHA-256;
-6. bind the write-once runner and the independent geometric causal-root
-   residual recomputation by file hash; and
-7. pass a dry-run validation that performs no causal-root evaluation and
-   produces no score.
+6. bind the write-once runner and the independent geometric causal-root residual recomputation by file hash; and
+7. pass a dry-run validation that performs no causal-root evaluation and produces no score.
 
-The first analytical action after that packet is accepted is a center-only
-capability pilot. It must stop before the remaining 376 rows unless the center
-reproduces its exact source identity and is applicable at both declared
-resolutions. The pilot's measured wall time, CPU time, memory, and retained
-bytes set the execution budget; the old campaign's process time is not a cost
-measurement for this stronger protocol.
+The first analytical action after that packet is accepted is a center-only capability pilot. It must stop before the remaining 376 rows unless the center reproduces its exact source identity and is applicable at both declared resolutions. The pilot's measured wall time, CPU time, memory, and retained bytes set the execution budget; the old campaign's process time is not a cost measurement for this stronger protocol.
 
-Plainly: first freeze what will be run, then measure one already-known center.
-Only a valid and applicable center can authorize the bounded landscape batch.
+Plainly: first freeze what will be run, then measure one already-known center. Only a valid and applicable center can authorize the bounded landscape batch.
 
 ## BP-009 machine freeze
 
-BP-009 produced the score-free
-[377-row manifest](campaigns/b1-1-score-landscape-manifest.v1.json), frozen
-[complete-cycle protocol](campaigns/b1-1-score-landscape-complete-cycle-protocol.v1.json),
-write-once dry-run
-[receipt](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.v1.json),
-and [review packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).
-The manifest byte SHA-256 is
-`a1e6ca5d021dab22e1aef978463f87c4057295aa619217948b7e048349f58882`;
-the protocol byte SHA-256 is
-`dbb58ffeb7e1c85214f2f7abffea85ba94b93c13ccfa3158060f0f61271611d7`;
-and the receipt byte SHA-256 is
-`1bfcefacd32ba7879e4fbc088330c4a50d33d27c79cf36dd773127c1e519a804`.
+BP-009 produced the score-free [377-row manifest](campaigns/b1-1-score-landscape-manifest.v1.json), frozen [complete-cycle protocol](campaigns/b1-1-score-landscape-complete-cycle-protocol.v1.json), write-once dry-run [receipt](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.v1.json), and [review packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md). The manifest byte SHA-256 is `a1e6ca5d021dab22e1aef978463f87c4057295aa619217948b7e048349f58882`; the protocol byte SHA-256 is `dbb58ffeb7e1c85214f2f7abffea85ba94b93c13ccfa3158060f0f61271611d7`; and the receipt byte SHA-256 is `1bfcefacd32ba7879e4fbc088330c4a50d33d27c79cf36dd773127c1e519a804`.
 
-All 377 rows retain null analytical state. The runner implements only
-`dry-run` and `check`, and the separately authored dense-root instrument was
-bound but not executed.
+All 377 rows retain null analytical state. The runner implements only `dry-run` and `check`, and the separately authored dense-root instrument was bound but not executed.
 
-Plainly: the missing machine identities are now fixed and checkable. Operator
-review, not this freeze, decides whether the separately scoped center-only
-capability pilot may be implemented or run.
+Plainly: the missing machine identities are now fixed and checkable. Operator review, not this freeze, decides whether the separately scoped center-only capability pilot may be implemented or run.
 
 ## Retained-row diagnosis
 
-The compact SQLite rows and their byte-matched coverage artifacts give the
-following disposition counts:
+The compact SQLite rows and their byte-matched coverage artifacts give the following disposition counts:
 
 | Member | Drawn | Unknown | Applicable score | Inapplicable | Primary moving-receiver gate unavailable | Refined moving-receiver gate unavailable |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -117,24 +64,11 @@ following disposition counts:
 | C6 | 64 | 1 | 5 | 58 | 55 | 58 |
 | **Total** | **576** | **3** | **159** | **414** | **378** | **414** |
 
-Here `inapplicable` means that the pointwise member-residual reduction lacked a
-certified complete acceleration inventory at one or both moving-endpoint
-resolutions. Every one of the 414 rows lacked the refined certificate; 378
-also lacked the primary certificate, while 36 passed primary and lost
-applicability only at refinement. The compact row retains these gate booleans
-but not the certificate's event-by-event reason list, so the sealed data cannot
-separate a moving-event validity failure from an exact transmitter-inventory
-or root-completeness failure more finely.
+Here `inapplicable` means that the pointwise member-residual reduction lacked a certified complete acceleration inventory at one or both moving-endpoint resolutions. Every one of the 414 rows lacked the refined certificate; 378 also lacked the primary certificate, while 36 passed primary and lost applicability only at refinement. The compact row retains these gate booleans but not the certificate's event-by-event reason list, so the sealed data cannot separate a moving-event validity failure from an exact transmitter-inventory or root-completeness failure more finely.
 
-The surface-quadrature gate failed in all 573 evaluated rows, but that gate is
-not the applicability condition for the pointwise member score. Likewise, a
-fixed-internal gate may fail while both moving-receiver gates still support an
-applicable member-residual score.
+The surface-quadrature gate failed in all 573 evaluated rows, but that gate is not the applicability condition for the pointwise member score. Likewise, a fixed-internal gate may fail while both moving-receiver gates still support an applicable member-residual score.
 
-Plainly: `inapplicable` does not mean a geometry scored badly. It means the
-instrument could not form this particular score with its required complete
-moving-endpoint inventory. The sealed compact data supports the gate-level
-count above and no more specific event-level diagnosis.
+Plainly: `inapplicable` does not mean a geometry scored badly. It means the instrument could not form this particular score with its required complete moving-endpoint inventory. The sealed compact data supports the gate-level count above and no more specific event-level diagnosis.
 
 The three `unknown` rows remain separate:
 
@@ -142,15 +76,11 @@ The three `unknown` rows remain separate:
 - B1.3 sample 43: compact surface minimum-separation failure.
 - C6 sample 36: named surface event-convergence failure.
 
-They retain null scores and are unresolved numerical rows, not candidate
-failures.
+They retain null scores and are unresolved numerical rows, not candidate failures.
 
 ## Lowest retained B1.1 region
 
-The B1.1 applicable population contains 37 scores. Its refined peak
-distribution has minimum `59.29861867019956`, first quartile
-`110.33829223921393`, median `140.21549054100748`, third quartile
-`186.4041371318672`, and maximum `422.39619893906456`.
+The B1.1 applicable population contains 37 scores. Its refined peak distribution has minimum `59.29861867019956`, first quartile `110.33829223921393`, median `140.21549054100748`, third quartile `186.4041371318672`, and maximum `422.39619893906456`.
 
 The five lowest retained rows are:
 
@@ -162,26 +92,11 @@ The five lowest retained rows are:
 | 57 | 88.30259418608675 | 73.0940326668711 | 2 | -1 | `(+1,-1,-1)` |
 | 28 | 91.14057459191419 | 68.4094990516453 | 2 | -1 | `(-1,-1,+1)` |
 
-Sample 5 is `9.883103111699926` times the unchanged handoff ceiling. Its
-primary/refined maximum score is unchanged, its maximum reported
-primary/refined score change is `6.440934118268966e-9`, and its refined RMS is
-`45.95733365123426`. Its moving-receiver gates pass, but its surface and
-fixed-internal gates do not. The refined summed-acceleration necessary-condition
-screen also falsifies this exact isolated prescribed history, with maximum
-summed equation-residual norm `5.141187258615106`.
+Sample 5 is `9.883103111699926` times the unchanged handoff ceiling. Its primary/refined maximum score is unchanged, its maximum reported primary/refined score change is `6.440934118268966e-9`, and its refined RMS is `45.95733365123426`. Its moving-receiver gates pass, but its surface and fixed-internal gates do not. The refined summed-acceleration necessary-condition screen also falsifies this exact isolated prescribed history, with maximum summed equation-residual norm `5.141187258615106`.
 
-A descriptive 25-percent low-score set, fixed before the next search at
-peak no greater than `74.12327333774945` and RMS no greater than
-`57.44666706404282`, contains only sample 5. Sample 40 is 7.44 percent higher
-in peak but 30.32 percent higher in RMS. Sample 10 is 25.18 percent higher in
-peak and uses a different frequency harmonic. The only other retained row
-with sample 5's exact harmonic, circulation, and polarity stratum is sample
-16, whose member score is inapplicable.
+A descriptive 25-percent low-score set, fixed before the next search at peak no greater than `74.12327333774945` and RMS no greater than `57.44666706404282`, contains only sample 5. Sample 40 is 7.44 percent higher in peak but 30.32 percent higher in RMS. Sample 10 is 25.18 percent higher in peak and uses a different frequency harmonic. The only other retained row with sample 5's exact harmonic, circulation, and polarity stratum is sample 16, whose member score is inapplicable.
 
-Plainly: sample 5 is an isolated low retained row, not a demonstrated
-finite-width low-score neighborhood. The old sample contains no applicable
-same-stratum neighbor that can establish local width, slope, curvature, or a
-minimum.
+Plainly: sample 5 is an isolated low retained row, not a demonstrated finite-width low-score neighborhood. The old sample contains no applicable same-stratum neighbor that can establish local width, slope, curvature, or a minimum.
 
 ## Proposed objective
 
@@ -209,41 +124,27 @@ Q=
 }.
 $$
 
-Rank smaller refined $P$ first and smaller refined $Q$ second. Do not combine
-them with exterior, quadrature, root, separation, or cost rows into one global
-score. The unchanged old handoff overlay is `P <= 6` and maximum
-primary/refined relative-or-absolute change `<= 0.05`.
+Rank smaller refined $P$ first and smaller refined $Q$ second. Do not combine them with exterior, quadrature, root, separation, or cost rows into one global score. The unchanged old handoff overlay is `P <= 6` and maximum primary/refined relative-or-absolute change `<= 0.05`.
 
-Plainly: the search maps the worst per-architrino acceleration mismatch and
-then its full-cycle RMS. A good exterior-cancellation row cannot compensate
-for a worse internal mismatch or a failed numerical gate.
+Plainly: the search maps the worst per-architrino acceleration mismatch and then its full-cycle RMS. A good exterior-cancellation row cannot compensate for a worse internal mismatch or a failed numerical gate.
 
 ## Exact B1.1 chart
 
 The anchor is sealed B1.1 sample 5:
 
-- case hash:
-  `a0a485c9104204e92d8b1ad0af995f26f9264a481b99c36dd7e88d28f8e3388c`;
-- sampled-spec hash:
-  `c62c3e8ba3a393c7c090e79e7bd4b3869a8cbc1fcd007c3530cdafc0f45abe67`;
-- exact-source hash:
-  `2fe5abc99c837a627c1817c4c27e39b71ecdae2264ea572d276e3d8e1b42f52a`;
-- score hash:
-  `c72a511f230b9422aac9af08242c4bff2dee2e5c4ba57abe9b98b5979e945e79`.
+- case hash: `a0a485c9104204e92d8b1ad0af995f26f9264a481b99c36dd7e88d28f8e3388c`;
+- sampled-spec hash: `c62c3e8ba3a393c7c090e79e7bd4b3869a8cbc1fcd007c3530cdafc0f45abe67`;
+- exact-source hash: `2fe5abc99c837a627c1817c4c27e39b71ecdae2264ea572d276e3d8e1b42f52a`;
+- score hash: `c72a511f230b9422aac9af08242c4bff2dee2e5c4ba57abe9b98b5979e945e79`.
 
-Hold the B1 common midpoint, common axis, common frequency, common circulation,
-source order, return period `4`, spherical envelope `0.5`, common frequency
-`0.75`, circulation `-1`, and polarity assignments `(+1,-1,-1)` fixed.
+Hold the B1 common midpoint, common axis, common frequency, common circulation, source order, return period `4`, spherical envelope `0.5`, common frequency `0.75`, circulation `-1`, and polarity assignments `(+1,-1,-1)` fixed.
 
 Use twelve continuous coordinates:
 
 1. three binary radii $(R_1,R_2,R_3)$;
-2. three axial fractions $(u_1,u_2,u_3)$, where $u_a=h_a/R_a$ and
-   $\rho_a=R_a\sqrt{1-u_a^2}$;
-3. three materialized phases
-   $\theta_a=(\phi_a+\Phi_B)\bmod 2\pi$; and
-4. translation direction cosine $\kappa$, translation azimuth $\psi$, and
-   safe-speed fraction $\sigma$.
+2. three axial fractions $(u_1,u_2,u_3)$, where $u_a=h_a/R_a$ and $\rho_a=R_a\sqrt{1-u_a^2}$;
+3. three materialized phases $\theta_a=(\phi_a+\Phi_B)\bmod 2\pi$; and
+4. translation direction cosine $\kappa$, translation azimuth $\psi$, and safe-speed fraction $\sigma$.
 
 The local box is:
 
@@ -262,44 +163,22 @@ The local box is:
 | $\psi$ | -3.0334921137648716 | anchor $\pm\pi/8$, periodic |
 | $\sigma$ | 0.9007296341094717 | [0.8257296341094717, 0.9757296341094717] |
 
-The radius coordinates use symmetric log bounds $R_a/R_a^\star\in[1/1.1,1.1]$.
-All other ranges are linear except the periodic angles. Before execution, map
-the box bijectively to normalized coordinates
-$\mathbf z\in[-1,1]^{12}$ and freeze the exact 377-row specification manifest.
-Encode each source specification uniquely by holding the anchor braid phase
-offset `3.079311623345746` fixed and setting each binary phase to
-$(\theta_a-3.079311623345746)\bmod 2\pi$. This reproduces the exact sealed
-center specification. For each row, recompute the safe translation-speed
-ceiling from that row's radii, set the speed to $\sigma$ times that ceiling,
-and construct the direction from $(\kappa,\psi)$ in the source-carried frame.
+The radius coordinates use symmetric log bounds $R_a/R_a^\star\in[1/1.1,1.1]$. All other ranges are linear except the periodic angles. Before execution, map the box bijectively to normalized coordinates $\mathbf z\in[-1,1]^{12}$ and freeze the exact 377-row specification manifest. Encode each source specification uniquely by holding the anchor braid phase offset `3.079311623345746` fixed and setting each binary phase to $(\theta_a-3.079311623345746)\bmod 2\pi$. This reproduces the exact sealed center specification. For each row, recompute the safe translation-speed ceiling from that row's radii, set the speed to $\sigma$ times that ceiling, and construct the direction from $(\kappa,\psi)$ in the source-carried frame.
 
-Plainly: this is a bounded twelve-coordinate B1.1 chart around the retained
-anchor. It fixes every old discrete label so a frequency, circulation, or
-polarity change cannot masquerade as a local geometric effect.
+Plainly: this is a bounded twelve-coordinate B1.1 chart around the retained anchor. It fixes every old discrete label so a frequency, circulation, or polarity change cannot masquerade as a local geometric effect.
 
 ## Exact population and seeds
 
 The proposed population contains exactly 377 specifications:
 
 1. one center row at $\mathbf z=\mathbf 0$;
-2. 48 axial rows, with each coordinate separately set to
-   $z_j\in\{-1,-1/2,+1/2,+1\}$;
-3. 264 pairwise-interaction rows, for every unordered coordinate pair
-   $j<k$ and all four sign corners
-   $(z_j,z_k)\in\{-1,+1\}^2$; and
+2. 48 axial rows, with each coordinate separately set to $z_j\in\{-1,-1/2,+1/2,+1\}$;
+3. 264 pairwise-interaction rows, for every unordered coordinate pair $j<k$ and all four sign corners $(z_j,z_k)\in\{-1,+1\}^2$; and
 4. 64 held-out Latin-hypercube rows in the same box, frozen before scoring.
 
-Use seed
-`braid-b1-1-score-landscape-design-20260727-v1` for manifest ordering and
-pairwise tie ordering. Use the independent held-out design seed
-`braid-b1-1-score-landscape-heldout-20260727-v1`.
+Use seed `braid-b1-1-score-landscape-design-20260727-v1` for manifest ordering and pairwise tie ordering. Use the independent held-out design seed `braid-b1-1-score-landscape-heldout-20260727-v1`.
 
-Construct the held-out Latin hypercube exactly as follows. For coordinate
-$j\in\{0,\ldots,11\}$, obtain a permutation $\pi_j$ of
-`0..63` by sorting the indices $k$ by the bytewise SHA-256 digest of
-`seed NUL j NUL k`, breaking an impossible digest tie by numeric $k$. For row
-$n$, obtain $u_{n,j}\in[0,1)$ from the first unsigned 64 bits of the SHA-256
-digest of `seed NUL j NUL n NUL jitter`, divided by $2^{64}$, and set
+Construct the held-out Latin hypercube exactly as follows. For coordinate $j\in\{0,\ldots,11\}$, obtain a permutation $\pi_j$ of `0..63` by sorting the indices $k$ by the bytewise SHA-256 digest of `seed NUL j NUL k`, breaking an impossible digest tie by numeric $k$. For row $n$, obtain $u_{n,j}\in[0,1)$ from the first unsigned 64 bits of the SHA-256 digest of `seed NUL j NUL n NUL jitter`, divided by $2^{64}$, and set
 
 $$
 z_{n,j}
@@ -307,24 +186,13 @@ z_{n,j}
 2\frac{\pi_j(n)+u_{n,j}}{64}-1.
 $$
 
-Order rows as center; axial coordinate index then
-`-1,-1/2,+1/2,+1`; pair indices $j<k$ then signs
-`(-1,-1),(-1,+1),(+1,-1),(+1,+1)`; held-out row ordinal. The exact
-specifications and manifest SHA-256 must be frozen and coordinator-reviewed
-before any analytical evaluation.
+Order rows as center; axial coordinate index then `-1,-1/2,+1/2,+1`; pair indices $j<k$ then signs `(-1,-1),(-1,+1),(+1,-1),(+1,+1)`; held-out row ordinal. The exact specifications and manifest SHA-256 must be frozen and coordinator-reviewed before any analytical evaluation.
 
-Plainly: the seeds and byte-level mapping determine every held-out coordinate
-and row position before scoring. Another implementation can reconstruct the
-same manifest without consulting a prior output.
+Plainly: the seeds and byte-level mapping determine every held-out coordinate and row position before scoring. Another implementation can reconstruct the same manifest without consulting a prior output.
 
-The center is the only old specification evaluated under the new protocol.
-The other 575 sealed campaign specifications are not rerun. No row may be
-added, moved, or deleted after any score is observed.
+The center is the only old specification evaluated under the new protocol. The other 575 sealed campaign specifications are not rerun. No row may be added, moved, or deleted after any score is observed.
 
-Plainly: the structured rows measure coordinate slopes and two-coordinate
-interactions; the separately seeded rows check whether those patterns survive
-off the coordinate axes. This is not a descent because later points do not
-depend on earlier scores.
+Plainly: the structured rows measure coordinate slopes and two-coordinate interactions; the separately seeded rows check whether those patterns survive off the coordinate axes. This is not a descent because later points do not depend on earlier scores.
 
 ## Resolution and retention
 
@@ -333,117 +201,62 @@ Evaluate all 377 rows at:
 - primary: 24 complete-cycle time samples, polar order 12, azimuth count 24;
 - refined: 48 complete-cycle time samples, polar order 16, azimuth count 32.
 
-Run a dense 48/96-time-sample adjudication, with surface grids 16-by-32 and
-24-by-48, for:
+Run a dense 48/96-time-sample adjudication, with surface grids 16-by-32 and 24-by-48, for:
 
 1. the center;
 2. every applicable row with refined `P <= 6`;
 3. every applicable row in the fixed 25-percent low-score set; and
-4. enough additional lexicographically lowest applicable rows to make twelve
-   dense rows total, without replacing or capping threshold crossings.
+4. enough additional lexicographically lowest applicable rows to make twelve dense rows total, without replacing or capping threshold crossings.
 
-No directed descent follows. Every ordinary row retains its exact
-specification, normalized and physical coordinates, source/protocol/manifest
-hashes, classification, measured cost, and all reduction fields below.
-Dense rows and every threshold crossing additionally retain content-addressed
-primary, refined, and dense raw root/event packets.
+No directed descent follows. Every ordinary row retains its exact specification, normalized and physical coordinates, source/protocol/manifest hashes, classification, measured cost, and all reduction fields below. Dense rows and every threshold crossing additionally retain content-addressed primary, refined, and dense raw root/event packets.
 
-Plainly: every landscape point receives a stronger two-resolution check than
-the old compact row. Raw evidence is retained where the score is low enough to
-matter, but no optimizer is launched.
+Plainly: every landscape point receives a stronger two-resolution check than the old compact row. Raw evidence is retained where the score is low enough to matter, but no optimizer is launched.
 
 ## Required score decomposition
 
 For both primary and refined resolutions retain:
 
-- $P$, $Q$, both half-cycle peaks, half-peak imbalance, and every
-  primary/refined change;
-- the receiver id, event id, observation time, cycle phase, residual vector,
-  and axial/radial/tangential components at each reported peak;
-- per receiver and aggregate axial, radial, and tangential signed mean, RMS,
-  and maximum absolute residual;
-- the summed-acceleration necessary-condition row and whether vector
-  cancellation hides larger member residuals;
-- strict sub-field-speed status, moving-event validity, exact expected and
-  observed transmitter counts, per-transmitter root-completeness status,
-  root-transversality margin, and the full acceleration-inventory certificate
-  reason list;
-- minimum separation, source-speed margin, complete-period closure, and
-  branch-continuity diagnostics;
-- exterior exposure, anisotropy, retained spectral power, radial exponent,
-  causal wake flux, raw/signed emission references, frequency-resolved wake
-  flux, and band coverage as separate nontradeable rows; and
+- $P$, $Q$, both half-cycle peaks, half-peak imbalance, and every primary/refined change;
+- the receiver id, event id, observation time, cycle phase, residual vector, and axial/radial/tangential components at each reported peak;
+- per receiver and aggregate axial, radial, and tangential signed mean, RMS, and maximum absolute residual;
+- the summed-acceleration necessary-condition row and whether vector cancellation hides larger member residuals;
+- strict sub-field-speed status, moving-event validity, exact expected and observed transmitter counts, per-transmitter root-completeness status, root-transversality margin, and the full acceleration-inventory certificate reason list;
+- minimum separation, source-speed margin, complete-period closure, and branch-continuity diagnostics;
+- exterior exposure, anisotropy, retained spectral power, radial exponent, causal wake flux, raw/signed emission references, frequency-resolved wake flux, and band coverage as separate nontradeable rows; and
 - wall time, CPU time, peak memory, and retained bytes.
 
-For every dense row, independently recompute the causal-root residual with a
-separately authored instrument and require maximum residual `<= 1e-12` before
-calling the dense score numerically admitted. Same-implementation replay is
-reproducibility only.
+For every dense row, independently recompute the causal-root residual with a separately authored instrument and require maximum residual `<= 1e-12` before calling the dense score numerically admitted. Same-implementation replay is reproducibility only.
 
-Plainly: the new rows retain enough information to say which architrino,
-time, direction, inventory gate, or numerical margin controls the score.
-Database integrity and replay do not become independent numerical acceptance.
+Plainly: the new rows retain enough information to say which architrino, time, direction, inventory gate, or numerical margin controls the score. Database integrity and replay do not become independent numerical acceptance.
 
 ## Fail-closed dispositions
 
 Classify every declared row into exactly one of:
 
-- `applicable-threshold-crossing`: complete primary/refined inventory,
-  finite $P,Q$, refined `P <= 6`, and maximum score change `<= 0.05`;
-- `applicable-threshold-noncrossing`: complete primary/refined inventory and
-  finite $P,Q$, but one or both unchanged handoff inequalities fail;
-- `inapplicable-member-score`: evaluation completes, but either
-  moving-endpoint acceleration inventory is not certified;
-- `unknown-numerical`: root, convergence, separation, resource, or
-  certification execution failure prevents the required evaluation; or
-- `invalid-manifest-row`: the specification or hash differs from the frozen
-  manifest.
+- `applicable-threshold-crossing`: complete primary/refined inventory, finite $P,Q$, refined `P <= 6`, and maximum score change `<= 0.05`;
+- `applicable-threshold-noncrossing`: complete primary/refined inventory and finite $P,Q$, but one or both unchanged handoff inequalities fail;
+- `inapplicable-member-score`: evaluation completes, but either moving-endpoint acceleration inventory is not certified;
+- `unknown-numerical`: root, convergence, separation, resource, or certification execution failure prevents the required evaluation; or
+- `invalid-manifest-row`: the specification or hash differs from the frozen manifest.
 
-Only the first two dispositions carry scores. `Inapplicable`, `unknown`, and
-`invalid` rows remain null-score rows and do not count as candidate failures.
-An `applicable-threshold-noncrossing` is only a failure to cross this diagnostic
-handoff line; it is not a family-level or physical negative.
+Only the first two dispositions carry scores. `Inapplicable`, `unknown`, and `invalid` rows remain null-score rows and do not count as candidate failures. An `applicable-threshold-noncrossing` is only a failure to cross this diagnostic handoff line; it is not a family-level or physical negative.
 
 ## Falsifiers and stop rules
 
-- Stop after the center if its source identity, fixed discrete coordinates, or
-  manifest row differs from the sealed anchor.
-- Stop the score-landscape interpretation if the center is unknown or
-  inapplicable at 24/48 resolution. Record a capability blocker; do not replace
-  the center or relax a gate.
-- The center fails the coordinate-star local-minimum screen if any applicable
-  axial row has a lexicographically smaller $(P,Q)$. It fails the declared
-  pairwise screen if any applicable pairwise row is smaller. An inapplicable
-  or unknown comparison leaves that direction unresolved, not passed or
-  failed.
-- A row cannot cross the unchanged handoff if refined `P > 6`, score change
-  exceeds `0.05`, inventory is incomplete, or the independent dense root
-  residual exceeds `1e-12`.
-- Any score-dependent manifest mutation, top-N substitution for a threshold
-  crossing, missing declared row, duplicate specification, or changed seed
-  invalidates the campaign.
-- Any independent acceleration or root instrument that disagrees beyond its
-  declared tolerance overturns the corresponding numerical row.
-- A lower row would show only that the fixed B1.1 chart contains a lower
-  prescribed-path score. It would not establish a basin, stability, retention,
-  binding, energy closure, particle identity, or physical realization.
+- Stop after the center if its source identity, fixed discrete coordinates, or manifest row differs from the sealed anchor.
+- Stop the score-landscape interpretation if the center is unknown or inapplicable at 24/48 resolution. Record a capability blocker; do not replace the center or relax a gate.
+- The center fails the coordinate-star local-minimum screen if any applicable axial row has a lexicographically smaller $(P,Q)$. It fails the declared pairwise screen if any applicable pairwise row is smaller. An inapplicable or unknown comparison leaves that direction unresolved, not passed or failed.
+- A row cannot cross the unchanged handoff if refined `P > 6`, score change exceeds `0.05`, inventory is incomplete, or the independent dense root residual exceeds `1e-12`.
+- Any score-dependent manifest mutation, top-N substitution for a threshold crossing, missing declared row, duplicate specification, or changed seed invalidates the campaign.
+- Any independent acceleration or root instrument that disagrees beyond its declared tolerance overturns the corresponding numerical row.
+- A lower row would show only that the fixed B1.1 chart contains a lower prescribed-path score. It would not establish a basin, stability, retention, binding, energy closure, particle identity, or physical realization.
 
 ## Coordinator decision
 
-The twelve-coordinate box, 377-row design, resolution ladder, raw-retention
-rule, and fail-closed dispositions are accepted as the design input to a
-manifest-freeze packet. They are not accepted as an executable campaign until
-the seven pre-evaluation obligations above have exact hashes and passing
-score-free validation.
+The twelve-coordinate box, 377-row design, resolution ladder, raw-retention rule, and fail-closed dispositions are accepted as the design input to a manifest-freeze packet. They are not accepted as an executable campaign until the seven pre-evaluation obligations above have exact hashes and passing score-free validation.
 
-The center-only capability pilot is the next analytical step after that
-freeze. It is not a search and does not authorize the remaining 376 rows. A
-separate execution decision follows the measured pilot result.
+The center-only capability pilot is the next analytical step after that freeze. It is not a search and does not authorize the remaining 376 rows. A separate execution decision follows the measured pilot result.
 
-Plainly: the chart design is settled enough to implement, but no search is
-authorized and no threshold has changed.
+Plainly: the chart design is settled enough to implement, but no search is authorized and no threshold has changed.
 
-Closure goal: freeze a separately hashed B1.1 score-landscape protocol that
-maps the retained low row without rerunning the old campaign, changing the
-handoff ceiling, or upgrading prescribed-path diagnostics into physical
-evidence.
+Closure goal: freeze a separately hashed B1.1 score-landscape protocol that maps the retained low row without rerunning the old campaign, changing the handoff ceiling, or upgrading prescribed-path diagnostics into physical evidence.

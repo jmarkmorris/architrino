@@ -751,8 +751,7 @@ $$
 \equiv
 \frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
-Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart.
-The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
+Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 T_{\parallel}
 =

@@ -1,7 +1,6 @@
 # PPN Parameters
 
-This chapter is the canonical home for weak-field/PPN expansion details used by
-the spacetime constitutive map.
+This chapter is the canonical home for weak-field/PPN expansion details used by the spacetime constitutive map.
 
 ## Canonical Symbols
 
@@ -173,8 +172,7 @@ to obtain
 $$
 \boxed{\beta_{\mathrm{PPN}}=\frac{1+2C_2^{(U)}}{2}}.
 $$
-The superscript is essential: $C_2^{(U)}$ is the coefficient after the clock law has been expanded in the Newtonian comparison potential $U$. Reading $\beta_{\mathrm{PPN}}$ from this coefficient alone is not valid in a general source where $\Phi_{\mathrm W}$, $\Phi_1,\ldots,\Phi_4$, $\mathcal A$, or preferred-frame potentials carry independent non-GR coefficients.
-No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
+The superscript is essential: $C_2^{(U)}$ is the coefficient after the clock law has been expanded in the Newtonian comparison potential $U$. Reading $\beta_{\mathrm{PPN}}$ from this coefficient alone is not valid in a general source where $\Phi_{\mathrm W}$, $\Phi_1,\ldots,\Phi_4$, $\mathcal A$, or preferred-frame potentials carry independent non-GR coefficients. No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
 ### Exponential clock-law subclass (direct map)
@@ -387,8 +385,7 @@ $$
 $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
-The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
-This condition does not set the rotating-source row $g_{0i}^{\mathrm{drag}}(\mathbf J)$ to zero.
+The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion. This condition does not set the rotating-source row $g_{0i}^{\mathrm{drag}}(\mathbf J)$ to zero.
 
 ## Preferred-Motion Null-Test Bundle
 
@@ -710,8 +707,7 @@ Define the single Tier-1 weighted closure objective
 $$
 \mathcal{L}(\boldsymbol{\vartheta}_{\mathrm{PPN}})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
 $$
-where $\mathbf{W}$ is the precision matrix from ledger tolerances.
-With the source-mined benchmark vector above,
+where $\mathbf{W}$ is the precision matrix from ledger tolerances. With the source-mined benchmark vector above,
 $$
 \mathbf{W}
 =
@@ -875,8 +871,7 @@ $$
 \sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$
 
-Failure rule for this closure layer:
-if any observed value lies outside
+Failure rule for this closure layer: if any observed value lies outside
 $$
 \mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
 $$
@@ -996,11 +991,9 @@ $$
 $$
 which is equivalent to nonzero projection of the added gradient span onto the null direction $\hat n$.
 
-Operational closure consequence:
-if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2,\Xi_3)$ closes to a bounded ellipsoid instead of a flat valley.
+Operational closure consequence: if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2,\Xi_3)$ closes to a bounded ellipsoid instead of a flat valley.
 
-Failure mode for the constitutive cosmology map:
-if the inferred $\boldsymbol{\Xi}$ is significantly nonzero and incompatible with the independently inferred medium-drift direction from the CMB dipole, the single preferred-frame mapping in $\mathbb{A}\mathbb{A}\mathbb{A}$ is broken.
+Failure mode for the constitutive cosmology map: if the inferred $\boldsymbol{\Xi}$ is significantly nonzero and incompatible with the independently inferred medium-drift direction from the CMB dipole, the single preferred-frame mapping in $\mathbb{A}\mathbb{A}\mathbb{A}$ is broken.
 
 The acceptance record for this layer requires Noether sea continuum simulations to supply
 $$

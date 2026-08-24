@@ -50,25 +50,17 @@ The reaction row therefore records a Standard Model prediction as a structured o
 
 ### Canonical Stepwise Workflow
 
-1. **Define observer-level channel**
-Use the standard reaction statement first (for example $e^- + Z \rightarrow e^- + Z + \gamma$ or $\gamma + \gamma \rightarrow e^+ + e^-$).
+1. **Define observer-level channel** Use the standard reaction statement first (for example $e^- + Z \rightarrow e^- + Z + \gamma$ or $\gamma + \gamma \rightarrow e^+ + e^-$).
 
-2. **Set validated closure targets**
-Declare the required observer-level closures before ontology mapping:
+2. **Set validated closure targets** Declare the required observer-level closures before ontology mapping:
 - kinematic threshold closure,
 - differential/total rate closure,
 - energy-momentum closure,
 - timing/frame closure.
 
-3. **Initialize assembly state**
-Represent each incoming participant as an assembly state tuple:
-`(identity, provenance path, charge sector, momentum, local Noether sea state)`.
-Path history is part of identity bookkeeping in absolute time.
+3. **Initialize assembly state** Represent each incoming participant as an assembly state tuple: `(identity, provenance path, charge sector, momentum, local Noether sea state)`. Path history is part of identity bookkeeping in absolute time.
 
-4. **Characterize local Noether sea state**
-Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
-Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
+4. **Characterize local Noether sea state** Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear: $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$. Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
@@ -134,13 +126,11 @@ with $\chi_{\mathrm g}$ the gauge function, subscripted to keep it distinct from
 
 The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
 
-5. **Evaluate wake-strain trigger**
-Compute whether interaction forcing crosses the relevant mode boundary.
+5. **Evaluate wake-strain trigger** Compute whether interaction forcing crosses the relevant mode boundary.
 - If below threshold: no mode-lock event, energy routes into transport/heating/scattering channels.
 - If above threshold: mode-lock event allowed and channel-specific nucleation/relock proceeds.
 
-6. **Apply channel-specific lock rule**
-Select the mode family:
+6. **Apply channel-specific lock rule** Select the mode family:
 - planar-mode for photon emission channels,
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
@@ -173,12 +163,9 @@ $$
 
 Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
 
-7. **Execute provenance-conserving relock**
-Update assembly graph by relocking existing substrate content.
-No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
+7. **Execute provenance-conserving relock** Update assembly graph by relocking existing substrate content. No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
 
-8. **Enforce local conservation**
-Close event-level budgets:
+8. **Enforce local conservation** Close event-level budgets:
 - $\sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}$,
 - $\sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}$,
 - spin/angular-momentum ledger balance for emitted, absorbed, or converted vector modes,
@@ -186,9 +173,7 @@ Close event-level budgets:
 
 The spin/angular-momentum line is a conservation requirement. Its channel-specific content must be supplied by the angular-momentum ledger, photon Gate B, the massive-vector corridor model, or the spin-statistics proof as appropriate.
 
-9. **Project back to observer-level outputs**
-Compute spectra, cross-sections, rates, and timing in standard variables.
-Accept mapping only if closure targets from Step 2 are recovered within validated limits.
+9. **Project back to observer-level outputs** Compute spectra, cross-sections, rates, and timing in standard variables. Accept mapping only if closure targets from Step 2 are recovered within validated limits.
 
 ### Detailed Scenario A: Bremsstrahlung Channel
 

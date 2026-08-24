@@ -10,11 +10,7 @@ The point of the note is not to replace the canonical axis-based quark construct
 
 ## Composition classes and resulting sectors
 
-Take the three binary classes
-$B^- = (-,-)$,
-$B^0 = (+,-)$,
-and $B^+ = (+,+)$,
-with the mixed binary written in its canonical representative ordering.
+Take the three binary classes $B^- = (-,-)$, $B^0 = (+,-)$, and $B^+ = (+,+)$, with the mixed binary written in its canonical representative ordering.
 
 Then every three-slot filling belongs to one of the following composition classes:
 
@@ -38,10 +34,7 @@ $$
 
 ## The local 3x3 slot matrix
 
-Now separate binary class from slot position. Let the three ordered radial slots be
-$I = \text{Inner}$,
-$M = \text{Middle}$,
-and $O = \text{Outer}$.
+Now separate binary class from slot position. Let the three ordered radial slots be $I = \text{Inner}$, $M = \text{Middle}$, and $O = \text{Outer}$.
 
 Then the local placement matrix is:
 
@@ -55,11 +48,7 @@ This $3 \times 3$ table does not yet build particles by itself. It defines the n
 
 ## Immediate algebra
 
-Let
-$n_-$,
-$n_0$,
-and $n_+$
-count how many binaries of each class appear in a given three-slot filling. Then
+Let $n_-$, $n_0$, and $n_+$ count how many binaries of each class appear in a given three-slot filling. Then
 $$
 n_- + n_0 + n_+ = 3.
 $$

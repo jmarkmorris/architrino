@@ -28,9 +28,7 @@ This asymmetry is not a defect if it is made visible. It is the roadmap.
 
 ## Research Deliverables
 
-1. **Lorentz recovery artifact.** Write the clock and synchronization map from substrate variables to observer proper time:
-   $d\tau/dt=f_\tau(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$.
-   The artifact must show how absolute-frame velocity becomes operationally inseparable from embedded synchronization conventions, and must compute a preferred-frame leakage budget across modern Lorentz tests.
+1. **Lorentz recovery artifact.** Write the clock and synchronization map from substrate variables to observer proper time: $d\tau/dt=f_\tau(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$. The artifact must show how absolute-frame velocity becomes operationally inseparable from embedded synchronization conventions, and must compute a preferred-frame leakage budget across modern Lorentz tests.
 
 2. **Born/Bell measure artifact.** Define a basin measure over retained histories and apparatus partitions that recovers quadratic Born weights for a nontrivial preparation family, then recovers CHSH value $2\sqrt{2}$, local-setting marginal invariance, and absolute-ordering invariance from the same machinery.
 

@@ -1,8 +1,6 @@
 # Element Branch Registry
 
-This registry freezes the periodic-table element branch order required by
-[codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase element
-names after `codex/`.
+This registry freezes the periodic-table element branch order required by [codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase element names after `codex/`.
 
 The sequence follows atomic-number order from hydrogen through oganesson.
 

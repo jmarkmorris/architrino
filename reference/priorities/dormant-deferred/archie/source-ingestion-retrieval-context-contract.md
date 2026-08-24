@@ -218,8 +218,7 @@ The future implementation should include retrieval fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Extend the fixture-backed source-index snapshot into complete corpus record enumeration and manifest `source_context` population while preserving the accepted hash, provenance, visibility, canonical-parent, and source-authority gates.
+Closure goal: Extend the fixture-backed source-index snapshot into complete corpus record enumeration and manifest `source_context` population while preserving the accepted hash, provenance, visibility, canonical-parent, and source-authority gates.
 
 Use this packet, [assistant-mode-contract.md](assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
 

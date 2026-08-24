@@ -45,8 +45,7 @@ x_{\mathrm{img,eff}}^i
 \Delta_{\mathrm{eff}}\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
 $$
 
-where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units.
-The layer-explicit observer-chart version is
+where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The layer-explicit observer-chart version is
 $$
 y_{\mathrm{eff}}^i
 =

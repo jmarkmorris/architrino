@@ -1,5 +1,4 @@
-Closure goal:
-Turn the neutral six-architrino configuration-atlas research into a precise architecture and a bounded corpus-change plan, so every candidate or negative search result declares its history domain without implying retention, stability, or physical realization.
+Closure goal: Turn the neutral six-architrino configuration-atlas research into a precise architecture and a bounded corpus-change plan, so every candidate or negative search result declares its history domain without implying retention, stability, or physical realization.
 
 # Neutral-Braid Configuration Atlas: Research Findings and Proposed Changes
 
@@ -774,20 +773,9 @@ Plainly: certified finite data must determine the delayed evaluation on the exac
 
 ## Proposed Changes
 
-**Readiness gate.** The retained items are corrections to scope, theorem
-hypotheses, and diagnostic authority. They can be applied without selecting an
-atlas architecture, claiming complete wake representation, or deciding whether
-any candidate persists. The construction and implementation proposals are
-preserved under
-[Disposition of Open Questions](#disposition-of-open-questions).
+**Readiness gate.** The retained items are corrections to scope, theorem hypotheses, and diagnostic authority. They can be applied without selecting an atlas architecture, claiming complete wake representation, or deciding whether any candidate persists. The construction and implementation proposals are preserved under [Disposition of Open Questions](#disposition-of-open-questions).
 
-**Applied disposition, 2026-07-29.** T2–T4 and T-C now live in the
-configuration-chart and reader-facing braid-mathematics owners at scoped
-theorem and diagnostic authority. Every deferred item and open question is
-recorded in the canonical [neutral-atlas review action
-register](../../../priorities/braid-program/work-queue.md#neutral-atlas-review-action-register),
-with the finite-width Gaussian tail retaining its reciprocal BP-002/App Solver
-handoff. This packet is reference evidence only and owns no outstanding action.
+**Applied disposition, 2026-07-29.** T2–T4 and T-C now live in the configuration-chart and reader-facing braid-mathematics owners at scoped theorem and diagnostic authority. Every deferred item and open question is recorded in the canonical [neutral-atlas review action register](../../../priorities/braid-program/work-queue.md#neutral-atlas-review-action-register), with the finite-width Gaussian tail retaining its reciprocal BP-002/App Solver handoff. This packet is reference evidence only and owns no outstanding action.
 
 | ID | Apply-now correction | Required boundary |
 | --- | --- | --- |
@@ -796,9 +784,7 @@ handoff. This packet is reference evidence only and owns no outstanding action.
 | T4 | Preserve the audited bounded uniformly sub-field-speed sharp-root theorem. | State the fixed-enclosure, positive-separation, complete-inventory, and longer-horizon hypotheses wherever the result is used. |
 | T-C | Correct reader-facing statements about the sharp-root delay bound, sub-field-speed transversality and self-hit exclusion, cross-time reconstruction, and scalar-label incompleteness. | Preserve the exact local hypotheses and falsifiers; do not claim exact finite-width tail exclusion or candidate persistence. |
 
-Plainly: the safe corrections say exactly what a represented finite history can
-and cannot establish. They do not choose the future atlas data model or turn a
-topology diagnostic into a physical result.
+Plainly: the safe corrections say exactly what a represented finite history can and cannot establish. They do not choose the future atlas data model or turn a topology diagnostic into a physical result.
 
 ## Disposition of Open Questions
 
@@ -815,10 +801,7 @@ topology diagnostic into a physical result.
 | T10 — implement full-record symmetry deduplication | `BP-002`, status `Queued`, with `MEC-005` root-provenance dependency for any causal-root no-double-booking claim | Position-level symmetry is insufficient; the complete root and acceleration record must transform consistently, and shared provenance cannot be copied between bundles. | Recompute causal-root and acceleration parity under every admitted action and require MEC-005 provenance checks where the record is used as more than a prescribed-history diagnostic. |
 | T11 — add higher-order complement or braid data | `BP-002`, status `Queued` | No live ambiguity has been shown to survive the cheaper component and pairwise invariants. | Add the higher-order row only after one declared ambiguity survives the lower-cost inventory and the new row has an independent expected classification. |
 
-Plainly: these items remain possible research directions. The unresolved Master
-Equation owners gate only the claims that actually consume complete evolving
-wake, provenance, or gradient records; they do not invalidate prescribed-history
-atlas mathematics.
+Plainly: these items remain possible research directions. The unresolved Master Equation owners gate only the claims that actually consume complete evolving wake, provenance, or gradient records; they do not invalidate prescribed-history atlas mathematics.
 
 | Open question | Live owner and status | Next acceptance test | Routing disposition |
 | --- | --- | --- | --- |

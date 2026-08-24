@@ -4,9 +4,7 @@ Status: `consolidated`; `app-simulation` is not an app and is no longer an indep
 
 ## Work Queue
 
-[work-queue.md](work-queue.md) records that this routing index owns no
-executable tasks and points every preserved object to its canonical owner's
-queue.
+[work-queue.md](work-queue.md) records that this routing index owns no executable tasks and points every preserved object to its canonical owner's queue.
 
 ## Canonical Owners
 

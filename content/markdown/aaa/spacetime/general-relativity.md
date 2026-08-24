@@ -322,8 +322,7 @@ Here $\varepsilon_{\mathrm{GW}}$ is the multi-messenger speed tolerance owned by
 
 Weak-field GR matching is the conservative requirement. Strong-field behavior is where the theory may differ.
 
-Use the canonical event-horizon alignment condition defined in
-[singularity-resolution.md](./singularity-resolution.md#canonical-strong-field-alignment-condition).
+Use the canonical event-horizon alignment condition defined in [singularity-resolution.md](./singularity-resolution.md#canonical-strong-field-alignment-condition).
 
 The strong-field interpretation is therefore:
 

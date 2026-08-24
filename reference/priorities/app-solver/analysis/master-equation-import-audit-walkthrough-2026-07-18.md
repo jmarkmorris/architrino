@@ -276,15 +276,7 @@ The transmitter-side decision has three different standings, and they must not b
 
 The mathematical correction is supported within its declared domain: uniform emission gives $c_f/|D_t|$, receiver playback $D_r/D_t$ does not justify multiplying base acceleration by $|D_r|/c_f$, the first-order static-transmitter discriminator agrees, and ordinary folds have a finite integrated acceleration. At a receiver turning point with $D_r=0$ and $D_t\ne0$, the root remains present and the transmitter-side acceleration remains finite.
 
-The scoped repository migration is also complete. Borg now emits
-`eom_borg_shadow_request/v1` under `eom_evolution_contract/v1`, with no scale
-amendment and with `master_eom_binding/v1`. Its process bridge rejects stale
-contract identities and recomputes the selected certified-budget hash from the
-canonical allocation object before native execution. The current Interactive
-and Research hashes are recorded in the
-[Certified Error-Budget Ledger](../contracts/certified-error-budget-ledger.md). The complete
-Borg migration validation passed `102/102`, as recorded in
-[Borg Receiver-Factor Contract Migration Validation](../evidence/borg-receiver-factor-contract-migration-2026-07-19.md).
+The scoped repository migration is also complete. Borg now emits `eom_borg_shadow_request/v1` under `eom_evolution_contract/v1`, with no scale amendment and with `master_eom_binding/v1`. Its process bridge rejects stale contract identities and recomputes the selected certified-budget hash from the canonical allocation object before native execution. The current Interactive and Research hashes are recorded in the [Certified Error-Budget Ledger](../contracts/certified-error-budget-ledger.md). The complete Borg migration validation passed `102/102`, as recorded in [Borg Receiver-Factor Contract Migration Validation](../evidence/borg-receiver-factor-contract-migration-2026-07-19.md).
 
 The complete Master Equation is not globally closed. The 2026-07-20 repeated audit executed the independently evolving wake-state route and the first A1 transmitter-side recomputation. Two fundamental debts remain negative under the current primitive set:
 
@@ -301,7 +293,4 @@ The resulting disposition is:
 - **completed as a scoped migration:** canon, the v1 binding, the EOM solver, and Borg's live request and certified-budget identities agree on that boundary;
 - **not ready for global closure claims:** coincident same-transmitter continuation, causal conservation, and complete moving-transmitter and moving-receiver recovery remain open.
 
-The correction changes canon and EOM solver semantics. Completing its migration
-does not reclassify old numerical evidence computed under the removed law, does
-not turn historical allocation hashes into current identities, and does not
-claim global same-transmitter or conservation closure.
+The correction changes canon and EOM solver semantics. Completing its migration does not reclassify old numerical evidence computed under the removed law, does not turn historical allocation hashes into current identities, and does not claim global same-transmitter or conservation closure.

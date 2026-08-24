@@ -212,8 +212,7 @@ The future implementation should include notebook fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Saved Notebook And Account History Contract into saved-note schemas, retention/deletion/export validators, action-broker save/share gates, token storage rules, and regression fixtures for the Archie service.
+Closure goal: Turn the Saved Notebook And Account History Contract into saved-note schemas, retention/deletion/export validators, action-broker save/share gates, token storage rules, and regression fixtures for the Archie service.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

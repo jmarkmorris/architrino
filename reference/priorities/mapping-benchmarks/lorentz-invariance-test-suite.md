@@ -49,9 +49,7 @@ This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf X,T)$
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `two_way_signal` — Derive the two-way signal-time cancellation condition $\Delta_{\mathrm{tw}}(\beta)\to0$. Status: `draft`.
 2. `moving_assembly_deformation` — Derive $\xi\to1/\gamma$ for the longitudinal envelope ratio in the homogeneous weak-response limit, then show the selected contracted branch is a stable attractor of the boosted delay dynamics. Status: `draft`.

@@ -156,8 +156,7 @@ The first pass should produce:
 
 ## Implementation Handoff
 
-Closure goal:
-Research emerging AI communication standards and recommend which ones Archie should adopt early while keeping user-facing language plain and understandable.
+Closure goal: Research emerging AI communication standards and recommend which ones Archie should adopt early while keeping user-facing language plain and understandable.
 
 Use this packet, [priorities.md](priorities.md), [v1-product-requirements.md](v1-product-requirements.md), [corporate-media-standards.md](corporate-media-standards.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) as source context.
 

@@ -10,18 +10,13 @@ This packet covers the deterministic repeating gallery cases:
 - Simple Cubic Alternating Planes; and
 - Diamond-cubic two-sublattice.
 
-The spherical envelope is a viewing crop only. It contributes no rows and
-defines no calculation boundary for these cases. Simple Cubic Random 50/50 is excluded
-because it is the one finite, nonperiodic gallery configuration.
+The spherical envelope is a viewing crop only. It contributes no rows and defines no calculation boundary for these cases. Simple Cubic Random 50/50 is excluded because it is the one finite, nonperiodic gallery configuration.
 
-Plainly: the deterministic result comes from the declared infinite repeat, not
-from the architrinos that happen to be visible inside the sphere.
+Plainly: the deterministic result comes from the declared infinite repeat, not from the architrinos that happen to be visible inside the sphere.
 
 ## Stationary Row
 
-For a receiver-centered source offset \(\mathbf r\ne\mathbf0\), relative
-polarity sign \(\sigma=1\) for matching polarity and \(\sigma=-1\) for
-opposite polarity, and the static display map
+For a receiver-centered source offset \(\mathbf r\ne\mathbf0\), relative polarity sign \(\sigma=1\) for matching polarity and \(\sigma=-1\) for opposite polarity, and the static display map
 
 $$
 D_\beta=\operatorname{diag}(1-0.99\beta,1,1),
@@ -41,27 +36,20 @@ a_0=\frac{\kappa\epsilon^2}{d^2},
 \qquad c_f=1.
 $$
 
-Every site is held stationary through release, so the unique positive-delay
-partner root has delay \(\lVert D_\beta\mathbf r\rVert d\), with
-\(D_t=1\) and \(W^{\mathrm{acc}}=1\). The coincident endpoint is excluded.
+Every site is held stationary through release, so the unique positive-delay partner root has delay \(\lVert D_\beta\mathbf r\rVert d\), with \(D_t=1\) and \(W^{\mathrm{acc}}=1\). The coincident endpoint is excluded.
 
-Plainly: each other architrino contributes one acceleration row determined by
-its transformed separation and relative polarity. The deformation is a static
-coordinate map, not motion or relativistic beta.
+Plainly: each other architrino contributes one acceleration row determined by its transformed separation and relative polarity. The deformation is a static coordinate map, not motion or relativistic beta.
 
 ## Symmetry-Orbit Exhaustion Theorem
 
-Let \(G\) be a finite orthogonal symmetry group of the receiver-centered
-decorated lattice. Require:
+Let \(G\) be a finite orthogonal symmetry group of the receiver-centered decorated lattice. Require:
 
 1. every \(g\in G\) maps the translation lattice to itself;
 2. every \(g\in G\) preserves transmitter polarity relative to the receiver;
 3. every \(g\in G\) commutes with \(D_\beta\); and
 4. the only vector fixed by every member of \(G\) is \(\mathbf0\).
 
-Exhaust the repeating pattern by increasing finite unions of complete
-receiver-centered \(G\)-orbits. For one source orbit \(O\), equivariance of
-the stationary row gives
+Exhaust the repeating pattern by increasing finite unions of complete receiver-centered \(G\)-orbits. For one source orbit \(O\), equivariance of the stationary row gives
 
 $$
 g\sum_{\mathbf r\in O}\mathbf A(\mathbf r)
@@ -70,13 +58,9 @@ g\sum_{\mathbf r\in O}\mathbf A(\mathbf r)
 \quad\text{for every }g\in G.
 $$
 
-The orbit sum is therefore fixed by all of \(G\), so condition 4 makes it
-exactly zero. Every finite admitted exhaustion has zero residual, and its
-declared exhaustion limit is zero.
+The orbit sum is therefore fixed by all of \(G\), so condition 4 makes it exactly zero. Every finite admitted exhaustion has zero residual, and its declared exhaustion limit is zero.
 
-Plainly: the calculation includes the full repeating pattern in complete
-symmetry groups. Each complete group cancels before another group is added, so
-the visible crop never enters the result.
+Plainly: the calculation includes the full repeating pattern in complete symmetry groups. Each complete group cancels before another group is added, so the visible crop never enters the result.
 
 ## Case Certificates
 
@@ -88,58 +72,26 @@ the visible crop never enters the result.
 | Diamond-cubic two-sublattice | 2 | identity plus the three orthogonal twofold rotations about X, Y, and Z | all supported \(\beta\) | exact zero at every architrino |
 | HCP ABAB Stacking | 2 | threefold rotations about Z, together with reflection across the basal plane | \(\beta=0\) only | exact zero at every architrino only at the undeformed baseline |
 
-For BCC, FCC, and Simple Cubic Alternating Planes, inversion maps every
-transmitter to an equally distant transmitter with the same polarity
-relationship, so the two rows cancel. For Diamond, the four-member twofold
-rotation group has no nonzero fixed vector and commutes with X scaling.
+For BCC, FCC, and Simple Cubic Alternating Planes, inversion maps every transmitter to an equally distant transmitter with the same polarity relationship, so the two rows cancel. For Diamond, the four-member twofold rotation group has no nonzero fixed vector and commutes with X scaling.
 
-Plainly: four cases retain their cancellation proof throughout the slider
-range. Their lattice details differ, but the same full-orbit theorem gives the
-same acceleration scope.
+Plainly: four cases retain their cancellation proof throughout the slider range. Their lattice details differ, but the same full-orbit theorem gives the same acceleration scope.
 
-For undeformed HCP, the six-member group generated by a 120-degree rotation
-about Z and reflection across the basal plane preserves both A/B layer
-polarity orbits and has no nonzero fixed vector. A nontrivial X scaling does not
-commute with the 120-degree rotation. The remaining commuting HCP symmetries
-leave one in-plane vector component unconstrained, so this certificate cannot
-prove zero once \(\beta>0\).
+For undeformed HCP, the six-member group generated by a 120-degree rotation about Z and reflection across the basal plane preserves both A/B layer polarity orbits and has no nonzero fixed vector. A nontrivial X scaling does not commute with the 120-degree rotation. The remaining commuting HCP symmetries leave one in-plane vector component unconstrained, so this certificate cannot prove zero once \(\beta>0\).
 
-Plainly: HCP is green only at the undeformed baseline. Moving the deformation
-slider removes that result because the proof's threefold symmetry is no longer
-present; the app must then show the periodic calculation as not established.
+Plainly: HCP is green only at the undeformed baseline. Moving the deformation slider removes that result because the proof's threefold symmetry is no longer present; the app must then show the periodic calculation as not established.
 
 ## Displayed Evidence
 
-When a certificate is active, the Ledger shows the exact zero
-magnitude/vector and exposes the first two complete local shells as calculation
-examples. Those rows are generated from the stationary row above. They are not
-the proof of the all-site result; the complete symmetry-orbit theorem is.
+When a certificate is active, the Ledger shows the exact zero magnitude/vector and exposes the first two complete local shells as calculation examples. Those rows are generated from the stationary row above. They are not the proof of the all-site result; the complete symmetry-orbit theorem is.
 
-When the HCP certificate is inactive under X deformation, the app may retain
-geometric shell descriptions but shows no outcome icon, residual, or
-calculation disclosure. It states the missing periodic-proof condition
-directly.
+When the HCP certificate is inactive under X deformation, the app may retain geometric shell descriptions but shows no outcome icon, residual, or calculation disclosure. It states the missing periodic-proof condition directly.
 
-Plainly: local rows help inspect the arithmetic. The certificate, not two
-shells and not the sphere, carries the repeating-pattern conclusion.
+Plainly: local rows help inspect the arithmetic. The certificate, not two shells and not the sphere, carries the repeating-pattern conclusion.
 
 ## Independent Verification And Falsifiers
 
-The independent instrument is
-`scripts/verify-lattice-lab-periodic-gallery.mjs`. It reconstructs the five
-groups without importing the production certificate module, checks both
-inequivalent receiver orbits, verifies lattice/polarity preservation and group
-closure, recomputes displayed local rows, and tests complete sample orbits at
-the undeformed and supported deformed settings. It also requires the deformed
-HCP certificate to fail and includes tampered-symmetry and tampered-row
-negative controls.
+The independent instrument is `scripts/verify-lattice-lab-periodic-gallery.mjs`. It reconstructs the five groups without importing the production certificate module, checks both inequivalent receiver orbits, verifies lattice/polarity preservation and group closure, recomputes displayed local rows, and tests complete sample orbits at the undeformed and supported deformed settings. It also requires the deformed HCP certificate to fail and includes tampered-symmetry and tampered-row negative controls.
 
-The certificate is overturned if a declared symmetry fails to preserve the
-translation lattice or polarity decoration, if a receiver orbit is missing, if
-the group has a nonzero fixed vector, if the group fails to commute with the
-claimed deformation, if a complete orbit has nonzero acceleration sum, or if
-the independent local-row calculation disagrees.
+The certificate is overturned if a declared symmetry fails to preserve the translation lattice or polarity decoration, if a receiver orbit is missing, if the group has a nonzero fixed vector, if the group fails to commute with the claimed deformation, if a complete orbit has nonzero acceleration sum, or if the independent local-row calculation disagrees.
 
-Plainly: the verifier checks the geometry, both polarity receiver types, the
-actual acceleration rows, and deliberate failures. None of these checks makes
-a claim about motion, stability, energy, conservation, or later evolution.
+Plainly: the verifier checks the geometry, both polarity receiver types, the actual acceleration rows, and deliberate failures. None of these checks makes a claim about motion, stability, energy, conservation, or later evolution.

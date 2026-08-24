@@ -16,10 +16,7 @@ The architrino position is this: physical entities and causal dynamics are prima
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
-Each subject is assessed by the same substantive questions: what it treats as
-fundamental, which explanatory success survives, where an informational or
-computational description outruns its physical implementation, and what
-$\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
+Each subject is assessed by the same substantive questions: what it treats as fundamental, which explanatory success survives, where an informational or computational description outruns its physical implementation, and what $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
 
 ## Information as Ontology
 

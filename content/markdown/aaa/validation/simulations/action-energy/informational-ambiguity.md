@@ -5,12 +5,7 @@ From the perspective of the receiving architrino, the information carried by an 
 1. The net strength of the potential at the point of intersection.
 2. The signed acceleration vector $\mathbf A$ at the receiver event.
 
-The vector fixes the direction of the net acceleration. What it does not fix is
-the transmitter ray and polarity assignment that produced that vector. An
-attractive source on one ray and a repulsive source on the opposite ray can
-produce the same $\mathbf A$. Only after quotienting those source hypotheses
-does one obtain an unoriented inference axis; that axis is not the raw received
-datum.
+The vector fixes the direction of the net acceleration. What it does not fix is the transmitter ray and polarity assignment that produced that vector. An attractive source on one ray and a repulsive source on the opposite ray can produce the same $\mathbf A$. Only after quotienting those source hypotheses does one obtain an unoriented inference axis; that axis is not the raw received datum.
 
 ## Degeneracies and Inference Limits
 
@@ -29,8 +24,7 @@ datum.
     - Super-field-speed self-history ambiguity: when same-transmitter delayed roots exist, the receiver-local event still reports an acceleration contribution, not the full past trajectory that produced it. The self-hit label must come from the retained causal-root ledger, not from the instantaneous vector alone.
     - Continuum of surrogate locations: for any instantaneous hit there exists a continuum of stationary surrogate source positions on the two rays of the inference axis, with polarity chosen consistently and with a correspondingly adjusted emission time $T_t$, that reproduces the same instantaneous vector; hence instantaneous inversion is severely underdetermined.
 
-  - Surrogate-location recast:
-    For one resolved line-of-action component at receiver event $R=(T,\mathbf X_{o'}(T))$, the receiver-local datum can be written as
+  - Surrogate-location recast: For one resolved line-of-action component at receiver event $R=(T,\mathbf X_{o'}(T))$, the receiver-local datum can be written as
     $$
     D_R=(A_R,[\hat{\mathbf{u}}]),
     \qquad

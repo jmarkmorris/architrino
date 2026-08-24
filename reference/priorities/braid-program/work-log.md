@@ -11,201 +11,61 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 
 ## 2026-07-15 — First mining pass over the archive completed
 
-- Three parallel read-only miners covered the consolidated legacy brainstorming
-  stream, the idea-bearing memos, and the seven other archived lanes' idea
-  files. Results staged in `mining/` as four themed files plus an overview,
-  ~47 raw candidates curated to 47 items across: medium-and-conservation (15),
-  mechanisms-and-dynamics (9), assembly-and-mass-map (13), method-lessons (10).
-  Every item carries grade **idea (unproven lead)**, an inert plain-string
-  source citation, a confirm/kill test, and a recommended disposition confined
-  to braid-program (brainstorming entry / configuration-chart obligation /
-  method.md addition / campaign objective / hold-in-mining).
-- Boundary rule sharpened by operator mid-pass and applied throughout: an item
-  qualifies only if it stands with all legacy measurements stripped — if
-  removing the measurement removes the content, it stays in the archive.
-  Excluded on this rule: the cylindrical-radius closure pattern (operator's
-  example), numeric matches to Standard Model constants, the support sum rule
-  and fractions, stability-verdict rankings, and legacy dissociation
-  phenomenology. The same rule removed a legacy-pattern line from
-  configuration-chart.md's open questions.
-- Curator's short list is in `mining/2026-07-15-overview.md`; the standout is
-  the fully specified, never-run wake conservation-and-transport program,
-  which is instrument-independent by construction.
+- Three parallel read-only miners covered the consolidated legacy brainstorming stream, the idea-bearing memos, and the seven other archived lanes' idea files. Results staged in `mining/` as four themed files plus an overview, ~47 raw candidates curated to 47 items across: medium-and-conservation (15), mechanisms-and-dynamics (9), assembly-and-mass-map (13), method-lessons (10). Every item carries grade **idea (unproven lead)**, an inert plain-string source citation, a confirm/kill test, and a recommended disposition confined to braid-program (brainstorming entry / configuration-chart obligation / method.md addition / campaign objective / hold-in-mining).
+- Boundary rule sharpened by operator mid-pass and applied throughout: an item qualifies only if it stands with all legacy measurements stripped — if removing the measurement removes the content, it stays in the archive. Excluded on this rule: the cylindrical-radius closure pattern (operator's example), numeric matches to Standard Model constants, the support sum rule and fractions, stability-verdict rankings, and legacy dissociation phenomenology. The same rule removed a legacy-pattern line from configuration-chart.md's open questions.
+- Curator's short list is in `mining/2026-07-15-overview.md`; the standout is the fully specified, never-run wake conservation-and-transport program, which is instrument-independent by construction.
 - Operator disposition review scheduled next session; nothing promoted yet.
 
 ## 2026-07-16 — Assembly viewer captured; Borg hazards cleared
 
-- Operator ratified the 3D assembly viewer. Requirements sketch landed at
-  `campaigns/assembly-viewer-requirements.md`: viewer-not-instrument rule
-  (display-only, provenance banner, claim-grade label), `assembly-view-record.v0`
-  schema sketch (worldlines over the delay window + binaries/ansatz/events
-  metadata), display modes (animated core with trail depth = delay horizon,
-  chart pose, co-rotating/screw frame, strobe, envelope, collapse-protocol
-  comparison, figure export), overlays, and the Borg re-base (keep surface,
-  replace data spine). Queue item 3 (instrument gate) now includes adopting the
-  record schema so rung-1 runs emit viewable records from day one.
-- Borg prerequisites cleared same day: app-borg lane scope re-pointed to the
-  EOM engine with a reading rule over its six older packets; the fixture
-  generator's provenance-label defect was confirmed already repaired and the
-  do-not-run order lifted. (2026-07-16 later that day: the viewer consumes EOM record files only.)
+- Operator ratified the 3D assembly viewer. Requirements sketch landed at `campaigns/assembly-viewer-requirements.md`: viewer-not-instrument rule (display-only, provenance banner, claim-grade label), `assembly-view-record.v0` schema sketch (worldlines over the delay window + binaries/ansatz/events metadata), display modes (animated core with trail depth = delay horizon, chart pose, co-rotating/screw frame, strobe, envelope, collapse-protocol comparison, figure export), overlays, and the Borg re-base (keep surface, replace data spine). Queue item 3 (instrument gate) now includes adopting the record schema so rung-1 runs emit viewable records from day one.
+- Borg prerequisites cleared same day: app-borg lane scope re-pointed to the EOM engine with a reading rule over its six older packets; the fixture generator's provenance-label defect was confirmed already repaired and the do-not-run order lifted. (2026-07-16 later that day: the viewer consumes EOM record files only.)
 
 ## 2026-07-16 — Instrument gate authored; assembly-view-record.v0 adopted end to end
 
-- Queue item "author the instrument gate" executed: [campaigns/instrument-gate.md](campaigns/instrument-gate.md)
-  drafted (pending operator ratification with the charter set). Contents:
-  accepted capabilities G1–G5 with evidence pointers (EOM Stage E engine at
-  `executable_architecture_evidence`; fresh-authored residual reduction;
-  checkpoint-chunked harness with chunking booked in the refinement envelope;
-  release root-clearance; per-campaign independent-oracle parity duty against
-  `eom_independent_oracle/v0`); barred list (any non-EOM engine, field-speed
-  fold windows pending the root-completeness extension, prescribed-orbit-as-
-  evolution, toy laws, sampled-only state, canonical claims pre-acceptance-gate);
-  the per-campaign booking checklist; and §4 finalizing `assembly-view-record.v0`
-  (segments authoritative, samples display-only, and the claim-grade enum requires verification before advancement).
-- Schema adopted in code the same day (measured — suites named below green):
-  the shared display adapter `src/apps/shared/EomHistoryDataset.mjs` ingests
-  `assembly-view-record.v0` alongside `eom_evolution_contract/v0`, so Borg
-  (`borg.html?eomRecord=<url>`), causal-delay-feedback, and the animator worker
-  replay records with no further app changes; a converter
-  (`scripts/eom/convert-borg-trajectory-to-assembly-view-record.mjs`) rebuilds
-  retained segments from the harness's existing `borg-fixture-trajectory.v1`
-  replay files under the declared `piecewise-cubic-hermite/v0` rule, stamping
-  conversion provenance and inheriting (never upgrading) source evidence
-  status. Contract tests: `tests/assembly-view-record.test.js` 6/6, adapter
-  consumers 51/51 (Hermite round-trip reproduces inertial closed form to
-  1e-12 — measured). Native record emission from the harness is deferred until
-  the EOM optimization lane is quiet; the converter bridges rung-1 from day one.
+- Queue item "author the instrument gate" executed: [campaigns/instrument-gate.md](campaigns/instrument-gate.md) drafted (pending operator ratification with the charter set). Contents: accepted capabilities G1–G5 with evidence pointers (EOM Stage E engine at `executable_architecture_evidence`; fresh-authored residual reduction; checkpoint-chunked harness with chunking booked in the refinement envelope; release root-clearance; per-campaign independent-oracle parity duty against `eom_independent_oracle/v0`); barred list (any non-EOM engine, field-speed fold windows pending the root-completeness extension, prescribed-orbit-as- evolution, toy laws, sampled-only state, canonical claims pre-acceptance-gate); the per-campaign booking checklist; and §4 finalizing `assembly-view-record.v0` (segments authoritative, samples display-only, and the claim-grade enum requires verification before advancement).
+- Schema adopted in code the same day (measured — suites named below green): the shared display adapter `src/apps/shared/EomHistoryDataset.mjs` ingests `assembly-view-record.v0` alongside `eom_evolution_contract/v0`, so Borg (`borg.html?eomRecord=<url>`), causal-delay-feedback, and the animator worker replay records with no further app changes; a converter (`scripts/eom/convert-borg-trajectory-to-assembly-view-record.mjs`) rebuilds retained segments from the harness's existing `borg-fixture-trajectory.v1` replay files under the declared `piecewise-cubic-hermite/v0` rule, stamping conversion provenance and inheriting (never upgrading) source evidence status. Contract tests: `tests/assembly-view-record.test.js` 6/6, adapter consumers 51/51 (Hermite round-trip reproduces inertial closed form to 1e-12 — measured). Native record emission from the harness is deferred until the EOM optimization lane is quiet; the converter bridges rung-1 from day one.
 
 ## 2026-07-16 — Operator ratified the segments-authoritative schema decision
 
-- In-session operator agreement (2026-07-16): `assembly-view-record.v0`
-  worldlines carry retained segments as the authoritative state; sampled rows
-  are display-only. The gate as a whole remains DRAFT pending ratification of
-  the charter set.
+- In-session operator agreement (2026-07-16): `assembly-view-record.v0` worldlines carry retained segments as the authoritative state; sampled rows are display-only. The gate as a whole remains DRAFT pending ratification of the charter set.
 
 ## 2026-07-16 — EOM path-provenance audit was not advanced before Campaign 1
 
-- Completed the requested source sweep across `src/eom`, `scripts/eom`, the
-  shared history display adapter, `src/prescribed-path-analysis`, and the Python
-  oracle. Detailed classified inventory and reproduction commands landed in
-  [evidence/2026-07-16-eom-path-provenance-audit.md](evidence/2026-07-16-eom-path-provenance-audit.md).
-- Verdict **FAIL (derived)** on one booking-path defect: the interim Borg replay
-  converter fits cubic-Hermite segments between sampled endpoints, labels the
-  result `evolved-record`, and puts those constructed cubics in the schema field
-  defined as authoritative retained history. The EOM solver's own accepted
-  segment publication path passed the static trace; prescribed-path analysis
-  remained firewalled; the independent Python oracle consumed no production
-  shortcut for its coupled reference evolution; producer-asserted canonical
-  flags were not consumed.
-- Part 2 did not open. No Campaign 1 spec or run was started, so no fate,
-  residual, parity, or rung-2 claim was booked. Queue items 3-4 now carry the
-  path-provenance blocker. Fix target: stream exact EOM-published segments into
-  native assembly-view records; alternatively bar reconstructed records from
-  campaign booking with operator sign-off and provide another compliant record
-  path.
-- Focused validation measured green: assembly-view/prescribed-path/Borg runtime
-  suites 21/21; oracle Phase 4 suite 12/12; oracle reference-kernel suite 6/6;
-  `git diff --check`. These checks do not overturn the provenance defect because
-  the converter tests establish replay interpolation, not EOM segment origin.
+- Completed the requested source sweep across `src/eom`, `scripts/eom`, the shared history display adapter, `src/prescribed-path-analysis`, and the Python oracle. Detailed classified inventory and reproduction commands landed in [evidence/2026-07-16-eom-path-provenance-audit.md](evidence/2026-07-16-eom-path-provenance-audit.md).
+- Verdict **FAIL (derived)** on one booking-path defect: the interim Borg replay converter fits cubic-Hermite segments between sampled endpoints, labels the result `evolved-record`, and puts those constructed cubics in the schema field defined as authoritative retained history. The EOM solver's own accepted segment publication path passed the static trace; prescribed-path analysis remained firewalled; the independent Python oracle consumed no production shortcut for its coupled reference evolution; producer-asserted canonical flags were not consumed.
+- Part 2 did not open. No Campaign 1 spec or run was started, so no fate, residual, parity, or rung-2 claim was booked. Queue items 3-4 now carry the path-provenance blocker. Fix target: stream exact EOM-published segments into native assembly-view records; alternatively bar reconstructed records from campaign booking with operator sign-off and provide another compliant record path.
+- Focused validation measured green: assembly-view/prescribed-path/Borg runtime suites 21/21; oracle Phase 4 suite 12/12; oracle reference-kernel suite 6/6; `git diff --check`. These checks do not overturn the provenance defect because the converter tests establish replay interpolation, not EOM segment origin.
 
 ## 2026-07-16 — Path-provenance repair passed; Campaign 1 specified under execution hold
 
-- Operator selected the preferred F1 disposition: implement exact native
-  segment emission and bar the sampled converter from evolved-record booking.
-  The [repair audit](evidence/2026-07-16-eom-path-provenance-repair-audit.md)
-  now records **PASS for path provenance (derived, with measured serialization
-  checks)**. This supersedes the earlier audit's live verdict without rewriting
-  that write-once evidence file.
-- The checkpoint-chunked harness now writes `assembly-view-record.json`
-  atomically from checkpoint-retained histories after every accepted chunk and
-  at run close. It copies exact decimal segment time, coefficient, and error
-  tokens; records the retained-history fingerprint; and separates declared
-  prehistory count from evolved-extension count. A serialization-only checkpoint
-  dumper was added for exact comparison. No `src/eom` evolution semantics were
-  changed by this repair.
-- Correction to the earlier instrument-gate entry: replay conversion does **not**
-  inherit booking authority. The converter now hard-codes
-  `claimGrade: chart-hypothesis` and `evidenceStatus: display-only`; its source
-  evidence label is non-authoritative metadata. The instrument gate is ratified
-  with this bar and the exact-native schema fields.
-- Measured smoke validation used a rebuilt EOM solver newer than the last
-  `src/eom` source change. A two-path opposite-polarity straight-prehistory run
-  completed one accepted step with release root clearance certified. Each
-  record worldline contained one declared prehistory segment and two evolved
-  half-step segments; every path id, fingerprint, time, coefficient, and error
-  token compared exactly equal to the checkpoint. The shared adapter ingested
-  the record. Focused JavaScript suites passed 21/21.
-- [Campaign 1](campaigns/campaign-1-subfield-binary.md) is now specified before
-  runs: 27 strictly sub-field release configurations; three exact cubic,
-  endpoint-matched prehistories per configuration; a three-level step/history/
-  root/chunking refinement envelope; full-trajectory residual and root gates;
-  one independent-oracle window per production run; symmetry-reduced collapse
-  and fate gates; record booking; and a named falsifier. The $\theta=0$ rows feed
-  the collinear queue item.
-- No campaign physics run or fate classification was booked. The instrument
-  gate forbids upgrading an instrument in the same change that first exercises
-  it, so production waits for a separate ratification change and an independently
-  checked implementation of the Campaign 1 binary workload.
+- Operator selected the preferred F1 disposition: implement exact native segment emission and bar the sampled converter from evolved-record booking. The [repair audit](evidence/2026-07-16-eom-path-provenance-repair-audit.md) now records **PASS for path provenance (derived, with measured serialization checks)**. This supersedes the earlier audit's live verdict without rewriting that write-once evidence file.
+- The checkpoint-chunked harness now writes `assembly-view-record.json` atomically from checkpoint-retained histories after every accepted chunk and at run close. It copies exact decimal segment time, coefficient, and error tokens; records the retained-history fingerprint; and separates declared prehistory count from evolved-extension count. A serialization-only checkpoint dumper was added for exact comparison. No `src/eom` evolution semantics were changed by this repair.
+- Correction to the earlier instrument-gate entry: replay conversion does **not** inherit booking authority. The converter now hard-codes `claimGrade: chart-hypothesis` and `evidenceStatus: display-only`; its source evidence label is non-authoritative metadata. The instrument gate is ratified with this bar and the exact-native schema fields.
+- Measured smoke validation used a rebuilt EOM solver newer than the last `src/eom` source change. A two-path opposite-polarity straight-prehistory run completed one accepted step with release root clearance certified. Each record worldline contained one declared prehistory segment and two evolved half-step segments; every path id, fingerprint, time, coefficient, and error token compared exactly equal to the checkpoint. The shared adapter ingested the record. Focused JavaScript suites passed 21/21.
+- [Campaign 1](campaigns/campaign-1-subfield-binary.md) is now specified before runs: 27 strictly sub-field release configurations; three exact cubic, endpoint-matched prehistories per configuration; a three-level step/history/ root/chunking refinement envelope; full-trajectory residual and root gates; one independent-oracle window per production run; symmetry-reduced collapse and fate gates; record booking; and a named falsifier. The $\theta=0$ rows feed the collinear queue item.
+- No campaign physics run or fate classification was booked. The instrument gate forbids upgrading an instrument in the same change that first exercises it, so production waits for a separate ratification change and an independently checked implementation of the Campaign 1 binary workload.
 
 ## 2026-07-16 — Exact record emission ratified; Campaign 1 workload constructed
 
-- Crossed the instrument gate's separate-change boundary for exact native
-  `assembly-view-record.v0` emission. The prior repair had implemented and first
-  exercised the emitter; this change independently inspected the checkpoint and
-  record projections and accepted G3 emission duty. Before and after workload
-  integration, both path ids, both retained-history fingerprints, and every
-  segment time, coefficient, and error token matched exactly.
-- Reconfirmed build freshness before the instrument check. The completed EOM
-  build (`2026-07-16 13:39:20 -0400`) was newer than the last `src/eom` change
-  (`2026-07-16 13:33:56 -0400`), and both audit harnesses were compiled later
-  with warnings enabled and no diagnostics. No `src/eom` semantics changed.
-- Implemented `campaign1-subfield-binary-v1` in the checkpoint-chunked harness:
-  the declared $d\times s\times\theta$ grid, exact opposite-polarity release
-  states, `P0-inertial`, `P1-lateral`, and `P2-longitudinal`, and the fixed
-  R0/R1/R2 step/history/root/chunk rows. The cubic histories are declared inputs
-  on $[-20,0]`; their decimal rebases carry explicit `1e-11` position and
-  velocity enclosures. The production run manifest now names the binary
-  coordinate and refinement.
-- Added a construction-only harness mode that instantiates all workload rows and
-  exits before root search or evolution. Its measured inventory was 27 release
-  configurations, 81 configuration/prehistory coordinates, 243 refinement rows,
-  486 paths, 226,800 retained segments, and 2,430 analytic probes.
-- Added a separately authored JavaScript checker. It reconstructed the grid,
-  release state, cubic $q$ and $q'$, endpoint groups, old-history displacement,
-  and refinement envelope from the campaign spec. All checks passed; maximum
-  probed position/velocity interval widths were approximately $2.0031\times
-  10^{-11}$ and $2.0001\times10^{-11}$. This agreement is graded measured
-  implementation parity because both implementations landed in one change; the
-  closed-form endpoint identities are recorded separately as a derived theorem.
-- Booked the durable [ratification and workload evidence](evidence/2026-07-16-checkpoint-record-emitter-ratification-and-campaign-1-workload-validation.md),
-  updated the forward-only instrument gate and campaign specification, and moved
-  queue item 3 to ready-for-production state.
-- No Campaign 1 master-equation evolution, fate classification, residual/root
-  ledger, oracle parity window, collapse result, or canonical claim was run or
-  booked. Production remains a separate change starting with a fresh build
-  identity check.
+- Crossed the instrument gate's separate-change boundary for exact native `assembly-view-record.v0` emission. The prior repair had implemented and first exercised the emitter; this change independently inspected the checkpoint and record projections and accepted G3 emission duty. Before and after workload integration, both path ids, both retained-history fingerprints, and every segment time, coefficient, and error token matched exactly.
+- Reconfirmed build freshness before the instrument check. The completed EOM build (`2026-07-16 13:39:20 -0400`) was newer than the last `src/eom` change (`2026-07-16 13:33:56 -0400`), and both audit harnesses were compiled later with warnings enabled and no diagnostics. No `src/eom` semantics changed.
+- Implemented `campaign1-subfield-binary-v1` in the checkpoint-chunked harness: the declared $d\times s\times\theta$ grid, exact opposite-polarity release states, `P0-inertial`, `P1-lateral`, and `P2-longitudinal`, and the fixed R0/R1/R2 step/history/root/chunk rows. The cubic histories are declared inputs on $[-20,0]`; their decimal rebases carry explicit `1e-11` position and velocity enclosures. The production run manifest now names the binary coordinate and refinement.
+- Added a construction-only harness mode that instantiates all workload rows and exits before root search or evolution. Its measured inventory was 27 release configurations, 81 configuration/prehistory coordinates, 243 refinement rows, 486 paths, 226,800 retained segments, and 2,430 analytic probes.
+- Added a separately authored JavaScript checker. It reconstructed the grid, release state, cubic $q$ and $q'$, endpoint groups, old-history displacement, and refinement envelope from the campaign spec. All checks passed; maximum probed position/velocity interval widths were approximately $2.0031\times 10^{-11}$ and $2.0001\times10^{-11}$. This agreement is graded measured implementation parity because both implementations landed in one change; the closed-form endpoint identities are recorded separately as a derived theorem.
+- Booked the durable [ratification and workload evidence](evidence/2026-07-16-checkpoint-record-emitter-ratification-and-campaign-1-workload-validation.md), updated the forward-only instrument gate and campaign specification, and moved queue item 3 to ready-for-production state.
+- No Campaign 1 master-equation evolution, fate classification, residual/root ledger, oracle parity window, collapse result, or canonical claim was run or booked. Production remains a separate change starting with a fresh build identity check.
 
 ## 2026-07-16 — Assembly viewer ownership moved to the Borg app lane
 
-- Moved the requirements sketch to
-  `reference/priorities/app-borg/assembly-viewer-requirements.md`, where Borg
-  design, requirements, and build handoffs are owned. The Braid Program retains
-  the adopted `assembly-view-record.v0` schema, emitter acceptance, and per-run
-  booking duty in `campaigns/instrument-gate.md`.
-- The ownership move changes no campaign schema or evidence grade. Instrument
-  gate §4 now links to the Borg-owned requirements packet; prior dated log
-  entries retain their historical path text.
+- Moved the requirements sketch to `reference/priorities/app-borg/assembly-viewer-requirements.md`, where Borg design, requirements, and build handoffs are owned. The Braid Program retains the adopted `assembly-view-record.v0` schema, emitter acceptance, and per-run booking duty in `campaigns/instrument-gate.md`.
+- The ownership move changes no campaign schema or evidence grade. Instrument gate §4 now links to the Borg-owned requirements packet; prior dated log entries retain their historical path text.
 
 ## 2026-07-16 — Undirected ensemble campaign ownership consolidated
 
-- Braid Program is the sole scientific owner for the undirected ensemble
-  campaign: declared seed coordinates, persistence criterion, fate
-  classification, collapse adjudication, and promotion routing.
-- EOM owns the reusable checkpointed harness, campaign-driver behavior,
-  deterministic replay, convergence/provenance capability, and cost instrument.
-  The former `eom-attractor-search` directory remains a focused evidence index.
-- This consolidation changes no harness measurement, campaign criterion, or
-  booked physical fate.
+- Braid Program is the sole scientific owner for the undirected ensemble campaign: declared seed coordinates, persistence criterion, fate classification, collapse adjudication, and promotion routing.
+- EOM owns the reusable checkpointed harness, campaign-driver behavior, deterministic replay, convergence/provenance capability, and cost instrument. The former `eom-attractor-search` directory remains a focused evidence index.
+- This consolidation changes no harness measurement, campaign criterion, or booked physical fate.
 
 ## 2026-07-20 — Illustrative spindle chart display pipeline
 
@@ -400,200 +260,73 @@ Append-only. Dated entries, newest last. One entry per completed unit of work: w
 
 ## 2026-07-24 — Stationary-rest Breather diagnostic completed
 
-- Replaced the moving transverse setup as the Breather baseline with the
-  operator-requested release: opposite polarities at
-  $\mathbf X_\pm(0)=(\pm0.5,0,0)$, both velocities exactly zero, and an exactly
-  stationary retained prehistory on $[-20,0]$ with $c_f=1$.
-- The EOM solver and independent Python oracle agree on the certified inward
-  release acceleration:
-  $A_{r,\mathrm{rel}}(0)\in[-0.572457220610732,-0.572457220610621]$.
-  R0/R1/R2 remain exactly centered and collinear but halt on cross-root
-  `numeric_precision_limit_exhausted` before crossing. R2 retains motion through
-  $T=1.54625$, at $r=0.152080$ and individual speed $0.870314c_f$.
-- No crossing, rebound, outer turn, recapture, or minimum-maximum-minimum
-  excursion is certified; the return-map trend is unresolved. R0 histories
-  with stationary horizons $H=10$, $20$, and $40$ produce byte-identical frame
-  and release-acceleration streams.
-- G3 remains unaccepted and no campaign fate, energy account, retention,
-  stability, binding, or physical-realization claim is booked. See the
-  [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and
-  [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
+- Replaced the moving transverse setup as the Breather baseline with the operator-requested release: opposite polarities at $\mathbf X_\pm(0)=(\pm0.5,0,0)$, both velocities exactly zero, and an exactly stationary retained prehistory on $[-20,0]$ with $c_f=1$.
+- The EOM solver and independent Python oracle agree on the certified inward release acceleration: $A_{r,\mathrm{rel}}(0)\in[-0.572457220610732,-0.572457220610621]$. R0/R1/R2 remain exactly centered and collinear but halt on cross-root `numeric_precision_limit_exhausted` before crossing. R2 retains motion through $T=1.54625$, at $r=0.152080$ and individual speed $0.870314c_f$.
+- No crossing, rebound, outer turn, recapture, or minimum-maximum-minimum excursion is certified; the return-map trend is unresolved. R0 histories with stationary horizons $H=10$, $20$, and $40$ produce byte-identical frame and release-acceleration streams.
+- G3 remains unaccepted and no campaign fate, energy account, retention, stability, binding, or physical-realization claim is booked. See the [predeclared protocol](campaigns/stationary-binary-breather-diagnostic.md) and [diagnostic packet](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md).
 
 ## 2026-07-26 — Attractor-search packet distributed
 
-- Moved the undirected ensemble rationale, seed and campaign design,
-  observables, persistence criteria, and promotion rules into
-  [undirected-ensemble-search.md](undirected-ensemble-search.md).
-- EOM now retains the reusable profiler and checkpoint-chunked harness state in
-  its [attractor-search instrument packet](../app-solver/campaigns/attractor-search-instrument.md)
-  and [work log](../app-solver/campaigns/attractor-search-work-log.md).
-- Deleted the redundant `eom-attractor-search` directory. No gate, evidence
-  status, campaign rank, or physical claim changed.
+- Moved the undirected ensemble rationale, seed and campaign design, observables, persistence criteria, and promotion rules into [undirected-ensemble-search.md](undirected-ensemble-search.md).
+- EOM now retains the reusable profiler and checkpoint-chunked harness state in its [attractor-search instrument packet](../app-solver/campaigns/attractor-search-instrument.md) and [work log](../app-solver/campaigns/attractor-search-work-log.md).
+- Deleted the redundant `eom-attractor-search` directory. No gate, evidence status, campaign rank, or physical claim changed.
 
 ## 2026-07-27 — Sealed B1/Family-C diagnostic landed in the live record
 
-- Transported the byte-identical write-once packet for the 2026-07-25
-  prescribed-path campaign: 576 draws produced zero qualified handoffs or
-  descents, with three rows retained as fail-closed unresolved. The packet
-  preserves the protocol, receipt, hashes, dispositions, and diagnostic-only
-  boundary; it makes no stability, retention, binding, or physical-realization
-  claim. See the [diagnostic evidence](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md).
-- Current B/C handoff: diagnose the retained score landscape under
-  [BP-008](work-queue.md#bp-008--bc-score-landscape-diagnosis). Do not relax
-  the handoff thresholds or rerun the Monte Carlo campaign.
+- Transported the byte-identical write-once packet for the 2026-07-25 prescribed-path campaign: 576 draws produced zero qualified handoffs or descents, with three rows retained as fail-closed unresolved. The packet preserves the protocol, receipt, hashes, dispositions, and diagnostic-only boundary; it makes no stability, retention, binding, or physical-realization claim. See the [diagnostic evidence](evidence/2026-07-25-bc-monte-carlo-basin-diagnostic.md).
+- Current B/C handoff: diagnose the retained score landscape under [BP-008](work-queue.md#bp-008--bc-score-landscape-diagnosis). Do not relax the handoff thresholds or rerun the Monte Carlo campaign.
 
 ## 2026-07-27 — Stationary-rest joint root frontier certified
 
-- Added a validation-only compiled fixture that evolves the exact stationary
-  R0 seed to $T=1.2399999999999993$, retains the accepted endpoint-corrector
-  joint histories in-process, and replays only the exact step to
-  $T=1.2449999999999992$.
-- Both cross-pair roots certified complete at the unchanged $10^{-5}$
-  root-time tolerance in one 128-bit directed-MPFR attempt. The fixture changes
-  no Campaign 1, checkpoint, solver, tolerance, G3/G4, or fate-booking path.
-- All 6 compiled fixtures and all 23 separately authored Python
-  root-certification tests passed. See the
-  [bounded certification packet](evidence/2026-07-27-stationary-rest-joint-frontier-certification.md).
+- Added a validation-only compiled fixture that evolves the exact stationary R0 seed to $T=1.2399999999999993$, retains the accepted endpoint-corrector joint histories in-process, and replays only the exact step to $T=1.2449999999999992$.
+- Both cross-pair roots certified complete at the unchanged $10^{-5}$ root-time tolerance in one 128-bit directed-MPFR attempt. The fixture changes no Campaign 1, checkpoint, solver, tolerance, G3/G4, or fate-booking path.
+- All 6 compiled fixtures and all 23 separately authored Python root-certification tests passed. See the [bounded certification packet](evidence/2026-07-27-stationary-rest-joint-frontier-certification.md).
 
 ## 2026-07-27 — Corrected G3/G4 instrument gates reaccepted
 
-- A prior implementation-only commit repaired cumulative resume accounting,
-  bound the checkpoint to its manifest and request, retained certified
-  release-root status across resume, and restored public checkpoint segment
-  dumping. This later evidence-only change independently inspected the
-  committed instrument without modifying it.
-- Fresh release and sanitizer builds each passed all 6 compiled fixtures.
-  Interrupted and uninterrupted two-chunk runs produced byte-identical final
-  checkpoints, frame streams, evolved records, and replay records. Cumulative
-  chunk, accepted-step, rejected-step, frame, resume-count, and wall-time
-  accounting advanced correctly; exact checkpoint-to-record tokens matched;
-  both manifests recorded `releaseRootClearance: certified_complete`; and a
-  mismatched run identity failed closed.
-- G3 and G4 are accepted for bounded campaign execution. The result establishes
-  instrument determinism, accounting, serialization identity, and
-  release-ledger propagation only. It does not satisfy G5, close the
-  close-approach root blocker, or book a fate. See the
-  [G3/G4 reacceptance packet](../app-solver/evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
+- A prior implementation-only commit repaired cumulative resume accounting, bound the checkpoint to its manifest and request, retained certified release-root status across resume, and restored public checkpoint segment dumping. This later evidence-only change independently inspected the committed instrument without modifying it.
+- Fresh release and sanitizer builds each passed all 6 compiled fixtures. Interrupted and uninterrupted two-chunk runs produced byte-identical final checkpoints, frame streams, evolved records, and replay records. Cumulative chunk, accepted-step, rejected-step, frame, resume-count, and wall-time accounting advanced correctly; exact checkpoint-to-record tokens matched; both manifests recorded `releaseRootClearance: certified_complete`; and a mismatched run identity failed closed.
+- G3 and G4 are accepted for bounded campaign execution. The result establishes instrument determinism, accounting, serialization identity, and release-ledger propagation only. It does not satisfy G5, close the close-approach root blocker, or book a fate. See the [G3/G4 reacceptance packet](../app-solver/evidence/attractor-resume-g3-g4-reacceptance-2026-07-27.md).
 
 ## 2026-07-27 — Stationary joint frontier extended; next gate failed closed
 
-- A validation-fixture implementation commit converted the one-step stationary
-  joint-history replay into a consecutive atomic-step certificate and a pinned
-  next-step probe. A later evidence-only pass rebuilt and inspected the
-  committed fixture without changing its tolerances or solver path.
-- Both cross roots certify through `1.3649999999999967`: 25 accepted steps of
-  width `0.005` from the retained-history start, including 24 new steps beyond
-  the prior endpoint. At the new endpoint each row has one 128-bit root and a
-  certified root-free complement.
-- The next step to `1.3699999999999966` rejects atomically. Both rows exhaust
-  the unchanged 512-bit ceiling with
-  `interior_root_not_surrounded/joint_root_history_missing`. All 6 compiled
-  fixtures and all 23 independent Python root-contract tests passed.
-- This is an unresolved capability row, not candidate failure. The required
-  root gate did not pass, so Campaign 1 evolution and fate classification did
-  not start. See the
-  [frontier-extension packet](evidence/2026-07-27-stationary-rest-joint-frontier-extension.md).
+- A validation-fixture implementation commit converted the one-step stationary joint-history replay into a consecutive atomic-step certificate and a pinned next-step probe. A later evidence-only pass rebuilt and inspected the committed fixture without changing its tolerances or solver path.
+- Both cross roots certify through `1.3649999999999967`: 25 accepted steps of width `0.005` from the retained-history start, including 24 new steps beyond the prior endpoint. At the new endpoint each row has one 128-bit root and a certified root-free complement.
+- The next step to `1.3699999999999966` rejects atomically. Both rows exhaust the unchanged 512-bit ceiling with `interior_root_not_surrounded/joint_root_history_missing`. All 6 compiled fixtures and all 23 independent Python root-contract tests passed.
+- This is an unresolved capability row, not candidate failure. The required root gate did not pass, so Campaign 1 evolution and fate classification did not start. See the [frontier-extension packet](evidence/2026-07-27-stationary-rest-joint-frontier-extension.md).
 
 ## 2026-07-27 — B/C retained landscape diagnosed; new searches remain frozen
 
-- Closed BP-008 at documentary diagnostic grade without rerunning or changing
-  the sealed 576-case campaign. The retained landscape contains 159 applicable
-  member scores, 414 inapplicable rows, and three fail-closed unknown rows.
-  B1.1 sample 5 is the isolated lowest retained row at peak
-  `59.29861867019956`, still `9.883103111699926` times the unchanged handoff
-  ceiling. See the
-  [retained diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md).
-- Coordinator review found that the 377-row local-landscape prose design lacks
-  a frozen machine manifest, exact protocol hash, write-once runner, and
-  separately bound dense-root audit. BP-009 now owns a score-free manifest and
-  instrument freeze; the first later analytical action is a separately
-  reviewed center-only capability pilot.
-- Declared a downstream 27-row
-  [rational multi-frequency slice](b1-1-rational-multifrequency-chart-slice-predeclaration.md)
-  with exact harmonic tuples, least-return periods, fastest-orbit time
-  resolution, root-completeness gates, null-score dispositions, and a 12-row
-  held-out audit. It remains blocked until the local geometry anchor is
-  dense-admitted and its own machine manifest is frozen. No EOM solver, path
-  evolution, analytical search, threshold relaxation, or physical claim was
-  made.
+- Closed BP-008 at documentary diagnostic grade without rerunning or changing the sealed 576-case campaign. The retained landscape contains 159 applicable member scores, 414 inapplicable rows, and three fail-closed unknown rows. B1.1 sample 5 is the isolated lowest retained row at peak `59.29861867019956`, still `9.883103111699926` times the unchanged handoff ceiling. See the [retained diagnosis](evidence/2026-07-27-bc-score-landscape-diagnosis.md).
+- Coordinator review found that the 377-row local-landscape prose design lacks a frozen machine manifest, exact protocol hash, write-once runner, and separately bound dense-root audit. BP-009 now owns a score-free manifest and instrument freeze; the first later analytical action is a separately reviewed center-only capability pilot.
+- Declared a downstream 27-row [rational multi-frequency slice](b1-1-rational-multifrequency-chart-slice-predeclaration.md) with exact harmonic tuples, least-return periods, fastest-orbit time resolution, root-completeness gates, null-score dispositions, and a 12-row held-out audit. It remains blocked until the local geometry anchor is dense-admitted and its own machine manifest is frozen. No EOM solver, path evolution, analytical search, threshold relaxation, or physical claim was made.
 
 ## 2026-07-27 — BP-009 score-free manifest and instrument freeze completed
 
-- Reconstructed sealed B1.1 sample 5 from the canonical source with the
-  original score-free sampler, seed, and ordinal. Its sampled-spec and
-  exact-source SHA-256 identities match the retained declaration without
-  reading or recomputing its score.
-- Froze exactly 377 unique materialized rows: one center, 48 axial, 264
-  pairwise, and 64 independently seeded held-out Latin-hypercube rows. The
-  held-out rows retain all 1,536 full pre-conversion SHA-256 counter tokens.
-- Bound the $c_f=1$ complete-cycle protocol, 377 create-exclusive output paths,
-  unchanged handoff thresholds, root-completeness gates, null-score
-  dispositions, implementation hashes, and separately authored dense-root
-  residual contract. Focused validation passed 6/6.
-- The write-once receipt records zero causal-root evaluations, zero scores, and
-  no campaign output paths created. BP-009 now awaits operator verification;
-  the center-only pilot and every search remain separately unauthorized. See
-  the [freeze packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).
+- Reconstructed sealed B1.1 sample 5 from the canonical source with the original score-free sampler, seed, and ordinal. Its sampled-spec and exact-source SHA-256 identities match the retained declaration without reading or recomputing its score.
+- Froze exactly 377 unique materialized rows: one center, 48 axial, 264 pairwise, and 64 independently seeded held-out Latin-hypercube rows. The held-out rows retain all 1,536 full pre-conversion SHA-256 counter tokens.
+- Bound the $c_f=1$ complete-cycle protocol, 377 create-exclusive output paths, unchanged handoff thresholds, root-completeness gates, null-score dispositions, implementation hashes, and separately authored dense-root residual contract. Focused validation passed 6/6.
+- The write-once receipt records zero causal-root evaluations, zero scores, and no campaign output paths created. BP-009 now awaits operator verification; the center-only pilot and every search remain separately unauthorized. See the [freeze packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md).
 
 ## 2026-07-27 — Traversal joint carrier repaired; frontier extended again
 
-- The certified-traversal exact-fallback wrapper omitted coupled path
-  identities and optional joint carriers when constructing exact-pair
-  requests. A scoped EOM solver repair now forwards those existing carriers
-  without changing the root theorem, `1e-5` tolerance, or 512-bit ceiling.
-- A direct-versus-traversal control returns exact-token-identical difficult
-  roots, while a missing-carrier negative control remains fail-closed at 512
-  bits. Fresh release fixtures passed 6/6, focused sanitizer fixtures passed
-  2/2, and the native/Python history-layer suite passed 35/35.
-- The stationary frontier now certifies through `1.3799999999999963`. The next
-  step to `1.3849999999999962` rejects atomically because its certified joint
-  root-time width is `1.0036629916485125e-05`, above the unchanged `1e-5`
-  tolerance. This is a retained-history remainder/contraction blocker, not a
-  request for more MPFR bits and not candidate failure.
-- The full root gate remains blocked, so Campaign 1, evolution evidence, and
-  fate classification did not start. See the
-  [carrier and frontier packet](evidence/2026-07-27-joint-traversal-carrier-and-frontier-extension.md).
+- The certified-traversal exact-fallback wrapper omitted coupled path identities and optional joint carriers when constructing exact-pair requests. A scoped EOM solver repair now forwards those existing carriers without changing the root theorem, `1e-5` tolerance, or 512-bit ceiling.
+- A direct-versus-traversal control returns exact-token-identical difficult roots, while a missing-carrier negative control remains fail-closed at 512 bits. Fresh release fixtures passed 6/6, focused sanitizer fixtures passed 2/2, and the native/Python history-layer suite passed 35/35.
+- The stationary frontier now certifies through `1.3799999999999963`. The next step to `1.3849999999999962` rejects atomically because its certified joint root-time width is `1.0036629916485125e-05`, above the unchanged `1e-5` tolerance. This is a retained-history remainder/contraction blocker, not a request for more MPFR bits and not candidate failure.
+- The full root gate remains blocked, so Campaign 1, evolution evidence, and fate classification did not start. See the [carrier and frontier packet](evidence/2026-07-27-joint-traversal-carrier-and-frontier-extension.md).
 
 ## 2026-07-27 — Refined prefix clears the retained-history width blocker
 
-- The validation-only stationary fixture now constructs its retained-history
-  prefix with minimum step `0.0025` while retaining fixed `0.005` frontier
-  steps, the `1e-5` root-time tolerance, and the 512-bit precision ceiling.
-- The former `1.3849999999999962` blocker now certifies at 128 bits. Two more
-  fixed steps certify, extending the current frontier through
-  `1.394999999999996`.
-- The next step to `1.3999999999999959` rejects atomically. Both cross rows
-  report joint width `1.0205062366854167e-05`, zero roots, and no root-free
-  complement at 512 bits.
-- This remains a validation-only root-capability result. Full root
-  completeness is not established, so Campaign 1 and fate classification did
-  not start. See the
-  [refined-prefix frontier packet](evidence/2026-07-27-refined-prefix-joint-frontier-extension.md).
+- The validation-only stationary fixture now constructs its retained-history prefix with minimum step `0.0025` while retaining fixed `0.005` frontier steps, the `1e-5` root-time tolerance, and the 512-bit precision ceiling.
+- The former `1.3849999999999962` blocker now certifies at 128 bits. Two more fixed steps certify, extending the current frontier through `1.394999999999996`.
+- The next step to `1.3999999999999959` rejects atomically. Both cross rows report joint width `1.0205062366854167e-05`, zero roots, and no root-free complement at 512 bits.
+- This remains a validation-only root-capability result. Full root completeness is not established, so Campaign 1 and fate classification did not start. See the [refined-prefix frontier packet](evidence/2026-07-27-refined-prefix-joint-frontier-extension.md).
 
 ## 2026-07-28 — A1.1 history extension accepted; action provider not advanced
 
-- Preserved the independently accepted A1.1 radius/history packet as an exact
-  hashed control and opened no new radius, history, score, or candidate scope.
-- Extended the declared retained-history reach only from $\chi=9/4$ to
-  $\chi=145/64$ for the previously unadjudicated slice
-  $9/(8\sin(9/8))<\alpha_3\le5/4$. The prior history-edge boundary replayed
-  unchanged.
-- The separately authored full-domain verifier independently accepted endpoint
-  and fold exclusion, anchor root counts, connected continuation, inversion
-  coverage, and positive projection over the new slice. The result remains
-  diagnostic-only and null-score.
-- Reconfirmed the canonical no-go for a finite same-support scalar repair and
-  checked the available normalized delayed-interior characteristic-tail
-  kernel on one bounded prescribed rotating chart. Its local derivative
-  implementation passed at maximum absolute error
-  `3.3352485531157328e-6` against the predeclared `5e-6` tolerance.
-- Future-boundary verification is incomplete: the normalized-tail Noether
-  crossing charge depends on receiver data after the time cut, while the
-  current causal state has no independently evolving wake account that
-  determines it. A two-future witness differed by
-  `0.007092398897046797` against the declared `0.001` floor.
-- Stopped before any actual retained periodic branch, complete mechanical,
-  wake, environment, and boundary angular-momentum ledger, or action-increment
-  screen. The action provider is Not advanced; its retained machine status is
-  `blocked-future-boundary-causal-update`. See the
-  [minimum provider packet](evidence/2026-07-28-a1-1-minimum-delayed-action-provider-attempt.md).
+- Preserved the independently accepted A1.1 radius/history packet as an exact hashed control and opened no new radius, history, score, or candidate scope.
+- Extended the declared retained-history reach only from $\chi=9/4$ to $\chi=145/64$ for the previously unadjudicated slice $9/(8\sin(9/8))<\alpha_3\le5/4$. The prior history-edge boundary replayed unchanged.
+- The separately authored full-domain verifier independently accepted endpoint and fold exclusion, anchor root counts, connected continuation, inversion coverage, and positive projection over the new slice. The result remains diagnostic-only and null-score.
+- Reconfirmed the canonical no-go for a finite same-support scalar repair and checked the available normalized delayed-interior characteristic-tail kernel on one bounded prescribed rotating chart. Its local derivative implementation passed at maximum absolute error `3.3352485531157328e-6` against the predeclared `5e-6` tolerance.
+- Future-boundary verification is incomplete: the normalized-tail Noether crossing charge depends on receiver data after the time cut, while the current causal state has no independently evolving wake account that determines it. A two-future witness differed by `0.007092398897046797` against the declared `0.001` floor.
+- Stopped before any actual retained periodic branch, complete mechanical, wake, environment, and boundary angular-momentum ledger, or action-increment screen. The action provider is Not advanced; its retained machine status is `blocked-future-boundary-causal-update`. See the [minimum provider packet](evidence/2026-07-28-a1-1-minimum-delayed-action-provider-attempt.md).

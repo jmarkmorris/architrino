@@ -1,13 +1,8 @@
 # Branch Series Registry
 
-This file is the index for branch-name series used by
-[codex-pr-branch.md](../codex-pr-branch.md). It records the branch-series order,
-the expected count for each series, and the registry file that freezes or will
-freeze the concrete branch tokens.
+This file is the index for branch-name series used by [codex-pr-branch.md](../codex-pr-branch.md). It records the branch-series order, the expected count for each series, and the registry file that freezes or will freeze the concrete branch tokens.
 
-Branch tokens must be lowercase, contain no blanks, and use hyphens when the
-source item name contains multiple words. For example, the source item North
-Dakota becomes `codex/north-dakota`.
+Branch tokens must be lowercase, contain no blanks, and use hyphens when the source item name contains multiple words. For example, the source item North Dakota becomes `codex/north-dakota`.
 
 ## Registry Index
 
@@ -29,9 +24,7 @@ Configured branch names across all listed series: 529.
 ## Registry Rules
 
 - Add a committed registry file before the first branch in any pending series is cut.
-- Keep every registry in the same order as the series definition in
-  [codex-pr-branch.md](../codex-pr-branch.md).
+- Keep every registry in the same order as the series definition in [codex-pr-branch.md](../codex-pr-branch.md).
 - Do not reuse retired branch names.
 - Do not place blanks in branch tokens; use hyphens for multi-word source names.
-- Before publishing a branch from a registry, verify the concrete branch token
-  with `git check-ref-format --branch`.
+- Before publishing a branch from a registry, verify the concrete branch token with `git check-ref-format --branch`.

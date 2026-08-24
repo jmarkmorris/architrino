@@ -18,9 +18,7 @@ This case is valuable because it demands robust invariants rather than delicate 
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `topological_invariant` — Identify the effective invariant corresponding to Chern number or fractional order. Status: `draft`.
 2. `transport_projection` — Map material current and edge-channel response through exposure/quotient objects. Status: `draft`.

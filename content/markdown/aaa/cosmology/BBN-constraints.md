@@ -52,26 +52,19 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Noether braids compress toward maximum-curvature states.
-Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
-At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
+Noether braids compress toward maximum-curvature states. Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients. At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
 $$
 \rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
 $$
-for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point.
-Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
+for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point. Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
 
-Material released from near-horizon regions undergoes rapid outward dilution and cooling.
-Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below.
-This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution.
-Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
+Material released from near-horizon regions undergoes rapid outward dilution and cooling. Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below. This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution. Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
 3. **Observable Output:**
 
-Ejected material, now cooled and stabilized, carries light-element abundances set by the local reaction history.
-These abundances must be observationally consistent with "primordial" BBN if the SMBH-local process is to replace a one-time origin interpretation.
+Ejected material, now cooled and stabilized, carries light-element abundances set by the local reaction history. These abundances must be observationally consistent with "primordial" BBN if the SMBH-local process is to replace a one-time origin interpretation.
 
 ### Key Difference from Standard BBN
 

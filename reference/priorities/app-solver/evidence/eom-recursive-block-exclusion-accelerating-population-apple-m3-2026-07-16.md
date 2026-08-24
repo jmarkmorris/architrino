@@ -12,10 +12,7 @@
 - Million-path authority: none
 - Active aggregation authority: none
 
-This record validates the unchanged recursive certificate on accepted joined
-accelerating piecewise-cubic histories. It changes no traversal rule, interval
-rule, relationship accounting, exact-fallback policy, or approximation
-boundary.
+This record validates the unchanged recursive certificate on accepted joined accelerating piecewise-cubic histories. It changes no traversal rule, interval rule, relationship accounting, exact-fallback policy, or approximation boundary.
 
 ## Build Provenance
 
@@ -40,23 +37,15 @@ The libraries and executables were built after every source in scope.
 
 ## Unchanged Certificate
 
-**Derived.** For every covered point, accepted retained-history hulls contain
-the receiver and source positions. Outward interval evaluation therefore
-contains
+**Derived.** For every covered point, accepted retained-history hulls contain the receiver and source positions. Outward interval evaluation therefore contains
 
 $$
 g_{ij}(T,S)=\|\mathbf X_i(T)-\mathbf X_j(S)\|-c_f(T-S)
 $$
 
-inside the computed block residual interval $\mathcal G_{RB}(I)$, including
-when $I$ crosses a retained-history segment join. Consequently,
-$0\notin\mathcal G_{RB}(I)$ implies that no covered pair-time point can satisfy
-$g_{ij}(T,S)=0$. Acceleration and segment joins change the position hull but
-not this implication.
+inside the computed block residual interval $\mathcal G_{RB}(I)$, including when $I$ crosses a retained-history segment join. Consequently, $0\notin\mathcal G_{RB}(I)$ implies that no covered pair-time point can satisfy $g_{ij}(T,S)=0$. Acceleration and segment joins change the position hull but not this implication.
 
-**Derived.** Deterministic receiver, source, and emission subdivision remains
-disjoint. If any emission cell survives, the complete pair interval $[0,2]$
-enters exact certification. Acceptance still requires
+**Derived.** Deterministic receiver, source, and emission subdivision remains disjoint. If any emission cell survives, the complete pair interval $[0,2]$ enters exact certification. Acceptance still requires
 
 $$
 P_{\mathrm{logical}}
@@ -65,22 +54,13 @@ P_{\mathrm{logical}}
 \qquad P_{\mathrm{unresolved}}=0.
 $$
 
-No cutoff, sampled residual, neighbor rule, density assumption, aggregation,
-multipole, or other approximation enters the decision.
+No cutoff, sampled residual, neighbor rule, density assumption, aggregation, multipole, or other approximation enters the decision.
 
 ## Accelerating Fixtures And Independent Validation
 
-Each staged benchmark path contains two cubic segments over $[0,1]$ and
-$[1,2]$. Fixed-scale integer token arithmetic defines the benchmark decimal
-coefficients and constructs the second segment's position and velocity tokens
-from the first segment exactly. This makes nominal position and velocity
-continuous at $T=1$. Both segments have nonzero quadratic and cubic
-coefficients, and the second segment changes both coefficients. The fixed
-decimal tokens define the fixture itself; they are not an approximate
-decision applied to another history.
+Each staged benchmark path contains two cubic segments over $[0,1]$ and $[1,2]$. Fixed-scale integer token arithmetic defines the benchmark decimal coefficients and constructs the second segment's position and velocity tokens from the first segment exactly. This makes nominal position and velocity continuous at $T=1$. Both segments have nonzero quadratic and cubic coefficients, and the second segment changes both coefficients. The fixed decimal tokens define the fixture itself; they are not an approximate decision applied to another history.
 
-The independently authored decimal interval and exact-pair oracle files were
-not modified.
+The independently authored decimal interval and exact-pair oracle files were not modified.
 
 **Measured.** Validation passed:
 
@@ -90,34 +70,17 @@ not modified.
 | EOM solver history/root layer with independent decimal oracle | 18/18 passed |
 | Native CTest fixtures | 3/3 passed |
 
-**Measured.** The independent fixture has two receivers and four sources, all
-with two accelerating cubic segments. Every excluded node was expanded into
-its covered pairs and emission interval. The 90-digit decimal oracle certified
-every expanded row complete with zero roots. One excluded far-source node
-covers the complete $[0,2]$ interval and therefore crosses the join at $S=1$.
+**Measured.** The independent fixture has two receivers and four sources, all with two accelerating cubic segments. Every excluded node was expanded into its covered pairs and emission interval. The 90-digit decimal oracle certified every expanded row complete with zero roots. One excluded far-source node covers the complete $[0,2]$ interval and therefore crosses the join at $S=1$.
 
-**Measured.** Every exact-fallback pair was independently searched over the
-complete $[0,2]$ interval, and the decimal oracle detected active roots. The
-retained suite also preserves coincident geometry and an accelerating
-same-history self-pair control. Single-thread and four-thread exact packets
-were byte-identical.
+**Measured.** Every exact-fallback pair was independently searched over the complete $[0,2]$ interval, and the decimal oracle detected active roots. The retained suite also preserves coincident geometry and an accelerating same-history self-pair control. Single-thread and four-thread exact packets were byte-identical.
 
-**Measured.** Repeated staged membership and accounting were identical. The
-fingerprints were `81ae816d7a4df483` at 128, `3e74297155a4c50f` at 512,
-`2082072291e5e593` at 2,048, and `a2875f4033487993` at 10,000 paths.
+**Measured.** Repeated staged membership and accounting were identical. The fingerprints were `81ae816d7a4df483` at 128, `3e74297155a4c50f` at 512, `2082072291e5e593` at 2,048, and `a2875f4033487993` at 10,000 paths.
 
 ## Performance Method
 
-The sparse population contains a small active accelerating source band and a
-far accelerating root-free population. The dense population leaves every
-relationship inconclusive. Complete-path time includes traversal and exact
-certification of every fallback pair. Matched exhaustive controls use the same
-histories, interval, root policy, and one native thread.
+The sparse population contains a small active accelerating source band and a far accelerating root-free population. The dense population leaves every relationship inconclusive. Complete-path time includes traversal and exact certification of every fallback pair. Matched exhaustive controls use the same histories, interval, root policy, and one native thread.
 
-Repeated rows report the median of three independent processes and maximum
-observed resident memory. The 10,000-path sparse stage was run once under the
-declared 120-second and 2 GiB ceiling. Exhaustive and dense controls use a
-one-million-exact-pair preflight ceiling.
+Repeated rows report the median of three independent processes and maximum observed resident memory. The 10,000-path sparse stage was run once under the declared 120-second and 2 GiB ceiling. Exhaustive and dense controls use a one-million-exact-pair preflight ceiling.
 
 ### Complete Accelerating Sparse Ladder
 
@@ -135,9 +98,7 @@ Raw complete-path wall seconds were:
 - $N=2,048$: `2.000730083`, `1.869878458`, `1.823761083`;
 - $N=10,000$: `48.727991667`.
 
-The 10,000-path run emitted observed heartbeats at 10.382, 20.776, 31.131,
-and 41.504 seconds. It completed with 1.391 GiB peak resident memory, below
-both declared ceilings.
+The 10,000-path run emitted observed heartbeats at 10.382, 20.776, 31.131, and 41.504 seconds. It completed with 1.391 GiB peak resident memory, below both declared ceilings.
 
 ### Matched Exhaustive Accelerating Controls
 
@@ -151,12 +112,9 @@ Raw exhaustive wall seconds were:
 - $N=128$: `0.157597542`, `0.122624541`, `0.132976000`;
 - $N=512$: `1.839174583`, `1.758309958`, `1.753429459`.
 
-**Measured.** Every complete sparse repeat was faster than every matched
-exhaustive repeat at the same population. This is an end-to-end wall-time
-claim after exact fallback, not an inference from block counts.
+**Measured.** Every complete sparse repeat was faster than every matched exhaustive repeat at the same population. This is an end-to-end wall-time claim after exact fallback, not an inference from block counts.
 
-Exhaustive $N=2{,}048$ exceeds the one-million-pair ceiling and returned
-`resource_envelope_exceeded`, accounting all 4,194,304 pairs as unresolved.
+Exhaustive $N=2{,}048$ exceeds the one-million-pair ceiling and returned `resource_envelope_exceeded`, accounting all 4,194,304 pairs as unresolved.
 
 ### Dense Accelerating Noncompressible Control
 
@@ -171,38 +129,19 @@ Raw dense wall seconds were:
 - $N=128$: `0.724776542`, `0.708764375`, `0.709402792`;
 - $N=512$: `11.434252417`, `13.012907458`, `11.533815208`.
 
-**Measured.** The dense accelerating fixture provides no exclusion or exact-
-search reduction. The ladder stopped at 2,048 paths before candidate
-execution, and no later dense stage was launched.
+**Measured.** The dense accelerating fixture provides no exclusion or exact- search reduction. The ladder stopped at 2,048 paths before candidate execution, and no later dense stage was launched.
 
 ## Claim Grades And Limits
 
-- **Derived:** the interval implication, exact decimal join continuity,
-  accepted-history gate, deterministic subdivision, complete-interval
-  promotion, and disjoint accounting follow from the unchanged implementation
-  and fixture construction.
-- **Measured:** the tests, oracle results, deterministic records, accounting,
-  wall time, memory, compression, sparse speedups, heartbeats, and dense
-  rejection come from the executed instruments above.
-- **Inferred:** similarly clustered accelerating histories may retain useful
-  compression. This is not a worst-case complexity result or evidence for an
-  arbitrary evolved physical population.
+- **Derived:** the interval implication, exact decimal join continuity, accepted-history gate, deterministic subdivision, complete-interval promotion, and disjoint accounting follow from the unchanged implementation and fixture construction.
+- **Measured:** the tests, oracle results, deterministic records, accounting, wall time, memory, compression, sparse speedups, heartbeats, and dense rejection come from the executed instruments above.
+- **Inferred:** similarly clustered accelerating histories may retain useful compression. This is not a worst-case complexity result or evidence for an arbitrary evolved physical population.
 - **Guessed:** no guessed claim supports acceptance or performance.
 
-This record does not establish general evolved-history performance, accepted
-10,000-path EOM evolution, million-path capability, GPU or distributed
-execution, active-force aggregation, or a general subquadratic bound.
+This record does not establish general evolved-history performance, accepted 10,000-path EOM evolution, million-path capability, GPU or distributed execution, active-force aggregation, or a general subquadratic bound.
 
 ## Explicit Falsifiers
 
-Correctness is overturned if the independent oracle finds a root in an
-excluded accelerating block, a join is discontinuous, any ordered pair is
-missing or duplicated, an accepted result has nonzero unresolved membership,
-an unaccepted history enters a bound, exact fallback omits either side of the
-join, or a permitted schedule changes membership bytes.
+Correctness is overturned if the independent oracle finds a root in an excluded accelerating block, a join is discontinuous, any ordered pair is missing or duplicated, an accepted result has nonzero unresolved membership, an unaccepted history enters a bound, exact fallback omits either side of the join, or a permitted schedule changes membership bytes.
 
-Performance is overturned if a repeated matched one-thread sparse control
-makes the complete recursive route no faster than exhaustive evaluation at
-128 or 512 paths. A 10,000-path repeat above 120 seconds or 2 GiB overturns
-the final-stage resource result. No positive performance claim is made for the
-dense control.
+Performance is overturned if a repeated matched one-thread sparse control makes the complete recursive route no faster than exhaustive evaluation at 128 or 512 paths. A 10,000-path repeat above 120 seconds or 2 GiB overturns the final-stage resource result. No positive performance claim is made for the dense control.

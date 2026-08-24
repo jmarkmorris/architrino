@@ -126,11 +126,9 @@ The universe does not require a coordinate frame. Theory and simulation use one 
 
 This final distinction separates three layers that are easy to confuse. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. Complete-state bookkeeping can infer a coordinate frame from that full record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
-**Complete-state reconstruction:**
-The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+**Complete-state reconstruction:** The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
-**Physical Observer access:**
-Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
+**Physical Observer access:** Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
 - **Proper time** $\tau$, not absolute time $T$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration

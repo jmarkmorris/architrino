@@ -11,9 +11,4 @@
 - Planned searches: frozen candidate and Step 0 conventions; receiver/transmitter variation; future-supported Euler coefficients; endpoint and finite-memory terms; Step 0–14 dispositions
 - Expected output: a frozen candidate, a complete receiver-plus-transmitter variation or an exact fail-closed obstruction, continuously integrated into the living record with claim grades, falsifiers, matrix updates, and scoped validation
 - Status: complete
-- Result: `CT-FH-1` closed negatively. Complete variation contains a
-  future-reception transmitter coefficient, independently exposed by a
-  future-only transverse analytic bump. Exact auxiliary elimination preserves
-  the failed reduced Euler equation. The canonical Master Equation and EOM
-  solver remain unchanged; the independent causal wake-state route remains the
-  first live closure object.
+- Result: `CT-FH-1` closed negatively. Complete variation contains a future-reception transmitter coefficient, independently exposed by a future-only transverse analytic bump. Exact auxiliary elimination preserves the failed reduced Euler equation. The canonical Master Equation and EOM solver remain unchanged; the independent causal wake-state route remains the first live closure object.

@@ -317,8 +317,7 @@ The future implementation should include token/privacy fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Connect token receipt ids, privacy summaries, and confirmation states into observability/public-status metadata without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
+Closure goal: Connect token receipt ids, privacy summaries, and confirmation states into observability/public-status metadata without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 

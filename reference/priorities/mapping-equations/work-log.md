@@ -8,51 +8,21 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-08-22 Priority owner renamed to mapping-equations
 
-Renamed the priority directory from `reference/priorities/equation-mapping/`
-to `reference/priorities/mapping-equations/` and updated live links, source-path
-contracts, review-packet backlinks, ranking labels, and owner references. The
-separate `scripts/equation-mapping/` checker namespace, equation-mapping app
-route, and descriptive phrase "equation mapping" remain unchanged because they
-are implementation or conceptual contracts rather than the priority slug. No
-equation score, queue state, evidence grade, or physics claim changed.
+Renamed the priority directory from `reference/priorities/equation-mapping/` to `reference/priorities/mapping-equations/` and updated live links, source-path contracts, review-packet backlinks, ranking labels, and owner references. The separate `scripts/equation-mapping/` checker namespace, equation-mapping app route, and descriptive phrase "equation mapping" remain unchanged because they are implementation or conceptual contracts rather than the priority slug. No equation score, queue state, evidence grade, or physics claim changed.
 
 ### 2026-08-22 Shared mapping architecture normalization
 
-Established the current shared router for equation-first, benchmark-first,
-domain-integration, and native-evidence work. Added the admissible native record
-set $\mathfrak A_b(\epsilon_b)$ for one equation or benchmark and the
-same-record domain intersection $\mathfrak A_D$ without changing any equation
-row, score, source-field contract, or evidence grade. Equation Mapping retains
-ownership of exact equation sets; benchmark definitions, domain intersections,
-and native evidence retain their separate owners.
+Established the current shared router for equation-first, benchmark-first, domain-integration, and native-evidence work. Added the admissible native record set $\mathfrak A_b(\epsilon_b)$ for one equation or benchmark and the same-record domain intersection $\mathfrak A_D$ without changing any equation row, score, source-field contract, or evidence grade. Equation Mapping retains ownership of exact equation sets; benchmark definitions, domain intersections, and native evidence retain their separate owners.
 
-Plainly: the method now says exactly who defines each filter and who must
-produce the geometry that survives it. This is routing and mathematical
-discipline, not new physics evidence.
+Plainly: the method now says exactly who defines each filter and who must produce the geometry that survives it. This is routing and mathematical discipline, not new physics evidence.
 
 ### 2026-07-29 July 28 translating-binary review synthesis
 
-Applied the approved research-only corrections from the Lorentz, Cartan, and
-Poincare review packets without changing any queue or score status. The
-translating-binary solvability target now retains the first-order shape
-feedback in the second-order quotient, declares the five fold-free chart
-hypotheses, and runs the adjoint condition count before continuation. The
-restricted root-preserving linear-map route is closed negatively; the
-linear-in-drift period coefficient vanishes only under the declared circular
-symmetries. Generic transverse folds are locally integrable rather than a
-standalone disqualification.
+Applied the approved research-only corrections from the Lorentz, Cartan, and Poincare review packets without changing any queue or score status. The translating-binary solvability target now retains the first-order shape feedback in the second-order quotient, declares the five fold-free chart hypotheses, and runs the adjoint condition count before continuation. The restricted root-preserving linear-map route is closed negatively; the linear-in-drift period coefficient vanishes only under the declared circular symmetries. Generic transverse folds are locally integrable rather than a standalone disqualification.
 
-The shell row remains a diagnostic consequence, not a conservation foundation.
-No wake or conserved ledger may be fitted after the branch is known. Coframe
-reciprocity now carries frozen leg normalizations and a leg-rescaling
-falsifier; drift-only loop holonomy, torsion, and phase holonomy remain
-diagnostic. The first existence theorem is one relative-periodic point enclosed
-by a validation box under the square group-reduced residual. Full-history
-persistence, drift continuation, no-retune transport, and stability remain
-separate later stages.
+The shell row remains a diagnostic consequence, not a conservation foundation. No wake or conserved ledger may be fitted after the branch is known. Coframe reciprocity now carries frozen leg normalizations and a leg-rescaling falsifier; drift-only loop holonomy, torsion, and phase holonomy remain diagnostic. The first existence theorem is one relative-periodic point enclosed by a validation box under the square group-reduced residual. Full-history persistence, drift continuation, no-retune transport, and stability remain separate later stages.
 
-Plainly: the proof order and claim boundaries changed; no retained branch,
-conservation law, Lorentz recovery, score, or lifecycle state advanced.
+Plainly: the proof order and claim boundaries changed; no retained branch, conservation law, Lorentz recovery, score, or lifecycle state advanced.
 
 ### 2026-07-02 Tracker Partition Cleanup
 

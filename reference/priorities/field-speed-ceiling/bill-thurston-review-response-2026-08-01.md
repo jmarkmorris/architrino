@@ -1,88 +1,29 @@
 # Bill Thurston Field-Speed Ceiling Review and Response
 
-**Review identifier:** `FSC-001-BT-2026-08-01`
-**Reviewer:** Bill Thurston, using the existing
-[William Thurston specialist lens](../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md)
-**Review mode:** completed read-only geometry, topology, and dynamical-system
-review
-**Captured:** 2026-08-01 from the operator-supplied review
-**Response authority:** Field-Speed priority packet only
-**Theory status:** no ceiling, event law, continuation, contact measure,
-retained assembly, or canonical change adopted
+**Review identifier:** `FSC-001-BT-2026-08-01` **Reviewer:** Bill Thurston, using the existing [William Thurston specialist lens](../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md) **Review mode:** completed read-only geometry, topology, and dynamical-system review **Captured:** 2026-08-01 from the operator-supplied review **Response authority:** Field-Speed priority packet only **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted
 
 ## Review scope and provenance boundary
 
-The review examined the proposed regular-chart response, total-ledger
-operation order, cap-state turning geometry, continuous versus atomic event
-dynamics, nonordinary root strata, weak contact limits, the projected
-state-dependent-delay solution concept, and the topology of the prescribed
-six-label geometry.
+The review examined the proposed regular-chart response, total-ledger operation order, cap-state turning geometry, continuous versus atomic event dynamics, nonordinary root strata, weak contact limits, the projected state-dependent-delay solution concept, and the topology of the prescribed six-label geometry.
 
-Thurston could not inspect the live repository through his review interface.
-His conclusions are therefore mathematical review input on the supplied paper,
-not verification of live packet status, code, diagnostics, or queue state. The
-response below checks every finding against the live packet and assigns one
-explicit disposition.
+Thurston could not inspect the live repository through his review interface. His conclusions are therefore mathematical review input on the supplied paper, not verification of live packet status, code, diagnostics, or queue state. The response below checks every finding against the live packet and assigns one explicit disposition.
 
 ## Complete substantive finding record
 
-1. The regular-chart ceiling is coherent only as a proposed constitutive law:
-   form the complete ordinary ledger, sum it, then apply one least-change
-   boundary response. A bare speed bound does not derive that response.
-2. Prose should say that only the positive radial component of the completed
-   net ordinary acceleration loses speed-increasing effect at the boundary;
-   transverse and inward components remain effective.
-3. Superposition must occur at one receiver event before the nonlinear ceiling
-   operation. The result must be invariant under ledger ordering, batching,
-   and partition, and the contributing emissions need not share an emission
-   time.
-4. At fixed cap speed, the transverse acceleration sets path curvature by
-   $\kappa_{\mathrm{path}}=\|\mathbf A_\perp\|/c_f^2$. A circle additionally
-   requires constant curvature and a consistently centered normal field; a
-   tangent acceleration at one instant does not prove sphere preservation.
-5. Continuous acceleration projection and atomic velocity update are distinct
-   operators. Projecting an aggregated trial event increment is one possible
-   new postulate, not a consequence of the regular rule and not the same as the
-   selected zero event coefficient.
-6. Nonordinary geometry needs a typed catalogue separating regular roots,
-   folds, characteristic intervals, the zero-delay diagonal, multiple-branch
-   coincidences, and root accumulations. Source identity and event ownership,
-   not geometry alone, distinguish the two proposed characteristic-interval
-   dispositions.
-7. In the local fold normal form
-   $g_\varepsilon(s)=a(s-s_0)^2-\varepsilon$, the two absolute coarea weights
-   scale as $\varepsilon^{-1/2}$. Uniform local total variation and a unique
-   weak-* limit should not be assumed without a restrictive admissible class
-   and a theorem.
-8. The selected zero contact impulse is a primitive event disposition unless a
-   separate convergence theorem derives it. Divergent or route-dependent
-   near-contact ordinary measures would refute robustness, not logically
-   refute the postulate.
-9. The evolution state must include retained histories, emission provenance,
-   branch ownership, and measures. A regular local existence theorem needs a
-   fixed finite branch inventory, a $D_t$ floor, root and inactive gaps,
-   Lipschitz root dependence, bounded/Lipschitz net acceleration, no event
-   crossing, and a declared history norm.
-10. The prescribed six-label geometry is not a six-component spatial link.
-    Antipodal labels share spatial carrier circles, and the orthogonal circles
-    intersect as unparameterized sets. The primary object is a labeled loop in
-    collision-free configuration space with any required framing, separator,
-    causal-root, and event records carried separately.
-11. The velocity ball and velocity sphere supply no topological protection by
-    themselves because their fundamental groups are trivial.
-12. The thirty-root theorem remains useful, but failed acceleration-vector
-    closure rejects the prescribed carrier under the minimal total-ledger
-    response. It must not be classified as a retained braid or physical
-    assembly.
-13. The recommended theorem order is regular-ledger invariance, regular
-    viability, regular-chart local well-posedness, event-stratum
-    classification, fold and mirror-contact limit tests, event-law decision,
-    post-event history, two-architrino evolution, and only then six-worldline
-    evolution.
-14. The packet must continue to deny completeness, perturbation-independent
-    zero impulse, finite contact measure, post-contact existence or uniqueness,
-    velocity-sphere topological protection, retained braid status, and physical
-    realization.
+1. The regular-chart ceiling is coherent only as a proposed constitutive law: form the complete ordinary ledger, sum it, then apply one least-change boundary response. A bare speed bound does not derive that response.
+2. Prose should say that only the positive radial component of the completed net ordinary acceleration loses speed-increasing effect at the boundary; transverse and inward components remain effective.
+3. Superposition must occur at one receiver event before the nonlinear ceiling operation. The result must be invariant under ledger ordering, batching, and partition, and the contributing emissions need not share an emission time.
+4. At fixed cap speed, the transverse acceleration sets path curvature by $\kappa_{\mathrm{path}}=\|\mathbf A_\perp\|/c_f^2$. A circle additionally requires constant curvature and a consistently centered normal field; a tangent acceleration at one instant does not prove sphere preservation.
+5. Continuous acceleration projection and atomic velocity update are distinct operators. Projecting an aggregated trial event increment is one possible new postulate, not a consequence of the regular rule and not the same as the selected zero event coefficient.
+6. Nonordinary geometry needs a typed catalogue separating regular roots, folds, characteristic intervals, the zero-delay diagonal, multiple-branch coincidences, and root accumulations. Source identity and event ownership, not geometry alone, distinguish the two proposed characteristic-interval dispositions.
+7. In the local fold normal form $g_\varepsilon(s)=a(s-s_0)^2-\varepsilon$, the two absolute coarea weights scale as $\varepsilon^{-1/2}$. Uniform local total variation and a unique weak-* limit should not be assumed without a restrictive admissible class and a theorem.
+8. The selected zero contact impulse is a primitive event disposition unless a separate convergence theorem derives it. Divergent or route-dependent near-contact ordinary measures would refute robustness, not logically refute the postulate.
+9. The evolution state must include retained histories, emission provenance, branch ownership, and measures. A regular local existence theorem needs a fixed finite branch inventory, a $D_t$ floor, root and inactive gaps, Lipschitz root dependence, bounded/Lipschitz net acceleration, no event crossing, and a declared history norm.
+10. The prescribed six-label geometry is not a six-component spatial link. Antipodal labels share spatial carrier circles, and the orthogonal circles intersect as unparameterized sets. The primary object is a labeled loop in collision-free configuration space with any required framing, separator, causal-root, and event records carried separately.
+11. The velocity ball and velocity sphere supply no topological protection by themselves because their fundamental groups are trivial.
+12. The thirty-root theorem remains useful, but failed acceleration-vector closure rejects the prescribed carrier under the minimal total-ledger response. It must not be classified as a retained braid or physical assembly.
+13. The recommended theorem order is regular-ledger invariance, regular viability, regular-chart local well-posedness, event-stratum classification, fold and mirror-contact limit tests, event-law decision, post-event history, two-architrino evolution, and only then six-worldline evolution.
+14. The packet must continue to deny completeness, perturbation-independent zero impulse, finite contact measure, post-contact existence or uniqueness, velocity-sphere topological protection, retained braid status, and physical realization.
 
 ## Complete response matrix
 
@@ -115,8 +56,7 @@ N_{\mathcal B_{c_f}}(\mathbf V)
 \mathbf A_{\mathrm{ord}},
 $$
 
-but uniqueness comes from the separately stated Euclidean least-change
-selection. The local fold negative control gives
+but uniqueness comes from the separately stated Euclidean least-change selection. The local fold negative control gives
 
 $$
 \left|g_\varepsilon'(s_\pm)\right|
@@ -128,41 +68,22 @@ $$
 \frac{1}{\sqrt{a\varepsilon}}.
 $$
 
-Plainly: the first equation packages the proposed regular response but does
-not derive it. The second shows why a nearby pair of ordinary roots need not
-converge to a finite contact measure.
+Plainly: the first equation packages the proposed regular response but does not derive it. The second shows why a nearby pair of ordinary roots need not converge to a finite contact measure.
 
 ## Remaining obligations after response
 
-1. Complete FSC-006's typed receiver-side contact and competing-stratum
-   measures and prove or refute one parameterization-independent finite weak-*
-   limit over the declared admissible perturbations.
-2. Prove FSC-007 regular-chart local existence and uniqueness in a declared
-   history norm with the finite-branch, gap, transversality, and Lipschitz
-   assumptions verified on the solution chart.
-3. Prove or refute FSC-005 only after FSC-006 supplies its measure and
-   perturbation class.
-4. Select no general atomic event response until its guard, aggregation,
-   codomain, outgoing history, and relation to receiver measures are defined.
-5. Require every future Assembly Atlas claim to identify the constrained
-   configuration space and retained framing, separator, causal-root, and event
-   records rather than infer protection from intersecting spatial traces or the
-   velocity sphere.
+1. Complete FSC-006's typed receiver-side contact and competing-stratum measures and prove or refute one parameterization-independent finite weak-* limit over the declared admissible perturbations.
+2. Prove FSC-007 regular-chart local existence and uniqueness in a declared history norm with the finite-branch, gap, transversality, and Lipschitz assumptions verified on the solution chart.
+3. Prove or refute FSC-005 only after FSC-006 supplies its measure and perturbation class.
+4. Select no general atomic event response until its guard, aggregation, codomain, outgoing history, and relation to receiver measures are defined.
+5. Require every future Assembly Atlas claim to identify the constrained configuration space and retained framing, separator, causal-root, and event records rather than infer protection from intersecting spatial traces or the velocity sphere.
 
 None of these obligations is advanced merely by stating it.
 
 ## Response boundary
 
-No Thurston finding was omitted. Findings 1 through 4, 7 through 12, and 14
-were accepted; findings 5, 6, and 13 were partially accepted for the exact
-reasons recorded above. No positive-delay zero-separation causal stratum,
-projected jump law, ceiling, general contact law, continuation, finite contact
-measure, conservation, stability, physical realization, retained braid, MEC
-status, or closure-score movement was adopted.
+No Thurston finding was omitted. Findings 1 through 4, 7 through 12, and 14 were accepted; findings 5, 6, and 13 were partially accepted for the exact reasons recorded above. No positive-delay zero-separation causal stratum, projected jump law, ceiling, general contact law, continuation, finite contact measure, conservation, stability, physical realization, retained braid, MEC status, or closure-score movement was adopted.
 
-No reviewer was contacted during this integration, no successor review was
-started, and nothing was published.
+No reviewer was contacted during this integration, no successor review was started, and nothing was published.
 
-Closure goal: complete FSC-006's contact-measure test and FSC-007's separate
-regular-chart local well-posedness theorem before posing any full capped
-evolution or six-worldline retention claim.
+Closure goal: complete FSC-006's contact-measure test and FSC-007's separate regular-chart local well-posedness theorem before posing any full capped evolution or six-worldline retention claim.

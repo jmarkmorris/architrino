@@ -56,6 +56,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Preserve the returned `Closure goal:` when restarting, splitting, or refocusing a task.
 - [ ] Before broad terminology migrations, ask for a scan of git history and current usage, then name accepted terms and frozen labels before editing.
 - [ ] Avoid temporal phrasing for theory claims; use canonical definition/status language such as `canonical Master EOM`.
+- [x] Keep authored Markdown prose unwrapped in source so Codex Review controls visual wrapping; preserve only structural, mathematical, code, table, quotation, and explicit hard breaks.
 
 ## Multi-Agent Use
 

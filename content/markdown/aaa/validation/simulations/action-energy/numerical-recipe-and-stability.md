@@ -7,10 +7,7 @@ Event-aware integration (practical algorithm):
    - Discard non-physical roots by convention $H(0)=0$ (exclude $\Delta T=0$); note $r=0$ occurs only at $\Delta T=0$ and is thus excluded.
 
 2. Per-hit accumulation:
-   - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,
-     $D_t=1-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$,
-     $D_r=1-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$, and
-     $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. Then use
+   - For each accepted root, compute $r$, $\hat{\mathbf{r}}$, $D_t=1-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$, $D_r=1-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. Then use
      $$
      \mathbf A_{o'\leftarrow o}(T_r;T_t)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{acc}}\,\hat{\mathbf{r}}
      $$

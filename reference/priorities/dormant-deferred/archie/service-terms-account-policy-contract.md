@@ -233,8 +233,7 @@ The future implementation should include service-terms fixtures for:
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Service Terms And Account Policy Contract into terms-version schemas, account acceptance validators, service-term launch gates, token/subscription disclosures, privacy/retention disclosures, public issue notices, and regression fixtures for the Archie service.
+Closure goal: Turn the Service Terms And Account Policy Contract into terms-version schemas, account acceptance validators, service-term launch gates, token/subscription disclosures, privacy/retention disclosures, public issue notices, and regression fixtures for the Archie service.
 
 Use this packet, [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [corporate-media-standards.md](corporate-media-standards.md), [v1-product-requirements.md](v1-product-requirements.md), and the public [Legal Terms](../../../../content/markdown/aaa/archie/legal-terms.md) page as the source of truth.
 

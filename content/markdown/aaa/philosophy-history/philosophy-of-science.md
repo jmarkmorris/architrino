@@ -336,9 +336,7 @@ The central commitment is that science should contain a recognizable crisis-dete
 
 Relevant indicators include anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. Anomaly load concerns the number and severity of unresolved tensions, paradoxes, and unexplained sectors. Ontology debt concerns the number of central theoretical objects that remain predictively useful while mechanistically unclear. Patch density concerns the growth of auxiliary sectors, repair layers, and interpretation families needed to preserve the framework. Progress latency concerns the elapsed time since the last widely accepted foundational closure rather than the last confirmation of an inherited prediction. Theory proliferation without convergence concerns the multiplication of interpretations or repair programs without narrowing toward a common architecture. Effective-success imbalance concerns the case in which engineering and prediction remain strong while explanatory unification remains weak.
 
-These indicators become operationally meaningful only when attached to concrete
-diagnoses. For a declared domain and time window $W$, their profile can be
-written as
+These indicators become operationally meaningful only when attached to concrete diagnoses. For a declared domain and time window $W$, their profile can be written as
 
 $$
 \mathbf I_W
@@ -353,12 +351,7 @@ E_W
 \right),
 $$
 
-where the components denote anomaly load, ontology debt, patch density,
-progress latency, theory proliferation, and effective-success imbalance. The
-components are not commensurate by default, so $\mathbf I_W$ is a diagnostic
-profile rather than a scalar crisis score. Summing or ranking them requires a
-measurement rule, normalization, comparison window, and weights fixed before
-the desired verdict is known.
+where the components denote anomaly load, ontology debt, patch density, progress latency, theory proliferation, and effective-success imbalance. The components are not commensurate by default, so $\mathbf I_W$ is a diagnostic profile rather than a scalar crisis score. Summing or ranking them requires a measurement rule, normalization, comparison window, and weights fixed before the desired verdict is known.
 
 The companion crisis chapter supplies the present many-to-many crosswalk:
 
@@ -371,12 +364,7 @@ The companion crisis chapter supplies the present many-to-many crosswalk:
 | Theory proliferation $V_W$ | [`CR-05`](crisis-in-physics.md#general-relativity-and-quantum-theory), [`CR-06`](crisis-in-physics.md#ads-control-and-de-sitter-reality), and [`CR-10`](crisis-in-physics.md#parameter-proliferation-and-patchwork-closure) | Competing unification settings, interpretations, or repair programs multiply without converging on shared discriminating observables. |
 | Effective-success imbalance $E_W$ | [`CR-02`](crisis-in-physics.md#prediction-vs-ontology), [`CR-07`](crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess), and [`CR-11`](crisis-in-physics.md#mathematical-control-vs-mechanistic-explanation) | Prediction and formal control remain strong while substrate implementation and mechanistic integration remain comparatively weak. |
 
-The crosswalk is diagnostic, not accusatory. One crisis axis may bear several
-indicators, and one indicator may arise from several axes. A high profile does
-not confirm $\mathbb{A}\mathbb{A}\mathbb{A}$ or any other replacement. It
-changes the comparative burden: preserve the successful records, expose the
-auxiliary assumptions, and demand a discriminating recovery that the incumbent
-and replacement packages cannot both obtain by retuning.
+The crosswalk is diagnostic, not accusatory. One crisis axis may bear several indicators, and one indicator may arise from several axes. A high profile does not confirm $\mathbb{A}\mathbb{A}\mathbb{A}$ or any other replacement. It changes the comparative burden: preserve the successful records, expose the auxiliary assumptions, and demand a discriminating recovery that the incumbent and replacement packages cannot both obtain by retuning.
 
 The same crisis layer should audit false priors directly. A false prior is not merely a wrong numerical guess; it is a starting abstraction that silently defines the permitted architecture. If a community assumes too early that observed particle charge is primitive charge, that measured photon speed is the primitive wake speed, or that an effective metric is substrate geometry, then later mathematics may become rigorous while the theory space has already been narrowed. A crisis-capable method must therefore include primitive-abstraction review: identify the inherited assumptions that decide the search space before any parameter fit begins.
 
@@ -782,11 +770,7 @@ What this subject gets right is that evidence moves through layers: observation,
 
 The subject also gets right that theory choice cannot be reduced to one virtue. Simplicity, coherence, fertility, and mechanistic depth matter, but each can mislead when isolated. The demand is therefore for articulated tradeoffs rather than hidden preference.
 
-[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/)
-supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be
-two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used
-to construct or calibrate either package, and let $\mathcal C$ state the shared
-background conditions. Posterior odds then satisfy
+[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/) supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used to construct or calibrate either package, and let $\mathcal C$ state the shared background conditions. Posterior odds then satisfy
 
 $$
 \frac{P(Q_i\mid D_{\mathrm{new}},\mathcal C)}
@@ -801,32 +785,11 @@ $$
      {P(Q_j\mid\mathcal C)}.
 $$
 
-The Bayes factor $K_{ij}$ measures how differently the two packages expose
-themselves to the new record; the prior-odds factor states what was believed
-before that record was opened. If both packages assign the same likelihood to
-the evidence, then $K_{ij}=1$ and the evidence does not discriminate between
-them, however impressive the shared fit may be. If the data were used to
-choose the mechanism, parameters, projection, or likelihood family, they are
-calibration evidence rather than an independent confirmation record.
+The Bayes factor $K_{ij}$ measures how differently the two packages expose themselves to the new record; the prior-odds factor states what was believed before that record was opened. If both packages assign the same likelihood to the evidence, then $K_{ij}=1$ and the evidence does not discriminate between them, however impressive the shared fit may be. If the data were used to choose the mechanism, parameters, projection, or likelihood family, they are calibration evidence rather than an independent confirmation record.
 
-This use of probability is epistemic and observer-facing. It organizes
-uncertainty over declared hypothesis packages and record channels; it does not
-make probability a substrate substance, a causal agent, or proof of primitive
-randomness. A deterministic complete-state account may still induce a
-likelihood over controlled preparation variation, inaccessible path history,
-apparatus response, and finite observer records. Conversely, fitting a
-probability distribution at the observer level does not establish that the
-underlying dynamics is deterministic.
+This use of probability is epistemic and observer-facing. It organizes uncertainty over declared hypothesis packages and record channels; it does not make probability a substrate substance, a causal agent, or proof of primitive randomness. A deterministic complete-state account may still induce a likelihood over controlled preparation variation, inaccessible path history, apparatus response, and finite observer records. Conversely, fitting a probability distribution at the observer level does not establish that the underlying dynamics is deterministic.
 
-Priors remain a visible source of judgment. A theory comparison should
-therefore report whether the conclusion survives reasonable prior families,
-whether parameter volume rather than prediction quality drives the result, and
-whether a catch-all alternative has been omitted. Mechanistic economy may
-inform a prior, but it cannot be hidden inside one and then rediscovered as
-evidence. The same discipline applies to old evidence: a theory that derives a
-known result without using it in construction gains more support than a theory
-fitted to that result, but a genuinely withheld linked prediction remains the
-cleaner discriminator.
+Priors remain a visible source of judgment. A theory comparison should therefore report whether the conclusion survives reasonable prior families, whether parameter volume rather than prediction quality drives the result, and whether a catch-all alternative has been omitted. Mechanistic economy may inform a prior, but it cannot be hidden inside one and then rediscovered as evidence. The same discipline applies to old evidence: a theory that derives a known result without using it in construction gains more support than a theory fitted to that result, but a genuinely withheld linked prediction remains the cleaner discriminator.
 
 The Duhem-Quine problem sharpens the audit. A failed comparison confronts a packet, not one isolated law: substrate dynamics, initial and boundary data, apparatus model, observer projection, numerical method, and calibration all contribute to the residual. The tested packet has the following components.
 $$

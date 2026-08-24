@@ -15,11 +15,7 @@ The candidate task rows, upstream gates, and promotion boundaries live in [work-
 
 ## Scope
 
-This workstream preserves speculative dark-sector subjects when they are
-assembly candidates, release-channel candidates, transport modes, or
-dark-visible conversion hypotheses. Its low numeric rank allocates attention
-to a candidate packet; it does not make the lane an accepted closure-evidence
-workstream.
+This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. Its low numeric rank allocates attention to a candidate packet; it does not make the lane an accepted closure-evidence workstream.
 
 The lane does not replace [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 

@@ -1,30 +1,12 @@
 # Field-Speed Ceiling No-Escape Audit
 
-**Date:** 2026-07-30
-**Status:** review artifact aligned; proposed axiom and narrow collinear event
-postulate explicit; no law adopted
-**Claim level:** assumption and ownership audit
-**Authority:** this artifact neither changes the canonical open model nor
-proves a closed-model continuation.
-**Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md);
-[Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md);
-[Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md);
-[Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md);
-[Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
+**Date:** 2026-07-30 **Status:** review artifact aligned; proposed axiom and narrow collinear event postulate explicit; no law adopted **Claim level:** assumption and ownership audit **Authority:** this artifact neither changes the canonical open model nor proves a closed-model continuation. **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md); [Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md); [Bill Thurston read-only review, captured 2026-08-01](bill-thurston-review-response-2026-08-01.md); [Albert Einstein read-only review, captured 2026-08-01](albert-einstein-review-response-2026-08-01.md); [Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
 ## Audit question
 
-Can every claimed Field-Speed Ceiling result be traced from canonical
-Euclidean, absolute-time, and causal-ledger premises through explicitly typed
-proposals and conditional operations, without obtaining a desired conclusion
-by changing the ordinary root ledger, hiding a nonordinary event, or importing
-a later recovery target?
+Can every claimed Field-Speed Ceiling result be traced from canonical Euclidean, absolute-time, and causal-ledger premises through explicitly typed proposals and conditional operations, without obtaining a desired conclusion by changing the ordinary root ledger, hiding a nonordinary event, or importing a later recovery target?
 
-The audit starts from the current canonical model and follows only the
-operations already separated in the
-[mathematics packet](mathematics-geometry-dynamical-system.md) and the
-[FSC-001 compatibility decision](field-speed-ceiling-compatibility-decision.md).
-It does not derive either proposed law or repair the general contact-event gap.
+The audit starts from the current canonical model and follows only the operations already separated in the [mathematics packet](mathematics-geometry-dynamical-system.md) and the [FSC-001 compatibility decision](field-speed-ceiling-compatibility-decision.md). It does not derive either proposed law or repair the general contact-event gap.
 
 ## Assumption-to-operation-to-result trace
 
@@ -45,13 +27,7 @@ It does not derive either proposed law or repair the general contact-event gap.
 | 12. Six-path root reference | Prescribed $T=0$ equal-radius six-path geometry with $c_f=R=\omega=1$ → solve every ordered distinct-label channel at 100 decimal places and apply the exact same-label chord–arc result → reproduce 30 ordinary roots, no same-label positive-delay roots, and positive $D_t,D_r$. | `derived reference-path theorem` for the exact inventory; `diagnostic` for the arbitrary-precision reproduction | Prescribed coordinate normalization only; no boundary event rule. | All 30 roots are ordinary and use the canonical causal equation. | Each receipt row names exactly one receiver and one distinct transmitter; no event replaces a root. | Exact theorem on the prescribed paths plus a durable $T=0$ diagnostic receipt; not evolved or retained dynamics. |
 | 13. Minimal-response closure diagnostic | The same 30-root $T=0$ ledger plus each of four relative polarity orientations → form the complete raw vector sum and apply the proposed complete axiom → obtain four sign witnesses that violate necessary prescribed-circle closure conditions. | `diagnostic` | No new parameter or event law. | Uses the unchanged ordinary rows before the proposed net projection. | Root ownership is unchanged; the negative is in the summed vector response, not in root admission. | Measured negative for this geometry, time slice, and response. It rejects no other response and selects no boundary law. |
 
-Plainly: every favorable-looking conclusion stops where its declared
-assumptions stop. The canonical premises produce the ordinary ledger; the
-closed ball, absolute continuity, radial reaction, and ledger-first order are
-clauses of one complete proposed axiom; least-change projection follows a.e.
-under that law. The separately proposed collinear event rule owns
-one exact contact and yields only an outgoing contact one-jet; and the clean
-six-path root inventory still fails the tested vector closure.
+Plainly: every favorable-looking conclusion stops where its declared assumptions stop. The canonical premises produce the ordinary ledger; the closed ball, absolute continuity, radial reaction, and ledger-first order are clauses of one complete proposed axiom; least-change projection follows a.e. under that law. The separately proposed collinear event rule owns one exact contact and yields only an outgoing contact one-jet; and the clean six-path root inventory still fails the tested vector closure.
 
 ## Negative guard checks
 
@@ -66,50 +42,26 @@ six-path root inventory still fails the tested vector closure.
 | No Planck or Lorentz result is assumed. | Classify observer-level recovery statements as downstream targets, never primitive premises. | Neither recovery target enters the causal-root, projection, contact, or diagnostic calculation. `No recovery claim`. | Any step that derives the ceiling from Planck-scale or Lorentz language, or counts a desired recovery behavior as evidence for the primitive boundary rule. |
 | No conservation result is assumed. | Check for a separately derived same-update account across the boundary event. | None exists in this packet. `Conservation not established`. | Labeling a rejected acceleration component, terminal history, or boundary event as conserved without a complete same-update ledger. |
 
-Plainly: the audit leaves no mathematical escape hatch through a clamp,
-renamed root, projected-zero shortcut, or desired downstream result. The
-proposed zero-impulse contact update is now stated openly; a complete
-continuing model still has to solve the open post-contact and general event
-problems.
+Plainly: the audit leaves no mathematical escape hatch through a clamp, renamed root, projected-zero shortcut, or desired downstream result. The proposed zero-impulse contact update is now stated openly; a complete continuing model still has to solve the open post-contact and general event problems.
 
 ## Review disposition
 
 The trace is internally compatible only as a regular-chart partial model:
 
-- canonical Euclidean, absolute-time, causal-root, and ordinary-ledger
-  premises remain unchanged;
-- the closed velocity ball, absolute continuity, radial normal-cone reaction,
-  and total-ledger order are clauses of one complete, unadopted foundational
-  axiom; the least-change response is derived a.e. under those clauses;
-- the frozen-ledger response layer is unique, and cap-admissible positive-delay
-  root geometry has a finite per-channel classification; neither result closes
-  the history map or assigns a nonordinary disposition;
+- canonical Euclidean, absolute-time, causal-root, and ordinary-ledger premises remain unchanged;
+- the closed velocity ball, absolute continuity, radial normal-cone reaction, and total-ledger order are clauses of one complete, unadopted foundational axiom; the least-change response is derived a.e. under those clauses;
+- the frozen-ledger response layer is unique, and cap-admissible positive-delay root geometry has a finite per-channel classification; neither result closes the history map or assigns a nonordinary disposition;
 - MEC-007 remains `Awaiting verification`;
-- the limited inactive self-contact convention does not cover partner
-  contact;
-- the Minimal Collinear Partner-Contact Postulate is selected for review only,
-  not derived or adopted;
-- the resulting velocity-preserving outgoing contact one-jet is reset data,
-  not a right-hand history;
-- the source, receiver, and event-update measures are typed separately;
-  simple-branch total variation transfers exactly, FSC-006a proves the
-  conditional far-part limit and exact residue, and FSC-006b now supplies a
-  narrow constructed restart pending review and local uniqueness;
-- the Typed Nonordinary Contact Event Postulate remains required and
-  unselected for all other nonordinary contacts;
-- the $T=0$ arbitrary-precision receipt supports only the prescribed
-  thirty-root and four-sign diagnostic slice; and
-- no general or open-interval continuation, retention, $H$, conservation,
-  Planck-scale, Lorentz, physical-realization, or closure-score conclusion
-  follows.
+- the limited inactive self-contact convention does not cover partner contact;
+- the Minimal Collinear Partner-Contact Postulate is selected for review only, not derived or adopted;
+- the resulting velocity-preserving outgoing contact one-jet is reset data, not a right-hand history;
+- the source, receiver, and event-update measures are typed separately; simple-branch total variation transfers exactly, FSC-006a proves the conditional far-part limit and exact residue, and FSC-006b now supplies a narrow constructed restart pending review and local uniqueness;
+- the Typed Nonordinary Contact Event Postulate remains required and unselected for all other nonordinary contacts;
+- the $T=0$ arbitrary-precision receipt supports only the prescribed thirty-root and four-sign diagnostic slice; and
+- no general or open-interval continuation, retention, $H$, conservation, Planck-scale, Lorentz, physical-realization, or closure-score conclusion follows.
 
-The audit is falsified by any live canonical premise misclassified above, any
-ordinary row that the candidate actually deletes or reweights, any existing
-owner law that already supplies the missing partner-contact disposition, or
-any stated result whose proof requires an assumption absent from its row.
+The audit is falsified by any live canonical premise misclassified above, any ordinary row that the candidate actually deletes or reweights, any existing owner law that already supplies the missing partner-contact disposition, or any stated result whose proof requires an assumption absent from its row.
 
-Plainly: this artifact checks the bookkeeping of the argument. It is not a
-new law and it is not evidence that the ceiling should be adopted.
+Plainly: this artifact checks the bookkeeping of the argument. It is not a new law and it is not evidence that the ceiling should be adopted.
 
-Closure goal: independently review the constructed FSC-006b exact-event family
-and right trace before any full well-posedness review.
+Closure goal: independently review the constructed FSC-006b exact-event family and right trace before any full well-posedness review.

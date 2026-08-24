@@ -62,8 +62,7 @@ $$
 $$
 \lvert d^{(w)}_t\rangle=V_{td}\lvert d\rangle+V_{ts}\lvert s\rangle+V_{tb}\lvert b\rangle
 $$
-The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
-Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
+The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing. Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at support vectors $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch. The component order follows the persistent binary indices and does not encode a radius order.
 
@@ -86,15 +85,13 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../assemblies/particle-masses.md).
 
-Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
-Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
+Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation. Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
 
 Noether sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
 
-Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch.
-Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
+Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch. Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
 This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
 
@@ -257,8 +254,7 @@ Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether br
 - $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the declared exposed sites of the two cores.
 - $W^-$ payload: $3\epsilon_+ + 9\epsilon_-$ (net $-6(e/6)=-e$).
 
-The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
-Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
+The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget. Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
 
 ### CKM Benchmark (Rounded Magnitudes)
 
@@ -342,10 +338,7 @@ On the weak-coupling-triad domain $\Sigma_{\mathrm{WCT}}$, model this overlap as
 $$
 V_{ij}=\int_{\Sigma_{\mathrm{WCT}}}\psi_{j,m}^{d*}(x)\,\psi_{i,w}^{d}(x)\,d\mu(x)
 $$
-Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea.
-$a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel.
-At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$.
-then use the standard unitary decomposition
+Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea. $a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel. At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$. then use the standard unitary decomposition
 $$
 V=R_{23}(\theta_{23})\,R_{13}(\theta_{13},\delta)\,R_{12}(\theta_{12}),
 \qquad s_{ij}\equiv\sin\theta_{ij}
@@ -379,9 +372,7 @@ s_{23}=e^{-\kappa_{23}},\qquad
 s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=\xi\,s_{12}s_{23},
 \quad \xi\equiv e^{-\sigma}\in(0,1]
 $$
-This captures hierarchy with three real parameters for magnitudes.
-Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport.
-Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
+This captures hierarchy with three real parameters for magnitudes. Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport. Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
 
 Holonomy closure postulate (no extra phase fit):
 $$
@@ -404,8 +395,7 @@ $$
 \kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad \xi=0.401
 $$
 
-> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$.
-> Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,{}^\circ$ (standard CKM phase convention), this is within $1\sigma$.
+> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$. Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,{}^\circ$ (standard CKM phase convention), this is within $1\sigma$.
 
 Predictions not used in calibration:
 
@@ -511,8 +501,7 @@ Equivalent interval criterion: $I_x^{(p)}$ overlaps $I_{x,\text{ext}}^{(p)}$.
 
 This upgrades the CKM closure check from central-value comparison to a statistically testable confidence-interval statement.
 
-Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries
-$\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
+Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
 
 Calibration anchors: $\lvert V_{us}\rvert,\ \lvert V_{cb}\rvert,\ \lvert V_{ub}\rvert$.
 

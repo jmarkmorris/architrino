@@ -63,27 +63,13 @@ This file holds provisional feature ideas, performance directions, validation po
 
 ### Moving-Branch Drift Relaxation Instrument
 
-Claim level: instrument target. This capability can measure a moving branch; it
-does not establish Lorentz recovery by itself.
+Claim level: instrument target. This capability can measure a moving branch; it does not establish Lorentz recovery by itself.
 
-- Consume an accepted rest-branch record and apply declared axial and
-  two-axis drift seeds with $c_f=1$, without prescribing the target
-  contraction or phase split.
-- Evolve each seed until the same branch either reaches a certified
-  relative-periodic state, changes identity, disperses, collapses, or remains
-  unresolved within the declared budget.
-- On the retained branch, emit the cycle-averaged shape tensor, drift-axis
-  semiaxes $R_{\parallel}(u)$ and $R_{\perp}(u)$, clock phase, bidirectional
-  one-way leg offsets, transverse eigenvalue split after composed drifts, root
-  identity, history coverage, and convergence ladders.
-- Include a direct-drift versus sequential-drift comparison at the same
-  resultant velocity. The scientific consumer can then test attractor
-  uniqueness and path independence without asking the solver to label a
-  Lorentz pass.
-- Route seed choice and branch identity through the Braid Program; route
-  observer-level clock, ruler, synchronization, and preferred-frame
-  acceptance through
-  [Mapping Benchmarks](../mapping-benchmarks/lorentz-invariance-test-suite.md).
+- Consume an accepted rest-branch record and apply declared axial and two-axis drift seeds with $c_f=1$, without prescribing the target contraction or phase split.
+- Evolve each seed until the same branch either reaches a certified relative-periodic state, changes identity, disperses, collapses, or remains unresolved within the declared budget.
+- On the retained branch, emit the cycle-averaged shape tensor, drift-axis semiaxes $R_{\parallel}(u)$ and $R_{\perp}(u)$, clock phase, bidirectional one-way leg offsets, transverse eigenvalue split after composed drifts, root identity, history coverage, and convergence ladders.
+- Include a direct-drift versus sequential-drift comparison at the same resultant velocity. The scientific consumer can then test attractor uniqueness and path independence without asking the solver to label a Lorentz pass.
+- Route seed choice and branch identity through the Braid Program; route observer-level clock, ruler, synchronization, and preferred-frame acceptance through [Mapping Benchmarks](../mapping-benchmarks/lorentz-invariance-test-suite.md).
 
 ### CPU Performance
 
@@ -155,33 +141,12 @@ does not establish Lorentz recovery by itself.
 
 ## Far-Field Contribution Enclosure (operator brainstorm, 2026-07-16)
 
-Claim level: priority-design (operator-directed brainstorm; quantitative examples are
-back-of-envelope from the declared Borg budgets, not measured runs).
+Claim level: priority-design (operator-directed brainstorm; quantitative examples are back-of-envelope from the declared Borg budgets, not measured runs).
 
-Root-free block exclusion asks "can this pair interact at all?" and measured useless at
-Borg scale (nothing in a small box is root-free). The stronger, so-far-unbuilt axis is
-contribution enclosure — the reserved $P_{\mathrm{enclosed}}$ term in the block-exclusion
-pair accounting: certify that a pair's total acceleration contribution lies within a
-declared $\pm\varepsilon$ and charge it against the acceleration error budget instead of
-root-searching it.
+Root-free block exclusion asks "can this pair interact at all?" and measured useless at Borg scale (nothing in a small box is root-free). The stronger, so-far-unbuilt axis is contribution enclosure — the reserved $P_{\mathrm{enclosed}}$ term in the block-exclusion pair accounting: certify that a pair's total acceleration contribution lies within a declared $\pm\varepsilon$ and charge it against the acceleration error budget instead of root-searching it.
 
-- Threshold derivation: the cutoff radius is a function of the declared budget, never a
-  constant. Per-hit magnitude is bounded by $\kappa |q_i q_j| / (r^2 \cdot D_{s,\min})$
-  with a certified far-pair lower bound on the source normal (for subluminal far sources
-  it grows like $r(1 - v_{\max})$). With Borg's $\kappa = 0.005$ and a 10% slice of the
-  demo acceleration tolerance the enclosure radius is a few box lengths; at research
-  tolerance ($10^{-8}$) it is $\mathcal{O}(10^3)$.
-- Memory payoff (the run-length lever): an enclosed pair needs no root search and hence
-  no retained history. This directly removes the dispersal death observed 2026-07-16 (a
-  3:3 run at t=6.0 with the population outside the box halted `minimum_step_exhausted`
-  via memory-boundary root rows once pair delays exceeded the fixed wake horizon).
-- Geometry primitive: keep per-axis interval boxes (free from interval Horner over the
-  cubic segments); the certified distance bracket $[r_{\min}, r_{\max}]$ — the "circle
-  test" — is one norm away from the box. A sphere-native pipeline saves nothing.
-- Dense-sea obligation: individual far hits are weak but shell counts grow like $r^2$;
-  sea-scale enclosures must bound membership groups collectively (the traversal tree is
-  the natural organizer). For 6-path Borg the per-pair form suffices.
-- Physical framing (operator): assemblies that persist in a wake-filled universe are, by
-  existence, insensitive to far-field detail; near-set accuracy is what matters. The
-  far-field enclosure makes that intuition a declared, certified error term rather than a
-  silent truncation.
+- Threshold derivation: the cutoff radius is a function of the declared budget, never a constant. Per-hit magnitude is bounded by $\kappa |q_i q_j| / (r^2 \cdot D_{s,\min})$ with a certified far-pair lower bound on the source normal (for subluminal far sources it grows like $r(1 - v_{\max})$). With Borg's $\kappa = 0.005$ and a 10% slice of the demo acceleration tolerance the enclosure radius is a few box lengths; at research tolerance ($10^{-8}$) it is $\mathcal{O}(10^3)$.
+- Memory payoff (the run-length lever): an enclosed pair needs no root search and hence no retained history. This directly removes the dispersal death observed 2026-07-16 (a 3:3 run at t=6.0 with the population outside the box halted `minimum_step_exhausted` via memory-boundary root rows once pair delays exceeded the fixed wake horizon).
+- Geometry primitive: keep per-axis interval boxes (free from interval Horner over the cubic segments); the certified distance bracket $[r_{\min}, r_{\max}]$ — the "circle test" — is one norm away from the box. A sphere-native pipeline saves nothing.
+- Dense-sea obligation: individual far hits are weak but shell counts grow like $r^2$; sea-scale enclosures must bound membership groups collectively (the traversal tree is the natural organizer). For 6-path Borg the per-pair form suffices.
+- Physical framing (operator): assemblies that persist in a wake-filled universe are, by existence, insensitive to far-field detail; near-set accuracy is what matters. The far-field enclosure makes that intuition a declared, certified error term rather than a silent truncation.

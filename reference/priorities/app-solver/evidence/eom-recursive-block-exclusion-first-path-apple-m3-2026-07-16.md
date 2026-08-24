@@ -12,9 +12,7 @@
 - Million-path authority: none
 - Active aggregation authority: none
 
-The implementation extends the accepted moving-history block certificate into
-a deterministic recursive causal index. It is not GPU, distributed, active-
-contribution aggregation, or million-path production integration.
+The implementation extends the accepted moving-history block certificate into a deterministic recursive causal index. It is not GPU, distributed, active- contribution aggregation, or million-path production integration.
 
 ## Build Provenance
 
@@ -25,8 +23,7 @@ cmake -S src/eom -B /tmp/eom-recursive-evidence-build-20260716 -DCMAKE_BUILD_TYP
 cmake --build /tmp/eom-recursive-evidence-build-20260716 --parallel 4
 ```
 
-The source, library, and benchmark binary times prove that the measured binary
-was rebuilt after the solver sources and benchmark source:
+The source, library, and benchmark binary times prove that the measured binary was rebuilt after the solver sources and benchmark source:
 
 | Artifact | Local modification time | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
@@ -38,13 +35,7 @@ was rebuilt after the solver sources and benchmark source:
 
 ## Exclusion Implication
 
-**Derived.** Let one covered point have receiver position
-$\mathbf X_i(T)$, source position $\mathbf X_j(S)$, separation
-$d=\|\mathbf X_i(T)-\mathbf X_j(S)\|$, and delay $\Delta=T-S$. The accepted
-history hulls enclose both positions. Outward interval subtraction and the
-outward interval norm therefore give $d\in\mathcal D_{RB}(I)$. Outward time
-subtraction gives $\Delta\in\Delta_{RB}(I)$. Because $c_f>0$, interval
-multiplication and subtraction give
+**Derived.** Let one covered point have receiver position $\mathbf X_i(T)$, source position $\mathbf X_j(S)$, separation $d=\|\mathbf X_i(T)-\mathbf X_j(S)\|$, and delay $\Delta=T-S$. The accepted history hulls enclose both positions. Outward interval subtraction and the outward interval norm therefore give $d\in\mathcal D_{RB}(I)$. Outward time subtraction gives $\Delta\in\Delta_{RB}(I)$. Because $c_f>0$, interval multiplication and subtraction give
 
 $$
 d-c_f\Delta
@@ -56,34 +47,15 @@ d^+_{RB}-c_f\Delta^-_{RB}
 =\mathcal G_{RB}(I).
 $$
 
-The binary64 interval implementation rounds finite endpoints outward with
-`std::nextafter` in `Interval.cpp`; multiplication checks all endpoint
-products, and the norm uses outward square, sum, and square-root operations.
-Consequently, if $0\notin\mathcal G_{RB}(I)$, no covered pair-time point can
-satisfy $d-c_f(T-S)=0$. This is an implication from enclosure membership, not
-a sampled-residual decision.
+The binary64 interval implementation rounds finite endpoints outward with `std::nextafter` in `Interval.cpp`; multiplication checks all endpoint products, and the norm uses outward square, sum, and square-root operations. Consequently, if $0\notin\mathcal G_{RB}(I)$, no covered pair-time point can satisfy $d-c_f(T-S)=0$. This is an implication from enclosure membership, not a sampled-residual decision.
 
-**Derived.** The traversal rejects a member whose
-`accepted_retained_history` field is false, requires every history to cover its
-declared reception or emission interval, requires the emission interval not to
-extend beyond the earliest reception, and requires exact fallback to search an
-interval containing the complete traversal emission interval. The canonical
-coincident endpoint remains an exact-pair responsibility; block traversal does
-not silently remove it.
+**Derived.** The traversal rejects a member whose `accepted_retained_history` field is false, requires every history to cover its declared reception or emission interval, requires the emission interval not to extend beyond the earliest reception, and requires exact fallback to search an interval containing the complete traversal emission interval. The canonical coincident endpoint remains an exact-pair responsibility; block traversal does not silently remove it.
 
 ## Recursive Accounting Result
 
-**Derived.** Each visited block records exactly one route: `excluded`,
-`subdivide`, `exact_tile`, or `unresolved`. Receiver, source, and emission
-splits are midpoint-deterministic and use a fixed depth-first child order.
+**Derived.** Each visited block records exactly one route: `excluded`, `subdivide`, `exact_tile`, or `unresolved`. Receiver, source, and emission splits are midpoint-deterministic and use a fixed depth-first child order.
 
-**Derived.** Time-cell decisions collapse into one relationship ledger. A bit
-is set when any time cell for an ordered pair reaches `exact_tile`. At the end,
-row-major deterministic membership ranges classify each relationship exactly
-once. If the traversal finishes, every unset pair is excluded over the whole
-emission interval. If node or exact-pair resources fail, every relationship
-without a complete outcome becomes unresolved. The first path fixes
-$P_{\mathrm{enclosed}}=0$ and accepts traversal accounting only when
+**Derived.** Time-cell decisions collapse into one relationship ledger. A bit is set when any time cell for an ordered pair reaches `exact_tile`. At the end, row-major deterministic membership ranges classify each relationship exactly once. If the traversal finishes, every unset pair is excluded over the whole emission interval. If node or exact-pair resources fail, every relationship without a complete outcome becomes unresolved. The first path fixes $P_{\mathrm{enclosed}}=0$ and accepts traversal accounting only when
 
 $$
 P_{\mathrm{logical}}
@@ -95,8 +67,7 @@ $$
 
 ## Independent And Adversarial Validation
 
-The independently authored decimal interval and exact-pair oracle files were
-not modified in this change.
+The independently authored decimal interval and exact-pair oracle files were not modified in this change.
 
 **Measured.** The focused validation matrix passed:
 
@@ -109,38 +80,17 @@ not modified in this change.
 | EOM solver coupled evolution | 17/17 passed |
 | Native CTest fixtures | 3/3 passed |
 
-The fixtures include a root-free block, an active-root block, a near-zero
-interval overlap, coincident geometry, same-history self-pairs, analytically
-known stationary histories, and a dense noncompressible population.
+The fixtures include a root-free block, an active-root block, a near-zero interval overlap, coincident geometry, same-history self-pairs, analytically known stationary histories, and a dense noncompressible population.
 
-**Measured.** For every pair in every `excluded` node of the mixed moving-
-history fixture, the independent 90-decimal-digit oracle certified the same
-emission cell complete with zero roots. No independently detected active root
-occurred inside an excluded block.
+**Measured.** For every pair in every `excluded` node of the mixed moving- history fixture, the independent 90-decimal-digit oracle certified the same emission cell complete with zero roots. No independently detected active root occurred inside an excluded block.
 
-**Measured.** Repeated fixture executions produced identical traversal nodes,
-membership ranges, counts, and exact rows. The single-thread and four-thread
-exact-fallback packets were byte-identical. Population-ladder membership
-fingerprints were identical across repeats at every repeated population.
-Traversal itself is single-threaded in this first path; one and four threads
-are the currently permitted exact-batch schedules tested here.
+**Measured.** Repeated fixture executions produced identical traversal nodes, membership ranges, counts, and exact rows. The single-thread and four-thread exact-fallback packets were byte-identical. Population-ladder membership fingerprints were identical across repeats at every repeated population. Traversal itself is single-threaded in this first path; one and four threads are the currently permitted exact-batch schedules tested here.
 
 ## Performance Method
 
-The sparse constant-history population contains a small contiguous active
-source band and a far root-free population. The root block is deliberately
-inconclusive, so the result requires recursive source, receiver, and emission
-subdivision before root-free blocks separate from exact tiles. The dense
-population keeps every relationship inconclusive through the declared leaf
-policy.
+The sparse constant-history population contains a small contiguous active source band and a far root-free population. The root block is deliberately inconclusive, so the result requires recursive source, receiver, and emission subdivision before root-free blocks separate from exact tiles. The dense population keeps every relationship inconclusive through the declared leaf policy.
 
-The end-to-end sparse route times both recursive traversal and complete exact
-certification of every surviving pair. The exhaustive control certifies all
-$N^2$ pairs with the same histories, reception time, emission interval,
-numeric policy, and one native thread. Each repeated row reports the median of
-three independent processes. Peak resident memory is the maximum observed
-across those repeats. The $N=10{,}000$ complete sparse stage was run once under
-a declared 60-second wall and 2 GiB resident-memory ceiling.
+The end-to-end sparse route times both recursive traversal and complete exact certification of every surviving pair. The exhaustive control certifies all $N^2$ pairs with the same histories, reception time, emission interval, numeric policy, and one native thread. Each repeated row reports the median of three independent processes. Peak resident memory is the maximum observed across those repeats. The $N=10{,}000$ complete sparse stage was run once under a declared 60-second wall and 2 GiB resident-memory ceiling.
 
 ### Complete Sparse Ladder
 
@@ -158,8 +108,7 @@ Raw complete-path wall seconds were:
 - $N=2,048$: `1.944042458`, `1.680015375`, `1.686308292`;
 - $N=10,000$: `49.444270125`.
 
-The 10,000-path run emitted heartbeats at 10.219, 20.451, 30.872, and 41.157 wall
-seconds and completed while still observed.
+The 10,000-path run emitted heartbeats at 10.219, 20.451, 30.872, and 41.157 wall seconds and completed while still observed.
 
 ### Matched Exhaustive Controls
 
@@ -173,15 +122,9 @@ Raw exhaustive one-thread wall seconds were:
 - $N=128$: `0.092275167`, `0.076451166`, `0.076562875`;
 - $N=512$: `1.026653250`, `1.021041667`, `1.084934250`.
 
-**Measured.** The recursive complete path outperformed exhaustive exact-pair
-certification on both feasible matched sparse controls after paying the full
-exact-fallback cost. This conclusion is a wall-time result, not a block-count
-inference.
+**Measured.** The recursive complete path outperformed exhaustive exact-pair certification on both feasible matched sparse controls after paying the full exact-fallback cost. This conclusion is a wall-time result, not a block-count inference.
 
-The exhaustive $N=2{,}048$ control projects 4,194,304 exact pairs, exceeding
-the declared one-million-pair exhaustive ceiling. It returned
-`resource_envelope_exceeded` before allocating requests; all 4,194,304
-relationships were reported unresolved.
+The exhaustive $N=2{,}048$ control projects 4,194,304 exact pairs, exceeding the declared one-million-pair exhaustive ceiling. It returned `resource_envelope_exceeded` before allocating requests; all 4,194,304 relationships were reported unresolved.
 
 ### Dense Noncompressible Control
 
@@ -191,47 +134,26 @@ relationships were reported unresolved.
 | 512 | 262,144 | 24,575 | 0 | 262,144 | 0.135443 median | 11,567,104 | complete traversal; zero reduction |
 | 2,048 | 4,194,304 | 0 | 0 | 0 | 0 preflight | 1,556,480 | `resource_envelope_exceeded`; all pairs unresolved |
 
-**Measured.** The dense fixture provides no compression. The ladder stopped at
-$N=2{,}048$ because the projected exact population exceeded the declared
-one-million-pair envelope. No candidate result was fabricated, and the
-$N=10{,}000$ dense stage was not launched after that stop.
+**Measured.** The dense fixture provides no compression. The ladder stopped at $N=2{,}048$ because the projected exact population exceeded the declared one-million-pair envelope. No candidate result was fabricated, and the $N=10{,}000$ dense stage was not launched after that stop.
 
 ## Claim Grades And Limits
 
-- **Derived:** the outward residual implication, deterministic split policy,
-  accepted-history gate, complete-interval exact promotion, and disjoint
-  relationship-accounting construction follow from the implementation and
-  interval operations described above.
-- **Measured:** the stated oracle parity, regression results, membership
-  determinism, pair counts, compression, memory, wall times, and matched sparse
-  speedups come from the executed controls in this record.
-- **Inferred:** the increasing exact-search reduction on this staged sparse
-  family suggests useful scaling for similarly clustered root-free histories.
-  It is not a worst-case complexity result and does not establish performance
-  for an arbitrary physical population.
+- **Derived:** the outward residual implication, deterministic split policy, accepted-history gate, complete-interval exact promotion, and disjoint relationship-accounting construction follow from the implementation and interval operations described above.
+- **Measured:** the stated oracle parity, regression results, membership determinism, pair counts, compression, memory, wall times, and matched sparse speedups come from the executed controls in this record.
+- **Inferred:** the increasing exact-search reduction on this staged sparse family suggests useful scaling for similarly clustered root-free histories. It is not a worst-case complexity result and does not establish performance for an arbitrary physical population.
 - **Guessed:** no guessed conclusion is used for acceptance or performance.
 
-This packet does not establish million-path capability, distributed ownership,
-GPU parity, active-force aggregation, a general subquadratic bound, or accepted
-EOM evolution at $N=10{,}000$. It measures causal indexing plus exact root
-certification on accepted stationary retained histories.
+This packet does not establish million-path capability, distributed ownership, GPU parity, active-force aggregation, a general subquadratic bound, or accepted EOM evolution at $N=10{,}000$. It measures causal indexing plus exact root certification on accepted stationary retained histories.
 
 ## Explicit Falsifiers
 
 The correctness conclusion is overturned by any of the following:
 
-- the independent decimal oracle detects an active root in an `excluded`
-  membership and emission interval;
-- the expanded relationship ledger contains a duplicate or missing ordered
-  pair, including a self-pair;
-- an accepted traversal or exact-batch result has nonzero unresolved
-  membership;
+- the independent decimal oracle detects an active root in an `excluded` membership and emission interval;
+- the expanded relationship ledger contains a duplicate or missing ordered pair, including a self-pair;
+- an accepted traversal or exact-batch result has nonzero unresolved membership;
 - a history not marked accepted contributes to an authoritative block bound;
 - exact fallback searches less than the complete declared emission interval;
 - a permitted schedule changes membership, accounting, or exact-row bytes.
 
-The performance conclusion is overturned if a repeated matched one-thread
-sparse control makes the complete recursive route no faster than exhaustive
-exact certification at $N=128$ or $N=512$. No performance conclusion exists
-for the dense control or for a population whose exhaustive control was stopped
-by the resource ceiling.
+The performance conclusion is overturned if a repeated matched one-thread sparse control makes the complete recursive route no faster than exhaustive exact certification at $N=128$ or $N=512$. No performance conclusion exists for the dense control or for a population whose exhaustive control was stopped by the resource ceiling.

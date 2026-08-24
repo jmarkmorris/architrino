@@ -1,7 +1,6 @@
 # Gluons and the Strong Force: Geometric Origins
 
-**Scope:** Definition of color charge, gluon structure, and confinement.
-This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../gauge-symmetries.md).
+**Scope:** Definition of color charge, gluon structure, and confinement. This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../gauge-symmetries.md).
 
 The standard gluon is a gauge-boson carrier of the strong interaction. This chapter keeps that role as the observer-level recovery target, but asks for the physical implementation underneath it. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a gluon channel is a color-corridor event in the Noether sea: it routes axis exceptionality, flux-tube strain, recoil, and conserved ledgers between color-exposed quark assemblies.
 

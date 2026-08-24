@@ -287,8 +287,7 @@ The visual path should follow [visual-artifact-contract.md](visual-artifact-cont
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and rendering contracts for the Archie question service while keeping user-facing language plain.
+Closure goal: Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and rendering contracts for the Archie question service while keeping user-facing language plain.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 

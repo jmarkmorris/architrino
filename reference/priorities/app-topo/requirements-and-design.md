@@ -37,12 +37,7 @@ Plainly: one world unit is always one canvas-height, so equal horizontal and ver
 
 The linear Euclidean chart is the only coordinate view. Heatmap color uses the single bounded square-root transfer declared below, with Shading spread changing only its reach. No selectable coordinate or color-transfer modes remain.
 
-In either pair scenario, a `View` radio group selects `Electrino`, `Positrino`,
-or `Absolute Observer`. Selecting an architrino excludes that architrino's
-self-wake and retains only the partner wake. `Absolute Observer` retains and
-signed-sums both source wakes before shading or contour extraction. The
-selection enters the raw frame and contour identity; it is not a display-only
-color switch.
+In either pair scenario, a `View` radio group selects `Electrino`, `Positrino`, or `Absolute Observer`. Selecting an architrino excludes that architrino's self-wake and retains only the partner wake. `Absolute Observer` retains and signed-sums both source wakes before shading or contour extraction. The selection enters the raw frame and contour identity; it is not a display-only color switch.
 
 Plainly: the pair map can show either partner-only receiver view or the complete signed two-source map. Both body markers remain visible in every view.
 
@@ -56,12 +51,7 @@ $$
 \end{cases}
 $$
 
-Each source is stationary at its visible starting position for the infinite
-prehistory, then undergoes a prescribed instantaneous launch at replay time
-zero. Position is continuous; prescribed velocity changes discontinuously.
-This input supplies an arriving wake from both source histories throughout the
-visible frame, including at $\beta=1$, without changing the existing 20% and
-80% replay-start positions.
+Each source is stationary at its visible starting position for the infinite prehistory, then undergoes a prescribed instantaneous launch at replay time zero. Position is continuous; prescribed velocity changes discontinuously. This input supplies an arriving wake from both source histories throughout the visible frame, including at $\beta=1$, without changing the existing 20% and 80% replay-start positions.
 
 Plainly: the collinear bodies have been sitting at the two opening dots for as long as the calculation looks backward. Pressing play begins the authored straight-line motion from those dots; it is a what-if launch, not a prediction of natural acceleration.
 
@@ -80,55 +70,22 @@ The initial controls are:
 | Color mapping | applied only after the signed raw field and equal-value contour geometry are calculated; contour levels remain raw factor-of-ten values and never consume shaded values |
 | Overlay | scenario-specific reference geometry plus source polarity disks using one shared half-size radius, canonical thin white border, and half-size centered white origin dot |
 
-Every slider uses the same fixed title column and places its track on the same
-row as its title. Notes remain on a separate full-width row below the control.
+Every slider uses the same fixed title column and places its track on the same row as its title. Notes remain on a separate full-width row below the control.
 
 Source position, shading spread, contour range, contour visibility, neutral background, and color limits belong to display state. The chosen species or pair observer, retained partner source, $\beta$, observable identity, time slice, domain, and scientific-kernel version belong to the reproducible scenario record.
 
 ## Shared Application-Shell Contract
 
-Topo inherits the shared Architrino application shell rather than creating an
-app-local navigation or panel language.
+Topo inherits the shared Architrino application shell rather than creating an app-local navigation or panel language.
 
-- The canvas uses the shared dark neutral-purple stage and translucent dark
-  panel surfaces. The colors must come from shared semantic UI tokens; Topo
-  must not introduce another nearly matching hard-coded purple palette. Signed
-  data zero uses the accepted shared Electric Purple (`#8F00FF`) semantic
-  token. In the single-source uniform-motion scenarios, the beta endpoint's
-  rootless leading region uses the same neutral display midpoint without
-  receiving a fabricated raw value; the shell itself keeps the dark shared
-  stage token.
-- The shared application controls occupy the top-right safe area in the
-  established order: `Home`, `Back`, `Forward`, `Search`, `Notes` or
-  `Documents`, and `Settings`, omitting only a control that has no declared
-  behavior. Buttons use the shared monoline SVGs, dark shell, visible focus
-  state, accessible names, and the standard approximately $32\times32$ hit
-  target.
-- The left control panel uses the shared open/closed panel icon from
-  `PanelCollapseIcons.js`. Collapse preserves a narrow visible rail and the
-  reopen control; it does not remove the control from keyboard navigation.
-  The toggle exposes `aria-expanded`, updates its accessible name, and makes
-  closed content inert. Sliding motion is short and functional and is removed
-  under reduced-motion preferences.
-- Scenario and $\beta$ are local scientific controls in the left panel. The
-  $\beta$ slider reuses the established Architrino slider interaction and
-  keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$
-  scientific contract. Contour count, contour visibility, display scale, and legend
-  remain nearby display controls rather than being hidden in global
-  navigation. The default contour visibility is $75\%$.
-- Mobile layout collapses the left panel before reducing shared icon hit
-  targets and keeps the top-right controls clear of the map legend and source
-  marker.
-- Space invokes the same play/pause action as the visible transport button for
-  the moving collinear and circular-binary scenarios. The shortcut is inert at
-  $\beta=0$, ignores repeat events, and leaves Space to buttons, radios,
-  checkboxes, selects, links, text entry, and editable content. A focused range
-  slider does not suppress the global shortcut because Space has no native
-  range adjustment meaning; arrow, Home, and End behavior remains native.
+- The canvas uses the shared dark neutral-purple stage and translucent dark panel surfaces. The colors must come from shared semantic UI tokens; Topo must not introduce another nearly matching hard-coded purple palette. Signed data zero uses the accepted shared Electric Purple (`#8F00FF`) semantic token. In the single-source uniform-motion scenarios, the beta endpoint's rootless leading region uses the same neutral display midpoint without receiving a fabricated raw value; the shell itself keeps the dark shared stage token.
+- The shared application controls occupy the top-right safe area in the established order: `Home`, `Back`, `Forward`, `Search`, `Notes` or `Documents`, and `Settings`, omitting only a control that has no declared behavior. Buttons use the shared monoline SVGs, dark shell, visible focus state, accessible names, and the standard approximately $32\times32$ hit target.
+- The left control panel uses the shared open/closed panel icon from `PanelCollapseIcons.js`. Collapse preserves a narrow visible rail and the reopen control; it does not remove the control from keyboard navigation. The toggle exposes `aria-expanded`, updates its accessible name, and makes closed content inert. Sliding motion is short and functional and is removed under reduced-motion preferences.
+- Scenario and $\beta$ are local scientific controls in the left panel. The $\beta$ slider reuses the established Architrino slider interaction and keyboard pattern while retaining Topo's own exact $0\leq\beta\leq1$ scientific contract. Contour count, contour visibility, display scale, and legend remain nearby display controls rather than being hidden in global navigation. The default contour visibility is $75\%$.
+- Mobile layout collapses the left panel before reducing shared icon hit targets and keeps the top-right controls clear of the map legend and source marker.
+- Space invokes the same play/pause action as the visible transport button for the moving collinear and circular-binary scenarios. The shortcut is inert at $\beta=0$, ignores repeat events, and leaves Space to buttons, radios, checkboxes, selects, links, text entry, and editable content. A focused range slider does not suppress the global shortcut because Space has no native range adjustment meaning; arrow, Home, and End behavior remains native.
 
-Plainly: Topo should feel like another Architrino application immediately.
-The map is new; its navigation, slider behavior, panel toggle, colors, focus
-rules, and responsive shell are not.
+Plainly: Topo should feel like another Architrino application immediately. The map is new; its navigation, slider behavior, panel toggle, colors, focus rules, and responsive shell are not.
 
 ## Prescribed Uniform-Translation Geometry
 
@@ -219,28 +176,13 @@ so each integer exponent step changes magnitude by exactly a factor of ten. `Con
 
 Plainly: each contour marks a tenfold raw wake-intensity change in the one linear coordinate chart.
 
-The approaching-collinear scenario obtains the retained partner's signed contours from the same immutable full-resolution raw frame used to paint its heatmap. Levels are raw powers of ten with the retained partner's sign. Marching squares linearly interpolates only within finite cells,
-uses the bilinear-cell determinant with a stable cell/raw-level-value tie-break for saddle
-topology, and never crosses a source mask or unavailable sample. `Contour
-visibility` multiplies only line opacity from hidden at zero through legible at
-one; `Contour count` changes only the retained genuine equal-wake levels. During
-active replay the WebGL path supplies the responsive heatmap preview, and the
-canonical heatmap-plus-contour frame settles immediately when playback pauses.
+The approaching-collinear scenario obtains the retained partner's signed contours from the same immutable full-resolution raw frame used to paint its heatmap. Levels are raw powers of ten with the retained partner's sign. Marching squares linearly interpolates only within finite cells, uses the bilinear-cell determinant with a stable cell/raw-level-value tie-break for saddle topology, and never crosses a source mask or unavailable sample. `Contour visibility` multiplies only line opacity from hidden at zero through legible at one; `Contour count` changes only the retained genuine equal-wake levels. During active replay the WebGL path supplies the responsive heatmap preview, and the canonical heatmap-plus-contour frame settles immediately when playback pauses.
 
-Plainly: the pair contours follow the sampled field in world space. The
-logarithm chooses raw contour values, not pixel positions, and missing samples
-cannot masquerade as a cancellation line.
+Plainly: the pair contours follow the sampled field in world space. The logarithm chooses raw contour values, not pixel positions, and missing samples cannot masquerade as a cancellation line.
 
-One native neutral-background slider runs continuously from Electric Purple to
-White in the common unified Scenario panel for all four scenarios. Its value
-persists when the scenario changes and affects only the neutral display color
-and reference-overlay contrast. Every intermediate value is an sRGB mixture of
-the accepted Electric Purple and added white; the control introduces no other
-color stop. Raw-frame keys, prescribed histories, solver state, timing, and
-frame identities exclude it.
+One native neutral-background slider runs continuously from Electric Purple to White in the common unified Scenario panel for all four scenarios. Its value persists when the scenario changes and affects only the neutral display color and reference-overlay contrast. Every intermediate value is an sRGB mixture of the accepted Electric Purple and added white; the control introduces no other color stop. Raw-frame keys, prescribed histories, solver state, timing, and frame identities exclude it.
 
-Plainly: changing the background changes the paper behind the signed colors,
-not the numbers or motion being shown.
+Plainly: changing the background changes the paper behind the signed colors, not the numbers or motion being shown.
 
 [TOPO-002](topo-interaction-and-color-contract-v1.md) records the comparison against one declared synthetic signed surface and its falsifier. Quantile coloring is not a v1 candidate because it would make the same color mean different raw values in different frames.
 
@@ -272,9 +214,7 @@ The first release is acceptable only when:
 6. singular and unavailable points remain distinct from zero and clipped display values;
 7. contour range and visibility change only the visualization, not the raw map;
 8. $c_f=1$ is used in all numerical fixtures; and
-9. the shared top-right application controls, dark neutral-purple stage,
-   collapsible left-panel behavior, focus states, reduced-motion behavior, and
-   responsive hit targets pass desktop and mobile checks; and
+9. the shared top-right application controls, dark neutral-purple stage, collapsible left-panel behavior, focus states, reduced-motion behavior, and responsive hit targets pass desktop and mobile checks; and
 10. no EOM evolution, continuation, conservation, stability, or physical claim is attached to the display.
 
 ## Open Decisions

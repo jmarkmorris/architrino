@@ -87,8 +87,7 @@ The zero term is also a topology-and-bundle statement. Because the void is $\mat
 $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
-and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$.
-The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
+and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$. The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
 > **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
 

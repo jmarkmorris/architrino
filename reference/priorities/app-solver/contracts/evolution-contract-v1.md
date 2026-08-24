@@ -82,16 +82,9 @@ The `master_eom_binding/v1` record pins the exact canonical definition for this 
 
 ### Borg Live Request Binding
 
-The bounded-population Borg path serializes this contract as
-`eom_borg_shadow_request/v1`. Every live request must carry
-`contractId=eom_evolution_contract/v1`, an empty `contractAmendmentIds` array,
-and `modelBindingId=master_eom_binding/v1`. The empty amendment list means that
-the request makes no million-path claim; it does not weaken the base contract.
+The bounded-population Borg path serializes this contract as `eom_borg_shadow_request/v1`. Every live request must carry `contractId=eom_evolution_contract/v1`, an empty `contractAmendmentIds` array, and `modelBindingId=master_eom_binding/v1`. The empty amendment list means that the request makes no million-path claim; it does not weaken the base contract.
 
-The browser runner and the process bridge must reject any schema, contract,
-amendment, or model-binding mismatch before a native evolution request is
-encoded. This check binds Borg to the corrected acceleration law without
-changing the numerical fields consumed by that law.
+The browser runner and the process bridge must reject any schema, contract, amendment, or model-binding mismatch before a native evolution request is encoded. This check binds Borg to the corrected acceleration law without changing the numerical fields consumed by that law.
 
 ### Run Identity
 
@@ -140,14 +133,7 @@ The request declares:
 
 `integration_tolerance` or its versioned replacement is operational: exceeding it rejects or refines a candidate step. A tolerance value that appears only in metadata is nonconforming.
 
-For Borg, the numerical and resource controls are selected by one atomic
-`borg_certified_budget/v1` record. The request carries the preset id, complete
-allocation object, its canonical JSON serialization, and the lowercase SHA-256
-of that serialization. The process bridge recomputes both the canonical JSON
-and the hash before encoding the native request. A mismatch rejects the request;
-the hash is an identity check, not evidence that the numerical ledger passed.
-The current preset identities are recorded in
-[Certified Error-Budget Ledger](./certified-error-budget-ledger.md).
+For Borg, the numerical and resource controls are selected by one atomic `borg_certified_budget/v1` record. The request carries the preset id, complete allocation object, its canonical JSON serialization, and the lowercase SHA-256 of that serialization. The process bridge recomputes both the canonical JSON and the hash before encoding the native request. A mismatch rejects the request; the hash is an identity check, not evidence that the numerical ledger passed. The current preset identities are recorded in [Certified Error-Budget Ledger](./certified-error-budget-ledger.md).
 
 ## Accepted-Step State Machine
 
@@ -190,43 +176,21 @@ Every root-search record must identify:
 - new, merged, split, disappeared, or unresolved roots;
 - certification status and precision path.
 
-For an interior simple-root bracket $[a,b]$, let $g(S)$ be the causal
-residual, let a probe $p\in[a,b]$ have certified enclosure $G_p$, and let the
-transmitter-side-factor enclosure $D_t([a,b])$ exclude zero. Opposite strict residual
-signs at $a$ and $b$ certify existence, while the one-sign transmitter-side factor
-certifies uniqueness. The mean-value theorem then gives the outward root
-enclosure
+For an interior simple-root bracket $[a,b]$, let $g(S)$ be the causal residual, let a probe $p\in[a,b]$ have certified enclosure $G_p$, and let the transmitter-side-factor enclosure $D_t([a,b])$ exclude zero. Opposite strict residual signs at $a$ and $b$ certify existence, while the one-sign transmitter-side factor certifies uniqueness. The mean-value theorem then gives the outward root enclosure
 
 $$
 I_*=[a,b]\cap\left(p-\frac{G_p}{D_t([a,b])}\right).
 $$
 
-The root record may accept $I_*$ when its outward width is within the unchanged
-root tolerance and the transmitter-side-factor enclosure over $I_*$ still excludes
-zero. This asymmetric enclosure is required before declaring
-`interior_root_not_surrounded`; a symmetric probe about $p$ is not by itself a
-completeness test.
+The root record may accept $I_*$ when its outward width is within the unchanged root tolerance and the transmitter-side-factor enclosure over $I_*$ still excludes zero. This asymmetric enclosure is required before declaring `interior_root_not_surrounded`; a symmetric probe about $p$ is not by itself a completeness test.
 
 If a possible root reaches the retained-history boundary or completeness cannot be certified, the candidate step fails with `insufficient_history_depth` or `unresolved_root_set`. The contribution is never silently omitted.
 
-The certified finite-width acceleration quantity is the integral over the
-declared retained emission interval from `searched_lower` through
-`reception_time`. It makes no claim about unrepresented emission times below
-`searched_lower` and is not an infinite-past master-equation integral. The
-memory-boundary clearance check excludes a causal root at the retained lower
-boundary; it is not a Gaussian-tail enclosure for earlier times.
+The certified finite-width acceleration quantity is the integral over the declared retained emission interval from `searched_lower` through `reception_time`. It makes no claim about unrepresented emission times below `searched_lower` and is not an infinite-past master-equation integral. The memory-boundary clearance check excludes a causal root at the retained lower boundary; it is not a Gaussian-tail enclosure for earlier times.
 
-An ordinary `root_completeness_not_certified` record carries no finite-width
-contract record and no regulator level. `FWC-ENTRY-02` is emitted only when the
-root certificate actually requires the caustic route; selecting the
-sharp-with-finite-width-fallback chart does not reclassify every unresolved
-root as a caustic.
+An ordinary `root_completeness_not_certified` record carries no finite-width contract record and no regulator level. `FWC-ENTRY-02` is emitted only when the root certificate actually requires the caustic route; selecting the sharp-with-finite-width-fallback chart does not reclassify every unresolved root as a caustic.
 
-When step reduction reaches the declared minimum step, an underlying
-`coupled_correction_failed` record remains the terminal halt code. The controller
-does not replace that adjudicated cause with the generic
-`minimum_step_exhausted` label. This naming rule does not accept the rejected
-step or change the minimum step.
+When step reduction reaches the declared minimum step, an underlying `coupled_correction_failed` record remains the terminal halt code. The controller does not replace that adjudicated cause with the generic `minimum_step_exhausted` label. This naming rule does not accept the rejected step or change the minimum step.
 
 ## Regularization And Caustics
 

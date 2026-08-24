@@ -125,8 +125,7 @@ This chapter uses a dominant-channel rule: include reactions/channels that contr
 - $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon pair-production channel in dense radiation fields, distinct from Schwinger vacuum pair production).
 - Secondary-loop channel: newly produced $e^\pm$ re-enter synchrotron emission, closing the cascade.
 
-Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
-This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
+Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them. This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
 
 ## Radiation Inheritance
 

@@ -19,9 +19,7 @@ This case can sharpen internal-state rotation and weak-sector exposure. The stan
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `internal_rotation` — Define the assembly-state rotation or branch-phase map that replaces mass-eigenstate phase accumulation. Status: `draft`.
 2. `weak_projection` — Connect detector flavor labels to weak exposure quotient and axial-frame orientation. Status: `draft`.

@@ -6,15 +6,7 @@ This document defines the standard repo process for ending a work session, publi
 
 ## Branch Naming Convention
 
-The active branch series for this repo is currently the minerals/gemstones
-sequence, using the committed
-[mineral/gemstone branch registry](branch-series/minerals-gemstones.md). The
-moon sequence ended at `codex/sao` and is consumed. When a branch series is
-exhausted, continue with the next series in
-[Branch Series Rollover Order](#branch-series-rollover-order) rather than
-reusing retired branch names.
-The branch-series index and configured counts are tracked in
-[branch-series registry](branch-series/registry.md).
+The active branch series for this repo is currently the minerals/gemstones sequence, using the committed [mineral/gemstone branch registry](branch-series/minerals-gemstones.md). The moon sequence ended at `codex/sao` and is consumed. When a branch series is exhausted, continue with the next series in [Branch Series Rollover Order](#branch-series-rollover-order) rather than reusing retired branch names. The branch-series index and configured counts are tracked in [branch-series registry](branch-series/registry.md).
 
 - Working branches should use `codex/<series-item-name>` by default.
 - If a short topic suffix materially improves clarity, use `codex/<series-item-name>-<topic>`.
@@ -38,10 +30,7 @@ The canonical series index, counts, registry status, and concrete registry files
 
 - Keep one clear canonical working branch at a time.
 - Do not leave a session with unclear local state.
-- A shared working branch may contain several coordinated workstreams. Publish
-  that combined branch when its full branch-tip diff is coherent and
-  reviewable; name every included workstream in the PR title or body rather
-  than treating interleaved commits as a reason to split, rewrite, or stop.
+- A shared working branch may contain several coordinated workstreams. Publish that combined branch when its full branch-tip diff is coherent and reviewable; name every included workstream in the PR title or body rather than treating interleaved commits as a reason to split, rewrite, or stop.
 - A merged pull request does not retire the local branch automatically. If you keep committing on that branch after merge, those later commits are new unmerged work.
 - Do not delete a branch until its pull request is merged and local `main` matches remote `main`.
 - Treat `git fetch origin` as remote-tracking refresh only. It does not update local `main`.
@@ -53,89 +42,48 @@ The canonical series index, counts, registry status, and concrete registry files
 
 ## Shared-Checkout Coordination
 
-This repository normally uses one direct shared checkout. Multiple agents may
-edit, validate, commit, and push coordinated work on the same active branch.
-Git worktrees are not the default isolation mechanism here and must not be
-proposed merely because several agents are active.
+This repository normally uses one direct shared checkout. Multiple agents may edit, validate, commit, and push coordinated work on the same active branch. Git worktrees are not the default isolation mechanism here and must not be proposed merely because several agents are active.
 
-- Define PR scope from the committed branch-tip diff and the operator's active
-  directions, not from which agent made a commit or whether commits from
-  several workstreams interleave.
-- A combined PR is acceptable when its included workstreams can be stated
-  plainly, its complete diff is reviewable together, and validation covers the
-  resulting exact state. A coordinator should write that combined scope into
-  the PR body.
-- Do not ask for approval, require branch surgery, or propose a split merely
-  because the branch contains coordinated lattice, theory, documentation,
-  application, or mechanical-maintenance work.
-- Preserve unrelated ambient edits by keeping them out of the candidate
-  branch-tip scope. Stop only when ownership or overlap cannot be determined,
-  when an edit would be overwritten or endangered, or when resolving it would
-  require a substantive decision.
+- Define PR scope from the committed branch-tip diff and the operator's active directions, not from which agent made a commit or whether commits from several workstreams interleave.
+- A combined PR is acceptable when its included workstreams can be stated plainly, its complete diff is reviewable together, and validation covers the resulting exact state. A coordinator should write that combined scope into the PR body.
+- Do not ask for approval, require branch surgery, or propose a split merely because the branch contains coordinated lattice, theory, documentation, application, or mechanical-maintenance work.
+- Preserve unrelated ambient edits by keeping them out of the candidate branch-tip scope. Stop only when ownership or overlap cannot be determined, when an edit would be overwritten or endangered, or when resolving it would require a substantive decision.
 
 ### Routine authority through the review handoff
 
-An explicit instruction to run this procedure authorizes the healthy path all
-the way to the operator's PR-review handoff. Do not re-ask for approval for
-routine inspection, deterministic whitespace or generated-file repair,
-validation and retry, deliberate staging of the declared branch-tip scope,
-commit, ordinary non-force push, PR title/body preparation, PR creation or
-update, draft-to-ready transition, remote-check watching, or mergeability
-verification.
+An explicit instruction to run this procedure authorizes the healthy path all the way to the operator's PR-review handoff. Do not re-ask for approval for routine inspection, deterministic whitespace or generated-file repair, validation and retry, deliberate staging of the declared branch-tip scope, commit, ordinary non-force push, PR title/body preparation, PR creation or update, draft-to-ready transition, remote-check watching, or mergeability verification.
 
-Ask only for a new decision: a semantic or product-design change not already
-directed, uncertain file ownership or destructive overlap, a non-deterministic
-validation failure, force push/history rewrite/rebase/reset/stash/discard,
-branch deletion outside the verified post-merge path, or merging the PR. Host
-permission dialogs remain host-controlled; request the narrow reusable
-approval needed by the documented command rather than asking the operator to
-re-authorize the repository step.
+Ask only for a new decision: a semantic or product-design change not already directed, uncertain file ownership or destructive overlap, a non-deterministic validation failure, force push/history rewrite/rebase/reset/stash/discard, branch deletion outside the verified post-merge path, or merging the PR. Host permission dialogs remain host-controlled; request the narrow reusable approval needed by the documented command rather than asking the operator to re-authorize the repository step.
 
 ## Two-Handoff Invocation Contract
 
-This procedure is designed to run with two operator/developer handoffs and no
-routine confirmation prompts between them.
+This procedure is designed to run with two operator/developer handoffs and no routine confirmation prompts between them.
 
 ### First handoff: publish a ready PR
 
-The explicit instruction `run codex-pr-branch.md`, including the equivalent
-linked-file instruction, is standing authorization to execute the complete
-guarded publication path in this document:
+The explicit instruction `run codex-pr-branch.md`, including the equivalent linked-file instruction, is standing authorization to execute the complete guarded publication path in this document:
 
-- inspect the current working branch, identify the complete intended
-  branch-tip scope (which may include several coordinated workstreams), and
-  separate it from unrelated ambient worktree state;
+- inspect the current working branch, identify the complete intended branch-tip scope (which may include several coordinated workstreams), and separate it from unrelated ambient worktree state;
 - run the required regeneration and validation steps;
-- repair branch-scoped mechanical drift when the repair is determined by an
-  existing generator, validator, schema, index, path, or established
-  terminology contract;
+- repair branch-scoped mechanical drift when the repair is determined by an existing generator, validator, schema, index, path, or established terminology contract;
 - stage only the intended files;
 - create an intentional commit;
 - push the current working branch without force;
 - create or update its PR with an intentional title and body;
 - move an intentionally complete draft PR to ready status;
 - wait for required remote checks and verify mergeability; and
-- capture the PR number, URL, branch name, `headRefOid`, base SHA, and final
-  validation state as the publish handoff receipt; and
-- return to the operator/developer only when the PR is ready for review or a
-  stop condition has been reached.
+- capture the PR number, URL, branch name, `headRefOid`, base SHA, and final validation state as the publish handoff receipt; and
+- return to the operator/developer only when the PR is ready for review or a stop condition has been reached.
 
-This authorization covers routine retry after a transient, non-semantic
-failure, such as refreshing stale remote refs and repeating a check against the
-new refs. It does not authorize changing theory, EOM solver semantics, evidence
-authority, canon policy, or product design merely to make a check pass.
+This authorization covers routine retry after a transient, non-semantic failure, such as refreshing stale remote refs and repeating a check against the new refs. It does not authorize changing theory, EOM solver semantics, evidence authority, canon policy, or product design merely to make a check pass.
 
-The operator/developer remains the merge gate. This invocation does not
-authorize the agent to merge, close, or abandon the PR.
+The operator/developer remains the merge gate. This invocation does not authorize the agent to merge, close, or abandon the PR.
 
 ### Second handoff: verify, clean up, and roll over
 
-After the operator/developer merges the PR, either explicit instruction
-`merged, continue` or `merged, complete` is standing authorization to execute
-the complete guarded post-merge and rollover path in this document:
+After the operator/developer merges the PR, either explicit instruction `merged, continue` or `merged, complete` is standing authorization to execute the complete guarded post-merge and rollover path in this document:
 
-- verify the PR state, merge time, merged head, and absence of post-merge
-  branch commits;
+- verify the PR state, merge time, merged head, and absence of post-merge branch commits;
 - fast-forward local `main` to current `origin/main` and verify equality;
 - delete the exact verified merged working branch locally;
 - delete that same branch remotely, or accept its confirmed prior absence;
@@ -144,132 +92,77 @@ the complete guarded post-merge and rollover path in this document:
 - publish the successor branch without force and establish its upstream; and
 - return the final cleanup, synchronization, and rollover state.
 
-The conditional `git branch -D` fallback is included in this standing
-authorization only when GitHub confirms that the exact branch PR is merged,
-the post-merge commit scan is clean, local `main` equals `origin/main`, and
-ordinary `git branch -d` refused solely because the merge strategy did not
-preserve ancestry. No other local or remote branch deletion is authorized.
+The conditional `git branch -D` fallback is included in this standing authorization only when GitHub confirms that the exact branch PR is merged, the post-merge commit scan is clean, local `main` equals `origin/main`, and ordinary `git branch -d` refused solely because the merge strategy did not preserve ancestry. No other local or remote branch deletion is authorized.
 
 ### No intermediate permission prompts on the healthy path
 
-Do not ask the operator/developer to confirm each authorized step above.
-Provide concise progress updates while continuing, and pause only at a stop
-condition. A repository procedure can grant semantic authorization, but it
-cannot bypass a host application's filesystem or command sandbox. When the
-host requires approval, request the narrow reusable command prefix needed for
-this procedure rather than a one-off exact command whenever the host supports
-that choice. Shape routine commands consistently so previously approved narrow
-prefixes can be reused.
+Do not ask the operator/developer to confirm each authorized step above. Provide concise progress updates while continuing, and pause only at a stop condition. A repository procedure can grant semantic authorization, but it cannot bypass a host application's filesystem or command sandbox. When the host requires approval, request the narrow reusable command prefix needed for this procedure rather than a one-off exact command whenever the host supports that choice. Shape routine commands consistently so previously approved narrow prefixes can be reused.
 
-Do not introduce a repository-local wrapper whose approval would indirectly
-authorize arbitrary future script contents. The permitted authority is the
-documented guarded lifecycle, not a general shell or script execution
-capability.
+Do not introduce a repository-local wrapper whose approval would indirectly authorize arbitrary future script contents. The permitted authority is the documented guarded lifecycle, not a general shell or script execution capability.
 
 #### Permission measurement
 
 Measure unattended execution separately from ordinary progress reporting:
 
-- an `operator decision prompt` asks the operator/developer to authorize,
-  choose, or confirm a lifecycle step already covered by this contract;
-- a `host permission prompt` is an interactive approval dialog emitted by the
-  host application for filesystem, command, network, or external-service
-  access;
-- an `escalation invocation` is a tool call that requests elevated execution,
-  whether a persisted narrow prefix resolves it silently or the host displays
-  an approval dialog; and
-- a `progress update` reports state while execution continues and is not a
-  prompt.
+- an `operator decision prompt` asks the operator/developer to authorize, choose, or confirm a lifecycle step already covered by this contract;
+- a `host permission prompt` is an interactive approval dialog emitted by the host application for filesystem, command, network, or external-service access;
+- an `escalation invocation` is a tool call that requests elevated execution, whether a persisted narrow prefix resolves it silently or the host displays an approval dialog; and
+- a `progress update` reports state while execution continues and is not a prompt.
 
 Initialize and retain these counters for each handoff:
 
 - `operatorDecisionPromptCount`;
 - `hostPermissionPromptCount`;
 - `escalationInvocationCount`; and
-- `reusedApprovalCount`, for escalation invocations resolved non-interactively
-  by a previously approved narrow prefix.
+- `reusedApprovalCount`, for escalation invocations resolved non-interactively by a previously approved narrow prefix.
 
-If the host does not expose whether an escalation produced an interactive
-dialog, report `hostPermissionPromptCount` as `unknown`, not zero. A handoff
-with an unknown count is complete as a Git lifecycle but does not qualify as a
-verified unattended run.
+If the host does not expose whether an escalation produced an interactive dialog, report `hostPermissionPromptCount` as `unknown`, not zero. A handoff with an unknown count is complete as a Git lifecycle but does not qualify as a verified unattended run.
 
 The healthy-path budget for each handoff is:
 
 - `operatorDecisionPromptCount = 0`; and
 - `hostPermissionPromptCount = 0`.
 
-Persisted, non-interactive narrow-prefix reuse is permitted and is measured by
-`escalationInvocationCount` and `reusedApprovalCount`; it does not consume the
-interactive prompt budget.
+Persisted, non-interactive narrow-prefix reuse is permitted and is measured by `escalationInvocationCount` and `reusedApprovalCount`; it does not consume the interactive prompt budget.
 
 #### Host-permission execution discipline
 
 Apply these rules before issuing routine commands:
 
-1. Run read-only Git inspection, `gh pr` inspection, and remote-check watching
-   without preemptive escalation.
+1. Run read-only Git inspection, `gh pr` inspection, and remote-check watching without preemptive escalation.
 2. Do not escalate a command merely because it uses network access.
-3. For a known protected Git write, use a direct command with the narrow,
-   stable command shape already approved for that operation.
-4. Do not wrap protected mutations in an orchestration layer when a direct
-   command is sufficient; direct invocation makes narrow-prefix matching
-   observable and reusable.
-5. Keep read-only verification separate from a mutating command so the
-   verification does not inherit the mutation's permission requirement.
-6. Request escalation only after a real sandbox denial or for a command known
-   to require protected Git metadata writes.
-7. When a new host approval is unavoidable, request one narrow reusable prefix,
-   record the interaction, and continue the authorized lifecycle. Do not
-   replace it with repeated one-off approvals.
-8. Never request a broad `git`, shell, interpreter, or repository-local-wrapper
-   approval as a shortcut around this discipline.
+3. For a known protected Git write, use a direct command with the narrow, stable command shape already approved for that operation.
+4. Do not wrap protected mutations in an orchestration layer when a direct command is sufficient; direct invocation makes narrow-prefix matching observable and reusable.
+5. Keep read-only verification separate from a mutating command so the verification does not inherit the mutation's permission requirement.
+6. Request escalation only after a real sandbox denial or for a command known to require protected Git metadata writes.
+7. When a new host approval is unavoidable, request one narrow reusable prefix, record the interaction, and continue the authorized lifecycle. Do not replace it with repeated one-off approvals.
+8. Never request a broad `git`, shell, interpreter, or repository-local-wrapper approval as a shortcut around this discipline.
 
-A host permission prompt does not revoke the standing lifecycle authorization,
-but it makes that handoff nonqualifying for unattended-verification purposes.
-Report the event instead of silently claiming the no-prompt objective passed.
+A host permission prompt does not revoke the standing lifecycle authorization, but it makes that handoff nonqualifying for unattended-verification purposes. Report the event instead of silently claiming the no-prompt objective passed.
 
 #### Three-run closed-loop acceptance
 
-The unattended-execution correction is verified only after three consecutive
-healthy, fully completed two-handoff lifecycles satisfy all of the following:
+The unattended-execution correction is verified only after three consecutive healthy, fully completed two-handoff lifecycles satisfy all of the following:
 
 - both handoffs meet the zero/zero healthy-path prompt budget;
 - both handoff receipts include all four permission counters;
-- PR identity, validation, merge, cleanup, and successor rollover satisfy this
-  procedure; and
-- the observation is recorded in
-  [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md).
+- PR identity, validation, merge, cleanup, and successor rollover satisfy this procedure; and
+- the observation is recorded in [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md).
 
-A lifecycle stopped by a mandatory safety boundary does not count as a
-qualifying run. An operator decision prompt, host permission prompt, unknown
-host prompt count, missing permission counter, or false unattended claim
-breaks the consecutive sequence and resets the qualifying count to zero.
-Do not mark the corrective action closed before the ledger contains three
-consecutive qualifying runs.
+A lifecycle stopped by a mandatory safety boundary does not count as a qualifying run. An operator decision prompt, host permission prompt, unknown host prompt count, missing permission counter, or false unattended claim breaks the consecutive sequence and resets the qualifying count to zero. Do not mark the corrective action closed before the ledger contains three consecutive qualifying runs.
 
 ### Mandatory pause boundary
 
-Standing authorization ends and the agent must stop with an exact blocker map
-if any of the following occurs:
+Standing authorization ends and the agent must stop with an exact blocker map if any of the following occurs:
 
-- intended scope cannot be identified from the branch-tip diff and active
-  operator directions, or ambient edits overlap the files, staging area,
-  validation result, or branch checkout needed by this procedure. Several
-  coordinated workstreams or interleaved commits alone are not ambiguity;
+- intended scope cannot be identified from the branch-tip diff and active operator directions, or ambient edits overlap the files, staging area, validation result, or branch checkout needed by this procedure. Several coordinated workstreams or interleaved commits alone are not ambiguity;
 - a merge conflict appears or local `main` cannot fast-forward;
-- a branch has post-merge commits or its local, remote, and PR identities do
-  not agree;
-- a required repair needs theory, EOM solver, evidence-authority, canon-policy,
-  architecture, or product-design judgment;
-- a required check remains failing after deterministic branch-scoped
-  mechanical repair;
-- the next registry token is ambiguous or the active branch series is
-  exhausted without a configured successor;
+- a branch has post-merge commits or its local, remote, and PR identities do not agree;
+- a required repair needs theory, EOM solver, evidence-authority, canon-policy, architecture, or product-design judgment;
+- a required check remains failing after deterministic branch-scoped mechanical repair;
+- the next registry token is ambiguous or the active branch series is exhausted without a configured successor;
 - authentication, connectivity, or GitHub state prevents verification;
-- completing the path would require force push, rebase, reset, stash,
-  restoration or discarding of work, broad deletion, or deletion of any branch
-  other than the exact verified merged PR branch; or
+- completing the path would require force push, rebase, reset, stash, restoration or discarding of work, broad deletion, or deletion of any branch other than the exact verified merged PR branch; or
 - any action would exceed the explicit publication or post-merge scope above.
 
 ## Standard End-of-Session Process
@@ -278,9 +171,7 @@ Use this process whenever a work session is being wrapped up and the work is int
 
 ### 1. Confirm scope
 
-- Confirm that the branch-tip diff contains the intended combined scope. It
-  may contain several coordinated workstreams; record those workstreams
-  plainly for review.
+- Confirm that the branch-tip diff contains the intended combined scope. It may contain several coordinated workstreams; record those workstreams plainly for review.
 - This repo often has concurrent agents in the same checkout, so unrelated dirty files can be normal ambient state. Keep them out of staging and committing unless the operator explicitly brings them into scope.
 - If unrelated edits overlap the files needed for the PR, separate or resolve that overlap before staging or committing.
 
@@ -308,12 +199,7 @@ Use a full regeneration checkpoint when the operator/developer requests `regener
 Closure goal: Regenerate.
 ```
 
-A full regeneration checkpoint means running the write commands above, staging
-the intended outputs, then running the exact-state PR gate in step 4. Do not
-run the write commands after every small code or documentation edit. For
-priority-only mathematics packets, stay in the targeted edit/check loop unless
-the packet is promoted into textbook-facing corpus material, changes scene/TOC
-inputs, or the operator/developer asks for a full regeneration checkpoint.
+A full regeneration checkpoint means running the write commands above, staging the intended outputs, then running the exact-state PR gate in step 4. Do not run the write commands after every small code or documentation edit. For priority-only mathematics packets, stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
 
 Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 
@@ -324,11 +210,9 @@ Regenerate both layers before the final check pass whenever a PR touches any sou
 - textbook TOC generation inputs or outputs, including `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md`,
 - existing textbook reading-copy outputs under `content/generated/markdown/textbook/reading-copies/`.
 
-The local browser PDF made from a reading-copy view is not a committed repo
-artifact.
+The local browser PDF made from a reading-copy view is not a committed repo artifact.
 
-During this final branch/PR process, if scene-graph, agent startup orientation,
-or textbook reading-copy drift is reported, regenerate before staging:
+During this final branch/PR process, if scene-graph, agent startup orientation, or textbook reading-copy drift is reported, regenerate before staging:
 
 ```bash
 node scripts/build-scene-graph.mjs --write --strict
@@ -340,10 +224,8 @@ node scripts/build-textbook-md-pdf.mjs --write
 
 - Prefer explicit file paths when there is any doubt.
 - Use `git add -A` only when the whole worktree is in scope.
-- After any generator write, inspect and stage the intended generated outputs
-  before running the exact-state gate.
-- The staging area is part of the validation identity. Any later staging change
-  invalidates the receipt and requires the gate again.
+- After any generator write, inspect and stage the intended generated outputs before running the exact-state gate.
+- The staging area is part of the validation identity. Any later staging change invalidates the receipt and requires the gate again.
 
 Commands:
 
@@ -362,9 +244,7 @@ git add -A
 This gate is mandatory after final staging and before commit. It runs:
 
 - foundational-impact routing against the exact current `origin/main`;
-- the canonical content-integrity aggregate, including generated-artifact,
-  terminology, taxonomy, package, runtime-smoke, and process-conformance
-  checks; and
+- the canonical content-integrity aggregate, including generated-artifact, terminology, taxonomy, package, runtime-smoke, and process-conformance checks; and
 - animator runtime-wiring validation.
 
 Command:
@@ -373,45 +253,30 @@ Command:
 node scripts/pr-validation-receipt.mjs run --base origin/main
 ```
 
-The runner captures the repository state before and after validation and
-refuses to write a receipt if the state changes during the checks. The local
-receipt records:
+The runner captures the repository state before and after validation and refuses to write a receipt if the state changes during the checks. The local receipt records:
 
 - a hash of every staged index entry;
-- a hash of the complete unstaged binary diff and every non-ignored untracked
-  file;
-- the literal current branch name, base-ref label, and resolved `origin/main`
-  object ID;
+- a hash of the complete unstaged binary diff and every non-ignored untracked file;
+- the literal current branch name, base-ref label, and resolved `origin/main` object ID;
 - the validation command-contract hash;
 - Node and Git versions; and
 - operating-system platform and architecture.
 
-The receipt is local runtime state under
-`.local-data/pr-validation/receipt.v1.json` and is ignored by Git. It is
-evidence only that this exact local state already passed the named checks; it
-does not add evidence authority to any theory or computation.
+The receipt is local runtime state under `.local-data/pr-validation/receipt.v1.json` and is ignored by Git. It is evidence only that this exact local state already passed the named checks; it does not add evidence authority to any theory or computation.
 
-The pre-commit and pre-push hooks verify all receipt fields. An exact match
-reuses the result. A missing, unreadable, mismatched, or stale receipt runs the
-complete gate and replaces the receipt only after success.
+The pre-commit and pre-push hooks verify all receipt fields. An exact match reuses the result. A missing, unreadable, mismatched, or stale receipt runs the complete gate and replaces the receipt only after success.
 
-The pre-push hook may bypass both receipt verification and the full gate only
-when its separate policy requiring verification for advancement classifier proves that every ref update
-is one of these no-content cases:
+The pre-push hook may bypass both receipt verification and the full gate only when its separate policy requiring verification for advancement classifier proves that every ref update is one of these no-content cases:
 
 - deletion of a remote ref; or
-- creation of a `codex/*` branch whose local object ID exactly equals the
-  current `origin/main` object ID.
+- creation of a `codex/*` branch whose local object ID exactly equals the current `origin/main` object ID.
 
-Mixed updates, malformed input, an unavailable `origin/main`, an existing
-remote branch update, a non-`codex/*` ref, or any different object ID must
-verify a receipt or run the full gate.
+Mixed updates, malformed input, an unavailable `origin/main`, an existing remote branch update, a non-`codex/*` ref, or any different object ID must verify a receipt or run the full gate.
 
 ### 5. Commit with a terse intentional message
 
 - The commit should describe the actual completed unit of work, not a vague session summary.
-- Do not alter the staging area after the exact-state gate. The pre-commit hook
-  will reuse a matching receipt or run the full gate again.
+- Do not alter the staging area after the exact-state gate. The pre-commit hook will reuse a matching receipt or run the full gate again.
 
 Command:
 
@@ -458,9 +323,7 @@ git branch --show-current
 gh pr list --head "<current-branch>" --state all --json state,isDraft,url
 ```
 
-Resolve and verify the exact branch token with the first command, then use that
-literal token in later commands. Do not embed command substitution in a
-mutating or remote command.
+Resolve and verify the exact branch token with the first command, then use that literal token in later commands. Do not embed command substitution in a mutating or remote command.
 
 Interpretation:
 
@@ -550,11 +413,8 @@ git diff --stat origin/main..HEAD
 Interpretation:
 
 - if the current branch is `main`, stop and create or switch to a working branch first;
-- if any PR-owned file has uncommitted work, or the staging area contains
-  unrelated work, stop and resolve that scope before PR work;
-- unrelated ambient files do not fail this gate by themselves when the
-  branch-owned diff and staging scope can be verified independently and no
-  later checkout would endanger them;
+- if any PR-owned file has uncommitted work, or the staging area contains unrelated work, stop and resolve that scope before PR work;
+- unrelated ambient files do not fail this gate by themselves when the branch-owned diff and staging scope can be verified independently and no later checkout would endanger them;
 - if the two SHAs do not match, stop and push the branch tip you actually want reviewed before touching the PR.
 - if `git rev-list --count origin/main..HEAD` is `0`, the branch currently has no commits beyond the base branch, so there is nothing to publish yet;
 - if `git rev-list --count origin/main..HEAD` is greater than `0`, the branch contains reviewable work relative to base even if it is already pushed cleanly.
@@ -577,10 +437,8 @@ git merge-tree --write-tree HEAD origin/main
 
 Interpretation:
 
-- if `git merge-tree --write-tree` exits successfully, the local mergeability
-  preflight passed;
-- if it exits nonzero or reports conflicts, stop and reconcile the branch with
-  current `origin/main` before PR publication;
+- if `git merge-tree --write-tree` exits successfully, the local mergeability preflight passed;
+- if it exits nonzero or reports conflicts, stop and reconcile the branch with current `origin/main` before PR publication;
 - if the branch was already known to be recently rebased or merged with current `origin/main`, you may treat that as satisfying the local mergeability preflight;
 - do not assume passing CI implies mergeability.
 
@@ -621,13 +479,10 @@ This check should happen even if you believe you are "just updating the PR," bec
 - The minimum bar for a ready PR is:
   - the full local validation set that mirrors current hooks and repo CI passed, including `node scripts/smoke-option3.mjs`;
   - the branch tip intended for review is committed and pushed;
-  - the PR-owned files are committed and the staging area contains no
-    unrelated work;
-  - any remaining ambient edits are outside PR scope and will not be
-    endangered by the remaining branch operations;
+  - the PR-owned files are committed and the staging area contains no unrelated work;
+  - any remaining ambient edits are outside PR scope and will not be endangered by the remaining branch operations;
   - the branch is mergeable into the current base branch;
-  - the diff represents one coherent reviewable unit; it may contain multiple
-    coordinated workstreams when the PR body states them plainly;
+  - the diff represents one coherent reviewable unit; it may contain multiple coordinated workstreams when the PR body states them plainly;
   - the PR title and body are intentionally written rather than left to default autofill;
   - the remote PR checks have completed successfully;
   - and GitHub reports the PR as mergeable rather than conflicted.
@@ -690,9 +545,7 @@ Before returning the ready PR for operator/developer review, record:
 - `reusedApprovalCount`; and
 - whether the first handoff qualifies under the zero/zero prompt budget.
 
-The second handoff should use the exact PR number from this receipt. A later
-thread may fall back to branch-name discovery only when the receipt is
-unavailable, and it must stop if that discovery is not unique.
+The second handoff should use the exact PR number from this receipt. A later thread may fall back to branch-name discovery only when the receipt is unavailable, and it must stop if that discovery is not unique.
 
 ### 8. Respond to review on the same branch
 
@@ -714,13 +567,9 @@ Use this process after the PR has been merged successfully.
 Precondition:
 
 - Before leaving the just-merged branch, run `git status -sb`.
-- Continue only if the files owned by the merged branch are clean and the
-  staging area contains no unrelated work.
-- Unrelated ambient edits may remain when branch switching preserves them and
-  they do not overlap this procedure's files or affect its validation. Do not
-  stash, discard, restore, or commit those edits as part of rollover.
-- If branch switching would overwrite or otherwise endanger any ambient edit,
-  stop before leaving the merged branch.
+- Continue only if the files owned by the merged branch are clean and the staging area contains no unrelated work.
+- Unrelated ambient edits may remain when branch switching preserves them and they do not overlap this procedure's files or affect its validation. Do not stash, discard, restore, or commit those edits as part of rollover.
+- If branch switching would overwrite or otherwise endanger any ambient edit, stop before leaving the merged branch.
 
 ### 1. Verify the PR is merged
 
@@ -735,12 +584,10 @@ gh pr view <pr-number> --json number,state,mergedAt,headRefOid,headRefName,baseR
 Interpretation:
 
 - if `state` is not `MERGED` or `mergedAt` is absent, stop cleanup;
-- require `headRefName` to equal the literal current branch name and
-  `baseRefName` to equal `main`;
+- require `headRefName` to equal the literal current branch name and `baseRefName` to equal `main`;
 - retain `headRefOid` as the exact branch tip that entered operator review.
 
-If the publish handoff receipt is unavailable, use the literal branch token as
-a fallback:
+If the publish handoff receipt is unavailable, use the literal branch token as a fallback:
 
 ```bash
 gh pr list --head "codex/<previous-topic>" --state all --json number,state,mergedAt,headRefOid,headRefName,baseRefName,url
@@ -752,13 +599,9 @@ Continue only when this fallback returns exactly one matching merged PR.
 
 - This is the disaster-prevention gate for the case where you accidentally kept working on the branch after its PR merged.
 - Do this check before deleting the branch locally or remotely.
-- If the local branch tip differs from the PR's `headRefOid`, treat the
-  difference as branch work that was not part of the reviewed PR until an
-  explicit commit-graph check accounts for it.
+- If the local branch tip differs from the PR's `headRefOid`, treat the difference as branch work that was not part of the reviewed PR until an explicit commit-graph check accounts for it.
 - If needed, preserve the branch tip under a recovery branch name before any deletion.
-- Use commit identity rather than timestamps. `headRefOid` is the exact reviewed
-  branch tip and is not sensitive to clock skew, backdated commits, or merge
-  strategy.
+- Use commit identity rather than timestamps. `headRefOid` is the exact reviewed branch tip and is not sensitive to clock skew, backdated commits, or merge strategy.
 
 Suggested checks:
 
@@ -771,10 +614,8 @@ gh pr view <pr-number> --json state,headRefOid,headRefName,url
 Interpretation:
 
 - if the PR state is not `MERGED`, stop; this is not post-merge cleanup;
-- if `headRefName` does not equal the current branch name, stop; the branch
-  identity is not verified;
-- if local `HEAD` equals `headRefOid`, the branch has no post-review local
-  commits and cleanup may continue;
+- if `headRefName` does not equal the current branch name, stop; the branch identity is not verified;
+- if local `HEAD` equals `headRefOid`, the branch has no post-review local commits and cleanup may continue;
 - if the SHAs differ, stop normal cleanup and run the commit-graph checks below.
 
 ```bash
@@ -782,10 +623,8 @@ git merge-base --is-ancestor <headRefOid> HEAD
 git log --oneline --decorate <headRefOid>..HEAD
 ```
 
-- if `headRefOid` is an ancestor of local `HEAD`, every commit printed by the
-  range is post-review branch work and must be recovered;
-- if `headRefOid` is not an ancestor, the branch diverged from the reviewed tip;
-  preserve the current tip and resolve the divergence before cleanup;
+- if `headRefOid` is an ancestor of local `HEAD`, every commit printed by the range is post-review branch work and must be recovered;
+- if `headRefOid` is not an ancestor, the branch diverged from the reviewed tip; preserve the current tip and resolve the divergence before cleanup;
 - never infer safety from an empty timestamp window.
 
 Suggested immediate recovery move when post-merge commits are present:
@@ -922,18 +761,13 @@ Before returning the completed rollover state, record:
 - `hostPermissionPromptCount`;
 - `escalationInvocationCount`;
 - `reusedApprovalCount`; and
-- whether the second handoff and the full lifecycle qualify under the
-  zero/zero prompt budget.
+- whether the second handoff and the full lifecycle qualify under the zero/zero prompt budget.
 
-Update the unattended-verification ledger only from exact retained receipts and
-operator- or host-observed prompt counts. Never infer an unobserved interactive
-prompt count as zero merely to make a run qualify.
+Update the unattended-verification ledger only from exact retained receipts and operator- or host-observed prompt counts. Never infer an unobserved interactive prompt count as zero merely to make a run qualify.
 
 ## Full Lifecycle State Sequence
 
-The detailed sections above own the commands. This table defines the allowed
-state transitions without duplicating an executable script that can drift from
-those commands.
+The detailed sections above own the commands. This table defines the allowed state transitions without duplicating an executable script that can drift from those commands.
 
 | Current state | Required evidence | Authorized transition |
 | --- | --- | --- |
@@ -944,15 +778,13 @@ those commands.
 | Synchronized `main` | Local `main` equals `origin/main`; exact merged branch identity remains verified | Delete only that local and remote branch |
 | Retired merged branch | Previous branch is absent locally and remotely; next registry token is unambiguous | Create the successor from synchronized `main`, publish it, and set its upstream |
 
-Any missing evidence leaves the process in its current state and activates the
-applicable stop condition. Do not skip forward to a later transition.
+Any missing evidence leaves the process in its current state and activates the applicable stop condition. Do not skip forward to a later transition.
 
 ## Stop Conditions
 
 Stop and resolve deliberately rather than pushing ahead if any of these are true:
 
-- unrelated worktree edits overlap the intended scope, occupy the staging area,
-  affect required validation, or would be endangered by branch switching,
+- unrelated worktree edits overlap the intended scope, occupy the staging area, affect required validation, or would be endangered by branch switching,
 - the required validation commands fail,
 - you are about to open or update a PR but have not yet verified that the branch is clean and that local `HEAD` matches `origin/<current-branch>`,
 - you are about to open or update a PR from `main`,
@@ -960,8 +792,7 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 - the branch already has a merged PR and you have not yet compared the merged PR head commit with the current local branch tip,
 - the PR has not actually merged yet,
 - the branch PR is already merged but you have not yet checked for post-merge local commits on that branch,
-- local branch `HEAD` differs from the reviewed `headRefOid` and the divergent
-  or post-review commits have not yet been recovered onto a safe branch,
+- local branch `HEAD` differs from the reviewed `headRefOid` and the divergent or post-review commits have not yet been recovered onto a safe branch,
 - `git fetch origin` succeeded but local `main` was not actually fast-forwarded and verified,
 - local `main` cannot fast-forward to `origin/main`,
 - the next branch name breaks the active branch sequence without an explicit reason,
@@ -973,12 +804,8 @@ Stop and resolve deliberately rather than pushing ahead if any of these are true
 When this procedure is executed, the final response should not stop at generic git status reporting.
 
 - Summarize the branch/PR outcome, cleanup state, and next-branch rollover state clearly enough that the operator/developer can verify the procedure actually completed.
-- At the ready-PR handoff, report the publish handoff receipt: PR number and
-  URL, `headRefName`, `headRefOid`, base SHA, local validation state, remote
-  check state, mergeability state, and all four permission counters.
-- At the post-merge handoff, identify the exact PR number used for verification
-  and state whether local `HEAD` matched its reviewed `headRefOid` before
-  deletion, then report all four permission counters for the second handoff.
+- At the ready-PR handoff, report the publish handoff receipt: PR number and URL, `headRefName`, `headRefOid`, base SHA, local validation state, remote check state, mergeability state, and all four permission counters.
+- At the post-merge handoff, identify the exact PR number used for verification and state whether local `HEAD` matched its reviewed `headRefOid` before deletion, then report all four permission counters for the second handoff.
 - If a new branch was created, include the exact new branch name and whether it was published to `origin`.
 - If a new branch was created from a named branch series, include one substantive paragraph about the item named by that branch.
 - For a periodic-table branch, that element paragraph should include, when applicable and known:
@@ -997,10 +824,8 @@ When this procedure is executed, the final response should not stop at generic g
 After a healthy first handoff:
 
 - the completed work is committed and pushed;
-- the PR is open in ready mode with passing remote checks and verified
-  mergeability; and
-- the publish handoff receipt gives the operator/developer an exact review
-  target and measurable permission counters.
+- the PR is open in ready mode with passing remote checks and verified mergeability; and
+- the publish handoff receipt gives the operator/developer an exact review target and measurable permission counters.
 
 After a healthy second handoff:
 
@@ -1008,5 +833,4 @@ After a healthy second handoff:
 - local `main` and remote `main` are synchronized;
 - the previous branch has been deleted locally and remotely; and
 - the next branch exists and is published from synchronized `main`; and
-- the post-merge receipt records the second handoff's measurable permission
-  counters.
+- the post-merge receipt records the second handoff's measurable permission counters.

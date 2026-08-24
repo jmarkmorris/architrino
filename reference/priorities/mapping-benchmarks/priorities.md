@@ -19,11 +19,7 @@ This directory is a priority-candidate lane for observational and experimental c
 
 The lane is not authored AAA canon. It is source material for later promotion into validation gates, spacetime closure, radiation closure, quantum closure, angular-momentum closure, cosmology closure, and related proof programs.
 
-The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md)
-governs the boundary between equation-first, benchmark-first, domain-integration,
-and native-evidence work. Case-local candidate steps decompose a benchmark at
-draft grade; only [work-queue.md](work-queue.md) owns executable rows for
-Mapping Benchmarks.
+The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md) governs the boundary between equation-first, benchmark-first, domain-integration, and native-evidence work. Case-local candidate steps decompose a benchmark at draft grade; only [work-queue.md](work-queue.md) owns executable rows for Mapping Benchmarks.
 
 ## Lane Map
 
@@ -43,8 +39,7 @@ Mapping Benchmarks.
 
 ## Shared Closure Record
 
-The benchmark cases should be promoted only when their variables can be
-expressed through a shared closure record
+The benchmark cases should be promoted only when their variables can be expressed through a shared closure record
 
 $$
 \Theta_{\mathrm{map}}

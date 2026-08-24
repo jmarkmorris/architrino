@@ -5,94 +5,52 @@
 - Kind: focused priority packet
 - Status: active pre-derivation requirements program
 - Created: 2026-08-22
-- Claim level: methodological inference with explicitly graded requirements
-  and speculative realizations
+- Claim level: methodological inference with explicitly graded requirements and speculative realizations
 - Integration owner: [Mapping Electromagnetism](priorities.md)
-- Exact equation and score owner:
-  [Equation Mapping](../mapping-equations/priorities.md)
-- Independent benchmark owner:
-  [Mapping Benchmarks](../mapping-benchmarks/priorities.md)
-- Retained-geometry and dynamics owners: Braid Program, Master Equation
-  Closure, Photon Closure, Standard Model Closure, and the EOM solver
+- Exact equation and score owner: [Equation Mapping](../mapping-equations/priorities.md)
+- Independent benchmark owner: [Mapping Benchmarks](../mapping-benchmarks/priorities.md)
+- Retained-geometry and dynamics owners: Braid Program, Master Equation Closure, Photon Closure, Standard Model Closure, and the EOM solver
 
 ## Purpose
 
-This packet is the focused reverse-engineering home for a central
-$\mathbb{A}\mathbb{A}\mathbb{A}$ question:
+This packet is the focused reverse-engineering home for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ question:
 
-> Given a tested observer-level behavior, equation, or benchmark, what must be
-> true of the source assemblies, matter braids, Noether sea braids, causal-wake
-> history, propagating carriers, and receiver assemblies for that behavior to
-> emerge?
+> Given a tested observer-level behavior, equation, or benchmark, what must be true of the source assemblies, matter braids, Noether sea braids, causal-wake history, propagating carriers, and receiver assemblies for that behavior to emerge?
 
-The immediate application is to effective electric and magnetic fields. The
-goal is not to assign $\mathbf E$ or $\mathbf B$ to an architrino or to rename
-an unknown sea configuration as a field. The goal is to infer the smallest
-native requirement bundle whose observer projection has the properties called
-electric and magnetic behavior.
+The immediate application is to effective electric and magnetic fields. The goal is not to assign $\mathbf E$ or $\mathbf B$ to an architrino or to rename an unknown sea configuration as a field. The goal is to infer the smallest native requirement bundle whose observer projection has the properties called electric and magnetic behavior.
 
-The same method also supplies cross-sector clues for Standard Model assembly
-geometry. Frequencies, mode counts, masses, transformation laws, form factors,
-moments, polarization ranks, lifetimes, branching fractions, null channels,
-and controlled differences between related particles are treated as inverse
-constraints on recurrence, frame, exposure, topology, association, basin, and
-reaction-corridor records. This cross-sector use remains priority-only and does
-not transfer equation-score or retained-geometry ownership into this packet.
+The same method also supplies cross-sector clues for Standard Model assembly geometry. Frequencies, mode counts, masses, transformation laws, form factors, moments, polarization ranks, lifetimes, branching fractions, null channels, and controlled differences between related particles are treated as inverse constraints on recurrence, frame, exposure, topology, association, basin, and reaction-corridor records. This cross-sector use remains priority-only and does not transfer equation-score or retained-geometry ownership into this packet.
 
-This is broader than a Noether sea-only study. A complete explanation may
-require geometry in several roles:
+This is broader than a Noether sea-only study. A complete explanation may require geometry in several roles:
 
 1. the emitting or maintaining source assembly;
 2. the matter assembly whose state is being studied;
 3. nearby, environmental, and extended Noether sea populations;
-4. a propagating assembly, photon-channel packet, or changing causal-history
-   record when the situation is dynamic;
+4. a propagating assembly, photon-channel packet, or changing causal-history record when the situation is dynamic;
 5. the receiving or measuring assembly; and
 6. the causal boundary history entering the declared region.
 
-Plainly: start with what the effective behavior requires, then determine which
-braids must possess which geometry. Do not begin by choosing a favorite braid
-and asking how many observations can be described with it.
+Plainly: start with what the effective behavior requires, then determine which braids must possess which geometry. Do not begin by choosing a favorite braid and asking how many observations can be described with it.
 
 ## Program Rationale
 
-Tested effective behavior can constrain native geometry before a microscopic
-braid architecture is selected. Every measured symmetry, reversal, scaling
-law, null, range dependence, and conservation account removes candidate
-matter-and-sea geometries that cannot produce it. The resulting admissible-set
-intersection provides a disciplined complement to direct geometry construction.
+Tested effective behavior can constrain native geometry before a microscopic braid architecture is selected. Every measured symmetry, reversal, scaling law, null, range dependence, and conservation account removes candidate matter-and-sea geometries that cannot produce it. The resulting admissible-set intersection provides a disciplined complement to direct geometry construction.
 
 The required external constraint surfaces are owned by:
 
-- [Equation Mapping](../mapping-equations/priorities.md) owns equations such as
-  `EQ-13` Maxwell and wave recovery, `EQ-26A` fine-structure coupling and
-  running, and `EQ-27` magnetic moment and precession.
-- [Mapping Benchmarks](../mapping-benchmarks/priorities.md) owns independent
-  comparison situations such as the
-  [Zeeman effect](../mapping-benchmarks/zeeman-effect.md),
-  [Aharonov--Bohm effect](../mapping-benchmarks/aharonov-bohm-effect.md),
-  [quantum Hall effect](../mapping-benchmarks/quantum-hall-effect.md), and
-  magnetic-response and polarization tests.
-- [Fine-Structure Coupling Map](fine-structure.md) develops one detailed
-  same-record coupling application involving matter geometry, near-to-far sea
-  state, action-period, photon-channel, exposure, and effective-field rows.
-- [Fine-Grained Braid Maxwell Exploration](fine-grained-braid-maxwell-exploration-prompt.md)
-  defines a finite-braid, equation-first residual protocol.
-- [Mapping Electromagnetism Brainstorming](brainstorming.md) supplies
-  provisional field-ontology, response-state, and behavior-to-geometry
-  hypotheses for testing here.
+- [Equation Mapping](../mapping-equations/priorities.md) owns equations such as `EQ-13` Maxwell and wave recovery, `EQ-26A` fine-structure coupling and running, and `EQ-27` magnetic moment and precession.
+- [Mapping Benchmarks](../mapping-benchmarks/priorities.md) owns independent comparison situations such as the [Zeeman effect](../mapping-benchmarks/zeeman-effect.md), [Aharonov--Bohm effect](../mapping-benchmarks/aharonov-bohm-effect.md), [quantum Hall effect](../mapping-benchmarks/quantum-hall-effect.md), and magnetic-response and polarization tests.
+- [Fine-Structure Coupling Map](fine-structure.md) develops one detailed same-record coupling application involving matter geometry, near-to-far sea state, action-period, photon-channel, exposure, and effective-field rows.
+- [Fine-Grained Braid Maxwell Exploration](fine-grained-braid-maxwell-exploration-prompt.md) defines a finite-braid, equation-first residual protocol.
+- [Mapping Electromagnetism Brainstorming](brainstorming.md) supplies provisional field-ontology, response-state, and behavior-to-geometry hypotheses for testing here.
 
-This packet does not duplicate those inventories. It consumes their strongest
-constraints and records what they imply for admissible braid geometry.
+This packet does not duplicate those inventories. It consumes their strongest constraints and records what they imply for admissible braid geometry.
 
-Plainly: equations and benchmarks supply the constraints. This packet supplies
-the disciplined bridge from those effective facts to native braid requirements.
+Plainly: equations and benchmarks supply the constraints. This packet supplies the disciplined bridge from those effective facts to native braid requirements.
 
 ## Disposition Of The Six Residual Recommendations
 
-The 2026-08-22 thread audit identified six recommendations that had been
-proposed but not formally routed. They are dispositioned here without creating
-new queue objects:
+The 2026-08-22 thread audit identified six recommendations that had been proposed but not formally routed. They are dispositioned here without creating new queue objects:
 
 | Recommendation | Disposition | Unblock or owning artifact |
 | --- | --- | --- |
@@ -103,55 +61,25 @@ new queue objects:
 | Dedicated proton/neutron polarizability comparison benchmark | Deferred | Resume after a retained neutral-composite carrier exists. The current $R_0$ receiver remains a geometry-neutral surrogate and must not be relabeled as a neutron. |
 | Strong-field timing and path-length ledger for internal-speed inference | Conditionally merged | The [fixed-law continuation packet](fixed-law-source-continuation.md#conditional-internal-speed-extension) owns the rows, but activates them only if one retained transition record supplies precursor identity, path length, cycle time, formation time, and source-coherence time. |
 
-Plainly: every recommendation now has one owner and one reason for being active,
-merged, or deferred. Deferral means that the proposed artifact cannot yet
-answer its physical question; it does not erase the requirement.
+Plainly: every recommendation now has one owner and one reason for being active, merged, or deferred. Deferral means that the proposed artifact cannot yet answer its physical question; it does not erase the requirement.
 
 ## Foundational Requirements
 
-A physical situation requires a complete matter, sea, and boundary record
-rather than a probe label or an effective field name. The sea remains explicit
-until its contribution is derived or bounded as negligible. A conventional
-scale such as $\mu$ is an observer-level comparison coordinate, not a substrate
-cause, although the physical event realizing that scale may retune matter and
-the sea. A changed field-sensitive observable does not by itself establish a
-changed dimensionless coupling.
+A physical situation requires a complete matter, sea, and boundary record rather than a probe label or an effective field name. The sea remains explicit until its contribution is derived or bounded as negligible. A conventional scale such as $\mu$ is an observer-level comparison coordinate, not a substrate cause, although the physical event realizing that scale may retune matter and the sea. A changed field-sensitive observable does not by itself establish a changed dimensionless coupling.
 
-The Noether sea record requires near, environmental, and far partitions. In a
-trapped-electron determination, for example, the complete candidate record
-includes the electron braid, trap-source assemblies, sea near the electron,
-sea throughout the trap environment, the extended ambient sea, and incoming
-causal boundary history. A sea domain may be removed from the active model only
-after a declared null establishes that it is negligible in the tested regime.
+The Noether sea record requires near, environmental, and far partitions. In a trapped-electron determination, for example, the complete candidate record includes the electron braid, trap-source assemblies, sea near the electron, sea throughout the trap environment, the extended ambient sea, and incoming causal boundary history. A sea domain may be removed from the active model only after a declared null establishes that it is negligible in the tested regime.
 
-Electric and magnetic fields are effective bulk summaries, not additional
-substances in the Euclidean void. Their native cause must descend from
-architrino paths, potential-bearing causal wakes, retained assemblies, and any
-induced Noether sea response. The still-unresolved direct-wake/sea allocation is
-stated precisely under [Theory-Layer Boundary](#theory-layer-boundary).
+Electric and magnetic fields are effective bulk summaries, not additional substances in the Euclidean void. Their native cause must descend from architrino paths, potential-bearing causal wakes, retained assemblies, and any induced Noether sea response. The still-unresolved direct-wake/sea allocation is stated precisely under [Theory-Layer Boundary](#theory-layer-boundary).
 
-Capacitors, solenoids, toroids, switching events, and other controlled
-situations are discriminators when competing native interpretations require
-separation. They do not organize the inference program. The primary task is to
-define what effective $\mathbf E$ and $\mathbf B$ summarize in the native
-record; existing equation and benchmark packets constrain that definition.
+Capacitors, solenoids, toroids, switching events, and other controlled situations are discriminators when competing native interpretations require separation. They do not organize the inference program. The primary task is to define what effective $\mathbf E$ and $\mathbf B$ summarize in the native record; existing equation and benchmark packets constrain that definition.
 
-Plainly: state what every successful geometry must produce before proposing
-what that geometry looks like.
+Plainly: state what every successful geometry must produce before proposing what that geometry looks like.
 
 ## Theory-Layer Boundary
 
-At the substrate layer, an architrino follows a path in Euclidean void and
-receives acceleration contributions from potential-bearing causal-wake
-intersections according to the Master Equation. It does not evaluate a
-Lorentz-force expression, carry a primitive electric or magnetic field, or
-interact with an autonomous field substance.
+At the substrate layer, an architrino follows a path in Euclidean void and receives acceleration contributions from potential-bearing causal-wake intersections according to the Master Equation. It does not evaluate a Lorentz-force expression, carry a primitive electric or magnetic field, or interact with an autonomous field substance.
 
-At the assembly and observer layers, stable regularities may be compressed into
-effective charge, current, electric and magnetic fields, potentials,
-constitutive coefficients, radiation fields, and coupling parameters. These
-are recovery targets and comparison variables. They may enter this packet only
-as behavioral requirements or projected outputs, never as microscopic premises.
+At the assembly and observer layers, stable regularities may be compressed into effective charge, current, electric and magnetic fields, potentials, constitutive coefficients, radiation fields, and coupling parameters. These are recovery targets and comparison variables. They may enter this packet only as behavioral requirements or projected outputs, never as microscopic premises.
 
 The working ontology is therefore:
 
@@ -163,19 +91,13 @@ $$
 \text{effective observer record}.
 $$
 
-This ordering does not establish that every electromagnetic effect is mediated
-entirely by the Noether sea. Source assemblies emit causal-wake history
-directly, while the sea may reorient, deform, retune, screen, store, or
-propagate part of the resulting response. The relative shares must be derived.
+This ordering does not establish that every electromagnetic effect is mediated entirely by the Noether sea. Source assemblies emit causal-wake history directly, while the sea may reorient, deform, retune, screen, store, or propagate part of the resulting response. The relative shares must be derived.
 
-Plainly: all effective fields must ultimately arise from native objects. No
-accepted derivation yet identifies the sea as the carrier, a constitutive
-participant, optional dressing, or a regime-dependent combination of these.
+Plainly: all effective fields must ultimately arise from native objects. No accepted derivation yet identifies the sea as the carrier, a constitutive participant, optional dressing, or a regime-dependent combination of these.
 
 ## Absolute Native Situation Record
 
-For behavior family $k$ in a declared region $\Omega$, use the candidate
-absolute record
+For behavior family $k$ in a declared region $\Omega$, use the candidate absolute record
 
 $$
 \mathcal G_k(T;\Omega)
@@ -194,26 +116,16 @@ $$
 
 The entries have role meanings rather than different ontologies:
 
-- $\Theta_{\mathrm{src},k}$ records the assembly that emits or maintains the
-  relevant causal history.
-- $\Theta_{\mathrm{matter},k}$ records the matter assembly whose retained state
-  or transition is under study.
-- The three sea entries distinguish locally coupled response, response across
-  the effective-field environment, and extended ambient or boundary response.
-- $\Theta_{\mathrm{carrier},k}$ records a propagating packet or resolved
-  disturbance when one exists; it may be empty in a stationary description.
-- $\Theta_{\mathrm{recv},k}$ records the assembly that converts the environment
-  into a measurable response.
-- $\mathcal H_{\partial\Omega,k}$ records causal history entering the selected
-  region from outside it.
+- $\Theta_{\mathrm{src},k}$ records the assembly that emits or maintains the relevant causal history.
+- $\Theta_{\mathrm{matter},k}$ records the matter assembly whose retained state or transition is under study.
+- The three sea entries distinguish locally coupled response, response across the effective-field environment, and extended ambient or boundary response.
+- $\Theta_{\mathrm{carrier},k}$ records a propagating packet or resolved disturbance when one exists; it may be empty in a stationary description.
+- $\Theta_{\mathrm{recv},k}$ records the assembly that converts the environment into a measurable response.
+- $\mathcal H_{\partial\Omega,k}$ records causal history entering the selected region from outside it.
 
-One physical assembly may occupy more than one role. The role labels organize
-the event ledger; they do not create new particle species or authorize a field
-input.
+One physical assembly may occupy more than one role. The role labels organize the event ledger; they do not create new particle species or authorize a field input.
 
-Plainly: describe what the source, studied matter, surrounding sea, possible
-carrier, receiver, and boundary are actually doing before compressing them
-into an effective field description.
+Plainly: describe what the source, studied matter, surrounding sea, possible carrier, receiver, and boundary are actually doing before compressing them into an effective field description.
 
 ## The Inference Direction
 
@@ -232,15 +144,10 @@ $$
 
 where:
 
-- $\mathcal O_k$ is the measured observable or effective equation term with
-  its uncertainty and covariance;
-- $\mathcal T_k$ is its behavior under rotation, reflection, polarity
-  conjugation, source reversal, receiver reversal, and history reversal where
-  meaningful;
-- $\mathcal D_k$ is its dependence on distance, time, frequency, geometry,
-  preparation, boundaries, and operating regime; and
-- $\mathcal L_k$ is its identity, action, energy, momentum,
-  angular-momentum, wake, and Noether sea ledger.
+- $\mathcal O_k$ is the measured observable or effective equation term with its uncertainty and covariance;
+- $\mathcal T_k$ is its behavior under rotation, reflection, polarity conjugation, source reversal, receiver reversal, and history reversal where meaningful;
+- $\mathcal D_k$ is its dependence on distance, time, frequency, geometry, preparation, boundaries, and operating regime; and
+- $\mathcal L_k$ is its identity, action, energy, momentum, angular-momentum, wake, and Noether sea ledger.
 
 A candidate geometry is tested only in the forward direction:
 
@@ -275,8 +182,7 @@ $$
 \right\}.
 $$
 
-The objective is not a geometry that explains one row. It is one shared record
-family in the intersection
+The objective is not a geometry that explains one row. It is one shared record family in the intersection
 
 $$
 \mathfrak A_{\mathrm{shared}}
@@ -287,17 +193,13 @@ $$
 
 with no case-private retuning of its primitive or constitutive rules.
 
-Plainly: each equation or experiment removes incompatible geometries. The
-surviving candidate must reproduce magnitudes, reversals, nulls, scaling, and
-balanced accounts across several independent constraints.
+Plainly: each equation or experiment removes incompatible geometries. The surviving candidate must reproduce magnitudes, reversals, nulls, scaling, and balanced accounts across several independent constraints.
 
 ## Observable-To-Native-Motion Inference
 
 ### Geometry-Clue Taxonomy
 
-An effective equation or observation can constrain braid geometry through
-several logically different channels. The inverse-mapping program should tag
-each row before proposing a realization:
+An effective equation or observation can constrain braid geometry through several logically different channels. The inverse-mapping program should tag each row before proposing a realization:
 
 | Clue class | Examples | Weakest geometry implication | Common overreach |
 | --- | --- | --- | --- |
@@ -309,24 +211,13 @@ each row before proposing a realization:
 | Reaction and basin topology | thresholds, branching, widths, confinement, hadronization, pair production | admissible graph surgery, basin boundaries, product corridors, and conserved identity routes | reading an arrow between particle labels as a microscopic mechanism |
 | Environmental and amplitude response | Stark/Zeeman shifts, polarizability, nonlinear vacuum response, matter effects, dense packing | deformation coordinates, exposure retuning, coupled sea response, and first branch boundary | assigning the response entirely to matter or entirely to the sea without controls |
 
-These clue classes must intersect. A candidate selected only by a count, one
-frequency, one symmetry label, or one form factor remains highly nonunique.
-The best candidates are those for which the same $\mathcal M_A$ record supplies
-several classes without changing its law, inventory, quotient, or exposure
-definition.
+These clue classes must intersect. A candidate selected only by a count, one frequency, one symmetry label, or one form factor remains highly nonunique. The best candidates are those for which the same $\mathcal M_A$ record supplies several classes without changing its law, inventory, quotient, or exposure definition.
 
-Plainly: frequency is one route to geometry, not the route. Counts tell us what
-must be distinguished; symmetries tell us how it transforms; scattering tells
-us what is spatially exposed; reactions tell us how the structure can change.
+Plainly: frequency is one route to geometry, not the route. Counts tell us what must be distinguished; symmetries tell us how it transforms; scattering tells us what is spatially exposed; reactions tell us how the structure can change.
 
 ### Recurrence Depth
 
-An observer-level frequency does not uniquely imply an architrino orbit. Let
-$\Theta_T$ denote the complete retained native history ending at absolute time
-$T$, let $q$ quotient only declared rigid translations, rigid rotations,
-label permutations, and other physical equivalences, and let $\Pi_k$ be the
-fixed observer projection for behavior $k$. For candidate period
-$\tau=2\pi/\omega$, define three recurrence residuals:
+An observer-level frequency does not uniquely imply an architrino orbit. Let $\Theta_T$ denote the complete retained native history ending at absolute time $T$, let $q$ quotient only declared rigid translations, rigid rotations, label permutations, and other physical equivalences, and let $\Pi_k$ be the fixed observer projection for behavior $k$. For candidate period $\tau=2\pi/\omega$, define three recurrence residuals:
 
 $$
 R_{\mathrm{obs},k}(\tau)
@@ -355,22 +246,13 @@ d_H\!\left(
 \right),
 $$
 
-where $\mathsf S_\tau$ shifts the comparison history by one candidate period
-and $\Delta$ covers the declared causal-memory horizon. Small
-$R_{\mathrm{obs},k}$ establishes only recurrence of the measured output.
-Small $R_{\mathrm{shape}}$ adds recurrence of the assembly geometry after the
-declared quotient. Small $R_{\mathrm{hist}}$ is the strongest row: the delayed
-history itself repeats and can support a periodic retained branch after the
-ordinary retention gates also pass.
+where $\mathsf S_\tau$ shifts the comparison history by one candidate period and $\Delta$ covers the declared causal-memory horizon. Small $R_{\mathrm{obs},k}$ establishes only recurrence of the measured output. Small $R_{\mathrm{shape}}$ adds recurrence of the assembly geometry after the declared quotient. Small $R_{\mathrm{hist}}$ is the strongest row: the delayed history itself repeats and can support a periodic retained branch after the ordinary retention gates also pass.
 
-Plainly: a spectral line can repeat even when the entire assembly does not.
-Before calling the motion an orbit, check whether only the detector signal,
-the assembly shape, or the full delayed history actually returns.
+Plainly: a spectral line can repeat even when the entire assembly does not. Before calling the motion an orbit, check whether only the detector signal, the assembly shape, or the full delayed history actually returns.
 
 ### Candidate Motion Coordinates
 
-A geometry search should expose at least these independent coordinates rather
-than encode every periodic observation as a layer frequency:
+A geometry search should expose at least these independent coordinates rather than encode every periodic observation as a layer frequency:
 
 | Candidate native motion | Minimal coordinate | Characteristic clue | Decisive discriminator |
 | --- | --- | --- | --- |
@@ -385,15 +267,9 @@ than encode every periodic observation as a layer frequency:
 | Intermittent basin return | return-section coordinate and dwell time | broad or state-dependent recurrence, switching, or metastability | hysteresis, dwell-time distribution, or first-exit corridor rather than a stable phase circle |
 | Source or ensemble cadence | event times $\{T_n\}$ | repeated emission, collision, or population exchange | no single receiver history has shape recurrence although the event ensemble has a stable rate |
 
-These coordinates may coexist. For example, a circulating assembly can
-precess, breathe, and carry a traveling phase wave. The inverse task is to use
-symmetry, harmonics, spatial phase, angular momentum, linewidth, and reaction
-provenance to determine which coordinates are actually required.
+These coordinates may coexist. For example, a circulating assembly can precess, breathe, and carry a traveling phase wave. The inverse task is to use symmetry, harmonics, spatial phase, angular momentum, linewidth, and reaction provenance to determine which coordinates are actually required.
 
-Plainly: orbit, breathing, twisting, rocking, and repeated events can share a
-frequency. Their spatial motion, reversal parity, sidebands, and identity
-return are different, so those extra observations are the useful geometry
-clues.
+Plainly: orbit, breathing, twisting, rocking, and repeated events can share a frequency. Their spatial motion, reversal parity, sidebands, and identity return are different, so those extra observations are the useful geometry clues.
 
 ### Spectral And Temporal Clue Grammar
 
@@ -409,20 +285,13 @@ clues.
 | Frequency shift under environment | the environment changes phase advance, recurrence, or the observer projection | geometry deformation, sea dressing, boundary response, clock/readout change | same-history internal coordinates and observer projection before and after the environment change |
 | Scalar response peak | a rotation-invariant changing coordinate or isotropically averaged mode | breathing, density/cadence modulation, orientation ensemble, composite threshold | orientation dependence, angular-momentum row, and resolved radial or tensor deformation |
 
-No row may infer an internal speed from frequency alone. A speed inference
-requires a same-record path length and proof that the measured period belongs
-to traversal of that path rather than to precession, beating, projection, or an
-event cadence.
+No row may infer an internal speed from frequency alone. A speed inference requires a same-record path length and proof that the measured period belongs to traversal of that path rather than to precession, beating, projection, or an event cadence.
 
-Plainly: spectra tell us that something is coherent, recurrent, coupled, or
-short-lived. Geometry appears only after the same record says what moved, over
-what path, with what phase relation, and for how long.
+Plainly: spectra tell us that something is coherent, recurrent, coupled, or short-lived. Geometry appears only after the same record says what moved, over what path, with what phase relation, and for how long.
 
 ### Five Native Inverse-Time Classes
 
-The inverse problem must classify an observed inverse-time quantity before it
-assigns a motion to it. The current equation, benchmark, braid, reaction, and
-Standard Model owners separate into four non-equivalent classes:
+The inverse problem must classify an observed inverse-time quantity before it assigns a motion to it. The current equation, benchmark, braid, reaction, and Standard Model owners separate into four non-equivalent classes:
 
 | Class | Native burden | Typical effective readout | Geometry that is *not* implied |
 | --- | --- | --- | --- |
@@ -448,20 +317,13 @@ e^{i(\mathbf m\cdot\boldsymbol\Omega T+\phi_{\alpha\mathbf m})}
 \eta_\alpha(T).
 $$
 
-The first sum is coherent recurrent or quasiperiodic content, the second is a
-sequence of transitions or exits, and $\eta_\alpha$ is unresolved or
-noncoherent variation. This is an analysis grammar, not a constitutive law.
-It must not be used to manufacture a frequency absent from the native record.
+The first sum is coherent recurrent or quasiperiodic content, the second is a sequence of transitions or exits, and $\eta_\alpha$ is unresolved or noncoherent variation. This is an analysis grammar, not a constitutive law. It must not be used to manufacture a frequency absent from the native record.
 
-Plainly: a formation time, spectral line, photon frequency, precession
-frequency, and particle lifetime all carry time information, but they arise
-from different kinds of history. Classify the history before drawing the
-braid.
+Plainly: a formation time, spectral line, photon frequency, precession frequency, and particle lifetime all carry time information, but they arise from different kinds of history. Classify the history before drawing the braid.
 
 ### Count And Response-Rank Clues
 
-Observed state counts constrain the dimension and symmetry of an effective
-response space more directly than they constrain constituent inventory:
+Observed state counts constrain the dimension and symmetry of an effective response space more directly than they constrain constituent inventory:
 
 | Effective count | Geometry burden | What the count does not establish |
 | --- | --- | --- |
@@ -474,22 +336,13 @@ response space more directly than they constrain constituent inventory:
 | three charged-fermion generations | three reproducible branch classes with common charge rules and distinct mass/exposure/lifetime records | the current three-, two-, and one-support shielding picture unless dynamics selects it |
 | scalar, massless-vector, and massive-vector response classes | respectively a rotation-invariant channel, a rank-two transverse channel, and an effective vector channel that includes a longitudinal comparison mode | a unique radial braid, planar photon, or rigid three-axis weak-boson assembly |
 
-Count recovery should therefore proceed in two steps: derive the native state or
-response space, then derive why the observer quotient sees exactly the stated
-number of distinguishable modes. Constituent counts enter only when identity
-and reaction ledgers independently require them.
+Count recovery should therefore proceed in two steps: derive the native state or response space, then derive why the observer quotient sees exactly the stated number of distinguishable modes. Constituent counts enter only when identity and reaction ledgers independently require them.
 
-Plainly: “two modes” and “two pieces” are different statements. Mode counts
-tell us how many independent ways the assembly can respond; inventory ledgers
-tell us how many architrino identities are present.
+Plainly: “two modes” and “two pieces” are different statements. Mode counts tell us how many independent ways the assembly can respond; inventory ledgers tell us how many architrino identities are present.
 
 ### Mass, Action, And Scale Clues
 
-Mass and action supply important constraints, but they must not be collapsed
-into an assumed internal clock. The [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
-owner supplies the mass-map thesis. The following is a diagnostic restatement
-for this inverse-geometry packet, not a newly derived or independently accepted
-mass equation:
+Mass and action supply important constraints, but they must not be collapsed into an assumed internal clock. The [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) owner supplies the mass-map thesis. The following is a diagnostic restatement for this inverse-geometry packet, not a newly derived or independently accepted mass equation:
 
 $$
 m_{\mathrm{tr}}(A)
@@ -502,12 +355,7 @@ E_{\mathrm{internal}}(A)
 \right],
 $$
 
-where $\mathcal Z_A$ is the branch-derived exposure/shielding tensor and
-$\mathcal M_{\mathrm{sea},+}$ is the reversible symmetric sea-response row.
-This requires a closed internal history and a reproducible response, but the
-scalar mass value alone does not reveal whether the internal motion is an
-orbit, breathing mode, quasiperiodic network, or statistically stationary
-retained state.
+where $\mathcal Z_A$ is the branch-derived exposure/shielding tensor and $\mathcal M_{\mathrm{sea},+}$ is the reversible symmetric sea-response row. This requires a closed internal history and a reproducible response, but the scalar mass value alone does not reveal whether the internal motion is an orbit, breathing mode, quasiperiodic network, or statistically stationary retained state.
 
 | Effective clue | Weakest geometry implication | What remains nonunique | Decisive additional row |
 | --- | --- | --- | --- |
@@ -522,29 +370,15 @@ retained state.
 | scale-dependent effective coupling | exposure, wake/sea dressing, accessible channels, or quotient changes with probe scale | need not mean the retained core changes shape with every scale | one scale-labelled carrier with threshold inventory and fixed scheme/projection |
 | Koide-type charged-lepton relation | after an independent mass map exists, the three branch outputs may occupy a constrained mass-root surface | no direct constituent count, angle, knot, or generation mechanism follows from the relation | data-blind branch-derived masses tested afterward; failure must not be repaired by tuning the geometry to the relation |
 
-The strongest action warning is exact: frequency by itself cannot derive $h$.
-A family may keep one cadence while its path amplitude or response normalization
-changes the action continuously. Universality therefore requires a protected
-action invariant or transition unit on several independently derived branches,
-not one fitted product $E/\nu$.
+The strongest action warning is exact: frequency by itself cannot derive $h$. A family may keep one cadence while its path amplitude or response normalization changes the action continuously. Universality therefore requires a protected action invariant or transition unit on several independently derived branches, not one fitted product $E/\nu$.
 
-Plainly: mass tells us how strongly a retained internal ledger is exposed, and
-action tells us what is protected per cycle or transaction. Neither number by
-itself tells us the architrinos' path.
+Plainly: mass tells us how strongly a retained internal ledger is exposed, and action tells us what is protected per cycle or transaction. Neither number by itself tells us the architrinos' path.
 
 ### Scalar Mass Response With An Axial Moment Constrains Motion
 
-A fermion-like assembly may expose an ordered spin/magnetic axis while its
-leading rest-state mass-facing and electric monopole responses remain
-approximately rotation invariant. This combination is more informative than
-either row alone. It requires the same geometry to support an axial projection
-without leaking unacceptable orientation dependence into every scalar-facing
-projection.
+A fermion-like assembly may expose an ordered spin/magnetic axis while its leading rest-state mass-facing and electric monopole responses remain approximately rotation invariant. This combination is more informative than either row alone. It requires the same geometry to support an axial projection without leaking unacceptable orientation dependence into every scalar-facing projection.
 
-For one accepted branch and fixed probe window $W$, let
-$M_{ij}^{(A)}(W)$ be the observer-level linear group-response tensor extracted
-from a complete source--assembly--sea history in the declared weak regime. It
-is a recovered assembly response, not an architrino mass tensor. Define
+For one accepted branch and fixed probe window $W$, let $M_{ij}^{(A)}(W)$ be the observer-level linear group-response tensor extracted from a complete source--assembly--sea history in the declared weak regime. It is a recovered assembly response, not an architrino mass tensor. Define
 
 $$
 \Delta_{\mathrm{iso}}^{(A)}(W)
@@ -560,15 +394,9 @@ M^{(A)}(W)
 }.
 $$
 
-The scalar-facing target requires
-$\Delta_{\mathrm{iso}}^{(A)}(W)\le\epsilon_{\mathrm{iso}}$ on the declared
-rest/weak-response domain, while an independent axial moment or ordered-frame
-readout remains nonzero. The zero-denominator case abstains rather than passing.
+The scalar-facing target requires $\Delta_{\mathrm{iso}}^{(A)}(W)\le\epsilon_{\mathrm{iso}}$ on the declared rest/weak-response domain, while an independent axial moment or ordered-frame readout remains nonzero. The zero-denominator case abstains rather than passing.
 
-Plainly: the particle can have a direction that a magnetic or spin-sensitive
-experiment sees, but ordinary scalar response must not reveal a large
-easy-versus-hard acceleration axis. The geometry needs a reason those two
-measurements see different parts of the same history.
+Plainly: the particle can have a direction that a magnetic or spin-sensitive experiment sees, but ordinary scalar response must not reveal a large easy-versus-hard acceleration axis. The geometry needs a reason those two measurements see different parts of the same history.
 
 Four native mechanisms remain distinguishable:
 
@@ -579,23 +407,15 @@ Four native mechanisms remain distinguishable:
 | sector-projection cancellation | several anisotropic constituents or layers cancel in the scalar projection but add in the axial/current projection | scalar and magnetic tomography have different spatial/mode weights on the same fixed history |
 | coupled sea compensation | matter anisotropy is offset by a derived anisotropic near-sea response in the scalar channel | frozen-sea and responsive-sea controls separate the cancellation and require a closed matter--sea ledger |
 
-An unprepared ensemble of randomly oriented particles is not automatically a
-single-assembly explanation. If one prepared particle retains an ordered
-moment over the measurement window, ensemble averaging cannot by itself prove
-that its scalar response is isotropic. The same prepared history must be tested
-under rotated source and apparatus records.
+An unprepared ensemble of randomly oriented particles is not automatically a single-assembly explanation. If one prepared particle retains an ordered moment over the measurement window, ensemble averaging cannot by itself prove that its scalar response is isotropic. The same prepared history must be tested under rotated source and apparatus records.
 
-Dynamic averaging gives a direct frequency clue. Let
-$\omega_{\mathrm{ori}}$ denote the resolved internal orientation cadence and
-$\tau_{\mathrm{probe}}$ the source/receiver response window. The heuristic
-separation
+Dynamic averaging gives a direct frequency clue. Let $\omega_{\mathrm{ori}}$ denote the resolved internal orientation cadence and $\tau_{\mathrm{probe}}$ the source/receiver response window. The heuristic separation
 
 $$
 \omega_{\mathrm{ori}}\tau_{\mathrm{probe}}\gg1
 $$
 
-can suppress the window-averaged trace-free response, but it is not itself a
-proof. The executable test is the measured dependence
+can suppress the window-averaged trace-free response, but it is not itself a proof. The executable test is the measured dependence
 
 $$
 \Delta_{\mathrm{iso}}^{(A)}
@@ -609,44 +429,19 @@ W,
 \right)
 $$
 
-under a fixed-law drive-frequency and orientation scan. A true dynamic-average
-mechanism must expose the predicted crossover or spectral content without
-retuning the branch or response projection.
+under a fixed-law drive-frequency and orientation scan. A true dynamic-average mechanism must expose the predicted crossover or spectral content without retuning the branch or response projection.
 
-This does not yet imply high architrino speed. A cadence constrains a ratio of
-path-history change to absolute time. Converting it to a constituent speed
-requires the actual path length or spatial excursion on the same retained
-record. Conversely, if a finite path scale is independently bounded below and
-the averaging cadence is bounded below, then their product supplies a native
-speed bound.
+This does not yet imply high architrino speed. A cadence constrains a ratio of path-history change to absolute time. Converting it to a constituent speed requires the actual path length or spatial excursion on the same retained record. Conversely, if a finite path scale is independently bounded below and the averaging cadence is bounded below, then their product supplies a native speed bound.
 
-The scalar/axial intersection also constrains electric deformation. A weak
-electric-like source may produce small internal stretching while leaving the
-charge index and leading scalar response unchanged. The first measurable
-effect could be a phase shift, trace-free deformation, or changed exposure
-rather than a new charge or large group-level anisotropy. Stronger drive may
-then reveal mode coupling or a branch boundary in the same tomography record.
+The scalar/axial intersection also constrains electric deformation. A weak electric-like source may produce small internal stretching while leaving the charge index and leading scalar response unchanged. The first measurable effect could be a phase shift, trace-free deformation, or changed exposure rather than a new charge or large group-level anisotropy. Stronger drive may then reveal mode coupling or a branch boundary in the same tomography record.
 
-Claim grade: the coexistence of scalar-facing isotropy and a nonzero axial
-response is a deduced recovery constraint. Static symmetry, dynamic averaging,
-projection cancellation, and sea compensation are inferred alternatives.
-Falsifier: one accepted prepared branch exhibits scalar anisotropy above the
-frozen bound, or a proposed dynamic-average mechanism has no window/frequency
-dependence and no resolved internal orientation history.
+Claim grade: the coexistence of scalar-facing isotropy and a nonzero axial response is a deduced recovery constraint. Static symmetry, dynamic averaging, projection cancellation, and sea compensation are inferred alternatives. Falsifier: one accepted prepared branch exhibits scalar anisotropy above the frozen bound, or a proposed dynamic-average mechanism has no window/frequency dependence and no resolved internal orientation history.
 
 ### Magnetic Moment Must Co-Locate Charge Current And Angular History
 
-The EQ-15/EQ-27 and [Zeeman](../mapping-benchmarks/zeeman-effect.md) owners
-require the effective magnetic moment, spinor return, precession, spectral
-response, leading charged-lepton ratio, and anomalous residual to arise on one
-retained history. The geometry must therefore relate a charge-facing current
-moment to an independently closed angular-momentum record.
+The EQ-15/EQ-27 and [Zeeman](../mapping-benchmarks/zeeman-effect.md) owners require the effective magnetic moment, spinor return, precession, spectral response, leading charged-lepton ratio, and anomalous residual to arise on one retained history. The geometry must therefore relate a charge-facing current moment to an independently closed angular-momentum record.
 
-For a prepared charged branch $A$, define the effective moment
-$\boldsymbol\mu_A[W]$ from its derived exposed current and let
-$\mathbf J_A[W]$ be the observer angular record recovered from matter, relative
-motion, corridor, wake, and sea rows. On the nonzero spin subspace, a comparison
-map has the form
+For a prepared charged branch $A$, define the effective moment $\boldsymbol\mu_A[W]$ from its derived exposed current and let $\mathbf J_A[W]$ be the observer angular record recovered from matter, relative motion, corridor, wake, and sea rows. On the nonzero spin subspace, a comparison map has the form
 
 $$
 \boldsymbol\mu_A
@@ -656,12 +451,7 @@ $$
 \mathbf J_A,
 $$
 
-where $q_A^{\mathrm{label}}$ and $m_A^{\mathrm{obs}}$ are already recovered
-observer quantities and $\mathsf G_A$ is a dimensionless same-record moment
-map. This equation is an effective normalization target, not an
-architrino-level mass or force law. A candidate leading charged-lepton branch
-must recover the declared near-$2I$ action of $\mathsf G_A$ on its spin
-subspace, with
+where $q_A^{\mathrm{label}}$ and $m_A^{\mathrm{obs}}$ are already recovered observer quantities and $\mathsf G_A$ is a dimensionless same-record moment map. This equation is an effective normalization target, not an architrino-level mass or force law. A candidate leading charged-lepton branch must recover the declared near-$2I$ action of $\mathsf G_A$ on its spin subspace, with
 
 $$
 \mathsf G_A
@@ -669,12 +459,9 @@ $$
 2I+\delta\mathsf G_A,
 $$
 
-and derive the anomalous residual $\delta\mathsf G_A$ from the same fixed
-history, exposure, wake, sea, and projection law.
+and derive the anomalous residual $\delta\mathsf G_A$ from the same fixed history, exposure, wake, sea, and projection law.
 
-Plainly: the geometry must explain why the part seen as electric current and
-the part seen as spin have a precise leading relationship. Naming one loop
-“charge” and another “spin” without deriving their ratio misses the clue.
+Plainly: the geometry must explain why the part seen as electric current and the part seen as spin have a precise leading relationship. Naming one loop “charge” and another “spin” without deriving their ratio misses the clue.
 
 The cross-particle controls are:
 
@@ -686,33 +473,20 @@ The cross-particle controls are:
 | charged lepton versus scalar channel | nonzero charge may exist in either comparison role | a rotation-scalar spin-$0$ response has no unprepared permanent axial moment, while the fermion retains one |
 | static moment versus driven/radiative response | same exposed-current and angular history | radiation, loss, or absorption may add a symmetric/dissipative channel but cannot redefine the static moment map |
 
-Plainly: conjugates test sign, lepton generations test the common leading rule,
-the neutron tests internal counterflow without net charge, and a scalar channel
-tests whether the axial moment really belongs to the fermion history.
+Plainly: conjugates test sign, lepton generations test the common leading rule, the neutron tests internal counterflow without net charge, and a scalar channel tests whether the axial moment really belongs to the fermion history.
 
-The neutron row is an exact anti-aliasing clue. Net charge is the spatial
-integral of signed exposure; magnetic moment is a first moment of signed
-current. Cancellation of the first does not cancel the second. Any candidate
-that computes moment solely as net charge times one global rotation rate
-therefore fails neutral-composite response.
+The neutron row is an exact anti-aliasing clue. Net charge is the spatial integral of signed exposure; magnetic moment is a first moment of signed current. Cancellation of the first does not cancel the second. Any candidate that computes moment solely as net charge times one global rotation rate therefore fails neutral-composite response.
 
 Four native moment carriers remain live:
 
 1. exposed constituent circulation on a retained path;
-2. distributed counterflow whose net charge cancels partly or wholly while its
-   current moment remains;
-3. ordered-frame or corridor holonomy whose evolved charge-facing response
-   projects as a moment; and
-4. a matter current dressed by a derived wake/sea response that supplies the
-   anomalous residual without changing the charge index.
+2. distributed counterflow whose net charge cancels partly or wholly while its current moment remains;
+3. ordered-frame or corridor holonomy whose evolved charge-facing response projects as a moment; and
+4. a matter current dressed by a derived wake/sea response that supplies the anomalous residual without changing the charge index.
 
-The mechanisms can coexist, but each contribution must be separable by
-constituent-current, circulation-reversal, frame-reversal, direct/sea, and
-window/frequency controls. A fit coefficient called an anomalous moment is not
-a geometry.
+The mechanisms can coexist, but each contribution must be separable by constituent-current, circulation-reversal, frame-reversal, direct/sea, and window/frequency controls. A fit coefficient called an anomalous moment is not a geometry.
 
-The most useful executable residual is a non-aggregated vector rather than a
-sequential or weighted score:
+The most useful executable residual is a non-aggregated vector rather than a sequential or weighted score:
 
 $$
 \boldsymbol{\mathcal R}_{\mu J}^{(A)}
@@ -726,22 +500,13 @@ $$
 \right),
 $$
 
-with every component reported separately and no scalar pass/fail cancellation.
-The owner freezes normalizations and tolerances before comparing lepton
-generations or conjugates.
+with every component reported separately and no scalar pass/fail cancellation. The owner freezes normalizations and tolerances before comparing lepton generations or conjugates.
 
-Claim grade: co-location of moment, angular history, conjugation, leading
-ratio, and anomaly is a deduced recovery requirement. The four carriers are
-inferred alternatives. Falsifier: separate fitted charge-current and spin
-geometries reproduce the joint comparisons without a common identity,
-orientation, or ledger map, or a neutral composite cannot retain a nonzero
-current moment after its charge integral cancels.
+Claim grade: co-location of moment, angular history, conjugation, leading ratio, and anomaly is a deduced recovery requirement. The four carriers are inferred alternatives. Falsifier: separate fitted charge-current and spin geometries reproduce the joint comparisons without a common identity, orientation, or ledger map, or a neutral composite cannot retain a nonzero current moment after its charge integral cancels.
 
 ### Couplings Constrain Sector Projections
 
-A dimensionless coupling is most useful as a constraint on how one native
-branch is exposed to one effective sector, not as a direct measure of the
-branch's full size or shape. A candidate inverse-map grammar is
+A dimensionless coupling is most useful as a constraint on how one native branch is exposed to one effective sector, not as a direct measure of the branch's full size or shape. A candidate inverse-map grammar is
 
 $$
 \Pi_S:\mathcal H_{\mathcal B}\longrightarrow\mathbb R^{d_S},
@@ -758,16 +523,9 @@ $$
 \right).
 $$
 
-$\Pi_S$ is a sector-facing projection, $d_S$ is the effective operator-space
-dimension, $\mathcal Q_S$ is an exposed-inventory or exposure quotient,
-$\mathcal K_S$ is a scale- and environment-dependent response, $I_\mu$ is the
-declared resolved-threshold inventory, and $\mathcal N_S$ carries shared
-normalizations such as the action-period and photon-speed rows when applicable.
-This factorization is a diagnostic proposal; it does not assert that physical
-couplings literally factor this way.
+$\Pi_S$ is a sector-facing projection, $d_S$ is the effective operator-space dimension, $\mathcal Q_S$ is an exposed-inventory or exposure quotient, $\mathcal K_S$ is a scale- and environment-dependent response, $I_\mu$ is the declared resolved-threshold inventory, and $\mathcal N_S$ carries shared normalizations such as the action-period and photon-speed rows when applicable. This factorization is a diagnostic proposal; it does not assert that physical couplings literally factor this way.
 
-For a fixed-background running comparison, the componentwise no-retuning
-condition is
+For a fixed-background running comparison, the componentwise no-retuning condition is
 
 $$
 \partial_{\ln\mu}\mathcal B
@@ -786,18 +544,11 @@ $$
 =0.
 $$
 
-The comparison scheme label is held fixed rather than differentiated. Only the
-declared response and threshold inventory may vary. The conventional scale
-$\mu$ is not automatically a braid radius, internal cadence, or physical
-shrinkage of the electron.
+The comparison scheme label is held fixed rather than differentiated. Only the declared response and threshold inventory may vary. The conventional scale $\mu$ is not automatically a braid radius, internal cadence, or physical shrinkage of the electron.
 
-Plainly: keep the particle, projection rule, normalization, and background
-fixed while changing what the probe resolves. Running should come from the
-declared response and accessible channels, not from quietly rebuilding the
-particle at each scale.
+Plainly: keep the particle, projection rule, normalization, and background fixed while changing what the probe resolves. Running should come from the declared response and accessible channels, not from quietly rebuilding the particle at each scale.
 
-The resulting universality target is conditional but sharp. If a family
-$\mathcal F$ shares one sector-facing motif, then on the comparison domain
+The resulting universality target is conditional but sharp. If a family $\mathcal F$ shares one sector-facing motif, then on the comparison domain
 
 $$
 \Pi_S(\mathcal B_f)
@@ -811,57 +562,23 @@ $$
 \text{for all }f,f'\in\mathcal F,
 $$
 
-while orthogonal shielding, internal-history, mass-facing, and exit-corridor
-coordinates may differ. A family-indexed effective charge or privately changed
-projection rejects the shared motif.
+while orthogonal shielding, internal-history, mass-facing, and exit-corridor coordinates may differ. A family-indexed effective charge or privately changed projection rejects the shared motif.
 
 Several cross-coupling comparisons are especially selective:
 
-1. **Electric universality versus mass, lifetime, and scalar hierarchy.** The
-   charge-facing row remains common across $e,\mu,\tau$ while shielding, mass,
-   lifetime, and the scalar derivative vary. One scalar exposure number cannot
-   control all four.
-2. **Fine structure versus running versus magnetic response.** Exposed charge
-   and action period anchor the reference coupling; running belongs to response
-   and threshold rows; leading $g$ belongs to ordered-frame topology; and the
-   anomaly belongs to residual dressing. Changing the action unit or charge
-   inventory to fit the latter rows fails.
-3. **Weak universality versus flavor overlap and anomaly bookkeeping.** One
-   weak-exposure domain must serve charged-current handedness, $W/Z$ response,
-   CKM/PMNS overlap, and the inherited quark/lepton multiplicity constraints.
-   The observer matrices are not literal spatial rotations.
-4. **Electromagnetic running versus strong running and confinement.** Opposite
-   scale trends require distinct sector response kernels, while high-resolution
-   strong response and long-distance open/closed color-corridor behavior must
-   still descend from one strong-sector carrier. A universal scalar screening
-   fraction is too weak.
-5. **Scalar coupling versus $W/Z$ normalization and mass exposure.** The most
-   economical scalar row is the derivative of the already fixed mass response
-   on the same electroweak/sea record. Per-particle scalar charges or a separate
-   scalar sea reject that factorization.
+1. **Electric universality versus mass, lifetime, and scalar hierarchy.** The charge-facing row remains common across $e,\mu,\tau$ while shielding, mass, lifetime, and the scalar derivative vary. One scalar exposure number cannot control all four.
+2. **Fine structure versus running versus magnetic response.** Exposed charge and action period anchor the reference coupling; running belongs to response and threshold rows; leading $g$ belongs to ordered-frame topology; and the anomaly belongs to residual dressing. Changing the action unit or charge inventory to fit the latter rows fails.
+3. **Weak universality versus flavor overlap and anomaly bookkeeping.** One weak-exposure domain must serve charged-current handedness, $W/Z$ response, CKM/PMNS overlap, and the inherited quark/lepton multiplicity constraints. The observer matrices are not literal spatial rotations.
+4. **Electromagnetic running versus strong running and confinement.** Opposite scale trends require distinct sector response kernels, while high-resolution strong response and long-distance open/closed color-corridor behavior must still descend from one strong-sector carrier. A universal scalar screening fraction is too weak.
+5. **Scalar coupling versus $W/Z$ normalization and mass exposure.** The most economical scalar row is the derivative of the already fixed mass response on the same electroweak/sea record. Per-particle scalar charges or a separate scalar sea reject that factorization.
 
-Charge quantization itself constrains a discrete exposed-inventory grammar and
-the dynamic exclusion of unused stable classes; it does not prove six exposed
-axial sites or their placement. Gauge-anomaly cancellation constrains the
-joint effective multiplicity and charge table, but inherited cancellation does
-not select a retained geometry. High-energy coupling unification remains an
-optional downstream comparison until the electromagnetic, weak, and strong
-carriers are separately recovered.
+Charge quantization itself constrains a discrete exposed-inventory grammar and the dynamic exclusion of unused stable classes; it does not prove six exposed axial sites or their placement. Gauge-anomaly cancellation constrains the joint effective multiplicity and charge table, but inherited cancellation does not select a retained geometry. High-energy coupling unification remains an optional downstream comparison until the electromagnetic, weak, and strong carriers are separately recovered.
 
-Plainly: coupling data tell us which parts of a reusable architecture must be
-shared and which projections must remain distinct. They do not draw the braid,
-but they reject any architecture that fits each interaction with a private
-exposure rule.
+Plainly: coupling data tell us which parts of a reusable architecture must be shared and which projections must remain distinct. They do not draw the braid, but they reject any architecture that fits each interaction with a private exposure rule.
 
 ### Chirality Is Not Massive-Particle Helicity
 
-The effective weak-handedness label and observer helicity coincide only in
-restricted high-speed limits; they are not the same geometry coordinate for a
-massive retained assembly. Helicity is an observer projection of angular
-history along group momentum. Chirality is the weak-representation/exposure
-row that determines which charged-current corridor is available. An observer
-change can reverse the momentum direction assigned to a massive particle
-without physically rebuilding its weak-facing branch.
+The effective weak-handedness label and observer helicity coincide only in restricted high-speed limits; they are not the same geometry coordinate for a massive retained assembly. Helicity is an observer projection of angular history along group momentum. Chirality is the weak-representation/exposure row that determines which charged-current corridor is available. An observer change can reverse the momentum direction assigned to a massive particle without physically rebuilding its weak-facing branch.
 
 For nonzero observer momentum, define the helicity comparison
 
@@ -888,25 +605,11 @@ $$
 \right].
 $$
 
-At $\mathbf p_{\mathrm{obs}}=0$, helicity is undefined, but the retained branch
-and its possible weak docking geometry do not cease to exist. Under a pure
-change of observer reconstruction of one physical history,
-$h_{\mathrm{obs}}$ may reverse for a massive branch while the native event
-record and its covariantly transformed $\mathcal E_W$ remain the same physical
-record.
+At $\mathbf p_{\mathrm{obs}}=0$, helicity is undefined, but the retained branch and its possible weak docking geometry do not cease to exist. Under a pure change of observer reconstruction of one physical history, $h_{\mathrm{obs}}$ may reverse for a massive branch while the native event record and its covariantly transformed $\mathcal E_W$ remain the same physical record.
 
-Plainly: an observer who describes the particle as moving the other way may
-reverse its helicity label. That observer change cannot expose or hide a
-different set of architrinos inside the particle.
+Plainly: an observer who describes the particle as moving the other way may reverse its helicity label. That observer change cannot expose or hide a different set of architrinos inside the particle.
 
-This creates a direct audit of the current
-[weak-coupling-triad candidate](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-weak-coupling-triad-geometry),
-whose provisional selector uses a propagation direction $\hat{\mathbf p}$.
-That construction remains viable only if the direction enters as a physical
-source--assembly--apparatus relation on the complete event record, or as a
-covariant shorthand derived from it. If an arbitrary observer momentum
-reversal changes which triad is called exposed, the candidate has aliased
-chirality with helicity.
+This creates a direct audit of the current [weak-coupling-triad candidate](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-weak-coupling-triad-geometry), whose provisional selector uses a propagation direction $\hat{\mathbf p}$. That construction remains viable only if the direction enters as a physical source--assembly--apparatus relation on the complete event record, or as a covariant shorthand derived from it. If an arbitrary observer momentum reversal changes which triad is called exposed, the candidate has aliased chirality with helicity.
 
 The minimum coordinate split is
 
@@ -921,9 +624,7 @@ $$
 \right),
 $$
 
-where the spinor/frame row, weak-exposure posture, group motion, and physical
-event relation are separately inspectable. They may be dynamically coupled,
-but none is defined solely as the sign of another.
+where the spinor/frame row, weak-exposure posture, group motion, and physical event relation are separately inspectable. They may be dynamically coupled, but none is defined solely as the sign of another.
 
 | Control | What is changed | Required result |
 | --- | --- | --- |
@@ -934,25 +635,13 @@ but none is defined solely as the sign of another.
 | whole-history conjugate | polarities and conjugate event provenance transform at fixed spatial order | particle/antiparticle weak corridors transform through the conjugate record, independently of the helicity sign |
 | near-massless propagation limit | one branch family is continued toward a regime where opposite-helicity content is suppressed | any chirality--helicity locking must emerge as a limiting projection rather than a substrate identity imposed on every massive branch |
 
-This is also a test of Lorentz recovery from absolute-time dynamics. The
-substrate history is not boosted into another spacetime ontology. Instead, one
-native record must support observer reconstructions whose helicity labels and
-weak observables transform consistently without changing the branch, roots, or
-sea state merely because the observer moved.
+This is also a test of Lorentz recovery from absolute-time dynamics. The substrate history is not boosted into another spacetime ontology. Instead, one native record must support observer reconstructions whose helicity labels and weak observables transform consistently without changing the branch, roots, or sea state merely because the observer moved.
 
-Claim grade: the independence of massive-particle helicity and weak chirality
-is a deduced recovery requirement. The weak-exposure posture and physical
-source/apparatus relation are inferred native carriers. Falsifier: a
-velocity-sign-only weak selector reproduces rest, observer-reprojection,
-parity, conjugation, and high-speed limiting rows on one fixed physical history
-without hidden internal orientation or event geometry.
+Claim grade: the independence of massive-particle helicity and weak chirality is a deduced recovery requirement. The weak-exposure posture and physical source/apparatus relation are inferred native carriers. Falsifier: a velocity-sign-only weak selector reproduces rest, observer-reprojection, parity, conjugation, and high-speed limiting rows on one fixed physical history without hidden internal orientation or event geometry.
 
 ### Flavor Mixing Requires Weighted Geometry And A Cycle
 
-CKM, PMNS, strong flavor preservation, neutral-current suppression, and
-$CP$-sensitive transport should be read as different outputs of one typed
-branch-and-corridor grammar. Let $F\in\{\ell,u,d,\nu\}$ label a physical family
-and $g\in\{1,2,3\}$ a branch or propagation mode. A candidate record is
+CKM, PMNS, strong flavor preservation, neutral-current suppression, and $CP$-sensitive transport should be read as different outputs of one typed branch-and-corridor grammar. Let $F\in\{\ell,u,d,\nu\}$ label a physical family and $g\in\{1,2,3\}$ a branch or propagation mode. A candidate record is
 
 $$
 \Theta_F
@@ -969,15 +658,9 @@ H_F^{\mathrm{res}},
 \right).
 $$
 
-$B_{F,g}$ is a whole-history branch rather than a particle label,
-$\mathcal E_W$ is one universal weak-exposure rule, $H_F^{\mathrm{res}}$ is a
-family-specific phase or retention operator, the $\Gamma$ rows are charged-
-weak, neutral, and strong admissible path sets, $\mathcal L$ binds source,
-path, environment, and detector, and $\mathcal C$ is whole-history polarity
-conjugation.
+$B_{F,g}$ is a whole-history branch rather than a particle label, $\mathcal E_W$ is one universal weak-exposure rule, $H_F^{\mathrm{res}}$ is a family-specific phase or retention operator, the $\Gamma$ rows are charged- weak, neutral, and strong admissible path sets, $\mathcal L$ binds source, path, environment, and detector, and $\mathcal C$ is whole-history polarity conjugation.
 
-`Same weak domain` must be type-correct. A quark and a neutrino cannot share
-one physical branch identity. They can inhabit different fibers of one rule:
+`Same weak domain` must be type-correct. A quark and a neutrino cannot share one physical branch identity. They can inhabit different fibers of one rule:
 
 $$
 \mathcal D_W
@@ -989,13 +672,9 @@ $$
 \mathcal E_W|_{\mathcal D_W^{(F)}}.
 $$
 
-Within one event, every row uses the same physical branch and event record.
-Across families, branch carriers differ but the operator, normalization,
-conventions, and no-retuning rule remain common.
+Within one event, every row uses the same physical branch and event record. Across families, branch carriers differ but the operator, normalization, conventions, and no-retuning rule remain common.
 
-Plainly: the weak interaction can use one rule on different kinds of particle.
-Requiring one rule is not the same as pretending the particles share one
-physical history.
+Plainly: the weak interaction can use one rule on different kinds of particle. Requiring one rule is not the same as pretending the particles share one physical history.
 
 #### Bare Shielding-Distance No-Go
 
@@ -1018,17 +697,9 @@ d_H(\mathbf s_2,\mathbf s_3)
 =1.
 $$
 
-Therefore every overlap rule of the form
-$O_{ij}=F(d_H(\mathbf s_i,\mathbf s_j))$ predicts
-$O_{12}=O_{23}$. It cannot reproduce the effective CKM hierarchy in which the
-first--second overlap is much larger than the second--third overlap. This is a
-conditional mathematical no-go: the three bit strings may still label
-generations, but a successful overlap needs index-sensitive actions,
-orientation, phase, exposure, or corridor history beyond their bare distance.
+Therefore every overlap rule of the form $O_{ij}=F(d_H(\mathbf s_i,\mathbf s_j))$ predicts $O_{12}=O_{23}$. It cannot reproduce the effective CKM hierarchy in which the first--second overlap is much larger than the second--third overlap. This is a conditional mathematical no-go: the three bit strings may still label generations, but a successful overlap needs index-sensitive actions, orientation, phase, exposure, or corridor history beyond their bare distance.
 
-Plainly: `111`, `110`, and `100` count three levels, but their simplest geometry
-makes the two adjacent steps identical. The observed mixing says those steps
-must carry additional structure.
+Plainly: `111`, `110`, and `100` count three levels, but their simplest geometry makes the two adjacent steps identical. The observed mixing says those steps must carry additional structure.
 
 #### Cycle-Rank Requirement For A Physical Holonomy
 
@@ -1040,11 +711,7 @@ $$
 |E|-|V|+1
 $$
 
-counts independent cycles. The chain
-$1\leftrightarrow2\leftrightarrow3$ has $\beta_1=0$. Every edge phase can then
-be removed by rephasing its nodes, so the graph carries no invariant loop
-holonomy. A real phase-bearing $1\leftrightarrow3$ route, or another closed
-history loop, raises $\beta_1$ and can support a non-removable phase.
+counts independent cycles. The chain $1\leftrightarrow2\leftrightarrow3$ has $\beta_1=0$. Every edge phase can then be removed by rephasing its nodes, so the graph carries no invariant loop holonomy. A real phase-bearing $1\leftrightarrow3$ route, or another closed history loop, raises $\beta_1$ and can support a non-removable phase.
 
 For a proposed effective path grammar,
 
@@ -1056,9 +723,7 @@ w_\gamma
 e^{i(\phi_\gamma^++\phi_\gamma^-)},
 $$
 
-whole-history conjugation reverses the conjugation-odd phase while preserving
-the even phase. Two interfering histories can then give a comparison-level
-asymmetry of the schematic form
+whole-history conjugation reverses the conjugation-odd phase while preserving the even phase. Two interfering histories can then give a comparison-level asymmetry of the schematic form
 
 $$
 \Delta P_{a\to b}
@@ -1070,19 +735,13 @@ w_\gamma w_{\gamma'}
 \sin\Delta\phi_{\gamma\gamma'}^-.
 $$
 
-This is a recovery grammar, not a claim that complex probability amplitudes are
-substrate primitives. Its exact structural consequence is that a one-path
-channel, a real overlap chart, or a cycle-free transport graph cannot carry the
-proposed $CP$ holonomy.
+This is a recovery grammar, not a claim that complex probability amplitudes are substrate primitives. Its exact structural consequence is that a one-path channel, a real overlap chart, or a cycle-free transport graph cannot carry the proposed $CP$ holonomy.
 
-Plainly: a meaningful loop phase needs an actual loop and at least two routes
-whose relative phase can matter. A fitted angle attached to a three-node line
-does not supply either one.
+Plainly: a meaningful loop phase needs an actual loop and at least two routes whose relative phase can matter. A fitted angle attached to a three-node line does not supply either one.
 
 #### Neutral-Current Scalar Condition
 
-Let $N_F$ be the leading neutral-current operator on a three-generation family.
-If
+Let $N_F$ be the leading neutral-current operator on a three-generation family. If
 
 $$
 N_F=n_F I_{\mathrm{gen}},
@@ -1096,50 +755,21 @@ U_F^\dagger N_FU_F
 n_FI_{\mathrm{gen}}.
 $$
 
-Tree-level neutral flavor change is therefore absent. Loop-level change may
-still arise from event histories with non-identical generation-dependent
-charged-path contributions. This is a sufficient condition, not a uniqueness
-theorem, but it gives a sharp falsifier: a leading neutral corridor that sees
-generation geometry strongly enough to produce off-diagonal terms after the
-basis change violates the required suppression.
+Tree-level neutral flavor change is therefore absent. Loop-level change may still arise from event histories with non-identical generation-dependent charged-path contributions. This is a sufficient condition, not a uniqueness theorem, but it gives a sharp falsifier: a leading neutral corridor that sees generation geometry strongly enough to produce off-diagonal terms after the basis change violates the required suppression.
 
-Neutrino oscillation adds a separate rank constraint. The traceless residual
-operator must carry three modes and two independent phase-rate gaps; a common
-phase, static offsets, or one gap cannot recover the propagation pattern.
-Charged-fermion shielding tiers and neutrino propagation modes may solve the
-same three-state counting problem through different physical realizations.
+Neutrino oscillation adds a separate rank constraint. The traceless residual operator must carry three modes and two independent phase-rate gaps; a common phase, static offsets, or one gap cannot recover the propagation pattern. Charged-fermion shielding tiers and neutrino propagation modes may solve the same three-state counting problem through different physical realizations.
 
-Plainly: charged currents must distinguish generation enough to mix it, neutral
-currents must be blind enough not to change it directly, and neutrinos must
-retain two independent phase clocks after the common clock cancels. One static
-three-bit label cannot perform all three jobs.
+Plainly: charged currents must distinguish generation enough to mix it, neutral currents must be blind enough not to change it directly, and neutrinos must retain two independent phase clocks after the common clock cancels. One static three-bit label cannot perform all three jobs.
 
 #### Flavor And Dipole Nulls Require One Factorized Record
 
-The strongest flavor information comes from pairing an allowed route with a
-nearby suppressed route on the same family record. The present corpus covers
-ordinary muon decay and quark charged-current mixing through the
-[weak-visible branch packet](../mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md),
-tree-level neutral-current diagonality and a formal GIM-like cancellation
-through the [common architecture](../mapping-equations/equation-common-architecture.md),
-and rare-kaon event bookkeeping, weak $CP$, and a quantitative neutron
-electric-dipole scaffold through their existing equation and benchmark owners.
-Coverage is only partial for the electron dipole and neutrinoless double beta
-decay, and no owned quantitative packet presently covers $\mu\to e\gamma$,
-$\mu\to3e$, coherent $\mu\to e$ conversion, or representative tau
-charged-lepton flavor change.
+The strongest flavor information comes from pairing an allowed route with a nearby suppressed route on the same family record. The present corpus covers ordinary muon decay and quark charged-current mixing through the [weak-visible branch packet](../mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md), tree-level neutral-current diagonality and a formal GIM-like cancellation through the [common architecture](../mapping-equations/equation-common-architecture.md), and rare-kaon event bookkeeping, weak $CP$, and a quantitative neutron electric-dipole scaffold through their existing equation and benchmark owners. Coverage is only partial for the electron dipole and neutrinoless double beta decay, and no owned quantitative packet presently covers $\mu\to e\gamma$, $\mu\to3e$, coherent $\mu\to e$ conversion, or representative tau charged-lepton flavor change.
 
-This gap does not license adding those observer processes as substrate laws.
-It identifies a missing same-record test of whether one generation geometry
-can allow charged-current flavor routing while suppressing direct
-charged-lepton relocking.
+This gap does not license adding those observer processes as substrate laws. It identifies a missing same-record test of whether one generation geometry can allow charged-current flavor routing while suppressing direct charged-lepton relocking.
 
-Plainly: we know how the framework proposes to allow some flavor changes, but
-we have not yet tested the same geometry against the strongest cases where a
-closely related flavor change is not seen.
+Plainly: we know how the framework proposes to allow some flavor changes, but we have not yet tested the same geometry against the strongest cases where a closely related flavor change is not seen.
 
-A minimum common factorization requires distinct projections of one retained
-family:
+A minimum common factorization requires distinct projections of one retained family:
 
 $$
 \left(
@@ -1152,12 +782,7 @@ U_\gamma^{\mathrm{hist}},
 \right).
 $$
 
-$\Pi_W$ is charged-current exposure, $\Pi_N$ is the leading neutral-current
-projection, $U_F$ is the recovered family-overlap map,
-$U_\gamma^{\mathrm{hist}}$ is conjugation-sensitive transport history,
-$\mathbf d_A$ is a static spin-aligned electric first moment, and
-$\mathcal C_L$ is the conjugation/lepton-number branch map. They are readouts
-of one branch family, not independent adjustable couplings.
+$\Pi_W$ is charged-current exposure, $\Pi_N$ is the leading neutral-current projection, $U_F$ is the recovered family-overlap map, $U_\gamma^{\mathrm{hist}}$ is conjugation-sensitive transport history, $\mathbf d_A$ is a static spin-aligned electric first moment, and $\mathcal C_L$ is the conjugation/lepton-number branch map. They are readouts of one branch family, not independent adjustable couplings.
 
 The formal charged-lepton null diagnostic has the comparison structure
 
@@ -1170,18 +795,9 @@ U_{\mu k}U_{e k}^{*}g_k^X,
 X\in\{\gamma,3e,\text{conversion}\},
 $$
 
-where $g_k^X$ is an observer-level channel response to be recovered from the
-complete intermediate-history and apparatus or nuclear record. If the
-$g_k^X$ are identical, overlap unitarity cancels the common part. This is a
-recovery-row grammar, not a primitive loop law. Its geometric content is that
-the family paths must close coherently enough to cancel their common response,
-while small branch-dependent differences may survive in declared rare
-channels.
+where $g_k^X$ is an observer-level channel response to be recovered from the complete intermediate-history and apparatus or nuclear record. If the $g_k^X$ are identical, overlap unitarity cancels the common part. This is a recovery-row grammar, not a primitive loop law. Its geometric content is that the family paths must close coherently enough to cancel their common response, while small branch-dependent differences may survive in declared rare channels.
 
-Plainly: the cancellation target is not a new microscopic loop law. It asks
-whether one complete family geometry makes the shared contribution cancel
-while leaving only the small, history-dependent differences that a rare route
-can expose.
+Plainly: the cancellation target is not a new microscopic loop law. It asks whether one complete family geometry makes the shared contribution cancel while leaving only the small, history-dependent differences that a rare route can expose.
 
 The adjacent comparisons are:
 
@@ -1194,40 +810,17 @@ The adjacent comparisons are:
 | weak flavor $CP$ | electron and neutron electric-dipole nulls | path holonomy may remain conjugation-odd while static spin-aligned electric first moments cancel in their sector projections |
 | neutrino oscillation | neutrinoless double-beta null | flavor-phase transport need not open a self-conjugate lepton-number-changing association corridor |
 
-A single scalar weak exposure cannot supply this table. The candidate needs a
-charged-current projection, a leading neutral projection, coherent
-intermediate-family closure, a transport-phase row, separate static moment
-quotients, and an explicit conjugation/lepton-number corridor. The parts may
-share one underlying geometry, but their transformations and null mechanisms
-must remain separately measurable.
+A single scalar weak exposure cannot supply this table. The candidate needs a charged-current projection, a leading neutral projection, coherent intermediate-family closure, a transport-phase row, separate static moment quotients, and an explicit conjugation/lepton-number corridor. The parts may share one underlying geometry, but their transformations and null mechanisms must remain separately measurable.
 
-No new benchmark owner is created here. The largest future coverage need is a
-single charged-lepton flavor-null packet anchored by ordinary muon decay and
-ordinary muon capture, followed by an electron-dipole owner parallel to the
-neutron scaffold and a quantitative neutrinoless-double-beta event ledger.
-Those obligation artifacts should be created only when a retained carrier or
-an active owner can consume them.
+No new benchmark owner is created here. The largest future coverage need is a single charged-lepton flavor-null packet anchored by ordinary muon decay and ordinary muon capture, followed by an electron-dipole owner parallel to the neutron scaffold and a quantitative neutrinoless-double-beta event ledger. Those obligation artifacts should be created only when a retained carrier or an active owner can consume them.
 
-Plainly: one architecture can still explain all these flavor and dipole facts,
-but only if it has several disciplined projections. A separate fitted
-mechanism for each rare or forbidden process would conceal whether the common
-geometry actually works.
+Plainly: one architecture can still explain all these flavor and dipole facts, but only if it has several disciplined projections. A separate fitted mechanism for each rare or forbidden process would conceal whether the common geometry actually works.
 
 #### Three Generations Require A Discrete Branch Exhaustion Result
 
-The observer statement that charged leptons, neutrinos, up-type quarks, and
-down-type quarks each organize into three generation rows is not proved by
-writing three candidate diagrams. The
-[Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#three-generation-closure-benchmark)
-owner already requires common representation bookkeeping and suppression of
-non-baseline partners. The inverse-geometry consequence is an exact basin or
-mode-count burden.
+The observer statement that charged leptons, neutrinos, up-type quarks, and down-type quarks each organize into three generation rows is not proved by writing three candidate diagrams. The [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#three-generation-closure-benchmark) owner already requires common representation bookkeeping and suppression of non-baseline partners. The inverse-geometry consequence is an exact basin or mode-count burden.
 
-For sector $F$ and fixed representation-facing labels, let
-$\mathcal R_F$ be the set of accepted retained, propagating, or otherwise
-role-admissible complete histories, and let $Q_F$ remove only declared
-redundancies. Define the robust generation classes as positive-width connected
-components or spectrally isolated admissible modes of
+For sector $F$ and fixed representation-facing labels, let $\mathcal R_F$ be the set of accepted retained, propagating, or otherwise role-admissible complete histories, and let $Q_F$ remove only declared redundancies. Define the robust generation classes as positive-width connected components or spectrally isolated admissible modes of
 
 $$
 \mathfrak G_F
@@ -1244,17 +837,9 @@ N_{\mathrm{gen}}^{(F)}
 =3,
 $$
 
-or an explicitly equivalent three-mode statement when generation is carried by
-isolated modes of one connected branch rather than disconnected components.
-Every counted class needs a formation/preparation route, positive basin or mode
-margin, common charge/color/weak representation rows, and a distinct
-mass/exposure/mixing fingerprint. Every additional class must be absent,
-transient, confined into an accepted composite role, or below a declared
-observer bound.
+or an explicitly equivalent three-mode statement when generation is carried by isolated modes of one connected branch rather than disconnected components. Every counted class needs a formation/preparation route, positive basin or mode margin, common charge/color/weak representation rows, and a distinct mass/exposure/mixing fingerprint. Every additional class must be absent, transient, confined into an accepted composite role, or below a declared observer bound.
 
-Plainly: three sample parameter settings are not three generations. The
-dynamics must produce exactly three durable choices, show how each can be
-formed and recognized, and explain what happens to all other possible choices.
+Plainly: three sample parameter settings are not three generations. The dynamics must produce exactly three durable choices, show how each can be formed and recognized, and explain what happens to all other possible choices.
 
 Five native mechanisms remain live and have different signatures:
 
@@ -1266,18 +851,9 @@ Five native mechanisms remain live and have different signatures:
 | three phase-lock or permutation classes | three robust relative-phase, holonomy, or identity-return patterns | observer recurrence, identity recurrence, cross-phase, and mixing overlap distinguish the classes even when gross support is similar |
 | three support-tier lock states | three dynamically selected coherent-support subsets with complete identity and wake provenance | tier removal or decoherence changes mass/lifetime while charge, color, weak representation, and the remaining identities stay ledger-complete |
 
-These mechanisms are not interchangeable. A topological index predicts no
-smooth within-family conversion without a validity-floor event. A multistable
-coordinate predicts basin boundaries. A mode picture predicts a common linear
-or nonlinear response basis after retention. A phase-lock picture predicts
-coherent cross-phases and return permutations. A support-tier picture must
-explain the provenance and dynamics of every depleted support rather than
-replace it with a dash in a label.
+These mechanisms are not interchangeable. A topological index predicts no smooth within-family conversion without a validity-floor event. A multistable coordinate predicts basin boundaries. A mode picture predicts a common linear or nonlinear response basis after retention. A phase-lock picture predicts coherent cross-phases and return permutations. A support-tier picture must explain the provenance and dynamics of every depleted support rather than replace it with a dash in a label.
 
-Cross-sector agreement adds another constraint. Let
-$g\in\{1,2,3\}$ be the recovered generation index and
-$F\in\{\ell,\nu,u,d\}$. The candidate may use different sector morphologies,
-but one alignment relation must bind their index ordering:
+Cross-sector agreement adds another constraint. Let $g\in\{1,2,3\}$ be the recovered generation index and $F\in\{\ell,\nu,u,d\}$. The candidate may use different sector morphologies, but one alignment relation must bind their index ordering:
 
 $$
 \mathcal A_{\mathrm{gen}}
@@ -1295,34 +871,15 @@ $$
 \Pi_{\mathrm{rep},F}(\Theta_{F,g'})
 $$
 
-for all $g,g'$ in a fixed sector, while mass-facing, lifetime, and overlap rows
-remain allowed to differ. The alignment relation must not be defined after
-sorting observed masses. It needs a native index, formation order, support
-relation, phase class, or other data-blind correspondence.
+for all $g,g'$ in a fixed sector, while mass-facing, lifetime, and overlap rows remain allowed to differ. The alignment relation must not be defined after sorting observed masses. It needs a native index, formation order, support relation, phase class, or other data-blind correspondence.
 
-This creates a no-continuum test. If the proposed generation coordinate is a
-continuous shielding amplitude $s$, then ordinary evolution must show why only
-three intervals or points of $s$ support admissible classes. Otherwise the
-model predicts a continuum of same-charge family partners. Likewise, three
-support bits do not close the program unless the fixed law rejects the unused
-subsets and the weighted overlap map reproduces unequal mixing.
+This creates a no-continuum test. If the proposed generation coordinate is a continuous shielding amplitude $s$, then ordinary evolution must show why only three intervals or points of $s$ support admissible classes. Otherwise the model predicts a continuum of same-charge family partners. Likewise, three support bits do not close the program unless the fixed law rejects the unused subsets and the weighted overlap map reproduces unequal mixing.
 
-Claim grade: exactly-three robust observer classes and no extra accepted
-partners are deduced recovery requirements. The five carrier mechanisms are
-inferred alternatives. Falsifier: a continuous or combinatorial candidate with
-no derived selection boundary nonetheless produces only the three observer
-classes under an exhaustive admissible search, or an accepted fourth class
-survives with the same representation rows and no observer counterpart.
+Claim grade: exactly-three robust observer classes and no extra accepted partners are deduced recovery requirements. The five carrier mechanisms are inferred alternatives. Falsifier: a continuous or combinatorial candidate with no derived selection boundary nonetheless produces only the three observer classes under an exhaustive admissible search, or an accepted fourth class survives with the same representation rows and no observer counterpart.
 
 ### Neutral-Coherent Fermion Search Blueprint
 
-The neutrino row supplies a particularly sharp inverse-geometry problem because
-the source and detector identify flavor-facing weak corridors while the path
-preserves a neutral coherent carrier. The useful native object is therefore not
-three particles repeatedly replacing one another. It is one complete
-source--path--detector history with a common propagating support and at least
-three resolved internal eigenrecords whose two independent relative phases can
-change along the path.
+The neutrino row supplies a particularly sharp inverse-geometry problem because the source and detector identify flavor-facing weak corridors while the path preserves a neutral coherent carrier. The useful native object is therefore not three particles repeatedly replacing one another. It is one complete source--path--detector history with a common propagating support and at least three resolved internal eigenrecords whose two independent relative phases can change along the path.
 
 A minimum record is
 
@@ -1342,58 +899,22 @@ $$
 \right).
 $$
 
-Here $\mathcal B_{\mathrm{neu}}$ is the neutral propagating branch or branch
-family; $\mathcal U_{\mathrm{src}}$ and $\mathcal U_{\mathrm{det}}$ are the
-weak source and detector projections; $\mathcal H_{\mathrm{path}}$ is the
-fixed-law path-history evolution; $\boldsymbol\varphi_{\mathrm{rel}}$ contains
-two independent relative phases after the common phase is quotiented out;
-$\mathcal E_W^{\mathrm{posture}}$ is weak exposure rather than observer
-helicity; $\mathcal M_{\mathrm{env}}$ records matter-assembly and Noether-sea
-response along the path; $\mathcal C$ is whole-history conjugation; and
-$\Gamma_{\mathrm{det}}$ is the rare localized detector reaction corridor.
+Here $\mathcal B_{\mathrm{neu}}$ is the neutral propagating branch or branch family; $\mathcal U_{\mathrm{src}}$ and $\mathcal U_{\mathrm{det}}$ are the weak source and detector projections; $\mathcal H_{\mathrm{path}}$ is the fixed-law path-history evolution; $\boldsymbol\varphi_{\mathrm{rel}}$ contains two independent relative phases after the common phase is quotiented out; $\mathcal E_W^{\mathrm{posture}}$ is weak exposure rather than observer helicity; $\mathcal M_{\mathrm{env}}$ records matter-assembly and Noether-sea response along the path; $\mathcal C$ is whole-history conjugation; and $\Gamma_{\mathrm{det}}$ is the rare localized detector reaction corridor.
 
-Plainly: the source prepares one combination of three internal travel modes,
-the modes accumulate different phases without becoming three separately
-observed particles, and the detector reads a new combination. The detector
-reaction is a separate event from the coherent propagation.
+Plainly: the source prepares one combination of three internal travel modes, the modes accumulate different phases without becoming three separately observed particles, and the detector reads a new combination. The detector reaction is a separate event from the coherent propagation.
 
 This record implies six geometry requirements.
 
-1. **Common carrier support.** The three phase-bearing rows must remain parts,
-   modes, locks, or quotient classes of one coherent neutral history. Three
-   unrelated retained assemblies with fitted switching probabilities do not
-   explain interference.
-2. **Rank three after constraints.** The resolved comparison space must have
-   three admissible modes and two independent phase-rate gaps after the common
-   clock, normalization, and gauge-like redundancies are removed. Three named
-   labels alone do not establish this rank.
-3. **Nearly common translation with non-common internal phase.** A single
-   group path must coexist with small mode-dependent phase accumulation. The
-   geometry therefore needs a coordinate that changes its action or
-   mass-facing response more strongly than its charge, color, and leading
-   translational morphology.
-4. **Weak projection at the endpoints.** Flavor belongs to the source and
-   detector corridor overlaps, not necessarily to a permanently exposed
-   spatial feature during free propagation.
-5. **Environmental phase response without identity loss.** Matter may change
-   the effective mode operator through assembly and sea history, but the same
-   neutral inventory, branch identity, and phase provenance must pass through
-   the region. An inserted observer-level potential is a recovery target, not
-   a substrate premise.
-6. **Coherence and detection are independent margins.** Long phase coherence
-   constrains path-history stability, whereas weak detectability constrains the
-   small measure of $\Gamma_{\mathrm{det}}$. Neither is a particle lifetime.
+1. **Common carrier support.** The three phase-bearing rows must remain parts, modes, locks, or quotient classes of one coherent neutral history. Three unrelated retained assemblies with fitted switching probabilities do not explain interference.
+2. **Rank three after constraints.** The resolved comparison space must have three admissible modes and two independent phase-rate gaps after the common clock, normalization, and gauge-like redundancies are removed. Three named labels alone do not establish this rank.
+3. **Nearly common translation with non-common internal phase.** A single group path must coexist with small mode-dependent phase accumulation. The geometry therefore needs a coordinate that changes its action or mass-facing response more strongly than its charge, color, and leading translational morphology.
+4. **Weak projection at the endpoints.** Flavor belongs to the source and detector corridor overlaps, not necessarily to a permanently exposed spatial feature during free propagation.
+5. **Environmental phase response without identity loss.** Matter may change the effective mode operator through assembly and sea history, but the same neutral inventory, branch identity, and phase provenance must pass through the region. An inserted observer-level potential is a recovery target, not a substrate premise.
+6. **Coherence and detection are independent margins.** Long phase coherence constrains path-history stability, whereas weak detectability constrains the small measure of $\Gamma_{\mathrm{det}}$. Neither is a particle lifetime.
 
-These requirements favor a soft internal coordinate on a stiff translating
-carrier: the gross support and neutrality are preserved while a small relative
-lock, permutation, orientation, exposure, or sea-dressing coordinate carries
-the phase differences. They disfavor geometries in which changing mode
-requires breaking and rebuilding the entire assembly at each oscillation.
+These requirements favor a soft internal coordinate on a stiff translating carrier: the gross support and neutrality are preserved while a small relative lock, permutation, orientation, exposure, or sea-dressing coordinate carries the phase differences. They disfavor geometries in which changing mode requires breaking and rebuilding the entire assembly at each oscillation.
 
-Plainly: the carrier must be stable enough to travel, but internally delicate
-enough for several coherent phases to separate. That is a strong clue toward a
-shared scaffold with a low-cost relative motion, not three wholly different
-braids taking turns.
+Plainly: the carrier must be stable enough to travel, but internally delicate enough for several coherent phases to separate. That is a strong clue toward a shared scaffold with a low-cost relative motion, not three wholly different braids taking turns.
 
 Four native realizations remain distinguishable:
 
@@ -1404,46 +925,24 @@ Four native realizations remain distinguishable:
 | three identity-permutation modes | distinct return characters of identities on equivalent ports | visible-shape return differs from identity/history return and produces unequal overlaps | permutations are pure relabelings after the declared quotient or supply equal phase gaps only |
 | common core with mode-dependent sea dressing | one core history coupled to three derived environmental response eigenrecords | vacuum and material continuations use one law while changing relative phases predictably | the sea modes were authored to fit the target or propagation loses common inventory |
 
-The current near-photon polarity-conjugate pair is only one candidate support
-for this blueprint. Because its proposed photon base lock has not been
-exhibited, no residual distance from that lock is presently a measured native
-coordinate. The inverse requirements above remain usable without assuming the
-pair, planarity, or photon adjacency: neutrality, coherent rank, two phase
-gaps, endpoint weak projections, and matter-path response are the actual
-constraints.
+The current near-photon polarity-conjugate pair is only one candidate support for this blueprint. Because its proposed photon base lock has not been exhibited, no residual distance from that lock is presently a measured native coordinate. The inverse requirements above remain usable without assuming the pair, planarity, or photon adjacency: neutrality, coherent rank, two phase gaps, endpoint weak projections, and matter-path response are the actual constraints.
 
 #### Source--Path--Detector Geometry Experiment
 
-One fixed-law comparison can separate the realizations without importing the
-observer oscillation equation as a primitive:
+One fixed-law comparison can separate the realizations without importing the observer oscillation equation as a primitive:
 
-1. form or identify one admissible neutral carrier family and record its full
-   identity, wake, root, frame, and near-sea history;
-2. derive its admissible perturbation or branch basis only after retention or
-   propagating-role validity is established;
-3. quotient the common phase and verify exactly two independent relative
-   phase-rate gaps across three accepted modes;
-4. construct at least two endpoint weak-corridor projections from the same
-   exposure law, with no mode-specific retuning;
-5. propagate the same prepared combination through vacuum-like and
-   matter-filled assembly/sea histories, preserving the complete provenance;
-6. test path composition: two consecutive segments must give the same final
-   record as their ordered composed evolution, including any noncommuting
-   environmental response;
-7. apply whole-history conjugation and physical parity separately, then verify
-   the declared transformations of phase, posture, source, and detector rows;
-8. open the detector corridor only at the receiver and ledger every product,
-   recoil, sea change, and surviving or consumed neutral identity.
+1. form or identify one admissible neutral carrier family and record its full identity, wake, root, frame, and near-sea history;
+2. derive its admissible perturbation or branch basis only after retention or propagating-role validity is established;
+3. quotient the common phase and verify exactly two independent relative phase-rate gaps across three accepted modes;
+4. construct at least two endpoint weak-corridor projections from the same exposure law, with no mode-specific retuning;
+5. propagate the same prepared combination through vacuum-like and matter-filled assembly/sea histories, preserving the complete provenance;
+6. test path composition: two consecutive segments must give the same final record as their ordered composed evolution, including any noncommuting environmental response;
+7. apply whole-history conjugation and physical parity separately, then verify the declared transformations of phase, posture, source, and detector rows;
+8. open the detector corridor only at the receiver and ledger every product, recoil, sea change, and surviving or consumed neutral identity.
 
-The decisive null controls are a common-phase-only carrier, a two-mode carrier,
-an accepted fourth mode, incoherent stochastic flavor hopping, and a path whose
-matter response is an inserted scalar rather than an evolved assembly/sea
-record. Each can mimic part of the observer pattern while failing the geometry
-burden.
+The decisive null controls are a common-phase-only carrier, a two-mode carrier, an accepted fourth mode, incoherent stochastic flavor hopping, and a path whose matter response is an inserted scalar rather than an evolved assembly/sea record. Each can mimic part of the observer pattern while failing the geometry burden.
 
-A positive geometry clue would be one neutral support with three admissible
-internal modes whose common component controls translation while a small
-trace-free residual controls phase and endpoint overlap:
+A positive geometry clue would be one neutral support with three admissible internal modes whose common component controls translation while a small trace-free residual controls phase and endpoint overlap:
 
 $$
 H_{\nu}^{\mathrm{native}}
@@ -1458,30 +957,15 @@ H_{\nu}^{\mathrm{rel}},
 H_{\nu}^{\mathrm{rel}}=2.
 $$
 
-This is a comparison-level decomposition of a derived native operator, not a
-primitive quantum Hamiltonian. It says that the large shared motion cancels
-from flavor comparison while two small differences remain observable.
+This is a comparison-level decomposition of a derived native operator, not a primitive quantum Hamiltonian. It says that the large shared motion cancels from flavor comparison while two small differences remain observable.
 
-Plainly: most of the three modes may be the same geometry. The experiment is
-sensitive to the two small ways in which their clocks differ. That makes a
-near-degenerate internal-motion search more appropriate than searching first
-for three visibly different neutral braids.
+Plainly: most of the three modes may be the same geometry. The experiment is sensitive to the two small ways in which their clocks differ. That makes a near-degenerate internal-motion search more appropriate than searching first for three visibly different neutral braids.
 
-Claim grade: common coherent propagation, three resolved modes, two
-independent gaps, endpoint flavor projection, and path-dependent matter
-response are deduced recovery requirements. A soft relative coordinate on a
-stiff common carrier is an inference from their intersection. The four
-realizations are candidate search families. Falsifier: a provenance-complete
-fixed-law history recovers the full source--path--detector pattern through
-incoherent replacement, one phase gap, or three unrelated carrier geometries
-without any shared support or equivalent coherence carrier.
+Claim grade: common coherent propagation, three resolved modes, two independent gaps, endpoint flavor projection, and path-dependent matter response are deduced recovery requirements. A soft relative coordinate on a stiff common carrier is an inference from their intersection. The four realizations are candidate search families. Falsifier: a provenance-complete fixed-law history recovers the full source--path--detector pattern through incoherent replacement, one phase gap, or three unrelated carrier geometries without any shared support or equivalent coherence carrier.
 
 ### Transition Frequency Is Not Automatically An Internal Frequency
 
-Let retained basins $A$ and $B$ be connected by an event that emits a carrier.
-The effective energy--frequency relation does not by itself establish either
-$\omega_\gamma=\Omega_A$ or $\omega_\gamma=\Omega_B$. A native relation becomes
-supportable only when one fixed record derives a selection rule such as
+Let retained basins $A$ and $B$ be connected by an event that emits a carrier. The effective energy--frequency relation does not by itself establish either $\omega_\gamma=\Omega_A$ or $\omega_\gamma=\Omega_B$. A native relation becomes supportable only when one fixed record derives a selection rule such as
 
 $$
 \omega_\gamma
@@ -1493,22 +977,13 @@ $$
 \omega_{\mathrm{path/medium}},
 $$
 
-while source depletion, basin change, emitted carrier, recoil, path, medium,
-receiver, and boundary ledgers close. The coefficients $\mathbf m$ and
-$\mathbf n$ must emerge from the admissible transaction and return geometry;
-they are not fitted quantum-number labels.
+while source depletion, basin change, emitted carrier, recoil, path, medium, receiver, and boundary ledgers close. The coefficients $\mathbf m$ and $\mathbf n$ must emerge from the admissible transaction and return geometry; they are not fitted quantum-number labels.
 
-Plainly: an assembly can possess regular internal motion while emitting a
-different frequency. The emitted cadence can be a difference, harmonic, beat,
-or event-generated packet phase.
+Plainly: an assembly can possess regular internal motion while emitting a different frequency. The emitted cadence can be a difference, harmonic, beat, or event-generated packet phase.
 
 ### Atomic Selection Graph As Geometry Tomography
 
-Atomic spectra become substantially more informative when treated as a graph
-of allowed, suppressed, and alternative transition corridors rather than as a
-list of line frequencies. For parent basin $A$, daughter basin $B$, effective
-photon-channel class $c$, and prepared finite measure $\mu_T$, define the
-pre-detector transition incidence
+Atomic spectra become substantially more informative when treated as a graph of allowed, suppressed, and alternative transition corridors rather than as a list of line frequencies. For parent basin $A$, daughter basin $B$, effective photon-channel class $c$, and prepared finite measure $\mu_T$, define the pre-detector transition incidence
 
 $$
 \mathsf M_{AB}^{(c)}(T)
@@ -1520,11 +995,7 @@ z\in\mathcal B_A:
 \right\}.
 $$
 
-The useful comparison colors are effective E1-like polarity-dipole exposure,
-M1-like exposed-current and ordered-frame response, E2-like rank-two polarity
-exposure, paired two-photon output, and nonradiative/remnant/medium routing.
-These names label observer-level channel ranks. They do not assert literal
-substrate dipoles, loops, quadrupoles, or pre-existing photons.
+The useful comparison colors are effective E1-like polarity-dipole exposure, M1-like exposed-current and ordered-frame response, E2-like rank-two polarity exposure, paired two-photon output, and nonradiative/remnant/medium routing. These names label observer-level channel ranks. They do not assert literal substrate dipoles, loops, quadrupoles, or pre-existing photons.
 
 Then
 
@@ -1532,14 +1003,9 @@ $$
 A\xrightarrow[c]{\mathsf M_{AB}^{(c)}>0}B
 $$
 
-denotes an admitted channel, while
-$\mathsf M_{AB}^{(c)}\simeq0$ suppresses only that declared color. A leading
-one-photon null does not imply that a two-photon, current-like, quadrupole-like,
-medium, or collision-assisted route is absent.
+denotes an admitted channel, while $\mathsf M_{AB}^{(c)}\simeq0$ suppresses only that declared color. A leading one-photon null does not imply that a two-photon, current-like, quadrupole-like, medium, or collision-assisted route is absent.
 
-Plainly: the important question is not only how far apart two atomic states
-are. It is which geometrical route can connect them and what kind of carrier,
-recoil, and apparatus record that route produces.
+Plainly: the important question is not only how far apart two atomic states are. It is which geometrical route can connect them and what kind of carrier, recoil, and apparatus record that route produces.
 
 The smallest high-discrimination comparison basis is:
 
@@ -1553,52 +1019,26 @@ The smallest high-discrimination comparison basis is:
 | degeneracy-lifting triad | fine, Lamb, and hyperfine splittings on linked states | separate orbital/spin-frame, wake/dressing, and nuclear-frame dependencies |
 | field transformations | one base line under zero, signed electric-like, and signed magnetic-like source--sea histories with analyzer views | Stark polar deformation, Zeeman axial response, reversal parity, and photon polarization selection |
 
-Plainly: this small set separates energy gaps from corridor geometry. A single
-retained atomic architecture would have to explain why one route is strong,
-another is suppressed, and another needs two carriers or a different response
-rank.
+Plainly: this small set separates energy gaps from corridor geometry. A single retained atomic architecture would have to explain why one route is strong, another is suppressed, and another needs two carriers or a different response rank.
 
-The [atomic precision packet](../mapping-equations/eq-26-31-observation-first-precision-packet.md)
-and [Zeeman benchmark](../mapping-benchmarks/zeeman-effect.md) own the currently
-mapped gross hydrogen, transition-event, two-photon, fine/Lamb/hyperfine,
-Zeeman, and general basin-measure grammar. The corpus does not yet contain an
-explicit atomic E1/M1/E2 comparison matrix, a dedicated Stark benchmark, or a
-source-backed atomic quadrupole case. Those are coverage gaps, not permission
-to import an orbital picture. The quadrupole slot should remain unpopulated
-until a primary comparison source and a retained carrier consumer are selected.
+The [atomic precision packet](../mapping-equations/eq-26-31-observation-first-precision-packet.md) and [Zeeman benchmark](../mapping-benchmarks/zeeman-effect.md) own the currently mapped gross hydrogen, transition-event, two-photon, fine/Lamb/hyperfine, Zeeman, and general basin-measure grammar. The corpus does not yet contain an explicit atomic E1/M1/E2 comparison matrix, a dedicated Stark benchmark, or a source-backed atomic quadrupole case. Those are coverage gaps, not permission to import an orbital picture. The quadrupole slot should remain unpopulated until a primary comparison source and a retained carrier consumer are selected.
 
 This comparison supplies several compact contradiction cores:
 
-1. **Gap-only routing fails:** neighboring states can have comparable energy
-   scales but radically different one-photon transition measures.
-2. **Spatial-envelope-only routing fails:** the 21 cm row changes coupled frame
-   structure while the gross spatial envelope remains $1s$.
-3. **One universal dipole corridor fails:** the two-photon, current-like, and
-   rank-two channels require distinct exposure rank or event topology.
-4. **Frequency-only fitting fails:** it cannot predict strength, suppression,
-   polarization, branching, recoil, or lifetime.
-5. **One correction bucket fails:** fine, Lamb, hyperfine, Zeeman, and Stark
-   rows isolate different dependencies and cannot be absorbed into one gross
-   cadence adjustment.
-6. **Emission without recoil fails:** every accepted carrier must close source,
-   product, recoil, medium, remnant, wake, and sea ledgers.
+1. **Gap-only routing fails:** neighboring states can have comparable energy scales but radically different one-photon transition measures.
+2. **Spatial-envelope-only routing fails:** the 21 cm row changes coupled frame structure while the gross spatial envelope remains $1s$.
+3. **One universal dipole corridor fails:** the two-photon, current-like, and rank-two channels require distinct exposure rank or event topology.
+4. **Frequency-only fitting fails:** it cannot predict strength, suppression, polarization, branching, recoil, or lifetime.
+5. **One correction bucket fails:** fine, Lamb, hyperfine, Zeeman, and Stark rows isolate different dependencies and cannot be absorbed into one gross cadence adjustment.
+6. **Emission without recoil fails:** every accepted carrier must close source, product, recoil, medium, remnant, wake, and sea ledgers.
 
-A later same-record packet should bind the parent/daughter basin identities,
-electron and nuclear ordered frames, mirror/parity-like history, exposed
-rank-one and rank-two polarity moments, current moment, channel incidences,
-photon Gates A/B/C, complete event ledger, field histories, detector/analyzer,
-and one no-hidden-retune witness. It would infer geometry from which edges
-exist and which vanish, not from the line-frequency labels alone.
+A later same-record packet should bind the parent/daughter basin identities, electron and nuclear ordered frames, mirror/parity-like history, exposed rank-one and rank-two polarity moments, current moment, channel incidences, photon Gates A/B/C, complete event ledger, field histories, detector/analyzer, and one no-hidden-retune witness. It would infer geometry from which edges exist and which vanish, not from the line-frequency labels alone.
 
-Plainly: atomic transitions are a controlled way to ask the same hidden
-electron, nucleus, photon, and sea geometry several different questions. The
-pattern of allowed and missing edges is more revealing than fitting another
-spectral number.
+Plainly: atomic transitions are a controlled way to ask the same hidden electron, nucleus, photon, and sea geometry several different questions. The pattern of allowed and missing edges is more revealing than fitting another spectral number.
 
 ### Candidate Morphology Record
 
-Before particle names are assigned, a candidate branch should expose a common
-geometry record
+Before particle names are assigned, a candidate branch should expose a common geometry record
 
 $$
 \mathcal M_A(T)
@@ -1617,37 +1057,17 @@ F_A,
 \right)_T.
 $$
 
-Here $\mathcal I_A$ is the polarity and identity inventory, $G_A$ is the
-active-root and closure graph, $d_{\mathrm{supp},A}$ records whether the occupied support is
-line-like, planar, or volumetric, the layer rows record scale, cadence, phase,
-and oriented normals, $F_A$ is the ordered frame, $\mathcal T_A$ records twist,
-writhe, linking, and handedness without collapsing them into one number,
-$\boldsymbol\zeta_A$ records sector-dependent exposure and shielding, $\pi_A$
-records any nontrivial return permutation, $\mathcal B_A$ records retention and
-basin data, and $\mathcal C_A$ records any open corridor or classified reaction
-boundary. The coordinates are a proposed search record; their existence or
-independence is not assumed.
+Here $\mathcal I_A$ is the polarity and identity inventory, $G_A$ is the active-root and closure graph, $d_{\mathrm{supp},A}$ records whether the occupied support is line-like, planar, or volumetric, the layer rows record scale, cadence, phase, and oriented normals, $F_A$ is the ordered frame, $\mathcal T_A$ records twist, writhe, linking, and handedness without collapsing them into one number, $\boldsymbol\zeta_A$ records sector-dependent exposure and shielding, $\pi_A$ records any nontrivial return permutation, $\mathcal B_A$ records retention and basin data, and $\mathcal C_A$ records any open corridor or classified reaction boundary. The coordinates are a proposed search record; their existence or independence is not assumed.
 
-This record prevents several common aliases: equal inventory does not mean
-equal connectivity; equal cadence does not mean equal phase; equal external
-charge does not mean equal exposure; and equal observer identity does not mean
-that every constituent label returned after one observed period.
+This record prevents several common aliases: equal inventory does not mean equal connectivity; equal cadence does not mean equal phase; equal external charge does not mean equal exposure; and equal observer identity does not mean that every constituent label returned after one observed period.
 
-Plainly: describe what is present, how it is connected, where it sits, how it
-moves, what is exposed, and whether it actually returns. A particle label
-should be the output of that record, not a substitute for it.
+Plainly: describe what is present, how it is connected, where it sits, how it moves, what is exposed, and whether it actually returns. A particle label should be the output of that record, not a substitute for it.
 
 ### Retained-Branch Mode Atlas
 
-The same-inventory comparisons suggest a mode-first search after a genuine
-retained core is found. A candidate must first be an accepted equilibrium,
-relative equilibrium, or periodic retained branch under ordinary EOM
-evolution. No stability spectrum or particle interpretation may be computed
-about a prescribed path or a configuration that is not actually occupied.
+The same-inventory comparisons suggest a mode-first search after a genuine retained core is found. A candidate must first be an accepted equilibrium, relative equilibrium, or periodic retained branch under ordinary EOM evolution. No stability spectrum or particle interpretation may be computed about a prescribed path or a configuration that is not actually occupied.
 
-For an accepted periodic branch $\Theta_\star(T)$ with complete-history period
-$T_\star$, let $\Phi_{T_\star}$ be the delayed-history return map on the
-declared admissible perturbation space. The linear return operator is
+For an accepted periodic branch $\Theta_\star(T)$ with complete-history period $T_\star$, let $\Phi_{T_\star}$ be the delayed-history return map on the declared admissible perturbation space. The linear return operator is
 
 $$
 \mathcal M_\star
@@ -1655,16 +1075,9 @@ $$
 D\Phi_{T_\star}[\Theta_\star].
 $$
 
-Its multipliers and mode histories are meaningful only after removing exactly
-the declared translation, time-origin, and other genuine redundancy rows.
-Neutral modes required by those symmetries must not be called instabilities or
-particle excitations. For a stationary retained branch, the corresponding
-linear response operator is used only after exact acceleration balance has
-been certified.
+Its multipliers and mode histories are meaningful only after removing exactly the declared translation, time-origin, and other genuine redundancy rows. Neutral modes required by those symmetries must not be called instabilities or particle excitations. For a stationary retained branch, the corresponding linear response operator is used only after exact acceleration balance has been certified.
 
-Plainly: first prove that the candidate really persists. Only then ask how it
-can wiggle. A vibration analysis of a shape that immediately flies apart has
-no physical subject.
+Plainly: first prove that the candidate really persists. Only then ask how it can wiggle. A vibration analysis of a shape that immediately flies apart has no physical subject.
 
 For each non-gauge mode $v_k$, record a mode fingerprint
 
@@ -1685,14 +1098,9 @@ $$
 \right),
 $$
 
-where $\omega_k$ is an oscillatory phase rate when one exists,
-$\lambda_k$ is growth/decay or return information, and the remaining rows give
-the mode's scale, shape, circulation, frame, twist, exposure, corridor, and sea
-content. These are mass-free native diagnostics. An observer mass or energy
-gap may be compared only after the assembly mass/action bridge is derived.
+where $\omega_k$ is an oscillatory phase rate when one exists, $\lambda_k$ is growth/decay or return information, and the remaining rows give the mode's scale, shape, circulation, frame, twist, exposure, corridor, and sea content. These are mass-free native diagnostics. An observer mass or energy gap may be compared only after the assembly mass/action bridge is derived.
 
-The nonlinear continuation then perturbs both signs and several amplitudes of
-each mode under one fixed law and classifies the outcome:
+The nonlinear continuation then perturbs both signs and several amplitudes of each mode under one fixed law and classifies the outcome:
 
 $$
 \Theta_{\star,k}(0;a)
@@ -1702,14 +1110,7 @@ $$
 a\in\{-a_m,\ldots,-a_1,a_1,\ldots,a_m\}.
 $$
 
-Here $\operatorname{Retr}$ is a declared local chart or retraction onto the
-admissible history manifold. Every initial record must pass polarity,
-persistent-identity, speed, and prehistory checks before evolution. Each
-continuation is labeled retained return, nearby retained daughter,
-metastable resonance, mode coupling, topology or root-chart transition,
-classified product exit, or generic failure. The amplitude grid, prehistory,
-sea state, quotient, and tolerances are frozen before inspecting particle
-comparisons.
+Here $\operatorname{Retr}$ is a declared local chart or retraction onto the admissible history manifold. Every initial record must pass polarity, persistent-identity, speed, and prehistory checks before evolution. Each continuation is labeled retained return, nearby retained daughter, metastable resonance, mode coupling, topology or root-chart transition, classified product exit, or generic failure. The amplitude grid, prehistory, sea state, quotient, and tolerances are frozen before inspecting particle comparisons.
 
 This atlas directly addresses several geometry clues:
 
@@ -1723,26 +1124,15 @@ This atlas directly addresses several geometry clues:
 | two modes beat coherently while common phase cancels | flavor or neutrino-like phase candidate | beat frequency does not establish repeated particle conversion or a unique internal orbit |
 | a finite-amplitude continuation changes root or topology class | candidate generation, reaction, or support transition | a chart change is not a new particle until the daughter basin and event ledger are certified |
 
-Plainly: the perturbation must remain a lawful history, not merely a vector
-added to coordinates. Its nonlinear fate then says whether the mode returns,
-couples, crosses a genuine branch boundary, or simply destroys the candidate.
+Plainly: the perturbation must remain a lawful history, not merely a vector added to coordinates. Its nonlinear fate then says whether the mode returns, couples, crosses a genuine branch boundary, or simply destroys the candidate.
 
-The strategic possibility is that some observer particle distinctions are
-different retained or metastable modes of reusable cores rather than unrelated
-constituent diagrams. The atlas tests that possibility without presuming it.
-Failure is equally useful: if no mode of a shared-inventory core can reproduce
-the paired angular, exposure, and exit differences, those particles require
-different retained morphology families.
+The strategic possibility is that some observer particle distinctions are different retained or metastable modes of reusable cores rather than unrelated constituent diagrams. The atlas tests that possibility without presuming it. Failure is equally useful: if no mode of a shared-inventory core can reproduce the paired angular, exposure, and exit differences, those particles require different retained morphology families.
 
-Plainly: once a real braid is found, shake it in every independent lawful way
-and see which stable patterns, resonances, and exits it naturally supports.
-That is a disciplined route from one architecture to a particle family.
+Plainly: once a real braid is found, shake it in every independent lawful way and see which stable patterns, resonances, and exits it naturally supports. That is a disciplined route from one architecture to a particle family.
 
 ### Candidate Reusable-Motif Factorization
 
-The most economical current hypothesis is not one unrelated shape for every
-observer particle. It is a factorization of each candidate morphology into a
-small number of reusable records:
+The most economical current hypothesis is not one unrelated shape for every observer particle. It is a factorization of each candidate morphology into a small number of reusable records:
 
 $$
 \mathfrak M_X
@@ -1761,29 +1151,18 @@ $$
 /\mathcal Q_X.
 $$
 
-Here $n_X\in\mathbb N_0$ is the number of identity-bearing core records in the
-candidate, and each copy retains a distinct persistent-identity row inside the
-product. In addition:
+Here $n_X\in\mathbb N_0$ is the number of identity-bearing core records in the candidate, and each copy retains a distinct persistent-identity row inside the product. In addition:
 
-- $\mathcal C$ is an identity-bearing core history record; it is not assumed
-  to be one presently retained catalog braid or to contain the same number of
-  coherent supports in every generation;
+- $\mathcal C$ is an identity-bearing core history record; it is not assumed to be one presently retained catalog braid or to contain the same number of coherent supports in every generation;
 - $\mathcal D_X$ is an optional polarity-decoration and signed-inventory row;
 - $\mathcal F_X$ is an indexed frame with sector-dependent exposure;
 - $\mathcal G_X$ is the association, closure, or transaction-corridor graph;
-- $\mathcal U_X$ records spatial support, response rank, propagation role, and
-  retained, metastable, propagating, transient, or collective basin status;
-  and
-- $\mathcal Q_X$ quotients physically redundant axis names, frame relabelings,
-  and pure label redundancies independently shown not to alter persistent
-  identity, causal-root history, or reaction provenance.
+- $\mathcal U_X$ records spatial support, response rank, propagation role, and retained, metastable, propagating, transient, or collective basin status; and
+- $\mathcal Q_X$ quotients physically redundant axis names, frame relabelings, and pure label redundancies independently shown not to alter persistent identity, causal-root history, or reaction provenance.
 
-This is an inferred factorization for search, not particle ontology and not a
-claim that the current candidate catalog is retained.
+This is an inferred factorization for search, not particle ontology and not a claim that the current candidate catalog is retained.
 
-Plainly: reuse a few structural motifs, decorate and expose them differently,
-and connect one or more copies through different graphs. The particle families
-would then be recurring constructions rather than unrelated tiny machines.
+Plainly: reuse a few structural motifs, decorate and expose them differently, and connect one or more copies through different graphs. The particle families would then be recurring constructions rather than unrelated tiny machines.
 
 The factorization organizes the present hypotheses as follows:
 
@@ -1798,22 +1177,13 @@ The factorization organizes the present hypotheses as follows:
 | $W^\pm/Z$ comparison channels | localized weak transaction graph with temporary recruited participation | signed payload, longitudinal response, exposure, and exit window | permanent unledgered constituents are required or partial channels cannot reuse one corridor grammar |
 | scalar/Higgs-like response | collective scalar response of the same mass-facing core/sea population | scalar medium coordinate and derivative of the mass-response map | family-specific scalar charges or uncontrolled vector/tensor leakage are required |
 
-Several transformations must preserve the reusable records rather than replace
-them with particle-specific rules. Whole-history conjugation acts on polarity,
-paths, roots, wakes, action, and stability while leaving pro/anti orientation
-as an independent coordinate. Candidate generation surgery changes coherent
-support through
+Several transformations must preserve the reusable records rather than replace them with particle-specific rules. Whole-history conjugation acts on polarity, paths, roots, wakes, action, and stability while leaving pro/anti orientation as an independent coordinate. Candidate generation surgery changes coherent support through
 
 $$
 111\leftrightarrow110\leftrightarrow100
 $$
 
-only if every added or removed identity is routed through reactants, products,
-or the Noether sea. Weak active-triad surgery carries the proposed signed
-six-unit transaction while preserving spectators. Strong-sector rerouting
-permutes exceptional-axis labels under one $S_3$ action while preserving
-total inventory, charge, flavor, generation, and the selected down-family
-sector.
+only if every added or removed identity is routed through reactants, products, or the Noether sea. Weak active-triad surgery carries the proposed signed six-unit transaction while preserving spectators. Strong-sector rerouting permutes exceptional-axis labels under one $S_3$ action while preserving total inventory, charge, flavor, generation, and the selected down-family sector.
 
 Association then changes the graph rather than the constituent ontology:
 
@@ -1827,8 +1197,7 @@ q_1\otimes q_2\otimes q_3
 \mathcal G_{\mathrm{baryon}}.
 $$
 
-A scalar response is most economical when its effective coupling is a
-derivative of the same branch-derived mass response,
+A scalar response is most economical when its effective coupling is a derivative of the same branch-derived mass response,
 
 $$
 g_{H,A}^{\mathrm{eff}}
@@ -1839,40 +1208,19 @@ g_{H,A}^{\mathrm{eff}}
 \right|_{\varphi=0},
 $$
 
-rather than an independently fitted scalar charge for each family. Every one
-of these moves still requires ordinary Master-Equation evolution and complete
-reaction provenance.
+rather than an independently fitted scalar charge for each family. Every one of these moves still requires ordinary Master-Equation evolution and complete reaction provenance.
 
-Plainly: if the motifs are truly reusable, changing generation, color, weak
-routing, association, or scalar environment should modify only the declared
-coordinates. A hidden redesign of the entire particle for each case would
-falsify the factorization.
+Plainly: if the motifs are truly reusable, changing generation, color, weak routing, association, or scalar environment should modify only the declared coordinates. A hidden redesign of the entire particle for each case would falsify the factorization.
 
-The largest danger is overgeneration. Six-site polarity combinatorics do not
-remove unused permutations, isolated fractional-charge branches, extra stable
-integer-charge assemblies, or the two candidate down-type dyad families. The
-three-state color algebra does not establish eight retained gluon objects.
-Temporary $W/Z$ transaction inventory is not permanent constituent inventory.
-The current photon-neutrino relation lacks a retained photon base point. The
-meson/baryon graph grammar must also admit and then classify higher multiquark
-singlets rather than inventing a new primitive for each observed exotic
-candidate.
+The largest danger is overgeneration. Six-site polarity combinatorics do not remove unused permutations, isolated fractional-charge branches, extra stable integer-charge assemblies, or the two candidate down-type dyad families. The three-state color algebra does not establish eight retained gluon objects. Temporary $W/Z$ transaction inventory is not permanent constituent inventory. The current photon-neutrino relation lacks a retained photon base point. The meson/baryon graph grammar must also admit and then classify higher multiquark singlets rather than inventing a new primitive for each observed exotic candidate.
 
-The missing theorem is therefore a **selection result**: under one common law
-and sea regime, the observed combinations must possess retained, propagating,
-or transaction basins while the unobserved combinations are absent, transient,
-confined, or below their experimental bounds. The factorization fails if that
-selection requires private coefficients or exceptions for each species.
+The missing theorem is therefore a **selection result**: under one common law and sea regime, the observed combinations must possess retained, propagating, or transaction basins while the unobserved combinations are absent, transient, confined, or below their experimental bounds. The factorization fails if that selection requires private coefficients or exceptions for each species.
 
-Plainly: a compact construction kit is useful only if dynamics explains why a
-small subset of its possible constructions exists. Otherwise it merely creates
-a larger unexplained particle zoo.
+Plainly: a compact construction kit is useful only if dynamics explains why a small subset of its possible constructions exists. Otherwise it merely creates a larger unexplained particle zoo.
 
 ### Standard Model Geometry-Clue Matrix
 
-The current corpus supports the following role distinctions. Every candidate
-picture in this table remains subordinate to retained-branch and event-ledger
-proof.
+The current corpus supports the following role distinctions. Every candidate picture in this table remains subordinate to retained-branch and event-ledger proof.
 
 | Effective target | Strongest geometry requirement | Live candidate realization | Important non-inference and decisive comparison |
 | --- | --- | --- | --- |
@@ -1887,24 +1235,13 @@ proof.
 | $W^\pm/Z$ | massive-vector polarization response with charged and neutral weak channels, finite parent/product provenance, and classified formation and exit records | proposed transient weak recoupling corridors or bundles | the transaction-corridor picture is a candidate; an effective boson pole does not by itself require a long-lived standalone assembly; test retained-packet versus event-corridor descriptions on the same reactions |
 | Higgs/scalar channel | rotationally invariant scalar response of mass-facing assembly/sea geometry, with its own resonance and exit ledger | radial compression or breathing response of a coupled matter--sea state | scalar quantum numbers do not force radial constituent motion; compare breathing, isotropic constitutive response, density change, and orientation-averaged modes |
 
-Two classification rules follow. First, one observer particle table need not map
-one-to-one onto substrate object kinds: some rows may be retained assemblies,
-some propagating packets, some collective composites, and some transaction
-corridors. Second, particle/antiparticle conjugation must be tested on the
-whole retained history. Polarity conjugation, ordered-motion reversal, frame
-orientation reversal, and time reversal are distinct operations until the
-Master Equation supplies their relation.
+Two classification rules follow. First, one observer particle table need not map one-to-one onto substrate object kinds: some rows may be retained assemblies, some propagating packets, some collective composites, and some transaction corridors. Second, particle/antiparticle conjugation must be tested on the whole retained history. Polarity conjugation, ordered-motion reversal, frame orientation reversal, and time reversal are distinct operations until the Master Equation supplies their relation.
 
-Plainly: the Standard Model table may be grouping several kinds of native
-thing under the word “particle.” That is a useful geometric clue, because it
-lets us search different morphology families without forcing every row into
-the same knot-like template.
+Plainly: the Standard Model table may be grouping several kinds of native thing under the word “particle.” That is a useful geometric clue, because it lets us search different morphology families without forcing every row into the same knot-like template.
 
 ### Controlled Particle Comparisons
 
-The most useful inverse clues often come from two observer rows that share most
-labels but differ sharply in one response. Suppose candidate morphologies are
-factorized provisionally as
+The most useful inverse clues often come from two observer rows that share most labels but differ sharply in one response. Suppose candidate morphologies are factorized provisionally as
 
 $$
 \mathcal M_A
@@ -1916,8 +1253,7 @@ $$
 \mathcal M(\mathcal S,\mathbf u_B),
 $$
 
-where $\mathcal S$ is the declared shared subrecord and $\mathbf u$ contains
-the coordinates allowed to differ. A controlled comparison asks whether
+where $\mathcal S$ is the declared shared subrecord and $\mathbf u$ contains the coordinates allowed to differ. A controlled comparison asks whether
 
 $$
 \Delta\mathcal O_{A/B}
@@ -1927,13 +1263,9 @@ $$
 \mathcal O[\mathcal M(\mathcal S,\mathbf u_B)]
 $$
 
-follows from those differing coordinates with the same Master Equation,
-Noether sea response, exposure definition, and observer projection. If a
-supposedly shared coordinate must also be changed privately, the proposed
-factorization has failed.
+follows from those differing coordinates with the same Master Equation, Noether sea response, exposure definition, and observer projection. If a supposedly shared coordinate must also be changed privately, the proposed factorization has failed.
 
-Plainly: compare close relatives. If most of the architecture is truly shared,
-their differences reveal which remaining geometric coordinate does the work.
+Plainly: compare close relatives. If most of the architecture is truly shared, their differences reveal which remaining geometric coordinate does the work.
 
 | Controlled comparison | Rows held common | Difference that needs a native carrier | Architecture clue |
 | --- | --- | --- | --- |
@@ -1947,32 +1279,15 @@ their differences reveal which remaining geometric coordinate does the work.
 | photon versus $W^\pm$ | spin-1 comparison class | neutral source-free propagation versus charged weak routing, longitudinal response, and product corridors | charge inventory, basin role, and exposure rank are independent of vector polarization class |
 | electron versus neutrino | fermionic spinor/exchange target | charged stable localized branch versus neutral coherent weak phase carrier | spinor history does not determine charge exposure, support dimension, or propagation morphology |
 
-These comparisons supply a disciplined route from spectroscopy to geometry.
-The pion--rho and nucleon--Delta rows do not prove literal spin alignment or a
-vibrating flux tube. They require some native coordinate that changes angular
-response, mass-facing exposure, and exit topology while leaving the declared
-inventory and composite grammar fixed. The first test is therefore the full
-motion, frame, exposure, and survival fingerprint of both branches—not a label
-assigned after observing their spin.
+These comparisons supply a disciplined route from spectroscopy to geometry. The pion--rho and nucleon--Delta rows do not prove literal spin alignment or a vibrating flux tube. They require some native coordinate that changes angular response, mass-facing exposure, and exit topology while leaving the declared inventory and composite grammar fixed. The first test is therefore the full motion, frame, exposure, and survival fingerprint of both branches—not a label assigned after observing their spin.
 
-Plainly: particle spectroscopy becomes geometric evidence when the theory can
-change one part of a shared architecture and predict several linked
-differences at once. Merely naming the excited state after its observed spin
-does not explain it.
+Plainly: particle spectroscopy becomes geometric evidence when the theory can change one part of a shared architecture and predict several linked differences at once. Merely naming the excited state after its observed spin does not explain it.
 
 ### Multiplet Orbits Constrain Which Coordinates May Change
 
-The strongest catalog clues are often not individual particles but families
-whose effective labels transform together. The
-[Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
-owner records the current charge, weak, color, generation, baryon/lepton, and
-spin interfaces. Those labels remain observer-level recovery targets here. A
-candidate geometry must recover not only each label but the pattern of rows
-that remain invariant when one family member is replaced by another.
+The strongest catalog clues are often not individual particles but families whose effective labels transform together. The [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) owner records the current charge, weak, color, generation, baryon/lepton, and spin interfaces. Those labels remain observer-level recovery targets here. A candidate geometry must recover not only each label but the pattern of rows that remain invariant when one family member is replaced by another.
 
-For an effective comparison family $\mathcal F$ and a declared family action
-$g$, let $\mathcal U_g$ act on the complete candidate history. A successful
-inverse map requires
+For an effective comparison family $\mathcal F$ and a declared family action $g$, let $\mathcal U_g$ act on the complete candidate history. A successful inverse map requires
 
 $$
 \Pi_S(\mathcal U_g\Theta)
@@ -1980,8 +1295,7 @@ $$
 \rho_S(g)\Pi_S(\Theta),
 $$
 
-for every sector projection that should transform, while each declared
-spectator projection satisfies
+for every sector projection that should transform, while each declared spectator projection satisfies
 
 $$
 \Pi_{\mathrm{spect}}(\mathcal U_g\Theta)
@@ -1989,10 +1303,7 @@ $$
 \Pi_{\mathrm{spect}}(\Theta).
 $$
 
-The same law, branch-construction rule, quotient functional, and tolerances are
-used throughout the family. These are equivariance targets—meaning that the
-native transformation and observer relabeling agree—not substrate symmetry
-postulates.
+The same law, branch-construction rule, quotient functional, and tolerances are used throughout the family. These are equivariance targets—meaning that the native transformation and observer relabeling agree—not substrate symmetry postulates.
 
 | Effective family action | Rows that transform | Rows that must remain common or covariant | Geometry pressure |
 | --- | --- | --- | --- |
@@ -2003,14 +1314,9 @@ postulates.
 | excitation within one inventory | angular/parity response, native mode content, mass-facing ledger, and exit topology | constituent identities, total charge, color-singlet closure, and family labels | $\pi/\rho$ and nucleon/$\Delta$ require lawful frame, deformation, phase, or corridor modes of a shared composite grammar |
 | whole-history conjugation | signed electric exposure, conjugate reaction corridors, and signed baryon/lepton provenance | scalar mass response, mode count, retention class, and covariantly conjugated color/weak representations | conjugation must act on the whole history and cannot be identified with spatial mirroring, circulation reversal, or a new constituent design |
 
-Plainly: a multiplet tells us which knobs nature can turn independently. If a
-color change alters mass, a generation change alters charge, or conjugation
-requires rebuilding the whole object with unrelated rules, the proposed
-geometry has tied together coordinates that observations keep separate.
+Plainly: a multiplet tells us which knobs nature can turn independently. If a color change alters mass, a generation change alters charge, or conjugation requires rebuilding the whole object with unrelated rules, the proposed geometry has tied together coordinates that observations keep separate.
 
-This gives a particularly sharp color test. On a candidate color orbit
-$\{\mathcal U_c\Theta:c\in\{1,2,3\}\}$, require one common scalar mass-facing
-response and electric projection within tolerance,
+This gives a particularly sharp color test. On a candidate color orbit $\{\mathcal U_c\Theta:c\in\{1,2,3\}\}$, require one common scalar mass-facing response and electric projection within tolerance,
 
 $$
 \Delta_{\mathrm{color,inv}}
@@ -2025,26 +1331,13 @@ d_Q(\Pi_Q\mathcal U_c\Theta,\Pi_Q\mathcal U_{c'}\Theta)
 \epsilon_{\mathrm{color,inv}},
 $$
 
-while the color-facing projections remain distinct and compose into the
-declared singlet and reconfiguration rows. A literal exceptional spatial axis
-that produces orientation-dependent inertial or electric behavior fails even
-if its three names reproduce the color count.
+while the color-facing projections remain distinct and compose into the declared singlet and reconfiguration rows. A literal exceptional spatial axis that produces orientation-dependent inertial or electric behavior fails even if its three names reproduce the color count.
 
-The isospin-relative row has a complementary burden. The leading confined
-association/corridor record must be reusable while the electric and weak-facing
-decoration changes. Exact mass degeneracy is not required: electromagnetic,
-quark-mass-facing, environment, and detector rows remain explicit inputs to the
-observer comparison. The useful falsifier is stronger than a mass mismatch: a
-candidate fails the shared-core hypothesis if changing the charge partner also
-requires an unrelated color-closure graph or private strong response law.
+The isospin-relative row has a complementary burden. The leading confined association/corridor record must be reusable while the electric and weak-facing decoration changes. Exact mass degeneracy is not required: electromagnetic, quark-mass-facing, environment, and detector rows remain explicit inputs to the observer comparison. The useful falsifier is stronger than a mass mismatch: a candidate fails the shared-core hypothesis if changing the charge partner also requires an unrelated color-closure graph or private strong response law.
 
 ### Independent Labels Require An Operation Algebra
 
-Multiplet covariance also constrains the order in which complete-history
-operations may be applied. Let $\mathcal A_g$ and $\mathcal A_h$ be two native
-record actions and let $Q_{g,h}$ remove only the common declared gauge or
-observer redundancy. For operations whose effective actions are independent,
-define the commutator residual
+Multiplet covariance also constrains the order in which complete-history operations may be applied. Let $\mathcal A_g$ and $\mathcal A_h$ be two native record actions and let $Q_{g,h}$ remove only the common declared gauge or observer redundancy. For operations whose effective actions are independent, define the commutator residual
 
 $$
 \Delta_{g,h}^{\mathrm{comm}}(\Theta)
@@ -2056,12 +1349,7 @@ Q_{g,h}\mathcal A_h\mathcal A_g\Theta
 \right).
 $$
 
-The comparison passes only when
-$\Delta_{g,h}^{\mathrm{comm}}\le\epsilon_{g,h}^{\mathrm{comm}}$ with one frozen
-law, identity map, quotient, and tolerance. This does not assume that every
-observer operation commutes. A deliberately noncommuting transition must
-instead route the mismatch into a named payload, product, recoil, wake, sea, or
-boundary row:
+The comparison passes only when $\Delta_{g,h}^{\mathrm{comm}}\le\epsilon_{g,h}^{\mathrm{comm}}$ with one frozen law, identity map, quotient, and tolerance. This does not assume that every observer operation commutes. A deliberately noncommuting transition must instead route the mismatch into a named payload, product, recoil, wake, sea, or boundary row:
 
 $$
 Q_{g,h}\mathcal A_g\mathcal A_h\Theta
@@ -2071,9 +1359,7 @@ Q_{g,h}\mathcal A_h\mathcal A_g\Theta
 \mathcal R_{g,h}^{\mathrm{event}}\ne0.
 $$
 
-Plainly: if two labels are truly independent, changing their order should not
-quietly produce a different particle. If order matters, the theory must show
-the physical transaction that carries the difference.
+Plainly: if two labels are truly independent, changing their order should not quietly produce a different particle. If order matters, the theory must show the physical transaction that carries the difference.
 
 | Operation pair | Required composition behavior | Candidate geometry pressure |
 | --- | --- | --- |
@@ -2085,36 +1371,17 @@ the physical transaction that carries the difference.
 | weak-doublet transition and spectator identity | commute on every spectator subrecord while the active payload and products change | the corridor must localize its geometry surgery and preserve all nonparticipating identities and histories |
 | physical rotation and composite exchange | give the same exchange class after common rotation of the full apparatus/history | exchange statistics cannot depend on an arbitrary laboratory orientation |
 
-These rows produce an operation graph for candidate search. Its vertices are
-complete-history actions; a commute edge carries a residual tolerance, and a
-transaction edge carries a required event ledger. A candidate is rejected if
-an expected commute edge changes an unrelated observer label, or if a
-noncommuting edge has no physical mismatch record.
+These rows produce an operation graph for candidate search. Its vertices are complete-history actions; a commute edge carries a residual tolerance, and a transaction edge carries a required event ledger. A candidate is rejected if an expected commute edge changes an unrelated observer label, or if a noncommuting edge has no physical mismatch record.
 
-The operation graph is stronger than a list of quantum numbers. Two static
-labels can be assigned independently on paper while their proposed geometric
-actions interfere. For example, an exceptional laboratory axis can reproduce
-three color names until the object is rotated; a generation model can preserve
-charge labels until its depletion operation removes the sites that supposedly
-carry charge. The commutator residual tests the actual construction.
+The operation graph is stronger than a list of quantum numbers. Two static labels can be assigned independently on paper while their proposed geometric actions interfere. For example, an exceptional laboratory axis can reproduce three color names until the object is rotated; a generation model can preserve charge labels until its depletion operation removes the sites that supposedly carry charge. The commutator residual tests the actual construction.
 
-Claim grade: the composition obligations are deduced recovery requirements on
-the declared observer domains. The particular native actions and quotient are
-candidate-dependent. Falsifier: a candidate with a nonzero expected-commutator
-residual nevertheless reproduces every observer composition and ledger through
-one fixed projection, or a supposedly transaction-bearing noncommutator closes
-with no payload or provenance difference.
+Claim grade: the composition obligations are deduced recovery requirements on the declared observer domains. The particular native actions and quotient are candidate-dependent. Falsifier: a candidate with a nonzero expected-commutator residual nevertheless reproduces every observer composition and ledger through one fixed projection, or a supposedly transaction-bearing noncommutator closes with no payload or provenance difference.
 
 ### Additive Quantum Labels Require Provenance Homomorphisms
 
-Baryon and lepton labels cannot be reduced to electric charge, polarity count,
-or visual constituent number. A neutron has nonzero baryon label and zero net
-charge; a neutrino has nonzero lepton label and zero net charge; a meson has two
-quark-facing constituents but zero net baryon label. The minimum native
-carrier is therefore an association-class and reaction-provenance row.
+Baryon and lepton labels cannot be reduced to electric charge, polarity count, or visual constituent number. A neutron has nonzero baryon label and zero net charge; a neutrino has nonzero lepton label and zero net charge; a meson has two quark-facing constituents but zero net baryon label. The minimum native carrier is therefore an association-class and reaction-provenance row.
 
-On a declared observer domain where an additive label $q_X$ is conserved, its
-projection from accepted branch/composite records must satisfy
+On a declared observer domain where an additive label $q_X$ is conserved, its projection from accepted branch/composite records must satisfy
 
 $$
 q_X(\Theta_1\boxplus\Theta_2)
@@ -2134,35 +1401,17 @@ $$
 \sum_{A\in\alpha}q_X(A)
 $$
 
-must equal the explicitly classified source, remnant, sea, or violation row.
-Here $\boxplus$ is composition of independently identity-bearing records, not
-ordinary vector addition, and $\mathcal C$ is whole-history conjugation. This
-is a recovery grammar for additive observer labels, not a new primitive
-conservation law. A process outside the declared conservation domain requires
-a named nonzero event topology rather than silent ledger loss.
+must equal the explicitly classified source, remnant, sea, or violation row. Here $\boxplus$ is composition of independently identity-bearing records, not ordinary vector addition, and $\mathcal C$ is whole-history conjugation. This is a recovery grammar for additive observer labels, not a new primitive conservation law. A process outside the declared conservation domain requires a named nonzero event topology rather than silent ledger loss.
 
-For a confined quark-facing record, a fractional baryon entry belongs to its
-role inside the composite association graph; it does not license a free
-asymptotic quark branch. Color singlet closure and baryon additivity are also
-different constraints: meson color closure pairs conjugate entries to net
-baryon zero, while baryon color closure combines three quark-facing entries to
-the integer observer label.
+For a confined quark-facing record, a fractional baryon entry belongs to its role inside the composite association graph; it does not license a free asymptotic quark branch. Color singlet closure and baryon additivity are also different constraints: meson color closure pairs conjugate entries to net baryon zero, while baryon color closure combines three quark-facing entries to the integer observer label.
 
-Plainly: baryon and lepton number are best treated as durable routing labels on
-whole reaction histories. They tell us how a branch is associated and where it
-came from, not how much electric charge it has or how many dots appear in a
-drawing.
+Plainly: baryon and lepton number are best treated as durable routing labels on whole reaction histories. They tell us how a branch is associated and where it came from, not how much electric charge it has or how many dots appear in a drawing.
 
 ### Quantized Charge Requires A Locally Constant Exposure Index
 
-Effective electric charge has two roles that a geometry must not alias. The
-charge label is a discrete signed source/receiver and reaction-bookkeeping row;
-the electromagnetic response strength can depend on scale, environment,
-screening, and the derived source--sea constitutive map. A varying coupling is
-not a continuously changing charge quantum.
+Effective electric charge has two roles that a geometry must not alias. The charge label is a discrete signed source/receiver and reaction-bookkeeping row; the electromagnetic response strength can depend on scale, environment, screening, and the derived source--sea constitutive map. A varying coupling is not a continuously changing charge quantum.
 
-For an accepted charged branch family, define a representation-facing charge
-index
+For an accepted charged branch family, define a representation-facing charge index
 
 $$
 \kappa_Q:
@@ -2171,8 +1420,7 @@ $$
 \Lambda_Q,
 $$
 
-where $\Lambda_Q$ is the observer charge lattice to be recovered and $Q_Q$
-removes only declared redundancies. The normalized charge label is
+where $\Lambda_Q$ is the observer charge lattice to be recovered and $Q_Q$ removes only declared redundancies. The normalized charge label is
 
 $$
 q_{\mathrm{label}}(\Theta)
@@ -2182,33 +1430,21 @@ $$
 
 The geometry requirements are:
 
-1. $\kappa_Q$ is locally constant under admissible within-basin deformation,
-   translation, rotation, weak electric polarization, and ordinary scale
-   probing;
-2. whole-history conjugation gives
-   $\kappa_Q(\mathcal C\Theta)=-\kappa_Q(\Theta)$;
-3. independently composed accepted records add their charge labels under the
-   declared association rule;
-4. a charge-changing event crosses a classified branch/corridor boundary and
-   routes the exact index difference through products, remnants, source,
-   wakes, sea, and boundary provenance; and
-5. one universal $q_0$ serves leptons, quark-facing records, hadrons, weak
-   charged products, and conjugates, even though their response quotients and
-   spatial exposures differ.
+1. $\kappa_Q$ is locally constant under admissible within-basin deformation, translation, rotation, weak electric polarization, and ordinary scale probing;
+2. whole-history conjugation gives $\kappa_Q(\mathcal C\Theta)=-\kappa_Q(\Theta)$;
+3. independently composed accepted records add their charge labels under the declared association rule;
+4. a charge-changing event crosses a classified branch/corridor boundary and routes the exact index difference through products, remnants, source, wakes, sea, and boundary provenance; and
+5. one universal $q_0$ serves leptons, quark-facing records, hadrons, weak charged products, and conjugates, even though their response quotients and spatial exposures differ.
 
-Equivalently, for every admissible tangent perturbation
-$\delta\Theta\in T_\Theta\mathcal B_{\kappa_Q}$ inside one fixed charge basin,
+Equivalently, for every admissible tangent perturbation $\delta\Theta\in T_\Theta\mathcal B_{\kappa_Q}$ inside one fixed charge basin,
 
 $$
 \left.D\kappa_Q\right|_{\Theta}(\delta\Theta)=0.
 $$
 
-The derivative statement is local and diagnostic. It does not require that the
-full electromagnetic response or measured form factor be constant.
+The derivative statement is local and diagnostic. It does not require that the full electromagnetic response or measured form factor be constant.
 
-Plainly: a charged object may stretch, polarize, move, or look different at
-another resolution without becoming fractionally more charged. Its charge
-label changes only through a real, ledgered transition to a different branch.
+Plainly: a charged object may stretch, polarize, move, or look different at another resolution without becoming fractionally more charged. Its charge label changes only through a real, ledgered transition to a different branch.
 
 Several native carriers remain possible:
 
@@ -2220,27 +1456,11 @@ Several native carriers remain possible:
 | phase/permutation lock | a finite set of robust return classes with a charge-facing projection | distinguish charge sign/magnitude from circulation, spinor parity, and generation locks |
 | composite association sum | additive composition of already quantized constituent-facing labels | recover integer hadron/ion charge while preserving confinement and avoiding free unaccepted fractional branches |
 
-The current six-unit polarity decoration is one candidate in the first row. It
-would explain the common denominator only after ordinary dynamics selects the
-allowed charge classes, rejects unused signed arrangements, and supplies one
-universal observer normalization. Quantization alone does not establish six
-architrinos, six sites, axial placement, external exposure, or even an
-inventory realization.
+The current six-unit polarity decoration is one candidate in the first row. It would explain the common denominator only after ordinary dynamics selects the allowed charge classes, rejects unused signed arrangements, and supplies one universal observer normalization. Quantization alone does not establish six architrinos, six sites, axial placement, external exposure, or even an inventory realization.
 
-Charge universality adds a cross-morphology test. Electron, muon, and tau
-branches must share the same $q_{\mathrm{label}}$ despite different
-mass/shielding and exit records. Proton charge must match the conjugate
-electron magnitude after composite projection despite a different internal
-association graph. Quark-facing fractional labels must sum correctly inside
-color-singlet composites without producing a free asymptotic fractional branch.
-One fitted normalization per morphology fails this intersection.
+Charge universality adds a cross-morphology test. Electron, muon, and tau branches must share the same $q_{\mathrm{label}}$ despite different mass/shielding and exit records. Proton charge must match the conjugate electron magnitude after composite projection despite a different internal association graph. Quark-facing fractional labels must sum correctly inside color-singlet composites without producing a free asymptotic fractional branch. One fitted normalization per morphology fails this intersection.
 
-Claim grade: local constancy, conjugation, additivity, universal normalization,
-and complete charge-changing event routing are deduced recovery requirements.
-The five native carriers are inferred alternatives. Falsifier: an accepted
-fixed-law family continuously varies the conserved charge label inside one
-retained basin, requires morphology-specific charge units, or leaves an
-additional stable charge class with no observer counterpart.
+Claim grade: local constancy, conjugation, additivity, universal normalization, and complete charge-changing event routing are deduced recovery requirements. The five native carriers are inferred alternatives. Falsifier: an accepted fixed-law family continuously varies the conserved charge label inside one retained basin, requires morphology-specific charge units, or leaves an additional stable charge class with no observer counterpart.
 
 Three new non-aliasing edges follow:
 
@@ -2252,29 +1472,19 @@ Q\not\equiv(B,L),
 \text{generation}\not\equiv(B,L).
 $$
 
-Their direct falsifiers are respectively a neutral neutron/neutrino collision
-in the first map, meson-versus-baryon closure in the second, and common
-baryon/lepton labels across generations in the third. A candidate may realize
-the rows through shared geometry, but it must not force them to be the same
-coordinate.
+Their direct falsifiers are respectively a neutral neutron/neutrino collision in the first map, meson-versus-baryon closure in the second, and common baryon/lepton labels across generations in the third. A candidate may realize the rows through shared geometry, but it must not force them to be the same coordinate.
 
 ### Composite Spin Requires Frame And Exchange Composition
 
-The [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) owner
-uses alignment language for $\pi/\rho$ and nucleon/$\Delta$ comparisons, while
-the [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) owner
-retains a hadronization spin-correlation burden. Those are useful shorthand
-targets, not evidence that constituent spin is a set of classical arrows.
+The [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) owner uses alignment language for $\pi/\rho$ and nucleon/$\Delta$ comparisons, while the [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) owner retains a hadronization spin-correlation burden. Those are useful shorthand targets, not evidence that constituent spin is a set of classical arrows.
 
-For a composite candidate $H$ with constituent histories $\Theta_i$, retain
-the relative ordered frames
+For a composite candidate $H$ with constituent histories $\Theta_i$, retain the relative ordered frames
 
 $$
 R_{ij}(T)=F_i(T)^{\mathsf T}F_j(T),
 $$
 
-the relative support and motion history, color/association graph, corridor
-response, and wake/sea angular ledger. A minimum composite record is
+the relative support and motion history, color/association graph, corridor response, and wake/sea angular ledger. A minimum composite record is
 
 $$
 \Theta_H^{\mathrm{ang}}
@@ -2290,10 +1500,7 @@ $$
 \right).
 $$
 
-The observer angular-momentum class is a projection of this complete record.
-It is not determined by $\sum_i\boldsymbol\Omega_i$, by a count of clockwise
-constituents, or by one static dot product between axes. In particular, the
-full ledger must close schematically as
+The observer angular-momentum class is a projection of this complete record. It is not determined by $\sum_i\boldsymbol\Omega_i$, by a count of clockwise constituents, or by one static dot product between axes. In particular, the full ledger must close schematically as
 
 $$
 \mathbf J_{\mathrm{obs}}
@@ -2307,16 +1514,11 @@ $$
 \right],
 $$
 
-where the arrow denotes an observer recovery map rather than an architrino-level
-vector-addition premise.
+where the arrow denotes an observer recovery map rather than an architrino-level vector-addition premise.
 
-Plainly: the total spin label belongs to how several complete moving histories
-fit together. Internal frames, motion around one another, the binding corridor,
-and the sea can all carry angular information, so “parallel” is not yet a
-calculation.
+Plainly: the total spin label belongs to how several complete moving histories fit together. Internal frames, motion around one another, the binding corridor, and the sea can all carry angular information, so “parallel” is not yet a calculation.
 
-Where an exchange-sector factorization is declared, an identical-constituent
-exchange path $p$ supplies comparison characters
+Where an exchange-sector factorization is declared, an identical-constituent exchange path $p$ supplies comparison characters
 
 $$
 \chi_{\mathrm{tot}}(p)
@@ -2328,10 +1530,7 @@ $$
 \chi_{\mathrm{corr}}(p),
 $$
 
-with the product required to recover the complete fermionic exchange class.
-Each factor must be measured from the corresponding history quotient; none may
-be inserted as a sign label. If the subrecords do not factor, the owner must
-evaluate one joint exchange holonomy instead of forcing this product form.
+with the product required to recover the complete fermionic exchange class. Each factor must be measured from the corresponding history quotient; none may be inserted as a sign label. If the subrecords do not factor, the owner must evaluate one joint exchange holonomy instead of forcing this product form.
 
 This creates four controlled composite tests:
 
@@ -2342,35 +1541,15 @@ This creates four controlled composite tests:
 | $\Delta^{++}$ identical-quark exchange | three same-flavor quark-facing records and one color-singlet composite | total exchange class under each identical-constituent transposition | color association, frame, support, and corridor histories must compose to the required exchange sign; three different color names alone are insufficient |
 | proton versus neutron | spin-$\tfrac12$ composite class and leading color closure | electric/weak-facing decoration and beta corridor | charge change must not rebuild the spin/exchange or color-closure architecture |
 
-Plainly: close relatives let us change one composite coordinate at a time. The
-same pair or triplet must support different angular classes, while the
-$\Delta^{++}$ asks whether color and exchange geometry jointly prevent three
-identical quark-facing histories from collapsing into an inconsistent state.
+Plainly: close relatives let us change one composite coordinate at a time. The same pair or triplet must support different angular classes, while the $\Delta^{++}$ asks whether color and exchange geometry jointly prevent three identical quark-facing histories from collapsing into an inconsistent state.
 
-The strongest immediate rejection is an `alignment-only` hadron model. If its
-only internal coordinate is a binary parallel/antiparallel label, it cannot
-simultaneously derive continuous rotation covariance, half-integer versus
-integer composite representations, parity, exchange composition, orbital or
-corridor contribution, polarization-dependent production, and decay angular
-correlations. The smallest repair is not necessarily another constituent; it
-is a complete relative-frame and exchange-history record whose response rank
-is measured under ordinary evolution.
+The strongest immediate rejection is an `alignment-only` hadron model. If its only internal coordinate is a binary parallel/antiparallel label, it cannot simultaneously derive continuous rotation covariance, half-integer versus integer composite representations, parity, exchange composition, orbital or corridor contribution, polarization-dependent production, and decay angular correlations. The smallest repair is not necessarily another constituent; it is a complete relative-frame and exchange-history record whose response rank is measured under ordinary evolution.
 
-Claim grade: the need for distinct complete-history angular and exchange rows
-is deduced from the controlled recovery targets. Their factorization into the
-five $\chi$ rows and any literal frame/corridor realization are inferred
-diagnostics. Falsifier: one alignment-only fixed-law candidate, with no hidden
-history or response coordinate, recovers all four controlled comparisons and
-their rotation, parity, exchange, production, and decay records.
+Claim grade: the need for distinct complete-history angular and exchange rows is deduced from the controlled recovery targets. Their factorization into the five $\chi$ rows and any literal frame/corridor realization are inferred diagnostics. Falsifier: one alignment-only fixed-law candidate, with no hidden history or response coordinate, recovers all four controlled comparisons and their rotation, parity, exchange, production, and decay records.
 
 ### Conjugation, Orientation, And Spinor History Must Be Separate
 
-The declared polarity-product radial kernel supplies an exact separation that
-rules out a large class of one-sign braid pictures. Let $C$ globally conjugate
-polarity at fixed worldlines and let $P$ mirror the worldlines at fixed
-polarity labels. On the declared B1 sign chart, let $c_{\mathrm{pol}}$ be the
-polarity-assignment sign, $o_{\mathrm{PA}}$ the ordered geometric orientation,
-and $\chi$ the polarity-weighted handedness. Then
+The declared polarity-product radial kernel supplies an exact separation that rules out a large class of one-sign braid pictures. Let $C$ globally conjugate polarity at fixed worldlines and let $P$ mirror the worldlines at fixed polarity labels. On the declared B1 sign chart, let $c_{\mathrm{pol}}$ be the polarity-assignment sign, $o_{\mathrm{PA}}$ the ordered geometric orientation, and $\chi$ the polarity-weighted handedness. Then
 
 $$
 \chi=o_{\mathrm{PA}}c_{\mathrm{pol}},
@@ -2392,13 +1571,9 @@ P:
 (c_{\mathrm{pol}},-o_{\mathrm{PA}},-\chi).
 $$
 
-The full kernel is covariant under both operations and $CP$ preserves $\chi$.
-These rows are exact sign bookkeeping for the declared kernel; they do not
-establish branch formation, retention, or weak-channel $CP$ behavior.
+The full kernel is covariant under both operations and $CP$ preserves $\chi$. These rows are exact sign bookkeeping for the declared kernel; they do not establish branch formation, retention, or weak-channel $CP$ behavior.
 
-Now let $\eta_{2\pi}\in\mathbb Z_2$ be the quotient-surviving sheet parity of
-a physical rotation loop. Neither $C$ nor $P$ determines this row. Fermion
-spinor support instead requires
+Now let $\eta_{2\pi}\in\mathbb Z_2$ be the quotient-surviving sheet parity of a physical rotation loop. Neither $C$ nor $P$ determines this row. Fermion spinor support instead requires
 
 $$
 \eta_{2\pi}=1,
@@ -2406,28 +1581,15 @@ $$
 \eta_{4\pi}=0,
 $$
 
-on a retained non-gauge history with doubled-path restoration and closed
-angular-momentum ledger. Therefore one circulation sign cannot encode all of
-matter/antimatter conjugation, left/right geometric orientation, and
-$2\pi/4\pi$ spinor history: the three signs answer different transformation
-tests.
+on a retained non-gauge history with doubled-path restoration and closed angular-momentum ledger. Therefore one circulation sign cannot encode all of matter/antimatter conjugation, left/right geometric orientation, and $2\pi/4\pi$ spinor history: the three signs answer different transformation tests.
 
-The immediate geometry consequence is conditional but strong. A fermion
-candidate must carry a framed, history-lifted retained record rather than rely
-on a spinning-loop picture alone. Any candidate that uses circulation or
-polarity-weighted handedness must keep those coordinates distinct from
-conjugation, parity, and spinor-sheet history; its causal roots, angular-momentum
-ledger, and sector exposure must remain inspectable on the same record.
+The immediate geometry consequence is conditional but strong. A fermion candidate must carry a framed, history-lifted retained record rather than rely on a spinning-loop picture alone. Any candidate that uses circulation or polarity-weighted handedness must keep those coordinates distinct from conjugation, parity, and spinor-sheet history; its causal roots, angular-momentum ledger, and sector exposure must remain inspectable on the same record.
 
-Plainly: electron versus positron, a geometry and its mirror, clockwise versus
-counterclockwise motion, and fermionic $4\pi$ restoration are not four names
-for one switch. A viable braid must carry enough structure to distinguish
-them.
+Plainly: electron versus positron, a geometry and its mirror, clockwise versus counterclockwise motion, and fermionic $4\pi$ restoration are not four names for one switch. A viable braid must carry enough structure to distinguish them.
 
 ### Same-Record Orientation Experiment
 
-The highest-discrimination next test for any evolved candidate branch is to
-construct, without changing its constitutive law:
+The highest-discrimination next test for any evolved candidate branch is to construct, without changing its constitutive law:
 
 1. global polarity conjugation $C$ at fixed worldline order;
 2. spatial mirroring $P$ at fixed polarity assignment;
@@ -2435,21 +1597,13 @@ construct, without changing its constitutive law:
 4. physical $2\pi$ and $4\pi$ orientation transports; and
 5. a two-assembly exchange path when two retained copies exist.
 
-For every continuation, record active roots, emission order, causal writhe,
-framing, polarity assignment, ordered orientation, total assembly--wake--sea
-angular momentum, return residual, exposure, and branch stability. A visible
-$2\pi$ return with every retained non-gauge row identical is an ordinary
-$SO(3)$ return, not spinor support. A failed $4\pi$ restoration is a branch
-reconfiguration or broken return, not evidence for a spinor lift.
+For every continuation, record active roots, emission order, causal writhe, framing, polarity assignment, ordered orientation, total assembly--wake--sea angular momentum, return residual, exposure, and branch stability. A visible $2\pi$ return with every retained non-gauge row identical is an ordinary $SO(3)$ return, not spinor support. A failed $4\pi$ restoration is a branch reconfiguration or broken return, not evidence for a spinor lift.
 
-Plainly: use one evolved object and change one geometric operation at a time.
-That experiment can tell us which signs are genuinely independent before we
-try to read charge, moment, weak handedness, or exchange statistics from them.
+Plainly: use one evolved object and change one geometric operation at a time. That experiment can tell us which signs are genuinely independent before we try to read charge, moment, weak handedness, or exchange statistics from them.
 
 ### Complete-Record Symmetry Action
 
-A static picture is not symmetric in the physically relevant sense unless the
-symmetry acts on the complete causal-history record. Let
+A static picture is not symmetric in the physically relevant sense unless the symmetry acts on the complete causal-history record. Let
 
 $$
 \Theta_W
@@ -2466,10 +1620,7 @@ $$
 \right),
 $$
 
-where the added rows contain roots and wakes, ordered frame and phase, indexed
-axis data, weak exposure, color comparison data, sea state, persistent
-identities, and reaction provenance. For each effective symmetry target $g$,
-the minimum candidate certificate has a native record action
+where the added rows contain roots and wakes, ordered frame and phase, indexed axis data, weak exposure, color comparison data, sea state, persistent identities, and reaction provenance. For each effective symmetry target $g$, the minimum candidate certificate has a native record action
 
 $$
 \mathcal A_g:\Theta_W\longrightarrow\Theta_W^{(g)},
@@ -2483,8 +1634,7 @@ $$
 \rho_g\Pi_{\mathrm{obs}}(\Theta_W).
 $$
 
-A comparison residual must include both observer covariance and ledger
-covariance, together with an explicit no-retuning row:
+A comparison residual must include both observer covariance and ledger covariance, together with an explicit no-retuning row:
 
 $$
 \Delta_g
@@ -2503,16 +1653,7 @@ L(\mathcal A_g\Theta_W),
 +P_{\mathrm{retune}}.
 $$
 
-Here $L$ is the frozen ledger projection that returns persistent identities,
-polarity, action, energy, momentum, angular momentum, wake, sea, and reaction
-provenance rows. $P_{\mathrm{retune}}\ge0$ is a declared penalty functional of
-the two compared records and is zero only when the law, coefficients, initial
-record construction, quotient, and observer projection are unchanged except
-for the action $\mathcal A_g$. Before evaluation, the owner freezes component
-tolerances $\epsilon_{g,\mathrm{obs}}$ and $\epsilon_{g,\mathrm{led}}$ and a
-retuning null $P_{\mathrm{retune}}=0$; acceptance requires both component
-distances to lie within their tolerances rather than relying on cancellation in
-one scalar sum.
+Here $L$ is the frozen ledger projection that returns persistent identities, polarity, action, energy, momentum, angular momentum, wake, sea, and reaction provenance rows. $P_{\mathrm{retune}}\ge0$ is a declared penalty functional of the two compared records and is zero only when the law, coefficients, initial record construction, quotient, and observer projection are unchanged except for the action $\mathcal A_g$. Before evaluation, the owner freezes component tolerances $\epsilon_{g,\mathrm{obs}}$ and $\epsilon_{g,\mathrm{led}}$ and a retuning null $P_{\mathrm{retune}}=0$; acceptance requires both component distances to lie within their tolerances rather than relying on cancellation in one scalar sum.
 
 When transformations compose, one declared quotient $Q$ must also satisfy
 
@@ -2522,19 +1663,11 @@ Q\mathcal A_g\mathcal A_h\Theta_W
 Q\mathcal A_{gh}\Theta_W.
 $$
 
-$Q$ may remove common translation, time origin, or another explicitly
-nonphysical coordinate. It may not erase persistent identity, causal-root
-branch, chirality, exchange order, or a proposed $2\pi$ sheet change merely to
-make the comparison pass.
+$Q$ may remove common translation, time origin, or another explicitly nonphysical coordinate. It may not erase persistent identity, causal-root branch, chirality, exchange order, or a proposed $2\pi$ sheet change merely to make the comparison pass.
 
-Plainly: a symmetry test has to transform the entire causal record and then
-compare both what an observer sees and whether every identity and ledger row
-still closes. A hidden parameter change or a quotient that deletes the hard
-part is a failed test.
+Plainly: a symmetry test has to transform the entire causal record and then compare both what an observer sees and whether every identity and ledger row still closes. A hidden parameter change or a quotient that deletes the hard part is a failed test.
 
-Plainly: rotate, mirror, conjugate, or transport the entire history—not only
-the final drawing. The same rules and parameters must then produce the familiar
-observer transformation.
+Plainly: rotate, mirror, conjugate, or transport the entire history—not only the final drawing. The same rules and parameters must then produce the familiar observer transformation.
 
 | Effective symmetry clue | Weakest native action | Key geometry distinction and falsifier |
 | --- | --- | --- |
@@ -2549,8 +1682,7 @@ observer transformation.
 | weak doublet and chirality | expose two weak-visible branches over one retained core through one handed corridor grammar | polarity count or a static mirror cannot replace spinor history and handed exposure |
 | symmetry breaking | change one branch order parameter so the effective channel stabilizer and response Hessian change | separately tuned photon, $W$, and $Z$ gaps or extra uncontrolled channels reject the shared branch variable |
 
-The response representation itself has an exact Euclidean decomposition. For
-any same-record spatial response $K_{ij}$,
+The response representation itself has an exact Euclidean decomposition. For any same-record spatial response $K_{ij}$,
 
 $$
 K^{(0)}_{ij}
@@ -2572,23 +1704,11 @@ K^{(2)}_{ij}
 \frac{\operatorname{tr}K}{3}\delta_{ij}.
 $$
 
-Under a proper rotation each part transforms as
-$K^{(r)}\mapsto RK^{(r)}R^{\mathsf T}$. A scalar candidate suppresses the
-antisymmetric and symmetric trace-free pieces. In three dimensions the
-antisymmetric rank-two piece is dual to an axial-vector response; a general
-polar-vector channel requires a separately defined rank-one response. A tensor
-candidate retains a symmetric trace-free response while passing its separate
-propagation and leakage tests. This classification comes from the evolved
-response, not the particle name.
+Under a proper rotation each part transforms as $K^{(r)}\mapsto RK^{(r)}R^{\mathsf T}$. A scalar candidate suppresses the antisymmetric and symmetric trace-free pieces. In three dimensions the antisymmetric rank-two piece is dual to an axial-vector response; a general polar-vector channel requires a separately defined rank-one response. A tensor candidate retains a symmetric trace-free response while passing its separate propagation and leakage tests. This classification comes from the evolved response, not the particle name.
 
-Plainly: the antisymmetric part describes an oriented plane, equivalently an
-axial direction in three dimensions. It must not be mistaken for every kind of
-ordinary directed response.
+Plainly: the antisymmetric part describes an oriented plane, equivalently an axial direction in three dimensions. It must not be mistaken for every kind of ordinary directed response.
 
-At effective grade, one shared electroweak branch/order-parameter candidate
-would have to supply a response Hessian $H_{\mathrm{EW}}$ and a positive
-kinetic/response metric $G_{\mathrm{kin}}$ on one canonically declared
-coordinate domain. Its generalized eigenproblem
+At effective grade, one shared electroweak branch/order-parameter candidate would have to supply a response Hessian $H_{\mathrm{EW}}$ and a positive kinetic/response metric $G_{\mathrm{kin}}$ on one canonically declared coordinate domain. Its generalized eigenproblem
 
 $$
 H_{\mathrm{EW}}v
@@ -2604,22 +1724,13 @@ $$
 \{0,m_W^2,m_W^2,m_Z^2\}
 $$
 
-within a frozen spectrum residual $\Delta_{\mathrm{EW}}$ and owner-declared
-tolerance $\epsilon_{\mathrm{EW}}$. This is a recovery target and does not
-import a primitive gauge symmetry or substrate Higgs mechanism. Without a
-declared $G_{\mathrm{kin}}$, the raw coordinate Hessian eigenvalues carry no
-invariant mass interpretation.
+within a frozen spectrum residual $\Delta_{\mathrm{EW}}$ and owner-declared tolerance $\epsilon_{\mathrm{EW}}$. This is a recovery target and does not import a primitive gauge symmetry or substrate Higgs mechanism. Without a declared $G_{\mathrm{kin}}$, the raw coordinate Hessian eigenvalues carry no invariant mass interpretation.
 
-Plainly: the same response matrix can be separated into directionless,
-rotational, and shape-changing parts. That gives a native way to test scalar,
-vector, and tensor behavior without assuming what the candidate is supposed to
-be.
+Plainly: the same response matrix can be separated into directionless, rotational, and shape-changing parts. That gives a native way to test scalar, vector, and tensor behavior without assuming what the candidate is supposed to be.
 
 #### Boson Response-Rank Grammar
 
-The scalar/vector/tensor decomposition does not by itself count propagating or
-transactional modes. For one fixed evolved sector record $\Theta_s$ and
-declared event window $W$, define the response Gram operator
+The scalar/vector/tensor decomposition does not by itself count propagating or transactional modes. For one fixed evolved sector record $\Theta_s$ and declared event window $W$, define the response Gram operator
 
 $$
 G_{ab}^{(s)}(\Theta_s;W)
@@ -2650,17 +1761,9 @@ n_L^{(s)}
 \operatorname{rank}_\tau(P_\parallel G^{(s)}P_\parallel).
 $$
 
-These ranks are extracted from native evolution and one observer projection;
-they are not polarization states inserted into the Master Equation. The
-effective recovery limits are two transverse and no free longitudinal response
-for photon and perturbative-gluon charts, while a fully recovered massive
-vector chart must expose an additional longitudinal response. The current
-corpus owns only the weaker $W/Z$ requirement that longitudinal or mixed-axis
-response be allowed; an explicit exactly-three-mode benchmark is absent.
+These ranks are extracted from native evolution and one observer projection; they are not polarization states inserted into the Master Equation. The effective recovery limits are two transverse and no free longitudinal response for photon and perturbative-gluon charts, while a fully recovered massive vector chart must expose an additional longitudinal response. The current corpus owns only the weaker $W/Z$ requirement that longitudinal or mixed-axis response be allowed; an explicit exactly-three-mode benchmark is absent.
 
-Plainly: count independent ways the evolved history can respond across and
-along its direction of motion. Do not count strands in a drawing or assign
-polarization labels before the response exists.
+Plainly: count independent ways the evolved history can respond across and along its direction of motion. Do not count strands in a drawing or assign polarization labels before the response exists.
 
 The least-committal comparison architecture is
 
@@ -2700,41 +1803,17 @@ $$
 \end{aligned}
 $$
 
-This is a proposed comparison hierarchy, not a common retained boson. Equal
-local mode count cannot identify photon and gluon, while a planar two-mode
-carrier cannot serve $W/Z$ without a derived localization/longitudinal
-extension. A tube or corridor axis without transverse phase, angular-momentum,
-recoil, and sea ledgers remains only an oriented shape.
+This is a proposed comparison hierarchy, not a common retained boson. Equal local mode count cannot identify photon and gluon, while a planar two-mode carrier cannot serve $W/Z$ without a derived localization/longitudinal extension. A tube or corridor axis without transverse phase, angular-momentum, recoil, and sea ledgers remains only an oriented shape.
 
-A scalar candidate instead requires a rotational scalar response (tensor rank
-$0$, not matrix rank $0$), with vector and higher-multipole leakage below tolerance on the same
-preparation, production, decay, and detector record. Internally anisotropic
-geometry can project to a scalar by cancellation, and a visibly radial motion
-can still leak vector or tensor response. Scalarity therefore implies neither
-spherical microscopic geometry nor positive parity; scalar, pseudoscalar, and
-mixed-$CP$ cases require separate whole-history $P/CP$ actions and decay-plane
-comparisons.
+A scalar candidate instead requires a rotational scalar response (tensor rank $0$, not matrix rank $0$), with vector and higher-multipole leakage below tolerance on the same preparation, production, decay, and detector record. Internally anisotropic geometry can project to a scalar by cancellation, and a visibly radial motion can still leak vector or tensor response. Scalarity therefore implies neither spherical microscopic geometry nor positive parity; scalar, pseudoscalar, and mixed-$CP$ cases require separate whole-history $P/CP$ actions and decay-plane comparisons.
 
-One especially sharp missing angular null is the effective spin-1 exclusion
-for two identical on-shell transverse photon products, with off-shell,
-nonidentical-vector, and scalar-parent controls. The corpus mentions the
-diphoton channel as evidence against spin 1 but has no explicit owner or
-same-record residual for this constraint. It should remain a coverage gap
-until a boson carrier can supply exchange, angular-ledger, and product-basin
-records; a generic inability to produce two photons would not constitute the
-required symmetry cancellation.
+One especially sharp missing angular null is the effective spin-1 exclusion for two identical on-shell transverse photon products, with off-shell, nonidentical-vector, and scalar-parent controls. The corpus mentions the diphoton channel as evidence against spin 1 but has no explicit owner or same-record residual for this constraint. It should remain a coverage gap until a boson carrier can supply exchange, angular-ledger, and product-basin records; a generic inability to produce two photons would not constitute the required symmetry cancellation.
 
-Plainly: boson families may reuse an oriented phase grammar, but photon,
-gluon, weak-vector, and scalar roles demand different additional information.
-Those differences are candidate eliminators, not decorative particle labels.
+Plainly: boson families may reuse an oriented phase grammar, but photon, gluon, weak-vector, and scalar roles demand different additional information. Those differences are candidate eliminators, not decorative particle labels.
 
 ### Relational Geometry, Exchange, And Measurement
 
-Several of the strongest Standard Model and quantum constraints do not act on
-one isolated braid. They act on the complete history of two or more retained
-assemblies or propagating carrier histories, their common source or formation
-event, the intervening sea, and the apparatuses that eventually produce
-records. The minimum relational record is
+Several of the strongest Standard Model and quantum constraints do not act on one isolated braid. They act on the complete history of two or more retained assemblies or propagating carrier histories, their common source or formation event, the intervening sea, and the apparatuses that eventually produce records. The minimum relational record is
 
 $$
 \Theta_{AB}^{\mathrm{rel}}
@@ -2750,45 +1829,18 @@ $$
 \right),
 $$
 
-where $\Gamma_{AB}^{\mathrm{src}}$ records common creation provenance,
-$\Gamma_{AB}^{\mathrm{path}}$ records later identity-preserving exchange or
-separation history, and $\mathcal P_{AB}$ is the joint observer projection.
-This record must not be replaced by two isolated particle snapshots plus a
-correlation label.
+where $\Gamma_{AB}^{\mathrm{src}}$ records common creation provenance, $\Gamma_{AB}^{\mathrm{path}}$ records later identity-preserving exchange or separation history, and $\mathcal P_{AB}$ is the joint observer projection. This record must not be replaced by two isolated particle snapshots plus a correlation label.
 
-Plainly: some clues concern the relationship between two objects, not hidden
-features inside either object by itself. Their shared history can be physical
-information even after the objects are far apart.
+Plainly: some clues concern the relationship between two objects, not hidden features inside either object by itself. Their shared history can be physical information even after the objects are far apart.
 
 Four logically different burdens then constrain geometry:
 
-1. **Exchange.** Two identical assemblies must be transported through a lawful
-   two-assembly history while persistent substrate identities remain tracked.
-   The observer quotient may exchange the effective slots, but it may not erase
-   the path history before the exchange class is measured. The fermionic sign
-   must come from the same retained non-gauge ordered-frame row that supplies
-   the $2\pi/4\pi$ return, not from a separately assigned statistics label.
-2. **Apparatus resolution.** A Stern--Gerlach-like record is a finite-time
-   assembly--apparatus interaction with two stable outcome basins. The
-   apparatus axis couples to the full ordered-frame, wake, sea, exposure, and
-   angular-ledger history; it does not read a pre-existing tiny arrow. A viable
-   fermion morphology must therefore admit a continuous orientation response
-   whose pushed-forward record measure produces two discrete basins and the
-   required angle dependence.
-3. **Pair correlations.** A Bell-pair candidate must preserve measurement
-   independence and no-signaling while its completed joint response remains
-   nonfactorizable. A common source label is insufficient if it screens the
-   later records into two independent local response laws.
-4. **Measurement context.** One substrate history must support different
-   apparatus-defined record maps without assigning a simultaneous outcome to
-   every possible apparatus context. The assembly carries the coordinates that
-   respond to an apparatus; it need not carry a global table of already formed
-   records for apparatuses that were not present.
+1. **Exchange.** Two identical assemblies must be transported through a lawful two-assembly history while persistent substrate identities remain tracked. The observer quotient may exchange the effective slots, but it may not erase the path history before the exchange class is measured. The fermionic sign must come from the same retained non-gauge ordered-frame row that supplies the $2\pi/4\pi$ return, not from a separately assigned statistics label.
+2. **Apparatus resolution.** A Stern--Gerlach-like record is a finite-time assembly--apparatus interaction with two stable outcome basins. The apparatus axis couples to the full ordered-frame, wake, sea, exposure, and angular-ledger history; it does not read a pre-existing tiny arrow. A viable fermion morphology must therefore admit a continuous orientation response whose pushed-forward record measure produces two discrete basins and the required angle dependence.
+3. **Pair correlations.** A Bell-pair candidate must preserve measurement independence and no-signaling while its completed joint response remains nonfactorizable. A common source label is insufficient if it screens the later records into two independent local response laws.
+4. **Measurement context.** One substrate history must support different apparatus-defined record maps without assigning a simultaneous outcome to every possible apparatus context. The assembly carries the coordinates that respond to an apparatus; it need not carry a global table of already formed records for apparatuses that were not present.
 
-Exchange gives an exact endpoint-snapshot no-go. Let
-$\widetilde\Gamma_{12}$ be a lawful exchange history and let $Q_{\mathrm{obs}}$
-remove only provenance distinctions unavailable to the declared apparatus.
-An exchange classifier has the form
+Exchange gives an exact endpoint-snapshot no-go. Let $\widetilde\Gamma_{12}$ be a lawful exchange history and let $Q_{\mathrm{obs}}$ remove only provenance distinctions unavailable to the declared apparatus. An exchange classifier has the form
 
 $$
 \chi_{\mathrm{ex}}:
@@ -2796,20 +1848,11 @@ $$
 \longrightarrow U(1).
 $$
 
-If the classifier instead depends only on the final unordered snapshot, a
-one-exchange history, a double exchange, and a no-exchange control that return
-to the same snapshot receive the same value. Such a classifier cannot recover
-a nontrivial fermionic sign or anyonic phase. The minimal comparison must
-include no exchange, one exchange, reversed exchange, and double exchange on
-the same retained branches, sea state, apparatus, and quotient.
+If the classifier instead depends only on the final unordered snapshot, a one-exchange history, a double exchange, and a no-exchange control that return to the same snapshot receive the same value. Such a classifier cannot recover a nontrivial fermionic sign or anyonic phase. The minimal comparison must include no exchange, one exchange, reversed exchange, and double exchange on the same retained branches, sea state, apparatus, and quotient.
 
-Plainly: the route by which two identical objects trade places matters even
-when the ending picture is unchanged. Statistics therefore constrains the
-history carried by the geometry, not just its final shape.
+Plainly: the route by which two identical objects trade places matters even when the ending picture is unchanged. Statistics therefore constrains the history carried by the geometry, not just its final shape.
 
-For the third burden, let $x$ and $y$ denote the two apparatus settings and
-$\Pi$ the complete retained pair provenance. The candidate is inside the
-excluded product-screened class if
+For the third burden, let $x$ and $y$ denote the two apparatus settings and $\Pi$ the complete retained pair provenance. The candidate is inside the excluded product-screened class if
 
 $$
 P(a,b\mid x,y)
@@ -2820,31 +1863,13 @@ P_B(b\mid y,\Pi)
 \,d\rho_{\mathrm{src}}(\Pi).
 $$
 
-Consequently, two independent detector-facing braid responses plus any
-setting-independent common-past label cannot close the observed joint law.
-The missing native coordinate must reside in a derived non-product joint
-response, a non-restartable relational history, or another explicitly named
-structure that is not algebraically equivalent to the product form. It must
-do so without inserting later settings into the source record and without
-opening a controllable signal between the wings.
+Consequently, two independent detector-facing braid responses plus any setting-independent common-past label cannot close the observed joint law. The missing native coordinate must reside in a derived non-product joint response, a non-restartable relational history, or another explicitly named structure that is not algebraically equivalent to the product form. It must do so without inserting later settings into the source record and without opening a controllable signal between the wings.
 
-Plainly: merely saying that the particles were created together does not solve
-the correlation problem. If their later responses can still be calculated as
-two independent local responses averaged over that shared past, the candidate
-has failed the decisive test.
+Plainly: merely saying that the particles were created together does not solve the correlation problem. If their later responses can still be calculated as two independent local responses averaged over that shared past, the candidate has failed the decisive test.
 
-Contextuality adds another exact obstruction. In a Mermin--Peres-style
-comparison, the six calibrated context products have signs
-$\{+1,+1,+1,+1,+1,-1\}$. A single context-independent assignment to every
-effective observable makes the product of all six rows $+1$, whereas the
-required context products multiply to $-1$. The native response must therefore
-be a family of apparatus-indexed record maps from one substrate dynamics, with
-compatible shared marginals, rather than a geometry carrying a global value
-for every unperformed measurement.
+Contextuality adds another exact obstruction. In a Mermin--Peres-style comparison, the six calibrated context products have signs $\{+1,+1,+1,+1,+1,-1\}$. A single context-independent assignment to every effective observable makes the product of all six rows $+1$, whereas the required context products multiply to $-1$. The native response must therefore be a family of apparatus-indexed record maps from one substrate dynamics, with compatible shared marginals, rather than a geometry carrying a global value for every unperformed measurement.
 
-Plainly: the apparatus does more than reveal a hidden answer. Its geometry is
-part of the physical process that creates the durable record, although the
-same underlying dynamics must remain consistent across apparatus choices.
+Plainly: the apparatus does more than reveal a hidden answer. Its geometry is part of the physical process that creates the durable record, although the same underlying dynamics must remain consistent across apparatus choices.
 
 This yields high-discrimination geometry intersections:
 
@@ -2859,29 +1884,11 @@ This yields high-discrimination geometry intersections:
 | Bell correlation $\times$ measurement independence $\times$ no-signaling | retain a non-product relational response or non-restartable provenance structure whose one-wing marginals stay setting-independent | independent local braid responses screened by any common-past variable, later-setting contamination of the source, and direct measurement-time signaling |
 | Bell record $\times$ Lorentz recovery | joint statistics, timing, analyzer calibration, and coincidence selection must not reveal the absolute frame | candidates that obtain the correlation only through preferred-frame detector drift or ordering leakage |
 
-The relational clue is architectural: the candidate ontology cannot consist
-only of isolated retained objects whose full physical state is restartable
-from separate finite-time snapshots. At least some multi-assembly histories
-must carry physically consequential relation data through the source, path,
-and apparatus record. This does not yet identify whether that data is stored
-primarily in daughter braids, their unresolved wakes, the Noether sea, or a
-larger coupled history. Those are alternative realization families to be
-tested, not interchangeable descriptions.
+The relational clue is architectural: the candidate ontology cannot consist only of isolated retained objects whose full physical state is restartable from separate finite-time snapshots. At least some multi-assembly histories must carry physically consequential relation data through the source, path, and apparatus record. This does not yet identify whether that data is stored primarily in daughter braids, their unresolved wakes, the Noether sea, or a larger coupled history. Those are alternative realization families to be tested, not interchangeable descriptions.
 
-The live corpus does not yet state one consistent Bell causal route. Some
-passages place the nonfactorizable response in a live finite-$c_f$ coordination
-channel during measurement, while other owners forbid detector-to-detector
-wake transfer outside causal reach and place the burden in local apparatus
-interactions plus non-restartable pair provenance. Before this clue can select
-a braid or sea geometry, a same-record test must declare whether the two
-measurement windows are within causal reach and identify exactly which
-factorization premise fails. The product-screening no-go is firm; the native
-carrier of the required non-product response remains unsettled.
+The live corpus does not yet state one consistent Bell causal route. Some passages place the nonfactorizable response in a live finite-$c_f$ coordination channel during measurement, while other owners forbid detector-to-detector wake transfer outside causal reach and place the burden in local apparatus interactions plus non-restartable pair provenance. Before this clue can select a braid or sea geometry, a same-record test must declare whether the two measurement windows are within causal reach and identify exactly which factorization premise fails. The product-screening no-go is firm; the native carrier of the required non-product response remains unsettled.
 
-Plainly: the single-particle braid is not the whole search target. The theory
-also needs a geometry of relationships—exchange paths, shared provenance, and
-apparatus-coupled history—that cannot always be cut into independent object
-states without losing observable information.
+Plainly: the single-particle braid is not the whole search target. The theory also needs a geometry of relationships—exchange paths, shared provenance, and apparatus-coupled history—that cannot always be cut into independent object states without losing observable information.
 
 ### Discrete Morphology Coordinates Already Present In The Corpus
 
@@ -2901,16 +1908,9 @@ n_+^{\mathrm{ax}},n_-^{\mathrm{ax}};
 \right).
 $$
 
-Here $N_{\mathrm{sc}}$ is coherent neutral-scaffold inventory,
-$n_\pm^{\mathrm{ax}}$ are candidate charge-carrier polarity counts,
-$\mathbf s_{\mathrm{sh}}$ is the shielding-support vector,
-$\mathcal D_{\mathrm{ax}}$ lists the three ordered axial dyad classes,
-$\eta_{\mathrm{exc}}$ identifies an exceptional axis or `none`, $\mathcal P$
-records planar versus volumetric support and longitudinal thickness, and
-$\Gamma_{\mathrm{corr}}$ is the labeled component/corridor graph.
+Here $N_{\mathrm{sc}}$ is coherent neutral-scaffold inventory, $n_\pm^{\mathrm{ax}}$ are candidate charge-carrier polarity counts, $\mathbf s_{\mathrm{sh}}$ is the shielding-support vector, $\mathcal D_{\mathrm{ax}}$ lists the three ordered axial dyad classes, $\eta_{\mathrm{exc}}$ identifies an exceptional axis or `none`, $\mathcal P$ records planar versus volumetric support and longitudinal thickness, and $\Gamma_{\mathrm{corr}}$ is the labeled component/corridor graph.
 
-Within the current six-site charged-fermion candidate catalog, and only within
-that catalog, the bookkeeping identities are
+Within the current six-site charged-fermion candidate catalog, and only within that catalog, the bookkeeping identities are
 
 $$
 \frac{Q(A)}{e}
@@ -2926,30 +1926,18 @@ g
 4-\lVert\mathbf s_{\mathrm{sh}}\rVert_1.
 $$
 
-The current candidate support vectors are $(1,1,1)$, $(1,1,0)$, and
-$(1,0,0)$ for Generations I, II, and III. The charged-lepton axial inventories
-are $(0,6)$ for the electron family and $(6,0)$ for its conjugate. Up-type and
-down-type quark rows use $(5,1)$ and $(2,4)$ respectively. These are exact
-combinatorial consequences of the declared candidate catalog, not evidence
-that the catalog's axial sites or depleted scaffolds are retained.
+The current candidate support vectors are $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$ for Generations I, II, and III. The charged-lepton axial inventories are $(0,6)$ for the electron family and $(6,0)$ for its conjugate. Up-type and down-type quark rows use $(5,1)$ and $(2,4)$ respectively. These are exact combinatorial consequences of the declared candidate catalog, not evidence that the catalog's axial sites or depleted scaffolds are retained.
 
 This exposes two especially sharp selection problems:
 
-- the down-type $(2,4)$ inventory admits two distinct dyad partitions, so a
-  dynamical rule must select one physical family rather than silently predict
-  an extra down-like branch; and
-- neutrino `3+3` language is weak-exposure bookkeeping in the current owner,
-  not a literal six-site neutral axial inventory.
+- the down-type $(2,4)$ inventory admits two distinct dyad partitions, so a dynamical rule must select one physical family rather than silently predict an extra down-like branch; and
+- neutrino `3+3` language is weak-exposure bookkeeping in the current owner, not a literal six-site neutral axial inventory.
 
-Plainly: counts and axis partitions already eliminate many pictures, but they
-are a search chart, not a discovered particle. The dynamics still has to say
-which counted configurations exist and remain assembled.
+Plainly: counts and axis partitions already eliminate many pictures, but they are a search chart, not a discovered particle. The dynamics still has to say which counted configurations exist and remain assembled.
 
 ### Reaction As Geometry Surgery
 
-A particle geometry is constrained not only by how it persists but by how it
-can be assembled, transformed, and disassembled. Represent an event as a
-labeled graph transformation
+A particle geometry is constrained not only by how it persists but by how it can be assembled, transformed, and disassembled. Represent an event as a labeled graph transformation
 
 $$
 \mathscr S_{\mathsf e}:
@@ -2974,36 +1962,17 @@ $$
 \mathcal I(G_{\mathrm{out}})\sqcup\mathcal I_{\mathrm{rem}},
 $$
 
-with an explicit provenance-preserving bijection between the incoming pool and
-outgoing or remnant identities. In particular, observer-level energy or a
-field label cannot by itself become an electron--positron pair. A pair event
-must identify the incoming, sea-recruited, or previously associated architrino
-inventory that is reorganized into the two conjugate product basins and any
-remnant. Net charge cancellation without this identity map is insufficient.
+with an explicit provenance-preserving bijection between the incoming pool and outgoing or remnant identities. In particular, observer-level energy or a field label cannot by itself become an electron--positron pair. A pair event must identify the incoming, sea-recruited, or previously associated architrino inventory that is reorganized into the two conjugate product basins and any remnant. Net charge cancellation without this identity map is insufficient.
 
-The transformation also requires valid causal provenance for every used root
-and edge, complete action, energy,
-momentum, angular-momentum, wake, sea, recoil, remnant, and boundary ledgers,
-and certified product-basin membership for every claimed retained product.
+The transformation also requires valid causal provenance for every used root and edge, complete action, energy, momentum, angular-momentum, wake, sea, recoil, remnant, and boundary ledgers, and certified product-basin membership for every claimed retained product.
 
-The smallest useful candidate move set is association/dissociation, phase or
-shielding relock, exceptional-axis rerouting, active weak-triad routing,
-planar-mode release/capture, conjugate-pair capture, and continuing
-backreaction. These names classify transformations; they are not new primitive
-laws. Every move must be realized by ordinary Master-Equation evolution or a
-classified root, collision, fold, escape, capture, or reaction boundary.
+The smallest useful candidate move set is association/dissociation, phase or shielding relock, exceptional-axis rerouting, active weak-triad routing, planar-mode release/capture, conjugate-pair capture, and continuing backreaction. These names classify transformations; they are not new primitive laws. Every move must be realized by ordinary Master-Equation evolution or a classified root, collision, fold, escape, capture, or reaction boundary.
 
-Plainly: a proposed braid is more credible when the same geometry explains how
-it is made and how it decays. Reactions are therefore structural probes of the
-braid, not merely arrows between particle names.
+Plainly: a proposed braid is more credible when the same geometry explains how it is made and how it decays. Reactions are therefore structural probes of the braid, not merely arrows between particle names.
 
 ### Scattering Boundaries As Event-Geometry Clues
 
-Observer-level scattering amplitudes provide a compact map of which transient
-channels exist and how complete events join. They remain recovery targets; an
-amplitude, propagator, pole, or gauge connection is not a primitive substrate
-object. Their inverse value is that each genuine boundary feature places a
-specific burden on the native transition graph.
+Observer-level scattering amplitudes provide a compact map of which transient channels exist and how complete events join. They remain recovery targets; an amplitude, propagator, pole, or gauge connection is not a primitive substrate object. Their inverse value is that each genuine boundary feature places a specific burden on the native transition graph.
 
 Near an effective channel pole, the comparison amplitude factorizes as
 
@@ -3018,19 +1987,9 @@ $$
 \mathcal A_{\mathrm{reg}}.
 $$
 
-The native interpretation to be tested is not a literal virtual particle. It
-is a cut of one event history through an admissible intermediate basin or
-metastable corridor $B_h$: the left history reaches $B_h$, the intermediate
-record carries the required inventory and provenance, and the right history
-leaves it for the final products. The residue must be reconstructed from those
-two history families and the same intermediate-state measure. Inserting the
-pole into an effective fit without a corresponding native channel does not
-constrain braid geometry.
+The native interpretation to be tested is not a literal virtual particle. It is a cut of one event history through an admissible intermediate basin or metastable corridor $B_h$: the left history reaches $B_h$, the intermediate record carries the required inventory and provenance, and the right history leaves it for the final products. The residue must be reconstructed from those two history families and the same intermediate-state measure. Inserting the pole into an effective fit without a corresponding native channel does not constrain braid geometry.
 
-Plainly: a real scattering resonance says that the reaction can temporarily
-organize itself in a repeatable intermediate way. The location and width of
-the peak constrain that temporary geometry and its exit routes, not necessarily
-a permanently retained particle.
+Plainly: a real scattering resonance says that the reaction can temporarily organize itself in a repeatable intermediate way. The location and width of the peak constrain that temporary geometry and its exit routes, not necessarily a permanently retained particle.
 
 This gives five event-geometry tests:
 
@@ -3042,31 +2001,15 @@ This gives five event-geometry tests:
 | optical/total-channel closure | elastic loss and all inelastic product basins must share one source measure and one complete outgoing ledger | unitarity is not a primitive probability law for one architrino | apparent elastic agreement hides missing, duplicated, or unproven product channels |
 | absence of spurious singularities | chart boundaries and alternative corridor decompositions that do not represent physical basins must cancel in the observer projection | cancellation does not prove a unique positive geometry | a candidate path parameter produces an observer-visible pole with no physical intermediate basin |
 
-Amplitude zeros and strongly suppressed channels are equally useful. They can
-arise from symmetry, destructive phase relations among several admissible
-histories, missing exposure, or a disconnected transition graph. These
-mechanisms must not be collapsed. A geometry claim gains force when the same
-ordered paths that produce a neighboring allowed channel cancel or close for
-the null channel without changing the law.
+Amplitude zeros and strongly suppressed channels are equally useful. They can arise from symmetry, destructive phase relations among several admissible histories, missing exposure, or a disconnected transition graph. These mechanisms must not be collapsed. A geometry claim gains force when the same ordered paths that produce a neighboring allowed channel cancel or close for the null channel without changing the law.
 
-A further comparison target asks whether color exceptionality and kinematic
-causal-root numerators are two projections of one branch geometry. If three
-effective color rows obey an oriented cancellation while their corresponding
-kinematic rows require unrelated fitted numerators, the proposed common motif
-has failed. Conversely, algebraic cancellation alone does not establish the
-physical color modes; the intermediate histories, singlet closure, and
-confinement rows remain required.
+A further comparison target asks whether color exceptionality and kinematic causal-root numerators are two projections of one branch geometry. If three effective color rows obey an oriented cancellation while their corresponding kinematic rows require unrelated fitted numerators, the proposed common motif has failed. Conversely, algebraic cancellation alone does not establish the physical color modes; the intermediate histories, singlet closure, and confinement rows remain required.
 
-Plainly: scattering can expose the grammar of braid surgery. Real boundaries
-must correspond to real native routes, false chart boundaries must disappear,
-and several descriptions of the same intermediate event must agree on one
-provenance-bearing geometry.
+Plainly: scattering can expose the grammar of braid surgery. Real boundaries must correspond to real native routes, false chart boundaries must disappear, and several descriptions of the same intermediate event must agree on one provenance-bearing geometry.
 
 ### Pair Formation Constrains Precursor And Product Geometry
 
-Electron--positron formation is unusually discriminating because the same
-event must join photon or strong-background geometry to retained conjugate
-fermion geometry. At observer grade, the two-photon threshold depends on
+Electron--positron formation is unusually discriminating because the same event must join photon or strong-background geometry to retained conjugate fermion geometry. At observer grade, the two-photon threshold depends on
 
 $$
 s
@@ -3076,15 +2019,9 @@ s
 4m_e^2c_\gamma^4.
 $$
 
-The formation decision therefore cannot depend only on $E_1+E_2$ or a local
-scalar energy density. At fixed energies, collinear packets fail to open the
-channel while counterpropagating packets maximize the available invariant.
-The native event record must retain both propagation axes, relative angle,
-packet overlap, timing, and polarization/helicity histories until the product
-basins are selected.
+The formation decision therefore cannot depend only on $E_1+E_2$ or a local scalar energy density. At fixed energies, collinear packets fail to open the channel while counterpropagating packets maximize the available invariant. The native event record must retain both propagation axes, relative angle, packet overlap, timing, and polarization/helicity histories until the product basins are selected.
 
-Plainly: two energetic packets do not form a pair merely because they occupy
-the same region. Their directions and complete overlap history matter.
+Plainly: two energetic packets do not form a pair merely because they occupy the same region. Their directions and complete overlap history matter.
 
 The live effective cross-section owner also gives the near-threshold behavior
 
@@ -3101,11 +2038,7 @@ $$
 \sqrt{1-\frac{4m_e^2c_\gamma^4}{s}}.
 $$
 
-Thus the projected event measure opens continuously, approximately linearly in
-the outgoing product speed at threshold. This does not identify a native
-partial wave, barrier codimension, or basin volume: flux, phase space,
-capture measure, and detector projection may all contribute. It does reject a
-universal hard switch from zero to a fixed nonzero pair yield.
+Thus the projected event measure opens continuously, approximately linearly in the outgoing product speed at threshold. This does not identify a native partial wave, barrier codimension, or basin volume: flux, phase space, capture measure, and detector projection may all contribute. It does reject a universal hard switch from zero to a fixed nonzero pair yield.
 
 The minimum pair record is
 
@@ -3142,16 +2075,9 @@ $$
 \mathcal I_{\mathrm{rem}}.
 $$
 
-The two products must enter separately retained charge-conjugate basins, have
-opposite charge-facing exposure and conjugation-even mass-facing response,
-carry the required fermionic ordered-frame/exchange rows, and continue their
-motion, wakes, recoil, sea response, and backreaction after formation. The
-incoming photon records must terminate or change role explicitly. Count and
-net-charge closure without this identity and basin map is insufficient.
+The two products must enter separately retained charge-conjugate basins, have opposite charge-facing exposure and conjugation-even mass-facing response, carry the required fermionic ordered-frame/exchange rows, and continue their motion, wakes, recoil, sea response, and backreaction after formation. The incoming photon records must terminate or change role explicitly. Count and net-charge closure without this identity and basin map is insufficient.
 
-Plainly: pair production is a complete morphology reorganization, not a field
-label turning into two charges. The event must say where every architrino came
-from and demonstrate that both new assemblies actually persist.
+Plainly: pair production is a complete morphology reorganization, not a field label turning into two charges. The event must say where every architrino came from and demonstrate that both new assemblies actually persist.
 
 One event grammar must distinguish three precursor topologies:
 
@@ -3161,38 +2087,17 @@ One event grammar must distinguish three precursor topologies:
 | material-assisted one-photon route | one photon plus a momentum-balancing material/nuclear branch and its recoil/remnant history |
 | slowly varying strong-background route | continued source--sea history whose rare capture measure has the required exponential weak-tail behavior |
 
-The product basins may be common while the approach corridors differ. A
-photon-energy-only switch cannot recover the first two, and one universal hard
-threshold cannot recover both the kinematic two-photon onset and the
-strong-background tail.
+The product basins may be common while the approach corridors differ. A photon-energy-only switch cannot recover the first two, and one universal hard threshold cannot recover both the kinematic two-photon onset and the strong-background tail.
 
-At threshold, the incoming photons may carry nonzero angular and polarization
-records even as the product relative speed tends to zero. Their ledger must
-route into electron/positron ordered frames, relative product motion, recruited
-sea orientation, recoil/remnant response, and outgoing wakes. The corpus does
-not yet own polarization-resolved or differential near-threshold pair
-production, partial-wave/parity, or product-spin correlation rows, so the
-specific sharing remains an open geometry discriminator.
+At threshold, the incoming photons may carry nonzero angular and polarization records even as the product relative speed tends to zero. Their ledger must route into electron/positron ordered frames, relative product motion, recruited sea orientation, recoil/remnant response, and outgoing wakes. The corpus does not yet own polarization-resolved or differential near-threshold pair production, partial-wave/parity, or product-spin correlation rows, so the specific sharing remains an open geometry discriminator.
 
-A reverse $e^-e^+\to\gamma\gamma$ control must be a separately prepared
-physical event with the complete product motion, frames, sea, wakes, remnants,
-and boundaries required by the inverse identity map
-$\Pi_{\widetilde{\mathsf e}}=\Pi_{\mathsf e}^{-1}$. Negating two velocities or
-running a movie backward is not the reverse experiment, and the delayed Master
-Equation is not presumed time-reversal invariant. Standard crossing and
-detailed balance remain effective recovery targets.
+A reverse $e^-e^+\to\gamma\gamma$ control must be a separately prepared physical event with the complete product motion, frames, sea, wakes, remnants, and boundaries required by the inverse identity map $\Pi_{\widetilde{\mathsf e}}=\Pi_{\mathsf e}^{-1}$. Negating two velocities or running a movie backward is not the reverse experiment, and the delayed Master Equation is not presumed time-reversal invariant. Standard crossing and detailed balance remain effective recovery targets.
 
-Plainly: formation and annihilation should interrogate the same morphology
-grammar, but the reverse test must restore every physical record exported by
-the forward event. Missing wakes or sea changes cannot be called fundamental
-irreversibility.
+Plainly: formation and annihilation should interrogate the same morphology grammar, but the reverse test must restore every physical record exported by the forward event. Missing wakes or sea changes cannot be called fundamental irreversibility.
 
 ### Retained-Basin Transition Graph And Null Clues
 
-Conservation closes the ledger of a candidate event, but it does not establish
-that a dynamically admissible route connects the parent and product basins.
-Let $B_\alpha$ and $B_\beta$ denote certified retained basins and define the
-candidate history set
+Conservation closes the ledger of a candidate event, but it does not establish that a dynamically admissible route connects the parent and product basins. Let $B_\alpha$ and $B_\beta$ denote certified retained basins and define the candidate history set
 
 $$
 \mathcal P_{\alpha\to\beta}(\theta)
@@ -3204,10 +2109,7 @@ $$
 \right\}.
 $$
 
-Here $\mathcal L_{E\mathbf p\mathbf J}=0$ abbreviates the complete effective
-energy, momentum, and angular-momentum comparison ledger; it is not an imported
-architrino-level conservation law. A finite-window effective transition rate
-may then be compared through
+Here $\mathcal L_{E\mathbf p\mathbf J}=0$ abbreviates the complete effective energy, momentum, and angular-momentum comparison ledger; it is not an imported architrino-level conservation law. A finite-window effective transition rate may then be compared through
 
 $$
 \Gamma_{\alpha\to\beta}(\theta;T_W)
@@ -3217,15 +2119,9 @@ $$
 \left(\mathcal P_{\alpha\to\beta}\right),
 $$
 
-where $\mu_{\theta,T_W}$ is an explicitly declared measure over prepared native
-histories or an empirical frequency over repeated preparations. It is not a
-primitive probability postulate. The native derivation must say whether this
-measure comes from basin volume, phase coverage, source preparation, sea-state
-variation, or another reproducible ensemble construction.
+where $\mu_{\theta,T_W}$ is an explicitly declared measure over prepared native histories or an empirical frequency over repeated preparations. It is not a primitive probability postulate. The native derivation must say whether this measure comes from basin volume, phase coverage, source preparation, sea-state variation, or another reproducible ensemble construction.
 
-Plainly: a reaction can balance every account and still never occur because no
-actual trajectory reaches the products. Geometry must determine not only what
-is legal, but which routes exist and how broadly they are entered.
+Plainly: a reaction can balance every account and still never occur because no actual trajectory reaches the products. Geometry must determine not only what is legal, but which routes exist and how broadly they are entered.
 
 The same object separates four observer-level outcomes:
 
@@ -3243,15 +2139,9 @@ $$
 \end{aligned}
 $$
 
-A zero or small rate does not uniquely reveal its cause. Candidate mechanisms
-include disconnected basin components, a symmetry cancellation, vanishing
-sector exposure, a narrow source-preparation set, a barrier whose crossing
-measure is below the declared bound, or failure of a required product basin to
-exist. Each proposed particle architecture must name which mechanism supplies
-each important null rather than treating `forbidden` as a primitive label.
+A zero or small rate does not uniquely reveal its cause. Candidate mechanisms include disconnected basin components, a symmetry cancellation, vanishing sector exposure, a narrow source-preparation set, a barrier whose crossing measure is below the declared bound, or failure of a required product basin to exist. Each proposed particle architecture must name which mechanism supplies each important null rather than treating `forbidden` as a primitive label.
 
-Plainly: absence is a positive geometry clue only after the candidate says why
-the route is absent and the instrument could have seen it if present.
+Plainly: absence is a positive geometry clue only after the candidate says why the route is absent and the instrument could have seen it if present.
 
 | Effective clue | Weakest native geometry requirement | Fast rejection of a candidate |
 | --- | --- | --- |
@@ -3266,59 +2156,28 @@ the route is absent and the instrument could have seen it if present.
 | no free longitudinal photon | the free carrier quotient has rank-two transverse support and routes longitudinal disturbance into material, medium, or massive-vector basins | a third source-free asymptotic polarization survives |
 | strong flavor preservation versus weak flavor change | distinct corridor grammars act on the same retained morphology coordinates without changing the primitive law | `strong` and `weak` are merely assigned names with unrelated transition rules |
 
-Plainly: each row pairs an observed absence or sharp contrast with the smallest
-native distinction that could explain it. A candidate that cannot represent
-the distinction can be rejected before precision fitting.
+Plainly: each row pairs an observed absence or sharp contrast with the smallest native distinction that could explain it. A candidate that cannot represent the distinction can be rejected before precision fitting.
 
 Eight intersections are unusually discriminating:
 
-1. Free-color absence together with finite singlet hadrons requires an
-   open-versus-closed corridor coordinate whose basin behavior changes sharply
-   when the exceptional-axis traffic no longer terminates internally.
-2. Weak $CP$ response together with the neutron electric-dipole null requires
-   loop-sensitive transport holonomy to be geometrically distinct from a
-   static spin-aligned polarity moment.
-3. Pauli exclusion requires both spatial packing information and a non-gauge
-   ordered-frame history lift; neither a volume nor a sign by itself is enough.
-4. The photon null requires two exposed transverse coherent coordinates while
-   rejecting a third free channel without rejecting longitudinal material or
-   massive-vector response.
-5. Weak chirality cannot come from a uniformly smaller right-handed exposure.
-   If
+1. Free-color absence together with finite singlet hadrons requires an open-versus-closed corridor coordinate whose basin behavior changes sharply when the exceptional-axis traffic no longer terminates internally.
+2. Weak $CP$ response together with the neutron electric-dipole null requires loop-sensitive transport holonomy to be geometrically distinct from a static spin-aligned polarity moment.
+3. Pauli exclusion requires both spatial packing information and a non-gauge ordered-frame history lift; neither a volume nor a sign by itself is enough.
+4. The photon null requires two exposed transverse coherent coordinates while rejecting a third free channel without rejecting longitudinal material or massive-vector response.
+5. Weak chirality cannot come from a uniformly smaller right-handed exposure. If
 
    $$
    \eta_a^{(R)}=\zeta\eta_a^{(L)},
    $$
 
-   then normalization removes the common factor $\zeta$ and leaves the same
-   exposure measure. The suppression must instead arise from missing support,
-   orthogonality, destructive phase, or a separately derived unnormalized
-   gate.
-6. Weak flavor $CP$ response and the neutron electric-dipole null eliminate
-   one unrestricted universal $CP$-odd twist. A viable motif needs a strong-
-   sector quotient or cancellation identity that suppresses the static
-   spin-aligned electric moment while a different weak transport projection
-   retains conjugation-odd phase.
-7. Proton longevity, hadronization, and residual interactions eliminate both
-   extremes of a color graph. A graph that ruptures generically cannot protect
-   the proton; an absolutely rigid graph cannot reorganize into ordinary
-   hadronic products. The required coordinate is a stable closed sector with
-   controlled thresholded corridor opening.
-8. Any enlarged morphology used to explain generations, gauge structure, or
-   coupling regularities must also suppress its unused chiral modes, charge
-   classes, partners, and transport channels with the same branch parameters.
-   Adding a mode changes the inherited anomaly and null obligations; assigning
-   an unrelated large gap to every unwanted mode is not a geometry derivation.
+   then normalization removes the common factor $\zeta$ and leaves the same exposure measure. The suppression must instead arise from missing support, orthogonality, destructive phase, or a separately derived unnormalized gate.
+6. Weak flavor $CP$ response and the neutron electric-dipole null eliminate one unrestricted universal $CP$-odd twist. A viable motif needs a strong- sector quotient or cancellation identity that suppresses the static spin-aligned electric moment while a different weak transport projection retains conjugation-odd phase.
+7. Proton longevity, hadronization, and residual interactions eliminate both extremes of a color graph. A graph that ruptures generically cannot protect the proton; an absolutely rigid graph cannot reorganize into ordinary hadronic products. The required coordinate is a stable closed sector with controlled thresholded corridor opening.
+8. Any enlarged morphology used to explain generations, gauge structure, or coupling regularities must also suppress its unused chiral modes, charge classes, partners, and transport channels with the same branch parameters. Adding a mode changes the inherited anomaly and null obligations; assigning an unrelated large gap to every unwanted mode is not a geometry derivation.
 
-These intersections are candidate eliminators, not architecture selections.
-They should be applied to one common morphology record before detailed fitting
-of masses or couplings. A family that cannot even represent the required
-open/closed, transport/static, spatial/history, or transverse/longitudinal
-distinctions should be removed before expensive continuation.
+These intersections are candidate eliminators, not architecture selections. They should be applied to one common morphology record before detailed fitting of masses or couplings. A family that cannot even represent the required open/closed, transport/static, spatial/history, or transverse/longitudinal distinctions should be removed before expensive continuation.
 
-Plainly: the strongest constraints compare two nearly related situations that
-must behave differently. Those contrasts reveal hidden coordinates that a
-single successful equation cannot expose.
+Plainly: the strongest constraints compare two nearly related situations that must behave differently. Those contrasts reveal hidden coordinates that a single successful equation cannot expose.
 
 ### Formation, Lifetime, Width, And Coherence Are Different Clocks
 
@@ -3331,12 +2190,7 @@ Six time-bearing questions must remain separate:
 5. ensemble spread over preparations or unresolved states; and
 6. environmental or detector broadening of the observer readout.
 
-A measured lifetime is therefore not an internal period, a linewidth is not
-automatically a decay rate, and neutrino oscillation is not repeated
-destruction and recreation. A state also cannot decay as an identified parent
-before its formation predicate has been met. For a declared parent basin $A$,
-finite-history evolution $\Phi_T$, prepared finite measure $\mu_0$, identity
-and ledger predicate $Q_A$, and hold window $\Delta_{\mathrm{hold}}$, define
+A measured lifetime is therefore not an internal period, a linewidth is not automatically a decay rate, and neutrino oscillation is not repeated destruction and recreation. A state also cannot decay as an identified parent before its formation predicate has been met. For a declared parent basin $A$, finite-history evolution $\Phi_T$, prepared finite measure $\mu_0$, identity and ledger predicate $Q_A$, and hold window $\Delta_{\mathrm{hold}}$, define
 
 $$
 T_{\mathrm{form}}(z)
@@ -3349,8 +2203,7 @@ Q_A[\Phi_{[t,t+\Delta_{\mathrm{hold}}]}(z)]=1
 \right\}.
 $$
 
-On the formed subset $F_A=\{z:T_{\mathrm{form}}(z)<\infty\}$, the first-exit
-time measured from completed formation is
+On the formed subset $F_A=\{z:T_{\mathrm{form}}(z)<\infty\}$, the first-exit time measured from completed formation is
 
 $$
 T_{\mathrm{exit}}(z)
@@ -3395,13 +2248,9 @@ $$
 -\frac{d}{dT}\log S_A(T).
 $$
 
-Neither constant $\lambda_A$ nor exponential $S_A$ is assumed. Exponential
-decay is recovered only when the pushforward of prepared native histories has
-an approximately constant hazard on a declared interval.
+Neither constant $\lambda_A$ nor exponential $S_A$ is assumed. Exponential decay is recovered only when the pushforward of prepared native histories has an approximately constant hazard on a declared interval.
 
-Plainly: first determine which preparations actually finish forming the
-parent. Then start their lifetime clocks, count which remain, and inspect the
-survival curve. Do not assign a decay clock to an unfinished reaction corridor.
+Plainly: first determine which preparations actually finish forming the parent. Then start their lifetime clocks, count which remain, and inspect the survival curve. Do not assign a decay clock to an unfinished reaction corridor.
 
 For classified first-exit corridors $C_k$, retain the pre-detector measures
 
@@ -3417,13 +2266,9 @@ z\in F_A:T_{\mathrm{exit}}(z)\in[T_1,T_2],
 \right).
 $$
 
-Branching fractions are normalized corridor measures only when the boundary
-partition is complete on the declared parent basin. A candidate that reproduces
-only the total exit rate but cannot route the observed daughter identities is
-not a decay geometry.
+Branching fractions are normalized corridor measures only when the boundary partition is complete on the declared parent basin. A candidate that reproduces only the total exit rate but cannot route the observed daughter identities is not a decay geometry.
 
-Coherence needs a different row. For two resolved native phase contributions,
-one candidate diagnostic is
+Coherence needs a different row. For two resolved native phase contributions, one candidate diagnostic is
 
 $$
 C_{ab}(T)
@@ -3434,17 +2279,11 @@ e^{-i[\theta_a(0)-\theta_b(0)]}
 \right\rangle.
 $$
 
-The phase-rate gap is read from $\arg C_{ab}$ and coherence from $|C_{ab}|$.
-A falling magnitude may come from native phase dispersion, environmental
-coupling, packet separation, unresolved source bandwidth, or detector
-averaging. It is not automatically parent decay.
+The phase-rate gap is read from $\arg C_{ab}$ and coherence from $|C_{ab}|$. A falling magnitude may come from native phase dispersion, environmental coupling, packet separation, unresolved source bandwidth, or detector averaging. It is not automatically parent decay.
 
-Plainly: recurrence asks whether one geometry returns; survival asks whether it
-remains in a basin; coherence asks whether two phases remain predictably
-related. They can have entirely different timescales.
+Plainly: recurrence asks whether one geometry returns; survival asks whether it remains in a basin; coherence asks whether two phases remain predictably related. They can have entirely different timescales.
 
-Observed spectra require a separate source--environment--detector pushforward,
-schematically
+Observed spectra require a separate source--environment--detector pushforward, schematically
 
 $$
 P_{\mathrm{obs}}(\nu)
@@ -3455,9 +2294,7 @@ P_{\mathrm{native}}(\nu'\mid\eta)
 \,d\nu'\,d\rho(\eta),
 $$
 
-where $\eta$ declares source motion, collisions, pressure, applied effective
-fields, material state, and other environmental variables. This conditional
-map is a recovery scaffold, not an assumed universal convolution law.
+where $\eta$ declares source motion, collisions, pressure, applied effective fields, material state, and other environmental variables. This conditional map is a recovery scaffold, not an assumed universal convolution law.
 
 | Comparison | Geometry requirement | Candidate family eliminated |
 | --- | --- | --- |
@@ -3469,12 +2306,9 @@ map is a recovery scaffold, not an assumed universal convolution law.
 | $W/Z$ versus Higgs-like peak widths | short-lived vector transaction corridors and a candidate local scalar collective mode need separate formation predicates, line-shape conventions, and detector projections | treating every fitted peak width as the lifetime of the same kind of persistent object |
 | proton stability versus unstable hadronic resonances | composite topology, phase, and exposure distinguish a closed proton basin from open resonance corridors despite shared color-singlet bookkeeping | classification by constituent inventory, total mass, or singlet label alone |
 
-Plainly: equal-looking times or widths can arise from formation, survival,
-phase loss, corridor rupture, or detector broadening. The paired rows say which
-clock and identity record must be compared before inferring geometry.
+Plainly: equal-looking times or widths can arise from formation, survival, phase loss, corridor rupture, or detector broadening. The paired rows say which clock and identity record must be compared before inferring geometry.
 
-For the top-versus-hadronization comparison, first place the top exit on the
-same absolute event clock,
+For the top-versus-hadronization comparison, first place the top exit on the same absolute event clock,
 
 $$
 t_{\mathrm{exit}}^{(t),\mathrm{abs}}
@@ -3492,15 +2326,9 @@ t_{\mathrm{exit}}^{(t),\mathrm{abs}}
 T_{\mathrm{form}}^{(\mathrm{color\ singlet})}.
 $$
 
-The effective top-before-hadronization target has
-$\Delta T_{t/\mathrm{had}}<0$ on one production history. Passing it would
-classify the top-like row as an exposed short-lived parent or transaction
-antecedent rather than a constituent of a completed top hadron. The live corpus
-does not yet own this comparison, so the classification remains open.
+The effective top-before-hadronization target has $\Delta T_{t/\mathrm{had}}<0$ on one production history. Passing it would classify the top-like row as an exposed short-lived parent or transaction antecedent rather than a constituent of a completed top hadron. The live corpus does not yet own this comparison, so the classification remains open.
 
-Plainly: the question is not merely how long the top lasts. It is whether the
-event ever finishes building a color-neutral hadron around it before the
-top-like parent changes into other products.
+Plainly: the question is not merely how long the top lasts. It is whether the event ever finishes building a color-neutral hadron around it before the top-like parent changes into other products.
 
 Every lifetime or line claim should therefore bind one packet
 
@@ -3518,23 +2346,13 @@ K_{\mathrm{det}},
 \right).
 $$
 
-The packet fails if formation, parent identity, recurrence, exits, phases,
-environment, detector response, or product ledgers come from independently
-tuned carriers.
-The Higgs width is presently a weaker direct lifetime clue because its
-extraction is fit-dependent; its stronger constraints are scalar response,
-production and branching patterns, and the absence of extra strength in
-excluded windows.
+The packet fails if formation, parent identity, recurrence, exits, phases, environment, detector response, or product ledgers come from independently tuned carriers. The Higgs width is presently a weaker direct lifetime clue because its extraction is fit-dependent; its stronger constraints are scalar response, production and branching patterns, and the absence of extra strength in excluded windows.
 
-Plainly: one record must explain what persisted, what escaped, where it went,
-what remained coherent, and what the apparatus changed. A single number called
-`width` cannot carry all of those meanings.
+Plainly: one record must explain what persisted, what escaped, where it went, what remained coherent, and what the apparatus changed. A single number called `width` cannot carry all of those meanings.
 
 ### Native Topology Is More Than A Visual Knot
 
-The most immediately native topological coordinates are carried by the causal
-history, not by the visual appearance of a prescribed path. For a retained
-branch with an admissible phase-return chart, the current candidate labels are
+The most immediately native topological coordinates are carried by the causal history, not by the visual appearance of a prescribed path. For a retained branch with an admissible phase-return chart, the current candidate labels are
 
 $$
 [\mathfrak B]_{\mathrm{top}}
@@ -3552,15 +2370,9 @@ D_{\mathrm{self}},D_p,c_1
 \right),
 $$
 
-where $N_s$ and $M_p$ count active self-hit and partner-hit roots,
-$D_{\mathrm{self}}$ and $D_p$ are their signed degrees, and
-$c_1=(m,n)\in\mathbb Z^2$ is phase-return degree data for a conditioned
-rank-three chart. The symbol $c_1$ here is not automatically a first Chern
-class; it is a return-map degree pair unless a later two-torus curvature chart
-is actually supplied.
+where $N_s$ and $M_p$ count active self-hit and partner-hit roots, $D_{\mathrm{self}}$ and $D_p$ are their signed degrees, and $c_1=(m,n)\in\mathbb Z^2$ is phase-return degree data for a conditioned rank-three chart. The symbol $c_1$ here is not automatically a first Chern class; it is a return-map degree pair unless a later two-torus curvature chart is actually supplied.
 
-At a generic fold, unsigned root count can change by an opposite-sign pair
-while signed degree remains fixed:
+At a generic fold, unsigned root count can change by an opposite-sign pair while signed degree remains fixed:
 
 $$
 (\Delta N_s,\Delta M_p)
@@ -3573,13 +2385,7 @@ $$
 =0.
 $$
 
-This makes the degree-refined causal-root topology a stronger deformation
-clue than a drawing's crossing count. Phase degree is separately admissible
-only while the return chart remains locked and the plane-conditioning floor is
-positive. A framing/chirality row may add
-$\chi_{\mathrm{fr}}\in\mathbb Z_2$ only when the same branch supplies a
-closed framed ribbon with positive centerline/offset separation and a positive
-framing floor, for which
+This makes the degree-refined causal-root topology a stronger deformation clue than a drawing's crossing count. Phase degree is separately admissible only while the return chart remains locked and the plane-conditioning floor is positive. A framing/chirality row may add $\chi_{\mathrm{fr}}\in\mathbb Z_2$ only when the same branch supplies a closed framed ribbon with positive centerline/offset separation and a positive framing floor, for which
 
 $$
 Lk=\operatorname{Wr}+\operatorname{Tw}
@@ -3587,23 +2393,14 @@ $$
 
 Several no-go rules follow:
 
-- a drawn knot or link is not protected unless ordinary dynamics cannot pass
-  through the apparent crossing without meeting a certified collision,
-  exclusion, framing, fold, or branch barrier;
-- point-worldline paths do not acquire tube-like impenetrability merely from
-  being drawn with thickness;
-- writhe, twist, linking, ordered-frame chirality, circulation, and spinor
-  parity are distinct rows;
-- the A/B/C taxonomy specifies search charts, not topological sectors or
-  retained particle identities;
-- a frequency ratio does not supply the phase-degree pair until the return map
-  exhibits the corresponding winding; and
-- planarity versus volume is an important morphology coordinate but does not
-  determine Bose/Fermi statistics without an exchange-history calculation.
+- a drawn knot or link is not protected unless ordinary dynamics cannot pass through the apparent crossing without meeting a certified collision, exclusion, framing, fold, or branch barrier;
+- point-worldline paths do not acquire tube-like impenetrability merely from being drawn with thickness;
+- writhe, twist, linking, ordered-frame chirality, circulation, and spinor parity are distinct rows;
+- the A/B/C taxonomy specifies search charts, not topological sectors or retained particle identities;
+- a frequency ratio does not supply the phase-degree pair until the return map exhibits the corresponding winding; and
+- planarity versus volume is an important morphology coordinate but does not determine Bose/Fermi statistics without an exchange-history calculation.
 
-Plainly: the strongest topology clue may be which causal roots and phase
-windings survive deformation, not whether a static picture resembles a familiar
-knot. The solver must discover the protected structure before we name it.
+Plainly: the strongest topology clue may be which causal roots and phase windings survive deformation, not whether a static picture resembles a familiar knot. The solver must discover the protected structure before we name it.
 
 #### Causal Topology And Spatial Topology Are Independent
 
@@ -3617,10 +2414,7 @@ N_s,M_p,D_{\mathrm{self}},D_p,m,n
 \right)
 $$
 
-collect the present causal-root and phase-return rows, and let
-$\mathcal K_{\mathrm{spatial}}$ collect component knot types, pairwise linking,
-and valid framing data. Candidate unlink, square-knot, Hopf, Whitehead, and
-Borromean controls are intended to test both non-implications:
+collect the present causal-root and phase-return rows, and let $\mathcal K_{\mathrm{spatial}}$ collect component knot types, pairwise linking, and valid framing data. Candidate unlink, square-knot, Hopf, Whitehead, and Borromean controls are intended to test both non-implications:
 
 $$
 \mathcal Q_{\mathrm{causal}}(H_1)
@@ -3642,37 +2436,21 @@ $$
 \mathcal Q_{\mathrm{causal}}(H_2).
 $$
 
-The proposed first comparison asks whether an unlink and a square-knot
-insertion can share the present scalar causal rows. The second holds spatial
-curves fixed while changing cadence, which can change velocities, causal roots,
-and $D_t$. Until computed records establish both cases, these are testable
-non-implication targets rather than current counterexamples. Neither a causal
-label nor a static shape is sufficient by definition as a complete classifier
-of the delayed dynamics.
+The proposed first comparison asks whether an unlink and a square-knot insertion can share the present scalar causal rows. The second holds spatial curves fixed while changing cadence, which can change velocities, causal roots, and $D_t$. Until computed records establish both cases, these are testable non-implication targets rather than current counterexamples. Neither a causal label nor a static shape is sufficient by definition as a complete classifier of the delayed dynamics.
 
-Plainly: two histories can look different but have the same present root
-counts, or look identical while their timing gives different causal
-intersections. The architecture must preserve both kinds of information.
+Plainly: two histories can look different but have the same present root counts, or look identical while their timing gives different causal intersections. The architecture must preserve both kinds of information.
 
-The A/B/C families require an especially strict component check before spatial
-link language is used:
+The A/B/C families require an especially strict component check before spatial link language is used:
 
-- in A1.2, both members of each binary traverse the same support circle, and
-  equal-radius circles in mutually orthogonal planes intersect;
-- in equal-radius equatorial B1 or decomposed C rows, phase-shifted components
-  can occupy coincident unparameterized circles; and
-- a translating helix is open until a closure modulo translation or another
-  declared return symmetry is certified.
+- in A1.2, both members of each binary traverse the same support circle, and equal-radius circles in mutually orthogonal planes intersect;
+- in equal-radius equatorial B1 or decomposed C rows, phase-shifted components can occupy coincident unparameterized circles; and
+- a translating helix is open until a closure modulo translation or another declared return symmetry is certified.
 
-Phase separation can prevent simultaneous point collision, but it does not
-make overlapping traced supports into disjoint link components. Ordinary
-component-knot and Gauss-linking invariants must abstain on such rows unless a
-different carrier, closure, or world-tube object is explicitly defined.
+Phase separation can prevent simultaneous point collision, but it does not make overlapping traced supports into disjoint link components. Ordinary component-knot and Gauss-linking invariants must abstain on such rows unless a different carrier, closure, or world-tube object is explicitly defined.
 
 #### Protection Has Three Independent Meanings
 
-A repeated or apparently durable candidate may carry none, one, or several of
-these protections:
+A repeated or apparently durable candidate may carry none, one, or several of these protections:
 
 | Protection | Native requirement | Failure wall |
 | --- | --- | --- |
@@ -3681,19 +2459,13 @@ these protections:
 | action/energy barrier protection | every admissible exit history crosses a positive native action or derived effective-energy saddle | a lower or barrier-free outgoing corridor is found |
 | kinematic recurrence only | a prescribed path repeats by construction | ordinary EOM evolution is not implicated |
 
-No retained Standard Model assembly currently possesses all three protections
-on one record. Topology cannot substitute for a basin, a basin cannot substitute
-for an exit barrier, and a repeated animation proves none of them.
+No retained Standard Model assembly currently possesses all three protections on one record. Topology cannot substitute for a basin, a basin cannot substitute for an exit barrier, and a repeated animation proves none of them.
 
-Plainly: a knot can be hard to untie but dynamically unstable; an attractor can
-be stable without being knotted; and a repeated drawing can be neither.
+Plainly: a knot can be hard to untie but dynamically unstable; an attractor can be stable without being knotted; and a repeated drawing can be neither.
 
 #### Support Dimension Needs Its Own Measurement
 
-$D_{\mathrm{plane}}$ measures the rank and orientation of an ordered set of
-internal plane normals. It does not by itself measure the dimension of the
-swept spatial support or of a wake-exclusion envelope. A finite-history
-geometric diagnostic is
+$D_{\mathrm{plane}}$ measures the rank and orientation of an ordered set of internal plane normals. It does not by itself measure the dimension of the swept spatial support or of a wake-exclusion envelope. A finite-history geometric diagnostic is
 
 $$
 C_W
@@ -3711,14 +2483,9 @@ p_W
 \frac{\lambda_{\min}(C_W)}{\operatorname{tr}C_W}.
 $$
 
-Require $w_a(T)\ge0$, positive weight on every included history component, and
-$\operatorname{tr}C_W>0$. With exact closure, centering, and interval control,
-$p_W=0$ can then certify common affine planarity of the weighted support on the
-declared window. Positive $p_W$ establishes three-axis spread, not that
-one-dimensional worldlines fill a volume or create an impenetrable envelope.
+Require $w_a(T)\ge0$, positive weight on every included history component, and $\operatorname{tr}C_W>0$. With exact closure, centering, and interval control, $p_W=0$ can then certify common affine planarity of the weighted support on the declared window. Positive $p_W$ establishes three-axis spread, not that one-dimensional worldlines fill a volume or create an impenetrable envelope.
 
-For genuinely disjoint, closed evolved components, pairwise linking is in
-principle recoverable from the same cubic histories through
+For genuinely disjoint, closed evolved components, pairwise linking is in principle recoverable from the same cubic histories through
 
 $$
 \operatorname{lk}(K_i,K_j)
@@ -3733,42 +2500,28 @@ $$
 }.
 $$
 
-An accepted calculation must enclose one integer uniquely while the separation
-floor stays positive. Whitehead and Borromean controls are still needed because
-pairwise linking alone is incomplete. The current EOM history representation
-can support this calculation, but no accepted returned, separated, framed
-Standard Model candidate yet supplies a valid input record.
+An accepted calculation must enclose one integer uniquely while the separation floor stays positive. Whitehead and Borromean controls are still needed because pairwise linking alone is incomplete. The current EOM history representation can support this calculation, but no accepted returned, separated, framed Standard Model candidate yet supplies a valid input record.
 
-Plainly: the mathematics for linking is available, but the theory has not yet
-produced an evolved geometry on which the calculation is entitled to speak.
+Plainly: the mathematics for linking is available, but the theory has not yet produced an evolved geometry on which the calculation is entitled to speak.
 
 ### Present Geometry Exclusions
 
 The combined corpus scan supports several hard negative statements:
 
-- no Standard Model particle currently has a certified retained braid
-  topology;
+- no Standard Model particle currently has a certified retained braid topology;
 - prescribed A/B/C paths are configuration charts, not retained solutions;
-- no retained photon lock exists, so near-photon neutrino residuals remain
-  referent-pending;
+- no retained photon lock exists, so near-photon neutrino residuals remain referent-pending;
 - support dimension alone does not determine Bose or Fermi statistics;
 - paired counter-rotation alone does not establish a photon;
-- an axis, nonzero circulation, or nonzero frame determinant alone does not
-  establish spinor closure;
-- a color corridor, flux tube, or closed occupancy graph alone does not prove
-  confinement or topological protection; and
-- a lifetime, linewidth, or oscillation probability alone does not identify a
-  mechanical orbit, breathing mode, torsion, or precession.
+- an axis, nonzero circulation, or nonzero frame determinant alone does not establish spinor closure;
+- a color corridor, flux tube, or closed occupancy graph alone does not prove confinement or topological protection; and
+- a lifetime, linewidth, or oscillation probability alone does not identify a mechanical orbit, breathing mode, torsion, or precession.
 
-Plainly: these exclusions are progress. They prevent the search from promoting
-static resemblance or one successful projection into a particle architecture.
+Plainly: these exclusions are progress. They prevent the search from promoting static resemblance or one successful projection into a particle architecture.
 
 ### Bounded Candidate Morphology Families
 
-The present constraints support a bounded comparison among six broad families.
-They are coordinate families for search and falsification, not new taxonomy
-members and not an assertion that every Standard Model row must be a distinct
-family.
+The present constraints support a bounded comparison among six broad families. They are coordinate families for search and falsification, not new taxonomy members and not an assertion that every Standard Model row must be a distinct family.
 
 | Candidate family | Natural consumers | Required native rows | Fastest rejection |
 | --- | --- | --- | --- |
@@ -3779,32 +2532,17 @@ family.
 | Confined composite/corridor network | mesons, baryons, gluon/color response, residual strong structures | multiple retained constituents, closed color graph, exceptional-axis routing, internal corridor strain, form factor, and classified exits | open long-range color row, no singlet closure, or observed spatial response incompatible with every allowed corridor graph |
 | Metastable transaction/escape corridor | $W/Z$-like weak events, resonances, decays, pair capture | localized source-to-product routing, finite survival/exit record, complete inventory and recoil provenance, bounded sea participation | the event requires a permanent unledgered inventory, lacks product basins, or its width survives with no formed carrier/corridor and classified rupture or exit measure |
 
-Plainly: these are six search spaces with different fastest failure tests. They
-do not declare six new substrate species or assign any Standard Model particle
-to a geometry before ordinary evolution supplies the required record.
+Plainly: these are six search spaces with different fastest failure tests. They do not declare six new substrate species or assign any Standard Model particle to a geometry before ordinary evolution supplies the required record.
 
-The families are connected by candidate geometry-surgery edges. A framed
-matter branch may release or capture a transverse packet; several framed
-branches may close a composite corridor network; a weak or strong corridor may
-reconfigure one network into another; and a sufficiently strong packet/sea
-history may repartition certified inventory into a conjugate pair. These edges
-must be derived event histories, not visual morphs between drawings.
+The families are connected by candidate geometry-surgery edges. A framed matter branch may release or capture a transverse packet; several framed branches may close a composite corridor network; a weak or strong corridor may reconfigure one network into another; and a sufficiently strong packet/sea history may repartition certified inventory into a conjugate pair. These edges must be derived event histories, not visual morphs between drawings.
 
-No current evidence requires one universal morphology. A more economical
-working hypothesis is that a small set of retained, propagating, collective,
-and transactional morphologies supplies the observer particle table through
-different projections and event roles.
+No current evidence requires one universal morphology. A more economical working hypothesis is that a small set of retained, propagating, collective, and transactional morphologies supplies the observer particle table through different projections and event roles.
 
-Plainly: search six disciplined families rather than one all-purpose knot.
-The important unification may lie in their common Master Equation and reaction
-grammar, not in forcing every effective particle to have the same shape.
+Plainly: search six disciplined families rather than one all-purpose knot. The important unification may lie in their common Master Equation and reaction grammar, not in forcing every effective particle to have the same shape.
 
 ### Constraint-Derived Fermion Search Blueprint
 
-The intersection of the current fermion constraints supports one more concrete
-search family without selecting a particle geometry: a **framed triadic
-counterflow network with independent lock and permutation coordinates**. The
-name describes required functions, not a literal parts list.
+The intersection of the current fermion constraints supports one more concrete search family without selecting a particle geometry: a **framed triadic counterflow network with independent lock and permutation coordinates**. The name describes required functions, not a literal parts list.
 
 Its minimum resolved record is
 
@@ -3828,42 +2566,20 @@ $$
 
 The rows are:
 
-- $\mathcal G_{\mathrm{root}}$: a connected, positive-margin causal-root graph
-  with at least one history cycle when a holonomy claim consumes it;
-- $\mathcal F_{\mathrm{body}}$: a nondegenerate body-carried frame derived from
-  paths, velocities, roots, or their covariant combination;
-- $\mathcal H_{\mathrm{lift}}$: a quotient-surviving history lift capable of
-  distinguishing visible $2\pi$ return from full $4\pi$ restoration;
-- $\mathcal C_{\mathrm{cf}}$: two or more signed counterflow/circulation
-  contributions capable of separating net charge, current moment, and scalar
-  response;
-- $\mathcal P_3$: three dynamically equivalent body-fixed ports or response
-  directions on which an internal color action can operate without becoming a
-  laboratory axis;
-- $\mathcal L_{\mathrm{gen}}$: a lock, basin, mode, topology, or support-tier
-  coordinate independent of $\mathcal P_3$ and selected into exactly three
-  robust generation classes;
-- $\mathcal E_Q$ and $\mathcal E_W$: charge-index/spatial-exposure and
-  weak-posture projections, with weak posture independent of observer
-  helicity;
-- $\pi_{\mathrm{id}}$: the identity-return permutation needed to distinguish
-  observer shape recurrence from full history recurrence;
-- $\Gamma_{\mathrm{assoc}}$: ports for charge-changing, weak, color-closing,
-  packet-emission, and composite-association events; and
-- $\mathcal N_{\mathrm{sea}}$: near/environment/far sea histories retained
-  until their scalar, polar, axial, and trace-free contributions are derived or
-  nulled.
+- $\mathcal G_{\mathrm{root}}$: a connected, positive-margin causal-root graph with at least one history cycle when a holonomy claim consumes it;
+- $\mathcal F_{\mathrm{body}}$: a nondegenerate body-carried frame derived from paths, velocities, roots, or their covariant combination;
+- $\mathcal H_{\mathrm{lift}}$: a quotient-surviving history lift capable of distinguishing visible $2\pi$ return from full $4\pi$ restoration;
+- $\mathcal C_{\mathrm{cf}}$: two or more signed counterflow/circulation contributions capable of separating net charge, current moment, and scalar response;
+- $\mathcal P_3$: three dynamically equivalent body-fixed ports or response directions on which an internal color action can operate without becoming a laboratory axis;
+- $\mathcal L_{\mathrm{gen}}$: a lock, basin, mode, topology, or support-tier coordinate independent of $\mathcal P_3$ and selected into exactly three robust generation classes;
+- $\mathcal E_Q$ and $\mathcal E_W$: charge-index/spatial-exposure and weak-posture projections, with weak posture independent of observer helicity;
+- $\pi_{\mathrm{id}}$: the identity-return permutation needed to distinguish observer shape recurrence from full history recurrence;
+- $\Gamma_{\mathrm{assoc}}$: ports for charge-changing, weak, color-closing, packet-emission, and composite-association events; and
+- $\mathcal N_{\mathrm{sea}}$: near/environment/far sea histories retained until their scalar, polar, axial, and trace-free contributions are derived or nulled.
 
-Plainly: the candidate is a three-dimensional moving network with internal
-counterflow, a carried frame, and event ports. One coordinate handles
-generation, another handles color-like three-way equivalence, and neither is
-allowed to double as charge, chirality, or spinor parity.
+Plainly: the candidate is a three-dimensional moving network with internal counterflow, a carried frame, and event ports. One coordinate handles generation, another handles color-like three-way equivalence, and neither is allowed to double as charge, chirality, or spinor parity.
 
-No row fixes a constituent count. One trajectory with a lawful derived frame
-could contribute several rows; many architrinos could collectively realize one
-row. The blueprint constrains measurable rank, transformation, recurrence, and
-ledger structure rather than prescribing six sites, three loops, or a
-particular knot.
+No row fixes a constituent count. One trajectory with a lawful derived frame could contribute several rows; many architrinos could collectively realize one row. The blueprint constrains measurable rank, transformation, recurrence, and ledger structure rather than prescribing six sites, three loops, or a particular knot.
 
 The structural motivation is an intersection, not a visual preference:
 
@@ -3881,51 +2597,26 @@ The structural motivation is an intersection, not a visual preference:
 
 Three morphology variants implement the same functional record:
 
-1. **Framed counterflow cage.** Several bounded trajectories form a volumetric
-   frame; paired or distributed counterflows cancel selected scalar/polar rows
-   while retaining an axial current moment.
-2. **Nested framed cycle network.** Radially or hierarchically coupled cycles
-   supply shielding/lock coordinates, while a separate internal port triad
-   carries color-facing action.
-3. **Permutation-return network.** Identities move among equivalent body ports
-   so visible geometry may return before the full identity/frame history,
-   creating a possible route to spinor lift and dynamic isotropization without
-   one permanent literal orbit per label.
+1. **Framed counterflow cage.** Several bounded trajectories form a volumetric frame; paired or distributed counterflows cancel selected scalar/polar rows while retaining an axial current moment.
+2. **Nested framed cycle network.** Radially or hierarchically coupled cycles supply shielding/lock coordinates, while a separate internal port triad carries color-facing action.
+3. **Permutation-return network.** Identities move among equivalent body ports so visible geometry may return before the full identity/frame history, creating a possible route to spinor lift and dynamic isotropization without one permanent literal orbit per label.
 
-The variants may hybridize. The retained-core search should vary the minimum
-path realization of each row rather than assign particle names first.
+The variants may hybridize. The retained-core search should vary the minimum path realization of each row rather than assign particle names first.
 
 #### Fastest Blueprint Rejection Sequence
 
-1. **Frame and port independence:** rotate the complete history and apply every
-   internal port permutation. Reject if color-facing changes leak into scalar
-   mass, electric charge, or laboratory orientation.
-2. **Counterflow rank:** reverse each circulation contribution independently.
-   Reject if net charge, moment, scalar response, and weak posture cannot vary
-   with their required independent parities.
-3. **History lift:** transport the evolved branch through autonomous
-   orientation loops. Reject an ordinary $2\pi$ complete return or a failed
-   $4\pi$ restoration.
-4. **Generation exhaustion:** continue the lock coordinate throughout its
-   admissible domain. Reject a continuum, an accepted fourth class, or three
-   classes created only by sample choice.
-5. **Observer/helicity control:** reproject one physical massive history into
-   observer charts with opposite helicity labels. Reject if weak posture changes.
-6. **Retention and mode spectrum:** require a positive-width retained or
-   metastable basin before linearization. Reject a prescribed path, unbalanced
-   reference state, or unexplained unstable mode.
-7. **Event ports:** execute one spectator-preserving allowed transition and one
-   nearby null. Reject label-only surgery, missing product basins, or incomplete
-   identity and recoil provenance.
-8. **Sea disposition:** compare direct-only, frozen-sea, and responsive-sea
-   histories. Reject any claimed cancellation or moment anomaly that exists
-   only because an authored sea response was inserted.
+1. **Frame and port independence:** rotate the complete history and apply every internal port permutation. Reject if color-facing changes leak into scalar mass, electric charge, or laboratory orientation.
+2. **Counterflow rank:** reverse each circulation contribution independently. Reject if net charge, moment, scalar response, and weak posture cannot vary with their required independent parities.
+3. **History lift:** transport the evolved branch through autonomous orientation loops. Reject an ordinary $2\pi$ complete return or a failed $4\pi$ restoration.
+4. **Generation exhaustion:** continue the lock coordinate throughout its admissible domain. Reject a continuum, an accepted fourth class, or three classes created only by sample choice.
+5. **Observer/helicity control:** reproject one physical massive history into observer charts with opposite helicity labels. Reject if weak posture changes.
+6. **Retention and mode spectrum:** require a positive-width retained or metastable basin before linearization. Reject a prescribed path, unbalanced reference state, or unexplained unstable mode.
+7. **Event ports:** execute one spectator-preserving allowed transition and one nearby null. Reject label-only surgery, missing product basins, or incomplete identity and recoil provenance.
+8. **Sea disposition:** compare direct-only, frozen-sea, and responsive-sea histories. Reject any claimed cancellation or moment anomaly that exists only because an authored sea response was inserted.
 
-This sequence is deliberately pre-precision. It can eliminate the blueprint
-without fitting masses, couplings, line strengths, or lifetimes.
+This sequence is deliberately pre-precision. It can eliminate the blueprint without fitting masses, couplings, line strengths, or lifetimes.
 
-The blueprint's strongest positive signature would be one retained branch that
-simultaneously shows:
+The blueprint's strongest positive signature would be one retained branch that simultaneously shows:
 
 $$
 \left(
@@ -3938,26 +2629,13 @@ $$
 \right)
 $$
 
-with a stable charge index, independently reversible weak posture and
-counterflow, and no extra accepted lock class. Even that signature would only
-advance a reusable fermion-core candidate; particle identity would still
-require sector projections, reactions, and independent comparison.
+with a stable charge index, independently reversible weak posture and counterflow, and no extra accepted lock class. Even that signature would only advance a reusable fermion-core candidate; particle identity would still require sector projections, reactions, and independent comparison.
 
-Claim grade: the listed functional rows are inferred from the accumulated
-deduced constraints; their conjunction is a candidate synthesis, not a theorem
-that one morphology must contain them as separate parts. The three variants
-are guessed search families. Falsifier: every finite realization of the
-functional record is inconsistent with ordinary Master Equation evolution, or
-a simpler retained family lacking one listed row recovers the same full
-constraint bundle without a hidden equivalent coordinate.
+Claim grade: the listed functional rows are inferred from the accumulated deduced constraints; their conjunction is a candidate synthesis, not a theorem that one morphology must contain them as separate parts. The three variants are guessed search families. Falsifier: every finite realization of the functional record is inconsistent with ordinary Master Equation evolution, or a simpler retained family lacking one listed row recovers the same full constraint bundle without a hidden equivalent coordinate.
 
 #### Intersection With The Admitted Braid Charts
 
-The [Braid Program configuration chart](../braid-program/configuration-chart.md)
-already contains partial realizations of the blueprint. None is presently a
-retained branch, and none carries the complete fermion record. Their value here
-is to identify which coordinates can be reused and which extensions would be
-genuinely new.
+The [Braid Program configuration chart](../braid-program/configuration-chart.md) already contains partial realizations of the blueprint. None is presently a retained branch, and none carries the complete fermion record. Their value here is to identify which coordinates can be reused and which extensions would be genuinely new.
 
 | Existing chart | Blueprint rows naturally represented | Missing or collapsed rows | Disposition for fermion search |
 | --- | --- | --- | --- |
@@ -3968,21 +2646,13 @@ genuinely new.
 | C3/C4 two-component B1 charts | explicit two-component association; C4 adds opposite component circulation and a relative placement/phase record | both components inherit the common-axis B1 structure; three-port body action remains absent | candidate counterflow/return module inside a larger framed assembly |
 | multi-braid assembly composition axes | relative position, orientation, phase, circulation, and polarity conjugation between top-level braid records | no selected component family, binding law, retained basin, or no-overgeneration proof | lawful place to test a framed core plus counterflow module without declaring a new primitive family |
 
-Plainly: A2/A3 contain the best present three-direction frame, while C2/C4
-contain the clearest present counter-rotation. The desired fermion candidate is
-not already hiding under one existing name. It needs either an extension that
-lets a volumetric triad carry independent signed motion or a composite that
-binds the two functions without erasing their independence.
+Plainly: A2/A3 contain the best present three-direction frame, while C2/C4 contain the clearest present counter-rotation. The desired fermion candidate is not already hiding under one existing name. It needs either an extension that lets a volumetric triad carry independent signed motion or a composite that binds the two functions without erasing their independence.
 
-This intersection and the later collision/dipole-null analysis yield six
-bounded seed charts for future ordinary evolution. The labels below are local
-to this inference packet and do not add members to the Braid Program taxonomy.
+This intersection and the later collision/dipole-null analysis yield six bounded seed charts for future ordinary evolution. The labels below are local to this inference packet and do not add members to the Braid Program taxonomy.
 
 ##### Seed F1 — Near-A2 Framed Triad With Independent Circulation
 
-Begin on the A2 cyclic-symmetry locus, retain three persistent binary
-identities and the derived body frame, but promote the circulation and small
-phase/deformation rows from one common sign to a constrained vector:
+Begin on the A2 cyclic-symmetry locus, retain three persistent binary identities and the derived body frame, but promote the circulation and small phase/deformation rows from one common sign to a constrained vector:
 
 $$
 \mathbf q=(q_1,q_2,q_3),
@@ -3992,22 +2662,13 @@ $$
 \sum_a\delta\phi_a=0.
 $$
 
-The smallest useful sign classes are the common class $(+,+,+)$ and the
-one-reversed orbit represented by $(+,+,-)$ under cyclic port permutation.
-The latter introduces counterflow but also distinguishes one port, so it may
-be quark-facing rather than lepton-facing unless the full history dynamically
-cycles the exceptional port or the sector quotient removes it lawfully.
+The smallest useful sign classes are the common class $(+,+,+)$ and the one-reversed orbit represented by $(+,+,-)$ under cyclic port permutation. The latter introduces counterflow but also distinguishes one port, so it may be quark-facing rather than lepton-facing unless the full history dynamically cycles the exceptional port or the sector quotient removes it lawfully.
 
-Fast rejection: the independent circulation extension destroys root validity
-or retention; the one-reversed orbit leaks a permanent laboratory anisotropy
-into a lepton-like scalar row; or all sign classes are equivalent after the
-declared quotient and supply no independent current coordinate.
+Fast rejection: the independent circulation extension destroys root validity or retention; the one-reversed orbit leaks a permanent laboratory anisotropy into a lepton-like scalar row; or all sign classes are equivalent after the declared quotient and supply no independent current coordinate.
 
 ##### Seed F2 — Dual-A2 Conjugate Counterflow Cage
 
-Compose two A2-like triads with a common center and body frame while varying
-whole-braid polarity conjugation, relative circulation, relative phase, and a
-nontrivial port permutation:
+Compose two A2-like triads with a common center and body frame while varying whole-braid polarity conjugation, relative circulation, relative phase, and a nontrivial port permutation:
 
 $$
 \Theta_{F2}
@@ -4022,24 +2683,13 @@ d_{12}
 \right).
 $$
 
-This is the cleanest present route to a volumetric counterflow cage and a
-visible-return/full-identity-return distinction. Exact conjugate symmetry may,
-however, cancel charge, moment, and weak exposure simultaneously. A viable
-charged-fermion realization must derive a sector-specific exposure asymmetry
-or a separate charge decoration while keeping the neutral core and ledger
-closed.
+This is the cleanest present route to a volumetric counterflow cage and a visible-return/full-identity-return distinction. Exact conjugate symmetry may, however, cancel charge, moment, and weak exposure simultaneously. A viable charged-fermion realization must derive a sector-specific exposure asymmetry or a separate charge decoration while keeping the neutral core and ledger closed.
 
-Fast rejection: the two triads do not bind; exact symmetry cancels every axial
-and weak row; a required asymmetry also creates forbidden net polarity or
-scalar anisotropy; or the permutation is only a relabeling after quotient.
+Fast rejection: the two triads do not bind; exact symmetry cancels every axial and weak row; a required asymmetry also creates forbidden net polarity or scalar anisotropy; or the permutation is only a relabeling after quotient.
 
 ##### Seed F3 — Near-A2 Mode And Permutation Family
 
-Keep the A2 gross support and circulation class fixed, then search its admissible
-relative-phase, axial-offset, and identity-return modes inside the A3 chart.
-Generation is not assigned to three chosen deformations. It is accepted only
-if ordinary evolution produces exactly three isolated modes, basins, or return
-characters with a common charge and representation projection:
+Keep the A2 gross support and circulation class fixed, then search its admissible relative-phase, axial-offset, and identity-return modes inside the A3 chart. Generation is not assigned to three chosen deformations. It is accepted only if ordinary evolution produces exactly three isolated modes, basins, or return characters with a common charge and representation projection:
 
 $$
 \mathcal S_{F3}
@@ -4052,60 +2702,31 @@ $$
 \right\}/Q_{\mathrm{A2}}.
 $$
 
-This seed uses the existing continuous deformation chart but adds a discrete
-selection burden. It is the most direct way to test whether the familiar
-three-binary scaffold can generate spinor return and three generations as
-dynamical modes rather than literal extra layers.
+This seed uses the existing continuous deformation chart but adds a discrete selection burden. It is the most direct way to test whether the familiar three-binary scaffold can generate spinor return and three generations as dynamical modes rather than literal extra layers.
 
-Fast rejection: the admissible spectrum is continuous, carries fewer or more
-than three isolated classes, closes fully at $2\pi$, or changes charge/color/
-weak representation when the proposed generation mode changes.
+Fast rejection: the admissible spectrum is continuous, carries fewer or more than three isolated classes, closes fully at $2\pi$, or changes charge/color/ weak representation when the proposed generation mode changes.
 
 ##### Seed F4 — Framed Triad Plus C4 Counterflow Module
 
-Associate one A2/A3 framed triad with one C4-like opposite-circulation module.
-The framed triad attempts the body-port and multiplet rows; the C4 component
-attempts the axial current, relative phase, and transaction-corridor rows. The
-composition is viable only if both are parts of one retained assembly and one
-angular/action ledger rather than two independently named objects.
+Associate one A2/A3 framed triad with one C4-like opposite-circulation module. The framed triad attempts the body-port and multiplet rows; the C4 component attempts the axial current, relative phase, and transaction-corridor rows. The composition is viable only if both are parts of one retained assembly and one angular/action ledger rather than two independently named objects.
 
-Fast rejection: the C4 module remains a detachable unconfined inventory, the
-two components need separate law coefficients, angular and recoil ledgers do
-not close, or the module adds stable partner states with no observer role.
+Fast rejection: the C4 module remains a detachable unconfined inventory, the two components need separate law coefficients, angular and recoil ledgers do not close, or the module adds stable partner states with no observer role.
 
 ##### Seed F5 — Balanced Double-Dyad Triad
 
-Interlace two A3-like three-axis records so each body axis carries two
-axially reversed, radially separated, polarity-conjugate counterrotating
-dyads. The full construction and its exact geometric identities are derived
-in [Collision And Dipole Nulls Generate A Balanced Double-Dyad Seed](#collision-and-dipole-nulls-generate-a-balanced-double-dyad-seed).
-It is the first seed here that simultaneously attempts cycle-averaged electric
-dipole cancellation, a nonzero signed current moment, three equivalent body
-ports, and scalar second-moment isotropy.
+Interlace two A3-like three-axis records so each body axis carries two axially reversed, radially separated, polarity-conjugate counterrotating dyads. The full construction and its exact geometric identities are derived in [Collision And Dipole Nulls Generate A Balanced Double-Dyad Seed](#collision-and-dipole-nulls-generate-a-balanced-double-dyad-seed). It is the first seed here that simultaneously attempts cycle-averaged electric dipole cancellation, a nonzero signed current moment, three equivalent body ports, and scalar second-moment isotropy.
 
-Fast rejection: cross-axis or causal-root clearance fails, the interlaced
-records do not bind, polar or radiative leakage survives the average, or the
-12-identity core overgenerates stable modes and partners.
+Fast rejection: cross-axis or causal-root clearance fails, the interlaced records do not bind, polar or radiative leakage survives the average, or the 12-identity core overgenerates stable modes and partners.
 
 ##### Seed F6 — Tetrahedral Counterflow Core
 
-Place one separated-plane counterrotating polarity dyad on each of four
-tetrahedral body axes. The tetrahedral axis sum cancels the leading axial
-dipoles and its second-moment sum is isotropic. A one-versus-three circulation
-character produces a nonzero moment along the exceptional axis while the
-other three modules remain an equivalent port orbit. The full construction is
-derived in [Seed F6 — Tetrahedral Counterflow Core](#seed-f6--tetrahedral-counterflow-core).
-The F6b edge partition removes instantaneous centroid and dipole leakage, and
-F6c enlarges it to separate polarity-sector breathing and cadence histories.
+Place one separated-plane counterrotating polarity dyad on each of four tetrahedral body axes. The tetrahedral axis sum cancels the leading axial dipoles and its second-moment sum is isotropic. A one-versus-three circulation character produces a nonzero moment along the exceptional axis while the other three modules remain an equivalent port orbit. The full construction is derived in [Seed F6 — Tetrahedral Counterflow Core](#seed-f6--tetrahedral-counterflow-core). The F6b edge partition removes instantaneous centroid and dipole leakage, and F6c enlarges it to separate polarity-sector breathing and cadence histories.
 
-Fast rejection: the polarity-resolved six-coordinate surface is not preserved
-under ordinary evolution, does not return, loses root clearance, or the
-circulation partition aliases spin, color, chirality, and generation.
+Fast rejection: the polarity-resolved six-coordinate surface is not preserved under ordinary evolution, does not return, loses root clearance, or the circulation partition aliases spin, color, chirality, and generation.
 
 #### Seed Comparison Without A Score
 
-The six seeds should be compared by pass/fail/abstain rows rather than a
-weighted recommendation score:
+The six seeds should be compared by pass/fail/abstain rows rather than a weighted recommendation score:
 
 | Required row | F1 | F2 | F3 | F4 | F5 | F6 |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -4117,30 +2738,13 @@ weighted recommendation score:
 | smallest inventory | six identities before decoration | twelve before decoration | six before decoration | at least framed plus C4 inventories | twelve identities before charge-facing realization | eight identities before charge-facing realization |
 | main immediate risk | broken port equivalence | excessive cancellation and inventory | continuum or ordinary $2\pi$ return | nonbinding modular assembly | clearance, binding, polar leakage, and mode overgeneration | six-coordinate nonreturn, binding failure, and sign-pattern overgeneration |
 
-The table deliberately does not choose a winner. F1 and F3 are the smallest
-extensions of the existing three-binary matter scaffold; F2 is the cleanest
-symmetry/permutation construction; F4 most clearly separates frame and
-counterflow functions but pays a large binding burden; F5 is the first
-constraint-generated 12-identity core with joint scalar/dipole/moment
-identities, but it pays new clearance, leakage, and mode-count burdens. F6
-reduces the neutral core to eight identities, separates a moment axis from
-three equivalent ports, and now has an exact polarity-resolved breathing
-surface; ordinary return and retention remain open.
+The table deliberately does not choose a winner. F1 and F3 are the smallest extensions of the existing three-binary matter scaffold; F2 is the cleanest symmetry/permutation construction; F4 most clearly separates frame and counterflow functions but pays a large binding burden; F5 is the first constraint-generated 12-identity core with joint scalar/dipole/moment identities, but it pays new clearance, leakage, and mode-count burdens. F6 reduces the neutral core to eight identities, separates a moment axis from three equivalent ports, and now has an exact polarity-resolved breathing surface; ordinary return and retention remain open.
 
-Claim grade: the coverage of A2, A3, B1, and C1--C4 is derived from their
-declared configuration charts. Their intersection with the fermion blueprint
-is inferred. F1--F6 are guessed bounded seed charts. Falsifier: the cited
-charts do not expose the stated coordinates, or a simpler admitted chart
-already realizes every blueprint row without one of the proposed extensions
-or compositions.
+Claim grade: the coverage of A2, A3, B1, and C1--C4 is derived from their declared configuration charts. Their intersection with the fermion blueprint is inferred. F1--F6 are guessed bounded seed charts. Falsifier: the cited charts do not expose the stated coordinates, or a simpler admitted chart already realizes every blueprint row without one of the proposed extensions or compositions.
 
 #### Minimal Topological Carrier For A Doubled Rotation Return
 
-The $2\pi/4\pi$ requirement can be made more specific without inserting a
-spinor law into the substrate. Let $\mathcal M_{\mathrm{adm}}$ be the space of
-admissible complete histories or instantaneous records on one accepted branch
-family, and let $Q_{\mathrm{phys}}$ remove only declared observer redundancies.
-The physical candidate space is
+The $2\pi/4\pi$ requirement can be made more specific without inserting a spinor law into the substrate. Let $\mathcal M_{\mathrm{adm}}$ be the space of admissible complete histories or instantaneous records on one accepted branch family, and let $Q_{\mathrm{phys}}$ remove only declared observer redundancies. The physical candidate space is
 
 $$
 \mathcal X_{\mathrm{phys}}
@@ -4148,9 +2752,7 @@ $$
 \mathcal M_{\mathrm{adm}}/Q_{\mathrm{phys}}.
 $$
 
-A physical orientation transport supplies a loop
-$\gamma_{2\pi}\in\pi_1(\mathcal X_{\mathrm{phys}})$. The weakest topological
-carrier capable of a doubled return has
+A physical orientation transport supplies a loop $\gamma_{2\pi}\in\pi_1(\mathcal X_{\mathrm{phys}})$. The weakest topological carrier capable of a doubled return has
 
 $$
 [\gamma_{2\pi}]\ne e,
@@ -4158,12 +2760,7 @@ $$
 [\gamma_{2\pi}]^2=e.
 $$
 
-Thus the relevant loop class has order two. A nondegenerate body frame has an
-$SO(3)$ orientation coordinate, whose fundamental group contains exactly this
-$\mathbb Z_2$ structure. But that mathematical fact is not yet a fermion
-derivation. The candidate must also expose a non-gauge history row
-$\eta(\gamma)$ that distinguishes the two loop classes and couples to the same
-angular, magnetic, exchange, and apparatus record:
+Thus the relevant loop class has order two. A nondegenerate body frame has an $SO(3)$ orientation coordinate, whose fundamental group contains exactly this $\mathbb Z_2$ structure. But that mathematical fact is not yet a fermion derivation. The candidate must also expose a non-gauge history row $\eta(\gamma)$ that distinguishes the two loop classes and couples to the same angular, magnetic, exchange, and apparatus record:
 
 $$
 \eta(\gamma_{2\pi})=1,
@@ -4171,11 +2768,7 @@ $$
 \eta(\gamma_{2\pi}\circ\gamma_{2\pi})=0.
 $$
 
-Plainly: a carried three-dimensional frame naturally makes one full turn a
-nontrivial path even though the final drawing looks unchanged, and two turns
-can unwind. The missing physics is a lawful record that notices that path
-difference. Topology supplies a place for the distinction; it does not by
-itself supply the observed fermion response.
+Plainly: a carried three-dimensional frame naturally makes one full turn a nontrivial path even though the final drawing looks unchanged, and two turns can unwind. The missing physics is a lawful record that notices that path difference. Topology supplies a place for the distinction; it does not by itself supply the observed fermion response.
 
 Three failures must be kept distinct:
 
@@ -4185,12 +2778,7 @@ Three failures must be kept distinct:
 | the loop is noncontractible but every native and apparatus readout is identical | topology exists but is dynamically silent | no spinor-support advancement follows |
 | the readout changes at $2\pi$ but does not restore after the doubled loop | branch drift, hysteresis, or a higher-order return is present | it is not the required $\mathbb Z_2$ lift |
 
-The quotient is especially important for the A2 and F1--F3 seeds. Their three
-ports have a cyclic symmetry. If persistent identities are quotiented as mere
-names, a visible port permutation may disappear; if they are retained when
-their causal and event provenance matters, the same path may remain
-nontrivial. The owner must therefore compute the stabilizer and loop class
-under two declared quotients:
+The quotient is especially important for the A2 and F1--F3 seeds. Their three ports have a cyclic symmetry. If persistent identities are quotiented as mere names, a visible port permutation may disappear; if they are retained when their causal and event provenance matters, the same path may remain nontrivial. The owner must therefore compute the stabilizer and loop class under two declared quotients:
 
 $$
 Q_{\mathrm{shape}}
@@ -4198,43 +2786,22 @@ Q_{\mathrm{shape}}
 Q_{\mathrm{identity/history}}.
 $$
 
-$Q_{\mathrm{shape}}$ may identify visibly identical three-port arrangements.
-$Q_{\mathrm{identity/history}}$ may not erase root branch, wake order, event
-provenance, or persistent identity simply to manufacture a doubled return.
-The useful signature is visible-shape closure at $2\pi$ together with a
-nontrivial identity/history class that closes at $4\pi$.
+$Q_{\mathrm{shape}}$ may identify visibly identical three-port arrangements. $Q_{\mathrm{identity/history}}$ may not erase root branch, wake order, event provenance, or persistent identity simply to manufacture a doubled return. The useful signature is visible-shape closure at $2\pi$ together with a nontrivial identity/history class that closes at $4\pi$.
 
-The same order-two row must then be tested in a two-assembly exchange. A
-candidate is not allowed to use one inserted sign for rotation and a separate
-inserted sign for exchange. It must derive whether the rotation loop and
-exchange loop are the same class, compose through a common history lift, or
-remain distinct. Only the complete coupled source--assemblies--apparatus
-record can decide that relation.
+The same order-two row must then be tested in a two-assembly exchange. A candidate is not allowed to use one inserted sign for rotation and a separate inserted sign for exchange. It must derive whether the rotation loop and exchange loop are the same class, compose through a common history lift, or remain distinct. Only the complete coupled source--assemblies--apparatus record can decide that relation.
 
 This sharpens the seed ordering without selecting a winner:
 
-- F1 supplies a body frame but no obvious identity permutation, so its
-  topological carrier depends on the admissible framed-path space;
-- F2 supplies an explicit relative permutation and is therefore the clearest
-  doubled-return topology candidate, but exact conjugate symmetry risks
-  canceling all observable coupling to the sheet row;
-- F3 directly searches return characters and is therefore the smallest
-  mode-based test of a dynamically visible order-two class; and
-- F4 may carry a component-exchange loop, but must show that the loop belongs
-  to one bound assembly rather than exchange of detachable modules.
+- F1 supplies a body frame but no obvious identity permutation, so its topological carrier depends on the admissible framed-path space;
+- F2 supplies an explicit relative permutation and is therefore the clearest doubled-return topology candidate, but exact conjugate symmetry risks canceling all observable coupling to the sheet row;
+- F3 directly searches return characters and is therefore the smallest mode-based test of a dynamically visible order-two class; and
+- F4 may carry a component-exchange loop, but must show that the loop belongs to one bound assembly rather than exchange of detachable modules.
 
-Claim grade: the order-two loop condition is a deduced minimum for a
-topological realization of doubled return. The $SO(3)$ fundamental-group fact
-is mathematical. A causal-history sheet readout and its identification with
-the fermion rotation/exchange response are inferred requirements. Falsifier:
-an accepted candidate recovers the complete rotation, exchange, magnetic, and
-apparatus bundle while its physical configuration space has no order-two loop
-or equivalent non-gauge doubled-return coordinate.
+Claim grade: the order-two loop condition is a deduced minimum for a topological realization of doubled return. The $SO(3)$ fundamental-group fact is mathematical. A causal-history sheet readout and its identification with the fermion rotation/exchange response are inferred requirements. Falsifier: an accepted candidate recovers the complete rotation, exchange, magnetic, and apparatus bundle while its physical configuration space has no order-two loop or equivalent non-gauge doubled-return coordinate.
 
 ### Same-Record Motion Fingerprint
 
-For a retained history with $N$ persistent identities, define the identity-
-equal group centroid and relative coordinates
+For a retained history with $N$ persistent identities, define the identity- equal group centroid and relative coordinates
 
 $$
 \overline{\mathbf X}(T)
@@ -4246,8 +2813,7 @@ $$
 \mathbf X_a(T)-\overline{\mathbf X}(T).
 $$
 
-This is a geometric centroid, not a center of mass; primitive architrinos have
-no physical mass. Useful native channels include
+This is a geometric centroid, not a center of mass; primitive architrinos have no physical mass. Useful native channels include
 
 $$
 R^2(T)
@@ -4273,16 +2839,9 @@ $$
 \mathbf y_a\times\dot{\mathbf y}_a.
 $$
 
-$R$ is scale, $Q$ is non-spherical shape, and
-$\mathbf C_{\mathrm{geom}}$ is kinematic circulation, not physical angular
-momentum. Add the declared ordered-frame rate
-$\boldsymbol\Omega_F=\operatorname{vee}(F_A^{\mathsf T}\dot F_A)$, twist or
-writhe channel $\mathcal T_A(T)$, exposure $\boldsymbol\zeta_A(T)$, spatial
-phase gradient, return permutation, active-root identity, and event/exit
-indicator.
+$R$ is scale, $Q$ is non-spherical shape, and $\mathbf C_{\mathrm{geom}}$ is kinematic circulation, not physical angular momentum. Add the declared ordered-frame rate $\boldsymbol\Omega_F=\operatorname{vee}(F_A^{\mathsf T}\dot F_A)$, twist or writhe channel $\mathcal T_A(T)$, exposure $\boldsymbol\zeta_A(T)$, spatial phase gradient, return permutation, active-root identity, and event/exit indicator.
 
-For a fixed analysis window $W$ and candidate frequency $\omega$, calculate
-one normalized fingerprint
+For a fixed analysis window $W$ and candidate frequency $\omega$, calculate one normalized fingerprint
 
 $$
 \mathcal K_A(\omega;W)
@@ -4300,38 +2859,24 @@ $$
 \right),
 $$
 
-together with all cross-phases and the three recurrence residuals. The window,
-normalization, quotient, transform convention, and frequency grid must be
-frozen before comparing candidates. A peak may not be rescued by retuning a
-different window or projection for each motion picture.
+together with all cross-phases and the three recurrence residuals. The window, normalization, quotient, transform convention, and frequency grid must be frozen before comparing candidates. A peak may not be rescued by retuning a different window or projection for each motion picture.
 
 The classification rules are then operational:
 
-- orbit/circulation requires nonzero winding and persistent signed
-  $\mathbf C_{\mathrm{geom}}$ with bounded scale;
-- breathing requires coherent $R$ extrema, the predicted exposure/shape phase,
-  and no necessary net winding;
-- precession requires frame motion with approximately fixed body-frame
-  distances;
-- torsion requires a signed relative-frame or twist channel that reverses
-  correctly under mirroring;
+- orbit/circulation requires nonzero winding and persistent signed $\mathbf C_{\mathrm{geom}}$ with bounded scale;
+- breathing requires coherent $R$ extrema, the predicted exposure/shape phase, and no necessary net winding;
+- precession requires frame motion with approximately fixed body-frame distances;
+- torsion requires a signed relative-frame or twist channel that reverses correctly under mirroring;
 - permutation motion requires observer return before identity return;
-- traveling phase requires a reproducible spatial phase gradient and causal
-  group delay;
-- beating requires independently resolved carrier phases whose difference
-  predicts the slow envelope; and
-- escape cadence requires survival, first-exit, and hazard statistics rather
-  than a Poincare fixed point.
+- traveling phase requires a reproducible spatial phase gradient and causal group delay;
+- beating requires independently resolved carrier phases whose difference predicts the slow envelope; and
+- escape cadence requires survival, first-exit, and hazard statistics rather than a Poincare fixed point.
 
-Plainly: record radius, shape, circulation, frame, twist, exposure, phase,
-identity order, and exits from the same run. Their amplitudes and phase
-relations distinguish motions that a single frequency cannot.
+Plainly: record radius, shape, circulation, frame, twist, exposure, phase, identity order, and exits from the same run. Their amplitudes and phase relations distinguish motions that a single frequency cannot.
 
 ### Exposed Multipoles Are Not The Full Geometry
 
-Pointlikeness, neutrality, polarization, and scalarity constrain a selected
-observer-facing exposure measure, not every architrino path. Four records must
-remain distinct:
+Pointlikeness, neutrality, polarization, and scalarity constrain a selected observer-facing exposure measure, not every architrino path. Four records must remain distinct:
 
 | Record | Native question | Invalid identification |
 | --- | --- | --- |
@@ -4340,9 +2885,7 @@ remain distinct:
 | ordered-frame orientation | which frame is carried by the retained assembly? | an apparatus-selected outcome label |
 | detector projection | how do analyzer basis, acceptance, reconstruction, and covariance map an event to a readout? | substrate geometry itself |
 
-Let $d\mathcal E_S(\mathbf x,T)$ be the exposed measure for sector $S$ after a
-declared sector quotient but before detector response. Candidate static
-multipoles are
+Let $d\mathcal E_S(\mathbf x,T)$ be the exposed measure for sector $S$ after a declared sector quotient but before detector response. Candidate static multipoles are
 
 $$
 Q_{\ell m}^{(S)}[W]
@@ -4365,8 +2908,7 @@ $$
 \mathbf x\,d\mathcal E_Q(\mathbf x,T),
 $$
 
-whereas a magnetic-moment comparison requires a separately derived exposed
-current,
+whereas a magnetic-moment comparison requires a separately derived exposed current,
 
 $$
 \boldsymbol\mu_S[W]
@@ -4377,12 +2919,9 @@ $$
 \mathbf x\times d\mathbf J_S(\mathbf x,T).
 $$
 
-These are effective moment-map targets. They neither import a primitive field
-nor identify a full braid with a fitted density cloud.
+These are effective moment-map targets. They neither import a primitive field nor identify a full braid with a fitted density cloud.
 
-Plainly: a neutral assembly can contain separated positive and negative
-exposure, and a small electric dipole can coexist with a large current moment.
-Different measurements may see different projections of one hidden geometry.
+Plainly: a neutral assembly can contain separated positive and negative exposure, and a small electric dipole can coexist with a large current moment. Different measurements may see different projections of one hidden geometry.
 
 Path transport is a different object. A schematic diagnostic
 
@@ -4396,14 +2935,9 @@ U_\gamma
 \right)
 $$
 
-is admissible only when $\mathcal A_{\mathrm{hist}}$ is derived from the
-ordered native history rather than inserted as a primitive gauge field. A
-nontrivial $U_\gamma$ may coexist with $\mathbf d_Q=0$. This is the required
-logical opening for weak or hadronic $CP$-sensitive transport together with
-electron and neutron electric-dipole nulls.
+is admissible only when $\mathcal A_{\mathrm{hist}}$ is derived from the ordered native history rather than inserted as a primitive gauge field. A nontrivial $U_\gamma$ may coexist with $\mathbf d_Q=0$. This is the required logical opening for weak or hadronic $CP$-sensitive transport together with electron and neutron electric-dipole nulls.
 
-For a prepared measure $\mu_{\mathrm{prep}}$, native event map $\Phi_T$, and
-detector kernel $K_{\mathrm{det}}$, angular observations belong to
+For a prepared measure $\mu_{\mathrm{prep}}$, native event map $\Phi_T$, and detector kernel $K_{\mathrm{det}}$, angular observations belong to
 
 $$
 P_{\mathrm{obs}}(\Omega,c)
@@ -4414,44 +2948,23 @@ K_{\mathrm{det}}\!\left(\Omega\mid\Phi_T(z)\right)
 \,d\mu_{\mathrm{prep}}(z).
 $$
 
-Parent frame, chiral exposure, product momenta, invisible rows, and analyzer
-basis must all enter this one event record. Michel parameters, angular
-coefficients, and polarization-transfer outcomes cannot be primitive
-handedness labels attached after evolution.
+Parent frame, chiral exposure, product momenta, invisible rows, and analyzer basis must all enter this one event record. Michel parameters, angular coefficients, and polarization-transfer outcomes cannot be primitive handedness labels attached after evolution.
 
-Plainly: an observed angular pattern is produced jointly by the source,
-reaction, products, and apparatus. It becomes a braid clue only after those
-contributions are separated on one record.
+Plainly: an observed angular pattern is produced jointly by the source, reaction, products, and apparatus. It becomes a braid clue only after those contributions are separated on one record.
 
 The strongest multipole intersections reject several simple pictures:
 
-1. Charged-lepton pointlikeness plus nonzero magnetic moment rejects any rotor
-   whose required magnetic response exposes a charge radius already excluded
-   by scattering. Hidden neutral structure remains possible only through one
-   common exposure quotient across electron, muon, tau, and pair-production
-   rows.
-2. Neutron neutrality, nontrivial electric structure, negative magnetic
-   moment, and electric-dipole null require at least signed charge exposure,
-   exposed current, ordered spin frame, and the $CP$-odd first moment to be
-   distinct projections.
-3. Proton electric/magnetic form factors plus spin decomposition require one
-   resolution-dependent carrier to close spatial exposure and angular momentum
-   across constituent, orbital, corridor, tube, and retained-sea rows.
-4. Photon transversality versus $W/Z$ longitudinal response rejects a universal
-   spin-1 morphology with one fixed polarization quotient.
-5. Scalar isotropy requires exposed $Q_{\ell m}\simeq0$ for $\ell>0$ and no
-   vector leakage on the declared unpolarized record; it does not require every
-   internal configuration to be spherical or literally breathing.
+1. Charged-lepton pointlikeness plus nonzero magnetic moment rejects any rotor whose required magnetic response exposes a charge radius already excluded by scattering. Hidden neutral structure remains possible only through one common exposure quotient across electron, muon, tau, and pair-production rows.
+2. Neutron neutrality, nontrivial electric structure, negative magnetic moment, and electric-dipole null require at least signed charge exposure, exposed current, ordered spin frame, and the $CP$-odd first moment to be distinct projections.
+3. Proton electric/magnetic form factors plus spin decomposition require one resolution-dependent carrier to close spatial exposure and angular momentum across constituent, orbital, corridor, tube, and retained-sea rows.
+4. Photon transversality versus $W/Z$ longitudinal response rejects a universal spin-1 morphology with one fixed polarization quotient.
+5. Scalar isotropy requires exposed $Q_{\ell m}\simeq0$ for $\ell>0$ and no vector leakage on the declared unpolarized record; it does not require every internal configuration to be spherical or literally breathing.
 
-Plainly: pointlike, polarized, and scalar are properties of what a channel can
-resolve. A viable architecture may hide structure, but it must use the same
-derived hiding mechanism everywhere that structure is not observed.
+Plainly: pointlike, polarized, and scalar are properties of what a channel can resolve. A viable architecture may hide structure, but it must use the same derived hiding mechanism everywhere that structure is not observed.
 
 ### Spatial And Scattering Clue Grammar
 
-Frequency constrains motion; scattering and form factors constrain exposed
-spatial organization. At effective grade, a form-factor comparison reads a
-fixed exposure distribution through
+Frequency constrains motion; scattering and form factors constrain exposed spatial organization. At effective grade, a form-factor comparison reads a fixed exposure distribution through
 
 $$
 F_Q(\mathbf q)
@@ -4462,8 +2975,7 @@ e^{i\mathbf q\cdot\mathbf x}
 \,d^3\mathbf x.
 $$
 
-For an isotropic normalized comparison row, the low-$q$ slope recovers an
-effective squared exposure radius through
+For an isotropic normalized comparison row, the low-$q$ slope recovers an effective squared exposure radius through
 
 $$
 F_Q(q)
@@ -4475,10 +2987,7 @@ F_Q(q)
 +O(q^4).
 $$
 
-These are observer-level recovery relations. They do not make
-$\rho_{\mathrm{exp},Q}$ a primitive charge cloud. The native task is to derive
-the same distribution from the retained branch, exposure quotient, prepared
-ensemble, transition map, and detector record.
+These are observer-level recovery relations. They do not make $\rho_{\mathrm{exp},Q}$ a primitive charge cloud. The native task is to derive the same distribution from the retained branch, exposure quotient, prepared ensemble, transition map, and detector record.
 
 | Effective spatial clue | Weakest native implication | Nonunique realizations and caution | Geometry discriminator |
 | --- | --- | --- | --- |
@@ -4495,23 +3004,13 @@ ensemble, transition map, and detector record.
 | Decay angular correlations | parent ordered-frame, chirality, and angular-momentum information is routed into products | an angular fit without parent/product identity can be apparatus or selection bias | full source--corridor--product--recoil--sea angular ledger |
 | Displaced vertex or flight length | a metastable retained parent translates before a localized exit event | distance is lifetime times group motion, not assembly size | parent survival, group trajectory, exit location, and product basin identities |
 
-The form-factor phase ambiguity is a central inverse-problem warning: distinct
-spatial exposures can share the same measured magnitude over a finite range.
-Consequently no single scattering curve should select a knot. Geometry becomes
-sharper only where several independently prepared channels, orientations,
-polarizations, and elastic/inelastic rows intersect on one branch record.
+The form-factor phase ambiguity is a central inverse-problem warning: distinct spatial exposures can share the same measured magnitude over a finite range. Consequently no single scattering curve should select a knot. Geometry becomes sharper only where several independently prepared channels, orientations, polarizations, and elastic/inelastic rows intersect on one branch record.
 
-Plainly: scattering tells us what spatial structure a probe can see, not a
-photograph of every architrino. The best clues come from comparing which parts
-of the same assembly are visible to different probes.
+Plainly: scattering tells us what spatial structure a probe can see, not a photograph of every architrino. The best clues come from comparing which parts of the same assembly are visible to different probes.
 
 #### Multi-Probe Visibility Null Space
 
-The difference between hidden braid size and exposed size can be stated as an
-inverse problem. Let $\Pi_S$ be a derived projection into sector $S$ and let
-$\mathcal F_{S,q}$ be the complete prepared-source-to-detector readout at
-resolution $q$. Around one accepted branch $\Theta_\star$, an internal
-perturbation $\delta\Theta$ is invisible to the tested probes only if
+The difference between hidden braid size and exposed size can be stated as an inverse problem. Let $\Pi_S$ be a derived projection into sector $S$ and let $\mathcal F_{S,q}$ be the complete prepared-source-to-detector readout at resolution $q$. Around one accepted branch $\Theta_\star$, an internal perturbation $\delta\Theta$ is invisible to the tested probes only if
 
 $$
 \delta\Theta
@@ -4524,16 +3023,9 @@ $$
 D\mathcal F_{S,q}[\Theta_\star].
 $$
 
-This is a local diagnostic and does not assume that the physical response is
-globally linear. Adding electromagnetic, weak, scalar/mass-facing, magnetic,
-polarization, and pair-production probes can only shrink the common null
-space. A proposed large hidden braid remains viable only if its internal modes
-lie in that intersection while the same branch still produces every nonzero
-moment, coupling, lifetime, and reaction row attributed to it.
+This is a local diagnostic and does not assume that the physical response is globally linear. Adding electromagnetic, weak, scalar/mass-facing, magnetic, polarization, and pair-production probes can only shrink the common null space. A proposed large hidden braid remains viable only if its internal modes lie in that intersection while the same branch still produces every nonzero moment, coupling, lifetime, and reaction row attributed to it.
 
-A full-geometry bound would require an additional visibility or coercivity
-result: for all admissible non-gauge perturbations in the declared candidate
-family,
+A full-geometry bound would require an additional visibility or coercivity result: for all admissible non-gauge perturbations in the declared candidate family,
 
 $$
 \sup_{S,q\le q_{\max}}
@@ -4547,92 +3039,40 @@ c_{\mathrm{vis}}
 c_{\mathrm{vis}}>0.
 $$
 
-Only then would an observer residual $\epsilon_{\mathrm{obs}}$ imply
-$\lVert\delta\Theta\rVert\le
-\epsilon_{\mathrm{obs}}/c_{\mathrm{vis}}$ for the full candidate perturbation.
-Without such a lower bound, pointlikeness constrains exposure but not every
-hidden path or sea coordinate.
+Only then would an observer residual $\epsilon_{\mathrm{obs}}$ imply $\lVert\delta\Theta\rVert\le \epsilon_{\mathrm{obs}}/c_{\mathrm{vis}}$ for the full candidate perturbation. Without such a lower bound, pointlikeness constrains exposure but not every hidden path or sea coordinate.
 
-Plainly: structure can hide from one kind of probe, but it becomes harder to
-hide from many independent probes at once. The theory must explain both the
-null results and the places where that same hidden structure clearly matters.
+Plainly: structure can hide from one kind of probe, but it becomes harder to hide from many independent probes at once. The theory must explain both the null results and the places where that same hidden structure clearly matters.
 
 Three constraints prevent `shielding` from becoming an unfalsifiable answer:
 
-1. **One frozen quotient functional per sector and branch.** The exposure map
-   is derived before inspecting the target observable and is reused across
-   charged leptons, conjugate particles, production, scattering, field
-   response, and decay. Scale, environment, preparation, and resolution are
-   declared inputs; lawful event-driven changes are permitted, but
-   observable-specific refits are not.
-2. **Cross-channel conservation.** What is hidden from an elastic charge probe
-   cannot disappear from action, angular-momentum, wake, sea, recoil, or event
-   ledgers when it contributes elsewhere.
-3. **Resolution continuation.** The same fixed branch and response law is
-   scanned in $q$; the geometry cannot shrink, relabel, or change its sea state
-   privately as the probe resolution changes.
+1. **One frozen quotient functional per sector and branch.** The exposure map is derived before inspecting the target observable and is reused across charged leptons, conjugate particles, production, scattering, field response, and decay. Scale, environment, preparation, and resolution are declared inputs; lawful event-driven changes are permitted, but observable-specific refits are not.
+2. **Cross-channel conservation.** What is hidden from an elastic charge probe cannot disappear from action, angular-momentum, wake, sea, recoil, or event ledgers when it contributes elsewhere.
+3. **Resolution continuation.** The same fixed branch and response law is scanned in $q$; the geometry cannot shrink, relabel, or change its sea state privately as the probe resolution changes.
 
-This makes pointlikeness plus nonzero response a productive intersection. An
-electron-like candidate may have unresolved internal charge exposure while
-retaining an ordered-frame magnetic response, weak corridors, scalar/mass
-response, and pair-production provenance. Those readouts must arise from
-different projections of one geometry without predicting a resolvable elastic
-radius or contact channel already excluded on the same resolution range.
+This makes pointlikeness plus nonzero response a productive intersection. An electron-like candidate may have unresolved internal charge exposure while retaining an ordered-frame magnetic response, weak corridors, scalar/mass response, and pair-production provenance. Those readouts must arise from different projections of one geometry without predicting a resolvable elastic radius or contact channel already excluded on the same resolution range.
 
-Plainly: hidden structure is allowed, but not free. Every proposed hiding
-mechanism must survive a growing collection of probes and still explain the
-effects that require the hidden structure to participate.
+Plainly: hidden structure is allowed, but not free. Every proposed hiding mechanism must survive a growing collection of probes and still explain the effects that require the hidden structure to participate.
 
 The live corpus has three ownership tensions to preserve during this work:
 
-- one EQ-30 formula lets the detector kernel enter the exposed density, while
-  the common architecture and this packet place sector exposure before detector
-  projection; the latter separation is required for a detector-independent
-  geometry claim;
-- the boson owner specializes scalar response to literal radial motion more
-  strongly than scalar isotropy warrants; and
-- a shared charged-lepton composite scale used in magnetic and pair formulas is
-  a falsifiable ansatz, not a branch-derived universal size, because no retained
-  charged-lepton record presently supplies it.
+- one EQ-30 formula lets the detector kernel enter the exposed density, while the common architecture and this packet place sector exposure before detector projection; the latter separation is required for a detector-independent geometry claim;
+- the boson owner specializes scalar response to literal radial motion more strongly than scalar isotropy warrants; and
+- a shared charged-lepton composite scale used in magnetic and pair formulas is a falsifiable ansatz, not a branch-derived universal size, because no retained charged-lepton record presently supplies it.
 
-No new pointlikeness gate is created here. Elementary-lepton, quark, neutrino,
-photon, $W/Z$, and Higgs contact/compositeness limits lack a dedicated
-source-backed owner, while nucleon spatial coverage is distributed rather than
-collected into a full multi-form-factor packet. These are future comparison
-rows for the existing finite-window scattering and exposure architecture, not
-evidence for or against a hidden braid by themselves.
+No new pointlikeness gate is created here. Elementary-lepton, quark, neutrino, photon, $W/Z$, and Higgs contact/compositeness limits lack a dedicated source-backed owner, while nucleon spatial coverage is distributed rather than collected into a full multi-form-factor packet. These are future comparison rows for the existing finite-window scattering and exposure architecture, not evidence for or against a hidden braid by themselves.
 
 ### High-Leverage Spatial Comparisons
 
-The multipole intersections and [effective spatial-clue table](#spatial-and-scattering-clue-grammar)
-already own charged-lepton pointlikeness, proton/neutron multipoles, and
-multi-probe exposure. The [boson response-rank grammar](#boson-response-rank-grammar)
-owns photon transversality and weak/scalar angular rank. Two additional
-comparisons remain especially valuable:
+The multipole intersections and [effective spatial-clue table](#spatial-and-scattering-clue-grammar) already own charged-lepton pointlikeness, proton/neutron multipoles, and multi-probe exposure. The [boson response-rank grammar](#boson-response-rank-grammar) owns photon transversality and weak/scalar angular rank. Two additional comparisons remain especially valuable:
 
-1. **Elastic versus inelastic nucleon response:** a stable outer form factor
-   plus excited channels separates retained envelope geometry from internal
-   mode and corridor transitions.
-2. **Hadronization plus spin correlation:** color-corridor breaking must
-   produce only accepted color-singlet products while preserving measurable
-   parent/provenance orientation correlations.
+1. **Elastic versus inelastic nucleon response:** a stable outer form factor plus excited channels separates retained envelope geometry from internal mode and corridor transitions.
+2. **Hadronization plus spin correlation:** color-corridor breaking must produce only accepted color-singlet products while preserving measurable parent/provenance orientation correlations.
 
-Plainly: these paired observations ask two parts of the same geometry to reveal
-themselves differently. That is much more discriminating than assigning a
-radius or frequency to one particle in isolation.
+Plainly: these paired observations ask two parts of the same geometry to reveal themselves differently. That is much more discriminating than assigning a radius or frequency to one particle in isolation.
 
 ### EOM Measurement Reach And Instrument Gap
 
-The durable measurement obligation is to export, on one accepted evolution,
-the full worldline history needed for centroid, scale, trace-free shape,
-kinematic circulation, ordered frame, recurrence, cross-phase, return
-permutation, and event/exit measurements, together with successful causal-root
-identities and acceleration contributions wherever a covariance or provenance
-claim consumes them. The [EOM solver owner](../app-solver/README.md) controls the
-live format inventory, harness selection, implementation language, and any
-executable task. This packet owns only the required physical readouts and the
-current interface-level blocker: public evidence must bind transformed runs to
-stable identities, successful roots, emitted histories, and complete ledgers.
+The durable measurement obligation is to export, on one accepted evolution, the full worldline history needed for centroid, scale, trace-free shape, kinematic circulation, ordered frame, recurrence, cross-phase, return permutation, and event/exit measurements, together with successful causal-root identities and acceleration contributions wherever a covariance or provenance claim consumes them. The [EOM solver owner](../app-solver/README.md) controls the live format inventory, harness selection, implementation language, and any executable task. This packet owns only the required physical readouts and the current interface-level blocker: public evidence must bind transformed runs to stable identities, successful roots, emitted histories, and complete ledgers.
 
 The measurement grades are therefore:
 
@@ -4643,28 +3083,13 @@ The measurement grades are therefore:
 | circulation reversal | chart-specific whole-prehistory transformation and the same certificate bundle | a candidate chart that defines what complete history is reversed; simple velocity negation is not generally the inverse motion |
 | physical $2\pi/4\pi$ transport and two-assembly exchange | autonomous coupled histories plus frame, root-continuation, framing, angular-ledger, and apparatus records | a retained branch able to execute the loop without prescribing its future path |
 
-Plainly: this packet states what the physics record must contain. The solver
-workstream decides how to expose it, so a later format or harness change cannot
-silently make these geometry requirements stale.
+Plainly: this packet states what the physics record must contain. The solver workstream decides how to expose it, so a later format or harness change cannot silently make these geometry requirements stale.
 
-For the exact $C$ sibling, conjugate every polarity at fixed cubic histories.
-The polarity-product kernel predicts identical scalar root and acceleration
-magnitudes with the correct conjugate labels. For the exact $P$ sibling,
-reflect every position and velocity coefficient about one declared origin.
-The prediction is identical root/scalar rows and covariantly reflected vector
-rows. These are kernel-covariance controls; passing them would validate the
-transformation instrument, not discover a fermion geometry.
+For the exact $C$ sibling, conjugate every polarity at fixed cubic histories. The polarity-product kernel predicts identical scalar root and acceleration magnitudes with the correct conjugate labels. For the exact $P$ sibling, reflect every position and velocity coefficient about one declared origin. The prediction is identical root/scalar rows and covariantly reflected vector rows. These are kernel-covariance controls; passing them would validate the transformation instrument, not discover a fermion geometry.
 
-The existing spin/magnetic-moment certificate cannot fill the missing physics
-row. It checks supplied `etaSpin`, doubled-return, gauge, moment, and exposure
-metadata. Until those rows are derived from an evolved history, populating the
-checker would be circular.
+The existing spin/magnetic-moment certificate cannot fill the missing physics row. It checks supplied `etaSpin`, doubled-return, gauge, moment, and exposure metadata. Until those rows are derived from an evolved history, populating the checker would be circular.
 
-Plainly: we can calculate basic motion fingerprints now. We can add exact
-charge-conjugation and mirror controls with a small analysis harness. But a
-real $4\pi$ or exchange test needs an evolved object that actually performs
-the loop; the solver correctly does not let us prescribe its future path and
-call that dynamics.
+Plainly: we can calculate basic motion fingerprints now. We can add exact charge-conjugation and mirror controls with a small analysis harness. But a real $4\pi$ or exchange test needs an evolved object that actually performs the loop; the solver correctly does not let us prescribe its future path and call that dynamics.
 
 #### Exact $C/P$ Sibling-Run Bundle
 
@@ -4680,15 +3105,9 @@ H_0,\lambda;
 \right),
 $$
 
-where $H_0$ is the base retained input history, $\lambda$ is the frozen model
-and numerical-control record, $\tau\in\{\mathrm{id},C,P\}$, $\mathcal C_\tau$
-is the native certificate, $\mathcal M$ is the cross-run identity map, and
-$\mathcal R$ contains comparison residuals. The sibling runs have distinct
-run identities and input fingerprints but share one experiment identity; they
-must not be mislabeled as one EOM run.
+where $H_0$ is the base retained input history, $\lambda$ is the frozen model and numerical-control record, $\tau\in\{\mathrm{id},C,P\}$, $\mathcal C_\tau$ is the native certificate, $\mathcal M$ is the cross-run identity map, and $\mathcal R$ contains comparison residuals. The sibling runs have distinct run identities and input fingerprints but share one experiment identity; they must not be mislabeled as one EOM run.
 
-For path permutation $\pi_\tau$, polarity rule $s_\tau$, orthogonal spatial
-map $R_\tau$, and origin $\mathbf x_0$, transform the complete input history by
+For path permutation $\pi_\tau$, polarity rule $s_\tau$, orthogonal spatial map $R_\tau$, and origin $\mathbf x_0$, transform the complete input history by
 
 $$
 q^\tau_{\pi_\tau(a)}=s_\tau q_a,
@@ -4709,12 +3128,7 @@ R_\tau
 R_\tau\mathbf V_a(T).
 $$
 
-Use $s_C=-1$ and $R_C=I$ for polarity conjugation. Use $s_P=1$ and
-$R_P=-I$ for the parity sibling, so exact cubic coefficients and axiswise error
-bounds transform without fitted interpolation. A different improper-reflection
-sibling must be composed with a separately certified proper rotation before it
-is interpreted as parity. The declared
-kernel predicts matching root intervals and scalar factors, together with
+Use $s_C=-1$ and $R_C=I$ for polarity conjugation. Use $s_P=1$ and $R_P=-I$ for the parity sibling, so exact cubic coefficients and axiswise error bounds transform without fitted interpolation. A different improper-reflection sibling must be composed with a separately certified proper rotation before it is interpreted as parity. The declared kernel predicts matching root intervals and scalar factors, together with
 
 $$
 \mathbf 0
@@ -4724,24 +3138,13 @@ $$
 R_\tau\mathbf A_i(T)
 $$
 
-componentwise in the certified enclosures. Matching sibling runs test
-implementation covariance of the declared kernel. Because both sides use the
-same implementation and transformed inputs, their agreement is not an
-independent oracle for the correctness of the kernel itself.
+componentwise in the certified enclosures. Matching sibling runs test implementation covariance of the declared kernel. Because both sides use the same implementation and transformed inputs, their agreement is not an independent oracle for the correctness of the kernel itself.
 
-Plainly: this experiment can prove that our solver treats conjugation and a
-mirror exactly as the theory says. It cannot prove which mirrored or
-conjugated geometry nature retains.
+Plainly: this experiment can prove that our solver treats conjugation and a mirror exactly as the theory says. It cannot prove which mirrored or conjugated geometry nature retains.
 
 ### Candidate Constraint Intersections And Contradiction Cores
 
-The inverse program becomes more efficient when a proposed morphology is
-treated as a joint constraint problem rather than as a picture to be matched
-one observable at a time. Let $\mathcal X_{\mathcal M}$ be the declared
-coordinate space of candidate family $\mathcal M$, including inventory,
-worldline history, recurrence, topology, ordered frame, exposure maps,
-transition corridors, sea response, and observer projection. Each independent
-recovery target supplies an admissible subset
+The inverse program becomes more efficient when a proposed morphology is treated as a joint constraint problem rather than as a picture to be matched one observable at a time. Let $\mathcal X_{\mathcal M}$ be the declared coordinate space of candidate family $\mathcal M$, including inventory, worldline history, recurrence, topology, ordered frame, exposure maps, transition corridors, sea response, and observer projection. Each independent recovery target supplies an admissible subset
 
 $$
 \mathcal C_i
@@ -4759,18 +3162,9 @@ $$
 \varnothing.
 $$
 
-A **candidate contradiction core** is a small collection of assumptions and
-targets whose intersection is empty. The cores below are inferred pruning
-rules. They are not global impossibility theorems about every geometry: each
-one fails only the explicitly stated candidate assumptions. A core becomes a
-certified no-go only after its premises have been encoded without hidden
-quotients and the emptiness result has an independent proof or exhaustive
-finite certificate.
+A **candidate contradiction core** is a small collection of assumptions and targets whose intersection is empty. The cores below are inferred pruning rules. They are not global impossibility theorems about every geometry: each one fails only the explicitly stated candidate assumptions. A core becomes a certified no-go only after its premises have been encoded without hidden quotients and the emptiness result has an independent proof or exhaustive finite certificate.
 
-Plainly: write down exactly what the candidate assumes, then ask whether just
-two or three well-established behaviors already make those assumptions
-mutually impossible. This can reject a large search family before running an
-expensive evolution or precision fit.
+Plainly: write down exactly what the candidate assumes, then ask whether just two or three well-established behaviors already make those assumptions mutually impossible. This can reject a large search family before running an expensive evolution or precision fit.
 
 | Candidate assumption set | Independent target intersection | Contradiction | Smallest repair that keeps the family open | Falsifier of the pruning claim |
 | --- | --- | --- | --- | --- |
@@ -4810,15 +3204,9 @@ expensive evolution or precision fit.
 | One observed frequency uniquely identifies one mechanical motion | intrinsic recurrence, mode transition, coherent phase gap, and escape statistics are distinct inverse-time classes | the same scalar frequency can be generated by inequivalent histories | require the same-record motion fingerprint, cross-phases, recurrence depth, and survival/exit rows | an injective derivation maps the frequency and declared preparation uniquely to one native motion class |
 | Static support dimension or a still image determines Bose/Fermi statistics | exchange behavior belongs to a two-assembly identity-preserving path-history experiment | the snapshot lacks the exchange braid, return permutation, and apparatus history needed to distinguish the classes | add the complete exchange history and derive its composition/return rule | two lawful exchange classes with different statistics are proved impossible for the same declared snapshot data |
 
-Plainly: each row identifies a tempting shortcut and the independent fact that
-breaks it. The repair column says what extra geometric information a viable
-candidate must expose; it does not assume that such a candidate exists.
+Plainly: each row identifies a tempting shortcut and the independent fact that breaks it. The repair column says what extra geometric information a viable candidate must expose; it does not assume that such a candidate exists.
 
-Several rows are **underdetermination cores** rather than contradictions. The
-last two, for example, show that a claimed inference cannot be made from the
-given information; they do not eliminate every morphology that happens to
-carry the observed frequency or support dimension. The distinction must stay
-machine-readable in any future search ledger:
+Several rows are **underdetermination cores** rather than contradictions. The last two, for example, show that a claimed inference cannot be made from the given information; they do not eliminate every morphology that happens to carry the observed frequency or support dimension. The distinction must stay machine-readable in any future search ledger:
 
 $$
 \operatorname{disposition}
@@ -4827,32 +3215,15 @@ $$
 \texttt{pass},\texttt{abstain}\}.
 $$
 
-The most reusable lesson is that viable candidates require factorized native
-coordinates. Polarity cannot also be forced to encode orientation and spinor
-parity; one exposure scalar cannot encode charge, mass, lifetime, and every
-coupling; one graph cannot be both cycle-free and holonomy-bearing; and one
-fixed modal quotient cannot recover both massless and massive vector ranks.
-Factorization is not permission to add arbitrary knobs: each extra coordinate
-must be measured on the same complete history, transformed by the same law,
-and consumed by more than one recovery row.
+The most reusable lesson is that viable candidates require factorized native coordinates. Polarity cannot also be forced to encode orientation and spinor parity; one exposure scalar cannot encode charge, mass, lifetime, and every coupling; one graph cannot be both cycle-free and holonomy-bearing; and one fixed modal quotient cannot recover both massless and massive vector ranks. Factorization is not permission to add arbitrary knobs: each extra coordinate must be measured on the same complete history, transformed by the same law, and consumed by more than one recovery row.
 
-Plainly: the architecture probably needs several tightly coupled coordinates,
-not one clever shape feature doing every job. Each new coordinate earns its
-place only if the dynamics produces it and several observations constrain it.
+Plainly: the architecture probably needs several tightly coupled coordinates, not one clever shape feature doing every job. Each new coordinate earns its place only if the dynamics produces it and several observations constrain it.
 
 ### Non-Aliasing Graph And Role-Minimum Coordinate Bundles
 
-The contradiction cores can be turned into a constructive design constraint.
-Let $r_i(\Theta)$ denote native-to-observer readouts of one complete history.
-Declare a non-aliasing edge $i\not\equiv j$ when an accepted transformation or
-controlled particle pair requires one readout to change while the other
-remains invariant, or requires the two to compose independently. The edge does
-not require separate constituent sets or separate primitive laws. It requires
-enough structure in one geometry that the two rows are not forced to be one
-binary sign or one scalar amplitude.
+The contradiction cores can be turned into a constructive design constraint. Let $r_i(\Theta)$ denote native-to-observer readouts of one complete history. Declare a non-aliasing edge $i\not\equiv j$ when an accepted transformation or controlled particle pair requires one readout to change while the other remains invariant, or requires the two to compose independently. The edge does not require separate constituent sets or separate primitive laws. It requires enough structure in one geometry that the two rows are not forced to be one binary sign or one scalar amplitude.
 
-For a proposed local coordinate chart $\mathbf u$, the executable version is a
-response-rank test. If selected controls produce
+For a proposed local coordinate chart $\mathbf u$, the executable version is a response-rank test. If selected controls produce
 
 $$
 J_{ik}
@@ -4860,14 +3231,9 @@ J_{ik}
 \frac{\partial r_i}{\partial u_k},
 $$
 
-then required independent variations must remain linearly distinguishable in
-the relevant submatrix of $J$. This is a candidate diagnostic, not a claim
-that the observer readouts are primitive coordinates or that every response
-is locally linear.
+then required independent variations must remain linearly distinguishable in the relevant submatrix of $J$. This is a candidate diagnostic, not a claim that the observer readouts are primitive coordinates or that every response is locally linear.
 
-Plainly: the same braid may produce many phenomena, but it must contain enough
-structure for nature to change one phenomenon without automatically changing
-all the others in lockstep.
+Plainly: the same braid may produce many phenomena, but it must contain enough structure for nature to change one phenomenon without automatically changing all the others in lockstep.
 
 | Required non-aliasing edge | Evidence intersection | Geometry implication |
 | --- | --- | --- |
@@ -4914,13 +3280,9 @@ all the others in lockstep.
 | ensemble isotropy $\not\equiv$ prepared-branch isotropy | random population versus fixed-axis single-assembly tests | one prepared history needs its own rotation-covariance residual |
 | internal cadence $\not\equiv$ constituent speed | equal frequency with different path lengths or motion classes | a same-history spatial excursion is required before converting recurrence into speed |
 
-Plainly: every edge marks two facts that nature can vary independently. A
-candidate chart needs enough lawful coordinates to reproduce that independence
-without turning each row into a private adjustable mechanism.
+Plainly: every edge marks two facts that nature can vary independently. A candidate chart needs enough lawful coordinates to reproduce that independence without turning each row into a private adjustable mechanism.
 
-These edges suggest minimum coordinate bundles for search roles. The bundles
-are requirements on information and transformation behavior, not literal
-parts lists:
+These edges suggest minimum coordinate bundles for search roles. The bundles are requirements on information and transformation behavior, not literal parts lists:
 
 | Candidate role | Minimum separately measurable bundle |
 | --- | --- |
@@ -4933,26 +3295,15 @@ parts lists:
 | confined hadron | persistent constituent identities; internal color frame and singlet association graph; additive baryon/provenance projection; stable-versus-open corridor coordinate; excitation mode beyond inventory; signed static multipoles; transport holonomy; form-factor exposure; survival and product-exit graph |
 | correlated pair | two individual retained or propagating records; common-source provenance; identity-preserving separation/exchange history; relational sea/wake record; two local apparatus histories; joint non-product response; no-signaling, measurement-independence, and ordering controls |
 
-Plainly: these bundles are minimum information requirements, not constituent
-diagrams. They tell the search which independent coordinates a proposed role
-must be able to preserve and transform on one evolved history.
+Plainly: these bundles are minimum information requirements, not constituent diagrams. They tell the search which independent coordinates a proposed role must be able to preserve and transform on one evolved history.
 
-No bundle says that the corresponding candidate exists. It says that a search
-ansatz lacking one listed row cannot even represent all known distinctions for
-that role. Conversely, adding every row as an unconstrained parameter would
-defeat the program. Each row must emerge from ordinary evolution, participate
-in the complete-record transformations, and be reused across neighboring
-particle or event comparisons.
+No bundle says that the corresponding candidate exists. It says that a search ansatz lacking one listed row cannot even represent all known distinctions for that role. Conversely, adding every row as an unconstrained parameter would defeat the program. Each row must emerge from ordinary evolution, participate in the complete-record transformations, and be reused across neighboring particle or event comparisons.
 
-Plainly: this is a minimum information architecture for candidate braids. It
-narrows what a successful geometry must be able to remember, expose, hide,
-transform, and exchange before any precision fit begins.
+Plainly: this is a minimum information architecture for candidate braids. It narrows what a successful geometry must be able to remember, expose, hide, transform, and exchange before any precision fit begins.
 
 ### Candidate-Elimination Sequence
 
-The inference program should eliminate candidates in an order that spends the
-least computation before the most expensive quantitative recovery. For each
-candidate morphology $\mathcal M$, retain a non-aggregated disposition vector
+The inference program should eliminate candidates in an order that spends the least computation before the most expensive quantitative recovery. For each candidate morphology $\mathcal M$, retain a non-aggregated disposition vector
 
 $$
 \mathbf e(\mathcal M)
@@ -4969,9 +3320,7 @@ e_{\mathrm{quant}}
 \right),
 $$
 
-whose entries are only `pass`, `fail`, or `abstain`. This is not an equation
-maturity score and must not be summed. It records which distinct architecture
-burdens have actually been tested.
+whose entries are only `pass`, `fail`, or `abstain`. This is not an equation maturity score and must not be summed. It records which distinct architecture burdens have actually been tested.
 
 | Stage | Question | Minimum record | Stop condition |
 | ---: | --- | --- | --- |
@@ -4984,16 +3333,9 @@ burdens have actually been tested.
 | 7 | Does the same transition graph recover allowed, suppressed, forbidden, stable, and coherent-history rows? | retained basins, classified corridor boundaries, survival, phase, product, recoil, and detector ledgers | conservation holds but product corridors, null mechanisms, or branching provenance are missing |
 | 8 | Do masses, action, spectra, couplings, widths, and scattering rows agree quantitatively without hidden retuning? | accepted shared carrier, fixed projection and constitutive law, independent comparison data | a new parameterization or carrier is introduced for each observable or particle |
 
-Plainly: the sequence spends computation only after the candidate has survived
-cheaper identity, retention, motion, topology, and transformation tests. A
-failed early row is a useful rejection, not a reason to fit more parameters.
+Plainly: the sequence spends computation only after the candidate has survived cheaper identity, retention, motion, topology, and transformation tests. A failed early row is a useful rejection, not a reason to fit more parameters.
 
-An early `fail` removes the candidate from the corresponding particle role. An
-`abstain` preserves the candidate only as untested; it never advances it. A
-candidate can remain useful for another native role—for example, a failed
-retained matter branch may still motivate a transaction corridor—only after
-the role change is stated explicitly rather than silently preserving the same
-claim.
+An early `fail` removes the candidate from the corresponding particle role. An `abstain` preserves the candidate only as untested; it never advances it. A candidate can remain useful for another native role—for example, a failed retained matter branch may still motivate a transaction corridor—only after the role change is stated explicitly rather than silently preserving the same claim.
 
 The most informative early comparisons are not single-particle fits:
 
@@ -5001,52 +3343,31 @@ The most informative early comparisons are not single-particle fits:
 - proton stability versus unstable color-singlet resonances;
 - free-quark absence versus finite singlet composites;
 - weak transport handedness versus neutron electric-dipole cancellation;
-- photon two-channel transversality versus allowed longitudinal material and
-  massive-vector response; and
+- photon two-channel transversality versus allowed longitudinal material and massive-vector response; and
 - neutrino coherent phase transport versus rare localized detection.
 
-Each comparison forces one candidate coordinate to vary while neighboring
-coordinates remain fixed. This is the inverse-geometry analogue of a controlled
-experiment and is more likely to reveal a reusable motif than fitting isolated
-particles one at a time.
+Each comparison forces one candidate coordinate to vary while neighboring coordinates remain fixed. This is the inverse-geometry analogue of a controlled experiment and is more likely to reveal a reusable motif than fitting isolated particles one at a time.
 
-Plainly: first ask whether the object exists and what it actually does; then
-ask how it transforms and what each probe sees; only afterward spend effort on
-precision numbers. Failed basics should prune the search before detailed
-fitting begins.
+Plainly: first ask whether the object exists and what it actually does; then ask how it transforms and what each probe sees; only afterward spend effort on precision numbers. Failed basics should prune the search before detailed fitting begins.
 
 ## Requirement And Realization Grades
 
 Every row in this packet must distinguish four stages:
 
-1. **Deduced requirement.** A necessary property of any native realization if
-   the declared effective behavior is recovered. This is a deduction from the
-   recovery target, not yet a derivation within $\mathbb{A}\mathbb{A}\mathbb{A}$.
-2. **Inferred requirement.** A strongly motivated native property that is not
-   logically unique because another native mechanism may project to the same
-   effective behavior.
-3. **Candidate realization.** A specified matter braid, sea-braid population,
-   wake organization, or coupled complex that could meet the requirements.
-4. **Selected realization.** A geometry derived from the Master Equation or an
-   accepted retained record that predicts the full behavior bundle, survives
-   controls, and outperforms competing realizations without private retuning.
+1. **Deduced requirement.** A necessary property of any native realization if the declared effective behavior is recovered. This is a deduction from the recovery target, not yet a derivation within $\mathbb{A}\mathbb{A}\mathbb{A}$.
+2. **Inferred requirement.** A strongly motivated native property that is not logically unique because another native mechanism may project to the same effective behavior.
+3. **Candidate realization.** A specified matter braid, sea-braid population, wake organization, or coupled complex that could meet the requirements.
+4. **Selected realization.** A geometry derived from the Master Equation or an accepted retained record that predicts the full behavior bundle, survives controls, and outperforms competing realizations without private retuning.
 
-The repository-wide evidence labels still apply independently: a statement is
-derived, measured, inferred, or guessed according to the evidence supporting
-it. A deduced effective requirement may therefore coexist with a guessed
-microscopic realization.
+The repository-wide evidence labels still apply independently: a statement is derived, measured, inferred, or guessed according to the evidence supporting it. A deduced effective requirement may therefore coexist with a guessed microscopic realization.
 
-The phrase `could be caused by` belongs to a candidate realization. It must not
-be used to make a speculative braid picture read like a necessary requirement.
+The phrase `could be caused by` belongs to a candidate realization. It must not be used to make a speculative braid picture read like a necessary requirement.
 
-Plainly: first state what nature requires. Then state what geometry might
-supply it. Only a successful forward derivation and independent comparison can
-select the geometry.
+Plainly: first state what nature requires. Then state what geometry might supply it. Only a successful forward derivation and independent comparison can select the geometry.
 
 ## Effective Electric And Magnetic Fields
 
-The immediate inference target is the native meaning of an effective electric
-or magnetic field. Use one provisional joint map
+The immediate inference target is the native meaning of an effective electric or magnetic field. Use one provisional joint map
 
 $$
 \left(
@@ -5062,16 +3383,7 @@ $$
 \right].
 $$
 
-This is an inference scaffold, not a constitutive law. In a weak diagnostic
-regime, the joint map may be partitioned as
-$\Pi_{\mathrm{dir}}+\Pi_{\mathrm{sea}}+\Pi_{\mathrm{mix}}$, where the mixed term
-retains any nonseparable dependence on source history, sea state, and boundary
-history. That additive partition is a diagnostic decomposition, not an assumed
-law outside its declared regime. It keeps direct source-wake, sea-mediated, and
-coupled shares visible until controls distinguish them. The field-state
-projection deliberately excludes the receiver. The receiver has a separate
-response map,
-The receiver has a separate response map,
+This is an inference scaffold, not a constitutive law. In a weak diagnostic regime, the joint map may be partitioned as $\Pi_{\mathrm{dir}}+\Pi_{\mathrm{sea}}+\Pi_{\mathrm{mix}}$, where the mixed term retains any nonseparable dependence on source history, sea state, and boundary history. That additive partition is a diagnostic decomposition, not an assumed law outside its declared regime. It keeps direct source-wake, sea-mediated, and coupled shares visible until controls distinguish them. The field-state projection deliberately excludes the receiver. The receiver has a separate response map, The receiver has a separate response map,
 
 $$
 \mathcal O_{\mathrm{recv}}
@@ -5084,24 +3396,13 @@ $$
 \right].
 $$
 
-The effective field must be definable for a declared region and source history
-without private dependence on whichever receiver happens to be inserted there.
-Different receiver assemblies may couple differently, but those differences
-belong to the response map rather than to a silently different field.
+The effective field must be definable for a declared region and source history without private dependence on whichever receiver happens to be inserted there. Different receiver assemblies may couple differently, but those differences belong to the response map rather than to a silently different field.
 
-Plainly: the source and sea establish an effective environment. A receiver
-reveals that environment through its own geometry, but it must not manufacture
-a different field definition for every measurement.
+Plainly: the source and sea establish an effective environment. A receiver reveals that environment through its own geometry, but it must not manufacture a different field definition for every measurement.
 
 ## Electromagnetic Perturbation Tomography Of Braid Geometry
 
-Once an effective source--sea environment has been independently
-characterized, controlled electric- and magnetic-like preparations can be used
-as tomography of an assembly. The applied controls remain complete source,
-boundary, sea, and apparatus histories; $\mathbf E$ and $\mathbf B$ are only
-their observer-level labels. The useful inference is carried by which native
-assembly coordinates respond, at what rank and phase, and whether the response
-is translation, reversible deformation, mode conversion, or exit.
+Once an effective source--sea environment has been independently characterized, controlled electric- and magnetic-like preparations can be used as tomography of an assembly. The applied controls remain complete source, boundary, sea, and apparatus histories; $\mathbf E$ and $\mathbf B$ are only their observer-level labels. The useful inference is carried by which native assembly coordinates respond, at what rank and phase, and whether the response is translation, reversible deformation, mode conversion, or exit.
 
 For one retained receiver history, freeze a control vector
 
@@ -5118,8 +3419,7 @@ E_i,B_i,
 \right),
 $$
 
-where every entry is extracted from the same source--sea record. Measure a
-native response vector
+where every entry is extracted from the same source--sea record. Measure a native response vector
 
 $$
 \mathbf y_A
@@ -5148,16 +3448,9 @@ $$
 \frac{\partial^2y_a}{\partial u_k\partial u_\ell}.
 $$
 
-They must be obtained by fixed-law sibling histories with signed reversals and
-matched prehistories. Their rank, symmetry, eigenvectors, phase lag, and first
-departure from linearity reveal which native modes the preparation can reach.
-They do not define a primitive susceptibility law for an individual
-architrino.
+They must be obtained by fixed-law sibling histories with signed reversals and matched prehistories. Their rank, symmetry, eigenvectors, phase lag, and first departure from linearity reveal which native modes the preparation can reach. They do not define a primitive susceptibility law for an individual architrino.
 
-Plainly: perturb the same candidate in several carefully controlled ways and
-watch which aspects move together. That response pattern can reveal hidden
-axes, modes, and couplings even when the unperturbed braid is hard to infer
-from a still picture.
+Plainly: perturb the same candidate in several carefully controlled ways and watch which aspects move together. That response pattern can reveal hidden axes, modes, and couplings even when the unperturbed braid is hard to infer from a still picture.
 
 | Controlled preparation | Principal native readouts | Geometry clue | Important non-inference |
 | --- | --- | --- | --- |
@@ -5170,29 +3463,17 @@ from a still picture.
 | combined electric- and magnetic-like sources | mixed derivatives $\partial^2 y/(\partial E_i\partial B_j)$ and orientation dependence | exposes magnetoelectric, chiral, and tensor couplings that vanish in single-control scans | a mixed response may belong to apparatus or material context unless source and receiver rows are separated |
 | strong amplitude continuation | Hessian growth, new root branches, irreversible deformation, escape, pair reorganization, and backreaction | locates the first geometric nonlinearity and topology/basin transition | a threshold does not identify pair inventory or product geometry without certified product basins |
 
-Atomic Stark, Zeeman, fine/hyperfine, Lamb, polarization, and strong-field
-comparisons are specialized consumers of this tomography. Their greatest
-value is joint: the same electron, nucleon, photon, and local sea record must
-explain why one perturbation translates the group, another splits orientations,
-another mixes opposite-parity-like states, and another exposes a dressing
-residual. Independent fitted response models for each effect would hide the
-geometry rather than infer it.
+Atomic Stark, Zeeman, fine/hyperfine, Lamb, polarization, and strong-field comparisons are specialized consumers of this tomography. Their greatest value is joint: the same electron, nucleon, photon, and local sea record must explain why one perturbation translates the group, another splits orientations, another mixes opposite-parity-like states, and another exposes a dressing residual. Independent fitted response models for each effect would hide the geometry rather than infer it.
 
-The experimental order should increase information rank while minimizing
-interpretive assumptions:
+The experimental order should increase information rank while minimizing interpretive assumptions:
 
-1. signed weak uniform controls to establish linear parity and conjugation
-   rows;
+1. signed weak uniform controls to establish linear parity and conjugation rows;
 2. gradients to resolve spatial and ordered-frame structure;
 3. frequency scans to separate recurrence, transition, and escape channels;
 4. combined controls to measure cross-couplings; and
-5. fixed-law amplitude continuation to the first certified nonlinear geometry
-   change.
+5. fixed-law amplitude continuation to the first certified nonlinear geometry change.
 
-Plainly: electric and magnetic experiments can function like several different
-flashlights shining on one hidden object. The search should combine their
-shadows on one history rather than build a separate braid explanation for each
-effect.
+Plainly: electric and magnetic experiments can function like several different flashlights shining on one hidden object. The search should combine their shadows on one history rather than build a separate braid explanation for each effect.
 
 ## Candidate Electromagnetic Sea Record
 
@@ -5227,31 +3508,17 @@ These symbols organize possible response classes:
 | $\boldsymbol\Sigma$ | Resolved strain, stress, or response-memory record | Maxwell stress or effective metric by definition |
 | $\mathcal H_{\partial\Omega}$ | Incoming and retained causal boundary history | An instantaneous local state variable |
 
-This list is intentionally provisional. A successful reduction may remove
-entries, combine them, or reveal a missing irreducible moment. Every retained
-moment must ultimately be computed from resolved braid histories rather than
-assigned to fit an effective field.
+This list is intentionally provisional. A successful reduction may remove entries, combine them, or reveal a missing irreducible moment. Every retained moment must ultimately be computed from resolved braid histories rather than assigned to fit an effective field.
 
-Plainly: density, cadence, drift, polar order, circulation order, alignment,
-stress, and memory are different possible ways for the sea to respond. The
-program must discover which combination projects to electric and magnetic
-behavior.
+Plainly: density, cadence, drift, polar order, circulation order, alignment, stress, and memory are different possible ways for the sea to respond. The program must discover which combination projects to electric and magnetic behavior.
 
 ## Electric Field First Reduction
 
 ### Declared Scope
 
-Begin with a stationary or quasi-stationary source assembly and a declared
-test region $\Omega$ containing no ordinary matter assemblies, neutrino-like
-assemblies, photon-channel packets, or other propagating matter used as a
-field carrier or response probe. The region still contains the Noether sea and
-the causal histories reaching it from the source and the boundary. No receiver
-assembly is included in the base state.
+Begin with a stationary or quasi-stationary source assembly and a declared test region $\Omega$ containing no ordinary matter assemblies, neutrino-like assemblies, photon-channel packets, or other propagating matter used as a field carrier or response probe. The region still contains the Noether sea and the causal histories reaching it from the source and the boundary. No receiver assembly is included in the base state.
 
-Choose the source record so its exposed-polarity distribution is stationary on
-the causal window and its coarse current, axial circulation, induction, and
-radiation projections are null to the declared tolerance. This isolates the
-electric-like source row before magnetic or propagating behavior is admitted.
+Choose the source record so its exposed-polarity distribution is stationary on the causal window and its coarse current, axial circulation, induction, and radiation projections are null to the declared tolerance. This isolates the electric-like source row before magnetic or propagating behavior is admitted.
 
 The reduced native record is
 
@@ -5267,30 +3534,15 @@ $$
 \right).
 $$
 
-Here $\Theta_{\mathrm{sea}}^{(0)}$ is the balanced reference sea and
-$\delta\Theta_{\mathrm{sea}}^{E}$ is a response to be derived or bounded as
-zero. The effective electric field is not an entry in this native record.
+Here $\Theta_{\mathrm{sea}}^{(0)}$ is the balanced reference sea and $\delta\Theta_{\mathrm{sea}}^{E}$ is a response to be derived or bounded as zero. The effective electric field is not an entry in this native record.
 
-Plainly: remove the passing particles and detector from the first question.
-Retain only the source, its arriving wake history, the Noether sea, and the
-boundary history.
+Plainly: remove the passing particles and detector from the first question. Retain only the source, its arriving wake history, the Noether sea, and the boundary history.
 
 ### Candidate Native Cause
 
-At the observer level, a stationary electric field is sourced by an exposed
-charge distribution. The native statement must be more specific: a source
-assembly has a nonzero polarity-weighted exposed wake record after its internal
-cancellation, shielding, orientation, and finite-window history have been
-resolved. That signed source record generates different acceleration
-contributions for matched positive- and negative-polarity receivers.
+At the observer level, a stationary electric field is sourced by an exposed charge distribution. The native statement must be more specific: a source assembly has a nonzero polarity-weighted exposed wake record after its internal cancellation, shielding, orientation, and finite-window history have been resolved. That signed source record generates different acceleration contributions for matched positive- and negative-polarity receivers.
 
-For diagnostic purposes, let
-$\mathbf A_{+}^{\mathrm{src}}(\mathbf x,T)$ and
-$\mathbf A_{-}^{\mathrm{src}}(\mathbf x,T)$ denote the source-history
-acceleration contributions evaluated for matched positive- and
-negative-polarity receiver states at the same event and over the same causal
-window. These are comparison evaluations of one source record, not two
-co-located physical architrinos. Define
+For diagnostic purposes, let $\mathbf A_{+}^{\mathrm{src}}(\mathbf x,T)$ and $\mathbf A_{-}^{\mathrm{src}}(\mathbf x,T)$ denote the source-history acceleration contributions evaluated for matched positive- and negative-polarity receiver states at the same event and over the same causal window. These are comparison evaluations of one source record, not two co-located physical architrinos. Define
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -5314,64 +3566,23 @@ $$
 \right).
 $$
 
-The first electric-cause hypothesis is that the effective electric projection
-descends from the polar, receiver-polarity-odd response operator represented by
-$\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$, together with any sea-mediated
-modification of that operator. This does not define
-$\mathbf E_{\mathrm{eff}}=\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$; assembly
-response, coarse-graining, and the effective charge convention remain to be
-derived.
+The first electric-cause hypothesis is that the effective electric projection descends from the polar, receiver-polarity-odd response operator represented by $\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$, together with any sea-mediated modification of that operator. This does not define $\mathbf E_{\mathrm{eff}}=\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$; assembly response, coarse-graining, and the effective charge convention remain to be derived.
 
-Claim grade: inferred. Falsifier: a source-backed calculation produces the
-correct electric behavior from a polarity-even native response, or the
-polarity-odd diagnostic fails the required source-conjugation and reflection
-parities.
+Claim grade: inferred. Falsifier: a source-backed calculation produces the correct electric behavior from a polarity-even native response, or the polarity-odd diagnostic fails the required source-conjugation and reflection parities.
 
-Plainly: the native cause may be the part of one source's wake pattern that
-acts oppositely on the two architrino polarities. The familiar electric field
-would be the assembly-level summary of that polarity-selective environment.
+Plainly: the native cause may be the part of one source's wake pattern that acts oppositely on the two architrino polarities. The familiar electric field would be the assembly-level summary of that polarity-selective environment.
 
 ### Source Classes And Continuing Isochron Reception
 
-The smallest possible native transmitter is one bare architrino. Its polarity
-and path history determine a causal wake that can contribute directly to the
-acceleration of another architrino. This does not make the bare architrino an
-electric field: the field is an effective reconstruction from received
-source-history contributions and, if required, the response of the Noether
-sea. Whether a bare architrino can occur as a persistent isolated physical
-state is a separate assembly-closure question.
+The smallest possible native transmitter is one bare architrino. Its polarity and path history determine a causal wake that can contribute directly to the acceleration of another architrino. This does not make the bare architrino an electric field: the field is an effective reconstruction from received source-history contributions and, if required, the response of the Noether sea. Whether a bare architrino can occur as a persistent isolated physical state is a separate assembly-closure question.
 
-An effective electron or positron can also be a source. In native terms it is
-a retained assembly whose constituent wakes leave a nonzero exposed-polarity
-record after internal cancellation and shielding are resolved. A population
-of electrons, a population of positrons, or an unequal mixture adds those
-resolved records. A charge-neutral population can still produce an electric
-dipole or higher spatial pattern when opposite exposed polarities are
-separated. Charged ions, charged composite assemblies, polarized neutral
-matter, charged surfaces, and source histories outside the chosen region are
-further assembly-level source classes. A changing source configuration and a
-propagating photon-channel packet belong to later induction and radiation
-passes rather than the stationary electric-only reduction.
+An effective electron or positron can also be a source. In native terms it is a retained assembly whose constituent wakes leave a nonzero exposed-polarity record after internal cancellation and shielding are resolved. A population of electrons, a population of positrons, or an unequal mixture adds those resolved records. A charge-neutral population can still produce an electric dipole or higher spatial pattern when opposite exposed polarities are separated. Charged ions, charged composite assemblies, polarized neutral matter, charged surfaces, and source histories outside the chosen region are further assembly-level source classes. A changing source configuration and a propagating photon-channel packet belong to later induction and radiation passes rather than the stationary electric-only reduction.
 
-A preconditioned polar state of the Noether sea is a possible proximate cause
-of a local effective electric response, but not an unproven source without
-history. Its maintaining source, preparation history, boundary record, or
-retained free mode must be identified in the native ledger.
+A preconditioned polar state of the Noether sea is a possible proximate cause of a local effective electric response, but not an unproven source without history. Its maintaining source, preparation history, boundary record, or retained free mode must be identified in the native ledger.
 
-The ideal Master Equation uses a continuous uniform emission-time measure:
-each architrino emits causal isochrons at every absolute emission time. On a
-regular single-root branch, each successive receiver time selects the past
-isochron that intersects that receiver event. Thus a stationary effective
-electric environment may be continually refreshed by a succession of
-potential-bearing causal-isochron intersections even though its coarse-grained
-value is time independent.
+The ideal Master Equation uses a continuous uniform emission-time measure: each architrino emits causal isochrons at every absolute emission time. On a regular single-root branch, each successive receiver time selects the past isochron that intersects that receiver event. Thus a stationary effective electric environment may be continually refreshed by a succession of potential-bearing causal-isochron intersections even though its coarse-grained value is time independent.
 
-That statement is not the identity
-$\mathbf E_{\mathrm{eff}}=\text{isochrons}$. One intersection supplies one
-receiver-local acceleration contribution. The effective field requires a
-declared projection of many source contributions over an assembly and causal
-window, together with whatever sea state survives the direct-wake versus
-sea-response controls. Schematically,
+That statement is not the identity $\mathbf E_{\mathrm{eff}}=\text{isochrons}$. One intersection supplies one receiver-local acceleration contribution. The effective field requires a declared projection of many source contributions over an assembly and causal window, together with whatever sea state survives the direct-wake versus sea-response controls. Schematically,
 
 $$
 \mathbf E_{\mathrm{eff}}(\mathbf x,T)
@@ -5383,48 +3594,17 @@ W,\ell
 \right].
 $$
 
-Here $\Pi_E$ is a recovery map to be derived, not a primitive law. The causal
-isochrons are source-provenanced path-history geometry rather than material
-sheets or field substance, and they pass through one another without
-interacting. Their physical update occurs when a receiver architrino lies on
-one of them. If the source changes, the former history continues to arrive for
-the applicable causal delay before the changed pattern reaches the region.
+Here $\Pi_E$ is a recovery map to be derived, not a primitive law. The causal isochrons are source-provenanced path-history geometry rather than material sheets or field substance, and they pass through one another without interacting. Their physical update occurs when a receiver architrino lies on one of them. If the source changes, the former history continues to arrive for the applicable causal delay before the changed pattern reaches the region.
 
-Claim grades: bare-architrino emission and receiver-local causal-isochron
-intersection are substrate ontology under the Master Equation. Root-resolved
-acceleration-contribution addition is exact only on one fixed source history,
-root set, receiver event, and sea/boundary record. Dynamical assembly or
-population superposition remains a recovery target because interacting sources
-can change paths, roots, sea state, and retention. The identification of a
-particular projected aggregate with
-$\mathbf E_{\mathrm{eff}}$ and any essential sea retuning remain closure
-targets. Falsifier: a proposed electric projection that cannot be computed
-from a source-provenanced hit history and declared sea/boundary record, or that
-requires isochrons to interact with one another in flight, is not a realization
-of the present substrate law.
+Claim grades: bare-architrino emission and receiver-local causal-isochron intersection are substrate ontology under the Master Equation. Root-resolved acceleration-contribution addition is exact only on one fixed source history, root set, receiver event, and sea/boundary record. Dynamical assembly or population superposition remains a recovery target because interacting sources can change paths, roots, sea state, and retention. The identification of a particular projected aggregate with $\mathbf E_{\mathrm{eff}}$ and any essential sea retuning remain closure targets. Falsifier: a proposed electric projection that cannot be computed from a source-provenanced hit history and declared sea/boundary record, or that requires isochrons to interact with one another in flight, is not a realization of the present substrate law.
 
-Plainly: yes, the static-looking electric environment can be the stable bulk
-appearance of an ongoing succession of delayed wake receptions. The bare
-event is a causal-isochron hit; the electric field is the organized effective
-summary of those hits and any derived response they maintain in the sea.
+Plainly: yes, the static-looking electric environment can be the stable bulk appearance of an ongoing succession of delayed wake receptions. The bare event is a causal-isochron hit; the electric field is the organized effective summary of those hits and any derived response they maintain in the sea.
 
 ### Architrino Hit Versus Effective Electromagnetic Fields
 
-At substrate level, an architrino receives acceleration contributions from
-the causal isochrons intersecting its present event. The Master Equation sums
-those contributions directly. It does not first construct an electric field,
-assign an effective charge or mass to the architrino, and then apply an
-observer-level field equation. Receiver polarity enters the native per-hit sign,
-while transmitter path history, causal-root geometry, distance, and the
-transmitter-side acceleration weight determine the remaining contribution.
+At substrate level, an architrino receives acceleration contributions from the causal isochrons intersecting its present event. The Master Equation sums those contributions directly. It does not first construct an electric field, assign an effective charge or mass to the architrino, and then apply an observer-level field equation. Receiver polarity enters the native per-hit sign, while transmitter path history, causal-root geometry, distance, and the transmitter-side acceleration weight determine the remaining contribution.
 
-It is permissible to evaluate an effective electric projection at an
-architrino's location as a diagnostic or continuum reconstruction. That does
-not make the projection a second cause acting alongside the causal hits. The
-matched positive- and negative-receiver comparison used in
-$\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$ is likewise a diagnostic: one actual
-architrino has one polarity and does not perform that comparison internally.
-From the definitions, the matched response can be reconstructed as
+It is permissible to evaluate an effective electric projection at an architrino's location as a diagnostic or continuum reconstruction. That does not make the projection a second cause acting alongside the causal hits. The matched positive- and negative-receiver comparison used in $\mathbf A_{\mathrm{odd}}^{\mathrm{src}}$ is likewise a diagnostic: one actual architrino has one polarity and does not perform that comparison internally. From the definitions, the matched response can be reconstructed as
 
 $$
 \mathbf A_{\sigma}^{\mathrm{src}}
@@ -5435,55 +3615,21 @@ $$
 \qquad \sigma\in\{+1,-1\}.
 $$
 
-If the polarity-even term vanishes in the isolated electric regime, the two
-bare receiver polarities acquire equal-and-opposite source-driven
-accelerations. This is the closest native analogue of electric sign response,
-but it is still a consequence of the hit ledger rather than an imported
-$q\mathbf E/m$ law.
+If the polarity-even term vanishes in the isolated electric regime, the two bare receiver polarities acquire equal-and-opposite source-driven accelerations. This is the closest native analogue of electric sign response, but it is still a consequence of the hit ledger rather than an imported $q\mathbf E/m$ law.
 
-At assembly level, every constituent receives its own root-resolved hit sum.
-The assembly's retained geometry then determines which contributions cancel,
-which change internal geometry, and which produce an effective translation,
-rotation, polarization, transition, or recoil. An observer-level electric
-field is useful only when one source-plus-sea projection can be held fixed
-while separate receiver-response maps explain those different assembly
-responses.
+At assembly level, every constituent receives its own root-resolved hit sum. The assembly's retained geometry then determines which contributions cancel, which change internal geometry, and which produce an effective translation, rotation, polarization, transition, or recoil. An observer-level electric field is useful only when one source-plus-sea projection can be held fixed while separate receiver-response maps explain those different assembly responses.
 
-Claim grades: receiver-local causal-hit acceleration is substrate ontology;
-constituent aggregation through a retained assembly is a native derivation
-target; a receiver-independent $\mathbf E_{\mathrm{eff}}$ and the effective
-charge/inertial response conventions are recovery targets. Falsifier: if two
-receiver classes require different field records for the same source, sea,
-boundary, region, and causal window, the proposed quantity is not yet a
-receiver-independent effective electric field.
+Claim grades: receiver-local causal-hit acceleration is substrate ontology; constituent aggregation through a retained assembly is a native derivation target; a receiver-independent $\mathbf E_{\mathrm{eff}}$ and the effective charge/inertial response conventions are recovery targets. Falsifier: if two receiver classes require different field records for the same source, sea, boundary, region, and causal window, the proposed quantity is not yet a receiver-independent effective electric field.
 
-Plainly: the underlying electric-like influence reaches individual
-architrinos, but not in the same language used for an electron or a laboratory
-body. Architrinos receive wake-derived acceleration contributions. Assemblies
-organize many such contributions into the behavior summarized by an effective
-electric field.
+Plainly: the underlying electric-like influence reaches individual architrinos, but not in the same language used for an electron or a laboratory body. Architrinos receive wake-derived acceleration contributions. Assemblies organize many such contributions into the behavior summarized by an effective electric field.
 
-The electric diagnostic has a one-hit foothold because receiver polarity
-already selects the sign of a radial acceleration contribution. There is no
-corresponding one-hit magnetic variable: one hit supplies a line of action, not
-an axial circulation record or a velocity cross product. A magnetic projection
-therefore requires additional organization across source history, multiple
-roots or transmitters, assembly geometry, and any derived sea response. Calling
-that organized record $\mathbf B_{\mathrm{eff}}$ is justified only after one
-receiver-independent projection explains the required motion-, orientation-,
-flux-, and circulation-sensitive assembly measurements.
+The electric diagnostic has a one-hit foothold because receiver polarity already selects the sign of a radial acceleration contribution. There is no corresponding one-hit magnetic variable: one hit supplies a line of action, not an axial circulation record or a velocity cross product. A magnetic projection therefore requires additional organization across source history, multiple roots or transmitters, assembly geometry, and any derived sea response. Calling that organized record $\mathbf B_{\mathrm{eff}}$ is justified only after one receiver-independent projection explains the required motion-, orientation-, flux-, and circulation-sensitive assembly measurements.
 
-Plainly: electric-like sign response begins with polarity at one receiver.
-Magnetic-like response needs relationships among several directions and
-histories. Neither observation inserts $\mathbf E$ or $\mathbf B$ into the
-Master Equation.
+Plainly: electric-like sign response begins with polarity at one receiver. Magnetic-like response needs relationships among several directions and histories. Neither observation inserts $\mathbf E$ or $\mathbf B$ into the Master Equation.
 
 ### Assembly Translation And Internal Electric Deformation Separate Exactly
 
-For an identity-labeled assembly with $N$ architrinos, let
-$\mathbf A_a^{\mathrm{src}}$ be the source-tagged acceleration contribution to
-member $a$ on one common update. Define the geometric centroid acceleration
-and the internal residual acceleration by
+For an identity-labeled assembly with $N$ architrinos, let $\mathbf A_a^{\mathrm{src}}$ be the source-tagged acceleration contribution to member $a$ on one common update. Define the geometric centroid acceleration and the internal residual acceleration by
 
 $$
 \mathbf A_{\mathrm{grp}}^{\mathrm{src}}
@@ -5497,26 +3643,17 @@ $$
 \mathbf A_{\mathrm{grp}}^{\mathrm{src}}.
 $$
 
-This is an exact kinematic decomposition. It uses equal identity weights, not
-mass, force, or an imported center-of-mass law. By construction,
+This is an exact kinematic decomposition. It uses equal identity weights, not mass, force, or an imported center-of-mass law. By construction,
 
 $$
 \sum_a\mathbf a_{a,\mathrm{int}}^{\mathrm{src}}=\mathbf0.
 $$
 
-The first row measures source-driven group translation. The second contains
-stretch, shear, breathing, frame rotation, phase change, and any other
-internal response. Binding and the assembly's own wakes also contribute to the
-full acceleration, so source-only deformation is a diagnostic increment
-rather than an autonomous evolution.
+The first row measures source-driven group translation. The second contains stretch, shear, breathing, frame rotation, phase change, and any other internal response. Binding and the assembly's own wakes also contribute to the full acceleration, so source-only deformation is a diagnostic increment rather than an autonomous evolution.
 
-Plainly: average the constituent accelerations to obtain group motion, then
-subtract that average from every constituent to see how the shape is being
-distorted. This cleanly separates “the particle accelerates” from “the braid
-stretches.”
+Plainly: average the constituent accelerations to obtain group motion, then subtract that average from every constituent to see how the shape is being distorted. This cleanly separates “the particle accelerates” from “the braid stretches.”
 
-For one neutral matched pair $p$ sampled in a locally uniform electric-like
-source history, write the polarity comparison as
+For one neutral matched pair $p$ sampled in a locally uniform electric-like source history, write the polarity comparison as
 
 $$
 \mathbf A_{p,+}^{\mathrm{src}}
@@ -5553,21 +3690,11 @@ $$
 2\mathbf A_{p,\mathrm{odd}}^{\mathrm{src}}.
 $$
 
-Therefore the proposed electric-isolation limit
-$\mathbf A_{p,\mathrm{even}}^{\mathrm{src}}\simeq\mathbf0$ gives precisely the
-operator intuition: the neutral pair has little leading group drive but a
-nonzero polarity-differential internal drive. Cancellation of translation does
-not cancel stretching.
+Therefore the proposed electric-isolation limit $\mathbf A_{p,\mathrm{even}}^{\mathrm{src}}\simeq\mathbf0$ gives precisely the operator intuition: the neutral pair has little leading group drive but a nonzero polarity-differential internal drive. Cancellation of translation does not cancel stretching.
 
-This result is local and conditional. Finite assembly size, source gradients,
-unequal exposure, different causal roots, phase offsets, and responsive-sea
-history can make the two constituent magnitudes unequal. Those departures are
-not nuisances to average away; they are the dipole, quadrupole, orientation,
-and constitutive clues that electric tomography should measure.
+This result is local and conditional. Finite assembly size, source gradients, unequal exposure, different causal roots, phase offsets, and responsive-sea history can make the two constituent magnitudes unequal. Those departures are not nuisances to average away; they are the dipole, quadrupole, orientation, and constitutive clues that electric tomography should measure.
 
-Now split a candidate charged assembly into a neutral paired core
-$\mathcal C$ and a presently generic unpaired or noncancelling charge-facing
-set $\mathcal U$. The source-driven centroid row becomes
+Now split a candidate charged assembly into a neutral paired core $\mathcal C$ and a presently generic unpaired or noncancelling charge-facing set $\mathcal U$. The source-driven centroid row becomes
 
 $$
 \mathbf A_{\mathrm{grp}}^{\mathrm{src}}
@@ -5582,24 +3709,11 @@ $$
 \right].
 $$
 
-In the weak uniform electric-isolation limit, the paired-core sum may be small
-while the noncancelling set supplies a group translation. This is the cleanest
-realization of a neutral load-bearing braid plus a charge-facing decoration,
-but it is not the only realization. A locally constant charge index, an
-exposure eigenclass, or a topology/history carrier could make the full core's
-projection noncancelling without literal external accessory sites.
+In the weak uniform electric-isolation limit, the paired-core sum may be small while the noncancelling set supplies a group translation. This is the cleanest realization of a neutral load-bearing braid plus a charge-facing decoration, but it is not the only realization. A locally constant charge index, an exposure eigenclass, or a topology/history carrier could make the full core's projection noncancelling without literal external accessory sites.
 
-Plainly: same-sign accessory architrinos are one way to make the average
-acceleration nonzero, but the algebra does not prove they sit outside the
-braid—or even that charge must be carried by a separate set of architrinos.
-What is required is a noncancelling charge-facing projection on the complete
-assembly.
+Plainly: same-sign accessory architrinos are one way to make the average acceleration nonzero, but the algebra does not prove they sit outside the braid—or even that charge must be carried by a separate set of architrinos. What is required is a noncancelling charge-facing projection on the complete assembly.
 
-The phrase “the electric acceleration is tiny compared with the architrino
-momentum” is not valid at substrate level because primitive architrinos have no
-physical mass and no primitive $m\mathbf v$. The admissible smallness test is
-kinematic and branch-relative. Over a declared response window
-$[T_0,T_1]$, measure
+The phrase “the electric acceleration is tiny compared with the architrino momentum” is not valid at substrate level because primitive architrinos have no physical mass and no primitive $m\mathbf v$. The admissible smallness test is kinematic and branch-relative. Over a declared response window $[T_0,T_1]$, measure
 
 $$
 \epsilon_v^E
@@ -5618,15 +3732,9 @@ v_{\mathrm{floor}}
 },
 $$
 
-together with normalized scale, trace-free-shape, phase, frame, root-margin,
-and basin-distance changes. Weak deformation means those separate rows remain
-small and the branch stays within its accepted basin; it is not established by
-one large internal speed.
+together with normalized scale, trace-free-shape, phase, frame, root-margin, and basin-distance changes. Weak deformation means those separate rows remain small and the branch stays within its accepted basin; it is not established by one large internal speed.
 
-Projecting the internal residual onto derived branch modes gives the most
-useful geometric fingerprint. For a mode vector
-$\mathbf e^{(k)}=\{\mathbf e_a^{(k)}\}_a$ under the branch's declared Gram
-metric, define
+Projecting the internal residual onto derived branch modes gives the most useful geometric fingerprint. For a mode vector $\mathbf e^{(k)}=\{\mathbf e_a^{(k)}\}_a$ under the branch's declared Gram metric, define
 
 $$
 d_k^E(T)
@@ -5637,12 +3745,7 @@ d_k^E(T)
 \mathbf a_{a,\mathrm{int}}^{\mathrm{src}}(T).
 $$
 
-The pattern of $d_k^E$ across polarity-stretch, breathing, trace-free shape,
-frame, phase, and exit modes says which coordinates the electric-like source
-actually reaches. In a strong-field continuation, the first mode whose
-nonlinear residual grows or whose basin/root margin closes identifies the
-first geometric transition. Pair formation remains a later claim requiring
-certified conjugate product basins and complete backreaction provenance.
+The pattern of $d_k^E$ across polarity-stretch, breathing, trace-free shape, frame, phase, and exit modes says which coordinates the electric-like source actually reaches. In a strong-field continuation, the first mode whose nonlinear residual grows or whose basin/root margin closes identifies the first geometric transition. Pair formation remains a later claim requiring certified conjugate product basins and complete backreaction provenance.
 
 The six fermion seeds make different weak-field predictions:
 
@@ -5655,19 +3758,11 @@ The six fermion seeds make different weak-field predictions:
 | F5 balanced double-dyad triad | leading axial dipoles cancel while field-resolved polar sidebands and module deformation remain measurable | static dipole leakage survives, or the field destroys the interlaced clearance/binding |
 | F6 tetrahedral counterflow core | polarity-resolved axial, radial, and phase deformation preserves exact centroid/dipole null while the current axis remains separately measurable | the electric drive leaves the six-coordinate surface, erases the current axis, or requires sector-private laws |
 
-Claim grades: the centroid/internal decomposition and matched-pair algebra are
-derived identities. Pair cancellation in the weak uniform electric-isolation
-limit and noncancelling charge-facing translation are inferred native
-mechanisms. The seed responses are guessed discriminators. Falsifier: the
-root-resolved same-update record violates the algebra, or a retained candidate
-recovers group translation and internal deformation with a simpler exposure
-structure that invalidates the proposed seed distinction.
+Claim grades: the centroid/internal decomposition and matched-pair algebra are derived identities. Pair cancellation in the weak uniform electric-isolation limit and noncancelling charge-facing translation are inferred native mechanisms. The seed responses are guessed discriminators. Falsifier: the root-resolved same-update record violates the algebra, or a retained candidate recovers group translation and internal deformation with a simpler exposure structure that invalidates the proposed seed distinction.
 
 ### Candidate Impact On A Neutral Sea Braid
 
-A neutral Noether braid contains balanced positive- and negative-polarity
-architrinos. For one resolved sea braid $N$, define the mean source-driven
-acceleration contribution to each polarity sector,
+A neutral Noether braid contains balanced positive- and negative-polarity architrinos. For one resolved sea braid $N$, define the mean source-driven acceleration contribution to each polarity sector,
 
 $$
 \overline{\mathbf A}_{N,+}^{\mathrm{src}}
@@ -5683,11 +3778,7 @@ $$
 \mathbf A_a^{\mathrm{src}}.
 $$
 
-The overbar denotes an arithmetic average over the indicated polarity sector
-of braid $N$. It is not a time average, a complex conjugate, a wake surface, or
-an effective field. The superscript $\mathrm{src}$ retains only contributions
-from the declared source history, while $N_+$ and $N_-$ are the numbers of
-positive- and negative-polarity members included in the two sums.
+The overbar denotes an arithmetic average over the indicated polarity sector of braid $N$. It is not a time average, a complex conjugate, a wake surface, or an effective field. The superscript $\mathrm{src}$ retains only contributions from the declared source history, while $N_+$ and $N_-$ are the numbers of positive- and negative-polarity members included in the two sums.
 
 The common and differential drives are
 
@@ -5710,68 +3801,33 @@ $$
 \overline{\mathbf A}_{N,-}^{\mathrm{src}}.
 $$
 
-In a symmetric weak-response limit, an electric-like source may produce a
-small common drive but a nonzero differential drive. The leading response of a
-retained neutral sea braid would then be internal rather than translational:
-opposite-polarity displacement, phase redistribution, exposure change,
-orientation change, envelope deformation, cadence retuning, or strain. A
-stationary electric-like sea response therefore need not imply bulk sea flow.
+In a symmetric weak-response limit, an electric-like source may produce a small common drive but a nonzero differential drive. The leading response of a retained neutral sea braid would then be internal rather than translational: opposite-polarity displacement, phase redistribution, exposure change, orientation change, envelope deformation, cadence retuning, or strain. A stationary electric-like sea response therefore need not imply bulk sea flow.
 
-The differential drive must not be confused with the sea braid's pro/anti
-orientation label. Pro/anti is a geometric orientation class and remains
-distinct from architrino polarity and electric response.
+The differential drive must not be confused with the sea braid's pro/anti orientation label. Pro/anti is a geometric orientation class and remains distinct from architrino polarity and electric response.
 
-Claim grade: inferred mechanism. Falsifier: the resolved causal-root sum for a
-retained neutral sea braid gives no polarity-differential internal drive, or
-the proposed response destroys braid closure instead of producing a bounded
-retuned branch.
+Claim grade: inferred mechanism. Falsifier: the resolved causal-root sum for a retained neutral sea braid gives no polarity-differential internal drive, or the proposed response destroys braid closure instead of producing a bounded retuned branch.
 
-Plainly: a neutral sea braid can remain neutral while its positive and negative
-constituents are driven differently. The possible electric response is a
-change of internal geometry, not the acquisition of net charge.
+Plainly: a neutral sea braid can remain neutral while its positive and negative constituents are driven differently. The possible electric response is a change of internal geometry, not the acquisition of net charge.
 
 ### Three Sea Dispositions
 
 The first electric pass must preserve three alternatives:
 
-1. **Direct-wake electric response.** The source's polarity-odd causal history
-   supplies the effective electric projection while the sea remains within its
-   balanced reference tolerance.
-2. **Sea-essential electric response.** The source history induces a bounded
-   polar or differential sea state without which the effective electric
-   projection cannot be recovered.
-3. **Mixed electric response.** The direct source history supplies the primary
-   polarity-odd drive while the sea changes its magnitude, range, boundary
-   behavior, energy storage, or effective coupling.
+1. **Direct-wake electric response.** The source's polarity-odd causal history supplies the effective electric projection while the sea remains within its balanced reference tolerance.
+2. **Sea-essential electric response.** The source history induces a bounded polar or differential sea state without which the effective electric projection cannot be recovered.
+3. **Mixed electric response.** The direct source history supplies the primary polarity-odd drive while the sea changes its magnitude, range, boundary behavior, energy storage, or effective coupling.
 
-A scalar-only sea change in density or cadence cannot by itself encode the
-polar direction of $\mathbf E_{\mathrm{eff}}$. If the sea carries part of the
-directional electric response, its resolved record must contain a polar object
-or a spatial construction, such as a derived gradient, with polar
-transformation behavior. The source geometry may instead carry the direction
-while scalar sea variables modify only the response magnitude.
+A scalar-only sea change in density or cadence cannot by itself encode the polar direction of $\mathbf E_{\mathrm{eff}}$. If the sea carries part of the directional electric response, its resolved record must contain a polar object or a spatial construction, such as a derived gradient, with polar transformation behavior. The source geometry may instead carry the direction while scalar sea variables modify only the response magnitude.
 
-The first controls are source-polarity conjugation, exposed-neutral source
-replacement, spatial reflection, frozen-sea versus responsive-sea comparison,
-randomized sea orientation, and source removal followed by relaxation. The
-source record, causal window, projection rule, and coefficients remain fixed
-throughout.
+The first controls are source-polarity conjugation, exposed-neutral source replacement, spatial reflection, frozen-sea versus responsive-sea comparison, randomized sea orientation, and source removal followed by relaxation. The source record, causal window, projection rule, and coefficients remain fixed throughout.
 
-Plainly: the sea may be unchanged, may be necessary, or may modify a direct
-electric drive. The purpose of the first calculation is to distinguish those
-possibilities, not to assume polarization in advance.
+Plainly: the sea may be unchanged, may be necessary, or may modify a direct electric drive. The purpose of the first calculation is to distinguish those possibilities, not to assume polarization in advance.
 
 ### Direct-Wake Versus Sea-Essential Discriminator
 
-Agreement with an inverse-square magnitude or one charged-probe trajectory
-cannot distinguish direct-wake and sea-mediated realizations. Both can be made
-to reproduce one effective row. The discriminator must intervene on sea
-response while preserving one source history, causal window, boundary record,
-receiver comparison, projection rule, and coefficient set.
+Agreement with an inverse-square magnitude or one charged-probe trajectory cannot distinguish direct-wake and sea-mediated realizations. Both can be made to reproduce one effective row. The discriminator must intervene on sea response while preserving one source history, causal window, boundary record, receiver comparison, projection rule, and coefficient set.
 
-Use two stages. The first is a prescribed-record diagnostic and cannot certify
-a retained physical branch. Evaluate all rows at the same receiver events so
-trajectory divergence does not contaminate the source partition:
+Use two stages. The first is a prescribed-record diagnostic and cannot certify a retained physical branch. Evaluate all rows at the same receiver events so trajectory divergence does not contaminate the source partition:
 
 | Run | Source record | Sea treatment | Native quantity isolated |
 | --- | --- | --- | --- |
@@ -5781,9 +3837,7 @@ trajectory divergence does not contaminate the source partition:
 | `E3` | Same fixed source history | Sea braids respond under the unchanged Master Equation | Direct operator plus source-induced sea contribution |
 | `E4` | Source removed after conditioning | Sea responds until the direct source history clears the region | Retention, relaxation, or propagation of the induced sea state |
 
-The causal-root ledger must retain transmitter identity so the direct and sea
-contributions are partitioned without fitting. Define the diagnostic sea
-increment only on the common receiver-event record,
+The causal-root ledger must retain transmitter identity so the direct and sea contributions are partitioned without fitting. Define the diagnostic sea increment only on the common receiver-event record,
 
 $$
 \Delta\mathbf A_{\mathrm{odd}}^{\mathrm{sea}}
@@ -5793,78 +3847,32 @@ $$
 \mathbf A_{\mathrm{odd}}^{E2}.
 $$
 
-A nonzero increment establishes participation only within the prescribed
-candidate model. It does not establish that the sea is physically essential.
-The second stage must therefore release the source, sea, and receiver to a
-same-record EOM evolution from declared initial histories. It must test the
-electric requirement bundle rather than a single magnitude: source-polarity
-and receiver-polarity reversal, polar reflection behavior, superposition,
-range and sourced divergence, stationary curl, boundary dependence, temporal
-arrival and relaxation, energy-momentum accounting, and receiver-independent
-reconstruction across more than one retained assembly class.
+A nonzero increment establishes participation only within the prescribed candidate model. It does not establish that the sea is physically essential. The second stage must therefore release the source, sea, and receiver to a same-record EOM evolution from declared initial histories. It must test the electric requirement bundle rather than a single magnitude: source-polarity and receiver-polarity reversal, polar reflection behavior, superposition, range and sourced divergence, stationary curl, boundary dependence, temporal arrival and relaxation, energy-momentum accounting, and receiver-independent reconstruction across more than one retained assembly class.
 
 Classify the outcome as follows:
 
-- **Direct-wake dominant:** `E1` and the frozen-sea evolution satisfy the
-  predeclared electric requirements, while the responsive-sea correction
-  converges below tolerance under sea and causal-window refinement.
-- **Sea-essential:** the direct and frozen-sea cases fail at least one required
-  row, the responsive-sea case passes it with no retuning, and suppressing the
-  derived sea response removes that pass.
-- **Mixed:** the direct record supplies a necessary polarity-odd response, but
-  a derived sea response is necessary for other rows such as boundary
-  behavior, storage, screening, or the common receiver-independent projection.
-- **Unresolved or rejected:** neither case passes, or the result depends on a
-  prescribed constitutive knob, receiver-specific field definition, or
-  resolution-dependent tuning.
+- **Direct-wake dominant:** `E1` and the frozen-sea evolution satisfy the predeclared electric requirements, while the responsive-sea correction converges below tolerance under sea and causal-window refinement.
+- **Sea-essential:** the direct and frozen-sea cases fail at least one required row, the responsive-sea case passes it with no retuning, and suppressing the derived sea response removes that pass.
+- **Mixed:** the direct record supplies a necessary polarity-odd response, but a derived sea response is necessary for other rows such as boundary behavior, storage, screening, or the common receiver-independent projection.
+- **Unresolved or rejected:** neither case passes, or the result depends on a prescribed constitutive knob, receiver-specific field definition, or resolution-dependent tuning.
 
-To identify a particular sea geometry rather than merely a sea contribution,
-record the resolved braid variables before naming the geometry: sector drive
-$\mathbf D_{N,\mathrm{pol}}^E$, relative displacement, phase redistribution,
-exposure, orientation, envelope deformation, cadence, and strain. A candidate
-polar order parameter is supported only if it reverses with source polarity,
-transforms as a polar object under reflection, vanishes in the exposed-neutral
-control, remains bounded on retained sea braids, and mediates the missing
-electric requirement under knockout. Correlation with
-$\mathbf E_{\mathrm{eff}}$ alone is insufficient.
+To identify a particular sea geometry rather than merely a sea contribution, record the resolved braid variables before naming the geometry: sector drive $\mathbf D_{N,\mathrm{pol}}^E$, relative displacement, phase redistribution, exposure, orientation, envelope deformation, cadence, and strain. A candidate polar order parameter is supported only if it reverses with source polarity, transforms as a polar object under reflection, vanishes in the exposed-neutral control, remains bounded on retained sea braids, and mediates the missing electric requirement under knockout. Correlation with $\mathbf E_{\mathrm{eff}}$ alone is insufficient.
 
-The present blocker is a retained candidate Noether sea braid whose responsive
-history can be evolved. Before that geometry exists, `E1` can determine how
-much electric structure is already present in direct source hits, but no
-calculation can honestly prove that a nonexistent or unspecified sea response
-is dispensable.
+The present blocker is a retained candidate Noether sea braid whose responsive history can be evolved. Before that geometry exists, `E1` can determine how much electric structure is already present in direct source hits, but no calculation can honestly prove that a nonexistent or unspecified sea response is dispensable.
 
-Claim grade: the run partition and decision rules are a proposed diagnostic;
-their source/sea decomposition follows from transmitter-labeled native
-bookkeeping, while physical necessity remains a closure target until the
-second-stage same-record evolutions and independent effective comparisons are
-available. Promotion target: the electromagnetic recovery derivation after a
-retained sea response branch exists. The focused
-[$E0$--$E4$ Multi-Receiver Electric Response](e0-e4-multi-receiver-electric-response.md)
-packet now predeclares the common-history comparison across a neutral sea braid,
-electron/positron conjugate receivers, and a neutral nucleon surrogate. It keeps
-group translation, orientation, non-rigid deformation, and signed internal
-polarity response separate. Execution remains blocked on the retained branches
-and same-update causal-wake accounts named in that packet.
+Claim grade: the run partition and decision rules are a proposed diagnostic; their source/sea decomposition follows from transmitter-labeled native bookkeeping, while physical necessity remains a closure target until the second-stage same-record evolutions and independent effective comparisons are available. Promotion target: the electromagnetic recovery derivation after a retained sea response branch exists. The focused [$E0$--$E4$ Multi-Receiver Electric Response](e0-e4-multi-receiver-electric-response.md) packet now predeclares the common-history comparison across a neutral sea braid, electron/positron conjugate receivers, and a neutral nucleon surrogate. It keeps group translation, orientation, non-rigid deformation, and signed internal polarity response separate. Execution remains blocked on the retained branches and same-update causal-wake accounts named in that packet.
 
-Plainly: first ask whether the source wakes already contain the required
-electric pattern. Then let real candidate sea braids respond without changing
-the rules. The sea is essential only if turning off that derived response
-breaks a required electric behavior that the full evolution restores.
+Plainly: first ask whether the source wakes already contain the required electric pattern. Then let real candidate sea braids respond without changing the rules. The sea is essential only if turning off that derived response breaks a required electric behavior that the full evolution restores.
 
 ### Electric Field-Identity Matrix
 
-The first electric comparison uses three realization families on the same
-source, boundary, receiver, projection, and tolerance record:
+The first electric comparison uses three realization families on the same source, boundary, receiver, projection, and tolerance record:
 
 - `DW`: direct-wake dominant;
 - `SE`: sea-essential; and
 - `MX`: mixed direct-wake and sea response.
 
-The entries below are burdens, not predictions. `Required` means that the
-family must produce the row to remain viable; `null` means the named component
-must converge below tolerance; and `derived response` means the sea state must
-arise from resolved histories under the unchanged Master Equation.
+The entries below are burdens, not predictions. `Required` means that the family must produce the row to remain viable; `null` means the named component must converge below tolerance; and `derived response` means the sea state must arise from resolved histories under the unchanged Master Equation.
 
 | Electric requirement and owner | `DW` burden | `SE` burden | `MX` burden | Decisive same-record discriminator |
 | --- | --- | --- | --- | --- |
@@ -5879,20 +3887,13 @@ arise from resolved histories under the unchanged Master Equation.
 | Weak-to-strong geometric nonlinearity (`BR-E-04`; strong-field benchmark) | Source/receiver root geometry produces the first nonlinear departure while sea response remains null. | The first departure is a derived sea transition. | The first departure changes both receiver geometry and sea response on one continuation. | Fixed-law source continuation with root, inactive-gap, return-stability, collision, and branch-status margins. |
 | Retention loss, pair assembly, and backreaction (`BR-E-05`, `BR-E-06`, `BR-E-10`; `EQ-28`) | Existing inventory is routed through direct source-driven capture and the complete source ledger backreacts. | Certified conjugate product basins and backreaction require a derived sea transition. | Product capture consumes a coupled matter--sea precursor and continues every source, sea, product, remnant, wake, and boundary row. | Pair capture remains barred until the same accepted record supplies certified conjugate basins and exact identity partition. |
 
-No family presently passes this matrix. The direct-only rows can be evaluated
-first, but failure or success there cannot decide sea necessity unless the
-responsive comparison uses an EOM-evolved candidate sea braid rather than an
-authored constitutive response.
+No family presently passes this matrix. The direct-only rows can be evaluated first, but failure or success there cannot decide sea necessity unless the responsive comparison uses an EOM-evolved candidate sea braid rather than an authored constitutive response.
 
-Plainly: the matrix makes the three stories compete on the same questions. A
-sea model wins a row only when a derived sea change restores something the
-unchanged direct history cannot produce; a direct model wins only when the sea
-correction genuinely converges away.
+Plainly: the matrix makes the three stories compete on the same questions. A sea model wins a row only when a derived sea change restores something the unchanged direct history cannot produce; a direct model wins only when the sea correction genuinely converges away.
 
 ## Effective-Field Requirement Ledger
 
-The following rows begin the reverse-engineering work. They are requirements
-from effective recovery targets, not established microscopic mechanisms.
+The following rows begin the reverse-engineering work. They are requirements from effective recovery targets, not established microscopic mechanisms.
 
 | ID | Effective behavior to recover | Requirement grade | Native burden | First discriminator or falsifier |
 | --- | --- | --- | --- | --- |
@@ -5926,28 +3927,15 @@ from effective recovery targets, not established microscopic mechanisms.
 | `BR-EB-06` | Electric and magnetic readouts are compatible components of one common causal-history carrier. | Inferred native requirement from `EQ-13` and the finite-braid Maxwell map | The candidate carrier must place both readouts on one smoothing, normalization, record-identity, and boundary domain; the [Candidate Common Carrier](#candidate-common-carrier) section states the two-chain realization without making it compulsory. | Separate carriers with no same-record induction, observer mixing, or adjacency map fail this candidate unification. |
 | `BR-EB-07` | The sourced Maxwell rows, impedance, propagation, screening, and boundary response arise from one constitutive map over direct history plus any derived sea response. | Deduced common-consumer burden; carrier form inferred | One map must accept exposed density/current, direct causal history, boundary state, and a declared sea state with one coefficient family and explicit weak-regime spectrum. A resolved changing sea state is required only if sea-essential or mixed dispositions survive the direct/sea controls. | Case-specific coefficients or a sea transition inserted despite a passing direct-wake null fail; so does a sea-essential or mixed claim with no resolved changing sea state. |
 
-Rows `BR-E-04` through `BR-E-06` are instantiated together in the
-[Strong-Field Electromagnetic
-Response](../mapping-benchmarks/strong-field-electromagnetic-response.md)
-benchmark. That packet also binds photon--photon scattering and birefringence
-to the same source, sea, photon, pair, and provenance history; it changes none
-of the requirement grades recorded here.
+Rows `BR-E-04` through `BR-E-06` are instantiated together in the [Strong-Field Electromagnetic Response](../mapping-benchmarks/strong-field-electromagnetic-response.md) benchmark. That packet also binds photon--photon scattering and birefringence to the same source, sea, photon, pair, and provenance history; it changes none of the requirement grades recorded here.
 
-Plainly: the table records what any successful geometry must accomplish. It
-does not yet decide whether electric behavior is polar sea displacement,
-whether magnetic behavior is axial circulation, or whether both are
-projections of one deeper causal response.
+Plainly: the table records what any successful geometry must accomplish. It does not yet decide whether electric behavior is polar sea displacement, whether magnetic behavior is axial circulation, or whether both are projections of one deeper causal response.
 
 ## Magnetic Field Reduction
 
 ### Source Record
 
-The magnetic investigation begins from exposed constituent worldlines, not
-from a primitive magnetic source. For assembly $A$ and constituent $a$, retain
-polarity $q_{Aa}$, exposure $e_{Aa}$, position $\mathbf x_{Aa}$, velocity
-$\mathbf v_{Aa}$, center velocity $\mathbf V_A$, ordered internal frame, and
-the complete causal-root history. One shared coarse-graining then separates
-translation and internal current without changing the underlying record:
+The magnetic investigation begins from exposed constituent worldlines, not from a primitive magnetic source. For assembly $A$ and constituent $a$, retain polarity $q_{Aa}$, exposure $e_{Aa}$, position $\mathbf x_{Aa}$, velocity $\mathbf v_{Aa}$, center velocity $\mathbf V_A$, ordered internal frame, and the complete causal-root history. One shared coarse-graining then separates translation and internal current without changing the underlying record:
 
 $$
 \mathbf J_\ell
@@ -5957,21 +3945,13 @@ $$
 \mathbf J_{\ell,\mathrm{int}}.
 $$
 
-Translation of exposed inventory, exposed internal circulation, and a
-conservative exposure reconfiguration are therefore source classes of one
-current problem. A scalar exposure change at fixed noncirculating centers does
-not by itself supply the two spatial directions needed for an axial readout;
-the second direction must come from actual motion, ordered internal geometry,
-or a resolved sea-history face.
+Translation of exposed inventory, exposed internal circulation, and a conservative exposure reconfiguration are therefore source classes of one current problem. A scalar exposure change at fixed noncirculating centers does not by itself supply the two spatial directions needed for an axial readout; the second direction must come from actual motion, ordered internal geometry, or a resolved sea-history face.
 
-Plainly: moving visible polarity and circulating visible polarity are two
-parts of one worldline ledger. Merely changing a visibility number is not a
-circulation unless the record shows the oriented route by which it changed.
+Plainly: moving visible polarity and circulating visible polarity are two parts of one worldline ledger. Merely changing a visibility number is not a circulation unless the record shows the oriented route by which it changed.
 
 ### Candidate Common Carrier
 
-The strongest existing electromagnetic synthesis is a finite oriented
-spacetime history two-chain
+The strongest existing electromagnetic synthesis is a finite oriented spacetime history two-chain
 
 $$
 \mathfrak C_W
@@ -5979,11 +3959,7 @@ $$
 \sum_{f\in\mathcal F_W}w_f f,
 $$
 
-whose faces retain emitting and receiving identities, causal-root ids,
-$W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$, direct or sea-response role, oriented edge ids,
-spacetime area, and boundary provenance. With one frozen smoothing and
-normalization, its time--space faces can project the electric chart while its
-space--space faces project the magnetic chart. In this candidate architecture,
+whose faces retain emitting and receiving identities, causal-root ids, $W^{\mathrm{acc}}=c_f/|D_t|=1/|J^t|$, direct or sea-response role, oriented edge ids, spacetime area, and boundary provenance. With one frozen smoothing and normalization, its time--space faces can project the electric chart while its space--space faces project the magnetic chart. In this candidate architecture,
 
 $$
 d\mathsf F_\ell
@@ -5991,43 +3967,21 @@ d\mathsf F_\ell
 Z_FG_\ell*\operatorname{PD}(\partial\mathfrak C_W),
 $$
 
-so magnetic-divergence and Faraday residuals expose unmatched history edges.
-This is a conditional geometric identity, not evidence that the EOM solver or
-a retained Noether sea supplies the required faces. The sourced Maxwell rows
-remain blocked on a constitutive map from exposed density/current and direct
-history to the complete chain.
+so magnetic-divergence and Faraday residuals expose unmatched history edges. This is a conditional geometric identity, not evidence that the EOM solver or a retained Noether sea supplies the required faces. The sourced Maxwell rows remain blocked on a constitutive map from exposed density/current and direct history to the complete chain.
 
-Plainly: electric and magnetic behavior may be two orientations of one sheet
-of causal history. Paired edges explain the homogeneous equations; they do
-not yet determine response strength, screening, impedance, or phase.
+Plainly: electric and magnetic behavior may be two orientations of one sheet of causal history. Paired edges explain the homogeneous equations; they do not yet determine response strength, screening, impedance, or phase.
 
 ### Receiver And Moment Burdens
 
-A fixed arriving Master Equation hit has no instantaneous receiver-velocity
-multiplier. Magnetic receiver behavior must therefore emerge from a sequence
-of delayed hits, receiver displacement and ordered-frame evolution between
-hits, internal assembly response, sea dynamics, or a combination of these.
-The minimum control family reverses source current, receiver drift, receiver
-circulation, and mirror orientation independently. It reports group
-translation, internal deformation, orientation, work, recoil, radiation, and
-angular momentum separately.
+A fixed arriving Master Equation hit has no instantaneous receiver-velocity multiplier. Magnetic receiver behavior must therefore emerge from a sequence of delayed hits, receiver displacement and ordered-frame evolution between hits, internal assembly response, sea dynamics, or a combination of these. The minimum control family reverses source current, receiver drift, receiver circulation, and mirror orientation independently. It reports group translation, internal deformation, orientation, work, recoil, radiation, and angular momentum separately.
 
-`EQ-15` and `EQ-27`, the Zeeman benchmark, and the Stern--Gerlach benchmark add
-a stricter burden. The same retained ordered-frame loop and exposed-current
-map must support a nontrivial $\mathbb Z_2$ lift, $4\pi$ restoration, magnetic
-moment, leading-$g$ relation, anomalous residual, spectral splitting,
-polarization, gradient response, and discrete output basins. These targets do
-not establish that exposed same-sign sites occupy any particular position in
-the braid.
+`EQ-15` and `EQ-27`, the Zeeman benchmark, and the Stern--Gerlach benchmark add a stricter burden. The same retained ordered-frame loop and exposed-current map must support a nontrivial $\mathbb Z_2$ lift, $4\pi$ restoration, magnetic moment, leading-$g$ relation, anomalous residual, spectral splitting, polarization, gradient response, and discrete output basins. These targets do not establish that exposed same-sign sites occupy any particular position in the braid.
 
-Plainly: the substrate contains delayed radial acceleration contributions, not
-a tiny primitive magnetic-response arrow. The observed sideways response and moment must
-come from how a structured receiver evolves across many such contributions.
+Plainly: the substrate contains delayed radial acceleration contributions, not a tiny primitive magnetic-response arrow. The observed sideways response and moment must come from how a structured receiver evolves across many such contributions.
 
 ### Weak-Response Skew Lemma
 
-For one fixed source, sea, and boundary history, write the leading
-motion-dependent group acceleration of a receiver as
+For one fixed source, sea, and boundary history, write the leading motion-dependent group acceleration of a receiver as
 
 $$
 \delta A_{\mathrm{grp}}^{i}
@@ -6037,10 +3991,7 @@ $$
 O(\lVert\mathbf V\rVert^2,\epsilon_{\mathrm{nl}}),
 $$
 
-where $K$ is an effective response kernel extracted from native causal
-history, not a primitive field law, and
-$\sigma_{\mathrm{recv}}\ne0$ is the frozen receiver sign/exposure factor for
-the compared branch. The weak magnetic no-work target requires
+where $K$ is an effective response kernel extracted from native causal history, not a primitive field law, and $\sigma_{\mathrm{recv}}\ne0$ is the frozen receiver sign/exposure factor for the compared branch. The weak magnetic no-work target requires
 
 $$
 V_i\delta A_{\mathrm{grp}}^{i}
@@ -6050,10 +4001,7 @@ O(\lVert\mathbf V\rVert^3,
 \qquad\text{for every sufficiently small }\mathbf V.
 $$
 
-Decompose $K=S+A$ with $S^T=S$ and $A^T=-A$. Since
-$\mathbf V^TA\mathbf V=0$, the weak all-$\mathbf V$ condition implies that
-the leading quadratic coefficient satisfies $\mathbf V^TS\mathbf V=0$ and
-therefore $S=0$ at leading order. Thus
+Decompose $K=S+A$ with $S^T=S$ and $A^T=-A$. Since $\mathbf V^TA\mathbf V=0$, the weak all-$\mathbf V$ condition implies that the leading quadratic coefficient satisfies $\mathbf V^TS\mathbf V=0$ and therefore $S=0$ at leading order. Thus
 
 $$
 K_{ij}=-K_{ji},
@@ -6061,21 +4009,13 @@ K_{ij}=-K_{ji},
 K_{ij}=\varepsilon_{ijk}b_{\mathrm{eff}}^k
 $$
 
-in three spatial dimensions at leading order. This derives a recovery constraint: the leading
-weak magnetic group response is an oriented two-plane or skew response. It
-does not make $\mathbf b_{\mathrm{eff}}$ a substrate field and does not decide
-whether direct history, the Noether sea, or their coupling carries the
-orientation. A symmetric part is permitted only when its corresponding
-energy-transfer channel is separately present in the event ledger.
+in three spatial dimensions at leading order. This derives a recovery constraint: the leading weak magnetic group response is an oriented two-plane or skew response. It does not make $\mathbf b_{\mathrm{eff}}$ a substrate field and does not decide whether direct history, the Noether sea, or their coupling carries the orientation. A symmetric part is permitted only when its corresponding energy-transfer channel is separately present in the event ledger.
 
-Plainly: weak magnetic bending must act like an infinitesimal rotation, not a
-stretch. That gives candidate braids a direct rejection test: estimate the
-velocity-response matrix and reject an unexplained symmetric part.
+Plainly: weak magnetic bending must act like an infinitesimal rotation, not a stretch. That gives candidate braids a direct rejection test: estimate the velocity-response matrix and reject an unexplained symmetric part.
 
 ### Polarity--Circulation Correlation Is The Magnetic Geometry Clue
 
-Motion alone does not supply a persistent current moment. For one assembly
-record, define the candidate signed velocity first moment
+Motion alone does not supply a persistent current moment. For one assembly record, define the candidate signed velocity first moment
 
 $$
 \mathbf m_{\mathrm{cur}}
@@ -6088,15 +4028,9 @@ e_a\sigma_a
 \mathbf v_{a,\mathrm{int}},
 $$
 
-where $\sigma_a\in\{+1,-1\}$ is primitive polarity, $e_a$ is one frozen
-derived exposure weight, $\mathbf y_a$ is position relative to the geometric
-centroid, and $\mathbf v_{a,\mathrm{int}}$ is internal velocity. This is a
-native candidate for the geometry feeding an effective magnetic moment. It is
-not itself the observer moment and does not insert a current law into the
-Master Equation.
+where $\sigma_a\in\{+1,-1\}$ is primitive polarity, $e_a$ is one frozen derived exposure weight, $\mathbf y_a$ is position relative to the geometric centroid, and $\mathbf v_{a,\mathrm{int}}$ is internal velocity. This is a native candidate for the geometry feeding an effective magnetic moment. It is not itself the observer moment and does not insert a current law into the Master Equation.
 
-For two equal-exposure opposite-polarity members on centered circular
-histories of equal radius $R$ around the same oriented axis, let
+For two equal-exposure opposite-polarity members on centered circular histories of equal radius $R$ around the same oriented axis, let
 
 $$
 \omega_- = s_\omega\omega_+,
@@ -6128,41 +4062,21 @@ s_\omega=-1
 \quad\text{generically}.
 $$
 
-The first row is same-sense geometric circulation of the opposite polarities;
-their signed current moments cancel under the stated symmetry. The second is
-opposite geometric circulation; polarity reversal and circulation reversal
-multiply so the signed moments add. Unequal radii, cadences, exposure, centers,
-or noncircular histories modify the formula and become measurable geometry
-rows rather than exceptions hidden in a label.
+The first row is same-sense geometric circulation of the opposite polarities; their signed current moments cancel under the stated symmetry. The second is opposite geometric circulation; polarity reversal and circulation reversal multiply so the signed moments add. Unequal radii, cadences, exposure, centers, or noncircular histories modify the formula and become measurable geometry rows rather than exceptions hidden in a label.
 
-Plainly: two constituents can both be moving rapidly and still have zero
-magnetic moment. What matters is the correlation between charge sign, path
-orientation, position, and exposure. For an ideal symmetric neutral pair,
-opposite polarities moving around the loop in the same geometric sense cancel;
-opposite senses can add.
+Plainly: two constituents can both be moving rapidly and still have zero magnetic moment. What matters is the correlation between charge sign, path orientation, position, and exposure. For an ideal symmetric neutral pair, opposite polarities moving around the loop in the same geometric sense cancel; opposite senses can add.
 
-This produces a strong conditional result for the admitted three-binary
-charts. If an A2-like neutral binary consists of exact equal-exposure,
-same-sense, centered circular polarity partners, the bare binary contributes
-no cycle-averaged signed current first moment. Three such binaries do not
-acquire a moment merely by being mutually orthogonal. A nonzero fermion moment
-then requires at least one additional row:
+This produces a strong conditional result for the admitted three-binary charts. If an A2-like neutral binary consists of exact equal-exposure, same-sense, centered circular polarity partners, the bare binary contributes no cycle-averaged signed current first moment. Three such binaries do not acquire a moment merely by being mutually orthogonal. A nonzero fermion moment then requires at least one additional row:
 
 - polarity-correlated countercirculation within or among resolved components;
-- unequal but branch-derived exposure, radius, cadence, phase support, or
-  center placement;
+- unequal but branch-derived exposure, radius, cadence, phase support, or center placement;
 - a same-sign charge-facing decoration with its own closed ledger;
-- a non-orbital ordered-frame or corridor holonomy that projects to the moment;
-  or
-- a derived wake/sea contribution that survives the direct/sea and reversal
-  controls.
+- a non-orbital ordered-frame or corridor holonomy that projects to the moment; or
+- a derived wake/sea contribution that survives the direct/sea and reversal controls.
 
-This does not prove that current Noether binaries are magnetically inert. It
-shows exactly why a visual picture of rapid co-rotation is insufficient and
-which asymmetry or history row a moment derivation must exhibit.
+This does not prove that current Noether binaries are magnetically inert. It shows exactly why a visual picture of rapid co-rotation is insufficient and which asymmetry or history row a moment derivation must exhibit.
 
-The skew-response kernel gives a complementary instantaneous test. On a
-declared leading polarity-odd, velocity-linear comparison row, let
+The skew-response kernel gives a complementary instantaneous test. On a declared leading polarity-odd, velocity-linear comparison row, let
 
 $$
 \delta\mathbf A_a^{B}
@@ -6172,8 +4086,7 @@ $$
 K_B^{\mathsf T}=-K_B.
 $$
 
-For a matched opposite-polarity pair at one event with
-$\mathbf v_- = s_v\mathbf v_+$,
+For a matched opposite-polarity pair at one event with $\mathbf v_- = s_v\mathbf v_+$,
 
 $$
 \delta\mathbf A_{\mathrm{pair,grp}}^{B}
@@ -6191,12 +4104,7 @@ $$
 \left(1+s_v\right)K_B\mathbf v_+.
 $$
 
-Thus equal instantaneous velocities cancel the group row and drive a relative
-row, while opposite instantaneous velocities add in the pair-centroid row and
-cancel in the relative row. A complete closed orbit may still average the
-centroid contribution to zero. Phase-resolved centroid, shape, frame, signed
-first moment, and cycle average must therefore all be recorded; one snapshot
-cannot identify the magnetic geometry.
+Thus equal instantaneous velocities cancel the group row and drive a relative row, while opposite instantaneous velocities add in the pair-centroid row and cancel in the relative row. A complete closed orbit may still average the centroid contribution to zero. Phase-resolved centroid, shape, frame, signed first moment, and cycle average must therefore all be recorded; one snapshot cannot identify the magnetic geometry.
 
 The six seeds now separate more sharply:
 
@@ -6209,20 +4117,11 @@ The six seeds now separate more sharply:
 | F5 | separated-track counterrotation makes the polarity--circulation correlation explicit while paired axial reversal cancels the leading dipole | cross-axis clearance, binding, polar leakage, or moment-to-angular mapping fails |
 | F6 | the balanced edge partition yields an exact moment axis while separate polarity-sector breathing and cadence preserve centroid/dipole null | six-coordinate nonreturn, loss of current-axis alignment, nonbinding modules, or sign-pattern overgeneration |
 
-Claim grade: the signed first-moment cancellation/addition result is derived
-for the declared equal-radius, equal-exposure circular pair. The need for a
-polarity--circulation correlation or another listed noncancelling row is an
-inference for loop-based moment realizations. The $K_B$ pair decomposition is
-derived from the declared effective leading comparison kernel, not from a
-primitive magnetic law. Falsifier: a same-sense, exactly symmetric pair yields
-a nonzero cycle-averaged signed current first moment under the stated
-definition, or an accepted candidate recovers the full moment bundle through
-a different measured row that makes the proposed correlation unnecessary.
+Claim grade: the signed first-moment cancellation/addition result is derived for the declared equal-radius, equal-exposure circular pair. The need for a polarity--circulation correlation or another listed noncancelling row is an inference for loop-based moment realizations. The $K_B$ pair decomposition is derived from the declared effective leading comparison kernel, not from a primitive magnetic law. Falsifier: a same-sense, exactly symmetric pair yields a nonzero cycle-averaged signed current first moment under the stated definition, or an accepted candidate recovers the full moment bundle through a different measured row that makes the proposed correlation unnecessary.
 
 ### Collision And Dipole Nulls Generate A Balanced Double-Dyad Seed
 
-The polarity--circulation result creates an immediate geometric problem. Two
-members counterrotating on the same circle cannot remain collision-free. With
+The polarity--circulation result creates an immediate geometric problem. Two members counterrotating on the same circle cannot remain collision-free. With
 
 $$
 \theta_+(T)=\omega T+\phi_+,
@@ -6238,12 +4137,9 @@ $$
 2\omega T+\phi_+-\phi_-.
 $$
 
-For nonzero $\omega$, this difference reaches $0$ modulo $2\pi$ twice per
-cycle. Equal-radius paths in the same plane therefore coincide regardless of
-initial phase. A phase choice can delay a collision but cannot remove it.
+For nonzero $\omega$, this difference reaches $0$ modulo $2\pi$ twice per cycle. Equal-radius paths in the same plane therefore coincide regardless of initial phase. A phase choice can delay a collision but cannot remove it.
 
-Parallel planes supply the smallest local clearance repair. For equal radius
-$\rho$ and opposite axial offsets $\pm h$,
+Parallel planes supply the smallest local clearance repair. For equal radius $\rho$ and opposite axial offsets $\pm h$,
 
 $$
 \left\|
@@ -6259,19 +4155,11 @@ $$
 \right),
 $$
 
-so the pair clearance is at least $2|h|$. But an opposite-polarity dyad placed
-at $\pm h\hat{\mathbf n}$ has a nonzero cycle-averaged electric first moment
-along $\hat{\mathbf n}$. Collision avoidance has traded one problem for a
-static polar row.
+so the pair clearance is at least $2|h|$. But an opposite-polarity dyad placed at $\pm h\hat{\mathbf n}$ has a nonzero cycle-averaged electric first moment along $\hat{\mathbf n}$. Collision avoidance has traded one problem for a static polar row.
 
-Plainly: counterrotation supplies the desired magnetic sign, but two opposite
-charges on one track collide. Moving them to two parallel tracks prevents the
-collision and simultaneously creates a charge separation. A viable geometry
-must cancel that electric dipole without canceling the magnetic moment.
+Plainly: counterrotation supplies the desired magnetic sign, but two opposite charges on one track collide. Moving them to two parallel tracks prevents the collision and simultaneously creates a charge separation. A viable geometry must cancel that electric dipole without canceling the magnetic moment.
 
-The smallest symmetric local repair is two axially reversed dyads on distinct
-radii. For each body axis $\hat{\mathbf n}_a$, define a transverse unit-circle
-path $\mathbf r_a(\theta)$ and four tracks:
+The smallest symmetric local repair is two axially reversed dyads on distinct radii. For each body axis $\hat{\mathbf n}_a$, define a transverse unit-circle path $\mathbf r_a(\theta)$ and four tracks:
 
 $$
 \begin{aligned}
@@ -6309,10 +4197,7 @@ $$
 \end{aligned}
 $$
 
-Choose $h>0$ and $\rho_1\ne\rho_2$. Within this one-axis module, paired
-counterrotators on equal radii occupy different planes, while opposite
-polarities sharing a plane occupy different radii. Its local geometric
-clearance is bounded below by
+Choose $h>0$ and $\rho_1\ne\rho_2$. Within this one-axis module, paired counterrotators on equal radii occupy different planes, while opposite polarities sharing a plane occupy different radii. Its local geometric clearance is bounded below by
 
 $$
 d_{\mathrm{local}}
@@ -6320,11 +4205,9 @@ d_{\mathrm{local}}
 \min\!\left(2h,\left|\rho_1-\rho_2\right|\right),
 $$
 
-before cross-axis and causal-root clearances are checked. This is only a
-geometric bound; it does not establish delayed-history validity or binding.
+before cross-axis and causal-root clearances are checked. This is only a geometric bound; it does not establish delayed-history validity or binding.
 
-The two dyads have opposite axial electric first moments, so their
-cycle-averaged polar rows cancel under equal exposure:
+The two dyads have opposite axial electric first moments, so their cycle-averaged polar rows cancel under equal exposure:
 
 $$
 \left\langle\mathbf p_{a1}\right\rangle
@@ -6348,20 +4231,11 @@ e
 \hat{\mathbf n}_a.
 $$
 
-The cancellation is only cycle-averaged unless phases and the sector
-projection provide a stronger instantaneous null. Any residual polar
-oscillation, radiation, sideband, or sea response is therefore an explicit
-falsifier row rather than something hidden by the average.
+The cancellation is only cycle-averaged unless phases and the sector projection provide a stronger instantaneous null. Any residual polar oscillation, radiation, sideband, or sea response is therefore an explicit falsifier row rather than something hidden by the average.
 
-Now place identical modules on an orthonormal body triad
-$\{\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3\}$. This gives a
-twelve-architrino neutral core, locally called **F5 — balanced double-dyad
-triad**. It may be represented as two interlaced A3-like six-worldline braid
-records with reversed axial assignments and distinct radii; it is not a
-Family-C chart, because Family C has one common axis.
+Now place identical modules on an orthonormal body triad $\{\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3\}$. This gives a twelve-architrino neutral core, locally called **F5 — balanced double-dyad triad**. It may be represented as two interlaced A3-like six-worldline braid records with reversed axial assignments and distinct radii; it is not a Family-C chart, because Family C has one common axis.
 
-For equal module parameters, the cycle-averaged second-moment contribution of
-each axis has the form
+For equal module parameters, the cycle-averaged second-moment contribution of each axis has the form
 
 $$
 M_a
@@ -6403,46 +4277,26 @@ $$
 \mathbf0.
 $$
 
-This is the first current campaign seed that naturally attempts the difficult
-intersection of scalar-facing isotropy, a nonzero axial moment, a cyclic
-three-port body action, counterflow, zero net polarity, and a leading electric
-dipole null. A $120^\circ$ proper rotation about the body diagonal cycles the
-three modules while preserving the diagonal axis.
+This is the first current campaign seed that naturally attempts the difficult intersection of scalar-facing isotropy, a nonzero axial moment, a cyclic three-port body action, counterflow, zero net polarity, and a leading electric dipole null. A $120^\circ$ proper rotation about the body diagonal cycles the three modules while preserving the diagonal axis.
 
-Plainly: two nested counterrotating pairs cancel charge separation but keep
-their magnetic circulation. Three identical copies on perpendicular axes can
-look isotropic to a scalar probe while their current moments add along the
-diagonal. This is a concrete reason a 12-member interlaced geometry is worth
-testing.
+Plainly: two nested counterrotating pairs cancel charge separation but keep their magnetic circulation. Three identical copies on perpendicular axes can look isotropic to a scalar probe while their current moments add along the diagonal. This is a concrete reason a 12-member interlaced geometry is worth testing.
 
 F5 still leaves major burdens open:
 
-1. cross-axis worldline and causal-root clearance may fail even when each
-   one-axis module has positive geometric clearance;
+1. cross-axis worldline and causal-root clearance may fail even when each one-axis module has positive geometric clearance;
 2. two interlaced A3-like records may not bind into one retained assembly;
-3. cycle-averaged dipole cancellation may leak forbidden sidebands, radiation,
-   or a static dipole through unequal exposure or sea dressing;
-4. the three axial moment contributions may not map to the required fermion
-   angular history or leading moment ratio;
-5. the visible cyclic symmetry may have only an ordinary $2\pi$ return and no
-   non-gauge order-two history lift;
+3. cycle-averaged dipole cancellation may leak forbidden sidebands, radiation, or a static dipole through unequal exposure or sea dressing;
+4. the three axial moment contributions may not map to the required fermion angular history or leading moment ratio;
+5. the visible cyclic symmetry may have only an ordinary $2\pi$ return and no non-gauge order-two history lift;
 6. no exactly-three generation mechanism is yet supplied;
-7. the core is neutral, so a charged fermion still needs a noncancelling
-   charge-facing projection or decoration; and
-8. the 12 identities may overgenerate modes, association states, or stable
-   partner branches.
+7. the core is neutral, so a charged fermion still needs a noncancelling charge-facing projection or decoration; and
+8. the 12 identities may overgenerate modes, association states, or stable partner branches.
 
-The fastest evaluation order is geometric clearance, root validity, ordinary
-retention, electric-dipole and scalar-isotropy rows, signed current moment,
-history lift, mode count, and only then charge/weak/event projections. A
-failure at any earlier stage is more informative than a later fitted particle
-comparison.
+The fastest evaluation order is geometric clearance, root validity, ordinary retention, electric-dipole and scalar-isotropy rows, signed current moment, history lift, mode count, and only then charge/weak/event projections. A failure at any earlier stage is more informative than a later fitted particle comparison.
 
 #### First Bounded F5 Prescribed-Path Diagnostic
 
-An exploratory prescribed-path scan tested whether the three orthogonal
-modules necessarily collide before any dynamical question is asked. The
-frozen normalized row was
+An exploratory prescribed-path scan tested whether the three orthogonal modules necessarily collide before any dynamical question is asked. The frozen normalized row was
 
 $$
 c_f=1,
@@ -6452,11 +4306,7 @@ c_f=1,
 (\omega_1,\omega_2)=(1,1),
 $$
 
-so the maximum declared internal tangential speed was $0.40$. A
-symmetry-constrained $8^3$ relative-phase grid with 720 time samples over one
-cycle found a positive-clearance row. A separately written local phase
-refinement evaluated 343 nearby phase rows with 1,440 time samples each and
-selected
+so the maximum declared internal tangential speed was $0.40$. A symmetry-constrained $8^3$ relative-phase grid with 720 time samples over one cycle found a positive-clearance row. A separately written local phase refinement evaluated 343 nearby phase rows with 1,440 time samples each and selected
 
 $$
 (\delta_1,\delta_2,\delta_3)
@@ -6480,10 +4330,7 @@ d_{\min}^{\mathrm{sampled}}
 0.17666.
 $$
 
-A 27-row phase stencil changing each $\delta_i$ by
-$-0.01$, $0$, or $+0.01$ measured a worst sampled clearance
-$0.0706300083$. The result therefore survives that discrete phase
-neighborhood; it is not an isolated single sampled phase row.
+A 27-row phase stencil changing each $\delta_i$ by $-0.01$, $0$, or $+0.01$ measured a worst sampled clearance $0.0706300083$. The result therefore survives that discrete phase neighborhood; it is not an isolated single sampled phase row.
 
 | Diagnostic row | Value | Authority limit |
 | --- | ---: | --- |
@@ -6494,30 +4341,13 @@ neighborhood; it is not an isolated single sampled phase row.
 | minimum dense sampled clearance | $0.0706633508$ | geometric positions only |
 | worst stencil sampled clearance | $0.0706300083$ | no causal-root or evolution claim |
 
-Plainly: one normalized 12-path F5 arrangement can be drawn through a complete
-sampled cycle without any sampled pair approaching closer than about $0.071$.
-Small sampled phase changes preserve nearly the same gap. This removes the
-immediate visual objection that the three perpendicular modules must collide,
-but it says nothing yet about whether delayed interactions permit or retain
-the motion.
+Plainly: one normalized 12-path F5 arrangement can be drawn through a complete sampled cycle without any sampled pair approaching closer than about $0.071$. Small sampled phase changes preserve nearly the same gap. This removes the immediate visual objection that the three perpendicular modules must collide, but it says nothing yet about whether delayed interactions permit or retain the motion.
 
-Claim grade: measured bounded prescribed-geometry diagnostic. The instruments
-were the coarse phase scan, a separately written local phase/time evaluator,
-the dense frozen-row time sweep, and the discrete phase stencil. They establish
-only the reported sampled positions. They are not an independent analytic
-oracle, continuous-time clearance certificate, phase-basin proof, causal-root
-certificate, EOM evolution, binding result, stability result, or particle
-claim. Falsifier: a reproducible evaluation of the same frozen formulas and
-parameters finds a collision or a smaller separation inconsistent with the
-reported sampled resolution; a continuous minimizer may narrow the clearance
-without contradicting the sampled claim.
+Claim grade: measured bounded prescribed-geometry diagnostic. The instruments were the coarse phase scan, a separately written local phase/time evaluator, the dense frozen-row time sweep, and the discrete phase stencil. They establish only the reported sampled positions. They are not an independent analytic oracle, continuous-time clearance certificate, phase-basin proof, causal-root certificate, EOM evolution, binding result, stability result, or particle claim. Falsifier: a reproducible evaluation of the same frozen formulas and parameters finds a collision or a smaller separation inconsistent with the reported sampled resolution; a continuous minimizer may narrow the clearance without contradicting the sampled claim.
 
 #### Three-Port Modes Offer An Exactly-Three Route With Two No-Gos
 
-F5's cyclic module orbit supplies a concrete candidate for the generation
-coordinate. Let one derived mode coordinate be associated with each body-axis
-module and let $\omega_3=e^{2\pi i/3}$. The most general Hermitian circulant
-three-port comparison operator has the form
+F5's cyclic module orbit supplies a concrete candidate for the generation coordinate. Let one derived mode coordinate be associated with each body-axis module and let $\omega_3=e^{2\pi i/3}$. The most general Hermitian circulant three-port comparison operator has the form
 
 $$
 H_{C_3}
@@ -6555,9 +4385,7 @@ z\omega_3^k
 \right).
 $$
 
-This supplies exactly three algebraic modes in the declared port subspace.
-The complex notation is comparison shorthand for two real phase quadratures;
-it does not make a quantum amplitude or Hamiltonian primitive.
+This supplies exactly three algebraic modes in the declared port subspace. The complex notation is comparison shorthand for two real phase quadratures; it does not make a quantum amplitude or Hamiltonian primitive.
 
 If reflection symmetry makes $z$ real, then
 
@@ -6565,26 +4393,15 @@ $$
 \lambda_1=\lambda_2.
 $$
 
-An exact reflection-even three-port coupling therefore gives one symmetric
-mode and one degenerate pair, not three distinct generation responses. To
-split the pair while preserving the cyclic body action, the derived coupling
-needs an oriented contribution:
+An exact reflection-even three-port coupling therefore gives one symmetric mode and one degenerate pair, not three distinct generation responses. To split the pair while preserving the cyclic body action, the derived coupling needs an oriented contribution:
 
 $$
 \operatorname{Im}z\ne0.
 $$
 
-In native terms, that contribution could descend from circulation, ordered
-causal history, return permutation, frame holonomy, or another
-reflection-odd but rotation-covariant row. F5 already contains
-polarity-correlated counterrotation and a body-diagonal axial moment, so it has
-a candidate carrier for this orientation. Whether ordinary evolution produces
-the required port coupling is open.
+In native terms, that contribution could descend from circulation, ordered causal history, return permutation, frame holonomy, or another reflection-odd but rotation-covariant row. F5 already contains polarity-correlated counterrotation and a body-diagonal axial moment, so it has a candidate carrier for this orientation. Whether ordinary evolution produces the required port coupling is open.
 
-Plainly: three equivalent modules naturally have three collective patterns.
-If the coupling cannot tell clockwise from counterclockwise around the
-three-module cycle, two patterns are identical in frequency or response. A
-lawful handed history can separate them without choosing a laboratory axis.
+Plainly: three equivalent modules naturally have three collective patterns. If the coupling cannot tell clockwise from counterclockwise around the three-module cycle, two patterns are identical in frequency or response. A lawful handed history can separate them without choosing a laboratory axis.
 
 This gives a candidate generation identification:
 
@@ -6592,17 +4409,9 @@ This gives a candidate generation identification:
 - $k=1$: one oriented traveling/return character; and
 - $k=2$: the conjugate oriented traveling/return character.
 
-It is not yet a generation derivation. The full 12-identity system has many
-other modes. The fixed-law branch must show why only these three classes carry
-the common charged-fermion representation while all other modes are internal
-excitations, unstable, confined, inaccessible, or otherwise correctly
-disposed. It must also derive unequal mass, lifetime, and overlap fingerprints
-without assigning observed names after the spectrum is read.
+It is not yet a generation derivation. The full 12-identity system has many other modes. The fixed-law branch must show why only these three classes carry the common charged-fermion representation while all other modes are internal excitations, unstable, confined, inaccessible, or otherwise correctly disposed. It must also derive unequal mass, lifetime, and overlap fingerprints without assigning observed names after the spectrum is read.
 
-A second no-go comes from mixing. Every two circulant operators on the same
-three-port space share the Fourier basis and commute. If both the
-generation/mass-facing operator and the weak-exposure operator are only
-circulant functions of the same port cycle, then
+A second no-go comes from mixing. Every two circulant operators on the same three-port space share the Fourier basis and commute. If both the generation/mass-facing operator and the weak-exposure operator are only circulant functions of the same port cycle, then
 
 $$
 \left[
@@ -6613,10 +4422,7 @@ E_W^{C_3}
 0,
 $$
 
-and their basis overlap is trivial up to degeneracy conventions. Nontrivial
-CKM/PMNS recovery therefore requires an additional weak-posture, source/
-detector event, shielding, or corridor coordinate whose derived projection
-does not share the same complete eigenbasis:
+and their basis overlap is trivial up to degeneracy conventions. Nontrivial CKM/PMNS recovery therefore requires an additional weak-posture, source/ detector event, shielding, or corridor coordinate whose derived projection does not share the same complete eigenbasis:
 
 $$
 \left[
@@ -6627,37 +4433,20 @@ E_W
 0
 $$
 
-on the declared comparison domain. This noncommutation is not permission to
-insert a fitted mixing matrix. Both operators must be derived from the same
-retained core and physical event record.
+on the declared comparison domain. This noncommutation is not permission to insert a fitted mixing matrix. Both operators must be derived from the same retained core and physical event record.
 
 The three-port candidate now has four staged tests:
 
 1. after retention, derive the port-subspace Gram metric and mode operator;
-2. verify one symmetric and two oriented modes with three distinct robust
-   responses and no accepted fourth generation class;
-3. reverse circulation/history orientation and test the predicted interchange
-   or conjugation of the two oriented modes; and
-4. derive one weak endpoint projection whose noncommuting posture produces the
-   required unequal overlaps without changing charge, body-frame, or port
-   inventory.
+2. verify one symmetric and two oriented modes with three distinct robust responses and no accepted fourth generation class;
+3. reverse circulation/history orientation and test the predicted interchange or conjugation of the two oriented modes; and
+4. derive one weak endpoint projection whose noncommuting posture produces the required unequal overlaps without changing charge, body-frame, or port inventory.
 
-Claim grade: the circulant eigenvectors, eigenvalues, reflection-even
-degeneracy, and common-circulant commutation are mathematical derivations. The
-identification of F5's three port modes with generations and of its
-counterflow/history with $\operatorname{Im}z$ is inferred. A noncommuting
-weak-posture projection is a deduced requirement for nontrivial mixing within
-this candidate mechanism. Falsifier: a reflection-even real circulant produces
-three distinct eigenvalues, two same-domain circulant operators produce
-nontrivial basis mixing without a hidden degeneracy choice, or the accepted
-F5 branch supplies a different exactly-three mechanism that makes the port
-mode proposal unnecessary.
+Claim grade: the circulant eigenvectors, eigenvalues, reflection-even degeneracy, and common-circulant commutation are mathematical derivations. The identification of F5's three port modes with generations and of its counterflow/history with $\operatorname{Im}z$ is inferred. A noncommuting weak-posture projection is a deduced requirement for nontrivial mixing within this candidate mechanism. Falsifier: a reflection-even real circulant produces three distinct eigenvalues, two same-domain circulant operators produce nontrivial basis mixing without a hidden degeneracy choice, or the accepted F5 branch supplies a different exactly-three mechanism that makes the port mode proposal unnecessary.
 
 #### Joint Projection Audit And A Two-Ring No-Go
 
-The clearance-optimized F5 row does not pass the joint electric/scalar
-projection test. On the same frozen $100{,}000$-sample history used for the
-dense projection audit, it measured:
+The clearance-optimized F5 row does not pass the joint electric/scalar projection test. On the same frozen $100{,}000$-sample history used for the dense projection audit, it measured:
 
 | Same-record row | Measured sampled value |
 | --- | ---: |
@@ -6670,19 +4459,11 @@ dense projection audit, it measured:
 | raw-center second-moment trace-free norm | $7.10\times10^{-14}$ |
 | centroid-relative second-moment trace-free norm | $0.0246507847$ |
 
-The raw second moment about the prescribed common center is isotropic to
-sampling precision, as the orthogonal-axis identity predicts. But the actual
-equal-identity geometric centroid oscillates. Subtracting that centroid
-reveals a nonzero cycle-averaged trace-free shape. The same phase choice also
-turns the electric-dipole null into an average over a large oscillation.
+The raw second moment about the prescribed common center is isotropic to sampling precision, as the orthogonal-axis identity predicts. But the actual equal-identity geometric centroid oscillates. Subtracting that centroid reveals a nonzero cycle-averaged trace-free shape. The same phase choice also turns the electric-dipole null into an average over a large oscillation.
 
-Plainly: the clearance survivor satisfies the easy algebra around a fixed
-origin but fails the stronger moving-assembly check. The braid's own center
-wanders, and the positive and negative constituents repeatedly separate even
-though their dipole averages to zero.
+Plainly: the clearance survivor satisfies the easy algebra around a fixed origin but fails the stronger moving-assembly check. The braid's own center wanders, and the positive and negative constituents repeatedly separate even though their dipole averages to zero.
 
-A joint $8^3$ phase-grid audit, still on the same prescribed parameter chart,
-found 336 of 512 rows with sampled clearance at least $0.02$. One row at
+A joint $8^3$ phase-grid audit, still on the same prescribed parameter chart, found 336 of 512 rows with sampled clearance at least $0.02$. One row at
 
 $$
 (\delta_1,\delta_2,\delta_3)
@@ -6720,13 +4501,9 @@ M_{\mathrm{centroid}}^{(2)}
 0.00142837815.
 $$
 
-These are post-diagnostic Pareto probes, not predeclared acceptance rows. They
-show that phases can improve the tradeoff substantially but do not produce an
-exact joint null on this bounded grid.
+These are post-diagnostic Pareto probes, not predeclared acceptance rows. They show that phases can improve the tradeoff substantially but do not produce an exact joint null on this bounded grid.
 
-There is also a conditional exact obstruction. Let $S_+(T)$ and $S_-(T)$ be
-the sums of the positive- and negative-polarity positions. Exact stationary
-geometric centroid and exact electric-dipole null require
+There is also a conditional exact obstruction. Let $S_+(T)$ and $S_-(T)$ be the sums of the positive- and negative-polarity positions. Exact stationary geometric centroid and exact electric-dipole null require
 
 $$
 S_+(T)+S_-(T)=\mathbf0,
@@ -6740,8 +4517,7 @@ $$
 S_+(T)=S_-(T)=\mathbf0
 $$
 
-for every $T$. For one polarity and common cadence, the transverse coefficient
-can be written
+for every $T$. For one polarity and common cadence, the transverse coefficient can be written
 
 $$
 Z\mathbf c_\sigma,
@@ -6753,38 +4529,21 @@ Z\mathbf c_\sigma,
 \rho_2e^{i\phi_{a2\sigma}},
 $$
 
-where the three orthogonal-axis circular bases give an invertible complex
-matrix $Z$. Thus $Z\mathbf c_\sigma=\mathbf0$ implies
-$\mathbf c_\sigma=\mathbf0$ axis by axis. A sum of two phasors with magnitudes
-$\rho_1$ and $\rho_2$ vanishes only if
+where the three orthogonal-axis circular bases give an invertible complex matrix $Z$. Thus $Z\mathbf c_\sigma=\mathbf0$ implies $\mathbf c_\sigma=\mathbf0$ axis by axis. A sum of two phasors with magnitudes $\rho_1$ and $\rho_2$ vanishes only if
 
 $$
 \rho_1=\rho_2
 $$
 
-and their phases differ by $\pi$. But $\rho_1=\rho_2$ puts the
-opposite-polarity counterrotators sharing each axial plane back on the same
-circle, where the earlier crossing proof forces collisions.
+and their phases differ by $\pi$. But $\rho_1=\rho_2$ puts the opposite-polarity counterrotators sharing each axial plane back on the same circle, where the earlier crossing proof forces collisions.
 
-Under the declared two-ring, common-cadence, circular, equal-exposure F5
-assumptions, exact collision freedom, exact stationary centroid, and exact
-instantaneous electric-dipole cancellation cannot all hold. The live repairs
-are unequal derived exposure weights, three or more radial tracks, noncircular
-or phase-varying paths, an additional compensating module, or accepting a
-bounded oscillatory projection whose radiation and observer leakage are
-derived below the required limits.
+Under the declared two-ring, common-cadence, circular, equal-exposure F5 assumptions, exact collision freedom, exact stationary centroid, and exact instantaneous electric-dipole cancellation cannot all hold. The live repairs are unequal derived exposure weights, three or more radial tracks, noncircular or phase-varying paths, an additional compensating module, or accepting a bounded oscillatory projection whose radiation and observer leakage are derived below the required limits.
 
-Claim grade: the same-record values are measured sampled diagnostics; the
-two-ring obstruction is a conditional mathematical derivation. Falsifier: a
-two-ring configuration satisfying all declared assumptions has unequal radii,
-positive clearance, and identically vanishing centroid and dipole, or the
-complex circular-basis matrix on the declared orthogonal frame is singular.
+Claim grade: the same-record values are measured sampled diagnostics; the two-ring obstruction is a conditional mathematical derivation. Falsifier: a two-ring configuration satisfying all declared assumptions has unequal radii, positive clearance, and identically vanishing centroid and dipole, or the complex circular-basis matrix on the declared orthogonal frame is singular.
 
 ### Seed F6 — Tetrahedral Counterflow Core
 
-The two-ring obstruction suggests canceling axial dipoles across directions
-rather than within a nested same-axis module. Let four body-fixed unit vectors
-point to the vertices of a regular tetrahedron:
+The two-ring obstruction suggests canceling axial dipoles across directions rather than within a nested same-axis module. Let four body-fixed unit vectors point to the vertices of a regular tetrahedron:
 
 $$
 \sum_{i=0}^{3}\hat{\mathbf n}_i=\mathbf0,
@@ -6802,8 +4561,7 @@ $$
 \frac43 I.
 $$
 
-Place one opposite-polarity counterrotating dyad on parallel planes around each
-axis:
+Place one opposite-polarity counterrotating dyad on parallel planes around each axis:
 
 $$
 \mathbf y_{i+}
@@ -6825,10 +4583,7 @@ $$
 \sigma_{i-}=-1,
 $$
 
-where $s_i\in\{+1,-1\}$ is the module circulation orientation. Each dyad has
-the local $2h$ cross-plane clearance and contributes a cycle-averaged axial
-electric first moment proportional to $\hat{\mathbf n}_i$. The four axial
-dipoles cancel identically in their cycle average:
+where $s_i\in\{+1,-1\}$ is the module circulation orientation. Each dyad has the local $2h$ cross-plane clearance and contributes a cycle-averaged axial electric first moment proportional to $\hat{\mathbf n}_i$. The four axial dipoles cancel identically in their cycle average:
 
 $$
 \sum_i
@@ -6848,8 +4603,7 @@ e\rho^2\omega
 \sum_i s_i\hat{\mathbf n}_i.
 $$
 
-If all $s_i$ are equal, this moment also cancels. Choose one exceptional
-circulation sign, for example
+If all $s_i$ are equal, this moment also cancels. Choose one exceptional circulation sign, for example
 
 $$
 (s_0,s_1,s_2,s_3)=(-1,+1,+1,+1).
@@ -6863,37 +4617,20 @@ $$
 -2\hat{\mathbf n}_0,
 $$
 
-so the assembly has a nonzero axial current moment along the exceptional
-tetrahedral direction while its position-based second moment remains
-tetrahedrally isotropic. The three nonexceptional modules form an equivalent
-$C_3$ orbit under proper rotations about $\hat{\mathbf n}_0$.
+so the assembly has a nonzero axial current moment along the exceptional tetrahedral direction while its position-based second moment remains tetrahedrally isotropic. The three nonexceptional modules form an equivalent $C_3$ orbit under proper rotations about $\hat{\mathbf n}_0$.
 
-Plainly: four equally spaced directions cancel their electric separation and
-their shape anisotropy. Reversing the circulation of one module leaves the
-positions unchanged but makes the magnetic contributions add along that one
-direction. The other three modules remain an equivalent body-fixed triplet.
+Plainly: four equally spaced directions cancel their electric separation and their shape anisotropy. Reversing the circulation of one module leaves the positions unchanged but makes the magnetic contributions add along that one direction. The other three modules remain an equivalent body-fixed triplet.
 
-F6 has only eight architrinos before any charge-facing realization. It
-therefore offers a smaller conjunction than F5:
+F6 has only eight architrinos before any charge-facing realization. It therefore offers a smaller conjunction than F5:
 
 - tetrahedral support attempts scalar second-moment isotropy;
 - four axial dyad dipoles cancel by $\sum_i\hat{\mathbf n}_i=0$;
-- the one-versus-three circulation character supplies an axial moment without
-  changing the position tensor;
+- the one-versus-three circulation character supplies an axial moment without changing the position tensor;
 - the exceptional direction supplies a spin/moment-axis candidate;
-- the remaining three modules supply a body-fixed port triplet and the same
-  cyclic-mode/generation tests derived above; and
-- the full nondegenerate frame supplies the mathematical order-two rotation
-  loop carrier.
+- the remaining three modules supply a body-fixed port triplet and the same cyclic-mode/generation tests derived above; and
+- the full nondegenerate frame supplies the mathematical order-two rotation loop carrier.
 
-The construction remains incomplete. Transverse electric-dipole oscillations
-need phase cancellation or a bounded leakage derivation. Paths belonging to
-different tetrahedral axes need cross-axis and causal-root clearance. The four
-dyads must bind as one retained assembly. The circulation exception must not
-become a laboratory axis or force an unwanted color label. The three-port
-subspace still needs an oriented split and an independent weak-posture
-operator. A charged fermion still needs a locally constant noncancelling
-charge-facing projection.
+The construction remains incomplete. Transverse electric-dipole oscillations need phase cancellation or a bounded leakage derivation. Paths belonging to different tetrahedral axes need cross-axis and causal-root clearance. The four dyads must bind as one retained assembly. The circulation exception must not become a laboratory axis or force an unwanted color label. The three-port subspace still needs an oriented split and an independent weak-posture operator. A charged fermion still needs a locally constant noncancelling charge-facing projection.
 
 The key comparison between F5 and F6 is now structural:
 
@@ -6909,10 +4646,7 @@ The key comparison between F5 and F6 is now structural:
 
 #### F6b — Balanced Tetrahedral Edge Partition
 
-The one-versus-three circulation character preserves a three-module stabilizer
-but does not automatically control transverse centroid and dipole oscillation.
-A stronger eight-identity variant uses a two-versus-two circulation partition.
-Choose the ordered tetrahedral axes
+The one-versus-three circulation character preserves a three-module stabilizer but does not automatically control transverse centroid and dipole oscillation. A stronger eight-identity variant uses a two-versus-two circulation partition. Choose the ordered tetrahedral axes
 
 $$
 \begin{aligned}
@@ -6954,9 +4688,7 @@ $$
 \right).
 $$
 
-The positive member on module $i$ advances with angular sign $s_i$ and the
-negative member with sign $-s_i$ on the opposite axial plane. Direct
-substitution into the declared circular bases gives
+The positive member on module $i$ advances with angular sign $s_i$ and the negative member with sign $-s_i$ on the opposite axial plane. Direct substitution into the declared circular bases gives
 
 $$
 \sum_i\mathbf y_{i+}(T)=\mathbf0,
@@ -6972,8 +4704,7 @@ $$
 \mathbf p(T)=\mathbf0
 $$
 
-identically on the prescribed history, not merely after cycle averaging. The
-centroid velocity also vanishes identically.
+identically on the prescribed history, not merely after cycle averaging. The centroid velocity also vanishes identically.
 
 The signed current moment remains nonzero:
 
@@ -6983,23 +4714,11 @@ $$
 \left(-\frac4{\sqrt3},0,0\right),
 $$
 
-so the moment axis is the body-fixed negative $x$ direction for this ordered
-partition. The other two inequivalent two-versus-two partitions produce the
-body-fixed $y$ and $z$ axes. There are exactly three such partitions of four
-tetrahedral modules into two unordered pairs.
+so the moment axis is the body-fixed negative $x$ direction for this ordered partition. The other two inequivalent two-versus-two partitions produce the body-fixed $y$ and $z$ axes. There are exactly three such partitions of four tetrahedral modules into two unordered pairs.
 
-Plainly: the four modules can be divided into two circulation pairs in exactly
-three ways. One exact phase relation keeps both charge sectors centered at all
-times, so neither centroid wobble nor electric dipole is used as an average.
-The circulation partition still leaves a magnetic axis.
+Plainly: the four modules can be divided into two circulation pairs in exactly three ways. One exact phase relation keeps both charge sectors centered at all times, so neither centroid wobble nor electric dipole is used as an average. The circulation partition still leaves a magnetic axis.
 
-The three partitions are not automatically three generations or three colors.
-A proper rotation of the tetrahedral frame may relate them as ordinary
-orientation states. If an internal operation changes the partition while the
-observer spin/moment axis is required to stay fixed, the candidate needs an
-additional frame compensation. Otherwise the proposal aliases an internal
-label with physical orientation. This is a new non-aliasing test, not an
-assignment.
+The three partitions are not automatically three generations or three colors. A proper rotation of the tetrahedral frame may relate them as ordinary orientation states. If an internal operation changes the partition while the observer spin/moment axis is required to stay fixed, the candidate needs an additional frame compensation. Otherwise the proposal aliases an internal label with physical orientation. This is a new non-aliasing test, not an assignment.
 
 ##### Bounded F6b Geometry Audit
 
@@ -7026,10 +4745,7 @@ a 200,000-time-sample audit of the exact phase row measured:
 | cycle-averaged centroid-relative second-moment trace-free norm | $4.57\times10^{-15}$ |
 | minimum sampled pair clearance | $0.0140088666$ |
 
-The first four small residuals are floating-point/sampling checks of exact
-identities, not measurements of physical imperfections. The clearance is only
-sampled and was small at $h/\rho=2/3$. A dense selected-offset comparison with
-100,000 time samples per row found:
+The first four small residuals are floating-point/sampling checks of exact identities, not measurements of physical imperfections. The clearance is only sampled and was small at $h/\rho=2/3$. A dense selected-offset comparison with 100,000 time samples per row found:
 
 | $h/\rho$ | Minimum sampled clearance | Clearance divided by $\sqrt{h^2+\rho^2}$ |
 | ---: | ---: | ---: |
@@ -7047,16 +4763,11 @@ h=\rho=0.30,
 \rho\omega=0.30<c_f=1
 $$
 
-retains exact centroid, dipole, moment-axis, and second-moment identities while
-improving the minimum sampled geometric clearance to $0.1014611872$. Increasing
-$h/\rho$ improved clearance throughout the bounded sampled interval, but
-clearance alone cannot select the aspect ratio. Delayed-root geometry,
-compactness, response, and retention may prefer a different range.
+retains exact centroid, dipole, moment-axis, and second-moment identities while improving the minimum sampled geometric clearance to $0.1014611872$. Increasing $h/\rho$ improved clearance throughout the bounded sampled interval, but clearance alone cannot select the aspect ratio. Delayed-root geometry, compactness, response, and retention may prefer a different range.
 
 ##### Exact Continuous Clearance at $h=\rho$
 
-The representative clearance can be promoted beyond sampling. Every F6b path
-has the form
+The representative clearance can be promoted beyond sampling. Every F6b path has the form
 
 $$
 \mathbf X_a(T)
@@ -7068,9 +4779,7 @@ $$
 \mathbf C_a\sin T.
 $$
 
-Therefore every squared pair separation is a degree-two trigonometric
-polynomial. Direct exact reduction of all $\binom82=28$ unordered pairs and
-exhaustive evaluation of their stationary points gives four minimum classes:
+Therefore every squared pair separation is a degree-two trigonometric polynomial. Direct exact reduction of all $\binom82=28$ unordered pairs and exhaustive evaluation of their stationary points gives four minimum classes:
 
 | Pair-class multiplicity | Exact minimum squared separation |
 | ---: | ---: |
@@ -7098,8 +4807,7 @@ $$
 (u-1)(u+1)(u-1-\sqrt2)(u-1+\sqrt2).
 $$
 
-Checking those stationary points together with the half-angle endpoint gives
-the global minimum at $\sin T=-1$. Hence the exact continuous clearance is
+Checking those stationary points together with the half-angle endpoint gives the global minimum at $\sin T=-1$. Hence the exact continuous clearance is
 
 $$
 d_0
@@ -7111,9 +4819,7 @@ d_0
 0.
 $$
 
-Plainly: the dense time sweep did not slip between samples. There are only
-four algebraically distinct closest-approach values among all 28 pairs, and
-the smallest remains strictly positive over the whole cycle.
+Plainly: the dense time sweep did not slip between samples. There are only four algebraically distinct closest-approach values among all 28 pairs, and the smallest remains strictly positive over the whole cycle.
 
 The exact F6b row therefore survives the full prescribed-geometry bundle:
 
@@ -7128,24 +4834,13 @@ d_0=\sqrt{(9-6\sqrt2)/50}>0
 \right).
 $$
 
-This is not a physical pass. The member-level causal-root screen below must be
-passed before ordinary Master Equation release/evolution, positive-width
-binding and retention, doubled rotation history, charge-facing projection,
-weak posture, or full-mode disposition can be considered.
+This is not a physical pass. The member-level causal-root screen below must be passed before ordinary Master Equation release/evolution, positive-width binding and retention, doubled rotation history, charge-facing projection, weak posture, or full-mode disposition can be considered.
 
-Claim grade: the centroid, dipole, tetrahedral second-moment, and current-axis
-rows and the representative $h=\rho$ continuous clearance are derived for the
-prescribed F6b formulas. The other reported axial-offset clearances remain
-bounded sampled diagnostics. F6b as a retained fermion core is guessed.
-Falsifier: direct symbolic substitution violates an exact identity, the
-stationary-point enumeration omits a real extremum of any of the 28 pair
-polynomials, or the first root-complete ordinary evolution cannot preserve a
-separated bound neighborhood.
+Claim grade: the centroid, dipole, tetrahedral second-moment, and current-axis rows and the representative $h=\rho$ continuous clearance are derived for the prescribed F6b formulas. The other reported axial-offset clearances remain bounded sampled diagnostics. F6b as a retained fermion core is guessed. Falsifier: direct symbolic substitution violates an exact identity, the stationary-point enumeration omits a real extremum of any of the 28 pair polynomials, or the first root-complete ordinary evolution cannot preserve a separated bound neighborhood.
 
 #### F6b Causal-Root Readiness
 
-The F6b representative at $h=\rho=0.30$ and $\omega=1$ is globally strictly
-sub-field-speed:
+The F6b representative at $h=\rho=0.30$ and $\omega=1$ is globally strictly sub-field-speed:
 
 $$
 \sup_{i,\sigma,T}
@@ -7160,9 +4855,7 @@ $$
 c_f=1.
 $$
 
-The existing causal-root monotonicity theorem and the exact positive clearance
-therefore give a strong result. For fixed reception event $(i,\sigma,T_r)$ and distinct
-transmitter $(j,\tau)$, define
+The existing causal-root monotonicity theorem and the exact positive clearance therefore give a strong result. For fixed reception event $(i,\sigma,T_r)$ and distinct transmitter $(j,\tau)$, define
 
 $$
 F(T_t;T_r)
@@ -7176,12 +4869,7 @@ T_r-T_t
 \right\|
 $$
 
-in $c_f=1$ units. On the complete periodic prehistory,
-$F$ is strictly monotone in the root-search direction because the transmitter
-speed is below one. It is negative at $T_t=T_r$ whenever the equal-time
-positions are distinct and becomes positive sufficiently far in the past.
-Thus every ordered distinct pair has exactly one simple partner root. The
-strictly sub-field-speed history has no nontrivial same-transmitter root.
+in $c_f=1$ units. On the complete periodic prehistory, $F$ is strictly monotone in the root-search direction because the transmitter speed is below one. It is negative at $T_t=T_r$ whenever the equal-time positions are distinct and becomes positive sufficiently far in the past. Thus every ordered distinct pair has exactly one simple partner root. The strictly sub-field-speed history has no nontrivial same-transmitter root.
 
 For eight identities, the resulting prescribed partner-root graph has
 
@@ -7189,8 +4877,7 @@ $$
 8(8-1)=56
 $$
 
-ordered channels per reception time and no accepted self channel. The
-transmitter and receiver Jacobian factors satisfy the uniform kinematic floors
+ordered channels per reception time and no accepted self channel. The transmitter and receiver Jacobian factors satisfy the uniform kinematic floors
 
 $$
 D_t\ge1-0.30=0.70,
@@ -7210,8 +4897,7 @@ W^{\mathrm{acc}}
 \frac1{0.70},
 $$
 
-before distance, polarity, and direction are combined in the full per-hit
-acceleration.
+before distance, polarity, and direction are combined in the full per-hit acceleration.
 
 All paths lie inside the ball of radius
 
@@ -7235,11 +4921,9 @@ $$
 0.848528.
 $$
 
-A retained prehistory longer than this bound contains the root for every
-ordered partner channel on the prescribed periodic continuation.
+A retained prehistory longer than this bound contains the root for every ordered partner channel on the prescribed periodic continuation.
 
-The exact positive equal-time clearance also yields a root-separation floor.
-Define
+The exact positive equal-time clearance also yields a root-separation floor. Define
 
 $$
 d_0
@@ -7275,39 +4959,15 @@ r_{\mathrm{root}}
 0.0780470671042.
 $$
 
-The next task is therefore to materialize the 56 simple partner roots and
-their weights over one cycle and evaluate the prescribed acceleration
-residual. No fold, collision, or multiple-partner-root search is needed for
-this exact prescribed history.
+The next task is therefore to materialize the 56 simple partner roots and their weights over one cycle and evaluate the prescribed acceleration residual. No fold, collision, or multiple-partner-root search is needed for this exact prescribed history.
 
-Plainly: all delayed partner intersections are mathematically well behaved:
-one per ordered pair, none with self, none at zero distance, and none near a
-Jacobian fold. The hard next question is whether the sum of those lawful
-delayed accelerations sustains the proposed motion or immediately drives it
-away.
+Plainly: all delayed partner intersections are mathematically well behaved: one per ordered pair, none with self, none at zero distance, and none near a Jacobian fold. The hard next question is whether the sum of those lawful delayed accelerations sustains the proposed motion or immediately drives it away.
 
-Claim grade: strict sub-field speed, the no-self-root result, partner-root
-existence/uniqueness, Jacobian bounds, delay bound, and root-separation
-inequality are derived for the complete prescribed F6b
-history. The exact continuous clearance makes the displayed numerical
-root-separation floor unconditional for that history. The evaluated ledger and
-acceleration residual appear below; no ordinary evolution, binding, or
-retention result is claimed. Falsifier: a complete-history channel violates
-monotonicity or the declared bounds while all stated speed and separation
-hypotheses remain true.
+Claim grade: strict sub-field speed, the no-self-root result, partner-root existence/uniqueness, Jacobian bounds, delay bound, and root-separation inequality are derived for the complete prescribed F6b history. The exact continuous clearance makes the displayed numerical root-separation floor unconditional for that history. The evaluated ledger and acceleration residual appear below; no ordinary evolution, binding, or retention result is claimed. Falsifier: a complete-history channel violates monotonicity or the declared bounds while all stated speed and separation hypotheses remain true.
 
 #### F6b Root Ledger and Member-Acceleration Screen
 
-The report-grade
-[F6b prescribed-kernel diagnostic](../../../scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs)
-materializes the complete partner ledger with the established prescribed-path
-analyzer. Its fixed row uses $c_f=1$, $h=\rho=0.30$, $\omega=1$, 128 reception
-times per member, the complete periodic prehistory, primary and refined root
-tolerances $10^{-12}$ and $10^{-14}$, and one common coupling coefficient.
-Source and receiver polarity magnitudes are normalized to one; a common
-polarity-magnitude conversion rescales the acceleration rows but not root
-geometry, direction cosines, or tangent-space fractions. The diagnostic
-invokes neither path evolution nor the EOM solver.
+The report-grade [F6b prescribed-kernel diagnostic](../../../scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs) materializes the complete partner ledger with the established prescribed-path analyzer. Its fixed row uses $c_f=1$, $h=\rho=0.30$, $\omega=1$, 128 reception times per member, the complete periodic prehistory, primary and refined root tolerances $10^{-12}$ and $10^{-14}$, and one common coupling coefficient. Source and receiver polarity magnitudes are normalized to one; a common polarity-magnitude conversion rescales the acceleration rows but not root geometry, direction cosines, or tangent-space fractions. The diagnostic invokes neither path evolution nor the EOM solver.
 
 The 1,024 receiver events produced 7,168 root rows:
 
@@ -7322,16 +4982,9 @@ The 1,024 receiver events produced 7,168 root rows:
 | maximum causal-root residual | $9.994\times10^{-13}$ |
 | peak norm of the sum of all eight evaluated member accelerations | $1.45\times10^{-12}$ |
 
-The source, protocol, and result hashes are respectively
-`dc941ad750d609da7d424dd4fe4e225e90dfbdafd4423e1ae1674b93f052f4ca`,
-`4b4e2aaebb15b1368fbef49588a9cc12929a644f7486443feb8f6f2a94ff1f0c`,
-and
-`c664d6650156f52ad503feb7e866802ad3fd974492356c06888ca8a16839c03b`.
+The source, protocol, and result hashes are respectively `dc941ad750d609da7d424dd4fe4e225e90dfbdafd4423e1ae1674b93f052f4ca`, `4b4e2aaebb15b1368fbef49588a9cc12929a644f7486443feb8f6f2a94ff1f0c`, and `c664d6650156f52ad503feb7e866802ad3fd974492356c06888ca8a16839c03b`.
 
-The aggregate acceleration cancellation is not enough. Let
-$\mathbf a_a^{\mathrm{ME}}(T)$ be the evaluated unit-coupling acceleration on
-member $a$ and let $\mathbf a_a^{\mathrm{path}}(T)$ be the acceleration
-required by its prescribed circle. A single-common-scale diagnostic minimizes
+The aggregate acceleration cancellation is not enough. Let $\mathbf a_a^{\mathrm{ME}}(T)$ be the evaluated unit-coupling acceleration on member $a$ and let $\mathbf a_a^{\mathrm{path}}(T)$ be the acceleration required by its prescribed circle. A single-common-scale diagnostic minimizes
 
 $$
 \sum_{a,T}
@@ -7342,8 +4995,7 @@ $$
 \right\|^2
 $$
 
-without per-member, per-time, or per-channel retuning. The optimum positive
-common scale is
+without per-member, per-time, or per-channel retuning. The optimum positive common scale is
 
 $$
 \lambda_*=0.000936349342445127,
@@ -7359,8 +5011,7 @@ R_{\mathrm{member}}^{\mathrm{peak}}
 =0.3644475203,
 $$
 
-while every prescribed member acceleration has magnitude $0.30$. The
-direction cosine between evaluated and required member acceleration spans
+while every prescribed member acceleration has magnitude $0.30$. The direction cosine between evaluated and required member acceleration spans
 
 $$
 -0.6146091201
@@ -7372,66 +5023,27 @@ $$
 0.9972498460.
 $$
 
-Thus some member rows point broadly inward, while others point more than
-$90^\circ$ away from the acceleration required by the circular path. The
-64-time and 128-time screens agree in the displayed significant digits.
+Thus some member rows point broadly inward, while others point more than $90^\circ$ away from the acceleration required by the circular path. The 64-time and 128-time screens agree in the displayed significant digits.
 
-Plainly: F6b balances perfectly as a whole, so a group-only test almost reports
-success. The individual architrinos do not receive the accelerations needed to
-stay on the proposed circles. Rescaling one universal coefficient cannot fix
-directions. The exact symmetry kernel remains useful, but its local paths or
-its surrounding inventory must change before release is justified.
+Plainly: F6b balances perfectly as a whole, so a group-only test almost reports success. The individual architrinos do not receive the accelerations needed to stay on the proposed circles. Rescaling one universal coefficient cannot fix directions. The exact symmetry kernel remains useful, but its local paths or its surrounding inventory must change before release is justified.
 
-This negative result rejects the exact isolated F6b circular history, not the
-tetrahedral edge-partition idea. Repairs must change a direction-bearing row:
-noncircular paths, phase-varying cadence, unequal but symmetry-compensated
-tracks, added internal or sea members, or a different polarity-to-path
-assignment. Merely changing one common magnitude cannot repair the observed
-angular residual.
+This negative result rejects the exact isolated F6b circular history, not the tetrahedral edge-partition idea. Repairs must change a direction-bearing row: noncircular paths, phase-varying cadence, unequal but symmetry-compensated tracks, added internal or sea members, or a different polarity-to-path assignment. Merely changing one common magnitude cannot repair the observed angular residual.
 
-Claim grade: root counts, ranges, summed cancellation, and member residuals are
-measured by the named prescribed-path instrument on the hashed diagnostic
-record; the exact continuous clearance and root uniqueness are derived above.
-The 64/128 agreement is numerical refinement, not independent evidence. F6b
-retention remains rejected for this exact isolated prescribed history and open
-for repaired histories. Falsifier: a faithful recomputation of the hashed
-record changes the root inventory or residuals beyond the declared numerical
-tolerances, or an independently authored evaluation shows that the stated
-per-hit sum was formed incorrectly.
+Claim grade: root counts, ranges, summed cancellation, and member residuals are measured by the named prescribed-path instrument on the hashed diagnostic record; the exact continuous clearance and root uniqueness are derived above. The 64/128 agreement is numerical refinement, not independent evidence. F6b retention remains rejected for this exact isolated prescribed history and open for repaired histories. Falsifier: a faithful recomputation of the hashed record changes the root inventory or residuals beyond the declared numerical tolerances, or an independently authored evaluation shows that the stated per-hit sum was formed incorrectly.
 
 #### F6b Repair Triage
 
 Several low-complexity repairs fail before a new seed is warranted:
 
-- Exact symbolic enumeration of all $\binom84=70$ neutral four-positive,
-  four-negative assignments on the fixed eight paths found only the declared
-  assignment and its global polarity conjugate with identically zero electric
-  dipole. Polarity reassignment alone therefore has no unused exact-null row.
-- On a phase lattice with spacing $\pi/12$, fixing the irrelevant common phase
-  left $24^3=13{,}824$ rows. Only
-  $(0,\pi,4\pi/3,\pi/3)$ preserved both polarity-sector position sums. This is
-  a bounded phase-grid result, not a continuous uniqueness proof.
-- An 80-row broad scan over $2/3\le h/\rho\le5$ and
-  $0.05\le\rho\omega<1$, followed by a 441-row refinement over
-  $1.5\le h/\rho\le2.5$ and $0.10\le\rho\omega\le0.60$, found its best row
-  near $h/\rho=1.95$ and $\rho\omega=0.375$. A 128-time rerun left normalized
-  member RMS residual $0.956430005$ and minimum direction cosine
-  $-0.686992800$.
-- A 384-row nested second-F6b-shell scan over scale, relative phase, and
-  circulation sense did not improve the single-shell result. Its best
-  128-time rerun had normalized RMS residual $0.960393741$. Repeating the
-  bounded scan with a globally polarity-conjugated outer shell was worse; its
-  best coarse normalized RMS residual was $0.983193793$.
-- Adding one stationary opposite-polarity architrino at each of the eight orbit
-  centers preserved neutrality and balance but left ring-only normalized RMS
-  residual $0.968930443$; the anchors themselves acquired nonzero acceleration.
+- Exact symbolic enumeration of all $\binom84=70$ neutral four-positive, four-negative assignments on the fixed eight paths found only the declared assignment and its global polarity conjugate with identically zero electric dipole. Polarity reassignment alone therefore has no unused exact-null row.
+- On a phase lattice with spacing $\pi/12$, fixing the irrelevant common phase left $24^3=13{,}824$ rows. Only $(0,\pi,4\pi/3,\pi/3)$ preserved both polarity-sector position sums. This is a bounded phase-grid result, not a continuous uniqueness proof.
+- An 80-row broad scan over $2/3\le h/\rho\le5$ and $0.05\le\rho\omega<1$, followed by a 441-row refinement over $1.5\le h/\rho\le2.5$ and $0.10\le\rho\omega\le0.60$, found its best row near $h/\rho=1.95$ and $\rho\omega=0.375$. A 128-time rerun left normalized member RMS residual $0.956430005$ and minimum direction cosine $-0.686992800$.
+- A 384-row nested second-F6b-shell scan over scale, relative phase, and circulation sense did not improve the single-shell result. Its best 128-time rerun had normalized RMS residual $0.960393741$. Repeating the bounded scan with a globally polarity-conjugated outer shell was worse; its best coarse normalized RMS residual was $0.983193793$.
+- Adding one stationary opposite-polarity architrino at each of the eight orbit centers preserved neutrality and balance but left ring-only normalized RMS residual $0.968930443$; the anchors themselves acquired nonzero acceleration.
 
-Plainly: changing only the circle size, speed, phase, polarity labels, or the
-number of similar shells does not cure the local dynamics. The failed rows all
-retain too little freedom in the direction in which each member can accelerate.
+Plainly: changing only the circle size, speed, phase, polarity labels, or the number of similar shells does not cure the local dynamics. The failed rows all retain too little freedom in the direction in which each member can accelerate.
 
-At the best common scale on the original F6b row, the residual decomposition
-is
+At the best common scale on the original F6b row, the residual decomposition is
 
 | Local residual component | RMS | Peak absolute value |
 | --- | ---: | ---: |
@@ -7439,26 +5051,13 @@ is
 | tangential | $0.0164934414$ | $0.0940075241$ |
 | axial | $0.0141441021$ | $0.0696791938$ |
 
-The four largest channel classes are the closest opposite-polarity cross-
-module edges $0+\leftarrow1-$, $1+\leftarrow0-$,
-$2+\leftarrow3-$, and $3+\leftarrow2-$, each with unit-coupling acceleration
-RMS $27.37887382$. Their polarity-reversed channels have RMS $19.47165805$.
-The delayed direction asymmetry matters even though the total eight-member
-acceleration cancels.
+The four largest channel classes are the closest opposite-polarity cross- module edges $0+\leftarrow1-$, $1+\leftarrow0-$, $2+\leftarrow3-$, and $3+\leftarrow2-$, each with unit-coupling acceleration RMS $27.37887382$. Their polarity-reversed channels have RMS $19.47165805$. The delayed direction asymmetry matters even though the total eight-member acceleration cancels.
 
-Claim grade: the assignment enumeration is an exact symbolic result for the
-fixed paths. Phase, aspect/cadence, shell, anchor, residual-component, and
-channel rows are bounded measured diagnostics. Falsifier: an omitted neutral
-polarity assignment has exact dipole null, a rerun changes a stated optimum
-beyond refinement uncertainty, or a low-complexity row inside a declared
-domain closes the member residual under one common coefficient.
+Claim grade: the assignment enumeration is an exact symbolic result for the fixed paths. Phase, aspect/cadence, shell, anchor, residual-component, and channel rows are bounded measured diagnostics. Falsifier: an omitted neutral polarity assignment has exact dipole null, a rerun changes a stated optimum beyond refinement uncertainty, or a low-complexity row inside a declared domain closes the member residual under one common coefficient.
 
 ### Seed F6c — Polarity-Resolved Breathing Tetrahedron
 
-The radial residual does not require abandoning the exact tetrahedral null.
-It requires removing an unnecessary equality between the two polarity
-sectors. Let each sector have its own axial scale, transverse scale, and phase
-history:
+The radial residual does not require abandoning the exact tetrahedral null. It requires removing an unnecessary equality between the two polarity sectors. Let each sector have its own axial scale, transverse scale, and phase history:
 
 $$
 \mathbf X_{i\sigma}(T)
@@ -7473,15 +5072,13 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-The F6b phase identities hold for every phase argument. Therefore, separately
-for each polarity,
+The F6b phase identities hold for every phase argument. Therefore, separately for each polarity,
 
 $$
 \sum_i\mathbf X_{i\sigma}(T)=\mathbf0
 $$
 
-for arbitrary differentiable $h_\sigma$, $\rho_\sigma$, and
-$\theta_\sigma$. It follows identically that
+for arbitrary differentiable $h_\sigma$, $\rho_\sigma$, and $\theta_\sigma$. It follows identically that
 
 $$
 \mathbf X_{\mathrm{grp}}(T)=\mathbf0,
@@ -7491,8 +5088,7 @@ $$
 \dot{\mathbf X}_{\mathrm{grp}}(T)=\mathbf0.
 $$
 
-At fixed $h_\sigma$ and $\rho_\sigma$, a complete uniform phase average also
-remains scalar within each sector:
+At fixed $h_\sigma$ and $\rho_\sigma$, a complete uniform phase average also remains scalar within each sector:
 
 $$
 \sum_i
@@ -7507,17 +5103,11 @@ h_\sigma^2+\rho_\sigma^2
 \right)I.
 $$
 
-This is a phase-average identity, not automatically a time-average identity
-when breathing and cadence vary during the cycle. The retained return measure
-must supply that conversion.
+This is a phase-average identity, not automatically a time-average identity when breathing and cadence vary during the cycle. The retained return measure must supply that conversion.
 
-Plainly: the positive tetrahedron and negative tetrahedron can breathe and
-change cadence differently while each remains centered on its own. Their
-difference is still electrically neutral at dipole order. Exact neutrality
-does not require the two charge sectors to have identical internal motion.
+Plainly: the positive tetrahedron and negative tetrahedron can breathe and change cadence differently while each remains centered on its own. Their difference is still electrically neutral at dipole order. Exact neutrality does not require the two charge sectors to have identical internal motion.
 
-Let $\mathbf t_i=d\mathbf r_i/d\psi$ and
-$\psi_{i\sigma}=\sigma s_i\theta_\sigma+\phi_i$. Direct differentiation gives
+Let $\mathbf t_i=d\mathbf r_i/d\psi$ and $\psi_{i\sigma}=\sigma s_i\theta_\sigma+\phi_i$. Direct differentiation gives
 
 $$
 \begin{aligned}
@@ -7543,9 +5133,7 @@ $$
 \end{aligned}
 $$
 
-Thus the eight three-dimensional member equations reduce on this manifold to
-six delayed collective coordinates. For the evaluated Master Equation
-acceleration $\mathbf A_{i\sigma}^{\mathrm{ME}}$, define
+Thus the eight three-dimensional member equations reduce on this manifold to six delayed collective coordinates. For the evaluated Master Equation acceleration $\mathbf A_{i\sigma}^{\mathrm{ME}}$, define
 
 $$
 H_{i\sigma}
@@ -7569,9 +5157,7 @@ Q_{i\sigma}
 \sigma s_i\mathbf t_i.
 $$
 
-Tangency requires $H_{i\sigma}$, $R_{i\sigma}$, and $Q_{i\sigma}$ to be
-independent of module $i$ within each fixed polarity sector. Their common
-values then supply
+Tangency requires $H_{i\sigma}$, $R_{i\sigma}$, and $Q_{i\sigma}$ to be independent of module $i$ within each fixed polarity sector. Their common values then supply
 
 $$
 \ddot h_\sigma=H_\sigma,
@@ -7587,29 +5173,19 @@ Q_\sigma-2\dot\rho_\sigma\dot\theta_\sigma
 }{\rho_\sigma}.
 $$
 
-Plainly: axial breathing, transverse breathing, and cadence are not analogies
-here. They are the exact three acceleration directions available to each
-polarity tetrahedron. The Master Equation can be tested directly for whether
-it respects that six-coordinate surface.
+Plainly: axial breathing, transverse breathing, and cadence are not analogies here. They are the exact three acceleration directions available to each polarity tetrahedron. The Master Equation can be tested directly for whether it respects that six-coordinate surface.
 
-The 128-time F6b root ledger supplies a striking local result. If the two
-polarity sectors are forced to share three coordinates, $68.408\%$ of the
-evaluated acceleration norm lies outside that common tangent space. If the
-sectors receive separate coordinates, the within-sector projection spreads
-are at most $9.53\times10^{-13}$ and the vector-field normal fraction falls to
+The 128-time F6b root ledger supplies a striking local result. If the two polarity sectors are forced to share three coordinates, $68.408\%$ of the evaluated acceleration norm lies outside that common tangent space. If the sectors receive separate coordinates, the within-sector projection spreads are at most $9.53\times10^{-13}$ and the vector-field normal fraction falls to
 
 $$
 2.31\times10^{-15}.
 $$
 
-Within numerical precision, the evaluated circular-history vector field is
-exactly tangent to the polarity-resolved six-coordinate manifold even though
-it is not tangent to the constant-circle submanifold.
+Within numerical precision, the evaluated circular-history vector field is exactly tangent to the polarity-resolved six-coordinate manifold even though it is not tangent to the constant-circle submanifold.
 
 #### F6c Symmetry-Closure Theorem
 
-The tangent result is not only a numerical coincidence of the sampled
-circular history. Define the orthogonal transformation
+The tangent result is not only a numerical coincidence of the sampled circular history. Define the orthogonal transformation
 
 $$
 S=
@@ -7630,8 +5206,7 @@ $$
 \pi=(0\;3\;1\;2).
 $$
 
-Direct substitution of the F6b axes, circulation signs, phases, and local
-ring frames gives, for either polarity and every phase value,
+Direct substitution of the F6b axes, circulation signs, phases, and local ring frames gives, for either polarity and every phase value,
 
 $$
 S\hat{\mathbf n}_i=\hat{\mathbf n}_{\pi(i)},
@@ -7655,12 +5230,7 @@ S\mathbf X_{i\sigma}(T)
 \mathbf X_{\pi(i)\sigma}(T)
 $$
 
-even when $h_+$, $h_-$, $\rho_+$, $\rho_-$, $\theta_+$, and
-$\theta_-$ are six independent functions. The Master Equation depends on
-Euclidean vector differences, scalar distances, polarity products, and causal
-path history. It is equivariant under the same time-independent orthogonal
-transformation and label permutation. On any interval with the declared
-ordinary, complete causal-root branch,
+even when $h_+$, $h_-$, $\rho_+$, $\rho_-$, $\theta_+$, and $\theta_-$ are six independent functions. The Master Equation depends on Euclidean vector differences, scalar distances, polarity products, and causal path history. It is equivariant under the same time-independent orthogonal transformation and label permutation. On any interval with the declared ordinary, complete causal-root branch,
 
 $$
 S\mathbf A^{\mathrm{ME}}_{i\sigma}(T)
@@ -7668,42 +5238,20 @@ S\mathbf A^{\mathrm{ME}}_{i\sigma}(T)
 \mathbf A^{\mathrm{ME}}_{\pi(i)\sigma}(T).
 $$
 
-Differentiating the ring identity with respect to $\theta$ shows that the
-axial, radial, and phase basis directions transform into their corresponding
-directions at $\pi(i)$. Hence $H_{i\sigma}$, $R_{i\sigma}$, and
-$Q_{i\sigma}$ are independent of $i$ within each polarity sector. The
-six-coordinate F6c history surface is an invariant symmetry surface of the
-ordinary Master Equation wherever its causal-root record remains complete and
-nondegenerate.
+Differentiating the ring identity with respect to $\theta$ shows that the axial, radial, and phase basis directions transform into their corresponding directions at $\pi(i)$. Hence $H_{i\sigma}$, $R_{i\sigma}$, and $Q_{i\sigma}$ are independent of $i$ within each polarity sector. The six-coordinate F6c history surface is an invariant symmetry surface of the ordinary Master Equation wherever its causal-root record remains complete and nondegenerate.
 
-Plainly: the six-coordinate reduction is protected by an exact geometric
-symmetry, not fitted separately at each member. If an ideal evolution begins
-with the complete F6c symmetric history, the law cannot select one of the four
-modules and push it off that surface. Numerical evolution can still leak from
-roundoff, root loss, or an implementation defect, so the release experiment
-must measure leakage rather than assume it away.
+Plainly: the six-coordinate reduction is protected by an exact geometric symmetry, not fitted separately at each member. If an ideal evolution begins with the complete F6c symmetric history, the law cannot select one of the four modules and push it off that surface. Numerical evolution can still leak from roundoff, root loss, or an implementation defect, so the release experiment must measure leakage rather than assume it away.
 
-The order-four generator also sharpens the electric/magnetic deformation
-chart. On polar spatial vectors, $S$ has one real eigen-direction along the
-body $x$ axis with eigenvalue $-1$ and one transverse conjugate pair with
-eigenvalues $+i$ and $-i$. On axial vectors, reflection contributes the
-factor $\det S=-1$, so the body $x$ axis has eigenvalue $+1$ while the
-transverse pair remains oriented. Thus the same geometry supplies:
+The order-four generator also sharpens the electric/magnetic deformation chart. On polar spatial vectors, $S$ has one real eigen-direction along the body $x$ axis with eigenvalue $-1$ and one transverse conjugate pair with eigenvalues $+i$ and $-i$. On axial vectors, reflection contributes the factor $\det S=-1$, so the body $x$ axis has eigenvalue $+1$ while the transverse pair remains oriented. Thus the same geometry supplies:
 
 1. one longitudinal electric-like polar deformation channel;
 2. two orientation-related transverse electric-like channels;
 3. one symmetry-invariant axial current channel; and
 4. two transverse axial tilt channels.
 
-These are representation channels of the F6c geometry, not yet particle
-states, generations, spin eigenstates, or gauge bosons. Their falsifier is an
-algebraic failure of either displayed transformation identity, a complete-root
-Master Equation record that violates acceleration equivariance, or an
-ordinary evolution whose off-surface component converges to a nonzero value
-under numerical refinement.
+These are representation channels of the F6c geometry, not yet particle states, generations, spin eigenstates, or gauge bosons. Their falsifier is an algebraic failure of either displayed transformation identity, a complete-root Master Equation record that violates acceleration equivariance, or an ordinary evolution whose off-surface component converges to a nonzero value under numerical refinement.
 
-The unit-coupling coordinate projections are not single sinusoids. Their
-cycle means and RMS values on the prescribed circular history are:
+The unit-coupling coordinate projections are not single sinusoids. Their cycle means and RMS values on the prescribed circular history are:
 
 | Sector | Coordinate projection | Signed mean | RMS | Leading harmonics among $1$--$8$ |
 | --- | --- | ---: | ---: | --- |
@@ -7714,11 +5262,7 @@ cycle means and RMS values on the prescribed circular history are:
 | negative | $R_-$ | $-2.226717213$ | $9.721411524$ | $1,4,2,7$ |
 | negative | $Q_-$ | $-5.366917000$ | $14.69675183$ | $1,4,2,3$ |
 
-The leading harmonics are descriptive Fourier components of the frozen
-circular prehistory, not retained frequencies. They show why one orbit
-frequency was too narrow: delayed near-edge passages drive axial, radial, and
-phase response together, and the two polarity sectors receive opposite mean
-phase acceleration.
+The leading harmonics are descriptive Fourier components of the frozen circular prehistory, not retained frequencies. They show why one orbit frequency was too narrow: delayed near-edge passages drive axial, radial, and phase response together, and the two polarity sectors receive opposite mean phase acceleration.
 
 Exact symbolic substitution also preserves the signed-current-moment axis:
 
@@ -7728,9 +5272,7 @@ $$
 m_x(T)\hat{\mathbf x}
 $$
 
-for arbitrary sector-resolved $h_\sigma$, $\rho_\sigma$, and
-$\theta_\sigma$ and their first derivatives. With the polarity-weighted
-definition
+for arbitrary sector-resolved $h_\sigma$, $\rho_\sigma$, and $\theta_\sigma$ and their first derivatives. With the polarity-weighted definition
 
 $$
 \mathbf m_{\mathrm{cur}}
@@ -7779,38 +5321,22 @@ m_{x,-}
 \end{aligned}
 $$
 
-with $m_x=m_{x,+}+m_{x,-}$. Thus a magnetic-like axial current moment is
-not a function of one orbit frequency alone. It receives a circulation term
-from $\dot\theta_\sigma$ and a shear term from unequal fractional axial and
-radial breathing. The shear term vanishes when $h_\sigma$ and $\rho_\sigma$
-expand or contract in strict proportion, but it can remain nonzero at an
-instant when $\dot\theta_\sigma=0$.
+with $m_x=m_{x,+}+m_{x,-}$. Thus a magnetic-like axial current moment is not a function of one orbit frequency alone. It receives a circulation term from $\dot\theta_\sigma$ and a shear term from unequal fractional axial and radial breathing. The shear term vanishes when $h_\sigma$ and $\rho_\sigma$ expand or contract in strict proportion, but it can remain nonzero at an instant when $\dot\theta_\sigma=0$.
 
-Plainly: regular circulation is one way to maintain the current axis, but it
-is not the only geometric motion that contributes to its magnitude. A
-tetrahedron that changes height and radius at different relative rates also
-carries an oriented internal current. Consequently, a future spin-facing
-frequency may be a full breathing-and-circulation return frequency rather
-than the count of simple turns around a fixed ring.
+Plainly: regular circulation is one way to maintain the current axis, but it is not the only geometric motion that contributes to its magnitude. A tetrahedron that changes height and radius at different relative rates also carries an oriented internal current. Consequently, a future spin-facing frequency may be a full breathing-and-circulation return frequency rather than the count of simple turns around a fixed ring.
 
-Its magnitude may breathe and even pass through zero; axis alignment alone
-does not establish a retained spin or magnetic moment.
+Its magnitude may breathe and even pass through zero; axis alignment alone does not establish a retained spin or magnetic moment.
 
-The decisive experiment is not another prescribed circle. Release the
-eight-member F6c history under ordinary EOM evolution, reconstruct the six
-collective coordinates and their velocities from every accepted frame, and
-record:
+The decisive experiment is not another prescribed circle. Release the eight-member F6c history under ordinary EOM evolution, reconstruct the six collective coordinates and their velocities from every accepted frame, and record:
 
-1. the off-manifold residual relative to the polarity-resolved tetrahedral
-   surface;
+1. the off-manifold residual relative to the polarity-resolved tetrahedral surface;
 2. exact or bounded centroid and dipole leakage;
 3. axial, radial, and phase turns for each polarity sector;
 4. causal-root completeness, clearance, and field-speed margins;
 5. return of all six coordinates and their rates on one section; and
 6. current-axis survival and complete finite-window acceleration ledgers.
 
-A periodic or recurrent candidate must additionally satisfy the same-record
-integral conditions
+A periodic or recurrent candidate must additionally satisfy the same-record integral conditions
 
 $$
 \int_0^P H_\sigma\,dT=0,
@@ -7830,32 +5356,15 @@ $$
 =0,
 $$
 
-together with coordinate and rate return. These are necessary return
-conditions, not sufficient stability or retention proofs.
+together with coordinate and rate return. These are necessary return conditions, not sufficient stability or retention proofs.
 
-Plainly: F6c turns “frequency” into a concrete geometry program. A candidate
-frequency may be the return cadence of two coupled breathing tetrahedra, with
-circulation riding on top of axial and radial oscillation. The key clue is the
-polarity differential: tying the two sectors together destroys the natural
-Master Equation direction, while allowing them to breathe separately preserves
-the exact electric null and the body-fixed current axis.
+Plainly: F6c turns “frequency” into a concrete geometry program. A candidate frequency may be the return cadence of two coupled breathing tetrahedra, with circulation riding on top of axial and radial oscillation. The key clue is the polarity differential: tying the two sectors together destroys the natural Master Equation direction, while allowing them to breathe separately preserves the exact electric null and the body-fixed current axis.
 
 #### F6c Uniform-Cadence Screen and First Ordinary Release
 
-Before release, a bounded prescribed-path search tested whether unequal
-polarity-sector geometry could rescue a simpler uniform-cadence orbit. The
-search varied $\rho_+$ over $[0.18,0.48]$, both axial aspect ratios over
-$[0.5,2.5]$, $\rho_-/\rho_+$ over $[0.6,1.6]$, maximum member speed over
-$[0.15,0.75]$, and the complete negative-sector phase offset. Each candidate
-used one common positive acceleration coefficient across all members and all
-12 cycle times. A deterministic 512-row Halton screen, followed by local
-coordinate refinement of the five best survivors, found no near-relative
-equilibrium. The best row retained normalized acceleration RMS residual
-$0.836251846$.
+Before release, a bounded prescribed-path search tested whether unequal polarity-sector geometry could rescue a simpler uniform-cadence orbit. The search varied $\rho_+$ over $[0.18,0.48]$, both axial aspect ratios over $[0.5,2.5]$, $\rho_-/\rho_+$ over $[0.6,1.6]$, maximum member speed over $[0.15,0.75]$, and the complete negative-sector phase offset. Each candidate used one common positive acceleration coefficient across all members and all 12 cycle times. A deterministic 512-row Halton screen, followed by local coordinate refinement of the five best survivors, found no near-relative equilibrium. The best row retained normalized acceleration RMS residual $0.836251846$.
 
-The frozen best row was reevaluated at 128 cycle times with tighter causal-root
-and geometry tolerances. Its normalized RMS residual was $0.836252421$, with
-the following orthogonal components:
+The frozen best row was reevaluated at 128 cycle times with tighter causal-root and geometry tolerances. Its normalized RMS residual was $0.836252421$, with the following orthogonal components:
 
 | Residual direction | Normalized RMS |
 | --- | ---: |
@@ -7863,85 +5372,37 @@ the following orthogonal components:
 | radial | $0.726873467$ |
 | phase | $0.255576344$ |
 
-This is a bounded negative result for the declared common-uniform-cadence
-domain, not a no-go theorem for every F6c history. The executable record is
-[`f6c-relative-equilibrium-search.mjs`](../../../scripts/mapping-electromagnetism/f6c-relative-equilibrium-search.mjs).
+This is a bounded negative result for the declared common-uniform-cadence domain, not a no-go theorem for every F6c history. The executable record is [`f6c-relative-equilibrium-search.mjs`](../../../scripts/mapping-electromagnetism/f6c-relative-equilibrium-search.mjs).
 
-Plainly: changing the two tetrahedra's sizes, heights, and relative phase does
-not make fixed circles follow the Master Equation in the searched domain. The
-remaining mismatch points in all three allowed collective directions, with
-radial response largest. Axial breathing and cadence change are therefore
-dynamically required in this seed family, not optional embellishments.
+Plainly: changing the two tetrahedra's sizes, heights, and relative phase does not make fixed circles follow the Master Equation in the searched domain. The remaining mismatch points in all three allowed collective directions, with radial response largest. Axial breathing and cadence change are therefore dynamically required in this seed family, not optional embellishments.
 
-The accepted EOM harness now has a declared
-`f6c-balanced-tetrahedral-v1` seed family. It constructs the same eight
-prehistory paths from certified circular segments rotated onto the four
-tetrahedral axes, sets $c_f=1$, and releases them with the harness's previously
-declared coefficient. Release certification completed all 64 ordered
-receiver/transmitter certificate rows, including eight explicit self-channel
-bookkeeping rows, with no unresolved row. The release acceleration projections
-were:
+The accepted EOM harness now has a declared `f6c-balanced-tetrahedral-v1` seed family. It constructs the same eight prehistory paths from certified circular segments rotated onto the four tetrahedral axes, sets $c_f=1$, and releases them with the harness's previously declared coefficient. Release certification completed all 64 ordered receiver/transmitter certificate rows, including eight explicit self-channel bookkeeping rows, with no unresolved row. The release acceleration projections were:
 
 | Sector | $H_\sigma$ | $R_\sigma$ | $Q_\sigma$ | Maximum within-sector spread |
 | --- | ---: | ---: | ---: | ---: |
 | positive | $-0.1667274592$ | $-0.9980316808$ | $-0.3371501360$ | $6.11\times10^{-15}$ |
 | negative | $-0.0261311866$ | $-0.7853096604$ | $-1.7056320450$ | $6.13\times10^{-15}$ |
 
-The prescribed-path and EOM release projections agree after applying the
-declared charge/coefficient normalization. This is cross-implementation
-parity, not an independent validation of the Master Equation. The release
-host is
-[`attractor-ensemble-harness.cpp`](../../../scripts/eom/attractor-ensemble-harness.cpp),
-and the frame reduction is
-[`f6c-eom-coordinate-analysis.mjs`](../../../scripts/mapping-electromagnetism/f6c-eom-coordinate-analysis.mjs).
+The prescribed-path and EOM release projections agree after applying the declared charge/coefficient normalization. This is cross-implementation parity, not an independent validation of the Master Equation. The release host is [`attractor-ensemble-harness.cpp`](../../../scripts/eom/attractor-ensemble-harness.cpp), and the frame reduction is [`f6c-eom-coordinate-analysis.mjs`](../../../scripts/mapping-electromagnetism/f6c-eom-coordinate-analysis.mjs).
 
-Plainly: the ordinary solver sees exactly the same six collective directions
-as the analytical diagnostic. More importantly, it can now evolve them rather
-than merely evaluate an imposed circle.
+Plainly: the ordinary solver sees exactly the same six collective directions as the analytical diagnostic. More importantly, it can now evolve them rather than merely evaluate an imposed circle.
 
-The first checkpointed release reached $T=0.374$. It accumulated 321 accepted
-steps and zero rejected steps before a deliberate operator stop at a clean
-checkpoint. The solver reduced its accepted step from $0.002$ to $0.0005$ as
-the history became harder. Across the accepted record:
+The first checkpointed release reached $T=0.374$. It accumulated 321 accepted steps and zero rejected steps before a deliberate operator stop at a clean checkpoint. The solver reduced its accepted step from $0.002$ to $0.0005$ as the history became harder. Across the accepted record:
 
-1. normalized position leakage from the F6c surface stayed below
-   $4.84\times10^{-16}$ and velocity leakage below $1.75\times10^{-15}$;
-2. centroid norm stayed below $8.81\times10^{-17}$ and electric-dipole norm
-   below $2.24\times10^{-16}$;
+1. normalized position leakage from the F6c surface stayed below $4.84\times10^{-16}$ and velocity leakage below $1.75\times10^{-15}$;
+2. centroid norm stayed below $8.81\times10^{-17}$ and electric-dipole norm below $2.24\times10^{-16}$;
 3. the current-axis off-$x$ fraction stayed below $5.17\times10^{-15}$;
-4. accepted-chunk pair separation reached a minimum $0.3132131932$ near
-   $T=0.146$ and then increased before decreasing again;
+4. accepted-chunk pair separation reached a minimum $0.3132131932$ near $T=0.146$ and then increased before decreasing again;
 5. maximum member speed reached $0.6870583<c_f$; and
-6. the axial current moment changed from $-0.4156922$ to $-0.1288454$ without
-   losing its body axis.
+6. the axial current moment changed from $-0.4156922$ to $-0.1288454$ without losing its body axis.
 
-The resolved collective events are more informative than the aggregate
-sizes. Negative-sector axial motion turned from contraction to expansion at
-$T\approx0.0236642$. Its phase rate then crossed zero at
-$T\approx0.1490220$, so that polarity sector reversed its internal
-circulation while the positive sector continued forward. The positive phase
-rate reached a minimum $0.8853460$ near $T=0.196$ and then increased to
-$1.0469475$ by $T=0.374$. Neither radius had turned by the checkpoint:
-$\rho_+=0.2505834$ and $\rho_-=0.2540948$ were still decreasing.
+The resolved collective events are more informative than the aggregate sizes. Negative-sector axial motion turned from contraction to expansion at $T\approx0.0236642$. Its phase rate then crossed zero at $T\approx0.1490220$, so that polarity sector reversed its internal circulation while the positive sector continued forward. The positive phase rate reached a minimum $0.8853460$ near $T=0.196$ and then increased to $1.0469475$ by $T=0.374$. Neither radius had turned by the checkpoint: $\rho_+=0.2505834$ and $\rho_-=0.2540948$ were still decreasing.
 
-Plainly: ordinary evolution has now produced an axial breathing turn, a
-polarity-selective circulation reversal, and a cadence minimum while exact
-neutrality and the magnetic-like axis survive. That is a substantially richer
-geometry than an orbit. It is also not yet a retained braid: the radii have
-not returned, the six coordinates and rates have not closed, and the current
-moment has not completed a cycle.
+Plainly: ordinary evolution has now produced an axial breathing turn, a polarity-selective circulation reversal, and a cadence minimum while exact neutrality and the magnetic-like axis survive. That is a substantially richer geometry than an orbit. It is also not yet a retained braid: the radii have not returned, the six coordinates and rates have not closed, and the current moment has not completed a cycle.
 
-A separate refinement used initial step $0.001$, minimum step $0.00025$, and
-half-size prehistory segments through $T=0.2$. It completed 200 accepted steps
-with no rejection. At the common endpoint, configuration-coordinate
-differences from the first run were at most $1.66\times10^{-8}$ and rate
-differences at most $2.45\times10^{-7}$. The axial-turn estimates differed by
-$1.47\times10^{-5}$, the phase-reversal estimates by
-$1.47\times10^{-6}$, and the two minimum-separation values by
-$5.12\times10^{-9}$.
+A separate refinement used initial step $0.001$, minimum step $0.00025$, and half-size prehistory segments through $T=0.2$. It completed 200 accepted steps with no rejection. At the common endpoint, configuration-coordinate differences from the first run were at most $1.66\times10^{-8}$ and rate differences at most $2.45\times10^{-7}$. The axial-turn estimates differed by $1.47\times10^{-5}$, the phase-reversal estimates by $1.47\times10^{-6}$, and the two minimum-separation values by $5.12\times10^{-9}$.
 
-A second launch tested whether the initial radial contraction could be removed
-by sector-resolved cadence. Solving the two release equations
+A second launch tested whether the initial radial contraction could be removed by sector-resolved cadence. Solving the two release equations
 
 $$
 R_++\rho_+\dot\theta_+^2\approx0,
@@ -7957,26 +5418,17 @@ $$
 \dot\theta_-=1.989.
 $$
 
-The corresponding member speeds were at most $0.7035<c_f$, and the certified
-release radial second derivatives were $-3.65\times10^{-4}$ and
-$-4.72\times10^{-4}$. The $T=0.2$ evolution completed 315 accepted steps
-with no rejection, but did not produce a radial turn. It ended with
+The corresponding member speeds were at most $0.7035<c_f$, and the certified release radial second derivatives were $-3.65\times10^{-4}$ and $-4.72\times10^{-4}$. The $T=0.2$ evolution completed 315 accepted steps with no rejection, but did not produce a radial turn. It ended with
 
 $$
 (\rho_+,\rho_-)=(0.2973306,0.2947164),
 $$
 
-while both axial scales expanded to about $0.3067$, the negative cadence fell
-to $0.7583$, and accepted-chunk pair separation fell to $0.2151674$.
+while both axial scales expanded to about $0.3067$, the negative cadence fell to $0.7583$, and accepted-chunk pair separation fell to $0.2151674$.
 
-Plainly: balancing radial acceleration at one release instant substantially
-reduced radius loss relative to the unit-cadence seed, but it did not create a
-cycle or even a radius turn. Delayed geometry immediately changes the radial
-response as phase, height, and cadence evolve. A retained braid must balance
-the complete history or return map, not one instantaneous acceleration row.
+Plainly: balancing radial acceleration at one release instant substantially reduced radius loss relative to the unit-cadence seed, but it did not create a cycle or even a radius turn. Delayed geometry immediately changes the radial response as phase, height, and cadence evolve. A retained braid must balance the complete history or return map, not one instantaneous acceleration row.
 
-A nearby launch moved just beyond the simultaneous radial-balance row while
-remaining below the field-speed ceiling:
+A nearby launch moved just beyond the simultaneous radial-balance row while remaining below the field-speed ceiling:
 
 $$
 \dot\theta_+=2.38,
@@ -7986,12 +5438,7 @@ $$
 \max_a|\mathbf V_a|=0.714<c_f.
 $$
 
-Both certified release radial second derivatives were positive. Ordinary
-evolution then resolved the first radial turns in this family: the negative
-sector reached a radius maximum at $T\approx0.001374$, while the positive
-sector reached one at $T\approx0.026625$. The excursions were only about
-$1.0\times10^{-9}$ and $4.5\times10^{-6}$ above the common release radius,
-respectively, before contraction resumed.
+Both certified release radial second derivatives were positive. Ordinary evolution then resolved the first radial turns in this family: the negative sector reached a radius maximum at $T\approx0.001374$, while the positive sector reached one at $T\approx0.026625$. The excursions were only about $1.0\times10^{-9}$ and $4.5\times10^{-6}$ above the common release radius, respectively, before contraction resumed.
 
 A higher-cadence launch,
 
@@ -8003,31 +5450,11 @@ $$
 \max_a|\mathbf V_a|=0.9<c_f,
 $$
 
-produced a larger polarity-resolved breathing segment. Through the clean
-$T=0.152$ checkpoint, the negative radius reached
-$\rho_-=0.3012598721$ and turned from expansion to contraction at
-$T\approx0.135464$. The positive radius was still expanding at the checkpoint,
-with $\rho_+=0.3064302684$. The negative axial coordinate also turned near
-$T\approx0.056763$. Symmetry leakage remained below
-$5.13\times10^{-16}$ in position and $1.26\times10^{-15}$ in velocity;
-centroid, dipole, and current-axis leakage remained at roundoff scale. The
-minimum accepted-chunk pair separation fell to $0.1940721$, so the larger
-breathing excursion is accompanied by a tightening inter-member approach and
-does not establish retention.
+produced a larger polarity-resolved breathing segment. Through the clean $T=0.152$ checkpoint, the negative radius reached $\rho_-=0.3012598721$ and turned from expansion to contraction at $T\approx0.135464$. The positive radius was still expanding at the checkpoint, with $\rho_+=0.3064302684$. The negative axial coordinate also turned near $T\approx0.056763$. Symmetry leakage remained below $5.13\times10^{-16}$ in position and $1.26\times10^{-15}$ in velocity; centroid, dipole, and current-axis leakage remained at roundoff scale. The minimum accepted-chunk pair separation fell to $0.1940721$, so the larger breathing excursion is accompanied by a tightening inter-member approach and does not establish retention.
 
-The tightening corridor is not a conjugate-polarity approach. Direct frame
-reconstruction identifies the symmetry-equivalent negative-sector pair orbit
-$(0^-,1^-)$ and $(2^-,3^-)$ as the minimum-separation class in the
-unit-cadence, near-balanced, and outward launches. In the near-balanced record,
-for example, this same-polarity distance reached $0.2151674$ at $T=0.2$ even
-though the sector envelope radius remained $0.2947164$. The exact order-four
-symmetry makes the two listed pairs equivalent; neither is a unique local
-defect.
+The tightening corridor is not a conjugate-polarity approach. Direct frame reconstruction identifies the symmetry-equivalent negative-sector pair orbit $(0^-,1^-)$ and $(2^-,3^-)$ as the minimum-separation class in the unit-cadence, near-balanced, and outward launches. In the near-balanced record, for example, this same-polarity distance reached $0.2151674$ at $T=0.2$ even though the sector envelope radius remained $0.2947164$. The exact order-four symmetry makes the two listed pairs equivalent; neither is a unique local defect.
 
-The negative-sector six-edge set splits into a two-edge orbit and a four-edge
-orbit. For the observed two-edge minimum, define $d_{-,2}$ as the common
-distance of $(0^-,1^-)$ and $(2^-,3^-)$. Direct substitution of the F6c
-coordinates gives the exact identity
+The negative-sector six-edge set splits into a two-edge orbit and a four-edge orbit. For the observed two-edge minimum, define $d_{-,2}$ as the common distance of $(0^-,1^-)$ and $(2^-,3^-)$. Direct substitution of the F6c coordinates gives the exact identity
 
 $$
 d_{-,2}^2
@@ -8049,10 +5476,7 @@ h_-=\frac{\rho_-}{\sqrt2},
 \theta_-=\frac{\pi}{6}\pmod{2\pi}.
 $$
 
-This is a necessary and sufficient coincidence condition for that declared
-edge orbit, not a prediction that the evolved record reaches it. It provides
-an analytic clearance guard for future return-map searches. The other four
-negative-sector edges share
+This is a necessary and sufficient coincidence condition for that declared edge orbit, not a prediction that the evolved record reaches it. It provides an analytic clearance guard for future return-map searches. The other four negative-sector edges share
 
 $$
 d_{-,4}^2
@@ -8063,22 +5487,11 @@ d_{-,4}^2
 +\frac83\rho_-^2.
 $$
 
-The coordinate analyzer reevaluates both formulas at every emitted frame. On
-the near-balanced $T=0.2$ record, the maximum formula-to-member distance
-residual across both edge orbits was $4.45\times10^{-16}$.
+The coordinate analyzer reevaluates both formulas at every emitted frame. On the near-balanced $T=0.2$ record, the maximum formula-to-member distance residual across both edge orbits was $4.45\times10^{-16}$.
 
-Plainly: the dangerous same-polarity approach is not hidden in the full
-24-dimensional member state. Within exact F6c it is an explicit function of
-negative-sector height, radius, and phase. A search can reject a candidate as
-soon as its reduced trajectory approaches the two simultaneous coincidence
-conditions, while still confirming the full root-resolved clearance ledger.
+Plainly: the dangerous same-polarity approach is not hidden in the full 24-dimensional member state. Within exact F6c it is an explicit function of negative-sector height, radius, and phase. A search can reject a candidate as soon as its reduced trajectory approaches the two simultaneous coincidence conditions, while still confirming the full root-resolved clearance ledger.
 
-Relative polarity-sector phase is a physical F6c shape coordinate, not a
-choice of time origin. The EOM harness therefore exposes
-`f6c-negative-theta`, which changes $\theta_-(0)$ while holding
-$\theta_+(0)=0$, both cadences, every scale, the coefficient, and all solver
-controls fixed. A seven-row certified release screen at
-$(\dot\theta_+,\dot\theta_-)=(3.0,2.5)$ gave:
+Relative polarity-sector phase is a physical F6c shape coordinate, not a choice of time origin. The EOM harness therefore exposes `f6c-negative-theta`, which changes $\theta_-(0)$ while holding $\theta_+(0)=0$, both cadences, every scale, the coefficient, and all solver controls fixed. A seven-row certified release screen at $(\dot\theta_+,\dot\theta_-)=(3.0,2.5)$ gave:
 
 | $\theta_-(0)$ | Initial clearance | Closest-pair class | $\ddot\rho_+(0)$ | $\ddot\rho_-(0)$ |
 | ---: | ---: | --- | ---: | ---: |
@@ -8090,17 +5503,9 @@ $(\dot\theta_+,\dot\theta_-)=(3.0,2.5)$ gave:
 | $\pi/2$ | $0.366006$ | opposite polarity | $2.141275$ | $1.793673$ |
 | $\pi$ | $0.077854$ | opposite polarity | $-21.143609$ | $-12.545210$ |
 
-Plainly: one internal phase changes which members approach, whether each
-polarity envelope initially expands or contracts, and the response magnitude
-by more than an order of magnitude without changing the law or coefficient.
-Relative phase is therefore a load-bearing geometry variable and a plausible
-carrier of distinct response basins. The seven rows are a bounded phase screen,
-not evidence for seven states or any particle-family assignment.
+Plainly: one internal phase changes which members approach, whether each polarity envelope initially expands or contracts, and the response magnitude by more than an order of magnitude without changing the law or coefficient. Relative phase is therefore a load-bearing geometry variable and a plausible carrier of distinct response basins. The seven rows are a bounded phase screen, not evidence for seven states or any particle-family assignment.
 
-The $\theta_-(0)=\pi/2$ row was evolved because it combined the largest
-release clearance with strong outward radial response in both sectors. It
-reached a clean $T=0.15$ checkpoint with 341 accepted steps and zero rejected
-steps. Neither radius nor height turned: the endpoint was
+The $\theta_-(0)=\pi/2$ row was evolved because it combined the largest release clearance with strong outward radial response in both sectors. It reached a clean $T=0.15$ checkpoint with 341 accepted steps and zero rejected steps. Neither radius nor height turned: the endpoint was
 
 $$
 (h_+,h_-)=(0.2920582,0.2844043),
@@ -8108,10 +5513,7 @@ $$
 (\rho_+,\rho_-)=(0.3154963,0.3238952).
 $$
 
-The limiting corridor became the four-member opposite-polarity edge orbit
-$(0^+,1^-)$, $(0^-,1^+)$, $(2^+,3^-)$, and $(2^-,3^+)$, whose common
-distance fell from $0.3660060$ to $0.2559228$. Its exact reduced squared
-distance is
+The limiting corridor became the four-member opposite-polarity edge orbit $(0^+,1^-)$, $(0^-,1^+)$, $(2^+,3^-)$, and $(2^-,3^+)$, whose common distance fell from $0.3660060$ to $0.2559228$. Its exact reduced squared distance is
 
 $$
 \begin{aligned}
@@ -8123,61 +5525,25 @@ d_{\pm,4}^2={}&h_+^2-\frac23h_+h_-+h_-^2+\rho_+^2+\rho_-^2\\
 \end{aligned}
 $$
 
-The framewise formula residual remained below $5.00\times10^{-16}$. Maximum
-member speed rose to $0.983222c_f$, leaving only $0.016778c_f$ of field-speed
-margin, so the record was not extended further.
+The framewise formula residual remained below $5.00\times10^{-16}$. Maximum member speed rose to $0.983222c_f$, leaving only $0.016778c_f$ of field-speed margin, so the record was not extended further.
 
-Plainly: phase can redirect the dangerous corridor from same-polarity to
-opposite-polarity pairs, but the tested high-cadence row does not solve the
-return problem. It converts radial collapse into rapid radial expansion and
-approach to the field-speed ceiling. A retained branch must find a phase and
-cadence combination that turns both envelope and corridor motion before either
-coincidence or field-speed contact.
+Plainly: phase can redirect the dangerous corridor from same-polarity to opposite-polarity pairs, but the tested high-cadence row does not solve the return problem. It converts radial collapse into rapid radial expansion and approach to the field-speed ceiling. A retained branch must find a phase and cadence combination that turns both envelope and corridor motion before either coincidence or field-speed contact.
 
-Plainly: cadence controls whether a sector initially contracts or expands and
-how large its first radial excursion becomes. More importantly, the two
-polarity sectors turn at different times. F6c therefore carries at least two
-coupled radial clocks: a common breathing coordinate and a polarity-differential
-breathing coordinate. Any retained version must phase-lock both clocks while
-also controlling a same-polarity edge-pinch coordinate that the sector radius
-does not determine by itself. Within F6c that pinch remains a derived function
-of the six coordinates, especially relative sector phase; it is not a seventh
-independent coordinate. One shared orbital frequency and two envelope radii
-are not enough.
+Plainly: cadence controls whether a sector initially contracts or expands and how large its first radial excursion becomes. More importantly, the two polarity sectors turn at different times. F6c therefore carries at least two coupled radial clocks: a common breathing coordinate and a polarity-differential breathing coordinate. Any retained version must phase-lock both clocks while also controlling a same-polarity edge-pinch coordinate that the sector radius does not determine by itself. Within F6c that pinch remains a derived function of the six coordinates, especially relative sector phase; it is not a seventh independent coordinate. One shared orbital frequency and two envelope radii are not enough.
 
-A $4\times4$ certified release screen at $\theta_-(0)=\pi/2$ varied both
-cadences over $\{1.5,2.0,2.5,3.0\}$. The lower-speed compromise
-$(\dot\theta_+,\dot\theta_-)=(2.0,2.0)$ began at maximum member speed
-$0.6c_f$ with
+A $4\times4$ certified release screen at $\theta_-(0)=\pi/2$ varied both cadences over $\{1.5,2.0,2.5,3.0\}$. The lower-speed compromise $(\dot\theta_+,\dot\theta_-)=(2.0,2.0)$ began at maximum member speed $0.6c_f$ with
 
 $$
 (\ddot\rho_+,\ddot\rho_-)=(0.6664443,0.2599755).
 $$
 
-Its $T=0.2$ evolution completed 283 accepted steps with no rejection. The
-positive radius reached $0.3036095$ and turned near $T=0.194186$; the negative
-radius reached $0.3065591$ and was still expanding. Meanwhile
-$\dot\theta_-$ rose from $2.0$ to $3.155066$, maximum member speed reached
-$0.973476c_f$, and the opposite-polarity edge corridor fell to $0.2180590$.
+Its $T=0.2$ evolution completed 283 accepted steps with no rejection. The positive radius reached $0.3036095$ and turned near $T=0.194186$; the negative radius reached $0.3065591$ and was still expanding. Meanwhile $\dot\theta_-$ rose from $2.0$ to $3.155066$, maximum member speed reached $0.973476c_f$, and the opposite-polarity edge corridor fell to $0.2180590$.
 
-Plainly: lowering both initial cadences buys time but does not remove the
-negative-sector cadence pump. This row produces one genuine radius maximum,
-yet it reaches the field-speed neighborhood before the other radial clock
-turns.
+Plainly: lowering both initial cadences buys time but does not remove the negative-sector cadence pump. This row produces one genuine radius maximum, yet it reaches the field-speed neighborhood before the other radial clock turns.
 
-A second nine-row release screen held both cadences at $2.0$ and sampled
-$\theta_-(0)=k\pi/16$ for $k=0,\ldots,8$. No sampled row simultaneously had
-small $|Q_-|$, outward radial response in both sectors, and generous clearance.
-The sampled sign change of $Q_-$ lies between $3\pi/16$ and $4\pi/16$, where
-the endpoint clearances were only $0.149473$ and $0.219615$ and the coordinate
-accelerations were already large. This is a bounded screen; it does not prove
-that no narrow admissible phase exists between samples.
+A second nine-row release screen held both cadences at $2.0$ and sampled $\theta_-(0)=k\pi/16$ for $k=0,\ldots,8$. No sampled row simultaneously had small $|Q_-|$, outward radial response in both sectors, and generous clearance. The sampled sign change of $Q_-$ lies between $3\pi/16$ and $4\pi/16$, where the endpoint clearances were only $0.149473$ and $0.219615$ and the coordinate accelerations were already large. This is a bounded screen; it does not prove that no narrow admissible phase exists between samples.
 
-The best sampled clearance/outward-response compromise was
-$\theta_-(0)=7\pi/16$, with release clearance $0.4037315$ and radial second
-derivatives $(0.7027147,0.1398979)$. Its $T=0.2$ evolution completed 244
-accepted steps with no rejection, but again supplied no return: the endpoint
-had
+The best sampled clearance/outward-response compromise was $\theta_-(0)=7\pi/16$, with release clearance $0.4037315$ and radial second derivatives $(0.7027147,0.1398979)$. Its $T=0.2$ evolution completed 244 accepted steps with no rejection, but again supplied no return: the endpoint had
 
 $$
 (\dot\rho_+,\dot\rho_-)=(0.0004236,0.1253897),
@@ -8185,33 +5551,21 @@ $$
 \dot\theta_-=3.079583,
 $$
 
-maximum member speed $0.968961c_f$, and opposite-polarity corridor
-$0.2749050$.
+maximum member speed $0.968961c_f$, and opposite-polarity corridor $0.2749050$.
 
-Plainly: the favorable phase rows repeatedly approach a positive-sector radius
-maximum while the negative sector continues to expand and accelerate. The
-failure is structured, not random: phase chooses the corridor and cadence
-transfer, but a circular prehistory does not supply the missing breathing
-phase needed to close both sectors.
+Plainly: the favorable phase rows repeatedly approach a positive-sector radius maximum while the negative sector continues to expand and accelerate. The failure is structured, not random: phase chooses the corridor and cadence transfer, but a circular prehistory does not supply the missing breathing phase needed to close both sectors.
 
 #### F6c Breathing-Section Bias
 
-Every ordinary release above begins from a fixed-radius circular prehistory,
-which imposes four simultaneous section conditions at release:
+Every ordinary release above begins from a fixed-radius circular prehistory, which imposes four simultaneous section conditions at release:
 
 $$
 \dot h_+=\dot h_-=\dot\rho_+=\dot\rho_-=0.
 $$
 
-A generic periodic six-coordinate history has only one freely selectable time
-origin. One time shift can generically place the history on one scalar section,
-such as $\dot\rho_+=0$, but not on four independent turning sections at once.
-Simultaneous satisfaction of all four conditions requires an additional
-synchronization or symmetry that has not been derived. This is a dimension
-counting inference, not a nonexistence theorem.
+A generic periodic six-coordinate history has only one freely selectable time origin. One time shift can generically place the history on one scalar section, such as $\dot\rho_+=0$, but not on four independent turning sections at once. Simultaneous satisfaction of all four conditions requires an additional synchronization or symmetry that has not been derived. This is a dimension counting inference, not a nonexistence theorem.
 
-The evolved $(2.0,2.0,\pi/2)$ history demonstrates the distinction at its
-positive-radius section. Near $T=0.19425$ it had
+The evolved $(2.0,2.0,\pi/2)$ history demonstrates the distinction at its positive-radius section. Near $T=0.19425$ it had
 
 $$
 \dot\rho_+\approx-2.87\times10^{-5},
@@ -8221,31 +5575,15 @@ $$
 (-0.188826,-0.097687,0.055643),
 $$
 
-with sector cadences $(1.206147,3.101637)$. This is not a periodic return or a
-new seed certificate; it is a measured example of a legitimate one-coordinate
-section carrying nonzero motion in the other breathing coordinates.
+with sector cadences $(1.206147,3.101637)$. This is not a periodic return or a new seed certificate; it is a measured example of a legitimate one-coordinate section carrying nonzero motion in the other breathing coordinates.
 
-Plainly: the circular search has been asking a prospective breathing braid to
-arrive at four turning points simultaneously. That is an exceptional event,
-not the generic way to cut a periodic trajectory. The next F6c search must
-prescribe and certify a breathing path history, choose one Poincare section,
-and allow the other three axial/radial rates to be nonzero. Continued tuning of
-fixed circles is now a low-value path.
+Plainly: the circular search has been asking a prospective breathing braid to arrive at four turning points simultaneously. That is an exceptional event, not the generic way to cut a periodic trajectory. The next F6c search must prescribe and certify a breathing path history, choose one Poincare section, and allow the other three axial/radial rates to be nonzero. Continued tuning of fixed circles is now a low-value path.
 
-Claim grade: measured EOM-solver diagnostics on three bounded release screens,
-seven distinct evolved releases, and one finite-time refinement, plus an
-inferred section-dimension argument; not an independent oracle, retained braid,
-stability result, particle identity, or global basin. Falsifier: failure to
-reproduce the coordinate records from the declared seeds, nonconvergent turn
-times or coordinates under further refinement, loss of complete roots, a
-nonvanishing symmetry leakage under refinement, or a certified breathing
-return family whose trajectories generically cross all four zero-rate sections
-simultaneously.
+Claim grade: measured EOM-solver diagnostics on three bounded release screens, seven distinct evolved releases, and one finite-time refinement, plus an inferred section-dimension argument; not an independent oracle, retained braid, stability result, particle identity, or global basin. Falsifier: failure to reproduce the coordinate records from the declared seeds, nonconvergent turn times or coordinates under further refinement, loss of complete roots, a nonvanishing symmetry leakage under refinement, or a certified breathing return family whose trajectories generically cross all four zero-rate sections simultaneously.
 
 #### Certified Harmonic Breathing Histories
 
-The next instrument replaces the four-zero-rate circular section by the
-one-frequency coordinate history
+The next instrument replaces the four-zero-rate circular section by the one-frequency coordinate history
 
 $$
 \begin{aligned}
@@ -8256,22 +5594,11 @@ h_\sigma(T)&=0.3+A_{h,\sigma}\sin(\Omega T),\\
 \end{aligned}
 $$
 
-The first bounded screens set $\Omega=\omega_+=\omega_-$ so each prescribed
-coordinate history has one exact recurrence period. Piecewise cubic Hermite
-segments carry analytical endpoint positions and velocities, conservative
-position/velocity enclosure errors, and a whole-history speed bound. Every
-admitted release must keep $h_\sigma>0$, $\rho_\sigma>0$, maximum prescribed
-member speed below $c_f=1$, and all 64 ordered causal-root bookkeeping rows
-certified.
+The first bounded screens set $\Omega=\omega_+=\omega_-$ so each prescribed coordinate history has one exact recurrence period. Piecewise cubic Hermite segments carry analytical endpoint positions and velocities, conservative position/velocity enclosure errors, and a whole-history speed bound. Every admitted release must keep $h_\sigma>0$, $\rho_\sigma>0$, maximum prescribed member speed below $c_f=1$, and all 64 ordered causal-root bookkeeping rows certified.
 
-Plainly: this is the smallest periodic breathing history that reaches the same
-$h_\sigma=\rho_\sigma=0.3$ release geometry with nonzero axial and radial
-rates. It tests whether the delayed past, not only the instantaneous positions,
-changes the Master Equation response.
+Plainly: this is the smallest periodic breathing history that reaches the same $h_\sigma=\rho_\sigma=0.3$ release geometry with nonzero axial and radial rates. It tests whether the delayed past, not only the instantaneous positions, changes the Master Equation response.
 
-The acceleration analyzer now separates physical projections from coordinate
-second derivatives. With $H_\sigma$, $R_\sigma$, and $Q_\sigma$ denoting the
-axial, radial, and signed tangential projections on the F6c moving frame,
+The acceleration analyzer now separates physical projections from coordinate second derivatives. With $H_\sigma$, $R_\sigma$, and $Q_\sigma$ denoting the axial, radial, and signed tangential projections on the F6c moving frame,
 
 $$
 \ddot h_\sigma=H_\sigma,
@@ -8283,25 +5610,13 @@ $$
 \frac{Q_\sigma-2\dot\rho_\sigma\dot\theta_\sigma}{\rho_\sigma}.
 $$
 
-The $\rho\dot\theta^2$ and $2\dot\rho\dot\theta$ terms are moving-coordinate
-geometry, not additional Master Equation interactions. Consequently,
-$R_\sigma<0$ alone does not imply radial contraction; the stricter local
-condition is $R_\sigma<-\rho_\sigma\dot\theta_\sigma^2$.
+The $\rho\dot\theta^2$ and $2\dot\rho\dot\theta$ terms are moving-coordinate geometry, not additional Master Equation interactions. Consequently, $R_\sigma<0$ alone does not imply radial contraction; the stricter local condition is $R_\sigma<-\rho_\sigma\dot\theta_\sigma^2$.
 
-Plainly: an inward acceleration vector can still accompany an increasing
-orbit radius because part of that acceleration supplies the curvature of the
-circulation. The diagnostic must report $\ddot\rho$, not label the radial
-projection $R$ as a radius acceleration.
+Plainly: an inward acceleration vector can still accompany an increasing orbit radius because part of that acceleration supplies the curvature of the circulation. The diagnostic must report $\ddot\rho$, not label the radial projection $R$ as a radius acceleration.
 
-Two disjoint low-discrepancy screens tested 144 declared histories. Of 111
-speed-admissible, root-certified rows, 48 had
-$\ddot\rho_+<0$ and $\ddot\rho_-<0$ at release; ten of those also began with
-$\dot\rho_+>0$ and $\dot\rho_->0$. These counts describe only the bounded
-screen and its declared ranges. They do not estimate a basin volume.
+Two disjoint low-discrepancy screens tested 144 declared histories. Of 111 speed-admissible, root-certified rows, 48 had $\ddot\rho_+<0$ and $\ddot\rho_-<0$ at release; ten of those also began with $\dot\rho_+>0$ and $\dot\rho_->0$. These counts describe only the bounded screen and its declared ranges. They do not estimate a basin volume.
 
-One fixed row from the first screen predicted two radial maxima. Its full EOM
-continuation certified 478 accepted steps and no rejected steps through the
-durable $T=0.195$ checkpoint. It resolved
+One fixed row from the first screen predicted two radial maxima. Its full EOM continuation certified 478 accepted steps and no rejected steps through the durable $T=0.195$ checkpoint. It resolved
 
 $$
 T_{\rho_+,\max}\approx0.0476328,
@@ -8309,15 +5624,9 @@ T_{\rho_+,\max}\approx0.0476328,
 T_{\rho_-,\max}\approx0.0626490.
 $$
 
-No axial turn occurred in that window. Maximum member speed was
-$0.773405c_f$, minimum accepted-chunk pair distance was $0.265661$, and the
-maximum normalized position and velocity leakage from F6c was respectively
-$4.91\times10^{-16}$ and $9.31\times10^{-16}$.
+No axial turn occurred in that window. Maximum member speed was $0.773405c_f$, minimum accepted-chunk pair distance was $0.265661$, and the maximum normalized position and velocity leakage from F6c was respectively $4.91\times10^{-16}$ and $9.31\times10^{-16}$.
 
-A second fixed row was the only sampled release that combined two outward
-radial rates, two negative radial second derivatives, and axial acceleration
-opposite to axial velocity in both sectors. Through its durable $T=0.09$
-checkpoint, it certified 252 accepted steps with no rejected step and resolved
+A second fixed row was the only sampled release that combined two outward radial rates, two negative radial second derivatives, and axial acceleration opposite to axial velocity in both sectors. Through its durable $T=0.09$ checkpoint, it certified 252 accepted steps with no rejected step and resolved
 
 $$
 T_{h_-,\max}\approx0.0264644,
@@ -8325,42 +5634,17 @@ T_{h_-,\max}\approx0.0264644,
 T_{h_+,\max}\approx0.0792469.
 $$
 
-Neither radius turned in that window. Maximum member speed was $0.743785c_f$,
-minimum accepted-chunk pair distance was $0.177735$, and maximum normalized
-position and velocity leakage was respectively $4.05\times10^{-16}$ and
-$1.03\times10^{-15}$. In both histories the polarity-weighted current moment
-remained on the exact body axis to numerical precision.
+Neither radius turned in that window. Maximum member speed was $0.743785c_f$, minimum accepted-chunk pair distance was $0.177735$, and maximum normalized position and velocity leakage was respectively $4.05\times10^{-16}$ and $1.03\times10^{-15}$. In both histories the polarity-weighted current moment remained on the exact body axis to numerical precision.
 
-Plainly: the same eight-member geometry supports controlled radial turning in
-one history and controlled axial turning in another. The local acceleration
-screen found both directions efficiently, but it did not predict the complete
-finite-time outcome: delayed response can change before a rate reaches zero.
-The next problem is to phase-lock already demonstrated motions, not to add an
-unmotivated extra coordinate.
+Plainly: the same eight-member geometry supports controlled radial turning in one history and controlled axial turning in another. The local acceleration screen found both directions efficiently, but it did not predict the complete finite-time outcome: delayed response can change before a rate reaches zero. The next problem is to phase-lock already demonstrated motions, not to add an unmotivated extra coordinate.
 
-The correct next search object is therefore a Poincare return map on the exact
-six-coordinate history surface. Choose one scalar section, evolve one complete
-root-valid history to its next crossing, and minimize the remaining coordinate
-and rate mismatch while enforcing the analytical pair-corridor formulas and
-the $c_f=1$ speed margin. A release-only acceleration screen is an economical
-prefilter for that map, not a retention or recurrence certificate.
+The correct next search object is therefore a Poincare return map on the exact six-coordinate history surface. Choose one scalar section, evolve one complete root-valid history to its next crossing, and minimize the remaining coordinate and rate mismatch while enforcing the analytical pair-corridor formulas and the $c_f=1$ speed margin. A release-only acceleration screen is an economical prefilter for that map, not a retention or recurrence certificate.
 
-Claim grade: measured EOM-solver diagnostics from two bounded release screens
-and two finite ordinary evolutions, plus derived moving-coordinate identities;
-not an independent oracle, retained braid, stable cycle, particle identity, or
-basin measure. Falsifier: failure to reproduce the declared release and turn
-records, turn times that fail step/history refinement, a symmetry residual
-that grows under refinement, an unreported unresolved causal root, or a
-complete return-map result showing that the apparent axial/radial channels do
-not coexist on the same invariant surface.
+Claim grade: measured EOM-solver diagnostics from two bounded release screens and two finite ordinary evolutions, plus derived moving-coordinate identities; not an independent oracle, retained braid, stable cycle, particle identity, or basin measure. Falsifier: failure to reproduce the declared release and turn records, turn times that fail step/history refinement, a symmetry residual that grows under refinement, an unreported unresolved causal root, or a complete return-map result showing that the apparent axial/radial channels do not coexist on the same invariant surface.
 
 #### Whole-Cycle Self-Consistency Residual
 
-A release that turns after evolution need not make its prescribed prehistory a
-self-sustaining cycle. To test the stronger statement, sample one immutable
-harmonic history at phases $\phi_j=2\pi j/N$ and compare its analytical
-coordinate acceleration with the Master Equation acceleration generated by
-that same complete history:
+A release that turns after evolution need not make its prescribed prehistory a self-sustaining cycle. To test the stronger statement, sample one immutable harmonic history at phases $\phi_j=2\pi j/N$ and compare its analytical coordinate acceleration with the Master Equation acceleration generated by that same complete history:
 
 $$
 \mathbf r_\sigma(\phi_j)
@@ -8378,40 +5662,19 @@ $$
 \end{pmatrix}.
 $$
 
-Every phase uses the same amplitudes, cadence, relative phase, coupling, and
-root policy. The scalar ranking is the RMS of all six component residuals over
-all certified phases; maximum component residual, minimum pair distance, and
-maximum member speed remain separate and cannot be traded into that RMS.
+Every phase uses the same amplitudes, cadence, relative phase, coupling, and root policy. The scalar ranking is the RMS of all six component residuals over all certified phases; maximum component residual, minimum pair distance, and maximum member speed remain separate and cannot be traded into that RMS.
 
-Plainly: this asks whether the proposed wave generates the acceleration needed
-to keep tracing itself. It is stronger than finding an attractive acceleration
-at one point and cheaper than evolving every poor candidate for a full period.
+Plainly: this asks whether the proposed wave generates the acceleration needed to keep tracing itself. It is stronger than finding an attractive acceleration at one point and cheaper than evolving every poor candidate for a full period.
 
-The two histories that produced finite-time turns are not self-sustaining sine
-waves. At 12 phases, the double-radial-turn history had RMS residual $9.895$
-and minimum phase clearance $0.1124$; the double-axial-turn history had RMS
-residual $16.208$ and clearance $0.1111$. Their observed turns remain valid,
-but their originally prescribed waveforms fail the full-cycle test.
+The two histories that produced finite-time turns are not self-sustaining sine waves. At 12 phases, the double-radial-turn history had RMS residual $9.895$ and minimum phase clearance $0.1124$; the double-axial-turn history had RMS residual $16.208$ and clearance $0.1111$. Their observed turns remain valid, but their originally prescribed waveforms fail the full-cycle test.
 
-An initial 24-row, eight-phase search appeared to reduce the RMS to $3.773$.
-Freezing that row and doubling phase resolution raised the RMS to $7.022$ and
-exposed a $0.1202$ corridor. The apparent improvement was phase-grid aliasing,
-so no eight-phase row was promoted.
+An initial 24-row, eight-phase search appeared to reduce the RMS to $3.773$. Freezing that row and doubling phase resolution raised the RMS to $7.022$ and exposed a $0.1202$ corridor. The apparent improvement was phase-grid aliasing, so no eight-phase row was promoted.
 
-Two disjoint 12-phase global screens followed by two local refinements found a
-cluster with cadence approximately $0.9$--$1.0$, relative sector phase
-approximately $1.1$--$1.3$, opposite-signed axial amplitudes near
-$A_{h,+}\approx0.11$ and $A_{h,-}\approx-0.13$, and smaller approximately
-opposite radial amplitudes. Its best 12-phase RMS was $2.797$; a frozen
-24-phase confirmation gave $2.898$, maximum residual $10.427$, minimum
-clearance $0.2154$, and maximum member speed $0.3194c_f$.
+Two disjoint 12-phase global screens followed by two local refinements found a cluster with cadence approximately $0.9$--$1.0$, relative sector phase approximately $1.1$--$1.3$, opposite-signed axial amplitudes near $A_{h,+}\approx0.11$ and $A_{h,-}\approx-0.13$, and smaller approximately opposite radial amplitudes. Its best 12-phase RMS was $2.797$; a frozen 24-phase confirmation gave $2.898$, maximum residual $10.427$, minimum clearance $0.2154$, and maximum member speed $0.3194c_f$.
 
-Plainly: the bounded search found a reproducible direction, but not a nearly
-self-consistent cycle. The remaining mismatch is far larger than the numerical
-enclosures and cannot be described as convergence to a retained orbit.
+Plainly: the bounded search found a reproducible direction, but not a nearly self-consistent cycle. The remaining mismatch is far larger than the numerical enclosures and cannot be described as convergence to a retained orbit.
 
-Because cadence acceleration dominated the residual, the next minimal ansatz
-allowed one periodic phase modulation per sector,
+Because cadence acceleration dominated the residual, the next minimal ansatz allowed one periodic phase modulation per sector,
 
 $$
 \theta_\sigma(T)
@@ -8419,163 +5682,57 @@ $$
 \omega T+\theta_{\sigma,0}+B_\sigma\cos(\Omega T),
 $$
 
-with the whole-history speed bound using
-$|\dot\theta_\sigma|\le |\omega|+|B_\sigma|\Omega$. A local search favored
-small, nearly common negative modulation,
-$B_+\approx-0.086$ and $B_-\approx-0.089$. Its best 12-phase RMS was $2.682$,
-but 24-phase confirmation gave $2.816$, maximum residual $10.518$, clearance
-$0.2249$, and maximum member speed $0.3160c_f$.
+with the whole-history speed bound using $|\dot\theta_\sigma|\le |\omega|+|B_\sigma|\Omega$. A local search favored small, nearly common negative modulation, $B_+\approx-0.086$ and $B_-\approx-0.089$. Its best 12-phase RMS was $2.682$, but 24-phase confirmation gave $2.816$, maximum residual $10.518$, clearance $0.2249$, and maximum member speed $0.3160c_f$.
 
-The modest confirmed improvement supports cadence breathing as a real search
-coordinate, consistent with the large opposite cadence changes in ordinary
-evolution. It does not rescue the one-frequency sine/cosine waveform. The
-parameter cluster is a seed for a nonlinear, evolved return map in which the
-waveform is output, not an imposed harmonic template.
+The modest confirmed improvement supports cadence breathing as a real search coordinate, consistent with the large opposite cadence changes in ordinary evolution. It does not rescue the one-frequency sine/cosine waveform. The parameter cluster is a seed for a nonlinear, evolved return map in which the waveform is output, not an imposed harmonic template.
 
-Claim grade: measured EOM-solver bounded prescribed-history searches and
-frozen higher-phase confirmations; not an independent oracle, global optimum,
-evolved return, retention, stability, or particle identity. Falsifier: a rerun
-that does not reproduce the phase rows, a refined row whose residual converges
-to the enclosure scale, a denser confirmation that reveals unresolved roots,
-or a nonlinear evolved return showing that the reported cluster is unrelated
-to the actual recurrent branch.
+Claim grade: measured EOM-solver bounded prescribed-history searches and frozen higher-phase confirmations; not an independent oracle, global optimum, evolved return, retention, stability, or particle identity. Falsifier: a rerun that does not reproduce the phase rows, a refined row whose residual converges to the enclosure scale, a denser confirmation that reveals unresolved roots, or a nonlinear evolved return showing that the reported cluster is unrelated to the actual recurrent branch.
 
 #### First Nonlinear Section Return And Cadence Root Boundary
 
-The best frozen phase-modulated harmonic row was released into ordinary EOM
-evolution, so its subsequent waveform was generated by the delayed dynamics
-rather than constrained to the prescribed sine/cosine template. The positive
-axial coordinate first turned near $T=0.140865$ and then crossed its initial
-level $h_+=0.3$ in the decreasing direction at
+The best frozen phase-modulated harmonic row was released into ordinary EOM evolution, so its subsequent waveform was generated by the delayed dynamics rather than constrained to the prescribed sine/cosine template. The positive axial coordinate first turned near $T=0.140865$ and then crossed its initial level $h_+=0.3$ in the decreasing direction at
 
 $$
 T_{h_+=0.3}\approx0.272382754.
 $$
 
-This was a section return, not a state return. At the crossing, the RMS of the
-other eleven coordinate-and-rate differences was $0.825221$, and the maximum
-difference was the negative-sector cadence error
-$\Delta\dot\theta_-=2.591159$. The positive-sector cadence had changed by
-$-0.593993$, while the negative relative phase had advanced by $0.577353$.
+This was a section return, not a state return. At the crossing, the RMS of the other eleven coordinate-and-rate differences was $0.825221$, and the maximum difference was the negative-sector cadence error $\Delta\dot\theta_-=2.591159$. The positive-sector cadence had changed by $-0.593993$, while the negative relative phase had advanced by $0.577353$.
 
-Plainly: one geometric coordinate came back to its starting value, but the
-assembly did not come back to its starting motion. The delayed interaction
-transferred cadence strongly between the two polarity sectors during the
-excursion.
+Plainly: one geometric coordinate came back to its starting value, but the assembly did not come back to its starting motion. The delayed interaction transferred cadence strongly between the two polarity sectors during the excursion.
 
-Continuation remained exactly on the F6c surface to normalized position and
-velocity residuals $4.72\times10^{-16}$ and $8.30\times10^{-16}$. The
-centroid and dipole stayed null to numerical precision, the body-fixed current
-axis stayed aligned to $1.36\times10^{-15}$, and minimum pair distance remained
-$0.296293$. Nevertheless, the negative-sector cadence rose to
-$\dot\theta_-=3.616172$ and its member speed reached $0.999765c_f$ at the last
-accepted state, $T=0.28625$.
+Continuation remained exactly on the F6c surface to normalized position and velocity residuals $4.72\times10^{-16}$ and $8.30\times10^{-16}$. The centroid and dipole stayed null to numerical precision, the body-fixed current axis stayed aligned to $1.36\times10^{-15}$, and minimum pair distance remained $0.296293$. Nevertheless, the negative-sector cadence rose to $\dot\theta_-=3.616172$ and its member speed reached $0.999765c_f$ at the last accepted state, $T=0.28625$.
 
-The attempted next step was rejected with
-`root_completeness_not_certified`: the four symmetry-equivalent
-negative-sector self-history rows all reported
-`numeric_transmitter_factor_sign_uncertified` on a required caustic route.
-This is not evidence of collision, off-surface breakup, or a certified
-caustic. At measured grade, it is a sector-local approach to the causal-root
-margin coincident with the field-speed boundary; the uncertified
-transmitter-factor sign is consistent with a nearby fold but does not classify
-one.
+The attempted next step was rejected with `root_completeness_not_certified`: the four symmetry-equivalent negative-sector self-history rows all reported `numeric_transmitter_factor_sign_uncertified` on a required caustic route. This is not evidence of collision, off-surface breakup, or a certified caustic. At measured grade, it is a sector-local approach to the causal-root margin coincident with the field-speed boundary; the uncertified transmitter-factor sign is consistent with a nearby fold but does not classify one.
 
-Plainly: the candidate remained a coherent neutral shape, but one internal
-polarity sector accelerated almost to the wake speed. Its own delayed-history
-intersection then became too difficult to enclose completely. A viable
-recurrent braid must turn, reverse, or redistribute that cadence before this
-boundary closes.
+Plainly: the candidate remained a coherent neutral shape, but one internal polarity sector accelerated almost to the wake speed. Its own delayed-history intersection then became too difficult to enclose completely. A viable recurrent braid must turn, reverse, or redistribute that cadence before this boundary closes.
 
-This failure sharpens the return-map objective. A candidate cannot be ranked
-only by position recurrence or harmonic acceleration residual. Its section
-residual must include both sector cadences, and its admissibility guards must
-include the minimum causal-root transmitter-factor margin in addition to pair
-clearance and member speed. Opposite-signed axial breathing and small common
-cadence modulation remain useful seed coordinates, but they do not by
-themselves regulate the nonlinear polarity-differential cadence exchange.
+This failure sharpens the return-map objective. A candidate cannot be ranked only by position recurrence or harmonic acceleration residual. Its section residual must include both sector cadences, and its admissibility guards must include the minimum causal-root transmitter-factor margin in addition to pair clearance and member speed. Opposite-signed axial breathing and small common cadence modulation remain useful seed coordinates, but they do not by themselves regulate the nonlinear polarity-differential cadence exchange.
 
-Claim grade: measured EOM-solver diagnostic on one fixed, root-certified
-release and its ordinary continuation; not an independent oracle, retained
-braid, periodic orbit, stability result, universal speed-ceiling theorem, or
-particle identity. Falsifier: failure to reproduce the crossing and halt from
-the declared record, convergence of the section residual toward zero under
-step/history refinement, a refined complete-root continuation through the
-reported event with substantial speed margin, or identification of an
-unrelated numerical defect that caused the four self-history failures.
+Claim grade: measured EOM-solver diagnostic on one fixed, root-certified release and its ordinary continuation; not an independent oracle, retained braid, periodic orbit, stability result, universal speed-ceiling theorem, or particle identity. Falsifier: failure to reproduce the crossing and halt from the declared record, convergence of the section residual toward zero under step/history refinement, a refined complete-root continuation through the reported event with substantial speed margin, or identification of an unrelated numerical defect that caused the four self-history failures.
 
 #### Nontrivial Return Markers
 
-A local cycle-phase screen showed that release phase can regulate the cadence
-failure. Three prescribed-history phases with negative release
-$\ddot\theta_-$ produced first-section residual RMS values $0.3401$, $0.4592$,
-and $0.3216$, all below the phase-zero value $0.8252$. The best row's
-$h_-$-section crossing at $T\approx0.173457$ reproduced under half-step
-refinement to $9.8\times10^{-7}$ in crossing time and
-$1.4\times10^{-6}$ in residual RMS. On one fixed $h_+$ section, phases
-$4.80$, $4.85$, $4.90$, and $5.05$ gave RMS values $0.3221$, $0.3229$,
-$0.3271$, and $0.3625$.
+A local cycle-phase screen showed that release phase can regulate the cadence failure. Three prescribed-history phases with negative release $\ddot\theta_-$ produced first-section residual RMS values $0.3401$, $0.4592$, and $0.3216$, all below the phase-zero value $0.8252$. The best row's $h_-$-section crossing at $T\approx0.173457$ reproduced under half-step refinement to $9.8\times10^{-7}$ in crossing time and $1.4\times10^{-6}$ in residual RMS. On one fixed $h_+$ section, phases $4.80$, $4.85$, $4.90$, and $5.05$ gave RMS values $0.3221$, $0.3229$, $0.3271$, and $0.3625$.
 
-Plainly: choosing a better point on the same prescribed history prevents the
-immediate cadence runaway, but phase tuning reaches a floor near $0.32$.
-Most of the remaining error is transfer into opposite radial rates, so release
-phase is a useful regulator rather than the missing recurrence mechanism.
+Plainly: choosing a better point on the same prescribed history prevents the immediate cadence runaway, but phase tuning reaches a floor near $0.32$. Most of the remaining error is transfer into opposite radial rates, so release phase is a useful regulator rather than the missing recurrence mechanism.
 
-Reducing both prescribed radial amplitudes at phase $4.80$ appeared to improve
-the first-crossing residual dramatically: half amplitude gave $0.1074$, and
-zero radial amplitude gave $0.05741$. The latter crossing, however, occurred
-after only $T=0.04271$. Its maximum $h_+$ excursion from the section was only
-$9.41\times10^{-5}$, and its lifted phase advances were only $0.03648$ and
-$0.03208$ radians.
+Reducing both prescribed radial amplitudes at phase $4.80$ appeared to improve the first-crossing residual dramatically: half amplitude gave $0.1074$, and zero radial amplitude gave $0.05741$. The latter crossing, however, occurred after only $T=0.04271$. Its maximum $h_+$ excursion from the section was only $9.41\times10^{-5}$, and its lifted phase advances were only $0.03648$ and $0.03208$ radians.
 
-This exposes a degeneracy in an unconstrained first-section objective. Near a
-tangent release, a coordinate can make an arbitrarily short local excursion
-and recross its initial level before the rest of the geometry changes much.
-The residual then shrinks with flight time even though no braid period has
-been completed.
+This exposes a degeneracy in an unconstrained first-section objective. Near a tangent release, a coordinate can make an arbitrarily short local excursion and recross its initial level before the rest of the geometry changes much. The residual then shrinks with flight time even though no braid period has been completed.
 
-Plainly: the small number came from a tiny out-and-back arc, not from the
-assembly completing a meaningful cycle. A scalar section crossing cannot by
-itself define the frequency of a braid.
+Plainly: the small number came from a tiny out-and-back arc, not from the assembly completing a meaningful cycle. A scalar section crossing cannot by itself define the frequency of a braid.
 
-The analyzer therefore records flight time, maximum section excursion, and
-both lifted phase advances for every initial-level crossing. A nontrivial
-return search must arm its Poincare map with at least one topology- or
-identity-aware cycle marker, such as a declared lifted winding, an ordered
-frame or member-permutation return, a required sequence of axial/radial turns,
-or a scale-aware excursion floor. The correct marker remains to be selected
-from the exact F6c identity and symmetry action; an arbitrary minimum time is
-only a numerical guard.
+The analyzer therefore records flight time, maximum section excursion, and both lifted phase advances for every initial-level crossing. A nontrivial return search must arm its Poincare map with at least one topology- or identity-aware cycle marker, such as a declared lifted winding, an ordered frame or member-permutation return, a required sequence of axial/radial turns, or a scale-aware excursion floor. The correct marker remains to be selected from the exact F6c identity and symmetry action; an arbitrary minimum time is only a numerical guard.
 
-Continuation of the zero-radial-history row beyond the short recrossing found
-no larger return through the durable $T=0.36$ checkpoint. The negative
-circulation reversed near $T=0.21542$, while $\rho_+$ expanded and $\rho_-$
-contracted. The lifted phase advances at $T=0.36$ were only $0.33263$ and
-$0.01001$ radians. Maximum member speed reached $0.91983c_f$, and the limiting
-opposite-polarity edge orbit narrowed to $0.21782$. Root work rose to 1,396
-MPFR pairs in the final accepted chunk, so the run was stopped recoverably
-without claiming a physical halt.
+Continuation of the zero-radial-history row beyond the short recrossing found no larger return through the durable $T=0.36$ checkpoint. The negative circulation reversed near $T=0.21542$, while $\rho_+$ expanded and $\rho_-$ contracted. The lifted phase advances at $T=0.36$ were only $0.33263$ and $0.01001$ radians. Maximum member speed reached $0.91983c_f$, and the limiting opposite-polarity edge orbit narrowed to $0.21782$. Root work rose to 1,396 MPFR pairs in the final accepted chunk, so the run was stopped recoverably without claiming a physical halt.
 
-Plainly: after its tiny local recrossing, this row separates into opposite
-radial motion and approaches an opposite-polarity edge pinch. It does not hide
-a larger cycle immediately behind the low residual.
+Plainly: after its tiny local recrossing, this row separates into opposite radial motion and approaches an opposite-polarity edge pinch. It does not hide a larger cycle immediately behind the low residual.
 
-Claim grade: measured EOM-solver diagnostics on a bounded release-phase and
-radial-amplitude neighborhood, with one half-step crossing refinement; not an
-independent oracle, complete local optimization, periodic orbit, stability
-result, retained braid, or particle identity. Falsifier: failure to reproduce
-the declared crossings, nonconvergence of the refined crossing, discovery of
-a nontrivial identity/winding return before the reported obstruction, or a
-properly armed return map for which the near-tangent rows remain genuine
-low-residual full cycles.
+Claim grade: measured EOM-solver diagnostics on a bounded release-phase and radial-amplitude neighborhood, with one half-step crossing refinement; not an independent oracle, complete local optimization, periodic orbit, stability result, retained braid, or particle identity. Falsifier: failure to reproduce the declared crossings, nonconvergence of the refined crossing, discovery of a nontrivial identity/winding return before the reported obstruction, or a properly armed return map for which the near-tangent rows remain genuine low-residual full cycles.
 
 #### Exact F6c Return Actions
 
-The return marker can be derived from the declared F6c member map rather than
-chosen numerically. Enumerating the 24 signed-coordinate orthogonal maps that
-preserve the tetrahedral module axes gives eight maps that preserve the F6c
-common-phase chart. Four are proper rotations. On the two polarity-sector
-phases, those four rotations reduce to only two distinct actions:
+The return marker can be derived from the declared F6c member map rather than chosen numerically. Enumerating the 24 signed-coordinate orthogonal maps that preserve the tetrahedral module axes gives eight maps that preserve the F6c common-phase chart. Four are proper rotations. On the two polarity-sector phases, those four rotations reduce to only two distinct actions:
 
 $$
 \mathcal R_{\mathrm{direct}}:
@@ -8602,8 +5759,7 @@ $$
 \dot\theta_\sigma(T)=\dot\theta_\sigma(0),
 $$
 
-together with return of both $h_\sigma$, both $\rho_\sigma$, and all four of
-their rates. The reflected geometric return instead requires
+together with return of both $h_\sigma$, both $\rho_\sigma$, and all four of their rates. The reflected geometric return instead requires
 
 $$
 \begin{aligned}
@@ -8613,52 +5769,21 @@ $$
 \end{aligned}
 $$
 
-with the same axial, radial, and rate returns. Each reflected action combines
-a proper spatial rotation with a nontrivial permutation of same-polarity
-modules. It is therefore a valid orientation-quotiented shape test, but it is
-not automatically an ordered path-history return. Treating the module
-permutation as physical identity requires a separate exchange-history
-argument.
+with the same axial, radial, and rate returns. Each reflected action combines a proper spatial rotation with a nontrivial permutation of same-polarity modules. It is therefore a valid orientation-quotiented shape test, but it is not automatically an ordered path-history return. Treating the module permutation as physical identity requires a separate exchange-history argument.
 
-Plainly: F6c supplies two exact ways for the visible geometry to look the same
-again. One brings every labeled motion back directly. The other brings the
-shape back only after a rotation, a module exchange, and reversal of both
-sector circulations. Those are not the same claim about a braid.
+Plainly: F6c supplies two exact ways for the visible geometry to look the same again. One brings every labeled motion back directly. The other brings the shape back only after a rotation, a module exchange, and reversal of both sector circulations. Those are not the same claim about a braid.
 
-The zero-radial release through $T=0.36$ populated only the direct
-zero-winding cell. Its smallest direct residual was the first stored frame at
-$T=0.002$, another near-release degeneracy. Its closest reflected residual
-occurred at $T=0.297$ with RMS $0.844798$ and maximum component $1.752080$.
-At the final checkpoint the direct and reflected RMS values were respectively
-$0.754922$ and $0.891503$. Thus the record reaches neither a nonzero direct
-winding nor even an approximate reflected return.
+The zero-radial release through $T=0.36$ populated only the direct zero-winding cell. Its smallest direct residual was the first stored frame at $T=0.002$, another near-release degeneracy. Its closest reflected residual occurred at $T=0.297$ with RMS $0.844798$ and maximum component $1.752080$. At the final checkpoint the direct and reflected RMS values were respectively $0.754922$ and $0.891503$. Thus the record reaches neither a nonzero direct winding nor even an approximate reflected return.
 
-Plainly: the exact symmetry calculation rejects the attractive short-return
-number and supplies a discrete target for subsequent shooting. A candidate
-period must land in a declared winding cell and state whether module exchange
-counts; minimizing elapsed time or one wrapped angle is no longer admissible.
+Plainly: the exact symmetry calculation rejects the attractive short-return number and supplies a discrete target for subsequent shooting. A candidate period must land in a declared winding cell and state whether module exchange counts; minimizing elapsed time or one wrapped angle is no longer admissible.
 
-Claim grade: derived finite-group geometry for the exact F6c chart, plus
-measured EOM-solver residuals on one declared trajectory. The enumeration
-script is an executable check of the algebra, not an independent physical
-oracle. Falsifier: direct substitution showing an omitted proper rotation or a
-different phase action, failure of a listed action to reproduce all eight
-member positions and velocities, or a trajectory record whose independently
-reconstructed ordered state contradicts the reported residual.
+Claim grade: derived finite-group geometry for the exact F6c chart, plus measured EOM-solver residuals on one declared trajectory. The enumeration script is an executable check of the algebra, not an independent physical oracle. Falsifier: direct substitution showing an omitted proper rotation or a different phase action, failure of a listed action to reproduce all eight member positions and velocities, or a trajectory record whose independently reconstructed ordered state contradicts the reported residual.
 
 #### Existing-Record Return Census And Reflected Boundary
 
-The exact action test was applied to all 2,451 stored F6c manifests. Only 15
-were evolved records with positive accepted time and usable frame streams.
-None entered a nonzero direct winding cell. The closest reflected-action row
-was the cycle-phase-$5.5$ release. Its minimum reflected residual occurred at
-the record endpoint, so that same immutable history was continued rather than
-starting a newly tuned row.
+The exact action test was applied to all 2,451 stored F6c manifests. Only 15 were evolved records with positive accepted time and usable frame streams. None entered a nonzero direct winding cell. The closest reflected-action row was the cycle-phase-$5.5$ release. Its minimum reflected residual occurred at the record endpoint, so that same immutable history was continued rather than starting a newly tuned row.
 
-The reflected RMS changed from $0.545956$ at $T=0.20$ to $0.536961$ at
-$T=0.24$, $0.535204$ at $T=0.25$, and $0.535034$ at the last accepted state,
-$T=0.251$. This small scalar improvement did not represent convergence of the
-complete state. The last reflected residual still contained
+The reflected RMS changed from $0.545956$ at $T=0.20$ to $0.536961$ at $T=0.24$, $0.535204$ at $T=0.25$, and $0.535034$ at the last accepted state, $T=0.251$. This small scalar improvement did not represent convergence of the complete state. The last reflected residual still contained
 
 $$
 \Delta\dot\theta_+=1.238199,
@@ -8668,41 +5793,17 @@ $$
 \Delta\dot\theta_-=0.694174.
 $$
 
-Meanwhile the negative radius fell to $0.210056$, its radial rate reached
-$-0.994208$, and maximum member speed reached $0.998557c_f$. The attempted
-next step failed complete-root certification on the four symmetry-equivalent
-negative self-history rows with
-`numeric_transmitter_factor_sign_uncertified`. Pair clearance in the last
-accepted chunk was $0.312716$, so the certified obstruction was the
-sector-local causal boundary rather than member collision.
+Meanwhile the negative radius fell to $0.210056$, its radial rate reached $-0.994208$, and maximum member speed reached $0.998557c_f$. The attempted next step failed complete-root certification on the four symmetry-equivalent negative self-history rows with `numeric_transmitter_factor_sign_uncertified`. Pair clearance in the last accepted chunk was $0.312716$, so the certified obstruction was the sector-local causal boundary rather than member collision.
 
-Plainly: one wrapped view of the shape was becoming modestly more similar to a
-rotated start, but its motion was not. The negative tetrahedral sector was
-collapsing radially at nearly the wake speed. A useful reflected return needs
-the radial and cadence reversals to be coordinated; allowing one sector to
-reach the causal boundary can make a shape-only residual look better without
-making a braid cycle.
+Plainly: one wrapped view of the shape was becoming modestly more similar to a rotated start, but its motion was not. The negative tetrahedral sector was collapsing radially at nearly the wake speed. A useful reflected return needs the radial and cadence reversals to be coordinated; allowing one sector to reach the causal boundary can make a shape-only residual look better without making a braid cycle.
 
-This result adds a sharper geometry requirement. A recurrent F6c branch must
-include a native exchange among axial breathing, radial breathing, and
-circulation that turns the sector-local speed before the relevant self-history
-transmitter factor becomes uncertifiable. The action residual must therefore
-remain component-resolved and be constrained by a causal-margin guard; its
-RMS cannot be optimized alone.
+This result adds a sharper geometry requirement. A recurrent F6c branch must include a native exchange among axial breathing, radial breathing, and circulation that turns the sector-local speed before the relevant self-history transmitter factor becomes uncertifiable. The action residual must therefore remain component-resolved and be constrained by a causal-margin guard; its RMS cannot be optimized alone.
 
-Claim grade: measured census of existing EOM-solver records and continuation
-of one fixed, root-certified history; not an independent oracle, exhaustive
-parameter search, periodic orbit, retained braid, or particle identity.
-Falsifier: an eligible stored record omitted by the census, failure to
-reproduce the ranked residuals, refined continuation that passes the reported
-event with complete roots and substantial speed margin, or a nearby fixed-law
-row that reaches the exact action with all component residuals converging
-before its guards close.
+Claim grade: measured census of existing EOM-solver records and continuation of one fixed, root-certified history; not an independent oracle, exhaustive parameter search, periodic orbit, retained braid, or particle identity. Falsifier: an eligible stored record omitted by the census, failure to reproduce the ranked residuals, refined continuation that passes the reported event with complete roots and substantial speed margin, or a nearby fixed-law row that reaches the exact action with all component residuals converging before its guards close.
 
 #### F6c Sector Speed Budget
 
-The F6c moving frame is orthonormal. Every member of polarity sector $\sigma$
-therefore has the same exact squared speed,
+The F6c moving frame is orthonormal. Every member of polarity sector $\sigma$ therefore has the same exact squared speed,
 
 $$
 v_\sigma^2
@@ -8714,13 +5815,9 @@ v_\sigma^2
 \left(\rho_\sigma\dot\theta_\sigma\right)^2.
 $$
 
-In normalized units an admissible history must keep this sum below one. The
-three nonnegative terms are an exact kinematic budget for axial breathing,
-radial breathing, and circulation. They are not separately bounded reservoirs:
-growth in any one channel reduces the speed margin available to the other two.
+In normalized units an admissible history must keep this sum below one. The three nonnegative terms are an exact kinematic budget for axial breathing, radial breathing, and circulation. They are not separately bounded reservoirs: growth in any one channel reduces the speed margin available to the other two.
 
-The two root-boundary histories occupy almost opposite corners of this budget.
-At $T=0.28625$ in the phase-zero row, the negative sector had
+The two root-boundary histories occupy almost opposite corners of this budget. At $T=0.28625$ in the phase-zero row, the negative sector had
 
 $$
 (f_h,f_\rho,f_\theta)
@@ -8728,8 +5825,7 @@ $$
 (0.06340,0.0000065,0.93659),
 $$
 
-where each $f$ is that channel's fraction of $v_-^2$. At $T=0.251$ in the
-phase-$5.5$ row, the fractions were
+where each $f$ is that channel's fraction of $v_-^2$. At $T=0.251$ in the phase-$5.5$ row, the fractions were
 
 $$
 (f_h,f_\rho,f_\theta)
@@ -8737,33 +5833,17 @@ $$
 (0.00771,0.99131,0.00098).
 $$
 
-The coordinate formula reproduced all measured member speeds in both records
-within $10^{-15}$. Thus one history reached the causal margin primarily by
-circulation and the other primarily by radial collapse.
+The coordinate formula reproduced all measured member speeds in both records within $10^{-15}$. Thus one history reached the causal margin primarily by circulation and the other primarily by radial collapse.
 
-Plainly: the wake-speed boundary does not merely prohibit an architrino from
-orbiting too quickly. It also prohibits a braid from breathing inward or
-outward too quickly. A retained clock must continually exchange motion among
-its shape channels while keeping their combined speed inside the unit sphere.
+Plainly: the wake-speed boundary does not merely prohibit an architrino from orbiting too quickly. It also prohibits a braid from breathing inward or outward too quickly. A retained clock must continually exchange motion among its shape channels while keeping their combined speed inside the unit sphere.
 
-This suggests a useful representation for future searches: track each sector
-through the nonnegative speed-fraction triangle together with the remaining
-margin $1-v_\sigma^2$. A recurrent braid must form a closed, guarded history
-in full geometry; its projection in this triangle can expose whether it has a
-genuine mode-exchange cycle or simply runs toward one boundary vertex. The
-triangle is a diagnostic projection, not a binding potential or conservation
-law.
+This suggests a useful representation for future searches: track each sector through the nonnegative speed-fraction triangle together with the remaining margin $1-v_\sigma^2$. A recurrent braid must form a closed, guarded history in full geometry; its projection in this triangle can expose whether it has a genuine mode-exchange cycle or simply runs toward one boundary vertex. The triangle is a diagnostic projection, not a binding potential or conservation law.
 
-Claim grade: exactly derived kinematics on the F6c surface and measured channel
-fractions on two EOM-solver records. Falsifier: direct reconstruction of an
-F6c member velocity that violates the orthogonal sum, a member-speed spread
-in an exact F6c frame above numerical enclosure, or an independent coordinate
-extraction that contradicts the reported fractions.
+Claim grade: exactly derived kinematics on the F6c surface and measured channel fractions on two EOM-solver records. Falsifier: direct reconstruction of an F6c member velocity that violates the orthogonal sum, a member-speed spread in an exact F6c frame above numerical enclosure, or an independent coordinate extraction that contradicts the reported fractions.
 
 #### Shape-Dependent Current Capacity
 
-The speed budget and exact current formula can be combined without importing
-an observer-level magnetic law. Define the orthonormal rate vector
+The speed budget and exact current formula can be combined without importing an observer-level magnetic law. Define the orthonormal rate vector
 
 $$
 \mathbf q_\sigma
@@ -8812,43 +5892,19 @@ $$
 \frac43\|\mathbf a_\sigma\|.
 $$
 
-The final quantity is the instantaneous unit-speed current capacity of that
-sector geometry. Equality at a fixed speed requires the rate vector to align
-or anti-align with $\mathbf a_\sigma$. The two-dimensional plane perpendicular
-to $\mathbf a_\sigma$ carries internal F6c motion but contributes zero to that
-sector's axial current moment at the same instant.
+The final quantity is the instantaneous unit-speed current capacity of that sector geometry. Equality at a fixed speed requires the rate vector to align or anti-align with $\mathbf a_\sigma$. The two-dimensional plane perpendicular to $\mathbf a_\sigma$ carries internal F6c motion but contributes zero to that sector's axial current moment at the same instant.
 
-Plainly: a shape does not acquire a large magnetic-like moment merely because
-its architrinos move quickly. For each shape there is one most efficient blend
-of axial breathing, radial breathing, and circulation. Two other blends can
-consume speed while remaining invisible to this current projection.
+Plainly: a shape does not acquire a large magnetic-like moment merely because its architrinos move quickly. For each shape there is one most efficient blend of axial breathing, radial breathing, and circulation. Two other blends can consume speed while remaining invisible to this current projection.
 
-The two causal-boundary records illustrate the distinction. In the
-cadence-dominated negative sector, the unit-speed capacity was $1.208121$, the
-measured current magnitude was $0.171359$, and the alignment fraction at the
-actual speed was $0.141873$. In the radial-collapse negative sector, the
-capacity was $0.841231$, the measured current magnitude was only $0.009732$,
-and the alignment fraction was $0.011586$. The second row used almost the
-entire speed budget in a nearly current-null direction.
+The two causal-boundary records illustrate the distinction. In the cadence-dominated negative sector, the unit-speed capacity was $1.208121$, the measured current magnitude was $0.171359$, and the alignment fraction at the actual speed was $0.141873$. In the radial-collapse negative sector, the capacity was $0.841231$, the measured current magnitude was only $0.009732$, and the alignment fraction was $0.011586$. The second row used almost the entire speed budget in a nearly current-null direction.
 
-This supplies a magnetic-geometry discriminator that speed and frequency do
-not. A candidate intended to support a persistent current moment should be
-ranked by its complete-cycle current output per causal speed margin, while a
-neutral mode may deliberately lie near a current-null plane. Neither criterion
-establishes binding or identifies a Standard Model particle, but both reject
-the inference that rapid circulation or breathing is sufficient by itself.
+This supplies a magnetic-geometry discriminator that speed and frequency do not. A candidate intended to support a persistent current moment should be ranked by its complete-cycle current output per causal speed margin, while a neutral mode may deliberately lie near a current-null plane. Neither criterion establishes binding or identifies a Standard Model particle, but both reject the inference that rapid circulation or breathing is sufficient by itself.
 
-Claim grade: exact F6c kinematic derivation, independently checked by summing
-all eight member cross products, plus measured values on two EOM-solver
-records. Falsifier: a direct member sum that disagrees with either dot-product
-formula, violation of the Cauchy--Schwarz bound on a root-valid F6c frame, or
-an independently reconstructed record that contradicts the stated capacities
-or alignment fractions.
+Claim grade: exact F6c kinematic derivation, independently checked by summing all eight member cross products, plus measured values on two EOM-solver records. Falsifier: a direct member sum that disagrees with either dot-product formula, violation of the Cauchy--Schwarz bound on a root-valid F6c frame, or an independently reconstructed record that contradicts the stated capacities or alignment fractions.
 
 #### Shape Period Versus Current Period
 
-The two reflected proper-rotation actions are order two. Each is a half-turn
-about a body axis transverse to the F6c current axis, and therefore
+The two reflected proper-rotation actions are order two. Each is a half-turn about a body axis transverse to the F6c current axis, and therefore
 
 $$
 \mathcal R_{\mathrm{reflected}}\hat{\mathbf x}
@@ -8858,8 +5914,7 @@ $$
 \mathcal R_{\mathrm{reflected}}^2=\mathcal I.
 $$
 
-Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact
-relative return under either reflected action obeys
+Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact relative return under either reflected action obeys
 
 $$
 \mathbf m_{\mathrm{cur}}(T+\tau)
@@ -8871,56 +5926,31 @@ $$
 \mathbf m_{\mathrm{cur}}(T).
 $$
 
-The same action reverses both cadences and exchanges same-polarity modules.
-Thus its reduced shape period is $\tau$, while its fixed-frame current period
-is $2\tau$. If the half-cycle symmetry is exact throughout the history, its
-fixed-frame current average over the doubled period is zero.
+The same action reverses both cadences and exchanges same-polarity modules. Thus its reduced shape period is $\tau$, while its fixed-frame current period is $2\tau$. If the half-cycle symmetry is exact throughout the history, its fixed-frame current average over the doubled period is zero.
 
-Plainly: a braid can repeat its shape before it repeats its magnetic posture.
-After one reflected half-cycle the tetrahedron is the same up to rotation and
-module exchange, but its current points the other way. Two such steps are
-needed to restore the current.
+Plainly: a braid can repeat its shape before it repeats its magnetic posture. After one reflected half-cycle the tetrahedron is the same up to rotation and module exchange, but its current points the other way. Two such steps are needed to restore the current.
 
-The direct action has order one in the F6c phase chart and preserves the
-current axis. It is therefore the relevant action for a fixed-frame persistent
-current posture. A reflected relative periodic orbit could still describe an
-alternating internal mode, but it cannot by itself supply a nonzero persistent
-fixed-frame current unless another geometric feature breaks the half-cycle
-cancellation or the recovered observable follows a separately justified body
-frame.
+The direct action has order one in the F6c phase chart and preserves the current axis. It is therefore the relevant action for a fixed-frame persistent current posture. A reflected relative periodic orbit could still describe an alternating internal mode, but it cannot by itself supply a nonzero persistent fixed-frame current unless another geometric feature breaks the half-cycle cancellation or the recovered observable follows a separately justified body frame.
 
-This distinction matters whenever a recovered frequency is inferred from a
-geometric recurrence. A shape-sensitive observable can respond at twice the
-frequency of a current-sensitive observable on an exact reflected orbit. The
-factor of two is a derived symmetry consequence in F6c, not a general claim
-about spin, a quantum postulate, or evidence for a particular particle.
+This distinction matters whenever a recovered frequency is inferred from a geometric recurrence. A shape-sensitive observable can respond at twice the frequency of a current-sensitive observable on an exact reflected orbit. The factor of two is a derived symmetry consequence in F6c, not a general claim about spin, a quantum postulate, or evidence for a particular particle.
 
-Claim grade: derived proper-rotation and current-vector geometry on the exact
-F6c chart. Falsifier: a listed reflected action that does not square to the
-identity, does not send $\hat{\mathbf x}$ to $-\hat{\mathbf x}$, or fails to
-reverse the directly summed current moment of a transformed F6c state.
+Claim grade: derived proper-rotation and current-vector geometry on the exact F6c chart. Falsifier: a listed reflected action that does not square to the identity, does not send $\hat{\mathbf x}$ to $-\hat{\mathbf x}$, or fails to reverse the directly summed current moment of a transformed F6c state.
 
 #### Observable-Specific Return Order
 
-The F6c factor of two is an instance of a general relative-return rule. Let a
-complete delayed geometry $Z(T)$ obey
+The F6c factor of two is an instance of a general relative-return rule. Let a complete delayed geometry $Z(T)$ obey
 
 $$
 Z(T+\tau)=gZ(T)
 $$
 
-for one declared symmetry action $g$. If an observable projection
-$\mathcal O$ transforms by a representation $D_{\mathcal O}$,
+for one declared symmetry action $g$. If an observable projection $\mathcal O$ transforms by a representation $D_{\mathcal O}$,
 
 $$
 \mathcal O(gZ)=D_{\mathcal O}(g)\mathcal O(Z),
 $$
 
-then its first symmetry-forced return occurs after $k_{\mathcal O}\tau$, where
-$k_{\mathcal O}$ is the least positive integer for which
-$D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable.
-A special observable state can return sooner, so this is a symmetry order, not
-an assertion that every Fourier component has that fundamental period.
+then its first symmetry-forced return occurs after $k_{\mathcal O}\tau$, where $k_{\mathcal O}$ is the least positive integer for which $D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable. A special observable state can return sooner, so this is a symmetry order, not an assertion that every Fourier component has that fundamental period.
 
 For the reflected F6c action the executable return ledger is
 
@@ -8930,36 +5960,17 @@ For the reflected F6c action the executable return ledger is
 | Sector cadence vector | sign reversed | $2$ |
 | Fixed-frame axial current | sign reversed | $2$ |
 
-Plainly: several measured frequencies can come from one geometric clock. The
-assembly need not contain a separate orbit for each frequency; different
-measurements can require different numbers of the same relative-return step
-before they repeat.
+Plainly: several measured frequencies can come from one geometric clock. The assembly need not contain a separate orbit for each frequency; different measurements can require different numbers of the same relative-return step before they repeat.
 
-This supplies a disciplined inference rule for Standard Model geometry.
-Integer frequency ratios should first be tested against observable return
-orders, member permutations, and harmonics of one complete delayed cycle
-before adding independent internal clocks. Conversely, incommensurate or
-history-incompatible frequencies remain evidence that one return coordinate
-is insufficient.
+This supplies a disciplined inference rule for Standard Model geometry. Integer frequency ratios should first be tested against observable return orders, member permutations, and harmonics of one complete delayed cycle before adding independent internal clocks. Conversely, incommensurate or history-incompatible frequencies remain evidence that one return coordinate is insufficient.
 
-F6c does not yet recover spinor return behavior. Its reflected action is an
-ordinary order-two spatial rotation on vectors. A $4\pi$ spinor recovery
-target would require a separately derived nontrivial lift of the ordered
-history action whose relevant representation has the required higher return
-order. The present factor of two is therefore a clue about return bookkeeping,
-not evidence that F6c is a fermion or that classical vector reversal is a
-spinor sign.
+F6c does not yet recover spinor return behavior. Its reflected action is an ordinary order-two spatial rotation on vectors. A $4\pi$ spinor recovery target would require a separately derived nontrivial lift of the ordered history action whose relevant representation has the required higher return order. The present factor of two is therefore a clue about return bookkeeping, not evidence that F6c is a fermion or that classical vector reversal is a spinor sign.
 
-Claim grade: derived finite-group return bookkeeping. Falsifier: an observable
-whose directly transformed value disagrees with its recorded action, an
-incorrect group order, or an evolved relative periodic record whose
-independently reconstructed observable sequence contradicts the predicted
-return order.
+Claim grade: derived finite-group return bookkeeping. Falsifier: an observable whose directly transformed value disagrees with its recorded action, an incorrect group order, or an evolved relative periodic record whose independently reconstructed observable sequence contradicts the predicted return order.
 
 #### Current Transport, Guard Flow, And A Causal-History Boundary
 
-A release-frame current magnitude is not enough to identify a useful internal
-current geometry. Write the sector rate vector and current coefficient as
+A release-frame current magnitude is not enough to identify a useful internal current geometry. Write the sector rate vector and current coefficient as
 
 $$
 \mathbf q_\sigma
@@ -8972,8 +5983,7 @@ I_\sigma
 s_\sigma\frac43\mathbf a_\sigma(Z)\mathbin{\cdot}\mathbf q_\sigma,
 $$
 
-where $s_+=-1$, $s_-=+1$, and $\mathbf a_\sigma$ is the exact
-shape-dependent current coefficient derived above. Its instantaneous flow is
+where $s_+=-1$, $s_-=+1$, and $\mathbf a_\sigma$ is the exact shape-dependent current coefficient derived above. Its instantaneous flow is
 
 $$
 \dot I_\sigma
@@ -8986,21 +5996,11 @@ s_\sigma\frac43
 \right).
 $$
 
-The two terms separate rotation of the shape-dependent current direction from
-Master Equation acceleration of the sector rate vector. A current-supporting
-candidate must therefore control at least five distinct release quantities:
-current magnitude and alignment, pair clearance, limiting-corridor distance
-rate, field-speed margin and speed derivative, and
-$\|\dot{\mathbf q}_\sigma\|$. A decreasing speed does not imply a gentle
-trajectory because $\dot{\mathbf q}_\sigma$ can be almost perpendicular to
-$\mathbf q_\sigma$.
+The two terms separate rotation of the shape-dependent current direction from Master Equation acceleration of the sector rate vector. A current-supporting candidate must therefore control at least five distinct release quantities: current magnitude and alignment, pair clearance, limiting-corridor distance rate, field-speed margin and speed derivative, and $\|\dot{\mathbf q}_\sigma\|$. A decreasing speed does not imply a gentle trajectory because $\dot{\mathbf q}_\sigma$ can be almost perpendicular to $\mathbf q_\sigma$.
 
-Plainly: a braid can carry a large current at one instant while already being
-aimed to lose it, collide, or sharply redirect its internal motion. Current,
-clearance, and motion smoothness are separate requirements.
+Plainly: a braid can carry a large current at one instant while already being aimed to lose it, collide, or sharply redirect its internal motion. Current, clearance, and motion smoothness are separate requirements.
 
-There is also an exact assembly-level separation between current-carrying and
-current-neutral motion. Define
+There is also an exact assembly-level separation between current-carrying and current-neutral motion. Define
 
 $$
 \mathbf Q=(\mathbf q_+,\mathbf q_-),
@@ -9011,8 +6011,7 @@ $$
 I_{\mathrm{tot}}=\mathbf C\mathbin{\cdot}\mathbf Q.
 $$
 
-At any fixed nonnull shape and target current $I_0$, every admissible rate
-vector has the unique orthogonal decomposition
+At any fixed nonnull shape and target current $I_0$, every admissible rate vector has the unique orthogonal decomposition
 
 $$
 \mathbf Q
@@ -9025,27 +6024,17 @@ $$
 \mathbf C\mathbin{\cdot}\mathbf Q_\perp=0.
 $$
 
-Thus a specified instantaneous current leaves a five-dimensional affine
-hyperplane of collective rate choices. The first term is the unique minimum
-of the Euclidean six-coordinate rate norm; it does not by itself minimize the
-largest member speed or satisfy a causal-history guard. The orthogonal term
-can carry breathing, phase redistribution, and return-control motion without
-changing the instantaneous current at that shape.
+Thus a specified instantaneous current leaves a five-dimensional affine hyperplane of collective rate choices. The first term is the unique minimum of the Euclidean six-coordinate rate norm; it does not by itself minimize the largest member speed or satisfy a causal-history guard. The orthogonal term can carry breathing, phase redistribution, and return-control motion without changing the instantaneous current at that shape.
 
-Plainly: one rate combination carries the requested current most economically,
-but five independent combinations are invisible to that current readout.
-Those hidden motions are where a braid can protect separation and arrange a
-return while keeping the same instantaneous current.
+Plainly: one rate combination carries the requested current most economically, but five independent combinations are invisible to that current readout. Those hidden motions are where a braid can protect separation and arrange a return while keeping the same instantaneous current.
 
-The same construction can include one pair corridor. At fixed shape, the
-distance rate of pair $p$ is another exact linear row,
+The same construction can include one pair corridor. At fixed shape, the distance rate of pair $p$ is another exact linear row,
 
 $$
 \dot d_p=\mathbf D_p(Z)\mathbin{\cdot}\mathbf Q.
 $$
 
-If $\mathbf C$ and $\mathbf D_p$ are independent, target current $I_0$ and
-target corridor rate $\delta_0$ have the unique minimum-norm carrier
+If $\mathbf C$ and $\mathbf D_p$ are independent, target current $I_0$ and target corridor rate $\delta_0$ have the unique minimum-norm carrier
 
 $$
 \mathbf Q_*
@@ -9058,58 +6047,27 @@ A=
 \mathbf D_p^{\mathsf T}\end{pmatrix}.
 $$
 
-Every other solution is $\mathbf Q_*+\mathbf Q_{\perp 2}$ with
-$A\mathbf Q_{\perp 2}=0$. Current plus one corridor condition therefore leave
-a four-dimensional joint-neutral rate space.
+Every other solution is $\mathbf Q_*+\mathbf Q_{\perp 2}$ with $A\mathbf Q_{\perp 2}=0$. Current plus one corridor condition therefore leave a four-dimensional joint-neutral rate space.
 
-For the selected strict-history release shape, the current-only minimum-norm
-carrier for $I_0=-0.728215$ had collective norm $0.333269$ but would have
-closed the limiting pair at rate $-0.200974$. The minimum carrier satisfying
-the same current and the nonclosing boundary $\dot d_p=0$ had norm $0.368445$
-and maximum sector member speed $0.337982$. Matching the observed opening rate
-$+0.195976$ required minimum collective norm $0.455370$. The actual release
-norm was $0.532463$, leaving a four-dimensional joint-neutral residual of norm
-$0.275963$.
+For the selected strict-history release shape, the current-only minimum-norm carrier for $I_0=-0.728215$ had collective norm $0.333269$ but would have closed the limiting pair at rate $-0.200974$. The minimum carrier satisfying the same current and the nonclosing boundary $\dot d_p=0$ had norm $0.368445$ and maximum sector member speed $0.337982$. Matching the observed opening rate $+0.195976$ required minimum collective norm $0.455370$. The actual release norm was $0.532463$, leaving a four-dimensional joint-neutral residual of norm $0.275963$.
 
-Plainly: maximizing current efficiency points this shape toward collision.
-Some current-neutral motion is mathematically necessary just to stop the pair
-from closing, and more is needed to open it. The remaining four directions are
-the rate freedom available for return and additional guards.
+Plainly: maximizing current efficiency points this shape toward collision. Some current-neutral motion is mathematically necessary just to stop the pair from closing, and more is needed to open it. The remaining four directions are the rate freedom available for return and additional guards.
 
-This is a fixed-shape kinematic construction. A projected rate vector must
-still be embedded in a matching delayed prehistory, pass complete-root
-certification, and evolve under the unchanged Master Equation. It is a seed
-generator and lower bound, not evidence that the projected motion is retained.
+This is a fixed-shape kinematic construction. A projected rate vector must still be embedded in a matching delayed prehistory, pass complete-root certification, and evolve under the unchanged Master Equation. It is a seed generator and lower bound, not evidence that the projected motion is retained.
 
-The expanded release census tested whether this tradeoff recurs. Of 1,154
-releases whose measured limiting corridor opened, the current-only
-minimum-norm carrier would instead close that corridor in 312. The fraction
-rose to $15/19$ among opening active handoffs and $12/12$ among active handoffs
-that also had no positive sector-speed derivative. For those 12 jointly
-guarded releases, the minimum carrier reproducing both measured current and
-measured corridor rate used $80.5\%$--$85.8\%$ of the actual collective rate
-norm. By orthogonality, the remaining four-dimensional joint-neutral norm
-fraction was $51.3\%$--$59.4\%$.
+The expanded release census tested whether this tradeoff recurs. Of 1,154 releases whose measured limiting corridor opened, the current-only minimum-norm carrier would instead close that corridor in 312. The fraction rose to $15/19$ among opening active handoffs and $12/12$ among active handoffs that also had no positive sector-speed derivative. For those 12 jointly guarded releases, the minimum carrier reproducing both measured current and measured corridor rate used $80.5\%$--$85.8\%$ of the actual collective rate norm. By orthogonality, the remaining four-dimensional joint-neutral norm fraction was $51.3\%$--$59.4\%$.
 
-Plainly: the current/corridor conflict is not generic to every opening release,
-but it is present in every member of the sampled jointly guarded handoff
-class. Even after paying for current and corridor opening, roughly half the
-rate norm remains available for other geometric tasks.
+Plainly: the current/corridor conflict is not generic to every opening release, but it is present in every member of the sampled jointly guarded handoff class. Even after paying for current and corridor opening, roughly half the rate norm remains available for other geometric tasks.
 
-The 12-row class includes eleven deliberately oversampled local neighbors, so
-the $12/12$ count is not a basin-frequency estimate. It identifies a coherent
-local motif whose next test is matched-history evolution of projector-built
-seeds.
+The 12-row class includes eleven deliberately oversampled local neighbors, so the $12/12$ count is not a basin-frequency estimate. It identifies a coherent local motif whose next test is matched-history evolution of projector-built seeds.
 
-The Euclidean projector minimizes $\|\mathbf Q\|$, but the causal speed guard
-depends on
+The Euclidean projector minimizes $\|\mathbf Q\|$, but the causal speed guard depends on
 
 $$
 v_{\max}=\max(\|\mathbf q_+\|,\|\mathbf q_-\|).
 $$
 
-On the nondegenerate branch where both sector bounds are active, the exact
-minimax carrier is obtained from the weighted projector
+On the nondegenerate branch where both sector bounds are active, the exact minimax carrier is obtained from the weighted projector
 
 $$
 \mathbf Q_\lambda
@@ -9120,57 +6078,21 @@ W_\lambda^{-1}A^{\mathsf T}
 W_\lambda=\operatorname{diag}(I_3,\lambda I_3),
 $$
 
-with $\lambda>0$ chosen so
-$\|\mathbf q_+\|=\|\mathbf q_-\|$. For the selected shape and observed
-opening rate, the Euclidean carrier put maximum member speed $0.409796$ in one
-sector. The minimax carrier balanced both sectors at $0.341973$, below the
-actual release maximum $0.388663$. On the nonclosing boundary, the minimax
-speed was $0.280086$.
+with $\lambda>0$ chosen so $\|\mathbf q_+\|=\|\mathbf q_-\|$. For the selected shape and observed opening rate, the Euclidean carrier put maximum member speed $0.409796$ in one sector. The minimax carrier balanced both sectors at $0.341973$, below the actual release maximum $0.388663$. On the nonclosing boundary, the minimax speed was $0.280086$.
 
-Plainly: the best way to save total motion can overload one sector. Balancing
-the two sector speeds gives a better causal-speed seed while preserving exactly
-the same current and corridor opening. This is the appropriate projector for
-future $c_f=1$-guarded seed construction.
+Plainly: the best way to save total motion can overload one sector. Balancing the two sector speeds gives a better causal-speed seed while preserving exactly the same current and corridor opening. This is the appropriate projector for future $c_f=1$-guarded seed construction.
 
-The shared-phase harmonic family could not realize that projected rate at the
-same endpoint shape because its four breathing rates were locked to one common
-phase. Allowing an independent phase for each axial and radial breathing
-coordinate supplied an exact endpoint-matched harmonic history at the same
-$1.25$ breathing frequency. All four required amplitudes remained below
-$0.118$, both sector speeds reconstructed as $0.341973$, and all 64 release
-root rows certified under the strict $10^{-5}$ contract.
+The shared-phase harmonic family could not realize that projected rate at the same endpoint shape because its four breathing rates were locked to one common phase. Allowing an independent phase for each axial and radial breathing coordinate supplied an exact endpoint-matched harmonic history at the same $1.25$ breathing frequency. All four required amplitudes remained below $0.118$, both sector speeds reconstructed as $0.341973$, and all 64 release root rows certified under the strict $10^{-5}$ contract.
 
-The same immutable history evolved without rejection to $T=0.28$. Positive
-cadence reversed near $T=0.194854$; maximum member speed stayed below
-$0.403658$; total current retained $86.24\%$ of its release magnitude; and
-root-time pressure reached $0.842014$. The limiting pair first opened, then
-turned and closed to $0.391664$ at rate $-0.420275$. Thus the minimax
-projector produces a causally realizable, lower-speed current handoff, but one
-instantaneous corridor constraint does not supply a self-regulating return.
+The same immutable history evolved without rejection to $T=0.28$. Positive cadence reversed near $T=0.194854$; maximum member speed stayed below $0.403658$; total current retained $86.24\%$ of its release magnitude; and root-time pressure reached $0.842014$. The limiting pair first opened, then turned and closed to $0.391664$ at rate $-0.420275$. Thus the minimax projector produces a causally realizable, lower-speed current handoff, but one instantaneous corridor constraint does not supply a self-regulating return.
 
-Plainly: separate breathing phases are genuine geometric control coordinates,
-not decorative fit parameters. They can realize the desired current and
-opening motion without driving either sector near $c_f=1$. What is still
-missing is a delayed feedback cycle that rotates the four joint-neutral
-directions as the most dangerous pair changes.
+Plainly: separate breathing phases are genuine geometric control coordinates, not decorative fit parameters. They can realize the desired current and opening motion without driving either sector near $c_f=1$. What is still missing is a delayed feedback cycle that rotates the four joint-neutral directions as the most dangerous pair changes.
 
-The bounded release census evaluated 2,311 distinct root-certified F6c release
-records with no analyzer failure. Of these, 1,129 had a nonclosing limiting
-pair corridor and 394 also had nonincreasing member speed in both sectors.
-Adding $\|\dot{\mathbf q}_\sigma\|$ exposed many false-safe rows whose speed
-was decreasing only because a large acceleration was bending the rate vector.
+The bounded release census evaluated 2,311 distinct root-certified F6c release records with no analyzer failure. Of these, 1,129 had a nonclosing limiting pair corridor and 394 also had nonincreasing member speed in both sectors. Adding $\|\dot{\mathbf q}_\sigma\|$ exposed many false-safe rows whose speed was decreasing only because a large acceleration was bending the rate vector.
 
-The lowest-curvature member of that subset began with minimum pair distance
-$0.563903$, opening rate $0.276294$, maximum member speed $0.329593$, and
-maximum $\|\dot{\mathbf q}_\sigma\|=1.04193$. It evolved with no rejected step
-to $T=0.40$, retained the exact F6c surface below $8\times10^{-16}$ normalized
-velocity residual, and still had minimum pair distance $0.539185$. Its current,
-however, fell from $-0.611170$ to $-0.095242$ as one sector moved near a
-current-null direction. Geometric survival did not preserve current.
+The lowest-curvature member of that subset began with minimum pair distance $0.563903$, opening rate $0.276294$, maximum member speed $0.329593$, and maximum $\|\dot{\mathbf q}_\sigma\|=1.04193$. It evolved with no rejected step to $T=0.40$, retained the exact F6c surface below $8\times10^{-16}$ normalized velocity residual, and still had minimum pair distance $0.539185$. Its current, however, fell from $-0.611170$ to $-0.095242$ as one sector moved near a current-null direction. Geometric survival did not preserve current.
 
-Plainly: the smoothest safe-looking motion stayed geometrically healthy but
-lost most of its field-facing current. A viable current braid needs an
-additional transport condition.
+Plainly: the smoothest safe-looking motion stayed geometrically healthy but lost most of its field-facing current. A viable current braid needs an additional transport condition.
 
 The strongest current-flow release instead had
 
@@ -9184,23 +6106,11 @@ $$
 \dot I_{\mathrm{tot}}=-0.00280243.
 $$
 
-Thus its nearly stationary total current came from rapid, opposed transfer
-between polarity sectors rather than two individually stationary currents.
-An independent $\Delta T=10^{-4}$ EOM continuation measured sector slopes
-$-0.437548$ and $+0.434524$. On the full continuation through $T=0.240$, total
-current changed only from $-0.723067$ to $-0.743349$ while the sector currents
-changed to $-0.222165$ and $-0.521184$. The F6c surface remained invariant
-below $8.4\times10^{-16}$ normalized velocity residual.
+Thus its nearly stationary total current came from rapid, opposed transfer between polarity sectors rather than two individually stationary currents. An independent $\Delta T=10^{-4}$ EOM continuation measured sector slopes $-0.437548$ and $+0.434524$. On the full continuation through $T=0.240$, total current changed only from $-0.723067$ to $-0.743349$ while the sector currents changed to $-0.222165$ and $-0.521184$. The F6c surface remained invariant below $8.4\times10^{-16}$ normalized velocity residual.
 
-Plainly: one promising architecture clue is conjugate current handoff. One
-sub-braid can take over current support as the other gives it up, keeping the
-assembly-level current nearly constant without freezing either sub-braid.
+Plainly: one promising architecture clue is conjugate current handoff. One sub-braid can take over current support as the other gives it up, keeping the assembly-level current nearly constant without freezing either sub-braid.
 
-The handoff is selective but not unique in the bounded archive. After
-deduplicating diagnostic replays and tolerance controls by normalized release
-geometry and coupling, 2,299 distinct releases remained. Of these, 1,079 had
-opposed sector-current derivatives and 190 canceled at least 90% of their
-absolute sector-derivative sum. A declared active-handoff screen required
+The handoff is selective but not unique in the bounded archive. After deduplicating diagnostic replays and tolerance controls by normalized release geometry and coupling, 2,299 distinct releases remained. Of these, 1,079 had opposed sector-current derivatives and 190 canceled at least 90% of their absolute sector-derivative sum. A declared active-handoff screen required
 
 $$
 1-
@@ -9216,48 +6126,21 @@ $$
 \le 0.1.
 $$
 
-Twenty-nine releases met all three conditions. Many nevertheless began with a
-closing pair corridor. Current handoff is therefore a recurring but selective
-F6c motion class, not a sufficient survival condition.
+Twenty-nine releases met all three conditions. Many nevertheless began with a closing pair corridor. Current handoff is therefore a recurring but selective F6c motion class, not a sufficient survival condition.
 
-The class does not reduce to a simple amplitude-sign recipe. Opposite axial-
-breathing signs occurred in $1{,}664/2{,}299=72.4\%$ of the full archive and
-$23/29=79.3\%$ of active handoffs. Opposite radial-breathing signs occurred in
-$1{,}450/2{,}299=63.1\%$ and $20/29=69.0\%$, respectively. The modest
-enrichment is descriptive only because the archive was not sampled to give
-every sign pattern equal measure.
+The class does not reduce to a simple amplitude-sign recipe. Opposite axial- breathing signs occurred in $1{,}664/2{,}299=72.4\%$ of the full archive and $23/29=79.3\%$ of active handoffs. Opposite radial-breathing signs occurred in $1{,}450/2{,}299=63.1\%$ and $20/29=69.0\%$, respectively. The modest enrichment is descriptive only because the archive was not sampled to give every sign pattern equal measure.
 
-Corridor motion showed the larger bounded contrast. Overall,
-$1{,}121/2{,}299=48.8\%$ of releases had a nonclosing limiting pair, versus
-only $8/29=27.6\%$ of active handoffs. Only one active-handoff release was both
-opening and nonaccelerating in both sectors. In this sampled family, rapid
-current exchange often accompanies compression or another unsafe flow.
+Corridor motion showed the larger bounded contrast. Overall, $1{,}121/2{,}299=48.8\%$ of releases had a nonclosing limiting pair, versus only $8/29=27.6\%$ of active handoffs. Only one active-handoff release was both opening and nonaccelerating in both sectors. In this sampled family, rapid current exchange often accompanies compression or another unsafe flow.
 
-Plainly: opposite breathing is a useful ingredient but not the handoff rule.
-The actual rule is a coordinated cancellation among shape, motion, and
-acceleration. It must be solved directly while corridor safety is enforced as
-a separate condition.
+Plainly: opposite breathing is a useful ingredient but not the handoff rule. The actual rule is a coordinated cancellation among shape, motion, and acceleration. It must be solved directly while corridor safety is enforced as a separate condition.
 
-Plainly: the handoff was not manufactured by one lucky row. The archive
-contains a small family of it, but most members still fail other geometric
-guards. That makes handoff a useful search coordinate rather than a solution.
+Plainly: the handoff was not manufactured by one lucky row. The archive contains a small family of it, but most members still fail other geometric guards. That makes handoff a useful search coordinate rather than a solution.
 
-A focused $7\times7$ screen then varied only negative-sector phase and the
-common breathing-cycle phase around the one release that passed current,
-corridor, and speed-flow guards. All 49 requested releases certified; 12 met
-the active-handoff screen and 11 also had a nonclosing limiting pair plus no
-positive sector-speed derivative. The best guarded neighbor began with
-minimum pair distance $0.419421$, opening rate $0.195976$, maximum member
-speed $0.388663$, total current $-0.728215$, and fractional current derivative
-$0.0047485$. Its current magnitude per unit maximum member speed was
-$1.87364$.
+A focused $7\times7$ screen then varied only negative-sector phase and the common breathing-cycle phase around the one release that passed current, corridor, and speed-flow guards. All 49 requested releases certified; 12 met the active-handoff screen and 11 also had a nonclosing limiting pair plus no positive sector-speed derivative. The best guarded neighbor began with minimum pair distance $0.419421$, opening rate $0.195976$, maximum member speed $0.388663$, total current $-0.728215$, and fractional current derivative $0.0047485$. Its current magnitude per unit maximum member speed was $1.87364$.
 
-Plainly: the jointly guarded handoff is a local phase-space corridor, not a
-single tuned point. Changing only two phases produced eleven nearby releases
-with the same immediate qualitative safeguards.
+Plainly: the jointly guarded handoff is a local phase-space corridor, not a single tuned point. Changing only two phases produced eleven nearby releases with the same immediate qualitative safeguards.
 
-Including those 49 local releases expanded the deduplicated census to 2,348
-geometries. The median current-direction efficiency
+Including those 49 local releases expanded the deduplicated census to 2,348 geometries. The median current-direction efficiency
 
 $$
 \eta_I
@@ -9265,35 +6148,13 @@ $$
 \frac{|I_{\mathrm{tot}}|}{\|\mathbf C\|\,\|\mathbf Q\|}
 $$
 
-was $0.4180$ across the full archive and $0.5205$ among 41 active handoffs.
-The 12 active handoffs that also had an opening corridor and no positive
-sector-speed derivative occupied the narrower range
-$0.5932\le\eta_I\le0.6375$. Their current-neutral norm fractions
-$\|\mathbf Q_\perp\|/\|\mathbf Q\|$ lay between $0.7704$ and $0.8050$.
-These distributions are descriptive because the local screen deliberately
-oversamples one phase neighborhood.
+was $0.4180$ across the full archive and $0.5205$ among 41 active handoffs. The 12 active handoffs that also had an opening corridor and no positive sector-speed derivative occupied the narrower range $0.5932\le\eta_I\le0.6375$. Their current-neutral norm fractions $\|\mathbf Q_\perp\|/\|\mathbf Q\|$ lay between $0.7704$ and $0.8050$. These distributions are descriptive because the local screen deliberately oversamples one phase neighborhood.
 
-Plainly: the jointly guarded handoffs did not maximize current alignment.
-Roughly four-fifths of their collective motion was current-neutral, leaving
-substantial geometric freedom for opening and nonaccelerating motion.
+Plainly: the jointly guarded handoffs did not maximize current alignment. Roughly four-fifths of their collective motion was current-neutral, leaving substantial geometric freedom for opening and nonaccelerating motion.
 
-That record did not establish retention. At $T=0.240$, the limiting opposite-
-polarity corridor still had distance $0.384265$, member speed was only
-$0.481639$, and no axial, radial, or cadence coordinate had turned. The next
-step nevertheless failed complete causal-root certification on four symmetry-
-related negative-to-negative rows. Each failure contained an interior root
-not surrounded at 512-bit precision on the same source-history cell. The
-observed boundary is therefore a same-polarity delayed-history root-enclosure
-boundary, not a certified caustic, demonstrated collision, or field-speed
-crossing.
+That record did not establish retention. At $T=0.240$, the limiting opposite- polarity corridor still had distance $0.384265$, member speed was only $0.481639$, and no axial, radial, or cadence coordinate had turned. The next step nevertheless failed complete causal-root certification on four symmetry- related negative-to-negative rows. Each failure contained an interior root not surrounded at 512-bit precision on the same source-history cell. The observed boundary is therefore a same-polarity delayed-history root-enclosure boundary, not a certified caustic, demonstrated collision, or field-speed crossing.
 
-A third independently selected release tested whether spatial and current
-guards predict this boundary. It began with current $-0.982408$, minimum pair
-distance $0.415994$, opening rate $0.118781$, member speed $0.619469$, and
-maximum rate-vector derivative norm $1.12062$. At $T=0.170$, current remained
-$-0.902485$ and minimum pair distance remained $0.417130$, but the next step
-failed on four symmetry-related positive-receiver/negative-transmitter rows.
-This time the boundary was cross-polarity rather than same-polarity.
+A third independently selected release tested whether spatial and current guards predict this boundary. It began with current $-0.982408$, minimum pair distance $0.415994$, opening rate $0.118781$, member speed $0.619469$, and maximum rate-vector derivative norm $1.12062$. At $T=0.170$, current remained $-0.902485$ and minimum pair distance remained $0.417130$, but the next step failed on four symmetry-related positive-receiver/negative-transmitter rows. This time the boundary was cross-polarity rather than same-polarity.
 
 The replay instrument recorded the maximum root-time pressure ratio
 
@@ -9313,26 +6174,13 @@ P_{\mathrm{root}}
 (0.250, 0.526, 0.841, 0.982).
 $$
 
-Over the same checkpoints, minimum transmitter-factor magnitude increased
-from $0.842$ to $0.861$, every ordered pair retained exactly one certified
-root, and spatial pair clearance stayed near $0.42$. Thus root-time enclosure
-pressure supplied a precursor that transmitter-factor magnitude, root count,
-and spatial clearance did not.
+Over the same checkpoints, minimum transmitter-factor magnitude increased from $0.842$ to $0.861$, every ordered pair retained exactly one certified root, and spatial pair clearance stayed near $0.42$. Thus root-time enclosure pressure supplied a precursor that transmitter-factor magnitude, root count, and spatial clearance did not.
 
-Plainly: the solver could still identify one ordinary root per pair and none
-was near a zero transmitter factor. What vanished was the proof margin needed
-to surround that root tightly enough. This can warn a search before terminal
-rejection, but it is not itself proof of a physical singularity.
+Plainly: the solver could still identify one ordinary root per pair and none was near a zero transmitter factor. What vanished was the proof margin needed to surround that root tightly enough. This can warn a search before terminal rejection, but it is not itself proof of a physical singularity.
 
-$P_{\mathrm{root}}$ is tolerance- and enclosure-relative. It is therefore an
-admissibility and numerical-continuation guard, not yet a native braid
-observable. A candidate return should keep it below one under declared
-refinement, while a physical geometry inference requires the same trend to
-survive tighter root tolerance and independently tightened history
-enclosures.
+$P_{\mathrm{root}}$ is tolerance- and enclosure-relative. It is therefore an admissibility and numerical-continuation guard, not yet a native braid observable. A candidate return should keep it below one under declared refinement, while a physical geometry inference requires the same trend to survive tighter root tolerance and independently tightened history enclosures.
 
-The best current-handoff history supplied an independent same-polarity check.
-Its replay gave
+The best current-handoff history supplied an independent same-polarity check. Its replay gave
 
 $$
 P_{\mathrm{root}}
@@ -9340,25 +6188,11 @@ P_{\mathrm{root}}
 (0.0673, 0.2185, 0.4241, 0.7020, 0.99923)
 $$
 
-at $T=(0.05,0.10,0.15,0.20,0.24)$. The known next step is the four-row
-negative-to-negative root-enclosure failure. Minimum transmitter-factor
-magnitude remained above $0.822$, root multiplicity stayed one, and pair
-distance remained $0.384265$. Thus the pressure precursor now appears on two
-distinct histories and on both same- and cross-polarity terminal rows.
+at $T=(0.05,0.10,0.15,0.20,0.24)$. The known next step is the four-row negative-to-negative root-enclosure failure. Minimum transmitter-factor magnitude remained above $0.822$, root multiplicity stayed one, and pair distance remained $0.384265$. Thus the pressure precursor now appears on two distinct histories and on both same- and cross-polarity terminal rows.
 
-Plainly: two different candidates reached the same proof-budget wall by
-different polarity routes. In both cases the root was still single, ordinary
-in transmitter-factor magnitude, and spatially separated; its certified time
-enclosure had simply consumed almost the full declared tolerance.
+Plainly: two different candidates reached the same proof-budget wall by different polarity routes. In both cases the root was still single, ordinary in transmitter-factor magnitude, and spatially separated; its certified time enclosure had simply consumed almost the full declared tolerance.
 
-A matched-input tolerance control then changed only root-time tolerance from
-$10^{-5}$ to $2\times10^{-5}$. This changes the numerical-certification
-fingerprint, so it is a comparison run rather than continuation of the same
-record. It passed the former $T=0.240$ wall and certified through $T=0.3025$.
-The terminal accepted pressure was $0.98866$; the next step again failed root
-completeness, now on four matched-module cross-polarity rows. This shift
-confirms that the earlier terminal time and polarity class were controlled by
-the certification budget, not established physical singularities.
+A matched-input tolerance control then changed only root-time tolerance from $10^{-5}$ to $2\times10^{-5}$. This changes the numerical-certification fingerprint, so it is a comparison run rather than continuation of the same record. It passed the former $T=0.240$ wall and certified through $T=0.3025$. The terminal accepted pressure was $0.98866$; the next step again failed root completeness, now on four matched-module cross-polarity rows. This shift confirms that the earlier terminal time and polarity class were controlled by the certification budget, not established physical singularities.
 
 The extended comparison exposed a new geometric event at
 
@@ -9368,16 +6202,9 @@ T_{\dot\theta_+=0}
 0.296899.
 $$
 
-The positive-sector cadence reversed while total current remained
-$-0.729587$ at $T=0.3025$, within $0.91\%$ of its initial $-0.723067$.
-Positive-sector current was then $-0.239869$ even though
-$\dot\theta_+=-0.0263401$: axial and radial breathing shear, together with the
-negative-sector contribution $-0.489718$, preserved the assembly current.
-Minimum pair distance remained $0.362496$ and maximum member speed was
-$0.542281$.
+The positive-sector cadence reversed while total current remained $-0.729587$ at $T=0.3025$, within $0.91\%$ of its initial $-0.723067$. Positive-sector current was then $-0.239869$ even though $\dot\theta_+=-0.0263401$: axial and radial breathing shear, together with the negative-sector contribution $-0.489718$, preserved the assembly current. Minimum pair distance remained $0.362496$ and maximum member speed was $0.542281$.
 
-The current decomposition immediately after the cadence crossing is more
-diagnostic. At $T=0.2975$,
+The current decomposition immediately after the cadence crossing is more diagnostic. At $T=0.2975$,
 
 $$
 I_+
@@ -9391,33 +6218,13 @@ I_+
 -0.238547.
 $$
 
-The tangential term was only $0.13\%$ of the sector-current magnitude and
-slightly opposed the breathing terms. This is an exact decomposition of the
-F6c current functional on the measured frame, not a decomposition of a
-recovered magnetic field.
+The tangential term was only $0.13\%$ of the sector-current magnitude and slightly opposed the breathing terms. This is an exact decomposition of the F6c current functional on the measured frame, not a decomposition of a recovered magnetic field.
 
-Plainly: a current-supporting braid need not consist of permanently
-same-sense circular motion. One sector can stop and reverse its orbital
-cadence while coordinated breathing and the conjugate sector continue to
-carry almost the same total current. That is a candidate architecture clue,
-not yet a retained-cycle result.
+Plainly: a current-supporting braid need not consist of permanently same-sense circular motion. One sector can stop and reverse its orbital cadence while coordinated breathing and the conjugate sector continue to carry almost the same total current. That is a candidate architecture clue, not yet a retained-cycle result.
 
-This sharpens the frequency inference used in Standard Model braid searches.
-A required inverse-time scale implies regular or recurrent motion, but not
-necessarily an always-forward orbit. Breathing, circulation, sector handoff,
-and observable-specific return order can share one mixed delayed-history
-cycle. Candidate generators should therefore admit cadence stops and reversals
-rather than rejecting them as loss of the current channel.
+This sharpens the frequency inference used in Standard Model braid searches. A required inverse-time scale implies regular or recurrent motion, but not necessarily an always-forward orbit. Breathing, circulation, sector handoff, and observable-specific return order can share one mixed delayed-history cycle. Candidate generators should therefore admit cadence stops and reversals rather than rejecting them as loss of the current channel.
 
-The best neighbor from the focused screen reproduced the cadence turn under
-the tighter $10^{-5}$ root-time contract. It certified through $T=0.290$ with
-no rejected accepted step before the terminal attempt, crossed
-$\dot\theta_+=0$ near $T=0.252158$, and retained total current $-0.605976$,
-or $83.2\%$ of its release magnitude. Minimum pair distance was still
-$0.388726$, maximum member speed was $0.520081$, minimum transmitter-factor
-magnitude was $0.754191$, and every ordered pair still had one certified root.
-The final accepted root-time pressure was $0.990342$; the attempted step to
-$T=0.2925$ met a four-row matched-module root-enclosure failure.
+The best neighbor from the focused screen reproduced the cadence turn under the tighter $10^{-5}$ root-time contract. It certified through $T=0.290$ with no rejected accepted step before the terminal attempt, crossed $\dot\theta_+=0$ near $T=0.252158$, and retained total current $-0.605976$, or $83.2\%$ of its release magnitude. Minimum pair distance was still $0.388726$, maximum member speed was $0.520081$, minimum transmitter-factor magnitude was $0.754191$, and every ordered pair still had one certified root. The final accepted root-time pressure was $0.990342$; the attempted step to $T=0.2925$ met a four-row matched-module root-enclosure failure.
 
 At $T=0.290$, after cadence reversal, its positive-sector current was
 
@@ -9433,130 +6240,53 @@ I_+
 -0.110933.
 $$
 
-The reversed tangential term opposed the two breathing terms. The positive
-sector therefore preserved a same-sign current through its cadence reversal
-by transferring the current channel from circulation into breathing shear.
-The exact F6c surface remained invariant below $1.1\times10^{-15}$ normalized
-velocity residual.
+The reversed tangential term opposed the two breathing terms. The positive sector therefore preserved a same-sign current through its cadence reversal by transferring the current channel from circulation into breathing shear. The exact F6c surface remained invariant below $1.1\times10^{-15}$ normalized velocity residual.
 
-At release this history had $\eta_I=0.625900$ and
-$\|\mathbf Q_\perp\|/\|\mathbf Q\|=0.7799$. At $T=0.290$ the corresponding
-values were $0.585280$ and $0.8108$. Current persistence therefore coexisted
-with increasing current-neutral motion rather than convergence toward the
-minimum-norm carrier.
+At release this history had $\eta_I=0.625900$ and $\|\mathbf Q_\perp\|/\|\mathbf Q\|=0.7799$. At $T=0.290$ the corresponding values were $0.585280$ and $0.8108$. Current persistence therefore coexisted with increasing current-neutral motion rather than convergence toward the minimum-norm carrier.
 
-The neutral motion also changed type. At release, $76.82\%$ of
-$\|\mathbf Q_\perp\|^2$ was tangential and $23.18\%$ was axial plus radial.
-At the first sampled frame after the cadence crossing, $T=0.2525$, only
-$0.83\%$ was tangential and $99.17\%$ was breathing. At $T=0.290$, breathing
-still supplied $94.52\%$ of the current-neutral squared norm. This is a
-measured mode conversion within the exact orthogonal decomposition: the
-neutral reservoir rotates from circulation-dominated to breathing-dominated
-motion as one sector reverses.
+The neutral motion also changed type. At release, $76.82\%$ of $\|\mathbf Q_\perp\|^2$ was tangential and $23.18\%$ was axial plus radial. At the first sampled frame after the cadence crossing, $T=0.2525$, only $0.83\%$ was tangential and $99.17\%$ was breathing. At $T=0.290$, breathing still supplied $94.52\%$ of the current-neutral squared norm. This is a measured mode conversion within the exact orthogonal decomposition: the neutral reservoir rotates from circulation-dominated to breathing-dominated motion as one sector reverses.
 
-Plainly: the unused motion does not disappear when the orbit stops. It moves
-into axial and radial breathing. Candidate braid generators should allow this
-kind of internal mode conversion rather than treating orbital, breathing, and
-current motions as separate fixed channels.
+Plainly: the unused motion does not disappear when the orbit stops. It moves into axial and radial breathing. Candidate braid generators should allow this kind of internal mode conversion rather than treating orbital, breathing, and current motions as separate fixed channels.
 
-Four additional strict-contract histories tested the local extent and event
-ordering. Three shared breathing-cycle phase $1.720796$ while varying the
-negative-sector phase through $1.446263$, $1.496263$, and $1.546263$. All
-three crossed positive cadence zero at
+Four additional strict-contract histories tested the local extent and event ordering. Three shared breathing-cycle phase $1.720796$ while varying the negative-sector phase through $1.446263$, $1.496263$, and $1.546263$. All three crossed positive cadence zero at
 
 $$
 T=(0.255007, 0.252158, 0.249785)
 $$
 
-and remained certified afterward until $T=(0.2850,0.2900,0.2975)$. Their
-terminal root-time pressures were $(0.99669,0.99034,0.98161)$, with finite pair
-distances $(0.39391,0.38873,0.38172)$ and maximum member speeds
-$(0.50803,0.52008,0.53729)$. Increasing the sampled negative-sector phase
-therefore moved cadence zero earlier and the certification boundary later,
-expanding the certified post-turn interval from about $0.0300$ to $0.0477$.
-This is a local trend, not a monotonicity theorem.
+and remained certified afterward until $T=(0.2850,0.2900,0.2975)$. Their terminal root-time pressures were $(0.99669,0.99034,0.98161)$, with finite pair distances $(0.39391,0.38873,0.38172)$ and maximum member speeds $(0.50803,0.52008,0.53729)$. Increasing the sampled negative-sector phase therefore moved cadence zero earlier and the certification boundary later, expanding the certified post-turn interval from about $0.0300$ to $0.0477$. This is a local trend, not a monotonicity theorem.
 
-Linear interpolation of collective coordinates to $\dot\theta_+=0$ exposed a
-candidate shared section. For the three equal-cycle-phase histories, total
-current lay in
+Linear interpolation of collective coordinates to $\dot\theta_+=0$ exposed a candidate shared section. For the three equal-cycle-phase histories, total current lay in
 
 $$
 -0.634423\le I_{\mathrm{tot}}\le-0.634098,
 $$
 
-a relative span of $0.051\%$, even though the positive and negative sector
-currents shifted oppositely. Current efficiency lay between $0.65167$ and
-$0.65568$, and tangential motion supplied only $0.8005\%$--$0.8280\%$ of the
-current-neutral squared norm. The efficiency and neutral-norm fraction are
-not independent agreements: the exact orthogonal decomposition imposes
-$\|\mathbf Q_\perp\|/\|\mathbf Q\|=\sqrt{1-\eta_I^2}$.
+a relative span of $0.051\%$, even though the positive and negative sector currents shifted oppositely. Current efficiency lay between $0.65167$ and $0.65568$, and tangential motion supplied only $0.8005\%$--$0.8280\%$ of the current-neutral squared norm. The efficiency and neutral-norm fraction are not independent agreements: the exact orthogonal decomposition imposes $\|\mathbf Q_\perp\|/\|\mathbf Q\|=\sqrt{1-\eta_I^2}$.
 
-Changing breathing-cycle phase to $1.670796$ still produced cadence zero, but
-the section current shifted to $-0.674331$. Thus the near-fixed current is
-specific to the equal-cycle-phase slice, whereas the approximately fixed
-efficiency and breathing-dominated neutral mode persisted across the four
-turning histories.
+Changing breathing-cycle phase to $1.670796$ still produced cadence zero, but the section current shifted to $-0.674331$. Thus the near-fixed current is specific to the equal-cycle-phase slice, whereas the approximately fixed efficiency and breathing-dominated neutral mode persisted across the four turning histories.
 
-The mode conversion preceded the cadence turn. Across five nearby strict
-histories, the first sampled frame with tangential neutral fraction at most
-$1\%$ occurred at $T=0.215$--$0.220$ while positive cadence was still
-$0.184$--$0.235$. In the four histories that later turned, the sampled
-conversion led cadence zero by $0.0347$--$0.0409$. The fifth history, at
-breathing-cycle phase $1.620796$, converted by $T=0.220$ but reached its
-root-enclosure boundary at $T=0.2525$ with positive cadence still $0.07362$.
+The mode conversion preceded the cadence turn. Across five nearby strict histories, the first sampled frame with tangential neutral fraction at most $1\%$ occurred at $T=0.215$--$0.220$ while positive cadence was still $0.184$--$0.235$. In the four histories that later turned, the sampled conversion led cadence zero by $0.0347$--$0.0409$. The fifth history, at breathing-cycle phase $1.620796$, converted by $T=0.220$ but reached its root-enclosure boundary at $T=0.2525$ with positive cadence still $0.07362$.
 
-Plainly: mode conversion is the more robust event. The internal motion first
-becomes almost entirely breathing-neutral while circulation is still forward;
-only later does the orbital cadence stop. Phase controls whether the delayed
-history remains certifiable long enough to complete that reversal.
+Plainly: mode conversion is the more robust event. The internal motion first becomes almost entirely breathing-neutral while circulation is still forward; only later does the orbital cadence stop. Phase controls whether the delayed history remains certifiable long enough to complete that reversal.
 
-Plainly: the stricter record now confirms the qualitative clue. Orbital motion
-can stop and reverse without switching off the sector current, because axial
-and radial breathing take over. What remains open is recurrence: the record
-ends at its root-enclosure certification wall before any complete return.
+Plainly: the stricter record now confirms the qualitative clue. Orbital motion can stop and reverse without switching off the sector current, because axial and radial breathing take over. What remains open is recurrence: the record ends at its root-enclosure certification wall before any complete return.
 
 The resulting geometry requirement is joint:
 
-1. conjugate sectors may exchange current contribution while keeping
-   $\dot I_{\mathrm{tot}}$ small;
+1. conjugate sectors may exchange current contribution while keeping $\dot I_{\mathrm{tot}}$ small;
 2. each sector must retain adequate same-polarity causal-history spacing;
-3. opposite-polarity spatial corridors must remain open or turn before
-   collapse; and
-4. the combined motion must preserve field-speed margin and the exact identity
-   action through a complete return; and
-5. certified root-time enclosure pressure must remain controlled under
-   tolerance and history-enclosure refinement.
+3. opposite-polarity spatial corridors must remain open or turn before collapse; and
+4. the combined motion must preserve field-speed margin and the exact identity action through a complete return; and
+5. certified root-time enclosure pressure must remain controlled under tolerance and history-enclosure refinement.
 
-Claim grade: the current and current-flow identities are derived on the F6c
-chart; census counts, threshold classes, and continuations are measured EOM-
-solver diagnostics on bounded declared records, not an independent retained-
-braid result. The active-handoff thresholds are declared diagnostic cuts, not
-natural constants. Falsifier:
-a direct member-current derivative that disagrees with the formula, a
-root-certified continuation that fails the recorded sector slopes, or a
-reproduction in which the stated halt is instead caused by collision or a
-$c_f=1$ speed crossing. The pressure-precursor inference is falsified if
-refinement removes or reverses the monotone rise before the same boundary, or
-if root-complete candidates repeatedly cross $P_{\mathrm{root}}=1$ without a
-corresponding change in the declared tolerance/enclosure contract. The cadence-
-reversal inference is falsified if independent tighter histories do not
-reproduce the turn and current handoff, or if a complete return requires
-permanently same-sense circulation after all.
+Claim grade: the current and current-flow identities are derived on the F6c chart; census counts, threshold classes, and continuations are measured EOM- solver diagnostics on bounded declared records, not an independent retained- braid result. The active-handoff thresholds are declared diagnostic cuts, not natural constants. Falsifier: a direct member-current derivative that disagrees with the formula, a root-certified continuation that fails the recorded sector slopes, or a reproduction in which the stated halt is instead caused by collision or a $c_f=1$ speed crossing. The pressure-precursor inference is falsified if refinement removes or reverses the monotone rise before the same boundary, or if root-complete candidates repeatedly cross $P_{\mathrm{root}}=1$ without a corresponding change in the declared tolerance/enclosure contract. The cadence- reversal inference is falsified if independent tighter histories do not reproduce the turn and current handoff, or if a complete return requires permanently same-sense circulation after all.
 
-The strongest geometry inference is now narrower and more useful: F6c carries
-one exact body-fixed axial current channel, but its magnitude is jointly made
-by circulation and breathing shear. Its polarity-odd internal coordinates can
-grow while centroid and dipole remain zero. A standard-model braid search
-should therefore seek periodic or recurrent histories in this coupled
-six-coordinate system, not insist on fixed-radius architrino orbits. Frequency
-becomes a return property of the complete delayed geometry; simple orbital
-frequency is only one possible component.
+The strongest geometry inference is now narrower and more useful: F6c carries one exact body-fixed axial current channel, but its magnitude is jointly made by circulation and breathing shear. Its polarity-odd internal coordinates can grow while centroid and dipole remain zero. A standard-model braid search should therefore seek periodic or recurrent histories in this coupled six-coordinate system, not insist on fixed-radius architrino orbits. Frequency becomes a return property of the complete delayed geometry; simple orbital frequency is only one possible component.
 
 #### F6c Charge-Conjugation Coordinates
 
-Use a continuous lifted phase on one declared root-valid branch rather than
-averaging wrapped angles. For each collective coordinate
-$z\in\{h,\rho,\theta\}$, define
+Use a continuous lifted phase on one declared root-valid branch rather than averaging wrapped angles. For each collective coordinate $z\in\{h,\rho,\theta\}$, define
 
 $$
 z_{\mathrm{even}}
@@ -9588,8 +6318,7 @@ This separates two jobs without changing the eight-identity inventory:
 | $h_{\mathrm{even}},\rho_{\mathrm{even}},\theta_{\mathrm{even}}$ | scalar envelope, common cadence, and charge-conjugate shared response | invariant |
 | $h_{\mathrm{odd}},\rho_{\mathrm{odd}},\theta_{\mathrm{odd}}$ | polarity-differential exposure, internal electric deformation, and conjugate branch label | sign reversing |
 
-An effective charge projection $Q_{\mathrm{eff}}$ built from this geometry must
-be odd:
+An effective charge projection $Q_{\mathrm{eff}}$ built from this geometry must be odd:
 
 $$
 Q_{\mathrm{eff}}
@@ -9603,54 +6332,32 @@ Q_{\mathrm{eff}}
 \right),
 $$
 
-while a scalar envelope or mass-facing projection must be even. The
-coefficients and functional form are not inserted here; they must be computed
-from the same root-resolved wake-exposure record.
+while a scalar envelope or mass-facing projection must be even. The coefficients and functional form are not inserted here; they must be computed from the same root-resolved wake-exposure record.
 
-Plainly: equal positive and negative inventory can still expose charge if the
-two sectors occupy different retained geometries. Swapping those geometries
-reverses the exposed sign while preserving the shared envelope. This supplies
-a native architecture for a charge-conjugate pair without adding or removing
-architrinos.
+Plainly: equal positive and negative inventory can still expose charge if the two sectors occupy different retained geometries. Swapping those geometries reverses the exposed sign while preserving the shared envelope. This supplies a native architecture for a charge-conjugate pair without adding or removing architrinos.
 
 The resulting branch hypotheses are ordered but unassigned:
 
-1. a return with $\mathbf z_{\mathrm{odd}}=\mathbf0$ is a neutral-braid
-   candidate;
-2. two retained returns with $\mathbf z_{\mathrm{odd}}=\pm\mathbf z_*$ and
-   the same even coordinates are a charge-conjugate pair candidate; and
-3. a weakly exposed neutral branch may have nonzero odd internal motion whose
-   complete-cycle charge projection still vanishes.
+1. a return with $\mathbf z_{\mathrm{odd}}=\mathbf0$ is a neutral-braid candidate;
+2. two retained returns with $\mathbf z_{\mathrm{odd}}=\pm\mathbf z_*$ and the same even coordinates are a charge-conjugate pair candidate; and
+3. a weakly exposed neutral branch may have nonzero odd internal motion whose complete-cycle charge projection still vanishes.
 
-The second row has the structural shape needed by an electron/positron pair,
-but no such assignment is licensed until the branches retain, their
-$Q_{\mathrm{eff}}$ values are equal and opposite, their scalar projections
-agree, and their moment/spin correlation transforms correctly. The first and
-third rows may be relevant to Noether sea or neutral-lepton geometry, but
-neutrality alone does not distinguish those roles.
+The second row has the structural shape needed by an electron/positron pair, but no such assignment is licensed until the branches retain, their $Q_{\mathrm{eff}}$ values are equal and opposite, their scalar projections agree, and their moment/spin correlation transforms correctly. The first and third rows may be relevant to Noether sea or neutral-lepton geometry, but neutrality alone does not distinguish those roles.
 
-There is nevertheless an exact field-free conjugate-trajectory theorem at the
-Master Equation level. Apply global polarity inversion to one complete
-history,
+There is nevertheless an exact field-free conjugate-trajectory theorem at the Master Equation level. Apply global polarity inversion to one complete history,
 
 $$
 q_a\longmapsto-q_a
 \qquad\text{for every persistent architrino }a,
 $$
 
-without changing its initial geometric paths. Every ordered interaction
-factor is invariant:
+without changing its initial geometric paths. Every ordered interaction factor is invariant:
 
 $$
 (-q_t)(-q_r)=q_tq_r.
 $$
 
-Causal roots depend only on the paths, and both partner and self-hit
-acceleration contributions retain the same polarity product. Therefore the
-field-free acceleration history is unchanged. Wherever ordinary evolution is
-unique on the shared complete-root branch, the conjugated record follows the
-same unlabeled geometric paths. Relabeling those paths by their new polarity
-exchanges the two F6c sectors, so
+Causal roots depend only on the paths, and both partner and self-hit acceleration contributions retain the same polarity product. Therefore the field-free acceleration history is unchanged. Wherever ordinary evolution is unique on the shared complete-root branch, the conjugated record follows the same unlabeled geometric paths. Relabeling those paths by their new polarity exchanges the two F6c sectors, so
 
 $$
 \mathbf z_{\mathrm{even}}^{\mathcal C}(T)
@@ -9670,31 +6377,15 @@ $$
 -\mathbf m_{\mathrm{cur}}(T).
 $$
 
-Plainly: the primitive law supplies an exact way for a particle candidate and
-its antiparticle candidate to have identical field-free shape and recurrence,
-opposite polarity-odd internal geometry, and opposite signed current moment.
-No second interaction law is needed. This theorem still does not say whether
-F6c is charged, neutral, electron-like, nucleon-like, or retained; that depends
-on the missing effective charge and mass-facing projections.
+Plainly: the primitive law supplies an exact way for a particle candidate and its antiparticle candidate to have identical field-free shape and recurrence, opposite polarity-odd internal geometry, and opposite signed current moment. No second interaction law is needed. This theorem still does not say whether F6c is charged, neutral, electron-like, nucleon-like, or retained; that depends on the missing effective charge and mass-facing projections.
 
-An external source is not part of this theorem unless it is conjugated too.
-Holding a source assembly fixed while conjugating only the receiver changes
-source--receiver polarity products. Equal-and-opposite effective response in
-that controlled comparison is therefore a recovery obligation for the
-$E0$--$E4$ experiment, not something established by the field-free symmetry
-alone.
+An external source is not part of this theorem unless it is conjugated too. Holding a source assembly fixed while conjugating only the receiver changes source--receiver polarity products. Equal-and-opposite effective response in that controlled comparison is therefore a recovery obligation for the $E0$--$E4$ experiment, not something established by the field-free symmetry alone.
 
-In the $E0$--$E4$ electric-response experiment, these coordinates give an
-immediate readout. A neutral receiver may have zero group translation while
-the source drives $\mathbf z_{\mathrm{odd}}$ and directional off-manifold
-deformations; conjugate charged receivers must share the even deformation and
-reverse both group response and odd-sector response under complete
-source/receiver conjugation.
+In the $E0$--$E4$ electric-response experiment, these coordinates give an immediate readout. A neutral receiver may have zero group translation while the source drives $\mathbf z_{\mathrm{odd}}$ and directional off-manifold deformations; conjugate charged receivers must share the even deformation and reverse both group response and odd-sector response under complete source/receiver conjugation.
 
 #### Tetrahedral Singlet--Triplet Deformation Chart
 
-F6c's six collective coordinates describe only module-common motion. For any
-one module coordinate $z_{i\sigma}$, write
+F6c's six collective coordinates describe only module-common motion. For any one module coordinate $z_{i\sigma}$, write
 
 $$
 z_{i\sigma}
@@ -9710,8 +6401,7 @@ z_{i\sigma}
 \sum_i\delta z_{i\sigma}=0.
 $$
 
-The four-module permutation space splits exactly into one common direction
-and one three-dimensional sum-zero space:
+The four-module permutation space splits exactly into one common direction and one three-dimensional sum-zero space:
 
 $$
 \mathbb R^4
@@ -9723,8 +6413,7 @@ $$
 \right\}.
 $$
 
-The tetrahedral axes turn that abstract triplet into a physical body-frame
-vector:
+The tetrahedral axes turn that abstract triplet into a physical body-frame vector:
 
 $$
 \mathbf Z_{z,\sigma}
@@ -9733,8 +6422,7 @@ $$
 \delta z_{i\sigma}\hat{\mathbf n}_i.
 $$
 
-Using $\hat{\mathbf n}_i\mathbin{\cdot}\hat{\mathbf n}_j=-1/3$ for
-$i\ne j$ and $\sum_i\delta z_{i\sigma}=0$ gives
+Using $\hat{\mathbf n}_i\mathbin{\cdot}\hat{\mathbf n}_j=-1/3$ for $i\ne j$ and $\sum_i\delta z_{i\sigma}=0$ gives
 
 $$
 \left\|
@@ -9757,14 +6445,9 @@ $$
 \mathbf Z_{z,\sigma}.
 $$
 
-Thus no directional information is lost: the three independent departures
-from common tetrahedral breathing are exactly equivalent to one body-frame
-vector.
+Thus no directional information is lost: the three independent departures from common tetrahedral breathing are exactly equivalent to one body-frame vector.
 
-Plainly: if one side of the braid is stretched more than the others, the four
-module changes encode a unique arrow in space. Equal changes are scalar
-breathing; sum-zero changes are directional polarization. The tetrahedron
-supplies both in the smallest four-module package.
+Plainly: if one side of the braid is stretched more than the others, the four module changes encode a unique arrow in space. Equal changes are scalar breathing; sum-zero changes are directional polarization. The tetrahedron supplies both in the smallest four-module package.
 
 Conjugation now produces even and odd directional triplets:
 
@@ -9793,34 +6476,17 @@ This suggests a compact sea-braid response chart:
 | odd polar triplets $\mathbf Z_{z,\mathrm{odd}}$ | electric-like internal polarization and directional sea strain | source polarity reversal and spatial reflection give the declared polar transformation |
 | circulation-weighted axial triplets | magnetic-like orientation/current response | circulation reversal and parity distinguish the axial row from the polar row |
 
-Under proper tetrahedral rotations, polar and axial triplets have the same
-three-dimensional rotation behavior. They separate only when the retained
-record also carries reflection/parity and circulation history. Therefore the
-triplet dimension alone cannot distinguish effective electric and magnetic
-response.
+Under proper tetrahedral rotations, polar and axial triplets have the same three-dimensional rotation behavior. They separate only when the retained record also carries reflection/parity and circulation history. Therefore the triplet dimension alone cannot distinguish effective electric and magnetic response.
 
-For the same reason, this triplet is not a color assignment. It currently
-rotates as a body-frame spatial vector. Calling its three components colors
-would alias an internal gauge label with laboratory orientation unless a
-separate quotient or compensated internal operation is derived.
+For the same reason, this triplet is not a color assignment. It currently rotates as a body-frame spatial vector. Calling its three components colors would alias an internal gauge label with laboratory orientation unless a separate quotient or compensated internal operation is derived.
 
-The measured zero within-sector normal fraction on the unperturbed circular
-history says the isolated source does not spontaneously excite the triplet at
-that row. A directional external source is expected to do so. That expectation
-must be evaluated from its actual root-resolved acceleration pattern; no
-primitive $\mathbf E$ or $\mathbf B$ is applied to an architrino.
+The measured zero within-sector normal fraction on the unperturbed circular history says the isolated source does not spontaneously excite the triplet at that row. A directional external source is expected to do so. That expectation must be evaluated from its actual root-resolved acceleration pattern; no primitive $\mathbf E$ or $\mathbf B$ is applied to an architrino.
 
-Claim grade: the $1\mathbin{\oplus}3$ decomposition, norm identity, and inverse
-map are exact tetrahedral algebra. Their use as scalar, electric-polar, and
-magnetic-axial response channels is inferred. Falsifier: a root-resolved
-directional source cannot be represented by the triplet, complete conjugation
-or reflection violates the declared transformation parity, or an accepted
-candidate recovers the same response with a lower-dimensional native record.
+Claim grade: the $1\mathbin{\oplus}3$ decomposition, norm identity, and inverse map are exact tetrahedral algebra. Their use as scalar, electric-polar, and magnetic-axial response channels is inferred. Falsifier: a root-resolved directional source cannot be represented by the triplet, complete conjugation or reflection violates the declared transformation parity, or an accepted candidate recovers the same response with a lower-dimensional native record.
 
 #### Three Charge-Preserving Coordinates, Not Yet Three Modes
 
-Suppose a retained F6c charge branch fixes its conjugation-odd exposure basin.
-Its instantaneous charge-preserving collective configuration tangent is
+Suppose a retained F6c charge branch fixes its conjugation-odd exposure basin. Its instantaneous charge-preserving collective configuration tangent is
 
 $$
 \mathcal E_{\mathrm{even}}
@@ -9833,16 +6499,9 @@ $$
 \right\}.
 $$
 
-This three-dimensional configuration space does **not** by itself imply three
-dynamical modes. The native state also contains the three coordinate rates and
-the retained causal history. A delayed second-order return derivative acts on
-that larger state and may have more than three admissible modes.
+This three-dimensional configuration space does **not** by itself imply three dynamical modes. The native state also contains the three coordinate rates and the retained causal history. A delayed second-order return derivative acts on that larger state and may have more than three admissible modes.
 
-An exactly-three opportunity appears only if ordinary evolution supplies an
-invariant graph $\iota$ that slaves the charge-preserving rates and relevant
-history to these three coordinates on a declared return section. With
-projection $P_{\mathrm{even}}$ and full native return map $\mathcal R$, the
-reduced operator would be
+An exactly-three opportunity appears only if ordinary evolution supplies an invariant graph $\iota$ that slaves the charge-preserving rates and relevant history to these three coordinates on a declared return section. With projection $P_{\mathrm{even}}$ and full native return map $\mathcal R$, the reduced operator would be
 
 $$
 M_{\mathrm{even}}^{\mathrm{red}}
@@ -9856,8 +6515,7 @@ P_{\mathrm{even}}
 \right).
 $$
 
-Only after proving that this is a closed $3\times3$ operator does the
-characteristic equation become cubic:
+Only after proving that this is a closed $3\times3$ operator does the characteristic equation become cubic:
 
 $$
 \det
@@ -9867,38 +6525,20 @@ M_{\mathrm{even}}^{\mathrm{red}}-\lambda I_3
 =0.
 $$
 
-Conditional on that closure, axial breathing, transverse breathing, and phase
-circulation can mix into at most three reduced eigenvectors. Unlike the three
-tetrahedral partitions, these are internal deformation directions rather than
-three rotated laboratory axes.
+Conditional on that closure, axial breathing, transverse breathing, and phase circulation can mix into at most three reduced eigenvectors. Unlike the three tetrahedral partitions, these are internal deformation directions rather than three rotated laboratory axes.
 
-Plainly: F6c supplies three promising shape directions, but position, velocity,
-and memory can support additional modes. Three generations may correspond to
-three repeatable charge-preserving oscillations only if the full delayed
-dynamics collapses onto a genuine three-coordinate return law. Counting three
-coordinate names is not that proof.
+Plainly: F6c supplies three promising shape directions, but position, velocity, and memory can support additional modes. Three generations may correspond to three repeatable charge-preserving oscillations only if the full delayed dynamics collapses onto a genuine three-coordinate return law. Counting three coordinate names is not that proof.
 
-Using these modes for the observed generation triplet requires every row below
-to close on one retained record:
+Using these modes for the observed generation triplet requires every row below to close on one retained record:
 
-1. the invariant graph $\iota$ exists, is attractive or otherwise dynamically
-   selected, and carries all required retained-history information;
-2. $M_{\mathrm{even}}^{\mathrm{red}}$ has exactly three distinct admissible
-   long-lived or resonance modes on the accepted branch;
-3. all three retain the same conjugation-odd exposure basin, effective charge,
-   moment/spin transformation row, and interaction representation;
-4. their return cadence, action, exposure, and exit-corridor differences
-   recover the mass, lifetime, and reaction hierarchy without fitting a
-   generation label;
-5. every rate, memory, odd-sector, or off-manifold mode outside the reduced
-   triplet is a charge-changing branch,
-   transient, confined mode, or otherwise correctly dispositioned; and
-6. decay of a higher mode to a lower mode closes architrino identity, emitted
-   carriers, recoil, wake, and boundary flux on one event ledger.
+1. the invariant graph $\iota$ exists, is attractive or otherwise dynamically selected, and carries all required retained-history information;
+2. $M_{\mathrm{even}}^{\mathrm{red}}$ has exactly three distinct admissible long-lived or resonance modes on the accepted branch;
+3. all three retain the same conjugation-odd exposure basin, effective charge, moment/spin transformation row, and interaction representation;
+4. their return cadence, action, exposure, and exit-corridor differences recover the mass, lifetime, and reaction hierarchy without fitting a generation label;
+5. every rate, memory, odd-sector, or off-manifold mode outside the reduced triplet is a charge-changing branch, transient, confined mode, or otherwise correctly dispositioned; and
+6. decay of a higher mode to a lower mode closes architrino identity, emitted carriers, recoil, wake, and boundary flux on one event ledger.
 
-The weak-facing projection must also avoid the earlier commuting-operator
-no-go. If $W_{\mathrm{even}}$ is the weak exposure/measurement operator on the
-same reduced subspace, nontrivial mixing requires
+The weak-facing projection must also avoid the earlier commuting-operator no-go. If $W_{\mathrm{even}}$ is the weak exposure/measurement operator on the same reduced subspace, nontrivial mixing requires
 
 $$
 \left[
@@ -9907,82 +6547,33 @@ M_{\mathrm{even}}^{\mathrm{red}},W_{\mathrm{even}}
 \ne0.
 $$
 
-The required independent posture can come from how a weak source couples
-differently to axial breathing, transverse breathing, and phase circulation,
-rather than from an inserted generation matrix.
+The required independent posture can come from how a weak source couples differently to axial breathing, transverse breathing, and phase circulation, rather than from an inserted generation matrix.
 
-Claim grade: the three-dimensional instantaneous configuration tangent is
-derived. The invariant graph, closed $3\times3$ return operator, exactly-three
-generation interpretation, and noncommuting weak projection are inferred
-targets, not results. Any electron/muon/tau, neutrino, or quark assignment is
-guessed. Falsifier: no invariant reduction exists, the full or reduced return
-spectrum has additional admissible same-representation modes, effective charge
-changes between the proposed modes, or the independently derived weak operator
-necessarily commutes with the return operator.
+Claim grade: the three-dimensional instantaneous configuration tangent is derived. The invariant graph, closed $3\times3$ return operator, exactly-three generation interpretation, and noncommuting weak projection are inferred targets, not results. Any electron/muon/tau, neutrino, or quark assignment is guessed. Falsifier: no invariant reduction exists, the full or reduced return spectrum has additional admissible same-representation modes, effective charge changes between the proposed modes, or the independently derived weak operator necessarily commutes with the return operator.
 
-Claim grade: even/odd transformation parity is derived from the declared
-sector exchange. Using the odd coordinates as the carrier of effective charge
-is inferred. Neutral-braid, charged-lepton, and neutral-lepton roles are
-guessed. Falsifier: a retained charge-conjugate pair requires different even
-geometry, has equal rather than opposite root-resolved exposure, or a neutral
-branch cannot suppress its complete-cycle charge projection despite the
-declared conjugation symmetry.
+Claim grade: even/odd transformation parity is derived from the declared sector exchange. Using the odd coordinates as the carrier of effective charge is inferred. Neutral-braid, charged-lepton, and neutral-lepton roles are guessed. Falsifier: a retained charge-conjugate pair requires different even geometry, has equal rather than opposite root-resolved exposure, or a neutral branch cannot suppress its complete-cycle charge projection despite the declared conjugation symmetry.
 
-Claim grade: sector-wise centroid/dipole cancellation, the acceleration
-decomposition, and current-axis alignment are derived for the declared F6c
-formulas. Tangency, coordinate projections, and harmonics are measured on the
-hashed F6b prescribed-history diagnostic; they are not an EOM evolution.
-F6c binding, recurrence, retention, spinor behavior, and particle identity are
-guessed. Falsifier: exact substitution breaks a stated identity, a faithful
-root-ledger replay produces a material within-sector normal acceleration, or
-ordinary evolution immediately leaves the six-coordinate manifold without a
-bounded return.
+Claim grade: sector-wise centroid/dipole cancellation, the acceleration decomposition, and current-axis alignment are derived for the declared F6c formulas. Tangency, coordinate projections, and harmonics are measured on the hashed F6b prescribed-history diagnostic; they are not an EOM evolution. F6c binding, recurrence, retention, spinor behavior, and particle identity are guessed. Falsifier: exact substitution breaks a stated identity, a faithful root-ledger replay produces a material within-sector normal acceleration, or ordinary evolution immediately leaves the six-coordinate manifold without a bounded return.
 
-Claim grade: the tetrahedral vector and second-moment identities, dipole
-cancellation, and one-versus-three current-moment sum are mathematical
-derivations for the prescribed geometry. F6 binding, retention, scalar
-response, spinor visibility, generation, weak projection, and particle role
-are guessed. Falsifier: the exact vector identities fail, or every
-root-valid/clearance-valid realization of the tetrahedral paths necessarily
-loses the required dipole, moment, or three-port separation before ordinary
-evolution is attempted.
+Claim grade: the tetrahedral vector and second-moment identities, dipole cancellation, and one-versus-three current-moment sum are mathematical derivations for the prescribed geometry. F6 binding, retention, scalar response, spinor visibility, generation, weak projection, and particle role are guessed. Falsifier: the exact vector identities fail, or every root-valid/clearance-valid realization of the tetrahedral paths necessarily loses the required dipole, moment, or three-port separation before ordinary evolution is attempted.
 
-Claim grade: inevitable same-circle counterrotation crossings, the parallel-
-plane clearance formula, axial dipole cancellation, signed-current addition,
-and orthogonal-triad second-moment identity are derived for the declared
-prescribed geometry. F5 as a bound fermion core and its possible history,
-generation, charge, and weak roles are guessed. Falsifier: its declared
-geometric identities fail, or ordinary Master Equation evolution cannot
-maintain a root-valid retained neighborhood before any particle-facing
-projection is applied.
+Claim grade: inevitable same-circle counterrotation crossings, the parallel- plane clearance formula, axial dipole cancellation, signed-current addition, and orthogonal-triad second-moment identity are derived for the declared prescribed geometry. F5 as a bound fermion core and its possible history, generation, charge, and weak roles are guessed. Falsifier: its declared geometric identities fail, or ordinary Master Equation evolution cannot maintain a root-valid retained neighborhood before any particle-facing projection is applied.
 
 ### Nonlocal, Material, And Radiation Controls
 
-Three benchmark families prevent the local axial-state picture from becoming
-too narrow:
+Three benchmark families prevent the local axial-state picture from becoming too narrow:
 
-- Aharonov--Bohm requires path-history holonomy around a shielded source even
-  when the local effective magnetic readout on the paths is null.
-- Quantum Hall behavior requires a perturbation-stable collective invariant or
-  equivalent edge/bulk basin structure at material scale; it is not direct
-  evidence for a fundamental braid knot type.
-- Synchrotron and related radiation require the curved charged branch,
-  anisotropic sea state, emitted carrier, source depletion, recoil, wake,
-  remnant, polarization, and cooling to close on one event ledger.
+- Aharonov--Bohm requires path-history holonomy around a shielded source even when the local effective magnetic readout on the paths is null.
+- Quantum Hall behavior requires a perturbation-stable collective invariant or equivalent edge/bulk basin structure at material scale; it is not direct evidence for a fundamental braid knot type.
+- Synchrotron and related radiation require the curved charged branch, anisotropic sea state, emitted carrier, source depletion, recoil, wake, remnant, polarization, and cooling to close on one event ledger.
 
-Together with circulation and mirror controls, these cases distinguish local
-axial order, nonlocal loop memory, collective material topology, and outgoing
-carrier production. None may be substituted for another merely because all
-are described with an observer-level $\mathbf B$.
+Together with circulation and mirror controls, these cases distinguish local axial order, nonlocal loop memory, collective material topology, and outgoing carrier production. None may be substituted for another merely because all are described with an observer-level $\mathbf B$.
 
-Plainly: magnetism is constrained by more than how a compass-like object turns.
-Loop phase, robust edge transport, and radiation each test a different part of
-the same proposed source--history--sea architecture.
+Plainly: magnetism is constrained by more than how a compass-like object turns. Loop phase, robust edge transport, and radiation each test a different part of the same proposed source--history--sea architecture.
 
 ## Cross-Sector Geometry Requirements
 
-The equation and benchmark inventories impose requirements that are not
-specifically electric or magnetic but sharply constrain every candidate braid:
+The equation and benchmark inventories impose requirements that are not specifically electric or magnetic but sharply constrain every candidate braid:
 
 | ID | Cross-sector inference | Grade | Principal owners | Falsifier |
 | --- | --- | --- | --- | --- |
@@ -9998,9 +6589,7 @@ specifically electric or magnetic but sharply constrain every candidate braid:
 | `BR-X-10` | Neutral-lepton geometry may share a common cadence while retaining a non-scalar residual phase operator and at least two independent gaps. | Inferred, neutrino-specific. | `EQ-16A`; neutrino oscillation. | Equal-frequency retained candidates necessarily erase all residual phase gaps or allow only equal spacing. |
 | `BR-X-11` | Weak and strong sectors require exposure, shielding, chirality, overlap, and reaction-corridor geometry rather than fitted sector labels. | Inferred and presently underconstrained. | `EQ-16`, `EQ-23A`; neutrino and reaction provenance lanes. | Accepted sector recovery uses no stable exposure, shielding, corridor, chirality, or equivalent branch-selection structure. |
 
-Plainly: these rows do not choose a knot, link, planar pair, or six-body family.
-They state the jobs any proposed geometry must perform before visual appeal can
-count as physical progress.
+Plainly: these rows do not choose a knot, link, planar pair, or six-body family. They state the jobs any proposed geometry must perform before visual appeal can count as physical progress.
 
 ### Framed Causal-History Bundle
 
@@ -10018,28 +6607,15 @@ G_W,
 \right),
 $$
 
-where $G_W$ is the identity-labeled active-root graph, $F_a\in SO(3)$ is an
-ordered assembly frame, $U_\gamma$ is path-history transport, $\mu_W$ is the
-finite-window basin measure, and $\mathcal L_W$ is the complete identity,
-polarity, action, energy, momentum, angular-momentum, wake, medium, remnant,
-and boundary ledger. A first certificate would test root transport, path
-concatenation, loop holonomy, $\mathbb Z_2$ lift parity, separatrix measure,
-and ledger closure on one record.
+where $G_W$ is the identity-labeled active-root graph, $F_a\in SO(3)$ is an ordered assembly frame, $U_\gamma$ is path-history transport, $\mu_W$ is the finite-window basin measure, and $\mathcal L_W$ is the complete identity, polarity, action, energy, momentum, angular-momentum, wake, medium, remnant, and boundary ledger. A first certificate would test root transport, path concatenation, loop holonomy, $\mathbb Z_2$ lift parity, separatrix measure, and ledger closure on one record.
 
-This bundle is a proposed certificate shape, not a claim that all components
-are independent or that one retained braid already realizes them.
+This bundle is a proposed certificate shape, not a claim that all components are independent or that one retained braid already realizes them.
 
-Plainly: keep one labeled causal network, attach the orientation and path
-memory the experiments demand, and allow topology changes only when the same
-record explains exactly what changed and where every conserved quantity went.
+Plainly: keep one labeled causal network, attach the orientation and path memory the experiments demand, and allow topology changes only when the same record explains exactly what changed and where every conserved quantity went.
 
 ## Ranked Geometry-Inference Summary
 
-This table is a local research-priority ranking, not an equation maturity,
-acceptance, evidence, or retained-geometry score. Four integer coordinates run
-from $0$ to $4$: independent-owner breadth $I$, power to discriminate
-geometries $D$, proximity to native records $P$, and inverse-step uncertainty
-$U$, where larger $U$ means greater uncertainty. The score is
+This table is a local research-priority ranking, not an equation maturity, acceptance, evidence, or retained-geometry score. Four integer coordinates run from $0$ to $4$: independent-owner breadth $I$, power to discriminate geometries $D$, proximity to native records $P$, and inverse-step uncertainty $U$, where larger $U$ means greater uncertainty. The score is
 
 $$
 S_{\mathrm{geom}}
@@ -10049,9 +6625,7 @@ S_{\mathrm{geom}}
 0\le S_{\mathrm{geom}}\le100.
 $$
 
-The score prioritizes requirements that are broadly supported, eliminate many
-candidates, attach closely to Master Equation or retained-branch records, and
-make a comparatively small inverse leap. Ties are intentional.
+The score prioritizes requirements that are broadly supported, eliminate many candidates, attach closely to Master Equation or retained-branch records, and make a comparatively small inverse leap. Ties are intentional.
 
 | Rank | Geometry inference | Supporting equations and benchmarks | $(I,D,P,U)$ | $S_{\mathrm{geom}}$ |
 | ---: | --- | --- | ---: | ---: |
@@ -10078,47 +6652,23 @@ make a comparatively small inverse leap. Ties are intentional.
 | 21 | Collective material geometry supports perturbation-stable invariants, domains, memory, screening, persistent currents, and compatible edge/bulk structure without relabeling them as ambient-sea behavior. | `EQ-24`, `EQ-30`; quantum Hall, Aharonov--Bohm, and material magnetic-response constraints. | $(3,3,1,3)$ | 55 |
 | 22 | A charged-lepton mass-root geometry may later be tested for a Koide-type trace/traceless relation after the mass map is independently fixed. | `EQ-04A`. | $(1,1,1,4)$ | 21 |
 
-Plainly: the ranking says where a geometry test can eliminate the most wrong
-architectures with the least speculative leap. It does not say that the
-highest-ranked geometry has been found or that a low-ranked constraint is
-false.
+Plainly: the ranking says where a geometry test can eliminate the most wrong architectures with the least speculative leap. It does not say that the highest-ranked geometry has been found or that a low-ranked constraint is false.
 
 ## Inventory Coverage And Gaps
 
-The campaign traversed all 39 substantive equation packets and all 26
-substantive benchmark cases. Every equation row contributed either a geometry
-constraint, a shared carrier or ledger obligation, a scale-separation rule, or
-a downstream compatibility check. `EQ-04A` remains a deliberately weak
-diagnostic until an independent charged-lepton mass map exists.
+The campaign traversed all 39 substantive equation packets and all 26 substantive benchmark cases. Every equation row contributed either a geometry constraint, a shared carrier or ledger obligation, a scale-separation rule, or a downstream compatibility check. `EQ-04A` remains a deliberately weak diagnostic until an independent charged-lepton mass map exists.
 
-Five benchmark gaps should remain visible without creating premature queue
-objects:
+Five benchmark gaps should remain visible without creating premature queue objects:
 
-1. no dedicated static/dynamic electric polarizability, Stark, neutral-gradient,
-   or proton/neutron comparison packet exists; `BR-E-07` through `BR-E-10` and
-   the merged $E0$--$E4$ extension hold those requirements until retained
-   carriers exist;
-2. no dedicated parity-violation, beta-decay, or muon-decay packet presently
-   sharpens the weak-sector chirality inference; and
-3. no dedicated confinement, hadron-spectroscopy, jet, deep-inelastic, or
-   lattice benchmark exists in `mapping-benchmarks`; the Standard Model
-   closure packet holds these observer-level constraints but no retained
-   corridor simulation supplies their geometry;
-4. no dedicated proton/neutron electric-and-magnetic form-factor,
-   polarization-transfer, and elastic-to-inelastic packet intersects the
-   spatial exposure rows needed to distinguish a nucleon envelope; and
-5. no shared decay-angular-correlation packet presently compares parent frame,
-   chirality, vector/scalar response, product helicity, and recoil across
-   meson, baryon, weak-corridor, and scalar channels.
+1. no dedicated static/dynamic electric polarizability, Stark, neutral-gradient, or proton/neutron comparison packet exists; `BR-E-07` through `BR-E-10` and the merged $E0$--$E4$ extension hold those requirements until retained carriers exist;
+2. no dedicated parity-violation, beta-decay, or muon-decay packet presently sharpens the weak-sector chirality inference; and
+3. no dedicated confinement, hadron-spectroscopy, jet, deep-inelastic, or lattice benchmark exists in `mapping-benchmarks`; the Standard Model closure packet holds these observer-level constraints but no retained corridor simulation supplies their geometry;
+4. no dedicated proton/neutron electric-and-magnetic form-factor, polarization-transfer, and elastic-to-inelastic packet intersects the spatial exposure rows needed to distinguish a nucleon envelope; and
+5. no shared decay-angular-correlation packet presently compares parent frame, chirality, vector/scalar response, product helicity, and recoil across meson, baryon, weak-corridor, and scalar channels.
 
-These are coverage gaps, not permission to infer their missing geometry from
-observer-level theory. Add a packet only when it protects a tested observable
-or accepted mathematical constraint and has a current carrier capable of
-answering it.
+These are coverage gaps, not permission to infer their missing geometry from observer-level theory. Add a packet only when it protects a tested observable or accepted mathematical constraint and has a current carrier capable of answering it.
 
-Plainly: the current map is broad enough to rank the geometry burdens, but its
-weakest sectors still lack the clean experiments that would distinguish one
-native architecture from another.
+Plainly: the current map is broad enough to rank the geometry burdens, but its weakest sectors still lack the clean experiments that would distinguish one native architecture from another.
 
 ## Competing Realization Families
 
@@ -10133,70 +6683,43 @@ The following hypotheses remain live and mutually distinguishable:
 | `H4` Coupled matter--sea state | The smallest carrier is a matter assembly together with a near-to-extended sea reorganization; neither part alone closes the behavior. | Direct-only or frozen-sea controls reproduce the complete requirement bundle. |
 | `H5` Distinct propagating carrier | Stationary field response and radiation share source ancestry but radiation requires a retained outgoing packet or collective propagating mode. | The same stationary response record propagates source-free with the required photon and energy ledgers without an additional carrier state. |
 
-These hypotheses organize tests; none is an accepted constitutive law. More
-than one may apply in different regimes, but regime changes must be derived and
-cannot become a license for private retuning.
+These hypotheses organize tests; none is an accepted constitutive law. More than one may apply in different regimes, but regime changes must be derived and cannot become a license for private retuning.
 
-Plainly: the packet keeps several physical pictures alive until reversals,
-propagation, relaxation, and same-record comparisons separate them.
+Plainly: the packet keeps several physical pictures alive until reversals, propagation, relaxation, and same-record comparisons separate them.
 
 ## Matter-State, Sea-State, And Scale Must Remain Distinct
 
-Inverse mapping must keep four operations distinct: changing an observer-level
-scale coordinate, changing a persistent matter assembly, producing a transient
-event-level retuning, and changing the surrounding sea. None implies another
-without a derived relation.
+Inverse mapping must keep four operations distinct: changing an observer-level scale coordinate, changing a persistent matter assembly, producing a transient event-level retuning, and changing the surrounding sea. None implies another without a derived relation.
 
 For a matter transition $A\rightarrow B$, record separately:
 
-- internal matter cadence, radii, envelope scale and shape, phase, exposure,
-  and wake organization;
+- internal matter cadence, radii, envelope scale and shape, phase, exposure, and wake organization;
 - near-sea retuning coupled to the matter transition;
 - environmental and extended sea differences;
 - event momentum transfer or other conventional comparison scale;
 - effective electric and magnetic projections; and
 - the final measured observable or inferred coupling.
 
-This separation preserves four possibilities: a fixed-background projection,
-matter-state retuning, coupled local matter--sea retuning, and an extended
-sea-state difference. Agreement with a conventional running law constrains the
-combined projection but does not directly reveal which native coordinates
-changed.
+This separation preserves four possibilities: a fixed-background projection, matter-state retuning, coupled local matter--sea retuning, and an extended sea-state difference. Agreement with a conventional running law constrains the combined projection but does not directly reveal which native coordinates changed.
 
-Plainly: a higher experimental scale does not by itself prove a smaller or
-faster persistent electron braid. The physical event may alter the assembly,
-the nearby sea, both, or neither; the record must show which.
+Plainly: a higher experimental scale does not by itself prove a smaller or faster persistent electron braid. The physical event may alter the assembly, the nearby sea, both, or neither; the record must show which.
 
 ## Direct-Wake And Sea-Mediation Controls
 
 For each candidate realization, evaluate at least these mathematical controls:
 
-1. **Direct-only:** preserve the resolved source history while suppressing the
-   authored collective sea response.
-2. **Frozen-sea:** retain the reference sea record while changing the source
-   history.
-3. **Responsive-sea:** evolve or recompute the declared sea degrees of freedom
-   with no coefficient change.
-4. **Source-removed relaxation:** remove or reverse the maintaining source and
-   track what relaxes, remains, or propagates away.
-5. **Randomized orientation:** preserve scalar population data while destroying
-   polar, axial, or alignment order.
-6. **Polarity and circulation reversal:** change one signed native feature at a
-   time while preserving the remaining geometry.
-7. **Near/environment/far knockout:** suppress one spatial sea domain at a time
-   to determine whether the response is local, environmental, extended, or a
-   boundary artifact.
-8. **Receiver substitution:** change the receiver class while holding the
-   source, sea, carrier, and boundary record fixed.
+1. **Direct-only:** preserve the resolved source history while suppressing the authored collective sea response.
+2. **Frozen-sea:** retain the reference sea record while changing the source history.
+3. **Responsive-sea:** evolve or recompute the declared sea degrees of freedom with no coefficient change.
+4. **Source-removed relaxation:** remove or reverse the maintaining source and track what relaxes, remains, or propagates away.
+5. **Randomized orientation:** preserve scalar population data while destroying polar, axial, or alignment order.
+6. **Polarity and circulation reversal:** change one signed native feature at a time while preserving the remaining geometry.
+7. **Near/environment/far knockout:** suppress one spatial sea domain at a time to determine whether the response is local, environmental, extended, or a boundary artifact.
+8. **Receiver substitution:** change the receiver class while holding the source, sea, carrier, and boundary record fixed.
 
-An authored sea model swept over its own parameters is evidence about that
-model, not evidence that nature uses the model. These controls become physical
-evidence only when the candidate sea response is derived from resolved braid
-histories or compared with an independent instrument.
+An authored sea model swept over its own parameters is evidence about that model, not evidence that nature uses the model. These controls become physical evidence only when the candidate sea response is derived from resolved braid histories or compared with an independent instrument.
 
-Plainly: the controls ask whether the source acts directly, through the sea,
-or through both, and whether the inferred field state exists independently of
-one specially chosen detector.
+Plainly: the controls ask whether the source acts directly, through the sea, or through both, and whether the inferred field state exists independently of one specially chosen detector.
 
 ## Working Matrix Schema
 
@@ -10222,48 +6745,31 @@ Every developed requirement row should eventually contain:
 | Controls and falsifier | Knockout, reversal, null, refinement, and exact failure condition |
 | Evidence grade | Derived, measured, inferred, or guessed, with instrument and source identity |
 
-Plainly: a mature row must say what was observed, who owns it, what native
-record is proposed, how the forward calculation works, and exactly what would
-falsify it. A prose resemblance is not enough.
+Plainly: a mature row must say what was observed, who owns it, what native record is proposed, how the forward calculation works, and exactly what would falsify it. A prose resemblance is not enough.
 
-The matrix should link to existing equation and benchmark owners rather than
-copy their complete formulas, histories, scores, or provenance records.
+The matrix should link to existing equation and benchmark owners rather than copy their complete formulas, histories, scores, or provenance records.
 
 ## Correct Work Order
 
 Use this sequence for each new behavior family:
 
-1. State the raw observer behavior without explaining it through a primitive
-   field.
-2. Extract magnitude, direction, covariance, symmetry, reversal, range,
-   temporal, and conservation requirements.
-3. Grade each statement as a deduced requirement or inferred native
-   requirement.
-4. Populate every relevant role in the absolute native record, including any
-   sea domain whose contribution is presently unknown.
-5. Enumerate the smallest candidate realization levels: one causal-root
-   contribution, one retained matter braid, a local matter--sea complex, a
-   collective sea or material response, and the effective observer projection.
+1. State the raw observer behavior without explaining it through a primitive field.
+2. Extract magnitude, direction, covariance, symmetry, reversal, range, temporal, and conservation requirements.
+3. Grade each statement as a deduced requirement or inferred native requirement.
+4. Populate every relevant role in the absolute native record, including any sea domain whose contribution is presently unknown.
+5. Enumerate the smallest candidate realization levels: one causal-root contribution, one retained matter braid, a local matter--sea complex, a collective sea or material response, and the effective observer projection.
 6. Derive the effective output forward from each candidate.
 7. Apply direct/sea, reversal, null, receiver, and refinement controls.
-8. Intersect the surviving candidate sets across independent equations and
-   benchmarks.
-9. Call a geometry selected only after it is retained or otherwise accepted,
-   passes the full requirement bundle, and survives comparison with competing
-   realizations.
+8. Intersect the surviving candidate sets across independent equations and benchmarks.
+9. Call a geometry selected only after it is retained or otherwise accepted, passes the full requirement bundle, and survives comparison with competing realizations.
 
-Simple devices or idealized situations may be introduced when a particular
-ambiguity needs a clean discriminator. They do not replace this work order and
-do not become new priority programs merely because they are easy to visualize.
+Simple devices or idealized situations may be introduced when a particular ambiguity needs a clean discriminator. They do not replace this work order and do not become new priority programs merely because they are easy to visualize.
 
-Plainly: requirements first, candidates second, forward calculation third,
-selection last.
+Plainly: requirements first, candidates second, forward calculation third, selection last.
 
 ### Execution Frontier From The Current Clues
 
-The following frontier is ordered by prerequisite, not by a scalar score. It
-separates work that can improve discovery now from tests that would be
-meaningless before a retained candidate exists.
+The following frontier is ordered by prerequisite, not by a scalar score. It separates work that can improve discovery now from tests that would be meaningless before a retained candidate exists.
 
 | Phase | Work that can reduce uncertainty | Product | What remains barred |
 | --- | --- | --- | --- |
@@ -10277,30 +6783,17 @@ meaningless before a retained candidate exists.
 | first autonomous orientation/exchange apparatus | perform $2\pi/4\pi$, two-assembly exchange, Stern--Gerlach, polarization analyzer, contextuality, and pair-provenance tests | spinor, statistics, measurement, and relational-history evidence | no exchange or Bell claim from a static endpoint snapshot |
 | precision stage | recover masses, action, couplings, running, line strengths, widths, form factors, and cross sections from the already fixed carrier family | quantitative selection among surviving architectures | no retuning of branch, exposure, response law, sea state, detector, or convention per observable |
 
-Plainly: the immediate work is to prune candidate charts and improve the common
-motion record. Precision recovery becomes meaningful only after a retained
-core and then a reusable family actually exist.
+Plainly: the immediate work is to prune candidate charts and improve the common motion record. Precision recovery becomes meaningful only after a retained core and then a reusable family actually exist.
 
-The most actionable software-facing step is the common motion-fingerprint
-extension because it improves retained-core discovery and is reused by every
-later mode, field-response, symmetry, and spectroscopy test. The most
-actionable mathematical step is the candidate non-aliasing filter. The most
-important physical blocker remains the first positive-width retained core.
+The most actionable software-facing step is the common motion-fingerprint extension because it improves retained-core discovery and is reused by every later mode, field-response, symmetry, and spectroscopy test. The most actionable mathematical step is the candidate non-aliasing filter. The most important physical blocker remains the first positive-width retained core.
 
-No queue lifecycle changes are made here. Promoting an implementation object
-requires the owning Braid Program or EOM workstream to accept the scope and
-consumer contract.
+No queue lifecycle changes are made here. Promoting an implementation object requires the owning Braid Program or EOM workstream to accept the scope and consumer contract.
 
-Plainly: improve what the search records now, use the new constraints to avoid
-bad candidates, and be ready to interrogate the first real retained braid from
-many directions. Do not wait until after discovery to decide what information
-the run should have preserved.
+Plainly: improve what the search records now, use the new constraints to avoid bad candidates, and be ready to interrogate the first real retained braid from many directions. Do not wait until after discovery to decide what information the run should have preserved.
 
 ## Ownership And Non-Advancement Boundary
 
-This file owns the cross-row inference method, requirement statements,
-candidate realization register, and same-record braid-role map. It does not
-own or alter:
+This file owns the cross-row inference method, requirement statements, candidate realization register, and same-record braid-role map. It does not own or alter:
 
 - equation maturity scores or accepted evidence decisions;
 - benchmark provenance or covariance;
@@ -10311,267 +6804,91 @@ own or alter:
 - the eventual Noether sea electromagnetic constitutive law; or
 - reader-facing corpus claims.
 
-Requirement statements in this packet do not advance `EMAP-001` through
-`EMAP-004`, `EQ-13`, `EQ-26A`, or `EQ-27`. A requirement row becomes evidence
-only when its owning source, retained record, forward derivation, independent
-comparison, and falsifier satisfy the relevant acceptance contract.
+Requirement statements in this packet do not advance `EMAP-001` through `EMAP-004`, `EQ-13`, `EQ-26A`, or `EQ-27`. A requirement row becomes evidence only when its owning source, retained record, forward derivation, independent comparison, and falsifier satisfy the relevant acceptance contract.
 
-Plainly: this packet narrows the search and makes the proof obligations
-explicit. It cannot declare that the required geometry exists.
+Plainly: this packet narrows the search and makes the proof obligations explicit. It cannot declare that the required geometry exists.
 
 ## Current Open Questions
 
-1. Is effective $\mathbf E$ primarily a polar sea state, a gradient or rate of
-   another sea variable, a direct source-history projection, or a mixed record?
-2. Is effective $\mathbf B$ primarily axial sea circulation, a curl or time
-   relation of polar response, an organized source-history projection, or a
-   mixed record?
-3. Are $\mathbf E$ and $\mathbf B$ distinct native modes or observer-dependent
-   projections of one deeper response object?
-4. What native null distinguishes axis alignment from circulation order and
-   therefore birefringent response from magnetic-moment response?
-5. Which part of a stationary effective field is continuously regenerated, and
-   which part is stored in material, sea, or boundary order?
-6. What native record carries electromagnetic energy, momentum, stress, and
-   angular momentum in stationary, changing, and freely propagating regimes?
-7. What is the minimum spatial support of the sea response: near matter,
-   throughout the effective-field region, into the far ambient sea, or only
-   through causal boundary history?
-8. Which effective behaviors survive direct-only controls, and which require a
-   resolved collective sea response?
-9. Can one frozen response family serve Maxwell, magnetic moment,
-   fine-structure, photon propagation, material response, Zeeman, and
-   Aharonov--Bohm constraints without private retuning?
-10. What smallest accepted retained braid record would eliminate the largest
-    class of candidate electromagnetic realizations?
-11. Can one reusable identity-core, decoration, frame/exposure, association-
-    graph, and basin/mode factorization serve the observed particle families
-    without generating additional stable charged or colored species?
-12. What native selection result admits the observed motif combinations while
-    excluding unused polarity permutations, the second down-type candidate
-    family, free color, and false permanent corridor inventories?
-13. Which particle inverse-time rows come from intrinsic recurrence, relative
-    phase transport, first exit, preparation spread, environmental broadening,
-    or detector convolution?
-14. Which causal-root degrees and spatial knot/link/framing rows coexist on one
-    returned, separated branch, and which protection comes from topology,
-    basin contraction, or an exit barrier?
-15. Which controlled close-relative comparison first reveals a reusable native
-    coordinate: charged-lepton generations, pion--rho, nucleon--Delta,
-    charged/neutral pion, neutral kaon, proton/neutron, photon--$W/Z$, or
-    electron/neutrino?
-16. Can charged-lepton pointlikeness, magnetic moments, equal particle/
-    antiparticle masses, generation mass hierarchy, and lifetime hierarchy be
-    produced by one branch-derived exposure and shielding map?
-17. Can one spin-1 construction distinguish two-channel source-free photon
-    propagation from longitudinal massive-vector response without private
-    polarization quotients?
-18. Can one color-graph grammar recover stable nucleons, unstable resonances,
-    hadron form factors, spin decomposition, jets, and no free quarks while
-    preserving exact identity provenance?
-19. Which exposed multipoles, currents, transport holonomies, ordered frames,
-    and detector projections are independent coordinates of one retained
-    morphology rather than different names for one sign?
-20. Which candidate fails earliest under the identity, retention, motion,
-    topology, symmetry, exposure, transition, and quantitative elimination
-    sequence?
-21. What relational native coordinate prevents an entangled pair and two local
-    apparatus responses from compressing into a Bell-factorizable common-cause
-    model while preserving measurement independence and no-signaling?
-22. Can one retained ordered-history row jointly supply $2\pi/4\pi$ return,
-    fermionic exchange, Pauli energy splitting, and Stern--Gerlach apparatus
-    response rather than assigning four separate spin labels?
-23. Which support, phase, or corridor feature suppresses charged-lepton flavor
-    change and leading neutral flavor change while permitting charged-current
-    CKM and PMNS overlap on the same weak-exposure law?
-24. What exact quotient or cancellation suppresses electron and neutron
-    electric-dipole moments while allowing the observed weak-sector
-    conjugation-odd transport phase?
-25. Which compact set of atomic allowed/forbidden transition rows most sharply
-    distinguishes competing ordered-frame, exposure, and photon-release
-    geometries on one event ledger?
-26. Which source-backed same-inventory hadron excitation ladder should extend
-    the current $\pi/\rho$ and nucleon/$\Delta$ comparisons across angular,
-    parity, radial-like, width, form-factor, and decay-corridor rows without
-    importing a rotating-string or shell interpretation?
-27. Can the combined electromagnetic, magnetic, weak, scalar, reaction, and
-    pair probes establish a positive visibility lower bound on admissible
-    charged-lepton geometry, or does a nontrivial hidden-scale null space
-    remain?
-28. Does a top-like parent exit before a color-singlet hadron identity finishes
-    forming on the same production history, and what native record carries the
-    exposed top row before that exit?
-29. How do relative photon direction and polarization route into near-threshold
-    electron/positron ordered frames, product motion, recruited sea response,
-    and backreaction while preserving exact identity provenance?
-30. Which existing discovery instrument should first consume the non-aliasing
-    graph: the attractor motion census, the exact $C/P$ sibling bundle, or a
-    bounded candidate generator with early contradiction-core rejection?
-31. Which complete-history action realizes color-basis changes while leaving
-    mass-facing response, electric charge, generation, and laboratory rotation
-    covariance invariant on the same candidate orbit?
-32. Can proton/neutron and pion-family relatives be generated from one
-    confined association grammar by changing only declared charge/weak-facing
-    decoration and symmetry-breaking response rows?
-33. What native association and event-provenance homomorphism recovers additive
-    baryon/lepton labels without identifying them with electric charge,
-    unsigned constituent count, color closure, or generation?
-34. Which relative-frame, support-motion, corridor, and wake/sea angular rows
-    distinguish $\pi/\rho$ and nucleon/$\Delta$ response classes without
-    changing their declared constituent and color-closure records?
-35. Does the complete $\Delta^{++}$ identical-constituent exchange history
-    factor into support, frame, flavor, color, and corridor characters, or does
-    it require one irreducible joint holonomy?
-36. Which expected commute and transaction edges form the smallest operation
-    graph that can reject current color, generation, conjugation, weak-corridor,
-    and exchange candidates before precision fitting?
-37. Are generations distinct retained components, isolated modes of one core,
-    phase/permutation locks, dynamically selected support tiers, or a mixture,
-    and what same-record signature distinguishes those mechanisms?
-38. What fixed-law exhaustion result selects exactly three robust classes in
-    each fermion sector while rejecting a continuum, unused support subsets,
-    and any fourth same-representation partner?
-39. Is the native charge index an identity sum, topology/history invariant,
-    response eigenclass, phase/permutation lock, composite association sum, or
-    a derived combination, and which same-record control distinguishes them?
-40. Can one universal charge normalization serve charged leptons, quark-facing
-    records, hadrons, weak charged products, and conjugates while continuous
-    screening, polarization, form-factor, and running responses remain separate?
-41. Does fermion scalar-facing isotropy come from static high symmetry, dynamic
-    orientation averaging, sector-projection cancellation, responsive-sea
-    compensation, or a fixed-law combination of those mechanisms?
-42. If dynamic averaging contributes, what window and drive-frequency crossover
-    exposes its orientation cadence without conflating it with a transition
-    gap, first-exit rate, or detector bandwidth?
-43. What same-history path length or spatial excursion is needed before an
-    inferred recurrence cadence can yield a defensible architrino-speed bound?
-44. Which combination of exposed constituent circulation, distributed
-    counterflow, ordered-frame/corridor holonomy, and derived sea dressing
-    supplies the charged-lepton moment-to-angular map?
-45. Can one fixed leading moment grammar serve electron, muon, tau, and their
-    conjugates while the anomalous residual follows from their distinct
-    shielding, mode, wake, and sea records?
-46. What signed internal-current geometry gives a neutral neutron a nonzero
-    moment without changing its locally constant charge-index null or its
-    shared proton/neutron color-closure grammar?
-47. What retained ordered-frame or exposure-posture coordinate carries weak
-    chirality independently of observer helicity and group-velocity sign for a
-    massive fermion?
-48. Can the current propagation-direction weak-triad selector be rewritten as
-    a physical source--assembly--apparatus relation that remains covariant under
-    observer re-projection and well-defined on a rest continuation?
-49. Which fixed-law continuation produces the near-massless chirality--helicity
-    locking limit without imposing that identity on every massive branch?
-50. Does a viable neutral fermion use three isolated modes of one core, three
-    relative locks, three identity-permutation characters, or mode-dependent
-    derived sea dressing, and what same-history control separates them?
-51. What native coordinate is stiff enough to preserve one neutral group path
-    yet soft enough to carry two small independent phase-rate gaps without
-    changing charge, color, or carrier identity?
-52. Can one source--path--detector record derive both vacuum-like phase
-    composition and material assembly/sea response without inserting an
-    observer-level matter potential or rebuilding the carrier?
-53. Is photon adjacency a derived relation between accepted photon and
-    neutrino branches, or can a non-photon-adjacent neutral carrier satisfy the
-    full coherence, weak-exposure, and detection bundle more economically?
-54. Does an ordinary eight-member F6c release remain close to the exact
-    polarity-resolved six-coordinate surface, and do all six coordinates and
-    rates complete a root-valid return?
-55. Can one root-resolved exposure functional be even in the three common F6c
-    coordinates and odd in the three polarity-differential coordinates,
-    producing equal-and-opposite charge-conjugate branches without inventory
-    change?
-56. Does the charge-preserving F6c history admit an invariant reduction to
-    three collective configuration coordinates, does its reduced return
-    derivative have exactly three admissible modes, and do those modes retain
-    common charge/spin rows while producing data-blind cadence, action,
-    lifetime, and reaction differences?
-57. Does the F6c current axis survive ordinary evolution with the required
-    $2\pi/4\pi$ ordered-frame history, or is its prescribed alignment erased by
-    breathing, root transitions, or off-manifold leakage?
-58. Do symmetric, weakly odd, and strongly odd F6c return basins provide a
-    reusable neutral-sea, neutral-fermion, and charged-conjugate grammar, or do
-    those roles require distinct retained cores?
+1. Is effective $\mathbf E$ primarily a polar sea state, a gradient or rate of another sea variable, a direct source-history projection, or a mixed record?
+2. Is effective $\mathbf B$ primarily axial sea circulation, a curl or time relation of polar response, an organized source-history projection, or a mixed record?
+3. Are $\mathbf E$ and $\mathbf B$ distinct native modes or observer-dependent projections of one deeper response object?
+4. What native null distinguishes axis alignment from circulation order and therefore birefringent response from magnetic-moment response?
+5. Which part of a stationary effective field is continuously regenerated, and which part is stored in material, sea, or boundary order?
+6. What native record carries electromagnetic energy, momentum, stress, and angular momentum in stationary, changing, and freely propagating regimes?
+7. What is the minimum spatial support of the sea response: near matter, throughout the effective-field region, into the far ambient sea, or only through causal boundary history?
+8. Which effective behaviors survive direct-only controls, and which require a resolved collective sea response?
+9. Can one frozen response family serve Maxwell, magnetic moment, fine-structure, photon propagation, material response, Zeeman, and Aharonov--Bohm constraints without private retuning?
+10. What smallest accepted retained braid record would eliminate the largest class of candidate electromagnetic realizations?
+11. Can one reusable identity-core, decoration, frame/exposure, association- graph, and basin/mode factorization serve the observed particle families without generating additional stable charged or colored species?
+12. What native selection result admits the observed motif combinations while excluding unused polarity permutations, the second down-type candidate family, free color, and false permanent corridor inventories?
+13. Which particle inverse-time rows come from intrinsic recurrence, relative phase transport, first exit, preparation spread, environmental broadening, or detector convolution?
+14. Which causal-root degrees and spatial knot/link/framing rows coexist on one returned, separated branch, and which protection comes from topology, basin contraction, or an exit barrier?
+15. Which controlled close-relative comparison first reveals a reusable native coordinate: charged-lepton generations, pion--rho, nucleon--Delta, charged/neutral pion, neutral kaon, proton/neutron, photon--$W/Z$, or electron/neutrino?
+16. Can charged-lepton pointlikeness, magnetic moments, equal particle/ antiparticle masses, generation mass hierarchy, and lifetime hierarchy be produced by one branch-derived exposure and shielding map?
+17. Can one spin-1 construction distinguish two-channel source-free photon propagation from longitudinal massive-vector response without private polarization quotients?
+18. Can one color-graph grammar recover stable nucleons, unstable resonances, hadron form factors, spin decomposition, jets, and no free quarks while preserving exact identity provenance?
+19. Which exposed multipoles, currents, transport holonomies, ordered frames, and detector projections are independent coordinates of one retained morphology rather than different names for one sign?
+20. Which candidate fails earliest under the identity, retention, motion, topology, symmetry, exposure, transition, and quantitative elimination sequence?
+21. What relational native coordinate prevents an entangled pair and two local apparatus responses from compressing into a Bell-factorizable common-cause model while preserving measurement independence and no-signaling?
+22. Can one retained ordered-history row jointly supply $2\pi/4\pi$ return, fermionic exchange, Pauli energy splitting, and Stern--Gerlach apparatus response rather than assigning four separate spin labels?
+23. Which support, phase, or corridor feature suppresses charged-lepton flavor change and leading neutral flavor change while permitting charged-current CKM and PMNS overlap on the same weak-exposure law?
+24. What exact quotient or cancellation suppresses electron and neutron electric-dipole moments while allowing the observed weak-sector conjugation-odd transport phase?
+25. Which compact set of atomic allowed/forbidden transition rows most sharply distinguishes competing ordered-frame, exposure, and photon-release geometries on one event ledger?
+26. Which source-backed same-inventory hadron excitation ladder should extend the current $\pi/\rho$ and nucleon/$\Delta$ comparisons across angular, parity, radial-like, width, form-factor, and decay-corridor rows without importing a rotating-string or shell interpretation?
+27. Can the combined electromagnetic, magnetic, weak, scalar, reaction, and pair probes establish a positive visibility lower bound on admissible charged-lepton geometry, or does a nontrivial hidden-scale null space remain?
+28. Does a top-like parent exit before a color-singlet hadron identity finishes forming on the same production history, and what native record carries the exposed top row before that exit?
+29. How do relative photon direction and polarization route into near-threshold electron/positron ordered frames, product motion, recruited sea response, and backreaction while preserving exact identity provenance?
+30. Which existing discovery instrument should first consume the non-aliasing graph: the attractor motion census, the exact $C/P$ sibling bundle, or a bounded candidate generator with early contradiction-core rejection?
+31. Which complete-history action realizes color-basis changes while leaving mass-facing response, electric charge, generation, and laboratory rotation covariance invariant on the same candidate orbit?
+32. Can proton/neutron and pion-family relatives be generated from one confined association grammar by changing only declared charge/weak-facing decoration and symmetry-breaking response rows?
+33. What native association and event-provenance homomorphism recovers additive baryon/lepton labels without identifying them with electric charge, unsigned constituent count, color closure, or generation?
+34. Which relative-frame, support-motion, corridor, and wake/sea angular rows distinguish $\pi/\rho$ and nucleon/$\Delta$ response classes without changing their declared constituent and color-closure records?
+35. Does the complete $\Delta^{++}$ identical-constituent exchange history factor into support, frame, flavor, color, and corridor characters, or does it require one irreducible joint holonomy?
+36. Which expected commute and transaction edges form the smallest operation graph that can reject current color, generation, conjugation, weak-corridor, and exchange candidates before precision fitting?
+37. Are generations distinct retained components, isolated modes of one core, phase/permutation locks, dynamically selected support tiers, or a mixture, and what same-record signature distinguishes those mechanisms?
+38. What fixed-law exhaustion result selects exactly three robust classes in each fermion sector while rejecting a continuum, unused support subsets, and any fourth same-representation partner?
+39. Is the native charge index an identity sum, topology/history invariant, response eigenclass, phase/permutation lock, composite association sum, or a derived combination, and which same-record control distinguishes them?
+40. Can one universal charge normalization serve charged leptons, quark-facing records, hadrons, weak charged products, and conjugates while continuous screening, polarization, form-factor, and running responses remain separate?
+41. Does fermion scalar-facing isotropy come from static high symmetry, dynamic orientation averaging, sector-projection cancellation, responsive-sea compensation, or a fixed-law combination of those mechanisms?
+42. If dynamic averaging contributes, what window and drive-frequency crossover exposes its orientation cadence without conflating it with a transition gap, first-exit rate, or detector bandwidth?
+43. What same-history path length or spatial excursion is needed before an inferred recurrence cadence can yield a defensible architrino-speed bound?
+44. Which combination of exposed constituent circulation, distributed counterflow, ordered-frame/corridor holonomy, and derived sea dressing supplies the charged-lepton moment-to-angular map?
+45. Can one fixed leading moment grammar serve electron, muon, tau, and their conjugates while the anomalous residual follows from their distinct shielding, mode, wake, and sea records?
+46. What signed internal-current geometry gives a neutral neutron a nonzero moment without changing its locally constant charge-index null or its shared proton/neutron color-closure grammar?
+47. What retained ordered-frame or exposure-posture coordinate carries weak chirality independently of observer helicity and group-velocity sign for a massive fermion?
+48. Can the current propagation-direction weak-triad selector be rewritten as a physical source--assembly--apparatus relation that remains covariant under observer re-projection and well-defined on a rest continuation?
+49. Which fixed-law continuation produces the near-massless chirality--helicity locking limit without imposing that identity on every massive branch?
+50. Does a viable neutral fermion use three isolated modes of one core, three relative locks, three identity-permutation characters, or mode-dependent derived sea dressing, and what same-history control separates them?
+51. What native coordinate is stiff enough to preserve one neutral group path yet soft enough to carry two small independent phase-rate gaps without changing charge, color, or carrier identity?
+52. Can one source--path--detector record derive both vacuum-like phase composition and material assembly/sea response without inserting an observer-level matter potential or rebuilding the carrier?
+53. Is photon adjacency a derived relation between accepted photon and neutrino branches, or can a non-photon-adjacent neutral carrier satisfy the full coherence, weak-exposure, and detection bundle more economically?
+54. Does an ordinary eight-member F6c release remain close to the exact polarity-resolved six-coordinate surface, and do all six coordinates and rates complete a root-valid return?
+55. Can one root-resolved exposure functional be even in the three common F6c coordinates and odd in the three polarity-differential coordinates, producing equal-and-opposite charge-conjugate branches without inventory change?
+56. Does the charge-preserving F6c history admit an invariant reduction to three collective configuration coordinates, does its reduced return derivative have exactly three admissible modes, and do those modes retain common charge/spin rows while producing data-blind cadence, action, lifetime, and reaction differences?
+57. Does the F6c current axis survive ordinary evolution with the required $2\pi/4\pi$ ordered-frame history, or is its prescribed alignment erased by breathing, root transitions, or off-manifold leakage?
+58. Do symmetric, weakly odd, and strongly odd F6c return basins provide a reusable neutral-sea, neutral-fermion, and charged-conjugate grammar, or do those roles require distinct retained cores?
 
 ## Current Concrete Pass And Blocker
 
-The requirement-mining pass now covers electric, magnetic, induction,
-radiation, moment, holonomy, material, multiplet covariance, additive
-provenance labels, and cross-sector geometry. The electric field-identity
-matrix, magnetic source--sea--receiver reduction, weak-response skew lemma,
-cross-sector framed causal-history bundle, multiplet-orbit test, and ranked
-summary are all present at report grade. The six residual recommendations each
-have an owner or explicit prerequisite.
+The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, and cross-sector geometry. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, and ranked summary are all present at report grade. The six residual recommendations each have an owner or explicit prerequisite.
 
-The fixed-law continuation instrument also evaluates a signed weak regime and
-its first native geometric transition while keeping pair capture and
-backreaction fail-closed. Its prescribed fixture is `candidate_only`; it is an
-implementation check, not physical electromagnetic evidence.
+The fixed-law continuation instrument also evaluates a signed weak regime and its first native geometric transition while keeping pair capture and backreaction fail-closed. Its prescribed fixture is `candidate_only`; it is an implementation check, not physical electromagnetic evidence.
 
-The single highest-value general evidence blocker is one accepted, EOM-evolved,
-retained common-history source--sea--receiver family capable of populating the
-field-identity and translation/deformation rows without coefficient or
-geometry retuning. After that branch exists:
+The single highest-value general evidence blocker is one accepted, EOM-evolved, retained common-history source--sea--receiver family capable of populating the field-identity and translation/deformation rows without coefficient or geometry retuning. After that branch exists:
 
 1. evaluate direct-wake, sea-essential, and mixed electric dispositions;
-2. estimate the magnetic velocity-response kernel and its symmetric and skew
-   parts under the independent reversal matrix;
-3. test closure of the root-resolved history two-chain and attribute every
-   unmatched edge;
+2. estimate the magnetic velocity-response kernel and its symmetric and skew parts under the independent reversal matrix;
+3. test closure of the root-resolved history two-chain and attribute every unmatched edge;
 4. continue the same fixed law through the first certified transition; and
-5. attempt pair capture or backreaction only if that same record supplies
-   certified conjugate product basins and exact inventory partition.
+5. attempt pair capture or backreaction only if that same record supplies certified conjugate product basins and exact inventory partition.
 
-Within the present geometry campaign, the narrowest next experiment is a
-nonlinear F6c return-map search against the exact direct and reflected proper-
-rotation actions, using the certified full-cycle harmonic residual only as a
-prefilter and initial seed. Each candidate must carry its discrete winding
-cell and module-permutation provenance. Ordinary evolution has already
-confirmed exact surface invariance,
-two-sector radial turning on one history, and two-sector axial turning on a
-second. The first nonlinear seed returned one axial section but transferred
-cadence into the negative sector until its self-history root margin closed at
-$0.999765c_f$. The unresolved discriminator is whether a nearby root-valid
-history can reduce every component of the exact action residual while
-coordinating radial and cadence turns before a pair corridor or the $c_f=1$
-boundary closes. Existing releases have now reached that causal boundary once
-through cadence runaway and once through near-wake-speed radial collapse.
-The return must also carry a nontrivial direct winding or a declared reflected
-action; the first scalar recrossing is degenerate because an almost tangent
-out-and-back arc can make its residual arbitrarily small without completing an
-ordered braid cycle. The reflected action is not an ordered recurrence unless
-the delayed exchange history establishes that its same-polarity module
-permutation preserves braid identity.
+Within the present geometry campaign, the narrowest next experiment is a nonlinear F6c return-map search against the exact direct and reflected proper- rotation actions, using the certified full-cycle harmonic residual only as a prefilter and initial seed. Each candidate must carry its discrete winding cell and module-permutation provenance. Ordinary evolution has already confirmed exact surface invariance, two-sector radial turning on one history, and two-sector axial turning on a second. The first nonlinear seed returned one axial section but transferred cadence into the negative sector until its self-history root margin closed at $0.999765c_f$. The unresolved discriminator is whether a nearby root-valid history can reduce every component of the exact action residual while coordinating radial and cadence turns before a pair corridor or the $c_f=1$ boundary closes. Existing releases have now reached that causal boundary once through cadence runaway and once through near-wake-speed radial collapse. The return must also carry a nontrivial direct winding or a declared reflected action; the first scalar recrossing is degenerate because an almost tangent out-and-back arc can make its residual arbitrarily small without completing an ordered braid cycle. The reflected action is not an ordered recurrence unless the delayed exchange history establishes that its same-polarity module permutation preserves braid identity.
 
-The response-mode matrix, trapped-electron `D1` matrix, dedicated nucleon
-polarizability comparison, and internal-speed inference remain behind their
-declared prerequisites. No additional prescribed geometry sweep can remove
-the retained-branch blocker.
+The response-mode matrix, trapped-electron `D1` matrix, dedicated nucleon polarizability comparison, and internal-speed inference remain behind their declared prerequisites. No additional prescribed geometry sweep can remove the retained-branch blocker.
 
-The broader Standard Model inverse-geometry campaign remains productive even
-while that physical-evidence blocker stands. It now supplies a reusable-motif
-factorization, controlled particle comparisons, a transition graph, separate
-survival/coherence/linewidth rows, causal-versus-spatial topology abstention
-rules, distinct topological/basin/barrier protections, exposed-multipole
-non-aliasing, relational/exchange and apparatus-context requirements,
-scattering-boundary grammar, explicit contradiction cores, role-minimum
-information bundles, electromagnetic perturbation tomography, a
-post-retention mode-atlas protocol, atomic colored-transition constraints, and
-boson response-rank tests, as well as an ordered candidate-elimination
-sequence. The exact same-inventory $\pi/\rho$ and
-nucleon/$\Delta$ pairs now eliminate inventory-only hadron morphologies, but
-the corpus lacks a substantive multi-rung Regge, radial, orbital, or
-opposite-parity excitation inventory. Those deductions do not create a
-retained branch, but they reduce which branches are worth searching and
-identify the measurements that can reject them before precision fitting.
+The broader Standard Model inverse-geometry campaign remains productive even while that physical-evidence blocker stands. It now supplies a reusable-motif factorization, controlled particle comparisons, a transition graph, separate survival/coherence/linewidth rows, causal-versus-spatial topology abstention rules, distinct topological/basin/barrier protections, exposed-multipole non-aliasing, relational/exchange and apparatus-context requirements, scattering-boundary grammar, explicit contradiction cores, role-minimum information bundles, electromagnetic perturbation tomography, a post-retention mode-atlas protocol, atomic colored-transition constraints, and boson response-rank tests, as well as an ordered candidate-elimination sequence. The exact same-inventory $\pi/\rho$ and nucleon/$\Delta$ pairs now eliminate inventory-only hadron morphologies, but the corpus lacks a substantive multi-rung Regge, radial, orbital, or opposite-parity excitation inventory. Those deductions do not create a retained branch, but they reduce which branches are worth searching and identify the measurements that can reject them before precision fitting.
 
-Plainly: the physical proof still needs one real retained evolution. Until it
-exists, inverse mapping can continue narrowing the search by forcing related
-particles and channels to reuse the same geometry motifs and by removing every
-candidate that aliases distinct clocks, transformations, exposures, or
-protections.
+Plainly: the physical proof still needs one real retained evolution. Until it exists, inverse mapping can continue narrowing the search by forcing related particles and channels to reuse the same geometry motifs and by removing every candidate that aliases distinct clocks, transformations, exposures, or protections.
 
-Closure goal: infer the smallest shared source, matter, sea, carrier, receiver,
-and boundary braid requirements capable of producing effective electric and
-magnetic behavior, then eliminate candidate geometries through existing
-equation and benchmark constraints before attempting a selected architecture.
+Closure goal: infer the smallest shared source, matter, sea, carrier, receiver, and boundary braid requirements capable of producing effective electric and magnetic behavior, then eliminate candidate geometries through existing equation and benchmark constraints before attempting a selected architecture.

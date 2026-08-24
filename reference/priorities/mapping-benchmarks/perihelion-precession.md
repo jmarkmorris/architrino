@@ -18,9 +18,7 @@ This case is a compact weak-field closure test. It requires the effective metric
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `effective_orbit_hamiltonian` — Derive a weak-field effective orbital Hamiltonian from $\mathcal{M}_{\mathrm{sea}}^{ab}$. Status: `draft`.
 2. `ppn_beta_gamma` — Extract $\beta_{\text{PPN}}$ and $\gamma_{\text{PPN}}$ and compute the precession coefficient. Status: `draft`.

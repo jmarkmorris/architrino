@@ -174,41 +174,20 @@ A GPU result is not authoritative because it is faster. It must pass the indepen
 
 ### Large-Population Scaling
 
-The target envelope includes at least $10^6$ active path identities under the
-million-path scale amendment. A synchronized event then contains $10^{12}$
-logical ordered relationships before multiple roots and history search are
-counted. The production engine must not evaluate this domain by serially
-calling the independent pair oracle. It must implement the certified execution
-architecture in
-[million-path-certified-execution-architecture.md](./million-path-certified-execution-architecture.md),
-including:
+The target envelope includes at least $10^6$ active path identities under the million-path scale amendment. A synchronized event then contains $10^{12}$ logical ordered relationships before multiple roots and history search are counted. The production engine must not evaluate this domain by serially calling the independent pair oracle. It must implement the certified execution architecture in [million-path-certified-execution-architecture.md](./million-path-certified-execution-architecture.md), including:
 
-- causal space-time block enclosures that prove complete receiver-transmitter-time
-  blocks root free;
-- complete disjoint accounting of excluded, exact, enclosed, and unresolved
-  ordered relationships;
-- temporal slabs, bounding-volume hierarchies, and content-addressed path
-  indices;
+- causal space-time block enclosures that prove complete receiver-transmitter-time blocks root free;
+- complete disjoint accounting of excluded, exact, enclosed, and unresolved ordered relationships;
+- temporal slabs, bounding-volume hierarchies, and content-addressed path indices;
 - continuation of known root branches between nearby accepted receiver events;
-- exact evaluation of every surviving active candidate in the first production
-  implementation;
-- later hierarchical, multipole-style, or low-rank active contributions only
-  when root topology and the acceleration remainder are certified inside the
-  accepted-state budget;
-- deterministic receiver ownership, distributed immutable-history chunks, and
-  atomic accepted-window commits across devices or nodes;
+- exact evaluation of every surviving active candidate in the first production implementation;
+- later hierarchical, multipole-style, or low-rank active contributions only when root topology and the acceleration remainder are certified inside the accepted-state budget;
+- deterministic receiver ownership, distributed immutable-history chunks, and atomic accepted-window commits across devices or nodes;
 - dynamic load balancing for uneven root density and branch events;
-- accelerator, host-memory, local-storage, and distributed-storage residency
-  tiers without losing causal coverage;
-- streamed output and checkpoint manifests rather than an in-memory million-path
-  response.
+- accelerator, host-memory, local-storage, and distributed-storage residency tiers without losing causal coverage;
+- streamed output and checkpoint manifests rather than an in-memory million-path response.
 
-Every accelerated search retains exhaustive controls on smaller envelopes.
-Every pruned relationship is covered by a certified exclusion. Every aggregated
-active contribution carries traceable membership, certified root topology, and
-a conservative remainder, or is labeled as a reduced model. When a dense,
-noncompressible workload exceeds the declared resources, preflight returns
-`resource_envelope_exceeded`; it does not fabricate an evolved result.
+Every accelerated search retains exhaustive controls on smaller envelopes. Every pruned relationship is covered by a certified exclusion. Every aggregated active contribution carries traceable membership, certified root topology, and a conservative remainder, or is labeled as a reduced model. When a dense, noncompressible workload exceeds the declared resources, preflight returns `resource_envelope_exceeded`; it does not fabricate an evolved result.
 
 ### Performance Evidence
 
@@ -242,8 +221,7 @@ The following may be useful in separate tools, fixtures, or validation oracles, 
 
 The first application surface should prioritize execution and inspection over presentation. It should expose:
 
-- input path-history manifest selection, validation, path count, and retained
-  coverage summary;
+- input path-history manifest selection, validation, path count, and retained coverage summary;
 - absolute start and end time;
 - fixed/adaptive/multirate timestep controls, rate hierarchy, and output cadence;
 - equation, constants, regularization, and precision versions;

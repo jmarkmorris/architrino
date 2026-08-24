@@ -16,10 +16,7 @@ The always-on wake is therefore the emission of the potential, and it should kee
 
 A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet a certified non-radiative return map must carry no routed residual: over a cycle the far-zone transport of energy, momentum, and angular momentum must net to zero. That zero-flux statement is a closure target, not a consequence of the inverse-square per-hit acceleration alone. The canonical fixed-hit multiplier reads transmitter position and velocity but no separate transmitter acceleration or higher derivative. Acceleration can still be represented across a sequence of changing roots and velocities, while any irreversible radiative share must appear in a derived wake-energy current or as nucleated photon assemblies with source-depletion, recoil, medium, wake, and remnant rows. The substrate statement is therefore not that acceleration creates a primitive $1/r$ acceleration term; it is that a driven event may leave a closure residual that the channel ledger routes into outgoing transport. Recovering the Larmor/Liénard and synchrotron far-zone laws from those event records remains a derivation target.
 
-Plainly: the Master Equation is acceleration-blind only at one fixed hit. That
-does not prove that accelerated histories cannot radiate, and the $1/r^2$
-acceleration falloff does not by itself determine the energy reaching a distant
-boundary.
+Plainly: the Master Equation is acceleration-blind only at one fixed hit. That does not prove that accelerated histories cannot radiate, and the $1/r^2$ acceleration falloff does not by itself determine the energy reaching a distant boundary.
 
 ## Radiation as the Cost of an Unprepared Path
 

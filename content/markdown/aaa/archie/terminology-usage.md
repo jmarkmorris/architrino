@@ -122,11 +122,7 @@ This distinction carries more than descriptive neatness. `Axial` names the organ
 
 At the architrino level, the ontological term is not `charge`. The primitive is an `architrino` with definite `polarity`.
 
-Capitalization rule: write `architrino`, `electrino`, and `positrino` in
-lowercase in ordinary prose, mathematical prose, table cells, captions, and
-non-title link text. Capitalize only at the beginning of a sentence or title,
-or when the word is part of an established proper name such as `Architrino
-Assembly Architecture`.
+Capitalization rule: write `architrino`, `electrino`, and `positrino` in lowercase in ordinary prose, mathematical prose, table cells, captions, and non-title link text. Capitalize only at the beginning of a sentence or title, or when the word is part of an established proper name such as `Architrino Assembly Architecture`.
 
 | When you mean... | Prefer | Keep `charge` only when... | Example |
 | --- | --- | --- | --- |

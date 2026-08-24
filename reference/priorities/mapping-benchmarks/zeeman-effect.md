@@ -2,8 +2,7 @@
 
 ## Standard-Theory Concept
 
-The Zeeman effect is the magnetic-environment splitting of atomic spectral
-lines. In the weak-field comparison regime, an observer-level level shift is
+The Zeeman effect is the magnetic-environment splitting of atomic spectral lines. In the weak-field comparison regime, an observer-level level shift is
 
 $$
 \Delta E_Z
@@ -20,9 +19,7 @@ $$
 \left(g_u m_u-g_l m_l\right).
 $$
 
-Here $B$ is an observer-level effective magnetic readout, not an
-architrino-level input. The normal orbital limit supplies the additional
-coefficient target
+Here $B$ is an observer-level effective magnetic readout, not an architrino-level input. The normal orbital limit supplies the additional coefficient target
 
 $$
 \Omega_B^{\mathrm{orb}}
@@ -30,9 +27,7 @@ $$
 \frac{|q|B}{2m_{\mathrm{resp}}}.
 $$
 
-Plainly: the benchmark asks whether one declared magnetic environment shifts
-and polarizes an atomic line by the correct amount. It does not insert a
-primitive magnetic field into the substrate dynamics.
+Plainly: the benchmark asks whether one declared magnetic environment shifts and polarizes an atomic line by the correct amount. It does not insert a primitive magnetic field into the substrate dynamics.
 
 ## Benchmark Cases
 
@@ -43,14 +38,9 @@ The staged comparison begins with the normal Zeeman pattern:
 | Transverse to the effective magnetic axis | One central component and two symmetric side components | Recover side spacing and the linear-polarization basis from one magnetic-state map and photon-channel event record. |
 | Longitudinal along the effective magnetic axis | Two symmetrically shifted components | Recover the circular-polarization pair, handedness, and equal spacing from the same record. |
 
-The anomalous Zeeman cases are the next pressure test. Quartets, sextets, and
-higher multiplets must inherit the atomic envelope, ordered-frame spinor,
-angular-momentum, photon, and analyzer-response records. They may not be
-recovered by assigning an independent fitted $g_J$ to each observed line.
+The anomalous Zeeman cases are the next pressure test. Quartets, sextets, and higher multiplets must inherit the atomic envelope, ordered-frame spinor, angular-momentum, photon, and analyzer-response records. They may not be recovered by assigning an independent fitted $g_J$ to each observed line.
 
-Plainly: recovering a normal triplet is the classical-limit test. Recovering
-the anomalous multiplets without line-by-line tuning is the stronger test of
-the internal angular-momentum and spin-response account.
+Plainly: recovering a normal triplet is the classical-limit test. Recovering the anomalous multiplets without line-by-line tuning is the stronger test of the internal angular-momentum and spin-response account.
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals And Ownership
 
@@ -77,12 +67,7 @@ $$
 \right),
 $$
 
-where $\Theta_{\mathrm H,\mathrm{spec}}$ is the retained atomic spectral
-carrier, $\Theta_B^{\mathrm{eff}}$ is the effective magnetic-state projection,
-$\mathcal L_{E\mathbf p\mathbf J}$ is the shared transition ledger,
-$\mathcal T_\gamma$ is the photon polarization record,
-$\mathcal D_{\mathrm{det}}$ is the analyzer and detector record, and
-$\hat{\mathbf n}_{\mathrm{view}}$ declares the viewing direction.
+where $\Theta_{\mathrm H,\mathrm{spec}}$ is the retained atomic spectral carrier, $\Theta_B^{\mathrm{eff}}$ is the effective magnetic-state projection, $\mathcal L_{E\mathbf p\mathbf J}$ is the shared transition ledger, $\mathcal T_\gamma$ is the photon polarization record, $\mathcal D_{\mathrm{det}}$ is the analyzer and detector record, and $\hat{\mathbf n}_{\mathrm{view}}$ declares the viewing direction.
 
 The benchmark residual should expose at least
 
@@ -98,20 +83,13 @@ $$
 \right),
 $$
 
-for symmetric normal splitting, the Larmor coefficient, polarization selection,
-anomalous-multiplet structure, and shared laboratory/stellar source
-reconstruction. Every component must consume the same declared atomic,
-magnetic-state, photon, and analyzer records for the selected case.
+for symmetric normal splitting, the Larmor coefficient, polarization selection, anomalous-multiplet structure, and shared laboratory/stellar source reconstruction. Every component must consume the same declared atomic, magnetic-state, photon, and analyzer records for the selected case.
 
-Plainly: the line positions, polarization pattern, and inferred magnetic state
-must come from one record. A collection of separate fits does not close the
-benchmark.
+Plainly: the line positions, polarization pattern, and inferred magnetic state must come from one record. A collection of separate fits does not close the benchmark.
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; [work-queue.md](work-queue.md) retains that authority through
-`XTM-008`.
+These rows decompose the case at draft grade. They are not executable queue authority; [work-queue.md](work-queue.md) retains that authority through `XTM-008`.
 
 1. `normal_zeeman_pattern` — Recover the transverse triplet and longitudinal circular-polarization pair from one effective magnetic-state and photon/analyzer record. Status: `draft`.
 2. `normal_zeeman_coefficient` — Recover $\Omega_B^{\mathrm{orb}}=|q|B/(2m_{\mathrm{resp}})$ and its factor-of-two relation to the corresponding cyclotron coefficient under one exposed mass response. Status: `draft`.
@@ -119,8 +97,7 @@ authority; [work-queue.md](work-queue.md) retains that authority through
 4. `zeeman_polarization_analyzer` — Bind linear/circular polarization selection to viewing direction and a finite analyzer-response record. Status: `draft`.
 5. `laboratory_stellar_zeeman_handoff` — Require laboratory calibration and stellar or solar source reconstruction to consume the same effective magnetic-state map. Status: `draft`.
 
-Plainly: these draft steps separate the easy normal-pattern check from the
-harder anomalous-multiplet and source-reconstruction obligations.
+Plainly: these draft steps separate the easy normal-pattern check from the harder anomalous-multiplet and source-reconstruction obligations.
 
 ## Closure Objects
 
@@ -131,9 +108,7 @@ harder anomalous-multiplet and source-reconstruction obligations.
 - Analyzer, viewing-direction, and detector-response record.
 - One no-hidden-retune witness across line positions, polarizations, and source reconstruction.
 
-Plainly: advancement requires the atomic source, effective magnetic state,
-photon polarization, and analyzer to remain identifiable parts of one case
-record.
+Plainly: advancement requires the atomic source, effective magnetic state, photon polarization, and analyzer to remain identifiable parts of one case record.
 
 ## Promotion Map
 

@@ -128,8 +128,7 @@ $$
 =
 \ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+),
 $$
-with the right-hand side evaluated in the same finite-$\eta$ chart that regularizes the caustic. The older heuristic $\Delta L_c\mapsto2\Delta L_c$ is recovered only in the special case where the newly born principal self record exports exactly the same cycle increment as the pre-hinge partner ledger.
-More precisely, $\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)$ is not the value of a divergent pointwise tangential coefficient at the hinge. It is the finite angular impulse
+with the right-hand side evaluated in the same finite-$\eta$ chart that regularizes the caustic. The older heuristic $\Delta L_c\mapsto2\Delta L_c$ is recovered only in the special case where the newly born principal self record exports exactly the same cycle increment as the pre-hinge partner ledger. More precisely, $\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)$ is not the value of a divergent pointwise tangential coefficient at the hinge. It is the finite angular impulse
 $$
 \ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)
 =
@@ -201,12 +200,7 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 
 ## Maximum-Curvature Binary — Circular
 
-Receiver-side validity notice. The circular MCB branch topology, root labels,
-transmitter-side Jacobian formulas, and canonical acceleration components use
-$W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. The algebraic root-ledger result below
-is therefore a Master EOM measurement on the unregularized circular simple-root
-chart. Stability, finite-event continuation, action records, and retained-history
-claims remain outside that measurement.
+Receiver-side validity notice. The circular MCB branch topology, root labels, transmitter-side Jacobian formulas, and canonical acceleration components use $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. The algebraic root-ledger result below is therefore a Master EOM measurement on the unregularized circular simple-root chart. Stability, finite-event continuation, action records, and retained-history claims remain outside that measurement.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, acceleration components, and stability criteria. It is the canonical reference for MCB attractor status.
 
@@ -262,14 +256,7 @@ $$
 $$
 The exact residual definitions and Theorem G role are recorded in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#translating-binary-benchmark). A Lorentzian result would make the two-body branch the first derived substrate clock. A non-Lorentzian residual would be equally informative because it would identify the first place where the primitive two-body kernel pressures the larger Lorentz-closure program.
 
-Two conditional results constrain this handoff without producing a moving
-branch. First, for the exactly circular planar rest record, full spatial
-equivariance, global polarity-reversal invariance, smooth drift dependence, and
-local branch uniqueness modulo center and phase imply
-$T(\mathbf u)=T(-\mathbf u)$, so the first-order period coefficient vanishes.
-This fails as a branch statement if the symmetry exchanges two inequivalent
-moving branches, the rest record is chiral or nonplanar, or the retained-history
-rule distinguishes drift directions.
+Two conditional results constrain this handoff without producing a moving branch. First, for the exactly circular planar rest record, full spatial equivariance, global polarity-reversal invariance, smooth drift dependence, and local branch uniqueness modulo center and phase imply $T(\mathbf u)=T(-\mathbf u)$, so the first-order period coefficient vanishes. This fails as a branch statement if the symmetry exchanges two inequivalent moving branches, the rest record is chiral or nonplanar, or the retained-history rule distinguishes drift directions.
 
 Second, no real linear map of the restricted form
 
@@ -281,16 +268,9 @@ x_\parallel'=\frac{x_\parallel}{\gamma_f}+\beta T,
 \mathbf x_\perp'=\mathbf x_\perp
 $$
 
-preserves every causal-root quadratic at nonzero drift, because coefficient
-matching requires
-$c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for
-that complete map class; a wider class that also changes transverse lengths
-lies outside the claim. Neither result is evidence that a translating branch
-exists.
+preserves every causal-root quadratic at nonzero drift, because coefficient matching requires $c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for that complete map class; a wider class that also changes transverse lengths lies outside the claim. Neither result is evidence that a translating branch exists.
 
-Plainly: symmetry removes one cheap linear-period test, and the restricted map
-cannot manufacture the desired branch. The delayed dynamics still has to find
-or reject the branch directly.
+Plainly: symmetry removes one cheap linear-period test, and the restricted map cannot manufacture the desired branch. The delayed dynamics still has to find or reject the branch directly.
 
 The moving-branch test also has a root-starvation obligation. If a forward transmitter root has minimum forward separation $d_{\min}$ in the direction of motion, then the causal delay needed to receive that root obeys the elementary bound
 $$
@@ -311,8 +291,7 @@ M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
 $$
 where $h_b^{\mathrm{lock}}$ is the declared retained-history depth of the moving branch and $\epsilon_h>0$ is a fixed normalization floor. If this residual diverges on the finite-$\eta$ moving chart, the two-body branch has run out of retained causal roots before it has derived Lorentz closure; the handoff must then move to a Noether-sea or larger assembly response rather than being booked as a bare-binary result.
 
-On a declared smooth simple-root history, the companion canonical weight scales
-as
+On a declared smooth simple-root history, the companion canonical weight scales as
 
 $$
 \frac{1}{r^2}\frac{c_f}{|D_t|}
@@ -320,14 +299,9 @@ $$
 \frac{c_f-u}{c_fd_{\min}^2}.
 $$
 
-The forward hit therefore weakens linearly in the gap while its delay diverges.
-A finite window can still remove it discontinuously at the retained boundary.
-This local result neither fixes the branch period nor interprets numerical
-history truncation as a physical memory law; it also fails if the same root
-approaches a transmitter-side fold.
+The forward hit therefore weakens linearly in the gap while its delay diverges. A finite window can still remove it discontinuously at the retained boundary. This local result neither fixes the branch period nor interprets numerical history truncation as a physical memory law; it also fails if the same root approaches a transmitter-side fold.
 
-Plainly: an older forward hit can become weaker while remaining necessary to the
-declared ledger. Losing it at a finite window is a separate boundary event.
+Plainly: an older forward hit can become weaker while remaining necessary to the declared ledger. Losing it at a finite window is a separate boundary event.
 
 The branch-qualified symbol matters: $h_b^{\mathrm{lock}}$ is the measured retained-history depth of this locked moving branch, whereas bare $h$ later denotes a generic history-space horizon. A translating-branch certificate must report $h_b^{\mathrm{lock}}$ rather than silently substituting the generic horizon.
 
@@ -387,9 +361,7 @@ and the chapter speed ratio as
 $$
 \beta_f=\frac{\omega R}{c_f}
 $$
-In this non-translating circular certificate, $\beta_f$ is the same speed ratio
-denoted $s$ elsewhere in the chapter.
-The principal partner-root equation is
+In this non-translating circular certificate, $\beta_f$ is the same speed ratio denoted $s$ elsewhere in the chapter. The principal partner-root equation is
 $$
 2\beta_f\cos\frac{\phi}{2}=\phi,
 \qquad
@@ -660,10 +632,7 @@ These formulas make the transmitter-side transversality asymmetry between the tw
 
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
 
-The projections in this subsection are transmitter-side circular diagnostics. They
-record root playback and root geometry, but they are not canonical Master EOM
-acceleration contributions until the same retained branches are recomputed with
-$D_t$, $D_r$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
+The projections in this subsection are transmitter-side circular diagnostics. They record root playback and root geometry, but they are not canonical Master EOM acceleration contributions until the same retained branches are recomputed with $D_t$, $D_r$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 
 **Chord lengths**:
 $$
@@ -774,8 +743,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 #### Tangential Drive and Wake Escapement
 
-**Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).**
-In the symmetric, non-translating circular binary with canonical delayed radial acceleration contributions only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
+**Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).** In the symmetric, non-translating circular binary with canonical delayed radial acceleration contributions only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
 T_{\mathrm{net}}
@@ -809,8 +777,7 @@ $$
 The sign is branch-invariant on this same-sheet chart because winding changes timing, not chord orientation. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative. The always-present principal partner root is strictly positive, including when a self branch sits at its endpoint with zero tangential projection. Hence $T_{\mathrm{net}}>0$ on the certified chart. $\square$
 
 **Corollary.**  
-Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit
-with no boundary wake-state exchange is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-root cancellation may reduce the local tangential drive, but any remaining forward kinetic-rate change must close against the causal wake state or genuinely multi-body Noether braid exchange.
+Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit with no boundary wake-state exchange is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-root cancellation may reduce the local tangential drive, but any remaining forward kinetic-rate change must close against the causal wake state or genuinely multi-body Noether braid exchange.
 
 **Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
 
@@ -850,16 +817,13 @@ where $h_{\mathrm{act}}$ is the declared action unit used by the branch packet a
 
 **Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a radial outward component and a signed tangential component. As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$ times their transmitter-side weights $1/|J|$. Maximum curvature would require the outward self-hit radial component to balance the inward partner pull without the tangential sum destroying constant-speed closure, and the coincident self-root birth must first have a finite accepted event treatment.
 
-The non-translating symmetric circular radial target is therefore the
-transmitter-side weighted acceleration contribution:
+The non-translating symmetric circular radial target is therefore the transmitter-side weighted acceleration contribution:
 
 $$
 A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)J_p} - \frac{1}{\sin(\delta_s / 2)|J_s|} \right).
 $$
 
-For translating, deformed, or non-circular branches, this target must be
-restored to the same-root form with
-$W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bullet}$ retained separately for root playback.
+For translating, deformed, or non-circular branches, this target must be restored to the same-root form with $W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bullet}$ retained separately for root playback.
 
 **Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial acceleration**. This occurs when:
 
@@ -868,14 +832,9 @@ $W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bull
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold inverse-distance hinge plus transmitter-side fold.**
-   On the principal self branch, $D_t$ loses its floor as $s\downarrow 1^+$,
-   and the transmitter-side acceleration weight diverges as $1/|D_t|$. The
-   coincident branch birth therefore remains a failed singular event until a
-   finite regulator-independent transition is certified.
+1. **Near-threshold inverse-distance hinge plus transmitter-side fold.** On the principal self branch, $D_t$ loses its floor as $s\downarrow 1^+$, and the transmitter-side acceleration weight diverges as $1/|D_t|$. The coincident branch birth therefore remains a failed singular event until a finite regulator-independent transition is certified.
 
-2. **Higher-speed multi-branch redistribution.**
-   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full transmitter-side weighted sum over all active branches rather than on the principal branch alone.
+2. **Higher-speed multi-branch redistribution.** At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full transmitter-side weighted sum over all active branches rather than on the principal branch alone.
 
 **Current status**: The same-sheet per-hit $T>0$ result excludes only the restricted same-sheet chart. The complete unregularized signed simple-root ledger has algebraic circular candidates, beginning near $s=3.07036$, so existence is measured rather than excluded on that chart. The maximum-curvature state remains uncertified for the isolated two-body system because finite-event continuation, retained-history persistence, wake-boundary closure, and return-map stability have not been established.
 
@@ -1055,8 +1014,7 @@ with
 $$
 J_s(\xi,\sigma;s)=1-s\sigma\cos\xi
 $$
-as the transmitter-side transversality diagnostic. The outward radial and signed
-tangential canonical circular coefficients are
+as the transmitter-side transversality diagnostic. The outward radial and signed tangential canonical circular coefficients are
 $$
 S_{\mathrm{rad}}(\xi,\sigma;s)=\frac{s}{\xi\,|J_s|},
 \qquad
@@ -1298,8 +1256,7 @@ G_{\mathrm{tan}}^{(b)}(R,s)
 \sum_{\alpha\in b}T_\alpha(R,s;\eta)
 \right\rangle_{P_b}
 $$
-with $b_p$ and $b_s$ denoting the partner-hit and self-hit entries inside the signed ledger $b$.
-The first curve enforces inward/outward radial balance, while the second enforces finite-window tangential closure. In the natural Layer-I units, the search lives in $(R/R_*,s)$, so any intersection is a parameter-free candidate point for that ledger. It is still only an algebraic MCB candidate until the fixed-ledger return map proves stability, positive Jacobian floors, and persistence under perturbation.
+with $b_p$ and $b_s$ denoting the partner-hit and self-hit entries inside the signed ledger $b$. The first curve enforces inward/outward radial balance, while the second enforces finite-window tangential closure. In the natural Layer-I units, the search lives in $(R/R_*,s)$, so any intersection is a parameter-free candidate point for that ledger. It is still only an algebraic MCB candidate until the fixed-ledger return map proves stability, positive Jacobian floors, and persistence under perturbation.
 
 This gives a precise, conditional meaning to binary resonance lock. A stable slot would be a region of history space in which the integer pair
 $$
@@ -1628,9 +1585,7 @@ Define
 $$
 g_{ij}(\Delta,\phi)=\|\phi_i(0)-\phi_j(-\Delta)\|-c_f\Delta
 $$
-Because $\phi\in C^1$, the evaluation maps $\phi\mapsto \phi_i(0)$ and
-$(\Delta,\phi)\mapsto \phi_j(-\Delta)$ are $C^1$, hence $g_{ij}$ is $C^1$ on
-$\mathbb{R}^+\times\mathcal{H}$. At a root $(\Delta^*,\phi)$,
+Because $\phi\in C^1$, the evaluation maps $\phi\mapsto \phi_i(0)$ and $(\Delta,\phi)\mapsto \phi_j(-\Delta)$ are $C^1$, hence $g_{ij}$ is $C^1$ on $\mathbb{R}^+\times\mathcal{H}$. At a root $(\Delta^*,\phi)$,
 $$
 \partial_\Delta g_{ij}
 =\hat{\mathbf{r}}_{ij}\!\cdot\!\dot{\phi}_j(-\Delta^*)-c_f,
@@ -1639,12 +1594,7 @@ $$
 \equiv
 \frac{\phi_i(0)-\phi_j(-\Delta^*)}{\|\phi_i(0)-\phi_j(-\Delta^*)\|}
 $$
-Equivalently, $\partial_\Delta g_{ij}=-D_{t,ij}$ on this root.
-The simple-root condition is exactly $\partial_\Delta g_{ij}\neq 0$, i.e. no
-delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space
-Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a
-unique $C^1$ map $\Delta:U\to\mathbb{R}^+$ with
-$g_{ij}(\Delta(\psi),\psi)=0$ and $\Delta(\phi)=\Delta^*$. $\square$
+Equivalently, $\partial_\Delta g_{ij}=-D_{t,ij}$ on this root. The simple-root condition is exactly $\partial_\Delta g_{ij}\neq 0$, i.e. no delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a unique $C^1$ map $\Delta:U\to\mathbb{R}^+$ with $g_{ij}(\Delta(\psi),\psi)=0$ and $\Delta(\phi)=\Delta^*$. $\square$
 
 #### Definition 3 (Regularized Acceleration Functional)
 To ensure the vector field is Lipschitz, we replace the distributional Dirac delta of the master equation with the mollifier $\delta_\eta$ (see [Master Equation](master-equation.md)). The acceleration functional $F_i: \mathcal{H} \to \mathbb{R}^3$ is:
@@ -1653,11 +1603,7 @@ F_i(\phi) = \sum_{j} \kappa \sigma_{ij} |q_i q_j| \int_{-h}^0 \frac{\phi_i(0) - 
 $$
 **Crucial Property:** For $\eta > 0$ and smooth $\delta_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
 
-This finite-$\eta$ functional is a certification surrogate until its sharp-limit
-branch reduction reproduces the canonical transmitter-side acceleration weight.
-Each retained simple root must carry $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$.
-The same record also carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that
-ratio does not multiply the instantaneous acceleration.
+This finite-$\eta$ functional is a certification surrogate until its sharp-limit branch reduction reproduces the canonical transmitter-side acceleration weight. Each retained simple root must carry $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$. The same record also carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that ratio does not multiply the instantaneous acceleration.
 
 On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ integral first. The admissibility claim is weaker: the packet must show bounded velocity and finite total impulse across the grazing chart before it can pass to the $\eta\to0$ limit.
 
@@ -1678,14 +1624,12 @@ On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ in
 5. Couplings and polarity magnitudes are finite.
 6. Optional higher-smoothness gluing condition at $T=T_{\mathrm{init}}$ (needed for $C^2$ at the junction, not for $C^1$ well-posedness).
 
-**Statement:**
-Let $\mathbf Y=(\mathbf X,\mathbf V)$ and write the system in first-order form
+**Statement:** Let $\mathbf Y=(\mathbf X,\mathbf V)$ and write the system in first-order form
 $$
 \frac{d\mathbf Y}{dT}=\mathcal{G}(\mathbf Y_T),\qquad
 \mathbf Y_{T_{\mathrm{init}}}=\phi^0
 $$
-Then there exists $\Delta T>0$ and a unique $C^1$ solution on $[T_{\mathrm{init}}-h,T_{\mathrm{init}}+\Delta T)$.
-Equivalently, there is a unique maximal solution interval
+Then there exists $\Delta T>0$ and a unique $C^1$ solution on $[T_{\mathrm{init}}-h,T_{\mathrm{init}}+\Delta T)$. Equivalently, there is a unique maximal solution interval
 $$
 [T_{\mathrm{init}}-h,T_{\max}),\qquad T_{\max}>T_{\mathrm{init}}
 $$
@@ -1765,30 +1709,22 @@ Let $\mathbf X(T)$ be a solution to the master equation.
 2. **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf b \in \mathbb{R}^3$, $\mathbf Y(T) = R\mathbf X(T) + \mathbf b$ is also a solution.
 
 *Proof.*  
-For time translation, set $\mathbf Y_i(T)=\mathbf X_i(T+\Delta T)$. If
-$T_t\in\mathcal{C}_{ij}^X(T+\Delta T)$ for the original solution, then
-$T_t-\Delta T\in\mathcal{C}_{ij}^Y(T)$ because
+For time translation, set $\mathbf Y_i(T)=\mathbf X_i(T+\Delta T)$. If $T_t\in\mathcal{C}_{ij}^X(T+\Delta T)$ for the original solution, then $T_t-\Delta T\in\mathcal{C}_{ij}^Y(T)$ because
 $$
 \|\mathbf Y_i(T)-\mathbf Y_j(T_t-\Delta T)\|
 =\|\mathbf X_i(T+\Delta T)-\mathbf X_j(T_t)\|
 =c_f[(T+\Delta T)-T_t]
 =c_f[T-(T_t-\Delta T)]
 $$
-Hence the same branch contributions appear with shifted times, and
-$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same acceleration law.
+Hence the same branch contributions appear with shifted times, and $\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same acceleration law.
 
-For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$,
-$R\in O(3)$. Distances are preserved:
+For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$, $R\in O(3)$. Distances are preserved:
 $$
 \|\mathbf Y_i(T)-\mathbf Y_j(T_t)\|
 =\|R(\mathbf X_i(T)-\mathbf X_j(T_t))\|
 =\|\mathbf X_i(T)-\mathbf X_j(T_t)\|
 $$
-so causal-root times are unchanged. Unit directions transform covariantly:
-$\hat{\mathbf{r}}_{ij}^Y=R\hat{\mathbf{r}}_{ij}^X$. The dot products defining
-$D_t$, $D_r$, and $W^{\mathrm{acc}}$ are preserved by the same spatial
-isometry. Therefore each acceleration term transforms as
-$\mathbf A_{ij}^Y=R\mathbf A_{ij}^X$, and
+so causal-root times are unchanged. Unit directions transform covariantly: $\hat{\mathbf{r}}_{ij}^Y=R\hat{\mathbf{r}}_{ij}^X$. The dot products defining $D_t$, $D_r$, and $W^{\mathrm{acc}}$ are preserved by the same spatial isometry. Therefore each acceleration term transforms as $\mathbf A_{ij}^Y=R\mathbf A_{ij}^X$, and
 $$
 \frac{d^2\mathbf Y_i}{dT^2}(T)=R\frac{d^2\mathbf X_i}{dT^2}(T)
 =\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}
@@ -1810,12 +1746,7 @@ The instantaneous mechanical momentum is:
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_{i} \mu_{\text{arch}} \mathbf V_i(T)
 $$
-This is the mechanical momentum of the optional quadratic kinetic proxy. On a
-general primitive kinetic-scalar chart, each
-$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
-$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
-$P'(s)=K'(s)/s$ as specified in [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
-Neither construction assigns primitive mass to an architrino.
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a general primitive kinetic-scalar chart, each $\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum $\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with $P'(s)=K'(s)/s$ as specified in [Energy](energy.md#kinetic-energy-and-momentum-of-a-single-architrino). Neither construction assigns primitive mass to an architrino.
 
 Because of the delay, $\frac{d}{dT}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
@@ -1826,15 +1757,13 @@ $$
 $$
 is conserved. For working regularized models, this same expression is a validation diagnostic unless the chosen regularization preserves the translation symmetry of the underlying action.
 
-**Explicit Form (Weak Coupling Limit):**
-For $\eta \to 0$, the wake momentum can be approximated by integrating the acceleration impulse over the delay time:
+**Explicit Form (Weak Coupling Limit):** For $\eta \to 0$, the wake momentum can be approximated by integrating the acceleration impulse over the delay time:
 $$
 \mathbf{P}_{\text{wake}} \approx \sum_{i \neq j} \int_{T - \Delta_{ij}(T)}^{T} \mu_{\text{arch}}\mathbf A_{ij}^{\text{emit}}(T') \, dT'
 $$
 *Physical interpretation:* The "missing" momentum is accounted for by the causal wake surfaces currently traversing the space between transmitters and receivers in an action-derived model; otherwise this balance is the momentum diagnostic to verify.
 
-**Corollary (Center of Response Motion):**
-For an isolated binary, the center of mass $\mathbf X_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](energy.md#energy-conservation-and-exchange): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
+**Corollary (Center of Response Motion):** For an isolated binary, the center of mass $\mathbf X_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](energy.md#energy-conservation-and-exchange): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
 
 ---
 
@@ -1859,20 +1788,17 @@ We define the **Interaction Potential Functional** $\mathcal{W}(T)$ such that:
 $$
 \mathcal{W}(T) = -\int_{T_{\mathrm{init}}}^T \sum_i \mu_{\text{arch}}\mathbf V_i(T') \cdot \mathbf A_i(T') \, dT'
 $$
-This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$.
-Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(T) + \mathcal{W}(T)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
+This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$. Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(T) + \mathcal{W}(T)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
 
 That distinction is decisive for the circular tangential channel. A $\mathcal W$ obtained by integrating the same $\mathbf A\cdot\mathbf V$ record cannot test whether the record contains persistent forward tangential acceleration; it assigns the opposite change to $\mathcal W$ by definition. Independent circular energy closure requires the action-derived boundary charge or a separately derived finite-window wake account.
 
 #### Lemma (Boundedness of the Potential)
-**Assumption:** The interaction is regularized with width $\eta > 0$ such that the per-hit acceleration is bounded: $\|\mathbf A_{ij}\| \le A_{\max}(\eta)$.
-**Statement:** For a bound system (architrinos confined to a finite volume $V$), the magnitude of the assembly-level work rate is bounded by $N\mu_{\text{arch}}A_{\max}V_{\max}$.
+**Assumption:** The interaction is regularized with width $\eta > 0$ such that the per-hit acceleration is bounded: $\|\mathbf A_{ij}\| \le A_{\max}(\eta)$. **Statement:** For a bound system (architrinos confined to a finite volume $V$), the magnitude of the assembly-level work rate is bounded by $N\mu_{\text{arch}}A_{\max}V_{\max}$.
 
 #### Conditional Target (No-Runaway Criterion)
 This criterion is not a completed theorem until the same symmetry-preserving regularized action supplies $\mathcal{W}$ on the retained branch chart and a lower bound is proven for that branch. Under those hypotheses, in an action-derived master-equation branch with fixed $\eta>0$, an isolated binary cannot undergo runaway acceleration ($\|\mathbf V\| \to \infty$) *unless* the action-compatible potential energy functional $\mathcal{W}(T)$ diverges to $-\infty$.
 
-*Proof Logic:*
-Since $\mathcal{E}_{\text{tot}}$ is constant:
+*Proof Logic:* Since $\mathcal{E}_{\text{tot}}$ is constant:
 $$
 K(T) = \mathcal{E}_{\text{tot}} - \mathcal{W}(T)
 $$

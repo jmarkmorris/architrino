@@ -108,9 +108,7 @@ where $E_{\mathrm{rad}}^{\mathcal{L}}$ is the energy assigned by the same $\math
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `waveform_phase_gate` — Recover inspiral phase evolution from a source ledger and propagation map against versioned GWOSC strain and LVK parameter-estimation records. Status: `draft`.
 2. `event_energy_ledger` — Close source masses, remnant mass, radiated energy, recoil, detector strain, and waveform-model nuisance rows for benchmark compact-binary events. Status: `draft`.

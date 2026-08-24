@@ -19,13 +19,7 @@ This is the canonical execution ledger for inherited-equation mappings and score
 
 ## July 28 Translating-Binary Review Action Register
 
-This register moves every deferred action from the [Cartan no-retune
-review](../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md),
-[Lorentz translating-binary
-review](../../research-office/research-history/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md),
-and [Poincare point-certificate
-review](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
-into the existing `EQM-001` lane. It creates no queue and changes no status.
+This register moves every deferred action from the [Cartan no-retune review](../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md), [Lorentz translating-binary review](../../research-office/research-history/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md), and [Poincare point-certificate review](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) into the existing `EQM-001` lane. It creates no queue and changes no status.
 
 | Review item | Live owner and status | Acceptance action |
 | --- | --- | --- |
@@ -57,19 +51,11 @@ into the existing `EQM-001` lane. It creates no queue and changes no status.
 | Poincare open — full-history drift branch and dynamic strand identity | `EQM-001`, `Queued`; shared-record owner `draft`; MEC-005 for complete root provenance | Continue the accepted full-history point over drift with one validated itinerary, overlap continuation, predeclared permutation, and no duplicate root ownership. |
 | Poincare open — stability, trapping, or basin | `EQM-001`, `Queued`; shared-record owner `draft` | After existence and continuation, apply the theorem matching the claim: multipliers, cones, graph transform, trapping inclusion, or a declared basin measure. |
 
-Plainly: all deferred work is now executable only through a live owner and an
-explicit test. MEC dependencies gate only the rows that consume their unresolved
-objects; they do not invalidate source-independent algebraic research.
+Plainly: all deferred work is now executable only through a live owner and an explicit test. MEC dependencies gate only the rows that consume their unresolved objects; they do not invalidate source-independent algebraic research.
 
 ## Queued
 
-- **EQM-001 — `lorentz_envelope_closure`.** Enclose one source-backed
-  `S_eq` relative-periodic point with the square group-reduced residual, lift it
-  to a full delayed history, continue that history over drift when transport is
-  claimed, and run frozen-source held-out parallelism. **Depends on:** the
-  score-5 ladder. **Completion:** retained dynamic row identity, full-history
-  support, and the claimed point or transport theorem pass their independent
-  source/acceptance checks.
+- **EQM-001 — `lorentz_envelope_closure`.** Enclose one source-backed `S_eq` relative-periodic point with the square group-reduced residual, lift it to a full delayed history, continue that history over drift when transport is claimed, and run frozen-source held-out parallelism. **Depends on:** the score-5 ladder. **Completion:** retained dynamic row identity, full-history support, and the claimed point or transport theorem pass their independent source/acceptance checks.
 - **EQM-008 — `tri_binary_equation_bearing_search`.** Feed mature residuals into the declared frequency-family search after the partition rule exists. **Depends on:** score-5 ladder and angular-momentum partition rule. **Completion:** one predeclared search returns source-bound residual rows.
 - **EQM-010 — `solved_wave_inverse_clue_audit`.** Mine solved wave families for concrete inverse clues and acceptance tests. **Depends on:** quantum/photon maps and score-5 ladder. **Completion:** each retained clue maps to an existing equation row and falsifier.
 

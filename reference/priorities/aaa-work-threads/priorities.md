@@ -2,8 +2,7 @@
 
 This file is the canonical control surface for the overall `reference/priorities` ranking. Directory names are stable identities. Rank, status, classification, and task queues live here and in each workstream tracker, not in directory names.
 
-The pre-split monolith is retained in Git history rather than as a live
-priority document.
+The pre-split monolith is retained in Git history rather than as a live priority document.
 
 ## Scoring System
 
@@ -29,34 +28,15 @@ priority document.
 
 ## Audit Scope — 2026-07-26
 
-This active-only audit read every immediate top-level
-`reference/priorities/*/priorities.md` tracker, the current directory inventory,
-the top-six closure join, and the current EOM/Braid acceptance boundaries. The
-numeric table includes 23 top-level owner directories and four separately
-ranked shared theorem packets. `aaa-work-threads` is the control surface and
-`app-simulation` is a routing index, so neither receives a numeric rank.
+This active-only audit read every immediate top-level `reference/priorities/*/priorities.md` tracker, the current directory inventory, the top-six closure join, and the current EOM/Braid acceptance boundaries. The numeric table includes 23 top-level owner directories and four separately ranked shared theorem packets. `aaa-work-threads` is the control surface and `app-simulation` is a routing index, so neither receives a numeric rank.
 
-Every child of `dormant-deferred` is excluded regardless of whether its parked
-tracker still contains historical rank metadata. A top-level tracker remains
-in the active inventory even when its internal status is `deferred` or
-`watchlist`; moving that directory under `dormant-deferred` is the action that
-removes it from this table.
+Every child of `dormant-deferred` is excluded regardless of whether its parked tracker still contains historical rank metadata. A top-level tracker remains in the active inventory even when its internal status is `deferred` or `watchlist`; moving that directory under `dormant-deferred` is the action that removes it from this table.
 
-The audit preserves component scores for unchanged marginal objects, removes
-eight archived rows, adds the previously unranked top-level `app-mcp` owner,
-and re-sorts the remaining winners contiguously. The former
-`eom-attractor-search` packet is now distributed between EOM's reusable
-instrument packet and Braid Program's scientific campaign packet.
+The audit preserves component scores for unchanged marginal objects, removes eight archived rows, adds the previously unranked top-level `app-mcp` owner, and re-sorts the remaining winners contiguously. The former `eom-attractor-search` packet is now distributed between EOM's reusable instrument packet and Braid Program's scientific campaign packet.
 
 ## Operator Discussion Queue
 
-- **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) —
-  `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive
-  domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and
-  evolution semantics. This crosses the Master Equation, MEC-007, EOM solver,
-  Braid prescribed diagnostics, and several reader-facing closure hypotheses.
-  It changes no existing theory status while the compatibility map is pending.
-  See [its work queue](../field-speed-ceiling/work-queue.md).
+- **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) — `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and evolution semantics. This crosses the Master Equation, MEC-007, EOM solver, Braid prescribed diagnostics, and several reader-facing closure hypotheses. It changes no existing theory status while the compatibility map is pending. See [its work queue](../field-speed-ceiling/work-queue.md).
 
 ## Unified Priority Table
 
@@ -93,31 +73,16 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Active-Only Rerank Movement — 2026-07-26
 
-- The top ten are unchanged. Their marginal objects and component scores remain
-  current enough that removing archived rows does not alter their relative
-  order.
-- Eight `dormant-deferred` rows were removed:
-  `app-equation-mapping`, `information-relay-machines`, `validation-gates`,
-  `lissajou`, `media-videos`, `media-images`, `media-comics`, and
-  `media-posts`.
-- `app-mcp` enters at rank `20` on
-  `named_http_client_conformance`. Its score is for the remaining named-client
-  verification object, not for the already completed local service and
-  loopback adapter.
-- The active rows below rank `16` were renumbered contiguously without changing
-  component scores: `open-problems` is now `17`, `source-mining` `18`,
-  `cosmology-closure` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`,
-  `operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and
-  `aaa-futures` `27`.
-- Borg and Strong-Field now expose machine-checkable local rank-`1` objects.
-  This changes queue representation, not their scores or evidence grade.
+- The top ten are unchanged. Their marginal objects and component scores remain current enough that removing archived rows does not alter their relative order.
+- Eight `dormant-deferred` rows were removed: `app-equation-mapping`, `information-relay-machines`, `validation-gates`, `lissajou`, `media-videos`, `media-images`, `media-comics`, and `media-posts`.
+- `app-mcp` enters at rank `20` on `named_http_client_conformance`. Its score is for the remaining named-client verification object, not for the already completed local service and loopback adapter.
+- The active rows below rank `16` were renumbered contiguously without changing component scores: `open-problems` is now `17`, `source-mining` `18`, `cosmology-closure` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`, `operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and `aaa-futures` `27`.
+- Borg and Strong-Field now expose machine-checkable local rank-`1` objects. This changes queue representation, not their scores or evidence grade.
 
 ## App Ideas Owner Removal — 2026-07-27
 
-- `app-ideas` was removed after its accepted concepts and implementation
-  packets were transferred to Causal Delay Feedback and Borg.
-- The surviving rows below its former rank were shifted upward by one without
-  changing their component scores or evidence grades.
+- `app-ideas` was removed after its accepted concepts and implementation packets were transferred to Causal Delay Feedback and Borg.
+- The surviving rows below its former rank were shifted upward by one without changing their component scores or evidence grades.
 
 ## Current Focus
 
@@ -129,11 +94,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 ## Operator Burden Triage
 
-The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`,
-`15-16`, and `19`. Lower-cost inspection, app, and coordination surfaces are
-led by ranks `7`, `9`, `14`, `17-18`, and `20-25`. A lower-cost row may produce
-visible progress sooner, but it does not outrank the derivation spine unless a
-concrete upstream result is ready for it to inspect, validate, or publish.
+The likely long numerical or proof campaigns are ranks `1-6`, `8`, `10-13`, `15-16`, and `19`. Lower-cost inspection, app, and coordination surfaces are led by ranks `7`, `9`, `14`, `17-18`, and `20-25`. A lower-cost row may produce visible progress sooner, but it does not outrank the derivation spine unless a concrete upstream result is ready for it to inspect, validate, or publish.
 
 The `dormant-deferred` archive and all of its children are unscored.
 
@@ -143,10 +104,8 @@ The routed next actions now live in [work-queue.md](work-queue.md). Each impleme
 
 ## Organization Status
 
-- The numeric ranks are contiguous and include every top-level rankable owner
-  plus the four explicitly ranked shared packets.
-- No `dormant-deferred` child appears in the numeric table or active discussion
-  queue.
+- The numeric ranks are contiguous and include every top-level rankable owner plus the four explicitly ranked shared packets.
+- No `dormant-deferred` child appears in the numeric table or active discussion queue.
 - Legacy braid directories stay archived; Braid Program owns scientific search campaigns, EOM owns reusable execution capability, and the former attractor-search packet is distributed between those two canonical owners.
 - The former `app-simulation` directory is a routing index, not a ranked owner; its preserved protocol detail advances only through the named canonical lane.
 - [closure-join-matrix.md](closure-join-matrix.md) remains the shared-object dependency view, and [inventory.md](inventory.md) remains the detailed file map.

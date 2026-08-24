@@ -226,8 +226,7 @@ No deferred choice may weaken the core deployment boundary: static public entry 
 
 ## Implementation Handoff
 
-Closure goal:
-Turn the Archie service scaffolding and fixture plan into schema-only service contract files and fixture expectations without enabling runtime AI generation or public launch.
+Closure goal: Turn the Archie service scaffolding and fixture plan into schema-only service contract files and fixture expectations without enabling runtime AI generation or public launch.
 
 Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md), this packet, [service-deployment-option-decision.md](service-deployment-option-decision.md), [service-platform.md](service-platform.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [manifest-service-contracts.md](manifest-service-contracts.md), [v1-product-requirements.md](v1-product-requirements.md), and [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md) as the source of truth.
 

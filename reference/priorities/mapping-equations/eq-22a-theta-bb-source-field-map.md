@@ -67,8 +67,7 @@ Required rows:
 | `thermalization_depth` | Minimum depth or collision/detailed-balance evidence for the declared window. |
 | `source_provenance`, `no_hidden_retune_witness` | Same $h_\vartheta$, $c_\gamma$, $\theta_{\mathrm{sea}}$, mode measure, and temperature-clock conversion across frequency bins. |
 
-The source-attempt fixture names the first child surface without claiming accepted
-evidence:
+The source-attempt fixture names the first child surface without claiming accepted evidence:
 
 | Field | Source-attempt value |
 | --- | --- |
@@ -115,19 +114,6 @@ To check the current source-attempt fixture, run:
 node scripts/equation-mapping/planck-alpha-braid-residual.mjs --input scripts/equation-mapping/planck-alpha-braid-theta-bb-source-attempt.v1.json --summary --pretty
 ```
 
-Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`,
-`scoreDecision=no_score_increase`, `blackbodyPass=true`, and all 15 negative controls
-passing. The same command with `--require-populated` must exit nonzero. Until the
-parent and child rows are accepted, the correct result remains no score change.
+Expected result: `blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `blackbodyPass=true`, and all 15 negative controls passing. The same command with `--require-populated` must exit nonzero. Until the parent and child rows are accepted, the correct result remains no score change.
 
-The shared Planck/alpha runner now rejects priority packets, authored AAA prose,
-generated files, attempt files, toy files, probe files, source-evidence-probe
-files, mock files, negative-control files, and temporary paths as accepted
-retained evidence. The coordination-source control marks `theta_gamma_packet`
-accepted-looking while sourcing it only to the theta-gamma priority packet; it
-must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason
-`source_not_durable`. The probe-source control
-[planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json)
-points the same accepted-looking parent at a `source-evidence-probe` JSON and
-must fail the same way. Probe files can sharpen blockers, but they cannot be the
-retained source object for $\Theta_\gamma$.
+The shared Planck/alpha runner now rejects priority packets, authored AAA prose, generated files, attempt files, toy files, probe files, source-evidence-probe files, mock files, negative-control files, and temporary paths as accepted retained evidence. The coordination-source control marks `theta_gamma_packet` accepted-looking while sourcing it only to the theta-gamma priority packet; it must remain blocked at `missing_accepted_theta_gamma_packet` with the row reason `source_not_durable`. The probe-source control [planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-gamma-probe-source-negative-control.v1.json) points the same accepted-looking parent at a `source-evidence-probe` JSON and must fail the same way. Probe files can sharpen blockers, but they cannot be the retained source object for $\Theta_\gamma$.

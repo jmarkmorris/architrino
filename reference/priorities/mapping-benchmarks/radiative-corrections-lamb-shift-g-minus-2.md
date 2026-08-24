@@ -43,14 +43,7 @@ w_L\mathcal R_{\mathrm{Lamb}}
 $$
 The weights select the active benchmark family; they are not fit knobs. The value of the bundle is same-record discipline: a calculation may use QED loop language as an observer-level comparison, but it must not switch Noether sea state, boundary response, photon ledger, or pair provenance separately for each correction.
 
-The dedicated [Strong-Field Electromagnetic
-Response](strong-field-electromagnetic-response.md) benchmark owns elastic
-light-by-light scattering, strong-background birefringence,
-amplitude-dependent propagation, retained pair formation, and pair
-backreaction as one all-rows packet. This file retains ownership of the Lamb
-shift, $g-2$, vacuum-polarization precision, regularization, and their shared
-carrier boundary; its pair row is a cross-packet compatibility channel, not a
-separate claim that the nonlinear electromagnetic sector is covered.
+The dedicated [Strong-Field Electromagnetic Response](strong-field-electromagnetic-response.md) benchmark owns elastic light-by-light scattering, strong-background birefringence, amplitude-dependent propagation, retained pair formation, and pair backreaction as one all-rows packet. This file retains ownership of the Lamb shift, $g-2$, vacuum-polarization precision, regularization, and their shared carrier boundary; its pair row is a cross-packet compatibility channel, not a separate claim that the nonlinear electromagnetic sector is covered.
 
 ## Precision Benchmark Boundary
 
@@ -58,9 +51,7 @@ QED precision is a hard recovery constraint, not an ontology proof. Agreement am
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `regularization_dictionary` — Map QED regularization objects to causal-wake mollification and finite ledger observables. Status: `draft`.
 2. `lamb_shift_proxy` — Identify the first atomic spectral shift that can be modeled from material, photon, and Noether sea response records. Status: `draft`.

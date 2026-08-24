@@ -457,12 +457,6 @@ The collective motion, or **group velocity**, of a Noether braid assembly determ
 
 ### A1 Dynamics
 
-The A1 mechanism program — how a three-layer assembly could keep compatible branch
-records as one moving delayed system, with same-record closure across period, active-root ledger,
-deformation map, medium response, observer export, and event ledger — is an open
-obligation, not carried in this chapter. The realization-independent
-machinery lives with the shared mathematics in [Braid Mathematics](braid-mathematics.md#substrate-and-effective-levels).
-Results enter this chapter only when established at their stated claim level.
+The A1 mechanism program — how a three-layer assembly could keep compatible branch records as one moving delayed system, with same-record closure across period, active-root ledger, deformation map, medium response, observer export, and event ledger — is an open obligation, not carried in this chapter. The realization-independent machinery lives with the shared mathematics in [Braid Mathematics](braid-mathematics.md#substrate-and-effective-levels). Results enter this chapter only when established at their stated claim level.
 
-For the strong-field continuation, see [Black Holes](../spacetime/black-holes.md) and
-[Horizon Chirality](../spacetime/horizon-chirality.md).
+For the strong-field continuation, see [Black Holes](../spacetime/black-holes.md) and [Horizon Chirality](../spacetime/horizon-chirality.md).

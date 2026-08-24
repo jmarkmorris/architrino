@@ -1,5 +1,4 @@
-Closure goal:
-Replace drift-only holonomy language with a source-identified, frozen-source held-out transport test whose quantitative margin can be evaluated only after point-first retained-branch existence is established.
+Closure goal: Replace drift-only holonomy language with a source-identified, frozen-source held-out transport test whose quantitative margin can be evaluated only after point-first retained-branch existence is established.
 
 # Research Findings And Proposed Changes: No-Retune Transport Beyond Drift-Only Holonomy
 
@@ -920,8 +919,7 @@ P(u,u_+),
 k_*\in K_*,
 $$
 
-in one declared local trivialization; and
-5. exclusion of singular or impulsive connection terms at $u_*$.
+in one declared local trivialization; and 5. exclusion of singular or impulsive connection terms at $u_*$.
 
 Plainly: the two sides may differ only by one declared symmetry of the special point. They may not be connected by an undeclared finite reset that later changes a tested row.
 
@@ -1038,11 +1036,7 @@ The first theorem should be a quantitative common-parallelism theorem, not a hol
 > 0
 > $$
 >
-> after all validated source, memory, discretization, derivative, action, solver, and arithmetic errors are included;
-> 3. the resulting connection enclosure is refinement-stable and remains within a predeclared transport-error budget;
-> 4. every isolated stabilizer enhancement has bounded one-sided connection classes whose transports match modulo one declared stabilizer subgroup acting trivially on all tested fibers;
-> 5. $\omega=F(\pi_{\mathrm{src}}\Theta)$ satisfies source noninterference, and $F$, $G_{\min}$, $\rho_\alpha$, the gauge reduction, fiber metrics, uncertainty scales, tolerances, and blocked interval are source-derived and frozen before held-out extraction;
-> 6. construction-independent endpoint projections on $J_{\mathrm{test}}$ satisfy
+> after all validated source, memory, discretization, derivative, action, solver, and arithmetic errors are included; 3. the resulting connection enclosure is refinement-stable and remains within a predeclared transport-error budget; 4. every isolated stabilizer enhancement has bounded one-sided connection classes whose transports match modulo one declared stabilizer subgroup acting trivially on all tested fibers; 5. $\omega=F(\pi_{\mathrm{src}}\Theta)$ satisfies source noninterference, and $F$, $G_{\min}$, $\rho_\alpha$, the gauge reduction, fiber metrics, uncertainty scales, tolerances, and blocked interval are source-derived and frozen before held-out extraction; 6. construction-independent endpoint projections on $J_{\mathrm{test}}$ satisfy
 >
 > $$
 > W_{\mathrm{NL}}
@@ -1203,18 +1197,9 @@ Plainly: loss of margin, an unexplained symmetry reset, failed held-out transpor
 
 ## Proposed Changes
 
-**Readiness gate.** The items retained here are safe claim-boundary and
-evidence-design corrections that can be applied without asserting that a
-retained branch, complete wake state, source-derived connection, or physical
-transport law exists. The construction and certificate items that need those
-objects are preserved under [Disposition of Open Questions](#disposition-of-open-questions).
+**Readiness gate.** The items retained here are safe claim-boundary and evidence-design corrections that can be applied without asserting that a retained branch, complete wake state, source-derived connection, or physical transport law exists. The construction and certificate items that need those objects are preserved under [Disposition of Open Questions](#disposition-of-open-questions).
 
-**Applied disposition, 2026-07-29.** C1–C5 and C13 now live in the translating
-shared-record, equation detail, score-ladder, and work-log owners at their
-stated priority-only authority. Every deferred item and open question is
-recorded in the canonical [July 28 translating-binary review action
-register](../../../priorities/mapping-equations/work-queue.md#july-28-translating-binary-review-action-register).
-This packet is reference evidence only and owns no outstanding action.
+**Applied disposition, 2026-07-29.** C1–C5 and C13 now live in the translating shared-record, equation detail, score-ladder, and work-log owners at their stated priority-only authority. Every deferred item and open question is recorded in the canonical [July 28 translating-binary review action register](../../../priorities/mapping-equations/work-queue.md#july-28-translating-binary-review-action-register). This packet is reference evidence only and owns no outstanding action.
 
 1. **C1 — retain $W_{\mathrm{supp}}$ unchanged in role.** It remains the set-level witness that all rows use one accepted retained carrier and domain.
 2. **C2 — retire drift-only loop holonomy as the primary meaning of $W_{\mathrm{hol}}$.** Zero curvature, trivial loops, and cocycle composition on $I_u$ are implementation facts, not no-retune evidence.
@@ -1223,10 +1208,7 @@ This packet is reference evidence only and owns no outstanding action.
 5. **C5 — keep torsion and zero phase-holonomy fields diagnostic.** They remain negative-control guardrails until a soldered geometry and a source-derived phase-return conjugacy class are defined.
 6. **C13 — separate leakage evidence from correctness evidence.** Give every claimed row an independent held-out projection and give at least one representative action class an analytic or genuinely independent reference.
 
-Plainly: the apply-now corrections prevent trivial one-dimensional holonomy,
-shared implementation paths, or diagnostic torsion fields from being presented
-as physical transport evidence. They do not choose the missing geometry or
-certify a branch.
+Plainly: the apply-now corrections prevent trivial one-dimensional holonomy, shared implementation paths, or diagnostic torsion fields from being presented as physical transport evidence. They do not choose the missing geometry or certify a branch.
 
 ### Point-First Dependency For The EQ-02 Through EQ-04 Proof Program
 
@@ -1341,9 +1323,7 @@ Plainly: the remaining work is an implementation and evidence campaign against a
 | C15 — source-frame monodromy target | Same `EQM-001` owner, status `Queued` | Selecting $[h_{\mathrm{src}}(n)]$ requires a source-derived phase-return conjugacy class; winding number or identity holonomy cannot supply it. | Derive the phase-return class from the same accepted retained history and show that it is invariant under the predeclared harmless gauge. |
 | C16 — two-path holonomy on a drift–phase or drift–physical-modulus rectangle | Same `EQM-001` owner, status `Queued` | A second retained continuation direction has not been certified. Adding one now would select an unsupported modulus. | Certify both directions under the same microscopic update and compare the closed rectangle without refitting the connection, actions, gauge, norms, or tolerances. |
 
-Plainly: the deferred items remain valuable research designs. They are not
-invalidated by the missing closures; they are simply ineligible for application
-until their actual inputs and independent checks exist.
+Plainly: the deferred items remain valuable research designs. They are not invalidated by the missing closures; they are simply ineligible for application until their actual inputs and independent checks exist.
 
 | Open question | Live owner and status | Next acceptance test | Routing disposition |
 | --- | --- | --- | --- |
@@ -1369,5 +1349,4 @@ The first certificate should attempt two punctured closed blocks adjacent to $u=
 
 Plainly: the next decisive work is to build the smallest provenance-bound certificate and let any failed margin, junction, endpoint, independence, or negative-control condition reject the claim.
 
-Closure goal:
-First establish a source-backed L1 relative-periodic point, lift it through L2 full-history persistence, and validate its L3 drift continuation; then construct the refinement-stable quantitative no-hidden-retune certificate on two orbit-type blocks adjacent to $u=0$, close their junction modulo harmless gauge, and require intrinsic held-out transport to pass while a source-preserving permutation fails.
+Closure goal: First establish a source-backed L1 relative-periodic point, lift it through L2 full-history persistence, and validate its L3 drift continuation; then construct the refinement-stable quantitative no-hidden-retune certificate on two orbit-type blocks adjacent to $u=0$, close their junction modulo harmless gauge, and require intrinsic held-out transport to pass while a source-preserving permutation fails.

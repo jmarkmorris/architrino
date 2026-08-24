@@ -132,8 +132,7 @@ $$
 +\varepsilon_I
 },
 $$
-Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$.
-Also report the Floquet basin-robustness gap
+Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$. Also report the Floquet basin-robustness gap
 $$
 \Delta_{\mathbf{k}}
 =

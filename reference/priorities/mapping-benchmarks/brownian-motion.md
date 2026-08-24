@@ -20,9 +20,7 @@ This case is not a fundamental physics recovery target at the same level as Lore
 
 ## Candidate Closure Steps
 
-These rows decompose the case at draft grade. They are not executable queue
-authority; promote an accepted task into [work-queue.md](work-queue.md) before
-execution.
+These rows decompose the case at draft grade. They are not executable queue authority; promote an accepted task into [work-queue.md](work-queue.md) before execution.
 
 1. `deterministic_coarse_grain` — Define a deterministic microstate ensemble and projection that yields diffusion. Status: `draft`.
 2. `transport_coefficients` — Derive or estimate $D$, drag coefficient, and temperature from substrate or material variables. Status: `draft`.

@@ -151,8 +151,7 @@ Future implementation should include regression expectations for:
 
 ## Implementation Handoff
 
-Closure goal:
-Use the service deployment option decision, deployment architecture packet, and service scaffolding packet to define schema-only service contract files and fixture expectations.
+Closure goal: Use the service deployment option decision, deployment architecture packet, and service scaffolding packet to define schema-only service contract files and fixture expectations.
 
 Use this packet, [service-deployment-architecture.md](service-deployment-architecture.md), [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md), [service-platform.md](service-platform.md), [v1-product-requirements.md](v1-product-requirements.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) as the source of truth.
 

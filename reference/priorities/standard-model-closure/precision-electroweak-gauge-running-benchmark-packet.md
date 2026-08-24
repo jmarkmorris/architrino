@@ -58,20 +58,9 @@ The benchmark pressure is useful because the same electroweak fit surface couple
 
 4. LHC weak-sector rows are detector-provenance rows before they are carrier evidence. ATLAS and CMS W-mass and Drell-Yan weak-angle measurements depend on recoil modelling, lepton calibration, parton distribution functions, angular coefficients, QCD/EW corrections, trigger/reconstruction selections, and nuisance-parameter profiling. They should attach through $\mathcal{D}_{\mathrm{LHC}}$ and the finite event ledger, not directly to primitive weak objects.
 
-5. Running couplings require a threshold and scheme inventory. The shorthand
-   $\alpha(M_Z)\approx1/128$ is not a scheme-free scalar target; the
-   [fine-structure benchmark anchors](../mapping-electromagnetism/fine-structure.md#observer-level-benchmark-anchors)
-   retain the low-energy CODATA value and the five-flavor
-   $\overline{\mathrm{MS}}$ PDG value separately. $\hat{\alpha}(M_Z)$ is
-   entangled with hadronic vacuum polarization; $\alpha_s(M_Z)$ depends on
-   perturbative order, scale convention, threshold treatment, and
-   world-average correlation assumptions. A scalar coupling comparison is
-   invalid until the native row carries those labels.
+5. Running couplings require a threshold and scheme inventory. The shorthand $\alpha(M_Z)\approx1/128$ is not a scheme-free scalar target; the [fine-structure benchmark anchors](../mapping-electromagnetism/fine-structure.md#observer-level-benchmark-anchors) retain the low-energy CODATA value and the five-flavor $\overline{\mathrm{MS}}$ PDG value separately. $\hat{\alpha}(M_Z)$ is entangled with hadronic vacuum polarization; $\alpha_s(M_Z)$ depends on perturbative order, scale convention, threshold treatment, and world-average correlation assumptions. A scalar coupling comparison is invalid until the native row carries those labels.
 
-Plainly: the low-energy and $M_Z$ electromagnetic values are different kinds
-of benchmark records. Their numerical difference demonstrates running only
-when the scheme, active channels, and polarization corrections travel with the
-comparison.
+Plainly: the low-energy and $M_Z$ electromagnetic values are different kinds of benchmark records. Their numerical difference demonstrates running only when the scheme, active channels, and polarization corrections travel with the comparison.
 
 ## Candidate Covariance Residual
 
@@ -148,13 +137,7 @@ This row is score-neutral until the photon/charge and strong/gauge running carri
 
 1. Populate one source-backed `va_chirality_gate` for the retained muon projection lane in `EQ-16`. The accepted packet already has same-domain `weak_visible_branch_ledger`, `weak_projection`, `weak_quotient`, and `weak_exposure_record`; the remaining row set must still bind `V-A` chirality, CKM/PMNS overlap, weak-corridor provenance, effective gauge covariance, reaction event ledger, and Noether sea response on one weak-visible retained domain. Current projection-lane blocker: `missing_accepted_va_chirality_gate`.
 
-2. Complete the `Theta_alpha` path through the
-   [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md)
-   and `EQ-26A`. The first accepted rows are `theta_gamma_packet`, scheme-pinned
-   `charge_exposure_row`, `alpha_coupling_row`,
-   `vacuum_polarization_wake_dressing_row`, and `energy_scale_running_row`.
-   Current first blockers: `missing_accepted_theta_gamma_packet`, then
-   `missing_accepted_charge_exposure_row`.
+2. Complete the `Theta_alpha` path through the [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md) and `EQ-26A`. The first accepted rows are `theta_gamma_packet`, scheme-pinned `charge_exposure_row`, `alpha_coupling_row`, `vacuum_polarization_wake_dressing_row`, and `energy_scale_running_row`. Current first blockers: `missing_accepted_theta_gamma_packet`, then `missing_accepted_charge_exposure_row`.
 
 3. Convert the PDG/LEP/SLC electroweak source family into one weak-sector covariance packet after the native carrier exists. The benchmark vector should include the scheme labels and fit modes above; it should not add another gate before the native weak carrier is present.
 

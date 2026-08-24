@@ -11,19 +11,9 @@
 
 ## Decision Principle
 
-The operator selected C++20 as the EOM production host on 2026-07-13. The
-decision is recorded in
-[eom-cpp-production-host.md](../../../architectural-decisions/eom-cpp-production-host.md).
-The engine must combine extremely high bulk throughput with a controlled path
-beyond hardware floating point for the subset of work whose condition demands
-it. C++ selection does not relax
-[eom_numeric_certification/v0](./precision-dynamic-range-and-certification-contract.md),
-and host or backend limitations cannot redefine the acceptance criteria.
+The operator selected C++20 as the EOM production host on 2026-07-13. The decision is recorded in [eom-cpp-production-host.md](../../../architectural-decisions/eom-cpp-production-host.md). The engine must combine extremely high bulk throughput with a controlled path beyond hardware floating point for the subset of work whose condition demands it. C++ selection does not relax [eom_numeric_certification/v0](./precision-dynamic-range-and-certification-contract.md), and host or backend limitations cannot redefine the acceptance criteria.
 
-The selected host still has to pass causal-root irregularity, branch events,
-multirate synchronization, many-source reductions, precision escalation,
-accelerator transfers, checkpoints, diagnostics, and failure behavior before
-it gains production EOM authority.
+The selected host still has to pass causal-root irregularity, branch events, multirate synchronization, many-source reductions, precision escalation, accelerator transfers, checkpoints, diagnostics, and failure behavior before it gains production EOM authority.
 
 ## Required Numeric Architecture
 
@@ -62,9 +52,7 @@ This is a capability ladder, not a requirement that every state use every repres
 | Separately compiled accelerator kernels | Required backend lane under the C++ host. | Can one model contract and shared certificate definitions prevent CPU/GPU mathematical drift? Are transfer and maintenance costs justified? |
 | Python numerical reference environment | Retained as the separately authored independent oracle and benchmark harness, never as the production solver. | Does it remain independent, reproducible, and sufficiently broad to challenge every promoted C++ or accelerator path? |
 
-JavaScript or TypeScript may serve the thin application shell used for run
-configuration, monitoring, and output inspection. It is not the authoritative
-production numerical kernel.
+JavaScript or TypeScript may serve the thin application shell used for run configuration, monitoring, and output inspection. It is not the authoritative production numerical kernel.
 
 ## Representative Benchmark Suite
 
@@ -119,13 +107,8 @@ The production-promotion record must contain:
 
 ## Promotion Boundary
 
-Host-language selection is complete by operator decision. Production promotion
-is complete only when the C++ host and each promoted backend demonstrably
-satisfy the independent correctness gates and the representative end-to-end
-resource envelope.
+Host-language selection is complete by operator decision. Production promotion is complete only when the C++ host and each promoted backend demonstrably satisfy the independent correctness gates and the representative end-to-end resource envelope.
 
-Implementation of the C++ production integrator is authorized. Its outputs
-remain architecture evidence until coupled evolution, precision, performance,
-checkpoint, and migration gates pass.
+Implementation of the C++ production integrator is authorized. Its outputs remain architecture evidence until coupled evolution, precision, performance, checkpoint, and migration gates pass.
 
 No prototype output may be represented as EOM production evolution or used to migrate a consumer.

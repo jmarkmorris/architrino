@@ -51,8 +51,7 @@ Each symbol carries a specific medium-level meaning:
 - **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
   - the local Noether braid density $\bar{\rho}_{\text{NS}}(T)$, which sets Noether sea stiffness,
 - the declared binary-radius statistic $\bar{R}_{\text{braid}}(T)$, which parameterizes the compliance of Noether sea assemblies to deformation,
-  - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
-  The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
+  - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes. The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
 
 - **$\bar{\rho}_m(t_{\mathrm{eff}})$**: the observer-level mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](./dark-matter.md)).
 

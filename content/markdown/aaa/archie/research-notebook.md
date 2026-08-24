@@ -422,10 +422,7 @@ The scores illustrate both sides of the present situation. They show where $\mat
 
 ## 2026-03-10 Consistent Philosophy-History Coverage
 
-The philosophy-history documents treat their subjects through a consistent set
-of substantive questions rather than allowing individual units to accumulate
-as disconnected notes. The method remains part of editorial practice, while
-the reader-facing chapters state the resulting comparisons directly.
+The philosophy-history documents treat their subjects through a consistent set of substantive questions rather than allowing individual units to accumulate as disconnected notes. The method remains part of editorial practice, while the reader-facing chapters state the resulting comparisons directly.
 
 Relevant files:
 
@@ -434,12 +431,7 @@ Relevant files:
 - [Information / Computation](../philosophy-history/information-computation.md)
 - [Crisis in Physics](../philosophy-history/crisis-in-physics.md)
 
-The shared questions remain visible in the substance of each treatment: what
-problem pressure produced the view, what still works, what fails or overstates,
-how the result relates to $\mathbb{A}\mathbb{A}\mathbb{A}$, and what survives
-as a recovery target or methodological constraint. Keeping the authoring
-schema out of the chapter prose leaves readers with the comparison itself
-rather than its editorial checklist.
+The shared questions remain visible in the substance of each treatment: what problem pressure produced the view, what still works, what fails or overstates, how the result relates to $\mathbb{A}\mathbb{A}\mathbb{A}$, and what survives as a recovery target or methodological constraint. Keeping the authoring schema out of the chapter prose leaves readers with the comparison itself rather than its editorial checklist.
 
 ## 2026-03-09 GitHub Presence and Community
 
@@ -488,9 +480,7 @@ The glossary works as a controlled translation layer. It pairs familiar modern t
 
 ## 2026-03-03: CKM Holonomy Relation Fixes the CP Phase
 
-The [weak-mixing and CKM note](../philosophy-history/theory-bridges/weak-mixing-ckm.md) uses three calibrated CKM magnitudes,
-$\lvert V_{us}\rvert = 0.225$, $\lvert V_{cb}\rvert = 0.041$, and $\lvert V_{ub}\rvert = 0.0037$,
-as the standard three-angle parametrization inputs.
+The [weak-mixing and CKM note](../philosophy-history/theory-bridges/weak-mixing-ckm.md) uses three calibrated CKM magnitudes, $\lvert V_{us}\rvert = 0.225$, $\lvert V_{cb}\rvert = 0.041$, and $\lvert V_{ub}\rvert = 0.0037$, as the standard three-angle parametrization inputs.
 
 Relevant files:
 
@@ -508,9 +498,7 @@ c & 0.22487 & 0.97353 & 0.04100^{*}\\
 t & 0.00845 & 0.04029 & 0.99915
 \end{array}
 $$
-with the starred entries used as calibration anchors. The remaining entries
-$\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$
-are algebraic consequences of the imported standard three-angle parametrization. The table is therefore a comparison-grade reconstruction, not six independent $\mathbb{A}\mathbb{A}\mathbb{A}$ predictions.
+with the starred entries used as calibration anchors. The remaining entries $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are algebraic consequences of the imported standard three-angle parametrization. The table is therefore a comparison-grade reconstruction, not six independent $\mathbb{A}\mathbb{A}\mathbb{A}$ predictions.
 
 The non-trivial model content is the holonomy relation
 $$
