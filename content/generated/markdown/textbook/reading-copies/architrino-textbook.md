@@ -401,16 +401,9 @@ with each orbit site carrying a fixed polarity sign. If assembly closure retains
 
 #### Wake Response and Effective Electromagnetic Fields
 
-An individual architrino does not receive an electric or magnetic field as an
-additional substrate input. It receives the causal-root acceleration
-contributions defined by the Master Equation. Effective field language becomes
-available only after those source-provenanced contributions and any derived
-assembly, Noether sea, and boundary response have been projected into a
-receiver-independent continuum record.
+An individual architrino does not receive an electric or magnetic field as an additional substrate input. It receives the causal-root acceleration contributions defined by the Master Equation. Effective field language becomes available only after those source-provenanced contributions and any derived assembly, Noether sea, and boundary response have been projected into a receiver-independent continuum record.
 
-There is nevertheless a useful bridge to electric response. For one declared
-source history, evaluate the source-driven acceleration on matched hypothetical
-receiver states that differ only by polarity. Define
+There is nevertheless a useful bridge to electric response. For one declared source history, evaluate the source-driven acceleration on matched hypothetical receiver states that differ only by polarity. Define
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -448,27 +441,11 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-The labels `even` and `odd` refer to receiver-polarity reversal. They do not
-refer to spatial parity. One actual architrino has one fixed polarity; the
-matched pair is a comparison instrument, not a co-located physical pair. If
-the even term vanishes in an isolated electric regime, the two receiver
-polarities acquire equal-and-opposite source-driven accelerations. This is the
-native electric-sign analogue, but it remains a decomposition of the causal-hit
-ledger rather than an imported $q\mathbf E/m$ law.
+The labels `even` and `odd` refer to receiver-polarity reversal. They do not refer to spatial parity. One actual architrino has one fixed polarity; the matched pair is a comparison instrument, not a co-located physical pair. If the even term vanishes in an isolated electric regime, the two receiver polarities acquire equal-and-opposite source-driven accelerations. This is the native electric-sign analogue, but it remains a decomposition of the causal-hit ledger rather than an imported $q\mathbf E/m$ law.
 
-There is no corresponding primitive magnetic vector in one radial hit. A
-magnetic readout must be recovered from organized multi-source and multi-root
-history, moving or circulating assembly geometry, any derived Noether sea and
-boundary response, and an observer-level projection. Whether the sea is
-essential, modifies a direct source-history response, or remains within its
-balanced reference tolerance is a constitutive closure target rather than a
-definition of either field.
+There is no corresponding primitive magnetic vector in one radial hit. A magnetic readout must be recovered from organized multi-source and multi-root history, moving or circulating assembly geometry, any derived Noether sea and boundary response, and an observer-level projection. Whether the sea is essential, modifies a direct source-history response, or remains within its balanced reference tolerance is a constitutive closure target rather than a definition of either field.
 
-Plainly: the electric-like sign difference is already visible when the same
-source history is evaluated against the two architrino polarities. The smooth
-electric field is the later common map of that response. Magnetic behavior
-requires additional organized geometry; neither field is a new substance or
-an extra term in the architrino equation of motion.
+Plainly: the electric-like sign difference is already visible when the same source history is evaluated against the two architrino polarities. The smooth electric field is the later common map of that response. Magnetic behavior requires additional organized geometry; neither field is a new substance or an extra term in the architrino equation of motion.
 
 #### Provenance and Persistence
 
@@ -631,8 +608,7 @@ Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
 \mathbf Z_a(s)=\mathbf X_a(s),
 $$
-where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$.
-Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
+where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$. Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-transmitter wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from transmitter-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
@@ -1088,8 +1064,7 @@ The zero term is also a topology-and-bundle statement. Because the void is $\mat
 $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
-and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$.
-The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
+and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$. The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
 > **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
 
@@ -1832,20 +1807,14 @@ $$
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating
-$F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
+On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating $F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
 $$
 \frac{dT_{t,\ell}}{dT_r}
 =
 \frac{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_i(T_r)}
 {c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
-This identity is not a new coupling constant. It distinguishes the transmitter-side
-causal-root Jacobian from the rate at which a moving receiver path samples the
-same emitted causal wake sequence. A stationary receiver in the Euclidean-void
-rest frame sets the numerator to $c_f$; radial receiver motion changes the
-receiver-side action or wake-history rate and must be recorded when a proof
-uses accumulated action rather than only an event-local acceleration contribution.
+This identity is not a new coupling constant. It distinguishes the transmitter-side causal-root Jacobian from the rate at which a moving receiver path samples the same emitted causal wake sequence. A stationary receiver in the Euclidean-void rest frame sets the numerator to $c_f$; radial receiver motion changes the receiver-side action or wake-history rate and must be recorded when a proof uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 
@@ -1880,8 +1849,7 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation.
-It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
+The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation. It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
 =
@@ -3024,11 +2992,9 @@ The universe does not require a coordinate frame. Theory and simulation use one 
 
 This final distinction separates three layers that are easy to confuse. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. Complete-state bookkeeping can infer a coordinate frame from that full record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
-**Complete-state reconstruction:**
-The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+**Complete-state reconstruction:** The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
-**Physical Observer access:**
-Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
+**Physical Observer access:** Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
 - **Proper time** $\tau$, not absolute time $T$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
@@ -3810,9 +3776,7 @@ $$
 $$
 The inactive-gap condition means that nearby discarded causal roots remain separated from the active chart; the stability condition means that a small transverse section error is trapped rather than amplified.
 
-Plain language: a branch chart is the replayable local record that says which
-causal roots are active, which nearby roots stay inactive, how much history is
-needed, and whether the returned section remains stable under small errors.
+Plain language: a branch chart is the replayable local record that says which causal roots are active, which nearby roots stay inactive, how much history is needed, and whether the returned section remains stable under small errors.
 
 Equivalently, $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ is the local trivialization data for the causal-root sheaf near the retained history. Promotion requires more than naming the active roots: the map from retained history and section coordinates to active roots, receiver-side branch acceleration contributions, and wake-history increment records must be locally invertible onto the declared chart image, with inverse conditioning controlled by $\nu_J$, $\nu_{\mathrm{rec}}$, the inactive gaps, the finite memory margin, and $\lambda_{\mathrm{sec}}$. A plotted orbit with no controlled inverse is a trace, not a branch chart.
 
@@ -3900,8 +3864,7 @@ c_f
 \delta_\eta\!\big(r_{ij}(T_r,T_t)-c_f(T_r-T_t)\big)\,dT_t
 }
 $$
-At $\mathbf r_{ij}=\mathbf 0$, the softened vector kernel multiplying
-$\delta_\eta$ is defined by its continuous extension, which is $\mathbf 0$.
+At $\mathbf r_{ij}=\mathbf 0$, the softened vector kernel multiplying $\delta_\eta$ is defined by its continuous extension, which is $\mathbf 0$.
 
 The sign convention remains
 $$
@@ -3928,9 +3891,7 @@ selects causal surfaces with finite width, while
 $$
 \epsilon_c
 $$
-smoothly regularizes the near-collision inverse-square amplitude. The factor
-$c_f$ supplies the static-transmitter normalization. On a finite simple-root
-chart, collapse of the causal-surface delta function gives
+smoothly regularizes the near-collision inverse-square amplitude. The factor $c_f$ supplies the static-transmitter normalization. On a finite simple-root chart, collapse of the causal-surface delta function gives
 $$
 \int
 \frac{\mathbf r_{ij}}
@@ -3942,11 +3903,7 @@ c_f\,\delta(g_{ij})\,dT_t
 {\left(r_{ij}^2+\epsilon_c^2\right)^{3/2}}
 \frac{c_f}{|D_{t,ij}|}
 $$
-Thus the $\epsilon_c\to0^+$ limit away from coordinate coincidence recovers
-the canonical inverse-square transmitter-side branch law. Branch-resolved
-formulas are local reductions of this equation on finite simple-root charts.
-They should not be used as the global definition across causal folds, caustic
-transit, or chart-boundary verification.
+Thus the $\epsilon_c\to0^+$ limit away from coordinate coincidence recovers the canonical inverse-square transmitter-side branch law. Branch-resolved formulas are local reductions of this equation on finite simple-root charts. They should not be used as the global definition across causal folds, caustic transit, or chart-boundary verification.
 
 The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem packet may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
@@ -4111,8 +4068,7 @@ Fix a bounded history interval $I_{T_r}=[a,b]\subset(-\infty,T_r)$ and define re
 - **(R2) Simple roots:** if $F_{T_r}^{(ij)}(T_t)=0$, then $\frac{dF_{T_r}^{(ij)}}{dT_t}(T_t)\neq 0$.
 
 **Theorem 1 (Degree invariance on regular families).**
-For any continuous deformation of worldlines/parameters that preserves (R1)-(R2), the signed degree
-$D_{ij}(T_r)=\deg(F_{T_r}^{(ij)},I_{T_r},0)$ is invariant.
+For any continuous deformation of worldlines/parameters that preserves (R1)-(R2), the signed degree $D_{ij}(T_r)=\deg(F_{T_r}^{(ij)},I_{T_r},0)$ is invariant.
 
 *Proof sketch:* In 1D, $D_{ij}$ is the oriented count of simple roots. Under a regular homotopy, roots move continuously and cannot appear/disappear in the interior without becoming critical, and cannot enter/leave through the boundary by (R1). Hence the oriented count is constant.
 
@@ -4170,8 +4126,7 @@ At a generic fold, the local boundary pairing creates or removes one positive an
 
 An admissible retained record therefore reports the signed grading $(C_+^{ij},C_-^{ij})$, not only raw hit counts. The binary and Noether braid ledgers $N_s$ and $M_p$ are admissible topological labels only after their self-hit and partner-hit entries inherit this signed-root-complex data, together with the phase-return degree data used by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) and resonance-lock chapters.
 
-**Proposition 4 (forward partner-root starvation under field-speed drift).**
-Let a candidate translating branch have center drift $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
+**Proposition 4 (forward partner-root starvation under field-speed drift).** Let a candidate translating branch have center drift $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
 $$
 \mathbf X_i(T_r)=uT_r\,\hat{\mathbf e}+\boldsymbol{\rho}_i(T_r),
 \qquad
@@ -4209,9 +4164,7 @@ $$
 $$
 so the required memory depth diverges as $u\to c_f^-$.
 
-On a declared smooth chasing-root history with
-$r\sim c_fd_{\min}/(c_f-u)$ and $D_t\sim c_f-u$, the same root's canonical
-acceleration weight has the conditional companion scaling
+On a declared smooth chasing-root history with $r\sim c_fd_{\min}/(c_f-u)$ and $D_t\sim c_f-u$, the same root's canonical acceleration weight has the conditional companion scaling
 
 $$
 \frac{1}{r^2}\frac{c_f}{|D_t|}
@@ -4219,16 +4172,9 @@ $$
 \frac{c_f-u}{c_fd_{\min}^2}.
 $$
 
-Thus the retained forward contribution decays linearly in the gap on that
-simple-root chart even as its delay diverges. A finite retained window can
-nevertheless delete the row abruptly when the root crosses the history
-boundary. Neither statement determines the branch period or licenses
-unbounded physical memory; a simultaneous Jacobian-floor loss falsifies the
-smooth-decay estimate.
+Thus the retained forward contribution decays linearly in the gap on that simple-root chart even as its delay diverges. A finite retained window can nevertheless delete the row abruptly when the root crosses the history boundary. Neither statement determines the branch period or licenses unbounded physical memory; a simultaneous Jacobian-floor loss falsifies the smooth-decay estimate.
 
-Plainly: the forward root can become very old and very weak at the same time.
-A finite history boundary can still remove it suddenly, and neither fact fixes
-the orbit period.
+Plainly: the forward root can become very old and very weak at the same time. A finite history boundary can still remove it suddenly, and neither fact fixes the orbit period.
 
 This is a kinematic starvation result, not an acceleration-balance approximation. It says that a forward structural partner root cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner root for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
 
@@ -4287,8 +4233,7 @@ $$
 
 ###### Multi-Hit Regime
 
-In the **super-field-speed regime** ($\|\mathbf V_j\| > c_f$ at some past times), the delay map can fold when
-$\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j > c_f$, i.e. when $dF_{T_r}^{(ij)}/dT_t$ changes sign. Then $\mathcal{C}_{ij}(T_r)$ can contain multiple solutions:
+In the **super-field-speed regime** ($\|\mathbf V_j\| > c_f$ at some past times), the delay map can fold when $\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j > c_f$, i.e. when $dF_{T_r}^{(ij)}/dT_t$ changes sign. Then $\mathcal{C}_{ij}(T_r)$ can contain multiple solutions:
 
 $$
 \mathcal{C}_{ij}(T_r) = \{T_{t,1}, T_{t,2}, \ldots, T_{t,m}\}
@@ -4479,6 +4424,8 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \, \hat{\mathbf{r}}_{ij}
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#causal-wake-per-hit-law)
+
 If a force-like bookkeeping symbol is desired, define
 $$
 \mathbf{F}_{ij}(T_r;T_t) \equiv \mu_{\text{arch}}\,\mathbf A_{ij}(T_r;T_t)
@@ -4528,6 +4475,8 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 }
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#causal-wake-master-equation)
+
 where:
 
 - Outer sum: over all transmitters $j$ (including $j = i$ for self-hits)
@@ -4568,10 +4517,7 @@ This also fixes the status of later short-distance regularizations. A finite cor
 
 ###### Superposition and Local Wake Geometry
 
-**Postulated vector superposition.** On one declared regular branch chart at a
-receiver event, let $\mathcal B$ be the finite set of admitted causal-root
-rows. The Master EOM states that the receiver-local acceleration is the linear
-sum
+**Postulated vector superposition.** On one declared regular branch chart at a receiver event, let $\mathcal B$ be the finite set of admitted causal-root rows. The Master EOM states that the receiver-local acceleration is the linear sum
 
 $$
 \mathbf A_{\mathrm{total}}(T;\mathbf X_r)
@@ -4579,14 +4525,9 @@ $$
 \sum_{b\in\mathcal B}\mathbf A_b(T;\mathbf X_r).
 $$
 
-Plainly: each admitted wake intersection contributes one acceleration vector,
-and the receiver adds those vectors. This vector sum is the postulated
-substrate rule. It does not require a scalar wake landscape.
+Plainly: each admitted wake intersection contributes one acceleration vector, and the receiver adds those vectors. This vector sum is the postulated substrate rule. It does not require a scalar wake landscape.
 
-**Moving-single-root scalar representative (derived on one regular chart).**
-Fix the reception time, a retained transmitter history, and a connected
-receiver chart $U$ on which one selected causal root $s_b(\mathbf X_r)$ is
-unique and differentiable. For the canonical row, write
+**Moving-single-root scalar representative (derived on one regular chart).** Fix the reception time, a retained transmitter history, and a connected receiver chart $U$ on which one selected causal root $s_b(\mathbf X_r)$ is unique and differentiable. For the canonical row, write
 
 $$
 \begin{aligned}
@@ -4602,13 +4543,9 @@ $$
 
 with $r_b\ge r_{\min}>0$ and $|D_b|\ge D_{\min}>0$ throughout $U$.
 
-Plainly: this is one admitted moving-source row with a smoothly tracked past
-emission event. The chart excludes sources, folds, coincidences, and singular
-self roots by keeping both the separation and transmitter factor away from
-zero.
+Plainly: this is one admitted moving-source row with a smoothly tracked past emission event. The chart excludes sources, folds, coincidences, and singular self roots by keeping both the separation and transmitter factor away from zero.
 
-Differentiating the causal constraint
-$r_b-c_f(T-s_b)=0$ with respect to the receiver position gives
+Differentiating the causal constraint $r_b-c_f(T-s_b)=0$ with respect to the receiver position gives
 
 $$
 0
@@ -4626,12 +4563,9 @@ d\!\left[r_b-c_f(T-s_b)\right]
 \frac{c_f}{D_b}\mathbf n_b.
 $$
 
-Plainly: moving the receiver changes both its separation from the retained
-source point and the emission time selected by the causal equation. These two
-effects combine into the signed factor $1/D_b$.
+Plainly: moving the receiver changes both its separation from the retained source point and the emission time selected by the causal equation. These two effects combine into the signed factor $1/D_b$.
 
-The sign $\epsilon_b=\operatorname{sgn}(D_b)$ is constant on the connected
-regular chart. Therefore the receiver-local scalar
+The sign $\epsilon_b=\operatorname{sgn}(D_b)$ is constant on the connected regular chart. Therefore the receiver-local scalar
 
 $$
 \Phi_b
@@ -4649,29 +4583,13 @@ C_b\frac{c_f}{r_b^2|D_b|}\mathbf n_b
 \mathbf A_b.
 $$
 
-Plainly: the branch sign converts the signed derivative of $1/r_b$ into the
-absolute transmitter-side weight in the canonical acceleration ledger. This
-is an exact local rewrite of the existing row, not a new response based on
-slope or curvature.
+Plainly: the branch sign converts the signed derivative of $1/r_b$ into the absolute transmitter-side weight in the canonical acceleration ledger. This is an exact local rewrite of the existing row, not a new response based on slope or curvature.
 
-The claim grade is **derived on one connected regular moving-simple-root
-chart**. A separately structured $c_f=1$ circular-history check computes the
-scalar gradient from freshly solved roots and finite differences, while the
-ledger vector comes from an unchanged causal-root record and the canonical
-row. Across five step refinements, the largest component residual was
-$2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because
-its radial scaling is wrong. The check is recorded in
-`verify-moving-single-root-scalar-gradient.mjs`.
+The claim grade is **derived on one connected regular moving-simple-root chart**. A separately structured $c_f=1$ circular-history check computes the scalar gradient from freshly solved roots and finite differences, while the ledger vector comes from an unchanged causal-root record and the canonical row. Across five step refinements, the largest component residual was $2.12\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. The check is recorded in `verify-moving-single-root-scalar-gradient.mjs`.
 
-Plainly: the proof supplies the identity, and an independently structured
-calculation checks its numerical realization on one moving regular chart. A
-nonzero scalar-gradient-versus-ledger residual on any certified point would
-falsify the claimed local representation.
+Plainly: the proof supplies the identity, and an independently structured calculation checks its numerical realization on one moving regular chart. A nonzero scalar-gradient-versus-ledger residual on any certified point would falsify the claimed local representation.
 
-**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix
-the retained histories, root selections, regularization, and boundary
-convention of that chart. If every row $b\in\mathcal B$ has a differentiable
-receiver-local scalar representative $\Phi_b$ on the same chart satisfying
+**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix the retained histories, root selections, regularization, and boundary convention of that chart. If every row $b\in\mathcal B$ has a differentiable receiver-local scalar representative $\Phi_b$ on the same chart satisfying
 
 $$
 \mathbf A_b
@@ -4679,10 +4597,7 @@ $$
 -\nabla_{\mathbf X_r}\Phi_b,
 $$
 
-Plainly: the condition says that moving the receiver within this one regular
-chart changes a scalar $\Phi_b$ in exactly the way needed to reproduce row
-$b$'s acceleration. The theorem assumes that per-row identity; it does not
-derive the identity from vector superposition.
+Plainly: the condition says that moving the receiver within this one regular chart changes a scalar $\Phi_b$ in exactly the way needed to reproduce row $b$'s acceleration. The theorem assumes that per-row identity; it does not derive the identity from vector superposition.
 
 Define the finite superposed scalar by
 
@@ -4692,9 +4607,7 @@ $$
 \sum_{b\in\mathcal B}\Phi_b.
 $$
 
-Plainly: $\Phi_{\mathcal B}$ is only the sum of the valid row scalars on the
-shared chart. No scalar from a different retained history, root convention,
-regularization, or boundary prescription can be inserted into this sum.
+Plainly: $\Phi_{\mathcal B}$ is only the sum of the valid row scalars on the shared chart. No scalar from a different retained history, root convention, regularization, or boundary prescription can be inserted into this sum.
 
 Linearity of the receiver gradient then gives
 
@@ -4706,16 +4619,9 @@ $$
 -\nabla_{\mathbf X_r}\Phi_{\mathcal B}.
 $$
 
-Plainly: once every admitted acceleration contribution is already the negative gradient
-of its own valid scalar, adding the scalars reproduces the same complete vector
-ledger. This is a **conditional derivation** for a finite regular chart, not a
-proof that one global scalar exists. The preceding moving-single-root theorem
-discharges the per-row premise for canonical rows that share its fixed-history,
-fixed-sign regular chart. A row with a different kernel, regularization, or
-boundary rule still requires its own matching scalar derivation.
+Plainly: once every admitted acceleration contribution is already the negative gradient of its own valid scalar, adding the scalars reproduces the same complete vector ledger. This is a **conditional derivation** for a finite regular chart, not a proof that one global scalar exists. The preceding moving-single-root theorem discharges the per-row premise for canonical rows that share its fixed-history, fixed-sign regular chart. A row with a different kernel, regularization, or boundary rule still requires its own matching scalar derivation.
 
-Where $\nabla_{\mathbf X_r}\Phi_{\mathcal B}\ne\mathbf0$, the local level-set
-normal, acceleration direction, and acceleration magnitude obey
+Where $\nabla_{\mathbf X_r}\Phi_{\mathcal B}\ne\mathbf0$, the local level-set normal, acceleration direction, and acceleration magnitude obey
 
 $$
 \widehat{\mathbf n}_{\Phi}
@@ -4733,13 +4639,9 @@ $$
 \|\nabla_{\mathbf X_r}\Phi_{\mathcal B}\|.
 $$
 
-Plainly: the normalized gradient gives only the local normal direction, the
-minus sign selects the acceleration direction, and the unnormalized gradient
-retains the acceleration magnitude. Direction alone is not the complete
-acceleration vector.
+Plainly: the normalized gradient gives only the local normal direction, the minus sign selects the acceleration direction, and the unnormalized gradient retains the acceleration magnitude. Direction alone is not the complete acceleration vector.
 
-At a cancellation point, and under a small receiver displacement away from a
-regular point, the same representation gives
+At a cancellation point, and under a small receiver displacement away from a regular point, the same representation gives
 
 $$
 \nabla_{\mathbf X_r}\Phi_{\mathcal B}=\mathbf0
@@ -4751,63 +4653,25 @@ $$
 -\nabla_{\mathbf X_r}^{2}\Phi_{\mathcal B}.
 $$
 
-Plainly: when the row accelerations cancel, the gradient vanishes, so there is
-no preferred level-set normal and the net acceleration is zero. The Hessian,
-which is the matrix of second scalar derivatives, and related curvature data
-describe how the acceleration changes after displacement. They are not extra
-instantaneous acceleration contributions.
+Plainly: when the row accelerations cancel, the gradient vanishes, so there is no preferred level-set normal and the net acceleration is zero. The Hessian, which is the matrix of second scalar derivatives, and related curvature data describe how the acceleration changes after displacement. They are not extra instantaneous acceleration contributions.
 
-Finite induction over added architrinos is an intuitive corollary, not the
-proof: after the retained histories and regular branch chart are fixed, one may
-start with one admitted row and add the rows associated with each further
-label. This reasoning does not transfer directly to self-consistently evolved
-$N$-architrino solutions, because adding an architrino may change every
-previous trajectory, causal root, transmitter-side weight, and branch
-identity.
+Finite induction over added architrinos is an intuitive corollary, not the proof: after the retained histories and regular branch chart are fixed, one may start with one admitted row and add the rows associated with each further label. This reasoning does not transfer directly to self-consistently evolved $N$-architrino solutions, because adding an architrino may change every previous trajectory, causal root, transmitter-side weight, and branch identity.
 
-Plainly: adding another fixed ledger entry preserves a finite sum. Adding a
-new moving architrino to the dynamical system can rebuild the ledger itself, so
-the old induction hypotheses must be proved again on the new histories.
+Plainly: adding another fixed ledger entry preserves a finite sum. Adding a new moving architrino to the dynamical system can rebuild the ledger itself, so the old induction hypotheses must be proved again on the new histories.
 
-The characteristic-tail construction in the receiver-gradient discussion
-supplies an exact receiver-gradient identity for its declared regularized
-kernel, retained-history conditions, and regular branch chart. It is therefore
-an example of the kind of per-row identity that the conditional theorem can
-use only where its normalization, polarity, root selection, regularization,
-history depth, and boundary convention match the ledger row. It does not by
-itself establish an exact action, a conservation account, an independently
-evolving causal-wake state, a globally defined scalar, or a singular
-self-inclusive continuation.
+The characteristic-tail construction in the receiver-gradient discussion supplies an exact receiver-gradient identity for its declared regularized kernel, retained-history conditions, and regular branch chart. It is therefore an example of the kind of per-row identity that the conditional theorem can use only where its normalization, polarity, root selection, regularization, history depth, and boundary convention match the ledger row. It does not by itself establish an exact action, a conservation account, an independently evolving causal-wake state, a globally defined scalar, or a singular self-inclusive continuation.
 
-Plainly: the characteristic-tail calculation proves one controlled local
-gradient equality. It does not turn that local equality into a complete
-history law, boundary law, or universe-wide scalar.
+Plainly: the characteristic-tail calculation proves one controlled local gradient equality. It does not turn that local equality into a complete history law, boundary law, or universe-wide scalar.
 
-A raw $1/r^2$ wake-intensity scalar is not the required representative: its
-receiver gradient has inverse-cube radial scaling rather than the canonical
-inverse-square acceleration scaling. A bare $1/r$ scalar is also not a
-universal delayed-wake solution: root-constrained differentiation carries a
-signed transmitter factor, and the direct scalar action route leaves the
-derivative-of-constraint residual derived later in this chapter. A displayed
-wake-intensity scalar or display-only color transfer is therefore not a
-physical potential. None of these scalar constructions licenses an additional
-slope, curvature, or Hessian response in the Master EOM.
+A raw $1/r^2$ wake-intensity scalar is not the required representative: its receiver gradient has inverse-cube radial scaling rather than the canonical inverse-square acceleration scaling. A bare $1/r$ scalar is also not a universal delayed-wake solution: root-constrained differentiation carries a signed transmitter factor, and the direct scalar action route leaves the derivative-of-constraint residual derived later in this chapter. A displayed wake-intensity scalar or display-only color transfer is therefore not a physical potential. None of these scalar constructions licenses an additional slope, curvature, or Hessian response in the Master EOM.
 
-Plainly: a picture of wake intensity can be useful without being the scalar
-whose gradient equals the acceleration ledger. Differentiating the wrong
-scalar gives the wrong acceleration, and differentiating any display a second
-time would add a response that the Master Equation does not contain.
+Plainly: a picture of wake intensity can be useful without being the scalar whose gradient equals the acceleration ledger. Differentiating the wrong scalar gives the wrong acceleration, and differentiating any display a second time would add a response that the Master Equation does not contain.
 
-The finite theorem has no implication by itself for action, energy, momentum,
-angular momentum, conservation, stability, retention, or physical
-realization. Each such claim requires its own Architrino-native derivation and
-boundary account.
+The finite theorem has no implication by itself for action, energy, momentum, angular momentum, conservation, stability, retention, or physical realization. Each such claim requires its own Architrino-native derivation and boundary account.
 
-Plainly: rewriting the same finite acceleration sum as a scalar gradient does
-not create new dynamics or new conserved quantities.
+Plainly: rewriting the same finite acceleration sum as a scalar gradient does not create new dynamics or new conserved quantities.
 
-**Open theorem target: global extension.** Define the complete acceleration
-one-form on a regular receiver domain by
+**Open theorem target: global extension.** Define the complete acceleration one-form on a regular receiver domain by
 
 $$
 \omega_{\mathcal B}
@@ -4815,16 +4679,9 @@ $$
 -\mathbf A_{\mathrm{total}}\cdot d\mathbf X_r.
 $$
 
-Plainly: $\omega_{\mathcal B}$ records the component of the negative total
-acceleration along each possible receiver displacement. If a scalar exists,
-this one-form must equal the scalar differential $d\Phi_{\mathcal B}$.
+Plainly: $\omega_{\mathcal B}$ records the component of the negative total acceleration along each possible receiver displacement. If a scalar exists, this one-form must equal the scalar differential $d\Phi_{\mathcal B}$.
 
-A global extension must prove local closedness
-$d\omega_{\mathcal B}=0$ on every certified regular receiver domain, check
-closed-loop integrals and the agreement of scalar charts on overlaps, and keep
-sources, folds, coincidences, and self-diagonal events as quarantined
-boundaries unless an accepted prescription covers them. For a countable or
-continuum Noether-sea limit, it must also justify
+A global extension must prove local closedness $d\omega_{\mathcal B}=0$ on every certified regular receiver domain, check closed-loop integrals and the agreement of scalar charts on overlaps, and keep sources, folds, coincidences, and self-diagonal events as quarantined boundaries unless an accepted prescription covers them. For a countable or continuum Noether-sea limit, it must also justify
 
 $$
 \nabla_{\mathbf X_r}
@@ -4833,44 +4690,23 @@ $$
 \int \nabla_{\mathbf X_r}\Phi_b\,d\mu(b)
 $$
 
-using declared lower-distance and Jacobian bounds together with an integrable
-summability bound on the source-history measure $\mu$.
+using declared lower-distance and Jacobian bounds together with an integrable summability bound on the source-history measure $\mu$.
 
-Plainly: local scalar pieces become one global scalar only if they have no
-circulation, match wherever their charts overlap, and never cross an untreated
-singularity. An infinite sea adds another burden: differentiating the combined
-history must be provably interchangeable with summing or integrating its
-individual rows.
+Plainly: local scalar pieces become one global scalar only if they have no circulation, match wherever their charts overlap, and never cross an untreated singularity. An infinite sea adds another burden: differentiating the combined history must be provably interchangeable with summing or integrating its individual rows.
 
-The scalar representation is falsified on its claimed domain by any one of the
-following operator-checkable results:
+The scalar representation is falsified on its claimed domain by any one of the following operator-checkable results:
 
 - nonzero curl of the complete acceleration on a certified regular chart;
-- a nonzero integral of the acceleration around an admissible closed receiver
-  loop;
-- failure of local scalar representatives to agree, up to their allowed chart
-  constants, on overlaps;
-- a certified nonzero residual
-  $\mathbf A_{\mathrm{ledger}}+
-  \nabla_{\mathbf X_r}\Phi_{\mathcal B}$ when the scalar gradient and unchanged
-  causal-root ledger are computed independently; or
-- failure of the declared distance, Jacobian, or summability bound needed for
-  the countable or continuum source limit.
+- a nonzero integral of the acceleration around an admissible closed receiver loop;
+- failure of local scalar representatives to agree, up to their allowed chart constants, on overlaps;
+- a certified nonzero residual $\mathbf A_{\mathrm{ledger}}+ \nabla_{\mathbf X_r}\Phi_{\mathcal B}$ when the scalar gradient and unchanged causal-root ledger are computed independently; or
+- failure of the declared distance, Jacobian, or summability bound needed for the countable or continuum source limit.
 
-Plainly: any one of these checks shows that the proposed scalar description
-does not reproduce or extend the acceleration ledger on the stated domain. It
-does not overturn the postulated vector superposition rule, which remains the
-substrate law even when a scalar representation fails.
+Plainly: any one of these checks shows that the proposed scalar description does not reproduce or extend the acceleration ledger on the stated domain. It does not overturn the postulated vector superposition rule, which remains the substrate law even when a scalar representation fails.
 
-**Consequence:** The problem of $N$ interacting architrinos reduces to solving
-$N$ coupled delay differential equations (DDEs), one per architrino, with each
-depending on the retained history of all transmitters and on the certified
-active causal-root records.
+**Consequence:** The problem of $N$ interacting architrinos reduces to solving $N$ coupled delay differential equations (DDEs), one per architrino, with each depending on the retained history of all transmitters and on the certified active causal-root records.
 
-Plainly: each architrino's next acceleration depends on the stored past paths
-that supply its currently admitted wake intersections. The equations are
-coupled because changing one path can change the later root ledger seen by the
-others.
+Plainly: each architrino's next acceleration depends on the stored past paths that supply its currently admitted wake intersections. The equations are coupled because changing one path can change the later root ledger seen by the others.
 
 ---
 
@@ -5019,11 +4855,7 @@ $$
 
 so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
 
-**Proposition 5 (exact transverse projection for a uniformly translating point cloud; derived).**
-Let two architrinos translate with the same constant velocity
-$\mathbf V=V\hat{\mathbf e}$, where $V=\|\mathbf V\|$ and
-$0\leq\beta_f=V/c_f<1$. At a
-reception time $T_r$, write their instantaneous ordered separation as
+**Proposition 5 (exact transverse projection for a uniformly translating point cloud; derived).** Let two architrinos translate with the same constant velocity $\mathbf V=V\hat{\mathbf e}$, where $V=\|\mathbf V\|$ and $0\leq\beta_f=V/c_f<1$. At a reception time $T_r$, write their instantaneous ordered separation as
 $$
 \mathbf s
 \equiv
@@ -5045,9 +4877,7 @@ p(\beta_f,\psi)
 \equiv
 \alpha-\beta_f\cos\psi.
 $$
-For the unique positive-delay partner root, let
-$y\equiv c_f(T_r-T_t)/d$. Uniform translation of the fixed point cloud and the causal-root
-constraint give
+For the unique positive-delay partner root, let $y\equiv c_f(T_r-T_t)/d$. Uniform translation of the fixed point cloud and the causal-root constraint give
 $$
 \left\|
 \hat{\mathbf n}+\beta_f y\hat{\mathbf e}
@@ -5064,8 +4894,7 @@ y
 =
 \frac{1}{p}.
 $$
-The arriving separation, line of action, transmitter-side factor, and
-acceleration weight are consequently
+The arriving separation, line of action, transmitter-side factor, and acceleration weight are consequently
 $$
 r_{ij}=dy,
 \qquad
@@ -5077,8 +4906,7 @@ D_{t,ij}=c_f\alpha p,
 \qquad
 W_{ij}^{\mathrm{acc}}=\frac{1}{\alpha p}.
 $$
-Substitution into the canonical per-hit law gives the exact
-general-orientation acceleration
+Substitution into the canonical per-hit law gives the exact general-orientation acceleration
 $$
 \boxed{
 \mathbf A_{ij}
@@ -5092,11 +4920,7 @@ p^2\hat{\mathbf n}
 }{\alpha}
 }
 $$
-and, with
-$\hat{\mathbf n}_{\perp}
-\equiv
-\hat{\mathbf n}-(\hat{\mathbf n}\cdot\hat{\mathbf e})\hat{\mathbf e}$,
-its transverse projection is
+and, with $\hat{\mathbf n}_{\perp} \equiv \hat{\mathbf n}-(\hat{\mathbf n}\cdot\hat{\mathbf e})\hat{\mathbf e}$, its transverse projection is
 $$
 \boxed{
 \mathbf A_{ij,\perp}
@@ -5128,10 +4952,7 @@ $$
 \equiv
 \frac{1}{\sqrt{1-\beta_f^2}}.
 $$
-Here $\gamma_f$ is only an abbreviation produced by the Euclidean
-causal-root algebra; no relativistic transformation or observer-level
-law has entered the derivation. In this configuration
-$\alpha=p=1/\gamma_f$, so
+Here $\gamma_f$ is only an abbreviation produced by the Euclidean causal-root algebra; no relativistic transformation or observer-level law has entered the derivation. In this configuration $\alpha=p=1/\gamma_f$, so
 $$
 \boxed{
 \mathbf A_{ij}
@@ -5150,28 +4971,13 @@ $$
 \frac{|q_iq_j|}{\gamma_f d^2}
 }
 $$
-with no expansion or truncation in $\beta_f$. The
-general-orientation formula depends explicitly on $\psi$, so the
-$1/\gamma_f$ result is not an orientation-independent identity.
-Perpendicular separation is the only fixed orientation for which the
-displayed equality holds identically in $\beta_f$; isolated
-$\beta_f$-dependent angles may equal the same numerical value but do
-not extend the identity to a general orientation.
+with no expansion or truncation in $\beta_f$. The general-orientation formula depends explicitly on $\psi$, so the $1/\gamma_f$ result is not an orientation-independent identity. Perpendicular separation is the only fixed orientation for which the displayed equality holds identically in $\beta_f$; isolated $\beta_f$-dependent angles may equal the same numerical value but do not extend the identity to a general orientation.
 
-This proposition is derived from the canonical per-hit acceleration,
-the causal-root constraint, uniform translation of the fixed point cloud, and the
-declared uniform absolute-time emission measure that supplies
-$W_{ij}^{\mathrm{acc}}$. Its scope is one ordered partner hit with
-$0\leq\beta_f<1$ and nonzero instantaneous separation. The
-independent reference is the closed-form perpendicular projection
-$\kappa|q_iq_j|/(\gamma_f d^2)$; numerical evaluation can check the
-algebra but does not establish the proposition.
+This proposition is derived from the canonical per-hit acceleration, the causal-root constraint, uniform translation of the fixed point cloud, and the declared uniform absolute-time emission measure that supplies $W_{ij}^{\mathrm{acc}}$. Its scope is one ordered partner hit with $0\leq\beta_f<1$ and nonzero instantaneous separation. The independent reference is the closed-form perpendicular projection $\kappa|q_iq_j|/(\gamma_f d^2)$; numerical evaluation can check the algebra but does not establish the proposition.
 
 **Scope boundary and explicit non-claims.**
 
-**Full-vector non-claim.** The full perpendicular-configuration vector
-does not reproduce the observer-level two-body comparison target. It
-retains the longitudinal component
+**Full-vector non-claim.** The full perpendicular-configuration vector does not reproduce the observer-level two-body comparison target. It retains the longitudinal component
 $$
 \mathbf A_{ij,\parallel}
 =
@@ -5179,16 +4985,9 @@ $$
 \frac{|q_iq_j|}{d^2}
 \beta_f\hat{\mathbf e}
 $$
-which is first order in $\beta_f$. Reversing the ordered transverse
-separation reverses the transverse component but leaves this
-longitudinal component unchanged.
+which is first order in $\beta_f$. Reversing the ordered transverse separation reverses the transverse component but leaves this longitudinal component unchanged.
 
-**Parallel-separation non-claim.** For instantaneous separation
-parallel to the translation, the trailing receiver has magnitude
-$\kappa|q_iq_j|(1+\beta_f)/d^2$ and the leading receiver has magnitude
-$\kappa|q_iq_j|(1-\beta_f)/d^2$. The observer-level comparison target
-instead assigns $\kappa|q_iq_j|(1-\beta_f^2)/d^2$ to both. The
-symmetric part is therefore already wrong at order $\beta_f^2$.
+**Parallel-separation non-claim.** For instantaneous separation parallel to the translation, the trailing receiver has magnitude $\kappa|q_iq_j|(1+\beta_f)/d^2$ and the leading receiver has magnitude $\kappa|q_iq_j|(1-\beta_f)/d^2$. The observer-level comparison target instead assigns $\kappa|q_iq_j|(1-\beta_f^2)/d^2$ to both. The symmetric part is therefore already wrong at order $\beta_f^2$.
 
 **Fixed-point-cloud drift non-claim.** The perpendicular pair sum is nonzero:
 $$
@@ -5198,63 +4997,25 @@ $$
 \frac{|q_iq_j|}{d^2}
 \beta_f\hat{\mathbf e}
 $$
-Thus a two-member configuration with fixed perpendicular separation cannot keep
-the assumed common constant velocity under the canonical partner-hit law.
-This is an acceleration statement, not a primitive mechanical-momentum claim.
+Thus a two-member configuration with fixed perpendicular separation cannot keep the assumed common constant velocity under the canonical partner-hit law. This is an acceleration statement, not a primitive mechanical-momentum claim.
 
-**Covariance and recovery non-claim.** The result does not establish
-Lorentz covariance of the substrate law, an observer-level two-body
-law, a translating assembly branch, or a common
-clock-ruler-momentum response.
+**Covariance and recovery non-claim.** The result does not establish Lorentz covariance of the substrate law, an observer-level two-body law, a translating assembly branch, or a common clock-ruler-momentum response.
 
-The result is therefore one exactly recovered projection obtained
-without relativistic input. It shows that the canonical
-transmitter-side acceleration weight contains the required geometric
-factor on this branch, while the longitudinal residual and pair sum
-sharpen the separate question of what is missing from the line of
-action. The fixed-point-cloud translation geometry does not by itself
-identify the transmitter-side origin uniquely: because
-$\mathbf V_i=\mathbf V_j$ here, replacing $D_t$ by $D_r$ leaves the
-weight unchanged. The transmitter-side attribution instead comes
-from the uniform-emission causal-surface-density derivation above.
+The result is therefore one exactly recovered projection obtained without relativistic input. It shows that the canonical transmitter-side acceleration weight contains the required geometric factor on this branch, while the longitudinal residual and pair sum sharpen the separate question of what is missing from the line of action. The fixed-point-cloud translation geometry does not by itself identify the transmitter-side origin uniquely: because $\mathbf V_i=\mathbf V_j$ here, replacing $D_t$ by $D_r$ leaves the weight unchanged. The transmitter-side attribution instead comes from the uniform-emission causal-surface-density derivation above.
 
 **Falsifiers and attribution check.**
 
-1. In normalized units $c_f=1$ with
-   $\kappa=|q_iq_j|=d=1$, the perpendicular projection must equal
-   $\sqrt{1-\beta_f^2}$. At $\beta_f=0.9$ and $0.99$ it must be,
-   respectively, approximately $0.4358898944$ and $0.1410673598$.
-   Any departure at any order overturns the exact projection claim.
-2. At any $\beta_f>0$, direct evaluation of the full perpendicular
-   vector must retain a longitudinal component of signed magnitude
-   $\kappa\sigma_{ij}|q_iq_j|\beta_f/d^2$. A vanishing component
-   contradicts the proposition and indicates an incorrect evaluator.
-3. Replacing transmitter velocity by receiver velocity inside the
-   weight on this fixed point-cloud branch must leave the result unchanged because
-   the velocities are equal. That outcome overturns any claim that
-   this projection alone uniquely identifies a transmitter-side
-   weight, but it does not overturn the projection algebra. A
-   discriminating check must instead hold the arriving root and
-   transmitter state fixed while changing receiver velocity, or use
-   $\mathbf V_i\ne\mathbf V_j$: the canonical per-hit strength must
-   remain unchanged, and any receiver-velocity dependence falsifies
-   the transmitter-side-only acceleration weight.
+1. In normalized units $c_f=1$ with $\kappa=|q_iq_j|=d=1$, the perpendicular projection must equal $\sqrt{1-\beta_f^2}$. At $\beta_f=0.9$ and $0.99$ it must be, respectively, approximately $0.4358898944$ and $0.1410673598$. Any departure at any order overturns the exact projection claim.
+2. At any $\beta_f>0$, direct evaluation of the full perpendicular vector must retain a longitudinal component of signed magnitude $\kappa\sigma_{ij}|q_iq_j|\beta_f/d^2$. A vanishing component contradicts the proposition and indicates an incorrect evaluator.
+3. Replacing transmitter velocity by receiver velocity inside the weight on this fixed point-cloud branch must leave the result unchanged because the velocities are equal. That outcome overturns any claim that this projection alone uniquely identifies a transmitter-side weight, but it does not overturn the projection algebra. A discriminating check must instead hold the arriving root and transmitter state fixed while changing receiver velocity, or use $\mathbf V_i\ne\mathbf V_j$: the canonical per-hit strength must remain unchanged, and any receiver-velocity dependence falsifies the transmitter-side-only acceleration weight.
 
 ###### Exact Fixed Point-Cloud Residual
 
-This calculation is a deliberately restricted negative control. Assume
-$\mathbf X_i(T)=\mathbf R_i+\mathbf U T$ for every member, so every internal
-velocity relative to the group center vanishes and every pair distance is
-constant. Candidate braids do not satisfy those assumptions: their members
-orbit internally and their pair distances generally vary with time.
+This calculation is a deliberately restricted negative control. Assume $\mathbf X_i(T)=\mathbf R_i+\mathbf U T$ for every member, so every internal velocity relative to the group center vanishes and every pair distance is constant. Candidate braids do not satisfy those assumptions: their members orbit internally and their pair distances generally vary with time.
 
-Plainly: this subsection tests whether a frozen point cloud can drift without
-deforming. It does not test an orbiting assembly.
+Plainly: this subsection tests whether a frozen point cloud can drift without deforming. It does not test an orbiting assembly.
 
-The perpendicular example is one orientation of the resulting general
-three-dimensional formula. Let an instantaneous unordered pair have unit separation
-$\hat{\mathbf n}_{ij}$, common drift
-$\mathbf V=\beta_f c_f\hat{\mathbf e}$, and signed inverse-square coefficient
+The perpendicular example is one orientation of the resulting general three-dimensional formula. Let an instantaneous unordered pair have unit separation $\hat{\mathbf n}_{ij}$, common drift $\mathbf V=\beta_f c_f\hat{\mathbf e}$, and signed inverse-square coefficient
 $$
 w_{ij}
 \equiv
@@ -5272,26 +5033,13 @@ $$
 \right].
 }
 $$
-This expression is exact only for the fixed-point-cloud common-translation ansatz and does
-not assume that the pair lies in a selected plane.
+This expression is exact only for the fixed-point-cloud common-translation ansatz and does not assume that the pair lies in a selected plane.
 
-Plainly: delayed partner hits do not usually cancel when the whole pair is
-assigned one common velocity. Their leftover depends only on the drift
-direction and the pair's instantaneous direction and signed strength.
+Plainly: delayed partner hits do not usually cancel when the whole pair is assigned one common velocity. Their leftover depends only on the drift direction and the pair's instantaneous direction and signed strength.
 
-This is not repaired by replacing the velocity sum with a polarity-weighted
-one. Like-polarity weighting preserves the common-mode residual; for an
-unlike-polarity pair it instead leaves a nonzero separation-direction
-component. More generally, a universal differentiable mechanical map
-$\sum_i f(\mathbf V_i)$ has local rate
-$D f(\mathbf V)\sum_i\mathbf A_i$ on a common-drift state, so any
-nondegenerate local response inherits the obstruction. The theory has not
-derived $f$, and the quadratic $K_\mu$ map remains a bookkeeping convention.
+This is not repaired by replacing the velocity sum with a polarity-weighted one. Like-polarity weighting preserves the common-mode residual; for an unlike-polarity pair it instead leaves a nonzero separation-direction component. More generally, a universal differentiable mechanical map $\sum_i f(\mathbf V_i)$ has local rate $D f(\mathbf V)\sum_i\mathbf A_i$ on a common-drift state, so any nondegenerate local response inherits the obstruction. The theory has not derived $f$, and the quadratic $K_\mu$ map remains a bookkeeping convention.
 
-Plainly: the acceleration test does not depend on a mass or momentum
-definition. A future kinetic account can change the conservation ledger, but
-it cannot make an assumed constant velocity constant when its calculated time
-derivative is nonzero.
+Plainly: the acceleration test does not depend on a mass or momentum definition. A future kinetic account can change the conservation ledger, but it cannot make an assumed constant velocity constant when its calculated time derivative is nonzero.
 
 For an $N$-member fixed point cloud, define the signed second-moment operator
 $$
@@ -5317,31 +5065,17 @@ $$
 \mathsf M\hat{\mathbf e}=\frac{W}{2}\hat{\mathbf e}.
 $$
 
-Plainly: cancellation is a signed directional-balance condition, not merely a
-head count or a visual symmetry claim.
+Plainly: cancellation is a signed directional-balance condition, not merely a head count or a visual symmetry claim.
 
-In a plane containing the drift direction, write
-$\hat{\mathbf n}_{ij}=(\cos\psi_{ij},\sin\psi_{ij},0)$ in that plane. The null
-condition becomes the vanishing signed second harmonic
+In a plane containing the drift direction, write $\hat{\mathbf n}_{ij}=(\cos\psi_{ij},\sin\psi_{ij},0)$ in that plane. The null condition becomes the vanishing signed second harmonic
 $$
 \sum_{i<j}w_{ij}e^{2\mathrm i\psi_{ij}}=0.
 $$
-A regular triangle and regular square satisfy this planar condition for equal
-like-polarity weights. An alternating-polarity square also satisfies it because
-its edge and diagonal direction orbits cancel separately. By contrast,
-rotational symmetry about the drift axis only removes transverse components in
-three dimensions; it does not by itself impose the required polar second
-moment. For example, an equal-weight regular tetrahedron has
-$\mathsf M=(W/3)\mathsf I$, hence
-$\mathsf K=(W/3)\mathsf I$ and no nonzero drift-direction null.
+A regular triangle and regular square satisfy this planar condition for equal like-polarity weights. An alternating-polarity square also satisfies it because its edge and diagonal direction orbits cancel separately. By contrast, rotational symmetry about the drift axis only removes transverse components in three dimensions; it does not by itself impose the required polar second moment. For example, an equal-weight regular tetrahedron has $\mathsf M=(W/3)\mathsf I$, hence $\mathsf K=(W/3)\mathsf I$ and no nonzero drift-direction null.
 
-Plainly: threefold symmetry is sufficient only in the appropriate planar
-second-harmonic setting. A three-dimensional object can look highly symmetric
-and still retain a common-drift residual.
+Plainly: threefold symmetry is sufficient only in the appropriate planar second-harmonic setting. A three-dimensional object can look highly symmetric and still retain a common-drift residual.
 
-If the fixed point cloud has an eigenmode
-$\mathsf K\hat{\mathbf e}=\lambda\hat{\mathbf e}$ and
-$\mathbf U=N^{-1}\sum_i\mathbf V_i$, then the local common-mode estimate is
+If the fixed point cloud has an eigenmode $\mathsf K\hat{\mathbf e}=\lambda\hat{\mathbf e}$ and $\mathbf U=N^{-1}\sum_i\mathbf V_i$, then the local common-mode estimate is
 $$
 \frac{d\mathbf U}{dT}
 =
@@ -5351,47 +5085,29 @@ $$
 =
 \frac{Nc_f}{2\kappa|\lambda|}.
 $$
-Writing $\kappa|\lambda|/N=C_g a_{\mathrm{int}}$ and
-$t_{\mathrm{dyn}}=v_{\mathrm{int}}/a_{\mathrm{int}}$ gives
+Writing $\kappa|\lambda|/N=C_g a_{\mathrm{int}}$ and $t_{\mathrm{dyn}}=v_{\mathrm{int}}/a_{\mathrm{int}}$ gives
 $$
 \frac{\tau_{\mathrm{drift}}}{t_{\mathrm{dyn}}}
 =
 \frac{c_f}{2C_gv_{\mathrm{int}}}.
 $$
-Within this fixed point-cloud ansatz, the often-used
-$c_f/v_{\mathrm{int}}$ scaling is therefore only an order-of-magnitude
-statement with a geometry coefficient; comparison with a full cycle adds the
-cycle's own numerical factor. A time-dependent internal geometry requires a
-return-map or Floquet calculation rather than this frozen exponential
-estimate.
+Within this fixed point-cloud ansatz, the often-used $c_f/v_{\mathrm{int}}$ scaling is therefore only an order-of-magnitude statement with a geometry coefficient; comparison with a full cycle adds the cycle's own numerical factor. A time-dependent internal geometry requires a return-map or Floquet calculation rather than this frozen exponential estimate.
 
-Plainly: a nonzero residual forbids indefinite translation of that fixed point
-cloud, but it does not by itself say whether visible deformation takes one
-cycle or many.
+Plainly: a nonzero residual forbids indefinite translation of that fixed point cloud, but it does not by itself say whether visible deformation takes one cycle or many.
 
-The independent reference for the pair formula is direct closed-form addition
-of the two ordered roots in Proposition 5. The point-cloud analyzer
-`scripts/equation-mapping/analyze-fixed-point-cloud-residual.mjs` separately
-checks the matrix identity, planar nulls, and the tetrahedral negative control.
-It is not a Borg-catalog evaluator. Sampling a prescribed orbit at frozen
-phases while discarding its internal velocities does not evaluate that orbit's
-history and supplies no necessary condition for a moving assembly.
+The independent reference for the pair formula is direct closed-form addition of the two ordered roots in Proposition 5. The point-cloud analyzer `scripts/equation-mapping/analyze-fixed-point-cloud-residual.mjs` separately checks the matrix identity, planar nulls, and the tetrahedral negative control. It is not a Borg-catalog evaluator. Sampling a prescribed orbit at frozen phases while discarding its internal velocities does not evaluate that orbit's history and supplies no necessary condition for a moving assembly.
 
-Plainly: the point-cloud analyzer checks the algebra above and nothing more. It
-cannot pass or fail an orbiting candidate.
+Plainly: the point-cloud analyzer checks the algebra above and nothing more. It cannot pass or fail an orbiting candidate.
 
 ###### Relative-Periodic Moving-Assembly Test
 
-A translating orbiting assembly must be tested on its actual moving history.
-For drift speed $u$ along $\hat{\mathbf e}$, write a candidate branch as
+A translating orbiting assembly must be tested on its actual moving history. For drift speed $u$ along $\hat{\mathbf e}$, write a candidate branch as
 $$
 \mathbf X_a^{(u)}(T)
 =
 uT\hat{\mathbf e}+\boldsymbol\xi_a^{(u)}(T).
 $$
-The internal orbit may change with $u$; it is not required to remain an
-undeformed copy of the rest orbit. Relative-periodic closure requires a period
-$P_u$ and an allowed member permutation $\pi$ such that
+The internal orbit may change with $u$; it is not required to remain an undeformed copy of the rest orbit. Relative-periodic closure requires a period $P_u$ and an allowed member permutation $\pi$ such that
 $$
 \boldsymbol\xi_a^{(u)}(T+P_u)
 =
@@ -5402,9 +5118,7 @@ $$
 \dot{\boldsymbol\xi}_{\pi(a)}^{(u)}(T).
 $$
 
-Plainly: after one cycle, the assembly may have moved as a whole and identical
-members may have exchanged roles, but the complete internal position and
-velocity pattern must return.
+Plainly: after one cycle, the assembly may have moved as a whole and identical members may have exchanged roles, but the complete internal position and velocity pattern must return.
 
 The pair distances are periodic under the same relabeling, not constant:
 $$
@@ -5412,8 +5126,7 @@ d_{ab}(T+P_u)
 =
 d_{\pi(a)\pi(b)}(T).
 $$
-The branch must satisfy the full master-equation residual on the evolved
-history,
+The branch must satisfy the full master-equation residual on the evolved history,
 $$
 \mathbf R_a^{(u)}(T_r)
 \equiv
@@ -5425,8 +5138,7 @@ $$
 \mathbf0.
 $$
 
-Plainly: orbital acceleration and every delayed hit remain in the test. A
-snapshot-only cancellation cannot substitute for this equation.
+Plainly: orbital acceleration and every delayed hit remain in the test. A snapshot-only cancellation cannot substitute for this equation.
 
 The delayed ledger must close with the orbit. Each retained root must map as
 $$
@@ -5434,23 +5146,13 @@ $$
 \longmapsto
 (\pi(a),\pi(j),T+P_u,T_t+P_u),
 $$
-with root identity, multiplicity, $D_t$, acceleration weight, inactive
-intervals, finite-memory contents, and event conventions preserved. Acceptance
-then requires an EOM-solver evolution record, the full position-velocity
-return residual modulo translation and permutation, the master-equation
-residual along the orbit, and the applicable stability or Floquet
-certificate.
+with root identity, multiplicity, $D_t$, acceleration weight, inactive intervals, finite-memory contents, and event conventions preserved. Acceptance then requires an EOM-solver evolution record, the full position-velocity return residual modulo translation and permutation, the master-equation residual along the orbit, and the applicable stability or Floquet certificate.
 
-Plainly: a successful moving assembly is a repeated solution of the complete
-delayed dynamics, not a sequence of geometrically attractive pictures.
+Plainly: a successful moving assembly is a repeated solution of the complete delayed dynamics, not a sequence of geometrically attractive pictures.
 
-Prescribed-geometry records may be checked for closure of their declared chart,
-but that is an integrity check only. Because they were not produced by the EOM
-solver, they cannot establish or refute existence or stability of a
-relative-periodic moving branch.
+Prescribed-geometry records may be checked for closure of their declared chart, but that is an integrity check only. Because they were not produced by the EOM solver, they cannot establish or refute existence or stability of a relative-periodic moving branch.
 
-For a small-drift continuation from a rest branch, the useful first-order
-expansion is
+For a small-drift continuation from a rest branch, the useful first-order expansion is
 $$
 \boldsymbol\xi^{(u)}
 =
@@ -5458,38 +5160,23 @@ $$
 +u\boldsymbol\chi
 +O(u^2).
 $$
-Substitution into the full delayed equation gives a periodic correction
-problem of the form
+Substitution into the full delayed equation gives a periodic correction problem of the form
 $$
 \mathcal L\boldsymbol\chi
 =
 -\mathbf B_{\hat{\mathbf e}},
 $$
-after the neutral translation, phase, and allowed relabeling modes are fixed.
-Here $\mathcal L$ is the full delayed linearization about the rest branch and
-$\mathbf B_{\hat{\mathbf e}}$ is the uniform-drift defect.
+after the neutral translation, phase, and allowed relabeling modes are fixed. Here $\mathcal L$ is the full delayed linearization about the rest branch and $\mathbf B_{\hat{\mathbf e}}$ is the uniform-drift defect.
 
-Plainly: the correct first question is whether the internal orbit can deform
-slightly so that all delayed accelerations still close. Freezing that
-deformation to zero recovers the fixed point-cloud restriction, not a
-necessary condition for the moving branch.
+Plainly: the correct first question is whether the internal orbit can deform slightly so that all delayed accelerations still close. Freezing that deformation to zero recovers the fixed point-cloud restriction, not a necessary condition for the moving branch.
 
-Claim grade: the relative-periodic conditions are derived acceptance
-obligations, not evidence that a branch exists. A certified EOM-solver record
-that satisfies the full residual, root-ledger return, state return, and
-stability conditions passes this test. Failure of any one condition falsifies
-that particular claimed branch; failure of a frozen point-cloud overlay does
-not.
+Claim grade: the relative-periodic conditions are derived acceptance obligations, not evidence that a branch exists. A certified EOM-solver record that satisfies the full residual, root-ledger return, state return, and stability conditions passes this test. Failure of any one condition falsifies that particular claimed branch; failure of a frozen point-cloud overlay does not.
 
 ###### Restricted Transmitter-History Cancellation Family
 
-The canonical law's perpendicular projection differs from the commonly used
-observer-level two-body comparison target in its longitudinal component. A
-constant rescaling of $\kappa$ cannot reconcile the two forms because their
-relative gap varies as $\gamma_f^2$.
+The canonical law's perpendicular projection differs from the commonly used observer-level two-body comparison target in its longitudinal component. A constant rescaling of $\kappa$ cannot reconcile the two forms because their relative gap varies as $\gamma_f^2$.
 
-That mismatch does not prove that receiver velocity is mathematically
-necessary. Define the inertially extrapolated separation at a causal hit,
+That mismatch does not prove that receiver velocity is mathematically necessary. Define the inertially extrapolated separation at a causal hit,
 $$
 \mathbf s_{ij}
 \equiv
@@ -5515,36 +5202,13 @@ b_j^2=\frac{\|\mathbf V_j(T_t)\|^2}{c_f^2},
 \qquad
 H(b^2,0)=\sqrt{1-b^2}.
 $$
-For fixed-point-cloud common translation, reversing the pair sends
-$\mathbf s_{ij}\mapsto-\mathbf s_{ij}$ while leaving the two scalar arguments
-unchanged. The pair therefore cancels exactly, receiver velocity remains
-absent, and the declared transverse target is recovered. The simplest member
-uses $H=\sqrt{1-b^2}$.
+For fixed-point-cloud common translation, reversing the pair sends $\mathbf s_{ij}\mapsto-\mathbf s_{ij}$ while leaving the two scalar arguments unchanged. The pair therefore cancels exactly, receiver velocity remains absent, and the declared transverse target is recovered. The simplest member uses $H=\sqrt{1-b^2}$.
 
-Plainly: the three requested algebraic properties can coexist without adding
-receiver velocity. The price is a different line of action and a different
-transmitter weight.
+Plainly: the three requested algebraic properties can coexist without adding receiver velocity. The price is a different line of action and a different transmitter weight.
 
-This family is guessed, not derived. It is not the canonical law, does not
-follow from the current uniform-emission surface-density argument, and has not
-been obtained from the accepted scalar action scaffold. It changes both the
-emission-site line of action and the root-density weight. The live closure
-question is therefore whether an Architrino-native wake construction derives
-one such member while preserving the accepted causal and conservation
-obligations. Deriving the canonical emission-site line of action and uniform
-emission measure from that family would falsify the stated incompatibility;
-showing that every admissible transmitter-history action reduces to the
-canonical residual would eliminate the family.
+This family is guessed, not derived. It is not the canonical law, does not follow from the current uniform-emission surface-density argument, and has not been obtained from the accepted scalar action scaffold. It changes both the emission-site line of action and the root-density weight. The live closure question is therefore whether an Architrino-native wake construction derives one such member while preserving the accepted causal and conservation obligations. Deriving the canonical emission-site line of action and uniform emission measure from that family would falsify the stated incompatibility; showing that every admissible transmitter-history action reduces to the canonical residual would eliminate the family.
 
-At kernel-class comparison level, a scalar causal kernel
-$\delta(\tilde g)/r$ supplies only a scalar root Jacobian, whereas a
-vector-current direct-action comparison contains an additional
-velocity-contraction numerator. Replacing that contraction by a constant is
-therefore a plausible structural source of the missing cancellation terms.
-This is an inferred comparison, not a derivation: causal-only time asymmetry
-and unresolved variation residuals can also contribute. A complete variation
-that closes the fixed-point-cloud residual without such a contraction would overturn this
-diagnosis.
+At kernel-class comparison level, a scalar causal kernel $\delta(\tilde g)/r$ supplies only a scalar root Jacobian, whereas a vector-current direct-action comparison contains an additional velocity-contraction numerator. Replacing that contraction by a constant is therefore a plausible structural source of the missing cancellation terms. This is an inferred comparison, not a derivation: causal-only time asymmetry and unresolved variation residuals can also contribute. A complete variation that closes the fixed-point-cloud residual without such a contraction would overturn this diagnosis.
 
 ###### Receiver Turning Is Not an Acceleration Singularity
 
@@ -5644,8 +5308,7 @@ $$
 \frac{d\mathbf Y}{dT}=\mathcal{G}(\mathbf Y_T),\qquad
 \mathbf Y_T(\theta)=\mathbf Y(T+\theta),\ \theta\in[-h,0]
 $$
-with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$.
-This is the convenient proof scaffold used here because the active-root extraction uses the implicit-function theorem on
+with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$. This is the convenient proof scaffold used here because the active-root extraction uses the implicit-function theorem on
 $$
 C^1
 $$
@@ -5683,8 +5346,7 @@ and
 $$
 \sup_{T<T^\ast,\ i,j}B^{\mathrm{active}}_{ij}(T)<\infty
 $$
-then $T_{\max}=\infty$.
-Here $r_{ij,\ell}(T)$ denotes the transmitter-receiver distance on branch $\ell$, and
+then $T_{\max}=\infty$. Here $r_{ij,\ell}(T)$ denotes the transmitter-receiver distance on branch $\ell$, and
 $$
 B^{\mathrm{active}}_{ij}(T)
 $$
@@ -5880,9 +5542,7 @@ An important open problem is to map the phase-space attractor landscape for self
 
 **Symmetry:** By polarity symmetry, both fall toward their common center of mass.
 
-**Equations:** On a retained partner branch, the radial coordinate
-$r(T)=\|\mathbf X_2(T)-\mathbf X_1(T)\|$ has the canonical receiver-side schematic form
-with transmitter-side acceleration weight:
+**Equations:** On a retained partner branch, the radial coordinate $r(T)=\|\mathbf X_2(T)-\mathbf X_1(T)\|$ has the canonical receiver-side schematic form with transmitter-side acceleration weight:
 
 $$
 \frac{d^2r}{dT^2}
@@ -5893,14 +5553,9 @@ W_p^{\mathrm{acc}}
 \text{on the retained branch}
 $$
 
-where the factor of 2 comes from the symmetry when both sides consume the same
-retained partner record. The stripped inverse-square form is only the
-near-rest, single-branch calibration $W_p^{\mathrm{acc}}\approx1$, not a
-canonical proof record.
+where the factor of 2 comes from the symmetry when both sides consume the same retained partner record. The stripped inverse-square form is only the near-rest, single-branch calibration $W_p^{\mathrm{acc}}\approx1$, not a canonical proof record.
 
-**Solution structure:** The slow, single-branch calibration has the same
-quadrature structure as Keplerian radial fall. A promoted branch must keep the
-same-record $D_t$, $D_r$, and $W^{\mathrm{acc}}$ record.
+**Solution structure:** The slow, single-branch calibration has the same quadrature structure as Keplerian radial fall. A promoted branch must keep the same-record $D_t$, $D_r$, and $W^{\mathrm{acc}}$ record.
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
@@ -5910,17 +5565,9 @@ same-record $D_t$, $D_r$, and $W^{\mathrm{acc}}$ record.
 - Two opposite polarities in symmetric circular orbit at radius $R$, speed $v < c_f$
 - No self-hits (sub-field-speed regime)
 
-**Partner contribution:** The circular transmitter-side geometry nominates an
-inward radial diagnostic and a tangential-sign diagnostic. In the canonical
-Master EOM, those records are not acceleration verdicts until the same partner branch
-emits $D_t$, $D_r$, and $W^{\mathrm{acc}}$.
+**Partner contribution:** The circular transmitter-side geometry nominates an inward radial diagnostic and a tangential-sign diagnostic. In the canonical Master EOM, those records are not acceleration verdicts until the same partner branch emits $D_t$, $D_r$, and $W^{\mathrm{acc}}$.
 
-**Result:** The transmitter-side circular sign record is an orientation
-diagnostic, not the proof. The exact receiver-side calculation later in this
-chapter supplies the canonical weighted acceleration and proves that the principal partner branch
-cannot be a constant-speed circle because its tangential acceleration is
-strictly positive. Stability of a broader multi-root or medium-coupled branch
-remains a separate question.
+**Result:** The transmitter-side circular sign record is an orientation diagnostic, not the proof. The exact receiver-side calculation later in this chapter supplies the canonical weighted acceleration and proves that the principal partner branch cannot be a constant-speed circle because its tangential acceleration is strictly positive. Stability of a broader multi-root or medium-coupled branch remains a separate question.
 
 ###### Maximum-Curvature Orbit (Self-Hit Barrier)
 
@@ -5928,8 +5575,7 @@ remains a separate question.
 - A candidate opposite-polarity branch reaches super-field-speed curved history after a non-circular contraction, capture, or forced branch transition
 - Self-hits activate → repulsive outward acceleration
 
-**Geometric definition (Null Separatrix):**
-For an active causal root $T_t \in \mathcal{C}_{ii}(T_r)$ on the self-hit branch, define
+**Geometric definition (Null Separatrix):** For an active causal root $T_t \in \mathcal{C}_{ii}(T_r)$ on the self-hit branch, define
 
 $$
 J_{ii}(T_r;T_t)\equiv 1-\frac{\mathbf V_i(T_t)\cdot \hat{\mathbf{r}}_{ii}(T_r;T_t)}{c_f}
@@ -5943,8 +5589,7 @@ $$
 
 with approach from the admissible side $J_{ii}>0$. Geometrically, this is the state where the receiver trajectory is tangent to the causal wake surface of its own past emission (the “riding-the-shock” limit).
 
-**Why this is a hard wall in the exact theory:**
-In the exact branch-resolved acceleration, the self-hit contribution carries the factor
+**Why this is a hard wall in the exact theory:** In the exact branch-resolved acceleration, the self-hit contribution carries the factor
 
 $$
 \frac{W_{ii}^{\mathrm{acc}}(T_r;T_t)}{r_{ii}^2(T_r;T_t)}
@@ -6229,8 +5874,7 @@ Fix receiver $1$ at reception time $T_r$ and let the unique partner emission tim
 $$
 \xi\equiv \frac{\omega\Delta}{2}\in\left(0,\frac{\pi}{2}\right)
 $$
-Write $\mathbf{e}_r(T_r)=(\cos\omega T_r,\sin\omega T_r,0)$ and
-$\mathbf{e}_\theta(T_r)=(-\sin\omega T_r,\cos\omega T_r,0)$ for the receiver polar frame.
+Write $\mathbf{e}_r(T_r)=(\cos\omega T_r,\sin\omega T_r,0)$ and $\mathbf{e}_\theta(T_r)=(-\sin\omega T_r,\cos\omega T_r,0)$ for the receiver polar frame.
 
 ###### Proposition (Unique partner branch and exact delay equation)
 
@@ -6241,8 +5885,7 @@ $$
 0<\xi<\frac{\pi}{2}
 $$
 
-**Proof.**
-The partner separation is
+**Proof.** The partner separation is
 $$
 \mathbf{r}_{12}(T_r;T_t)
 =
@@ -6258,8 +5901,7 @@ The causal condition $r_{12}=c_f\Delta$ therefore becomes
 $$
 2R\cos\xi=c_f\frac{2\xi}{\omega}
 $$
-hence $\cos\xi=\xi/\beta_f$.
-Define $h_{\beta_f}(\xi)=\cos\xi-\xi/\beta_f$ on $[0,\pi/2]$. Then
+hence $\cos\xi=\xi/\beta_f$. Define $h_{\beta_f}(\xi)=\cos\xi-\xi/\beta_f$ on $[0,\pi/2]$. Then
 $$
 h_{\beta_f}(0)=1>0,
 \qquad
@@ -6271,16 +5913,11 @@ So $h_{\beta_f}$ is strictly decreasing and has exactly one root on $(0,\pi/2)$.
 
 ###### Lemma (Circular root-playback identity)
 
-On every nondegenerate root of the uniform circular partner and self-hit charts,
-the receiver-side factor equals the transmitter-side factor:
+On every nondegenerate root of the uniform circular partner and self-hit charts, the receiver-side factor equals the transmitter-side factor:
 $$
 D_r=D_t.
 $$
-For the partner branch below, both transmitter and receiver velocity projections onto
-$\hat{\mathbf r}_{12}$ equal $-v\sin\xi$. For a uniform circular self root, the
-same rotational symmetry makes the transmitter and receiver projections equal on the
-same signed chord sheet. Thus the signed playback derivative is one, but the
-acceleration weight remains
+For the partner branch below, both transmitter and receiver velocity projections onto $\hat{\mathbf r}_{12}$ equal $-v\sin\xi$. For a uniform circular self root, the same rotational symmetry makes the transmitter and receiver projections equal on the same signed chord sheet. Thus the signed playback derivative is one, but the acceleration weight remains
 $$
 W^{\mathrm{acc}}=\frac{c_f}{|D_t|}=\frac{1}{|J^t|}.
 $$
@@ -6325,8 +5962,7 @@ a_\theta^{(\mathrm{part})}
 >0
 $$
 
-**Proof.**
-Using
+**Proof.** Using
 $$
 \mathbf{e}_r(T-\Delta)=\cos(2\xi)\,\mathbf{e}_r(T)-\sin(2\xi)\,\mathbf{e}_\theta(T)
 $$
@@ -6338,8 +5974,7 @@ R\big(\mathbf{e}_r(T)+\mathbf{e}_r(T-\Delta)\big)
 =
 2R\cos\xi\left(\cos\xi\,\mathbf{e}_r(T)-\sin\xi\,\mathbf{e}_\theta(T)\right)
 $$
-which gives the stated $r_{12}$ and $\hat{\mathbf{r}}_{12}$.
-The transmitter velocity at emission is
+which gives the stated $r_{12}$ and $\hat{\mathbf{r}}_{12}$. The transmitter velocity at emission is
 $$
 \mathbf V_2(T_t)
 =
@@ -6359,13 +5994,7 @@ The receiver velocity is $\mathbf V_1(T)=v\mathbf e_\theta(T)$, and
 $$
 \mathbf V_1(T)\cdot\hat{\mathbf r}_{12}=-v\sin\xi.
 $$
-Therefore $D_r=D_t=c_f(1+\beta_f\sin\xi)$ and
-$W_{12}^{\mathrm{acc}}=(1+\beta_f\sin\xi)^{-1}$ on this uniform circular branch.
-Because $\sigma_{12}=-1$ for opposite polarities, the canonical branch acceleration is
-$-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta_f\sin\xi)]$,
-and projecting onto $\mathbf{e}_r(T)$ and $\mathbf{e}_\theta(T)$ yields the
-stated components. Since $\xi\in(0,\pi/2)$, every denominator is positive and
-$\sin\xi>0$, proving the sign claims. $\square$
+Therefore $D_r=D_t=c_f(1+\beta_f\sin\xi)$ and $W_{12}^{\mathrm{acc}}=(1+\beta_f\sin\xi)^{-1}$ on this uniform circular branch. Because $\sigma_{12}=-1$ for opposite polarities, the canonical branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta_f\sin\xi)]$, and projecting onto $\mathbf{e}_r(T)$ and $\mathbf{e}_\theta(T)$ yields the stated components. Since $\xi\in(0,\pi/2)$, every denominator is positive and $\sin\xi>0$, proving the sign claims. $\square$
 
 ###### Corollary (Tangential positivity and circular instability)
 
@@ -6375,8 +6004,7 @@ $$
 $$
 Therefore an isolated opposite-polarity binary cannot realize an exact constant-speed circular orbit from partner delay alone.
 
-**Interpretation.**
-These are the exact transmitter-side partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The transmitter-side transmitter-side denominator rescales both projections without changing their signs. Any tightening history must be certified on a non-circular branch or by an explicit finite-window conserved-account closure.
+**Interpretation.** These are the exact transmitter-side partner-only circular formulas needed elsewhere in the chapter. They show that the delayed partner branch supplies inward radial pull, but it also drives the motion forward along $\mathbf{e}_\theta$. The transmitter-side transmitter-side denominator rescales both projections without changing their signs. Any tightening history must be certified on a non-circular branch or by an explicit finite-window conserved-account closure.
 
 ---
 
@@ -6444,12 +6072,7 @@ $$
 \sim
 \frac{1}{48R^2\,\mu^2}
 $$
-This is also the canonical transmitter-side scaling on the nondegenerate side of the
-uniform circular chart, because $W_0^{\mathrm{acc}}=1/|J_0|$. Thus the principal
-self-root amplitude scales as $O(\mu^{-2})$ near its coincident endpoint birth.
-The endpoint exclusion alone does not make that transition finite; it remains a
-failed singular event until one regularized treatment certifies a finite accepted
-impulse and the corresponding conserved accounts.
+This is also the canonical transmitter-side scaling on the nondegenerate side of the uniform circular chart, because $W_0^{\mathrm{acc}}=1/|J_0|$. Thus the principal self-root amplitude scales as $O(\mu^{-2})$ near its coincident endpoint birth. The endpoint exclusion alone does not make that transition finite; it remains a failed singular event until one regularized treatment certifies a finite accepted impulse and the corresponding conserved accounts.
 
 Higher branches are also tractable. For the circular root function
 $$
@@ -6475,8 +6098,7 @@ J^\star = 1-\beta_f^\star \cos\xi^\star = 0
 $$
 So each new circular self branch is born directly on a Jacobian-null boundary: branch creation and null-separatrix contact are the same event in the uniform circular toy model.
 
-> **Proposition (Signed higher-winding circular branch birth).**
-> The circular distance equation should be read branchwise as
+> **Proposition (Signed higher-winding circular branch birth).** The circular distance equation should be read branchwise as
 > $$
 > g_{\beta_f,s}(\xi)\equiv s\sin\xi-\frac{\xi}{\beta_f}=0,
 > \qquad
@@ -6553,8 +6175,7 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > $$
 > while the full signed $|\sin\xi|$ chart has the same no-proliferation form with the convention-dependent leading constant.
 
-> **Benchmark Proposition (Circular branch-count bound).**
-> In the symmetric circular benchmark, if the speed ratio obeys
+> **Benchmark Proposition (Circular branch-count bound).** In the symmetric circular benchmark, if the speed ratio obeys
 > $$
 > |\beta_f(T)|\le \beta_{\max}<\infty
 > $$
@@ -6588,18 +6209,9 @@ The benchmark does not provide an elementary closed-form sum, but it gives the f
 - the canonical self-acceleration series can be studied away from circular root-map degeneracies,
 - and the asymptotic radial/tangential components can be recomputed as functions of $v/c_f$.
 
-Near a circular transmitter-side degeneracy, $D_r$ approaches zero with $D_t$, so
-the signed root-playback derivative stays equal to $1$ on the nondegenerate roots.
-The acceleration weight $W_n^{\mathrm{acc}}=c_f/|D_t|$ instead grows without bound
-as the simple-root chart approaches $D_t=0$. The pointwise simple-root formula does
-not continue through the birth event; only an accepted finite transition rule could
-replace it there.
+Near a circular transmitter-side degeneracy, $D_r$ approaches zero with $D_t$, so the signed root-playback derivative stays equal to $1$ on the nondegenerate roots. The acceleration weight $W_n^{\mathrm{acc}}=c_f/|D_t|$ instead grows without bound as the simple-root chart approaches $D_t=0$. The pointwise simple-root formula does not continue through the birth event; only an accepted finite transition rule could replace it there.
 
-This is therefore a root-transversality and branch-birth statement, not a
-closure theorem. A circular self branch born on $D_t=0$ marks a chart boundary;
-it does not supply a singular receiver-side amplitude on the uniform circular
-ansatz. Any locked-orbit claim must still control the signed radial and
-tangential sums on a retained branch chart.
+This is therefore a root-transversality and branch-birth statement, not a closure theorem. A circular self branch born on $D_t=0$ marks a chart boundary; it does not supply a singular receiver-side amplitude on the uniform circular ansatz. Any locked-orbit claim must still control the signed radial and tangential sums on a retained branch chart.
 
 The circular benchmark is therefore useful for:
 
@@ -6634,8 +6246,7 @@ a_\theta(\xi)=C\frac{\beta_f^2\cos\xi}{\xi^2|J(\xi)|}
 $$
 Thus the radial projection is outward on every active self root, while the tangential projection is controlled entirely by the sign of $\cos\xi$.
 
-> **Proposition (Circular self-hit radial sign and principal tangential threshold).**
-> On every nondegenerate root of the full uniform-circular self-hit equation, the radial projection is strictly outward. On the principal root $\xi_0\in(0,\pi)$, the tangential projection is forward for $1<\beta_f<\pi/2$, zero at $\beta_f=\pi/2$, and backward for $\beta_f>\pi/2$.
+> **Proposition (Circular self-hit radial sign and principal tangential threshold).** On every nondegenerate root of the full uniform-circular self-hit equation, the radial projection is strictly outward. On the principal root $\xi_0\in(0,\pi)$, the tangential projection is forward for $1<\beta_f<\pi/2$, zero at $\beta_f=\pi/2$, and backward for $\beta_f>\pi/2$.
 >
 > **Proof.** On the full signed chart, let
 > $$
@@ -6670,8 +6281,7 @@ The branch sheets have the following one-sign structure:
 | Higher positive left sheets | One root after birth from a Jacobian-null fold | Outward | Forward |
 | Higher positive right sheets | Paired root after the same birth | Outward | Backward |
 
-Away from fold neighborhoods, substituting the canonical transmitter-side weight
-$W_s^{\mathrm{acc}}=1/|J|$ gives the formal large-$\beta_f$ sums
+Away from fold neighborhoods, substituting the canonical transmitter-side weight $W_s^{\mathrm{acc}}=1/|J|$ gives the formal large-$\beta_f$ sums
 $$
 A_{r,\mathrm{src}}^{\mathrm{diag}}(\beta_f)
 =
@@ -6689,10 +6299,7 @@ $$
 =
 \frac{C\beta_f}{6}+O(C\log\beta_f)
 $$
-These are formal simple-root transmitter-side sums, not accepted global acceleration
-certificates, because their treatment of fold neighborhoods and coincident branch
-births is incomplete. The signed tangential constants must be recomputed with the
-same regulated event convention before any cancellation estimate is promoted.
+These are formal simple-root transmitter-side sums, not accepted global acceleration certificates, because their treatment of fold neighborhoods and coincident branch births is incomplete. The signed tangential constants must be recomputed with the same regulated event convention before any cancellation estimate is promoted.
 
 The full signed $|\sin\xi|$ circular chart uses $s=\operatorname{sign}(\sin\xi)$ and
 $$
@@ -6819,20 +6426,9 @@ C\left(\frac{4}{\pi^2}-\frac{1}{12}\right)\beta_f,
 \qquad
 \frac{2C}{\pi}\log\beta_f-\frac{2C}{\pi}
 $$
-belong to the formal simple-root transmitter-side chart. They remain useful for
-comparing root families, but they do not certify a global acceleration residual or
-a large-$\beta_f$ circular exclusion until fold neighborhoods and coincident births
-share one accepted event convention. The complete unregularized simple-root sum has
-now been recomputed over $1<\beta_f<20$: the restricted principal-partner ledger
-stays tangentially positive, while the full partner-plus-self ledger has algebraic
-zeros after older partner-root births. The regulated chart must still be recomputed
-before either pattern is promoted to retained dynamics.
+belong to the formal simple-root transmitter-side chart. They remain useful for comparing root families, but they do not certify a global acceleration residual or a large-$\beta_f$ circular exclusion until fold neighborhoods and coincident births share one accepted event convention. The complete unregularized simple-root sum has now been recomputed over $1<\beta_f<20$: the restricted principal-partner ledger stays tangentially positive, while the full partner-plus-self ledger has algebraic zeros after older partner-root births. The regulated chart must still be recomputed before either pattern is promoted to retained dynamics.
 
-Thus the equal-magnitude bare circular chart remains an obstruction benchmark,
-not a closed no-go theorem. A retained constant-radius exclusion still requires
-positive transmitter-side floors, inactive gaps, finite memory depth, the
-receiver-side branch records, and signed radial/tangential residual closure on
-the same branch chart.
+Thus the equal-magnitude bare circular chart remains an obstruction benchmark, not a closed no-go theorem. A retained constant-radius exclusion still requires positive transmitter-side floors, inactive gaps, finite memory depth, the receiver-side branch records, and signed radial/tangential residual closure on the same branch chart.
 
 The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether braid model. The Noether braid model is the six-body branch chart containing self, partner, and inter-binary causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 
@@ -6891,8 +6487,7 @@ $$
 $$
 is an unstable mode.
 
-> **Target Proposition (MCB transverse stability diagnostic).**
-> For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may block the radial collapse channel but cannot supply centripetal acceleration on the circular chart. The complete unregularized circular partner-plus-self ledger has measured algebraic cancellation points, while the restricted principal-partner ledger remains tangentially positive on $1<\beta_f<20$. Thus a bare MCB should be treated as an uncertified organizing orbit in
+> **Target Proposition (MCB transverse stability diagnostic).** For any candidate bare two-body maximum-curvature binary, compute the linearized delay operator on radial and tangential perturbations. The null-separatrix self-hit wall may block the radial collapse channel but cannot supply centripetal acceleration on the circular chart. The complete unregularized circular partner-plus-self ledger has measured algebraic cancellation points, while the restricted principal-partner ledger remains tangentially positive on $1<\beta_f<20$. Thus a bare MCB should be treated as an uncertified organizing orbit in
 > $$
 > (R,v)
 > $$
@@ -6976,8 +6571,7 @@ $$
 =
 \frac{-\mathbf{e}_r(\theta)-p\,\mathbf{e}_\theta(\theta)}{\sqrt{1+p^2}}
 $$
-where $p=p(\theta)$ and $\hat{\mathbf{N}}$ points inward in the circular limit.
-Using the branch unit vector
+where $p=p(\theta)$ and $\hat{\mathbf{N}}$ points inward in the circular limit. Using the branch unit vector
 $$
 \hat{\mathbf{r}}_{12}
 =
@@ -7003,15 +6597,13 @@ The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $
 
 ###### Closed Transmitter-Side Spiral Factors
 
-For acceleration contributions the transmitter-side factor fixes the transmitter-side weight. Define
-the current and transmitter-event dimensionless tangential speeds
+For acceleration contributions the transmitter-side factor fixes the transmitter-side weight. Define the current and transmitter-event dimensionless tangential speeds
 $$
 b\equiv\frac{r(\theta)\dot\theta(\theta)}{c_f},
 \qquad
 b_0\equiv\frac{r(\theta)\rho\omega_0}{c_f}
 $$
-Then the transmitter-side and receiver-side factors on the same retained partner
-root are available in closed form:
+Then the transmitter-side and receiver-side factors on the same retained partner root are available in closed form:
 $$
 \frac{D_{t,p}}{c_f}
 =
@@ -7035,10 +6627,7 @@ W_p^{\mathrm{acc}}(\theta,\Delta)
 \big[\sin\Delta-p_0(\cos\Delta+\rho)\big]
 \right|}
 $$
-This expression is algebraic once a delayed root $\Delta$ is known. The
-receiver-side expression remains useful for signed root playback but does not
-enter this weight. In the uniform circular limit,
-$W_p^{\mathrm{acc}}=(1+\beta_f\sin(\Delta/2))^{-1}$.
+This expression is algebraic once a delayed root $\Delta$ is known. The receiver-side expression remains useful for signed root playback but does not enter this weight. In the uniform circular limit, $W_p^{\mathrm{acc}}=(1+\beta_f\sin(\Delta/2))^{-1}$.
 
 For opposite polarities, the branch acceleration is
 $$
@@ -7096,8 +6685,7 @@ J_{11}
 $$
 Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta_f\cos(\Delta/2)$.
 
-The receiver projection on the same self line of action gives the companion
-closed-form records
+The receiver projection on the same self line of action gives the companion closed-form records
 $$
 \frac{D_{t,s}}{c_f}
 =
@@ -7121,10 +6709,7 @@ W_s^{\mathrm{acc}}(\theta,\Delta)
 \big[\sin\Delta+p_0(\rho-\cos\Delta)\big]
 \right|}
 $$
-The uniform circular limit again gives $D_{r,s}=D_{t,s}$ for root playback, while
-$W_s^{\mathrm{acc}}=1/|J_{11}|$. Thus the transmitter-side calculation requires
-evaluating the transmitter-side denominator on the retained root intervals and
-recording $D_r/D_t$ separately for continuation.
+The uniform circular limit again gives $D_{r,s}=D_{t,s}$ for root playback, while $W_s^{\mathrm{acc}}=1/|J_{11}|$. Thus the transmitter-side calculation requires evaluating the transmitter-side denominator on the retained root intervals and recording $D_r/D_t$ separately for continuation.
 
 For self-hit, $\sigma_{11}=+1$, so
 $$
@@ -7150,17 +6735,9 @@ $$
 
 ###### Closed Spiral-Direction Flow
 
-The physical question is whether the binary's radius is shrinking or growing.
-The delayed acceleration does two different jobs, and they must be kept separate. Its
-radial part changes the inward or outward motion. Its azimuthal part changes the
-rotation rate and angular momentum. A forward azimuthal push can spin the binary
-up while the radius is still shrinking, so the torque sign alone does not answer
-the spiral-direction question.
+The physical question is whether the binary's radius is shrinking or growing. The delayed acceleration does two different jobs, and they must be kept separate. Its radial part changes the inward or outward motion. Its azimuthal part changes the rotation rate and angular momentum. A forward azimuthal push can spin the binary up while the radius is still shrinking, so the torque sign alone does not answer the spiral-direction question.
 
-The geometry separates those jobs into two dimensionless sums. $B_r$ is the net
-outward-radial contribution, while $B_\theta$ is the net forward-azimuthal
-contribution. For an equal-magnitude opposite-polarity binary, let
-$q^2=|q_1q_2|=q_1^2$, and define
+The geometry separates those jobs into two dimensionless sums. $B_r$ is the net outward-radial contribution, while $B_\theta$ is the net forward-azimuthal contribution. For an equal-magnitude opposite-polarity binary, let $q^2=|q_1q_2|=q_1^2$, and define
 $$
 B_r
 \equiv
@@ -7193,9 +6770,7 @@ $$
 =
 \frac{\kappa q^2}{r}B_\theta
 $$
-Thus $B_\theta>0$ means that the wakes are adding angular momentum. It does not
-mean that the binary is moving outward. Radial direction is carried separately
-by the changing radius.
+Thus $B_\theta>0$ means that the wakes are adding angular momentum. It does not mean that the binary is moving outward. Radial direction is carried separately by the changing radius.
 
 The signed pitch packages the direction into one number:
 $$
@@ -7203,10 +6778,7 @@ p\equiv-\frac{\dot r}{r\omega},
 \qquad
 \Gamma\equiv\frac{r^3\omega^2}{\kappa q^2}>0
 $$
-for $\omega>0$. The sign convention is simple: $p>0$ means that the radius
-shrinks as the binary turns, while $p<0$ means that the radius grows. Direct
-substitution into the polar equations gives the closed receiver-side pitch
-flow
+for $\omega>0$. The sign convention is simple: $p>0$ means that the radius shrinks as the binary turns, while $p<0$ means that the radius grows. Direct substitution into the polar equations gives the closed receiver-side pitch flow
 $$
 \frac{dp}{d\theta}
 =
@@ -7217,13 +6789,9 @@ $$
 =
 2p+\frac{B_\theta}{\Gamma}
 $$
-together with $d\log r/d\theta=-p$. These identities are exact on any smooth
-retained spiral chart. The complicated path-history information is confined to
-the delayed roots inside $B_r$ and $B_\theta$. Once those roots are known, the
-equations directly evolve the spiral direction.
+together with $d\log r/d\theta=-p$. These identities are exact on any smooth retained spiral chart. The complicated path-history information is confined to the delayed roots inside $B_r$ and $B_\theta$. Once those roots are known, the equations directly evolve the spiral direction.
 
-At a radial turning point, the binary is momentarily neither moving inward nor
-outward, so $p=0$. The direction after that instant is decided by one balance:
+At a radial turning point, the binary is momentarily neither moving inward nor outward, so $p=0$. The direction after that instant is decided by one balance:
 $$
 \left.\frac{dp}{d\theta}\right|_{p=0}
 =
@@ -7241,17 +6809,9 @@ $$
 \quad\Longleftrightarrow\quad
 \text{maximum radius followed by inward motion}
 $$
-In plain language, $\Gamma$ is the outward centrifugal requirement and $B_r$ is
-the signed radial wake contribution. If their sum is positive, the radius has
-reached a minimum and rebounds outward. If their sum is negative, the radius
-has reached a maximum and turns inward. The equality case is radially tangent
-and requires the next derivative. This is the closed-form in-versus-out decision
-rule.
+In plain language, $\Gamma$ is the outward centrifugal requirement and $B_r$ is the signed radial wake contribution. If their sum is positive, the radius has reached a minimum and rebounds outward. If their sum is negative, the radius has reached a maximum and turns inward. The equality case is radially tangent and requires the next derivative. This is the closed-form in-versus-out decision rule.
 
-The simplest proposed spiral assumes that its tightness and angular rate never
-change. In symbols, its signed pitch is constant, $p=p_\star$, and its angular
-rate is constant. Under those assumptions, the two compatibility conditions
-reduce to
+The simplest proposed spiral assumes that its tightness and angular rate never change. In symbols, its signed pitch is constant, $p=p_\star$, and its angular rate is constant. Under those assumptions, the two compatibility conditions reduce to
 $$
 B_r=(p_\star^2-1)\Gamma,
 \qquad
@@ -7263,12 +6823,7 @@ $$
 \qquad
 \Gamma=-\frac{B_\theta}{2p_\star}
 $$
-for $p_\star\ne0$. The immediate conclusion is that a constant-rate inward
-spiral requires a net backward azimuthal contribution, $B_\theta<0$. The
-principal partner root instead contributes forward, with $B_\theta>0$. That
-single delayed partner wake therefore cannot produce the proposed constant-rate
-inward spiral by itself. Older signed roots, self roots, or a changing angular
-rate would have to alter the balance.
+for $p_\star\ne0$. The immediate conclusion is that a constant-rate inward spiral requires a net backward azimuthal contribution, $B_\theta<0$. The principal partner root instead contributes forward, with $B_\theta>0$. That single delayed partner wake therefore cannot produce the proposed constant-rate inward spiral by itself. Older signed roots, self roots, or a changing angular rate would have to alter the balance.
 
 The stronger result concerns three assumptions taken together:
 
@@ -7284,31 +6839,17 @@ $$
 \qquad
 b=\frac{\Delta}{\Lambda_p}
 $$
-and the branch-strength factor cancels from the pitch-compatibility equation.
-The remaining necessary condition is
+and the branch-strength factor cancels from the pitch-compatibility equation. The remaining necessary condition is
 $$
 (p_\star^2-1)\rho\sin\Delta
 -2p_\star(1+\rho\cos\Delta)
 =0
 $$
-For fixed $p_\star\ne0$, the left-hand side is analytic in $\Delta$ and is not
-identically zero; its continuation to $\Delta=0$ has value $-4p_\star$. Its
-zeros on a retained principal interval are therefore isolated. A continuous
-single-root history satisfying the compatibility equation must keep $\Delta$
-constant. The delay equation then keeps $b$ constant, and constant angular rate
-keeps $r$ constant, contradicting $p_\star\ne0$. Hence:
+For fixed $p_\star\ne0$, the left-hand side is analytic in $\Delta$ and is not identically zero; its continuation to $\Delta=0$ has value $-4p_\star$. Its zeros on a retained principal interval are therefore isolated. A continuous single-root history satisfying the compatibility equation must keep $\Delta$ constant. The delay equation then keeps $b$ constant, and constant angular rate keeps $r$ constant, contradicting $p_\star\ne0$. Hence:
 
-> **Proposition (single-principal-partner logarithmic-spiral no-go).** No exact
-> nonzero constant-pitch, constant-angular-rate logarithmic spiral, inward or
-> outward, exists over an open interval of the strictly sub-field,
-> single-principal-partner receiver-side chart.
+> **Proposition (single-principal-partner logarithmic-spiral no-go).** No exact nonzero constant-pitch, constant-angular-rate logarithmic spiral, inward or outward, exists over an open interval of the strictly sub-field, single-principal-partner receiver-side chart.
 
-The proposition does not say that binaries cannot spiral. It says that the
-simple logarithmic picture is too rigid: a real spiral cannot preserve both its
-tightness and its angular rate while responding only to one delayed partner
-wake. At least one feature must evolve. The spiral can change tightness, change
-angular rate, acquire another delayed root, cross into the self-hit regime, or
-receive multi-body contributions.
+The proposition does not say that binaries cannot spiral. It says that the simple logarithmic picture is too rigid: a real spiral cannot preserve both its tightness and its angular rate while responding only to one delayed partner wake. At least one feature must evolve. The spiral can change tightness, change angular rate, acquire another delayed root, cross into the self-hit regime, or receive multi-body contributions.
 
 The Frenet tangential sum used below is the same information in a rotated basis:
 $$
@@ -7316,8 +6857,7 @@ B_T
 =
 \frac{-pB_r+B_\theta}{\sqrt{1+p^2}}
 $$
-so the polar pitch flow and the Frenet obstruction are equivalent statements,
-not separate tests.
+so the polar pitch flow and the Frenet obstruction are equivalent statements, not separate tests.
 
 The circular obstruction yields a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
 $$
@@ -7454,30 +6994,15 @@ F_{\alpha,Q}(\theta,\Delta)
 $$
 At each retained endpoint, $K_Q(0,\Delta_\alpha)=\Delta_\alpha$ and $\partial_\theta K_Q(0,\Delta_\alpha)=0$, so the first memory drift begins at second order in $\theta$. The branch-chart certificate must bound that drift while satisfying the tangential transport equation for $Q$ and the radial residual on the same active root ledger.
 
-A local convergence diagnostic can sharpen this finite-collar target, but it
-does not by itself fix the full continuation class. After the tangential record is
-imposed on the retained ledger, the transported radial record should be tested
-through the leading one-sided jet of $\mathcal R_R^{\mathrm{tr}}(\theta)$ near
-$\theta=0$. For a specified tangential-transport profile, the jet coefficient is
+A local convergence diagnostic can sharpen this finite-collar target, but it does not by itself fix the full continuation class. After the tangential record is imposed on the retained ledger, the transported radial record should be tested through the leading one-sided jet of $\mathcal R_R^{\mathrm{tr}}(\theta)$ near $\theta=0$. For a specified tangential-transport profile, the jet coefficient is
 $$
 \left(\mathcal R_R^{\mathrm{tr}}\right)'_+(0)
 =
 B'_+(0)-(3a_{\mathrm{rs}}-2)B_\theta^{\mathrm{rec}}(C_{\mathrm{rs}};0)
 $$
-The retained endpoint and moment constraints do not yet fix all transmitter-side
-endpoint-slope data entering $B'_+(0)$. A nonzero sampled coefficient is
-therefore a local obstruction candidate for that profile, not a theorem that
-every positive $C^2$ variable-rate continuation fails.
+The retained endpoint and moment constraints do not yet fix all transmitter-side endpoint-slope data entering $B'_+(0)$. A nonzero sampled coefficient is therefore a local obstruction candidate for that profile, not a theorem that every positive $C^2$ variable-rate continuation fails.
 
-A sampled endpoint-slope construction sharpens the same caution. By perturbing
-the retained past inverse-rate profile while preserving the retained endpoint
-values, moment records, compact $C^2$ tail, and center slope, one can cancel the
-leading affine radial jet at sampled level and still keep a positive retained
-past profile with the expected $3+1$ active-root ledger after tangential
-transport. This does not certify retained-spiral closure. It moves the theorem-grade burden
-to finite-collar control after endpoint-slope cancellation: positivity,
-inactive gaps, Jacobian floors, transmitter-side acceleration weights, finite memory, tangential transport, and the
-full radial residual must all be bounded on the same branch chart. Provenance note: this sampled construction and the adjacent prescribed benchmark record currently name no instrument or archived computation artifact; until one is linked, both carry construction-note grade, not measured grade, and they license no dynamical inference.
+A sampled endpoint-slope construction sharpens the same caution. By perturbing the retained past inverse-rate profile while preserving the retained endpoint values, moment records, compact $C^2$ tail, and center slope, one can cancel the leading affine radial jet at sampled level and still keep a positive retained past profile with the expected $3+1$ active-root ledger after tangential transport. This does not certify retained-spiral closure. It moves the theorem-grade burden to finite-collar control after endpoint-slope cancellation: positivity, inactive gaps, Jacobian floors, transmitter-side acceleration weights, finite memory, tangential transport, and the full radial residual must all be bounded on the same branch chart. Provenance note: this sampled construction and the adjacent prescribed benchmark record currently name no instrument or archived computation artifact; until one is linked, both carry construction-note grade, not measured grade, and they license no dynamical inference.
 
 ---
 
@@ -7654,11 +7179,7 @@ $$
 \tilde g_{ij}(T_1,T_t)=T_1-T_t-\frac{r_{ij}(T_1,T_t)}{c_f}
 $$
 
-The tilde marks this as the time-normalized action constraint. The length-valued
-Master Equation constraint remains $g_{ij}=r_{ij}-c_f(T_r-T_t)$.
-Because $[\delta(\tilde g)]=T^{-1}$, the prefactor
-$\mu_{\text{arch}}\kappa$ gives this kernel the required energy-per-time
-dimension. A $\kappa/c_f$ prefactor would not.
+The tilde marks this as the time-normalized action constraint. The length-valued Master Equation constraint remains $g_{ij}=r_{ij}-c_f(T_r-T_t)$. Because $[\delta(\tilde g)]=T^{-1}$, the prefactor $\mu_{\text{arch}}\kappa$ gives this kernel the required energy-per-time dimension. A $\kappa/c_f$ prefactor would not.
 
 For an isolated system, the nonlocal Noether charge associated with $T\mapsto T+T_{\mathrm{shift}}$ is
 
@@ -7677,12 +7198,9 @@ E_{\text{wake}}(T)
 \partial_{T_1}\mathcal{K}_{ij}(T_1,T_t)
 $$
 
-The outer minus sign follows the convention that the interaction enters the
-action as $-\tfrac12\sum S_{ij}$. It also makes the sharp static
-like-polarity interaction charge positive, as required by the work integral.
+The outer minus sign follows the convention that the interaction enters the action as $-\tfrac12\sum S_{ij}$. It also makes the sharp static like-polarity interaction charge positive, as required by the work integral.
 
-Plainly: one action convention now fixes the interaction units, the static
-sign, and the boundary charge together.
+Plainly: one action convention now fixes the interaction units, the static sign, and the boundary charge together.
 
 For $i=j$, the same rule applies with the trivial coincidence branch ($T_1=T_t$) excluded, matching the self-hit convention used throughout this chapter.
 
@@ -7739,12 +7257,7 @@ with leading $1/r_{ij}$ behavior plus geometry-dependent self-hit corrections.
 
 ###### Exact Nonlocal Lagrangian
 
-**Transmitter-side action target.** A scalar-action scaffold is closure-relevant
-only if its variation produces the transmitter-side target
-$W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}/r_{ij}^2$ on the retained branch
-chart with $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The signed playback factor
-$D_r/D_t$ is retained for root continuation but is not multiplied into the
-acceleration or action target.
+**Transmitter-side action target.** A scalar-action scaffold is closure-relevant only if its variation produces the transmitter-side target $W_{ij}^{\mathrm{acc}}\hat{\mathbf r}_{ij}/r_{ij}^2$ on the retained branch chart with $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The signed playback factor $D_r/D_t$ is retained for root continuation but is not multiplied into the acceleration or action target.
 
 To connect with variational methods and with later continuum approximations, it is useful to exhibit the **action principle** for the delayed dynamics. Because the interactions depend on path history via causal wakes, the action is necessarily nonlocal in time.
 
@@ -7811,9 +7324,7 @@ S_{ij}
 {r_{ij}(T_r;T_t)\,\left|1-\hat{\mathbf{r}}_{ij}(T_r;T_t)\cdot\mathbf V_j(T_t)/c_f\right|}
 $$
 
-This branch-resolved form is written per reception time after the transmitter-time
-delta has been integrated out. On a retained smooth root $T_t=T_{t,\ell}(T_r)$,
-the causal constraint also gives
+This branch-resolved form is written per reception time after the transmitter-time delta has been integrated out. On a retained smooth root $T_t=T_{t,\ell}(T_r)$, the causal constraint also gives
 $$
 \frac{dT_{t,\ell}}{dT_r}
 =
@@ -7921,9 +7432,7 @@ $$
 \right]
 \right|_{T'=T_t}
 $$
-Thus the scalar $1/r$ causal kernel produces the inverse-square scale term as
-a receiver-side proof ingredient only if the admitted branch also satisfies the
-residual-vanishing condition
+Thus the scalar $1/r$ causal kernel produces the inverse-square scale term as a receiver-side proof ingredient only if the admitted branch also satisfies the residual-vanishing condition
 $$
 \left.
 \partial_{T'}
@@ -8076,8 +7585,7 @@ $$
 $$
 with the same positive-delay, Jacobian-floor, and boundary convention used by the branch chart. This is not the Master EOM acceleration residual and not the Noether conservation ledger. It is the additional condition needed for the scalar action scaffold to have no leftover interior Euler derivative on that receiver. If the signed sum is nonzero, the scalar action candidate fails on that chart; the residual does not become a new acceleration term.
 
-**Characteristic-tail receiver-gradient identity.** The receiver-coordinate
-counterterm equation can be integrated along the characteristic operator
+**Characteristic-tail receiver-gradient identity.** The receiver-coordinate counterterm equation can be integrated along the characteristic operator
 $$
 D_{ij}
 \equiv
@@ -8089,8 +7597,7 @@ g+\frac{r}{c_f},
 \qquad
 D_{ij}u=0
 $$
-For a compactly supported regularizer and a declared depth $h_+>0$ with
-$\delta_\eta(-h_+)=0$, define
+For a compactly supported regularizer and a declared depth $h_+>0$ with $\delta_\eta(-h_+)=0$, define
 $$
 K_{\mathrm{eff},h_+}^{(\eta)}(r,g)
 =
@@ -8099,9 +7606,7 @@ K_{\mathrm{eff},h_+}^{(\eta)}(r,g)
 {c_f(u-s)^2}
 ds
 $$
-The infinite-depth form replaces the lower limit by $-\infty$ when the integral
-converges. Because $D_{ij}$ preserves $u$ and moves the upper limit at rate
-$-1/c_f$,
+The infinite-depth form replaces the lower limit by $-\infty$ when the integral converges. Because $D_{ij}$ preserves $u$ and moves the upper limit at rate $-1/c_f$,
 $$
 D_{ij}K_{\mathrm{eff},h_+}^{(\eta)}
 =
@@ -8112,15 +7617,9 @@ D_{ij}K_{\mathrm{eff},h_+}^{(\eta)}
 -
 \frac{\delta_\eta(g)}{r^2}
 $$
-This is the useful characteristic-tail result: a controlled history integral
-has exactly the desired inverse-square receiver gradient without the
-derivative-of-constraint term of the direct $1/r$ kernel.
+This is the useful characteristic-tail result: a controlled history integral has exactly the desired inverse-square receiver gradient without the derivative-of-constraint term of the direct $1/r$ kernel.
 
-The identity is a receiver-coordinate construction. It does not by itself
-define an action principle, an independently evolving causal-wake state, a
-Noether boundary charge, or a modification of the Master EOM. Any action or
-conservation construction must be derived separately from Architrino
-primitives and must reproduce the same retained motion and boundary records.
+The identity is a receiver-coordinate construction. It does not by itself define an action principle, an independently evolving causal-wake state, a Noether boundary charge, or a modification of the Master EOM. Any action or conservation construction must be derived separately from Architrino primitives and must reproduce the same retained motion and boundary records.
 
 Thus:
 
@@ -8252,17 +7751,7 @@ The delayed theory separates ordinary mechanical motion from the causal-wake his
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_i \mu_{\text{arch}} \mathbf V_i(T)
 $$
-This is the mechanical momentum of the optional quadratic kinetic proxy. On a
-general primitive kinetic-scalar chart, each
-$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
-$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
-$P'(s)=K'(s)/s$ as specified in [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
-Energy also owns the near-zero assumptions and the kinetic-Lagrangian
-reconstruction for a general $K$. The action-derived charges displayed here
-use the quadratic bookkeeping proxy; a general kinetic chart requires that
-reconstructed kinetic Lagrangian and a complete revariation of the delayed
-action. Neither construction assigns primitive mass to an architrino, and no
-general conservation claim follows by substitution alone.
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a general primitive kinetic-scalar chart, each $\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum $\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with $P'(s)=K'(s)/s$ as specified in [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino). Energy also owns the near-zero assumptions and the kinetic-Lagrangian reconstruction for a general $K$. The action-derived charges displayed here use the quadratic bookkeeping proxy; a general kinetic chart requires that reconstructed kinetic Lagrangian and a complete revariation of the delayed action. Neither construction assigns primitive mass to an architrino, and no general conservation claim follows by substitution alone.
 
 Because the accelerations are delayed, $d\mathbf{P}_{\text{mech}}/dT$ is generally nonzero.
 
@@ -8568,15 +8057,9 @@ An architrino in motion possesses kinetic energy and momentum.
   \qquad
   P(s)=\int_0^s\frac{K'(u)}{u}\,du
   $$
-  after choosing $P(0)=0$. The integral through rest additionally requires
-  $K'(0)=0$ and local integrability of $K'(u)/u$ near $u=0$; these conditions
-  are not supplied by differentiability away from rest alone. If work-power
-  compatibility is not imposed, $\mathbf{p}$ should be read as a momentum-like
-  bookkeeping vector rather than a conjugate momentum generated by the same
-  kinetic chart.
+  after choosing $P(0)=0$. The integral through rest additionally requires $K'(0)=0$ and local integrability of $K'(u)/u$ near $u=0$; these conditions are not supplied by differentiability away from rest alone. If work-power compatibility is not imposed, $\mathbf{p}$ should be read as a momentum-like bookkeeping vector rather than a conjugate momentum generated by the same kinetic chart.
 
-  Under the stated differentiability and near-zero assumptions, the kinetic
-  Lagrangian associated with this momentum account is
+  Under the stated differentiability and near-zero assumptions, the kinetic Lagrangian associated with this momentum account is
 
   $$
   \ell_K(s)=sP(s)-K(s)
@@ -8594,14 +8077,9 @@ An architrino in motion possesses kinetic energy and momentum.
   \mathbf p\cdot\mathbf V-\ell_K=K.
   $$
 
-  Plainly: $K$ is the kinetic-energy scalar, while $\ell_K$ is the kinetic
-  Lagrangian whose velocity derivative generates the declared momentum. A
-  general action cannot use $K$ itself as the kinetic Lagrangian.
+  Plainly: $K$ is the kinetic-energy scalar, while $\ell_K$ is the kinetic Lagrangian whose velocity derivative generates the declared momentum. A general action cannot use $K$ itself as the kinetic Lagrangian.
 
-  **Conditional radial-collinearity theorem.** Let
-  $D\subseteq\mathbb R^3$ be a connected open velocity domain. Assume every
-  pair $\mathbf u,\mathbf w\in D$ is admissible, or that the admissible
-  increment graph is separately proved triangle-connected, and require
+  **Conditional radial-collinearity theorem.** Let $D\subseteq\mathbb R^3$ be a connected open velocity domain. Assume every pair $\mathbf u,\mathbf w\in D$ is admissible, or that the admissible increment graph is separately proved triangle-connected, and require
 
   $$
   \mathbf p(\mathbf w)-\mathbf p(\mathbf u)
@@ -8609,39 +8087,27 @@ An architrino in motion possesses kinetic energy and momentum.
   \mathbf w-\mathbf u
   $$
 
-  for every admitted pair. Non-collinear velocity triangles then force one
-  common scale on every increment, so
+  for every admitted pair. Non-collinear velocity triangles then force one common scale on every increment, so
 
   $$
   \mathbf p(\mathbf V)=a\mathbf V+\mathbf b.
   $$
 
-  If the domain contains rest with $\mathbf p(\mathbf0)=\mathbf0$, or if
-  proper-rotation equivariance excludes a fixed nonzero offset, then
-  $\mathbf p(\mathbf V)=a\mathbf V$ and $P(s)=as$. Work-power compatibility
-  and $K(0)=0$ then give
+  If the domain contains rest with $\mathbf p(\mathbf0)=\mathbf0$, or if proper-rotation equivariance excludes a fixed nonzero offset, then $\mathbf p(\mathbf V)=a\mathbf V$ and $P(s)=as$. Work-power compatibility and $K(0)=0$ then give
 
   $$
   K(s)=\frac{a}{2}s^2.
   $$
 
-  Plainly: the linear momentum and quadratic kinetic family follows only when
-  all sufficiently rich radial velocity increments must remain radial in
-  momentum-account space. Radial acceleration by itself does not supply this
-  hypothesis.
+  Plainly: the linear momentum and quadratic kinetic family follows only when all sufficiently rich radial velocity increments must remain radial in momentum-account space. Radial acceleration by itself does not supply this hypothesis.
 
-  Claim grade: **derived conditional theorem**. A non-affine momentum map on a
-  connected open domain satisfying the stated all-pairs or triangle-connected
-  collinearity condition would falsify it. The coefficient $a$ is an
-  undetermined bookkeeping scale, not primitive architrino mass, and the
-  theorem does not establish a physical conservation law.
+  Claim grade: **derived conditional theorem**. A non-affine momentum map on a connected open domain satisfying the stated all-pairs or triangle-connected collinearity condition would falsify it. The coefficient $a$ is an undetermined bookkeeping scale, not primitive architrino mass, and the theorem does not establish a physical conservation law.
 
   **Kinetic-scalar / closure compatibility.** The conjugacy relation above also prevents a hidden second speed scale. If the primitive kinetic scalar is modeled with a finite saturation scale $c_K$, meaning $K'(s)\to\infty$ as $s\to c_K^-$, then any effective assembly closure using a signal speed $c_{\text{eff}}$ is admissible on the declared comparison window only when
   $$
   \left|\frac{c_{\text{eff}}}{c_K}-1\right|\le\epsilon_{cK}
   $$
-  with $\epsilon_{cK}$ declared before the comparison is promoted. If $K$ is instead kept in the primitive unbounded-speed limit, then $c_{\text{eff}}$ is wholly a Noether sea response quantity and no substrate-level particle speed cap may be invoked in the energy or mass-shell argument.
-  This is the Legendre-compatibility condition for the kinetic scalar: once $K$ is chosen, the canonical radial momentum magnitude is fixed by the same generating function. A later effective mass-shell closure may introduce $c_{\text{eff}}$ only as the declared sea-response scale, or as the same finite scale already present in $K$ to the stated tolerance; it may not carry an unrelated second speed limit.
+  with $\epsilon_{cK}$ declared before the comparison is promoted. If $K$ is instead kept in the primitive unbounded-speed limit, then $c_{\text{eff}}$ is wholly a Noether sea response quantity and no substrate-level particle speed cap may be invoked in the energy or mass-shell argument. This is the Legendre-compatibility condition for the kinetic scalar: once $K$ is chosen, the canonical radial momentum magnitude is fixed by the same generating function. A later effective mass-shell closure may introduce $c_{\text{eff}}$ only as the declared sea-response scale, or as the same finite scale already present in $K$ to the stated tolerance; it may not carry an unrelated second speed limit.
 
 **No fundamental mass:**
 
@@ -8700,9 +8166,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)
 \equiv
 \frac{c_f}{|D_{t,ij}(T;T_t)|}
 $$
-is the transmitter-side acceleration weight. Here $r_{ij}$ and $\hat{\mathbf r}_{ij}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$
-sets root transversality and acceleration density; $D_r/D_t$ separately records
-signed root playback.
+is the transmitter-side acceleration weight. Here $r_{ij}$ and $\hat{\mathbf r}_{ij}$ are evaluated on the same retained causal branch. The transmitter-side factor $D_t$ sets root transversality and acceleration density; $D_r/D_t$ separately records signed root playback.
 
 Decompose the receiver's velocity into radial and transverse components:
 
@@ -8785,8 +8249,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 
 $$\mathbf F_i(T) = -\nabla_{\mathbf X_i}U_i(T) = -q_i \nabla_{\mathbf X_i} \Phi_\eta[\text{history}]\big(\mathbf X_i(T),T\big),$$
 
-and this is required to be equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_i=\mu_{\text{arch}}\mathbf A_i$ or the appropriate $\mu_K\mathbf A_i$, has been declared; the recovery is graded a target in the Master Equation chapter.
-The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
+and this is required to be equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_i=\mu_{\text{arch}}\mathbf A_i$ or the appropriate $\mu_K\mathbf A_i$, has been declared; the recovery is graded a target in the Master Equation chapter. The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental acceleration law remains the per-hit sum of the Master EOM.
 
 ##### Macroscopic Cancellation and Localized Resonance
 
@@ -8928,22 +8391,9 @@ No accepted causal action, delay-compatible Noether theorem, provenance-complete
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
-For any candidate scalar action kernel proportional to $1/r$ with the
-time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency
-requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The
-corresponding regularized interaction diagnostic for that candidate is proportional to
-$\delta_\eta(\tilde g)/r$; simple-root collapse produces
-$W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a
-manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the
-polarity convention that like signs repel, the sharp like-polarity interaction
-charge is positive and the boundary derivative inherits the outer minus sign
-declared in the action.
+For any candidate scalar action kernel proportional to $1/r$ with the time-normalized constraint $\tilde g=T_r-T_t-r/c_f$, dimensional consistency requires the coefficient $\mu_{\text{arch}}\kappa$, not $\kappa/c_f$. The corresponding regularized interaction diagnostic for that candidate is proportional to $\delta_\eta(\tilde g)/r$; simple-root collapse produces $W^{\mathrm{acc}}/r$ once. An inverse-square acceleration density with a manually inserted $W^{\mathrm{acc}}$ is not an energy functional. With the polarity convention that like signs repel, the sharp like-polarity interaction charge is positive and the boundary derivative inherits the outer minus sign declared in the action.
 
-Plainly: the wake-energy account must come from whatever action kernel is
-eventually accepted as generating the acceleration operator. The $1/r$
-construction above constrains candidates only. Reusing the $1/r^2$
-acceleration formula as energy gives the wrong units and double-counts the root
-weight.
+Plainly: the wake-energy account must come from whatever action kernel is eventually accepted as generating the acceleration operator. The $1/r$ construction above constrains candidates only. Reusing the $1/r^2$ acceleration formula as energy gives the wrong units and double-counts the root weight.
 
 In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or another history-kernel construction is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same symmetry-preserving action or independently derived causal-wake update supplies both the acceleration contribution and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
@@ -8984,13 +8434,7 @@ T_t<T_r<T_{\partial W},
 \mathbf X_b(T_r)\in C_a(T_r;T_t)
 $$
 
-This isochron-level set is an earliest-crossing diagnostic, not a measure of
-the escaped fraction of a wake. When only some surface sectors cross
-$\partial W$, or when retained receivers intersect other sectors, quantitative
-escapement is the surface-resolved boundary flux through $\partial W$, with a
-declared solid-angle or surface partition when needed. A receiver intersection
-records local work; it does not imply depletion or absorption of the remaining
-isochron unless that mechanism is separately derived from the action.
+This isochron-level set is an earliest-crossing diagnostic, not a measure of the escaped fraction of a wake. When only some surface sectors cross $\partial W$, or when retained receivers intersect other sectors, quantitative escapement is the surface-resolved boundary flux through $\partial W$, with a declared solid-angle or surface partition when needed. A receiver intersection records local work; it does not imply depletion or absorption of the remaining isochron unless that mechanism is separately derived from the action.
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
 
@@ -9047,6 +8491,9 @@ $$
 +
 \mathcal{R}_L^i(\eta,\Delta T,W)
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#noether-conservation)
+
 Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf X_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
 Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. In this chapter, $G_{\mathrm{eff}}$ in the binding line is a provisional external comparison input until the mass map and Noether sea response tensor independently derive it. For a component inventory over $W$,
@@ -9094,8 +8541,7 @@ G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}
 \le
 \epsilon_G
 $$
-where $G_{\mathrm{eff}}^{\mathrm{bind}}$ is the value used in the inventory comparison and $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$ is the value derived from shielding, exposed response, and the Noether sea response tensor. Until $\mathcal{R}_{G\text{-consist},W}$ is reported on the same window, the cosmological binding line is comparison bookkeeping only, not a derived inventory contribution. This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
-The stronger same-record requirement is that $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$, the response-speed tensor that supplies $c_{\text{eff}}$, and the ruler/metric response consumed by the effective geometry chapter all be read from one Noether sea response record. If those quantities require separate sea records or separately tuned response tensors, the gravity, clock, and ruler sectors have been fitted independently rather than derived from one exposed-energy and medium-response ledger.
+where $G_{\mathrm{eff}}^{\mathrm{bind}}$ is the value used in the inventory comparison and $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$ is the value derived from shielding, exposed response, and the Noether sea response tensor. Until $\mathcal{R}_{G\text{-consist},W}$ is reported on the same window, the cosmological binding line is comparison bookkeeping only, not a derived inventory contribution. This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch. The stronger same-record requirement is that $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$, the response-speed tensor that supplies $c_{\text{eff}}$, and the ruler/metric response consumed by the effective geometry chapter all be read from one Noether sea response record. If those quantities require separate sea records or separately tuned response tensors, the gravity, clock, and ruler sectors have been fitted independently rather than derived from one exposed-energy and medium-response ledger.
 
 **Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_T$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(T)$, the replacement target is to prove that there is a response center $\mathbf X_{\mathrm{resp}}(T)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
 $$
@@ -9122,8 +8568,7 @@ e_{\text{internal}}(\mathbf X,T)\,dV
 e_{\text{internal}}(\mathbf X,T)\,dV
 }
 $$
-whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
-Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-promotion row.
+whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously. Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-promotion row.
 
 Particle-only recoil is therefore not anomalous merely because mechanical momentum changes. The anomalous-recoil row is the already defined irreducible $\mathcal R_{\mathrm{resp}}^i$ after the independently defined response center, external contribution, and boundary wake-momentum flux have been fixed on the same window. A nonzero mechanical recoil balanced by that ledger is ordinary delayed exchange, not isolated self-acceleration.
 
@@ -9284,9 +8729,7 @@ $$
 \mathcal{L}_{\text{wake}}(A_0)-\Pi_0\mathcal{L}_{\text{wake}}(A_0)
 $$
 
-evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether braid in the Noether sea, we expect $\zeta\ll 1$.
-Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum, with anisotropic residuals reported separately.
-The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
+evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether braid in the Noether sea, we expect $\zeta\ll 1$. Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum, with anisotropic residuals reported separately. The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
 $$
 \frac{\|\mathcal{L}_{\text{aniso}}(A_0)\|}
 {\|\mathcal{L}_{\text{naive}}(A_0)\|}
@@ -9335,8 +8778,7 @@ E_{\text{unresolved}}(A)
 \varepsilon_{\text{part}}
 }
 $$
-The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence.
-This is an exactness condition on one forgetting map. The full internal ledger is first projected to the exposed ledger $\zeta E_{\text{internal}}$, and the probe, sea-coupled, and unresolved channels are further projections of that same exposed ledger. The residual $\mathcal R_{\text{part}}$ measures whether those fibers close back to the once-projected total; it is therefore an anti-double-count rule, not an optional accounting convention.
+The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence. This is an exactness condition on one forgetting map. The full internal ledger is first projected to the exposed ledger $\zeta E_{\text{internal}}$, and the probe, sea-coupled, and unresolved channels are further projections of that same exposed ledger. The residual $\mathcal R_{\text{part}}$ measures whether those fibers close back to the once-projected total; it is therefore an anti-double-count rule, not an optional accounting convention.
 
 Define the probe-channel share
 $$
@@ -9436,8 +8878,7 @@ m_{\mathrm{tr}}(A)
 \right]
 $$
 
-Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta_{\text{probe}}(A)$ names the probe-facing share of the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
-The trace-free exposure tensor is also the mass-side carrier of orientation and framing leakage. Clock-orientation leakage, Hughes-Drever-style matter anisotropy, and scalar-mass anisotropy should therefore be compared as different contractions of the same branch-emitted trace-free exposure record against different probe or medium-response tensors. If $\mathcal{Z}_{\mathrm{tf}}^{ab}=0$ for an accepted branch in a homogeneous response record, all of these trace-free leakage channels vanish at this order; if it is nonzero, scalar mass remains protected only when the retained medium response has no matching trace-free component.
+Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta_{\text{probe}}(A)$ names the probe-facing share of the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch. The trace-free exposure tensor is also the mass-side carrier of orientation and framing leakage. Clock-orientation leakage, Hughes-Drever-style matter anisotropy, and scalar-mass anisotropy should therefore be compared as different contractions of the same branch-emitted trace-free exposure record against different probe or medium-response tensors. If $\mathcal{Z}_{\mathrm{tf}}^{ab}=0$ for an accepted branch in a homogeneous response record, all of these trace-free leakage channels vanish at this order; if it is nonzero, scalar mass remains protected only when the retained medium response has no matching trace-free component.
 
 This scalar trace is admissible as a positive inertial mass only inside the shielding window
 $$
@@ -9448,8 +8889,7 @@ $$
 \mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
 \right|
 $$
-with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta_{\text{probe}}$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus deep probe-channel shielding is a constrained exposure window, not an unconstrained way to suppress all long-range response.
-When $1+\delta\mathcal{M}_{0}>0$, a conservative sufficient lower bound is
+with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta_{\text{probe}}$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus deep probe-channel shielding is a constrained exposure window, not an unconstrained way to suppress all long-range response. When $1+\delta\mathcal{M}_{0}>0$, a conservative sufficient lower bound is
 $$
 \zeta_{\text{probe}}(A)
 >
@@ -9518,8 +8958,7 @@ $$
 \le
 \epsilon_{\alpha}
 $$
-with $\epsilon_{\alpha}$ declared before promotion. If this residual cannot be held small without per-species tuning, the universality claim fails and the parameter count must be raised explicitly.
-On a connected family of realized assembly branches, this is a flatness condition for $\alpha_{\mathrm{m}}$ over the retained moduli. An irreducible jump in the back-solved $\alpha_{\mathrm{m}}$ across different assembly topological charge sectors would not be hidden inside the same symbol; it would mark either a disconnected mass-map family or a failed universality claim for the compared species.
+with $\epsilon_{\alpha}$ declared before promotion. If this residual cannot be held small without per-species tuning, the universality claim fails and the parameter count must be raised explicitly. On a connected family of realized assembly branches, this is a flatness condition for $\alpha_{\mathrm{m}}$ over the retained moduli. An irreducible jump in the back-solved $\alpha_{\mathrm{m}}$ across different assembly topological charge sectors would not be hidden inside the same symbol; it would mark either a disconnected mass-map family or a failed universality claim for the compared species.
 
 Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its closed internal causal-history record, shielding extraction, Noether sea response tensor, and acceleration response.
 
@@ -9553,6 +8992,8 @@ For assembly center-of-mass motion in the Lorentz-suppressed regime, impose the 
 $$
 E_{\text{CM}}^2 = p_{\text{CM}}^2 c_{\text{eff}}^2 + M_0^2 c_{\text{eff}}^4
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#energy-momentum-rest-energy)
 
 Here:
 - $M_0$ is the assembly rest/internal invariant extracted at $v_{\text{CM}}=0$ in a locally homogeneous sea.
@@ -9624,8 +9065,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 - **At the architrino level:**
 
-  Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation is a closure target for an accepted causal-action or causal-wake theory with proved same-record signed accounts and boundary closure. For the action route, time-translation symmetry and a symmetry-preserving regularization are necessary but insufficient without a delay-compatible Noether theorem, complete pairwise provenance, and no-double-booking closure. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle.
-  Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
+  Kinetic energy and potential energy are defined via the Master EOM. Exact global conservation is a closure target for an accepted causal-action or causal-wake theory with proved same-record signed accounts and boundary closure. For the action route, time-translation symmetry and a symmetry-preserving regularization are necessary but insufficient without a delay-compatible Noether theorem, complete pairwise provenance, and no-double-booking closure. The substrate law is acceleration-first; no particle-specific fundamental mass is assigned to architrinos, and speeds are unbounded in principle. Potential availability is geometric rather than fuel-like: causal wakes are emitted as path-history structure, while work appears only when a receiver intersects active wake branches with nonzero radial power.
 
 - **At the assembly level:**
 
@@ -9633,8 +9073,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
   - Generation dependence through which declared support rows remain active and how their shielding map changes,
-  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior.
-  Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
+  - An emergent speed scale $c_{\text{eff}}$ and relativistic-like behavior. Macroscopic quietness follows from superposition and shielding: incoherent populations cancel statistically, while phase-locked assemblies such as collinear breathers preserve localized, non-canceling wake structure.
 
 - **For spacetime and gravity:**
 
@@ -9685,8 +9124,7 @@ K^{(b)}(r_\ast)+U^{(b)}(r_\ast)
 =
 K^{(b')}(r_\ast)+U^{(b')}(r_\ast)+\Delta_{\text{ledger}}
 $$
-where $\Delta_{\text{ledger}}$ is the declared root-change energy routed through the table entries such as $\varepsilon_3$, $\varepsilon_w$, and the binary-2 adjustment. The visible step is the ledger/gauge matching term; it is not additional to that matching.
-Thus $U^{(b)}$ is a ledger-indexed potential, and the zero-section can jump when the active causal-root cell changes. A globally consistent energy ledger requires the $\Delta_{\text{ledger}}$ increments to glue around overlaps of ledger cells; otherwise the local potential gauges are individually consistent but the global binding-energy record is multivalued.
+where $\Delta_{\text{ledger}}$ is the declared root-change energy routed through the table entries such as $\varepsilon_3$, $\varepsilon_w$, and the binary-2 adjustment. The visible step is the ledger/gauge matching term; it is not additional to that matching. Thus $U^{(b)}$ is a ledger-indexed potential, and the zero-section can jump when the active causal-root cell changes. A globally consistent energy ledger requires the $\Delta_{\text{ledger}}$ increments to glue around overlaps of ledger cells; otherwise the local potential gauges are individually consistent but the global binding-energy record is multivalued.
 
 ##### Binding Energy and Total Energy
 
@@ -9780,16 +9218,9 @@ Notation in the table:
 
 Per-step increments (explicit, no deltas):
 
-- Binary-3 step energy: $\varepsilon_3 \equiv \omega_3 \hbar$ with
-  $$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$
-  so $k_3 + u_3 = \varepsilon_3$.
-- Binary-1 step energy: $\varepsilon_1 \equiv \omega_1 \hbar$ with
-  $$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$
-  so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
-- Binary-2 adjustment energy: $\varepsilon_2$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step:
-  $$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$
-  and we split it as
-  $$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
+- Binary-3 step energy: $\varepsilon_3 \equiv \omega_3 \hbar$ with $$k_3 \equiv \chi_3\,\varepsilon_3,\quad u_3 \equiv (1-\chi_3)\,\varepsilon_3,$$ so $k_3 + u_3 = \varepsilon_3$.
+- Binary-1 step energy: $\varepsilon_1 \equiv \omega_1 \hbar$ with $$k_1 \equiv \chi_1\,\varepsilon_1,\quad u_1 \equiv (1-\chi_1)\,\varepsilon_1,$$ so $k_1 + u_1 = \varepsilon_1$. Because binary 1 takes **two steps** in this source record, it adds $2k_1$ and $2u_1$.
+- Binary-2 adjustment energy: $\varepsilon_2$ is whatever is needed to close the ledger. Here $\varepsilon_w$ denotes the **causal-wake exchange energy** during the step: $$\varepsilon_2 \equiv \varepsilon_w - 2\varepsilon_1,$$ and we split it as $$k_2 \equiv \chi_2\,\varepsilon_2,\quad u_2 \equiv (1-\chi_2)\,\varepsilon_2.$$
 
 | State | Binary 3 | Binary 2 | Binary 1 | Notes |
 | --- | --- | --- | --- | --- |
@@ -9888,8 +9319,7 @@ $$
 =
 \Delta I_{\mathrm{ledger},a}
 $$
-where $\Delta I_{\mathrm{ledger},a}$ is the declared quantized ledger increment associated with the change in active causal-root multiplicity or branch chart. Thus the action variable is expected to drift only adiabatically inside a ledger cell, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch-boundary invariant target rather than an assumption that energy itself is quantized at the primitive level.
-In this form, an $h$-like action transaction is the finite phase-space area jump across a root-fold wall, not a primitive grain of energy. The floor $\delta_{\text{cell}}>0$ is the adiabatic validity condition: inside the cell the action is nearly invariant; at the wall the fold impulse, ledger update, and cross-ledger gauge matching must be booked together on the same retained branch record.
+where $\Delta I_{\mathrm{ledger},a}$ is the declared quantized ledger increment associated with the change in active causal-root multiplicity or branch chart. Thus the action variable is expected to drift only adiabatically inside a ledger cell, while a root-ledger transition may produce the discrete $\Delta I$ recorded above. This turns the $h$-like bookkeeping into a branch-boundary invariant target rather than an assumption that energy itself is quantized at the primitive level. In this form, an $h$-like action transaction is the finite phase-space area jump across a root-fold wall, not a primitive grain of energy. The floor $\delta_{\text{cell}}>0$ is the adiabatic validity condition: inside the cell the action is nearly invariant; at the wall the fold impulse, ledger update, and cross-ledger gauge matching must be booked together on the same retained branch record.
 
 ### Action-Energy
 
@@ -10373,8 +9803,7 @@ Methodological priority:
   \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
   V_{i\leftarrow j,T_t}^{(\eta)}(T)
   $$
-  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived aggregation over the retained records.
-  When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
+  on the same active causal-root ledger used by the acceleration residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after transmitter identity, polarity, emission time, Jacobian, transmitter-side acceleration weight, and receiver radial power have survived aggregation over the retained records. When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
   2T_{\mu,b}^{(\eta)}
@@ -10408,19 +9837,13 @@ Methodological priority:
   \le
   \epsilon_{\mathrm{vir}}
   $$
-  This is not yet the classical potential statement. The reduction to
-  $\langle 2T-pU\rangle=0$ additionally requires a branch-local potential
-  $U_b^{(\eta)}$ whose scale variation is controlled by a homogeneity degree
-  $p$,
+  This is not yet the classical potential statement. The reduction to $\langle 2T-pU\rangle=0$ additionally requires a branch-local potential $U_b^{(\eta)}$ whose scale variation is controlled by a homogeneity degree $p$,
   $$
   U_b^{(\eta)}(\lambda\mathbf X)
   =
   \lambda^p U_b^{(\eta)}(\mathbf X)
   $$
-  together with a proof that the same branch acceleration is generated by that
-  potential over $W$. A scale/virial residual that contains zero is therefore
-  diagnostic only until it supplies the same-domain scale generator, homogeneity
-  degree, and branch coordinate needed for this stronger reduction.
+  together with a proof that the same branch acceleration is generated by that potential over $W$. A scale/virial residual that contains zero is therefore diagnostic only until it supplies the same-domain scale generator, homogeneity degree, and branch coordinate needed for this stronger reduction.
 - Velocity-regime scope for the branch-virial target:
   - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, transmitter-side factors, and transmitter-side acceleration weights still remain in the acceleration term.
   - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
@@ -10455,8 +9878,7 @@ Integral (delta) form selecting the causal root:
   \mathrm{sgn}\!\big(X_1(T)-X_2(T-\Delta)\big)}
   {\lvert X_1(T)-X_2(T-\Delta)\rvert^{2}}\; d\Delta
   $$
-  whose evaluation selects the causal delay $\Delta(T)$. The delta change of variables contributes
-  $c_f/\lvert c_f-\hat{\mathbf r}\cdot\mathbf V_2(T-\Delta)\rvert=W^{\mathrm{acc}}$ automatically. Multiplying by another $W^{\mathrm{acc}}$ after evaluating the integral would double-count the transmitter-side Jacobian.
+  whose evaluation selects the causal delay $\Delta(T)$. The delta change of variables contributes $c_f/\lvert c_f-\hat{\mathbf r}\cdot\mathbf V_2(T-\Delta)\rvert=W^{\mathrm{acc}}$ automatically. Multiplying by another $W^{\mathrm{acc}}$ after evaluating the integral would double-count the transmitter-side Jacobian.
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.
@@ -10528,28 +9950,17 @@ Equations of motion (canonical delayed law; two-body, $c_f=1$):
   \quad
   r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
-  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract),
-  $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side
-  acceleration weight on the corresponding root, $H(0)=0$ excludes $T_t=T$, and
-  $\mathrm{sgn}(\cdot)$ denotes the sign function.
+  Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract), $W_{ab}^{\mathrm{acc}}=c_f/\lvert D_{t,ab}\rvert$ is the transmitter-side acceleration weight on the corresponding root, $H(0)=0$ excludes $T_t=T$, and $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
 Relative-coordinate DDE:
-- Define $r(T)=X_1(T)-X_2(T)>0$. Then
-  $s_{12}(T;T_t)=X_1(T)-X_2(T_t)$ and
-  $s_{21}(T;T_t)=X_2(T)-X_1(T_t)$ are the signed delayed separations, with
-  $r_{12}=|s_{12}|$ and $r_{21}=|s_{21}|$. Subtracting the two
-  per-particle rows gives
+- Define $r(T)=X_1(T)-X_2(T)>0$. Then $s_{12}(T;T_t)=X_1(T)-X_2(T_t)$ and $s_{21}(T;T_t)=X_2(T)-X_1(T_t)$ are the signed delayed separations, with $r_{12}=|s_{12}|$ and $r_{21}=|s_{21}|$. Subtracting the two per-particle rows gives
   $$
   \frac{d^2r}{dT^2}\;=\;A_1(T)-A_2(T)
   \;=\;
   -\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_2(T)}W_{12}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(s_{12}(T;T_t)\big)}{r_{12}^2}
   +\,\kappa\,\epsilon^2\sum_{T_t\in\mathcal{C}_1(T)}W_{21}^{\mathrm{acc}}(T;T_t)\frac{\mathrm{sgn}\!\big(s_{21}(T;T_t)\big)}{r_{21}^2}
   $$
-  with the two absolute distances fixed by their respective causal-root
-  conditions. For an ordered symmetric history with $X_1>0>X_2$, the first
-  signed separation is positive and the second is negative, so both displayed
-  terms are negative and the instantaneous separation accelerates inward.
-  No exact closed-form solution is presently known for the coupled DDE system.
+  with the two absolute distances fixed by their respective causal-root conditions. For an ordered symmetric history with $X_1>0>X_2$, the first signed separation is positive and the second is negative, so both displayed terms are negative and the instantaneous separation accelerates inward. No exact closed-form solution is presently known for the coupled DDE system.
 
 Nonlinear history-anchored form (vector notation for clarity):
   $$
@@ -10699,8 +10110,7 @@ a\in A_\Omega,\,
 -H_{\mathrm{hist}}\le\theta\le0
 \right\}
 $$
-with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly.
-Here $A_\Omega$ is the retained architrino index set for the window, not a new kind of assembly.
+with any excluded rows, endpoint conventions, and boundary crossings recorded explicitly. Here $A_\Omega$ is the retained architrino index set for the window, not a new kind of assembly.
 
 A promoted delay-energy functional has the form
 $$
@@ -10782,8 +10192,7 @@ P_{b,\mathrm{work}}^{(\eta)}(T)
 \sum_{T_t\in\mathcal C_{ij,b}^{(\eta)}(T)}
 P_{i\leftarrow j,T_t}^{(\eta)}(T)
 $$
-on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
-The work-integral route then reconstructs the compatible causal-history interaction contribution by
+on the same active causal-root ledger. This root-resolved form is the accounting guardrail: transmitter identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar. The work-integral route then reconstructs the compatible causal-history interaction contribution by
 $$
 U_{b,\mathrm{work}}^{(\eta)}(T)
 =
@@ -10939,12 +10348,7 @@ From the perspective of the receiving architrino, the information carried by an 
 1. The net strength of the potential at the point of intersection.
 2. The signed acceleration vector $\mathbf A$ at the receiver event.
 
-The vector fixes the direction of the net acceleration. What it does not fix is
-the transmitter ray and polarity assignment that produced that vector. An
-attractive source on one ray and a repulsive source on the opposite ray can
-produce the same $\mathbf A$. Only after quotienting those source hypotheses
-does one obtain an unoriented inference axis; that axis is not the raw received
-datum.
+The vector fixes the direction of the net acceleration. What it does not fix is the transmitter ray and polarity assignment that produced that vector. An attractive source on one ray and a repulsive source on the opposite ray can produce the same $\mathbf A$. Only after quotienting those source hypotheses does one obtain an unoriented inference axis; that axis is not the raw received datum.
 
 ##### Degeneracies and Inference Limits
 
@@ -10963,8 +10367,7 @@ datum.
     - Super-field-speed self-history ambiguity: when same-transmitter delayed roots exist, the receiver-local event still reports an acceleration contribution, not the full past trajectory that produced it. The self-hit label must come from the retained causal-root ledger, not from the instantaneous vector alone.
     - Continuum of surrogate locations: for any instantaneous hit there exists a continuum of stationary surrogate source positions on the two rays of the inference axis, with polarity chosen consistently and with a correspondingly adjusted emission time $T_t$, that reproduces the same instantaneous vector; hence instantaneous inversion is severely underdetermined.
 
-  - Surrogate-location recast:
-    For one resolved line-of-action component at receiver event $R=(T,\mathbf X_{o'}(T))$, the receiver-local datum can be written as
+  - Surrogate-location recast: For one resolved line-of-action component at receiver event $R=(T,\mathbf X_{o'}(T))$, the receiver-local datum can be written as
     $$
     D_R=(A_R,[\hat{\mathbf{u}}]),
     \qquad
@@ -11010,10 +10413,7 @@ Event-aware integration (practical algorithm):
    - Discard non-physical roots by convention $H(0)=0$ (exclude $\Delta T=0$); note $r=0$ occurs only at $\Delta T=0$ and is thus excluded.
 
 2. Per-hit accumulation:
-   - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,
-     $D_t=1-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$,
-     $D_r=1-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$, and
-     $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. Then use
+   - For each accepted root, compute $r$, $\hat{\mathbf{r}}$, $D_t=1-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$, $D_r=1-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. Then use
      $$
      \mathbf A_{o'\leftarrow o}(T_r;T_t)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{acc}}\,\hat{\mathbf{r}}
      $$
@@ -11096,9 +10496,7 @@ $$
   - A single hit changes $V_r$ but not $\mathbf V_\perp$ instantaneously.
 
 - Power and work:
-  - The signed instantaneous acceleration-power proxy is
-    $\mathbf A\cdot\mathbf V=(\mathbf A\cdot\hat{\mathbf r})V_r$.
-    It reduces to $\|\mathbf A\|V_r$ only for a repulsive contribution directed along $+\hat{\mathbf r}$; an attractive contribution carries the opposite sign.
+  - The signed instantaneous acceleration-power proxy is $\mathbf A\cdot\mathbf V=(\mathbf A\cdot\hat{\mathbf r})V_r$. It reduces to $\|\mathbf A\|V_r$ only for a repulsive contribution directed along $+\hat{\mathbf r}$; an attractive contribution carries the opposite sign.
   - For the specific kinetic proxy $K_{\mathrm{spec}}=\tfrac12\|\mathbf V\|^2$, the per-hit rate is $dK_{\mathrm{spec}}/dT=\mathbf A\cdot\mathbf V$. An energy-valued bookkeeping row must instead declare the universal conversion $\mu_{\text{arch}}$ and use $K_\mu=\tfrac12\mu_{\text{arch}}\|\mathbf V\|^2$, so $dK_\mu/dT=\mu_{\text{arch}}\mathbf A\cdot\mathbf V$.
   - Orthogonal motion contributes no instantaneous acceleration power. A fixed-transmitter benchmark may identify the radial integral with a potential-energy change, but moving-transmitter, self-hit, and open-boundary histories require the constructive wake/history and boundary terms in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
@@ -11168,9 +10566,7 @@ This project does not posit a static near field. Instead:
   - The instantaneous emission $(\Delta=0)$ contributes no acceleration to the transmitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T_r-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
-  - Replace $\delta(r-c_f\Delta)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and the corresponding potential-gradient bookkeeping variables are then regular functions. On a fixed-transmitter benchmark, a promoted run must test, rather than assume, the resolved-window identity
-    $\Delta E_k=-\Delta U$, with $U=q'\Phi_\eta$,
-    together with boundedness and regulator refinement. A moving-transmitter or self-hit branch instead requires the history-aware energy construction in [Delay Dynamics and Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md); a local potential difference alone does not close its wake and boundary exchange. An $\eta\to0$ claim requires weak convergence of the promoted integrals and stable causal-root identity; mollification alone does not prove that limit. See [Well-posedness and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
+  - Replace $\delta(r-c_f\Delta)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and the corresponding potential-gradient bookkeeping variables are then regular functions. On a fixed-transmitter benchmark, a promoted run must test, rather than assume, the resolved-window identity $\Delta E_k=-\Delta U$, with $U=q'\Phi_\eta$, together with boundedness and regulator refinement. A moving-transmitter or self-hit branch instead requires the history-aware energy construction in [Delay Dynamics and Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md); a local potential difference alone does not close its wake and boundary exchange. An $\eta\to0$ claim requires weak convergence of the promoted integrals and stable causal-root identity; mollification alone does not prove that limit. See [Well-posedness and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
 
 - Event-driven geometry (self-hits occur at $r>0$):
   - A super-field-speed history interval is necessary for simple nontrivial self roots, but the accepted channel additionally requires a same-transmitter causal root, positive separation or declared core regularization, and retained branch floors. On such a chart, self-hits occur at $r>0$ and yield finite $W^{\mathrm{acc}}/r^2$ contributions. The chart does not establish a global absence of short-distance or regulator-limit divergences.
@@ -11257,11 +10653,7 @@ Core symbols:
   - Consequence: every velocity appears as a pure number $\|\mathbf V\|$; the threshold $\|\mathbf V\|=c_f$ becomes $\|\mathbf V\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
 
 - Coupling constant ($\kappa>0$):
-  - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
-    $
-    \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf{r}},
-    $
-    larger $\kappa$ uniformly strengthens every interaction.
+  - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law, $ \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf{r}}, $ larger $\kappa$ uniformly strengthens every interaction.
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
@@ -11473,11 +10865,7 @@ S_{\eta,U}:
 $$
 Existence and uniqueness mean that every declared initial history $S_{\eta,0}\in\mathcal{A}_\eta(T;V,d,\nu,B)$ generates a unique $S_\eta(U)$ on $[0,T]$ in the declared history class, and that the emitted root ledger is generated by that solution rather than by a post-hoc branch choice.
 
-The no-runaway condition requires a validated energy construction, not
-time-translation symmetry alone. On the same branch chart and isolated window,
-the packet must identify one accepted construction route from
-[Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md), retain the corresponding
-boundary convention, establish the lower bound
+The no-runaway condition requires a validated energy construction, not time-translation symmetry alone. On the same branch chart and isolated window, the packet must identify one accepted construction route from [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md), retain the corresponding boundary convention, establish the lower bound
 $$
 E_{\text{tot}}^{(\eta)}(T)
 =
@@ -11489,18 +10877,14 @@ and report
 $$
 \epsilon_E^{(\eta)}([0,T];\mathfrak B)\le\tau_E
 $$
-for a predeclared tolerance $\tau_E$ that remains satisfied under temporal,
-history-window, and regulator refinement. Only those jointly validated rows
-license the finite-window kinetic bound
+for a predeclared tolerance $\tau_E$ that remains satisfied under temporal, history-window, and regulator refinement. Only those jointly validated rows license the finite-window kinetic bound
 $$
 K_{\mu}(T)
 \le
 E_{\text{tot}}^{(\eta)}(0)-U_{\min}^{(\eta)}
 +\left|\mathcal R_E^{(\eta)}([0,T];\mathfrak B)\right|
 $$
-on the isolated run window. Preserved time-translation symmetry is a required
-input to an action-boundary construction, but it is not by itself a
-conservation or no-runaway certificate.
+on the isolated run window. Preserved time-translation symmetry is a required input to an action-boundary construction, but it is not by itself a conservation or no-runaway certificate.
 
 The continuation criterion is
 $$
@@ -12555,8 +11939,7 @@ $$
 =
 \ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+),
 $$
-with the right-hand side evaluated in the same finite-$\eta$ chart that regularizes the caustic. The older heuristic $\Delta L_c\mapsto2\Delta L_c$ is recovered only in the special case where the newly born principal self record exports exactly the same cycle increment as the pre-hinge partner ledger.
-More precisely, $\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)$ is not the value of a divergent pointwise tangential coefficient at the hinge. It is the finite angular impulse
+with the right-hand side evaluated in the same finite-$\eta$ chart that regularizes the caustic. The older heuristic $\Delta L_c\mapsto2\Delta L_c$ is recovered only in the special case where the newly born principal self record exports exactly the same cycle increment as the pre-hinge partner ledger. More precisely, $\ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)$ is not the value of a divergent pointwise tangential coefficient at the hinge. It is the finite angular impulse
 $$
 \ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)
 =
@@ -12628,12 +12011,7 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 
 #### Maximum-Curvature Binary — Circular
 
-Receiver-side validity notice. The circular MCB branch topology, root labels,
-transmitter-side Jacobian formulas, and canonical acceleration components use
-$W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. The algebraic root-ledger result below
-is therefore a Master EOM measurement on the unregularized circular simple-root
-chart. Stability, finite-event continuation, action records, and retained-history
-claims remain outside that measurement.
+Receiver-side validity notice. The circular MCB branch topology, root labels, transmitter-side Jacobian formulas, and canonical acceleration components use $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. The algebraic root-ledger result below is therefore a Master EOM measurement on the unregularized circular simple-root chart. Stability, finite-event continuation, action records, and retained-history claims remain outside that measurement.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, acceleration components, and stability criteria. It is the canonical reference for MCB attractor status.
 
@@ -12689,14 +12067,7 @@ $$
 $$
 The exact residual definitions and Theorem G role are recorded in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#translating-binary-benchmark). A Lorentzian result would make the two-body branch the first derived substrate clock. A non-Lorentzian residual would be equally informative because it would identify the first place where the primitive two-body kernel pressures the larger Lorentz-closure program.
 
-Two conditional results constrain this handoff without producing a moving
-branch. First, for the exactly circular planar rest record, full spatial
-equivariance, global polarity-reversal invariance, smooth drift dependence, and
-local branch uniqueness modulo center and phase imply
-$T(\mathbf u)=T(-\mathbf u)$, so the first-order period coefficient vanishes.
-This fails as a branch statement if the symmetry exchanges two inequivalent
-moving branches, the rest record is chiral or nonplanar, or the retained-history
-rule distinguishes drift directions.
+Two conditional results constrain this handoff without producing a moving branch. First, for the exactly circular planar rest record, full spatial equivariance, global polarity-reversal invariance, smooth drift dependence, and local branch uniqueness modulo center and phase imply $T(\mathbf u)=T(-\mathbf u)$, so the first-order period coefficient vanishes. This fails as a branch statement if the symmetry exchanges two inequivalent moving branches, the rest record is chiral or nonplanar, or the retained-history rule distinguishes drift directions.
 
 Second, no real linear map of the restricted form
 
@@ -12708,16 +12079,9 @@ x_\parallel'=\frac{x_\parallel}{\gamma_f}+\beta T,
 \mathbf x_\perp'=\mathbf x_\perp
 $$
 
-preserves every causal-root quadratic at nonzero drift, because coefficient
-matching requires
-$c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for
-that complete map class; a wider class that also changes transverse lengths
-lies outside the claim. Neither result is evidence that a translating branch
-exists.
+preserves every causal-root quadratic at nonzero drift, because coefficient matching requires $c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for that complete map class; a wider class that also changes transverse lengths lies outside the claim. Neither result is evidence that a translating branch exists.
 
-Plainly: symmetry removes one cheap linear-period test, and the restricted map
-cannot manufacture the desired branch. The delayed dynamics still has to find
-or reject the branch directly.
+Plainly: symmetry removes one cheap linear-period test, and the restricted map cannot manufacture the desired branch. The delayed dynamics still has to find or reject the branch directly.
 
 The moving-branch test also has a root-starvation obligation. If a forward transmitter root has minimum forward separation $d_{\min}$ in the direction of motion, then the causal delay needed to receive that root obeys the elementary bound
 $$
@@ -12738,8 +12102,7 @@ M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
 $$
 where $h_b^{\mathrm{lock}}$ is the declared retained-history depth of the moving branch and $\epsilon_h>0$ is a fixed normalization floor. If this residual diverges on the finite-$\eta$ moving chart, the two-body branch has run out of retained causal roots before it has derived Lorentz closure; the handoff must then move to a Noether-sea or larger assembly response rather than being booked as a bare-binary result.
 
-On a declared smooth simple-root history, the companion canonical weight scales
-as
+On a declared smooth simple-root history, the companion canonical weight scales as
 
 $$
 \frac{1}{r^2}\frac{c_f}{|D_t|}
@@ -12747,14 +12110,9 @@ $$
 \frac{c_f-u}{c_fd_{\min}^2}.
 $$
 
-The forward hit therefore weakens linearly in the gap while its delay diverges.
-A finite window can still remove it discontinuously at the retained boundary.
-This local result neither fixes the branch period nor interprets numerical
-history truncation as a physical memory law; it also fails if the same root
-approaches a transmitter-side fold.
+The forward hit therefore weakens linearly in the gap while its delay diverges. A finite window can still remove it discontinuously at the retained boundary. This local result neither fixes the branch period nor interprets numerical history truncation as a physical memory law; it also fails if the same root approaches a transmitter-side fold.
 
-Plainly: an older forward hit can become weaker while remaining necessary to the
-declared ledger. Losing it at a finite window is a separate boundary event.
+Plainly: an older forward hit can become weaker while remaining necessary to the declared ledger. Losing it at a finite window is a separate boundary event.
 
 The branch-qualified symbol matters: $h_b^{\mathrm{lock}}$ is the measured retained-history depth of this locked moving branch, whereas bare $h$ later denotes a generic history-space horizon. A translating-branch certificate must report $h_b^{\mathrm{lock}}$ rather than silently substituting the generic horizon.
 
@@ -12814,9 +12172,7 @@ and the chapter speed ratio as
 $$
 \beta_f=\frac{\omega R}{c_f}
 $$
-In this non-translating circular certificate, $\beta_f$ is the same speed ratio
-denoted $s$ elsewhere in the chapter.
-The principal partner-root equation is
+In this non-translating circular certificate, $\beta_f$ is the same speed ratio denoted $s$ elsewhere in the chapter. The principal partner-root equation is
 $$
 2\beta_f\cos\frac{\phi}{2}=\phi,
 \qquad
@@ -13087,10 +12443,7 @@ These formulas make the transmitter-side transversality asymmetry between the tw
 
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
 
-The projections in this subsection are transmitter-side circular diagnostics. They
-record root playback and root geometry, but they are not canonical Master EOM
-acceleration contributions until the same retained branches are recomputed with
-$D_t$, $D_r$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
+The projections in this subsection are transmitter-side circular diagnostics. They record root playback and root geometry, but they are not canonical Master EOM acceleration contributions until the same retained branches are recomputed with $D_t$, $D_r$, and $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 
 **Chord lengths**:
 $$
@@ -13201,8 +12554,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
 ###### Tangential Drive and Wake Escapement
 
-**Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).**
-In the symmetric, non-translating circular binary with canonical delayed radial acceleration contributions only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
+**Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).** In the symmetric, non-translating circular binary with canonical delayed radial acceleration contributions only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
 
 $$
 T_{\mathrm{net}}
@@ -13236,8 +12588,7 @@ $$
 The sign is branch-invariant on this same-sheet chart because winding changes timing, not chord orientation. Therefore each summand in $T_{\mathrm{net}}$ is nonnegative. The always-present principal partner root is strictly positive, including when a self branch sits at its endpoint with zero tangential projection. Hence $T_{\mathrm{net}}>0$ on the certified chart. $\square$
 
 **Corollary.**
-Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit
-with no boundary wake-state exchange is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-root cancellation may reduce the local tangential drive, but any remaining forward kinetic-rate change must close against the causal wake state or genuinely multi-body Noether braid exchange.
+Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit with no boundary wake-state exchange is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-root cancellation may reduce the local tangential drive, but any remaining forward kinetic-rate change must close against the causal wake state or genuinely multi-body Noether braid exchange.
 
 **Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
 
@@ -13277,16 +12628,13 @@ where $h_{\mathrm{act}}$ is the declared action unit used by the branch packet a
 
 **Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a radial outward component and a signed tangential component. As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$ times their transmitter-side weights $1/|J|$. Maximum curvature would require the outward self-hit radial component to balance the inward partner pull without the tangential sum destroying constant-speed closure, and the coincident self-root birth must first have a finite accepted event treatment.
 
-The non-translating symmetric circular radial target is therefore the
-transmitter-side weighted acceleration contribution:
+The non-translating symmetric circular radial target is therefore the transmitter-side weighted acceleration contribution:
 
 $$
 A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)J_p} - \frac{1}{\sin(\delta_s / 2)|J_s|} \right).
 $$
 
-For translating, deformed, or non-circular branches, this target must be
-restored to the same-root form with
-$W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bullet}$ retained separately for root playback.
+For translating, deformed, or non-circular branches, this target must be restored to the same-root form with $W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bullet}$ retained separately for root playback.
 
 **Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial acceleration**. This occurs when:
 
@@ -13295,14 +12643,9 @@ $W_{\bullet}^{\mathrm{acc}}=c_f/|D_{t,\bullet}|$, with $D_{r,\bullet}/D_{t,\bull
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold inverse-distance hinge plus transmitter-side fold.**
-   On the principal self branch, $D_t$ loses its floor as $s\downarrow 1^+$,
-   and the transmitter-side acceleration weight diverges as $1/|D_t|$. The
-   coincident branch birth therefore remains a failed singular event until a
-   finite regulator-independent transition is certified.
+1. **Near-threshold inverse-distance hinge plus transmitter-side fold.** On the principal self branch, $D_t$ loses its floor as $s\downarrow 1^+$, and the transmitter-side acceleration weight diverges as $1/|D_t|$. The coincident branch birth therefore remains a failed singular event until a finite regulator-independent transition is certified.
 
-2. **Higher-speed multi-branch redistribution.**
-   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full transmitter-side weighted sum over all active branches rather than on the principal branch alone.
+2. **Higher-speed multi-branch redistribution.** At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full transmitter-side weighted sum over all active branches rather than on the principal branch alone.
 
 **Current status**: The same-sheet per-hit $T>0$ result excludes only the restricted same-sheet chart. The complete unregularized signed simple-root ledger has algebraic circular candidates, beginning near $s=3.07036$, so existence is measured rather than excluded on that chart. The maximum-curvature state remains uncertified for the isolated two-body system because finite-event continuation, retained-history persistence, wake-boundary closure, and return-map stability have not been established.
 
@@ -13482,8 +12825,7 @@ with
 $$
 J_s(\xi,\sigma;s)=1-s\sigma\cos\xi
 $$
-as the transmitter-side transversality diagnostic. The outward radial and signed
-tangential canonical circular coefficients are
+as the transmitter-side transversality diagnostic. The outward radial and signed tangential canonical circular coefficients are
 $$
 S_{\mathrm{rad}}(\xi,\sigma;s)=\frac{s}{\xi\,|J_s|},
 \qquad
@@ -13725,8 +13067,7 @@ G_{\mathrm{tan}}^{(b)}(R,s)
 \sum_{\alpha\in b}T_\alpha(R,s;\eta)
 \right\rangle_{P_b}
 $$
-with $b_p$ and $b_s$ denoting the partner-hit and self-hit entries inside the signed ledger $b$.
-The first curve enforces inward/outward radial balance, while the second enforces finite-window tangential closure. In the natural Layer-I units, the search lives in $(R/R_*,s)$, so any intersection is a parameter-free candidate point for that ledger. It is still only an algebraic MCB candidate until the fixed-ledger return map proves stability, positive Jacobian floors, and persistence under perturbation.
+with $b_p$ and $b_s$ denoting the partner-hit and self-hit entries inside the signed ledger $b$. The first curve enforces inward/outward radial balance, while the second enforces finite-window tangential closure. In the natural Layer-I units, the search lives in $(R/R_*,s)$, so any intersection is a parameter-free candidate point for that ledger. It is still only an algebraic MCB candidate until the fixed-ledger return map proves stability, positive Jacobian floors, and persistence under perturbation.
 
 This gives a precise, conditional meaning to binary resonance lock. A stable slot would be a region of history space in which the integer pair
 $$
@@ -14055,9 +13396,7 @@ Define
 $$
 g_{ij}(\Delta,\phi)=\|\phi_i(0)-\phi_j(-\Delta)\|-c_f\Delta
 $$
-Because $\phi\in C^1$, the evaluation maps $\phi\mapsto \phi_i(0)$ and
-$(\Delta,\phi)\mapsto \phi_j(-\Delta)$ are $C^1$, hence $g_{ij}$ is $C^1$ on
-$\mathbb{R}^+\times\mathcal{H}$. At a root $(\Delta^*,\phi)$,
+Because $\phi\in C^1$, the evaluation maps $\phi\mapsto \phi_i(0)$ and $(\Delta,\phi)\mapsto \phi_j(-\Delta)$ are $C^1$, hence $g_{ij}$ is $C^1$ on $\mathbb{R}^+\times\mathcal{H}$. At a root $(\Delta^*,\phi)$,
 $$
 \partial_\Delta g_{ij}
 =\hat{\mathbf{r}}_{ij}\!\cdot\!\dot{\phi}_j(-\Delta^*)-c_f,
@@ -14066,12 +13405,7 @@ $$
 \equiv
 \frac{\phi_i(0)-\phi_j(-\Delta^*)}{\|\phi_i(0)-\phi_j(-\Delta^*)\|}
 $$
-Equivalently, $\partial_\Delta g_{ij}=-D_{t,ij}$ on this root.
-The simple-root condition is exactly $\partial_\Delta g_{ij}\neq 0$, i.e. no
-delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space
-Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a
-unique $C^1$ map $\Delta:U\to\mathbb{R}^+$ with
-$g_{ij}(\Delta(\psi),\psi)=0$ and $\Delta(\phi)=\Delta^*$. $\square$
+Equivalently, $\partial_\Delta g_{ij}=-D_{t,ij}$ on this root. The simple-root condition is exactly $\partial_\Delta g_{ij}\neq 0$, i.e. no delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a unique $C^1$ map $\Delta:U\to\mathbb{R}^+$ with $g_{ij}(\Delta(\psi),\psi)=0$ and $\Delta(\phi)=\Delta^*$. $\square$
 
 ###### Definition 3 (Regularized Acceleration Functional)
 To ensure the vector field is Lipschitz, we replace the distributional Dirac delta of the master equation with the mollifier $\delta_\eta$ (see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md)). The acceleration functional $F_i: \mathcal{H} \to \mathbb{R}^3$ is:
@@ -14080,11 +13414,7 @@ F_i(\phi) = \sum_{j} \kappa \sigma_{ij} |q_i q_j| \int_{-h}^0 \frac{\phi_i(0) - 
 $$
 **Crucial Property:** For $\eta > 0$ and smooth $\delta_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
 
-This finite-$\eta$ functional is a certification surrogate until its sharp-limit
-branch reduction reproduces the canonical transmitter-side acceleration weight.
-Each retained simple root must carry $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$.
-The same record also carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that
-ratio does not multiply the instantaneous acceleration.
+This finite-$\eta$ functional is a certification surrogate until its sharp-limit branch reduction reproduces the canonical transmitter-side acceleration weight. Each retained simple root must carry $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$. The same record also carries $D_{r,ij}/D_{t,ij}$ for signed root playback, but that ratio does not multiply the instantaneous acceleration.
 
 On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ integral first. The admissibility claim is weaker: the packet must show bounded velocity and finite total impulse across the grazing chart before it can pass to the $\eta\to0$ limit.
 
@@ -14105,14 +13435,12 @@ On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ in
 5. Couplings and polarity magnitudes are finite.
 6. Optional higher-smoothness gluing condition at $T=T_{\mathrm{init}}$ (needed for $C^2$ at the junction, not for $C^1$ well-posedness).
 
-**Statement:**
-Let $\mathbf Y=(\mathbf X,\mathbf V)$ and write the system in first-order form
+**Statement:** Let $\mathbf Y=(\mathbf X,\mathbf V)$ and write the system in first-order form
 $$
 \frac{d\mathbf Y}{dT}=\mathcal{G}(\mathbf Y_T),\qquad
 \mathbf Y_{T_{\mathrm{init}}}=\phi^0
 $$
-Then there exists $\Delta T>0$ and a unique $C^1$ solution on $[T_{\mathrm{init}}-h,T_{\mathrm{init}}+\Delta T)$.
-Equivalently, there is a unique maximal solution interval
+Then there exists $\Delta T>0$ and a unique $C^1$ solution on $[T_{\mathrm{init}}-h,T_{\mathrm{init}}+\Delta T)$. Equivalently, there is a unique maximal solution interval
 $$
 [T_{\mathrm{init}}-h,T_{\max}),\qquad T_{\max}>T_{\mathrm{init}}
 $$
@@ -14192,30 +13520,22 @@ Let $\mathbf X(T)$ be a solution to the master equation.
 2. **Spatial Isometry:** For any $R \in O(3)$ and $\mathbf b \in \mathbb{R}^3$, $\mathbf Y(T) = R\mathbf X(T) + \mathbf b$ is also a solution.
 
 *Proof.*
-For time translation, set $\mathbf Y_i(T)=\mathbf X_i(T+\Delta T)$. If
-$T_t\in\mathcal{C}_{ij}^X(T+\Delta T)$ for the original solution, then
-$T_t-\Delta T\in\mathcal{C}_{ij}^Y(T)$ because
+For time translation, set $\mathbf Y_i(T)=\mathbf X_i(T+\Delta T)$. If $T_t\in\mathcal{C}_{ij}^X(T+\Delta T)$ for the original solution, then $T_t-\Delta T\in\mathcal{C}_{ij}^Y(T)$ because
 $$
 \|\mathbf Y_i(T)-\mathbf Y_j(T_t-\Delta T)\|
 =\|\mathbf X_i(T+\Delta T)-\mathbf X_j(T_t)\|
 =c_f[(T+\Delta T)-T_t]
 =c_f[T-(T_t-\Delta T)]
 $$
-Hence the same branch contributions appear with shifted times, and
-$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same acceleration law.
+Hence the same branch contributions appear with shifted times, and $\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same acceleration law.
 
-For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$,
-$R\in O(3)$. Distances are preserved:
+For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$, $R\in O(3)$. Distances are preserved:
 $$
 \|\mathbf Y_i(T)-\mathbf Y_j(T_t)\|
 =\|R(\mathbf X_i(T)-\mathbf X_j(T_t))\|
 =\|\mathbf X_i(T)-\mathbf X_j(T_t)\|
 $$
-so causal-root times are unchanged. Unit directions transform covariantly:
-$\hat{\mathbf{r}}_{ij}^Y=R\hat{\mathbf{r}}_{ij}^X$. The dot products defining
-$D_t$, $D_r$, and $W^{\mathrm{acc}}$ are preserved by the same spatial
-isometry. Therefore each acceleration term transforms as
-$\mathbf A_{ij}^Y=R\mathbf A_{ij}^X$, and
+so causal-root times are unchanged. Unit directions transform covariantly: $\hat{\mathbf{r}}_{ij}^Y=R\hat{\mathbf{r}}_{ij}^X$. The dot products defining $D_t$, $D_r$, and $W^{\mathrm{acc}}$ are preserved by the same spatial isometry. Therefore each acceleration term transforms as $\mathbf A_{ij}^Y=R\mathbf A_{ij}^X$, and
 $$
 \frac{d^2\mathbf Y_i}{dT^2}(T)=R\frac{d^2\mathbf X_i}{dT^2}(T)
 =\sum_j\sum_{T_t\in\mathcal{C}_{ij}(T)}
@@ -14237,12 +13557,7 @@ The instantaneous mechanical momentum is:
 $$
 \mathbf{P}_{\text{mech}}(T) = \sum_{i} \mu_{\text{arch}} \mathbf V_i(T)
 $$
-This is the mechanical momentum of the optional quadratic kinetic proxy. On a
-general primitive kinetic-scalar chart, each
-$\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum
-$\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with
-$P'(s)=K'(s)/s$ as specified in [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino).
-Neither construction assigns primitive mass to an architrino.
+This is the mechanical momentum of the optional quadratic kinetic proxy. On a general primitive kinetic-scalar chart, each $\mu_{\text{arch}}\mathbf V_i$ is replaced by the declared conjugate momentum $\mathbf p_i=P(\|\mathbf V_i\|)\hat{\mathbf V}_i$, with $P'(s)=K'(s)/s$ as specified in [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino). Neither construction assigns primitive mass to an architrino.
 
 Because of the delay, $\frac{d}{dT}\mathbf{P}_{\text{mech}} \neq 0$ generally.
 
@@ -14253,15 +13568,13 @@ $$
 $$
 is conserved. For working regularized models, this same expression is a validation diagnostic unless the chosen regularization preserves the translation symmetry of the underlying action.
 
-**Explicit Form (Weak Coupling Limit):**
-For $\eta \to 0$, the wake momentum can be approximated by integrating the acceleration impulse over the delay time:
+**Explicit Form (Weak Coupling Limit):** For $\eta \to 0$, the wake momentum can be approximated by integrating the acceleration impulse over the delay time:
 $$
 \mathbf{P}_{\text{wake}} \approx \sum_{i \neq j} \int_{T - \Delta_{ij}(T)}^{T} \mu_{\text{arch}}\mathbf A_{ij}^{\text{emit}}(T') \, dT'
 $$
 *Physical interpretation:* The "missing" momentum is accounted for by the causal wake surfaces currently traversing the space between transmitters and receivers in an action-derived model; otherwise this balance is the momentum diagnostic to verify.
 
-**Corollary (Center of Response Motion):**
-For an isolated binary, the center of mass $\mathbf X_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
+**Corollary (Center of Response Motion):** For an isolated binary, the center of mass $\mathbf X_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
 
 ---
 
@@ -14286,20 +13599,17 @@ We define the **Interaction Potential Functional** $\mathcal{W}(T)$ such that:
 $$
 \mathcal{W}(T) = -\int_{T_{\mathrm{init}}}^T \sum_i \mu_{\text{arch}}\mathbf V_i(T') \cdot \mathbf A_i(T') \, dT'
 $$
-This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$.
-Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(T) + \mathcal{W}(T)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
+This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$. Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(T) + \mathcal{W}(T)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
 
 That distinction is decisive for the circular tangential channel. A $\mathcal W$ obtained by integrating the same $\mathbf A\cdot\mathbf V$ record cannot test whether the record contains persistent forward tangential acceleration; it assigns the opposite change to $\mathcal W$ by definition. Independent circular energy closure requires the action-derived boundary charge or a separately derived finite-window wake account.
 
 ###### Lemma (Boundedness of the Potential)
-**Assumption:** The interaction is regularized with width $\eta > 0$ such that the per-hit acceleration is bounded: $\|\mathbf A_{ij}\| \le A_{\max}(\eta)$.
-**Statement:** For a bound system (architrinos confined to a finite volume $V$), the magnitude of the assembly-level work rate is bounded by $N\mu_{\text{arch}}A_{\max}V_{\max}$.
+**Assumption:** The interaction is regularized with width $\eta > 0$ such that the per-hit acceleration is bounded: $\|\mathbf A_{ij}\| \le A_{\max}(\eta)$. **Statement:** For a bound system (architrinos confined to a finite volume $V$), the magnitude of the assembly-level work rate is bounded by $N\mu_{\text{arch}}A_{\max}V_{\max}$.
 
 ###### Conditional Target (No-Runaway Criterion)
 This criterion is not a completed theorem until the same symmetry-preserving regularized action supplies $\mathcal{W}$ on the retained branch chart and a lower bound is proven for that branch. Under those hypotheses, in an action-derived master-equation branch with fixed $\eta>0$, an isolated binary cannot undergo runaway acceleration ($\|\mathbf V\| \to \infty$) *unless* the action-compatible potential energy functional $\mathcal{W}(T)$ diverges to $-\infty$.
 
-*Proof Logic:*
-Since $\mathcal{E}_{\text{tot}}$ is constant:
+*Proof Logic:* Since $\mathcal{E}_{\text{tot}}$ is constant:
 $$
 K(T) = \mathcal{E}_{\text{tot}} - \mathcal{W}(T)
 $$
@@ -14325,11 +13635,7 @@ The central warning is simple: a scalar action value is valid only on the same r
 
 #### Problem Statement and Goal
 
-This chapter gives the action-functional side of the canonical transmitter-side Master EOM. Its
-job is not to preserve a separate scalar law. Its job is to define which
-retained branch records may be used for action, stability, mass-response, and
-transition-cost calculations after the branch has been rebuilt with
-transmitter-side acceleration weight.
+This chapter gives the action-functional side of the canonical transmitter-side Master EOM. Its job is not to preserve a separate scalar law. Its job is to define which retained branch records may be used for action, stability, mass-response, and transition-cost calculations after the branch has been rebuilt with transmitter-side acceleration weight.
 
 The active branch strength is
 $$
@@ -14354,8 +13660,7 @@ A branch record that contains $D_t$ but omits $D_r$ can still define the instant
 
 #### Core Functional Definitions
 
-On a retained chart $\mathfrak B$ with active causal roots
-$T_t\in\mathcal C_{ij}(T_r)$, the receiver-side scalar branch statistic over a native-time window $T_{\mathrm{win}}$ is
+On a retained chart $\mathfrak B$ with active causal roots $T_t\in\mathcal C_{ij}(T_r)$, the receiver-side scalar branch statistic over a native-time window $T_{\mathrm{win}}$ is
 $$
 \bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B]
 =
@@ -14368,38 +13673,23 @@ $$
 \,dT.
 $$
 
-This statistic is sign-blind and coupling-normalized: it suppresses
-$\kappa$, $|q_iq_j|$, and the polarity sign
-$\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive records therefore
-add by received magnitude rather than canceling by direction. After the
-native-time average, $\bar{\mathcal A}_{\mathrm{rec}}$ has inverse-area units;
-it is action-like only in the sense that it accumulates receiver-side
-branch-magnitude density on the retained causal record. It is not automatically
-the exact Fokker-type variational action, whose causal kernel is tested
-separately in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-causal-delay-fokker-type-interaction-term).
+This statistic is sign-blind and coupling-normalized: it suppresses $\kappa$, $|q_iq_j|$, and the polarity sign $\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive records therefore add by received magnitude rather than canceling by direction. After the native-time average, $\bar{\mathcal A}_{\mathrm{rec}}$ has inverse-area units; it is action-like only in the sense that it accumulates receiver-side branch-magnitude density on the retained causal record. It is not automatically the exact Fokker-type variational action, whose causal kernel is tested separately in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-causal-delay-fokker-type-interaction-term).
 
-Plain language: this number asks how much same-record causal-hit magnitude a
-branch carries over the window after signs, coupling scale, and push direction
-have been stripped off.
+Plain language: this number asks how much same-record causal-hit magnitude a branch carries over the window after signs, coupling scale, and push direction have been stripped off.
 
-This is a scalar statistic, not the vector Master EOM itself. It keeps the same
-causal roots and transmitter-side acceleration weight while discarding the line-of-action
-direction. Its use is limited:
+This is a scalar statistic, not the vector Master EOM itself. It keeps the same causal roots and transmitter-side acceleration weight while discarding the line-of-action direction. Its use is limited:
 
 1. compare candidate branch classes,
 2. define transition-cost and barrier targets,
 3. supply scalar records for later mass or medium-response tests,
-4. hand candidates back to the Master EOM for vector acceleration and conservation
-checks.
+4. hand candidates back to the Master EOM for vector acceleration and conservation checks.
 
 The exact vector acceleration/action consumer must use
 $$
 \frac{W_{ij}^{\mathrm{acc}}}{r_{ij}^2}
 \hat{\mathbf r}_{ij}
 $$
-on the same retained branch record. A scalar extremum of
-$\bar{\mathcal A}_{\mathrm{rec}}$ is therefore only a candidate branch label
-until the vector residuals close.
+on the same retained branch record. A scalar extremum of $\bar{\mathcal A}_{\mathrm{rec}}$ is therefore only a candidate branch label until the vector residuals close.
 
 #### Geometric/Topological Framework
 
@@ -14410,16 +13700,9 @@ g_{ij}(T_r,T_t)
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0.
 $$
 
-Plain language: the root condition says that a wake emitted by transmitter $j$ at
-$T_t$ reaches receiver $i$ exactly at reception time $T_r$.
+Plain language: the root condition says that a wake emitted by transmitter $j$ at $T_t$ reaches receiver $i$ exactly at reception time $T_r$.
 
-On a simple retained root, $D_t\ne0$ supplies the local inverse-function
-condition. A retained record is the branch-local data packet that binds the
-root, transmitter identity, receiver identity, regulator state, and acceleration/action
-entries to one history chart. A retained box is an interval or chart neighborhood
-that encloses those entries together; outward-rounded intervals have endpoints
-rounded away from the computed value so the true entry remains enclosed. The
-branch label persists as long as the same retained record keeps:
+On a simple retained root, $D_t\ne0$ supplies the local inverse-function condition. A retained record is the branch-local data packet that binds the root, transmitter identity, receiver identity, regulator state, and acceleration/action entries to one history chart. A retained box is an interval or chart neighborhood that encloses those entries together; outward-rounded intervals have endpoints rounded away from the computed value so the true entry remains enclosed. The branch label persists as long as the same retained record keeps:
 
 | Row | Required status |
 | --- | --- |
@@ -14431,15 +13714,11 @@ branch label persists as long as the same retained record keeps:
 | finite memory | declared finite horizon |
 | regulator state | declared $\eta$ and $\epsilon_c$ limits or finite values |
 
-Branch labels may change only at declared boundaries: a root enters or leaves
-the memory window, an inactive gap closes, $D_t$ reaches a caustic boundary, a
-collision regulator is invoked, or the retained records no longer occupy the same
-box.
+Branch labels may change only at declared boundaries: a root enters or leaves the memory window, an inactive gap closes, $D_t$ reaches a caustic boundary, a collision regulator is invoked, or the retained records no longer occupy the same box.
 
 #### Causal Writhe and Topological Use
 
-Topological quantities such as causal writhe remain admissible only as branch
-geometry:
+Topological quantities such as causal writhe remain admissible only as branch geometry:
 $$
 Wr_c(\mathfrak B)
 =
@@ -14448,59 +13727,29 @@ Wr_c(\mathfrak B)
 \chi_{\mathrm{causal}}(\alpha,\beta).
 $$
 
-This notation records signed causal-locus crossings or linkages in the retained
-record. Here $\alpha$ and $\beta$ index oriented retained causal-locus strands
-or strand segments in the declared projection. The indicator
-$\chi_{\mathrm{causal}}(\alpha,\beta)$ equals $1$ only when the two strands form
-an admissible crossing or linkage event on the same retained record, and equals
-$0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is the orientation
-sign of the ordered strand pair relative to the declared branch framing; it is
-not defined at a fold, framing slip, or unresolved collision record.
+This notation records signed causal-locus crossings or linkages in the retained record. Here $\alpha$ and $\beta$ index oriented retained causal-locus strands or strand segments in the declared projection. The indicator $\chi_{\mathrm{causal}}(\alpha,\beta)$ equals $1$ only when the two strands form an admissible crossing or linkage event on the same retained record, and equals $0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is the orientation sign of the ordered strand pair relative to the declared branch framing; it is not defined at a fold, framing slip, or unresolved collision record.
 
-$Wr_c$ is therefore a causal-locus crossing statistic, not a replacement for
-the canonical framed-topology records such as
-$Lk=\operatorname{Wr}+\operatorname{Tw}$ in
-[Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality)
-and [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). It
-does not supply acceleration strength. Any use of $Wr_c$ in spin, chirality,
-confinement, or horizon-interface arguments must also state the branch record
-on which $D_t$, $D_r$, and $W^{\mathrm{acc}}$ are available.
+$Wr_c$ is therefore a causal-locus crossing statistic, not a replacement for the canonical framed-topology records such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). It does not supply acceleration strength. Any use of $Wr_c$ in spin, chirality, confinement, or horizon-interface arguments must also state the branch record on which $D_t$, $D_r$, and $W^{\mathrm{acc}}$ are available.
 
 #### Circular Benchmark (Branch-Count Theorem)
 
-The circular branch-count benchmark is topology only. Circular self-hit births,
-Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root
-structure, but they do not imply a circular no-go, acceleration-balance result, action
-minimum, or mass scale.
+The circular branch-count benchmark is topology only. Circular self-hit births, Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root structure, but they do not imply a circular no-go, acceleration-balance result, action minimum, or mass scale.
 
-The theorem spine is the circular no-proliferation result already used by the
-delayed dynamics stack. In the symmetric circular benchmark, write
+The theorem spine is the circular no-proliferation result already used by the delayed dynamics stack. In the symmetric circular benchmark, write
 $$
 \beta_f(T)=\frac{\omega(T)R(T)}{c_f}.
 $$
-If $|\beta_f(T)|\le\beta_{\max}<\infty$ uniformly, then the active circular
-self-hit count is uniformly bounded:
+If $|\beta_f(T)|\le\beta_{\max}<\infty$ uniformly, then the active circular self-hit count is uniformly bounded:
 $$
 N_{\mathrm{self}}(T)
 \le
 \frac{\beta_{\max}}{\pi}+C_{\mathrm{circ}},
 $$
-where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the
-circular root equation. On a one-sign subchart this has the sharper asymptotic
-form
+where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the circular root equation. On a one-sign subchart this has the sharper asymptotic form
 $$
 N_{\mathrm{self}}^{(+)}(\beta_f)=\frac{\beta_f}{\pi}+O(1).
 $$
-The branch births occur at tangencies of the circular root equation, so the
-root census, Jacobian-null thresholds, and inactive-gap changes are one
-topological ledger. On the non-translating circular chart, $D_r=D_t$, so the
-playback ratio is one. The acceleration weight is instead
-$W^{\mathrm{acc}}=c_f/|D_t|=1/|J|$ in normalized units and is not generally
-one. The branch-count theorem therefore uses the root structure and does not
-certify acceleration balance, action closure, or stability. The detailed
-circular derivations are in
-[Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and the winding-index census in
-[Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#root-multiplicity-vs-speed).
+The branch births occur at tangencies of the circular root equation, so the root census, Jacobian-null thresholds, and inactive-gap changes are one topological ledger. On the non-translating circular chart, $D_r=D_t$, so the playback ratio is one. The acceleration weight is instead $W^{\mathrm{acc}}=c_f/|D_t|=1/|J|$ in normalized units and is not generally one. The branch-count theorem therefore uses the root structure and does not certify acceleration balance, action closure, or stability. The detailed circular derivations are in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and the winding-index census in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#root-multiplicity-vs-speed).
 
 A current circular benchmark must emit:
 
@@ -14518,10 +13767,7 @@ Until those records exist, circular material is not evidence for action closure.
 
 #### Branch Barrier and Transition Cost
 
-For a path $\Gamma:\lambda\mapsto\mathfrak B_\lambda$ of retained charts with
-endpoints $\mathfrak B_{\lambda_0}$ and $\mathfrak B_{\lambda_1}$, define the
-candidate receiver-side barrier by the reparametrization-invariant saddle
-height
+For a path $\Gamma:\lambda\mapsto\mathfrak B_\lambda$ of retained charts with endpoints $\mathfrak B_{\lambda_0}$ and $\mathfrak B_{\lambda_1}$, define the candidate receiver-side barrier by the reparametrization-invariant saddle height
 $$
 B_{\mathrm{rec}}(\lambda_0,\lambda_1)
 =
@@ -14537,12 +13783,7 @@ B_{\mathrm{rec}}(\lambda_0,\lambda_1)
 \right]_+
 $$
 
-This is a transition-cost target, not a proof of stability. A promoted barrier
-must state the retained branch path, the root identity across the path, the
-regulator state, and the same-record transmitter-side acceleration-weight records. If a
-later certificate uses an integral barrier instead, the promoted record must
-also declare the path measure, for example arclength in a stated metric on
-chart space.
+This is a transition-cost target, not a proof of stability. A promoted barrier must state the retained branch path, the root identity across the path, the regulator state, and the same-record transmitter-side acceleration-weight records. If a later certificate uses an integral barrier instead, the promoted record must also declare the path measure, for example arclength in a stated metric on chart space.
 
 #### Reduced Branch-Certificate Targets
 
@@ -14557,18 +13798,11 @@ A branch certificate that consumes this chapter must report:
 | Noether pullback | energy, momentum, and angular-momentum wake-history records from the same action or realized-trajectory record; see [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange) and [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) |
 | negative controls | rejection of missing, mismatched, or incomplete records |
 
-The branch certificate is not promoted if any of those entries are supplied by
-different root boxes, different regulator states, or different history records.
+The branch certificate is not promoted if any of those entries are supplied by different root boxes, different regulator states, or different history records.
 
 #### Summary and Status
 
-The current action-functional program is a receiver-side rebuild target. It keeps
-causal-root topology, branch labels, caustic routing, and scalar comparison
-targets, but action evidence requires complete transmitter-side branch records.
-The next useful mathematical artifact is one retained branch packet
-that binds root topology, $D_t$, $D_r$, $W^{\mathrm{acc}}$, vector residuals,
-scalar statistic, Noether pullback, and negative controls required before advancement on the
-same record.
+The current action-functional program is a receiver-side rebuild target. It keeps causal-root topology, branch labels, caustic routing, and scalar comparison targets, but action evidence requires complete transmitter-side branch records. The next useful mathematical artifact is one retained branch packet that binds root topology, $D_t$, $D_r$, $W^{\mathrm{acc}}$, vector residuals, scalar statistic, Noether pullback, and negative controls required before advancement on the same record.
 
 ### Effective Lagrangian
 
@@ -14603,12 +13837,7 @@ $$
 $$
 for each coordinate $q_{\mathrm{std}}^a$. This equation is not a separate force postulate. It is the recovery condition that the chosen scalar $L_{\mathrm{std}}$ must satisfy if the action is to generate the equations of motion.
 
-Operationally, stationarity is tested by nearby trial paths
-$q_{\mathrm{std},\epsilon}^a(t_{\mathrm{std}})=q_{\mathrm{std}}^a(t_{\mathrm{std}})+\epsilon\xi^a(t_{\mathrm{std}})$ with
-$\xi^a(t_{\mathrm{std},a})=\xi^a(t_{\mathrm{std},b})=0$. Because $\xi^a$ is otherwise arbitrary,
-setting the first variation of $S_{\mathrm{std}}$ to zero forces the Euler-Lagrange expression
-itself to vanish. The action is therefore a history functional with units of
-energy times time, not an instruction to minimize instantaneous energy.
+Operationally, stationarity is tested by nearby trial paths $q_{\mathrm{std},\epsilon}^a(t_{\mathrm{std}})=q_{\mathrm{std}}^a(t_{\mathrm{std}})+\epsilon\xi^a(t_{\mathrm{std}})$ with $\xi^a(t_{\mathrm{std},a})=\xi^a(t_{\mathrm{std},b})=0$. Because $\xi^a$ is otherwise arbitrary, setting the first variation of $S_{\mathrm{std}}$ to zero forces the Euler-Lagrange expression itself to vanish. The action is therefore a history functional with units of energy times time, not an instruction to minimize instantaneous energy.
 
 A minimal recovery check is the one-dimensional harmonic oscillator. In the standard comparison form, for a mass $m$ attached to an ideal spring of stiffness $k$ with displacement $x_{\mathrm{std}}(t_{\mathrm{std}})$,
 $$
@@ -14701,13 +13930,7 @@ The same equations can also be read from the phase-space action
 $$
 S_H[q_{\mathrm{std}},p]=\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}\left(p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-H_{\mathrm{std}}(q_{\mathrm{std}},p,t_{\mathrm{std}})\right)dt_{\mathrm{std}}
 $$
-when variations in both $q_{\mathrm{std}}^a$ and $p_a$ are admitted and endpoint variations of
-$q_{\mathrm{std}}^a$ vanish. Variation with respect to $p_a$ gives
-$dq_{\mathrm{std}}^a/dt_{\mathrm{std}}=\partial H_{\mathrm{std}}/\partial p_a$, while variation with respect to $q_{\mathrm{std}}^a$ gives
-$dp_a/dt_{\mathrm{std}}=-\partial H_{\mathrm{std}}/\partial q_{\mathrm{std}}^a$. This is the action-level form of the
-canonical flow, and it is the part that matters when asking whether a reduced
-$\mathbb{A}\mathbb{A}\mathbb{A}$ chart is genuinely Hamiltonian rather than only
-an energy-like fit.
+when variations in both $q_{\mathrm{std}}^a$ and $p_a$ are admitted and endpoint variations of $q_{\mathrm{std}}^a$ vanish. Variation with respect to $p_a$ gives $dq_{\mathrm{std}}^a/dt_{\mathrm{std}}=\partial H_{\mathrm{std}}/\partial p_a$, while variation with respect to $q_{\mathrm{std}}^a$ gives $dp_a/dt_{\mathrm{std}}=-\partial H_{\mathrm{std}}/\partial q_{\mathrm{std}}^a$. This is the action-level form of the canonical flow, and it is the part that matters when asking whether a reduced $\mathbb{A}\mathbb{A}\mathbb{A}$ chart is genuinely Hamiltonian rather than only an energy-like fit.
 
 The conjugate momenta are more than bookkeeping in ordinary mechanics. When a coordinate is cyclic, the corresponding conjugate momentum is conserved; the same coordinate-momentum pairing later becomes the classical object used in Bohr-Sommerfeld action integrals and in canonical commutation rules. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these are recovery targets for a reduced effective chart, not permission to quantize the substrate variables directly.
 
@@ -14715,27 +13938,13 @@ This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the exact Master EOM i
 
 Canonical transformations sharpen the same test. In ordinary Hamiltonian mechanics, a change from $(q,p)$ to $(Q,P)$ is not automatically an equivalent mechanics; it is canonical only when the new variables preserve Hamilton's equation form, equivalently the symplectic form or Poisson brackets on the admitted phase-space functions. Generating functions are useful because they construct such transformations and can expose cyclic coordinates, conserved momenta, action-angle variables, or Hamilton-Jacobi constants. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this remains an effective-chart claim: a reduced chart may be transformed for calculation only while the same branch record keeps the canonical-chart, bracket, or symplectic residual controlled. Otherwise the transformation is a coordinate fit that has lost causal-wake history, not a bridge to operator recovery.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is
-therefore not an arbitrary instantaneous snapshot. It is a replayable or
-phase-locked branch chart: a reduced description in which the retained internal
-motion returns to a comparable section despite bounded surrounding influences.
-If a retained assembly is modeled by coarse coordinates $Q^A$ and by
-phase-bearing sub-assemblies indexed by
-$\alpha=1,\ldots,N_{\mathrm{ph}}$, the candidate chart has the form
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is therefore not an arbitrary instantaneous snapshot. It is a replayable or phase-locked branch chart: a reduced description in which the retained internal motion returns to a comparable section despite bounded surrounding influences. If a retained assembly is modeled by coarse coordinates $Q^A$ and by phase-bearing sub-assemblies indexed by $\alpha=1,\ldots,N_{\mathrm{ph}}$, the candidate chart has the form
 $$
 z_{\mathfrak B}=(Q^A,\Pi_A,\theta^\alpha,I_\alpha)
 $$
-where $\theta^\alpha$ records the sub-assembly phase and $I_\alpha$ is the
-conjugate action variable for that phase. Each retained phase-locked
-sub-assembly adds its own phase-action pair. Surrounding influences are
-admissible only when they are represented as fixed branch data, slow parameters,
-or additional coordinates over the comparison window; otherwise the chart is a
-driven open system rather than a closed Hamiltonian phase space.
+where $\theta^\alpha$ records the sub-assembly phase and $I_\alpha$ is the conjugate action variable for that phase. Each retained phase-locked sub-assembly adds its own phase-action pair. Surrounding influences are admissible only when they are represented as fixed branch data, slow parameters, or additional coordinates over the comparison window; otherwise the chart is a driven open system rather than a closed Hamiltonian phase space.
 
-On a single periodic channel, the action variable is not an arbitrary label once
-the chart is required to be canonical and the angle is required to advance
-uniformly. With the local $2\pi$ convention, the reduced action is the
-closed-cycle integral of the canonical one-form,
+On a single periodic channel, the action variable is not an arbitrary label once the chart is required to be canonical and the angle is required to advance uniformly. With the local $2\pi$ convention, the reduced action is the closed-cycle integral of the canonical one-form,
 $$
 I_\alpha
 =
@@ -14748,11 +13957,7 @@ $$
 =
 \frac{\partial H_{\mathrm{eff}}}{\partial I_\alpha}
 $$
-on that reduced chart. The value of this comparison is methodological: a
-replayable branch can expose frequency and harmonic content before the full
-path-history solution is written, but only if the same causal-root ledger and
-retained branch record make the closed-cycle integral and canonical residual
-stable.
+on that reduced chart. The value of this comparison is methodological: a replayable branch can expose frequency and harmonic content before the full path-history solution is written, but only if the same causal-root ledger and retained branch record make the closed-cycle integral and canonical residual stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-binary Family-A chart, the indexed phase circles need not form a trivial $T^3$ bundle over the retained branch family. Choose any declared ordering $(a,b,c)$ of the persistent binary indices. A retained return cycle of binary $a$ can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_a:S^1_a\to\mathfrak B$ denoting that return cycle,
 
@@ -14803,30 +14008,13 @@ r_{ij}(T;T_t)=\|\mathbf X_i(T)-\mathbf X_j(T_t)\|,
 \phi_\eta\equiv\delta_\eta
 $$
 
-With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient
-$\mu_{\text{arch}}\kappa$ gives the interaction term the same action
-dimension as the quadratic bookkeeping term. A factor
-$\kappa/c_f$ would instead leave the kernel with acceleration
-dimensions before time integration.
+With $[\tilde g]=T$ and $[\delta(\tilde g)]=T^{-1}$, the coefficient $\mu_{\text{arch}}\kappa$ gives the interaction term the same action dimension as the quadratic bookkeeping term. A factor $\kappa/c_f$ would instead leave the kernel with acceleration dimensions before time integration.
 
-Plainly: the same universal conversion used in the kinetic row must also
-multiply the interaction row; dividing by the wake speed does not repair the
-units.
+Plainly: the same universal conversion used in the kinetic row must also multiply the interaction row; dividing by the wake speed does not repair the units.
 
-The displayed action uses the quadratic bookkeeping kinetic Lagrangian
-$\ell_\mu(s)=\frac12\mu_{\text{arch}}s^2$. It therefore derives only the
-quadratic conjugate momentum $\mu_{\text{arch}}\mathbf V$ on the charts where
-the complete delayed variation succeeds. For a general kinetic-energy scalar
-$K(s)$, [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino)
-owns the work-power compatibility conditions and the reconstruction
-$\ell_K(s)=sP(s)-K(s)$.
+The displayed action uses the quadratic bookkeeping kinetic Lagrangian $\ell_\mu(s)=\frac12\mu_{\text{arch}}s^2$. It therefore derives only the quadratic conjugate momentum $\mu_{\text{arch}}\mathbf V$ on the charts where the complete delayed variation succeeds. For a general kinetic-energy scalar $K(s)$, [Energy](../../../../markdown/aaa/dynamics/energy.md#kinetic-energy-and-momentum-of-a-single-architrino) owns the work-power compatibility conditions and the reconstruction $\ell_K(s)=sP(s)-K(s)$.
 
-Plainly: the energy scalar $K$ cannot be substituted directly for the kinetic
-Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$
-and then rederive the complete action variation, including the interaction
-normalization, constraint residual, boundary charge, and momentum and energy
-functionals. No general conservation claim follows from the quadratic
-calculation without that revariation.
+Plainly: the energy scalar $K$ cannot be substituted directly for the kinetic Lagrangian. A generalized kinetic chart must use the reconstructed $\ell_K$ and then rederive the complete action variation, including the interaction normalization, constraint residual, boundary charge, and momentum and energy functionals. No general conservation claim follows from the quadratic calculation without that revariation.
 
 Here:
 - $\mathbf X_i(T)$ is the trajectory of architrino $i$.
@@ -14892,8 +14080,7 @@ W_{ij}^{\mathrm{acc}}(T;T_t)\,
 }
 {r_{ij}(T;T_t)^2}
 $$
-where $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ is computed on the same retained root record.
-This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
+where $W_{ij}^{\mathrm{acc}}=c_f/\lvert D_{t,ij}\rvert$ is computed on the same retained root record. This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
 $$
@@ -15032,8 +14219,7 @@ $$
 $$
 Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
 
-**Energy Functional:**
-Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
+**Energy Functional:** Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
 $$
 E_{\text{tot}}(T)=K(T)+E_{\text{wake}}(T)
 $$
@@ -15057,13 +14243,9 @@ E_{\text{wake}}(T)
 \partial_{T_1}\mathcal{K}_{ij}^{E}(T_1,T_t)
 $$
 
-The outer minus sign matches the action convention
-$S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static
-like-polarity pair charge positive. Reversing that sign would contradict the
-positive work required to bring a repelling like-polarity pair closer.
+The outer minus sign matches the action convention $S=S_{\mathrm{kinetic}}-\tfrac12\sum S_{ij}$ and makes the sharp static like-polarity pair charge positive. Reversing that sign would contradict the positive work required to bring a repelling like-polarity pair closer.
 
-Plainly: the boundary charge must inherit both the units and the sign of the
-same action kernel.
+Plainly: the boundary charge must inherit both the units and the sign of the same action kernel.
 
 For compatible trajectory reconstruction one may use the work-integral form
 $$
@@ -15095,8 +14277,7 @@ Here $\mathcal{B}_E^{(\eta)}$ is the declared endpoint or period-cut leakage. Fo
 
 The energy residual above is theorem-level only after the chart declares one symmetry-preserving action or independently derived causal-wake update, its endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same construction and boundary convention.
 
-**Generalized Momentum:**
-Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
+**Generalized Momentum:** Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
 
 For an effective reduction to promote a retained chart rather than fit it, it must also report vector residuals for the same branch pullback:
 $$
@@ -15167,12 +14348,7 @@ $$
 \frac{\mathbf{j}_q(\mathbf X',T')}{\rho_q(\mathbf X',T')}
 \qquad (\rho_q\neq 0)
 $$
-Here $\rho_q$ has polarity-density units. The emission-time delta collapse has
-already been absorbed into the delayed Eulerian density, and the discrete
-action uses the time-normalized causal constraint. No additional $1/c_f$
-therefore remains in the continuum prefactor; the same universal
-$\mu_{\text{arch}}\kappa$ conversion that supplies the discrete interaction
-action supplies this coarse-grained row.
+Here $\rho_q$ has polarity-density units. The emission-time delta collapse has already been absorbed into the delayed Eulerian density, and the discrete action uses the time-normalized causal constraint. No additional $1/c_f$ therefore remains in the continuum prefactor; the same universal $\mu_{\text{arch}}\kappa$ conversion that supplies the discrete interaction action supplies this coarse-grained row.
 
 This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional transmitter-side factor: the delayed density $\rho_q(\mathbf X',T')$ already carries the transmitter-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point transmitter, the familiar transmitter-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. A corrected delayed action must reproduce the canonical inverse-square acceleration density weighted by $W^{\mathrm{acc}}=c_f/|D_t|$. Receiver velocity may enter the full variation, root playback, and conserved accounts, but it may not reappear as an extra multiplier on the instantaneous acceleration.
 
@@ -15347,16 +14523,7 @@ $$
 $$
 for the retained two-form $\omega_{\mathcal{Q}}$, or an equivalent Poisson-bracket residual on the admitted observables. If $\epsilon_{\mathcal{Q}}$ or $\epsilon_{\omega}$ is not controlled, the local Hamiltonian is only a fitting chart, not a derived mechanics.
 
-For a replayable branch chart, this measure condition is the
-$\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of Liouville's theorem. In ordinary
-finite-dimensional Hamiltonian mechanics the phase-space flow is
-divergence-free, $\nabla_z\cdot\dot z=0$, so a phase-space volume element may
-stretch and fold but is not compressed by the exact flow. In the delayed
-setting, the analogous statement is valid only after $\mathcal{Q}$ retains the
-phase variables, causal-root ledger, wake-history record, and surrounding
-context that actually control the return map. Dropping an active sub-assembly
-phase can make a closed chart look dissipative or probabilistic merely because
-the chart has thrown away one of the variables that carries the recurrence.
+For a replayable branch chart, this measure condition is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of Liouville's theorem. In ordinary finite-dimensional Hamiltonian mechanics the phase-space flow is divergence-free, $\nabla_z\cdot\dot z=0$, so a phase-space volume element may stretch and fold but is not compressed by the exact flow. In the delayed setting, the analogous statement is valid only after $\mathcal{Q}$ retains the phase variables, causal-root ledger, wake-history record, and surrounding context that actually control the return map. Dropping an active sub-assembly phase can make a closed chart look dissipative or probabilistic merely because the chart has thrown away one of the variables that carries the recurrence.
 
 The preserved two-form is likewise not the naive instantaneous form alone. On a delayed branch the candidate symplectic structure is posited to carry a memory correction,
 
@@ -16865,15 +16032,9 @@ The collective motion, or **group velocity**, of a Noether braid assembly determ
 
 ###### A1 Dynamics
 
-The A1 mechanism program — how a three-layer assembly could keep compatible branch
-records as one moving delayed system, with same-record closure across period, active-root ledger,
-deformation map, medium response, observer export, and event ledger — is an open
-obligation, not carried in this chapter. The realization-independent
-machinery lives with the shared mathematics in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels).
-Results enter this chapter only when established at their stated claim level.
+The A1 mechanism program — how a three-layer assembly could keep compatible branch records as one moving delayed system, with same-record closure across period, active-root ledger, deformation map, medium response, observer export, and event ledger — is an open obligation, not carried in this chapter. The realization-independent machinery lives with the shared mathematics in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels). Results enter this chapter only when established at their stated claim level.
 
-For the strong-field continuation, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and
-[Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
+For the strong-field continuation, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
 #### A2 Symmetry and Return Response
 
@@ -17093,8 +16254,7 @@ $$
 
 Plain language: for any one binary carrier, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
 
-This identity is exact. It is not an assumption, and it does not select a lock by itself.
-The logical spine is therefore:
+This identity is exact. It is not an assumption, and it does not select a lock by itself. The logical spine is therefore:
 
 1. **Kinematics:** $v_a=2\pi f_a r_a$ relates speed, frequency, and radius without introducing topology.
 2. **Integer closure:** Assumption 2 is the only place where the integer pair $(m,n)$ enters; it turns frequency commensurability into return-map degree/holonomy data.
@@ -17129,8 +16289,7 @@ $$
 $$
 rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
-This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
-It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
+This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
 
 ##### Assumption 2 (Exact Integer Phase Closure)
 
@@ -17214,8 +16373,7 @@ Thus the lock is a flat relative-phase connection with integer holonomy, not a l
 
 The phase-bundle picture also requires genuine three-dimensional binary-plane independence. Use the canonical ordered-normal determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame).
 
-The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment.
-For a promoted finite-$\eta$ chart this is a conditioning floor,
+The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment. For a promoted finite-$\eta$ chart this is a conditioning floor,
 $$
 |D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
 $$
@@ -17225,8 +16383,7 @@ It is the phase-bundle analogue of the basis-conditioning and aperture floors in
 
 Among the admissible binary-3-normalized integer locks $(1:m:n)$, the physically selected lock is assumed to be the one whose phase bundle admits the flattest replayable connection while minimizing exposed causal-wake leakage. The cycle-averaged cancellation of a low-order causal-wake multipole or effective potential signal is the effective diagnostic for that deeper bundle condition.
 
-This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, candidate-carrier impulse record, and finite-$\eta$ return map.
-The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
+This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, candidate-carrier impulse record, and finite-$\eta$ return map. The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
 
 For a declared comparison chart, candidate binary $h$ is the curvature carrier. Between caustic events the locked triple is modeled as flat phase transport. At its regularized caustics, the connection acquires concentrated curvature,
 
@@ -17251,9 +16408,7 @@ S_L(T)
 A_{k,\ell}(\beta_k,r_k,\eta,D_t,D_r,W^{\mathrm{acc}},J_k^{t})\,
 e^{i\ell(q_k\omega_3 T+\phi_k)}
 $$
-The coefficients $A_{k,\ell}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ transmitter-side acceleration-weight, branch-transversality, and causal-wake ledger used to test the candidate lock.
-They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
-For the caustic-grazing candidate carrier this extraction is not an ordinary smooth Fourier coefficient. A carrier harmonic must carry the caustic transversality weight of the window while keeping transmitter-side acceleration/action strength on the same retained record, schematically
+The coefficients $A_{k,\ell}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ transmitter-side acceleration-weight, branch-transversality, and causal-wake ledger used to test the candidate lock. They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential. For the caustic-grazing candidate carrier this extraction is not an ordinary smooth Fourier coefficient. A carrier harmonic must carry the caustic transversality weight of the window while keeping transmitter-side acceleration/action strength on the same retained record, schematically
 
 $$
 A_{h,\ell}
@@ -17267,8 +16422,7 @@ w_{h,\ell}^{r}(\theta_h)
 e^{-i\ell\theta_h}\,d\theta_h
 $$
 
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{h,\ell}^{r}$ the branch-derived numerator computed from the same retained $D_t$, $D_r$, and $W^{\mathrm{acc}}$ row for that harmonic channel. The $J_h^{t}$ factor is a caustic-window transversality weight, not a substitute for transmitter-side acceleration weight. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{h,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite candidate-carrier impulse deposits the right spectral weight into the first common resonance block.
-The cycle-averaged cancellation score over one binary-3 reference window starting at $T_\ast$ is
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{h,\ell}^{r}$ the branch-derived numerator computed from the same retained $D_t$, $D_r$, and $W^{\mathrm{acc}}$ row for that harmonic channel. The $J_h^{t}$ factor is a caustic-window transversality weight, not a substitute for transmitter-side acceleration weight. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{h,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite candidate-carrier impulse deposits the right spectral weight into the first common resonance block. The cycle-averaged cancellation score over one binary-3 reference window starting at $T_\ast$ is
 $$
 C_L(m,n;\phi)
 =
@@ -17296,8 +16450,7 @@ $$
 \le
 \text{sum of the other two}
 $$
-The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock.
-The selection therefore has two independent requirements. The topological requirement is that the all-binary resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted carrier contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
+The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock. The selection therefore has two independent requirements. The topological requirement is that the all-binary resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted carrier contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
 
 Topologically, the same $\nu=4$ statement says the doubling-frequency lock is the first common cover of the three phase circles. The covering maps can be written
 
@@ -17309,8 +16462,7 @@ S^1_2
 S^1_1
 $$
 
-when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each indexed phase circle double-covers its reference neighbor. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins.
-Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
+when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each indexed phase circle double-covers its reference neighbor. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins. Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
 $$
 S^1\xleftarrow{\times 2}S^1\xleftarrow{\times 2}S^1
 $$
@@ -17324,8 +16476,7 @@ The doubling-frequency-lock analysis does **not** assume:
 - any radius ordering or self-similar radius relation,
 - or the specific frequency lock $1:2:4$ at the outset.
 
-Those are possible special cases or later outcomes, not starting axioms here.
-Only exact integer closure is studied here. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
+Those are possible special cases or later outcomes, not starting axioms here. Only exact integer closure is studied here. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
 
 ##### Immediate Consequences
 
@@ -17532,8 +16683,7 @@ T_{\mathrm{flat}}
 G_{\mathrm{rel}}
 $$
 
-where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the global spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{23},\delta\phi_{13})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift.
-The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
+where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the global spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{23},\delta\phi_{13})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift. The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
 $$
 \Theta(T)
 =
@@ -17621,8 +16771,7 @@ $$
 \text{near-orthogonal }T^3\text{ sector}
 $$
 
-The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
-The separating wall is the plane-degeneracy condition
+The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above. The separating wall is the plane-degeneracy condition
 $$
 D_{\mathrm{plane}}=0.
 $$
@@ -18497,8 +17646,7 @@ In a certified row, the important event is not speed alone but the appearance of
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
-This is the layerwise specialization of the [signed causal-root complex](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
-A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
+This is the layerwise specialization of the [signed causal-root complex](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex): simple same-transmitter roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge. A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 Family B realizes this decoupling directly. In [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1), each binary has internal speed $s_a=2\pi f\rho_a$, so the speed tuple is independent of the total-radius values when the transverse orbit radii are chosen independently. The equatorial and axial cases are coordinate boundaries of B1. Its harmonic-matching hypothesis and discrete-symmetry derivations are stated in [B1 Hypotheses and Discrete Symmetry](../../../../markdown/aaa/noether-braid/braid-b1-symmetry.md). No family ordering is asserted.
 
@@ -18737,30 +17885,13 @@ The results divide by strength, and the division is stated with each result. Exa
 
 This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the bounded-weight inverse-square escape lemma, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../../markdown/aaa/noether-braid/braid-family-a.md), and [Braid Family B](../../../../markdown/aaa/noether-braid/braid-family-b.md). The realization-independent proof obligations live in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
-**Represented-history atlas boundary.** An atlas row describes a declared
-retained history, not an unbounded past. It
-must name the retained interval, prehistory, complete transmitter inventory,
-and any fixed spatial enclosure. On a bounded history whose transmitters remain
-uniformly below $c_f$, whose pairwise separations stay positive, and whose root
-inventory is complete, the sharp causal-root map is transverse and finite. A
-nontrivial same-transmitter root is excluded on the strictly sub-field-speed
-interval, and the represented history can be reconstructed across time from
-its declared charts while those hypotheses persist.
+**Represented-history atlas boundary.** An atlas row describes a declared retained history, not an unbounded past. It must name the retained interval, prehistory, complete transmitter inventory, and any fixed spatial enclosure. On a bounded history whose transmitters remain uniformly below $c_f$, whose pairwise separations stay positive, and whose root inventory is complete, the sharp causal-root map is transverse and finite. A nontrivial same-transmitter root is excluded on the strictly sub-field-speed interval, and the represented history can be reconstructed across time from its declared charts while those hypotheses persist.
 
-These statements do not bound an omitted finite-width Gaussian tail, cover an
-undeclared transmitter, or extend automatically to a drifting enclosure or an
-unbounded past. Without a separately checked quantitative tail theorem, the
-certified quantity stops at the declared retained-interval integral.
+These statements do not bound an omitted finite-width Gaussian tail, cover an undeclared transmitter, or extend automatically to a drifting enclosure or an unbounded past. Without a separately checked quantitative tail theorem, the certified quantity stops at the declared retained-interval integral.
 
-Scalar rows extracted from the history are diagnostics. They may distinguish a
-declared negative control, but they do not by themselves classify topology,
-prove persistence or stability, identify a physical assembly, or select a
-particle interpretation. Those conclusions require their own branch and
-reconstruction certificates.
+Scalar rows extracted from the history are diagnostics. They may distinguish a declared negative control, but they do not by themselves classify topology, prove persistence or stability, identify a physical assembly, or select a particle interpretation. Those conclusions require their own branch and reconstruction certificates.
 
-Plainly: a finite history can be classified exactly within its stated window.
-Nothing in that classification silently supplies the missing past or turns a
-diagnostic number into a physical fate.
+Plainly: a finite history can be classified exactly within its stated window. Nothing in that classification silently supplies the missing past or turns a diagnostic number into a physical fate.
 
 #### Substrate and Effective Levels
 
@@ -18893,8 +18024,7 @@ $$
 \|\mathbf X_j(T_{p,k})-\mathbf X_i(T)\|=c_f\,(T-T_{p,k}), \quad
 \|\mathbf X_i(T_{s,m})-\mathbf X_i(T)\|=c_f\,(T-T_{s,m})
 $$
-where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed.
-The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
+where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed. The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
 and $s=\|\mathbf V\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
 $$
@@ -20777,8 +19907,7 @@ $$
 \equiv
 \frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
-Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart.
-The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
+Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 T_{\parallel}
 =
@@ -21075,8 +20204,7 @@ with flat relative-phase recurrence on the retained return chart. If a later cha
 
 The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated A3.3 member and its A1.3 zero-axial-offset locus. They are not generic Noether braid data. In particular, [B1](../../../../markdown/aaa/noether-braid/braid-family-b.md#b1) is common-frequency on one common-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A B1 branch may still report the partial charge $(N_s,M_p)$; a B1 lower-rank return invariant would require a separate definition and certificate.
 
-The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame).
-The degree pair is admissible only when
+The phase entry is also conditional on the three support-row planes remaining independent. Use the canonical determinant $D_{\mathrm{plane}}$ defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#angular-momentum-frame). The degree pair is admissible only when
 $$
 |D_{\mathrm{plane}}|\ge \delta_{\mathrm{plane}}>0.
 $$
@@ -21175,8 +20303,7 @@ The intended use is constrained:
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
-Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue.
-Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
+Thus $(N_s,M_p,c_1)$ is the candidate conserved label that says when two assemblies occupy the same topological sector. It is not yet a proof that a given sector is an electron analogue, photon analogue, or quark analogue. Strictly, the compact count triple is locally conserved only inside one nondegenerate branch domain. Across generic fold-pair surgery the degree-refined data $(D_{\mathrm{self}},D_p,c_1)$ are the conserved part, while $N_s$ and $M_p$ record how many live channels the retained branch currently carries.
 
 #### Simulation Extraction
 
@@ -21512,6 +20639,9 @@ $$
 S_{\rho}
 +r_{\rho}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#noether-sea-continuity)
+
 The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether braid population and the residual decreases under refinement.
 
 The source term should be decomposed before it is used in cosmology or reaction provenance:
@@ -22326,8 +21456,7 @@ The orientation label does not assign matter versus antimatter. Global polarity 
 
 At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
 
-At the continuum-medium level, represent local Noether braid density with canonical symbols
-$(\rho_{\text{NS}}, n)$ as two coupled components:
+At the continuum-medium level, represent local Noether braid density with canonical symbols $(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
 \rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) + \rho_{-}(\mathbf X,T)
@@ -22410,9 +21539,7 @@ When chemists use the **van der Waals (VdW) volume** of a molecule, they mean th
 
 At everyday conditions, about $1\,\mathrm{atm}$ and room temperature, air is extremely sparse. A quick estimate using van der Waals volumes shows why:
 
-Take nitrogen ($\mathrm{N}_2$) as representative. Using two equal Bondi
-spheres with radius $r_N=1.55\,\mathring{\mathrm A}$ and center separation
-$d=1.10\,\mathring{\mathrm A}$, the bonded overlap is
+Take nitrogen ($\mathrm{N}_2$) as representative. Using two equal Bondi spheres with radius $r_N=1.55\,\mathring{\mathrm A}$ and center separation $d=1.10\,\mathring{\mathrm A}$, the bonded overlap is
 
 $$
 V_{\cap}
@@ -22432,12 +21559,7 @@ V_{\mathrm{VdW}}
 23.6\,\mathring{\mathrm A}^3
 $$
 
-per molecule. One mole then presents a hard-core volume of about
-$23.6 \times 10^{-24}\,\mathrm{cm}^3 \times N_A
-\approx 14.2\,\mathrm{cm}^3$. One mole of an ideal gas occupies about
-$24{,}000\,\mathrm{cm}^3$ at $298\,\mathrm{K}$ and $1\,\mathrm{atm}$.
-The packing fraction is therefore about
-$14.2\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.06\%$.
+per molecule. One mole then presents a hard-core volume of about $23.6 \times 10^{-24}\,\mathrm{cm}^3 \times N_A \approx 14.2\,\mathrm{cm}^3$. One mole of an ideal gas occupies about $24{,}000\,\mathrm{cm}^3$ at $298\,\mathrm{K}$ and $1\,\mathrm{atm}$. The packing fraction is therefore about $14.2\,\mathrm{cm}^3 / 24{,}000\,\mathrm{cm}^3 \approx 0.06\%$.
 
 Intuition scales:
 - Average intermolecular spacing is about $3$ to $4\,\mathrm{nm}$ (from the number density above).
@@ -23024,9 +22146,7 @@ $$
 $$
 and to generalize this map to strong-field and high-velocity conditions.
 
-Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is the canonical medium-density variable.
-The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$; use it for refractive-delay language so $n$ remains reserved for density.
-The clock-law derivation imports the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf X,T)$ in a local Noether sea cell.
+Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is the canonical medium-density variable. The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$; use it for refractive-delay language so $n$ remains reserved for density. The clock-law derivation imports the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf X,T)$ in a local Noether sea cell.
 
 ---
 
@@ -23118,6 +22238,9 @@ $$
 =
 \frac{1}{\gamma_\star(\mathbf{w})}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#lorentz-clock-rate)
+
 from its internal phase dynamics, rather than assign the factor independently.
 
 For an admitted moving Noether braid branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
@@ -23757,14 +22880,11 @@ Two coupled mechanisms change the internal frequency of a Noether braid clock. T
 
 When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material drift is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
-1. **Path-length elongation:**
- Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
+1. **Path-length elongation:** Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
 
-2. **Finite causal speed:**
- Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
+2. **Finite causal speed:** Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
-3. **Shape deformation (Lorentz-link hypothesis):**
- Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
+3. **Shape deformation (Lorentz-link hypothesis):** Under the Family-A Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
  - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
@@ -23810,18 +22930,15 @@ The same event can be described in the muon's effective rest chart as length con
 
 Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
 
-1. **Higher local Noether density $n(\mathbf X,T)$ (equivalently higher $\rho_{\text{NS}}$):**
- Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
+1. **Higher local Noether density $n(\mathbf X,T)$ (equivalently higher $\rho_{\text{NS}}$):** Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf X,T) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether braids).
  - From the clock's perspective, each internal wake contribution is delayed in the declared clock map.
 
-3. **Tidal distortion of Noether braid geometry:**
- Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
+3. **Tidal distortion of Noether braid geometry:** Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
-**Gravitational hypothesis:**
-To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
+**Gravitational hypothesis:** To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
 $$
 \omega(\Phi_N) \approx \omega_0\left(1 + \frac{\Phi_N}{c_0^2}\right)
 \quad \Rightarrow \quad
@@ -23877,6 +22994,9 @@ $$
 = \frac{\omega(\mathbf{w},\Phi_N,n)}{\omega_0}
 \approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#weak-field-clock-redshift)
+
 in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether braid response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
 Outside that limit, the native clock map $F$ will in general deviate from the GR expression and define the theory's distinctive strong-field / high-velocity predictions.
@@ -23892,15 +23012,11 @@ $$
 E_{\text{CM}}=\gamma_\star M_0c_{\text{eff}}^2,\qquad
 p_{\text{CM}}=\gamma_\star M_0v.
 $$
-Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and from the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$ and $(\gamma_{\mathrm{eff}}^{-1})^{ij}$.
-This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level.
-For definitions and interpretation, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure).
+Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and from the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$ and $(\gamma_{\mathrm{eff}}^{-1})^{ij}$. This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level. For definitions and interpretation, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure).
 
 ##### Strong-Field / Horizon Alignment Note
 
-For strong-field interpretation, use the canonical event-horizon alignment condition from
-[singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition).
-In this chapter, Planck-scale references inherit that same alignment definition.
+For strong-field interpretation, use the canonical event-horizon alignment condition from [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition). In this chapter, Planck-scale references inherit that same alignment definition.
 
 ---
 
@@ -24101,8 +23217,7 @@ This program fails, and the emergent-metric project is likely untenable, if any 
 
 ---
 
-**Chapter target:**
-A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a Noether braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
+**Chapter target:** A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a Noether braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
 
 ##### Closure Program Interface (clock-to-PPN bridge)
 
@@ -24162,6 +23277,9 @@ $$
 =
 \chi_{\mathrm{eff}}(T,\mathbf X,\mathcal N_{\mathrm{sea}},\text{observer record}).
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#coordinate-layer-key)
+
 Unless a local derivation supplies the needed row, $\chi_{\mathrm{eff}}$ remains an obligation. A Lorentz formula counts in this chapter only when the same retained branch record supplies the map from absolute substrate quantities to effective observer records and keeps preferred-frame leakage inside the declared bounds. Bare symbols such as $t$, $\mathbf x$, $dt$, and $dx^i$ are therefore avoided as working notation because they hide which side of the map is being used.
 
 #### Abstract
@@ -24303,8 +23421,7 @@ $$
 +\chi_{\mathrm{dd}}\beta_f\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
 \right\|
 $$
-with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$.
-The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
+with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$. The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
 
 Let $\boldsymbol{\rho}^\star(s;\beta_f)$ be a $P(\beta_f)$-periodic translating attractor. Linearization gives a delay-Floquet system
 $$
@@ -24420,9 +23537,7 @@ R_0\left(
 $$
 in the planar orientation where the drift direction lies in the binary plane. A clean primitive result has $\mathcal{R}_{\mathrm{bin}}=0$ or a controlled residual traceable to named branch-ledger features. A nonzero residual is not a rhetorical failure; it is the first foundation-level pressure on the Lorentz-closure program, because the binary is the first available internal clock and ruler.
 
-> Claim grade: **test definition**. No value of this residual triple has been
-> produced by evolving the delayed law at any drift speed. A prescribed or
-> algebraically deformed history does not supply that missing branch evidence.
+> Claim grade: **test definition**. No value of this residual triple has been produced by evolving the delayed law at any drift speed. A prescribed or algebraically deformed history does not supply that missing branch evidence.
 
 ##### Exact substrate symmetries and delay currents
 
@@ -24574,6 +23689,9 @@ $$
 =
 \frac{1}{\gamma_\star(v)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#oblate-spheroidal-envelope)
+
 This is the direct map from Lorentz kinematics to Noether braid geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}
@@ -24623,19 +23741,11 @@ G_{-+}(\tau_{+-};\theta_1,u)=0,
 G_{+-}(\tau_{-+};\theta_1+\Omega_u\tau_{+-},u)=0,
 $$
 
-with a declared integer phase return, both transmitter-side weights, and the
-same evolved branch shape in both equations. The scalar reduction above is
-exact only for fixed, non-orbiting, co-moving endpoints. On an orbiting binary,
-residual phase dependence after optimizing the period falsifies it as an exact
-reduction of that itinerary.
+with a declared integer phase return, both transmitter-side weights, and the same evolved branch shape in both equations. The scalar reduction above is exact only for fixed, non-orbiting, co-moving endpoints. On an orbiting binary, residual phase dependence after optimizing the period falsifies it as an exact reduction of that itinerary.
 
-Plainly: the simple round trip works exactly only when its endpoints do not
-orbit. A binary must close two actual delayed hits on the same evolved orbit.
+Plainly: the simple round trip works exactly only when its endpoints do not orbit. A binary must close two actual delayed hits on the same evolved orbit.
 
-> Claim grade: **derived conditional** on a single-speed closed return,
-> orientation independence, and the named two-root itinerary. This is a
-> kinematic selection rule, not evidence that a translating branch exists or is
-> stable.
+> Claim grade: **derived conditional** on a single-speed closed return, orientation independence, and the named two-root itinerary. This is a kinematic selection rule, not evidence that a translating branch exists or is stable.
 
 The same equations give a direct geometry dictionary for the oblate spheroidal envelope. In the no-extra-scale channel, take $R_{\perp}=R_0$ and $R_{\parallel}=R_0/\gamma_\star$. Then
 $$
@@ -24767,8 +23877,7 @@ Q_{ab}^{(q)}(v)\equiv
 \sum_{i=1}^{N_q}r_{i,a}r_{i,b}
 \right\rangle_{\text{cyc},q}
 $$
-This equal-weight geometric convention is fixed before closure. It prevents the extracted shape residual from changing when an observer-level inertial-response convention is later assigned to the admitted assembly branch.
-Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q^{(q)}(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define extracted semiaxes
+This equal-weight geometric convention is fixed before closure. It prevents the extracted shape residual from changing when an observer-level inertial-response convention is later assigned to the admitted assembly branch. Let $q_{\parallel}(v),q_{\perp,1}(v),q_{\perp,2}(v)$ be principal-frame eigenvalues of $Q^{(q)}(v)$, with principal axis chosen along drift for $q_{\parallel}$. Define extracted semiaxes
 $$
 a_{\parallel,q}(v)\equiv \sqrt{q_{\parallel}(v)}\qquad
 a_{\perp,q}(v)\equiv \sqrt{\frac{q_{\perp,1}(v)+q_{\perp,2}(v)}{2}}
@@ -24795,8 +23904,7 @@ On the attracting manifold, use principal-frame quadratic closure
 $$
 U_{\text{eff}}=\frac{1}{2}K_{\parallel}(v)\,r_{\parallel}^2+\frac{1}{2}K_{\perp}(v)\left(r_{\perp,1}^2+r_{\perp,2}^2\right)
 $$
-Notation guardrail: in this chapter, $U_{\text{eff}}$ denotes the cycle-averaged mechanical potential on the translating attractor; it is distinct from the positive weak-field PPN variables $U$ and $U_{\Phi}$ used in [spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md).
-Do not identify a fixed-energy shell with a fixed-action shell. Parameterize the amplitude response by
+Notation guardrail: in this chapter, $U_{\text{eff}}$ denotes the cycle-averaged mechanical potential on the translating attractor; it is distinct from the positive weak-field PPN variables $U$ and $U_{\Phi}$ used in [spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md). Do not identify a fixed-energy shell with a fixed-action shell. Parameterize the amplitude response by
 $$
 a_i\propto K_i^{-p},
 \qquad
@@ -24804,8 +23912,7 @@ a_i\propto K_i^{-p},
 =
 \left(\frac{K_{\perp}}{K_{\parallel}}\right)^p.
 $$
-The fixed-energy harmonic scaling is $p=1/2$, while conservative adiabatic-action scaling is $p=1/4$. A strictly attracting delayed branch need not preserve either shell: its effective exponent must be extracted from the settled branch $\boldsymbol\rho^\star(s;\beta_f)$, and the constant-$p$ form below is only a local response ansatz.
-Write
+The fixed-energy harmonic scaling is $p=1/2$, while conservative adiabatic-action scaling is $p=1/4$. A strictly attracting delayed branch need not preserve either shell: its effective exponent must be extracted from the settled branch $\boldsymbol\rho^\star(s;\beta_f)$, and the constant-$p$ form below is only a local response ansatz. Write
 $$
 \frac{K_{\parallel}}{K_0}=1+k_2\beta_f^2+k_4\beta_f^4+O(\beta_f^6)+\Delta_{\parallel}^{\text{LV}}
 $$
@@ -24849,8 +23956,7 @@ $$
 \frac{\kappa\,\epsilon^2}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta)\|^2}\,
 W_{ij}(T,\sigma;\eta)\,d^2\sigma
 $$
-where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale.
-Set
+where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale. Set
 $$
 U_{\text{eff}}(T;\beta_f)\equiv \sum_{i<j}\mathcal{U}_{ij}(T;\beta_f)
 \qquad
@@ -24859,8 +23965,7 @@ K_{ab}(\beta_f)\equiv
 \frac{\partial^2 U_{\text{eff}}}{\partial r_a\partial r_b}
 \right\rangle_{\text{cyc}}
 $$
-with cycle average $\langle\cdot\rangle_{\text{cyc}}$ taken on $\boldsymbol{\rho}^\star$.
-Project to principal channels:
+with cycle average $\langle\cdot\rangle_{\text{cyc}}$ taken on $\boldsymbol{\rho}^\star$. Project to principal channels:
 $$
 K_{\parallel}=\hat{e}_{\parallel}^a K_{ab}\hat{e}_{\parallel}^b\qquad
 K_{\perp}=\frac{1}{2}(\delta^{ab}-\hat{e}_{\parallel}^a\hat{e}_{\parallel}^b)K_{ab}
@@ -25427,8 +24532,7 @@ For weak drift, slowly varying Noether sea flow, and quasi-static fields in a lo
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big)
 $$
-The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c_0$ is the declared observer-sector speed, and the $c_f\to c_0$ normalization is an obligation of the dressing map, not an input identity. Any residual $c_f$-vs-$c_0$ mismatch in this branch is bounded by the same $\epsilon_{\mathrm{LV}}$ budget that the structural-integrity closure target must drive below the experimental rows above; it is not assumed small here.
-Then the nonrelativistic geodesic limit becomes
+The $c_0^2$ prefactor marks this as an observer-sector potential calibration: $c_0$ is the declared observer-sector speed, and the $c_f\to c_0$ normalization is an obligation of the dressing map, not an input identity. Any residual $c_f$-vs-$c_0$ mismatch in this branch is bounded by the same $\epsilon_{\mathrm{LV}}$ budget that the structural-integrity closure target must drive below the experimental rows above; it is not assumed small here. Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =-\xi^{2}(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
@@ -25643,18 +24747,9 @@ m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta_f)
 $$
 Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $T_{t,m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
 
-At a generic transverse transmitter-side fold, the two newborn roots have
-acceleration magnitude proportional to
-$|T-T_\ast|^{-1/2}$. This divergence is locally integrable: the impulse across
-a shrinking window tends to zero, velocity remains continuous, and position
-remains $C^1$. Any finite observable change comes from the newborn branch
-persisting after the fold, not from the singular instant. This statement does
-not cover tangential crossings, repeated fold accumulation, simultaneous
-collision singularities, nonunique ledger continuation, or a numerical method
-that samples the singular point directly.
+At a generic transverse transmitter-side fold, the two newborn roots have acceleration magnitude proportional to $|T-T_\ast|^{-1/2}$. This divergence is locally integrable: the impulse across a shrinking window tends to zero, velocity remains continuous, and position remains $C^1$. Any finite observable change comes from the newborn branch persisting after the fold, not from the singular instant. This statement does not cover tangential crossings, repeated fold accumulation, simultaneous collision singularities, nonunique ledger continuation, or a numerical method that samples the singular point directly.
 
-> Claim grade: **derived local integrability** for a generic transverse
-> positive-separation fold; no global continuation or branch claim follows.
+> Claim grade: **derived local integrability** for a generic transverse positive-separation fold; no global continuation or branch claim follows.
 
 The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta_f)$ on a drift band $0\le\beta_f\le\beta_{\max}$ such that
 $$
@@ -25690,8 +24785,7 @@ $$
 \frac{6p+1}{72p^2}
 \right)
 $$
-and the same evolved branch must supply the common exponent $p$.
-The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+and the same evolved branch must supply the common exponent $p$. The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -26122,6 +25216,8 @@ ds_{\mathrm{eff}}^2
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#effective-metric-adm-cartan)
+
 Here $N$ is the clock-rate or lapse channel, $u^i_{\mathrm{sea,eff}}$ is medium drift, and $\gamma_{ij}^{\mathrm{eff}}$ is the spatial compliance channel built from the frame field $e^a{}_i$. In the GR-matching regime the effective connection is the Levi-Civita connection of $g^{\text{eff}}_{\mu\nu}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables rather than substrate ontology.
 
 This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
@@ -26257,6 +25353,9 @@ d\tau
 \frac{1}{c_0}
 \sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#geodesic-proper-time-action)
+
 and extremizing this observer-level action must give the same weak-field acceleration contribution used in the PPN bundle,
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
@@ -26268,6 +25367,9 @@ For null signal records,
 $$
 g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#photon-null-eikonal)
+
 must match the eikonal path-time extremal of the Noether sea signal channel. In the point-mass weak-field limit, the recovered deflection target is
 $$
 \Delta\theta
@@ -26276,6 +25378,9 @@ $$
 \frac{GM}{b\,c_0^2}
 +O(c_0^{-4})
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#shapiro-lensing-ppn)
+
 so the GR limit $\gamma_{\mathrm{PPN}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
 
 ##### Lensing-Dynamics Equality Constraint
@@ -26386,6 +25491,9 @@ When translating toward General Relativity, Einstein's field equations first app
 $$
 G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#poisson-einstein-weak-gravity)
+
 not as substrate curvature of the Euclidean void. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ weak-field translation, the speed slot is supplied by the recovered homogeneous observer-channel speed $c_0$, the right-hand side is interpreted through matter assemblies and Noether sea stress, and the left-hand side is the observer-level metric summary reconstructed from clock, ruler, and signal channels.
 
 For axially symmetric or rotating sources, oblate spheroidal coordinates can be a useful effective chart. A representative line element has the form
@@ -26630,8 +25738,7 @@ Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(X,Y,Z)$ on the absolute slice,
-  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(\mathbf X,T)$ set by the local Noether braid configuration:
-    $c_{\text{eff}}(\mathbf X,T) < c_f \quad \text{in dense regions (near mass)}$ — the declared response-sign assumption of the weak-field branch, required for recovery rather than derived.
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(\mathbf X,T)$ set by the local Noether braid configuration: $c_{\text{eff}}(\mathbf X,T) < c_f \quad \text{in dense regions (near mass)}$ — the declared response-sign assumption of the weak-field branch, required for recovery rather than derived.
 - From the **Physical Observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
   - Shapiro delay, light bending, and perihelion precession become **refractive-medium effects** rather than curvature of the void itself.
@@ -26644,8 +25751,7 @@ The constitutive task is to:
    - $n(\mathbf X,T)$ (equivalently $\rho_{\text{NS}}(\mathbf X,T)$),
    - Stress/strain of the Noether sea,
    - Potential $\Phi_{\text{eff}}(\mathbf X,T)$ from matter assemblies.
-2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
-   $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
+2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy: $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
 
 #### Minimal Weak-Field Constitutive Map (for PPN Matching)
 
@@ -26768,8 +25874,7 @@ g^{\text{eff}}_{00}=-N^2,
 g^{\text{eff}}_{ij}=\Omega^2h_{ij}
 $$
 
-This subclass turns the first-order shape response into a sharp geometry-side
-closure target. Matching the standard positive-potential PPN rows gives
+This subclass turns the first-order shape response into a sharp geometry-side closure target. Matching the standard positive-potential PPN rows gives
 $$
 N
 =
@@ -26788,11 +25893,7 @@ $$
 1-(1+\gamma_{\mathrm{PPN}})\frac{U}{c_0^2}
 +O(c_0^{-4}).
 $$
-Thus $\gamma_{\mathrm{PPN}}=1$ is equivalent at first order to
-$\xi=1-2U/c_0^2+O(c_0^{-4})$ in this ADM subclass. The asymptotic condition is
-$\xi\to1$ as $U\to0$; it does not erase the first-order response that carries
-$\gamma_{\mathrm{PPN}}$. A native braid-envelope derivation of this response
-would determine $\gamma_{\mathrm{PPN}}$ rather than fit it.
+Thus $\gamma_{\mathrm{PPN}}=1$ is equivalent at first order to $\xi=1-2U/c_0^2+O(c_0^{-4})$ in this ADM subclass. The asymptotic condition is $\xi\to1$ as $U\to0$; it does not erase the first-order response that carries $\gamma_{\mathrm{PPN}}$. A native braid-envelope derivation of this response would determine $\gamma_{\mathrm{PPN}}$ rather than fit it.
 
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
 $$
@@ -26822,18 +25923,9 @@ $$
 $$
 which is the Newtonian limit.
 
-PPN extraction for this constitutive subclass is defined canonically in
-[ppn-parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#ppn-parameters-and-the-euclidean-anchor),
-including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map,
-and weak-field closure vector.
+PPN extraction for this constitutive subclass is defined canonically in [ppn-parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#ppn-parameters-and-the-euclidean-anchor), including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map, and weak-field closure vector.
 
-In that canonical map the exponential identity
-$N=e^{\Phi_{\mathrm{eff}}/c_0^2}$ fixes the quadratic coefficient only when the
-series is expressed in the constitutive potential $U_\Phi=-\Phi_{\mathrm{eff}}$.
-It gives $\beta_{\mathrm{PPN}}=1$ only if
-$U_\Phi=U+O(U^3/c_0^6)$, so the second-order potential-conversion coefficient
-vanishes. That conversion is a constitutive obligation, not a consequence of
-the definition $\Phi_{\mathrm{eff}}=c_0^2\ln N$.
+In that canonical map the exponential identity $N=e^{\Phi_{\mathrm{eff}}/c_0^2}$ fixes the quadratic coefficient only when the series is expressed in the constitutive potential $U_\Phi=-\Phi_{\mathrm{eff}}$. It gives $\beta_{\mathrm{PPN}}=1$ only if $U_\Phi=U+O(U^3/c_0^6)$, so the second-order potential-conversion coefficient vanishes. That conversion is a constitutive obligation, not a consequence of the definition $\Phi_{\mathrm{eff}}=c_0^2\ln N$.
 
 ### General Relativity
 
@@ -27159,8 +26251,7 @@ Here $\varepsilon_{\mathrm{GW}}$ is the multi-messenger speed tolerance owned by
 
 Weak-field GR matching is the conservative requirement. Strong-field behavior is where the theory may differ.
 
-Use the canonical event-horizon alignment condition defined in
-[singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition).
+Use the canonical event-horizon alignment condition defined in [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition).
 
 The strong-field interpretation is therefore:
 
@@ -27238,8 +26329,7 @@ If that intersection is empty, the effective-metric program is not yet viable.
 
 ### PPN Parameters
 
-This chapter is the canonical home for weak-field/PPN expansion details used by
-the spacetime constitutive map.
+This chapter is the canonical home for weak-field/PPN expansion details used by the spacetime constitutive map.
 
 #### Canonical Symbols
 
@@ -27410,8 +26500,7 @@ to obtain
 $$
 \boxed{\beta_{\mathrm{PPN}}=\frac{1+2C_2^{(U)}}{2}}.
 $$
-The superscript is essential: $C_2^{(U)}$ is the coefficient after the clock law has been expanded in the Newtonian comparison potential $U$. Reading $\beta_{\mathrm{PPN}}$ from this coefficient alone is not valid in a general source where $\Phi_{\mathrm W}$, $\Phi_1,\ldots,\Phi_4$, $\mathcal A$, or preferred-frame potentials carry independent non-GR coefficients.
-No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
+The superscript is essential: $C_2^{(U)}$ is the coefficient after the clock law has been expanded in the Newtonian comparison potential $U$. Reading $\beta_{\mathrm{PPN}}$ from this coefficient alone is not valid in a general source where $\Phi_{\mathrm W}$, $\Phi_1,\ldots,\Phi_4$, $\mathcal A$, or preferred-frame potentials carry independent non-GR coefficients. No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
 ##### Exponential clock-law subclass (direct map)
@@ -27624,8 +26713,7 @@ $$
 $$
 and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
-The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
-This condition does not set the rotating-source row $g_{0i}^{\mathrm{drag}}(\mathbf J)$ to zero.
+The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion. This condition does not set the rotating-source row $g_{0i}^{\mathrm{drag}}(\mathbf J)$ to zero.
 
 #### Preferred-Motion Null-Test Bundle
 
@@ -27947,8 +27035,7 @@ Define the single Tier-1 weighted closure objective
 $$
 \mathcal{L}(\boldsymbol{\vartheta}_{\mathrm{PPN}})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
 $$
-where $\mathbf{W}$ is the precision matrix from ledger tolerances.
-With the source-mined benchmark vector above,
+where $\mathbf{W}$ is the precision matrix from ledger tolerances. With the source-mined benchmark vector above,
 $$
 \mathbf{W}
 =
@@ -28112,8 +27199,7 @@ $$
 \sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$
 
-Failure rule for this closure layer:
-if any observed value lies outside
+Failure rule for this closure layer: if any observed value lies outside
 $$
 \mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
 $$
@@ -28233,11 +27319,9 @@ $$
 $$
 which is equivalent to nonzero projection of the added gradient span onto the null direction $\hat n$.
 
-Operational closure consequence:
-if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2,\Xi_3)$ closes to a bounded ellipsoid instead of a flat valley.
+Operational closure consequence: if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2,\Xi_3)$ closes to a bounded ellipsoid instead of a flat valley.
 
-Failure mode for the constitutive cosmology map:
-if the inferred $\boldsymbol{\Xi}$ is significantly nonzero and incompatible with the independently inferred medium-drift direction from the CMB dipole, the single preferred-frame mapping in $\mathbb{A}\mathbb{A}\mathbb{A}$ is broken.
+Failure mode for the constitutive cosmology map: if the inferred $\boldsymbol{\Xi}$ is significantly nonzero and incompatible with the independently inferred medium-drift direction from the CMB dipole, the single preferred-frame mapping in $\mathbb{A}\mathbb{A}\mathbb{A}$ is broken.
 
 The acceptance record for this layer requires Noether sea continuum simulations to supply
 $$
@@ -28293,8 +27377,7 @@ Coherent photon/gravity conversion comparisons belong at this same shared-record
 
 #### Linear Wave Equation
 
-**Closure Target 1 (linearized propagation equation).**
-Under weak-field, slow-background variation, linear constitutive response, and the predicate that the homogeneous isotropic background Noether sea is an equilibrium of the constitutive dynamics — an open dependency carried by the provisional sea-equilibrium packet below — the transverse-traceless sector must recover
+**Closure Target 1 (linearized propagation equation).** Under weak-field, slow-background variation, linear constitutive response, and the predicate that the homogeneous isotropic background Noether sea is an equilibrium of the constitutive dynamics — an open dependency carried by the provisional sea-equilibrium packet below — the transverse-traceless sector must recover
 $$
 \Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}
 =
@@ -28307,8 +27390,7 @@ $$
 
 This display is the GR-normalized observer-level target, not a derived lemma. A native derivation must obtain three ingredients from one constitutive record: the tensor kinetic normalization, the source coupling $16\pi G_{\text{eff}}/(c_{\text{GW}}^{\text{eff}})^4$, and the constraints that remove non-TT components. Linearizing an assumed effective field equation would check its consequences but would not derive any of those ingredients from Noether sea dynamics.
 
-**Corollary 1 (source-free effective waves).**
-For $T_{\mu\nu}^{\text{TT}}=0$:
+**Corollary 1 (source-free effective waves).** For $T_{\mu\nu}^{\text{TT}}=0$:
 $$
 \Box_{c_{\text{GW}}^{\mathrm{eff}}}\bar h_{\mu\nu}^{\text{TT}}=0
 $$
@@ -28389,8 +27471,7 @@ with the associated beam variance, chromaticity residual, and packet time-dilati
 
 In the project spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
 
-**Conditional Lemma 2 (two-mode TT closure in isotropic limit).**
-If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:
+**Conditional Lemma 2 (two-mode TT closure in isotropic limit).** If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:
 $$
 h_+(t_{\mathrm{eff}},x_{\mathrm{eff}}^i),\qquad h_\times(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)
 $$
@@ -28451,8 +27532,7 @@ This residual is the modern version of the separated-detector check: a signal mu
 
 Public GWOSC/LVK claims must also pass the packet protocol in [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md#public-gravitational-wave-benchmark-protocol) before they support strong-field or effective-metric claims. The public packet fixes event version, strain files, detector masks, parameter-estimation release, waveform family, calibration notes, analysis window, nuisance record, and artifact hashes before residual evaluation. This makes the detector-side gate replayable rather than a general statement that gravitational-wave observations are available.
 
-**Closure Target 2A (graviton-comparison detectability residual).**
-When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $A_{\mathrm{GW}}$, retain the occupation lower bound
+**Closure Target 2A (graviton-comparison detectability residual).** When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $A_{\mathrm{GW}}$, retain the occupation lower bound
 $$
 N_{\mathrm{occ}}
 \ge
@@ -28563,17 +27643,14 @@ $$
 $$
 The weak-field source branch must fit the orbital-decay row while keeping $\mathcal R_{\mathrm{dip}}$ below the binary-system bound. Composition-dependent Noether sea coupling that produces a leading dipole channel is therefore linked directly to the strong-equivalence-principle burden; it cannot be hidden in the detector-side tensor projection.
 
-**Closure Target 3 (leading-order GW flux).**
-In the same regime, the cycle-averaged flux is
+**Closure Target 3 (leading-order GW flux).** In the same regime, the cycle-averaged flux is
 $$
 \mathcal{F}_{\text{GW}}
 =
 \frac{c_{\text{GW}}^3}{16\pi G_{\text{eff}}}
 \left\langle \dot h_+^2+\dot h_\times^2\right\rangle
 $$
-This polarization-summed normalization follows from
-$\dot h_{ij}^{\mathrm{TT}}\dot h_{\mathrm{TT}}^{ij}
-=2(\dot h_+^2+\dot h_\times^2)$ in the Isaacson comparison flux. It is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.
+This polarization-summed normalization follows from $\dot h_{ij}^{\mathrm{TT}}\dot h_{\mathrm{TT}}^{ij} =2(\dot h_+^2+\dot h_\times^2)$ in the Isaacson comparison flux. It is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.
 
 ### Black Holes
 
@@ -32170,8 +31247,7 @@ This is the fermion-sector consumer of the pro/anti orientation basis defined in
 
 ##### Colorless Fermions: Axis Uniformity
 
-**Core rule:**
-Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+**Core rule:** Color charge appears only when the indexed A1 axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out axis 1, 2, or 3. Quarks are colored because their axial pattern does.
 
@@ -32189,14 +31265,12 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ###### Electron and positron
 
-- **Electron**:
-  $(\text{1},\text{2},\text{3}) = (-/-,\ -/- ,\ -/-)$
+- **Electron**: $(\text{1},\text{2},\text{3}) = (-/-,\ -/- ,\ -/-)$
   - Each axis: net $-2\epsilon$.
   - Total: $-6\epsilon=-e$.
   - All axes identical → SU(3)$_c$ singlet.
 
-- **Positron**:
-  $(+/+,\ +/+,\ +/+)$
+- **Positron**: $(+/+,\ +/+,\ +/+)$
   - Each axis: net $+2\epsilon$.
   - Total: $+6\epsilon=+e$.
   - All axes identical → singlet.
@@ -32255,11 +31329,9 @@ Accordingly, the axis-class dictionary is:
 
 - **Colorless**: 1,2,3 all same class, for example all negative-polarity dyads or all mixed dyads.
 - **Colored quark**: 1,2,3 pattern is one of:
-  - two background dyads and one exceptional dyad
-  where the exceptional dyad class differs from the background dyad class.
+  - two background dyads and one exceptional dyad where the exceptional dyad class differs from the background dyad class.
 
-Color degree of freedom is then:
-**which axis carries the exceptional dyad?**
+Color degree of freedom is then: **which axis carries the exceptional dyad?**
 
 ###### Up‑type quarks ($5\epsilon_+,1\epsilon_-$)
 
@@ -32283,8 +31355,7 @@ Define color basis:
 - $|u_2\rangle$: 2 exceptional.
 - $|u_3\rangle$: 3 exceptional.
 
-These span the color space:
-$\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
+These span the color space: $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
@@ -32332,8 +31403,7 @@ Thus for down‑type $d$ we again define:
 - $|d_2\rangle$: 2 exceptional.
 - $|d_3\rangle$: 3 exceptional.
 
-and:
-$\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_1\rangle,|d_2\rangle,|d_3\rangle\} \cong \mathbb{C}^3.$
+and: $\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_1\rangle,|d_2\rangle,|d_3\rangle\} \cong \mathbb{C}^3.$
 
 ###### Family selection: dynamic, not arbitrary
 
@@ -32378,8 +31448,7 @@ $$
 $$
 be the Floquet spectral radius of nontrivial multipliers.
 
-**Theorem (Single-family low-energy survival).**
-Assume there exists $F_\star\in\{I,II\}$ such that:
+**Theorem (Single-family low-energy survival).** Assume there exists $F_\star\in\{I,II\}$ such that:
 
 1. **Local dynamical stability:** $\rho_{F_\star}<1$.
 2. **Competitor exclusion:** either $\rho_{\bar F}\ge 1$ (linearly unstable), or $\rho_{\bar F}<1$ and
@@ -32398,8 +31467,7 @@ so $\pi_{\bar F}\to 0$ as $T_{\mathcal Q,W}\to 0$. Hence exactly one down-family
 
 *Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight. The harmonic free-energy and Kramers steps are part of the approximation burden: the reduced state-dependent delay record must admit this metastable-well reduction before the criterion becomes quantitative.
 
-**Concrete screening corollary (Family II preference test).**
-If the reduced minimum can be decomposed as
+**Concrete screening corollary (Family II preference test).** If the reduced minimum can be decomposed as
 $$
 E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{\mathrm{mix}}^{(F)}
 $$
@@ -32412,14 +31480,12 @@ $$
 $$
 and the stability condition $\rho_{II}<1$ holds.
 
-**Failure condition (theory-level, explicit).**
-The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
+**Failure condition (theory-level, explicit).** The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
 $$
 \rho_I<1,\qquad \rho_{II}<1,\qquad
 |\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
 $$
-for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening.
-In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
+for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening. In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
 
 ##### Color Hilbert Space and SU(3) Structure
 
@@ -32427,8 +31493,7 @@ For any quark flavor $q$, define the color state space
 $$
 \mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_1\rangle,|q_2\rangle,|q_3\rangle\}\cong\mathbb{C}^3
 $$
-where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively.
-Fix this ordered basis and identify it with the canonical triplet basis
+where $|q_1\rangle,|q_2\rangle,|q_3\rangle$ mean "axis-exceptionality on 1/2/3", respectively. Fix this ordered basis and identify it with the canonical triplet basis
 $$
 |q_1\rangle\leftrightarrow e_1,\quad |q_2\rangle\leftrightarrow e_2,\quad |q_3\rangle\leftrightarrow e_3
 $$
@@ -32451,17 +31516,13 @@ The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as uno
 
 ###### Generator basis from axis operations
 
-Let $E_{ab}$ be matrix units in the ordered basis $(1,2,3)$, i.e.
-$(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{1,2,3\}$.
-Define Hermitian generators:
+Let $E_{ab}$ be matrix units in the ordered basis $(1,2,3)$, i.e. $(E_{ab})_{cd}=\delta_{ac}\delta_{bd}$ for $a,b\in\{1,2,3\}$. Define Hermitian generators:
 $$
 T^{(x)}_{ab}\equiv \frac{1}{2}(E_{ab}+E_{ba}),\qquad
 T^{(y)}_{ab}\equiv -\frac{i}{2}(E_{ab}-E_{ba})
 \quad (a<b)
 $$
-giving six off-diagonal generators:
-$(12),(13),(23)$ each with $(x,y)$ components.
-Define diagonal generators:
+giving six off-diagonal generators: $(12),(13),(23)$ each with $(x,y)$ components. Define diagonal generators:
 $$
 H_1\equiv \frac{1}{2}(E_{11}-E_{22}),\qquad
 H_2\equiv \frac{1}{2\sqrt{3}}(E_{11}+E_{22}-2E_{33})
@@ -33232,8 +32293,7 @@ In the axial-layer realization, every charged-fermion six-unit carrier consists 
 
 For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon polarity-conjugate braid pair, not as a literal inventory of six bound axial sites.
 
-**Weak-coupling exposure diagnostic (hypothesis)**
-For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
+**Weak-coupling exposure diagnostic (hypothesis)** For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
 $$
 \mathcal{T}_{\mathrm{WCT}}(A,\hat{\mathbf p})
 =
@@ -33925,8 +32985,7 @@ Two qualifications remain useful without adding new rows to the taxonomy:
     *   Polarity conjugation does not change this orientation label, so matter and antimatter are not assigned opposite intrinsic parity by this hypothesis alone.
     *   This is a parity-closure interface, not a completed derivation of the Dirac parity eigenvalue.
 
-**Verdict:**
-The table is sufficient as a quantum-number bookkeeping dictionary. It identifies the geometry each Standard Model label is supposed to read and connects scattering-amplitude or dissociation-rate calculations to the needed representation rows. Spin, intrinsic parity, mass response, and rate normalization remain separate closure interfaces rather than completed consequences of the table alone.
+**Verdict:** The table is sufficient as a quantum-number bookkeeping dictionary. It identifies the geometry each Standard Model label is supposed to read and connects scattering-amplitude or dissociation-rate calculations to the needed representation rows. Spin, intrinsic parity, mass response, and rate normalization remain separate closure interfaces rather than completed consequences of the table alone.
 
 ##### Closure Interfaces (Integration Map)
 
@@ -34158,13 +33217,11 @@ $$
 
 The down-type sector admits two allowed axis-pattern families:
 
-1. Family I:
-   one positive-polarity dyad and two negative-polarity dyads, i.e. permutations of
+1. Family I: one positive-polarity dyad and two negative-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_+,\epsilon_+),(\epsilon_-,\epsilon_-),(\epsilon_-,\epsilon_-)\big)
    $$
-2. Family II:
-   one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
+2. Family II: one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
    $$
    \big((\epsilon_-,\epsilon_-),(\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_-)\big)
    $$
@@ -34254,8 +33311,7 @@ The geometric implementation candidate then reads:
 - **right-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch left-handed doublets,
 - **left-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch right-handed singlets.
 
-This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
-At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
+This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks. At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
 
 ###### Right-handed antiquark bookkeeping
 
@@ -34487,8 +33543,7 @@ $$
 |u_2\rangle \leftrightarrow |u_3\rangle,\qquad
 |u_1\rangle \leftrightarrow |u_3\rangle
 $$
-and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion.
-For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
+and likewise for down-type states, without changing $u \leftrightarrow d$ or Generation I $\leftrightarrow$ II $\leftrightarrow$ III. Strong couplings move quarks around inside color space; they do not perform weak flavor conversion. For down-type states this color motion is internal to the selected Family-I or Family-II sector. Pure gluon exchange may rotate exceptionality among indexed axes 1, 2, and 3, but it is not allowed to hop between Family I and Family II as a hidden flavor change.
 
 ###### Generator picture
 
@@ -35011,9 +34066,7 @@ In short: do not rotate the scaffold; rotate the axial frame. Then ask whether t
 
 ### Electroweak Bosons
 
-**Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors.
-**Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
-This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+**Scope:** Defines the geometric assemblies corresponding to the U(1), SU(2), and Scalar sectors. **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes. This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
@@ -35557,8 +34610,7 @@ $$
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 ##### Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation.
-    For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
+*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation. For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
     $$
     M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2
     =
@@ -35680,8 +34732,7 @@ Primary closure integrations:
 
 ### Gluons
 
-**Scope:** Definition of color charge, gluon structure, and confinement.
-This chapter should be read together with [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md).
+**Scope:** Definition of color charge, gluon structure, and confinement. This chapter should be read together with [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md).
 
 The standard gluon is a gauge-boson carrier of the strong interaction. This chapter keeps that role as the observer-level recovery target, but asks for the physical implementation underneath it. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a gluon channel is a color-corridor event in the Noether sea: it routes axis exceptionality, flux-tube strain, recoil, and conserved ledgers between color-exposed quark assemblies.
 
@@ -35925,19 +34976,16 @@ Plainly, the meson is the temporary bridge state the strong sector can afford. I
 
 #### The Pions ($\pi^+, \pi^-, \pi^0$): The Nuclear Exchange Packet
 
-**Standard Model Role:**
-Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be populated and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
+**Standard Model Role:** Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the **residual strong force** (nuclear force) that binds protons and neutrons into atomic nuclei. At the Standard Model level, their spin-0 bosonic role means they can be populated and absorbed in great numbers without satisfying the fermionic Pauli occupancy restriction.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
 *   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid are hypothesized to achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark would be destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
-**Dynamical Role:**
-In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
+**Dynamical Role:** In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
 *   **Mechanism hypothesis:** A proton interacts with the Noether sea, associating a local candidate braid into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
 *   **Topology hypothesis:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger candidate-braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
@@ -35957,19 +35005,16 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 
 #### The Kaons ($K^+, K^-, K^0, \bar{K}^0$): The Generation Mixer
 
-**Standard Model Role:**
-Kaons are the lightest mesons containing a **strange or anti-strange branch** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
+**Standard Model Role:** Kaons are the lightest mesons containing a **strange or anti-strange branch** (Generation II). They are critical because they exhibit **CP violation** (matter-antimatter asymmetry) and, in Standard Model language, decay relatively slowly via the Weak interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the assembly dissociates only through comparatively weak reaction corridors, proving that "flavor" is not conserved in weak processes.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Kaon candidate connects a **Generation-I full-shielding braid scaffold** (for example, $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The taxonomy member of each scaffold is unassigned. The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** A Kaon candidate connects a **Generation-I full-shielding braid scaffold** (for example, $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The taxonomy member of each scaffold is unassigned. The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
 *   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen-I candidate scaffold presents a hypothesized three-cycle support boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen-II candidate scaffold presents a reduced two-cycle boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries would force the flux manifold to twist. Let $\vartheta_{\mathrm{tw}}(s)$ denote the local twist density along the tube. Unlike the pion (net $\int \vartheta_{\mathrm{tw}}(s)\,ds=0$), the candidate kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that would set the CP-odd asymmetry and keep the tube from relaxing to a straight, cancellation-friendly lock.
 *   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated twist density along the tube is the phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned weak-coupling triads setting the barrier height.
 *   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero twist density; $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}} = \int_0^{\ell_{\mathrm{tube}}} \vartheta_{\mathrm{tw}}(s)\,ds$ is that required twist integrated along the tube. CP-even pieces track $\vartheta_{\mathrm{tw}}(s)^2$; CP-odd pieces track $\text{sign}(\vartheta_{\mathrm{tw}}(s))$, so the asymmetry is geometric, not inserted.
 
-**Dynamical Role:**
-Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
+**Dynamical Role:** Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
 
 ##### CP/phase hook (Kaons)
 - The Gen-I to selected Gen-II shielding mismatch is hypothesized to introduce a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II cycle to a declared Gen-I support site.
@@ -35998,11 +35043,9 @@ All binding, phase-lock, and stability claims in this chapter are mechanism hypo
 
 #### The Rho Mesons ($\rho$): The Spin-$1$ Counterparts
 
-**Standard Model Role:**
-The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but is a **vector meson** (spin-1). It is much heavier ($\sim 770$ MeV) and, in Standard Model language, decays almost instantly into two pions.
+**Standard Model Role:** The $\rho$ meson has the same quark content as the pion ($u\bar{d}$, etc.) but is a **vector meson** (spin-1). It is much heavier ($\sim 770$ MeV) and, in Standard Model language, decays almost instantly into two pions.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-In the current hadron-level shorthand, if the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** In the current hadron-level shorthand, if the Pion is the ground state of the $q\bar{q}$ system (spins anti-aligned or geometry relaxed), the Rho is the **first excited geometric state**.
 
 *   **Configuration:** The two constituent braids in the Rho assembly are treated as aligned (spin-$1$) rather than anti-aligned (spin-$0$), or the flux tube possesses a higher vibrational mode. This is a spin-channel mapping target until the vector-mode angular-momentum proof is complete.
 *   **Instability (Morse lens):** In the energy landscape the Rho is a saddle of Morse index 1 (or higher): forces balance, but there is at least one unstable direction (flux-unwinding mode). Dissociation is the deterministic slide down that unstable manifold into the stable pion basin (stability criterion in action).
@@ -36011,11 +35054,9 @@ In the current hadron-level shorthand, if the Pion is the ground state of the $q
 
 #### Delta Baryons ($\Delta^{++}, \Delta^+, \Delta^0, \Delta^-$)
 
-**Standard Model Role:**
-These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
+**Standard Model Role:** These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Noether braid assembly (like a proton) but with the three constituent braids treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):** A Delta baryon is a standard Noether braid assembly (like a proton) but with the three constituent braids treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
 
 *   **Decorations / Pauli:** In the $\Delta^{++}$, three identical candidate $u$-braids occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so exceptionality appears once on each indexed axis across the three candidate scaffolds. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 5\times10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
@@ -36106,8 +35147,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Candidate baryon scaffolds (proton-like permutations)*
-$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},1}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each indexed axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
+*Candidate baryon scaffolds (proton-like permutations)* $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},1}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each indexed axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
 
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
@@ -38184,16 +37224,7 @@ $$
 
 so the normal-Zeeman side spacing is one half of the corresponding cyclotron coefficient when the same exposed mass response applies. Here $m_{\mathrm{resp}}$ is the exposed mass-response readout for the same branch environment; the nearby $m_*$ notation is reserved for the standard material or envelope effective-mass comparison, as in the Landau spacing. Recovering the factor of two, polarization basis, and charge-to-mass readout from one magnetic-state map and photon-channel event record is part of the benchmark. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
 
-Solar and stellar Zeeman observations sharpen this as a source-reconstruction
-benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot
-measurements used viewing geometry and analyzer response to distinguish the
-longitudinal circularly polarized doublet from the transverse linearly polarized
-components. For this chapter, the recovery target is therefore a same-record map
-from source magnetic state, viewing direction, line family, analyzer response,
-and photon-channel polarization ledger to split line positions and intensities.
-The lab calibration and the solar or stellar inference must consume the same
-effective magnetic-state map; otherwise the inferred field strength is only a
-spectroscopic fit.
+Solar and stellar Zeeman observations sharpen this as a source-reconstruction benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot measurements used viewing geometry and analyzer response to distinguish the longitudinal circularly polarized doublet from the transverse linearly polarized components. For this chapter, the recovery target is therefore a same-record map from source magnetic state, viewing direction, line family, analyzer response, and photon-channel polarization ledger to split line positions and intensities. The lab calibration and the solar or stellar inference must consume the same effective magnetic-state map; otherwise the inferred field strength is only a spectroscopic fit.
 
 Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
 
@@ -38915,8 +37946,7 @@ $$
 \left[Q|_\gamma\right]\in\pi_1(\mathcal{Q})
 $$
 
-read up to conjugacy when $\pi_1(\mathcal{Q})$ is non-abelian, since a free loop fixes only a conjugacy class,
-or, in a phase-like branch,
+read up to conjugacy when $\pi_1(\mathcal{Q})$ is non-abelian, since a free loop fixes only a conjugacy class, or, in a phase-like branch,
 $$
 \nu_\gamma
 =
@@ -39357,25 +38387,17 @@ The reaction row therefore records a Standard Model prediction as a structured o
 
 ##### Canonical Stepwise Workflow
 
-1. **Define observer-level channel**
-Use the standard reaction statement first (for example $e^- + Z \rightarrow e^- + Z + \gamma$ or $\gamma + \gamma \rightarrow e^+ + e^-$).
+1. **Define observer-level channel** Use the standard reaction statement first (for example $e^- + Z \rightarrow e^- + Z + \gamma$ or $\gamma + \gamma \rightarrow e^+ + e^-$).
 
-2. **Set validated closure targets**
-Declare the required observer-level closures before ontology mapping:
+2. **Set validated closure targets** Declare the required observer-level closures before ontology mapping:
 - kinematic threshold closure,
 - differential/total rate closure,
 - energy-momentum closure,
 - timing/frame closure.
 
-3. **Initialize assembly state**
-Represent each incoming participant as an assembly state tuple:
-`(identity, provenance path, charge sector, momentum, local Noether sea state)`.
-Path history is part of identity bookkeeping in absolute time.
+3. **Initialize assembly state** Represent each incoming participant as an assembly state tuple: `(identity, provenance path, charge sector, momentum, local Noether sea state)`. Path history is part of identity bookkeeping in absolute time.
 
-4. **Characterize local Noether sea state**
-Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
-Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
+4. **Characterize local Noether sea state** Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear: $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$. Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
@@ -39441,13 +38463,11 @@ with $\chi_{\mathrm g}$ the gauge function, subscripted to keep it distinct from
 
 The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../../../../markdown/aaa/reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
 
-5. **Evaluate wake-strain trigger**
-Compute whether interaction forcing crosses the relevant mode boundary.
+5. **Evaluate wake-strain trigger** Compute whether interaction forcing crosses the relevant mode boundary.
 - If below threshold: no mode-lock event, energy routes into transport/heating/scattering channels.
 - If above threshold: mode-lock event allowed and channel-specific nucleation/relock proceeds.
 
-6. **Apply channel-specific lock rule**
-Select the mode family:
+6. **Apply channel-specific lock rule** Select the mode family:
 - planar-mode for photon emission channels,
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
@@ -39480,12 +38500,9 @@ $$
 
 Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
 
-7. **Execute provenance-conserving relock**
-Update assembly graph by relocking existing substrate content.
-No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
+7. **Execute provenance-conserving relock** Update assembly graph by relocking existing substrate content. No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
 
-8. **Enforce local conservation**
-Close event-level budgets:
+8. **Enforce local conservation** Close event-level budgets:
 - $\sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}$,
 - $\sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}$,
 - spin/angular-momentum ledger balance for emitted, absorbed, or converted vector modes,
@@ -39493,9 +38510,7 @@ Close event-level budgets:
 
 The spin/angular-momentum line is a conservation requirement. Its channel-specific content must be supplied by the angular-momentum ledger, photon Gate B, the massive-vector corridor model, or the spin-statistics proof as appropriate.
 
-9. **Project back to observer-level outputs**
-Compute spectra, cross-sections, rates, and timing in standard variables.
-Accept mapping only if closure targets from Step 2 are recovered within validated limits.
+9. **Project back to observer-level outputs** Compute spectra, cross-sections, rates, and timing in standard variables. Accept mapping only if closure targets from Step 2 are recovered within validated limits.
 
 ##### Detailed Scenario A: Bremsstrahlung Channel
 
@@ -39714,10 +38729,7 @@ The always-on wake is therefore the emission of the potential, and it should kee
 
 A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet a certified non-radiative return map must carry no routed residual: over a cycle the far-zone transport of energy, momentum, and angular momentum must net to zero. That zero-flux statement is a closure target, not a consequence of the inverse-square per-hit acceleration alone. The canonical fixed-hit multiplier reads transmitter position and velocity but no separate transmitter acceleration or higher derivative. Acceleration can still be represented across a sequence of changing roots and velocities, while any irreversible radiative share must appear in a derived wake-energy current or as nucleated photon assemblies with source-depletion, recoil, medium, wake, and remnant rows. The substrate statement is therefore not that acceleration creates a primitive $1/r$ acceleration term; it is that a driven event may leave a closure residual that the channel ledger routes into outgoing transport. Recovering the Larmor/Liénard and synchrotron far-zone laws from those event records remains a derivation target.
 
-Plainly: the Master Equation is acceleration-blind only at one fixed hit. That
-does not prove that accelerated histories cannot radiate, and the $1/r^2$
-acceleration falloff does not by itself determine the energy reaching a distant
-boundary.
+Plainly: the Master Equation is acceleration-blind only at one fixed hit. That does not prove that accelerated histories cannot radiate, and the $1/r^2$ acceleration falloff does not by itself determine the energy reaching a distant boundary.
 
 #### Radiation as the Cost of an Unprepared Path
 
@@ -41107,8 +40119,7 @@ The benchmark recoveries for this page are:
 - spectral line frequencies after local clock/rate conversion;
 - absorption and emission rates in the Fermi's Golden Rule limit;
 - Einstein coefficient relations and detailed balance in thermalized ensembles;
-- the hydrogen $2s\to1s$ two-photon continuum, with one vertex closing a shared ledger
-  $E_{\gamma,1}+E_{\gamma,2}=\Delta E_{2s\to1s}^{\mathrm{env}}-\Delta E_{\mathrm{recoil}}-\Delta E_{\mathrm{med}}-\Delta E_{\mathrm{rem}}$ and both photons carrying separate Gate A/B rows;
+- the hydrogen $2s\to1s$ two-photon continuum, with one vertex closing a shared ledger $E_{\gamma,1}+E_{\gamma,2}=\Delta E_{2s\to1s}^{\mathrm{env}}-\Delta E_{\mathrm{recoil}}-\Delta E_{\mathrm{med}}-\Delta E_{\mathrm{rem}}$ and both photons carrying separate Gate A/B rows;
 - Lyman-$\alpha$ resonant trapping and escape as a coupled emission-capture-transport recovery, not as a modified local line gap;
 - natural line widths as a recovery target for transition-time and basin-escape statistics;
 - recoil, Doppler, pressure, Zeeman, Stark, fine-structure, and hyperfine corrections only after the relevant transport, medium, and spin-ledger dependencies are supplied.
@@ -41215,16 +40226,9 @@ $$
 
 Here $\Gamma_e(T)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{V}_e/dT\right\|$ is the deceleration magnitude in absolute time. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
 
-The explicit deceleration argument is a path-derived assembly diagnostic, not
-an input to the canonical fixed-hit acceleration multiplier and not a derived
-radiation amplitude. At one hit the Master Equation reads transmitter position
-and velocity; a retained encounter record may estimate deceleration from the
-changing path and then test whether that history predicts the routed assembly
-transition.
+The explicit deceleration argument is a path-derived assembly diagnostic, not an input to the canonical fixed-hit acceleration multiplier and not a derived radiation amplitude. At one hit the Master Equation reads transmitter position and velocity; a retained encounter record may estimate deceleration from the changing path and then test whether that history predicts the routed assembly transition.
 
-Plainly: this provisional channel model summarizes a changing trajectory. It
-must not be read as adding an acceleration-dependent field term to each
-architrino hit.
+Plainly: this provisional channel model summarizes a changing trajectory. It must not be read as adding an acceleration-dependent field term to each architrino hit.
 
 The corresponding excitation energy is inherited from the radiation basin definition:
 
@@ -41749,8 +40753,7 @@ This chapter uses a dominant-channel rule: include reactions/channels that contr
 - $\gamma + \gamma \rightarrow e^+ + e^-$ (Breit-Wheeler two-photon interaction / photon-photon pair-production channel in dense radiation fields, distinct from Schwinger vacuum pair production).
 - Secondary-loop channel: newly produced $e^\pm$ re-enter synchrotron emission, closing the cascade.
 
-Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them.
-This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
+Secondary channels below the 1% contribution level are treated as corrections unless a specific regime elevates them. This 1% threshold is a modeling convention for cascade tractability, not a fundamental physics cutoff. Subdominant channels (for example, triplet pair production $e^\pm + \gamma \rightarrow e^\pm + e^+ + e^-$, relevant in strong magnetic fields) may be included in detailed transport codes but are omitted here for pedagogical focus.
 
 #### Radiation Inheritance
 
@@ -42847,6 +41850,9 @@ and
 $$
 \partial_{t_{\mathrm{std}}}\rho_{\psi,\mathrm{std}}+\nabla_{\mathrm{std}}\cdot\mathbf{J}_{\psi,\mathrm{std}}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#schrodinger-born-current)
+
 For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, the layer-explicit target is
 $$
 \rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
@@ -44038,8 +43044,7 @@ $$
 \mu_t\!\left(\pi^{-1}(\mathcal{R}_f)\right)
 }
 $$
-where $\pi$ is the declared record map for the later apparatus channel.
-This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
+where $\pi$ is the declared record map for the later apparatus channel. This conditional measure can sharpen which weak-probe displacements are averaged, but all substrate evolution still runs forward in absolute time. The closure target is to derive the weak-probe response and its post-selected statistics from the same deterministic flow, separatrix geometry, and record criterion used for ordinary measurements.
 
 The signed-response benchmark for post-selected weak probes should therefore be stated at the ensemble level. For a declared weak-probe pointer coordinate $Y$ and accepted later record class $\mathcal{R}_f$, define the normalized conditional response
 $$
@@ -44416,8 +43421,7 @@ D_{ij}(R_{\mathrm{eff}}^i)
 =
 \frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 \gamma_{ij}^{\mathrm{eff}}}{\|R_{\mathrm{eff}}^i\|^5}
 $$
-where $\gamma_{ij}^{\mathrm{eff}}$ is the effective spatial metric of the declared observer chart and reduces to $\delta_{ij}$ in the flat weak-response limit used by this toy model.
-If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
+where $\gamma_{ij}^{\mathrm{eff}}$ is the effective spatial metric of the declared observer chart and reduces to $\delta_{ij}$ in the flat weak-response limit used by this toy model. If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
 $$
 \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \simeq
@@ -44528,8 +43532,7 @@ For any newly established two-register coupling, abstract gate identity does not
 $$
 \tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_0}+\tau_{\mathrm{settle}}
 $$
-Here $c_0$ is the calibrated asymptotic observer-sector value of the dressed assembly-channel speed $c_{\mathrm{eff}}$ in the laboratory regime, not the primitive wake speed $c_f$. The two symbols are not universally identical: $c_{\mathrm{eff}}(\mathbf X,T)$ may vary with the declared Noether sea state, while $c_0$ is the observer calibration used by the apparatus bound. Control signals traverse the dressed assembly network in the Noether sea, so the tighter apparatus bound uses the effective channel speed rather than the substrate carrier speed. The propagation term is directly calibrated once $d_{\mathrm{ctrl}}$ and $c_0$ are known; the native burden is to derive $\tau_{\mathrm{settle}}$ and its scaling with coupling strength, Noether sea density $\rho_{\mathrm{NS}}$, and susceptibility $\chi_{\mathrm{sea}}$.
-Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
+Here $c_0$ is the calibrated asymptotic observer-sector value of the dressed assembly-channel speed $c_{\mathrm{eff}}$ in the laboratory regime, not the primitive wake speed $c_f$. The two symbols are not universally identical: $c_{\mathrm{eff}}(\mathbf X,T)$ may vary with the declared Noether sea state, while $c_0$ is the observer calibration used by the apparatus bound. Control signals traverse the dressed assembly network in the Noether sea, so the tighter apparatus bound uses the effective channel speed rather than the substrate carrier speed. The propagation term is directly calibrated once $d_{\mathrm{ctrl}}$ and $c_0$ are known; the native burden is to derive $\tau_{\mathrm{settle}}$ and its scaling with coupling strength, Noether sea density $\rho_{\mathrm{NS}}$, and susceptibility $\chi_{\mathrm{sea}}$. Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
 Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model. The comparison is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
 $$
@@ -44969,6 +43972,9 @@ ds_{\mathrm{FRW,eff}}^2
 +\chi^2d\Omega^2
 \right]
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#effective-frw-scale-factor)
+
 but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/dt_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
 
 The useful comparison equations are therefore recovery targets:
@@ -44984,6 +43990,9 @@ $$
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
 =0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#friedmann-continuity-lcdm)
+
 Passing these equations does not by itself promote metric expansion. It means that the fixed-void medium history has an observer-level FRW projection accurate enough to feed distance-redshift, CMB, BBN, and growth comparisons.
 
 ##### Effective Component Inventory
@@ -46179,6 +45188,8 @@ $$
 \frac{\Gamma_{N,E}}{\Gamma_{N,R}}\,
 \frac{\mathcal{P}_{E\to R}}{B_X(E)D_v}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#redshift-factorization)
 
 Here $D_v$ is the launch or relative-motion frequency factor. In the homogeneous absolute-record replay, let
 
@@ -47760,26 +46771,19 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Noether braids compress toward maximum-curvature states.
-Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
-At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
+Noether braids compress toward maximum-curvature states. Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients. At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
 $$
 \rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
 $$
-for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point.
-Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
+for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point. Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
 
-Material released from near-horizon regions undergoes rapid outward dilution and cooling.
-Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below.
-This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution.
-Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
+Material released from near-horizon regions undergoes rapid outward dilution and cooling. Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below. This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution. Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
 3. **Observable Output:**
 
-Ejected material, now cooled and stabilized, carries light-element abundances set by the local reaction history.
-These abundances must be observationally consistent with "primordial" BBN if the SMBH-local process is to replace a one-time origin interpretation.
+Ejected material, now cooled and stabilized, carries light-element abundances set by the local reaction history. These abundances must be observationally consistent with "primordial" BBN if the SMBH-local process is to replace a one-time origin interpretation.
 
 ##### Key Difference from Standard BBN
 
@@ -48269,11 +47273,9 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 - Outcome: pair annihilation reduces lepton density and heats radiation.
 - Sub-phase (neutrino decoupling, $\sim 1$ s): weak interaction rate falls below expansion/relaxation; neutrinos free-stream.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
-**$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
+**$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath. **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether braids with six $\epsilon$ axial architrinos form):** Stable lepton analogs are hypothesized to form from Noether braids carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units; the formation pathway is not established. Lepton-like assemblies populate the Noether sea and mediate charge-neutralization channels.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether braids with Neutral Axial Layers):** Nearly neutral Noether braid assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether braids with six $\epsilon$ axial architrinos form):** Stable lepton analogs are hypothesized to form from Noether braids carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units; the formation pathway is not established. Lepton-like assemblies populate the Noether sea and mediate charge-neutralization channels. **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether braids with Neutral Axial Layers):** Nearly neutral Noether braid assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 #### Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.
@@ -48536,6 +47538,8 @@ u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 \frac{8\pi h\nu^3}{c_\gamma^3}
 \frac{1}{\exp(h\nu/(k_B T_{\text{ens}}))-1}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#planck-blackbody-occupancy)
 
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
 
@@ -48929,8 +47933,7 @@ x_{\mathrm{img,eff}}^i
 \Delta_{\mathrm{eff}}\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
 $$
 
-where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units.
-The layer-explicit observer-chart version is
+where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The layer-explicit observer-chart version is
 $$
 y_{\mathrm{eff}}^i
 =
@@ -49398,6 +48401,8 @@ a_{\mathrm{obs}}(r)\simeq\sqrt{a_N(r)a_0^{\mathrm{MOND}}},
 \qquad
 v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#rar-btfr-galaxy-response)
 
 A compact version of the closure residual is
 
@@ -50042,6 +49047,8 @@ $$
 \quad
 \text{on the homogeneous } w_{\mathrm{eff}}\approx -1 \text{ comparison branch}
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#dark-energy-equation-of-state)
 
 No identity is assumed among $\Lambda_{\mathrm{fit}}$, $\Lambda_{\mathrm{int}}$, $\Lambda_{\mathrm{vac}}^{\mathrm{QFT}}$, and $\Lambda_{\mathrm{eff}}^{\mathrm{sea}}$. A native dark-energy claim must instead pass a residual matching test,
 
@@ -50725,8 +49732,7 @@ Each symbol carries a specific medium-level meaning:
 - **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
   - the local Noether braid density $\bar{\rho}_{\text{NS}}(T)$, which sets Noether sea stiffness,
 - the declared binary-radius statistic $\bar{R}_{\text{braid}}(T)$, which parameterizes the compliance of Noether sea assemblies to deformation,
-  - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
-  The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+  - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes. The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 - **$\bar{\rho}_m(t_{\mathrm{eff}})$**: the observer-level mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md)).
 
@@ -51854,8 +50860,7 @@ $$
 
 Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. In $\mathbb{A}\mathbb{A}\mathbb{A}$, temperature is not the internal energy of one Noether braid or the total energy stored in the Noether sea. It is an effective ensemble variable admitted when a declared coarse-graining supplies an accessible energy ledger, a measure over retained states, a fixed inventory or access variable, and a local equilibrium or thermalization condition. The general rule is the same-record entropy relation developed in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable).
 
-**Thermalized-ensemble limit:**
-In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
+**Thermalized-ensemble limit:** In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
 $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
 $$
@@ -54705,8 +53710,7 @@ Here $\xi_a$ is a sampled reception time in the transition window, $k_a$ is the 
 ###### Required refinements with pass/fail thresholds
 
 1. Temporal refinement ($\Delta T$ and $\Delta T/2$, plus $\Delta T/4$ for order check):
-- Pass if $E_{\mathrm{rel}}(\Phi)\le 0.02$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.03$, and
-  $|\lambda_{\text{self},A}-\lambda_{\text{self},B}|/\max(|\lambda_{\text{self},B}|,\lambda_{\min})\le0.05$, with the rate floor $\lambda_{\min}$ declared before the run. If both rates lie below that floor, compare absolute event counts and root identities instead of reporting an undefined relative rate.
+- Pass if $E_{\mathrm{rel}}(\Phi)\le 0.02$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.03$, and $|\lambda_{\text{self},A}-\lambda_{\text{self},B}|/\max(|\lambda_{\text{self},B}|,\lambda_{\min})\le0.05$, with the rate floor $\lambda_{\min}$ declared before the run. If both rates lie below that floor, compare absolute event counts and root identities instead of reporting an undefined relative rate.
 - Estimated observed order:
 $$
 p_{\mathrm{obs}}(Y)=\log_2\!\frac{E_{\mathrm{rel}}(Y;\Delta T,\Delta T/2)}
@@ -55524,8 +54528,7 @@ Q^{ij}_{A_0}
 =
 Q^{ij}_{A_0}-\frac{1}{3}h^{ij}
 $$
-Here $h_{mn}=\delta_{mn}$ is the Euclidean spatial metric on $\Sigma_T$ and $h^{ij}=\delta^{ij}$ is its inverse, so the denominator is the Euclidean trace of $D^{ij}_{A_0}$.
-This tensor measures motion-induced or probe-induced Noether braid deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
+Here $h_{mn}=\delta_{mn}$ is the Euclidean spatial metric on $\Sigma_T$ and $h^{ij}=\delta^{ij}$ is its inverse, so the denominator is the Euclidean trace of $D^{ij}_{A_0}$. This tensor measures motion-induced or probe-induced Noether braid deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
 ##### Tier 0: Algebraic Branch Search
 
@@ -55747,9 +54750,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   \frac{\left|\|\mathbf X_k-\mathbf X_{i_m}(T_{t,m})\|-c_f\,(T_m-T_{t,m})\right|}
   {\max(c_f\Delta T,\varepsilon_r)}
   $$
-  where $\varepsilon_r>0$ is a predeclared floor with units of length.
-  Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and
-  $\max_m \rho_m \le 5\times 10^{-2}$.
+  where $\varepsilon_r>0$ is a predeclared floor with units of length. Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and $\max_m \rho_m \le 5\times 10^{-2}$.
 
 - **Temporal ordering check:**
   $$
@@ -55757,14 +54758,12 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
-- **Cross-integrator parity:**
-  For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
+- **Cross-integrator parity:** For any channel $Y$ use a predeclared floor $\varepsilon_{0,Y}$ with the same units as the norm of $Y$:
   $$
   E_{\mathrm{rel}}(Y;A,B)\equiv
   \frac{\|R(Y_B)-Y_A\|_{L^2}}{\|R(Y_B)\|_{L^2}+\varepsilon_{0,Y}}
   $$
-  Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and
-  $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
+  Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$. Passing shows implementation parity on the declared channels; it is not an independent correctness oracle.
 
 - **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_T$, use
   $$
@@ -55920,13 +54919,10 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   $$
   up to projection, cooling, and deceleration corrections named in the packet. For synchrotron-bearing jets, the same run must emit $I_\nu^{\mathrm{syn}}$, $I_\nu^{\mathrm{IC}}$, $\Pi_\nu$, and $\psi_\nu$ maps from one effective $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ reconstruction. These are observer-level comparison variables; passing them does not promote MHD fields into substrate ontology.
 
-- **Convergence triad:** must pass temporal/history/spatial gates from
-  [convergence-tests.md](../../../../markdown/aaa/validation/simulations/convergence-tests.md), including null-test failure.
+- **Convergence triad:** must pass temporal/history/spatial gates from [convergence-tests.md](../../../../markdown/aaa/validation/simulations/convergence-tests.md), including null-test failure.
 
 ###### Failure mode
-If any of the quantitative checks above fail (or if the null test does not fail),
-treat $\mathbb{U}_{\text{now}}$ outputs as numerically unreliable for self-hit claims
-until thresholds are met.
+If any of the quantitative checks above fail (or if the null test does not fail), treat $\mathbb{U}_{\text{now}}$ outputs as numerically unreliable for self-hit claims until thresholds are met.
 
 ###### $\mathbb{U}_{\text{now}}$ as Standard Probe
 
@@ -56521,8 +55517,7 @@ $$
 +\varepsilon_I
 },
 $$
-Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$.
-Also report the Floquet basin-robustness gap
+Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$. Also report the Floquet basin-robustness gap
 $$
 \Delta_{\mathbf{k}}
 =
@@ -58598,8 +57593,7 @@ D_v
 \sqrt{\frac{1-\beta_r}{1+\beta_r}}
 $$
 
-where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback.
-This observer-level launch factor is not either causal-root factor from the Master Equation: it must not be serialized as the transmitter-side $D_t$, the receiver-side $D_r$, or the signed root-playback ratio $D_r/D_t$.
+where $\hat{\mathbf{k}}$ points from emitter to receiver and $v_r>0$ means the endpoint separation is increasing. A packet may provide `beta_r`, `radial_velocity_km_s`, or the triple `emitter_velocity_km_s`, `receiver_velocity_km_s`, and `line_of_sight`. Scalar `D_v` remains the fallback. This observer-level launch factor is not either causal-root factor from the Master Equation: it must not be serialized as the transmitter-side $D_t$, the receiver-side $D_r$, or the signed root-playback ratio $D_r/D_t$.
 
 The continuity-transport extension uses the segment packet
 
@@ -59339,9 +58333,7 @@ The central commitment is that science should contain a recognizable crisis-dete
 
 Relevant indicators include anomaly load, ontology debt, patch density, progress latency, theory proliferation without convergence, and imbalance between effective success and explanatory integration. Anomaly load concerns the number and severity of unresolved tensions, paradoxes, and unexplained sectors. Ontology debt concerns the number of central theoretical objects that remain predictively useful while mechanistically unclear. Patch density concerns the growth of auxiliary sectors, repair layers, and interpretation families needed to preserve the framework. Progress latency concerns the elapsed time since the last widely accepted foundational closure rather than the last confirmation of an inherited prediction. Theory proliferation without convergence concerns the multiplication of interpretations or repair programs without narrowing toward a common architecture. Effective-success imbalance concerns the case in which engineering and prediction remain strong while explanatory unification remains weak.
 
-These indicators become operationally meaningful only when attached to concrete
-diagnoses. For a declared domain and time window $W$, their profile can be
-written as
+These indicators become operationally meaningful only when attached to concrete diagnoses. For a declared domain and time window $W$, their profile can be written as
 
 $$
 \mathbf I_W
@@ -59356,12 +58348,7 @@ E_W
 \right),
 $$
 
-where the components denote anomaly load, ontology debt, patch density,
-progress latency, theory proliferation, and effective-success imbalance. The
-components are not commensurate by default, so $\mathbf I_W$ is a diagnostic
-profile rather than a scalar crisis score. Summing or ranking them requires a
-measurement rule, normalization, comparison window, and weights fixed before
-the desired verdict is known.
+where the components denote anomaly load, ontology debt, patch density, progress latency, theory proliferation, and effective-success imbalance. The components are not commensurate by default, so $\mathbf I_W$ is a diagnostic profile rather than a scalar crisis score. Summing or ranking them requires a measurement rule, normalization, comparison window, and weights fixed before the desired verdict is known.
 
 The companion crisis chapter supplies the present many-to-many crosswalk:
 
@@ -59374,12 +58361,7 @@ The companion crisis chapter supplies the present many-to-many crosswalk:
 | Theory proliferation $V_W$ | [`CR-05`](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md#general-relativity-and-quantum-theory), [`CR-06`](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md#ads-control-and-de-sitter-reality), and [`CR-10`](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md#parameter-proliferation-and-patchwork-closure) | Competing unification settings, interpretations, or repair programs multiply without converging on shared discriminating observables. |
 | Effective-success imbalance $E_W$ | [`CR-02`](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md#prediction-vs-ontology), [`CR-07`](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess), and [`CR-11`](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md#mathematical-control-vs-mechanistic-explanation) | Prediction and formal control remain strong while substrate implementation and mechanistic integration remain comparatively weak. |
 
-The crosswalk is diagnostic, not accusatory. One crisis axis may bear several
-indicators, and one indicator may arise from several axes. A high profile does
-not confirm $\mathbb{A}\mathbb{A}\mathbb{A}$ or any other replacement. It
-changes the comparative burden: preserve the successful records, expose the
-auxiliary assumptions, and demand a discriminating recovery that the incumbent
-and replacement packages cannot both obtain by retuning.
+The crosswalk is diagnostic, not accusatory. One crisis axis may bear several indicators, and one indicator may arise from several axes. A high profile does not confirm $\mathbb{A}\mathbb{A}\mathbb{A}$ or any other replacement. It changes the comparative burden: preserve the successful records, expose the auxiliary assumptions, and demand a discriminating recovery that the incumbent and replacement packages cannot both obtain by retuning.
 
 The same crisis layer should audit false priors directly. A false prior is not merely a wrong numerical guess; it is a starting abstraction that silently defines the permitted architecture. If a community assumes too early that observed particle charge is primitive charge, that measured photon speed is the primitive wake speed, or that an effective metric is substrate geometry, then later mathematics may become rigorous while the theory space has already been narrowed. A crisis-capable method must therefore include primitive-abstraction review: identify the inherited assumptions that decide the search space before any parameter fit begins.
 
@@ -59785,11 +58767,7 @@ What this subject gets right is that evidence moves through layers: observation,
 
 The subject also gets right that theory choice cannot be reduced to one virtue. Simplicity, coherence, fertility, and mechanistic depth matter, but each can mislead when isolated. The demand is therefore for articulated tradeoffs rather than hidden preference.
 
-[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/)
-supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be
-two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used
-to construct or calibrate either package, and let $\mathcal C$ state the shared
-background conditions. Posterior odds then satisfy
+[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/) supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used to construct or calibrate either package, and let $\mathcal C$ state the shared background conditions. Posterior odds then satisfy
 
 $$
 \frac{P(Q_i\mid D_{\mathrm{new}},\mathcal C)}
@@ -59804,32 +58782,11 @@ $$
      {P(Q_j\mid\mathcal C)}.
 $$
 
-The Bayes factor $K_{ij}$ measures how differently the two packages expose
-themselves to the new record; the prior-odds factor states what was believed
-before that record was opened. If both packages assign the same likelihood to
-the evidence, then $K_{ij}=1$ and the evidence does not discriminate between
-them, however impressive the shared fit may be. If the data were used to
-choose the mechanism, parameters, projection, or likelihood family, they are
-calibration evidence rather than an independent confirmation record.
+The Bayes factor $K_{ij}$ measures how differently the two packages expose themselves to the new record; the prior-odds factor states what was believed before that record was opened. If both packages assign the same likelihood to the evidence, then $K_{ij}=1$ and the evidence does not discriminate between them, however impressive the shared fit may be. If the data were used to choose the mechanism, parameters, projection, or likelihood family, they are calibration evidence rather than an independent confirmation record.
 
-This use of probability is epistemic and observer-facing. It organizes
-uncertainty over declared hypothesis packages and record channels; it does not
-make probability a substrate substance, a causal agent, or proof of primitive
-randomness. A deterministic complete-state account may still induce a
-likelihood over controlled preparation variation, inaccessible path history,
-apparatus response, and finite observer records. Conversely, fitting a
-probability distribution at the observer level does not establish that the
-underlying dynamics is deterministic.
+This use of probability is epistemic and observer-facing. It organizes uncertainty over declared hypothesis packages and record channels; it does not make probability a substrate substance, a causal agent, or proof of primitive randomness. A deterministic complete-state account may still induce a likelihood over controlled preparation variation, inaccessible path history, apparatus response, and finite observer records. Conversely, fitting a probability distribution at the observer level does not establish that the underlying dynamics is deterministic.
 
-Priors remain a visible source of judgment. A theory comparison should
-therefore report whether the conclusion survives reasonable prior families,
-whether parameter volume rather than prediction quality drives the result, and
-whether a catch-all alternative has been omitted. Mechanistic economy may
-inform a prior, but it cannot be hidden inside one and then rediscovered as
-evidence. The same discipline applies to old evidence: a theory that derives a
-known result without using it in construction gains more support than a theory
-fitted to that result, but a genuinely withheld linked prediction remains the
-cleaner discriminator.
+Priors remain a visible source of judgment. A theory comparison should therefore report whether the conclusion survives reasonable prior families, whether parameter volume rather than prediction quality drives the result, and whether a catch-all alternative has been omitted. Mechanistic economy may inform a prior, but it cannot be hidden inside one and then rediscovered as evidence. The same discipline applies to old evidence: a theory that derives a known result without using it in construction gains more support than a theory fitted to that result, but a genuinely withheld linked prediction remains the cleaner discriminator.
 
 The Duhem-Quine problem sharpens the audit. A failed comparison confronts a packet, not one isolated law: substrate dynamics, initial and boundary data, apparatus model, observer projection, numerical method, and calibration all contribute to the residual. The tested packet has the following components.
 $$
@@ -59957,11 +58914,7 @@ The same relocation discipline applies to the inherited four-interaction languag
 
 The chapter therefore serves two reading functions at once. It introduces the inherited theory stack in compressed form, and it makes explicit where $\mathbb{A}\mathbb{A}\mathbb{A}$ claims continuity, where it claims reinterpretation, and where it claims incompatibility.
 
-Each theory is compared on the same substantive basis: its tested domain,
-explanatory core, representative mathematics, surviving empirical content,
-ontological relocation, and remaining recovery burden. A theory's placement in
-the matrix describes its primary effective role; it does not promote that
-layer's variables into substrate ontology.
+Each theory is compared on the same substantive basis: its tested domain, explanatory core, representative mathematics, surviving empirical content, ontological relocation, and remaining recovery burden. A theory's placement in the matrix describes its primary effective role; it does not promote that layer's variables into substrate ontology.
 
 ##### Assembly Layer (Noether Braid)
 
@@ -59971,9 +58924,7 @@ These are particle-physics level theories that map most directly to assemblies, 
 
 **Theory Name:** Standard Model (SM). **Short Name:** SM. **Layer Bucket:** Assembly Layer (Noether Braid).
 
-**Summary:** The quantum field-theory framework describing known elementary
-particles and the electromagnetic, weak, and strong interactions. Gravity lies
-outside the Standard Model.
+**Summary:** The quantum field-theory framework describing known elementary particles and the electromagnetic, weak, and strong interactions. Gravity lies outside the Standard Model.
 
 **Conceptual View:** A gauge theory with group $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$ plus the Higgs sector, with matter in three families.
 
@@ -59983,14 +58934,10 @@ G_{\mathrm{SM}} = \mathrm{SU(3)}_C \times \mathrm{SU(2)}_L \times \mathrm{U(1)}_
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $G_{\mathrm{SM}}$ is an *effective symmetry* of Noether braid assemblies and their axial patterns. Color, weak isospin, and hypercharge correspond to discrete topological/phase labels on Noether braid assemblies and to symmetries of their internal motion. The SM is the continuum, field-theoretic summary of discrete architrino assemblies and their interaction graph, not a fundamental layer.
 
-**What Still Works:** Standard Model (SM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Essential during transition: its particle classifications, cross sections, decay channels, and precision fits are mandatory recovery benchmarks.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Standard Model (SM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential during transition: its particle classifications, cross sections, decay channels, and precision fits are mandatory recovery benchmarks. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
-- Classify Noether braid axial-pattern permutations and show the resulting symmetry factors
-match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
+- Classify Noether braid axial-pattern permutations and show the resulting symmetry factors match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 - Prove three stable assembly families arise from distinct phase-winding classes.
 
 ---
@@ -59998,12 +58945,9 @@ match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 
 **Theory Name:** Quantum Field Theory (QFT). **Short Name:** QFT. **Layer Bucket:** Assembly Layer (Noether Braid).
 
-**Summary:** Particles are excitations of underlying fields; interactions are
-field couplings.
+**Summary:** Particles are excitations of underlying fields; interactions are field couplings.
 
-**Conceptual View:** Quantum mechanics plus special relativity demands fields defined
-at every spacetime point. Particle creation/annihilation emerges from field
-operators.
+**Conceptual View:** Quantum mechanics plus special relativity demands fields defined at every spacetime point. Particle creation/annihilation emerges from field operators.
 
 **Key Equation:** Action for a scalar field:
 $$
@@ -60020,9 +58964,7 @@ The useful reader-facing distinction is that a QFT field label is an effective s
 
 Vacuum-sensitive precision examples sharpen that boundary. In the Lamb-shift packet, the standard field-theory calculation treats electromagnetic vacuum modes as producing a small finite correction to hydrogen spectra, while the historical empty-atom slogan begins from Rutherford's volume comparison between nucleus and atom. The benchmark is real: atomic spectral data respond to structure assigned by standard theory to the vacuum sector. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is to reproduce the finite spectral correction through one consistent Noether sea state, causal-wake dressing, atomic boundary record, and photon-channel ledger, while keeping the QFT modes as observer-level calculation objects rather than substrate constituents.
 
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Essential as computational infrastructure: scattering, renormalized amplitudes, effective actions, and operator predictions must remain available while their ontology is rederived.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential as computational infrastructure: scattering, renormalized amplitudes, effective actions, and operator predictions must remain available while their ontology is rederived. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 ---
 
@@ -60043,10 +58985,7 @@ $$
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea; particle rest mass itself remains the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md).
 
-**What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
-**Transition Relevance:** Focused but broad: scalar-field equations remain useful effective descriptions across particle, cosmological, and collective-mode calculations, without making a fundamental scalar field mandatory.
-**Long-Term Relevance:** Long-term relevance is as a benchmark continuum limit: the mature stack should derive when a scalar collective mode obeys a Klein-Gordon-like equation, when it reduces to an ordinary scalar wave equation, and when delayed path-history effects produce measurable departures.
+**What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback. **Transition Relevance:** Focused but broad: scalar-field equations remain useful effective descriptions across particle, cosmological, and collective-mode calculations, without making a fundamental scalar field mandatory. **Long-Term Relevance:** Long-term relevance is as a benchmark continuum limit: the mature stack should derive when a scalar collective mode obeys a Klein-Gordon-like equation, when it reduces to an ordinary scalar wave equation, and when delayed path-history effects produce measurable departures.
 
 **Geometric proof targets:**
 - Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
@@ -60060,11 +58999,9 @@ $$
 
 **Theory Name:** Quantum Chromodynamics (QCD). **Short Name:** QCD. **Layer Bucket:** Assembly Layer (Noether Braid).
 
-**Summary:** The theory of quarks and gluons; it explains the strong force and
-confinement.
+**Summary:** The theory of quarks and gluons; it explains the strong force and confinement.
 
-**Conceptual View:** A non-abelian SU(3) gauge theory with self-interacting gluons.
-Asymptotic freedom at high energies; confinement at low energies.
+**Conceptual View:** A non-abelian SU(3) gauge theory with self-interacting gluons. Asymptotic freedom at high energies; confinement at low energies.
 
 **Key Equation:** QCD Lagrangian:
 $$
@@ -60074,10 +59011,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Quarks are specific charged Noether braid assemblies; color labels are discrete topological/phase states on subsets of their polar sites. Gluons are vortices between binaries that shuttle these labels between Noether braid assemblies. Confinement reflects the energetics and topology of architrino flux routing: isolated color charges are dynamically unstable, so only color-neutral composite assemblies are long-lived. The main repo interfaces for this are [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md).
 
-**What Still Works:** Quantum Chromodynamics (QCD) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Essential for hadron spectra, confinement observables, scattering, lattice benchmarks, and running-coupling recovery; its continuum color-field ontology remains subject to reduction.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Quantum Chromodynamics (QCD) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential for hadron spectra, confinement observables, scattering, lattice benchmarks, and running-coupling recovery; its continuum color-field ontology remains subject to reduction. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
 - Derive linear energy growth with separation from lattice stretching of flux-routing paths.
@@ -60098,12 +59032,12 @@ $$
 \qquad
 \partial_{[\alpha}F_{\beta\gamma]}=0
 $$
+
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#maxwell-wave-current)
+
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Maxwell theory is a load-bearing observer-level recovery target, not a substrate premise. The required reduction must derive the effective $F_{\mu\nu}$, charge-current record, induction behavior, radiation pattern, and stress-energy bookkeeping from primitive polarity, causal-delay path history, photon-channel assemblies, and Noether sea response. Magnetic-like behavior must arise from delayed geometry and moving-source records rather than from an imported primitive magnetic acceleration rule.
 
-**What Still Works:** Maxwell theory remains an exceptionally well-tested continuum closure across classical electromagnetic regimes. Its equations, boundary-value methods, radiation solutions, and energy-momentum accounting are hard recovery constraints.
-**What Is Reclassified:** Fields, charge density, current density, and electromagnetic stress-energy become effective summaries of polarity-bearing assemblies, source histories, receiver responses, and medium bookkeeping.
-**Transition Relevance:** Transition relevance is maximal because every proposed photon, charge, circuit, radiation, and Lorentz-recovery mechanism must reproduce Maxwell-level behavior in its declared continuum regime.
-**Long-Term Relevance:** Long-term relevance is as the classical effective field closure obtained after coarse-graining the substrate and assembly dynamics.
+**What Still Works:** Maxwell theory remains an exceptionally well-tested continuum closure across classical electromagnetic regimes. Its equations, boundary-value methods, radiation solutions, and energy-momentum accounting are hard recovery constraints. **What Is Reclassified:** Fields, charge density, current density, and electromagnetic stress-energy become effective summaries of polarity-bearing assemblies, source histories, receiver responses, and medium bookkeeping. **Transition Relevance:** Transition relevance is maximal because every proposed photon, charge, circuit, radiation, and Lorentz-recovery mechanism must reproduce Maxwell-level behavior in its declared continuum regime. **Long-Term Relevance:** Long-term relevance is as the classical effective field closure obtained after coarse-graining the substrate and assembly dynamics.
 
 **Geometric proof targets:**
 - Derive both Maxwell equation families from one declared coarse-graining of causal-wake and assembly records.
@@ -60130,10 +59064,7 @@ A^\mu_{\mathrm{past}}+A^\mu_{\mathrm{future}}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The relational and field-eliminating insight is retained as comparison pressure. $\mathbb{A}\mathbb{A}\mathbb{A}$ instead uses finite-speed causal-past roots in absolute time and pays for that directionality with explicit retained path-history bookkeeping; it does not import future boundary dependence or absorber cosmology. Agreement with Wheeler-Feynman language therefore does not establish agreement of dynamics.
 
-**What Still Works:** The program demonstrates that direct interparticle formulations, radiation-reaction accounting, and field-free ontology can be stated mathematically rather than dismissed as verbal alternatives.
-**What Is Reclassified:** Its direct-action architecture is a historical comparator, while its time-symmetric and absorber commitments are not adopted as substrate law.
-**Transition Relevance:** High as a historical and mathematical comparator for delayed source-receiver laws, absorber conditions, and radiation reaction, but not as an inherited mechanism.
-**Long-Term Relevance:** Long-term relevance is as a contrastive derivational benchmark for source-receiver accounting and radiation reaction, not as the final interaction law.
+**What Still Works:** The program demonstrates that direct interparticle formulations, radiation-reaction accounting, and field-free ontology can be stated mathematically rather than dismissed as verbal alternatives. **What Is Reclassified:** Its direct-action architecture is a historical comparator, while its time-symmetric and absorber commitments are not adopted as substrate law. **Transition Relevance:** High as a historical and mathematical comparator for delayed source-receiver laws, absorber conditions, and radiation reaction, but not as an inherited mechanism. **Long-Term Relevance:** Long-term relevance is as a contrastive derivational benchmark for source-receiver accounting and radiation reaction, not as the final interaction law.
 
 **Geometric proof targets:**
 - Show where the causal-past master equation reproduces the tested direct-action and Maxwell limits without a future-directed term.
@@ -60146,8 +59077,7 @@ $$
 
 **Summary:** The quantum field theory of electrons, positrons, and photons.
 
-**Conceptual View:** A $U(1)$ gauge theory where the electromagnetic field couples to
-charged spin-$\tfrac{1}{2}$ fields. Extremely precise predictions.
+**Conceptual View:** A $U(1)$ gauge theory where the electromagnetic field couples to charged spin-$\tfrac{1}{2}$ fields. Extremely precise predictions.
 
 **Key Equation:** QED Lagrangian:
 $$
@@ -60155,13 +59085,9 @@ $$
  - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}, \quad
 \text{where } D_\mu = \partial_\mu + ieA_\mu
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating polarity-conjugate planar pairs whose mode trains mediate interaction between charged Noether braids (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
-Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating polarity-conjugate planar pairs whose mode trains mediate interaction between charged Noether braids (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md). Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
 
-**What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Essential because its precision amplitudes, radiative corrections, bound-state shifts, and scattering records are non-negotiable recovery benchmarks.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential because its precision amplitudes, radiative corrections, bound-state shifts, and scattering records are non-negotiable recovery benchmarks. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
 - Show global polarity-phase invariance implies a conserved U(1)-like charge.
@@ -60174,8 +59100,7 @@ Historically, the Liénard-Wiechert moving-source potentials already pointed in 
 
 **Summary:** Unifies electromagnetic and weak interactions via symmetry breaking.
 
-**Conceptual View:** SU(2)$\times$U(1) gauge theory; the Higgs mechanism gives masses
-to W/Z bosons while leaving the photon massless. The physical Higgs excitation is a spin-0 scalar mode, while the full Higgs sector is an electroweak-gauge-structured scalar field rather than a plain gauge-singlet scalar.
+**Conceptual View:** SU(2)$\times$U(1) gauge theory; the Higgs mechanism gives masses to W/Z bosons while leaving the photon massless. The physical Higgs excitation is a spin-0 scalar mode, while the full Higgs sector is an electroweak-gauge-structured scalar field rather than a plain gauge-singlet scalar.
 
 **Key Equation:** Gauge symmetry and spontaneous breaking:
 $$
@@ -60184,10 +59109,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform Noether braid configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. Electroweak symmetry breaking is a recovery target for a preferred phase/orientation pattern in the Noether sea that distinguishes massive vector assemblies (W, Z) from the massless photon channel. The current photon candidate is a coaxial contra-rotating polarity-conjugate planar pair, and its stability and effective field map remain under closure. See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
 
-**What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Essential for weak-decay rates, gauge relations, symmetry-breaking observables, and W, Z, photon, and Higgs records; the underlying field ontology is not automatically retained.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Essential for weak-decay rates, gauge relations, symmetry-breaking observables, and W, Z, photon, and Higgs records; the underlying field ontology is not automatically retained. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 **Geometric proof targets:**
 - Prove a preferred phase/orientation leaves one planar mode massless while lifting vector modes.
@@ -60200,8 +59122,7 @@ $$
 
 **Summary:** Neutrinos change flavor as they propagate.
 
-**Conceptual View:** Flavor states are superpositions of mass eigenstates, leading to
-interference and oscillatory transition probabilities.
+**Conceptual View:** Flavor states are superpositions of mass eigenstates, leading to interference and oscillatory transition probabilities.
 
 **Key Equation:** Mixing relation:
 $$
@@ -60209,10 +59130,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Neutrinos are nearly neutral Noether braid assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies, for example in `beta reaction` (SM label: `beta decay`). The PMNS matrix is the change of basis between interaction-defined modes and the natural normal modes of the underlying Noether braid geometry. The current repo-side bridge is [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
-**What Still Works:** Neutrino Oscillations (PMNS Framework) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** High for oscillation phases, mixing angles, baseline and energy dependence, and flavor-transition records, while any specific substrate implementation remains open.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Neutrino Oscillations (PMNS Framework) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** High for oscillation phases, mixing angles, baseline and energy dependence, and flavor-transition records, while any specific substrate implementation remains open. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 ---
 
@@ -60222,8 +59140,7 @@ $$
 
 **Summary:** A new field solves the strong CP problem and predicts axions.
 
-**Conceptual View:** A global U(1) symmetry breaks, promoting the CP-violating angle
-to a dynamical field that relaxes to zero. Axions and axion-like particles are usually pseudoscalar fields: spin-0 scalar degrees of freedom with parity-odd transformation behavior.
+**Conceptual View:** A global U(1) symmetry breaks, promoting the CP-violating angle to a dynamical field that relaxes to zero. Axions and axion-like particles are usually pseudoscalar fields: spin-0 scalar degrees of freedom with parity-odd transformation behavior.
 
 **Key Equation:** Axion coupling:
 $$
@@ -60231,10 +59148,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/Noether braid sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether sea.
 
-**What Still Works:** The Peccei-Quinn mechanism is a mathematically explicit response to the strong-CP problem, and axion searches define valuable laboratory, astrophysical, and cosmological comparison surfaces. No axion has been established, so the program supplies mechanism and search pressure rather than an empirical framework that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover as ontology.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Limited to a well-defined mechanism and search comparison: strong-CP suppression and axion bounds matter, but no axion sector is an inherited recovery requirement.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** The Peccei-Quinn mechanism is a mathematically explicit response to the strong-CP problem, and axion searches define valuable laboratory, astrophysical, and cosmological comparison surfaces. No axion has been established, so the program supplies mechanism and search pressure rather than an empirical framework that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover as ontology. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Limited to a well-defined mechanism and search comparison: strong-CP suppression and axion bounds matter, but no axion sector is an inherited recovery requirement. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 ---
 
@@ -60244,8 +59158,7 @@ $$
 
 **Summary:** Each particle has a superpartner with different spin.
 
-**Conceptual View:** Extends spacetime symmetries to relate bosons and fermions.
-Stabilizes the Higgs mass and enables unification in some models.
+**Conceptual View:** Extends spacetime symmetries to relate bosons and fermions. Stabilizes the Higgs mass and enables unification in some models.
 
 **Key Equation:** Superalgebra (schematic):
 $$
@@ -60253,10 +59166,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic 3D oblate spheroidal envelope configurations and bosonic 2D planar Noether braid configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
 
-**What Still Works:** Supersymmetry supplies a controlled symmetry framework, useful ultraviolet cancellations, and concrete unification and dark-sector model classes. Because no superpartner spectrum has been established, SUSY remains an optional comparison program rather than an empirically mandatory effective limit.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Transition relevance is limited but useful: SUSY supplies explicit symmetry and cancellation comparisons, but no established superpartner sector must be carried as part of the empirical transition stack.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Supersymmetry supplies a controlled symmetry framework, useful ultraviolet cancellations, and concrete unification and dark-sector model classes. Because no superpartner spectrum has been established, SUSY remains an optional comparison program rather than an empirically mandatory effective limit. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Transition relevance is limited but useful: SUSY supplies explicit symmetry and cancellation comparisons, but no established superpartner sector must be carried as part of the empirical transition stack. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
 ---
 
@@ -60266,8 +59176,7 @@ $$
 
 **Summary:** The Higgs is not elementary; it is a bound state of new dynamics.
 
-**Conceptual View:** A new strong sector generates electroweak symmetry breaking
-without a fundamental scalar.
+**Conceptual View:** A new strong sector generates electroweak symmetry breaking without a fundamental scalar.
 
 **Key Equation:** Dynamical symmetry breaking (schematic):
 $$
@@ -60275,10 +59184,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is interpreted as a composite pattern in the Noether sea, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
 
-**What Still Works:** Technicolor and composite-Higgs programs keep the physical question of dynamical electroweak symmetry breaking explicit and provide concrete collider and precision-observable targets. Their proposed new strong sectors have not been established, so their value is comparative rather than a recovery obligation.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
-**Transition Relevance:** Limited comparison value: compositeness and dynamical symmetry breaking sharpen Higgs-sector tests, but the excluded and unconfirmed model inventory need not survive.
-**Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
+**What Still Works:** Technicolor and composite-Higgs programs keep the physical question of dynamical electroweak symmetry breaking explicit and provide concrete collider and precision-observable targets. Their proposed new strong sectors have not been established, so their value is comparative rather than a recovery obligation. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology. **Transition Relevance:** Limited comparison value: compositeness and dynamical symmetry breaking sharpen Higgs-sector tests, but the excluded and unconfirmed model inventory need not survive. **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 ##### Spacetime / Gravity (Emergent Metric)
 
 These are theories of spacetime structure and gravitational dynamics. In the architrino view, they are emergent descriptions of how the Noether sea modulates signal speeds, clock rates, and effective geometry.
@@ -60287,12 +59193,9 @@ These are theories of spacetime structure and gravitational dynamics. In the arc
 
 **Theory Name:** General Relativity (GR). **Short Name:** GR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
-**Summary:** Gravity is not a force; it is the curvature of spacetime caused by
-energy and momentum.
+**Summary:** Gravity is not a force; it is the curvature of spacetime caused by energy and momentum.
 
-**Conceptual View:** Matter tells spacetime how to curve; curved spacetime tells matter
-how to move. Free-fall follows geodesics, and gravitational waves are ripples in
-the metric.
+**Conceptual View:** Matter tells spacetime how to curve; curved spacetime tells matter how to move. Free-fall follows geodesics, and gravitational waves are ripples in the metric.
 
 **Key Equation:** Einstein field equations:
 $$
@@ -60300,10 +59203,7 @@ G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the Noether sea: its density, internal oscillation rate, delay factor, and anisotropy. Architrino and Noether braid trajectories in Euclidean 3D with absolute time project to geodesics in this emergent metric only after coarse-graining over clock/ruler and signal behavior. $G_{\mu\nu}$ encodes how inhomogeneities in the Noether sea redirect propagation, while $\Lambda$ represents a baseline energy-density summary of the Noether sea state.
 
-**What Still Works:** General Relativity (GR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Transition Relevance:** Essential for weak- and strong-field predictions, lensing, timing, orbital dynamics, and gravitational-wave records; metric ontology itself remains the reduction target.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** General Relativity (GR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Essential for weak- and strong-field predictions, lensing, timing, orbital dynamics, and gravitational-wave records; metric ontology itself remains the reduction target. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
 - Derive an effective metric from assembly density/oscillation fields.
@@ -60324,24 +59224,16 @@ At ordinary and collider energies this coupling is tiny, so loop corrections are
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Low-energy GR-EFT is an observer-level recovery target for the emergent metric, not evidence that metric quanta are primitive ontology. The calculable long-distance corrections to Newtonian gravity must be recovered from the same Noether sea constitutive record that supports PPN behavior, redshift, Shapiro delay, lensing, and gravitational-wave propagation. The Planck-scale breakdown of perturbative metric quantization is read as a failure of the chosen effective variables at the edge of the smooth metric approximation, not as a license to import gravitons or continuum metric modes as substrate entities.
 
-**What Still Works:** Low-energy quantum gravity as effective field theory remains a disciplined infrared calculation and must be recovered wherever it makes controlled predictions.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitons, metric loops, and Feynman-diagram bookkeeping are treated as effective descriptions of collective metric response, not primitive constituents.
-**Transition Relevance:** High within its low-energy domain because it fixes valid quantum corrections to gravity; it does not establish perturbative metric quanta as high-energy ontology.
-**Long-Term Relevance:** Long-term relevance is as a precision recovery layer and as a warning that smooth spacetime variables can be both operationally powerful and ontologically non-final.
+**What Still Works:** Low-energy quantum gravity as effective field theory remains a disciplined infrared calculation and must be recovered wherever it makes controlled predictions. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitons, metric loops, and Feynman-diagram bookkeeping are treated as effective descriptions of collective metric response, not primitive constituents. **Transition Relevance:** High within its low-energy domain because it fixes valid quantum corrections to gravity; it does not establish perturbative metric quanta as high-energy ontology. **Long-Term Relevance:** Long-term relevance is as a precision recovery layer and as a warning that smooth spacetime variables can be both operationally powerful and ontologically non-final.
 
 ---
 ###### Special Relativity (SR)
 
 **Theory Name:** Special Relativity (SR). **Short Name:** SR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
-**Summary:** The laws of physics are the same in all inertial frames; the speed
-of light is constant.
+**Summary:** The laws of physics are the same in all inertial frames; the speed of light is constant.
 
-**Conceptual View:** Time and space mix under Lorentz transformations. Time dilation
-and length contraction follow from invariant spacetime intervals. Geometrically,
-boosts act like hyperbolic rotations: they preserve the interval, keep the null
-cone fixed, and move equal-interval unit marks along hyperbolas rather than
-circles.
+**Conceptual View:** Time and space mix under Lorentz transformations. Time dilation and length contraction follow from invariant spacetime intervals. Geometrically, boosts act like hyperbolic rotations: they preserve the interval, keep the null cone fixed, and move equal-interval unit marks along hyperbolas rather than circles.
 
 **Key Equation:** Minkowski interval:
 $$
@@ -60351,13 +59243,9 @@ Equivalent invariant relation (mass shell):
 $$
 E^2 = (pc)^2 + (mc^2)^2
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. A declared binary channel near the $v=c_f$ fold supplies a candidate signal-scale mechanism, not a completed proof by itself.
-For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether braid implementation story, see [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. A declared binary channel near the $v=c_f$ fold supplies a candidate signal-scale mechanism, not a completed proof by itself. For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether braid implementation story, see [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md).
 
-**What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Transition Relevance:** Essential: Lorentz covariance, clock and ruler behavior, two-way signal invariance, and bounded preferred-frame leakage must all be recovered.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Essential: Lorentz covariance, clock and ruler behavior, two-way signal invariance, and bounded preferred-frame leakage must all be recovered. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
 - Recover observer-level Lorentz-consistent causal-cone behavior from moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage.
@@ -60370,8 +59258,7 @@ For the assembly-level closure used in this program, see [Effective Energy-Momen
 
 **Summary:** Forces determine motion; gravity is an inverse-square force.
 
-**Conceptual View:** Deterministic trajectories in absolute space and time. Gravity
-acts instantaneously through a potential.
+**Conceptual View:** Deterministic trajectories in absolute space and time. Gravity acts instantaneously through a potential.
 
 **Key Equation:** Newton's laws and gravity:
 $$
@@ -60379,10 +59266,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within the Noether sea.
 
-**What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Transition Relevance:** Essential in its low-speed, weak-field domain because mechanics, orbital limits, and engineering calculations must emerge with controlled residuals.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Essential in its low-speed, weak-field domain because mechanics, orbital limits, and engineering calculations must emerge with controlled residuals. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
 - Derive the 1/r^2 falloff from isotropic wake/flux dilution in 3D.
@@ -60395,8 +59279,7 @@ $$
 
 **Summary:** Gravity may deviate from Newton/GR at very low accelerations.
 
-**Conceptual View:** Explains galaxy rotation curves without dark matter by altering
-the force law below a threshold $a_0^{\mathrm{MOND}}$ (written with the superscript to keep the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in the Lorentz-kinematics chapters).
+**Conceptual View:** Explains galaxy rotation curves without dark matter by altering the force law below a threshold $a_0^{\mathrm{MOND}}$ (written with the superscript to keep the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in the Lorentz-kinematics chapters).
 
 **Key Equation:** MOND interpolation:
 $$
@@ -60404,10 +59287,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the Noether sea exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the Noether sea's constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
 
-**What Still Works:** MOND-like phenomenology isolates the low-acceleration regularities in galaxy data that any successful account must explain, while relativistic extensions provide concrete lensing and cosmology comparisons. The empirical regularities are recovery targets; no particular MOND or TeVeS ontology is indispensable.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Transition Relevance:** Focused comparison value: galaxy-scale regularities and lensing constraints must be faced, but no particular modified-gravity interpolation is mandatory.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** MOND-like phenomenology isolates the low-acceleration regularities in galaxy data that any successful account must explain, while relativistic extensions provide concrete lensing and cosmology comparisons. The empirical regularities are recovery targets; no particular MOND or TeVeS ontology is indispensable. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Focused comparison value: galaxy-scale regularities and lensing constraints must be faced, but no particular modified-gravity interpolation is mandatory. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 ---
 
@@ -60415,11 +59295,9 @@ $$
 
 **Theory Name:** String Theory. **Short Name:** String Theory. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
-**Summary:** Fundamental objects are 1D strings; different vibrations yield
-particles and forces, including gravity.
+**Summary:** Fundamental objects are 1D strings; different vibrations yield particles and forces, including gravity.
 
-**Conceptual View:** Consistent quantum theory in higher dimensions. Extra dimensions
-are compactified; gravity emerges from closed strings.
+**Conceptual View:** Consistent quantum theory in higher dimensions. Extra dimensions are compactified; gravity emerges from closed strings.
 
 **Key Equation:** Nambu-Goto or Polyakov action; e.g. Polyakov:
 $$
@@ -60427,10 +59305,7 @@ S = -\frac{T}{2}\int d^2\sigma \sqrt{-h} h^{ab}\partial_a X^\mu \partial_b X_\mu
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
 
-**What Still Works:** String Theory remains valuable as a quantum-gravity consistency laboratory, especially for anomaly cancellation, extended-object dynamics, dualities, black-hole accounting, and controlled model systems. In its strongest historical form it identified real recovery targets: a massless spin-2 gravitational channel and softer ultraviolet behavior from extended world-sheet interactions rather than point-vertex divergences. Those achievements should be preserved as comparison pressure, but they do not by themselves license extra dimensions, hidden sectors, or landscape populations as recovered ontology for the observed universe.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Transition Relevance:** Limited to mathematical comparison pressure from unification, consistency, and high-energy completion; its extra dimensions and string ontology are not recovery obligations.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** String Theory remains valuable as a quantum-gravity consistency laboratory, especially for anomaly cancellation, extended-object dynamics, dualities, black-hole accounting, and controlled model systems. In its strongest historical form it identified real recovery targets: a massless spin-2 gravitational channel and softer ultraviolet behavior from extended world-sheet interactions rather than point-vertex divergences. Those achievements should be preserved as comparison pressure, but they do not by themselves license extra dimensions, hidden sectors, or landscape populations as recovered ontology for the observed universe. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Limited to mathematical comparison pressure from unification, consistency, and high-energy completion; its extra dimensions and string ontology are not recovery obligations. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 ---
 
@@ -60438,11 +59313,9 @@ $$
 
 **Theory Name:** Loop Quantum Gravity (LQG). **Short Name:** LQG. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
-**Summary:** Spacetime geometry is quantized; areas and volumes come in discrete
-units.
+**Summary:** Spacetime geometry is quantized; areas and volumes come in discrete units.
 
-**Conceptual View:** A canonical quantization of GR using connection variables; space
-is described by spin networks.
+**Conceptual View:** A canonical quantization of GR using connection variables; space is described by spin networks.
 
 **Key Equation:** Basic variables and holonomies; typical area spectrum:
 $$
@@ -60452,11 +59325,7 @@ $$
 
 The most useful comparison is therefore reconstructive. LQG area and volume labels should be treated as observer-geometry readouts that a successful Noether sea branch would have to reproduce in the appropriate limit, not as proof that the Euclidean void itself is granular. Spin-network and spin-foam graphs can remain valuable as comparison graphs for adjacency, boundary data, and coarse geometric spectra while the underlying carrier remains architrino assemblies and Noether sea state.
 
-**What Still Works:** Loop quantum gravity provides a technically developed nonperturbative quantization program, discrete geometric operators, and useful strong-field comparison models. It has not acquired decisive empirical confirmation, so its spectra and bounce constructions are directional comparison targets rather than mandatory recovered laws.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Bounce Boundary:** LQG bounce and black-hole-to-white-hole proposals should be retained as strong-field local comparison tests, not promoted into global cosmology doctrine. The native question is whether a maximum-curvature branch supplies finite boundary data, release-channel accounting, and exterior effective-metric recovery without requiring the whole universe to pass through a single bounce.
-**Transition Relevance:** Limited but useful for background independence, discrete-geometry methods, continuum-limit pressure, and the problem of time; its geometric quanta are not inherited ontology.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** Loop quantum gravity provides a technically developed nonperturbative quantization program, discrete geometric operators, and useful strong-field comparison models. It has not acquired decisive empirical confirmation, so its spectra and bounce constructions are directional comparison targets rather than mandatory recovered laws. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Bounce Boundary:** LQG bounce and black-hole-to-white-hole proposals should be retained as strong-field local comparison tests, not promoted into global cosmology doctrine. The native question is whether a maximum-curvature branch supplies finite boundary data, release-channel accounting, and exterior effective-metric recovery without requiring the whole universe to pass through a single bounce. **Transition Relevance:** Limited but useful for background independence, discrete-geometry methods, continuum-limit pressure, and the problem of time; its geometric quanta are not inherited ontology. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 ---
 
@@ -60468,10 +59337,7 @@ The most useful comparison is therefore reconstructive. LQG area and volume labe
 
 **Conceptual View:** The common conceptual pressure is that horizons may not be merely geometric boundaries. They may also be informational interfaces. The focused source chapter is [Cosmic Censorship and Holography](../../../../markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md).
 
-**What Still Works:** These three ideas carry different authority. Cosmic censorship is a conjectural regularity to test in gravitational collapse; holography is a broad organizing principle; and AdS/CFT is a powerful formal duality in controlled model classes. They supply theorem, consistency, and comparison pressure, but the grouped entry must not convert that formal success into one shared empirical recovery obligation.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-**Transition Relevance:** Mixed: horizon regularity and information-capacity constraints are high-value consistency tests, while holographic dualities and AdS constructions remain comparison frameworks.
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
+**What Still Works:** These three ideas carry different authority. Cosmic censorship is a conjectural regularity to test in gravitational collapse; holography is a broad organizing principle; and AdS/CFT is a powerful formal duality in controlled model classes. They supply theorem, consistency, and comparison pressure, but the grouped entry must not convert that formal success into one shared empirical recovery obligation. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate. **Transition Relevance:** Mixed: horizon regularity and information-capacity constraints are high-value consistency tests, while holographic dualities and AdS constructions remain comparison frameworks. **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 ---
 ##### Cosmology / Large-Scale Assembly
@@ -60482,11 +59348,9 @@ These theories describe the universe at large scales: expansion history, structu
 
 **Theory Name:** Lambda-CDM (Big Bang Cosmology). **Short Name:** Big Bang Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
-**Summary:** The standard Big Bang cosmology: dark energy ($\Lambda$) plus cold
-dark matter (CDM) in an expanding universe.
+**Summary:** The standard Big Bang cosmology: dark energy ($\Lambda$) plus cold dark matter (CDM) in an expanding universe.
 
-**Conceptual View:** Uses the Friedmann equations with a cosmological constant
-and pressureless dark matter to fit CMB, BAO, and LSS data.
+**Conceptual View:** Uses the Friedmann equations with a cosmological constant and pressureless dark matter to fit CMB, BAO, and LSS data.
 
 **Key Equation (standard comparison form):** Friedmann equation:
 $$
@@ -60508,10 +59372,7 @@ H_{\mathrm{eff}}^2(t_{\mathrm{eff}})
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
 
-**What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Essential as the current joint inference framework for expansion history, abundances, acoustic structure, lensing, and growth, even where its fitted sectors are reinterpreted.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Essential as the current joint inference framework for expansion history, abundances, acoustic structure, lensing, and growth, even where its fitted sectors are reinterpreted. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60519,11 +59380,9 @@ $$
 
 **Theory Name:** Inflationary Cosmology. **Short Name:** Inflationary Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
-**Summary:** The early universe expanded extremely rapidly, explaining
-horizon/flatness problems.
+**Summary:** The early universe expanded extremely rapidly, explaining horizon/flatness problems.
 
-**Conceptual View:** A scalar field with nearly constant potential energy drives an
-accelerated expansion; quantum fluctuations seed structure.
+**Conceptual View:** A scalar field with nearly constant potential energy drives an accelerated expansion; quantum fluctuations seed structure.
 
 **Key Equation (standard comparison form):** Slow-roll condition and expansion:
 $$
@@ -60543,10 +59402,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase is conjectured to be a high-energy regime where one or more persistent binary indices of candidate Noether braids enter a $v>c_f$ self-hit domain, driving rapid effective expansion or contraction of the assembly-density record. This source-record role does not identify a taxonomy family. The “inflaton” is a coarse-grained scalar describing the average state of this candidate regime; its potential $V$ would encode relaxation toward lower-curvature, more equilibrated states.
 
-**What Still Works:** Inflationary cosmology provides a successful effective account of near-flatness, large-scale homogeneity, and a nearly scale-invariant primordial spectrum. Those observational records are mandatory recovery targets, but the inflaton sector and any specific inflationary model remain unconfirmed mechanism choices.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** High for the horizon, flatness, perturbation-spectrum, and relic constraints it was built to address; a specific inflaton mechanism is not mandatory.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Inflationary cosmology provides a successful effective account of near-flatness, large-scale homogeneity, and a nearly scale-invariant primordial spectrum. Those observational records are mandatory recovery targets, but the inflaton sector and any specific inflationary model remain unconfirmed mechanism choices. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** High for the horizon, flatness, perturbation-spectrum, and relic constraints it was built to address; a specific inflaton mechanism is not mandatory. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60556,8 +59412,7 @@ $$
 
 **Summary:** The CMB power spectrum encodes sound waves in the early plasma.
 
-**Conceptual View:** Photon-baryon oscillations imprint a harmonic series of peaks in
-the angular power spectrum.
+**Conceptual View:** Photon-baryon oscillations imprint a harmonic series of peaks in the angular power spectrum.
 
 **Key Equation:** Power spectrum expansion:
 $$
@@ -60565,10 +59420,7 @@ C_\ell = \langle |a_{\ell m}|^2 \rangle
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: a photon channel whose current geometric candidate is the coaxial contra-rotating polarity-conjugate planar pair, plus baryon-like composite assemblies embedded in the Noether sea. Their spectrum encodes how the Noether sea and matter assemblies responded collectively to density and pressure perturbations before decoupling. Using that candidate in the reconstruction remains conditional on its independent stability, transport, and effective-field closure.
 
-**What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Essential because peak locations, phases, heights, polarization, and damping form a tightly coupled recovery record rather than an optional cosmological story.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Essential because peak locations, phases, heights, polarization, and damping form a tightly coupled recovery record rather than an optional cosmological story. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60578,8 +59430,7 @@ $$
 
 **Summary:** Light elements formed in the first minutes of the universe.
 
-**Conceptual View:** Nuclear reaction networks freeze out as the universe cools,
-predicting H, He, D, and Li abundances.
+**Conceptual View:** Nuclear reaction networks freeze out as the universe cools, predicting H, He, D, and Li abundances.
 
 **Key Equation (standard comparison form):** Reaction-rate balance (schematic):
 $$
@@ -60600,10 +59451,7 @@ n_{i,\mathrm{eff}}n_{l,\mathrm{eff}}.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when Noether braid-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
 
-**What Still Works:** Big Bang Nucleosynthesis (BBN) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Essential: light-element abundances and their dependence on thermal, reaction, and expansion histories are quantitative recovery benchmarks.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Big Bang Nucleosynthesis (BBN) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Essential: light-element abundances and their dependence on thermal, reaction, and expansion histories are quantitative recovery benchmarks. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60613,8 +59461,7 @@ $$
 
 **Summary:** Matter-antimatter asymmetry arises from early-universe processes.
 
-**Conceptual View:** Requires baryon number violation, C/CP violation, and departure
-from equilibrium.
+**Conceptual View:** Requires baryon number violation, C/CP violation, and departure from equilibrium.
 
 **Key Equation:** Sakharov conditions (schematic):
 $$
@@ -60622,10 +59469,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry should not be framed first as missing electrinos, missing positrinos, or a primitive imbalance in the fundamental polarity inventory. The sharper native question is why stable low-energy assembly channels favor matter branches over accessible polarity-conjugate antimatter counterparts while the deeper architrino and Noether sea bookkeeping remains polarity-balanced. Pro/anti ordered orientation is a separate parity-facing label and may still affect reaction access without defining the matter sign. Sakharov-like conditions become constraints on allowed assembly-level processes, chiral branch stability, and CP-facing readouts in the high-energy Noether sea environment rather than a license to treat fundamental polarity imbalance as the mechanism.
 
-**What Still Works:** Baryogenesis and leptogenesis organize the quantitative conditions under which a matter asymmetry could arise and connect that problem to CP violation, nonequilibrium history, and neutrino physics. They remain candidate mechanism families rather than empirically established histories.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** High as a quantitative asymmetry target and CP-facing constraint, but individual baryogenesis or leptogenesis mechanisms remain unconfirmed comparisons.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Baryogenesis and leptogenesis organize the quantitative conditions under which a matter asymmetry could arise and connect that problem to CP violation, nonequilibrium history, and neutrino physics. They remain candidate mechanism families rather than empirically established histories. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** High as a quantitative asymmetry target and CP-facing constraint, but individual baryogenesis or leptogenesis mechanisms remain unconfirmed comparisons. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60633,11 +59477,9 @@ $$
 
 **Theory Name:** Dark Matter (Particle Hypotheses). **Short Name:** Particle Hypotheses. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
-**Summary:** Unseen matter explains gravitational effects in galaxies and
-clusters.
+**Summary:** Unseen matter explains gravitational effects in galaxies and clusters.
 
-**Conceptual View:** Candidates include WIMPs, axions, sterile neutrinos, or PBHs.
-Interacts gravitationally; weak or no EM coupling.
+**Conceptual View:** Candidates include WIMPs, axions, sterile neutrinos, or PBHs. Interacts gravitationally; weak or no EM coupling.
 
 **Key Equation:** Cosmological density parameter:
 $$
@@ -60645,10 +59487,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark matter can be realized as additional stable or metastable architrino assemblies with weak couplings to ordinary Noether braid matter (e.g., neutrino-like or more exotic configurations), and/or as dense Noether braid or Noether sea defects associated with primordial core structures. Their abundance and clustering would have to follow from the assembly-phase history encoded in the early Noether sea dynamics.
 
-**What Still Works:** Particle dark-matter models turn gravitational discrepancies into concrete structure-formation, direct-detection, indirect-search, and collider predictions. The gravitational and cosmological records are recovery targets; no proposed particle species has yet earned mandatory ontological status.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** High for gravitational inference, structure formation, and search constraints, but low for any particular unconfirmed particle candidate.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Particle dark-matter models turn gravitational discrepancies into concrete structure-formation, direct-detection, indirect-search, and collider predictions. The gravitational and cosmological records are recovery targets; no proposed particle species has yet earned mandatory ontological status. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** High for gravitational inference, structure formation, and search constraints, but low for any particular unconfirmed particle candidate. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60658,8 +59497,7 @@ $$
 
 **Summary:** Black holes formed in the early universe could be dark matter.
 
-**Conceptual View:** Enhanced primordial density fluctuations collapse into black
-holes across a range of masses.
+**Conceptual View:** Enhanced primordial density fluctuations collapse into black holes across a range of masses.
 
 **Key Equation:** Horizon mass scale (schematic):
 $$
@@ -60667,10 +59505,7 @@ M_{\mathrm{PBH}} \sim \frac{c^3 t}{G}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** PBH-like objects correspond to regions where Noether braid assemblies in the Noether sea reach maximum-curvature, high-density configurations (Planck-core-like defects) rather than true singularities. Their formation is governed by when and where the architrino medium crosses stability thresholds, with $M_{\mathrm{PBH}}$ set by the local assembly density and self-hit regime rather than geometric singularities in a fundamental metric.
 
-**What Still Works:** Primordial-black-hole dark-matter models provide explicit formation histories and mass-dependent lensing, accretion, merger, and abundance constraints. They remain a constrained candidate contribution, not an indispensable dark-matter framework.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Limited and mass-window dependent: compact-object bounds and possible dark-matter fractions are useful tests, but PBHs are not a required dark-sector explanation.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Primordial-black-hole dark-matter models provide explicit formation histories and mass-dependent lensing, accretion, merger, and abundance constraints. They remain a constrained candidate contribution, not an indispensable dark-matter framework. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited and mass-window dependent: compact-object bounds and possible dark-matter fractions are useful tests, but PBHs are not a required dark-sector explanation. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60686,13 +59521,9 @@ $$
 $$
 w = \frac{p}{\rho}, \quad w=-1
 $$
-For a cosmological constant, $w=-1$.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
+For a cosmological constant, $w=-1$. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
 
-**What Still Works:** Dynamical dark-energy models expose how departures from a constant effective stress would affect distance, growth, and clustering records. The late-acceleration data are mandatory targets; a new scalar field or other beyond-$\Lambda$ sector is not established.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** High for the measured late-time distance and growth record and for time-dependent equation-of-state tests; no particular dynamical-dark-energy field is mandatory.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Dynamical dark-energy models expose how departures from a constant effective stress would affect distance, growth, and clustering records. The late-acceleration data are mandatory targets; a new scalar field or other beyond-$\Lambda$ sector is not established. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** High for the measured late-time distance and growth record and for time-dependent equation-of-state tests; no particular dynamical-dark-energy field is mandatory. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60702,8 +59533,7 @@ For a cosmological constant, $w=-1$.
 
 **Summary:** Dark energy density is tied to a cosmic horizon scale.
 
-**Conceptual View:** Uses holographic bounds to relate vacuum energy to the size of
-the observable universe.
+**Conceptual View:** Uses holographic bounds to relate vacuum energy to the size of the observable universe.
 
 **Key Equation:** Density scaling:
 $$
@@ -60711,10 +59541,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the Noether sea (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. Holographic bounds capture how much information/structure architrino assemblies can support within a region, not a separate dark-energy microphysics.
 
-**What Still Works:** Holographic dark-energy models provide a compact comparison between infrared cosmology and horizon-scale bookkeeping. Their value is exploratory and formal; they do not own an independently confirmed empirical sector.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Limited to formal comparison between horizon bookkeeping and infrared cosmology; it does not own an independently established empirical sector.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Holographic dark-energy models provide a compact comparison between infrared cosmology and horizon-scale bookkeeping. Their value is exploratory and formal; they do not own an independently confirmed empirical sector. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited to formal comparison between horizon bookkeeping and infrared cosmology; it does not own an independently established empirical sector. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60722,12 +59549,9 @@ $$
 
 **Theory Name:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge). **Short Name:** Hoyle--Narlikar--Burbidge. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
-**Summary:** The universe is eternal on large scales; matter is continuously
-created to keep density constant.
+**Summary:** The universe is eternal on large scales; matter is continuously created to keep density constant.
 
-**Conceptual View:** Expansion occurs, but creation fields (or episodic creation
-events) restore large-scale uniformity. Explains redshift without a singular
-beginning.
+**Conceptual View:** Expansion occurs, but creation fields (or episodic creation events) restore large-scale uniformity. Explains redshift without a singular beginning.
 
 **Key Equation:** Creation field (C-field) modifies Einstein equations:
 $$
@@ -60737,10 +59561,7 @@ $$
 
 The durable lesson is source provenance. A creation or recycling term is not explanatory merely because it balances an effective density equation. It must identify the source population, release rate, thermalization route, and observer-facing residuals that would let CMB blackbody quality, element yields, structure growth, and redshift-distance data face the same medium record.
 
-**What Still Works:** Steady-state and quasi-steady-state cosmologies remain historically useful tests of continuous-creation, source-population, background-radiation, and redshift assumptions. Their central cosmological account did not survive the full observational record, so they are contrast cases rather than current recovery frameworks.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Transition relevance is historical and diagnostic. The failed steady-state fit remains useful for auditing source provenance and continuity closure, but it is not a live empirical framework that the transition must preserve.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Steady-state and quasi-steady-state cosmologies remain historically useful tests of continuous-creation, source-population, background-radiation, and redshift assumptions. Their central cosmological account did not survive the full observational record, so they are contrast cases rather than current recovery frameworks. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Transition relevance is historical and diagnostic. The failed steady-state fit remains useful for auditing source provenance and continuity closure, but it is not a live empirical framework that the transition must preserve. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60750,8 +59571,7 @@ The durable lesson is source provenance. A creation or recycling term is not exp
 
 **Summary:** The universe undergoes repeated cycles of contraction and bounce.
 
-**Conceptual View:** A slow contracting phase smooths and flattens the universe, then
-a bounce leads to expansion.
+**Conceptual View:** A slow contracting phase smooths and flattens the universe, then a bounce leads to expansion.
 
 The current Turok--Boyle CPT-symmetric cosmology line should be tracked separately from this older Steinhardt--Turok ekpyrotic/cyclic entry. Its useful pressure is boundary-condition discipline: can a cosmology state a symmetric continuation, entropy-arrow account, particle-sector content, and CMB/BBN/growth residuals with fewer adjustable interpretive commitments? For $\mathbb{A}\mathbb{A}\mathbb{A}$, that is a comparison question rather than an import of CPT-mirror ontology or a right-handed-neutrino dark sector by default.
 
@@ -60763,10 +59583,7 @@ w \gg 1 \Rightarrow a_{\mathrm{std}}(t_{\mathrm{std}}) \propto (-t_{\mathrm{std}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
 
-**What Still Works:** Ekpyrotic and cyclic models provide mathematically explicit alternatives for smoothing, perturbation generation, and singularity avoidance. They supply discriminating comparison targets, not an empirically established cosmic history.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Limited comparison value: smoothing, bounce matching, stability, and perturbation transfer are useful tests, but the cyclic history is not established.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Ekpyrotic and cyclic models provide mathematically explicit alternatives for smoothing, perturbation generation, and singularity avoidance. They supply discriminating comparison targets, not an empirically established cosmic history. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited comparison value: smoothing, bounce matching, stability, and perturbation transfer are useful tests, but the cyclic history is not established. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60776,8 +59593,7 @@ $$
 
 **Summary:** The big bang is replaced by a bounce from a prior contraction.
 
-**Conceptual View:** Modified gravity or quantum effects avoid a singularity and
-reverse collapse into expansion.
+**Conceptual View:** Modified gravity or quantum effects avoid a singularity and reverse collapse into expansion.
 
 **Key Equation:** Non-singular bounce condition:
 $$
@@ -60785,10 +59601,7 @@ H = 0,\quad \dot H > 0
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature Noether braid scaffolds. A cosmological bounce would correspond to the point where further contraction of the Noether braid assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether sea-level transition.
 
-**What Still Works:** Bounce cosmologies make finite continuation, matching conditions, stability, and perturbation transfer explicit. Those are valuable strong-field proof obligations, but a cosmic bounce is not an established event that every theory must recover.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Limited to strong-field continuation, stability, and perturbation-transfer tests; a cosmic bounce is not a required recovered event.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Bounce cosmologies make finite continuation, matching conditions, stability, and perturbation transfer explicit. Those are valuable strong-field proof obligations, but a cosmic bounce is not an established event that every theory must recover. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited to strong-field continuation, stability, and perturbation-transfer tests; a cosmic bounce is not a required recovered event. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60798,8 +59611,7 @@ $$
 
 **Summary:** The remote future of one universe becomes the big bang of the next.
 
-**Conceptual View:** Conformal rescaling removes mass scales so the late-time universe
-matches a new early phase.
+**Conceptual View:** Conformal rescaling removes mass scales so the late-time universe matches a new early phase.
 
 **Key Equation:** Conformal matching (schematic):
 $$
@@ -60809,10 +59621,7 @@ $$
 
 The historical caution is that serial, global narratives can hide a missing local mechanism. A cyclic or aeon-level chart may be useful, but the native burden is parallel and local: source populations, release ledgers, medium relaxation, and observer transfer must each be carried by finite records before the global story earns explanatory status.
 
-**What Still Works:** Conformal cyclic cosmology offers a sharp proposal for relating remote future and subsequent initial data and motivates specific observational searches. Its conformal matching and claimed signatures remain speculative comparison targets rather than confirmed empirical successes.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Limited and hypothesis-specific: conformal matching and proposed signatures are comparison targets, not inherited cosmological facts.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Conformal cyclic cosmology offers a sharp proposal for relating remote future and subsequent initial data and motivates specific observational searches. Its conformal matching and claimed signatures remain speculative comparison targets rather than confirmed empirical successes. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited and hypothesis-specific: conformal matching and proposed signatures are comparison targets, not inherited cosmological facts. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60822,20 +59631,11 @@ The historical caution is that serial, global narratives can hide a missing loca
 
 **Summary:** Our universe may be one of many with varying physical parameters.
 
-**Conceptual View:** Arises in different contexts: eternal inflation, string
-landscape, or quantum branching. The central scientific issue is not only
-whether many domains can be imagined, but whether the framework supplies a
-measure over those domains and a prediction that survives comparison with this
-universe.
+**Conceptual View:** Arises in different contexts: eternal inflation, string landscape, or quantum branching. The central scientific issue is not only whether many domains can be imagined, but whether the framework supplies a measure over those domains and a prediction that survives comparison with this universe.
 
-**Key Equation:** Often formalized via measures over vacuum states or branches,
-not a single canonical equation.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Multiple “universes” would correspond to distinct large-scale attractors or disjoint regions of the architrino/Noether braid state space with different effective parameter values (assembly densities, coupling patterns, symmetry phases). $\mathbb{A}\mathbb{A}\mathbb{A}$ itself stays as a single underlying substrate; multiverse stories describe diversity of emergent macroscopic solutions, not multiple fundamental containers.
+**Key Equation:** Often formalized via measures over vacuum states or branches, not a single canonical equation. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Multiple “universes” would correspond to distinct large-scale attractors or disjoint regions of the architrino/Noether braid state space with different effective parameter values (assembly densities, coupling patterns, symmetry phases). $\mathbb{A}\mathbb{A}\mathbb{A}$ itself stays as a single underlying substrate; multiverse stories describe diversity of emergent macroscopic solutions, not multiple fundamental containers.
 
-**What Still Works:** Multiverse (Generic) remains useful as a stress test for ensemble measures, selection effects, and underconstrained cosmological inference. Its value is conditional rather than predictive: it clarifies what must be specified before an ensemble explanation can say why these observed constants should occur.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. A multiverse ensemble without a controlled measure is therefore a comparison language, not an explanation of the observed parameter values.
-**Transition Relevance:** Low for calculation and mainly methodological: it tests selection reasoning and explanatory economy but supplies no unique recovery benchmark without a measure and discriminating evidence.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Multiverse (Generic) remains useful as a stress test for ensemble measures, selection effects, and underconstrained cosmological inference. Its value is conditional rather than predictive: it clarifies what must be specified before an ensemble explanation can say why these observed constants should occur. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. A multiverse ensemble without a controlled measure is therefore a comparison language, not an explanation of the observed parameter values. **Transition Relevance:** Low for calculation and mainly methodological: it tests selection reasoning and explanatory economy but supplies no unique recovery benchmark without a measure and discriminating evidence. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 
 ---
 
@@ -60843,13 +59643,9 @@ not a single canonical equation.
 
 **Theory Name:** Anthropic Principle. **Short Name:** Anthropic Principle. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
-**Summary:** Physical parameters appear fine-tuned because only certain values
-allow observers to exist.
+**Summary:** Physical parameters appear fine-tuned because only certain values allow observers to exist.
 
-**Conceptual View:** A selection effect used to interpret small probabilities in a
-large ensemble of universes or domains. A selection effect becomes explanatory
-only when the ensemble, measure, and conditioning event are specified well
-enough to say what would have been expected before conditioning.
+**Conceptual View:** A selection effect used to interpret small probabilities in a large ensemble of universes or domains. A selection effect becomes explanatory only when the ensemble, measure, and conditioning event are specified well enough to say what would have been expected before conditioning.
 
 **Key Equation:** Bayesian conditioning on observer existence:
 $$
@@ -60857,18 +59653,9 @@ P(\theta \mid \mathrm{obs}) \propto P(\mathrm{obs}\mid\theta)P(\theta)
 $$
 Here, $\mathrm{obs}$ denotes observer existence.
 
-**Fine-Tuning Note:** This principle is often invoked to explain why many
-dimensionless constants (vacuum energy scale, coupling ratios, mass hierarchies)
-sit in narrow ranges that permit chemistry, long-lived stars, and complex
-structures. The anthropic move is not a mechanism but a filter: among many
-possible parameter sets, only a small subset yields observers, so apparent
-fine-tuning reflects conditional selection rather than design.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, apparent fine-tuning reflects which regions of the architrino/Noether braid configuration space support long-lived, complex assemblies (including observer-like ones). Anthropic reasoning becomes a way of conditioning on those assembly sectors; it does not replace a dynamical explanation of why particular effective parameters arise from the underlying architrino rules. The native target is therefore a measure over admissible assembly histories, not an appeal to observer existence after the parameters are already known.
+**Fine-Tuning Note:** This principle is often invoked to explain why many dimensionless constants (vacuum energy scale, coupling ratios, mass hierarchies) sit in narrow ranges that permit chemistry, long-lived stars, and complex structures. The anthropic move is not a mechanism but a filter: among many possible parameter sets, only a small subset yields observers, so apparent fine-tuning reflects conditional selection rather than design. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, apparent fine-tuning reflects which regions of the architrino/Noether braid configuration space support long-lived, complex assemblies (including observer-like ones). Anthropic reasoning becomes a way of conditioning on those assembly sectors; it does not replace a dynamical explanation of why particular effective parameters arise from the underlying architrino rules. The native target is therefore a measure over admissible assembly histories, not an appeal to observer existence after the parameters are already known.
 
-**What Still Works:** Anthropic Principle remains useful as a conditioning check on observer-compatible sectors. It can expose when a proposed parameter range is incompatible with long-lived complex assemblies, but it does not replace a dynamical derivation of the effective parameters or a controlled measure over admissible histories.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
-**Transition Relevance:** Limited to auditing observer selection and conditional inference; it cannot replace a dynamical derivation or serve as substrate ontology.
-**Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
+**What Still Works:** Anthropic Principle remains useful as a conditioning check on observer-compatible sectors. It can expose when a proposed parameter range is incompatible with long-lived complex assemblies, but it does not replace a dynamical derivation of the effective parameters or a controlled measure over admissible histories. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. **Transition Relevance:** Limited to auditing observer selection and conditional inference; it cannot replace a dynamical derivation or serve as substrate ontology. **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
 ##### Epistemic / Effective Observation Theories
 
 These are theories and interpretations that describe how observers access and summarize dynamics: coarse-graining, probabilities, and measurement update. In the architrino view, they sit at the physical-observer level.
@@ -60889,10 +59676,7 @@ for the excluded locally factorizable class, whereas quantum correlations can re
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Bell is an external theorem-level gate on any deterministic trajectory ontology. Pair provenance followed by two independent local response laws is insufficient. The open burden is to derive the measured correlation family from a nonfactorizable dependence in the Master Equation while preserving measurement independence and local no-signaling marginals. The detailed assumption audit belongs to [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md).
 
-**What Still Works:** The inequality derivation, loophole-controlled experiments, and no-signaling marginals are permanent constraints on substrate models.
-**What Is Reclassified:** Bell does not become an ontology. It constrains which causal factorizations a proposed ontology may use.
-**Transition Relevance:** Transition relevance is maximal because failure at this gate rules out the proposed quantum recovery regardless of success elsewhere.
-**Long-Term Relevance:** Long-term relevance is as a standing compliance theorem for any reduced account of quantum correlations.
+**What Still Works:** The inequality derivation, loophole-controlled experiments, and no-signaling marginals are permanent constraints on substrate models. **What Is Reclassified:** Bell does not become an ontology. It constrains which causal factorizations a proposed ontology may use. **Transition Relevance:** Transition relevance is maximal because failure at this gate rules out the proposed quantum recovery regardless of success elsewhere. **Long-Term Relevance:** Long-term relevance is as a standing compliance theorem for any reduced account of quantum correlations.
 
 **Closure targets:**
 - Identify the exact factorization assumption that fails in the retained dynamics.
@@ -60904,11 +59688,9 @@ for the excluded locally factorizable class, whereas quantum correlations can re
 
 **Theory Name:** Quantum Mechanics (QM). **Short Name:** QM. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
-**Summary:** Physical systems are described by a wavefunction whose squared
-magnitude gives probabilities of measurement outcomes.
+**Summary:** Physical systems are described by a wavefunction whose squared magnitude gives probabilities of measurement outcomes.
 
-**Conceptual View:** States live in a complex vector space. Dynamics are linear and
-unitary; measurement introduces probabilistic outcomes tied to observables.
+**Conceptual View:** States live in a complex vector space. Dynamics are linear and unitary; measurement introduces probabilistic outcomes tied to observables.
 
 **Key Equation:** Non-relativistic Schrödinger equation:
 $$
@@ -60916,10 +59698,7 @@ i\hbar \frac{\partial}{\partial t}|\psi\rangle = \hat H |\psi\rangle
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $|\psi\rangle$ compactly encodes ensemble information about many possible architrino/assembly microstates and their phases. In its ordinary non-relativistic, fixed-particle-number use, the Schrödinger equation is an effective, linear approximation to the underlying nonlinear, history-dependent architrino dynamics in regimes where coherent superpositions of a limited set of assembly configurations dominate.
 
-**What Still Works:** Quantum Mechanics (QM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
-**Transition Relevance:** Essential because state preparation, interference, spectra, transition probabilities, and measurement statistics are mandatory observer-level recovery targets.
-**Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+**What Still Works:** Quantum Mechanics (QM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Essential because state preparation, interference, spectra, transition probabilities, and measurement statistics are mandatory observer-level recovery targets. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 ---
 
@@ -61011,10 +59790,7 @@ $$
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Schrödinger evolution is an effective low-energy, low-velocity envelope law. It is not the substrate-level dynamics. It should emerge only in the non-relativistic, weak-field, fixed-particle-number regime, where the coarse-grained wake or assembly-state envelope reduces to a linear wavefunction description. Outside that regime, the underlying nonlinear, history-dependent architrino dynamics should generate relativistic corrections, particle-number-changing behavior, or medium-coupled departures.
 
-**What Still Works:** The Schrödinger equation remains indispensable for atomic, molecular, condensed-matter, and low-energy scattering calculations wherever non-relativistic fixed-particle-number quantum mechanics is accurate.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, $\psi$ and $\hat H$ are reclassified as effective envelope and generator summaries over deeper assembly histories, not as final substrate objects.
-**Transition Relevance:** Essential in its nonrelativistic domain as a benchmark for phase evolution, bound states, interference, and probability-current recovery.
-**Long-Term Relevance:** Long-term relevance is as a derived continuum-limit envelope equation, with its failure modes marking where relativistic field theory, quantum field theory, or direct substrate dynamics must replace it.
+**What Still Works:** The Schrödinger equation remains indispensable for atomic, molecular, condensed-matter, and low-energy scattering calculations wherever non-relativistic fixed-particle-number quantum mechanics is accurate. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, $\psi$ and $\hat H$ are reclassified as effective envelope and generator summaries over deeper assembly histories, not as final substrate objects. **Transition Relevance:** Essential in its nonrelativistic domain as a benchmark for phase evolution, bound states, interference, and probability-current recovery. **Long-Term Relevance:** Long-term relevance is as a derived continuum-limit envelope equation, with its failure modes marking where relativistic field theory, quantum field theory, or direct substrate dynamics must replace it.
 
 ---
 
@@ -61057,10 +59833,7 @@ This term shows how non-relativistic spin-$1/2$ behavior enters ordinary Schröd
 
 The Dirac case also sharpens the recovery target. At the effective level, the four free Dirac solutions are not optional decoration: they are a benchmark sector count. $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover two spin projections for a fermion record and two corresponding charge-conjugate records with the same mass-shell comparison, all pulled from the same ordered-frame, polarity, and provenance data rather than assigned as independent field labels.
 
-**What Still Works:** The spin-classified equation ladder remains indispensable for organizing atomic spectra, magnetic response, fermion behavior, relativistic particle dynamics, and gauge-boson phenomenology.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, spin is reclassified as an effective transformation signature of assembly geometry, phase structure, and stable mode topology rather than a fundamental independent ingredient.
-**Transition Relevance:** Essential for angular-momentum records, spinor behavior, magnetic splitting, exchange statistics, and particle classification.
-**Long-Term Relevance:** Long-term relevance is as a compact map of which effective equations must be recovered from assembly dynamics for spin $0$, spin-$1/2$, and spin-$1$ sectors.
+**What Still Works:** The spin-classified equation ladder remains indispensable for organizing atomic spectra, magnetic response, fermion behavior, relativistic particle dynamics, and gauge-boson phenomenology. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, spin is reclassified as an effective transformation signature of assembly geometry, phase structure, and stable mode topology rather than a fundamental independent ingredient. **Transition Relevance:** Essential for angular-momentum records, spinor behavior, magnetic splitting, exchange statistics, and particle classification. **Long-Term Relevance:** Long-term relevance is as a compact map of which effective equations must be recovered from assembly dynamics for spin $0$, spin-$1/2$, and spin-$1$ sectors.
 
 ---
 
@@ -61070,8 +59843,7 @@ The Dirac case also sharpens the recovery target. At the effective level, the fo
 
 **Summary:** Macroscopic laws emerge from statistics of microscopic states.
 
-**Conceptual View:** Ensembles and partition functions encode averages and
-fluctuations. Entropy measures accessible microstates.
+**Conceptual View:** Ensembles and partition functions encode averages and fluctuations. Entropy measures accessible microstates.
 
 **Key Equation:** Boltzmann entropy:
 $$
@@ -61079,10 +59851,7 @@ S = k_B \ln \Omega
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Microstates are detailed architrino trajectories and assembly configurations; macrostates describe coarse-grained properties of large collections of assemblies (densities, energies, fluxes). Entropy counts the number of assembly-level configurations compatible with macroscopic constraints, and thermodynamic laws emerge from typical behavior in the Noether sea ensemble.
 
-**What Still Works:** Statistical Mechanics / Thermodynamics remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
-**Transition Relevance:** Essential for ensemble laws, equations of state, transport, fluctuation behavior, and thermodynamic limits derived from substrate dynamics.
-**Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+**What Still Works:** Statistical Mechanics / Thermodynamics remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Essential for ensemble laws, equations of state, transport, fluctuation behavior, and thermodynamic limits derived from substrate dynamics. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 ---
 
@@ -61090,11 +59859,9 @@ $$
 
 **Theory Name:** Copenhagen Interpretation. **Short Name:** Copenhagen Interpretation. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
-**Summary:** The wavefunction is a tool for probabilities; measurement causes
-collapse.
+**Summary:** The wavefunction is a tool for probabilities; measurement causes collapse.
 
-**Conceptual View:** Classical measuring devices are external to the quantum system;
-the cut is pragmatic, not fundamental.
+**Conceptual View:** Classical measuring devices are external to the quantum system; the cut is pragmatic, not fundamental.
 
 **Key Equation:** Projection postulate:
 $$
@@ -61102,10 +59869,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Collapse represents an update in an observer-assembly’s description after it becomes entangled with and then coarse-grains over many architrino degrees of freedom. At the underlying level, architrino and Noether braid dynamics remain continuous and deterministic; “projection” is an effective rule for resetting descriptions when assembly correlations become effectively irreversible.
 
-**What Still Works:** Copenhagen-style practice preserves the operational discipline of preparation, observable, and outcome and uses the shared quantum formalism with extraordinary success. Those predictions and laboratory rules are recovery targets; the interpretation's collapse and anti-ontological commitments are not separately confirmed empirical results.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
-**Transition Relevance:** Operationally useful but ontologically limited: preparation, context, and outcome discipline survive, while observer-centered finality does not.
-**Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+**What Still Works:** Copenhagen-style practice preserves the operational discipline of preparation, observable, and outcome and uses the shared quantum formalism with extraordinary success. Those predictions and laboratory rules are recovery targets; the interpretation's collapse and anti-ontological commitments are not separately confirmed empirical results. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Operationally useful but ontologically limited: preparation, context, and outcome discipline survive, while observer-centered finality does not. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 ---
 
@@ -61131,10 +59895,7 @@ where $d\hat C_{\mathrm{stoch}}$ denotes the model-specific localization and nor
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Stochastic collapse noise and new collapse constants are not substrate primitives. Definite records instead belong to deterministic assembly-apparatus dynamics, finite-time basin selection, conservation and event-ledger closure, and stable record persistence. Objective-collapse models remain valuable because their excluded and surviving parameter regions set quantitative comparison targets for any deterministic account of record formation.
 
-**What Still Works:** GRW/CSL turns vague collapse language into falsifiable dynamics and organizes a growing family of macroscopic-superposition and anomalous-noise tests.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, collapse events and stochastic fields are comparison models for unresolved record dynamics, not independently established substrate entities.
-**Transition Relevance:** High as a falsifiable benchmark for finite-time record formation and residual nonunitarity; no particular collapse law is a mandatory recovery target.
-**Long-Term Relevance:** Long-term relevance is as a bounded alternative against which a deterministic record mechanism must be compared. A reproducible residual stochastic law would reopen the ontology question.
+**What Still Works:** GRW/CSL turns vague collapse language into falsifiable dynamics and organizes a growing family of macroscopic-superposition and anomalous-noise tests. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, collapse events and stochastic fields are comparison models for unresolved record dynamics, not independently established substrate entities. **Transition Relevance:** High as a falsifiable benchmark for finite-time record formation and residual nonunitarity; no particular collapse law is a mandatory recovery target. **Long-Term Relevance:** Long-term relevance is as a bounded alternative against which a deterministic record mechanism must be compared. A reproducible residual stochastic law would reopen the ontology question.
 
 ---
 
@@ -61152,10 +59913,7 @@ P_a=|a\rangle\langle a|
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import transactional ontology, indeterministic actualization, or claims that quantum possibilities form a deeper non-spacetime substrate. It keeps the useful pressure as a record-formation benchmark: a candidate outcome must be produced by assembly-apparatus dynamics, satisfy conservation and event-ledger closure, persist as a record, and recover the Born weights from basin measures rather than from a projection postulate.
 
-**What Still Works:** Transactional Interpretation usefully refuses to let "measurement" mean any arbitrary interaction and keeps attention on emission, absorption, conservation, and record production.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, offer/confirmation language, claims about real possibilities, and retrocausal readings are comparison devices, not substrate terms. The native objects are assemblies, causal wakes, apparatus kernels, record basins, and effective observer descriptions.
-**Transition Relevance:** Transition relevance is moderate to high because the interpretation highlights the measurement-cut problem in a form that can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ record criteria without changing the ontology.
-**Long-Term Relevance:** Long-term relevance is as a comparison framework for measurement and Born-rule closure, not as doctrine.
+**What Still Works:** Transactional Interpretation usefully refuses to let "measurement" mean any arbitrary interaction and keeps attention on emission, absorption, conservation, and record production. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, offer/confirmation language, claims about real possibilities, and retrocausal readings are comparison devices, not substrate terms. The native objects are assemblies, causal wakes, apparatus kernels, record basins, and effective observer descriptions. **Transition Relevance:** Transition relevance is moderate to high because the interpretation highlights the measurement-cut problem in a form that can sharpen $\mathbb{A}\mathbb{A}\mathbb{A}$ record criteria without changing the ontology. **Long-Term Relevance:** Long-term relevance is as a comparison framework for measurement and Born-rule closure, not as doctrine.
 
 ---
 
@@ -61171,13 +59929,9 @@ $$
 $$
 i\hbar \frac{\partial}{\partial t}|\psi\rangle = \hat H |\psi\rangle
 $$
-with no collapse postulate.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the no-special-collapse pressure but not literal branch ontology. It keeps a single underlying architrino reality. Decoherence corresponds to practical loss of phase information between different assembly histories as they become entangled with many unobserved degrees of freedom. Many-worlds language can be re-interpreted as a way to track effectively non-interfering subsets of architrino trajectories, not as literal branching of the underlying Euclidean container.
+with no collapse postulate. **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the no-special-collapse pressure but not literal branch ontology. It keeps a single underlying architrino reality. Decoherence corresponds to practical loss of phase information between different assembly histories as they become entangled with many unobserved degrees of freedom. Many-worlds language can be re-interpreted as a way to track effectively non-interfering subsets of architrino trajectories, not as literal branching of the underlying Euclidean container.
 
-**What Still Works:** Everettian theory preserves unitary quantum evolution and sharpens the problems of decoherent branch structure and Born weighting. Its empirical predictions are those of the underlying quantum formalism, so literal many-worlds ontology is an interpretive comparison rather than a separately confirmed benchmark.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
-**Transition Relevance:** Limited to comparison on unitary dynamics, decoherence, and probability; proliferating branch ontology is not a recovery requirement.
-**Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+**What Still Works:** Everettian theory preserves unitary quantum evolution and sharpens the problems of decoherent branch structure and Born weighting. Its empirical predictions are those of the underlying quantum formalism, so literal many-worlds ontology is an interpretive comparison rather than a separately confirmed benchmark. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** Limited to comparison on unitary dynamics, decoherence, and probability; proliferating branch ontology is not a recovery requirement. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 ---
 
@@ -61187,8 +59941,7 @@ with no collapse postulate.
 
 **Summary:** Particles have definite positions guided by a wavefunction.
 
-**Conceptual View:** Deterministic trajectories with a guiding equation. Apparent
-quantum randomness reflects ignorance of initial conditions.
+**Conceptual View:** Deterministic trajectories with a guiding equation. Apparent quantum randomness reflects ignorance of initial conditions.
 
 **Key Equation:** Guiding equation:
 $$
@@ -61198,10 +59951,7 @@ $$
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is particularly close to the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. Architrinos and assemblies follow definite trajectories, while their path-history wake (self-hit plus interactions with all other architrinos) acts as a deterministic guiding “field.” The Bohmian guiding equation is an effective law summarizing how these causal wakes steer assemblies in appropriate limits; $\psi$ is a compact encoding of the relevant wake/phase information.
 
-**What Still Works:** Pilot-wave theory demonstrates that definite trajectories and deterministic dynamics can reproduce nonrelativistic quantum statistics under a declared equilibrium measure. Its distinct ontology is not independently confirmed, so it supplies a constructive comparison and proof burden rather than an indispensable empirical framework.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
-**Transition Relevance:** High as a comparator for deterministic flow, transported measure, nonlocality, and record formation, but its separate guiding-wave ontology is not inherited.
-**Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
+**What Still Works:** Pilot-wave theory demonstrates that definite trajectories and deterministic dynamics can reproduce nonrelativistic quantum statistics under a declared equilibrium measure. Its distinct ontology is not independently confirmed, so it supplies a constructive comparison and proof burden rather than an indispensable empirical framework. **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics. **Transition Relevance:** High as a comparator for deterministic flow, transported measure, nonlocality, and record formation, but its separate guiding-wave ontology is not inherited. **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
 #### Theory Differentials
 
@@ -61394,17 +60144,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 ###### Quantum Field Theory - QFT
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** continuum field ontology
-**Short Name:** QFT
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** continuum field ontology **Short Name:** QFT **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Renormalized amplitudes, scattering cross sections, correlation functions, and particle-production rules organize the tested relativistic quantum domain.
 
@@ -61414,17 +60154,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 ###### Relativistic Scalar Fields / Klein-Gordon Equation - Klein-Gordon
 
-**Concept Type:** Formalism
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** relativistic scalar modes
-**Short Name:** Klein-Gordon
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
+**Concept Type:** Formalism **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** relativistic scalar modes **Short Name:** Klein-Gordon **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Klein-Gordon dynamics supplies the canonical relativistic dispersion and propagation law for effective spin-zero modes.
 
@@ -61434,17 +60164,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 ###### Standard Model - SM
 
-**Concept Type:** Theory
-**Ontological Area:** Assembly / Particle Structure
-**Sub-Ontological Area:** gauge structure
-**Short Name:** SM
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level particle structure and reactions
-**Assessed At:** Stable Assembly Dynamics
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Mislocated Ontology
+**Concept Type:** Theory **Ontological Area:** Assembly / Particle Structure **Sub-Ontological Area:** gauge structure **Short Name:** SM **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level particle structure and reactions **Assessed At:** Stable Assembly Dynamics **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Mislocated Ontology
 
 **Surviving result.** The observed particle spectrum, gauge-mediated reaction channels, flavor structure, and precision electroweak records form a non-negotiable benchmark package.
 
@@ -61454,17 +60174,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 ###### Quantum Electrodynamics - QED
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** electromagnetic gauge theory
-**Short Name:** QED
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** electromagnetic gauge theory **Short Name:** QED **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** QED fixes exceptionally precise lepton-photon scattering, bound-state shifts, radiative corrections, and magnetic-moment benchmarks.
 
@@ -61474,17 +60184,7 @@ Concepts are grouped by scientific role rather than chronology. The inventory is
 
 ###### Classical Electromagnetism - Maxwell-Faraday
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** classical electromagnetic closure
-**Short Name:** Maxwell EM
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** classical electromagnetic closure **Short Name:** Maxwell EM **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Maxwell-Faraday theory unifies electrostatics, induction, radiation, wave propagation, and electromagnetic energy-momentum bookkeeping.
 
@@ -61501,17 +60201,7 @@ $$
 
 ###### Quantum Chromodynamics - QCD
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** strong interaction closure
-**Short Name:** QCD
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** strong interaction closure **Short Name:** QCD **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Color algebra, asymptotic freedom, jets, hadron spectra, and lattice observables constrain any account of strong interactions.
 
@@ -61521,17 +60211,7 @@ $$
 
 ###### Electroweak Theory - EW
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** symmetry breaking
-**Short Name:** EW
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Recoverable Only After Reinterpretation
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** symmetry breaking **Short Name:** EW **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Recoverable Only After Reinterpretation
 
 **Surviving result.** Charged and neutral currents, parity violation, weak mixing, and the measured W/Z sector are established effective constraints.
 
@@ -61541,17 +60221,7 @@ $$
 
 ###### Neutrino Oscillation Theory - PMNS
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** flavor mixing
-**Short Name:** PMNS
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** flavor mixing **Short Name:** PMNS **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Baseline- and energy-dependent flavor-transition probabilities establish coherent neutrino mixing and mass splitting.
 
@@ -61561,17 +60231,7 @@ $$
 
 ###### Effective Field Theory - EFT
 
-**Concept Type:** Framework
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** scale separation
-**Short Name:** EFT
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Cross-scale mathematical or inferential structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Framework **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** scale separation **Short Name:** EFT **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Cross-scale mathematical or inferential structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Power counting, operator ordering, and decoupling provide a disciplined description of physics inside a declared validity domain.
 
@@ -61581,17 +60241,7 @@ $$
 
 ###### Renormalization Group - RG
 
-**Concept Type:** Framework
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** scale flow
-**Short Name:** RG
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Cross-scale mathematical or inferential structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Framework **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** scale flow **Short Name:** RG **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Cross-scale mathematical or inferential structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Scale flow, universality, fixed points, and critical exponents explain why different microdescriptions can share effective behavior.
 
@@ -61601,17 +60251,7 @@ $$
 
 ###### Grand Unified Theories - GUT
 
-**Concept Type:** Theory
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** high-energy unification
-**Short Name:** GUT
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Empirically Useful Placeholder
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** high-energy unification **Short Name:** GUT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Empirically Useful Placeholder
 
 **Surviving result.** Charge organization, representation unification, and coupling-convergence tests expose relations a deeper particle account may need to explain.
 
@@ -61621,17 +60261,7 @@ $$
 
 ###### Supersymmetry - SUSY
 
-**Concept Type:** Theory
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** symmetry extension
-**Short Name:** SUSY
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Empirically Useful Placeholder
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** symmetry extension **Short Name:** SUSY **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Empirically Useful Placeholder
 
 **Surviving result.** Boson-fermion pairing supplies useful algebraic control and a precise cancellation mechanism in candidate high-energy models.
 
@@ -61641,17 +60271,7 @@ $$
 
 ###### Supergravity - SUGRA
 
-**Concept Type:** Theory
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** gravity-symmetry unification
-**Short Name:** SUGRA
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Good Mathematics, Wrong Primitives
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** gravity-symmetry unification **Short Name:** SUGRA **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Local supersymmetry provides a mathematically sharp comparison between spinor symmetry and gravitational dynamics.
 
@@ -61661,17 +60281,7 @@ $$
 
 ###### Technicolor / Composite Higgs - Composite Higgs
 
-**Concept Type:** Theory
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** electroweak compositeness
-**Short Name:** Composite Higgs
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** electroweak compositeness **Short Name:** Composite Higgs **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Composite symmetry breaking correctly asks whether the Higgs-like sector can arise from bound dynamics rather than an elementary scalar.
 
@@ -61681,17 +60291,7 @@ $$
 
 ###### Axion Theory / Peccei-Quinn Mechanism - Axion / PQ
 
-**Concept Type:** Theory
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** strong CP repair
-**Short Name:** Axion / PQ
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** strong CP repair **Short Name:** Axion / PQ **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Partially Recovered
 
 **Surviving result.** The neutron electric-dipole bound and the small strong-CP phase define a genuine precision problem.
 
@@ -61701,17 +60301,7 @@ $$
 
 ###### Sterile Neutrino Dark Matter - Sterile Neutrino
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** dark sector
-**Short Name:** Sterile Neutrino
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** dark sector **Short Name:** Sterile Neutrino **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
 **Surviving result.** Oscillation searches, X-ray lines, and structure-formation bounds define a useful constrained signature space.
 
@@ -61721,17 +60311,7 @@ $$
 
 ###### WIMP Dark Matter - WIMP
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** dark sector
-**Short Name:** WIMP
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** dark sector **Short Name:** WIMP **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
 **Surviving result.** Thermal-relic calculations and direct, indirect, and collider searches form a mature exclusion framework.
 
@@ -61741,17 +60321,7 @@ $$
 
 ###### Hidden Sector / Dark Sector Models
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** dark sector
-**Short Name:** Dark Sector
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** dark sector **Short Name:** Dark Sector **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
 **Surviving result.** Portal searches and missing-energy observables organize tests of weakly coupled additional sectors.
 
@@ -61763,17 +60333,7 @@ $$
 
 ###### Quantum Mechanics - QM
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** state evolution and probability
-**Short Name:** QM
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** state evolution and probability **Short Name:** QM **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Interference, spectra, entanglement, transition amplitudes, and detector statistics form an indispensable observer-level formalism.
 
@@ -61783,17 +60343,7 @@ $$
 
 ###### Schrödinger Equation - Schrödinger
 
-**Concept Type:** Formalism
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** nonrelativistic state evolution
-**Short Name:** Schrödinger
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Recoverable Only After Reinterpretation
+**Concept Type:** Formalism **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** nonrelativistic state evolution **Short Name:** Schrödinger **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Recoverable Only After Reinterpretation
 
 **Surviving result.** Linear Schrödinger evolution accurately fixes nonrelativistic phase, spectra, interference, bound states, and probability current in its domain.
 
@@ -61803,17 +60353,7 @@ $$
 
 ###### Copenhagen Interpretation - Copenhagen
 
-**Concept Type:** Interpretation
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** measurement interpretation
-**Short Name:** Copenhagen
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Interpretation
-**Claims At:** Observer-level interpretation and measurement semantics
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
+**Concept Type:** Interpretation **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** measurement interpretation **Short Name:** Copenhagen **Concept Status:** Mainstream Effective **Maturity:** Established Interpretation **Claims At:** Observer-level interpretation and measurement semantics **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
 **Surviving result.** The preparation-context-outcome distinction and refusal to assign unsupported premeasurement values protect operational discipline.
 
@@ -61823,17 +60363,7 @@ $$
 
 ###### Transactional Interpretation - Transactional
 
-**Concept Type:** Interpretation
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** emitter-absorber record interpretation
-**Short Name:** Transactional
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level interpretation and measurement semantics
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Interpretation **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** emitter-absorber record interpretation **Short Name:** Transactional **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level interpretation and measurement semantics **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** The emitter-absorber framing keeps conservation, absorption, and the physical production of a persistent record inside the measurement problem.
 
@@ -61843,17 +60373,7 @@ $$
 
 ###### Many-Worlds Interpretation - MWI
 
-**Concept Type:** Interpretation
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** branching ontology
-**Short Name:** MWI
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Interpretation
-**Claims At:** Observer-level interpretation and measurement semantics
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
+**Concept Type:** Interpretation **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** branching ontology **Short Name:** MWI **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Interpretation **Claims At:** Observer-level interpretation and measurement semantics **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
 **Surviving result.** Unitary treatment of apparatus and decoherence correctly remove a special observer-triggered dynamical exception.
 
@@ -61863,17 +60383,7 @@ $$
 
 ###### de Broglie-Bohm Theory - dBB
 
-**Concept Type:** Theory
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** hidden-variable dynamics
-**Short Name:** dBB
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Stable Assembly Dynamics
-**Comparative Stack Placement:** Substrate ontology
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** hidden-variable dynamics **Short Name:** dBB **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level records, inference, and probability **Assessed At:** Stable Assembly Dynamics **Comparative Stack Placement:** Substrate ontology **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Its guidance-flow and continuity equation demonstrate that deterministic nonlocal quantum recovery is mathematically coherent.
 
@@ -61883,17 +60393,7 @@ $$
 
 ###### Objective Collapse Theory - GRW / CSL
 
-**Concept Type:** Theory
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** collapse dynamics
-**Short Name:** GRW / CSL
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Stable Assembly Dynamics
-**Comparative Stack Placement:** Assembly / medium dynamics
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Theory **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** collapse dynamics **Short Name:** GRW / CSL **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level records, inference, and probability **Assessed At:** Stable Assembly Dynamics **Comparative Stack Placement:** Assembly / medium dynamics **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** GRW/CSL makes record formation quantitative and exposes mass-, time-, and scale-dependent experimental tests.
 
@@ -61903,17 +60403,7 @@ $$
 
 ###### Relational Quantum Mechanics - RQM
 
-**Concept Type:** Interpretation
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** observer-relative state assignment
-**Short Name:** RQM
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Interpretation
-**Claims At:** Observer-level interpretation and measurement semantics
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
+**Concept Type:** Interpretation **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** observer-relative state assignment **Short Name:** RQM **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Interpretation **Claims At:** Observer-level interpretation and measurement semantics **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
 **Surviving result.** Relational state assignment correctly emphasizes that records belong to physical interactions and comparison contexts.
 
@@ -61923,17 +60413,7 @@ $$
 
 ###### QBism - QBism
 
-**Concept Type:** Interpretation
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** agent-centered probability
-**Short Name:** QBism
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Interpretation
-**Claims At:** Observer-level interpretation and measurement semantics
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
+**Concept Type:** Interpretation **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** agent-centered probability **Short Name:** QBism **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Interpretation **Claims At:** Observer-level interpretation and measurement semantics **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
 **Surviving result.** Bayesian coherence and explicit agent-relative probability updates clarify the inferential use of quantum states.
 
@@ -61943,17 +60423,7 @@ $$
 
 ###### Decoherence Program - Decoherence
 
-**Concept Type:** Program
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** environment-induced classicality
-**Short Name:** Decoherence
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** environment-induced classicality **Short Name:** Decoherence **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Environment-induced suppression of interference identifies robust pointer records and effective classical sectors.
 
@@ -61963,17 +60433,7 @@ $$
 
 ###### Bell Theorem and Bell-Test Constraints - Bell
 
-**Concept Type:** Principle
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** nonfactorizability and experimental constraint
-**Short Name:** Bell
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theorem
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Observer / inference level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Principle **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** nonfactorizability and experimental constraint **Short Name:** Bell **Concept Status:** Mainstream Foundational **Maturity:** Established Theorem **Claims At:** Observer-level records, inference, and probability **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Observer / inference level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Bell inequalities and loophole-controlled violations exclude locally factorizable response models while observed marginals preserve no-signaling.
 
@@ -61995,17 +60455,7 @@ under the stated locality and measurement-independence assumptions.
 
 ###### Newtonian Mechanics and Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** weak-field mechanics
-**Short Name:** Newtonian Gravity
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** weak-field mechanics **Short Name:** Newtonian Gravity **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Newtonian trajectories, inverse-square weak-field behavior, conservation bookkeeping, and celestial approximations remain accurate in their domain.
 
@@ -62015,17 +60465,7 @@ under the stated locality and measurement-independence assumptions.
 
 ###### Wheeler-Feynman Direct-Action Electrodynamics
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** direct source-receiver electrodynamics
-**Short Name:** WF Direct Action
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Substrate Ontology
-**Comparative Stack Placement:** Assembly level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Substrate Ontology
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Recoverable Only After Reinterpretation
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** direct source-receiver electrodynamics **Short Name:** WF Direct Action **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Substrate Ontology **Comparative Stack Placement:** Assembly level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Substrate Ontology **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Recoverable Only After Reinterpretation
 
 **Surviving result.** Direct-action theory proves that source-receiver interaction and radiation-reaction accounting can be formulated without an independent field substance.
 
@@ -62045,17 +60485,7 @@ $$
 
 ###### Special Relativity - SR
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** relativistic kinematics
-**Short Name:** SR
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Mislocated Ontology
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** relativistic kinematics **Short Name:** SR **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Mislocated Ontology
 
 **Surviving result.** Lorentz transformations, invariant signal speed, time dilation, length contraction, and relativistic kinematics are experimentally secure.
 
@@ -62065,17 +60495,7 @@ $$
 
 ###### General Relativity - GR
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** effective metric
-**Short Name:** GR
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theory
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Mislocated Ontology
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** effective metric **Short Name:** GR **Concept Status:** Mainstream Foundational **Maturity:** Established Theory **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Mislocated Ontology
 
 **Surviving result.** Gravitational redshift, lensing, orbital dynamics, Shapiro delay, compact objects, and gravitational waves demand a common effective metric.
 
@@ -62085,17 +60505,7 @@ $$
 
 ###### Perturbative Quantum Gravity / General Relativity Effective Field Theory - GR-EFT
 
-**Concept Type:** Formalism
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** low-energy quantum gravity
-**Short Name:** GR-EFT
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
+**Concept Type:** Formalism **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** low-energy quantum gravity **Short Name:** GR-EFT **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
 
 **Surviving result.** General-relativity effective field theory organizes controlled long-distance quantum corrections without claiming perturbative ultraviolet completion.
 
@@ -62105,17 +60515,7 @@ $$
 
 ###### Scalar-Tensor Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** gravity and geometry
-**Short Name:** Scalar-Tensor
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Scalar-Tensor **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Scalar-tensor models expose how a variable effective gravitational response would alter cosmology and post-Newtonian observables.
 
@@ -62125,17 +60525,7 @@ $$
 
 ###### Brans-Dicke Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** foundational framework
-**Short Name:** Brans-Dicke
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** foundational framework **Short Name:** Brans-Dicke **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** The Brans-Dicke parameter supplies a clean quantitative bridge between variable gravitational coupling and the GR limit.
 
@@ -62145,17 +60535,7 @@ $$
 
 ###### $f(R)$ Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** gravity and geometry
-**Short Name:** $f(R)$
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** $f(R)$ **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Curvature corrections provide a controlled way to test departures from Einstein dynamics across scales.
 
@@ -62165,17 +60545,7 @@ $$
 
 ###### Einstein-Cartan Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** foundational framework
-**Short Name:** Einstein-Cartan
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** foundational framework **Short Name:** Einstein-Cartan **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Spin-torsion coupling supplies a precise comparison for how intrinsic angular momentum could modify dense gravitational matter.
 
@@ -62185,17 +60555,7 @@ $$
 
 ###### Massive Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** gravity and geometry
-**Short Name:** Massive Gravity
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Massive Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Massive-gravity programs expose the vDVZ, ghost, screening, and extra-polarization constraints on modified propagation.
 
@@ -62205,17 +60565,7 @@ $$
 
 ###### Bimetric Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** gravity and geometry
-**Short Name:** Bimetric Gravity
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Bimetric Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Bimetric models make interaction between two metric sectors mathematically explicit and testable.
 
@@ -62225,17 +60575,7 @@ $$
 
 ###### Modified Newtonian Dynamics - MOND
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** low-acceleration gravity
-**Short Name:** MOND
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** low-acceleration gravity **Short Name:** MOND **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
 
 **Surviving result.** The acceleration scale and baryonic regularities in galaxy rotation are important empirical compression targets.
 
@@ -62245,17 +60585,7 @@ $$
 
 ###### Tensor-Vector-Scalar Gravity - TeVeS
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** covariant modified gravity
-**Short Name:** TeVeS
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** covariant modified gravity **Short Name:** TeVeS **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
 
 **Surviving result.** TeVeS shows how relativistic fields can extend MOND-like phenomenology to lensing and cosmology.
 
@@ -62265,17 +60595,7 @@ $$
 
 ###### Emergent Gravity
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** induced gravity
-**Short Name:** Emergent Gravity
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** induced gravity **Short Name:** Emergent Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Emergent-gravity programs correctly demand that metric and gravitational response arise from deeper collective degrees of freedom.
 
@@ -62285,17 +60605,7 @@ $$
 
 ###### Unimodular Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** gravity and geometry
-**Short Name:** Unimodular Gravity
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** gravity and geometry **Short Name:** Unimodular Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Separating volume measure from trace-free metric dynamics clarifies how a cosmological constant can appear as an integration constant.
 
@@ -62305,17 +60615,7 @@ $$
 
 ###### Loop Quantum Gravity - LQG
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** quantized geometry
-**Short Name:** LQG
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** quantized geometry **Short Name:** LQG **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives
 
 **Surviving result.** Background independence, discrete geometric spectra, and constraint quantization provide valuable mathematical comparison pressure.
 
@@ -62325,17 +60625,7 @@ $$
 
 ###### String Theory / M-Theory
 
-**Concept Type:** Program
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** high-dimensional unification
-**Short Name:** String Theory
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives
+**Concept Type:** Program **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** high-dimensional unification **Short Name:** String Theory **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives
 
 **Surviving result.** String theory supplies deep consistency relations, dualities, anomaly cancellation, and controlled quantum-gravity examples.
 
@@ -62345,17 +60635,7 @@ $$
 
 ###### Causal Set Theory - CST
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** discrete causal order
-**Short Name:** CST
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** discrete causal order **Short Name:** CST **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Causal-order primacy and local finiteness sharpen the question of which event relations a discrete substrate must preserve.
 
@@ -62365,17 +60645,7 @@ $$
 
 ###### Causal Dynamical Triangulations - CDT
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** discrete geometry
-**Short Name:** CDT
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** discrete geometry **Short Name:** CDT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** CDT demonstrates that constrained sums over discrete histories can generate nontrivial large-scale dimensional behavior.
 
@@ -62385,17 +60655,7 @@ $$
 
 ###### Asymptotic Safety - AS
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** ultraviolet closure
-**Short Name:** AS
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** ultraviolet closure **Short Name:** AS **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
 **Surviving result.** A nontrivial ultraviolet fixed point would make gravitational effective theory predictive with finitely many relevant parameters.
 
@@ -62405,17 +60665,7 @@ $$
 
 ###### Holography / AdS-CFT - Holography / AdS-CFT
 
-**Concept Type:** Framework
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** duality and boundary encoding
-**Short Name:** Holography / AdS-CFT
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Framework **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** duality and boundary encoding **Short Name:** Holography / AdS-CFT **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Holographic dualities establish exact relations between certain boundary and bulk descriptions and constrain entropy scaling.
 
@@ -62427,17 +60677,7 @@ $$
 
 ###### $\Lambda$ Cold Dark Matter - $\Lambda$CDM
 
-**Concept Type:** Framework
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** cosmological closure model
-**Short Name:** $\Lambda$CDM
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Observationally Over-Inferred
+**Concept Type:** Framework **Ontological Area:** Cosmology **Sub-Ontological Area:** cosmological closure model **Short Name:** $\Lambda$CDM **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Observationally Over-Inferred
 
 **Surviving result.** The framework jointly fits expansion history, CMB structure, nucleosynthesis, lensing, and large-scale clustering with high precision.
 
@@ -62447,17 +60687,7 @@ $$
 
 ###### Inflationary Cosmology
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** early-universe smoothing
-**Short Name:** Inflation
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** early-universe smoothing **Short Name:** Inflation **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Recoverable Only After Reinterpretation
 
 **Surviving result.** Inflation supplies quantitative perturbation spectra and a mechanism for horizon and flatness regularities.
 
@@ -62467,17 +60697,7 @@ $$
 
 ###### Big Bang Nucleosynthesis - BBN
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** light-element synthesis
-**Short Name:** BBN
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** light-element synthesis **Short Name:** BBN **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Light-element abundance calculations tightly link expansion, reaction rates, baryon density, and thermal history.
 
@@ -62487,17 +60707,7 @@ $$
 
 ###### CMB Acoustic Peak Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** radiation-baryon transfer
-**Short Name:** CMB Acoustic Peaks
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** radiation-baryon transfer **Short Name:** CMB Acoustic Peaks **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** The blackbody spectrum and TT/TE/EE peak structure constrain recombination, propagation, geometry, and primordial correlations.
 
@@ -62507,17 +60717,7 @@ $$
 
 ###### Baryogenesis / Leptogenesis
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** matter asymmetry
-**Short Name:** Baryogenesis / Leptogenesis
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** matter asymmetry **Short Name:** Baryogenesis / Leptogenesis **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Observed matter dominance requires a quantitative asymmetry ledger and motivates tests of symmetry violation and nonequilibrium dynamics.
 
@@ -62527,17 +60727,7 @@ $$
 
 ###### Dark Matter Particle Cosmology
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** dark matter ontology
-**Short Name:** Particle Dark Matter
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** dark matter ontology **Short Name:** Particle Dark Matter **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
 **Surviving result.** Relic abundance, structure formation, lensing, and laboratory searches provide a coordinated constraint network.
 
@@ -62547,17 +60737,7 @@ $$
 
 ###### Primordial Black Hole Dark Matter
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** dark matter ontology
-**Short Name:** PBH Dark Matter
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** dark matter ontology **Short Name:** PBH Dark Matter **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** PBH models connect early density fluctuations with compact-object abundance and multi-messenger constraints.
 
@@ -62567,17 +60747,7 @@ $$
 
 ###### Dark Energy / Quintessence
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** late-time acceleration
-**Short Name:** Dark Energy / Quintessence
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** late-time acceleration **Short Name:** Dark Energy / Quintessence **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
 **Surviving result.** Distance-redshift and growth data require an accurate effective late-time acceleration history.
 
@@ -62587,17 +60757,7 @@ $$
 
 ###### Holographic Dark Energy
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** horizon-scaled late-time acceleration
-**Short Name:** Holographic Dark Energy
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** horizon-scaled late-time acceleration **Short Name:** Holographic Dark Energy **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
 **Surviving result.** Horizon-scaled density models supply a compact comparison between infrared cosmology, boundary bookkeeping, and late-time expansion fits.
 
@@ -62607,17 +60767,7 @@ $$
 
 ###### Steady State Cosmology - SSC
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** cosmic history alternative
-**Short Name:** SSC
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** cosmic history alternative **Short Name:** SSC **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
 **Surviving result.** The steady-state continuity equation makes explicit that constant density in an expanding effective volume requires a source ledger.
 
@@ -62627,17 +60777,7 @@ $$
 
 ###### Quasi-Steady State Cosmology - QSSC
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** cosmic history alternative
-**Short Name:** QSSC
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** cosmic history alternative **Short Name:** QSSC **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
 **Surviving result.** QSSC preserves a testable recurrent-history alternative and emphasizes distributed source populations.
 
@@ -62647,17 +60787,7 @@ $$
 
 ###### Ekpyrotic / Cyclic Cosmology
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** bounce and cycle histories
-**Short Name:** Ekpyrotic / Cyclic
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** bounce and cycle histories **Short Name:** Ekpyrotic / Cyclic **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Ekpyrotic models provide a calculable contraction route to smoothing and primordial perturbations.
 
@@ -62667,17 +60797,7 @@ $$
 
 ###### Bounce Cosmology
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** non-singular cosmic history
-**Short Name:** Bounce Cosmology
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** non-singular cosmic history **Short Name:** Bounce Cosmology **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Bounce programs make singularity avoidance and continuation through high density explicit mathematical targets.
 
@@ -62687,17 +60807,7 @@ $$
 
 ###### Conformal Cyclic Cosmology - CCC
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** cyclic conformal history
-**Short Name:** CCC
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** cyclic conformal history **Short Name:** CCC **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** CCC highlights conformal matching, entropy bookkeeping, and observational signatures across successive aeons.
 
@@ -62707,17 +60817,7 @@ $$
 
 ###### Multiverse Cosmology
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** ensemble cosmology
-**Short Name:** Multiverse
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** ensemble cosmology **Short Name:** Multiverse **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
 **Surviving result.** Multiverse reasoning exposes how theory-space multiplicity and selection effects can weaken unique prediction.
 
@@ -62727,17 +60827,7 @@ $$
 
 ###### Anthropic Principle
 
-**Concept Type:** Principle
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** selection effects
-**Short Name:** Anthropic Principle
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Cross-scale mathematical or inferential structure
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
+**Concept Type:** Principle **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** selection effects **Short Name:** Anthropic Principle **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Cross-scale mathematical or inferential structure **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
 **Surviving result.** Observer conditioning can identify parameter regions incompatible with long-lived complex assemblies.
 
@@ -62749,17 +60839,7 @@ $$
 
 ###### Statistical Mechanics
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** ensemble closure
-**Short Name:** Statistical Mechanics
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** ensemble closure **Short Name:** Statistical Mechanics **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Ensemble methods recover equilibrium distributions, fluctuations, transport tendencies, and macrostate probabilities.
 
@@ -62769,17 +60849,7 @@ $$
 
 ###### Thermodynamics
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** bulk-state law
-**Short Name:** Thermodynamics
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** bulk-state law **Short Name:** Thermodynamics **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Energy, entropy, temperature, work, and irreversible-process relations provide universal bulk constraints.
 
@@ -62789,17 +60859,7 @@ $$
 
 ###### Kinetic Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** distribution dynamics
-**Short Name:** Kinetic Theory
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** distribution dynamics **Short Name:** Kinetic Theory **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Distribution functions and collision terms connect microstate motion to viscosity, diffusion, and thermalization.
 
@@ -62809,17 +60869,7 @@ $$
 
 ###### Hydrodynamics
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** continuum transport
-**Short Name:** Hydrodynamics
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** continuum transport **Short Name:** Hydrodynamics **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Conservation equations and constitutive relations accurately describe long-wavelength flows.
 
@@ -62829,17 +60879,7 @@ $$
 
 ###### Plasma Physics
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** collective charged media
-**Short Name:** Plasma Physics
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** collective charged media **Short Name:** Plasma Physics **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Collective screening, waves, instabilities, reconnection, and transport constrain charged many-body dynamics.
 
@@ -62849,17 +60889,7 @@ $$
 
 ###### Virial Theory
 
-**Concept Type:** Law
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** bound-system averages
-**Short Name:** Virial Theory
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Law **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** bound-system averages **Short Name:** Virial Theory **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** The virial relation links time-averaged kinetic and interaction bookkeeping in bound systems.
 
@@ -62869,17 +60899,7 @@ $$
 
 ###### Jeans Instability Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** gravitational collapse threshold
-**Short Name:** Jeans Theory
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** gravitational collapse threshold **Short Name:** Jeans Theory **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** The Jeans criterion identifies competition between effective support and gravitational growth in a medium.
 
@@ -62889,17 +60909,7 @@ $$
 
 ###### Halo Model of Structure Formation
 
-**Concept Type:** Framework
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** large-scale structure statistics
-**Short Name:** Halo Model
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Bulk statistical level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Framework **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** large-scale structure statistics **Short Name:** Halo Model **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Bulk statistical level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** The halo model compresses nonlinear clustering, lensing, and matter statistics into a useful population framework.
 
@@ -62911,17 +60921,7 @@ $$
 
 ###### Classical Luminiferous Aether Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** carrier ontology
-**Short Name:** Aether
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Historical contrast only
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** carrier ontology **Short Name:** Aether **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
 **Surviving result.** Historical aether models correctly demanded a propagation carrier and attempted constitutive explanation.
 
@@ -62931,17 +60931,7 @@ $$
 
 ###### Lorentz Ether Theory - LET
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** medium-relative kinematics
-**Short Name:** LET
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Historical contrast only
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** medium-relative kinematics **Short Name:** LET **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Partially Recovered
 
 **Surviving result.** Lorentz's dynamical contraction and local-time machinery show how preferred-substrate dynamics can mimic relativistic kinematics.
 
@@ -62951,17 +60941,7 @@ $$
 
 ###### Caloric Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** heat ontology
-**Short Name:** Caloric Theory
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Historical contrast only
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** heat ontology **Short Name:** Caloric Theory **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
 **Surviving result.** Caloric bookkeeping helped organize heat flow and conservation-like reasoning.
 
@@ -62971,17 +60951,7 @@ $$
 
 ###### Phlogiston Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** combustion ontology
-**Short Name:** Phlogiston
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Historical contrast only
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** combustion ontology **Short Name:** Phlogiston **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
 **Surviving result.** Phlogiston organized some combustion and reduction patterns before mass accounting was complete.
 
@@ -62991,17 +60961,7 @@ $$
 
 ###### Tired Light Cosmology
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** redshift interpretation
-**Short Name:** Tired Light
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Historical contrast only
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred; Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** redshift interpretation **Short Name:** Tired Light **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred; Historically Illuminating Failure
 
 **Surviving result.** Tired-light proposals correctly focus attention on the physical transport mechanism behind redshift.
 
@@ -63011,17 +60971,7 @@ $$
 
 ###### Epicyclic Ptolemaic Cosmology
 
-**Concept Type:** Theory
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** kinematic fit without mechanism
-**Short Name:** Ptolemaic System
-**Concept Status:** Historically Rejected
-**Maturity:** Historical Rejection
-**Claims At:** Historical mechanism or ontology
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Historical contrast only
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
+**Concept Type:** Theory **Ontological Area:** Cosmology **Sub-Ontological Area:** kinematic fit without mechanism **Short Name:** Ptolemaic System **Concept Status:** Historically Rejected **Maturity:** Historical Rejection **Claims At:** Historical mechanism or ontology **Assessed At:** Observation and Inference **Comparative Stack Placement:** Historical contrast only **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
 **Surviving result.** Epicycles achieved substantial positional accuracy through systematic harmonic correction.
 
@@ -63033,17 +60983,7 @@ $$
 
 ###### Plasma Cosmology
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** non-standard large-scale plasma claims
-**Short Name:** Plasma Cosmology
-**Concept Status:** Fringe
-**Maturity:** Fringe Comparison
-**Claims At:** Speculative ontology or comparison program
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** non-standard large-scale plasma claims **Short Name:** Plasma Cosmology **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
 **Surviving result.** Plasma processes genuinely matter in astrophysical environments and can produce large-scale electromagnetic structure.
 
@@ -63053,17 +60993,7 @@ $$
 
 ###### Electric Universe - EU
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** electrical overreach
-**Short Name:** EU
-**Concept Status:** Fringe
-**Maturity:** Fringe Comparison
-**Claims At:** Speculative ontology or comparison program
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** electrical overreach **Short Name:** EU **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
 **Surviving result.** Electrical and plasma processes can dominate particular laboratory and astrophysical environments.
 
@@ -63073,17 +61003,7 @@ $$
 
 ###### Simulation Hypothesis
 
-**Concept Type:** Construct
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** externalist ontology
-**Short Name:** Simulation Hypothesis
-**Concept Status:** Fringe
-**Maturity:** Fringe Comparison
-**Claims At:** Speculative ontology or comparison program
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
+**Concept Type:** Construct **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** externalist ontology **Short Name:** Simulation Hypothesis **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
 **Surviving result.** The hypothesis clarifies the distinction between executable description and ontological implementation.
 
@@ -63093,17 +61013,7 @@ $$
 
 ###### Strong Anthropic Landscape Programs
 
-**Concept Type:** Program
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** selection without mechanism
-**Short Name:** Anthropic Landscape
-**Concept Status:** Fringe
-**Maturity:** Fringe Comparison
-**Claims At:** Speculative ontology or comparison program
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** selection without mechanism **Short Name:** Anthropic Landscape **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
 **Surviving result.** Landscape reasoning exposes the measure and selection problems created by enormous theory spaces.
 
@@ -63113,17 +61023,7 @@ $$
 
 ###### Digital Physics
 
-**Concept Type:** Program
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** discrete computational ontology
-**Short Name:** Digital Physics
-**Concept Status:** Fringe
-**Maturity:** Fringe Comparison
-**Claims At:** Speculative ontology or comparison program
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Good Mathematics, Wrong Primitives
+**Concept Type:** Program **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** discrete computational ontology **Short Name:** Digital Physics **Concept Status:** Fringe **Maturity:** Fringe Comparison **Claims At:** Speculative ontology or comparison program **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Discrete update models show that simple rules can generate complex effective behavior.
 
@@ -63135,17 +61035,7 @@ $$
 
 ###### Standard Model Effective Field Theory - SMEFT
 
-**Concept Type:** Framework
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** effective operator expansion
-**Short Name:** SMEFT
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Framework **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** effective operator expansion **Short Name:** SMEFT **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** SMEFT systematically parameterizes symmetry-respecting deviations from Standard Model amplitudes.
 
@@ -63155,17 +61045,7 @@ $$
 
 ###### Conformal Field Theory - CFT
 
-**Concept Type:** Theory
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** symmetry-constrained field theory
-**Short Name:** CFT
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Theory **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** symmetry-constrained field theory **Short Name:** CFT **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** CFT fixes scale-invariant correlation structures, operator products, critical exponents, and many exact results.
 
@@ -63175,17 +61055,7 @@ $$
 
 ###### Amplitude Program / On-Shell Methods
 
-**Concept Type:** Framework
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** scattering structure
-**Short Name:** Amplitudes
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Framework **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** scattering structure **Short Name:** Amplitudes **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** On-shell methods expose locality, factorization, unitarity, and symmetry directly in scattering data.
 
@@ -63195,17 +61065,7 @@ $$
 
 ###### Non-Commutative Geometry Programs - NCG
 
-**Concept Type:** Program
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** geometry generalization
-**Short Name:** NCG
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** geometry generalization **Short Name:** NCG **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** NCG connects algebraic structure with geometry and offers disciplined spectral constraints.
 
@@ -63215,17 +61075,7 @@ $$
 
 ###### Twistor Theory
 
-**Concept Type:** Program
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** geometric representation
-**Short Name:** Twistor Theory
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Program **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** geometric representation **Short Name:** Twistor Theory **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Twistors simplify null geometry, spinors, and scattering relationships that are obscure in spacetime coordinates.
 
@@ -63235,17 +61085,7 @@ $$
 
 ###### Horava-Lifshitz Gravity
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** anisotropic ultraviolet gravity
-**Short Name:** Horava-Lifshitz
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** anisotropic ultraviolet gravity **Short Name:** Horava-Lifshitz **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Anisotropic scaling offers a concrete route to improved ultraviolet power counting with preferred foliation.
 
@@ -63255,17 +61095,7 @@ $$
 
 ###### Entropic Gravity
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** statistical gravity interpretation
-**Short Name:** Entropic Gravity
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** statistical gravity interpretation **Short Name:** Entropic Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Entropic-gravity arguments connect gravitational equations with thermodynamic and information identities.
 
@@ -63275,17 +61105,7 @@ $$
 
 ###### Einstein-Aether Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** preferred-frame gravity
-**Short Name:** Einstein-Aether
-**Concept Status:** Underdetermined / Live Minority View
-**Maturity:** Live Minority Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** preferred-frame gravity **Short Name:** Einstein-Aether **Concept Status:** Underdetermined / Live Minority View **Maturity:** Live Minority Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
 **Surviving result.** Einstein-aether models parameterize preferred-frame dynamics and make post-Newtonian leakage testable.
 
@@ -63295,17 +61115,7 @@ $$
 
 ###### Galileon / Horndeski Theory
 
-**Concept Type:** Theory
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** scalar-tensor modification
-**Short Name:** Horndeski
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
+**Concept Type:** Theory **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** scalar-tensor modification **Short Name:** Horndeski **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
 **Surviving result.** These theories classify broad scalar-tensor interactions with controlled field equations and screening behavior.
 
@@ -63315,17 +61125,7 @@ $$
 
 ###### Chameleon / Screening Modified Gravity
 
-**Concept Type:** Program
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** environment-dependent gravity
-**Short Name:** Screening Gravity
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
+**Concept Type:** Program **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** environment-dependent gravity **Short Name:** Screening Gravity **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
 **Surviving result.** Screening models correctly require one theory to explain both cosmological-scale effects and local null tests.
 
@@ -63335,17 +61135,7 @@ $$
 
 ###### Eternal Inflation
 
-**Concept Type:** Program
-**Ontological Area:** Cosmology
-**Sub-Ontological Area:** inflationary ensemble cosmology
-**Short Name:** Eternal Inflation
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Observer-level cosmological history and inference
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Cosmology **Sub-Ontological Area:** inflationary ensemble cosmology **Short Name:** Eternal Inflation **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Observer-level cosmological history and inference **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
 **Surviving result.** Eternal-inflation models expose stochastic self-reproduction and measure problems in inflationary dynamics.
 
@@ -63355,17 +61145,7 @@ $$
 
 ###### Vacuum Landscape / String Landscape
 
-**Concept Type:** Program
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** vacuum multiplicity
-**Short Name:** String Landscape
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
+**Concept Type:** Program **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** vacuum multiplicity **Short Name:** String Landscape **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
 **Surviving result.** The landscape illustrates how many consistent-looking effective sectors can arise in a broad mathematical framework.
 
@@ -63375,17 +61155,7 @@ $$
 
 ###### Swampland Program
 
-**Concept Type:** Program
-**Ontological Area:** Unification / Beyond-Standard-Model
-**Sub-Ontological Area:** quantum-gravity consistency filters
-**Short Name:** Swampland
-**Concept Status:** Competing Research Program
-**Maturity:** Live Research Program
-**Claims At:** Proposed high-energy unification structure
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Effective field / geometry level
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
+**Concept Type:** Program **Ontological Area:** Unification / Beyond-Standard-Model **Sub-Ontological Area:** quantum-gravity consistency filters **Short Name:** Swampland **Concept Status:** Competing Research Program **Maturity:** Live Research Program **Claims At:** Proposed high-energy unification structure **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Effective field / geometry level **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
 **Surviving result.** Swampland criteria discipline the relation between low-energy effective theories and candidate ultraviolet completions.
 
@@ -63397,17 +61167,7 @@ $$
 
 ###### Least-Action and Lagrangian Formalism
 
-**Concept Type:** Formalism
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** variational dynamics
-**Short Name:** Least Action
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Effective Formalism
-**Claims At:** Cross-scale mathematical or dynamical structure
-**Assessed At:** Substrate Ontology
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Substrate Ontology
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives; Recoverable Only After Reinterpretation
+**Concept Type:** Formalism **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** variational dynamics **Short Name:** Least Action **Concept Status:** Mainstream Foundational **Maturity:** Established Effective Formalism **Claims At:** Cross-scale mathematical or dynamical structure **Assessed At:** Substrate Ontology **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Substrate Ontology **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives; Recoverable Only After Reinterpretation
 
 **Surviving result.** Variational principles compactly organize effective equations of motion, constraints, canonical variables, and approximation schemes across tested physics.
 
@@ -63417,17 +61177,7 @@ $$
 
 ###### Noether's Theorem
 
-**Concept Type:** Theorem
-**Ontological Area:** Methodology / Inference Framework
-**Sub-Ontological Area:** symmetry and conservation
-**Short Name:** Noether Theorem
-**Concept Status:** Mainstream Foundational
-**Maturity:** Established Theorem
-**Claims At:** Cross-scale mathematical or dynamical structure
-**Assessed At:** Substrate Ontology
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Substrate Ontology
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
+**Concept Type:** Theorem **Ontological Area:** Methodology / Inference Framework **Sub-Ontological Area:** symmetry and conservation **Short Name:** Noether Theorem **Concept Status:** Mainstream Foundational **Maturity:** Established Theorem **Claims At:** Cross-scale mathematical or dynamical structure **Assessed At:** Substrate Ontology **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Substrate Ontology **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target; Good Mathematics, Wrong Primitives
 
 **Surviving result.** Continuous variational symmetries generate conserved currents or charges and connect dynamical law structure to energy, momentum, and angular-momentum bookkeeping.
 
@@ -63439,17 +61189,7 @@ $$
 
 ###### Mass
 
-**Concept Type:** Quantity
-**Ontological Area:** Assembly / Particle Structure
-**Sub-Ontological Area:** inertia and coupling
-**Short Name:** Mass
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level particle structure and reactions
-**Assessed At:** Medium and Constitutive Regimes
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Medium and Constitutive Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
+**Concept Type:** Quantity **Ontological Area:** Assembly / Particle Structure **Sub-Ontological Area:** inertia and coupling **Short Name:** Mass **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level particle structure and reactions **Assessed At:** Medium and Constitutive Regimes **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Medium and Constitutive Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
 **Surviving result.** Rest mass and inertial response organize kinematics, spectra, thresholds, and gravitational coupling at the observer level.
 
@@ -63459,17 +61199,7 @@ $$
 
 ###### Entropy
 
-**Concept Type:** Quantity
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** state counting and irreversibility
-**Short Name:** Entropy
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Quantity **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** state counting and irreversibility **Short Name:** Entropy **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Entropy measures multiplicity, missing detail, and irreversible record growth across statistical and information domains.
 
@@ -63479,17 +61209,7 @@ $$
 
 ###### Temperature
 
-**Concept Type:** Quantity
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** bulk excitation measure
-**Short Name:** Temperature
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Quantity **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** bulk excitation measure **Short Name:** Temperature **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** Temperature supplies a stable bulk parameter linking energy distributions, equations of state, and thermal response.
 
@@ -63499,17 +61219,7 @@ $$
 
 ###### The Laws of Thermodynamics
 
-**Concept Type:** Law
-**Ontological Area:** Statistical / Bulk Matter
-**Sub-Ontological Area:** bulk-law structure
-**Short Name:** Thermodynamic Laws
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Bulk statistical or thermodynamic behavior
-**Assessed At:** Statistical Population Regimes
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Law **Ontological Area:** Statistical / Bulk Matter **Sub-Ontological Area:** bulk-law structure **Short Name:** Thermodynamic Laws **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Bulk statistical or thermodynamic behavior **Assessed At:** Statistical Population Regimes **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** The thermodynamic laws constrain energy accounting, entropy production, equilibrium, and unattainability across bulk systems.
 
@@ -63519,17 +61229,7 @@ $$
 
 ###### Redshift
 
-**Concept Type:** Observable
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** observational spectral shift
-**Short Name:** Redshift
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Inference layer
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
+**Concept Type:** Observable **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** observational spectral shift **Short Name:** Redshift **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Observation and Inference **Comparative Stack Placement:** Inference layer **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
 **Surviving result.** Redshift is a directly measured spectral ratio that constrains relative motion, gravity, clocks, transport, and cosmological history.
 
@@ -63539,17 +61239,7 @@ $$
 
 ###### Spacetime Curvature
 
-**Concept Type:** Construct
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** effective geometry descriptor
-**Short Name:** Curvature
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
+**Concept Type:** Construct **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** effective geometry descriptor **Short Name:** Curvature **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
 **Surviving result.** Curvature compactly describes tidal response, lensing, geodesic deviation, and gravitational-wave propagation.
 
@@ -63559,17 +61249,7 @@ $$
 
 ###### Vacuum Energy
 
-**Concept Type:** Quantity
-**Ontological Area:** Spacetime / Gravity
-**Sub-Ontological Area:** background energy assignment
-**Short Name:** Vacuum Energy
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level gravitational or geometric dynamics
-**Assessed At:** Medium and Constitutive Regimes
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Medium and Constitutive Regimes
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology; Observationally Over-Inferred
+**Concept Type:** Quantity **Ontological Area:** Spacetime / Gravity **Sub-Ontological Area:** background energy assignment **Short Name:** Vacuum Energy **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level gravitational or geometric dynamics **Assessed At:** Medium and Constitutive Regimes **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Medium and Constitutive Regimes **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology; Observationally Over-Inferred
 
 **Surviving result.** Vacuum-energy terms organize Casimir-type boundary effects, field zero-point bookkeeping, and cosmological-constant comparisons.
 
@@ -63579,17 +61259,7 @@ $$
 
 ###### Fine-Structure Constant
 
-**Concept Type:** Parameter
-**Ontological Area:** Quantum Effective Theory
-**Sub-Ontological Area:** dimensionless coupling
-**Short Name:** Fine-Structure Constant
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level quantum or field dynamics
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
+**Concept Type:** Parameter **Ontological Area:** Quantum Effective Theory **Sub-Ontological Area:** dimensionless coupling **Short Name:** Fine-Structure Constant **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level quantum or field dynamics **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Effective-Limit Recovery Target
 
 **Surviving result.** The dimensionless electromagnetic coupling controls atomic spectra, scattering, radiative corrections, and chemistry.
 
@@ -63599,17 +61269,7 @@ $$
 
 ###### Wavefunction
 
-**Concept Type:** Construct
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** state representation
-**Short Name:** Wavefunction
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Emergent Effective Closures
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Construct **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** state representation **Short Name:** Wavefunction **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Emergent Effective Closures **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** The wavefunction compactly predicts interference, amplitudes, spectra, and conditional measurement statistics.
 
@@ -63619,17 +61279,7 @@ $$
 
 ###### Information
 
-**Concept Type:** Construct
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** representation and state difference
-**Short Name:** Information
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
+**Concept Type:** Construct **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** representation and state difference **Short Name:** Information **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Observation and Inference **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
 **Surviving result.** Information measures distinguishability, coding, correlation, and observer-accessible records.
 
@@ -63639,17 +61289,7 @@ $$
 
 ###### Probability
 
-**Concept Type:** Construct
-**Ontological Area:** Measurement / Information / Interpretation
-**Sub-Ontological Area:** epistemic and ensemble weighting
-**Short Name:** Probability
-**Concept Status:** Mainstream Effective
-**Maturity:** Established Effective Formalism
-**Claims At:** Observer-level records, inference, and probability
-**Assessed At:** Observation and Inference
-**Comparative Stack Placement:** Cross-layer portable construct
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
+**Concept Type:** Construct **Ontological Area:** Measurement / Information / Interpretation **Sub-Ontological Area:** epistemic and ensemble weighting **Short Name:** Probability **Concept Status:** Mainstream Effective **Maturity:** Established Effective Formalism **Claims At:** Observer-level records, inference, and probability **Assessed At:** Observation and Inference **Comparative Stack Placement:** Cross-layer portable construct **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
 **Surviving result.** Probability organizes frequencies, uncertainty, inference, and stochastic effective laws.
 
@@ -63659,28 +61299,15 @@ $$
 
 #### Theory Inheritance Discipline
 
-This chapter states how inherited physics concepts may be used during
-$\mathbb{A}\mathbb{A}\mathbb{A}$ development. Its central rule is simple:
-successful mapping is not burden relief. A concept from a higher-level theory
-may be accurate, useful, or even indispensable in its tested regime while still
-failing to identify the substrate mechanism that produces the result.
+This chapter states how inherited physics concepts may be used during $\mathbb{A}\mathbb{A}\mathbb{A}$ development. Its central rule is simple: successful mapping is not burden relief. A concept from a higher-level theory may be accurate, useful, or even indispensable in its tested regime while still failing to identify the substrate mechanism that produces the result.
 
-The discipline here sits between the broad survey in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md),
-the classification catalog in [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md),
-and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
-It does not own the substrate ontology, the Master Equation of Motion, assembly
-definitions, validation gates, or parameter ledgers. Its job is to prevent
-inherited concepts from entering the corpus with more authority than they have
-earned.
+The discipline here sits between the broad survey in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), the classification catalog in [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), and the detailed per-framework mappings in [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md). It does not own the substrate ontology, the Master Equation of Motion, assembly definitions, validation gates, or parameter ledgers. Its job is to prevent inherited concepts from entering the corpus with more authority than they have earned.
 
 ##### Core Claim
 
-No inherited theory is trusted as ontology. Inherited theories are trusted only
-as structured evidence, mathematics, benchmark records, or comparison pressure
-after their regime and stack placement are declared.
+No inherited theory is trusted as ontology. Inherited theories are trusted only as structured evidence, mathematics, benchmark records, or comparison pressure after their regime and stack placement are declared.
 
-The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\mathbb{A}$."
-The stronger use is:
+The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\mathbb{A}$." The stronger use is:
 
 1. name the regime where the inherited concept is accurate,
 2. state the mathematics or record that survives,
@@ -63688,13 +61315,11 @@ The stronger use is:
 4. define the residual that would count as recovery,
 5. name the failure mode that would show the mapping has overreached.
 
-Plain language: the inherited theory can tell the program what must be
-recovered, but it cannot tell the program what the world is made of.
+Plain language: the inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
 
 ##### Transfer Record
 
-For an inherited concept $C$, the comparison is disciplined only when the
-corpus can state the following transfer record.
+For an inherited concept $C$, the comparison is disciplined only when the corpus can state the following transfer record.
 
 $$
 \mathcal{T}_{\mathrm{inherit}}(C)
@@ -63722,9 +61347,7 @@ The fields mean:
 | $P_C$ | Reasoning provenance | Why is the equation believed, doubted, or kept directional? |
 | $F_C$ | Failure mode | What would show the mapping is only verbal or overfitted? |
 
-This is a methodology object, not a new validation gate. It is a compact way to
-keep ontology, effective description, and inference separated while the theory
-is being built.
+This is a methodology object, not a new validation gate. It is a compact way to keep ontology, effective description, and inference separated while the theory is being built.
 
 A typical residual has the following schematic form.
 
@@ -63737,15 +61360,9 @@ B_C^{\mathrm{obs}}
 \right)
 $$
 
-Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record,
-$d_C$ is the comparison metric appropriate to the inherited concept, and
-$B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
+Here $\theta$ is the candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record, $d_C$ is the comparison metric appropriate to the inherited concept, and $B_C^{\mathrm{obs}}$ is the validated observer-level benchmark.
 
-The important burden is the origin of both $\theta$ and the projection map. If
-either is selected after seeing the benchmark, the result is benchmark fitting.
-For a disciplined comparison, the projection is fixed on a calibration record
-$D_C^{\mathrm{cal}}$ that is disjoint from the recovery benchmark. The
-following expression states the calibration rule.
+The important burden is the origin of both $\theta$ and the projection map. If either is selected after seeing the benchmark, the result is benchmark fitting. For a disciplined comparison, the projection is fixed on a calibration record $D_C^{\mathrm{cal}}$ that is disjoint from the recovery benchmark. The following expression states the calibration rule.
 
 $$
 \Pi_C^\star
@@ -63756,14 +61373,7 @@ L_C^{\mathrm{cal}}\!\left(\Pi;D_C^{\mathrm{cal}}\right),
 D_C^{\mathrm{cal}}\cap B_C^{\mathrm{obs}}=\varnothing .
 $$
 
-The frozen map $\Pi_C^\star$ must then be shared across every benchmark family
-that claims the same observer channel. A separate map for each clock type,
-spectral line, lensing observable, or detector family is hidden retuning, not
-recovery. If $\theta$ is generated from the Master EOM, assembly closure,
-Noether sea response, and declared record channel before comparison, and if
-$\Pi_C^\star$ is calibrated independently and frozen before the benchmark is
-opened, then a small $\mathcal{R}_C$ can become evidence of implementation
-closure.
+The frozen map $\Pi_C^\star$ must then be shared across every benchmark family that claims the same observer channel. A separate map for each clock type, spectral line, lensing observable, or detector family is hidden retuning, not recovery. If $\theta$ is generated from the Master EOM, assembly closure, Noether sea response, and declared record channel before comparison, and if $\Pi_C^\star$ is calibrated independently and frozen before the benchmark is opened, then a small $\mathcal{R}_C$ can become evidence of implementation closure.
 
 ##### Transfer Classes
 
@@ -63777,20 +61387,11 @@ Inherited concepts enter the corpus in five different ways.
 | Effective-limit concept | Conditional | Wavefunction, thermodynamics, entropy, hydrodynamics, effective metric, cosmology variables | Must declare coarse-graining, regime, and residual |
 | Directional comparison | Low to medium | Holography, MOND-like fits, inflationary language, string/LQG/SUSY programs, information/computation ontology | May guide questions, but cannot supply doctrine without a native derivation |
 
-The transfer class can change by regime. A mathematical structure may be a
-direct formal tool in one chapter, an effective-limit concept in another, and a
-directional analogy in a third. The page or section using it must make the
-local status visible. Compound transfer-class labels are not allowed. When a
-row has more than one role, the transfer class records its governing authority,
-while the separate ontology-placement and mathematical-use fields record the
-other distinctions.
+The transfer class can change by regime. A mathematical structure may be a direct formal tool in one chapter, an effective-limit concept in another, and a directional analogy in a third. The page or section using it must make the local status visible. Compound transfer-class labels are not allowed. When a row has more than one role, the transfer class records its governing authority, while the separate ontology-placement and mathematical-use fields record the other distinctions.
 
 ###### Claim-Grade Ceilings
 
-Transfer class and claim grade are independent axes. Transfer class says why
-an inherited object is present; the claim grade says what the evidence
-establishes at the layer where the claim is made. The following ceilings apply
-unless a separate native derivation or independent measurement is named.
+Transfer class and claim grade are independent axes. Transfer class says why an inherited object is present; the claim grade says what the evidence establishes at the layer where the claim is made. The following ceilings apply unless a separate native derivation or independent measurement is named.
 
 | Transfer class | Substrate claim ceiling | Assembly or effective-layer ceiling | Observer-record ceiling |
 | --- | --- | --- | --- |
@@ -63800,17 +61401,11 @@ unless a separate native derivation or independent measurement is named.
 | Effective-limit concept | Guessed if promoted to substrate ontology | Inferred after coarse-graining, domain, and residual are controlled | Measured only for the underlying record; the interpretation remains inferred |
 | Directional comparison | Guessed | Guessed, or inferred only as a comparative constraint | Measured only when a separate benchmark record is named |
 
-The mechanical audit requires verification before advancement: a lower-layer claim cannot inherit the
-grade of a higher-layer success. A measured spectrum is still only a measured
-spectrum; the proposed substrate mechanism beneath it remains inferred or
-guessed until an independent native prediction closes the projection and
-residual.
+The mechanical audit requires verification before advancement: a lower-layer claim cannot inherit the grade of a higher-layer success. A measured spectrum is still only a measured spectrum; the proposed substrate mechanism beneath it remains inferred or guessed until an independent native prediction closes the projection and residual.
 
 ##### Canonical Direct-Use Audit
 
-The current corpus uses prior-theory concepts directly only in controlled ways.
-This list is the canonical audit level for the present corpus; individual
-chapters still own their local details.
+The current corpus uses prior-theory concepts directly only in controlled ways. This list is the canonical audit level for the present corpus; individual chapters still own their local details.
 
 | Inherited concept family | Current corpus use | Transfer class | Ontology placement | Mathematical-use status | Scope discipline |
 | --- | --- | --- | --- | --- | --- |
@@ -63831,26 +61426,11 @@ chapters still own their local details.
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison | Methodological comparison | Record-analysis language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | Comparison only | Heuristic or formal analogy | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
-The early quantum-origin examples should be read through this transfer
-discipline as a connected benchmark bundle. Blackbody radiation tests whether
-photon-channel emission, absorption, scattering, and medium exchange recover
-detailed balance and the Planck occupation law without importing primitive mode
-quantization. The photoelectric effect tests whether material capture
-thresholds, recoil, heating, and bound-excitation rows close without treating
-photon energy as a free-standing ontology. Hydrogen line spectra test whether
-atomic envelope basins, shared spectral rows, and photon event ledgers recover
-stable lines without adding a per-line clock factor. Double-slit and
-wave-particle cases test whether unresolved path history remains live until a
-localized record forms. Together these cases are inherited benchmark records:
-they state what must be recovered, not what the substrate is.
+The early quantum-origin examples should be read through this transfer discipline as a connected benchmark bundle. Blackbody radiation tests whether photon-channel emission, absorption, scattering, and medium exchange recover detailed balance and the Planck occupation law without importing primitive mode quantization. The photoelectric effect tests whether material capture thresholds, recoil, heating, and bound-excitation rows close without treating photon energy as a free-standing ontology. Hydrogen line spectra test whether atomic envelope basins, shared spectral rows, and photon event ledgers recover stable lines without adding a per-line clock factor. Double-slit and wave-particle cases test whether unresolved path history remains live until a localized record forms. Together these cases are inherited benchmark records: they state what must be recovered, not what the substrate is.
 
 ###### Constants And Unit Conventions
 
-Constants do not all inherit in the same way. A unit convention changes the
-coordinates used to report a record; a measured constant summarizes an
-observer-level relation; a dimensionless coupling is a recovery target; and a
-native parameter belongs to the substrate law only when the native ontology or
-dynamics declares it.
+Constants do not all inherit in the same way. A unit convention changes the coordinates used to report a record; a measured constant summarizes an observer-level relation; a dimensionless coupling is a recovery target; and a native parameter belongs to the substrate law only when the native ontology or dynamics declares it.
 
 | Item | Transfer class | Permitted use | Prohibited promotion |
 | --- | --- | --- | --- |
@@ -63861,19 +61441,11 @@ dynamics declares it.
 | $\alpha$ | Validated benchmark record | Dimensionless precision target shared by spectroscopy, recoil, and lepton-moment records | A freely inserted substrate coupling |
 | $k_B$ | Direct mathematical tool | Conversion between temperature units and energy units in a declared bulk ensemble | Thermodynamics or temperature assigned to one architrino |
 
-Numerical recovery must state which constants were fitted, which were held out,
-and which are unit conventions. A fitted value cannot then serve as an
-independent prediction in the same record family. Dimensionless residuals are
-preferred because they expose hidden unit retuning, but forming a dimensionless
-quantity does not by itself make its physical interpretation native.
+Numerical recovery must state which constants were fitted, which were held out, and which are unit conventions. A fitted value cannot then serve as an independent prediction in the same record family. Dimensionless residuals are preferred because they expose hidden unit retuning, but forming a dimensionless quantity does not by itself make its physical interpretation native.
 
 ###### Worked Transfer Record: Lorentz Clock Behavior
 
-This example instantiates the seven-field record as a closure specification,
-not as a claim that Lorentz recovery has already been derived. The inherited
-target is the clock-rate relation
-$\Delta\tau/\Delta t=\sqrt{1-v^2/c_\gamma^2}$ in the inertial,
-weak-environment regime.
+This example instantiates the seven-field record as a closure specification, not as a claim that Lorentz recovery has already been derived. The inherited target is the clock-rate relation $\Delta\tau/\Delta t=\sqrt{1-v^2/c_\gamma^2}$ in the inertial, weak-environment regime.
 
 | Transfer-record field | Instantiation |
 | --- | --- |
@@ -63885,30 +61457,13 @@ weak-environment regime.
 | $P_C$ | Effective-limit concept: Lorentz clock behavior is a validated observer-level regularity and a recovery target, not substrate geometry |
 | $F_C$ | Failure occurs if different clock types require different projection maps, if the same map misses the shared rate curve beyond declared uncertainty, or if the construction imports a Lorentzian metric or proper-time law into the substrate dynamics |
 
-The substrate prohibition is explicit: neither the Lorentz transformation nor
-a Minkowski metric may generate the architrino or assembly trajectory. The
-native generator must first produce moving-assembly and signal records. The
-projection is calibrated on stationary clock correspondences and frozen before
-the moving-clock benchmarks are opened. The benchmark is independent only when
-its moving-clock measurements, analysis pipeline, and uncertainty model were
-not used to choose the branch record or projection. Passing one clock family
-and failing another leaves the inheritance open even if a pooled fit looks
-good.
+The substrate prohibition is explicit: neither the Lorentz transformation nor a Minkowski metric may generate the architrino or assembly trajectory. The native generator must first produce moving-assembly and signal records. The projection is calibrated on stationary clock correspondences and frozen before the moving-clock benchmarks are opened. The benchmark is independent only when its moving-clock measurements, analysis pipeline, and uncertainty model were not used to choose the branch record or projection. Passing one clock family and failing another leaves the inheritance open even if a pooled fit looks good.
 
 ##### Foundational Formula Audit
 
-The foundational layer uses a short list of formulas directly, but they do not
-all have the same status. Some are substrate commitments, some are formal tools
-used to state the substrate, some are accepted native dynamics, and some are
-bookkeeping or proof scaffolds that remain subordinate to the native branch law.
+The foundational layer uses a short list of formulas directly, but they do not all have the same status. Some are substrate commitments, some are formal tools used to state the substrate, some are accepted native dynamics, and some are bookkeeping or proof scaffolds that remain subordinate to the native branch law.
 
-The important correction is the status of the familiar $1/r$ potential. The
-accepted primitive dynamics is not "a static $1/r$ field." The accepted
-primitive dynamics is the causal-root, inverse-square, receiver-local
-acceleration law with a transmitter-side acceleration weight. A $1/r$
-expression appears as a stationary/path-history
-potential calibration and as a partial Fokker-type variational scaffold, but it
-does not by itself relieve the burden of deriving or certifying the Master EOM.
+The important correction is the status of the familiar $1/r$ potential. The accepted primitive dynamics is not "a static $1/r$ field." The accepted primitive dynamics is the causal-root, inverse-square, receiver-local acceleration law with a transmitter-side acceleration weight. A $1/r$ expression appears as a stationary/path-history potential calibration and as a partial Fokker-type variational scaffold, but it does not by itself relieve the burden of deriving or certifying the Master EOM.
 
 | Formula family | Foundational expression | Current status | What it does not license |
 | --- | --- | --- | --- |
@@ -63931,18 +61486,13 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Work and kinetic bookkeeping | $dK/dT=\mu_K(\lVert\mathbf V\rVert)\mathbf A\cdot\mathbf V$ and optional $\mathbf F=\mu_{\text{arch}}\mathbf A$ | Assembly-level energy bookkeeping after a kinetic proxy is declared | A substrate force law, primitive particle-specific mass, or universal quadratic kinetic energy by assumption |
 | $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
 
-The $1/r$ item therefore belongs below the accepted acceleration law in the
-trust gradient. In a stationary emitter calibration, the path-history potential
-may take the following familiar form.
+The $1/r$ item therefore belongs below the accepted acceleration law in the trust gradient. In a stationary emitter calibration, the path-history potential may take the following familiar form.
 
 $$
 \phi(r,T)=\frac{q_0}{4\pi r}
 $$
 
-Taking a spatial gradient connects that amplitude to inverse-square
-acceleration scaling under the declared fixed-history calibration. In the full
-delayed dynamics, however, the following equation remains the accepted branch
-law.
+Taking a spatial gradient connects that amplitude to inverse-square acceleration scaling under the declared fixed-history calibration. In the full delayed dynamics, however, the following equation remains the accepted branch law.
 
 $$
 \frac{d^2 \mathbf X_i}{dT^2}
@@ -63954,28 +61504,19 @@ $$
 \hat{\mathbf R}_{ij}(T;T_t).
 $$
 
-The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
-because its variation leaves a receiver-side constraint residual on generic
-branches unless a stationarity condition or invariant counterterm closes the
-Euler derivative. That failure does not demote the Master EOM. It demotes the
-claim that the scalar $1/r$ scaffold alone explains the Master EOM.
+The pure scalar $1/r$ action scaffold is not yet an unconditional foundation because its variation leaves a receiver-side constraint residual on generic branches unless a stationarity condition or invariant counterterm closes the Euler derivative. That failure does not demote the Master EOM. It demotes the claim that the scalar $1/r$ scaffold alone explains the Master EOM.
 
 ###### Reliance-Risk Rating
 
-Risk here means the risk of relying on the formula as foundational before its
-scope, proof status, and failure mode are controlled. It is not a measure of
-importance. A formula can be central and still carry high reliance risk because
-the branch, convergence, regularization, or recovery burden is heavy.
+Risk here means the risk of relying on the formula as foundational before its scope, proof status, and failure mode are controlled. It is not a measure of importance. A formula can be central and still carry high reliance risk because the branch, convergence, regularization, or recovery burden is heavy.
 
 Risk scores:
 
 - 1: low risk; mostly definitional or purely formal.
 - 2: controlled risk; explicit postulate or convention with clear boundaries.
 - 3: medium risk; usable, but easy to overextend into a stronger claim.
-- 4: high risk; requires branch, regularization, or recovery discipline before
-  broad use.
-- 5: very high risk; should not be treated as foundational without a narrow
-  certificate or separate proof.
+- 4: high risk; requires branch, regularization, or recovery discipline before broad use.
+- 5: very high risk; should not be treated as foundational without a narrow certificate or separate proof.
 
 | Formula family | Risk score | Main reliance risk | Required discipline |
 | --- | --- | --- | --- |
@@ -63998,11 +61539,7 @@ Risk scores:
 | Work and kinetic bookkeeping | 4 | Primitive mass and quadratic kinetic energy are not native; energy bookkeeping depends on the chosen kinetic proxy and wake term | Declare $K$, $\mu_K$, or $\mu_{\text{arch}}$ and keep observer mass as an assembly-level recovery |
 | $1/r$ potential/action scaffold | 5 | It is useful for calibration and variational scaffolding, but the scalar scaffold alone does not generically derive the Master EOM | Treat it as conditional until the receiver-side residual, counterterm, or stationarity condition closes |
 
-The highest-risk rows are not rejected. They are the rows where the formula is
-too valuable to use casually. The correct response is narrower authority:
-branch certificates for root formulas, convergence controls for sums,
-finite-regulator labels for regularized claims, and explicit diagnostic status
-for potential and action scaffolds.
+The highest-risk rows are not rejected. They are the rows where the formula is too valuable to use casually. The correct response is narrower authority: branch certificates for root formulas, convergence controls for sums, finite-regulator labels for regularized claims, and explicit diagnostic status for potential and action scaffolds.
 
 ##### Regime And Scale Chart
 
@@ -64024,54 +61561,26 @@ A historical audit of prize-recognized discoveries reinforces the same rule: mid
 
 ##### Non-Relief Lemma
 
-**Lemma (methodological):** A mapping from an inherited concept $C$ to an
-$\mathbb{A}\mathbb{A}\mathbb{A}$ descriptor $A_C$ does not reduce the proof
-burden unless the same branch record $\theta$ also supplies the implementation
-map $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$, keeps
-$\mathcal{R}_C(\theta)$ below the declared tolerance in $D_C$, and avoids the
-known failure mode $F_C$ with a reasoning provenance $P_C$ appropriate to the
-claim level.
+**Lemma (methodological):** A mapping from an inherited concept $C$ to an $\mathbb{A}\mathbb{A}\mathbb{A}$ descriptor $A_C$ does not reduce the proof burden unless the same branch record $\theta$ also supplies the implementation map $\Pi_C^{\mathbb{A}\mathbb{A}\mathbb{A}}$, keeps $\mathcal{R}_C(\theta)$ below the declared tolerance in $D_C$, and avoids the known failure mode $F_C$ with a reasoning provenance $P_C$ appropriate to the claim level.
 
-Proof route: a verbal or diagrammatic mapping establishes only a relation
-between labels. Benchmark recovery requires an output comparison. Implementation
-closure requires a generator. If the generator is not declared, the concept
-still sits at the comparison layer. If the generator changes between benchmark
-families, the result is hidden tuning. If the generator is native and shared
-across the relevant sectors, then the inherited concept has been recovered as
-an effective limit rather than merely named.
+Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the generator changes between benchmark families, the result is hidden tuning. If the generator is native and shared across the relevant sectors, then the inherited concept has been recovered as an effective limit rather than merely named.
 
-Plain language: a map is not a mechanism. A mechanism is a native record that
-keeps working after the comparison target changes.
+Plain language: a map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
 
 ##### Reasoning Provenance Below Existing Theory
 
-The hardest inheritance cases appear when an inherited theory works above the
-level where $\mathbb{A}\mathbb{A}\mathbb{A}$ needs to reason. A formula may
-describe bulk matter, a detector record, or an ensemble statistic with high
-accuracy while still saying little about the motion of one assembly, one
-causal-root branch family, or one event ledger. In that zone, the solution is
-not yet sharp enough for doctrine. The corpus must record why an equation is
-being trusted, doubted, or used only as a directional guide.
+The hardest inheritance cases appear when an inherited theory works above the level where $\mathbb{A}\mathbb{A}\mathbb{A}$ needs to reason. A formula may describe bulk matter, a detector record, or an ensemble statistic with high accuracy while still saying little about the motion of one assembly, one causal-root branch family, or one event ledger. In that zone, the solution is not yet sharp enough for doctrine. The corpus must record why an equation is being trusted, doubted, or used only as a directional guide.
 
-This record is not a progress diary. It is reasoning provenance: the active
-chain of reasons that explains why a candidate equation is allowed to carry its
-current claim level. A useful provenance note contains:
+This record is not a progress diary. It is reasoning provenance: the active chain of reasons that explains why a candidate equation is allowed to carry its current claim level. A useful provenance note contains:
 
-1. the inherited trigger, meaning the equation, regularity, or benchmark that
-   motivated the deeper search,
-2. the native candidate, meaning the $\mathbb{A}\mathbb{A}\mathbb{A}$ equation,
-   branch condition, residual, or simulation target proposed underneath it,
-3. the reason for belief, such as a symmetry, dimensional match, conservation
-   channel, branch-counting identity, limiting case, or shared generator,
-4. the reason for doubt, such as hidden coarse-graining, missing branch
-   admissibility, ensemble dependence, caustic sensitivity, boundary flux, or a
-   record channel that has not been generated natively,
-5. the level of the claim: individual assembly, finite assembly family, bulk or
-   statistical population, observer inference, or analogy,
+1. the inherited trigger, meaning the equation, regularity, or benchmark that motivated the deeper search,
+2. the native candidate, meaning the $\mathbb{A}\mathbb{A}\mathbb{A}$ equation, branch condition, residual, or simulation target proposed underneath it,
+3. the reason for belief, such as a symmetry, dimensional match, conservation channel, branch-counting identity, limiting case, or shared generator,
+4. the reason for doubt, such as hidden coarse-graining, missing branch admissibility, ensemble dependence, caustic sensitivity, boundary flux, or a record channel that has not been generated natively,
+5. the level of the claim: individual assembly, finite assembly family, bulk or statistical population, observer inference, or analogy,
 6. the first falsifier that would demote the equation.
 
-The central question is therefore not merely "does this equation map?" The
-central question is "what makes this equation believable at this level?"
+The central question is therefore not merely "does this equation map?" The central question is "what makes this equation believable at this level?"
 
 | Equation status | What makes it believable | What would demote it |
 | --- | --- | --- |
@@ -64085,17 +61594,9 @@ central question is "what makes this equation believable at this level?"
 
 ##### Bulk Versus Individual Assembly Behavior
 
-Bulk formulas are not automatically wrong. They are often the most accurate
-description available at the observer scale. The error is to treat a bulk
-formula as if it already describes one assembly unless the projection from
-assembly records to bulk variables has been shown.
+Bulk formulas are not automatically wrong. They are often the most accurate description available at the observer scale. The error is to treat a bulk formula as if it already describes one assembly unless the projection from assembly records to bulk variables has been shown.
 
-Let $\Gamma_A(t)$ denote the retained state of assembly $A$, and let
-$\mathcal{H}_A(t)$ denote its path-history and event record over an access
-window $W$. Let $\mathcal{A}_W$ be the assembly family sampled by that window,
-and let $\mathcal{P}_{\mathcal{Q},W}$ be the declared projection that keeps only
-the observables $\mathcal{Q}$ relevant to the inherited comparison. The
-following expression gives a schematic bulk variable.
+Let $\Gamma_A(t)$ denote the retained state of assembly $A$, and let $\mathcal{H}_A(t)$ denote its path-history and event record over an access window $W$. Let $\mathcal{A}_W$ be the assembly family sampled by that window, and let $\mathcal{P}_{\mathcal{Q},W}$ be the declared projection that keeps only the observables $\mathcal{Q}$ relevant to the inherited comparison. The following expression gives a schematic bulk variable.
 
 $$
 Y_{\mathcal{Q},W}(T)
@@ -64107,9 +61608,7 @@ Y_{\mathcal{Q},W}(T)
 \right),
 $$
 
-Here $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
-In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of
-assembly states, path histories, and Noether sea state.
+Here $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window. In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation may have the following form.
 
@@ -64119,8 +61618,7 @@ $$
 F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}\right)
 $$
 
-Its credibility remains at the bulk level until the following projection
-residual is controlled.
+Its credibility remains at the bulk level until the following projection residual is controlled.
 
 $$
 \mathcal{R}_{\mathrm{bulk}}
@@ -64132,8 +61630,7 @@ F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(T)\right)
 \right\|_{\mathcal{Q},W}.
 $$
 
-It becomes credible as an individual-assembly guide only after the following
-separate assembly-level residual is controlled.
+It becomes credible as an individual-assembly guide only after the following separate assembly-level residual is controlled.
 
 $$
 \mathcal{R}_{\mathrm{assembly}}
@@ -64146,58 +61643,31 @@ $$
 \right\|_A.
 $$
 
-Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the
-assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the
-individual-assembly value inferred from the bulk equation. If
-$\mathcal{R}_{\mathrm{bulk}}$ is small while
-$\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population
-law. If both residuals are small in the declared regime, the bulk equation may
-serve as an effective assembly-level guide, but only in that regime.
+Here $\varphi_t$ is the native evolution of the assembly record, $\Pi_A$ is the assembly-level observable projection, and $\Pi_A^{\mathrm{bulk}}$ is the individual-assembly value inferred from the bulk equation. If $\mathcal{R}_{\mathrm{bulk}}$ is small while $\mathcal{R}_{\mathrm{assembly}}$ is large, the formula remains a population law. If both residuals are small in the declared regime, the bulk equation may serve as an effective assembly-level guide, but only in that regime.
 
-This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and
-detector-level formulas need special care. They may be accurate descriptions of
-records after projection while still being incomplete descriptions of the
-assembly behavior that produced those records.
+This distinction is why virial, thermodynamic, hydrodynamic, cosmological, and detector-level formulas need special care. They may be accurate descriptions of records after projection while still being incomplete descriptions of the assembly behavior that produced those records.
 
 ##### Use With Existing Comparison Documents
 
-[Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) should remain the compact reader map of
-major frameworks. It tells readers what the inherited theory says and how
-$\mathbb{A}\mathbb{A}\mathbb{A}$ expects to recover, reinterpret, or reject it.
+[Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) should remain the compact reader map of major frameworks. It tells readers what the inherited theory says and how $\mathbb{A}\mathbb{A}\mathbb{A}$ expects to recover, reinterpret, or reject it.
 
-[Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) should remain the classification
-catalog. It locates each concept in the comparative stack and the
-$\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the
-mapping target.
+[Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) should remain the classification catalog. It locates each concept in the comparative stack and the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, names its relation type, and records the mapping target.
 
-[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md) should remain the detailed bridge
-lane. A bridge may use this chapter's transfer record to keep its mathematical
-handoff disciplined, but the bridge still has to point back to the domain
-chapters that own the underlying mechanism.
+[Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md) should remain the detailed bridge lane. A bridge may use this chapter's transfer record to keep its mathematical handoff disciplined, but the bridge still has to point back to the domain chapters that own the underlying mechanism.
 
-[Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md),
-and [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) remain the places
-where validation records, benchmark families, and null-result pressure are
-made operational. This chapter should not duplicate those ledgers.
+[Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), and [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) remain the places where validation records, benchmark families, and null-result pressure are made operational. This chapter should not duplicate those ledgers.
 
 ##### Writing Rule
 
-When a corpus page relies on inherited theory, the prose should answer five
-questions before the concept carries weight:
+When a corpus page relies on inherited theory, the prose should answer five questions before the concept carries weight:
 
 1. What exactly is inherited: mathematics, data, benchmark, analogy, or method?
-2. What is the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer that generates the same
-   observable or regularity?
+2. What is the $\mathbb{A}\mathbb{A}\mathbb{A}$ layer that generates the same observable or regularity?
 3. What residual or failure mode would show that the inheritance has not closed?
-4. What reasoning provenance makes the equation believable, doubtful, or only
-   directional?
-5. Is the equation about an individual assembly, a finite assembly family, a
-   bulk or statistical population, or observer inference?
+4. What reasoning provenance makes the equation believable, doubtful, or only directional?
+5. Is the equation about an individual assembly, a finite assembly family, a bulk or statistical population, or observer inference?
 
-This rule keeps the force of inherited successes while preserving the deeper
-burden: $\mathbb{A}\mathbb{A}\mathbb{A}$ must still find the better metric,
-principle, or native mechanism when the inherited theory only supplies a successful
-effective summary.
+This rule keeps the force of inherited successes while preserving the deeper burden: $\mathbb{A}\mathbb{A}\mathbb{A}$ must still find the better metric, principle, or native mechanism when the inherited theory only supplies a successful effective summary.
 
 #### Theory Bridges
 
@@ -64481,14 +61951,7 @@ $$
 \widehat M_\theta
 $$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every
-classical variable. It is a domain-limited bridge: the action chart must first
-be admitted by the same retained branch record, the emitted or absorbed
-frequency must be a calibrated transition record, and the finite-difference
-step must preserve the same apparatus-accessible quantities that later become
-matrix entries. If the derivative-to-difference move is applied outside that
-declared record domain, the rule has become a formal analogy rather than an
-operator recovery.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every classical variable. It is a domain-limited bridge: the action chart must first be admitted by the same retained branch record, the emitted or absorbed frequency must be a calibrated transition record, and the finite-difference step must preserve the same apparatus-accessible quantities that later become matrix entries. If the derivative-to-difference move is applied outside that declared record domain, the rule has become a formal analogy rather than an operator recovery.
 
 ###### Dirac's 1925 Poisson-Bracket Bridge
 
@@ -66977,6 +64440,8 @@ $$
 \oint p\,dq=nh
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#planck-debroglie-action)
+
 is equivalent to
 
 $$
@@ -69317,12 +66782,7 @@ The correspondence between the quantum mechanical measurement formalism and arch
 
 The event is conservative before it is epistemic. A record-forming transition must close one event ledger in which the pre-record effective envelope loses autonomy, the target/probe/apparatus system exchanges energy, momentum, angular momentum, recoil, and Noether sea response, and the next effective state is assigned only after those rows have been routed into durable records. The "restart" of the wavefunction description is therefore a projection of a completed physical transaction, not the transaction itself.
 
-A target assembly can still be perturbed by an energy exchange without a
-completed measurement. If the interaction changes the effective state but
-does not supply a durable record, a restartable basin, event-ledger closure,
-and a bounded unrecorded-energy residual, the observer-side wavefunction may
-need a better reduced description, but it has not earned the completed wave
-function transition assumed by collapse language.
+A target assembly can still be perturbed by an energy exchange without a completed measurement. If the interaction changes the effective state but does not supply a durable record, a restartable basin, event-ledger closure, and a bounded unrecorded-energy residual, the observer-side wavefunction may need a better reduced description, but it has not earned the completed wave function transition assumed by collapse language.
 
 ###### Overcoming the Heisenberg Cut
 
@@ -72172,8 +69632,7 @@ $$
 $$
 \lvert d^{(w)}_t\rangle=V_{td}\lvert d\rangle+V_{ts}\lvert s\rangle+V_{tb}\lvert b\rangle
 $$
-The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
-Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
+The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing. Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at support vectors $(1,1,1)$, $(1,1,0)$, and $(1,0,0)$. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch. The component order follows the persistent binary indices and does not encode a radius order.
 
@@ -72196,15 +69655,13 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
-Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
-Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
+Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation. Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
 
 Noether sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
 
-Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch.
-Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
+Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch. Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
 This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
 
@@ -72367,8 +69824,7 @@ Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether br
 - $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the declared exposed sites of the two cores.
 - $W^-$ payload: $3\epsilon_+ + 9\epsilon_-$ (net $-6(e/6)=-e$).
 
-The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
-Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
+The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget. Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
 
 ###### CKM Benchmark (Rounded Magnitudes)
 
@@ -72452,10 +69908,7 @@ On the weak-coupling-triad domain $\Sigma_{\mathrm{WCT}}$, model this overlap as
 $$
 V_{ij}=\int_{\Sigma_{\mathrm{WCT}}}\psi_{j,m}^{d*}(x)\,\psi_{i,w}^{d}(x)\,d\mu(x)
 $$
-Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea.
-$a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel.
-At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$.
-then use the standard unitary decomposition
+Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea. $a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel. At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$. then use the standard unitary decomposition
 $$
 V=R_{23}(\theta_{23})\,R_{13}(\theta_{13},\delta)\,R_{12}(\theta_{12}),
 \qquad s_{ij}\equiv\sin\theta_{ij}
@@ -72489,9 +69942,7 @@ s_{23}=e^{-\kappa_{23}},\qquad
 s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=\xi\,s_{12}s_{23},
 \quad \xi\equiv e^{-\sigma}\in(0,1]
 $$
-This captures hierarchy with three real parameters for magnitudes.
-Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport.
-Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
+This captures hierarchy with three real parameters for magnitudes. Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport. Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
 
 Holonomy closure postulate (no extra phase fit):
 $$
@@ -72514,8 +69965,7 @@ $$
 \kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad \xi=0.401
 $$
 
-> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$.
-> Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,{}^\circ$ (standard CKM phase convention), this is within $1\sigma$.
+> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$. Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,{}^\circ$ (standard CKM phase convention), this is within $1\sigma$.
 
 Predictions not used in calibration:
 
@@ -72621,8 +70071,7 @@ Equivalent interval criterion: $I_x^{(p)}$ overlaps $I_{x,\text{ext}}^{(p)}$.
 
 This upgrades the CKM closure check from central-value comparison to a statistically testable confidence-interval statement.
 
-Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries
-$\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
+Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries $\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
 
 Calibration anchors: $\lvert V_{us}\rvert,\ \lvert V_{cb}\rvert,\ \lvert V_{ub}\rvert$.
 
@@ -72908,21 +70357,18 @@ $$
 $$
 So the Planck length maps to the **declared alignment circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
 
-With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
-Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
+With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant. Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
 
 **Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the declared reference orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
 $$
 G \propto \frac{c_f^3 (\text{alignment geometry})}{h}
 $$
-Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors.
-Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
+Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors. Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
 
 This leaves three coherent origin stories to keep in view:
 1. **One-constant ontology:** a deeper invariance in the delay-geometry produces both $c_f$ and $h$, with $G$ a composite of those.
 2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
-3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
-We keep these as open threads while we test whether alignment alone can lock the scale.
+3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation. We keep these as open threads while we test whether alignment alone can lock the scale.
 
 ###### Planck Units as binary-3 Mappings (Alignment State)
 
@@ -73042,8 +70488,7 @@ This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/fre
 
 **Failure mode:** If simulations or analytic work reveal:
 - a continuum of stable modes beyond the aligned state, or
-- multiple distinct aligned endpoints,
-then the “single top rung” picture must be modified or abandoned.
+- multiple distinct aligned endpoints, then the “single top rung” picture must be modified or abandoned.
 
 ---
 
@@ -73059,9 +70504,7 @@ In the low-energy / weak-alignment regime:
 - Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
-> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations:
-> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.
-> This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
+> **Hypothesis:** The effective orientation space of such an A1 behaves like an $SU(2)$-type double cover of spatial rotations: a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it. This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
 
 A rigorous mapping from the detailed A1 phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
 
@@ -73106,8 +70549,7 @@ Because an A1 can carry several internal frequency rows, $\mathcal{A}_{\text{cyc
   - the coupling $\kappa$ (A6),
   - and the causal speed $c_f$ (A1).
 
-> **Conjectured Mapping (Cycle Action and Angular Momentum):**
-> The closed-cycle action associated with this aligned state,
+> **Conjectured Mapping (Cycle Action and Angular Momentum):** The closed-cycle action associated with this aligned state,
 > $$
 >   \mathcal{A}_{\text{align}}^{\text{cycle}} \equiv 2\pi I(n_{\text{max}}),
 > $$
@@ -75539,10 +72981,7 @@ The architrino position is this: physical entities and causal dynamics are prima
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
-Each subject is assessed by the same substantive questions: what it treats as
-fundamental, which explanatory success survives, where an informational or
-computational description outruns its physical implementation, and what
-$\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
+Each subject is assessed by the same substantive questions: what it treats as fundamental, which explanatory success survives, where an informational or computational description outruns its physical implementation, and what $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover at the effective level.
 
 #### Information as Ontology
 
@@ -76464,20 +73903,7 @@ Zeeman splitting supplied a magnetic-field version of the same transition-record
 
 Stern-Gerlach turned the same magnetic response problem into a direct measurement-channel data product. A randomly oriented classical magnetic moment in a field gradient should smear across a detector. Standard orbital quantization alone also misses the silver-atom result: the active outer electron sits in a $5s$ orbital with $\ell=0$, while a hypothetical $p$ or $d$ orbital contribution would give $2\ell+1=3$ or $5$ projection channels, not two. The later spin-$\tfrac{1}{2}$ label correctly recovered the two records, and rotated analyzer sequences correctly exposed noncommuting measurement channels. The near-miss is that this became an operator-and-eigenvalue lock-in before the field had a physical account of how apparatus gradient, magnetic moment, angular-momentum exchange, and record formation produce the two stable outcomes. The historical packet is therefore magnetic-deflection data product -> classical smear failure -> orbital-recovery mismatch -> spin-$\tfrac{1}{2}$ recovery label -> noncommuting analyzer evidence -> later operational lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the recovery target is to keep Bohr-Sommerfeld orbital quantization, electron spin, and Stern-Gerlach record formation as separate levels until one branch record derives their shared angular-momentum and measurement-response ledger.
 
-The solar sequel sharpened that sequence by moving the same effect from the
-laboratory into an astronomical source record. Lockyer, Young, Cortie, and other
-solar observers had already recorded broadened, doubled, or tripled sunspot
-lines before the laboratory Zeeman effect was recognized. Hale's 1908 step was
-to join those records to the Zeeman polarization discriminator: a sunspot near
-disk center should present the longitudinal circularly polarized doublet, while
-a sunspot near the limb should approach the transverse linearly polarized
-pattern. The historical packet is therefore: solar spectral anomaly; laboratory
-magnetic-splitting recovery model; polarization discriminator; calibrated
-magnetic-field inference; and later stellar or compact-source magnetic
-benchmarks. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that an
-observed line split becomes a physical source map only when the line family,
-viewing geometry, analyzer response, photon-channel polarization, and magnetic
-state are bound to one event record.
+The solar sequel sharpened that sequence by moving the same effect from the laboratory into an astronomical source record. Lockyer, Young, Cortie, and other solar observers had already recorded broadened, doubled, or tripled sunspot lines before the laboratory Zeeman effect was recognized. Hale's 1908 step was to join those records to the Zeeman polarization discriminator: a sunspot near disk center should present the longitudinal circularly polarized doublet, while a sunspot near the limb should approach the transverse linearly polarized pattern. The historical packet is therefore: solar spectral anomaly; laboratory magnetic-splitting recovery model; polarization discriminator; calibrated magnetic-field inference; and later stellar or compact-source magnetic benchmarks. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that an observed line split becomes a physical source map only when the line family, viewing geometry, analyzer response, photon-channel polarization, and magnetic state are bound to one event record.
 
 Matrix mechanics supplied the algebraic version of the same transition-data lesson. Heisenberg's starting point was not a picture of an electron orbit, but the experimentally organized table of transition frequencies and amplitudes. Ritz combination rules made the frequencies compose by matched indices, and line intensities demanded corresponding transition quantities. Heisenberg's recovery move was to replace the classical Fourier components of an orbit with indexed transition amplitudes; once products were required to preserve the same transition-frequency closure, multiplication had to sum through matching intermediate indices. Born and Jordan later recognized that rule as matrix multiplication. The near miss is that this was a genuine structural discovery about the observable transition record, not proof that observables-only formalism is final ontology.
 

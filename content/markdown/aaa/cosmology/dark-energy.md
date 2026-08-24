@@ -340,6 +340,8 @@ $$
 \text{on the homogeneous } w_{\mathrm{eff}}\approx -1 \text{ comparison branch}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#dark-energy-equation-of-state)
+
 No identity is assumed among $\Lambda_{\mathrm{fit}}$, $\Lambda_{\mathrm{int}}$, $\Lambda_{\mathrm{vac}}^{\mathrm{QFT}}$, and $\Lambda_{\mathrm{eff}}^{\mathrm{sea}}$. A native dark-energy claim must instead pass a residual matching test,
 
 $$

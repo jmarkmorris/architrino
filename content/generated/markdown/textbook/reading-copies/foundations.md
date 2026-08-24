@@ -399,16 +399,9 @@ with each orbit site carrying a fixed polarity sign. If assembly closure retains
 
 ### Wake Response and Effective Electromagnetic Fields
 
-An individual architrino does not receive an electric or magnetic field as an
-additional substrate input. It receives the causal-root acceleration
-contributions defined by the Master Equation. Effective field language becomes
-available only after those source-provenanced contributions and any derived
-assembly, Noether sea, and boundary response have been projected into a
-receiver-independent continuum record.
+An individual architrino does not receive an electric or magnetic field as an additional substrate input. It receives the causal-root acceleration contributions defined by the Master Equation. Effective field language becomes available only after those source-provenanced contributions and any derived assembly, Noether sea, and boundary response have been projected into a receiver-independent continuum record.
 
-There is nevertheless a useful bridge to electric response. For one declared
-source history, evaluate the source-driven acceleration on matched hypothetical
-receiver states that differ only by polarity. Define
+There is nevertheless a useful bridge to electric response. For one declared source history, evaluate the source-driven acceleration on matched hypothetical receiver states that differ only by polarity. Define
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -446,27 +439,11 @@ $$
 \sigma\in\{+1,-1\}.
 $$
 
-The labels `even` and `odd` refer to receiver-polarity reversal. They do not
-refer to spatial parity. One actual architrino has one fixed polarity; the
-matched pair is a comparison instrument, not a co-located physical pair. If
-the even term vanishes in an isolated electric regime, the two receiver
-polarities acquire equal-and-opposite source-driven accelerations. This is the
-native electric-sign analogue, but it remains a decomposition of the causal-hit
-ledger rather than an imported $q\mathbf E/m$ law.
+The labels `even` and `odd` refer to receiver-polarity reversal. They do not refer to spatial parity. One actual architrino has one fixed polarity; the matched pair is a comparison instrument, not a co-located physical pair. If the even term vanishes in an isolated electric regime, the two receiver polarities acquire equal-and-opposite source-driven accelerations. This is the native electric-sign analogue, but it remains a decomposition of the causal-hit ledger rather than an imported $q\mathbf E/m$ law.
 
-There is no corresponding primitive magnetic vector in one radial hit. A
-magnetic readout must be recovered from organized multi-source and multi-root
-history, moving or circulating assembly geometry, any derived Noether sea and
-boundary response, and an observer-level projection. Whether the sea is
-essential, modifies a direct source-history response, or remains within its
-balanced reference tolerance is a constitutive closure target rather than a
-definition of either field.
+There is no corresponding primitive magnetic vector in one radial hit. A magnetic readout must be recovered from organized multi-source and multi-root history, moving or circulating assembly geometry, any derived Noether sea and boundary response, and an observer-level projection. Whether the sea is essential, modifies a direct source-history response, or remains within its balanced reference tolerance is a constitutive closure target rather than a definition of either field.
 
-Plainly: the electric-like sign difference is already visible when the same
-source history is evaluated against the two architrino polarities. The smooth
-electric field is the later common map of that response. Magnetic behavior
-requires additional organized geometry; neither field is a new substance or
-an extra term in the architrino equation of motion.
+Plainly: the electric-like sign difference is already visible when the same source history is evaluated against the two architrino polarities. The smooth electric field is the later common map of that response. Magnetic behavior requires additional organized geometry; neither field is a new substance or an extra term in the architrino equation of motion.
 
 ### Provenance and Persistence
 
@@ -629,8 +606,7 @@ Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
 \mathbf Z_a(s)=\mathbf X_a(s),
 $$
-where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$.
-Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
+where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$. Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-transmitter wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from transmitter-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
@@ -1086,8 +1062,7 @@ The zero term is also a topology-and-bundle statement. Because the void is $\mat
 $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
-and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$.
-The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
+and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$. The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
 > **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
 
@@ -1830,20 +1805,14 @@ $$
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating
-$F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
+On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating $F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
 $$
 \frac{dT_{t,\ell}}{dT_r}
 =
 \frac{c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_i(T_r)}
 {c_f-\hat{\mathbf{r}}_{ij}(T_r,T_{t,\ell})\cdot\mathbf V_j(T_{t,\ell})}
 $$
-This identity is not a new coupling constant. It distinguishes the transmitter-side
-causal-root Jacobian from the rate at which a moving receiver path samples the
-same emitted causal wake sequence. A stationary receiver in the Euclidean-void
-rest frame sets the numerator to $c_f$; radial receiver motion changes the
-receiver-side action or wake-history rate and must be recorded when a proof
-uses accumulated action rather than only an event-local acceleration contribution.
+This identity is not a new coupling constant. It distinguishes the transmitter-side causal-root Jacobian from the rate at which a moving receiver path samples the same emitted causal wake sequence. A stationary receiver in the Euclidean-void rest frame sets the numerator to $c_f$; radial receiver motion changes the receiver-side action or wake-history rate and must be recorded when a proof uses accumulated action rather than only an event-local acceleration contribution.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 
@@ -1878,8 +1847,7 @@ c_\gamma
 c_0
 \left[1+O(\epsilon_{\mathrm{LV}})\right]
 $$
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation.
-It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
+The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation. It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
 $$
 \frac{R_{\parallel}}{R_{\perp}}
 =
@@ -3022,11 +2990,9 @@ The universe does not require a coordinate frame. Theory and simulation use one 
 
 This final distinction separates three layers that are easy to confuse. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. Complete-state bookkeeping can infer a coordinate frame from that full record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
-**Complete-state reconstruction:**
-The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+**Complete-state reconstruction:** The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
-**Physical Observer access:**
-Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
+**Physical Observer access:** Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
 - **Proper time** $\tau$, not absolute time $T$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T03:08:49.294Z",
-  "total_links": 2102,
+  "generated_at": "2026-08-24T04:16:13.714Z",
+  "total_links": 2125,
   "links": [
     {
       "sourceChapterId": "archie__about_architrino",
@@ -1422,6 +1422,54 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../../equation-mapping.html#dark-energy-equation-of-state",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#dark-energy-equation-of-state"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../../equation-mapping.html#effective-frw-scale-factor",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#effective-frw-scale-factor"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../../equation-mapping.html#friedmann-continuity-lcdm",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#friedmann-continuity-lcdm"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../../equation-mapping.html#planck-blackbody-occupancy",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#planck-blackbody-occupancy"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../../equation-mapping.html#rar-btfr-galaxy-response",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#rar-btfr-galaxy-response"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../../equation-mapping.html#redshift-factorization",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#redshift-factorization"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2530,6 +2578,38 @@
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../../equation-mapping.html#causal-wake-master-equation",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#causal-wake-master-equation"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../../equation-mapping.html#causal-wake-per-hit-law",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#causal-wake-per-hit-law"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../../equation-mapping.html#energy-momentum-rest-energy",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#energy-momentum-rest-energy"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../../equation-mapping.html#noether-conservation",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#noether-conservation"
     },
     {
       "sourceChapterId": "dynamics",
@@ -7654,6 +7734,22 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#maxwell-wave-current",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#maxwell-wave-current"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#planck-debroglie-action",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#planck-debroglie-action"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../ideal-braid.html",
       "kind": "external",
       "status": "web_redirect",
@@ -10782,6 +10878,14 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../../equation-mapping.html#schrodinger-born-current",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#schrodinger-born-current"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -12458,6 +12562,86 @@
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#coordinate-layer-key",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#coordinate-layer-key"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#effective-metric-adm-cartan",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#effective-metric-adm-cartan"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#geodesic-proper-time-action",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#geodesic-proper-time-action"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#lorentz-clock-rate",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#lorentz-clock-rate"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#noether-sea-continuity",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#noether-sea-continuity"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#oblate-spheroidal-envelope",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#oblate-spheroidal-envelope"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#photon-null-eikonal",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#photon-null-eikonal"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#poisson-einstein-weak-gravity",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#poisson-einstein-weak-gravity"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#shapiro-lensing-ppn",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#shapiro-lensing-ppn"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../../equation-mapping.html#weak-field-clock-redshift",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#weak-field-clock-redshift"
     },
     {
       "sourceChapterId": "spacetime",

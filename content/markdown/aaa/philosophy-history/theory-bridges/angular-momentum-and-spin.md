@@ -2048,6 +2048,8 @@ $$
 \oint p\,dq=nh
 $$
 
+[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#planck-debroglie-action)
+
 is equivalent to
 
 $$

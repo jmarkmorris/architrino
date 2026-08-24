@@ -20,6 +20,9 @@ $$
 =
 \chi_{\mathrm{eff}}(T,\mathbf X,\mathcal N_{\mathrm{sea}},\text{observer record}).
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#coordinate-layer-key)
+
 Unless a local derivation supplies the needed row, $\chi_{\mathrm{eff}}$ remains an obligation. A Lorentz formula counts in this chapter only when the same retained branch record supplies the map from absolute substrate quantities to effective observer records and keeps preferred-frame leakage inside the declared bounds. Bare symbols such as $t$, $\mathbf x$, $dt$, and $dx^i$ are therefore avoided as working notation because they hide which side of the map is being used.
 
 ## Abstract
@@ -429,6 +432,9 @@ $$
 =
 \frac{1}{\gamma_\star(v)}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#oblate-spheroidal-envelope)
+
 This is the direct map from Lorentz kinematics to Noether braid geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}

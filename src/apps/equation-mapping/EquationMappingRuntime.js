@@ -25,6 +25,10 @@ import {
   updateEquationOverlay,
 } from "./EquationMappingEditor.js";
 import {
+  createEquationMapSemanticId,
+  resolveEquationMapDocumentId,
+} from "./EquationMappingRegistry.js";
+import {
   navigateStandaloneAppHome,
   resolveStandaloneAppHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
@@ -713,36 +717,6 @@ function normalizeExpandedSubjectIds(value) {
   return new Set(value.map((entry) => String(entry ?? "").trim()).filter(Boolean));
 }
 
-function createStableSlug(value, fallback = "") {
-  const slug = String(value ?? "")
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/gu, "-")
-    .replace(/^-+|-+$/gu, "");
-  return slug || fallback;
-}
-
-function removeEquationIdPrefix(documentId = "") {
-  return String(documentId).replace(/^eq-\d+[a-z]?-/u, "");
-}
-
-function getDocumentHashId(document = {}) {
-  const semanticId = removeEquationIdPrefix(document.id);
-  return semanticId && semanticId !== document.id
-    ? semanticId
-    : createStableSlug(document.title, document.id);
-}
-
-function getDocumentHashAliases(document = {}) {
-  return new Set(
-    [
-      document.id,
-      getDocumentHashId(document),
-      createStableSlug(document.title),
-    ].filter(Boolean)
-  );
-}
-
 function readLocationHashId(windowLike) {
   const hash = String(windowLike?.location?.hash ?? "").replace(/^#/u, "").trim();
   if (!hash) {
@@ -755,16 +729,8 @@ function readLocationHashId(windowLike) {
   }
 }
 
-function resolveDocumentId(documents = [], requestedId = "") {
-  const normalizedId = String(requestedId ?? "").replace(/^#/u, "").trim();
-  if (!normalizedId) {
-    return "";
-  }
-  return documents.find((document) => getDocumentHashAliases(document).has(normalizedId))?.id ?? "";
-}
-
 function replaceLocationHashForDocument(windowLike, document) {
-  const hashId = getDocumentHashId(document);
+  const hashId = createEquationMapSemanticId(document.id, document.title);
   if (!hashId || !windowLike?.location) {
     return;
   }
@@ -858,7 +824,7 @@ export class EquationMappingRuntime {
       options.initialDocumentId ||
       readLocationHashId(this.window);
     this.activeDocumentId =
-      resolveDocumentId(this.documents, requestedDocumentId) ||
+      resolveEquationMapDocumentId(this.documents, requestedDocumentId) ||
       this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ||
       this.documents[0].id;
     this.activeOverlayId = this.activeDocument.overlays.some((overlay) => overlay.id === savedSettings.activeOverlayId)

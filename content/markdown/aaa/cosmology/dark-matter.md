@@ -514,6 +514,8 @@ a_{\mathrm{obs}}(r)\simeq\sqrt{a_N(r)a_0^{\mathrm{MOND}}},
 v_c^4\simeq G_NM_ba_0^{\mathrm{MOND}}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#rar-btfr-galaxy-response)
+
 A compact version of the closure residual is
 
 $$

@@ -24,7 +24,15 @@ The app is intended to feel like a simple static equation annotation surface: on
 
 The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
-The live executable queue is maintained in [work-queue.md](work-queue.md).
+The live executable queue is maintained in [work-queue.md](work-queue.md). Its first delivery tranche binds the equations already supported by the app to their canonical corpus occurrences through ordinary Markdown links and one structured registry/API contract.
+
+## Accepted Link, Definition, And Authoring Direction
+
+- Ordinary Markdown links are the portable source-level binding. Each link immediately follows the selected canonical display equation and opens the app by a stable semantic page ID.
+- The app registry/API is the structured authority for equation-page discovery, normalized document retrieval, canonical links, source bindings, and later symbol-definition records. Markdown links point into that authority; they do not duplicate it.
+- Symbol help will use progressive disclosure from one record: concise text on pointer hover or keyboard focus, with the same contextual definition available in a scrollable detail panel for click, tap, accessibility, and longer explanation. A shared definition may be reused, but the equation response must resolve it into a complete contextual definition.
+- Equation registration is author-owned. An author adding or materially revising a supported equation supplies the stable ID, app record, canonical Markdown link, source binding, contextual symbol definitions or references, duplicate-occurrence disposition, and focused validation result in the same change.
+- The operational and API details live in [registry-and-authoring-contract.md](registry-and-authoring-contract.md).
 
 ## Objective
 
@@ -72,6 +80,7 @@ The first useful version should let the operator:
 | --- | --- | --- |
 | [work-queue.md](work-queue.md) | Ranked executable app tasks, lifecycle state, acceptance boundary, and completion conditions. | Equation Mapping API, runtime, data, tests, and review artifacts. |
 | [requirements-and-design.md](requirements-and-design.md) | Stable v1 requirements, layer model, visual language, subject index, settings, and implementation boundaries. | `equation-mapping.html`, `src/apps/equation-mapping/`, and selected equation-mapping review fixtures. |
+| [registry-and-authoring-contract.md](registry-and-authoring-contract.md) | Stable link/registry contract, read-only API usage, and author registration procedure. | Corpus equation links, Equation Mapping registry, focused validators, and contributor guidance. |
 
 ## Related Priority Notes
 

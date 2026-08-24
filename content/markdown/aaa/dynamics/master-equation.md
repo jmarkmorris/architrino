@@ -1138,6 +1138,8 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \, \hat{\mathbf{r}}_{ij}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#causal-wake-per-hit-law)
+
 If a force-like bookkeeping symbol is desired, define
 $$
 \mathbf{F}_{ij}(T_r;T_t) \equiv \mu_{\text{arch}}\,\mathbf A_{ij}(T_r;T_t)
@@ -1186,6 +1188,8 @@ W_{ij}^{\mathrm{acc}}(T_r;T_t)
 \, \hat{\mathbf{r}}_{ij}
 }
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#causal-wake-master-equation)
 
 where:
 

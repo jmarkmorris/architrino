@@ -290,6 +290,9 @@ $$
 S_{\rho}
 +r_{\rho}
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#noether-sea-continuity)
+
 The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether braid population and the residual decreases under refinement.
 
 The source term should be decomposed before it is used in cosmology or reaction provenance:

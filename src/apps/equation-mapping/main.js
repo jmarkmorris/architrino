@@ -1,4 +1,5 @@
 import { mountEquationMappingApp } from "./EquationMappingRuntime.js";
+import { createEquationMappingRegistryApi } from "./EquationMappingRegistry.js";
 
 function reportEquationMappingBootstrapError(error, documentLike = globalThis.document, windowLike = globalThis.window) {
   const message = error instanceof Error ? error.message : String(error);
@@ -20,6 +21,15 @@ function reportEquationMappingBootstrapError(error, documentLike = globalThis.do
 
 if (typeof document !== "undefined") {
   try {
+    const registryApi = createEquationMappingRegistryApi();
+    if (typeof window !== "undefined") {
+      Object.defineProperty(window, "ArchitrinoEquationMapping", {
+        configurable: false,
+        enumerable: true,
+        writable: false,
+        value: registryApi,
+      });
+    }
     const runtime = mountEquationMappingApp();
     if (typeof window !== "undefined") {
       window.__ARCHITRINO_EQUATION_MAPPING_RUNTIME__ = runtime;

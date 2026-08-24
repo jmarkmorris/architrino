@@ -33,6 +33,11 @@ import {
   resolveEquationVerticalShift,
   resolveSideCalloutPosition,
 } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
+import {
+  EQUATION_MAPPING_REGISTRY_SCHEMA,
+  createEquationMapPageHref,
+  createEquationMappingRegistryApi,
+} from "../src/apps/equation-mapping/EquationMappingRegistry.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -132,6 +137,51 @@ test("equation mapping seed document carries static layer anchors and comments",
       "eq-01b-causal-wake-master-equation",
       "eq-02-lorentz-clock-rate",
     ]
+  );
+});
+
+test("equation mapping registry exposes every seed page through unique semantic ids", () => {
+  const api = createEquationMappingRegistryApi();
+  const pages = api.list();
+  const semanticIds = pages.map((page) => page.semanticId);
+
+  assert.equal(api.schema, EQUATION_MAPPING_REGISTRY_SCHEMA);
+  assert.equal(pages.length, 23);
+  assert.equal(new Set(semanticIds).size, pages.length);
+  assert.equal(Object.isFrozen(api), true);
+  assert.equal(Object.isFrozen(pages), true);
+  assert.equal(Object.isFrozen(pages[0].document), true);
+  assert.equal(pages.every((page) => page.source.status === "linked"), true);
+  assert.equal(
+    api.get("causal-wake-per-hit-law")?.id,
+    "eq-01-causal-wake-master-equation"
+  );
+  assert.equal(
+    api.get("causal-wake-master-equation")?.id,
+    "eq-01b-causal-wake-master-equation"
+  );
+  assert.equal(
+    api.href("eq-02-lorentz-clock-rate"),
+    "equation-mapping.html#lorentz-clock-rate"
+  );
+  assert.equal(api.get("missing-equation"), null);
+  assert.equal(api.href("missing-equation"), null);
+});
+
+test("equation mapping registry page links preserve stable ids and semantic hashes", () => {
+  assert.equal(
+    createEquationMapPageHref({
+      id: "eq-01-causal-wake-master-equation",
+      title: "Causal Wake Per-Hit Law",
+    }),
+    "equation-mapping.html#causal-wake-per-hit-law"
+  );
+  assert.equal(
+    createEquationMapPageHref({
+      id: "eq-01b-causal-wake-master-equation",
+      title: "Causal Wake Master Equation",
+    }),
+    "equation-mapping.html#causal-wake-master-equation"
   );
 });
 

@@ -421,6 +421,8 @@ u_\nu^{\mathrm{eff}}(T_{\text{ens}})
 \frac{1}{\exp(h\nu/(k_B T_{\text{ens}}))-1}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#planck-blackbody-occupancy)
+
 This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
 
 Equivalently, the transparent transport operator must commute with global frequency scaling on the blackbody family:

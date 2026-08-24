@@ -336,6 +336,8 @@ $$
 \frac{\mathcal{P}_{E\to R}}{B_X(E)D_v}
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#redshift-factorization)
+
 Here $D_v$ is the launch or relative-motion frequency factor. In the homogeneous absolute-record replay, let
 
 $$
