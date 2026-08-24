@@ -60,8 +60,8 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 14 | App | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
 | 15 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
 | 16 | Workstream | [`quantum-closure`](../quantum-closure/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
-| 17 | App | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `equation_page_api_access`: versioned read-only document access and canonical page links | 5.5 | 1.25 | 0 | 1.00 | 0.35 | 4 | 0.90 | 2.17 | 4 | 2 | 3 | 3 | 2.9 | 0.75 |
-| 18 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
+| 17 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
+| 18 | App | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `symbol_definition_disclosure`: one-record hover, focus, touch, and detail-panel symbol definitions | 5.0 | 1.20 | 0 | 1.00 | 0.35 | 4 | 0.90 | 1.89 | 5 | 3 | 3 | 4 | 3.7 | 0.51 |
 | 19 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
 | 20 | Workstream | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
 | 21 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
@@ -91,6 +91,12 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 - Its local rank-1 object is now `equation_page_api_access`, not the former seed-expansion object. The new inferred attention score is based on a bounded versioned read-only contract, stable-ID retrieval, canonical page-link resolution, and cross-surface integration validation.
 - The promotion inserts the app at rank `17`; lower rows shift by one without changing their component scores or evidence grades.
 - This is an execution-priority change only. It does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
+
+## Equation Mapping Link Contract Closure — 2026-08-24
+
+- `equation_page_api_access` is verified across the canonical web corpus, generated textbook reading copies, and iOS public-web link bundle, so it no longer receives remaining-value credit.
+- The app's next unresolved object is `symbol_definition_disclosure`. Its rank-18 inferred attention score reflects a useful but downstream accessibility and explanation surface with moderate implementation and cross-device validation burden.
+- `open-problems` moves to rank `17`; all other rows retain their prior order. This rerank changes execution attention only and does not change any equation claim, proof status, corpus authority, or equation-mapping score.
 
 ## Current Focus
 

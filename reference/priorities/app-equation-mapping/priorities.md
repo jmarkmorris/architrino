@@ -10,11 +10,11 @@
 ## Workstream Metadata
 
 - Kind: `priority-app`
-- Rank: `17`
-- Value: `2.17`
-- Cost: `2.9`
-- ROI: `0.75`
-- Status: `active-api-access`
+- Rank: `18`
+- Value: `1.89`
+- Cost: `3.7`
+- ROI: `0.51`
+- Status: `active-symbol-definitions`
 
 ## Current
 
@@ -24,7 +24,7 @@ The app is intended to feel like a simple static equation annotation surface: on
 
 The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
-The live executable queue is maintained in [work-queue.md](work-queue.md). Its first delivery tranche binds the equations already supported by the app to their canonical corpus occurrences through ordinary Markdown links and one structured registry/API contract.
+The live executable queue is maintained in [work-queue.md](work-queue.md). The ordinary Markdown link plus structured registry/API contract now binds the equations already supported by the app to their canonical corpus occurrences. The next delivery object is structured symbol-definition disclosure.
 
 ## Accepted Link, Definition, And Authoring Direction
 

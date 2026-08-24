@@ -6,7 +6,7 @@
 - Status: active companion to [Inferring Braid Requirements](inferring-braid-requirements.md)
 - Created: 2026-08-23
 - Claim level: exact prescribed geometry and symmetry results, measured bounded EOM-solver diagnostics, and explicitly marked inference or speculation
-- Scope: F6c construction, coordinates, envelopes, exact pair corridors, sectors, symmetries, invariants, speed and current allocation, return order, physical-clock semantics, Lorentz-recovery mathematics, strong-field clock and horizon-interface mapping, response-coordinate chart, assembly status, external analogies, collective six-architrino capture volumes, and candidate implementation routes for fermion generations, photons, neutrinos, and gravitational-wave response
+- Scope: F6c construction, coordinates, envelopes, exact pair corridors, sectors, symmetries, invariants, opposite-edge rank-three frame, speed and current allocation, return order, physical-clock semantics, Lorentz-recovery mathematics, strong-field clock and horizon-interface mapping, response-coordinate chart, assembly status, external analogies, collective six-architrino capture volumes, and candidate implementation routes for fermion generations, photons, neutrinos, and gravitational-wave response
 - Exclusions: no retained-braid, stability, particle-identity, effective-charge, effective-mass, spin, magnetic-field, black-hole-carrier, or singularity-resolution claim
 
 ## Short Description
@@ -24,7 +24,7 @@ The document follows one dependency chain. Later claims depend on the earlier st
 1. **Choose the scaffold.** Four balanced tetrahedral axes provide the body frame.
 2. **Place the members.** Each axis receives one positrino track and one electrino track, producing eight member paths.
 3. **Reduce the coordinates.** The four members in each polarity sector share one axial scale, one transverse radius, and one phase. The complete shape therefore uses six coordinates.
-4. **Derive the geometry.** The member map gives exact centering, envelope, polarity-dipole, face-channel, and current-axis identities.
+4. **Derive the geometry.** The member map gives exact centering, envelope, polarity-dipole, face-channel, opposite-edge-frame, and current-axis identities.
 5. **Test the dynamics.** Symmetry proves that the Master Equation acceleration remains tangent to the F6c history surface while the declared causal-root conditions hold. Bounded EOM-solver records then measure what particular histories do on that surface.
 6. **Separate shape from readout.** Pair corridors, speed allocation, conjugation parity, and relative-return order determine which geometric motions different observables can actually distinguish.
 7. **Define the Lorentz test at the correct layer.** F6c supplies a centered rest scaffold and complete-history variables from which a translating clock-and-ruler test can be constructed. Lorentz boosts remain an observer-level recovery target, not an exact substrate symmetry.
@@ -78,6 +78,12 @@ Plainly: in this file, “current” is shorthand for a specific signed geometry
 | \(I_\sigma\) | Sector \(\sigma\)'s contribution to the \(x\)-component of \(\mathbf m_{\mathrm{cur}}\). |
 | \(\mathbf q_\sigma=(\dot h_\sigma,\dot\rho_\sigma,\rho_\sigma\dot\theta_\sigma)\) | Sector rate vector in axial, radial, and circulation-speed coordinates. |
 | \(\mathbf a_\sigma\) | Geometry coefficient vector satisfying \(I_\sigma=s_\sigma(4/3)\mathbf a_\sigma\mathbin{\cdot}\mathbf q_\sigma\), with the sector sign \(s_+=-1\), \(s_-=+1\). |
+| \(\mathbf W_{a,\sigma}\) | Geometric area-normal vector made from the two opposite edges in matching \(a\in\{x,y,z\}\). |
+| \(\boldsymbol\ell_{ij,\sigma}\) | Unweighted relative areal-rate vector of same-sector edge \((i,j)\), equal to relative separation crossed with relative velocity. |
+| \(\mathbf K_{a,\sigma}\) | Symmetry-adapted signed combination of the two \(\boldsymbol\ell\) rows in opposite-edge matching \(a\). It is a kinematic circulation row, not yet an action-derived angular-momentum row. |
+| \(\kappa_{K,\sigma}\) | Conditioning ratio comparing the weakest and strongest nonzero \(\mathbf K\) row magnitudes in one sector. |
+| \(\chi_\sigma\) | Body-frame angle of sector \(\sigma\)'s two transverse opposite-edge circulation rows about the common \(x\)-axis. |
+| \(\zeta_\sigma=h_\sigma\dot\rho_\sigma-\dot h_\sigma\rho_\sigma\) | Axial--radial shear coefficient used in the opposite-edge circulation rows. |
 | \(z_{\mathrm{even}},z_{\mathrm{odd}}\) | Common and polarity-differential combinations of a paired sector variable \(z_+,z_-\). |
 | \(\mathbf Z_{z,\sigma}\) | Three-component body vector reconstructed from four zero-sum module perturbations of variable \(z\). |
 | \(\tau_{\mathrm{F6c}}\) | Candidate derived clock time obtained by counting complete declared F6c returns. It is not absolute time. |
@@ -700,7 +706,7 @@ $$
 \mathcal R_{\mathrm{chart}}^{\mathrm{F6c}}(W)
 =
 \inf_{\mathbf C,\mathsf R,\mathbf z}
-\max_{T\in W,\\,i,\sigma}
+\max_{T\in W,\,i,\sigma}
 \frac{
 \left\|
 \mathbf X_{i\sigma}(T)
@@ -1077,6 +1083,375 @@ These member-face normals generally are not parallel to the fixed axes \(\hat{\m
 Plainly: the regular scaffold supplies the exact reference faces. The moving members supply a second set of faces that tilt and change size. Their difference is calculable at every instant.
 
 All identities in this section are **derived geometry or kinematics** of the declared F6c chart. They are not yet conserved observables. Dynamical promotion requires a retained complete history on which the face channels remain well-defined and exhibit a stable transformation rule. A face-channel interpretation fails if the member tetrahedron repeatedly degenerates, if the channels have no body-frame-stable history, or if they do not contribute to a reproducible assembly-level readout.
+
+## Opposite-Edge-Pair Rank-Three Frame
+
+The four same-sector member labels form the vertices of the complete graph \(K_4\). Its six edges split exactly into three opposite-edge matchings,
+
+\[
+\mathcal M_x=\{(0,1),(2,3)\},
+\qquad
+\mathcal M_y=\{(0,2),(1,3)\},
+\qquad
+\mathcal M_z=\{(0,3),(1,2)\}.
+\]
+
+This decomposition provides a stronger bridge to the three-row Noether-braid architecture than the mere fact that four tetrahedral channels have one linear closure relation. There are two distinct levels of the bridge: a geometric area-normal frame and a velocity-bearing circulation frame.
+
+Plainly: pair each tetrahedron edge with the edge that does not touch it. Exactly three pairs result. Each pair can supply one internal direction, but a direction drawn from one instant is not yet a remembered dynamical ledger.
+
+### Exact Geometric Area-Normal Frame
+
+For one sector \(\sigma\), define the three opposite-edge area-normal vectors
+
+\[
+\begin{aligned}
+\mathbf W_{x,\sigma}
+&=
+(\mathbf X_{0\sigma}-\mathbf X_{1\sigma})
+\mathbin{\times}
+(\mathbf X_{2\sigma}-\mathbf X_{3\sigma}),\\
+\mathbf W_{y,\sigma}
+&=
+(\mathbf X_{0\sigma}-\mathbf X_{2\sigma})
+\mathbin{\times}
+(\mathbf X_{1\sigma}-\mathbf X_{3\sigma}),\\
+\mathbf W_{z,\sigma}
+&=
+(\mathbf X_{0\sigma}-\mathbf X_{3\sigma})
+\mathbin{\times}
+(\mathbf X_{1\sigma}-\mathbf X_{2\sigma}).
+\end{aligned}
+\]
+
+Plainly: each \(\mathbf W\) arrow is perpendicular to both edges in one opposite-edge pair. The subscripts \(x\), \(y\), and \(z\) name the three pairings, not an assumption about their directions.
+
+Let
+
+\[
+\mathbf u_\sigma=\mathbf X_{1\sigma}-\mathbf X_{0\sigma},
+\qquad
+\mathbf v_\sigma=\mathbf X_{2\sigma}-\mathbf X_{0\sigma},
+\qquad
+\mathbf w_\sigma=\mathbf X_{3\sigma}-\mathbf X_{0\sigma},
+\]
+
+and let the oriented six-times-volume coordinate be
+
+\[
+\Delta_\sigma
+=
+\det
+\begin{bmatrix}
+\mathbf u_\sigma&\mathbf v_\sigma&\mathbf w_\sigma
+\end{bmatrix}.
+\]
+
+Plainly: \(\mathbf u_\sigma\), \(\mathbf v_\sigma\), and \(\mathbf w_\sigma\) are the three edges drawn from member zero in sector \(\sigma\). Their determinant \(\Delta_\sigma\) measures the signed volume of the member tetrahedron, multiplied by six; it is zero exactly when that tetrahedron has no three-dimensional volume.
+
+Direct vector-algebra expansion gives the general tetrahedron identity
+
+\[
+\det
+\begin{bmatrix}
+\mathbf W_{x,\sigma}&
+\mathbf W_{y,\sigma}&
+\mathbf W_{z,\sigma}
+\end{bmatrix}
+=
+2\Delta_\sigma^2.
+\]
+
+Therefore the three opposite-edge normals have rank three if and only if the moving-member tetrahedron is nondegenerate. After inserting the strict F6c member map, the decorated symmetry strengthens this result to
+
+\[
+\mathbf W_{x,\sigma}
+=(a_\sigma,0,0),
+\qquad
+\mathbf W_{y,\sigma}
+=(0,b_\sigma,c_\sigma),
+\qquad
+\mathbf W_{z,\sigma}
+=(0,c_\sigma,-b_\sigma),
+\]
+
+for scalar functions \(a_\sigma,b_\sigma,c_\sigma\) of \((h_\sigma,\rho_\sigma,\theta_\sigma)\). Consequently, whenever the member tetrahedron is nondegenerate,
+
+\[
+\widehat{\mathbf W}_{a,\sigma}
+\mathbin{\cdot}
+\widehat{\mathbf W}_{b,\sigma}
+=
+\delta_{ab},
+\qquad
+\det
+\begin{bmatrix}
+\widehat{\mathbf W}_{x,\sigma}&
+\widehat{\mathbf W}_{y,\sigma}&
+\widehat{\mathbf W}_{z,\sigma}
+\end{bmatrix}
+=1.
+\]
+
+Plainly: the moving architrinos do not usually make a regular tetrahedron, but their three pairs of opposite-edge plane normals still make an exact perpendicular XYZ frame. That frame disappears only when the four points flatten or otherwise become a degenerate tetrahedron.
+
+This is an exact rank-three **geometric frame**. It is not an angular-momentum ledger because it uses position only and says nothing about circulation, causal roots, action, or return.
+
+### Exact Velocity-Bearing Circulation Frame
+
+For same-sector edge \((i,j)\), define the unweighted relative areal-rate vector
+
+\[
+\boldsymbol\ell_{ij,\sigma}
+=
+(\mathbf X_{i\sigma}-\mathbf X_{j\sigma})
+\mathbin{\times}
+(\dot{\mathbf X}_{i\sigma}-\dot{\mathbf X}_{j\sigma}).
+\]
+
+This is the Euclidean Hodge dual—the ordinary three-dimensional vector representing the oriented plane—of the kinematic bivector formed by relative separation and relative velocity. It has dimensions of area per absolute time. Because architrinos do not carry primitive mass, \(\boldsymbol\ell_{ij,\sigma}\) must not be called a constituent mechanical angular momentum. An action-derived assembly row could eventually weight or replace it.
+
+Plainly: \(\boldsymbol\ell\) measures how fast the line between two members sweeps area. It is the right geometric precursor to an orbital ledger, but it is not yet the conserved quantity that a completed assembly theory would have to derive.
+
+The symmetry-adapted signed opposite-edge combinations are
+
+\[
+\begin{aligned}
+\mathbf K_{x,\sigma}
+&=
+\boldsymbol\ell_{01,\sigma}
++
+\boldsymbol\ell_{23,\sigma},\\
+\mathbf K_{y,\sigma}
+&=
+\boldsymbol\ell_{02,\sigma}
+-
+\boldsymbol\ell_{13,\sigma},\\
+\mathbf K_{z,\sigma}
+&=
+\boldsymbol\ell_{03,\sigma}
+-
+\boldsymbol\ell_{12,\sigma}.
+\end{aligned}
+\]
+
+The different signs are part of the two-versus-two circulation decoration. Matching \(\mathcal M_x\) contains the two edges whose endpoints have equal circulation signs, while \(\mathcal M_y\) and \(\mathcal M_z\) contain edges whose endpoints have opposite circulation signs.
+
+Plainly: add the two same-circulation-edge sweeps in the \(x\) row, and subtract the paired edge sweeps in the other two rows. This sign rule follows the fixed F6c circulation pattern; it is not a new interaction law.
+
+Direct substitution of the exact member map gives
+
+\[
+\mathbf K_{x,\sigma}
+=(A_\sigma,0,0),
+\qquad
+\mathbf K_{y,\sigma}
+=(0,B_\sigma,C_\sigma),
+\qquad
+\mathbf K_{z,\sigma}
+=(0,C_\sigma,-B_\sigma).
+\]
+
+When the transverse rows are nonzero, define their body-frame angle by
+
+\[
+\chi_\sigma
+=
+\operatorname{atan2}(C_\sigma,B_\sigma).
+\]
+
+Then the normalized transverse rows are
+
+\[
+\widehat{\mathbf K}_{y,\sigma}
+=
+(0,\cos\chi_\sigma,\sin\chi_\sigma),
+\qquad
+\widehat{\mathbf K}_{z,\sigma}
+=
+(0,\sin\chi_\sigma,-\cos\chi_\sigma).
+\]
+
+The positive and negative sectors therefore share the \(x\)-axis but may carry different transverse-frame angles. Their relative twist \(\chi_+-\chi_-\) is real branch data that a one-frame projection would have to preserve or eliminate by a proved symmetry.
+
+Plainly: each polarity sector has its own perpendicular pair of \(y\)- and \(z\)-like arrows, and that pair can rotate about the common \(x\)-axis. F6c does not yet tell us whether a completed assembly ledger should use the positive frame, the negative frame, or one fixed combination of both.
+
+To display the coefficients compactly, define
+
+\[
+\zeta_\sigma
+=
+h_\sigma\dot\rho_\sigma
+-
+\dot h_\sigma\rho_\sigma,
+\qquad
+\alpha_+=\theta_++\frac\pi6,
+\qquad
+\alpha_-=\theta_-+\frac\pi3.
+\]
+
+Plainly: the exact symmetry reduces each row to three scalar coefficients. \(A_\sigma\) is the signed strength of the \(x\) row; \(B_\sigma\) and \(C_\sigma\) set the direction and strength of the two transverse rows. The shear coefficient \(\zeta_\sigma\) measures radial change relative to axial change, and \(\alpha_+\) and \(\alpha_-\) are the sector phases shifted by their fixed F6c offsets.
+
+For the positive sector,
+
+\[
+\begin{aligned}
+A_+
+&=
+-\frac{8\sqrt6}{3}
+\left(
+h_+\rho_+\dot\theta_+\cos\alpha_+
++\zeta_+\sin\alpha_+
++\frac{\rho_+^2\dot\theta_+}{\sqrt2}
+\right),\\
+B_+
+&=
+4\sqrt2
+\left(
+h_+\rho_+\dot\theta_+\sin\alpha_+
+-\zeta_+\cos\alpha_+
+\right),\\
+C_+
+&=
+\frac{4\sqrt6}{3}
+\left(
+h_+\rho_+\dot\theta_+\cos\alpha_+
++\zeta_+\sin\alpha_+
+-\sqrt2\rho_+^2\dot\theta_+
+\right).
+\end{aligned}
+\]
+
+For the negative sector,
+
+\[
+\begin{aligned}
+A_-
+&=
+\frac{8\sqrt6}{3}
+\left(
+-h_-\rho_-\dot\theta_-\sin\alpha_-
++\zeta_-\cos\alpha_-
++\frac{\rho_-^2\dot\theta_-}{\sqrt2}
+\right),\\
+B_-
+&=
+4\sqrt2
+\left(
+h_-\rho_-\dot\theta_-\cos\alpha_-
++\zeta_-\sin\alpha_-
+\right),\\
+C_-
+&=
+\frac{4\sqrt6}{3}
+\left(
+h_-\rho_-\dot\theta_-\sin\alpha_-
+-\zeta_-\cos\alpha_-
++\sqrt2\rho_-^2\dot\theta_-
+\right).
+\end{aligned}
+\]
+
+Plainly: each sector supplies one circulation row on the fixed \(x\)-axis and two equal-strength circulation rows forming a perpendicular pair in the \(yz\)-plane. Breathing, radial motion, and motion around the local tracks all contribute to the row strengths.
+
+The exact frame identities are
+
+\[
+\mathbf K_{x,\sigma}\mathbin{\cdot}\mathbf K_{y,\sigma}
+=
+\mathbf K_{x,\sigma}\mathbin{\cdot}\mathbf K_{z,\sigma}
+=
+\mathbf K_{y,\sigma}\mathbin{\cdot}\mathbf K_{z,\sigma}
+=0,
+\]
+
+\[
+\|\mathbf K_{y,\sigma}\|
+=
+\|\mathbf K_{z,\sigma}\|
+=
+\sqrt{B_\sigma^2+C_\sigma^2},
+\]
+
+and
+
+\[
+\det
+\begin{bmatrix}
+\mathbf K_{x,\sigma}&
+\mathbf K_{y,\sigma}&
+\mathbf K_{z,\sigma}
+\end{bmatrix}
+=
+-A_\sigma
+\left(B_\sigma^2+C_\sigma^2\right).
+\]
+
+Thus the circulation frame has rank three exactly when
+
+\[
+A_\sigma\ne0,
+\qquad
+B_\sigma^2+C_\sigma^2\ne0.
+\]
+
+Plainly: the dot products prove that every pair of rows is perpendicular. The determinant proves that all three directions exist exactly when the \(x\)-row strength \(A_\sigma\) is nonzero and at least one of the two transverse coefficients \(B_\sigma,C_\sigma\) is nonzero.
+
+When those conditions hold, the determinant of the three normalized rows has unit magnitude. F6c therefore loses this frame by making a row's magnitude vanish, not by gradually making two nonzero rows parallel. A magnitude-sensitive conditioning diagnostic is
+
+\[
+\kappa_{K,\sigma}
+=
+\frac{
+\min\left\{|A_\sigma|,\sqrt{B_\sigma^2+C_\sigma^2}\right\}
+}{
+\max\left\{|A_\sigma|,\sqrt{B_\sigma^2+C_\sigma^2}\right\}
+}.
+\]
+
+A retained rank-three claim requires a declared positive floor \(\kappa_{K,\sigma}\ge\delta_K>0\) throughout the complete return window, together with nonzero absolute row-magnitude floors. The ratio alone cannot protect a history on which all three rows vanish together.
+
+Plainly: whenever all three circulation arrows exist, they are exactly perpendicular. The danger is that one arrow can shrink to zero. A valid retained frame must keep every arrow present and usefully large for the entire cycle.
+
+### Comparison With The Intended Three-Row Nested-Binary Ledger
+
+The opposite-edge calculation recovers the **linear-algebra function** sought from the three nested binaries: three ordered, noncoplanar Hodge-dual directions capable of carrying an internal orientation frame. It does not recover the same constituent partition or the same retained record.
+
+| Requirement | F6c opposite-edge result | Current determination |
+| --- | --- | --- |
+| Three ordered spatial rows | \(\mathbf K_{x,\sigma},\mathbf K_{y,\sigma},\mathbf K_{z,\sigma}\) | derived exactly |
+| Rank-three orientation when rows are nonzero | normalized determinant has magnitude one | derived exactly |
+| Three disjoint opposite-polarity binaries | no; each F6c matching contains two same-sector edges | different member-sharing and polarity structure |
+| One member assigned to only one row | no; every tetrahedral member participates in all three matchings | different ledger architecture |
+| One branch-level three-row frame | not yet; F6c supplies a positive-sector frame and a negative-sector frame with a relative twist | cross-sector projection remains open |
+| Action-derived angular-momentum rows | not supplied by \(\boldsymbol\ell\) or \(\mathbf K\) | open |
+| Persistent causal-root ledger for each row | not extracted | open |
+| Positive nondegeneracy floor over a complete return | violated by some stored finite histories and untested on any retained return | not established |
+| Full finite-memory return and stability | no retained F6c return exists | not established |
+
+Plainly: F6c really does contain the intended three-axis bookkeeping skeleton. It realizes that skeleton with shared tetrahedral relations, however, not with three separate positrino--electrino couples. The skeleton becomes the same **kind of retained ledger** only if the delayed dynamics preserves and returns the three rows with their causal and action records.
+
+### Existing-Record Diagnostic
+
+A report-only direct reconstruction on 2026-08-24 inspected the 32 currently stored positive-time F6c records that had usable frame streams, totaling 5,597 frame groups. The position-only opposite-edge normals had normalized determinant \(1\) to floating-point precision; the maximum residual in the exact identity \(\det[\mathbf W_x\ \mathbf W_y\ \mathbf W_z]=2\Delta^2\) was \(2.22\times10^{-16}\). The velocity-bearing \(\mathbf K\) rows had maximum normalized off-diagonal Gram entry \(2.75\times10^{-13}\) and maximum error in unit determinant magnitude \(5.55\times10^{-16}\) whenever all rows were nonzero.
+
+The same direct reconstruction found three records in which \(K_{x,\sigma}\) changed sign between adjacent saved frames. Continuity therefore brackets an exact zero of that row inside each interval:
+
+| Stored record | Sector | Bracket in absolute time | Signed \(K_x\) endpoints |
+| --- | --- | --- | --- |
+| `f6c-nonlinear-return-seed-v1` | negative | \([0.111,0.112]\) | \([-7.47236\times10^{-4},\ 6.51252\times10^{-4}]\) |
+| `f6c-current-guard-row15-phase3-evolution-v1` | positive | \([0.09,0.10]\) | \([-5.61788\times10^{-3},\ 8.76433\times10^{-3}]\) |
+| `f6c-nonlinear-phase-p21-screen-v1` | negative | \([0.2365,0.2370]\) | \([-3.32860\times10^{-4},\ 3.37344\times10^{-4}]\) |
+
+Plainly: the stored paths confirm the exact perpendicular-frame formulas, but three paths also show one axis disappearing and reappearing with the opposite sign. Those histories cannot satisfy a positive rank-three floor, even before asking whether they return or remain stable.
+
+Claim grade: **derived** for the \(\mathbf W\) determinant identity, the signed \(\mathbf K\) decomposition, the orthogonality identities, and the rank condition. The 32-record reconstruction is **measured** by direct position-and-velocity evaluation of existing EOM-solver frame streams; it checks those stored records but is not an independent oracle for the EOM solver and is not a global search. The statement that F6c supplies the same rank-three representation role as the nested-binary frame is **inferred**. A retained-ledger equivalence is **not established**.
+
+Plainly: the equations prove the frame geometry. The stored-frame calculation checks how 32 particular finite paths used it. Neither result proves that the paths repeat, bind, remain stable, or carry the completed three-row ledger.
+
+The current determination would advance to ledger-level equivalence only if one root-complete F6c return supplies three persistent row identities, a fixed cross-sector projection, action-derived row weights, matching causal-root ledgers, positive row-magnitude and conditioning floors, and stable recurrence modulo declared row permutations and signs. It would fail for that branch if any row vanishes, if the required projection changes during the cycle, if the three row ledgers cannot be separated from one another, or if their action and causal-root records do not return with the member histories.
+
+Plainly: the test is now concrete. One complete F6c cycle must keep all three arrows alive, combine the positive and negative sector frames by one unchanging rule, return the delayed-interaction history assigned to every row, and remain stable. Until one history does all of that, the answer is “same three-axis scaffold, not the same retained ledger.”
 
 ## Body-Fixed Current Axis
 
@@ -2746,6 +3121,7 @@ Plainly: the calculation order moves from a map for one non-backreacting probe t
 | What is a polarity sector? | One of two four-member groups: four positrinos or four electrinos. |
 | Are module partners antipodal through the center? | Not generically. Their track centers are opposite, but the moving members are antipodal only under special equal-scale and phase-opposition conditions. |
 | What is two-versus-two circulation? | Inside each polarity sector, two modules carry one fixed circulation orientation and two carry the other. The polarity factor reverses the coordinate orientation between sectors, although independent cadence reversal means actual counterrotation is not guaranteed at every time. |
+| Do the three opposite-edge-pair histories reproduce the intended three-row nested-binary ledger? | They reproduce its rank-three geometric function exactly when their circulation rows are nonzero: the three symmetry-adapted rows are mutually orthogonal. They do not yet reproduce a retained ledger because the rows use shared same-sector edge relations rather than three disjoint opposite-polarity binaries, no action/root ledger has been assigned to them, some stored histories cross a row-zero boundary, and no F6c history has returned as a retained branch. |
 | What is the body-fixed current axis? | The body-frame line on which the polarity-weighted internal motion moment lies for the chosen circulation partition. “Nonzero” means incomplete cancellation of the signed internal-motion contributions. It does not establish transported electric charge, an electric current, a magnetic field, or a spin axis. |
 | What are tetrahedral axes? | The four center-to-vertex directions of a regular tetrahedron, used as body-frame reference directions and local track normals. |
 | What are the invariants? | The complete current list appears in [Exact Invariants And Identities](#exact-invariants-and-identities); sizes, speeds, current magnitude, binding, and recurrence are specifically not included. |
@@ -2771,7 +3147,7 @@ Plainly: the table is a compact review of the core chain. Its exact statements c
 
 The strongest current statement is:
 
-> F6c is an exact symmetry-invariant six-coordinate history surface with two co-centered polarity-sector envelopes, exact sector centering and dipole cancellation, exact pair-clearance and sector speed/current-budget formulas, one body-fixed polarity-weighted current channel, and an exact chart of common versus polarity-differential response coordinates.
+> F6c is an exact symmetry-invariant six-coordinate history surface with two co-centered polarity-sector envelopes, exact sector centering and dipole cancellation, exact pair-clearance and sector speed/current-budget formulas, an exact opposite-edge rank-three frame whenever its circulation rows are nonzero, one body-fixed polarity-weighted current channel, and an exact chart of common versus polarity-differential response coordinates.
 
 The current EOM-solver evidence shows finite ordinary evolutions that remain on the surface to numerical precision and develop nontrivial breathing and cadence exchange. Prescribed harmonic histories reduced the confirmed whole-cycle acceleration residual but did not solve it: the best reported phase-grid rows had RMS residuals \(2.898\) and \(2.816\). A scalar-section recrossing was also shown not to be a state return; one positive-axial section recurrence left an 11-component RMS mismatch of \(0.825221\).
 
@@ -2787,6 +3163,7 @@ The following remain open:
 - positive-width binding and retention;
 - stability about an actual retained return;
 - a complete action, energy, and angular ledger;
+- a fixed cross-sector projection that promotes the two F6c opposite-edge circulation frames into one retained rank-three branch ledger with positive row-magnitude and conditioning floors;
 - an effective charge or mass-facing projection;
 - spinor behavior and observer-level spin/magnetic recovery;
 - exactly three retained same-representation fermion-generation modes or basins with no extra surviving family partner;

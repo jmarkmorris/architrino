@@ -4,11 +4,10 @@ This is the canonical execution ledger for accepted Equation Mapping app work. [
 
 ## Ranked Next Objects
 
-1. `equation_page_api_access` — [AEM-001](#aem-001--equation-link-and-registry-contract). Status: `Awaiting verification`.
-2. `symbol_definition_disclosure` — [AEM-002](#aem-002--symbol-definition-disclosure). Status: `Queued`.
-3. `author_equation_registration_workflow` — [AEM-003](#aem-003--author-equation-registration-workflow). Status: `Queued`.
-4. `seed_review_equations_expansion` — [AEM-004](#aem-004--seed-review-equations-expansion). Status: `Queued`.
-5. `review_packet_export` — [AEM-005](#aem-005--review-packet-export). Status: `Queued`.
+1. `symbol_definition_disclosure` — [AEM-002](#aem-002--symbol-definition-disclosure). Status: `Queued`.
+2. `author_equation_registration_workflow` — [AEM-003](#aem-003--author-equation-registration-workflow). Status: `Queued`.
+3. `seed_review_equations_expansion` — [AEM-004](#aem-004--seed-review-equations-expansion). Status: `Queued`.
+4. `review_packet_export` — [AEM-005](#aem-005--review-packet-export). Status: `Queued`.
 
 ## Queued
 
@@ -51,18 +50,17 @@ No rows.
 
 ## Awaiting verification
 
-### AEM-001 — Equation link and registry contract
-
-- **Status:** Awaiting verification
-- **Priority object:** `equation_page_api_access`
-- **Request / acceptance:** Establish ordinary Markdown links plus one structured Equation Mapping registry/API as the binding contract between corpus equations and app pages. Begin with the equations already supported by the app: give each a canonical app link, identify its canonical corpus occurrence or explicitly record that none has yet been selected, and add the ordinary Markdown link immediately after the supported display equation where the authoring context permits it. A corpus reader or another authorized client must be able to address a specific equation by stable semantic ID without scraping the rendered interface. The design pass must determine whether the current static deployment is best served by a versioned JSON manifest, a read-only HTTP endpoint, or a shared runtime interface; it must preserve the existing direct-page hash route and avoid creating a second equation-document authority.
-- **Evidence:** The versioned read-only registry now lists and retrieves all 23 normalized seed documents, supplies canonical links, rejects unknown IDs with `null`, records one canonical corpus binding per page, and is exposed to the live page as `window.ArchitrinoEquationMapping`. All 23 canonical Markdown links pass the focused source-binding validator. Runtime and iOS routing tests pass, including the public `.html` Equation Mapping route. Browser verification from the rendered Master Equation chapter opens `equation-mapping.html#causal-wake-per-hit-law`, displays the matching `Causal Wake Per-Hit Law` region, and reports no page errors. One pre-existing semantic-ID collision was removed while preserving both stable document IDs.
-- **Completion:** Every currently supported app equation has a stable semantic ID and canonical app link in a versioned read-only contract; the contract can list available equation documents and retrieve one normalized document by stable ID; the supported-equation inventory records its corpus binding state; eligible canonical corpus occurrences contain a resolving ordinary Markdown link; unknown IDs fail clearly; claim-level fields retain their existing meanings; links work in the supported web, iOS, and generated reading surfaces; focused contract, link-resolution, and integration tests pass; and concise developer documentation includes example access and response shapes.
-- **Verification remaining:** Under explicit regeneration authority, run `node scripts/build-textbook-md-pdf.mjs --write` and `node scripts/export-ios-textbook-package.mjs --write`; rerun their corresponding strict checks; then verify representative generated-reading-copy and iOS-package links. The canonical reading-copy check currently reports the expected 12 generated Markdown files as stale, while the iOS package check also reports pre-existing hash drift in six generated Archie guide references.
+No rows.
 
 ## Verified
 
-No rows.
+### AEM-001 — Equation link and registry contract
+
+- **Status:** Verified
+- **Priority object:** `equation_page_api_access`
+- **Request / acceptance:** Establish ordinary Markdown links plus one structured Equation Mapping registry/API as the binding contract between corpus equations and app pages. Begin with the equations already supported by the app: give each a canonical app link, identify its canonical corpus occurrence or explicitly record that none has yet been selected, and add the ordinary Markdown link immediately after the supported display equation where the authoring context permits it. A corpus reader or another authorized client must be able to address a specific equation by stable semantic ID without scraping the rendered interface. The implementation preserves the existing direct-page hash route and avoids creating a second equation-document authority.
+- **Evidence:** The versioned read-only registry lists and retrieves all 23 normalized seed documents, supplies canonical links, rejects unknown IDs with `null`, records one canonical corpus binding per page, and is exposed to the live page as `window.ArchitrinoEquationMapping`. All 23 canonical Markdown links pass the focused source-binding validator. Browser verification from the rendered Master Equation chapter opens `equation-mapping.html#causal-wake-per-hit-law`, displays the matching `Causal Wake Per-Hit Law` region, and reports no page errors. Regeneration produced 46 link occurrences across chapter and all-in-one reading copies and exactly 23 public Equation Mapping URLs in the iOS link bundle. The textbook and strict iOS generator checks, 70 focused tests, strict content and scene-graph checks, priority ranking, and whitespace validation pass.
+- **Completion:** Satisfied on 2026-08-24. Every supported app equation has a unique stable semantic ID, canonical source binding, ordinary Markdown link, normalized registry record, and generated iOS public-web route. One pre-existing semantic-ID collision was removed while preserving both stable document IDs. Claim-level fields retain their existing meanings, and the author-facing contract includes example access, response shape, and registration procedure.
 
 ## Deferred / blocked
 

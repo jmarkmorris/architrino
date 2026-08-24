@@ -3378,3 +3378,238 @@ No reader-facing promotion is warranted. If a retained F6c rest return becomes a
 5. test a rotated source pattern without changing the law or coefficients.
 
 Closure goal: obtain or falsify the first root-complete two-cell transfer of an F6c trace-free deformation, keeping the tensor projection, propagation delay, polarization leakage, and retained-return guards on one fixed-law record.
+
+## Session 21 — Is The 4:4 F6c Geometry Equivalent To The 3:3 Nested-Binary Braid? (2026-08-24)
+
+### Question And Direct Boundary
+
+The long-standing operator intuition is a neutral canonical Noether braid with three positrinos and three electrinos, often organized as three nested or mutually related opposite-polarity binary rows. F6c instead contains four positrinos and four electrinos arranged on four tetrahedral modules. The strongest current answer is that these objects are **not topologically equivalent as provenance-bearing worldline assemblies**, but F6c contains an exact three-dimensional response quotient that may be **representation-equivalent** to the three-row internal frame sought in the nested-binary program.
+
+Plainly: eight labeled strands cannot be smoothly redrawn into six labeled strands without removing, merging, or ignoring two strands. However, four balanced tetrahedral channels can encode only three independent directional numbers, so their collective response may look like a three-channel system.
+
+### Inventory Is A Topological Obstruction
+
+The base Noether braid inventory is
+
+$$
+\mathcal N_6:
+\qquad
+N_+=N_-=3,
+$$
+
+while F6c has
+
+$$
+\mathcal F_8:
+\qquad
+N_+=N_-=4.
+$$
+
+Architrino identity and provenance persist through absolute time. Ordinary branch-preserving deformation therefore preserves the number of labeled worldline strands and their polarity inventory. The six-body and eight-body configuration spaces are different objects, and no ambient isotopy of collision-free provenance-bearing paths converts \(\mathcal F_8\) into \(\mathcal N_6\).
+
+Plainly: bending and weaving paths can change their shape, but it cannot make one positrino and one electrino cease to exist. A true 4:4-to-3:3 conversion would be a reaction or partition of the ledger, not a harmless change of coordinates.
+
+The current Noether-braid canon is also slightly broader than “three exact nested binaries.” Its base object is any retained neutral 3:3 six-body branch with one shared causal-return ledger. The three-exact-binary locus is a particularly important subspace because three independent angular-momentum rows can define a full three-dimensional frame. Thus the operator's three-binary intuition remains a central candidate realization without being assumed by the base definition.
+
+Plainly: 3:3 is part of the base inventory. Pairing those six members into three persistent binaries is an additional structure that the dynamics must preserve.
+
+### Exact Tetrahedral Three-Dimensional Quotient
+
+For one F6c module variable \(z\), write four perturbations as a common part plus a sum-zero part,
+
+$$
+z_i
+=
+\bar z+\delta z_i,
+\qquad
+\sum_{i=0}^{3}\delta z_i=0.
+$$
+
+The four module values split exactly as
+
+$$
+\mathbb R^4
+=
+\mathbf1\mathbin{\oplus}\mathbf3,
+$$
+
+and the directional triplet is reconstructed as
+
+$$
+\mathbf Z_z
+=
+\sum_{i=0}^{3}\delta z_i\hat{\mathbf n}_i,
+\qquad
+\delta z_i
+=
+\frac34\hat{\mathbf n}_i\mathbin{\cdot}\mathbf Z_z.
+$$
+
+This is an exact linear equivalence between four module perturbations modulo their common mode and one ordinary three-component body vector:
+
+$$
+\mathbb R^4
+/\operatorname{span}\{(1,1,1,1)\}
+\cong
+\mathbb R^3.
+$$
+
+Plainly: four tetrahedral readings contain one average and three differences. Throw away only the average, and the remaining information is exactly one three-dimensional arrow. The fourth channel is redundant for direction because the four tetrahedral axes sum to zero.
+
+This makes the tetrahedral frame an overcomplete directional encoding of three-dimensional space. The four axes obey
+
+$$
+\sum_i\hat{\mathbf n}_i=\mathbf0,
+\qquad
+\sum_i\hat{\mathbf n}_i\hat{\mathbf n}_i^{\mathsf T}
+=
+\frac43I_3,
+$$
+
+whereas the near-rest Family-A nested-binary chart uses three mutually orthogonal axis rows. The tetrahedral frame is therefore not the same geometric basis as the orthogonal triad, but both reconstruct three-dimensional directional data. F6c uses four redundant channels with one closure relation; Family A uses three independent channels directly.
+
+Plainly: an orthogonal XYZ frame uses the minimum three arrows. A tetrahedral frame uses four equally balanced arrows, so losing any one arrow does not define the whole construction, but all four together still carry only three independent directional components.
+
+### Opposite-Edge-Pair Bridge To The Three Nested Rows
+
+There is a second exact relation that is closer to the nested-binary intuition. The four tetrahedral module labels form the vertices of the complete graph \(K_4\). Its six edges admit one exact decomposition into three perfect matchings, meaning three ways to pair all four vertices without reuse:
+
+$$
+\mathcal M_x
+=
+\{(0,1),(2,3)\},
+\qquad
+\mathcal M_y
+=
+\{(0,2),(1,3)\},
+\qquad
+\mathcal M_z
+=
+\{(0,3),(1,2)\}.
+$$
+
+Each matching consists of two opposite tetrahedron edges. Let
+
+$$
+\mathbf m_{ij}
+=
+\frac12
+\left(
+\hat{\mathbf n}_i+\hat{\mathbf n}_j
+\right)
+$$
+
+be the midpoint of edge \((i,j)\). The lines joining the paired opposite-edge midpoints satisfy
+
+$$
+\frac{\mathbf m_{01}-\mathbf m_{23}}
+{\|\mathbf m_{01}-\mathbf m_{23}\|}
+=
+\hat{\mathbf x},
+\qquad
+\frac{\mathbf m_{02}-\mathbf m_{13}}
+{\|\mathbf m_{02}-\mathbf m_{13}\|}
+=
+\hat{\mathbf y},
+\qquad
+\frac{\mathbf m_{03}-\mathbf m_{12}}
+{\|\mathbf m_{03}-\mathbf m_{12}\|}
+=
+\hat{\mathbf z}.
+$$
+
+Plainly: the tetrahedron has four corners but six connecting edges. Pair each edge with the edge that never touches it. There are exactly three such pairings, and the three center-to-center lines form an ordinary perpendicular XYZ frame.
+
+This supplies an exact **combinatorial and geometric three-row skeleton** inside F6c. The six same-sector module-module corridors can be grouped into three opposite-edge-pair rows, and the same grouping exists in both polarity sectors. Even and odd combinations across polarity then give candidate neutral/common and polarity-differential versions of each row.
+
+Plainly: a candidate nested row need not be one literal positrino-electrino orbit pair. It may be a collective relation between two opposite tetrahedral edges, with the three collective relations supplying the three internal directions.
+
+The proposed dynamical map is therefore to assign one complete retained corridor or angular-momentum ledger \(\mathcal L_{ij}\) to each tetrahedral edge and form three paired rows,
+
+$$
+\mathcal L_x
+=
+\mathcal C\!\left(\mathcal L_{01},\mathcal L_{23}\right),
+\qquad
+\mathcal L_y
+=
+\mathcal C\!\left(\mathcal L_{02},\mathcal L_{13}\right),
+\qquad
+\mathcal L_z
+=
+\mathcal C\!\left(\mathcal L_{03},\mathcal L_{12}\right),
+$$
+
+where \(\mathcal C\) is not chosen algebraically in advance: the Master Equation, polarity signs, circulation decoration, and return symmetry must determine whether the physical row uses a sum, difference, ordered pair, or more complete two-edge history. If these three rows return with a nonzero frame determinant and the same causal semantics as the three-row Noether-braid locus, F6c would realize the nested-binary **architecture at the relational-ledger level** while remaining an eight-strand object.
+
+Plainly: the geometry tells us exactly which two edges belong together in each of the three rows. It does not yet tell us how their delayed accelerations and wake histories combine; that is the calculation still missing.
+
+### Candidate Ledger-Level Equivalence
+
+One F6c triplet \(\mathbf Z_z\) is only one vector; it is not yet the three-row angular-momentum frame of a nested-binary braid. A stronger correspondence would require three independently retained F6c triplet rows. For example, choose declared even or odd directional responses for axial scale, transverse radius, and phase and form
+
+$$
+\mathsf F_{\mathrm{F6c}}
+=
+\begin{bmatrix}
+\widehat{\mathbf Z}_h &
+\widehat{\mathbf Z}_\rho &
+\widehat{\mathbf Z}_\theta
+\end{bmatrix},
+\qquad
+D_{\mathrm{F6c}}
+=
+\det\mathsf F_{\mathrm{F6c}}.
+$$
+
+If \(|D_{\mathrm{F6c}}|\) has a positive floor on one retained history, these three response rows define a full internal frame analogous to the three retained angular-momentum rows of the exact-binary Noether-braid locus. Their Gram matrix
+
+$$
+G_{\mathrm{F6c}}
+=
+\mathsf F_{\mathrm{F6c}}^{\mathsf T}
+\mathsf F_{\mathrm{F6c}}
+$$
+
+can then be compared with the near-orthogonal Family-A target \(G_{3B}=I_3\), allowing a general invertible change of internal basis rather than requiring the visible paths to coincide.
+
+Plainly: to reproduce the nested-binary frame, F6c needs three independent response arrows, not merely four tetrahedral sites. If the size, radius, and phase responses supply three noncoplanar arrows that remain well-conditioned through a return, they could carry the same kind of orientation bookkeeping as the three binary rows.
+
+This proposed equivalence is **ledger-level and representation-level**, not strand topology. It would say that two different microscopic assemblies export isomorphic three-dimensional frame data and perhaps the same observer-facing response after a fixed projection. It would not say that their architrino paths are the same braid.
+
+### Three Possible Relations Between 4:4 And 3:3
+
+1. **Redundant-frame relation:** intact 4:4 F6c exports a three-dimensional response quotient through the exact \(\mathbf1\mathbin{\oplus}\mathbf3\) split. This is the cleanest and least destructive relation.
+2. **Effective-dark-pair relation:** one opposite-polarity F6c module remains physically present but becomes invisible to a declared observer projection, so \(\Pi_{\mathrm{eff}}(\mathcal F_8)=\Pi_{\mathrm{eff}}(\mathcal N_6)\) on a bounded observable set. This is effective equivalence only; the hidden pair must remain in the native ledger and must not be discarded from dynamics.
+3. **Reaction or partition relation:** a provenance-preserving reconfiguration produces a six-member retained core plus a neutral two-member residue,
+
+$$
+\mathcal F_8
+\longrightarrow
+\mathcal N_6
+\mathbin{+}
+\mathcal B_2.
+$$
+
+This is a real branch transition. It requires complete energy, momentum, angular-momentum, polarity, wake, and provenance closure and is not a topological equivalence.
+
+Plainly: F6c can resemble the 3:3 idea by compressing four channels into three collective responses, by hiding but retaining one neutral pair from a limited observer readout, or by actually reorganizing into six plus two. Only the first is an exact algebraic fact; the latter two require dynamics.
+
+### Topological-Charge Boundary
+
+Even if a retained F6c history and a retained 3:3 Noether braid eventually share the same root-degree, phase-return, or chirality labels, equal topological-charge entries would not erase the inventory difference. The current assembly topological charge \((N_s,M_p,c_1)\) classifies branch data inside its declared domain; it is not known to be a complete invariant across different strand inventories. Any comparison atlas must therefore carry \((N_+,N_-)\), provenance partition, and the root/phase/framing labels together.
+
+Plainly: two objects can have the same winding or return numbers while containing different numbers of architrinos. Matching labels would show a common response sector, not microscopic identity.
+
+### Claim Levels, Proof Burden, And Next Artifact
+
+- **Ontology:** architrino identity, polarity, and provenance persist; a branch-preserving deformation cannot delete two worldlines.
+- **Derived:** the F6c tetrahedral module space has the exact \(\mathbf1\mathbin{\oplus}\mathbf3\) decomposition and quotient \(\mathbb R^4/\mathbf1\cong\mathbb R^3\); the six \(K_4\) edges split exactly into three opposite-edge matchings whose midpoint axes are mutually orthogonal.
+- **Inference:** three independently retained F6c response triplets could define a rank-three ledger frame comparable by an invertible basis change with the nested-binary frame.
+- **Speculation:** one F6c neutral pair becomes observer-dark, or F6c dynamically partitions into a retained 3:3 core plus a two-member residue.
+
+The representation-equivalence proposal fails if no root-complete F6c history supports three independent response-triplet rows, if \(D_{\mathrm{F6c}}\) crosses zero, if the basis map changes with orientation or observer projection, or if the candidate 3:3 comparison lacks the same return and causal-ledger semantics. The dark-pair route fails if the extra pair affects any declared observable or cannot remain dynamically ledgered. The partition route fails if no provenance- and ledger-complete 8-to-6-plus-2 event exists.
+
+The proposed **F6c-to-three-row frame map** has now been carried through at the exact kinematic level in [F6c Geometry](f6c-geometry.md#opposite-edge-pair-rank-three-frame). The symmetry-adapted signed opposite-edge areal-rate rows are exactly orthogonal whenever nonzero, but existing finite histories include bracketed row-zero crossings and no retained F6c return supplies the required action and causal-root ledgers. The result therefore promotes the opposite-edge construction from a geometric suggestion to a derived rank-three kinematic scaffold, while rejecting retained-ledger equivalence at the current evidence grade.
+
+Closure goal: determine whether a retained or prescribed F6c history exports a well-conditioned three-row internal response frame through its exact tetrahedral quotient, while preserving the strict distinction between 4:4 strand topology and 3:3 ledger-level equivalence.
