@@ -5181,3 +5181,282 @@ Closure goal: implement the fixed-law source-continuation packet through its
 weak tangent and first native branch boundary, preserving full transmitter,
 root, sea, wake, and identity records; attempt pair capture and backreaction
 only if certified conjugate product basins become available on the same record.
+
+## Session 20 — F6c Timespace-Braid Gravitational-Wave Hypothesis (2026-08-23)
+
+### Terminology And Claim Boundary
+
+The operator phrase **timespace braid of F6c geometry** is used here as
+descriptive shorthand for the eight ordered F6c worldline histories
+
+$$
+\mathcal B_A
+=
+\left\{
+\left(T,\mathbf X_{A,i\sigma}(T)\right)
+\right\}_{i,\sigma}
+$$
+
+together with their complete causal-root and wake record. It is not introduced
+as new canonical terminology and does not mean that the substrate is woven
+from a fundamental spacetime fabric. The native background remains absolute
+time plus the Euclidean void.
+
+Plainly: one F6c “timespace braid” is the complete movie of its eight paths,
+including which earlier path points affect which later ones. It is not a
+material strand from which space or time is made.
+
+### Strongest Defensible Native Picture
+
+Assume, for this hypothesis only, that the Noether sea admits a population of
+retained F6c-like cells indexed by $A$, with center paths $\mathbf C_A(T)$ and
+relative member paths
+
+$$
+\mathbf r_{A,i\sigma}(T)
+=
+\mathbf X_{A,i\sigma}(T)-\mathbf C_A(T).
+$$
+
+A gravitational-wave candidate is then not one F6c braid flying from source to
+detector. It is a coherent, causally delayed pattern of small shape-and-cadence
+changes passed through many such complete histories. Neighboring cells need
+not form a lattice; “neighboring” means coupled through the declared causal-root
+and Noether sea response record.
+
+Plainly: picture many tiny repeating F6c clocks distributed through the
+medium. A wave is a coordinated pattern in how those clocks deform and retime,
+with each region responding slightly later than the preceding region.
+
+### Carrier Versus Receiver Fork
+
+Two roles must remain separate:
+
+1. **F6c-carrier hypothesis:** retained F6c-like cells are themselves part of
+   the Noether sea response network, and their coupled trace-free deformation
+   transports the tensor disturbance.
+2. **F6c-receiver hypothesis:** another retained Noether sea mode transports
+   the disturbance, while localized F6c assemblies serve only as clocks,
+   rulers, source constituents, or detector elements whose return geometry is
+   modulated when the disturbance arrives.
+
+The carrier hypothesis is stronger and requires a root-complete multi-cell
+transfer result. The receiver hypothesis requires a same-record constitutive
+map from the arriving sea disturbance into the F6c shape and clock channels.
+Current evidence selects neither role.
+
+Plainly: F6c might be part of the cable carrying the signal, or it might be the
+instrument connected to that cable. A successful detector response would not
+by itself prove that F6c also carried the wave across the source--detector
+distance.
+
+### Native Shape Tensor And Tensor-Mode Candidate
+
+For cell $A$, define the cycle-averaged second-moment tensor
+
+$$
+Q_{A,ij}
+=
+\frac{1}{8P_A}
+\sum_{i',\sigma}
+\int_{T_0}^{T_0+P_A}
+r_{A,i'\sigma,i}(T)\,
+r_{A,i'\sigma,j}(T)\,dT
+$$
+
+and its symmetric trace-free part
+
+$$
+S_{A,ij}
+=
+Q_{A,ij}
+-\frac13\delta_{ij}Q_{A,kk}.
+$$
+
+The exact phase-averaged strict-F6c scaffold has zero trace-free part. A
+nonzero $S_{A,ij}$ therefore measures directional shape distortion rather than
+common breathing. For a propagation direction $\hat{\mathbf k}$, define
+
+$$
+P_{ij}
+=
+\delta_{ij}-\hat k_i\hat k_j
+$$
+
+and the transverse-traceless projection
+
+$$
+H_{A,ij}^{\mathrm{TT}}
+=
+\left(
+P_i{}^aP_j{}^b
+-\frac12P_{ij}P^{ab}
+\right)
+S_{A,ab}.
+$$
+
+This gives a concrete F6c-native candidate source for an observer-level tensor
+readout. It does not yet prove that the Master Equation propagates this
+projection or removes all scalar, vector, and longitudinal components.
+
+Plainly: first subtract ordinary all-direction expansion from each cell's
+shape. Then remove every deformation pointing along the travel direction.
+What remains is the sideways, volume-preserving stretch-and-squeeze pattern
+associated with a gravitational-wave tensor channel.
+
+The existing F6c $1\mathbin{\oplus}3$ module decomposition also exposes why
+strict six-coordinate F6c may be insufficient. Its common coordinate is a
+scalar, while its off-surface sum-zero module perturbations form a spatial
+triplet. Tensor response lives in the symmetric product
+
+$$
+\mathbf3\mathbin{\otimes}_{\mathrm{sym}}\mathbf3
+=
+\mathbf1\mathbin{\oplus}\mathbf5,
+$$
+
+where the five-component trace-free sector is the native rank-two shape
+candidate before transverse propagation reduces the effective wave to two
+polarizations. A single scalar breathing coordinate cannot supply that
+five-component sector.
+
+Plainly: one arrow describes a directional push. A gravitational wave needs a
+stretching pattern with two directions—stretch here while squeezing there.
+That requires correlations among directional F6c deformations, not only the
+six shared scalar coordinates.
+
+### Plus And Cross Patterns
+
+Choose two perpendicular unit vectors
+$\hat{\mathbf e}_1,\hat{\mathbf e}_2$ transverse to
+$\hat{\mathbf k}$. The effective comparison form is
+
+$$
+H_{ij}^{\mathrm{TT}}
+=
+h_+
+\left(
+e_{1i}e_{1j}-e_{2i}e_{2j}
+\right)
++
+h_\times
+\left(
+e_{1i}e_{2j}+e_{2i}e_{1j}
+\right).
+$$
+
+In an F6c population, the plus mode would correspond to alternating
+longitudinal second-moment increase along $\hat{\mathbf e}_1$ and decrease
+along $\hat{\mathbf e}_2$. The cross mode is the same trace-free deformation
+rotated by $45^\circ$ in the transverse plane. These are required effective
+patterns, not derived F6c modes.
+
+Plainly: looking into the oncoming wave, the plus pattern alternately stretches
+up-down while squeezing left-right, then reverses. The cross pattern performs
+the same action along diagonal directions.
+
+### Propagation Through Absolute Timespace
+
+At the native level, propagation must be a causal progression of complete
+history changes. A coarse-grained traveling-pattern diagnostic could test
+
+$$
+H_{ij}^{\mathrm{TT}}
+\left(
+T+\Delta T,\,
+\mathbf X+c_{\mathrm{tens}}\Delta T\hat{\mathbf k}
+\right)
+\simeq
+H_{ij}^{\mathrm{TT}}(T,\mathbf X)
+$$
+
+over a declared weak-amplitude band. The speed $c_{\mathrm{tens}}$ is a measured
+native transport rate of this pattern, not automatically $c_f$ or the
+observer-level gravitational-wave speed.
+
+After the observer map and Noether sea dressing are derived, the required
+effective output remains
+
+$$
+\Box_{c_{\mathrm{GW}}^{\mathrm{eff}}}
+h_{ij}^{\mathrm{TT}}
+=
+0
+$$
+
+in a source-free weak-field region, with
+$c_{\mathrm{GW}}^{\mathrm{eff}}$ sharing the same state record and measured
+limit as the photon channel. The native pattern and the effective wave equation
+must not be fitted independently.
+
+Plainly: the first equation asks whether the same deformation reappears farther
+away after the correct delay. The second is the familiar observer-level wave
+law that this delayed relay must reproduce after clocks, rulers, and signals
+are translated into observer coordinates.
+
+### Source And Detector Interpretation
+
+The source-side hypothesis is that a changing quadrupolar assembly history
+launches a nonzero trace-free response while complete source, wake, sea,
+energy, and angular ledgers suppress leading monopole and dipole radiation.
+This must be derived from the source record; the standard quadrupole formula
+may enter only as an observer-level recovery target.
+
+At the detector, a separation direction $\hat{\mathbf n}$ has the effective
+strain target
+
+$$
+\frac{\delta L}{L}
+=
+\frac12
+n^i h_{ij}^{\mathrm{TT}}n^j.
+$$
+
+In the native account, the passing response changes the detector assemblies'
+return geometry, ruler projection, and light-timing record through one shared
+Noether sea state. It is not a primitive stretching of the Euclidean void.
+
+Plainly: the source must launch a four-lobed stretch-and-squeeze disturbance,
+and the detector must register that disturbance as tiny, correlated changes in
+its physical arms and timing system. Empty Euclidean space itself does not
+expand or contract.
+
+### Claim Grade, Proof Burden, And Falsifiers
+
+- **Ontology:** absolute time, Euclidean void, architrino paths, causal wakes,
+  and the Noether sea remain the native objects.
+- **Derived geometry:** $Q_{A,ij}$, $S_{A,ij}$, and the TT projection are
+  well-defined diagnostics on any declared retained multi-cell record.
+- **Inference:** a gravitational wave may be a coherent propagation of the
+  trace-free F6c response sector through a population of retained F6c-like
+  cells.
+- **Effective recovery target:** exactly two leading TT polarizations,
+  near-nondispersive propagation, photon/gravity speed agreement, quadrupolar
+  source scaling, and calibrated detector strain.
+- **Speculation:** the Noether sea is actually composed of retained F6c cells,
+  and their off-surface directional response is the microscopic carrier of the
+  gravitational-wave tensor channel.
+
+The hypothesis fails if strict or minimally enlarged F6c response has no
+root-valid trace-free mode, if the mode does not propagate coherently, if
+scalar/vector/longitudinal leakage remains large, if its effective speed
+separates from the photon channel, if different orientations require different
+laws, or if the detector strain cannot be derived from the same sea and
+clock/ruler record.
+
+### Promotion Target And Next Artifact
+
+No reader-facing promotion is warranted. If a retained F6c rest return becomes
+available, the first useful artifact is a report-only two-cell response
+calculation:
+
+1. perturb one cell in a declared trace-free module pattern;
+2. evolve both cells with all cross-cell causal roots and $c_f=1$;
+3. extract $Q_{A,ij}$, $S_{A,ij}$, and $H_{A,ij}^{\mathrm{TT}}$;
+4. measure arrival delay, attenuation, dispersion, polarization leakage,
+   root completeness, clearance, and return survival; and
+5. test a rotated source pattern without changing the law or coefficients.
+
+Closure goal: obtain or falsify the first root-complete two-cell transfer of an
+F6c trace-free deformation, keeping the tensor projection, propagation delay,
+polarization leakage, and retained-return guards on one fixed-law record.

@@ -8,9 +8,12 @@
 - Created: 2026-08-23
 - Claim level: exact prescribed geometry and symmetry results, measured bounded
   EOM-solver diagnostics, and explicitly marked inference or speculation
-- Scope: F6c construction, coordinates, envelopes, sectors, symmetries,
-  invariants, current axis, assembly status, external analogies, and the open
-  question of collective six-architrino capture volumes
+- Scope: F6c construction, coordinates, envelopes, exact pair corridors,
+  sectors, symmetries, invariants, speed and current allocation, return order,
+  physical-clock semantics, Lorentz-recovery mathematics, response-coordinate
+  chart, assembly status, external analogies, collective six-architrino capture
+  volumes, and candidate implementation routes for fermion generations,
+  photons, neutrinos, and gravitational-wave response
 - Exclusions: no retained-braid, stability, particle-identity, effective-charge,
   effective-mass, spin, or magnetic-field claim
 
@@ -48,7 +51,19 @@ steps and should not be read as independent assumptions:
    remains tangent to the F6c history surface while the declared causal-root
    conditions hold. Bounded EOM-solver records then measure what particular
    histories do on that surface.
-6. **Keep promotion separate.** A finite evolution, a current-like diagnostic,
+6. **Separate shape from readout.** Pair corridors, speed allocation,
+   conjugation parity, and relative-return order determine which geometric
+   motions different observables can actually distinguish.
+7. **Define the Lorentz test at the correct layer.** F6c supplies a centered
+   rest scaffold and complete-history variables from which a translating
+   clock-and-ruler test can be constructed. Lorentz boosts remain an
+   observer-level recovery target, not an exact substrate symmetry.
+8. **Separate absolute time from clock readout.** F6c evolves under absolute
+   time and supplies a clock only if one complete declared history returns.
+9. **Test downstream roles without assigning identities.** The response chart
+   supplies concrete generation, photon, neutrino, and tensor-wave hypotheses,
+   each with a declared selection condition and falsifier.
+10. **Keep promotion separate.** A finite evolution, a current-like diagnostic,
    or a neutral-volume seed does not by itself establish binding, recurrence,
    stability, electric current, magnetism, spin, or particle identity.
 
@@ -75,6 +90,8 @@ those three stages succeed.
 | cadence \(\dot\theta_\sigma\) | The phase rate. It may change sign, so circulation can slow, stop, or reverse. |
 | spherical envelope | The sphere on which every member track of one polarity sector lies at a declared instant. It is a geometric surface, not a material shell. |
 | current axis | Short local label for the body-frame line selected by the polarity-weighted internal motion-moment diagnostic. It is not a translation direction, a demonstrated electric-current direction, or a proven spin axis. |
+| charge-facing addition | An additional architrino whose primitive polarity participates in a candidate observer-level charge projection. It is a dynamical member, not a passive charge label. |
+| propagating phase cadence | A coherent phase advance carried through source, path, and receiver histories. It is not a rest-frame orbit or material clock. |
 
 Plainly: a sector is a four-member polarity group, a module is one axis-associated
 positrino/electrino track pair, and the word envelope describes where the paths
@@ -105,11 +122,26 @@ magnetic source remains an open recovery target.
 | \(\mathbf r_i(\psi),\mathbf t_i(\psi)\) | Unit radial and tangential directions in module \(i\)'s track plane at phase \(\psi\). |
 | \(\mathbf m_{\mathrm{cur}}\) | Polarity-weighted internal motion moment. The name is local shorthand, not a measured electric current. |
 | \(I_\sigma\) | Sector \(\sigma\)'s contribution to the \(x\)-component of \(\mathbf m_{\mathrm{cur}}\). |
+| \(\mathbf q_\sigma=(\dot h_\sigma,\dot\rho_\sigma,\rho_\sigma\dot\theta_\sigma)\) | Sector rate vector in axial, radial, and circulation-speed coordinates. |
+| \(\mathbf a_\sigma\) | Geometry coefficient vector satisfying \(I_\sigma=s_\sigma(4/3)\mathbf a_\sigma\mathbin{\cdot}\mathbf q_\sigma\), with the sector sign \(s_+=-1\), \(s_-=+1\). |
+| \(z_{\mathrm{even}},z_{\mathrm{odd}}\) | Common and polarity-differential combinations of a paired sector variable \(z_+,z_-\). |
+| \(\mathbf Z_{z,\sigma}\) | Three-component body vector reconstructed from four zero-sum module perturbations of variable \(z\). |
+| \(\tau_{\mathrm{F6c}}\) | Candidate derived clock time obtained by counting complete declared F6c returns. It is not absolute time. |
+| \(\Theta_{F,g},\mathcal D_F\) | Complete candidate history for fermion sector \(F\) and generation \(g\), together with its fixed representation-facing decoration or projection. |
+| \(\hat{\mathbf k},P_\perp,P_\parallel\) | Declared propagation direction and projectors onto its perpendicular plane and parallel line. |
+| \(n_T,n_L\) | Resolved transverse and longitudinal response ranks measured at one declared threshold. |
+| \(\mathbf V_{\gamma,\mathrm{group}}\) | Native group velocity of a candidate photon-like traveling packet, defined by the absolute-time motion of its packet center. |
+| \(\boldsymbol\delta_\nu,v_i\) | Candidate neutrino mismatch from a neutral photon-like lock and its three proposed collective propagation eigenrecords. |
+| \(Q_{A,ij},S_{A,ij},H_{A,ij}^{\mathrm{TT}}\) | Cycle-averaged second moment, symmetric trace-free shape, and transverse-trace-free diagnostic of candidate cell \(A\). |
+| \(\overline H_{ij}^{\mathrm{TT}}\) | Coarse-grained tensor diagnostic obtained by applying one frozen interpolation rule to the cell-indexed \(H_{A,ij}^{\mathrm{TT}}\) records. |
+| \(\mathcal B_{n,\alpha}^{\mathrm{ret}}\) | Positive-width retained basin for \(n\) charge-facing additions in symmetry-inequivalent history class \(\alpha\). |
+| \(d_{-,2},d_{-,4},d_{\pm,4}\) | Representative same-sector and opposite-sector pair distances used to define exact clearance corridors. |
 | \(c_f\) | Primitive causal-wake speed. Numerical records in this document use normalized units with \(c_f=1\). |
 
 Plainly: \(i\) answers “which of the four axes?”, while \(\sigma\) answers
-“which polarity on that axis?” The remaining symbols specify the shared sector
-shape and how it changes with absolute time.
+“which polarity on that axis?” The shape symbols describe the eight-member
+geometry; the later clock, mode, response, and basin symbols describe the tests
+that ask whether this geometry can support a physical role.
 
 ## Tetrahedral Frame
 
@@ -354,6 +386,96 @@ distances to agree.
 Plainly: the four track centers form a breathing regular tetrahedron. The four
 riders on those tracks form a deforming tetrahedral constellation on a sphere.
 
+### Envelope Radius Does Not Determine Pair Clearance
+
+The common sector radius \(R_\sigma\) says how far four members are from the
+assembly center. It does not say how far they are from one another. The six
+edges of one instantaneous member tetrahedron split, under the F6c chart
+symmetry, into a two-edge orbit and a four-edge orbit. Members in one orbit
+have exactly equal pair distance, but that distance changes with
+\((h_\sigma,\rho_\sigma,\theta_\sigma)\).
+
+For the negative sector, let \(d_{-,2}\) be the common distance of pairs
+\((0^-,1^-)\) and \((2^-,3^-)\). Direct substitution gives
+
+\[
+d_{-,2}^2
+=
+\frac49
+\left(\sqrt3h_- - \sqrt6\rho_-\sin\theta_-\right)^2
++
+\frac49
+\left(
+\sqrt3h_- -
+\sqrt6\rho_-\cos\left(\theta_-+\frac\pi6\right)
+\right)^2.
+\]
+
+Because this is a sum of two squares, this pair orbit reaches coincidence if
+and only if
+
+\[
+h_- = \frac{\rho_-}{\sqrt2},
+\qquad
+\theta_- = \frac\pi6 \pmod{2\pi}.
+\]
+
+This is an exact geometric danger condition, not a claim that an evolved F6c
+history reaches it. The other four negative-sector edges have common squared
+distance
+
+\[
+d_{-,4}^2
+=
+\frac83h_-^2
++\frac{4\sqrt2}{3}h_-\rho_-
+\sin\left(\theta_-+\frac\pi3\right)
++\frac23\rho_-^2
+\sin\left(2\theta_-+\frac\pi6\right)
++\frac83\rho_-^2.
+\]
+
+Plainly: four members can remain on a large, perfectly defined sphere while
+two of them approach each other. F6c searches therefore need pair-distance
+guards in addition to envelope-radius guards.
+
+An important opposite-polarity four-pair orbit has exact squared distance
+
+\[
+\begin{aligned}
+d_{\pm,4}^2={}&
+h_+^2-\frac23h_+h_-+h_-^2+\rho_+^2+\rho_-^2\\
+&+\frac{4\sqrt2}{3}h_+\rho_-
+\sin\left(\theta_-+\frac\pi3\right)
+-\frac{4\sqrt2}{3}h_-\rho_+
+\cos\left(\theta_++\frac\pi6\right)\\
+&-\frac43\rho_+\rho_-\sin\theta_+\sin\theta_-
++\frac{2\sqrt3}{3}\rho_+\rho_-
+\sin(\theta_+-\theta_-).
+\end{aligned}
+\]
+
+This formula shows why relative polarity-sector phase is a physical shape
+coordinate rather than a removable choice of time origin. Changing
+\(\theta_+-\theta_-\) can change which polarity class supplies the limiting
+pair corridor without changing the interaction law or primitive inventory.
+
+Plainly: sliding one sector around its four tracks relative to the other can
+redirect the closest approach from two members of one polarity to a
+positive--negative pair. That phase difference changes the actual geometry.
+
+Claim grade: derived. The displayed distance formulas and the two-edge
+coincidence condition follow from the exact member map. Their use as search guards is
+inferred. Bounded EOM-solver histories have measured both same-polarity and
+opposite-polarity limiting corridors, but no complete return has yet protected
+either class for a full cycle. A direct member-distance reconstruction that
+disagrees with these formulas would falsify the algebraic rows.
+
+Plainly: the distance equations are exact consequences of the declared F6c
+positions, and evolved records have encountered the predicted limiting pair
+classes. What remains unknown is whether a retained cycle can keep every pair
+safely separated for its complete history.
+
 ## Common Center And Translation
 
 Within the exact internal chart,
@@ -387,6 +509,367 @@ relative to absolute time and the Euclidean void.
 Plainly: if the whole picture is moved together, the two centers remain the
 same point. Whether such a moving picture is an allowed physical solution is a
 separate dynamical question.
+
+## Does F6c Support Lorentz Mathematics?
+
+Yes, but only in a carefully limited sense. F6c supplies enough native
+geometry and complete-history structure to define a Lorentz-recovery
+calculation. It does not presently possess Lorentz boosts as exact symmetries,
+and no translating F6c branch has recovered Lorentz clock, ruler, or signal
+behavior.
+
+Plainly: F6c gives us a concrete object on which to ask the Lorentz question.
+It has not yet supplied the Lorentz answer.
+
+### Native Symmetry Versus Effective Lorentz Symmetry
+
+The substrate coordinates remain absolute time \(T\) and Euclidean position
+\(\mathbf X\). Their exact continuous symmetry group contains spatial
+translations, spatial rotations, and absolute-time translations, but no
+boost that mixes time and space. The exact six-coordinate F6c symmetries listed
+later are still narrower: they are the eight decorated tetrahedral chart maps,
+not the continuous Lorentz group.
+
+A Lorentz transformation belongs only to an effective observer chart. Let
+\(\chi_{\mathrm{eff}}\) be the still-to-be-derived map from one complete native
+history and its Noether sea record to effective observer coordinates:
+
+\[
+\left(t_{\mathrm{eff}},\mathbf x_{\mathrm{eff}}\right)
+=
+\chi_{\mathrm{eff}}
+\left[
+T,\mathbf X,\mathcal H^{<T},\mathcal N_{\mathrm{sea}}
+\right].
+\]
+
+Here \(\mathcal H^{<T}\) is the causal path history before absolute time \(T\),
+and \(\mathcal N_{\mathrm{sea}}\) is the declared Noether sea record. Only after
+that map exists may a standard comparison boost along effective coordinate
+\(x_{\mathrm{eff}}^1\) be applied:
+
+\[
+\begin{aligned}
+c_\star t_{\mathrm{eff}}'
+&=
+\gamma_\star
+\left(
+c_\star t_{\mathrm{eff}}-\beta_\star x_{\mathrm{eff}}^1
+\right),\\
+x_{\mathrm{eff}}^{1\prime}
+&=
+\gamma_\star
+\left(
+x_{\mathrm{eff}}^1-\beta_\star c_\star t_{\mathrm{eff}}
+\right),\\
+x_{\mathrm{eff}}^{2\prime}&=x_{\mathrm{eff}}^2,
+\qquad
+x_{\mathrm{eff}}^{3\prime}=x_{\mathrm{eff}}^3,
+\end{aligned}
+\]
+
+with
+
+\[
+\beta_\star=\frac{v}{c_\star},
+\qquad
+\gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}.
+\]
+
+The speed \(c_\star\) is the declared comparison-channel speed. It equals
+\(c_f\) only in a primitive wake-channel test; an observer-level clock, ruler,
+or photon test must use the effective speed recovered for that channel. The
+displayed boost is therefore a target transformation of exported records. It
+must not be used to generate the architrino trajectories.
+
+Plainly: the Master Equation still evolves architrinos using one absolute
+clock and ordinary three-dimensional positions. A physical observer may
+eventually reconstruct coordinates that obey the Lorentz formulas, but the
+conversion from the native history to those observer coordinates has to be
+derived. Writing a Lorentz matrix beside F6c does not perform that derivation.
+
+### What F6c Contributes To The Recovery Problem
+
+F6c supplies four ingredients that make a Lorentz calculation well posed:
+
+1. **A centered rest scaffold.** The two sector centroids coincide exactly,
+   and the phase-averaged sector second moment is isotropic. This provides a
+   definite rest-geometry reference, although phase averaging is not yet a
+   retained-cycle time average.
+2. **Internal clock candidates.** The lifted sector phases and complete return
+   actions can define a material cycle. The clock period must be the return
+   period of the declared clock readout and labeled history, not merely the
+   first recurrence of one scalar shape coordinate.
+3. **A causal speed ledger.** Every sector member obeys the exact speed budget
+   derived below, while every accepted history must retain complete causal
+   roots with normalized primitive speed \(c_f=1\).
+4. **Directional response coordinates.** The tetrahedral
+   \(1\mathbin{\oplus}3\) split separates common scalar deformation from a
+   three-component directional deformation. That triplet is the natural place
+   to represent response to an arbitrary drift direction, but it lies outside
+   strict six-coordinate F6c until an enlarged invariant chart is derived.
+
+Plainly: F6c already has a center, possible clock hands, a speed limit, and a
+way to describe an arrow-shaped deformation. Those are the raw parts needed
+for a moving-clock and moving-ruler calculation. What is missing is a solved
+moving assembly that makes all four parts agree on one history.
+
+### F6c Translating-Branch Test
+
+Choose a unit drift direction \(\hat{\mathbf e}\) and a drift speed \(v\). A
+candidate translating history would have the native form
+
+\[
+\mathbf X_{i\sigma}^{(v)}(T)
+=
+\mathbf C_v(T)
++
+\mathbf r_{i\sigma}^{(v)}(T),
+\qquad
+\sum_{i,\sigma}\mathbf r_{i\sigma}^{(v)}(T)=\mathbf0,
+\]
+
+with mean center motion
+
+\[
+\frac{1}{P_v}
+\left[
+\mathbf C_v(T+P_v)-\mathbf C_v(T)
+\right]
+=
+v\hat{\mathbf e}.
+\]
+
+The relative paths \(\mathbf r_{i\sigma}^{(v)}\) must be solved from the delayed
+Master Equation together with their causal roots. They are not obtained by
+Lorentz-contracting a fixed-center drawing.
+
+Plainly: separate the motion into the center traveling through the Euclidean
+void and the eight architrinos moving around that center. After one candidate
+period \(P_v\), the center has advanced by \(vP_v\) along the chosen direction,
+while the internal labeled history must close under a declared return action.
+
+For a root-complete relative period \(P_v\), define the cycle-averaged shape
+tensor
+
+\[
+Q_{\mathrm{F6c}}(v,\hat{\mathbf e})
+=
+\frac{1}{8P_v}
+\sum_{i,\sigma}
+\int_{T_0}^{T_0+P_v}
+\mathbf r_{i\sigma}^{(v)}(T)
+\mathbf r_{i\sigma}^{(v)}(T)^{\mathsf T}
+\,dT.
+\]
+
+Its longitudinal and mean transverse size readouts are
+
+\[
+R_{\parallel}^2
+=
+\hat{\mathbf e}^{\mathsf T}
+Q_{\mathrm{F6c}}
+\hat{\mathbf e},
+\qquad
+R_{\perp}^2
+=
+\frac12
+\operatorname{tr}
+\left[
+\left(I-\hat{\mathbf e}\hat{\mathbf e}^{\mathsf T}\right)
+Q_{\mathrm{F6c}}
+\right].
+\]
+
+The tensor \(Q_{\mathrm{F6c}}\) is a cycle average of eight dyadic position
+products. Its projection along \(\hat{\mathbf e}\) measures squared longitudinal
+size; the trace over the perpendicular plane measures the mean squared
+transverse size. These are geometry diagnostics, not a primitive spacetime
+metric.
+
+Plainly: average the eight-member shape over one complete cycle, then ask how
+wide it is along the travel direction and how wide it is sideways. This avoids
+mistaking one unusual phase snapshot for the ruler carried by the whole
+repeating assembly.
+
+In the simplest zero-extra-scale comparison, one same-record Lorentz residual
+pair is
+
+\[
+R_T^{\mathrm{F6c}}(v)
+=
+\frac{P_{\mathrm{clk}}(v)}{P_{\mathrm{clk}}(0)}
+-
+\gamma_\star(v),
+\qquad
+R_\xi^{\mathrm{F6c}}(v,\hat{\mathbf e})
+=
+\frac{R_{\parallel}(v,\hat{\mathbf e})}
+{R_{\perp}(v,\hat{\mathbf e})}
+-
+\frac{1}{\gamma_\star(v)}.
+\]
+
+Here \(P_{\mathrm{clk}}\) is the complete-history period of the chosen F6c clock
+readout. For a reflected return, that can be twice the scalar-shape period, as
+shown in [Observable-Specific Return Order](#observable-specific-return-order).
+A complete Lorentz recovery must obtain
+
+\[
+\max
+\left\{
+\left|R_T^{\mathrm{F6c}}\right|,
+\left|R_\xi^{\mathrm{F6c}}\right|,
+\left|\Delta_{\mathrm{tw}}\right|,
+\left|\epsilon_{\mathrm{orient}}\right|
+\right\}
+=
+O(\epsilon_{\mathrm{LV}})
+\]
+
+from one fixed-law translating branch family. The term
+\(\Delta_{\mathrm{tw}}\) is the observer-facing two-way signal anisotropy, while
+\(\epsilon_{\mathrm{orient}}\) measures whether changing the drift direction
+relative to the decorated body frame changes the exported result. Causal-root
+completeness, pair clearance, speed margin, identity return, and stability are
+admission guards rather than terms that may be traded against a small Lorentz
+residual.
+
+Plainly: a successful moving F6c clock must slow by the Lorentz factor, its
+cycle-averaged longitudinal size must shrink by the inverse factor, and a
+round-trip signal test must not reveal which way the assembly points. All of
+those results must come from the same evolved history; success in one column
+cannot compensate for failed causal roots or an unstable assembly.
+
+### Does Strict Six-Coordinate F6c Have Enough Freedom?
+
+That remains open. Strict F6c gives each polarity sector one axial scale, one
+track radius, and one phase. This preserves the exact decorated tetrahedral
+surface but does not provide an independent continuous deformation aligned
+with every possible drift direction. Lorentz recovery can succeed on strict
+F6c only if its allowed phase, breathing, orientation, and return histories
+produce the required cycle-averaged tensor for every drift direction without
+exposing the body-fixed current axis.
+
+If they do not, the already-derived directional triplets provide the smallest
+natural enlargement to test. A failure of the strict six-coordinate surface
+would then mean that F6c is the rest scaffold of a larger translating chart,
+not that Lorentz mathematics is unavailable. Conversely, arbitrarily adding
+the desired oblate deformation would not count: the Master Equation must
+select it and the complete delayed history must retain it.
+
+Plainly: the six shared coordinates may be flexible enough to make the moving
+average look Lorentz-contracted, or the moving object may need extra
+directional shape controls. The dynamics, not a drawing convention, decide
+which answer is correct.
+
+Claim grade: inferred. The absence of substrate boosts, the layer separation,
+the F6c centering identities, and the definitions of the translating history
+and shape tensor are derived facts or test definitions. The Lorentz residual equations
+are **observer-level recovery targets**. F6c Lorentz covariance, clock
+dilation, ruler contraction, signal isotropy, and a Poincare action are **not
+measured or proved**. The claim would advance only after one retained rest
+return and a root-complete, stable translating family produce the same
+\(\gamma_\star\) in the clock and ruler channels together with compatible
+synchronization and signal closure for multiple drift magnitudes and
+orientations. It would fail if those channels
+require independent tuning, if body orientation remains observable above the
+declared leakage bound, or if no admissible translating continuation exists.
+
+Plainly: F6c supports the mathematics of a decisive Lorentz test. It does not
+yet support the statement “F6c is Lorentz invariant.” The next proof object is
+a family of actual moving returns, not a coordinate transformation of the
+existing fixed-center geometry. The corpus-wide comparison and acceptance
+criteria remain in
+[Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md).
+
+## How F6c Describes Time
+
+F6c does not create time or replace it with geometry. Every member history is
+parameterized by the one native absolute time \(T\), and every causal root
+connects an earlier transmitter event to a later receiver event in that same
+ordering. The six F6c coordinates are therefore functions of time,
+
+$$
+\mathbf z(T)
+=
+\left(
+h_+(T),\rho_+(T),\theta_+(T),
+h_-(T),\rho_-(T),\theta_-(T)
+\right),
+$$
+
+not coordinates that contain or generate \(T\).
+
+Plainly: absolute time is the master clock used to play the F6c movie. The six
+coordinates say what the eight-member shape is doing at each frame of that
+movie.
+
+F6c can nevertheless function as a physical clock if one complete history
+returns. Let \(\varphi_{\mathrm{clk}}(T)\) be a lifted phase that advances by
+\(2\pi\) only when the declared clock readout and its required labeled-history
+rows complete one cycle. If the rest period is \(P_0\), define the clock
+readout
+
+$$
+\frac{d\tau_{\mathrm{F6c}}}{dT}
+=
+\frac{P_0}{2\pi}
+\frac{d\varphi_{\mathrm{clk}}}{dT}.
+$$
+
+For an ideal rest return with
+\(d\varphi_{\mathrm{clk}}/dT=2\pi/P_0\), this normalization gives
+\(d\tau_{\mathrm{F6c}}/dT=1\). On a translating branch with complete-history
+period \(P_v\), its cycle average would be \(P_0/P_v\).
+
+Plainly: count complete F6c returns and use the rest return as the clock's unit.
+If a moving F6c needs more absolute time to complete the same internal return,
+its derived clock time advances more slowly.
+
+The clock period depends on what the clock is required to restore. A scalar
+shape may repeat after one reflected interval while cadence and the fixed-frame
+current channel reverse and return only after a second interval. A clock built
+from scalar size can therefore tick twice during one complete current-sensitive
+cycle unless the readout contract explicitly chooses one of those return
+orders.
+
+Plainly: two instruments watching the same F6c object can count different
+repetition times if one watches only its outline and the other also watches
+the direction of circulation. A material clock must state which information
+defines one tick.
+
+This yields three distinct time notions:
+
+| Time notion | F6c meaning | Status |
+| --- | --- | --- |
+| absolute time \(T\) | universal native ordering used by every worldline, causal root, and acceleration update | substrate input |
+| F6c clock time \(\tau_{\mathrm{F6c}}\) | count of complete declared returns of one retained F6c history | derived only after a retained return exists |
+| effective observer time \(t_{\mathrm{eff}}\) | time coordinate reconstructed from clocks, synchronization procedures, signal records, and Noether-sea response | Lorentz-recovery target |
+
+No sphere, tetrahedron, phase coordinate, or current axis is itself time.
+Those geometric objects can change at different cadences under \(T\) and can
+be used to build clock readouts. The observer map must then show whether many
+different assemblies reconstruct one compatible \(t_{\mathrm{eff}}\).
+
+Plainly: F6c supplies possible clockwork, not the universal clock and not a
+fundamental fourth spatial direction. Observer time is the coordinated reading
+recovered from many physical clocks and signals.
+
+Claim grade: derived. The role of absolute time and the distinction among
+coordinate, rate, history, and return order follow from the declared native
+framework and F6c chart. The clock-readout equation is a definition.
+Any material-clock operation, clock dilation, synchronization rule, or common
+effective observer time is **unmeasured and unproved** until retained rest and
+translating histories exist. The clock hypothesis fails if no nontrivial F6c
+return exists or if different admissible readouts cannot be joined by one
+observer-time map without private tuning.
+
+Plainly: absolute time and the proposed clock formula are defined, but no F6c
+clock has yet completed the required physical return. A successful clock must
+tick consistently with other clocks and signals without receiving its own
+special conversion rule.
 
 ## Are The Members Of One Module Antipodal?
 
@@ -941,6 +1424,113 @@ that is invisible to that diagnostic. The measured counts show that this
 conflict recurs in the bounded sample, but they do not say how much of the full
 F6c state space has this property.
 
+### Sector Speed Budget And Current Capacity
+
+The three entries of \(\mathbf q_\sigma\) are orthogonal components of every
+member velocity in sector \(\sigma\). Consequently,
+
+\[
+v_\sigma^2
+=
+\dot h_\sigma^2
++
+\dot\rho_\sigma^2
++
+(\rho_\sigma\dot\theta_\sigma)^2.
+\]
+
+In normalized numerical work the admissible speed condition is
+\(v_\sigma< c_f=1\). Axial breathing, radial breathing, and circulation
+therefore share one exact speed budget. None is a separately available speed
+allowance.
+
+It is useful to display the occupied budget as
+
+\[
+(f_{h,\sigma},f_{\rho,\sigma},f_{\theta,\sigma})
+=
+\frac{1}{v_\sigma^2}
+\left(
+\dot h_\sigma^2,
+\dot\rho_\sigma^2,
+(\rho_\sigma\dot\theta_\sigma)^2
+\right),
+\]
+
+whose three entries are nonnegative and sum to one whenever \(v_\sigma\ne0\).
+This triangle is a diagnostic projection of how the sector uses its motion;
+it is not a conserved energy partition.
+
+Plainly: a member can approach the wake-speed limit by moving rapidly around
+its track, by breathing rapidly inward or outward, or by moving axially. The
+three motions add by the Pythagorean rule, so slowing the orbit does not ensure
+a large speed margin if breathing takes over.
+
+The exact current formula and the Cauchy--Schwarz inequality give
+
+\[
+|I_\sigma|
+\le
+\frac43\|\mathbf a_\sigma\|v_\sigma
+<
+\frac43\|\mathbf a_\sigma\|.
+\]
+
+Thus
+
+\[
+I_{\sigma,\mathrm{cap}}
+=
+\frac43\|\mathbf a_\sigma\|
+\]
+
+is the sector geometry's instantaneous unit-speed current capacity. At a
+fixed sector speed, the bound is saturated only when the rate vector is
+parallel or antiparallel to \(\mathbf a_\sigma\). The two-dimensional plane
+perpendicular to \(\mathbf a_\sigma\) carries internal motion with zero
+instantaneous sector-current projection.
+
+A dimensionless alignment diagnostic is
+
+\[
+\eta_{I,\sigma}
+=
+\frac{|I_\sigma|}
+{(4/3)\|\mathbf a_\sigma\|v_\sigma},
+\qquad
+0\le\eta_{I,\sigma}\le1,
+\]
+
+for nonzero denominator. It measures how efficiently the sector's current
+motion uses its available speed at that shape; it is not an efficiency of
+energy conversion.
+
+Plainly: moving quickly is not enough. One particular blend of breathing and
+circulation produces the largest current-like readout for a given shape and
+speed, while two other blends can move just as quickly and produce none.
+
+Two measured causal-boundary records occupied very different corners of the
+speed triangle. One negative sector used about \(93.659\%\) of its squared
+speed in circulation; another used about \(99.131\%\) in radial collapse.
+Their current-alignment fractions were respectively about \(0.142\) and
+\(0.0116\). These are bounded EOM-solver measurements, not universal F6c
+ratios, but they demonstrate that a near-unit member speed can be either
+cadence-dominated or nearly current-null radial motion.
+
+Plainly: two histories can approach the same speed boundary for almost
+opposite reasons. A return search must inspect the channel allocation and
+current alignment, not only the total speed.
+
+Claim grade: derived. The speed sum, capacity bound, current-null plane, and
+alignment range are exact F6c kinematics. The quoted channel fractions are measurements
+on two declared records. Neither establishes a conservation law, retained
+cycle, or magnetic observable.
+
+Plainly: the geometry exactly limits how axial, radial, and circulation motion
+can share one member's speed, and two simulations illustrate different
+allocations. Those facts do not show that the allocation is conserved, repeats,
+or already behaves like an observed magnetic quantity.
+
 ### Root-Certified Minimax Continuation
 
 Because the field-speed guard applies separately to each sector, the
@@ -1262,6 +1852,74 @@ exchange requires a separate identity-history argument.
 Plainly: the visible shape can repeat before the detailed motion and current
 posture repeat.
 
+### Observable-Specific Return Order
+
+Suppose a complete delayed geometry \(Z(T)\) has a relative return
+
+\[
+Z(T+\tau)=gZ(T)
+\]
+
+under one declared chart symmetry \(g\). An observable \(\mathcal O\) need not
+be unchanged after that first geometric step. If it transforms through
+\(D_{\mathcal O}(g)\),
+
+\[
+\mathcal O(gZ)=D_{\mathcal O}(g)\mathcal O(Z),
+\]
+
+then its symmetry-forced return order is the least positive integer
+\(k_{\mathcal O}\) for which \(D_{\mathcal O}(g)^{k_{\mathcal O}}\) acts as the
+identity on that observable. Its corresponding return interval is
+\(k_{\mathcal O}\tau\). A special state may return sooner, so this is a group-
+action result rather than a claim about every Fourier component.
+
+For an F6c reflected proper action:
+
+| Projection | Result after one interval \(\tau\) | Return order |
+| --- | --- | ---: |
+| orientation-quotiented scalar shape | unchanged | 1 |
+| sector cadence vector | sign reversed | 2 |
+| fixed-frame axial current moment | sign reversed | 2 |
+
+Hence an exact reflected relative orbit would obey
+
+\[
+\mathbf m_{\mathrm{cur}}(T+\tau)
+=
+-\mathbf m_{\mathrm{cur}}(T),
+\qquad
+\mathbf m_{\mathrm{cur}}(T+2\tau)
+=
+\mathbf m_{\mathrm{cur}}(T).
+\]
+
+If that half-cycle relation holds throughout the history, the fixed-frame
+current average over \(2\tau\) vanishes. A direct return, by contrast,
+preserves the current-axis orientation and is the natural return type for a
+persistent fixed-frame current posture.
+
+Plainly: the object can regain the same visible shape after one step while its
+circulation and current arrow are reversed. A shape-sensitive instrument can
+therefore repeat twice as often as a current-sensitive instrument without
+there being two independent internal clocks.
+
+This is also why F6c does not yet establish fermion spin. The reflected action
+is an ordinary order-two transformation of spatial vectors. Recovering a
+\(4\pi\) spinor return requires a separately derived lift of the complete
+ordered path history; vector reversal after one reflected step is not a
+spinor sign.
+
+Claim grade: derived. The return orders follow from the exact F6c symmetry
+action. They would be falsified by a direct transformation of the complete member
+state or current sum that disagrees with the table. No evolved nontrivial F6c
+relative return has yet realized either row physically.
+
+Plainly: the symmetry calculation says how shape and current would transform
+if the required relative return occurred. No evolved F6c history has yet made
+that return, so the table is a conditional prediction rather than a measured
+clock cycle.
+
 ### Global Polarity Conjugation
 
 Global polarity conjugation is separate from the eight spatial chart maps. It
@@ -1298,6 +1956,1218 @@ Plainly: swapping every positrino for an electrino and every electrino for a
 positrino leaves the unlabeled field-free paths available but reverses every
 polarity-odd readout.
 
+## Native Response Coordinates Suggested By F6c
+
+### Common And Polarity-Differential Coordinates
+
+For a continuous lifted phase and either collective coordinate
+\(z\in\{h,\rho,\theta\}\), the even/odd split is
+
+\[
+z_{\mathrm{even}}
+=
+\frac12(z_++z_-),
+\qquad
+z_{\mathrm{odd}}
+=
+\frac12(z_+-z_-).
+\]
+
+The three even coordinates describe common motion of the two polarity sectors;
+the three odd coordinates describe their relative displacement, scale, and
+phase. Under complete polarity conjugation the even coordinates remain fixed
+and the odd coordinates reverse sign.
+
+This gives an exact parity requirement for any proposed effective projection.
+A charge-facing function must be odd under the sector exchange,
+
+\[
+Q_{\mathrm{eff}}
+\left(
+\mathbf z_{\mathrm{even}},-\mathbf z_{\mathrm{odd}}
+\right)
+=
+-Q_{\mathrm{eff}}
+\left(
+\mathbf z_{\mathrm{even}},\mathbf z_{\mathrm{odd}}
+\right),
+\]
+
+whereas a scalar envelope or mass-facing projection must be even. F6c does not
+yet supply either functional form; both must be derived from the same root-
+resolved source, wake, and receiver history.
+
+Plainly: motion shared by the positive and negative tetrahedra can control the
+common size and cadence. Motion that separates their geometries is the natural
+place to look for a sign-reversing charge readout. The symmetry tells us the
+required sign behavior, not the value of electric charge.
+
+A symmetry-based branch chart would therefore distinguish:
+
+- \(\mathbf z_{\mathrm{odd}}=\mathbf0\): a symmetric neutral-geometry
+  candidate;
+- \(\mathbf z_{\mathrm{odd}}=\pm\mathbf z_*\) with the same even coordinates:
+  a candidate conjugate branch pair; and
+- nonzero instantaneous odd motion whose complete-cycle charge projection
+  still vanishes: a weakly exposed neutral candidate.
+
+These are branch shapes, not particle assignments. Equal and opposite
+effective charge, equal scalar response, compatible current transformation,
+retention, and reaction provenance would all remain necessary before naming a
+particle/antiparticle pair.
+
+Plainly: two geometries can be mirror partners in polarity space without yet
+being an electron and positron. The complete dynamics and observer-facing
+readouts must make that identification.
+
+### Tetrahedral Singlet And Directional Triplet
+
+Exact F6c retains only module-common motion. To describe a directional
+perturbation, allow one module coordinate to vary as
+
+\[
+z_{i\sigma}
+=
+\bar z_\sigma+\delta z_{i\sigma},
+\qquad
+\bar z_\sigma
+=
+\frac14\sum_i z_{i\sigma},
+\qquad
+\sum_i\delta z_{i\sigma}=0.
+\]
+
+The four module values split exactly into one common component and one
+three-dimensional sum-zero component:
+
+\[
+\mathbb R^4
+=
+\operatorname{span}\{(1,1,1,1)\}
+\mathbin{\oplus}
+\left\{
+\boldsymbol\delta:\sum_i\delta_i=0
+\right\}.
+\]
+
+The common component is often called a **singlet**, meaning that it is
+unchanged by module permutations. The sum-zero component is a **triplet**,
+meaning a three-component directional sector. The tetrahedral axes convert it
+into a body-frame vector,
+
+\[
+\mathbf Z_{z,\sigma}
+=
+\sum_i\delta z_{i\sigma}\hat{\mathbf n}_i.
+\]
+
+The tetrahedral identities give both its norm and inverse map:
+
+\[
+\left\|\mathbf Z_{z,\sigma}\right\|^2
+=
+\frac43\sum_i\delta z_{i\sigma}^2,
+\qquad
+\delta z_{i\sigma}
+=
+\frac34
+\hat{\mathbf n}_i
+\mathbin{\cdot}
+\mathbf Z_{z,\sigma}.
+\]
+
+Thus the three departures from common motion contain exactly the same
+information as one body-frame vector; no directional component is discarded.
+
+Plainly: if all four modules expand equally, the change has size but no arrow.
+If some expand more and others less while their average stays fixed, the four
+changes combine into one arrow showing the direction of the deformation.
+
+Combining this split with polarity conjugation gives
+
+\[
+\mathbf Z_{z,\mathrm{even}}
+=
+\frac12
+\left(\mathbf Z_{z,+}+\mathbf Z_{z,-}\right),
+\qquad
+\mathbf Z_{z,\mathrm{odd}}
+=
+\frac12
+\left(\mathbf Z_{z,+}-\mathbf Z_{z,-}\right).
+\]
+
+This creates a disciplined response chart:
+
+| Native coordinate class | Effective role to test | Required control |
+| --- | --- | --- |
+| common even singlets | scalar loading, common cadence, isotropic envelope response | rotating the source direction leaves the leading scalar row unchanged |
+| common odd singlets | charge-facing exposure imbalance or conjugate branch coordinate | complete conjugation reverses the row |
+| odd directional triplets | electric-like internal polarization or directional sea strain | source-polarity reversal and spatial reflection produce the declared polar-vector transformation |
+| circulation-weighted axial triplets | magnetic-like orientation or current response | circulation reversal and parity distinguish the axial row from the polar row |
+
+The algebraic split is exact. The effective roles in the table are inference
+targets. In particular, proper rotations treat polar and axial vectors alike;
+reflection and circulation history are needed to distinguish electric-like
+from magnetic-like response. The triplet is also a spatial body-frame vector,
+not a color triplet. Identifying it with color would confuse laboratory
+orientation with an internal label unless a separate quotient is derived.
+
+Plainly: the tetrahedron naturally separates an all-together response from a
+directional response. That is enough to organize electric-like and magnetic-
+like tests, but not enough to prove either field or to turn three spatial
+components into three colors.
+
+### Why Three Even Coordinates Do Not Yet Mean Three Modes
+
+If a retained charge branch fixes its polarity-odd exposure basin, its
+instantaneous charge-preserving configuration tangent is
+
+\[
+\mathcal E_{\mathrm{even}}
+=
+\operatorname{span}
+\left\{
+\delta h_{\mathrm{even}},
+\delta\rho_{\mathrm{even}},
+\delta\theta_{\mathrm{even}}
+\right\}.
+\]
+
+This is three-dimensional as a configuration space, but the native state also
+contains three rates and a causal history. It follows that three coordinate
+names do not by themselves imply exactly three dynamical modes.
+
+An exactly three-mode reduction would require an invariant graph \(\iota\)
+that reconstructs the charge-preserving rates and relevant retained history
+from those three coordinates on a declared return section. If \(\mathcal R\)
+is the full return map and \(P_{\mathrm{even}}\) projects back to the three even
+coordinates, the reduced derivative would be
+
+\[
+M_{\mathrm{even}}^{\mathrm{red}}
+=
+D\!\left(
+P_{\mathrm{even}}
+\mathbin{\circ}
+\mathcal R
+\mathbin{\circ}
+\iota
+\right).
+\]
+
+Only after proving closure of this \(3\times3\) operator would the cubic
+
+\[
+\det\left(
+M_{\mathrm{even}}^{\mathrm{red}}-\lambda I_3
+\right)=0
+\]
+
+classify at most three reduced eigenmodes. Any proposed generation
+interpretation would additionally have to keep charge and interaction
+representation fixed across those modes while deriving their different
+recurrence, response, lifetime, and reaction-exit records.
+
+Plainly: three adjustable shapes do not guarantee three natural oscillations.
+The delayed system also remembers velocity and past history. Exactly three
+physical modes appear only if the full dynamics really collapses to a closed
+three-variable return rule.
+
+Claim grade: derived. The even/odd parity, \(1\mathbin{\oplus}3\)
+decomposition, norm, and inverse map are derived algebra. The response roles, invariant reduction,
+three-mode interpretation, and every particle or generation assignment are
+inferred or guessed targets. They fail if the source response has the wrong
+transformation parity, if no invariant reduction exists, or if additional
+same-representation modes remain admissible.
+
+Plainly: the tetrahedral algebra exactly separates common and directional
+motion, but it does not prove that the dynamics closes into three modes or that
+any mode is a particle generation. Extra surviving modes or the wrong symmetry
+response would reject that interpretation.
+
+## Candidate Particle-Facing Implementations
+
+The exact F6c response chart supports several concrete particle-facing tests,
+but it does not identify F6c with any particle. A fermion generation, photon,
+or neutrino uses a different quotient of the complete history and therefore
+cannot be obtained by attaching three different names to the same coordinate
+count. The sections below state the strongest current implementation routes
+and the dynamical result each route would need.
+
+Plainly: F6c has useful internal motions, but different particles ask those
+motions to do different jobs. A successful geometry must pass the job-specific
+test rather than merely resemble the expected picture.
+
+### Candidate Fermion-Generation Realization
+
+The cleanest F6c generation hypothesis keeps the fermion's charge-facing and
+representation-facing realization fixed while changing its complete retained
+core history. For fermion sector \(F\) and candidate generation
+\(g\in\{1,2,3\}\), write
+
+$$
+\Theta_{F,g}
+=
+\left(
+\Theta_{\mathrm{core}}^{(g)},
+\mathcal D_F
+\right),
+$$
+
+where \(\mathcal D_F\) denotes the fixed charge, color, and weak-facing
+decoration or projection declared for sector \(F\). A generation map must then
+obey
+
+$$
+\Pi_{\mathrm{rep},F}(\Theta_{F,g})
+\simeq
+\Pi_{\mathrm{rep},F}(\Theta_{F,g'})
+\qquad
+\text{for all }g,g',
+$$
+
+while permitting different mass-facing response, recurrence, lifetime,
+mixing-overlap, and reaction-exit records.
+
+The corpus-wide representation and exactly-three selection obligations remain
+in [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-generation-mechanism-mass-hierarchy).
+
+Plainly: an electron, muon, and tau would carry the same charge-facing
+architecture but occupy three different durable histories of the common core.
+The same division would apply within the up-type, down-type, and neutral-lepton
+families.
+
+The three common sector coordinates
+
+$$
+\mathbf q_{\mathrm{even}}
+=
+\left(
+h_{\mathrm{even}},
+\rho_{\mathrm{even}},
+\theta_{\mathrm{even}}
+\right)
+$$
+
+provide a candidate reduced response space. The reduced operator defined in
+the preceding section could possess as many as three isolated modes, but a
+linear eigenvector is only a local deformation. To carry generation, each mode
+must continue nonlinearly into a positive-width retained branch or into a
+spectrally isolated admissible mode of one retained branch.
+
+Plainly: three coordinates can describe three candidate rhythms, but a rhythm
+becomes a generation only when finite perturbations return to the same durable
+class instead of drifting continuously or destroying the assembly.
+
+Let \(\mathcal R_F\) be the accepted complete-history set for fixed fermion
+sector \(F\), and let \(Q_F\) remove only declared spatial, phase, identity, and
+history redundancies. The exact generation-selection target is
+
+$$
+N_{\mathrm{gen}}^{(F)}
+=
+\#\pi_0^{\mathrm{robust}}
+\left(
+\mathcal R_F/Q_F
+\right)
+=3,
+$$
+
+or an equivalent exactly-three isolated-mode result on one connected retained
+branch. Every additional same-representation branch must be absent, transient,
+confined into another accepted role, or below a declared observer-level
+resolution bound.
+
+Plainly: displaying three examples does not close the generation problem. The
+same fixed law must select exactly three durable choices and explain why a
+fourth same-charge partner does not survive.
+
+The likely F6c mode fingerprints are mixtures rather than one-coordinate
+labels:
+
+| Candidate core feature | Generation-facing role to test | Required result |
+| --- | --- | --- |
+| common axial breathing | changes longitudinal exposure and complete-history response | retained nonlinear continuation with unchanged representation-facing rows |
+| common transverse breathing | changes envelope and shielding-facing response | a second isolated branch or mode, not a continuously tunable copy of the first |
+| common cadence/history mode | changes recurrence and interaction overlap | a third isolated branch or mode with a complete causal-history distinction |
+
+The names in the first column do not preassign the electron, muon, tau, or
+quark ordering. The eigenvectors may mix all three motions, and the generation
+index may not be assigned afterward by sorting the recovered mass-facing
+values.
+
+Plainly: the dynamics must tell which mode is first, second, and third. Matching
+the lightest calculated mode to the electron only after seeing the answer would
+not derive the family structure.
+
+The earlier F6 one-versus-three seed had one exceptional module and a
+three-member \(C_3\) orbit, which suggested a cyclic three-port generation
+route. Strict F6c descends through the two-versus-two circulation decoration
+and has the smaller \(D_{2d}\) chart symmetry. It therefore does not inherit
+three equivalent nonexceptional modules as an exact generation mechanism.
+The three reduced collective modes or three dynamically selected basins are
+the more defensible F6c route.
+
+Claim grade: guessed. The fixed-representation condition and exactly-three
+exhaustion equation are observer-level recovery requirements. The placement of
+the generation carrier in F6c's common coordinates is the guessed mechanism.
+The hypothesis fails if no retained F6c branch exists, the reduced history does not close,
+fewer or more than three same-representation modes survive, or changing mode
+necessarily changes charge, color, or weak-facing identity.
+
+Plainly: F6c offers a specific place to search for three generations, but it
+has not produced them. The test succeeds only if exactly three durable core
+histories share the same charge and interaction identity and every extra
+same-identity history is rejected.
+
+### Candidate Photon Role
+
+An intact localized F6c assembly is not the strongest photon candidate. F6c is
+volumetric, has six configuration coordinates, and was introduced as a
+possible retained assembly chart. A photon-like carrier instead requires
+source-free propagation, coherent phase cadence, exactly two transverse
+response channels, a helicity and angular-history ledger, no free longitudinal
+channel, trivial bosonic exchange holonomy, and no retained rest branch. F6c is therefore better matched to an
+emitter, receiver, or source geometry that launches a photon-channel packet,
+unless a distinct propagating F6c continuation removes the extra freedoms.
+
+The layer and ontology rules for this comparison remain in the
+[Photon Guide](../../../content/markdown/aaa/archie/photon-guide.md).
+
+Plainly: translating the complete eight-member picture does not automatically
+make a photon. The photon role needs a traveling two-channel history, while an
+ordinary F6c assembly has more ways to deform.
+
+The body-fixed current axis supplies a candidate propagation direction only
+after an evolved history actually aligns translation with that axis:
+
+$$
+\hat{\mathbf k}
+=
+\frac{\mathbf m_{\mathrm{cur}}}
+{\|\mathbf m_{\mathrm{cur}}\|},
+\qquad
+P_\perp
+=
+I-\hat{\mathbf k}\hat{\mathbf k}^{\mathsf T},
+\qquad
+P_\parallel
+=
+\hat{\mathbf k}\hat{\mathbf k}^{\mathsf T}.
+$$
+
+Here \(P_\perp\) projects a directional F6c response onto the plane normal to
+the candidate propagation direction. For a response Gram operator \(G\)
+measured on one complete source-to-receiver record, the photon-facing rank
+target is
+
+$$
+n_T
+=
+\operatorname{rank}_\tau(P_\perp G P_\perp)
+=2,
+\qquad
+n_L
+=
+\operatorname{rank}_\tau
+\left(
+P_\parallel G P_\parallel
+\right)
+=0.
+$$
+
+Plainly: two independent sideways responses must propagate, and no independent
+along-the-path response may survive as a free photon polarization. The ranks
+must be measured from native evolution rather than inserted as labels.
+
+Choose an ordered transverse basis
+\((\hat{\mathbf e}_1,\hat{\mathbf e}_2)\). The candidate exported amplitude is
+
+$$
+\boldsymbol\Psi_\perp
+=
+a_1\hat{\mathbf e}_1
++
+a_2\hat{\mathbf e}_2.
+$$
+
+At the observer-comparison layer, the circular combinations are
+
+$$
+\boldsymbol\Psi_\pm
+=
+\frac{1}{\sqrt2}
+\left(
+\hat{\mathbf e}_1
+\mathbin{\pm}
+i\hat{\mathbf e}_2
+\right).
+$$
+
+The complex notation summarizes a quarter-cycle phase relationship between
+two real response histories. It does not introduce a complex substrate field.
+The sign is a candidate helicity label only after the ordered transverse phase
+is compared with \(\hat{\mathbf k}\).
+
+Plainly: a fixed sideways direction gives linear polarization. Two sideways
+responses cycling a quarter-period apart give the two circular polarization
+patterns. Their handedness is defined relative to the direction of travel.
+
+The phase must advance through source, path, and receiver histories. A compact
+observer-facing description is
+
+$$
+\boldsymbol\Psi_\perp(\ell,T)
+=
+\operatorname{Re}
+\left[
+\mathbf a_\perp(\ell,T)
+e^{i\Phi(\ell,T)}
+\right],
+$$
+
+where \(\ell\) is a declared path coordinate and \(T\) is absolute time. The
+photon frequency is recovered from the phase cadence at the source or
+receiver; it is not the rest period of a localized F6c assembly.
+
+Plainly: photon frequency counts how rapidly a traveling phase passes a
+detector. It does not require a small F6c clock to orbit while sitting at rest.
+
+A photon identity also requires the no-rest condition
+
+$$
+\mathcal B_\gamma
+\left(
+\|\mathbf V_{\gamma,\mathrm{group}}\|=0
+\right)
+=
+\varnothing.
+$$
+
+Here \(\mathbf V_{\gamma,\mathrm{group}}=d\mathbf C_\gamma/dT\) is the native
+group-path velocity of the candidate carrier center \(\mathbf C_\gamma(T)\).
+
+If the carrier stops propagating, its history must terminate through capture
+or reorganize into matter and Noether-sea records. An intact stationary F6c
+branch with the same exported identity would falsify the photon assignment.
+
+Plainly: a photon may be emitted, propagate, scatter, and be captured, but the
+same object cannot be slowed into a stationary photon assembly.
+
+The strongest current F6c photon route is therefore an event sequence:
+
+1. a retained matter assembly develops a source transition with a declared
+   phase and angular ledger;
+2. its F6c current-axis and directional-response geometry launches a neutral
+   propagating disturbance;
+3. only two transverse response combinations continue source-free;
+4. their relative phase supplies linear, elliptical, or circular polarization;
+5. a receiver captures the disturbance and the free-carrier record ends; and
+6. every architrino, wake, recoil, and Noether-sea contribution remains in the
+   same provenance ledger.
+
+The completed record must also recover trivial bosonic exchange for two
+identical carriers and one universal observer-level relation among phase
+cadence, transported action, and measured photon energy. Neither property
+follows from having an even number of architrinos or from displaying two
+transverse response coordinates.
+
+Plainly: two polarization channels do not by themselves make a photon. Two
+identical packets must also exchange with bosonic behavior, and the same phase
+record must explain how observers assign frequency and energy.
+
+This route permits the actual free carrier to be the currently proposed
+coaxial polarity-conjugate planar-pair train rather than the complete F6c
+assembly. A direct F6c photon remains an alternative only if a propagating
+eight-member continuation passes the same rank, helicity, exchange, source,
+capture, and no-rest tests.
+
+Claim grade: guessed. The two-transverse, no-longitudinal, helicity, provenance,
+and no-rest conditions are observer-level recovery requirements. The use of
+the F6c current axis and transverse response plane is an inferred search route;
+identifying either an intact or emitted F6c-derived record as a photon is the
+guessed mechanism. It fails if longitudinal leakage persists, transverse
+degeneracy splits into orientation-dependent propagation, packet identity or
+helicity is lost, a rest branch survives, or the source and capture ledgers do
+not close.
+
+Plainly: the photon section defines what an F6c-derived packet would have to
+do—carry two equivalent sideways responses, preserve handed phase, travel
+without a rest state, and connect emitter to receiver. No current F6c record
+passes that full test.
+
+### Candidate Neutrino Role
+
+The current neutrino architecture is a near-photon, near-planar
+polarity-conjugate carrier, not an ordinary six-site charged-fermion layer. An
+F6c neutrino would therefore be an alternative eight-member realization or a
+source-to-carrier reorganization route. Its strongest interpretation is an
+undecorated neutral F6c continuation that approaches the photon lock but
+retains a small internal mismatch carrying weak exposure and three coherent
+propagation modes.
+
+The owning neutral-lepton construction and its referent boundary remain in
+[Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md).
+
+Plainly: the neutrino candidate uses the balanced four-positrino and
+four-electrino F6c core. It does not add a literal \(3+3\) charge decoration;
+that notation remains weak-interaction bookkeeping.
+
+The complete-history neutrality target is
+
+$$
+Q_{\mathrm{eff}}[\Theta_\nu]=0.
+$$
+
+A candidate departure from a photon-like sector lock can be parameterized by
+
+$$
+\boldsymbol\delta_\nu
+=
+\left(
+h_{\mathrm{odd}},
+\rho_{\mathrm{odd}},
+\theta_{\mathrm{odd}}
+\right)
+\ne\mathbf0.
+$$
+
+The residual must preserve zero charge while supplying a small mass-facing
+response, a weak-facing posture, and internal phase differences. This
+parameterization is referent-pending until a retained or propagating neutral
+base branch exists; a residual about a non-solution cannot be assigned a
+spectrum or physical magnitude.
+
+Plainly: the positive and negative sectors would almost lock into one neutral
+photon-like history but remain slightly out of step. The weak channel could
+read that small mismatch, but the mismatch cannot be measured until the base
+history actually exists.
+
+Only after exact acceleration balance or an admissible propagating base record
+is established may the neutral response be tested for exactly three isolated
+eigenrecords
+
+$$
+v_1,
+\qquad
+v_2,
+\qquad
+v_3.
+$$
+
+They would be collective mixtures of F6c breathing, cadence, directional, and
+polarity-differential motion rather than three constituents or three
+tetrahedral axes. The three phase histories contain two independent relative
+phases after their common phase is removed:
+
+$$
+\Delta\phi_{21}(T)
+=
+\phi_2(T)-\phi_1(T),
+\qquad
+\Delta\phi_{31}(T)
+=
+\phi_3(T)-\phi_1(T).
+$$
+
+Plainly: one neutral carrier would travel with three internal rhythms. Only
+the changing offsets among those rhythms matter for oscillation, so three
+rhythms produce two independent phase gaps.
+
+At the observer-comparison layer, a source-prepared weak state may be written
+
+$$
+|\nu_\alpha;T\rangle
+=
+\sum_{i=1}^{3}
+U_{\alpha i}
+e^{i\phi_i(T)}
+|v_i\rangle.
+$$
+
+The symbols \(|v_i\rangle\) summarize complete propagation eigenrecords and
+\(U_{\alpha i}\) summarizes source or detector overlap with those records.
+This equation is a recovery grammar for native histories, not a quantum-state
+postulate inserted into the Master Equation. Flavor belongs to the source and
+detector corridor projections; the carrier does not repeatedly rebuild itself
+as three different assemblies during propagation.
+
+Plainly: the source prepares one mixture, the three internal histories acquire
+different phases on one common path, and the detector reads another mixture.
+Oscillation is a changing endpoint projection of one continuous carrier
+record.
+
+The F6c current axis may supply the common propagation direction if one evolved
+branch actually aligns its group path with that axis. In contrast with the
+photon, the neutrino is allowed a small residual longitudinal or
+polarity-differential response and is not required to lack every rest
+continuation. That residual is the candidate source of its small mass-facing
+readout.
+
+| Photon-facing continuation | Neutrino-facing continuation |
+| --- | --- |
+| complete neutral transverse lock | nearly complete neutral lock |
+| exactly two free transverse channels | exactly three coherent internal eigenrecords |
+| no free longitudinal response | small residual internal or longitudinal structure may remain |
+| no retained rest branch | a rest continuation may exist in principle |
+| one traveling phase cadence | two independent relative phase gaps |
+| no weak-flavor projection | source and detector weak-corridor projections |
+
+The weak-facing posture must be part of the ordered complete history and must
+remain distinct from observer helicity. The sign of
+\(\mathbf m_{\mathrm{cur}}\mathbin{\cdot}\hat{\mathbf k}\) alone cannot derive
+weak handedness. Global polarity conjugation reverses F6c's odd coordinates
+and supplies a candidate neutrino/antineutrino comparison, but the
+transformation character of the ordered weak posture must decide whether the
+two histories are conjugate-distinct or admit a self-conjugate realization.
+F6c geometry alone therefore does not settle the Dirac-versus-Majorana branch.
+
+Plainly: traveling clockwise or counterclockwise relative to the flight axis
+is not enough to explain weak handedness. The weak corridor must read a durable
+internal history feature, and its behavior under polarity conjugation remains
+part of the neutrino test.
+
+Propagation coherence and detection access are separate margins. The three
+phase-bearing eigenrecords must remain coherent across the path even though the
+localized weak-capture corridor occupies only a small part of the receiver's
+available history space. A small detection probability is not a short
+neutrino lifetime, and long coherence does not by itself supply a weak
+interaction.
+
+Plainly: the neutrino must preserve its internal rhythm for a long trip while
+still being hard to capture. “Rarely detected” and “quickly destroyed” are
+different statements and require different calculations.
+
+The minimum F6c neutrino record is schematically
+
+$$
+\Theta_\nu
+=
+\left(
+\Theta_{\mathrm{F6c}}^0,
+\boldsymbol\delta_\nu,
+v_1,v_2,v_3,
+\hat{\mathbf k},
+\mathcal U_{\mathrm{src}},
+\mathcal U_{\mathrm{det}},
+\mathcal E_W,
+\Theta_{\mathrm{sea}}
+\right).
+$$
+
+Here \(\Theta_{\mathrm{F6c}}^0\) is the shared neutral carrier,
+\(\mathcal U_{\mathrm{src}}\) and \(\mathcal U_{\mathrm{det}}\) are weak source
+and detector projections, \(\mathcal E_W\) is the ordered weak-facing posture,
+and \(\Theta_{\mathrm{sea}}\) is the Noether-sea history through which the
+carrier propagates. All entries must arise from one root-complete record.
+
+Plainly: the proposed neutrino needs one neutral support, one small
+photon-lock mismatch, three internal modes, one common path, two endpoint
+readouts, and one continuous environmental history.
+
+Claim grade: guessed. Neutrality, three-mode coherence, two relative phase
+gaps, weak endpoint projection, and handedness distinct from helicity are
+observer-level recovery requirements. Assigning them to F6c's odd and
+collective response coordinates is the guessed mechanism. The F6c neutrino route fails if
+the eight-member branch is not admissible, the charge projection is nonzero,
+the neutral response has fewer or more than three coherent modes, mode
+propagation separates into different group paths, weak projection destroys
+carrier identity, or F6c supplies neither an alternative satisfying the same
+neutral-lepton requirements nor a ledger-complete reorganization into the
+current near-planar candidate.
+
+Plainly: the neutrino proposal is a testable architecture, not a result. It
+must keep one neutral carrier intact while exactly three internal rhythms stay
+coherent on one path and weak interactions read their changing mixture.
+
+### Candidate Gravitational-Wave Role For F6c Timespace Histories
+
+The phrase **timespace braid of F6c geometry** is descriptive shorthand for
+the eight ordered F6c worldline histories
+
+$$
+\mathcal B_A
+=
+\left\{
+\left(T,\mathbf X_{A,i\sigma}(T)\right)
+\right\}_{i,\sigma}
+$$
+
+together with their causal-root and wake record. It does not introduce a
+fundamental spacetime fabric. The native background remains absolute time plus
+the Euclidean void, while the Noether sea contains whatever assemblies and
+histories ordinary dynamics retains.
+
+The observer-level recovery obligations remain in
+[Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md).
+
+Plainly: an F6c timespace braid is the complete movie of eight paths and their
+delayed interactions. It is not a material thread from which space or time is
+woven.
+
+Assume, only for this candidate mechanism, that the Noether sea admits retained
+F6c-like cells indexed by \(A\), with center paths \(\mathbf C_A(T)\) and
+relative paths
+
+$$
+\mathbf r_{A,i\sigma}(T)
+=
+\mathbf X_{A,i\sigma}(T)-\mathbf C_A(T).
+$$
+
+A gravitational-wave candidate would then be a coherent causally delayed
+pattern of trace-free shape changes transferred through many complete
+histories, not one F6c assembly traveling from source to detector. Neighboring
+cells need not occupy a lattice; adjacency means that the declared causal-root
+and Noether-sea response record couples their histories.
+
+Plainly: picture many retained F6c-like clockworks distributed through the
+Noether sea. A wave would be a coordinated pattern in how they deform and
+retime, with each region responding after the appropriate causal delay.
+
+Two roles must remain separate:
+
+1. **Carrier hypothesis:** coupled F6c-like sea histories transport the
+   trace-free disturbance.
+2. **Receiver hypothesis:** another Noether-sea mode transports the
+   disturbance, while F6c assemblies act only as clocks, rulers, source
+   constituents, or detector elements whose histories are modulated at
+   arrival.
+
+The carrier hypothesis requires a root-complete multi-cell transfer result.
+The receiver hypothesis requires a same-record constitutive map from the
+arriving sea disturbance into F6c shape and clock channels. A detector response
+alone cannot distinguish the two roles.
+
+Plainly: F6c could be part of the cable carrying the signal, or it could be an
+instrument connected to that cable. Showing that the instrument moves does not
+show what transported the disturbance to it.
+
+For a retained cell \(A\) with complete period \(P_A\), define its
+cycle-averaged second-moment tensor
+
+$$
+Q_{A,ij}
+=
+\frac{1}{8P_A}
+\sum_{i',\sigma}
+\int_{T_0}^{T_0+P_A}
+r_{A,i'\sigma,i}(T)
+r_{A,i'\sigma,j}(T)
+\,dT,
+$$
+
+and its symmetric trace-free part
+
+$$
+S_{A,ij}
+=
+Q_{A,ij}
+-
+\frac13\delta_{ij}Q_{A,kk}.
+$$
+
+Common breathing changes the trace \(Q_{A,kk}\); directional
+stretch-and-squeeze changes \(S_{A,ij}\). The exactly phase-averaged strict
+F6c scaffold is isotropic and has \(S_{A,ij}=0\), so a nonzero tensor channel
+requires off-surface directional perturbations or a larger retained chart.
+
+Plainly: first separate an all-directions size change from a deformation that
+stretches one way while squeezing another. Only the second type supplies the
+candidate gravitational-wave shape signal.
+
+For a declared propagation direction \(\hat{\mathbf k}\), define
+
+$$
+P_{ij}
+=
+\delta_{ij}-\hat k_i\hat k_j,
+$$
+
+and the transverse-trace-free diagnostic
+
+$$
+H_{A,ij}^{\mathrm{TT}}
+=
+\left(
+P_i{}^aP_j{}^b
+-
+\frac12P_{ij}P^{ab}
+\right)
+S_{A,ab}.
+$$
+
+This is a projection of measured native shape history, not a primitive metric
+perturbation. It becomes an observer-level gravitational strain candidate only
+after a common clock, ruler, signal, and Noether-sea map is derived.
+
+Plainly: remove ordinary breathing, then remove every deformation pointing
+along the travel direction. The remaining sideways volume-preserving pattern
+is the part that can be compared with a tensor gravitational wave.
+
+The need for an enlarged chart follows from the tetrahedral response algebra.
+The zero-sum module perturbations form a three-component directional sector,
+and their symmetric products split as
+
+$$
+\mathbf3
+\mathbin{\otimes}_{\mathrm{sym}}
+\mathbf3
+=
+\mathbf1
+\mathbin{\oplus}
+\mathbf5.
+$$
+
+The singlet is the trace, while the five-component sector is the native
+symmetric trace-free shape candidate before a propagation direction and its
+constraints reduce the exported response to two transverse patterns. One
+strict common breathing coordinate cannot supply this tensor sector.
+
+This \(\mathbf1\mathbin{\oplus}\mathbf5\) split is the ordinary Euclidean
+rotation decomposition of a symmetric rank-two tensor. It is not a statement
+that the discrete \(D_{2d}\) F6c chart has an irreducible five-dimensional
+representation; the decorated subgroup may split the five components further.
+
+Plainly: one directional deformation behaves like an arrow. A tensor wave
+needs correlations between two directional deformations—stretch here while
+squeezing there—so strict six-coordinate breathing is not enough by itself.
+
+Choose two perpendicular unit vectors
+\(\hat{\mathbf e}_1,\hat{\mathbf e}_2\) transverse to
+\(\hat{\mathbf k}\). The observer-level comparison pattern is
+
+$$
+H_{ij}^{\mathrm{TT}}
+=
+h_+
+\left(
+e_{1i}e_{1j}-e_{2i}e_{2j}
+\right)
++
+h_\times
+\left(
+e_{1i}e_{2j}+e_{2i}e_{1j}
+\right).
+$$
+
+The plus pattern alternates stretch along \(\hat{\mathbf e}_1\) with squeeze
+along \(\hat{\mathbf e}_2\). The cross pattern is the same trace-free response
+rotated by \(45^\circ\) in the transverse plane. These are required effective
+patterns, not currently derived F6c modes.
+
+Plainly: looking into the arriving disturbance, the plus pattern stretches
+up-down while squeezing left-right and then reverses. The cross pattern does
+the same along the diagonal directions.
+
+To compare many discrete cells with a traveling pattern, choose one declared
+nonnegative interpolation kernel \(w\) and define
+
+$$
+\overline H_{ij}^{\mathrm{TT}}(T,\mathbf X)
+=
+\frac{
+\displaystyle
+\sum_A
+w\!\left(\mathbf X-\mathbf C_A(T)\right)
+H_{A,ij}^{\mathrm{TT}}(T)
+}{
+\displaystyle
+\sum_A
+w\!\left(\mathbf X-\mathbf C_A(T)\right)
+},
+$$
+
+where the denominator must be nonzero. This is an analysis map from the
+cell-indexed record to a coarse-grained tensor diagnostic. The kernel width and
+normalization are frozen before the propagation test and are not new substrate
+physics.
+
+Plainly: each cell supplies one measured distortion. The averaging kernel
+specifies how nearby cell readings are combined into a smooth map, much like
+interpolating readings from a sensor array. Changing that averaging rule after
+seeing the result would invalidate the comparison.
+
+Native propagation must be a causal progression of complete-history changes.
+A coarse-grained traveling-pattern test is
+
+$$
+\overline H_{ij}^{\mathrm{TT}}
+\left(
+T+\Delta T,
+\mathbf X+c_{\mathrm{tens}}\Delta T\hat{\mathbf k}
+\right)
+\simeq
+\overline H_{ij}^{\mathrm{TT}}(T,\mathbf X)
+$$
+
+over a declared weak-amplitude band. The speed \(c_{\mathrm{tens}}\) is the
+measured native transport rate of that pattern. It is not automatically the
+primitive wake speed \(c_f\) or the effective gravitational-wave speed.
+
+Plainly: perturb one region and ask whether the same trace-free deformation
+appears farther away after one measured delay. Propagation must be demonstrated
+by the delayed multi-cell history, not by shifting a drawing along an axis.
+
+After the observer map is derived, the same record must recover the standard
+source-free weak-field comparison form
+
+$$
+\Box_{c_{\mathrm{GW}}^{\mathrm{eff}}}^{\mathrm{eff}}
+h_{ij}^{\mathrm{TT}}
+\left(t_{\mathrm{eff}},\mathbf x_{\mathrm{eff}}\right)
+=0,
+\qquad
+\Box_c^{\mathrm{eff}}
+\equiv
+\nabla_{\mathbf x_{\mathrm{eff}}}^2
+-
+\frac{1}{c^2}
+\frac{\partial^2}{\partial t_{\mathrm{eff}}^2},
+$$
+
+with two leading transverse polarizations, small dispersion in the tested
+band, and an effective speed compatible with the photon channel. This equation
+is a recovery target; it is not used to evolve architrinos or author the
+Noether-sea response.
+
+Plainly: the native calculation follows delayed architrino and sea histories.
+Only afterward may an observer summarize the result with the familiar wave
+equation. Here \(t_{\mathrm{eff}}\) and \(\mathbf x_{\mathrm{eff}}\) are the
+observer's derived clock and ruler coordinates, \(h_{ij}^{\mathrm{TT}}\) is the
+observer-level transverse distortion, and
+\(c_{\mathrm{GW}}^{\mathrm{eff}}\) is its recovered propagation speed. The
+operator \(\Box_c^{\mathrm{eff}}\) compares spatial curvature with the second
+time change of that distortion. All of these quantities must be recovered
+using the same clocks, rulers, and signal records as the photon test.
+
+At the source, a changing quadrupolar assembly history must launch the
+trace-free response while its complete source, wake, sea, energy, and angular
+ledgers suppress disallowed lower-order leakage. At the detector, the required
+effective strain comparison for arm direction \(\hat{\mathbf n}\) is
+
+$$
+\frac{\delta L}{L}
+=
+\frac12
+n^i h_{ij}^{\mathrm{TT}}n^j.
+$$
+
+The native mechanism must derive this readout from correlated changes in
+detector assemblies, clock returns, ruler projections, and light-timing
+records. It must not describe the Euclidean void itself as stretching.
+
+Plainly: the source launches a four-lobed stretch-and-squeeze response, and the
+detector compares tiny correlated changes in its physical arms and timing
+system. Empty Euclidean space remains the fixed container.
+
+Claim grade: guessed. The tensors \(Q_{A,ij}\), \(S_{A,ij}\), and the TT
+projection are defined geometric diagnostics on any declared retained
+multi-cell record. The carrier and receiver roles are the guessed mechanisms.
+Two transverse patterns,
+photon/gravity effective-speed agreement, weak dispersion, quadrupolar source
+behavior, and detector strain are **observer-level recovery requirements**.
+The F6c carrier hypothesis fails if no root-valid trace-free mode exists, no
+coherent multi-cell transfer occurs, scalar/vector/longitudinal leakage remains
+large, different orientations require different laws, or detector strain
+cannot be derived from the same Noether-sea and clock/ruler record.
+
+Plainly: the tensor calculations tell us how to measure an F6c shape
+distortion, but they do not show that F6c carries gravity. That claim requires
+one disturbance to cross between retained histories and recover the same
+two-pattern, speed, source, and detector behavior seen by observers.
+
+The smallest decisive artifact is a two-cell fixed-law transfer calculation:
+
+1. obtain one retained F6c rest return;
+2. perturb one cell in a declared trace-free module pattern;
+3. evolve both cells with every cross-cell causal root and \(c_f=1\);
+4. extract \(Q_{A,ij}\), \(S_{A,ij}\), and
+   \(H_{A,ij}^{\mathrm{TT}}\);
+5. measure delay, attenuation, dispersion, polarization leakage, clearance,
+   root completeness, and return survival; and
+6. repeat with a rotated source pattern without changing the law or
+   coefficients.
+
+Plainly: the first real test is whether one lawful F6c trace-free deformation
+can make a second retained F6c cell reproduce that deformation after the
+correct causal delay.
+
+## What The Return Searches Actually Established
+
+### Why Fixed Circles Were A Biased Starting Section
+
+The earliest ordinary releases used fixed-radius circular prehistories. At the
+release time they imposed four simultaneous conditions,
+
+\[
+\dot h_+=\dot h_-=\dot\rho_+=\dot\rho_-=0.
+\]
+
+A generic periodic six-coordinate history has only one freely selectable time
+origin. One time shift can generically place the history on one scalar section,
+such as \(\dot\rho_+=0\), but not on four independent turning sections at once.
+Requiring all four zeros therefore selects an exceptional synchronized subset
+unless another symmetry supplies that synchronization. This is a dimension-
+counting inference, not a nonexistence theorem.
+
+One evolved record illustrates the issue. At a measured positive-radius
+turning section it had \(\dot\rho_+\approx0\), while
+
+\[
+(\dot h_+,\dot h_-,\dot\rho_-)
+=
+(-0.188826,-0.097687,0.055643).
+\]
+
+The other three breathing rates were ordinary nonzero parts of the same
+motion. They were not failures of the section.
+
+Plainly: the first searches asked a breathing object to reach four turning
+points at once. A general cycle needs only one declared crossing to define
+where the return test starts; the other shape rates should usually be allowed
+to continue moving.
+
+### Whole-Cycle Self-Consistency Test
+
+The next instrument prescribed one-frequency breathing histories,
+
+\[
+\begin{aligned}
+h_\sigma(T)&=0.3+A_{h,\sigma}\sin(\Omega T),\\
+\rho_\sigma(T)&=0.3+A_{\rho,\sigma}\sin(\Omega T),\\
+\theta_+(T)&=\omega_+T,\\
+\theta_-(T)&=\theta_{-,0}+\omega_-T,
+\end{aligned}
+\]
+
+and compared their analytical coordinate accelerations with the Master
+Equation accelerations generated by the same complete histories. At phase
+\(\phi_j\), the sector residual was
+
+\[
+\mathbf r_\sigma(\phi_j)
+=
+\begin{pmatrix}
+\ddot h_\sigma^{\mathrm{EOM}}\\
+\ddot\rho_\sigma^{\mathrm{EOM}}\\
+\ddot\theta_\sigma^{\mathrm{EOM}}
+\end{pmatrix}_{\phi_j}
+-
+\begin{pmatrix}
+-A_{h,\sigma}\Omega^2\sin\phi_j\\
+-A_{\rho,\sigma}\Omega^2\sin\phi_j\\
+0
+\end{pmatrix}.
+\]
+
+The ranking used the RMS of all six components over all certified phases, but
+maximum component residual, pair clearance, and maximum member speed remained
+separate guards. A low RMS could not compensate for a failed causal root or an
+unsafe corridor.
+
+Plainly: this asks whether a proposed periodic motion generates the exact
+accelerations needed to keep tracing itself. It is stronger than checking one
+favorable release instant and cheaper than evolving every poor candidate for a
+whole cycle.
+
+The measured results did not find a self-sustaining harmonic cycle:
+
+| Prescribed-history row | Confirmed RMS residual | Maximum component residual | Minimum clearance | Maximum member speed |
+| --- | ---: | ---: | ---: | ---: |
+| finite-time double-radial-turn seed, 12 phases | \(9.895\) | reported separately | \(0.1124\) | guarded below \(c_f\) |
+| finite-time double-axial-turn seed, 12 phases | \(16.208\) | reported separately | \(0.1111\) | guarded below \(c_f\) |
+| best frozen amplitude cluster, 24 phases | \(2.898\) | \(10.427\) | \(0.2154\) | \(0.3194c_f\) |
+| cadence-modulated cluster, 24 phases | \(2.816\) | \(10.518\) | \(0.2249\) | \(0.3160c_f\) |
+
+An earlier eight-phase apparent improvement failed when the phase grid was
+doubled, demonstrating phase-grid aliasing. The small confirmed improvement
+from cadence modulation established cadence breathing as a useful search
+coordinate, but the residuals remained far above their numerical enclosures.
+
+Plainly: the screens found a repeatable direction in parameter space, not a
+cycle. Sampling too few phases made one candidate look better than it was;
+denser checking exposed the mismatch.
+
+### A Section Return Is Not A State Return
+
+The best frozen cadence-modulated row was released into ordinary EOM-solver
+evolution. Its positive axial coordinate returned to its initial level at
+
+\[
+T_{h_+=0.3}\approx0.272382754,
+\]
+
+but the RMS mismatch of the other eleven coordinate-and-rate components was
+\(0.825221\). The largest component was
+\(\Delta\dot\theta_-=2.591159\). This was therefore one coordinate crossing
+its starting section, not the eight-member state returning.
+
+The same record remained on the exact F6c surface below
+\(8.30\times10^{-16}\) normalized velocity leakage, kept minimum pair distance
+\(0.296293\), and preserved centroid, dipole, and current-axis identities. Yet
+the negative-sector cadence rose to \(3.616172\), its member speed reached
+\(0.999765c_f\), and the attempted step after \(T=0.28625\) could not certify
+the four symmetry-equivalent negative-sector self-history roots.
+
+Plainly: the shape remained beautifully symmetric while its internal motion
+did not close. Exact symmetry can keep a candidate on F6c all the way to a
+causal-history certification boundary; symmetry preservation is not return or
+retention.
+
+An unconstrained first-section search also produced a much smaller residual,
+\(0.05741\), by recrossing after only \(T=0.04271\). The section excursion was
+only \(9.41\times10^{-5}\), and the two lifted phase advances were only
+\(0.03648\) and \(0.03208\) radians. The small residual came from a tiny
+out-and-back arc near a tangent release, not from a meaningful completed
+cycle.
+
+Plainly: if a path barely leaves a line and immediately crosses it again, its
+state has had little time to change. A small difference at that recrossing can
+be a geometric loophole rather than evidence of a braid period.
+
+### Nontrivial Return Requirements And Census
+
+A valid F6c return search must therefore declare more than one scalar section.
+It must include:
+
+- a direct or reflected exact chart action;
+- lifted phase windings rather than only wrapped angles;
+- return of both axial scales, both radii, both cadences, and all axial/radial
+  rates under that action;
+- an explicit decision about whether a module permutation counts as the same
+  labeled history;
+- a scale-aware excursion, turn-sequence, or other nontrivial cycle marker;
+  and
+- complete causal roots, pair clearance, and \(c_f=1\) speed margin throughout
+  the candidate interval.
+
+The exact action instrument examined 2,451 stored F6c manifests. Only 15 were
+positive-time evolved records with usable frame streams. None entered a
+nonzero direct winding cell. The closest reflected-action record reached a
+minimum RMS of about \(0.535\), but its largest rate mismatches remained
+order one while one sector approached a radial causal boundary. This census is
+exhaustive only for the stored archive, not for the continuous F6c state space.
+
+Plainly: none of the histories already computed completed a nontrivial direct
+cycle, and the best rotated-shape comparison still had very different motion.
+That rejects those records as returns; it does not prove that F6c has no
+periodic branch.
+
+Claim grade: measured. The section-bias argument and exact return requirements
+are derived or inferred from dimension and symmetry. The residuals, census, and
+boundary descriptions are bounded EOM-solver measurements on declared
+records. They are not an independent oracle, global optimization, retained
+branch, or stability result. Reproducing a nontrivial exact-action return with
+convergent component residuals and all guards open would supersede the present
+negative census.
+
+Plainly: every stored evolved record failed the declared full-return test, but
+the archive is only a finite sample and the comparison instrument is not an
+independent proof. One new root-complete return with shrinking numerical error
+would overturn the current negative census.
+
 ## Why This Geometry Was Introduced
 
 F6c was constraint-generated inside the F6 program rather than imported from
@@ -1331,9 +3201,14 @@ full return. Two leading records approached the causal boundary through
 different channels: one primarily through circulation cadence and one
 primarily through radial collapse.
 
-Claim grade: the geometry and symmetry statements are derived; the stated EOM
-behavior is measured on bounded declared records; retention and physical role
-remain open.
+Claim grade: inferred. The geometry and symmetry statements are derived; the
+stated EOM behavior is measured on bounded declared records; retention and
+physical role remain open.
+
+Plainly: symmetry proves why the six-coordinate surface is the right
+acceleration-compatible enlargement of F6b, and simulations confirm the
+expected breathing and cadence exchange locally. They do not yet show that an
+F6c history binds and repeats as a physical assembly.
 
 ## Related Ideas In Mathematics, Science, And Engineering
 
@@ -1430,6 +3305,113 @@ which polarity can also control color, weak exposure, and whether the object
 survives. The present corpus treats the neutral neutrino row differently, so
 the \(3+3\) case is a deliberate architecture question rather than an already
 accepted literal picture.
+
+### Why Six Is Not Yet A Survival Requirement
+
+The number six enters the proposal for two independent reasons, neither of
+which proves retention. First, six equal signed polarity units give an
+economical observer-level charge ladder. With
+\(\epsilon=|e|/6\), the candidate charge projection is
+
+$$
+Q_{\mathrm{eff}}(\boldsymbol p)
+=
+\epsilon
+\sum_{a=1}^{6}p_a.
+$$
+
+Its possible values are
+
+$$
+Q_{\mathrm{eff}}
+\in
+\left\{
+-|e|,
+-\frac{2|e|}{3},
+-\frac{|e|}{3},
+0,
+\frac{|e|}{3},
+\frac{2|e|}{3},
+|e|
+\right\}.
+$$
+
+This is observer-facing bookkeeping. Primitive polarity enters the native
+interaction law, while the normalization to measured electric charge remains
+a recovery target.
+
+Plainly: six equally normalized signed contributions reproduce the familiar
+integer and third-integer fermion charge classes. That explains why six is an
+economical charge count, not why six additional architrinos bind.
+
+Second, the equal-scale intersecting-tetrahedron geometry supplies six central
+octahedral vertices. Those vertices also index the six edges of either
+tetrahedron and split under the decorated F6c symmetry into a two-member axial
+orbit plus a four-member transverse orbit. This makes six a symmetry-natural
+search seed.
+
+Plainly: the geometry independently marks six attractive places to inspect.
+The agreement between the charge count and the geometric count is suggestive,
+but a marked location is not a capture basin.
+
+For a decoration count \(n\), let \(\alpha\) identify a symmetry-inequivalent
+polarity, placement, phase, and prehistory class, and let
+\(\mathcal B_{n,\alpha}^{\mathrm{ret}}\) be its positive-width, root-complete,
+clearance-valid retained basin under fully backreacting \((8+n)\)-member
+evolution. The statement “only six survives” would require
+
+$$
+\mathcal B_{6,\alpha_*}^{\mathrm{ret}}
+\ne\varnothing
+\quad
+\text{for at least one }\alpha_*,
+$$
+
+and, over one explicitly declared exhaustive search domain,
+
+$$
+\mathcal B_{n,\alpha}^{\mathrm{ret}}
+=\varnothing
+\qquad
+\text{for every }n\ne6
+\text{ and every admitted }\alpha.
+$$
+
+Plainly: one six-member configuration must possess a real basin, while every
+other admitted count and arrangement must escape, collide, lose causal roots,
+or reorganize. No current calculation establishes either half of that result.
+
+A plausible selection mechanism is that full occupation of the octahedral
+\(2+4\) seed cancels directional acceleration leakage that a partially filled
+pattern leaves unmatched. That mechanism is only a guess. The F6c symmetry
+also admits paired and four-member special-position orbits, while generic
+off-symmetry sites occur in eight-member orbits. Symmetry therefore cannot
+exclude retained two-, four-, eight-, or symmetry-broken additions. Polarity
+decoration can further reduce the symmetry even when all six geometric sites
+are occupied.
+
+Plainly: filling all six seats may balance the structure better than filling
+some of them, but smaller symmetry-complete groups also exist. The Master
+Equation must decide which counts actually persist.
+
+Every charge-facing addition is a transmitter and receiver with its own causal
+history. It may stabilize, destabilize, or reorganize the host; it cannot be
+treated as a passive charge placed on an unchanged F6c trajectory. If the
+eight-member host remains intact, six additions produce a fourteen-member
+assembly, so even a successful six-selection result would not automatically
+realize the current charged-fermion constituent catalog.
+
+Claim grade: guessed. The charge-count ladder and the six-site reference
+geometry are derived bookkeeping and geometry. The cancellation-based
+selection mechanism is the guessed claim. Exact-six survival is unmeasured and
+unproved. It is falsified by any retained non-six decoration in the declared
+search domain, and it remains unestablished until at least one fully
+backreacting six-addition basin or ledger-complete reorganization is exhibited.
+
+Plainly: six is justified as a charge-count and search geometry, but not as the
+only survivable member count. That stronger statement needs one successful
+six-addition history and a declared exhaustive failure of every admitted
+non-six alternative.
 
 ### One Volume, Six Volumes, Or Six Paths?
 
@@ -1802,6 +3784,7 @@ stage can establish the proposed physical capture architecture.
 | What does six-coordinate mean? | Six scalar configuration values determine all 24 Cartesian member-position components on F6c. Rates and causal history remain additional state information. |
 | What does exact six-coordinate mean? | The member map, its cancellations, and conditional Master Equation tangency are algebraic symmetry results, not a best-fit six-parameter approximation. It does not mean retained or stable. |
 | Why call the sector locus a spherical envelope? | All four tracks in one sector have the same center and radius \(R_\sigma=\sqrt{h_\sigma^2+\rho_\sigma^2}\). |
+| Does a common envelope radius guarantee member clearance? | No. Exact pair distances depend separately on \(h_\sigma\), \(\rho_\sigma\), and the phases. One negative-sector edge pair coincides exactly at \(h_-=\rho_-/\sqrt2\), \(\theta_-=\pi/6\pmod{2\pi}\), even though its envelope radius is nonzero. |
 | Does either tetrahedron stay rigid and regular? | The four track centers remain a regular tetrahedron but breathe with \(h_\sigma\). The four moving members generally form a nonregular, deforming tetrahedral constellation. |
 | Do both spheres have one coincident center? | Yes in the internal chart. A common kinematic translation preserves coincidence, but a translating EOM branch is an additional dynamical problem. |
 | Is the eight-member object one assembly? | It is one assembly candidate and one top-level record. Binding, recurrence, retention, and stability are not established. |
@@ -1812,8 +3795,17 @@ stage can establish the proposed physical capture architecture.
 | What are tetrahedral axes? | The four center-to-vertex directions of a regular tetrahedron, used as body-frame reference directions and local track normals. |
 | What are the invariants? | The complete current list appears in [Exact Invariants And Identities](#exact-invariants-and-identities); sizes, speeds, current magnitude, binding, and recurrence are specifically not included. |
 | What are the symmetries? | The undecorated axes have 24 tetrahedral maps; exactly eight preserve the decorated F6c chart, with four proper and four improper maps, plus a separate global polarity-conjugation comparison. |
+| Does a shape return always return the current channel? | No. Under a reflected relative return, scalar shape has order one while cadence and fixed-frame axial current have order two. The current reverses after one relative period and is restored after two. |
+| Does F6c support Lorentz mathematics? | It supports a well-defined observer-level recovery test using a translating branch, complete clock return, cycle-averaged longitudinal/transverse shape tensor, and signal-isotropy residuals. It does not have native Lorentz boosts, and no F6c Lorentz recovery has been measured or proved. |
+| How does F6c describe time? | Absolute time \(T\) parameterizes every native path and causal root. A retained complete return could supply a material clock readout \(\tau_{\mathrm{F6c}}\), while synchronized effective observer time remains a recovery target. No F6c spatial coordinate is itself time. |
+| Do the three even sector coordinates establish three generations? | No. They define a three-dimensional candidate reduced response space. Three actual modes require a closed differentiable return map on that space; identifying those modes with generations would require additional native dynamics and observer-level recovery. |
+| How could F6c implement fermion generations? | Keep the fermion's charge and representation realization fixed while ordinary dynamics selects exactly three isolated retained core modes or basins with different mass-facing, recurrence, lifetime, and overlap records. The original F6 one-versus-three three-port orbit is not an exact F6c mechanism because F6c uses the two-versus-two \(D_{2d}\) decoration. |
+| How could F6c implement a photon? | Most naturally as an emitter or receiver geometry that launches a neutral propagating phase record with exactly two transverse responses, no free longitudinal response, a helicity ledger, complete source/capture provenance, and no retained rest branch. An intact eight-member photon is only an alternative search candidate. |
+| How could F6c implement a neutrino? | As an undecorated neutral eight-member continuation near the photon lock, with a small polarity-differential mismatch carrying weak exposure and exactly three coherent internal propagation modes with two relative phase gaps. This is an alternative to, or precursor of, the current near-planar neutrino candidate. |
+| How could F6c participate in a gravitational wave? | Either retained F6c-like Noether-sea histories collectively carry a causal trace-free deformation, or F6c assemblies act only as clocks, rulers, sources, and receivers for another sea carrier. A two-cell transfer must produce a transverse-trace-free response before either role is assigned. |
 | Why was F6c introduced? | It was the minimal symmetry-preserving repair after the F6b fixed-circle acceleration residual demanded separate axial, radial, and cadence motion for the two polarity sectors. |
 | Are there neutral volumes that could capture six architrinos? | None have been calculated or proved. The strongest seed is the equal-scale central octahedron's six axial vertices: a symmetry-natural pair plus four transverse sites, all inside both reference spheres. The fermion-facing target is a collective basin with a declared particle-dependent polarity vector, not six independent point equilibria. A physical claim requires backreacting fourteen-member retention if F6c remains intact, or a fully ledgered capture-and-reorganization history. |
+| Why would F6c survive only with six charge-facing additions? | No current result says it would. Six is independently motivated by the observer-level fermion charge ladder and by the central octahedron's six symmetry-natural sites. Exact-six survival requires a retained six-addition basin and exclusion of every admitted non-six count under fully backreacting evolution. |
 
 Plainly: the table is a compact review of the core chain. Its exact statements
 come from the member map and symmetry; its assembly, capture, and
@@ -1825,23 +3817,55 @@ The strongest current statement is:
 
 > F6c is an exact symmetry-invariant six-coordinate history surface with two
 > co-centered polarity-sector envelopes, exact sector centering and dipole
-> cancellation, and one body-fixed polarity-weighted current channel.
+> cancellation, exact pair-clearance and sector speed/current-budget formulas,
+> one body-fixed polarity-weighted current channel, and an exact chart of
+> common versus polarity-differential response coordinates.
 
 The current EOM-solver evidence shows finite ordinary evolutions that remain on
 the surface to numerical precision and develop nontrivial breathing and cadence
-exchange. The existing-record return census found no nonzero direct winding and
-no reflected full-state return. Current failures approach a sector-local causal
-boundary rather than establishing collision, breakup, or global nonexistence.
+exchange. Prescribed harmonic histories reduced the confirmed whole-cycle
+acceleration residual but did not solve it: the best reported phase-grid rows
+had RMS residuals \(2.898\) and \(2.816\). A scalar-section recrossing was also
+shown not to be a state return; one positive-axial section recurrence left an
+11-component RMS mismatch of \(0.825221\).
+
+The existing-record census inspected 2,451 manifests, of which 15 supplied
+usable evolved records. It found no nonzero direct winding and no reflected
+full-state return. The closest reflected candidate still had roughly
+order-one rate mismatch and reached a sector-local causal-history boundary.
+These are **measured bounded-search results**, not a proof that no F6c return
+exists.
+
+Plainly: several increasingly strict searches have rejected tempting false
+returns. A coordinate crossing, a nearly repeating picture, or a lower
+prescribed residual is not enough; all shape coordinates, rates, member
+identities, causal roots, clearance, and speed margins must close together.
 
 The following remain open:
 
 - an ordinary nontrivial periodic or relative-periodic return;
+- a retained rest clock followed by a root-complete, stable translating branch
+  family for Lorentz clock, ruler, synchronization, and signal tests;
+- a whole-cycle self-consistent prescribed history with vanishing acceleration
+  residual rather than merely a lower residual;
 - positive-width binding and retention;
 - stability about an actual retained return;
 - a complete action, energy, and angular ledger;
 - an effective charge or mass-facing projection;
 - spinor behavior and observer-level spin/magnetic recovery;
-- a Standard Model or Noether sea particle role; and
+- exactly three retained same-representation fermion-generation modes or
+  basins with no extra surviving family partner;
+- a photon-facing source-to-capture record with exactly two free transverse
+  modes, no free longitudinal mode, helicity closure, and no retained rest
+  branch;
+- a neutral F6c neutrino continuation with exactly three coherent propagation
+  modes, two relative phase gaps, and a weak-facing posture distinct from
+  observer helicity;
+- a root-complete multi-cell transfer of an F6c trace-free deformation with
+  two leading transverse patterns and controlled scalar, vector, longitudinal,
+  attenuation, and dispersion leakage;
+- a Standard Model or Noether sea particle role;
+- exact-six decoration selection against every admitted non-six count; and
 - any collective six-member neutral-capture basin, retained fourteen-member
   capture branch, or ledger-complete capture-and-reorganization branch.
 
@@ -2658,8 +4682,24 @@ label, or an emergent spacetime geometry.
   [f6c-identity-return-group.mjs](../../../scripts/mapping-electromagnetism/f6c-identity-return-group.mjs).
 - EOM coordinate reconstruction is implemented by
   [f6c-eom-coordinate-analysis.mjs](../../../scripts/mapping-electromagnetism/f6c-eom-coordinate-analysis.mjs).
+- Exact constraint, pair-corridor, and speed/current-capacity calculations are
+  implemented by
+  [f6c-linear-constraint-geometry.mjs](../../../scripts/mapping-electromagnetism/f6c-linear-constraint-geometry.mjs),
+  [f6c-current-transport.mjs](../../../scripts/mapping-electromagnetism/f6c-current-transport.mjs),
+  and
+  [f6c-release-current-capacity-ranking.mjs](../../../scripts/mapping-electromagnetism/f6c-release-current-capacity-ranking.mjs).
+- Whole-cycle and return-record diagnostics are implemented by
+  [f6c-harmonic-cycle-residual.mjs](../../../scripts/mapping-electromagnetism/f6c-harmonic-cycle-residual.mjs)
+  and
+  [f6c-return-record-ranking.mjs](../../../scripts/mapping-electromagnetism/f6c-return-record-ranking.mjs).
+- Symmetry-reduced response and handoff diagnostics are implemented by
+  [f6c-mode-conversion-analysis.mjs](../../../scripts/mapping-electromagnetism/f6c-mode-conversion-analysis.mjs)
+  and
+  [f6c-current-handoff-local-screen.mjs](../../../scripts/mapping-electromagnetism/f6c-current-handoff-local-screen.mjs).
 
 Closure goal: find one root-complete nontrivial F6c return, then test whether
-the symmetry-natural six-seat seed supports any root-valid collective capture
-basin before attempting stability, particle identification, or effective-field
-recovery.
+its response space supports a positive-width retained basin, an exactly-three
+mode or branch exhaustion result, or a lawful two-transverse-channel
+propagating continuation, and only then attempt a two-cell trace-free transfer
+before assigning a fermion, photon, neutrino, gravitational-wave, or
+effective-field role.
