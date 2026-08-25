@@ -9,14 +9,20 @@
 - Exploration source: [Session 24](brainstorming.md#session-24--locally-deformable-twisting-and-reorganizing-cubic-medium-2026-08-25)
 - Structural consumer: [adaptive cubic-medium kinematics](../../../scripts/mapping-electromagnetism/adaptive-cubic-medium-kinematics.mjs)
 - Focused tests: [adaptive cubic-medium kinematics tests](../../../tests/adaptive-cubic-medium-kinematics.test.js)
+- EOM-history adapter: [adaptive cubic-background packet](../../../scripts/mapping-electromagnetism/adaptive-cubic-background-packet.mjs)
+- Adapter tests: [adaptive cubic-background packet tests](../../../tests/adaptive-cubic-background-packet.test.js)
+- Live O0 audit: [adaptive cubic-background O0 audit](adaptive-cubic-background-o0-audit-2026-08-25.json)
+- EOM seed host: [attractor-ensemble harness](../../../scripts/eom/attractor-ensemble-harness.cpp), family `f6c-cubic-site-local-v1`
+- Release falsifier: [adaptive site-local release analyzer](../../../scripts/mapping-electromagnetism/adaptive-cubic-site-local-release-analysis.mjs)
+- Live site-local ladder audit: [adaptive site-local release ladder audit](adaptive-cubic-site-local-release-ladder-audit-2026-08-25.json)
 
 **Closure-goal 1 decision: closed at the candidate-architecture and structural-contract level.** The rigid two-history response ansatz is superseded as the next moving-medium candidate by site-local center, orbit, phase, and orientation histories. Persistent member identity is separated from time-dependent neighbor classification. A neighbor change advances only through a rank-gap certificate, reciprocal changed-edge incidence, complete transition accounts, and a later retained-history test. The exact stationary checkerboard and the rejected two-history runs remain valid controls and evidence records; they are not rewritten as adaptive-medium successes.
 
 Plainly: the new candidate allows different regions to bend, twist, and rearrange. It does not let an analysis relabel a failed trajectory as a new neighbor pattern without proving who moved, when the neighborhood changed, and where every causal and conservation-facing account went.
 
-**Closure-goal 2 decision: not yet adjudicable from physical records.** The current repository has no accepted adaptive cubic background with a one-period EOM history return, no closed periodic or exterior-tail boundary for that background, and no matched retained Physical Observer assembly plus readout-map records along $[100]$, $[110]$, and $[111]$. The structural adjudicator therefore returns `directional_campaign_blocked`. The literal cubic architecture remains `candidate_only`; it is neither accepted nor rejected by a physical-receiver directional campaign.
+**Closure-goal 2 decision: the first adaptive-orientation background is falsified upstream; physical directional adjudication remains unavailable.** The tetrahedral-parity site-local circular family has an exact second-rank orientation census, but its certified EOM release acceleration excludes the prescribed circular acceleration throughout the declared $N=2,4,6$ finite replication ladder. The repository therefore still has no accepted adaptive cubic background with a one-period EOM history return, no closed periodic or exterior-tail boundary for that background, and no matched retained Physical Observer assembly plus readout-map records along $[100]$, $[110]$, and $[111]$. The literal cubic architecture remains `candidate_only`; this failed history does not by itself select replacement.
 
-Plainly: the decision rule now exists, but the measurements that could choose between adaptive cubic order and replacement do not. Running directional disturbances against the already rejected background would manufacture a response claim with no reference state.
+Plainly: balancing the local orbit directions did not make those orbits dynamically self-consistent. That candidate is dead before propagation begins. Other adaptive histories or a reorganized background remain logically possible, but running directional disturbances against this rejected background would manufacture a response claim with no reference state.
 
 ## Authority Boundary
 
@@ -76,6 +82,71 @@ $$
 where $(\mathbf p'_{\mathbf g},\mathbf q'_{\mathbf g})$ is the original plane frame rotated by $\alpha_{\mathbf g}$ inside its plane. A comparison must either fix this representation with one estimator or use only invariant quantities such as the plane normal, reconstructed position, or phase differences transported by a declared rule.
 
 Plainly: rotating the two arrows drawn inside one orbit plane while shifting the phase does not change the actual position. A directional residual must not be created by choosing different arrow conventions in different runs.
+
+### EOM-History Site Chart
+
+For a candidate period $P$, the EOM-history adapter uses the frozen `period-antipode-midpoint/v1` estimator
+
+$$
+\mathbf Y_{\mathbf g}(T)
+=
+\frac12\left[
+\mathbf X_{\mathbf g}(T)
++
+\mathbf X_{\mathbf g}(T-P/2)
+\right],
+\qquad
+\mathbf r_{\mathbf g}(T)
+=
+\frac12\left[
+\mathbf X_{\mathbf g}(T)
+-
+\mathbf X_{\mathbf g}(T-P/2)
+\right].
+$$
+
+Where $\|\mathbf r_{\mathbf g}\|>0$ and $\|\mathbf r_{\mathbf g}\mathbin{\times}\dot{\mathbf r}_{\mathbf g}\|>\kappa_{\mathrm{frame}}$, define the instantaneous site frame
+
+$$
+\mathbf p_{\mathbf g}
+=
+\frac{\mathbf r_{\mathbf g}}{\|\mathbf r_{\mathbf g}\|},
+\qquad
+\mathbf n_{\mathbf g}
+=
+\frac{\mathbf r_{\mathbf g}\mathbin{\times}\dot{\mathbf r}_{\mathbf g}}
+{\|\mathbf r_{\mathbf g}\mathbin{\times}\dot{\mathbf r}_{\mathbf g}\|},
+\qquad
+\mathbf q_{\mathbf g}
+=
+\mathbf n_{\mathbf g}\mathbin{\times}\mathbf p_{\mathbf g}.
+$$
+
+This is a representation definition over a declared candidate period, not an added EOM law or a proof that the history is periodic. Because the frame is instantaneous rather than one plane fitted over a cycle, its normal may vary continuously with $T$. Degenerate radius or circulation reports `site_chart_unavailable`; the adapter does not freeze the last valid orientation through the singular point.
+
+Plainly: the center is the midpoint of positions half a candidate cycle apart. The radial arrow and its rate determine the local plane at that instant, so a twisting history is allowed. The actual EOM path still decides whether that chart stays well conditioned and returns.
+
+### Continuous One-Period History Return
+
+For required retained-history window $W$, define
+
+$$
+D_X(P;W)
+=
+\sup_{u\in[-W,0]}
+\|\mathbf X(u+P)-\mathbf X(u)\|,
+\qquad
+D_V(P;W)
+=
+\sup_{u\in[-W,0]}
+\|\dot{\mathbf X}(u+P)-\dot{\mathbf X}(u)\|.
+$$
+
+The adapter forms the common partition of the initial and period-shifted certified piecewise-cubic segments. On every partition cell it computes the exact nominal polynomial extrema and adds the recorded position or velocity error boxes. `history_return_accepted` requires the continuous upper bounds for every member and both $D_X$ and $D_V$ to lie below the frozen tolerance. `history_return_rejected` requires a certified lower witness above tolerance. Overlapping bounds return `history_return_unresolved`.
+
+Claim grade: **derived return definition and measured implementation checks**. The continuous enclosure is falsified by a piecewise-cubic record whose true shifted difference escapes the reported upper bound. The packet cannot advance to an accepted adaptive background without a separately fingerprinted analytical, theorem-based, or independently authored numerical verifier marked `independent_of_subject_consumer`. Passing both establishes return only for the declared identities, period, history window, numerical error records, and return action; it does not establish perturbative stability.
+
+Plainly: checking a few matching pictures is insufficient. The adapter checks the polynomial path between them and refuses a return claim when the error boxes straddle the tolerance.
 
 ## Local Common And Polarity-Differential Coordinates
 
@@ -248,6 +319,61 @@ The subtractions are the values for a continuously isotropic distribution of uno
 
 Plainly: balanced plane normals can remove an obvious preferred direction from the orientation census while the actual disturbance still travels differently through the underlying center and wake geometry.
 
+### Tetrahedral-Parity Site-Local Release Falsifier
+
+The first EOM-hosted site-local candidate assigns the parity-tetrahedral normal
+
+$$
+\mathbf n_{\mathbf g}
+=
+\frac{1}{\sqrt3}
+\left(
+(-1)^{g_x},
+(-1)^{g_y},
+(-1)^{g_z}
+\right).
+$$
+
+For every even-sided conventional cell, each sign triple occurs equally often. Every diagonal entry of the population mean $\langle\mathbf n_{\mathbf g}\mathbf n_{\mathbf g}^{\mathsf T}\rangle$ is therefore $1/3$, while each off-diagonal sign product cancels with its parity partner. Hence
+
+$$
+\left\langle
+\mathbf n_{\mathbf g}\mathbf n_{\mathbf g}^{\mathsf T}
+\right\rangle
+=\frac13 I.
+$$
+
+Claim grade: **derived**. The result is falsified by one even cell generated by the displayed parity rule whose exact second moment differs from $I/3$. It is only a rank-two orientation statement; the discrete four-axis normal family retains higher-rank structure.
+
+Plainly: the orbit planes are distributed so that no coordinate axis wins in this coarse census. The set is still discrete rather than spherical, and the EOM still decides whether any member can follow its assigned orbit.
+
+The seed fixes one orthonormal $(\mathbf p_{\mathbf g},\mathbf q_{\mathbf g})$ in each plane, radius $\rho=0.05$, angular rate $\omega=1$, and checkerboard phase $0$ or $\pi$. Its prescribed release acceleration is the closed-form value
+
+$$
+\mathbf A^{\mathrm{circ}}_{\mathbf g}(0)
+=
+-\rho\omega^2
+\left[
+\mathbf p_{\mathbf g}\cos\theta_{\mathbf g}(0)
++
+\mathbf q_{\mathbf g}\sin\theta_{\mathbf g}(0)
+\right].
+$$
+
+The release analyzer interval-subtracts this separately derived vector from the EOM solver's certified receiver-acceleration enclosure. The predeclared normalized residual tolerance is $10^{-8}$. The $N=2,4,6$ open-crop ladder produced:
+
+| $N$ | Ordered roots | Minimum $|D_t|$ | Maximum second-moment error | Maximum normalized residual lower bound | Decision |
+| --- | ---: | ---: | ---: | ---: | --- |
+| $2$ | $64$ | $0.958564666772293$ | $1.1102230246251565\times10^{-16}$ | $0.2680958096054972$ | rejected at release |
+| $4$ | $4096$ | $0.950810966471514$ | $1.1102230246251565\times10^{-16}$ | $0.24509272401555549$ | rejected at release |
+| $6$ | $46656$ | $0.9508109664715082$ | $1.2212453270876722\times10^{-15}$ | $0.2450927240155446$ | rejected at release |
+
+All roots certified complete. The residual decreases from $N=2$ to $N=4$ but is unchanged at the displayed precision from $N=4$ to $N=6$ and remains more than seven orders of magnitude above tolerance. The declared ladder decision is `site_local_circular_history_rejected_across_declared_ladder`. One-period evolution, propagation, and Physical Observer rows were not run.
+
+Claim grade: **measured EOM-solver finite-replicated release diagnostic**. The analyzer is independently unit-tested for the analytic circular target, orientation census, interval exclusion, and complete-ladder rule, but it consumes the solver acceleration and is not an independent implementation of the Master Equation. The result rejects this parity-tetrahedral circular history under the declared finite rungs. It does not reject every site-local history, exact periodic images, lawful reorganization, or the literal cubic architecture.
+
+Plainly: the balanced directions pass exactly, but the delayed acceleration misses the acceleration required by every prescribed circle. Making the crop larger removes only part of the miss and does not make the history self-consistent. This candidate cannot become the background for a response experiment.
+
 ## Matched Directional Campaign Contract
 
 No directional response row is consumer-ready until its background has passed a one-period EOM history return under the same boundary treatment. The campaign then requires primary and refined rows along $[100]$, $[110]$, and $[111]$ with:
@@ -302,11 +428,15 @@ Plainly: this is an instrument-reach boundary, not evidence that directional dif
 
 ### Live EOM And Receiver Readiness Audit
 
-The 2026-08-25 source audit found that the current [attractor-ensemble harness](../../../scripts/eom/attractor-ensemble-harness.cpp) exposes one cubic seed family, `f6c-cubic-lattice-o0-v1`. That family records the prehistory as `antiphase-global-plane` and emits `boundaryStatus: finite_replicated_diagnostic`. No adaptive site-local seed/history input or `periodic_exact` cubic operator is present on that path. The EOM API's [NativeReceiverAcceleration](../../../src/eom/include/architrino/eom/CertifiedAcceleration.hpp) is an acceleration record for one receiving architrino path. It is not a retained Physical Observer assembly, apparatus-response kernel, calibration record, or readout map.
+The 2026-08-25 source audit initially found only the rigid `f6c-cubic-lattice-o0-v1` family. The [attractor-ensemble harness](../../../scripts/eom/attractor-ensemble-harness.cpp) now also exposes `f6c-cubic-site-local-v1`, records every site's local frame, constructs an independent piecewise-cubic circular retained history for every member, and enforces the parity-tetrahedral second-moment identity before calling the EOM solver. It still emits `boundaryStatus: finite_replicated_diagnostic`; no `periodic_exact` cubic operator is present. The EOM API's [NativeReceiverAcceleration](../../../src/eom/include/architrino/eom/CertifiedAcceleration.hpp) remains an acceleration record for one receiving architrino path, not a retained Physical Observer assembly, apparatus-response kernel, calibration record, or readout map.
 
-Claim grade: **measured source-path audit**. The audit is falsified by a live EOM code path that accepts the site-local history contract with a closed exact-periodic or controlled-tail boundary, or by a retained apparatus consumer that emits the required matched readout records. A class or field using the word `receiver` does not falsify the audit unless it carries the Physical Observer obligations.
+Claim grade: **measured source-path audit**. The missing-boundary part is falsified by a live EOM code path that accepts this history contract with a closed exact-periodic or controlled-tail boundary. The missing-receiver part is falsified by a retained apparatus consumer that emits the required matched readout records. A class or field using the word `receiver` does not falsify the latter unless it carries the Physical Observer obligations.
 
-Plainly: the EOM solver can calculate what acceleration reaches an individual architrino. The requested directional decision needs a repeating adaptive population and a physical detector made from retained assemblies. Those are different capabilities, and the second is not implemented here.
+Plainly: the EOM solver can now receive site-local histories and calculate what acceleration reaches each architrino. The requested directional decision still needs a repeating adaptive population, a closed boundary, and a physical detector made from retained assemblies. The new seed failed the first of those tests, and the latter two capabilities are not implemented here.
+
+The [adaptive cubic-background O0 audit](adaptive-cubic-background-o0-audit-2026-08-25.json) applies the new adapter to the provenance-bound eight-site O0 record with $P=2\pi$, $W=2$, and an audit-only $10^{-8}$ tolerance inherited from the prior structural symmetry guard. Population, release and accepted-step roots, pair clearance, member speed, and EOM record authority pass. The audit returns `adaptive_background_blocked` because the record ends at $T=0.1$, its boundary is `finite_replicated_diagnostic`, no independent return verifier is bound, the shifted return window is unavailable, and the common prehistory starts at $T=-2>-P/2$, so even the endpoint site chart lacks its required antipode. Because no return comparison is reachable, the inherited tolerance carries no physical return conclusion.
+
+Plainly: the old run is now rejected by the same adapter intended for its successor. It has valid early EOM data, but it is too short, too shallow in prehistory, and boundary-open for an adaptive-background return claim.
 
 ## Structural Implementation Checks
 
@@ -321,23 +451,28 @@ The focused structural tests establish eight implementation facts:
 7. population replacement is rejected as identity loss and a neighbor change remains incomplete without bracket-or-dwell timing evidence; and
 8. mismatched apparatus/readout fingerprints and refinement residuals above tolerance block adjudication rather than producing an architecture verdict.
 
+The five adapter tests establish separately that the EOM-history bridge evaluates the declared local cubic polynomial, accepts an analytically known site-local circular population inside its error bounds, rejects a common-drift identity return, blocks a numerically returning finite-boundary fixture, and detects a certified excursion placed entirely between sparse rejection-witness samples.
+
+The three site-local release tests establish separately that the parity-tetrahedral frames have the exact second-rank census, a certified nonzero circular-acceleration residual rejects a release, and the $N=2,4$ subset cannot be promoted as a completed $N=2,4,6$ ladder. The live ladder then supplies the measured EOM rows recorded above; the synthetic tests do not supply those values.
+
 Claim grade: **measured implementation checks**. The synthetic records test the structural consumer, not the Master Equation, a physical medium, a retained branch, or a receiver law. The checks are falsified by a focused test failure or an independently implemented evaluation that disagrees with the displayed definitions.
 
 Plainly: the implementation knows how to reject incomplete evidence and how to calculate the declared geometry. It has not generated the evidence needed for the physical decision.
 
 ## Current Closure Boundary
 
-The rigid two-history moving seed is no longer the next response candidate. The adaptive site-local contract is ready to consume an EOM history, but no such history currently satisfies the prerequisite background return and boundary obligations. The physical-receiver directional decision is therefore blocked upstream, before response execution.
+The rigid two-history moving seed is no longer the next response candidate. The adaptive site-local contract, EOM seed host, EOM-history adapter, and release falsifier are executable. Their first dynamically testable orientation field is rejected at release across the declared finite ladder, so no live EOM history currently satisfies the prerequisite background return and boundary obligations. The physical-receiver directional decision remains blocked upstream, before response execution.
 
-The next admissible artifact is not a directional response run. It is one adaptive-background existence packet that supplies:
+The next admissible artifact is not a directional response run or a retuned version of the rejected circles. It is one independently motivated adaptive-background existence packet that supplies:
 
 1. site-local history reconstruction with bounded residuals;
 2. complete roots, identity, clearance, and speed records;
 3. exact periodic images or a controlled exterior-tail boundary;
 4. certified neighbor identities or explicit unresolved intervals;
 5. one-period history return for the unperturbed adaptive background; and
-6. a fixed retained Physical Observer candidate and readout-map fingerprint for later use.
+6. an independent return-verification fingerprint; and
+7. a fixed retained Physical Observer candidate and readout-map fingerprint for later use.
 
-Plainly: first show that the flexible medium exists and repeats. Then show that a real detector inside it reads the same result in different directions.
+Plainly: changing the orbit rate or planes merely to chase this output would sweep the model over its own knobs. The next history needs a derivation or a self-consistent EOM construction, then it must repeat. Only afterward can a real detector compare directions.
 
-Closure goal: produce one root-complete adaptive-background existence record with a closed boundary and a retained Physical Observer candidate; only that record can unlock the matched $[100]/[110]/[111]$ decision between suppressed cubic visibility and replacement of the literal cubic architecture.
+Closure goal: derive or construct one self-consistent adaptive background with complete release acceleration, a closed boundary, one-period EOM history return, and a retained Physical Observer candidate; only that record can unlock the matched $[100]/[110]/[111]$ decision between suppressed cubic visibility and replacement of the literal cubic architecture.

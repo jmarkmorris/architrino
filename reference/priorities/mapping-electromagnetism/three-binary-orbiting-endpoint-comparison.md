@@ -4,6 +4,7 @@
 
 - Kind: focused priority-side geometry derivation and pre-EOM comparison
 - Created: 2026-08-24
+- Permanent short name: `SD3`, meaning sector-differential three-pair geometry; the former `Candidate B` wording survives only in provenance-bound machine fields and append-only records
 - Claim level: exact prescribed geometry, measured geometry-instrument checks, and one explicit no-go for the requested matched EOM comparison
 - Scope: the declared orthonormal three-axis comparison, its pair-conjugate Family-A chart, its cyclic sector-differential chart, and the optional three-of-four tetrahedral-axis comparison
 - Exclusions: no binding, retention, stability, periodic or relative-periodic return, fermion or generation identity, accessory storage, spin, electromagnetic recovery, mass, Lorentz recovery, energy closure, or comparison with a retained F6c branch
@@ -12,11 +13,11 @@
 
 Plainly: the first candidate is already a well-defined nine-coordinate Family-A geometry. The second can use six raw parameters or five centered shape parameters, but not six independent centered shape parameters. Running both as if they had the same six internal controls would compare unlike motions, so the geometry must be repaired before either EOM solver search begins.
 
-Follow-on status: [Five-Coordinate Matched Three-Binary Initialization Ledger](three-binary-five-coordinate-initialization-ledger.md) completes the required repair. It supplies injective five-coordinate position and rate maps with exact centering, equal $6I_5$ tangent metrics, exact inverse maps, and a three-coordinate memberwise common locus. It also proves that the remaining two directions cannot be memberwise identical: the Candidate-A complement is polarity antisymmetric and the Candidate-B midpoint complement is polarity symmetric. The six-to-six no-go therefore remains exact, while the five-coordinate geometry prerequisite is closed for authoring a separate bounded EOM solver protocol.
+Follow-on status: [Five-Coordinate Matched Three-Binary Initialization Ledger](three-binary-five-coordinate-initialization-ledger.md) completes the required repair. It supplies injective five-coordinate position and rate maps with exact centering, equal $6I_5$ tangent metrics, exact inverse maps, and a three-coordinate memberwise common locus. It also proves that the remaining two directions cannot be memberwise identical: the Candidate-A complement is polarity antisymmetric and the SD3 midpoint complement is polarity symmetric. The six-to-six no-go therefore remains exact, while the five-coordinate geometry prerequisite is closed for authoring a separate bounded EOM solver protocol.
 
 Plainly: the original comparison remains a no-go as written. A later focused artifact now provides the fair five-to-five replacement and records the unavoidable difference in the last two motions instead of disguising it as a match.
 
-| Comparison row | Candidate A: pair conjugate | Candidate B: sector differential |
+| Comparison row | Candidate A: pair conjugate | SD3: sector differential |
 | --- | --- | --- |
 | inventory | three declared neutral pairs | three positive and three negative members with module pairing labels |
 | declared internal parameters | nine A3 coordinates and nine rates; three plus three on A2 | six named sector parameters and rates |
@@ -29,7 +30,7 @@ Plainly: the original comparison remains a no-go as written. A later focused art
 | F6c identities | neutral inventory and rank-three prescribed axes only | neutral inventory, cyclic equal-sector radii/speeds, and rank-three prescribed axes only |
 | pre-EOM status | fully defined | coherent only as five shape coordinates plus one translation coordinate |
 
-Plainly: the table isolates the decisive difference. Candidate A spends its coordinates on three antipodal binary shapes; Candidate B spends one of its six raw directions moving the assembly center, leaving five internal shape directions after centering.
+Plainly: the table isolates the decisive difference. Candidate A spends its coordinates on three antipodal binary shapes; SD3 spends one of its six raw directions moving the assembly center, leaving five internal shape directions after centering.
 
 ## Declared Matched Frame
 
@@ -270,7 +271,7 @@ so its exact collision stratum is $h_a=\rho_a=0$. For $a\ne b$, collision occurs
 
 Plainly: two endpoints collide only when their actual displacement vectors agree with the required sign. A nonzero radius protects the two members of one binary but does not automatically protect members belonging to different binaries.
 
-## Candidate B: Cyclic Sector-Differential Geometry
+## SD3: Cyclic Sector-Differential Three-Pair Geometry
 
 Use one circulation sense $s_a=+1$ for all three modules so that the circulation decoration is the same as on the matched A2 locus. Define the raw offsets
 
@@ -375,7 +376,7 @@ Plainly: a threefold orbit can move in two sideways directions per polarity sect
 
 ### Retained And Lost Coordinate Properties
 
-The centered Candidate B can retain independent named $h_\sigma$, $\rho_\sigma$, and $\theta_\sigma$ histories only with one gauge redundancy. It retains independent sector radii and cadence in the raw cylindrical representation, exact whole centering, a calculable polarity dipole, three persistent module pair labels, and a nondegenerate declared rank-three axis frame. It does not retain six independent internal coordinates or two independent sector-centroid axial translations.
+Centered SD3 can retain independent named $h_\sigma$, $\rho_\sigma$, and $\theta_\sigma$ histories only with one gauge redundancy. It retains independent sector radii and cadence in the raw cylindrical representation, exact whole centering, a calculable polarity dipole, three persistent module pair labels, and a nondegenerate declared rank-three axis frame. It does not retain six independent internal coordinates or two independent sector-centroid axial translations.
 
 For $\bar{\mathbf y}_\sigma=\frac13\sum_a\mathbf y_{a,\sigma}$, the centered sector centroids are
 
@@ -419,7 +420,7 @@ $$
 
 The three module labels persist, but generic partners are not antipodal and their midpoints move as a cyclic three-member orbit. This is a pairing convention, not yet a persistent causal-root binary ledger.
 
-Plainly: Candidate B keeps three positive-negative module labels, but the paired members generally orbit around moving midpoints. The dipole is forced onto one body line rather than forced to zero.
+Plainly: SD3 keeps three positive-negative module labels, but the paired members generally orbit around moving midpoints. The dipole is forced onto one body line rather than forced to zero.
 
 ### Moments, Distances, And Speeds
 
@@ -505,7 +506,7 @@ $$
 
 is invariant under $Q$ and therefore lies on the $\hat{\mathbf k}$ line. Its magnitude is not fixed and may vanish. This is the direct threefold replacement for F6c's body-axis motion-moment statement, not a recovered current, magnetic moment, or spin.
 
-## Exact Reductions Of Candidate B
+## Exact Reductions Of SD3
 
 A sufficient and, away from zero-radius chart degeneracy, necessary sector-coordinate condition for exact pair conjugacy is
 
@@ -527,9 +528,9 @@ $$
 \dot\theta_++\dot\theta_-=0.
 $$
 
-Then $\mathbf y_{a,-}=-\mathbf y_{a,+}$, $\boldsymbol\mu=0$, and Candidate B is exactly an A3 member. Because Candidate B already uses common module geometry and the declared cyclic offsets, this reduction lies on A2. It reaches the A1 intersection when $h=0$. It reaches B1 only after the three axes are made coincident and the remaining B1 common-axis constraints are imposed; that operation leaves the matched rank-three frame.
+Then $\mathbf y_{a,-}=-\mathbf y_{a,+}$, $\boldsymbol\mu=0$, and SD3 is exactly an A3 member. Because SD3 already uses common module geometry and the declared cyclic offsets, this reduction lies on A2. It reaches the A1 intersection when $h=0$. It reaches B1 only after the three axes are made coincident and the remaining B1 common-axis constraints are imposed; that operation leaves the matched rank-three frame.
 
-Plainly: Candidate B becomes Family A only when every negative endpoint recovers the exact opposite position and velocity of its positive partner. Under the cyclic common-coordinate decoration used here, that recovered Family-A row is A2 rather than generic A3.
+Plainly: SD3 becomes Family A only when every negative endpoint recovers the exact opposite position and velocity of its positive partner. Under the cyclic common-coordinate decoration used here, that recovered Family-A row is A2 rather than generic A3.
 
 ## Symmetry And Master-Equation Boundary
 
@@ -539,7 +540,7 @@ $$
 G_A=\langle Q,\kappa\rangle\cong C_3\times C_2.
 $$
 
-Generic centered Candidate B is fixed by the cyclic action only:
+Generic centered SD3 is fixed by the cyclic action only:
 
 $$
 G_B=\langle Q\rangle\cong C_3.
@@ -551,13 +552,13 @@ On a complete ordinary causal-root branch, the Master Equation is equivariant un
 
 - the $\kappa$-fixed A3 history surface has tangent acceleration closure;
 - the $(Q,\kappa)$-fixed A2 surface has tangent acceleration closure; and
-- the $Q$-fixed centered Candidate-B surface has tangent acceleration closure only on its five-dimensional internal quotient.
+- the $Q$-fixed centered SD3 surface has tangent acceleration closure only on its five-dimensional internal quotient.
 
-No F6c $D_{2d}$ theorem is inherited. If the raw six-parameter Candidate B is used, its extra direction is group-centroid motion along $\hat{\mathbf k}$, not a sixth internal tangent. A time-dependent translating branch is not supplied by a static Euclidean translation symmetry because causal wakes use absolute time. An eventual EOM solver record would have to report the center acceleration separately and measure every acceleration component normal to the declared internal quotient.
+No F6c $D_{2d}$ theorem is inherited. If raw six-parameter SD3 is used, its extra direction is group-centroid motion along $\hat{\mathbf k}$, not a sixth internal tangent. A time-dependent translating branch is not supplied by a static Euclidean translation symmetry because causal wakes use absolute time. An eventual EOM solver record would have to report the center acceleration separately and measure every acceleration component normal to the declared internal quotient.
 
 Claim grade: **derived** for the finite map actions and conditional equivariance statement. It is falsified by a complete ordinary-root evaluation that violates the transformed acceleration relation. Tangency through multi-root folds or singular strata remains unproved and must not be inferred from this result.
 
-Plainly: symmetry protects Candidate A and the five-coordinate centered Candidate B on ordinary complete root branches. It does not turn the sixth raw Candidate-B parameter into internal breathing, and it does not prove a return or allow the F6c theorem to be copied over.
+Plainly: symmetry protects Candidate A and five-coordinate centered SD3 on ordinary complete root branches. It does not turn SD3's sixth raw parameter into internal breathing, and it does not prove a return or allow the F6c theorem to be copied over.
 
 ## Tangent Bases And Ranks
 
@@ -573,13 +574,13 @@ $$
 
 They have rank nine for $\rho_a>0$. A2 restricts them to three common-coordinate sums. The A1 intrinsic tangent has rank six, while the containing A3 tangent remains rank nine at $h_a=0$ if $\rho_a>0$. A phase column vanishes when its $\rho_a=0$.
 
-Candidate B's raw six columns are the positive- and negative-sector axial, radial, and phase columns. They have rank six away from cylindrical degeneracy. After exact centroid projection, their Gram matrix has one exact zero eigenvalue on the cyclic locus and rank five. The null direction is the differential parameter combination that produces the common translation $\gamma\hat{\mathbf k}$.
+SD3's raw six columns are the positive- and negative-sector axial, radial, and phase columns. They have rank six away from cylindrical degeneracy. After exact centroid projection, their Gram matrix has one exact zero eigenvalue on the cyclic locus and rank five. The null direction is the differential parameter combination that produces the common translation $\gamma\hat{\mathbf k}$.
 
-Plainly: the rank calculation says how many distinguishable instantaneous shape changes the positions can see. Candidate B's sixth centered parameter changes only the bookkeeping origin, so the members cannot distinguish it from moving the whole assembly.
+Plainly: the rank calculation says how many distinguishable instantaneous shape changes the positions can see. SD3's sixth centered parameter changes only the bookkeeping origin, so the members cannot distinguish it from moving the whole assembly.
 
 ## F6c Identity Ledger
 
-| F6c identity or structure | Candidate A | Centered Candidate B | Determination |
+| F6c identity or structure | Candidate A | Centered SD3 | Determination |
 | --- | --- | --- | --- |
 | neutral persistent inventory | three positrinos plus three electrinos | three positrinos plus three electrinos | survives exactly |
 | exact whole centroid | pairwise automatic | requires explicit centroid subtraction | survives with different mechanism |
@@ -597,7 +598,7 @@ Plainly: the rank calculation says how many distinguishable instantaneous shape 
 | body-axis motion moment | pair-weighted row cancels | cyclic row lies on $\hat{\mathbf k}$ | different replacement |
 | F6c pair-clearance formulas | not inherited | not inherited | replaced by the exact vector distance equations above |
 | exact member antipodality | yes | only on the A2 reduction | retained only by Candidate A |
-| three persistent neutral-binary identities | exact geometric pairs | persistent module labels but moving midpoints | weakened in Candidate B |
+| three persistent neutral-binary identities | exact geometric pairs | persistent module labels but moving midpoints | weakened in SD3 |
 | return actions | module identity, $\kappa$, and A2 cyclic permutations are candidates | cyclic module permutations are candidates | conditional geometry actions only |
 
 Plainly: the six-member candidates retain neutral inventory, rank-three declared axes, and exact finite symmetries. They lose the four-axis balance, separate-sector centering, dipole null, and opposite-edge construction that make F6c special.
@@ -658,7 +659,7 @@ The 2026-08-24 declared run measured:
 
 Claim grade: **measured** by the named geometry instrument on the declared samples. These values are falsified by rerunning the command and obtaining results outside floating-point tolerance from the same immutable inputs. They establish implementation consistency and the sampled ranks, not dynamics or global clearance.
 
-Plainly: the calculations reproduce every exact control and catch both a collision and a bad frame. Their most important result is not that one sample has good clearance; it is that exact centering removes one Candidate-B tangent direction on every generic cyclic row tested, exactly as the algebra predicts.
+Plainly: the calculations reproduce every exact control and catch both a collision and a bad frame. Their most important result is not that one sample has good clearance; it is that exact centering removes one SD3 tangent direction on every generic cyclic row tested, exactly as the algebra predicts.
 
 ## Go/No-Go Adjudication
 
@@ -672,7 +673,7 @@ $$
 (P\mathbf y_+,P\mathbf y_-,\zeta)
 $$
 
-and treat $\gamma$ as group translation, not internal breathing. The required repair is implemented in [Five-Coordinate Matched Three-Binary Initialization Ledger](three-binary-five-coordinate-initialization-ledger.md). That artifact selects five Candidate-A directions, proves that both seeds use the same centroid, coordinate-unit, tangent-metric, and speed conventions, and records that the final two competitor directions have necessarily different polarity parity. A six-to-six EOM comparison would still silently compare one Candidate-A internal coordinate with Candidate B's center motion and remains prohibited.
+and treat $\gamma$ as group translation, not internal breathing. The required repair is implemented in [Five-Coordinate Matched Three-Binary Initialization Ledger](three-binary-five-coordinate-initialization-ledger.md). That artifact selects five Candidate-A directions, proves that both seeds use the same centroid, coordinate-unit, tangent-metric, and speed conventions, and records that the final two competitor directions have necessarily different polarity parity. A six-to-six EOM comparison would still silently compare one Candidate-A internal coordinate with SD3's center motion and remains prohibited.
 
 No long EOM solver campaign was launched in this comparison. The follow-on ledger closes only the five-coordinate initialization prerequisite; a bounded EOM solver protocol remains a separate artifact.
 
@@ -684,8 +685,8 @@ Plainly: the repair is small but necessary. Name the five real shape controls, s
 | --- | --- | --- |
 | Candidate A is A3 with the stated A2/A1/B1 loci | derived | a direct taxonomy/member-map audit contradicts one required coordinate relation |
 | pair conjugacy centers the assembly but does not null its polarity dipole | derived | direct summation disagrees with $\mathbf p_A=2\sum_a\mathbf d_a$ |
-| centered cyclic Candidate B has five internal tangent directions | derived and measured | analytical projection retains $\gamma$, or the declared tangent Gram matrix has six nonzero eigenvalues |
-| Candidate B has a controlled axial dipole | derived | direct cyclic summation produces a component perpendicular to $\hat{\mathbf k}$ |
+| centered cyclic SD3 has five internal tangent directions | derived and measured | analytical projection retains $\gamma$, or the declared tangent Gram matrix has six nonzero eigenvalues |
+| SD3 has a controlled axial dipole | derived | direct cyclic summation produces a component perpendicular to $\hat{\mathbf k}$ |
 | the ordinary-root Master Equation is equivariant under the declared finite groups | derived conditional statement | a complete ordinary-root transformed evaluation violates the orthogonal/permutation acceleration relation |
 | the tetrahedral subset has determinant $16/27$ and a preferred missing-axis direction | derived and independently measured | exact Gram algebra or the focused test disagrees |
 | the missing-axis direction may be useful later | inferred | a retained matched response shows it is pure leakage or no response projection uses it |

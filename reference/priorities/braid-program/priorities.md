@@ -40,4 +40,4 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 
 ## Pointers
 
-Charter and ground rules: [README.md](README.md). Method: [method.md](method.md). Search space: [configuration-chart.md](configuration-chart.md). Logs: [work-log.md](work-log.md), [brainstorming.md](brainstorming.md).
+Charter and ground rules: [README.md](README.md). Master candidate index: [candidate-registry.md](candidate-registry.md). Method: [method.md](method.md). Search space: [configuration-chart.md](configuration-chart.md). Logs: [work-log.md](work-log.md), [brainstorming.md](brainstorming.md).

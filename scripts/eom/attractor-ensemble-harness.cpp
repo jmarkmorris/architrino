@@ -129,13 +129,22 @@ struct SeedRow {
   double center_x = 0.0;
   double center_y = 0.0;
   double center_z = 0.0;
+  std::array<double, 3> frame_p = {1.0, 0.0, 0.0};
+  std::array<double, 3> frame_q = {0.0, 1.0, 0.0};
 };
 
 std::vector<SeedRow> f6c_cubic_lattice_rows(
     std::size_t side, double spacing, double orbit_radius,
-    double angular_rate) {
+    double angular_rate, const std::string& orientation_field) {
+  const bool site_local = orientation_field == "tetrahedral-parity-v1";
+  if (!site_local && orientation_field != "global-plane-v1") {
+    throw std::invalid_argument(
+        "cubic orientation field must be global-plane-v1 or "
+        "tetrahedral-parity-v1");
+  }
   std::vector<SeedRow> rows;
   rows.reserve(side * side * side);
+  std::array<std::array<double, 3>, 3> normal_second_moment{};
   const double center_index =
       (static_cast<double>(side) - 1.0) / 2.0;
   for (std::size_t gx = 0; gx < side; ++gx) {
@@ -146,7 +155,7 @@ std::vector<SeedRow> f6c_cubic_lattice_rows(
             ? std::to_string(gx) + std::to_string(gy) + std::to_string(gz)
             : std::to_string(gx) + "_" + std::to_string(gy) + "_" +
                   std::to_string(gz);
-        rows.push_back({
+        SeedRow row{
             "g" + coordinate + (polarity > 0 ? "+" : "-"),
             polarity > 0 ? kCharge : kNegativeCharge,
             orbit_radius,
@@ -159,7 +168,46 @@ std::vector<SeedRow> f6c_cubic_lattice_rows(
             (static_cast<double>(gx) - center_index) * spacing,
             (static_cast<double>(gy) - center_index) * spacing,
             (static_cast<double>(gz) - center_index) * spacing,
-        });
+        };
+        if (site_local) {
+          const double sx = gx % 2U == 0U ? 1.0 : -1.0;
+          const double sy = gy % 2U == 0U ? 1.0 : -1.0;
+          const double sz = gz % 2U == 0U ? 1.0 : -1.0;
+          const double inverse_sqrt_two = 1.0 / std::sqrt(2.0);
+          const double inverse_sqrt_six = 1.0 / std::sqrt(6.0);
+          const double inverse_sqrt_three = 1.0 / std::sqrt(3.0);
+          row.frame_p = {
+              sy * inverse_sqrt_two, -sx * inverse_sqrt_two, 0.0};
+          row.frame_q = {
+              sx * sz * inverse_sqrt_six,
+              sy * sz * inverse_sqrt_six,
+              -2.0 * inverse_sqrt_six};
+          const std::array<double, 3> normal = {
+              sx * inverse_sqrt_three,
+              sy * inverse_sqrt_three,
+              sz * inverse_sqrt_three};
+          for (std::size_t left = 0; left < 3U; ++left) {
+            for (std::size_t right = 0; right < 3U; ++right) {
+              normal_second_moment[left][right] +=
+                  normal[left] * normal[right];
+            }
+          }
+        }
+        rows.push_back(row);
+      }
+    }
+  }
+  if (site_local) {
+    const double inverse_population = 1.0 / static_cast<double>(rows.size());
+    for (std::size_t left = 0; left < 3U; ++left) {
+      for (std::size_t right = 0; right < 3U; ++right) {
+        const double expected = left == right ? 1.0 / 3.0 : 0.0;
+        if (std::abs(normal_second_moment[left][right] * inverse_population -
+                     expected) > 1e-12) {
+          throw std::runtime_error(
+              "tetrahedral-parity orientation failed its exact second-rank "
+              "cubic census");
+        }
       }
     }
   }
@@ -542,11 +590,23 @@ struct F6cHarmonicState {
 F6cHarmonicState f6c_cubic_lattice_state(
     const SeedRow& row, double time, double angular_rate) {
   const double angle = angular_rate * time + row.phase;
+  const double cosine = std::cos(angle);
+  const double sine = std::sin(angle);
+  const std::array<double, 3> radial = {
+      row.frame_p[0] * cosine + row.frame_q[0] * sine,
+      row.frame_p[1] * cosine + row.frame_q[1] * sine,
+      row.frame_p[2] * cosine + row.frame_q[2] * sine};
+  const std::array<double, 3> tangent = {
+      -row.frame_p[0] * sine + row.frame_q[0] * cosine,
+      -row.frame_p[1] * sine + row.frame_q[1] * cosine,
+      -row.frame_p[2] * sine + row.frame_q[2] * cosine};
   return {
-      {row.center_x + row.radius * std::cos(angle),
-       row.center_y + row.radius * std::sin(angle), row.center_z},
-      {-row.radius * angular_rate * std::sin(angle),
-       row.radius * angular_rate * std::cos(angle), 0.0},
+      {row.center_x + row.radius * radial[0],
+       row.center_y + row.radius * radial[1],
+       row.center_z + row.radius * radial[2]},
+      {row.radius * angular_rate * tangent[0],
+       row.radius * angular_rate * tangent[1],
+       row.radius * angular_rate * tangent[2]},
   };
 }
 
@@ -930,6 +990,7 @@ struct Options {
   double lattice_orbit_radius = 0.05;
   double lattice_angular_rate = 1.0;
   std::size_t lattice_side = 2;
+  std::string lattice_orientation_field = "tetrahedral-parity-v1";
   std::string binary_angle = "0";
   std::string refinement = "R0";
   std::string campaign1_grid_manifest;
@@ -996,6 +1057,7 @@ std::string harness_resume_fingerprint(
            token(options.lattice_orbit_radius),
            token(options.lattice_angular_rate),
            std::to_string(options.lattice_side),
+           options.lattice_orientation_field,
            options.binary_angle,
            options.refinement,
            token(options.step),
@@ -2034,6 +2096,26 @@ void write_manifest(
            << ",\"siteCell\":\"" << options.lattice_side << "x"
            << options.lattice_side << "x" << options.lattice_side
            << "-conventional-open-crop\"}";
+  } else if (options.seed_family == "f6c-cubic-site-local-v1") {
+    output << ",\"adaptiveCubicMediumCoordinate\":{\"spacing\":"
+           << options.lattice_spacing
+           << ",\"orbitRadius\":" << options.lattice_orbit_radius
+           << ",\"angularRate\":" << options.lattice_angular_rate
+           << ",\"candidatePeriod\":"
+           << 2.0 * kPi / options.lattice_angular_rate
+           << ",\"minimumAntipodalChartPrehistory\":"
+           << kPi / options.lattice_angular_rate
+           << ",\"orbitSpeed\":"
+           << options.lattice_orbit_radius * options.lattice_angular_rate
+           << ",\"orientationField\":";
+    write_json_string(output, options.lattice_orientation_field);
+    output << ",\"siteHistoryContract\":"
+              "\"period-antipode-midpoint/v1\""
+           << ",\"boundaryStatus\":\"finite_replicated_diagnostic\""
+           << ",\"latticeSide\":" << options.lattice_side
+           << ",\"siteCell\":\"" << options.lattice_side << "x"
+           << options.lattice_side << "x" << options.lattice_side
+           << "-conventional-open-crop\"}";
   }
   output << ",\"evidence\":{\"eomEvidenceStatus\":"
             "\"executable_architecture_evidence\""
@@ -2073,6 +2155,20 @@ void write_manifest(
       if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
         output << ",\"tiltX\":" << row.tilt_x
                << ",\"tiltY\":" << row.tilt_y;
+      } else if (options.seed_family == "f6c-cubic-site-local-v1") {
+        const std::array<double, 3> normal = {
+            row.frame_p[1] * row.frame_q[2] -
+                row.frame_p[2] * row.frame_q[1],
+            row.frame_p[2] * row.frame_q[0] -
+                row.frame_p[0] * row.frame_q[2],
+            row.frame_p[0] * row.frame_q[1] -
+                row.frame_p[1] * row.frame_q[0]};
+        output << ",\"frameP\":[" << row.frame_p[0] << ','
+               << row.frame_p[1] << ',' << row.frame_p[2] << ']'
+               << ",\"frameQ\":[" << row.frame_q[0] << ','
+               << row.frame_q[1] << ',' << row.frame_q[2] << ']'
+               << ",\"frameNormal\":[" << normal[0] << ','
+               << normal[1] << ',' << normal[2] << ']';
       }
       output << '}';
     }
@@ -2212,6 +2308,9 @@ int main(int argc, char** argv) {
         argc, argv, "lattice-angular-rate", options.lattice_angular_rate);
     options.lattice_side = static_cast<std::size_t>(option_double(
         argc, argv, "lattice-side", static_cast<double>(options.lattice_side)));
+    options.lattice_orientation_field = option_string(
+        argc, argv, "lattice-orientation-field",
+        options.lattice_orientation_field);
     options.binary_angle = option_string(
         argc, argv, "binary-angle", options.binary_angle);
     options.refinement = option_string(
@@ -2290,11 +2389,17 @@ int main(int argc, char** argv) {
       options.population = options.lattice_side * options.lattice_side *
           options.lattice_side;
       options.prehistory = "antiphase-global-plane";
+      options.lattice_orientation_field = "global-plane-v1";
+    } else if (options.seed_family == "f6c-cubic-site-local-v1") {
+      options.population = options.lattice_side * options.lattice_side *
+          options.lattice_side;
+      options.prehistory = "site-local-circular";
     } else if (options.seed_family != "phase0-shell-v1") {
       throw std::invalid_argument(
           "seed-family must be phase0-shell-v1, "
           "campaign1-subfield-binary-v1, stationary-rest-binary-v1, or "
-          "f6c-balanced-tetrahedral-v1, or f6c-cubic-lattice-o0-v1");
+          "f6c-balanced-tetrahedral-v1, f6c-cubic-lattice-o0-v1, or "
+          "f6c-cubic-site-local-v1");
     }
     options.run_id = option_string(
         argc, argv, "run-id",
@@ -2350,6 +2455,14 @@ int main(int argc, char** argv) {
                   campaign1_scalar_id(options.lattice_orbit_radius) +
                   "-omega" +
                   campaign1_scalar_id(options.lattice_angular_rate) + "-v1"
+            : options.seed_family == "f6c-cubic-site-local-v1"
+            ? "f6c-cubic-site-local-n" +
+                  std::to_string(options.lattice_side) + "-d" +
+                  campaign1_scalar_id(options.lattice_spacing) + "-rho" +
+                  campaign1_scalar_id(options.lattice_orbit_radius) +
+                  "-omega" +
+                  campaign1_scalar_id(options.lattice_angular_rate) + "-" +
+                  options.lattice_orientation_field
             : "attractor-ensemble-n" + std::to_string(options.population) +
                   "-s" + std::to_string(options.seed_offset) + "-" +
                   options.prehistory);
@@ -2431,7 +2544,8 @@ int main(int argc, char** argv) {
             "conservative member-speed bound strictly below c_f=1");
       }
     }
-    if (options.seed_family == "f6c-cubic-lattice-o0-v1" &&
+    if ((options.seed_family == "f6c-cubic-lattice-o0-v1" ||
+         options.seed_family == "f6c-cubic-site-local-v1") &&
         (options.lattice_side < 2U || options.lattice_side % 2U != 0U ||
          options.population != options.lattice_side * options.lattice_side *
              options.lattice_side ||
@@ -2447,6 +2561,12 @@ int main(int argc, char** argv) {
           "cubic-lattice side must be even and at least two, population must "
           "equal side cubed, spacing, radius, and angular rate must be "
           "positive and finite, and orbit speed must remain below c_f=1");
+    }
+    if (options.seed_family == "f6c-cubic-site-local-v1" &&
+        options.lattice_orientation_field != "tetrahedral-parity-v1") {
+      throw std::invalid_argument(
+          "site-local cubic seed currently requires the derived "
+          "tetrahedral-parity-v1 orientation field");
     }
     if (options.seed_family == "phase0-shell-v1" &&
         options.prehistory != "circular" && options.prehistory != "straight") {
@@ -2502,6 +2622,9 @@ int main(int argc, char** argv) {
         options.seed_family == "f6c-balanced-tetrahedral-v1";
     const bool f6c_cubic_lattice =
         options.seed_family == "f6c-cubic-lattice-o0-v1";
+    const bool f6c_cubic_site_local =
+        options.seed_family == "f6c-cubic-site-local-v1";
+    const bool f6c_cubic = f6c_cubic_lattice || f6c_cubic_site_local;
     const auto rows = campaign1_coordinate.has_value()
         ? campaign1_rows(*campaign1_coordinate)
         : stationary_binary
@@ -2521,10 +2644,11 @@ int main(int argc, char** argv) {
               options.f6c_negative_h_phase_offset,
               options.f6c_positive_rho_phase_offset,
               options.f6c_negative_rho_phase_offset)
-        : f6c_cubic_lattice
+        : f6c_cubic
         ? f6c_cubic_lattice_rows(
               options.lattice_side, options.lattice_spacing,
-              options.lattice_orbit_radius, options.lattice_angular_rate)
+              options.lattice_orbit_radius, options.lattice_angular_rate,
+              options.lattice_orientation_field)
         : seed_rows(options.population, options.seed_offset);
     std::vector<eom::NativeCoupledPathInput> paths =
         campaign1_coordinate.has_value()
@@ -2538,7 +2662,7 @@ int main(int argc, char** argv) {
       paths.reserve(rows.size());
       for (const auto& row : rows) {
         const int polarity = row.charge == kCharge ? +1 : -1;
-        if (f6c_cubic_lattice) {
+        if (f6c_cubic) {
           paths.push_back({
               row.path_id,
               row.charge,
@@ -2681,11 +2805,13 @@ int main(int argc, char** argv) {
       const auto snapshot = eom::certify_native_acceleration_snapshot(
           request_template, initial, "0");
       if (stationary_binary || f6c_balanced_tetrahedral ||
-          f6c_cubic_lattice) {
+          f6c_cubic) {
         write_release_acceleration_atomic(
             release_acceleration_path, snapshot,
             stationary_binary
                 ? "stationary_binary_release_acceleration/v0"
+                : f6c_cubic_site_local
+                ? "f6c_cubic_site_local_release_acceleration/v0"
                 : f6c_cubic_lattice
                 ? "f6c_cubic_lattice_release_acceleration/v0"
                 : "f6c_release_acceleration/v0");

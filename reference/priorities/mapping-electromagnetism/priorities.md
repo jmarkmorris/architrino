@@ -37,6 +37,8 @@ The current focused constitutive packet is the [Fine-Structure Coupling Map](fin
 
 The focused inverse-method packet is [Inferring Braid Requirements](inferring-braid-requirements.md). It converts existing effective behaviors into graded requirements on source assemblies, matter and receiver braids, the near-to-far Noether sea record and any derived response, propagating carriers, and causal boundary history. It is a pre-derivation constraint artifact for `EMAP-001` through `EMAP-004`, not a new equation or benchmark inventory and not evidence that any candidate geometry is retained.
 
+The application owner is [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md). It assigns a graded pass, scoped failure, inferred capability, or unknown to every consolidated requirement for every active registry row, while keeping hard admissibility separate from any future experiment-allocation weighting.
+
 The focused executable continuation packet is [Fixed-Law Source Continuation](fixed-law-source-continuation.md). It evaluates one source-loading family through its weak signed response and first native geometric transition while rejecting hidden retuning and refusing pair capture or backreaction without same-record certified conjugate product basins. Its present prescribed fixture is `candidate_only` and changes no score or retained branch claim.
 
 ## Scope And Ownership

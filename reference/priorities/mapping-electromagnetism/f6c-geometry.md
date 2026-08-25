@@ -3,7 +3,7 @@
 ## Document Status
 
 - Kind: dependency-ordered priority textbook unit and evidence reference
-- Status: active companion to [Inferring Braid Requirements](inferring-braid-requirements.md)
+- Status: admitted candidate geometry and active companion to [Inferring Braid Requirements](inferring-braid-requirements.md); admission records the exact chart and does not imply a retained branch
 - Created: 2026-08-23
 - Claim level: exact prescribed geometry and symmetry results, measured bounded EOM-solver diagnostics, and explicitly marked inference or speculation
 - Scope: exact F6c construction and geometry; causal-speed, motion-moment, return, and bounded-search evidence; then physical-clock, Lorentz-recovery, strong-field, particle-facing, radiation-facing, and collective six-architrino capture hypotheses

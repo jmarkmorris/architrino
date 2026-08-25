@@ -146,6 +146,12 @@ const OPTIONS = {
   historySamples: 33,
   planeConditioningFloor: 1e-8,
   gapFloor: 1e-6,
+  independentReturnVerification: {
+    status: "verified",
+    independence: "independent_of_subject_consumer",
+    kind: "analytic_closed_form_circular_history",
+    fingerprint: "test-analytic-circle-v1",
+  },
 };
 
 test("piecewise-cubic evaluator follows the declared local polynomial", () => {

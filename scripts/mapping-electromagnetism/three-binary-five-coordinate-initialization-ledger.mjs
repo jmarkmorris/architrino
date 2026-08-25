@@ -290,6 +290,7 @@ export function buildMatchedFiveCoordinateInitializations({
   };
   return {
     candidateA: {
+      shortName: "A3 pair-conjugate slice",
       kind: "matched-five-coordinate-pair-conjugate",
       members: pairMembers,
       tangentColumns: pairConjugateTangentColumns(basis),
@@ -299,6 +300,7 @@ export function buildMatchedFiveCoordinateInitializations({
       metadata,
     },
     candidateB: {
+      shortName: "SD3",
       kind: "matched-five-coordinate-sector-differential",
       members: sectorMembers,
       tangentColumns: sectorDifferentialTangentColumns(basis),
@@ -432,30 +434,30 @@ export function auditMatchedFiveCoordinateInitializations(input) {
       matchedDimension: 5,
       sharedMemberwiseDirections: 3,
       structuralComplementDimension: 2,
-      structuralComplementRelation: "polarity-antisymmetric Candidate-A scale doublet versus polarity-symmetric Candidate-B midpoint doublet",
+      structuralComplementRelation: "polarity-antisymmetric Candidate-A scale doublet versus polarity-symmetric SD3 midpoint doublet",
       geometryPrerequisiteClosed: true,
       scope: "initial position and velocity ledger only; no Master-Equation or return claim",
     },
   };
   const conditions = [
     [analyzedA.centroidResidual < 1e-12, "Candidate-A centroid"],
-    [analyzedB.centroidResidual < 1e-12, "Candidate-B centroid"],
+    [analyzedB.centroidResidual < 1e-12, "SD3 centroid"],
     [analyzedA.tangent.rank === 5, "Candidate-A tangent rank"],
-    [analyzedB.tangent.rank === 5, "Candidate-B tangent rank"],
+    [analyzedB.tangent.rank === 5, "SD3 tangent rank"],
     [report.exactChecks.candidateATangentGramResidual < 1e-11, "Candidate-A tangent metric"],
-    [report.exactChecks.candidateBTangentGramResidual < 1e-11, "Candidate-B tangent metric"],
+    [report.exactChecks.candidateBTangentGramResidual < 1e-11, "SD3 tangent metric"],
     [report.exactChecks.candidateACoordinateRecoveryResidual < 1e-11, "Candidate-A inverse map"],
     [report.exactChecks.candidateARateRecoveryResidual < 1e-11, "Candidate-A inverse rate map"],
-    [report.exactChecks.candidateBCoordinateRecoveryResidual < 1e-11, "Candidate-B inverse map"],
-    [report.exactChecks.candidateBRateRecoveryResidual < 1e-11, "Candidate-B inverse rate map"],
-    [gaugeResidual < 1e-12, "Candidate-B gauge"],
-    [gaugeRateResidual < 1e-12, "Candidate-B gauge rate"],
+    [report.exactChecks.candidateBCoordinateRecoveryResidual < 1e-11, "SD3 inverse map"],
+    [report.exactChecks.candidateBRateRecoveryResidual < 1e-11, "SD3 inverse rate map"],
+    [gaugeResidual < 1e-12, "SD3 gauge"],
+    [gaugeRateResidual < 1e-12, "SD3 gauge rate"],
     [report.exactChecks.commonLocusPositionResidual < 1e-12, "common-locus positions"],
     [report.exactChecks.commonLocusVelocityResidual < 1e-12, "common-locus velocities"],
     [analyzedA.minimumPairDistance > 0, "Candidate-A clearance"],
-    [analyzedB.minimumPairDistance > 0, "Candidate-B clearance"],
+    [analyzedB.minimumPairDistance > 0, "SD3 clearance"],
     [Math.max(...analyzedA.speedBudget.map((row) => row.speed)) < CF, "Candidate-A speed guard"],
-    [Math.max(...analyzedB.speedBudget.map((row) => row.speed)) < CF, "Candidate-B speed guard"],
+    [Math.max(...analyzedB.speedBudget.map((row) => row.speed)) < CF, "SD3 speed guard"],
   ];
   for (const [condition, name] of conditions) {
     if (!condition) throw new RangeError(`matched ledger identity failed: ${name}`);

@@ -461,6 +461,7 @@ function guardRecord(manifest, census, assembly, period, options) {
   const controlledTailFingerprint = manifest.adaptiveCubicMediumCoordinate
     ?.exteriorTailCertificateFingerprint ?? manifest.f6cCubicLatticeCoordinate
     ?.exteriorTailCertificateFingerprint;
+  const independentReference = options.independentReturnVerification;
   return {
     wakeSpeed: 1,
     runCompletedThroughPeriod: manifest.status === "completed" &&
@@ -482,6 +483,13 @@ function guardRecord(manifest, census, assembly, period, options) {
     sourceRecordAuthority: assembly.provenance?.recordAuthority ?? "missing",
     eomRecord: assembly.provenance?.engineId === "eom-solver" &&
       assembly.provenance?.claimGrade === "evolved-record",
+    independentReturnVerification: independentReference?.status === "verified" &&
+      independentReference?.independence === "independent_of_subject_consumer" &&
+      typeof independentReference?.kind === "string" &&
+      independentReference.kind.length > 0 &&
+      typeof independentReference?.fingerprint === "string" &&
+      independentReference.fingerprint.length > 0,
+    independentReference: independentReference ?? null,
   };
 }
 
@@ -523,6 +531,7 @@ export function buildAdaptiveBackgroundExistencePacket(outDirectory, options = {
     clearanceFloor,
     historySamples,
     planeConditioningFloor,
+    independentReturnVerification: options.independentReturnVerification,
   };
   const guards = guardRecord(manifest, census, assembly, period, checkedOptions);
   const blockers = [];
@@ -534,6 +543,7 @@ export function buildAdaptiveBackgroundExistencePacket(outDirectory, options = {
     pair_clearance: guards.pairClearance,
     member_speed: guards.memberSpeed,
     eom_record: guards.eomRecord,
+    independent_return_verification: guards.independentReturnVerification,
   })) {
     if (!passed) blockers.push(field);
   }
@@ -651,7 +661,7 @@ function option(argv, name) {
 function parseCli(argv) {
   const directory = argv.find((entry) => !entry.startsWith("--"));
   if (!directory) {
-    throw new TypeError("usage: node adaptive-cubic-background-packet.mjs OUT_DIR --period=N --return-tolerance=N --chart-tolerance=N --clearance-floor=N");
+    throw new TypeError("usage: node adaptive-cubic-background-packet.mjs OUT_DIR --period=N --return-tolerance=N --chart-tolerance=N --clearance-floor=N [--independent-reference=PATH]");
   }
   return {
     directory,
@@ -665,6 +675,8 @@ function parseCli(argv) {
         ? undefined : Number(option(argv, "history-samples")),
       gapFloor: option(argv, "gap-floor") === undefined
         ? undefined : Number(option(argv, "gap-floor")),
+      independentReturnVerification: option(argv, "independent-reference") ===
+        undefined ? undefined : readJson(option(argv, "independent-reference")),
     },
   };
 }

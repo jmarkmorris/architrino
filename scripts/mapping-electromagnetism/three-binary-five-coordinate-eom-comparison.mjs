@@ -462,6 +462,7 @@ async function runCase({
   return {
     id,
     candidate,
+    candidateShortName: candidate === "A" ? "A3 pair-conjugate slice" : "SD3",
     inputKind: input === COMMON_LOCUS_INPUT ? "common-three-coordinate-locus" : "declared-five-coordinate-slice",
     status: terminalHalt
       ? "halted_prefix"
@@ -629,12 +630,12 @@ export async function runBoundedFiveCoordinateComparison({
   return {
     schema: SCHEMA,
     generatedAt: new Date().toISOString(),
-    closureGoal: "bounded EOM behavior of one declared five-coordinate Candidate-A slice relative to its matched sector-differential counterpart",
+    closureGoal: "bounded EOM behavior of one declared five-coordinate Candidate-A slice relative to its matched SD3 sector-differential counterpart",
     claimGrade: "measured executable-architecture evidence conditioned on one declared accepted linear prehistory",
     scope: {
       familyGeneralizationAuthorized: false,
       candidateAScope: "one affine five-coordinate A3 slice at one declared coordinate/rate row",
-      candidateBScope: "its metric-matched gauge-fixed sector-differential row",
+      candidateBScope: "its metric-matched gauge-fixed SD3 sector-differential row; candidateBScope is a provenance-bound schema key",
       stabilityClaimAuthorized: false,
       retentionClaimAuthorized: false,
       pairConjugacyOnlyAttributionAuthorized: false,

@@ -36,6 +36,7 @@ test("declared ledger closes the five-coordinate metric, inverse, center, cleara
   const report = runDeclaredMatchedLedgerAudit();
   assert.equal(report.cF, 1);
   assert.deepEqual(report.coordinateNames, MATCHED_COORDINATE_NAMES);
+  assert.equal(buildMatchedFiveCoordinateInitializations({ seed: seed() }).candidateB.shortName, "SD3");
   assert.equal(report.candidateA.tangent.rank, 5);
   assert.equal(report.candidateB.tangent.rank, 5);
   assert.equal(report.decision.sharedMemberwiseDirections, 3);
@@ -75,7 +76,7 @@ test("the two structural complements have opposite declared polarity parity", ()
   }
 });
 
-test("Candidate B gauge removes common cyclic-axis translation exactly", () => {
+test("SD3 gauge removes common cyclic-axis translation exactly", () => {
   const built = buildMatchedFiveCoordinateInitializations({
     seed: seed(),
     coordinates: [0.02, 0.01, -0.015, 0.021, 0.013],
