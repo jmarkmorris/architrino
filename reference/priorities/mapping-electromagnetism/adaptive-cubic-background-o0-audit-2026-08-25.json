@@ -1,0 +1,56 @@
+{
+  "schema": "adaptive_cubic_background_existence_packet/v1",
+  "claimBoundary": "background existence and history return; not response or isotropy",
+  "source": {
+    "directory": "/Users/markmorris/vibe/architrino/.tmp/f6c-cubic-lattice-o0-primary",
+    "runId": "O0-finite-8site-primary",
+    "seedFamily": "f6c-cubic-lattice-o0-v1",
+    "modelFingerprint": "fnv1a64:fc524516eb6ffd2b",
+    "manifestSha256": "6adc5967c0d52bf020432e4d0830018511c1817373fec1135d4f190e022bbd49",
+    "assemblyRecordSha256": "13e6aa324d6b60ea3f50c31d75d3358f15f59a00b0a8eaa4720fc2de0bb71b0e"
+  },
+  "contract": {
+    "wakeSpeed": 1,
+    "period": 6.283185307179586,
+    "returnWindow": 2,
+    "returnTolerance": 1e-8,
+    "chartTolerance": 1e-8,
+    "historySamples": 65,
+    "centerEstimatorId": "period-antipode-midpoint/v1",
+    "planeConditioningFloor": 1e-10,
+    "gapFloor": 1e-8
+  },
+  "coverage": {
+    "commonStart": -2,
+    "commonEnd": 0.1
+  },
+  "guards": {
+    "wakeSpeed": 1,
+    "runCompletedThroughPeriod": false,
+    "populationMatches": true,
+    "rootsComplete": true,
+    "boundary": "finite_replicated_diagnostic",
+    "boundaryClosed": false,
+    "controlledTailFingerprint": null,
+    "clearanceFloor": 0.05,
+    "minimumPairDistance": 0.8983607772552838,
+    "pairClearance": true,
+    "maximumSpeed": 0.06814940185824131,
+    "memberSpeed": true,
+    "sourceRecordAuthority": "eom-native-coupled-evolution",
+    "eomRecord": true
+  },
+  "historyReturn": null,
+  "siteLocal": null,
+  "neighborLedger": null,
+  "orientation": null,
+  "blockers": [
+    "run_completed_through_period",
+    "boundary_closed",
+    "history_return_coverage",
+    "site_chart_coverage"
+  ],
+  "decision": "adaptive_background_blocked",
+  "responseRows": "not_run",
+  "physicalReceiverRecords": "not_supplied_by_background_packet"
+}

@@ -317,3 +317,11 @@
 - Embedded the scalar branch in the full isolated two-label vector restart by exact mirror symmetry. The straight trace and every $u_*$-branch share the complete history through $u_*$, so continuation is multivalued in the declared class.
 - Preserved the claim boundary: no ceiling or contact law was adopted; immediate $u_*=0$ ignition remains excluded in the stated class; thin event-adjacent cascades remain unclassified; and no reversal, return, breather, stability, conservation, or physical conclusion was proved.
 - Updated the live theorem, mathematics packet, compatibility decision, readiness record, priorities, work queue, restart note, and brainstorming capture. Independent theorem and measure-typing review and the selection-law decision remain open.
+
+## 2026-08-25 — Exact-mirror continuation selectors audited
+
+- Tested the declared absolutely continuous, almost-everywhere solution concept, active-chart local uniqueness, tangent-cone response, continuous-acceleration strengthening, set-valued discontinuous-ODE closures, semiflow requirements, scalar order selection, and unspecified approximation limits against the proved straight and positive-waiting branches.
+- Derived the scoped negative verdict: no currently declared approximation-independent principle selects straight passage or one positive braking-onset time. Picard--Lindelof uniqueness begins only after a waiting time is supplied, while the cap projection begins only after a complete row is active.
+- Recorded why “take a smooth limit” is insufficient without a declared approximation family: zero-preserving threshold smoothing remains straight, whereas a vanishing seed placed before any selected positive time converges to that time's active branch on compact right intervals.
+- Identified, without adopting, the minimum scale-free straight-selection clause: a margin-zero inactive channel may not create the strict receiver-side crossing condition required for its own first admission. A unique braking onset instead requires a new deterministic history trigger.
+- Preserved the boundaries: no canonical law, contact response, continuation, braking time, reversal, breather, conservation, stability, or physical conclusion was selected.

@@ -2,12 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawn } from "node:child_process";
 
-// Two-stage bounded F6c search on the exact six-coordinate symmetry surface.
+// Bounded F6c search on the exact six-coordinate symmetry surface.
 // Stage A searches a predeclared broad harmonic-history domain for certified
 // trajectories with both radial and cadence turns. Stage B perturbs one such
 // seed and ranks exact direct/reflected return residuals only at one declared
-// scalar Poincare crossing. Harmonic histories seed the forward EOM solver;
-// they never own return acceptance.
+// scalar Poincare crossing. A focused continuation can instead vary only the
+// radial-to-axial breathing-frequency ratio. Harmonic histories seed the
+// forward EOM solver; they never own return acceptance.
 
 const TWO_PI = 2 * Math.PI;
 const STATE_COORDINATES = [
@@ -44,6 +45,17 @@ function finiteOption(name, fallback) {
   const value = Number(option(name, String(fallback)));
   if (!Number.isFinite(value)) throw new TypeError(`${name} must be finite.`);
   return value;
+}
+
+function finiteListOption(name, fallback) {
+  const values = option(name, fallback).split(",").map((token) => Number(token));
+  if (
+    values.length === 0
+    || values.some((value) => !Number.isFinite(value))
+  ) {
+    throw new TypeError(`${name} must be a comma-separated finite list.`);
+  }
+  return values;
 }
 
 function halton(index, base) {
@@ -124,12 +136,14 @@ function nearestFrame(frames, time) {
 }
 
 function prescribedSpeedBound(parameters) {
+  const radialBreathingRate = parameters.breathingRate
+    * (parameters.radialBreathingRatio ?? 1);
   const sectorBound = (sector) => {
     const components = {
       axial: Math.abs(parameters[`${sector}HAmplitude`])
         * parameters.breathingRate,
       radial: Math.abs(parameters[`${sector}RhoAmplitude`])
-        * parameters.breathingRate,
+        * radialBreathingRate,
       tangential: (
         0.3 + Math.abs(parameters[`${sector}RhoAmplitude`])
       ) * (
@@ -150,11 +164,17 @@ function prescribedSpeedBound(parameters) {
 }
 
 const stage = option("stage", "dual-turn-discovery");
-if (!["dual-turn-discovery", "return-continuation"].includes(stage)) {
+if (![
+  "dual-turn-discovery",
+  "return-continuation",
+  "radial-frequency-continuation",
+].includes(stage)) {
   throw new TypeError(
-    "stage must be dual-turn-discovery or return-continuation.",
+    "stage must be dual-turn-discovery, return-continuation, "
+      + "or radial-frequency-continuation.",
   );
 }
+const isContinuation = stage !== "dual-turn-discovery";
 
 const executable = option(
   "executable",
@@ -176,6 +196,10 @@ const historySegmentStep = finiteOption("history-segment-step", 0.01);
 const candidateWallSeconds = finiteOption("candidate-wall-seconds", 180);
 const minimumFlightTime = finiteOption("minimum-flight-time", 0.08);
 const minimumShapeExcursion = finiteOption("minimum-shape-excursion", 0.02);
+const minimumSectionExcursion = finiteOption(
+  "minimum-section-excursion",
+  1e-4,
+);
 const minimumLiftedPhaseAdvance = finiteOption(
   "minimum-lifted-phase-advance",
   0.12,
@@ -183,6 +207,14 @@ const minimumLiftedPhaseAdvance = finiteOption(
 const minimumTurnBracketRate = finiteOption(
   "minimum-turn-bracket-rate",
   1e-5,
+);
+const materialImprovementFraction = finiteOption(
+  "material-improvement-fraction",
+  0.1,
+);
+const radialBreathingRatios = finiteListOption(
+  "radial-breathing-ratios",
+  "1,0.95,1.05,0.9,1.1,0.85,1.15,0.8,1.2",
 );
 const sectionToken = option("section", "positive:axial");
 const [sectionSector, sectionCoordinate] = sectionToken.split(":");
@@ -199,10 +231,26 @@ if (
   || !(historySegmentStep > 0)
   || !(candidateWallSeconds > 0)
   || !(minimumShapeExcursion > 0)
+  || !(minimumSectionExcursion > 0)
   || !(minimumLiftedPhaseAdvance > 0)
   || !(minimumTurnBracketRate > 0)
+  || !(materialImprovementFraction > 0 && materialImprovementFraction < 1)
 ) {
   throw new TypeError("search times, tolerances, marker floors, and step sizes must be positive.");
+}
+if (
+  stage === "radial-frequency-continuation"
+  && (
+    rowsRequested !== radialBreathingRatios.length
+    || radialBreathingRatios[0] !== 1
+    || radialBreathingRatios.some((value) => !(value > 0))
+    || new Set(radialBreathingRatios).size !== radialBreathingRatios.length
+  )
+) {
+  throw new TypeError(
+    "radial-frequency-continuation requires one positive distinct ratio per "
+      + "requested row, with the ratio-one control first.",
+  );
 }
 
 const discoveryDomain = {
@@ -229,6 +277,7 @@ const discoveryDomain = {
     exactF6cMemberMap: true,
     exactSixCoordinateSymmetrySurface: true,
     conservativeWholePrehistoryMemberSpeedStrictlyBelow: 1,
+    radialBreathingRatio: 1,
   },
 };
 
@@ -263,7 +312,10 @@ function loadContinuationCenter() {
     throw new TypeError(`seed row ${rowIndex} is not a certified dual-turn history.`);
   }
   return {
-    parameters: row.result.parameters,
+    parameters: {
+      ...row.result.parameters,
+      radialBreathingRatio: row.result.parameters.radialBreathingRatio ?? 1,
+    },
     provenance: {
       summaryPath,
       schema: summary.schema,
@@ -274,7 +326,7 @@ function loadContinuationCenter() {
   };
 }
 
-const continuationCenter = stage === "return-continuation"
+const continuationCenter = isContinuation
   ? loadContinuationCenter() : null;
 
 function continuationParameters(sequenceIndex) {
@@ -322,6 +374,15 @@ function continuationParameters(sequenceIndex) {
     negativeRhoPhaseOffset: wrapPositive(
       center.negativeRhoPhaseOffset + centered(fractions[14], 0.5)
     ),
+    radialBreathingRatio: center.radialBreathingRatio,
+  };
+}
+
+function radialFrequencyParameters(sequenceIndex) {
+  const ratioIndex = sequenceIndex - seedOffset;
+  return {
+    ...continuationCenter.parameters,
+    radialBreathingRatio: radialBreathingRatios[ratioIndex],
   };
 }
 
@@ -344,11 +405,21 @@ const candidates = [];
 const prefilterRejected = [];
 let sequenceIndex = seedOffset;
 while (candidates.length < rowsRequested) {
+  if (
+    stage === "radial-frequency-continuation"
+    && sequenceIndex >= seedOffset + radialBreathingRatios.length
+  ) {
+    throw new Error(
+      "a predeclared radial-frequency ratio failed prehistory admission",
+    );
+  }
   if (sequenceIndex > seedOffset + rowsRequested * 100) {
     throw new Error("unable to fill the requested prehistory-admitted domain rows");
   }
   const parameters = stage === "dual-turn-discovery"
     ? discoveryParameters(sequenceIndex)
+    : stage === "radial-frequency-continuation"
+    ? radialFrequencyParameters(sequenceIndex)
     : continuationParameters(sequenceIndex);
   const admission = admittedPrehistory(parameters);
   if (admission.passed) {
@@ -385,14 +456,14 @@ function actionRow(action, time, residual, state, section = null) {
 }
 
 function exactActionRows(packet) {
-  if (stage === "return-continuation") {
+  if (isContinuation) {
     const crossings = packet.trajectorySummary.initialLevelReturnCrossings
       [sectionSector][sectionCoordinate];
     return crossings.flatMap((crossing) => {
       if (
         crossing.flightTime < minimumFlightTime
         || crossing.maximumAbsoluteSectionExcursionSinceRelease
-          < minimumShapeExcursion
+          < minimumSectionExcursion
       ) return [];
       return Object.entries(crossing.properRotationReturnResidual)
         .flatMap(([action, residual]) => {
@@ -415,6 +486,7 @@ function exactActionRows(packet) {
               flightTime: crossing.flightTime,
               maximumAbsoluteExcursion:
                 crossing.maximumAbsoluteSectionExcursionSinceRelease,
+              minimumRequiredExcursion: minimumSectionExcursion,
             },
           )];
         });
@@ -557,7 +629,7 @@ function summarizeCandidate(index, candidate, outDirectory, packet) {
       },
     },
     returnActionContract: {
-      scalarSection: stage === "return-continuation" ? {
+      scalarSection: isContinuation ? {
         sector: sectionSector,
         coordinate: sectionCoordinate,
         otherAxialAndRadialRatesRequiredToVanish: false,
@@ -676,8 +748,16 @@ function writeSummary(status) {
   const returnRows = dualTurnRows.filter(
     (row) => row.result.returnActionContract.nearestEligibleAction !== null,
   ).sort(returnComparator);
+  const baselineRow = stage === "radial-frequency-continuation"
+    ? analyzed.find((row) => row.index === 0) ?? null : null;
+  const baselineRms = baselineRow?.result.returnActionContract
+    .nearestEligibleAction?.rms ?? null;
+  const bestRms = returnRows[0]?.result.returnActionContract
+    .nearestEligibleAction?.rms ?? null;
+  const thresholdRms = baselineRms === null
+    ? null : baselineRms * (1 - materialImprovementFraction);
   const summary = {
-    schema: "f6c-nonlinear-return-map-search/v2",
+    schema: "f6c-nonlinear-return-map-search/v3",
     claimGrade:
       "measured-bounded-eom-solver-dual-turn-and-return-search-not-independent-oracle",
     excludedClaims: [
@@ -694,10 +774,16 @@ function writeSummary(status) {
     stage,
     status,
     search: {
-      strategy: "deterministic Halton sampling after conservative prehistory admission",
+      strategy: stage === "radial-frequency-continuation"
+        ? "predeclared one-coordinate radial breathing frequency ratio sweep"
+        : "deterministic Halton sampling after conservative prehistory admission",
       discoveryDomain: stage === "dual-turn-discovery"
         ? discoveryDomain : null,
       continuationCenterProvenance: continuationCenter?.provenance ?? null,
+      continuationCoordinate: stage === "radial-frequency-continuation"
+        ? "radialBreathingRatio" : null,
+      radialBreathingRatios: stage === "radial-frequency-continuation"
+        ? radialBreathingRatios : null,
       rowsRequested,
       rowsFinished: rows.length,
       rowsAnalyzed: analyzed.length,
@@ -715,8 +801,12 @@ function writeSummary(status) {
       candidateWallSeconds,
       maximumPlannedWallSeconds:
         Math.ceil(rowsRequested / concurrency) * candidateWallSeconds,
-      scalarSection: stage === "return-continuation"
-        ? { sector: sectionSector, coordinate: sectionCoordinate } : null,
+      scalarSection: isContinuation
+        ? {
+            sector: sectionSector,
+            coordinate: sectionCoordinate,
+            minimumExcursion: minimumSectionExcursion,
+          } : null,
       dualTurnAcceptance: {
         minimumFlightTime,
         minimumShapeExcursion,
@@ -726,6 +816,8 @@ function writeSummary(status) {
       wallSeconds: (Date.now() - startedAt) / 1000,
       stoppingCondition: stage === "dual-turn-discovery"
         ? "all requested prehistory-admitted rows attempted, or a safely interrupted campaign with an advancing summary"
+        : stage === "radial-frequency-continuation"
+        ? "all predeclared radial breathing ratios attempted; refine only if the best guarded section RMS improves by the declared material fraction"
         : "all requested local rows attempted around the declared certified dual-turn seed",
     },
     outcomeCounts: {
@@ -744,6 +836,18 @@ function writeSummary(status) {
         && row.result.dualTurnDiscovery.cadenceTurnCount > 0).length,
       exactActionSectionCandidates: returnRows.length,
     },
+    materialImprovementContract:
+      stage === "radial-frequency-continuation" ? {
+        baselineRowIndex: 0,
+        baselineRms,
+        requiredFraction: materialImprovementFraction,
+        thresholdRms,
+        bestRowIndex: returnRows[0]?.index ?? null,
+        bestRms,
+        achieved: baselineRms !== null
+          && bestRms !== null
+          && bestRms <= thresholdRms,
+      } : null,
     bestDualTurnRows: dualTurnRows.slice(0, 12),
     bestExactActionRows: returnRows.slice(0, 12),
     prefilterRejected,
@@ -759,6 +863,11 @@ if (hasFlag("dry-run")) {
     stage,
     discoveryDomain: stage === "dual-turn-discovery" ? discoveryDomain : null,
     continuationCenterProvenance: continuationCenter?.provenance ?? null,
+    continuationCoordinate: stage === "radial-frequency-continuation"
+      ? "radialBreathingRatio" : null,
+    radialBreathingRatios: stage === "radial-frequency-continuation"
+      ? radialBreathingRatios : null,
+    materialImprovementFraction,
     candidates,
     prefilterRejected,
   }, null, 2));
@@ -777,6 +886,7 @@ async function evaluate(index) {
     `--f6c-negative-rate=${parameters.negativeRate}`,
     `--f6c-negative-theta=${parameters.negativeTheta}`,
     `--f6c-breathing-rate=${parameters.breathingRate}`,
+    `--f6c-radial-breathing-ratio=${parameters.radialBreathingRatio ?? 1}`,
     `--f6c-cycle-phase=${parameters.cyclePhase}`,
     `--f6c-positive-h-amplitude=${parameters.positiveHAmplitude}`,
     `--f6c-negative-h-amplitude=${parameters.negativeHAmplitude}`,
@@ -799,7 +909,7 @@ async function evaluate(index) {
     `--root-tolerance=${rootTolerance}`,
     `--out-dir=${outDirectory}`,
     "--record-date=2026-08-24",
-    `--generating-spec=F6c-nonlinear-return-map-search-v2-${stage}`,
+    `--generating-spec=F6c-nonlinear-return-map-search-v3-${stage}`,
     "--engine-build-id=local-eom-dev-2026-08-24",
   ];
   const evolved = await run(executable, args, {
@@ -886,7 +996,9 @@ async function worker() {
       + ` row=${index} status=${row.status}`
       + ` dualTurns=${dualTurnRows.length}`
       + ` bestTurnSeparation=${bestDual?.separation ?? "none"}`
-      + ` bestSectionRms=${bestReturn?.rms ?? "none"}`
+      + ` ${isContinuation
+        ? "bestSectionRms" : "bestSampledActionRms"}`
+      + `=${bestReturn?.rms ?? "none"}`
       + ` wallSeconds=${((Date.now() - startedAt) / 1000).toFixed(1)}\n`,
     );
   }

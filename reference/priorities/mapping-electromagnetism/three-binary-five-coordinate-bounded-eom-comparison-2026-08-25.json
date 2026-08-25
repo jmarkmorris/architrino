@@ -1,0 +1,2556 @@
+{
+  "schema": "three_binary_five_coordinate_bounded_eom_comparison/v1",
+  "generatedAt": "2026-08-25T10:57:52.938Z",
+  "closureGoal": "bounded EOM behavior of one declared five-coordinate Candidate-A slice relative to its matched sector-differential counterpart",
+  "claimGrade": "measured executable-architecture evidence conditioned on one declared accepted linear prehistory",
+  "scope": {
+    "familyGeneralizationAuthorized": false,
+    "candidateAScope": "one affine five-coordinate A3 slice at one declared coordinate/rate row",
+    "candidateBScope": "its metric-matched gauge-fixed sector-differential row",
+    "stabilityClaimAuthorized": false,
+    "retentionClaimAuthorized": false,
+    "pairConjugacyOnlyAttributionAuthorized": false
+  },
+  "protocol": {
+    "cF": 1,
+    "interval": [
+      0,
+      0.15
+    ],
+    "historyInterval": [
+      -4,
+      0
+    ],
+    "historyConstruction": "exact linear continuation of each ledger endpoint and rate",
+    "chunkDuration": 0.05,
+    "requestedSampleCadence": 0.05,
+    "coupling": "10.304229970992187",
+    "chargeMagnitude": "0.1666666666666666666666666666666667",
+    "coreScale": 0.2,
+    "certifiedBudgetId": "research-certified-v1",
+    "commonLocusControl": "Candidate A and B are separately encoded from the analytically identical three-coordinate locus",
+    "declaredReturnActions": [
+      "identity-labeled"
+    ],
+    "stoppingRule": "stop at T=0.15 or the first fail-closed EOM halt; do not label a finite section crossing as retention",
+    "refinementRule": "run one half-chunk replication only when all guards close and an endpoint metric differs by at least 10%"
+  },
+  "input": {
+    "seed": {
+      "h": 0.28,
+      "rho": 0.19,
+      "theta": 0.42,
+      "hDot": 0.01,
+      "rhoDot": -0.02,
+      "thetaDot": 0.3
+    },
+    "coordinates": [
+      0.02,
+      -0.015,
+      0.01,
+      0.012,
+      -0.008
+    ],
+    "rates": [
+      0.03,
+      -0.02,
+      0.04,
+      0.01,
+      -0.015
+    ]
+  },
+  "cases": [
+    {
+      "id": "common-locus-A",
+      "candidate": "A",
+      "inputKind": "common-three-coordinate-locus",
+      "status": "completed_bounded_window",
+      "acceptedEndTime": 0.15,
+      "guardedEndTime": 0.15,
+      "firstGuardViolation": null,
+      "requestedEndTime": 0.15,
+      "chunkDuration": 0.05,
+      "boundedThroughRequestedEnd": true,
+      "rootCompletenessPassed": true,
+      "rootSummary": {
+        "attemptedStepCount": 3,
+        "acceptedStepCount": 3,
+        "rejectedAttemptCount": 0,
+        "rootCertificateCount": 108,
+        "acceptedRootCertificateCount": 108,
+        "certifiedCompleteRootCertificateCount": 108,
+        "certifiedEnclosedRootCertificateCount": 0,
+        "rootCertificateStatusCounts": {
+          "certified_complete": 108
+        },
+        "unresolvedTraversalPairCount": 0,
+        "rootFailureCount": 0,
+        "retryRootFailureCount": 0,
+        "minimumTransmitterFactorMagnitudeLowerBound": 0.9318689759289157
+      },
+      "wallTimeSeconds": 1.2548690839999999,
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "startTime": 0,
+          "acceptedEndTime": 0.05,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9347199108906505
+          },
+          "wallTimeSeconds": 0.239006584
+        },
+        {
+          "chunkIndex": 1,
+          "startTime": 0.05,
+          "acceptedEndTime": 0.1,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9339924194929081
+          },
+          "wallTimeSeconds": 0.42189520900000005
+        },
+        {
+          "chunkIndex": 2,
+          "startTime": 0.1,
+          "acceptedEndTime": 0.15,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9318689759289157
+          },
+          "wallTimeSeconds": 0.5930482920000001
+        }
+      ],
+      "samples": [
+        {
+          "time": 0,
+          "minimumPairDistance": 0.27324438081117297,
+          "maximumMemberSpeed": 0.1122898036332774,
+          "speedPinMargin": 0.8877101963667227,
+          "maximumHistoryErrorBound": 0,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "normalLeakage": {
+            "rmsPosition": 0,
+            "projectedCoordinates": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0,
+            "identityLabeledRmsVelocity": 0
+          }
+        },
+        {
+          "time": 0.05,
+          "minimumPairDistance": 0.2862503906306485,
+          "maximumMemberSpeed": 0.315416848888111,
+          "speedPinMargin": 0.6845831511118889,
+          "maximumHistoryErrorBound": 0.00038869865943950147,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "normalLeakage": {
+            "rmsPosition": 8.30435640180748e-19,
+            "projectedCoordinates": [
+              0.006314134181979292,
+              -0.006121490095130528,
+              -0.0004370056985761547,
+              -7.228014483236696e-20,
+              4.336808689942018e-19
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.008805220351212598,
+            "identityLabeledRmsVelocity": 0.31698857901966837
+          }
+        },
+        {
+          "time": 0.1,
+          "minimumPairDistance": 0.3246031568399715,
+          "maximumMemberSpeed": 0.6007648134433393,
+          "speedPinMargin": 0.3992351865566607,
+          "maximumHistoryErrorBound": 0.0007684306492068918,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 2.7755575615628914e-17
+          },
+          "normalLeakage": {
+            "rmsPosition": 3.469446951953614e-18,
+            "projectedCoordinates": [
+              0.02082931093470075,
+              -0.020561534299642872,
+              -0.01085294765944022,
+              5.782411586589357e-19,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.031215754991164055,
+            "identityLabeledRmsVelocity": 0.6106427753951587
+          }
+        },
+        {
+          "time": 0.15,
+          "minimumPairDistance": 0.38508866494701127,
+          "maximumMemberSpeed": 0.8508284055960466,
+          "speedPinMargin": 0.14917159440395344,
+          "maximumHistoryErrorBound": 0.001108230148236095,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 5.551115123125783e-17,
+            "velocity": 1.1102230246251565e-16
+          },
+          "normalLeakage": {
+            "rmsPosition": 2.4938221225160488e-17,
+            "projectedCoordinates": [
+              0.04214591235682569,
+              -0.04316204403855029,
+              -0.02995827320701532,
+              6.938893903907228e-18,
+              -1.0408340855860843e-17
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.06735531239272192,
+            "identityLabeledRmsVelocity": 0.8628762900777802
+          }
+        }
+      ]
+    },
+    {
+      "id": "common-locus-B",
+      "candidate": "B",
+      "inputKind": "common-three-coordinate-locus",
+      "status": "completed_bounded_window",
+      "acceptedEndTime": 0.15,
+      "guardedEndTime": 0.15,
+      "firstGuardViolation": null,
+      "requestedEndTime": 0.15,
+      "chunkDuration": 0.05,
+      "boundedThroughRequestedEnd": true,
+      "rootCompletenessPassed": true,
+      "rootSummary": {
+        "attemptedStepCount": 3,
+        "acceptedStepCount": 3,
+        "rejectedAttemptCount": 0,
+        "rootCertificateCount": 108,
+        "acceptedRootCertificateCount": 108,
+        "certifiedCompleteRootCertificateCount": 108,
+        "certifiedEnclosedRootCertificateCount": 0,
+        "rootCertificateStatusCounts": {
+          "certified_complete": 108
+        },
+        "unresolvedTraversalPairCount": 0,
+        "rootFailureCount": 0,
+        "retryRootFailureCount": 0,
+        "minimumTransmitterFactorMagnitudeLowerBound": 0.9318689759289157
+      },
+      "wallTimeSeconds": 1.231856125,
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "startTime": 0,
+          "acceptedEndTime": 0.05,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9347199108906505
+          },
+          "wallTimeSeconds": 0.23232783399999993
+        },
+        {
+          "chunkIndex": 1,
+          "startTime": 0.05,
+          "acceptedEndTime": 0.1,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9339924194929081
+          },
+          "wallTimeSeconds": 0.4155855840000002
+        },
+        {
+          "chunkIndex": 2,
+          "startTime": 0.1,
+          "acceptedEndTime": 0.15,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9318689759289157
+          },
+          "wallTimeSeconds": 0.5837895409999999
+        }
+      ],
+      "samples": [
+        {
+          "time": 0,
+          "minimumPairDistance": 0.27324438081117297,
+          "maximumMemberSpeed": 0.1122898036332774,
+          "speedPinMargin": 0.8877101963667227,
+          "maximumHistoryErrorBound": 0,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "normalLeakage": {
+            "rmsPosition": 0,
+            "projectedCoordinates": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0,
+            "identityLabeledRmsVelocity": 0
+          }
+        },
+        {
+          "time": 0.05,
+          "minimumPairDistance": 0.2862503906306485,
+          "maximumMemberSpeed": 0.315416848888111,
+          "speedPinMargin": 0.6845831511118889,
+          "maximumHistoryErrorBound": 0.00038869865943950147,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "normalLeakage": {
+            "rmsPosition": 4.336808689942018e-19,
+            "projectedCoordinates": [
+              0.006314134181979292,
+              -0.006121490095130528,
+              -0.0004370056985761547,
+              0,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.008805220351212598,
+            "identityLabeledRmsVelocity": 0.31698857901966837
+          }
+        },
+        {
+          "time": 0.1,
+          "minimumPairDistance": 0.3246031568399715,
+          "maximumMemberSpeed": 0.6007648134433393,
+          "speedPinMargin": 0.3992351865566607,
+          "maximumHistoryErrorBound": 0.0007684306492068918,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 2.7755575615628914e-17
+          },
+          "normalLeakage": {
+            "rmsPosition": 3.469446951953614e-18,
+            "projectedCoordinates": [
+              0.02082931093470075,
+              -0.020561534299642872,
+              -0.01085294765944022,
+              0,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.031215754991164055,
+            "identityLabeledRmsVelocity": 0.6106427753951587
+          }
+        },
+        {
+          "time": 0.15,
+          "minimumPairDistance": 0.38508866494701127,
+          "maximumMemberSpeed": 0.8508284055960466,
+          "speedPinMargin": 0.14917159440395344,
+          "maximumHistoryErrorBound": 0.001108230148236095,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 5.551115123125783e-17,
+            "velocity": 1.1102230246251565e-16
+          },
+          "normalLeakage": {
+            "rmsPosition": 2.7464933306885483e-17,
+            "projectedCoordinates": [
+              0.04214591235682569,
+              -0.04316204403855029,
+              -0.02995827320701532,
+              0,
+              -1.1564823173178713e-18
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.06735531239272192,
+            "identityLabeledRmsVelocity": 0.8628762900777802
+          }
+        }
+      ]
+    },
+    {
+      "id": "declared-slice-A",
+      "candidate": "A",
+      "inputKind": "declared-five-coordinate-slice",
+      "status": "completed_bounded_window",
+      "acceptedEndTime": 0.15,
+      "guardedEndTime": 0.15,
+      "firstGuardViolation": null,
+      "requestedEndTime": 0.15,
+      "chunkDuration": 0.05,
+      "boundedThroughRequestedEnd": true,
+      "rootCompletenessPassed": true,
+      "rootSummary": {
+        "attemptedStepCount": 3,
+        "acceptedStepCount": 3,
+        "rejectedAttemptCount": 0,
+        "rootCertificateCount": 108,
+        "acceptedRootCertificateCount": 108,
+        "certifiedCompleteRootCertificateCount": 108,
+        "certifiedEnclosedRootCertificateCount": 0,
+        "rootCertificateStatusCounts": {
+          "certified_complete": 108
+        },
+        "unresolvedTraversalPairCount": 0,
+        "rootFailureCount": 0,
+        "retryRootFailureCount": 0,
+        "minimumTransmitterFactorMagnitudeLowerBound": 0.9205386526413054
+      },
+      "wallTimeSeconds": 1.2670151659999997,
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "startTime": 0,
+          "acceptedEndTime": 0.05,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9241303718861811
+          },
+          "wallTimeSeconds": 0.24005866700000025
+        },
+        {
+          "chunkIndex": 1,
+          "startTime": 0.05,
+          "acceptedEndTime": 0.1,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9231009630849555
+          },
+          "wallTimeSeconds": 0.4301507499999998
+        },
+        {
+          "chunkIndex": 2,
+          "startTime": 0.1,
+          "acceptedEndTime": 0.15,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9205386526413054
+          },
+          "wallTimeSeconds": 0.596671209
+        }
+      ],
+      "samples": [
+        {
+          "time": 0,
+          "minimumPairDistance": 0.2683453708779326,
+          "maximumMemberSpeed": 0.11449853987392403,
+          "speedPinMargin": 0.885501460126076,
+          "maximumHistoryErrorBound": 0,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0.03525380309384847,
+            "velocity": 0.03958437650647026
+          },
+          "normalLeakage": {
+            "rmsPosition": 0,
+            "projectedCoordinates": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0,
+            "identityLabeledRmsVelocity": 0
+          }
+        },
+        {
+          "time": 0.05,
+          "minimumPairDistance": 0.28155693936355636,
+          "maximumMemberSpeed": 0.3270100174162849,
+          "speedPinMargin": 0.6729899825837151,
+          "maximumHistoryErrorBound": 0.00039060290532098033,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0.038704672235820914,
+            "velocity": 0.10594503586293166
+          },
+          "normalLeakage": {
+            "rmsPosition": 0.00040474179945485975,
+            "projectedCoordinates": [
+              0.006255676519177411,
+              -0.006114809820634112,
+              -0.00039708860789450766,
+              0.0009691781939365442,
+              -0.0011289640915423103
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.00889155495025761,
+            "identityLabeledRmsVelocity": 0.31586318641259903
+          }
+        },
+        {
+          "time": 0.1,
+          "minimumPairDistance": 0.32026452723788046,
+          "maximumMemberSpeed": 0.6274810675774751,
+          "speedPinMargin": 0.3725189324225249,
+          "maximumHistoryErrorBound": 0.0007690391208523553,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0.045318343365398014,
+            "velocity": 0.17677302080867627
+          },
+          "normalLeakage": {
+            "rmsPosition": 0.0015930180849997103,
+            "projectedCoordinates": [
+              0.02059171183706941,
+              -0.02053194424874306,
+              -0.010694446865755611,
+              0.0029036333747650043,
+              -0.003055823256959291
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.03130906216977485,
+            "identityLabeledRmsVelocity": 0.6085899737621795
+          }
+        },
+        {
+          "time": 0.15,
+          "minimumPairDistance": 0.3811554647944784,
+          "maximumMemberSpeed": 0.8920126070290463,
+          "speedPinMargin": 0.10798739297095372,
+          "maximumHistoryErrorBound": 0.001109379983866155,
+          "centerPosition": [
+            0,
+            0,
+            0
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 0,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "cyclicResidual": {
+            "position": 0.05535628622957714,
+            "velocity": 0.24512013394991716
+          },
+          "normalLeakage": {
+            "rmsPosition": 0.0034480958427743832,
+            "projectedCoordinates": [
+              0.041614283058269065,
+              -0.0430913294502518,
+              -0.029611499479333735,
+              0.005827295365901358,
+              -0.0058094427086054804
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.06741697479467203,
+            "identityLabeledRmsVelocity": 0.8603576002187879
+          }
+        }
+      ]
+    },
+    {
+      "id": "declared-slice-B",
+      "candidate": "B",
+      "inputKind": "declared-five-coordinate-slice",
+      "status": "completed_bounded_window",
+      "acceptedEndTime": 0.15,
+      "guardedEndTime": 0.15,
+      "firstGuardViolation": null,
+      "requestedEndTime": 0.15,
+      "chunkDuration": 0.05,
+      "boundedThroughRequestedEnd": true,
+      "rootCompletenessPassed": true,
+      "rootSummary": {
+        "attemptedStepCount": 3,
+        "acceptedStepCount": 3,
+        "rejectedAttemptCount": 0,
+        "rootCertificateCount": 108,
+        "acceptedRootCertificateCount": 108,
+        "certifiedCompleteRootCertificateCount": 108,
+        "certifiedEnclosedRootCertificateCount": 0,
+        "rootCertificateStatusCounts": {
+          "certified_complete": 108
+        },
+        "unresolvedTraversalPairCount": 0,
+        "rootFailureCount": 0,
+        "retryRootFailureCount": 0,
+        "minimumTransmitterFactorMagnitudeLowerBound": 0.9259557255218785
+      },
+      "wallTimeSeconds": 1.2645508749999999,
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "startTime": 0,
+          "acceptedEndTime": 0.05,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9286932997916338
+          },
+          "wallTimeSeconds": 0.238242166
+        },
+        {
+          "chunkIndex": 1,
+          "startTime": 0.05,
+          "acceptedEndTime": 0.1,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9282356207461958
+          },
+          "wallTimeSeconds": 0.4328398750000006
+        },
+        {
+          "chunkIndex": 2,
+          "startTime": 0.1,
+          "acceptedEndTime": 0.15,
+          "statusCode": "ok",
+          "terminalHalt": null,
+          "evidenceStatus": "executable_architecture_evidence",
+          "claimGrade": "executable_architecture_evidence",
+          "initialHistoryAccepted": true,
+          "rootSummary": {
+            "attemptedStepCount": 1,
+            "acceptedStepCount": 1,
+            "rejectedAttemptCount": 0,
+            "rootCertificateCount": 36,
+            "acceptedRootCertificateCount": 36,
+            "certifiedCompleteRootCertificateCount": 36,
+            "certifiedEnclosedRootCertificateCount": 0,
+            "rootCertificateStatusCounts": {
+              "certified_complete": 36
+            },
+            "unresolvedTraversalPairCount": 0,
+            "rootFailureCount": 0,
+            "retryRootFailureCount": 0,
+            "minimumTransmitterFactorMagnitudeLowerBound": 0.9259557255218785
+          },
+          "wallTimeSeconds": 0.5933216249999996
+        }
+      ],
+      "samples": [
+        {
+          "time": 0,
+          "minimumPairDistance": 0.2715072709270816,
+          "maximumMemberSpeed": 0.12956616801890664,
+          "speedPinMargin": 0.8704338319810934,
+          "maximumHistoryErrorBound": 0,
+          "centerPosition": [
+            -9.25185853854297e-18,
+            -9.25185853854297e-18,
+            -9.25185853854297e-18
+          ],
+          "centerVelocity": [
+            0,
+            0,
+            0
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0,
+            0,
+            0
+          ],
+          "centerPositionMagnitude": 1.6024689053196365e-17,
+          "centerVelocityMagnitude": 0,
+          "centerAccelerationMagnitude": 0,
+          "pairConjugacyResidual": {
+            "position": 0.02884441020371192,
+            "velocity": 0.036055512754639904
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 0
+          },
+          "normalLeakage": {
+            "rmsPosition": 0,
+            "projectedCoordinates": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0,
+            "identityLabeledRmsVelocity": 0
+          }
+        },
+        {
+          "time": 0.05,
+          "minimumPairDistance": 0.28433597838383706,
+          "maximumMemberSpeed": 0.31715439551759017,
+          "speedPinMargin": 0.6828456044824098,
+          "maximumHistoryErrorBound": 0.0003830188751148101,
+          "centerPosition": [
+            -0.0000013550231731107587,
+            -0.0000013550231731130715,
+            -0.0000013550231731107587
+          ],
+          "centerVelocity": [
+            -0.00004420456308566513,
+            -0.00004420456308564894,
+            -0.00004420456308565819
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            -0.0001620326896340692,
+            -0.00016203268963366213,
+            -0.00016203268963425424
+          ],
+          "centerPositionMagnitude": 0.0000023469689812623674,
+          "centerVelocityMagnitude": 0.00007656454919074232,
+          "centerAccelerationMagnitude": 0.00028064885093311866,
+          "pairConjugacyResidual": {
+            "position": 0.03160112295117389,
+            "velocity": 0.08030031636888259
+          },
+          "cyclicResidual": {
+            "position": 0,
+            "velocity": 6.206335383118183e-17
+          },
+          "normalLeakage": {
+            "rmsPosition": 4.2074867704347754e-18,
+            "projectedCoordinates": [
+              0.0062545385774863405,
+              -0.006088086537501932,
+              -0.00040467902197104994,
+              0.0008800431422433153,
+              -0.0011521708680374207
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.008857188874909896,
+            "identityLabeledRmsVelocity": 0.3149189955724364
+          }
+        },
+        {
+          "time": 0.1,
+          "minimumPairDistance": 0.3227974265130567,
+          "maximumMemberSpeed": 0.6033364186515883,
+          "speedPinMargin": 0.39666358134841173,
+          "maximumHistoryErrorBound": 0.0007545238071822005,
+          "centerPosition": [
+            -0.000002889651927707552,
+            -0.000002889651927702926,
+            -0.000002889651927702926
+          ],
+          "centerVelocity": [
+            8.354374052647421e-7,
+            8.354374052832458e-7,
+            8.354374052739939e-7
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0.0019751369658936127,
+            0.0019751369658937237,
+            0.0019751369658932054
+          ],
+          "centerPositionMagnitude": 0.000005005023954973486,
+          "centerVelocityMagnitude": 0.0000014470200324780687,
+          "centerAccelerationMagnitude": 0.0034210375768350034,
+          "pairConjugacyResidual": {
+            "position": 0.03656446529777826,
+            "velocity": 0.12380272975129666
+          },
+          "cyclicResidual": {
+            "position": 1.3877787807814457e-17,
+            "velocity": 1.2719202621569003e-16
+          },
+          "normalLeakage": {
+            "rmsPosition": 8.468815068129101e-18,
+            "projectedCoordinates": [
+              0.02059073499319597,
+              -0.020424356596881122,
+              -0.010727340030401775,
+              0.0025062901261783317,
+              -0.0031268853415161797
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.031181203653327428,
+            "identityLabeledRmsVelocity": 0.6066772272551276
+          }
+        },
+        {
+          "time": 0.15,
+          "minimumPairDistance": 0.38365896090949964,
+          "maximumMemberSpeed": 0.8561947687903281,
+          "speedPinMargin": 0.14380523120967192,
+          "maximumHistoryErrorBound": 0.0010900458839332998,
+          "centerPosition": [
+            3.135608486887209e-7,
+            3.1356084868409495e-7,
+            3.1356084868409495e-7
+          ],
+          "centerVelocity": [
+            0.0001381316633714454,
+            0.00013813166337151017,
+            0.0001381316633714639
+          ],
+          "centerAccelerationFromAcceptedSegment": [
+            0.003264401583004265,
+            0.003264401583004191,
+            0.003264401583004635
+          ],
+          "centerPositionMagnitude": 5.4310332118794e-7,
+          "centerVelocityMagnitude": 0.00023925105909339237,
+          "centerAccelerationMagnitude": 0.00565410939807183,
+          "pairConjugacyResidual": {
+            "position": 0.0435972797468271,
+            "velocity": 0.1620433790242604
+          },
+          "cyclicResidual": {
+            "position": 3.273069708340169e-17,
+            "velocity": 2.482534153247273e-16
+          },
+          "normalLeakage": {
+            "rmsPosition": 2.1527352202911037e-17,
+            "projectedCoordinates": [
+              0.04162426274784198,
+              -0.04285369135190151,
+              -0.029690741406524928,
+              0.004813196562289267,
+              -0.0058743331979810515
+            ]
+          },
+          "declaredReturnActions": {
+            "actionSet": [
+              "identity-labeled"
+            ],
+            "identityLabeledRmsPosition": 0.06714337561530294,
+            "identityLabeledRmsVelocity": 0.8575090421698076
+          }
+        }
+      ]
+    }
+  ],
+  "commonLocusControl": [
+    {
+      "time": 0,
+      "deltas": {
+        "minimumPairDistance": 0,
+        "maximumMemberSpeed": 0,
+        "centerPositionMagnitude": 0,
+        "centerVelocityMagnitude": 0,
+        "centerAccelerationMagnitude": 0,
+        "pairConjugacyPosition": 0,
+        "cyclicPosition": 0,
+        "normalLeakage": 0,
+        "identityReturnPosition": 0
+      }
+    },
+    {
+      "time": 0.05,
+      "deltas": {
+        "minimumPairDistance": 0,
+        "maximumMemberSpeed": 0,
+        "centerPositionMagnitude": 0,
+        "centerVelocityMagnitude": 0,
+        "centerAccelerationMagnitude": 0,
+        "pairConjugacyPosition": 0,
+        "cyclicPosition": 0,
+        "normalLeakage": 3.9675477118654626e-19,
+        "identityReturnPosition": 0
+      }
+    },
+    {
+      "time": 0.1,
+      "deltas": {
+        "minimumPairDistance": 0,
+        "maximumMemberSpeed": 0,
+        "centerPositionMagnitude": 0,
+        "centerVelocityMagnitude": 0,
+        "centerAccelerationMagnitude": 0,
+        "pairConjugacyPosition": 0,
+        "cyclicPosition": 0,
+        "normalLeakage": 0,
+        "identityReturnPosition": 0
+      }
+    },
+    {
+      "time": 0.15,
+      "deltas": {
+        "minimumPairDistance": 0,
+        "maximumMemberSpeed": 0,
+        "centerPositionMagnitude": 0,
+        "centerVelocityMagnitude": 0,
+        "centerAccelerationMagnitude": 0,
+        "pairConjugacyPosition": 0,
+        "cyclicPosition": 0,
+        "normalLeakage": 2.5267120817249953e-18,
+        "identityReturnPosition": 0
+      }
+    }
+  ],
+  "commonLocusMaximumDelta": 2.5267120817249953e-18,
+  "guardedComparisonEndTime": 0.15,
+  "declaredSliceEndpointComparison": {
+    "minimumPairDistance": 0.0025034961150212087,
+    "maximumMemberSpeed": 0.0358178382387182,
+    "centerPositionMagnitude": 5.4310332118794e-7,
+    "centerVelocityMagnitude": 0.00023925105909339237,
+    "centerAccelerationMagnitude": 0.00565410939807183,
+    "pairConjugacyPosition": 0.0435972797468271,
+    "cyclicPosition": 0.055356286229577105,
+    "normalLeakage": 0.0034480958427743616,
+    "identityReturnPosition": 0.0002735991793690884
+  },
+  "refinementDecision": {
+    "triggered": true,
+    "comparisonEndTime": 0.15,
+    "reason": "at least one predeclared endpoint metric differs by 10% or more",
+    "relativeDifferences": {
+      "minimumPairDistance": 0.006525316414052824,
+      "maximumMemberSpeed": 0.04015395965984579,
+      "normalLeakage": 0.9999999999999937,
+      "identityReturnPosition": 0.0040583129130663835
+    },
+    "triggeredMetrics": [
+      "normalLeakage"
+    ]
+  },
+  "refinementReplication": {
+    "status": "completed",
+    "halfChunkDuration": 0.025,
+    "cases": [
+      {
+        "id": "declared-slice-A-half-chunk",
+        "candidate": "A",
+        "inputKind": "declared-five-coordinate-slice",
+        "status": "completed_bounded_window",
+        "acceptedEndTime": 0.15,
+        "guardedEndTime": 0.15,
+        "firstGuardViolation": null,
+        "requestedEndTime": 0.15,
+        "chunkDuration": 0.025,
+        "boundedThroughRequestedEnd": true,
+        "rootCompletenessPassed": true,
+        "rootSummary": {
+          "attemptedStepCount": 6,
+          "acceptedStepCount": 6,
+          "rejectedAttemptCount": 0,
+          "rootCertificateCount": 216,
+          "acceptedRootCertificateCount": 216,
+          "certifiedCompleteRootCertificateCount": 216,
+          "certifiedEnclosedRootCertificateCount": 0,
+          "rootCertificateStatusCounts": {
+            "certified_complete": 216
+          },
+          "unresolvedTraversalPairCount": 0,
+          "rootFailureCount": 0,
+          "retryRootFailureCount": 0,
+          "minimumTransmitterFactorMagnitudeLowerBound": 0.9205762217182709
+        },
+        "wallTimeSeconds": 3.7786927080000003,
+        "chunks": [
+          {
+            "chunkIndex": 0,
+            "startTime": 0,
+            "acceptedEndTime": 0.025,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9237829921959126
+            },
+            "wallTimeSeconds": 0.20732375000000047
+          },
+          {
+            "chunkIndex": 1,
+            "startTime": 0.025,
+            "acceptedEndTime": 0.05,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9241350517320244
+            },
+            "wallTimeSeconds": 0.3832879579999999
+          },
+          {
+            "chunkIndex": 2,
+            "startTime": 0.05,
+            "acceptedEndTime": 0.075,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9238726159522784
+            },
+            "wallTimeSeconds": 0.5445980829999999
+          },
+          {
+            "chunkIndex": 3,
+            "startTime": 0.075,
+            "acceptedEndTime": 0.1,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.923118653469141
+            },
+            "wallTimeSeconds": 0.7133286659999994
+          },
+          {
+            "chunkIndex": 4,
+            "startTime": 0.1,
+            "acceptedEndTime": 0.125,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9219647140431961
+            },
+            "wallTimeSeconds": 0.8836945830000004
+          },
+          {
+            "chunkIndex": 5,
+            "startTime": 0.125,
+            "acceptedEndTime": 0.15,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9205762217182709
+            },
+            "wallTimeSeconds": 1.0462297499999995
+          }
+        ],
+        "samples": [
+          {
+            "time": 0,
+            "minimumPairDistance": 0.2683453708779326,
+            "maximumMemberSpeed": 0.11449853987392403,
+            "speedPinMargin": 0.885501460126076,
+            "maximumHistoryErrorBound": 0,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.03525380309384847,
+              "velocity": 0.03958437650647026
+            },
+            "normalLeakage": {
+              "rmsPosition": 0,
+              "projectedCoordinates": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0,
+              "identityLabeledRmsVelocity": 0
+            }
+          },
+          {
+            "time": 0.025,
+            "minimumPairDistance": 0.27162869087797686,
+            "maximumMemberSpeed": 0.18027568799276186,
+            "speedPinMargin": 0.8197243120072382,
+            "maximumHistoryErrorBound": 0.000050927512867271494,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.036605164948145676,
+              "velocity": 0.07133907609261164
+            },
+            "normalLeakage": {
+              "rmsPosition": 0.00010116313567704296,
+              "projectedCoordinates": [
+                0.0020686798184919772,
+                -0.002024112840952751,
+                0.0010995816465337804,
+                0.000366343320031355,
+                -0.00046819758430957013
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.0031542351161327024,
+              "identityLabeledRmsVelocity": 0.1594009392494561
+            }
+          },
+          {
+            "time": 0.05,
+            "minimumPairDistance": 0.2815620589596277,
+            "maximumMemberSpeed": 0.3271080533927273,
+            "speedPinMargin": 0.6728919466072727,
+            "maximumHistoryErrorBound": 0.00010203083604590216,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.03870480014952216,
+              "velocity": 0.10595748077947668
+            },
+            "normalLeakage": {
+              "rmsPosition": 0.0004049611506084776,
+              "projectedCoordinates": [
+                0.00625813503558359,
+                -0.006115320699726531,
+                -0.00039857023158612804,
+                0.0009691949484894542,
+                -0.001129028763240797
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.00889372238961358,
+              "identityLabeledRmsVelocity": 0.3159631261165244
+            }
+          },
+          {
+            "time": 0.075,
+            "minimumPairDistance": 0.2979034329152434,
+            "maximumMemberSpeed": 0.48012044608749505,
+            "speedPinMargin": 0.519879553912505,
+            "maximumHistoryErrorBound": 0.00015181053983363008,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.04159568420986381,
+              "velocity": 0.14140957280699656
+            },
+            "normalLeakage": {
+              "rmsPosition": 0.0009064815983768976,
+              "projectedCoordinates": [
+                0.0124859306240054,
+                -0.012287852959161476,
+                -0.004381564259336856,
+                0.0018136823424557517,
+                -0.0019900363948041257
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.018280024524937714,
+              "identityLabeledRmsVelocity": 0.4666110861985398
+            }
+          },
+          {
+            "time": 0.1,
+            "minimumPairDistance": 0.3202831929981689,
+            "maximumMemberSpeed": 0.6276517669865948,
+            "speedPinMargin": 0.37234823301340525,
+            "maximumHistoryErrorBound": 0.00019954208319828147,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.045319043316925885,
+              "velocity": 0.17679919282026776
+            },
+            "normalLeakage": {
+              "rmsPosition": 0.0015938605243524498,
+              "projectedCoordinates": [
+                0.020600699970707976,
+                -0.020534164226548742,
+                -0.010699518732762958,
+                0.0029037248402933127,
+                -0.0030560977223730522
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.03131824042769112,
+              "identityLabeledRmsVelocity": 0.6087522991861593
+            }
+          },
+          {
+            "time": 0.125,
+            "minimumPairDistance": 0.3482283134746411,
+            "maximumMemberSpeed": 0.7656678286016756,
+            "speedPinMargin": 0.2343321713983244,
+            "maximumHistoryErrorBound": 0.00024428260798267106,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.0499033662932843,
+              "velocity": 0.21152021523141723
+            },
+            "normalLeakage": {
+              "rmsPosition": 0.002449149261892534,
+              "projectedCoordinates": [
+                0.030396674944783725,
+                -0.030822406630021223,
+                -0.019176292275366276,
+                0.004241570908754972,
+                -0.004329447672024708
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.04779583827721109,
+              "identityLabeledRmsVelocity": 0.7404561275877528
+            }
+          },
+          {
+            "time": 0.15,
+            "minimumPairDistance": 0.38119141514160526,
+            "maximumMemberSpeed": 0.8921955511600733,
+            "speedPinMargin": 0.10780444883992668,
+            "maximumHistoryErrorBound": 0.00028646469811950003,
+            "centerPosition": [
+              0,
+              0,
+              0
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 0,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "cyclicResidual": {
+              "position": 0.055358081907041196,
+              "velocity": 0.24515097343518907
+            },
+            "normalLeakage": {
+              "rmsPosition": 0.003449778677140285,
+              "projectedCoordinates": [
+                0.04163160709402961,
+                -0.04309630098862637,
+                -0.02962062499612249,
+                0.005827526600224903,
+                -0.005810020717242688
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.06743501073794844,
+              "identityLabeledRmsVelocity": 0.8605273005835614
+            }
+          }
+        ]
+      },
+      {
+        "id": "declared-slice-B-half-chunk",
+        "candidate": "B",
+        "inputKind": "declared-five-coordinate-slice",
+        "status": "completed_bounded_window",
+        "acceptedEndTime": 0.15,
+        "guardedEndTime": 0.15,
+        "firstGuardViolation": null,
+        "requestedEndTime": 0.15,
+        "chunkDuration": 0.025,
+        "boundedThroughRequestedEnd": true,
+        "rootCompletenessPassed": true,
+        "rootSummary": {
+          "attemptedStepCount": 6,
+          "acceptedStepCount": 6,
+          "rejectedAttemptCount": 0,
+          "rootCertificateCount": 216,
+          "acceptedRootCertificateCount": 216,
+          "certifiedCompleteRootCertificateCount": 216,
+          "certifiedEnclosedRootCertificateCount": 0,
+          "rootCertificateStatusCounts": {
+            "certified_complete": 216
+          },
+          "unresolvedTraversalPairCount": 0,
+          "rootFailureCount": 0,
+          "retryRootFailureCount": 0,
+          "minimumTransmitterFactorMagnitudeLowerBound": 0.926000627580906
+        },
+        "wallTimeSeconds": 3.726149707999999,
+        "chunks": [
+          {
+            "chunkIndex": 0,
+            "startTime": 0,
+            "acceptedEndTime": 0.025,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9278367409608261
+            },
+            "wallTimeSeconds": 0.2008810829999984
+          },
+          {
+            "chunkIndex": 1,
+            "startTime": 0.025,
+            "acceptedEndTime": 0.05,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.928698695538218
+            },
+            "wallTimeSeconds": 0.37014637500000025
+          },
+          {
+            "chunkIndex": 2,
+            "startTime": 0.05,
+            "acceptedEndTime": 0.075,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9287572274395728
+            },
+            "wallTimeSeconds": 0.548687582999999
+          },
+          {
+            "chunkIndex": 3,
+            "startTime": 0.075,
+            "acceptedEndTime": 0.1,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9282498256724293
+            },
+            "wallTimeSeconds": 0.714093166999999
+          },
+          {
+            "chunkIndex": 4,
+            "startTime": 0.1,
+            "acceptedEndTime": 0.125,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.9272638010234844
+            },
+            "wallTimeSeconds": 0.8740212919999995
+          },
+          {
+            "chunkIndex": 5,
+            "startTime": 0.125,
+            "acceptedEndTime": 0.15,
+            "statusCode": "ok",
+            "terminalHalt": null,
+            "evidenceStatus": "executable_architecture_evidence",
+            "claimGrade": "executable_architecture_evidence",
+            "initialHistoryAccepted": true,
+            "rootSummary": {
+              "attemptedStepCount": 1,
+              "acceptedStepCount": 1,
+              "rejectedAttemptCount": 0,
+              "rootCertificateCount": 36,
+              "acceptedRootCertificateCount": 36,
+              "certifiedCompleteRootCertificateCount": 36,
+              "certifiedEnclosedRootCertificateCount": 0,
+              "rootCertificateStatusCounts": {
+                "certified_complete": 36
+              },
+              "unresolvedTraversalPairCount": 0,
+              "rootFailureCount": 0,
+              "retryRootFailureCount": 0,
+              "minimumTransmitterFactorMagnitudeLowerBound": 0.926000627580906
+            },
+            "wallTimeSeconds": 1.0181052920000002
+          }
+        ],
+        "samples": [
+          {
+            "time": 0,
+            "minimumPairDistance": 0.2715072709270816,
+            "maximumMemberSpeed": 0.12956616801890664,
+            "speedPinMargin": 0.8704338319810934,
+            "maximumHistoryErrorBound": 0,
+            "centerPosition": [
+              -9.25185853854297e-18,
+              -9.25185853854297e-18,
+              -9.25185853854297e-18
+            ],
+            "centerVelocity": [
+              0,
+              0,
+              0
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0,
+              0,
+              0
+            ],
+            "centerPositionMagnitude": 1.6024689053196365e-17,
+            "centerVelocityMagnitude": 0,
+            "centerAccelerationMagnitude": 0,
+            "pairConjugacyResidual": {
+              "position": 0.02884441020371192,
+              "velocity": 0.036055512754639904
+            },
+            "cyclicResidual": {
+              "position": 0,
+              "velocity": 0
+            },
+            "normalLeakage": {
+              "rmsPosition": 0,
+              "projectedCoordinates": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0,
+              "identityLabeledRmsVelocity": 0
+            }
+          },
+          {
+            "time": 0.025,
+            "minimumPairDistance": 0.2745899292628083,
+            "maximumMemberSpeed": 0.18639194961857236,
+            "speedPinMargin": 0.8136080503814276,
+            "maximumHistoryErrorBound": 0.000049938410279540277,
+            "centerPosition": [
+              -3.92795480437987e-7,
+              -3.927954804333611e-7,
+              -3.92795480437987e-7
+            ],
+            "centerVelocity": [
+              -0.000029780736835298877,
+              -0.000029780736835296563,
+              -0.00002978073683530119
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              -0.0009605751316541881,
+              -0.000960575131654077,
+              -0.0009605751316543731
+            ],
+            "centerPositionMagnitude": 6.803417290993498e-7,
+            "centerVelocityMagnitude": 0.00005158174928557563,
+            "centerAccelerationMagnitude": 0.0016637649325122598,
+            "pairConjugacyResidual": {
+              "position": 0.02994726577399176,
+              "velocity": 0.057934607046370816
+            },
+            "cyclicResidual": {
+              "position": 2.7755575615628914e-17,
+              "velocity": 3.925231146709438e-17
+            },
+            "normalLeakage": {
+              "rmsPosition": 9.635786447247041e-18,
+              "projectedCoordinates": [
+                0.002068332214473917,
+                -0.0020175080556453276,
+                0.0010977613605850142,
+                0.00034494151969553956,
+                -0.00047420206921105785
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.0031459926297015793,
+              "identityLabeledRmsVelocity": 0.15893601697793372
+            }
+          },
+          {
+            "time": 0.05,
+            "minimumPairDistance": 0.284341012583919,
+            "maximumMemberSpeed": 0.317247889671933,
+            "speedPinMargin": 0.6827521103280669,
+            "maximumHistoryErrorBound": 0.00010006330238710173,
+            "centerPosition": [
+              -0.000001363192688674797,
+              -0.0000013631926886724839,
+              -0.000001363192688674797
+            ],
+            "centerVelocity": [
+              -0.00004451859318125907,
+              -0.000044518593181252134,
+              -0.00004451859318126601
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              -0.0001625391239724975,
+              -0.00016253912397301562,
+              -0.00016253912397331166
+            ],
+            "centerPositionMagnitude": 0.0000023611189972898355,
+            "centerVelocityMagnitude": 0.00007710846527143009,
+            "centerAccelerationMagnitude": 0.0002815260209388714,
+            "pairConjugacyResidual": {
+              "position": 0.03160157098978917,
+              "velocity": 0.08031932957002245
+            },
+            "cyclicResidual": {
+              "position": 0,
+              "velocity": 4.163336342344337e-17
+            },
+            "normalLeakage": {
+              "rmsPosition": 1.1773457174889802e-17,
+              "projectedCoordinates": [
+                0.006256983271749672,
+                -0.006088585573773137,
+                -0.00040615854981799934,
+                0.0008801834154701333,
+                -0.0011523602114164452
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.00885936460454762,
+              "identityLabeledRmsVelocity": 0.3150186454584175
+            }
+          },
+          {
+            "time": 0.075,
+            "minimumPairDistance": 0.3005356718477658,
+            "maximumMemberSpeed": 0.4614419487217021,
+            "speedPinMargin": 0.5385580512782979,
+            "maximumHistoryErrorBound": 0.00014876590071364056,
+            "centerPosition": [
+              -0.0000024204794686436917,
+              -0.000002420479468641379,
+              -0.0000024204794686436917
+            ],
+            "centerVelocity": [
+              -0.00003564064194358507,
+              -0.00003564064194358507,
+              -0.00003564064194359432
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0.0008961801031910355,
+              0.0008961801031904433,
+              0.0008961801031905914
+            ],
+            "centerPositionMagnitude": 0.000004192393418366858,
+            "centerVelocityMagnitude": 0.00006173140266066506,
+            "centerAccelerationMagnitude": 0.0015522294714585944,
+            "pairConjugacyResidual": {
+              "position": 0.03381140910519625,
+              "velocity": 0.10249395845454698
+            },
+            "cyclicResidual": {
+              "position": 1.3877787807814457e-17,
+              "velocity": 7.850462293418876e-17
+            },
+            "normalLeakage": {
+              "rmsPosition": 8.066930473328863e-18,
+              "projectedCoordinates": [
+                0.012484198168205674,
+                -0.01222731820588901,
+                -0.004399353756584874,
+                0.0016030455359208535,
+                -0.002037928001704359
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.01820548683757733,
+              "identityLabeledRmsVelocity": 0.4651810057142601
+            }
+          },
+          {
+            "time": 0.1,
+            "minimumPairDistance": 0.3228157870528772,
+            "maximumMemberSpeed": 0.6035063621317176,
+            "speedPinMargin": 0.3964936378682824,
+            "maximumHistoryErrorBound": 0.00019579509307965658,
+            "centerPosition": [
+              -0.0000029166291524995724,
+              -0.0000029166291524995724,
+              -0.0000029166291524995724
+            ],
+            "centerVelocity": [
+              4.48824810974265e-7,
+              4.48824810974265e-7,
+              4.4882481096501315e-7
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0.001973189099414574,
+              0.0019731890994146477,
+              0.001973189099414352
+            ],
+            "centerPositionMagnitude": 0.000005051749878965814,
+            "centerVelocityMagnitude": 7.773873762995829e-7,
+            "centerAccelerationMagnitude": 0.003417663773127033,
+            "pairConjugacyResidual": {
+              "position": 0.03656622263620607,
+              "velocity": 0.12383740680775628
+            },
+            "cyclicResidual": {
+              "position": 0,
+              "velocity": 5.551115123125783e-17
+            },
+            "normalLeakage": {
+              "rmsPosition": 7.85429459156923e-18,
+              "projectedCoordinates": [
+                0.02059967220535519,
+                -0.0204265240892097,
+                -0.010732408337042608,
+                0.002506810450268217,
+                -0.003127650696806393
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.031190387831560456,
+              "identityLabeledRmsVelocity": 0.6068389896646271
+            }
+          },
+          {
+            "time": 0.125,
+            "minimumPairDistance": 0.35071581422164977,
+            "maximumMemberSpeed": 0.7357267774648786,
+            "speedPinMargin": 0.2642732225351214,
+            "maximumHistoryErrorBound": 0.0002399381645197569,
+            "centerPosition": [
+              -0.0000021925120848263293,
+              -0.0000021925120848251727,
+              -0.0000021925120848217032
+            ],
+            "centerVelocity": [
+              0.000061015566113075306,
+              0.000061015566113079935,
+              0.000061015566113070685
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0.002819507581862594,
+              0.00281950758186215,
+              0.002819507581862002
+            ],
+            "centerPositionMagnitude": 0.000003797542327124628,
+            "centerVelocityMagnitude": 0.0001056820605604243,
+            "centerAccelerationMagnitude": 0.00488353038411108,
+            "pairConjugacyResidual": {
+              "position": 0.03984150437381648,
+              "velocity": 0.14383008671531158
+            },
+            "cyclicResidual": {
+              "position": 1.3877787807814457e-17,
+              "velocity": 7.850462293418876e-17
+            },
+            "normalLeakage": {
+              "rmsPosition": 1.2018516789897277e-17,
+              "projectedCoordinates": [
+                0.030398996370143677,
+                -0.030655246417403973,
+                -0.019229570891409784,
+                0.0035814074838253517,
+                -0.004411934116615351
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.047601587857207084,
+              "identityLabeledRmsVelocity": 0.7380685811972995
+            }
+          },
+          {
+            "time": 0.15,
+            "minimumPairDistance": 0.3836942751541896,
+            "maximumMemberSpeed": 0.8563730889252891,
+            "speedPinMargin": 0.14362691107471093,
+            "maximumHistoryErrorBound": 0.00028150500838846086,
+            "centerPosition": [
+              2.7108119111015255e-7,
+              2.7108119110783957e-7,
+              2.7108119110552664e-7
+            ],
+            "centerVelocity": [
+              0.00013791353153755348,
+              0.0001379135315375442,
+              0.00013791353153753497
+            ],
+            "centerAccelerationFromAcceptedSegment": [
+              0.003260760168199613,
+              0.003260760168199687,
+              0.003260760168199613
+            ],
+            "centerPositionMagnitude": 4.6952639597506674e-7,
+            "centerVelocityMagnitude": 0.0002388732436742793,
+            "centerAccelerationMagnitude": 0.00564780228261861,
+            "pairConjugacyResidual": {
+              "position": 0.043600899626475245,
+              "velocity": 0.1620840151378971
+            },
+            "cyclicResidual": {
+              "position": 6.938893903907228e-18,
+              "velocity": 6.206335383118183e-17
+            },
+            "normalLeakage": {
+              "rmsPosition": 2.2124809472590324e-17,
+              "projectedCoordinates": [
+                0.04164148609332388,
+                -0.04285854883936054,
+                -0.02969986634245519,
+                0.00481422927640647,
+                -0.005875925406974742
+              ]
+            },
+            "declaredReturnActions": {
+              "actionSet": [
+                "identity-labeled"
+              ],
+              "identityLabeledRmsPosition": 0.06716140213374523,
+              "identityLabeledRmsVelocity": 0.8576781103179578
+            }
+          }
+        ]
+      }
+    ],
+    "comparisonEndTime": 0.15,
+    "candidateAEndpointDelta": {
+      "minimumPairDistance": 0.00003595034712683409,
+      "maximumMemberSpeed": 0.00018294413102704077,
+      "centerPositionMagnitude": 0,
+      "centerVelocityMagnitude": 0,
+      "centerAccelerationMagnitude": 0,
+      "pairConjugacyPosition": 0,
+      "cyclicPosition": 0.0000017956774640559559,
+      "normalLeakage": 0.0000016828343659017024,
+      "identityReturnPosition": 0.00001803594327641489
+    },
+    "candidateBEndpointDelta": {
+      "minimumPairDistance": 0.000035314244689943486,
+      "maximumMemberSpeed": 0.0001783201349609964,
+      "centerPositionMagnitude": 7.357692521287327e-8,
+      "centerVelocityMagnitude": 3.778154191130638e-7,
+      "centerAccelerationMagnitude": 0.000006307115453219568,
+      "pairConjugacyPosition": 0.0000036198796481423656,
+      "cyclicPosition": 2.579180317949446e-17,
+      "normalLeakage": 5.974572696792875e-19,
+      "identityReturnPosition": 0.000018026518442293415
+    },
+    "refinedEndpointComparison": {
+      "minimumPairDistance": 0.002502860012584318,
+      "maximumMemberSpeed": 0.03582246223478425,
+      "centerPositionMagnitude": 4.6952639597506674e-7,
+      "centerVelocityMagnitude": 0.0002388732436742793,
+      "centerAccelerationMagnitude": 0.00564780228261861,
+      "pairConjugacyPosition": 0.043600899626475245,
+      "cyclicPosition": 0.05535808190704119,
+      "normalLeakage": 0.003449778677140263,
+      "identityReturnPosition": 0.00027360860420320987
+    }
+  },
+  "adjudication": {
+    "boundedComparisonCompleted": true,
+    "boundedComparisonEndTime": 0.15,
+    "requestedWindowReachedWithoutGuardCrossing": true,
+    "causalRootGuardsClosed": true,
+    "commonLocusEncodingControlPassed": true,
+    "resultScope": "specific declared A3 slice only; no full-family inference",
+    "excludedClaims": [
+      "retention or stability",
+      "binding or particle identity",
+      "electromagnetic recovery",
+      "causal attribution to pair conjugacy alone",
+      "behavior of the full A3 family"
+    ]
+  }
+}

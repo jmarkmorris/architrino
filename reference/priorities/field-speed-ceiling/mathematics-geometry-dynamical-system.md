@@ -2034,6 +2034,10 @@ and may activate a new ordinary partner root. The focused [trailing-front local-
 
 **Restart claim grade:** `constructed proposed exact-mirror event map with derived straight compatibility and positive-waiting-time delayed-braking local existence; continuation multivalued; selection open`. The Jack K. Hale delayed-history review supplied the margin-zero branch target, and the subsequent theorem closes its ignition-instant existence and full-vector collinear embedding. The unchanged post-event ordinary law permits departure after every positive waiting time, so exact straight passage is not selected in the declared absolutely continuous, almost-everywhere solution class. A unique continuation would require separately explicit selection data. Independent theorem and measure review remain pending.
 
+The focused [exact-mirror continuation selection analysis](exact-mirror-continuation-selection-analysis.md) tests the available solution principles. The current almost-everywhere class, active-chart Picard--Lindelof uniqueness, tangent-cone response, set-valued discontinuous-ODE closures, semiflow desiderata, and unspecified approximation limits do not select among the proved traces. Continuous acceleration or scalar-minimality would select straight only as additional conventions. The smallest scale-free proposed alternative is an activation-selection clause forbidding an inactive margin-zero channel from creating the receiver-side crossing condition required for its own first admission; that clause is identified but not adopted.
+
+Plainly: the packet now identifies exactly where a new choice would enter. It does not hide that choice inside “smoothness,” “take a limit,” or the field-speed projection.
+
 ## 11. Circular binaries
 
 ### 11.1 Circular binary at or below wake speed: $0<c_a\le c_f$
