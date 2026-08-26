@@ -1,6 +1,6 @@
 # Priorities Inventory
 
-Snapshot: 2026-08-23.
+Snapshot: 2026-08-25.
 
 This is the developer-facing ownership and routing inventory for [reference/priorities](../README.md). The canonical numeric order lives in [priorities.md](priorities.md); the repeated mathematical joins live in [closure-join-matrix.md](closure-join-matrix.md).
 
@@ -60,6 +60,12 @@ These rows multiply several owners and therefore retain their own numeric attent
 | --- | --- | --- |
 | [`aaa-work-threads`](priorities.md) | Canonical active ranking, inventory, join matrix, history, and [routing queue](work-queue.md). | Never score the control surface as its own workstream. |
 | [`app-simulation`](../app-simulation/priorities.md) | Preserved simulation-protocol routing index with a [no-local-owner queue](../app-simulation/work-queue.md). | EOM owns execution, the scientific lane owns campaigns, and the proof lane owns acceptance. |
+
+## Unranked Active Candidate Owners
+
+| Directory | Local rank-1 object | Present role and ownership boundary | Admission rule |
+| --- | --- | --- | --- |
+| [`one-nature-many-theories`](../one-nature-many-theories/priorities.md) | `evidence_backed_bridge_matrix` | Owns the cross-domain theory-and-bridge audit, the wider Weyl/scale synthesis, and the prospective reader-facing essay; scientific mechanisms remain with their domain owners. | Remains unranked until its first evidence object is scored and inserted through a complete unified-table rerank. |
 
 ## Dormant-Deferred Archive
 

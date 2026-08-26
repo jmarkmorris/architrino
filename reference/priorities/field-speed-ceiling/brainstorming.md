@@ -98,6 +98,51 @@ $$
 
 Plainly: this is a scale template, not a derived Braid law. The actual root multiplicity, transmitter factors, polarity, and any boundary response must be included in $C_\perp$.
 
+## Markov Sufficiency Across Master-Equation Variants
+
+The Markov property is relative to a declared state description. Let $Z_H(T)$ be the proposed state at absolute time $T$ extracted from a complete admissible history $H$. A deterministic state description is Markov-sufficient only if
+
+$$
+Z_{H_1}(T)=Z_{H_2}(T)
+\quad\Longrightarrow\quad
+\Phi_{\Delta T}(H_1)=\Phi_{\Delta T}(H_2)
+$$
+
+for every admitted future interval $\Delta T\ge0$, where $\Phi_{\Delta T}$ is the physical transition expressed in the proposed state variables. A difference in the next acceleration is enough to falsify Markov sufficiency. Agreement of one next acceleration is not enough to prove it, because a hidden wake record may arrive later. In a stochastic description, the corresponding requirement is equality of the full conditional transition law given $Z(T)$, independent of the earlier history.
+
+Plainly: the present state is sufficient only when knowing more of the past cannot improve or change any future prediction made by the law.
+
+This separates four ideas that are often conflated:
+
+- **Deterministic** means one complete physical state selects one future, subject to the declared well-posedness and selection law.
+- **Causal** means influences arrive only through the declared past-supported wake structure.
+- **Single-root** means one past emission event contributes for an ordered transmitter-receiver pair on the selected interval.
+- **Markovian in $Z$** means $Z(T)$ already contains everything needed to determine the transition law.
+
+None of the first three implies the fourth. A deterministic, causal, single-root delay equation can remain non-Markovian in its instantaneous particle variables.
+
+| Variant and proposed state | What the restriction buys | Markov verdict | Exact reason |
+| --- | --- | --- | --- |
+| Canonical unrestricted Master Equation with instantaneous $X(T)$ or $(\mathbf X(T),\mathbf V(T),\mathbf q)$ | No reduction of the full causal-root family. | Not Markov-sufficient. | Past transmitter paths select root number, emission times, directions, weights, self-hits, and boundary-wake records. Equal instantaneous data can hide different consumed histories. |
+| A ceiling $\|\mathbf V\|\le c_f$ imposed only from a finite time onward | Constrains future velocities. | Not Markov-sufficient. | Previously emitted wakes and earlier super-field-speed self-hit candidates remain in flight; the future cap does not erase them. |
+| A universal non-strict ceiling $\|\mathbf V\|\le c_f$ | Removes super-field-speed interiors from the admissible history. | Not Markov-sufficient, and equality remains singular. | Delayed partner hits still use past positions; at equality the strict root-transversality floor may vanish and tangent or degenerate cases require extra event/selection data. |
+| A universal strict constraint $\|\mathbf V\|<c_f$ | Forbids ordinary noncoincident self-hits and makes the partner delay map monotone on the consumed interval. | Still not Markov-sufficient in instantaneous variables. | One unique partner root is still a root in the transmitter's past. Present position and velocity do not reconstruct a generally accelerated past path. |
+| A uniform margin $\|\mathbf V\|\le c_f-\delta$ with $\delta>0$ | Adds a positive root-conditioning margin on the declared interval. | Still not Markov-sufficient in instantaneous variables. | Better conditioning changes sensitivity, not the information consumed by the delayed law. |
+| A finite retained window $\mathbf Y_T(\theta)=\mathbf Y(T+\theta)$ for $\theta\in[-h,0]$, plus required branch and boundary records | Promotes the consumed memory into the state. | Candidate Markov state on an infinite-dimensional phase space. | It passes the information test only where the regularized history problem is well posed, the window is sufficient, and one continuation or transition kernel is actually selected. |
+| Canonical complete state $S(T)=(X(T),H_T,\mathcal N_{\mathrm{sea}}(T,\cdot),\mathcal B_T)$ | Includes instantaneous data, path history, Noether sea state, and branch/regularization data. | Intended Markov-sufficient ontic state, conditionally realized. | Sufficiency still requires all consumed boundary-wake data and a single-valued continuation law; the exact-mirror delayed-ignition family shows that a proposed ceiling response can lack such a selector even when the preceding labeled history is shared. |
+| Explicit independently evolving wake/medium degrees of freedom | May replace a history functional by local evolution of a larger state. | Possible, not established. | A local field-plus-architrino formulation is Markov only after its state, emission, propagation, reception, boundary rules, and unique evolution are derived and shown equivalent to the delayed law. |
+| Coarse assembly or observer state | Discards most substrate history. | At most approximately Markov on a certified domain. | Histories collapsed to one effective state must have matching effective transition laws within a declared residual; otherwise the discarded memory reappears as a memory kernel, environment variable, or prediction error. |
+
+Plainly: each speed restriction simplifies the geometry but leaves the same information deficit in the instantaneous state. The history-state variants can satisfy the Markov test only by admitting that the relevant past has become part of “the present state.”
+
+The exact-mirror ceiling proposal exposes a second, logically independent failure. Several continuations can share the same complete labeled preceding history because the proposed response has no activation-time selector. That is not merely non-Markovianity of $(\mathbf X,\mathbf V)$; it is failure to define a single-valued deterministic transition on the proposed complete state. A stochastic transition kernel could make such a process Markov, but only after a physical probability law over the continuations is supplied. Category theory cannot provide that selector.
+
+- **Claim level:** the Markov-sufficiency criterion is standard mathematics; failure of instantaneous Master-Equation states follows from the canonical delayed causal-root dependence; full-history, explicit-wake, and effective Markov formulations remain conditional closure targets.
+- **Assumptions and proof burden:** declare the state variables, history domain, wake and boundary records, speed regime, regularization, and continuation concept; then prove that equal declared states induce the same full future transition or transition kernel.
+- **Falsifier:** for a claimed Markov state, exhibit two admissible complete histories mapped to that same state whose next acceleration, later arriving wake record, event classification, or continuation law differs.
+- **Promotion target:** the Master Equation and field-speed-ceiling owners for dynamics and selection; `CT-001` and `CT-004` for history-object sufficiency and lawful composition if the category-theory lane retains those objects.
+- **Next artifact:** build a `markov_sufficiency_variant_matrix` containing matched-state/history-distinct pairs for the unrestricted, capped, strict sub-field, uniform-gap, finite-history, and complete-state variants, with an independent next-acceleration check and a later-wake-arrival check for each pair.
+
 ## Assessment and Promotion Boundary
 
 The exact-mirror event and continuation program, regular history-to-ledger theorem, and circular-binary continuation retain their accepted status in [work-queue.md](work-queue.md). The synthesis does not change the Master Equation, the EOM solver, Braid evidence, or the corpus.
