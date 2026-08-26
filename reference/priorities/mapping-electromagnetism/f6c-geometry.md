@@ -17,6 +17,10 @@ F6c is not yet a retained braid. It is a symmetry-protected family of complete e
 
 Plainly: F6c is a precisely defined six-coordinate motion template for eight architrinos. It is a candidate architecture, not yet a demonstrated particle or stable assembly.
 
+The [2026-08-26 all-candidate campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) places F6c in `STASIS` at `H5`. The completed radial-frequency continuation remains closed as a bounded negative under its 10% material-improvement gate. Existing `M02`--`M04` and `M08` values remain available, while the accepted future ruler/clock does not retrospectively make `M05`--`M07` or `M09`--`M13` available. A new campaign must use a materially different coordinated-turn variable, a matched guarded/full-root comparison, or an independent normalized member-acceleration packet.
+
+Plainly: F6c has bounded geometry and evolution evidence, but the tested radial tuning direction is finished and no root-valid labeled-history return exists.
+
 ## Instructional Sequence
 
 The chapter is organized into three dependency-ordered parts. Each later part uses results or definitions established in the preceding part:
@@ -258,6 +262,26 @@ Exact has three specific meanings here:
 The third statement is the F6c symmetry-closure theorem. If an ideal complete history begins exactly on F6c, the symmetric law cannot choose one of the four modules and push it into an independent direction. Numerical calculations can still show leakage from roundoff, root loss, history interpolation, or an implementation error, so leakage remains a measured diagnostic.
 
 Plainly: exact does not mean stable, periodic, or physically realized. It means the reduction and its symmetry identities are mathematical identities rather than a six-parameter approximation.
+
+### Prescribed Display Representative
+
+On 2026-08-26 the operator selected the small asymmetric counter-breathing history as the canonical F6c prescribed/display-only representative:
+
+\[
+\begin{aligned}
+h_+(T)&=0.30+0.040\sin T,
+&\rho_+(T)&=0.30+0.025\sin T,
+&\theta_+(T)&=T,\\
+h_-(T)&=0.30-0.030\sin T,
+&\rho_-(T)&=0.30-0.020\sin T,
+&\theta_-(T)&=T,
+\end{aligned}
+\qquad 0\le T\le 2\pi.
+\]
+
+All four breathing phases are zero, both angular rates are one, neither angular history has phase modulation, the assembly center and common velocity are zero, and the history is periodic with display period \(2\pi\). The member map retains the fixed circulation signs and module phase offsets above.
+
+Plainly: during the first quarter-cycle the positive-sector tetrahedral tracks move slightly outward and widen while the negative-sector tracks move slightly inward and narrow; during the next half-cycle those roles reverse. The unequal amplitudes keep the two sector motions visibly distinct. This is the operator-selected visualization of the exact F6c map, not an EOM-solver trajectory or evidence of retention, stability, binding, energy closure, particle identity, or physical realization.
 
 ### Fixed Surface, Moving State, And Changing Tangent Basis
 

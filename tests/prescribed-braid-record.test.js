@@ -216,7 +216,7 @@ test("SD3 worldlines reproduce the exact centered five-coordinate owner", () => 
 
 test("F6c is eight-member 4:4 with exact sector identities when its representative is frozen", () => {
   const fixture = availableFixtures.find(({ spec }) => spec.identity.candidateId === "F6c");
-  if (!fixture) return;
+  assert.ok(fixture);
   const { spec } = fixture;
   assert.equal(spec.constituents.length, 8);
   assert.equal(spec.constituents.filter((row) => row.polarity === 1).length, 4);
@@ -227,6 +227,17 @@ test("F6c is eight-member 4:4 with exact sector identities when its representati
     [[1, 4], [-1, 4]],
   );
   assert.ok(spec.worldlines.every((row) => row.operator.kind === "f6c-harmonic-member.v1"));
+  assert.equal(spec.geometry.reconstruction.representativeSelection.authority, "operator");
+  assert.equal(spec.geometry.reconstruction.representativeSelection.approvedDate, "2026-08-26");
+  assert.equal(spec.history.returnPeriod, 2 * Math.PI);
+  const positive = spec.worldlines.filter((row) => row.operator.polarity === 1);
+  const negative = spec.worldlines.filter((row) => row.operator.polarity === -1);
+  assert.ok(positive.every((row) => row.operator.axial.amplitude === 0.04));
+  assert.ok(positive.every((row) => row.operator.radial.amplitude === 0.025));
+  assert.ok(negative.every((row) => row.operator.axial.amplitude === -0.03));
+  assert.ok(negative.every((row) => row.operator.radial.amplitude === -0.02));
+  assert.deepEqual(positive.map((row) => row.operator.circulationSign), [-1, -1, 1, 1]);
+  assert.deepEqual(positive.map((row) => row.operator.phaseOffset), [0, Math.PI, 4 * Math.PI / 3, Math.PI / 3]);
 });
 
 test("generated records remain sealed display-only inputs with no physics invocation", () => {

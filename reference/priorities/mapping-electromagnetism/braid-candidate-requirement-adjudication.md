@@ -1,6 +1,6 @@
 # Braid Candidate Requirement Adjudication
 
-Status: CURRENT EVIDENCE-GRADED MATRIX, established 2026-08-25. This document applies the consolidated requirements inferred in [Inferring Braid Requirements](inferring-braid-requirements.md) to every admitted or exploratory row in the [Braid Candidate Registry](../braid-program/candidate-registry.md) and retains named scoped-negative rows when their adjudication prevents a rejected realization from silently re-entering search. The registry remains authoritative for names, inclusion, concise status, and next action. This matrix owns requirement dispositions and their evidence grades.
+Status: CURRENT EVIDENCE-GRADED MATRIX, established 2026-08-25 and campaign-reconciled 2026-08-26. This document applies the consolidated requirements inferred in [Inferring Braid Requirements](inferring-braid-requirements.md) to every admitted or exploratory row in the [Braid Candidate Registry](../braid-program/candidate-registry.md) and retains named scoped-negative rows when their adjudication prevents a rejected realization from silently re-entering search. The registry remains authoritative for names, inclusion, concise status, and next action. This matrix owns requirement dispositions and their evidence grades.
 
 ## Scope And Non-Score Rule
 
@@ -166,6 +166,26 @@ No admitted or exploratory candidate currently passes `H5`, so this matrix selec
 6. for accessory-bearing continuations, do not advance beyond site definition until the underlying braid passes `H5`.
 
 Plainly: the matrix does not say which candidate is best. It says exactly what each candidate has established, what it has failed in a bounded scope, and which missing hard requirement prevents a physical verdict.
+
+### 2026-08-26 Campaign Effect
+
+The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) changes no `H1`--`H5`, `R1`--`R6`, or accessory cell. Its disposition audit is:
+
+| Candidates | Campaign disposition | Controlling requirement boundary |
+| --- | --- | --- |
+| `A1`, `A1.1`--`A1.4`, `A2`, `A3.1`--`A3.4` | `STASIS` | nearest candidate-specific `H2` record is absent; prescribed and historical diagnostics do not substitute |
+| `A3` measured slice, `SD3` | `STASIS` | bounded `H2`--`H4 P[M]` remains slice-scoped; `H5 U`; no new eligible `M05`--`M08` record |
+| `B1`, `B1.1`--`B1.3`, `C1`--`C6` | `STASIS` | `H2 U`; exact `R1/R2` capability failures or passes do not adjudicate the universal hard gate; former-identity records remain ineligible |
+| `F1`--`F4` | `STASIS` | `H1 U`; executable charts remain incomplete |
+| `F5` declared two-ring realization | `DEMOTED` | existing exact `H2 F[D]` obstruction remains controlling |
+| `F6` | `STASIS` | parent-only `H1 P[D]`; no separate continuation and no inherited F6c evidence |
+| `F6b` circular realization | `DEMOTED` | existing measured `H4 F[M]` member-acceleration failure remains controlling |
+| `F6c` | `STASIS` | bounded `H2`--`H4 P[M]`; `H5 U`; no eligible return and no justified radial-frequency refinement |
+| Three-binary plus six accessories, F6c plus six accessories | `STASIS` | `ACC1 U` until the named base braid passes `H5` |
+
+No candidate is `ADVANCED`, and no candidate passes `H5`. The campaign accepts a common centered-RMS ruler and wake-crossing clock for future predeclared measurements but rejects retrospective score backfill. It also derives that a nonbinary `M09` traversal fraction needs an additional continuous lift coordinate; turns, crossings, elapsed time, and shape matches remain ineligible.
+
+Plainly: the hard-gate matrix stays exactly as it was because the campaign found blockers and scoped failures, not new gate-closing evidence. The new result is complete disposition coverage and an explicit mathematical reason that partial return progress still cannot be scored.
 
 ## Weighted Score Boundary
 

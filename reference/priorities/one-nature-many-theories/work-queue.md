@@ -22,7 +22,7 @@ This is the canonical execution ledger for the evidence-backed bridge audit and 
 - **Status:** Queued
 - **Priority object:** `reader_facing_promotion_review`
 - **Request / acceptance:** Assess the source-backed draft against the academic style, claim-grade, self-containment, and philosophy-history ownership standards, then either promote it as a new corpus chapter or record the exact remaining blockers.
-- **Evidence / blocker:** Depends on ONMT-001 and ONMT-002. Promotion must not turn the inferred historical criticism or the guessed explanatory-compression claim into established doctrine.
+- **Evidence / blocker:** ONMT-001 is complete. Promotion now depends on ONMT-002 and must not turn the inferred historical criticism or the guessed explanatory-compression claim into established doctrine.
 - **Completion:** The chapter is safely promoted with validation and the Weyl split applied, or a bounded blocker list replaces the open-ended promotion plan.
 
 ## In progress

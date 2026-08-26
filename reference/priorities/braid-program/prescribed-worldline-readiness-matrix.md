@@ -1,6 +1,6 @@
 # Prescribed Worldline Readiness Matrix
 
-Status: Implemented inventory for the migration from `prescribed-braid-spec.v1` to the individual-architrino and individual-worldline prescribed assembly specification. All class-1 and class-5 sources are migrated, SD3 and F6b have executable canonical sources and generated records, and the exact F6c operator is registered. The F6c representative row and the pending Borg approvals remain external decisions. This matrix records executable readiness only. It does not change candidate admission, Borg sign-off, analytical status, dynamical status, or particle-facing claims.
+Status: Implemented inventory for the migration from `prescribed-braid-spec.v1` to the individual-architrino and individual-worldline prescribed assembly specification. All class-1 and class-5 sources are migrated; SD3, F6c, and F6b have executable canonical sources and generated records. The pending Borg approvals remain external decisions. This matrix records executable readiness only. It does not change candidate admission, Borg sign-off, analytical status, dynamical status, or particle-facing claims.
 
 ## Disposition Classes
 
@@ -47,7 +47,7 @@ Plainly: every registry row receives an explicit outcome. A row becomes drawable
 | `F5` | 3 | `../mapping-electromagnetism/inferring-braid-requirements.md#seed-f5--balanced-double-dyad-triad` | One sampled-clearance row exists, but its continuous geometry remains obstructed and has no operator-approved representative or complete causal history. |
 | `F6` | 6 | Candidate registry and `../mapping-electromagnetism/inferring-braid-requirements.md#seed-f6--tetrahedral-counterflow-core` | Keep as the parent of concrete F6b and F6c continuations; do not invent a separate representative. |
 | `F6b` | 5 | `configurations/f6b-scoped-negative-circular.v2.json` | Executable exact rejected eight-member circular history retained as a scoped-negative reproducibility record, not an active candidate. |
-| `F6c` | 3 | `../mapping-electromagnetism/f6c-geometry.md#exact-member-map` | The exact eight-member `4:4` operator is implemented, but the representative harmonic coordinate row remains pending operator selection. |
+| `F6c` | 2 | `configurations/f6c-polarity-resolved-harmonic.v2.json` and `../mapping-electromagnetism/f6c-geometry.md#prescribed-display-representative` | Executable exact eight-member `4:4` small asymmetric counter-breathing history selected by the operator for prescribed display only. |
 | Three-binary plus six accessories | 4 | Candidate registry and accessory-placement requirements in `../mapping-electromagnetism/inferring-braid-requirements.md` | The placement bands are declared, but no retained base braid, stable candidate ID, exact six-site row, polarity vector, or complete accessory history is frozen. |
 | F6c plus six accessories | 3 | `../mapping-electromagnetism/f6c-geometry.md#strongest-six-seat-seed-the-central-octahedral-axes` | The axial `2+4` placement family is exact, but the axial/transverse radii, polarity decoration, and complete accessory histories require operator selection; do not infer association or binding. |
 
@@ -63,4 +63,4 @@ The matrix is a measured repository inventory plus derived routing from the name
 
 Plainly: this document decides what can be encoded honestly today. It does not decide which geometry nature keeps.
 
-Closure goal: freeze the operator-selected F6c representative, generate its canonical source and record, and complete the pending Borg approvals without inventing coordinates or changing any candidate's analytical or dynamical status.
+Closure goal: complete the pending Borg approvals without changing any candidate's analytical or dynamical status.

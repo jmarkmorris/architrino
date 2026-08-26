@@ -12,6 +12,30 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
 
+## All-Candidate Evaluation Disposition Register
+
+The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) is complete. It queues no EOM run by itself. Each active option has one disposition and one exact routing boundary:
+
+| Candidate scope | Disposition | Queue status | Exact next object before execution |
+| --- | --- | --- | --- |
+| `A1`, `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`--`A3.4` | `STASIS` | Not queued | one current-identity exact `H2` admission packet; use a strictly sub-field history before any `H3` campaign |
+| `A1.3`, `C5` | `STASIS` | `BP-007` remains deferred / blocked | predeclared V2 packet and cost pilot, or an explicitly substituted direct `H2` route |
+| `A3` measured slice, `SD3` | `STASIS` | Not queued | independent same-history member-acceleration packet or new campaign predeclared under the accepted ruler/clock and full leakage contract |
+| `B1` | `STASIS` | `BP-002` remains queued | chart ratification followed by one frozen executable slice |
+| `B1.1` | `STASIS` | `BP-009` remains awaiting verification | current-identity binding and separate authorization of the center pilot |
+| `B1.2`, `B1.3` | `STASIS` | Not queued | current-source $c_f=1$ `H2/H3` packet with independent root verification |
+| `C1`--`C4`, `C6` | `STASIS` | Not queued | renewed display inspection and fresh current-identity analytical records before any evolution campaign |
+| `F1`--`F4` | `STASIS` | Not queued | exact executable `H1` chart; F3 additionally requires a frozen nontrivial mode/return census and F4 one integrated inventory |
+| `F5` declared two-ring realization | `DEMOTED` | No execution queued | materially repaired nonobstructed chart or regulator-independent coordinate-coincidence continuation |
+| `F6` | `STASIS` | No separate campaign queued | materially distinct continuation with its own exact chart |
+| `F6b` circular realization | `DEMOTED` | No repair campaign queued | new direction-bearing path or inventory and fresh admission audit; no rescaling or exhausted repair |
+| `F6c` | `STASIS` | No continuation queued | materially different coordinated-turn/full-root predeclaration or independent normalized member-acceleration packet; do not continue radial-frequency tuning |
+| Both accessory-bearing continuations | `STASIS` | No accessory campaign queued | named base-braid `H5` certificate |
+
+The shared metric prerequisite is partially closed: future `M07`, A3/SD3 `M08`, and `M10`--`M13` packets have an accepted centered-RMS ruler, wake-crossing clock, and same-event exact-action reporting boundary. Nonbinary `M09` remains blocked on a candidate-native continuous lift coordinate or independently justified canonical reference path. Existing records are not backfilled.
+
+Plainly: this register does not launch thirty campaigns. It prevents an old or missing measurement from being treated as progress and says exactly which artifact must exist before each candidate can consume compute again.
+
 ## Neutral-Atlas Review Action Register
 
 This register owns every deferred action from the [Neutral-Braid Configuration Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md). It creates no queue and changes no status.
@@ -112,6 +136,12 @@ No rows.
 - **Review boundary:** Operator review may accept or reject the freeze. It does not authorize the center-only pilot, the remaining 376 rows, the multi-frequency slice, any random or broad search, threshold relaxation, or a solver campaign.
 
 ## Verified
+
+### All-candidate evaluation disposition audit
+
+- **Status:** Verified
+- **Result:** Every active admitted and exploratory braid option, the F6b scoped negative, and both accessory continuations have one `STASIS` or `DEMOTED` disposition in the [closeout packet](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md). No option advanced, no score changed, and no candidate passed `H5`.
+- **Boundary:** The audit verifies owner agreement, raw-score arithmetic, and exact blockers. It authorizes no new EOM run, source regeneration, weight change, terminology change, or reader-facing promotion.
 
 ### BP-008 — B/C score-landscape diagnosis
 

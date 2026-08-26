@@ -1,6 +1,6 @@
 # Braid Candidate Registry
 
-Status: CURRENT MASTER INDEX, operator-established 2026-08-25. This registry owns the inclusion, short-name routing, concise description, present program status, dynamical claim boundary, and next action for every named braid candidate that is admitted, actively considered, or retained as a scoped negative. Detailed geometry, evidence, and campaign owners remain authoritative for their own rows.
+Status: CURRENT MASTER INDEX, operator-established 2026-08-25 and campaign-reconciled 2026-08-26. This registry owns the inclusion, short-name routing, concise description, present program status, dynamical claim boundary, and next action for every named braid candidate that is admitted, actively considered, or retained as a scoped negative. Detailed geometry, evidence, and campaign owners remain authoritative for their own rows.
 
 The evidence-graded [Braid Candidate Requirement Adjudication](../mapping-electromagnetism/braid-candidate-requirement-adjudication.md) applies the consolidated inferred requirements to every admitted or exploratory registry row and preserves the F6b scoped negative. The current [Weighted Score Packet](candidate-weighted-score-packet.md) owns the raw scored records, normalization, calculations, hard-gate overlay, and sensitivity check behind the two registry percentages. This registry owns candidate identity and routing; neither comparison artifact replaces candidate-specific evidence.
 
@@ -169,6 +169,49 @@ Before the two percentage columns are populated, one score packet must publish t
 The current values are published in the registry only from the complete [Weighted Score Packet](candidate-weighted-score-packet.md). The requirement adjudication's `U`, pass, fail, and scoped-evidence cells remain authoritative for hard-gate and claim-scope comparison.
 
 Plainly: every percentage routes to one auditable packet rather than being hand-entered from an undocumented judgment. A new or changed value must update that packet and these columns together.
+
+## 2026-08-26 Evaluation Campaign Dispositions
+
+The [all-candidate campaign](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) audited every active option against its nearest unresolved hard gate and highest-value presently admissible metric. `ADVANCED` means a new admissible derived or measured result closed a hard gate or made an approved metric available. `STASIS` means no justified in-scope test can presently advance or falsify the candidate without the named unblocking artifact. `DEMOTED` means a derived or measured failure rejects the stated realization while preserving its re-entry condition.
+
+| Candidate | Campaign disposition | Controlling boundary | Exact unblocking or re-entry artifact |
+| --- | --- | --- | --- |
+| `A1` | `STASIS` | nearest `H2` lacks a candidate-specific record | frozen current-identity history and independent exact all-pair noncoincidence certificate |
+| `A1.1` | `STASIS` | prescribed-path packet is null-score and not a strictly sub-field `H2/H3` history | strictly sub-field current-identity `H2` certificate |
+| `A1.2` | `STASIS` | display geometry only | exact full-period all-pair clearance certificate |
+| `A1.3` | `STASIS` | V1 calibration is insufficient | predeclared V2 packet and cost pilot, or direct current-identity `H2` packet |
+| `A1.4` | `STASIS` | display geometry only | exact $3{:}2{:}1$ `H2` history certificate |
+| `A2` | `STASIS` | existing negative is scoped to one bare fixed-coordinate chart | $c_f=1$ rotating-A2 `H2`--`H4` packet |
+| `A3` measured slice | `STASIS` | no eligible `M05`--`M08` extension and no `H5` return | independent member-acceleration packet plus new predeclared normalized horizon/leakage campaign |
+| `A3.1` | `STASIS` | no current-identity `H2` record | common-frequency A3 `H2` certificate |
+| `A3.2` | `STASIS` | historical diagnostics are ineligible for current identity | present-identity packet or exact crosswalk plus independent acceptance |
+| `A3.3` | `STASIS` | display geometry only | exact $4{:}2{:}1$ `H2` history certificate |
+| `A3.4` | `STASIS` | display geometry only | exact $3{:}2{:}1$ `H2` history certificate |
+| `B1` | `STASIS` | functional `R1/R2` failures do not adjudicate `H2` | ratified chart and frozen executable slice |
+| `B1.1` | `STASIS` | frozen manifest has zero root evaluations and scores | current-identity binding and separate center-pilot authorization |
+| `B1.2` | `STASIS` | current source is display-only | current-source $c_f=1$ `H2/H3` packet with independent root check |
+| `B1.3` | `STASIS` | current source is display-only | current-source $c_f=1$ `H2/H3` packet with independent root check |
+| `C1` | `STASIS` | historical cohort does not cover current identity | renewed inspection and current-identity rebuild |
+| `C2` | `STASIS` | exact counterflow capability is not a hard-gate result | renewed inspection and current-identity rebuild |
+| `C3` | `STASIS` | former C1 records are historical only | renewed inspection and fresh C3-specific records |
+| `C4` | `STASIS` | former C2 records are historical only | renewed inspection and fresh C4-specific records |
+| `C5` | `STASIS` | V1 calibration is insufficient | renewed inspection and accepted `BP-007` V2 packet |
+| `C6` | `STASIS` | former C2.1 records are historical only | renewed inspection and fresh C6-specific records |
+| `SD3` | `STASIS` | no eligible `M05`--`M08` extension and no `H5` return | independent member-acceleration packet plus new predeclared normalized horizon/leakage campaign |
+| `F6c` | `STASIS` | no eligible return; radial-frequency coordinate exhausted below its gate | materially new coordinated-turn/full-root packet or independent normalized member-acceleration packet |
+| `F1` | `STASIS` | `H1` chart is incomplete | exact six-identity executable chart |
+| `F2` | `STASIS` | `H1` composition and association are undeclared | exact twelve-identity composition chart |
+| `F3` | `STASIS` | `H1` quotient and census are undeclared | exact chart plus frozen nontrivial mode/return census |
+| `F4` | `STASIS` | `H1` integrated inventory is undeclared | exact integrated-composition chart |
+| `F5` declared two-ring realization | `DEMOTED` | exact `H2 F[D]` two-ring obstruction | nonobstructed chart or regulator-independent coordinate-coincidence continuation |
+| `F6` | `STASIS` | parent has no separate continuation and inherits no F6c evidence | materially distinct continuation with its own exact chart |
+| `F6b` circular realization | `DEMOTED` | measured `H4 F[M]` member-acceleration failure | new direction-bearing path or inventory and fresh admission audit |
+| Three-binary plus six accessories | `STASIS` | underlying braid does not pass `H5` | base-braid `H5` certificate |
+| F6c plus six accessories | `STASIS` | F6c does not pass `H5` | F6c `H5` certificate |
+
+No row is `ADVANCED`. The [score packet](candidate-weighted-score-packet.md) independently reproduces every published percentage and records why the accepted future ruler/clock causes no retrospective metric availability. `B1.4` remains an excluded deprecated control.
+
+Plainly: every active option now has one campaign ending state. Most are unknown at their next hard gate, while F5 and F6b retain exact realization-scoped failures. No percentage overrides those boundaries.
 
 ## Admitted Candidates
 

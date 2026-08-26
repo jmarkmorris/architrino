@@ -15,6 +15,10 @@
 
 Plainly: both initialized six-member systems were evolved safely for the same short time. Neither returned. The pair-conjugate row bent out of the particular five-direction slice chosen for this comparison, while the cyclic sector-differential row remained in its symmetry-preserved slice. This says something about these two initialized rows and their declared coordinate slices, not about every A3 geometry.
 
+The [2026-08-26 all-candidate campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) places both rows in `STASIS`. It derives a common centered-RMS ruler and wake-crossing clock for future predeclared measurements, but it does not backfill this elapsed horizon into `M07`. This record also lacks the full position-and-rate horizon enclosure required by the accepted future `M08` contract and an independent same-history member-acceleration packet for `M05/M06`. The existing scores and `H2`--`H4` slice-scoped passes remain unchanged.
+
+Plainly: the new campaign defined how later measurements must be reported; it did not retrofit this older run with measurements it never made.
+
 ## Immutable Protocol
 
 The comparison imports the exact ledger sample

@@ -12,7 +12,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   assert.equal(BORG_BRAID_RECORD_CATALOG.id, BORG_BRAID_RECORD_CATALOG_ID);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG), true);
   assert.equal(Object.isFrozen(BORG_BRAID_RECORD_CATALOG.entries), true);
-  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 22);
+  assert.equal(BORG_BRAID_RECORD_CATALOG.entries.length, 23);
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.id),
     [
@@ -37,6 +37,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
       "family-c-c1-1-co-rotating-b1-3-pair-v1",
       "family-c-c2-1-counter-rotating-b1-3-pair-v1",
       "sd3-centered-five-coordinate-v2",
+      "f6c-polarity-resolved-harmonic-v2",
       "f6b-scoped-negative-circular-v2",
     ],
   );
@@ -64,6 +65,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
       "C5 — co-rotating B1.3 pair",
       "C6 — counter-rotating B1.3 pair",
       "SD3 — centered five-coordinate representative",
+      "F6c — small asymmetric counter-breathing representative",
       "F6b — scoped-negative circular realization",
     ],
   );
@@ -74,7 +76,7 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   });
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.familyId),
-    ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "C", "C", "C", "C", "C", "C", "SD3", "F6b"],
+    ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "B", "C", "C", "C", "C", "C", "C", "SD3", "F6c", "F6b"],
   );
 });
 

@@ -156,6 +156,10 @@
       "reason": "SD3 is a nonperiodic centered five-coordinate prescribed display and is outside the current circular complete-cycle analytical campaign."
     },
     {
+      "candidateId": "f6c-polarity-resolved-harmonic-v2",
+      "reason": "F6c is an operator-selected prescribed visualization with no analytical campaign result and is excluded from the current active analytical comparison."
+    },
+    {
       "candidateId": "f6b-scoped-negative-circular-v2",
       "reason": "F6b is a scoped-negative reproducibility control and is excluded from active analytical comparison."
     }

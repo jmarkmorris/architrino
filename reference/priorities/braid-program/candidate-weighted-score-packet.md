@@ -1,6 +1,6 @@
 # Braid Candidate Weighted Score Packet
 
-Status: CURRENT SCORE SNAPSHOT v1, 2026-08-25. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract.
+Status: CURRENT SCORE SNAPSHOT v2, 2026-08-26. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract. Version 2 records the [all-candidate campaign](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md), accepts a common ruler and clock for future predeclared packets, and leaves every raw metric and percentage unchanged because no existing record satisfies the new reporting contract retrospectively.
 
 The percentages are allocation summaries. The [Braid Candidate Requirement Adjudication](../mapping-electromagnetism/braid-candidate-requirement-adjudication.md) remains authoritative for the hard gates, and a failed hard gate cannot be compensated by either percentage. The `A3` values are scoped to the measured five-coordinate pair-conjugate slice, not the full A3 family.
 
@@ -28,6 +28,96 @@ The metric identifiers below follow the registry order. Binary closure receives 
 | `M14` | Positive-width retained-neighborhood certificate | 10 | $q=1$ for a certified nonempty open retained set and $q=0$ for a proved zero-width set. |
 
 Plainly: the maps reward only physical or mathematical quantities, not completed workflow stages. A current record without the required dimensionless normalization or exact-action split stays unavailable even when it contains a nearby diagnostic number.
+
+### Common Ruler, Clock, And Exact-Action Boundary
+
+For a frozen seed event $t_0$ with $N$ persistent, equally weighted members, the accepted future ruler and clock are
+
+$$
+\mathbf C_0=\frac1N\sum_i\mathbf X_i(t_0),
+\qquad
+L_0^2=\frac1N\sum_i\lVert\mathbf X_i(t_0)-\mathbf C_0\rVert^2,
+\qquad
+T_0=\frac{L_0}{c_f}.
+$$
+
+Position, rate, and acceleration use units $L_0$, $c_f$, and $c_f^2/L_0$. The future `M07` target is the common dimensionless value $\tau_{\mathrm{target}}=1$. Future `M08` packets must publish the horizon supremum of the full position-and-rate distance to the exact predeclared invariant surface. Future `M10` through `M12` packets must use one eligible event, one frozen proper-rotation/translation/member-permutation/lift action, one fixed translation over the history comparison, and a bijective root-ownership map. Future `M13` packets must compare full state histories after certified seed-influence clearance.
+
+Plainly: each candidate gets the same kind of ruler and clock, computed from its labeled release geometry before evolution. The residual rows must measure the complete fields they name and must all refer to the same return event.
+
+For `M05` and `M06`, let
+
+$$
+\mathbf r_i(t)=\frac{L_0}{c_f^2}\left(\ddot{\mathbf X}_i^{\mathrm{history}}(t)-\mathbf A_i^{\mathrm{ME}}\!\left(\mathbf X_{\mathrm{history}}\right)(t)\right).
+$$
+
+On a predeclared interval $I$ of dimensionless length $\Delta\widehat t$, use
+
+$$
+R_{\mathrm{RMS}}^2=\frac1{N\Delta\widehat t}\sum_i\int_I\lVert\mathbf r_i\rVert^2\,d\widehat t,
+\qquad
+R_{\mathrm{peak}}=\sup_{i,t\in I}\lVert\mathbf r_i(t)\rVert.
+$$
+
+For `M08`, define the full-state distance
+
+$$
+d_*^2(z,z')=\frac1N\sum_i\left(\frac{\lVert\Delta\mathbf X_i\rVert^2}{L_0^2}+\frac{\lVert\Delta\mathbf V_i\rVert^2}{c_f^2}\right),
+\qquad
+R_{\mathrm{leak}}=\sup_{t\in I}\inf_{m\in\mathcal M_b(t)}d_*(z(t),m),
+$$
+
+where $\mathcal M_b(t)$ is the exact predeclared labeled position-and-rate surface, including its allowed center variables and frozen symmetry quotient.
+
+Plainly: equation mismatch compares the history's member acceleration with the complete Master Equation acceleration in one fixed unit. Leakage measures the greatest full position-and-rate distance from the exact candidate surface anywhere in the certified interval.
+
+For one eligible event $t_e$ and one frozen action $g=(Q,\mathbf a,\pi,\widetilde g)$, set $\mathbf a=\mathbf C(t_e)-Q\mathbf C(t_0)$ for the entire comparison and
+
+$$
+\Delta\mathbf X_i(s)=\mathbf X_i(t_e+s)-Q\mathbf X_{\pi(i)}(t_0+s)-\mathbf a,
+\qquad
+\Delta\mathbf V_i(s)=\mathbf V_i(t_e+s)-Q\mathbf V_{\pi(i)}(t_0+s).
+$$
+
+Then `M10` and `M11` use
+
+$$
+R_X=\left(\frac1N\sum_i\frac{\lVert\Delta\mathbf X_i(0)\rVert^2}{L_0^2}\right)^{1/2},
+\qquad
+R_V=\left(\frac1N\sum_i\frac{\lVert\Delta\mathbf V_i(0)\rVert^2}{c_f^2}\right)^{1/2}.
+$$
+
+For `M12`, predeclare a dimensionless retained-history depth $\Lambda$ and put $u=s/T_0\in[-\Lambda,0]$. Remove the endpoint position and rate already scored by `M10/M11`:
+
+$$
+\mathbf E_i(u)=\frac{\Delta\mathbf X_i(T_0u)-\Delta\mathbf X_i(0)}{L_0}-u\frac{\Delta\mathbf V_i(0)}{c_f},
+\qquad
+\mathbf E'_i(u)=\frac{\Delta\mathbf V_i(T_0u)-\Delta\mathbf V_i(0)}{c_f}.
+$$
+
+For each compared receiver lag $s$, let $\theta_r^{\mathrm{out}}(s)$ and $\theta_{\widetilde g r}^{\mathrm{in}}(s)$ be the matched outgoing and incoming causal-root emission offsets under the frozen root-row bijection. Define
+
+$$
+R_H=\max\left\{
+\sup_u\left(\frac1N\sum_i\lVert\mathbf E_i(u)\rVert^2\right)^{1/2},
+\sup_u\left(\frac1N\sum_i\lVert\mathbf E'_i(u)\rVert^2\right)^{1/2},
+\sup_{s,r}\frac{\lvert\theta_r^{\mathrm{out}}(s)-\theta_{\widetilde g r}^{\mathrm{in}}(s)\rvert}{T_0}
+\right\}.
+$$
+
+Missing roots, an unproved permutation, or no certified finite $\Lambda$ make `M12` unavailable. For `M13`, after seed-influence clearance and with one predeclared fixed alignment for each materially different prehistory pair $(\alpha,\beta)$, define
+
+$$
+R_P=\max_{\alpha<\beta}\sup_{t\in I_P}\max\{R_X^{\alpha\beta}(t),R_V^{\alpha\beta}(t),R_H^{\alpha\beta}(t)\}.
+$$
+
+Plainly: position, rate, earlier-history shape, and causal-root timing are now reproducible separate ingredients. Preparation collapse applies the same complete comparison to every declared pair of genuinely different prehistories after their seed records can no longer influence the window.
+
+The ruler is invariant under translation and proper rotation. Under the declared uniform scaling map $\mathbf X\mapsto\lambda\mathbf X$ and $t-t_0\mapsto\lambda(t-t_0)$ with fixed $c_f$, the normalized quantities are unchanged. This is a reporting covariance, not a claim that the EOM has a dilation symmetry.
+
+No common nonbinary `M09` fraction is accepted. An exact lifted action is discrete, and reparameterizing a representative partial path preserves its endpoints and action while changing an assigned fractional parameter. `M09` therefore remains unavailable until a candidate-native continuous lift coordinate or independently justified canonical reference path is derived and frozen before evolution. A scalar crossing, isolated turn, elapsed time, winding marker, or shape-only near match is ineligible.
+
+Plainly: a full action can be certified, but the current charts do not supply a fair universal percentage for an incomplete action. That missing mathematical coordinate remains the `M09` blocker.
 
 ## Admissible Raw Records
 
@@ -69,13 +159,21 @@ Plainly: each score-bearing record says what calculation or derivation would rem
 
 ### Values Deliberately Left Unavailable
 
-- The $T=0.15$ three-pair horizons and the refined F6c $T=0.13$ horizon are real bounded times, but their campaigns did not predeclare one shared dimensionless braid-scale target. `M07` therefore remains unavailable rather than receiving a retrospective target.
-- The A3 and SD3 fixed-tangent residuals are useful slice diagnostics, but their packet does not publish the canonical dimensionless leakage normalization required by `M08`.
+- The $T=0.15$ three-pair horizons and the refined F6c $T=0.13$ horizon are real bounded times. Static reconstruction under the new ruler gives diagnostic dimensionless horizons `0.43133911780222495` for both the A3 slice and SD3 and `0.24436033713885164` for F6c, but those campaigns did not predeclare this target or one common stopping contract. `M07` therefore remains unavailable rather than receiving retrospective credit.
+- The A3 and SD3 fixed-tangent residuals are useful slice diagnostics, but their packet does not publish the full position-and-rate horizon-supremum distance and enclosure now required by `M08`.
 - The F6c harmonic-cycle values $2.816$ RMS and $10.518$ peak mix coordinate-acceleration components without the dimensionless member-acceleration normalization required by `M05` and `M06`.
-- F6c exact-action screens publish combined coordinate-state residuals, not the canonical member-position, member-rate, and retained-history split required by `M10` through `M12`. No current campaign publishes a certified return-cycle fraction for `M09`.
+- F6c exact-action screens publish combined coordinate-state residuals, not the canonical member-position, member-rate, and retained-history split required by `M10` through `M12`. No current campaign supplies the candidate-native continuous lift coordinate required for a nonbinary `M09` fraction.
 - No candidate has a refined multi-prehistory collapse record or a positive-width retained-neighborhood certificate, so `M13` and `M14` remain unavailable for every row.
 
 Plainly: these omissions are not lost work. They identify the exact reporting and mathematical gaps that the next campaign must close before those measurements can earn score credit.
+
+## All-Candidate Campaign Disposition Overlay
+
+The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 declared two-ring realization, which remains `DEMOTED` at `H2 F[D]`. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
+
+No score changed. An independent arithmetic audit reproduced every approved, equal-metric, Early, and Late percentage from the raw values and applicability sets. The all-metric ordering among rows with available evidence is unchanged under the sensitivity schemes, while the available-metric ordering among the A3 slice, SD3, and F6c remains weight-sensitive. Hard-gate ordering remains controlling.
+
+Plainly: the campaign finished the disposition audit, not a leaderboard. It found exact reasons to stop or demote each realization and verified that the existing arithmetic is correct.
 
 ## Score Calculation And Hard-Gate Overlay
 
@@ -134,6 +232,6 @@ Plainly: the broad evidence total is not an artifact of the initial weights in t
 
 ## Update Rule
 
-Update this packet and the registry columns together whenever a raw metric becomes newly available, a current value is superseded, a hard-gate disposition changes, or the approved weights or normalization policy changes. A new value must name its exact history, instrument or derivation, refinement status, falsifier, and evidence pointer. Do not backfill `M07` or `M09` through `M13` until their shared dimensionless and exact-action contracts are frozen.
+Update this packet and the registry columns together whenever a raw metric becomes newly available, a current value is superseded, a hard-gate disposition changes, or the approved weights or normalization policy changes. A new value must name its exact history, instrument or derivation, refinement status, falsifier, and evidence pointer. Do not backfill old records under the new ruler and clock. New `M07`, `M08`, and `M10` through `M13` packets must predeclare the accepted contract above; nonbinary `M09` remains unavailable until its continuous-lift-coordinate proof obligation closes.
 
 Closure goal: maintain one auditable allocation snapshot in which every percentage can be reconstructed from current factual evidence without converting missing measurements, prescribed geometry, or inferred capability into braid credit.
