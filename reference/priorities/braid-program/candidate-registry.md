@@ -30,11 +30,11 @@ The initial weights total 100. The raw metrics are factual; the weights and norm
 
 | Metric group | Factual metric | Weight | Required raw quantity |
 | --- | --- | ---: | --- |
-| Geometric and causal admissibility | Minimum continuous clearance | 8 | Smallest certified member separation divided by the predeclared characteristic braid scale over the claimed history. Sampled clearance is identified as sampled and does not receive continuous-clearance credit. |
+| Geometric and causal admissibility | Coordinate-coincidence limit closure | 8 | For every declared coordinate-coincidence event, a finite event-integrated acceleration contribution and one complete provenance-preserving outgoing history that are independent of the admissible event-enclosure, causal-surface, spatial-regularization, and EOM-step refinement paths. This row is `N/A` only when continuous certification excludes coordinate coincidence on the claimed history. |
 | Geometric and causal admissibility | Required causal-root completeness | 8 | Number of certified required roots divided by the number required by the predeclared causal-root contract, with unresolved roots counted as incomplete. |
 | Geometric and causal admissibility | Minimum causal-certification margin | 9 | Smallest dimensionless margin to the causal boundary under one predeclared contract shared by the compared candidates. Guarded and full-causal-root margins are not silently mixed. |
 | Equation consistency | Master Equation acceleration residual | 20 | Predeclared dimensionless RMS and peak mismatch between the history-required acceleration and the Master Equation acceleration contribution on the same history. Lower is better. |
-| Ordinary evolution | Certified evolution horizon | 10 | Root-valid, clearance-valid EOM solver evolution time divided by a predeclared common target horizon or nontrivial return timescale. Elapsed wall time does not count. |
+| Ordinary evolution | Certified evolution horizon | 10 | Root-valid, coincidence-chart-valid EOM solver evolution time divided by a predeclared common target horizon or nontrivial return timescale. Elapsed wall time does not count. |
 | Ordinary evolution | Geometry and identity leakage | 5 | Largest dimensionless departure from the candidate's declared geometry, symmetry, centering, and persistent-member chart during the certified horizon. Lower is better. |
 | Return evidence | Certified return-cycle traversal | 10 | Largest certified fraction of a predeclared nontrivial lifted direct or relative return action traversed while all validity guards remain satisfied. A scalar recrossing, isolated turn, or elapsed time alone does not count. |
 | Return evidence | Best eligible full-state return residual | 15 | Smallest dimensionless position-and-rate mismatch under the exact declared return action at an eligible nonzero event. Shape-only proximity and scalar-section proximity are reported separately and receive no full-state-return credit. |
@@ -42,11 +42,26 @@ The initial weights total 100. The raw metrics are factual; the weights and norm
 | Retention evidence | Positive-width retention and recovery margin | 10 | Certified dimensionless width of nearby initial histories that retain or return and recover under the declared criterion. A single fine-tuned trajectory has zero width. |
 |  | **Total** | **100** |  |
 
-Plainly: the largest weights go to equation consistency, an actual full-state return, and positive-width retention. Geometry, causal validity, sustained evolution, and numerical reliability remain necessary, but none earns points merely because a workflow stage was completed.
+Plainly: the largest weights go to equation consistency, an actual full-state return, and positive-width retention. Coordinate coincidence, causal validity, sustained evolution, and numerical reliability remain necessary, but none earns points merely because a workflow stage was completed.
+
+### Coordinate-Coincidence Limit
+
+For a declared coordinate-coincidence time $T_*$, let $\mathbf A_i^{(\eta,\epsilon_c,h)}(T)$ be the complete regularized acceleration of member $i$ evaluated with causal-surface width $\eta$, spatial regularization $\epsilon_c$, and EOM step scale $h$. For an event window $\delta>0$, define the event-integrated velocity increment
+
+$$
+\Delta\mathbf V_i^{(\eta,\epsilon_c,h)}(\delta)
+=
+\int_{T_*-\delta}^{T_*+\delta}
+\mathbf A_i^{(\eta,\epsilon_c,h)}(T)\,dT.
+$$
+
+The coincidence-limit row closes only if the joint refinement $\delta,\eta,\epsilon_c,h\to0^+$ yields one finite, refinement-path-independent velocity increment and one complete outgoing retained history on a common positive interval. The record must preserve identities, polarities, causal-root ownership, and incoming path-history provenance. Simultaneous member separation is not the range in an ordinary delayed row: that range joins a receiver at $T_r$ to a transmitter at an earlier $T_t$. The coincidence-limit audit applies when the causal event chart approaches its zero-delay, zero-range diagonal or carries a nonordinary family into the coordinate coincidence; it does not infer a large acceleration merely from small simultaneous separation. A pointwise $1/r$ or $1/r^2$ magnitude at a chosen finite distance is not scored: whether that number looks large depends on units, whereas existence and path independence of the zero-separation limit do not. A certified failure receives zero credit, a certified closure receives full credit, and an unfinished limit remains unavailable rather than receiving partial procedural credit.
+
+Plainly: there is no arbitrary “too close” distance. The factual question is whether the mathematics produces one finite continuation as the coordinate separation and all numerical regularizations are taken to their declared limits.
 
 ### Weighting Rationale
 
-The 25 points for geometric and causal admissibility protect the minimum conditions under which later numbers have a defined referent. The 20-point Master Equation residual is the largest single metric because it is the direct acceleration-law mismatch and an efficient early falsifier, while its weight remains far below a majority because a small residual on a prescribed history cannot establish persistence. Certified horizon and chart leakage receive 15 points together because ordinary evolution must last long enough to be informative without losing candidate identity.
+The 25 points for geometric and causal admissibility protect the minimum conditions under which later numbers have a defined referent. Coincidence-limit closure receives 8 of those points because an unresolved zero-separation event can leave the outgoing history undefined, not because small separation is physically unfavorable. The 20-point Master Equation residual is the largest single metric because it is the direct acceleration-law mismatch and an efficient early falsifier, while its weight remains far below a majority because a small residual on a prescribed history cannot establish persistence. Certified horizon and chart leakage receive 15 points together because ordinary evolution must last long enough to be informative without losing candidate identity.
 
 Return evidence receives 25 points: traversal records how much of the declared nontrivial cycle has actually been reached, while the larger residual weight rewards proximity of the complete position-and-rate state under the exact return action. Traversal cannot substitute for residual, and residual cannot substitute for causal validity. Refinement receives 5 points because it can invalidate a numerical result but cannot independently confirm the physical claim. Positive-width retention and recovery receives 10 points because it distinguishes a retained neighborhood from one fine-tuned history; its noncompensable hard-gate role, rather than an arbitrarily dominant weight, protects its necessity.
 
@@ -68,7 +83,7 @@ $$
 
 Here $\operatorname{clip}(z,0,1)=\min(1,\max(0,z))$. A metric spanning several orders of magnitude may use a predeclared logarithmic map, but every candidate in the comparison must use the same map and anchors. Anchors come from the declared campaign gates, exact limiting cases, or a shared benchmark; they are never selected separately for each candidate or adjusted after the results are known.
 
-Plainly: the raw residual, horizon, clearance, or return error remains the evidence. Normalization only puts unlike factual quantities on a common allocation scale, and its choices must be visible and fixed in advance.
+Plainly: the raw equation residual, horizon, coincidence-limit disposition, or return error remains the evidence. Normalization only puts unlike factual quantities on a common allocation scale, and its choices must be visible and fixed in advance.
 
 ### The Two Published Percentages
 
@@ -159,7 +174,7 @@ These geometries are active considerations but do not yet satisfy the admitted-c
 | `F2` | Two A2-like triads sharing a center and frame with conjugation, relative circulation, phase, permutation, and separation coordinates. | Exploratory F-series seed. | No ordinary-evolution result and no retained braid. | Test whether the two triads associate under one law and whether useful exposure survives excessive symmetry cancellation. |
 | `F3` | Near-A2 mode and return-permutation search within the A3 deformation chart. | Exploratory F-series seed. | No ordinary-evolution result and no retained braid. | Define a predeclared mode/return census that can distinguish isolated classes from a continuum or ordinary $2\pi$ return. |
 | `F4` | A2/A3 three-direction frame associated with a C4-like counter-rotating module. | Exploratory F-series seed. | No ordinary-evolution result and no retained braid. | Establish one integrated retained assembly rather than a detachable module before testing angular, recoil, or particle-facing rows. |
-| `F5` | Twelve-member balanced double-dyad triad on three orthogonal body axes. | Exploratory F-series seed with bounded prescribed-path geometry diagnostics. | No retained braid; sampled clearance exists, but the declared two-ring circular form has a conditional incompatibility among collision freedom, stationary centroid, and instantaneous dipole null. | Repair that joint geometry obstruction and obtain continuous clearance/root readiness before any ordinary release. |
+| `F5` | Twelve-member balanced double-dyad triad on three orthogonal body axes. | Exploratory F-series seed with bounded prescribed-path geometry diagnostics. | No retained braid; the ordinary everywhere-noncoincident two-ring circular form has a conditional incompatibility among distinct-member geometry, stationary centroid, and instantaneous dipole null. | Repair that joint geometry obstruction or supply a declared coordinate-coincidence continuation, then establish causal-root readiness before any ordinary release. |
 | `F6` | Eight-member tetrahedral counterflow parent with four body axes and one distinguished motion-moment direction. | Exploratory F-series parent; F6b and F6c are its concrete continuations. | No retained braid. | Use F6c as the live dynamical continuation; no separate F6 campaign is queued. |
 
 ## Scoped-Negative And Demoted Candidates
@@ -168,7 +183,7 @@ This is the authoritative list of named candidates that are not currently viable
 
 | Short name | Current disposition | Controlling issue | Re-entry condition |
 | --- | --- | --- | --- |
-| `F6b` | Demoted from active search; retained as a scoped-negative F6 realization. | Its exact fixed-radius tetrahedral edge-partition history passes the declared clearance and simple-root screens but fails the measured member-acceleration residual. Magnitude-only, phase-grid, simple-shell, and stationary-anchor repairs are exhausted in the declared screens. | A materially different direction-bearing path or member inventory must close a new exact chart and pass the local residual screen before readmission; rescaling the rejected history is insufficient. |
+| `F6b` | Demoted from active search; retained as a scoped-negative F6 realization. | Its exact fixed-radius tetrahedral edge-partition history is continuously noncoincident and passes the declared simple-root screens but fails the measured member-acceleration residual. Magnitude-only, phase-grid, simple-shell, and stationary-anchor repairs are exhausted in the declared screens. | A materially different direction-bearing path or member inventory must close a new exact chart and pass the local residual screen before readmission; rescaling the rejected history is insufficient. |
 | `B1.4` | Deprecated control; not an active candidate. | The all-axial B1 limit has zero transverse internal motion. | None under the unchanged all-axial definition. Preserve its stable identifiers, records, tests, and hashes for historical reproducibility. |
 
 ## Accessory-Bearing Continuations
