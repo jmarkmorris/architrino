@@ -35,23 +35,20 @@ These categories overlap in practice. Their purpose here is not to impose a new 
 
 ## The Actual Domain Structure
 
-The following first-pass inventory is illustrative rather than exhaustive. It records why the phrase “general relativity plus quantum theory” understates the number and variety of handoffs that a fully unified account must explain.
+The illustrative domain inventory has been replaced by the source-backed [Evidence-Backed Bridge Matrix](evidence-backed-bridge-matrix.md). Its first eight certificates audit edges rather than merely naming nodes, because a list of theories cannot show what actually passes between them.
 
-| Domain or description | Principal effective objects | Typical parent or neighbor | Bridge character | Open unification question |
+| Bridge | Source description | Target description | Established authority | Reverse-reading limit |
 | --- | --- | --- | --- | --- |
-| Classical mechanics | trajectories, inertial parameters, potentials | relativistic and quantum descriptions | controlled slow-speed, weak-field, or semiclassical limits in declared systems | Which physical histories select classical states and stable parameters? |
-| Quantum mechanics | states, operators, amplitudes, Born probabilities | quantum field theory, classical records, statistical mechanics | exact formal embeddings in some directions; decoherence, measurement, and classical-record emergence remain distinct burdens | How do definite apparatus records and their probabilities arise from one physical history? |
-| Quantum field theories | fields, operators, excitations, couplings, effective actions | particle phenomenology, nuclear theory, statistical field theory | renormalization, matching, perturbation theory, lattice methods, and nonperturbative approximations | What physical carrier produces the field and particle record across regimes? |
-| Standard Model | gauge sectors, representations, masses, mixing parameters, reaction channels | low-energy interaction theories and particle data | gauge structure, symmetry breaking, running couplings, and effective matching | Why this group, representation inventory, parameter set, and channel structure? |
-| Hadronic and nuclear theories | hadrons, nuclei, residual interactions, collective modes | QCD, chiral theories, shell and density-functional models | lattice calculations, effective expansions, fitted interactions, and many-body approximations | How does one quark/gluon description become stable nuclear structure without private ontology or fitting? |
-| Atomic and molecular physics | orbitals, spectra, bonds, molecular surfaces | quantum electrodynamics and many-body quantum mechanics | perturbative corrections, Born-Oppenheimer separation, quantum chemistry, and fitted functionals | Which approximations are controlled projections and which import independent empirical closure? |
-| Statistical mechanics and thermodynamics | ensembles, entropy, temperature, transport coefficients | microscopic dynamics, kinetic theory, hydrodynamics | coarse-graining, limit theorems, typicality arguments, constitutive closure, and empirical transport | How do irreversible records and state variables arise from the same microscopic history? |
-| Continuum and material theories | density, stress, strain, viscosity, conductivity, equations of state | molecular and statistical descriptions | constitutive laws, homogenization, response theory, and calibration | Which response laws are derived, which are measured, and which are fitted by domain? |
-| General relativity | effective metric, curvature, geodesics, stress-energy | Newtonian gravity, relativistic matter, cosmology | weak-field and slow-motion limits, exact solutions, perturbative expansions, and effective matter models | What common physical state supplies metric behavior and matter response? |
-| Cosmological models | scale factor, component densities, perturbations, transfer functions | general relativity, field theory, nuclear and plasma physics, observational pipelines | symmetry reduction, parameter fitting, transfer functions, and multi-stage inference | Can one source and transport history generate all cosmological observables without changing ontology between stages? |
-| Quantum fields on curved backgrounds | fields and quantum states on a prescribed effective geometry | quantum field theory and general relativity | semiclassical approximation with controlled uses and known conceptual limits | What replaces the split between quantum matter and classical background? |
+| B1 | electroweak Standard Model | Fermi four-fermion theory | controlled low-energy matching | $G_F$ alone does not reconstruct the resolved weak sector |
+| B2 | relativistic QED | NRQED and nonrelativistic bound states | matched effective expansion | a finite Wilson-coefficient set does not select one ultraviolet completion |
+| B3 | QCD | chiral nuclear EFT | symmetry-constrained power counting with matched or fitted low-energy constants | nuclear data do not uniquely recover quark-gluon histories |
+| B4 | Boltzmann kinetic theory | hydrodynamics | rigorous or asymptotic limit in declared regimes plus constitutive closure | fluid fields represent many distributions and microhistories |
+| B5 | unitary system-apparatus-environment dynamics | decohered apparatus description and definite-record interface | exact reduced-state map and model-dependent decoherence; outcome handoff unresolved | the reduced state neither fixes the global state nor selects one outcome by itself |
+| B6 | general relativity | Newtonian and post-Newtonian gravity | controlled weak-field and slow-motion expansion | finite-order motion does not fix the full metric or source interior |
+| B7 | relativistic cosmological model and matter inputs | CMB spectra and parameter posterior | numerical transfer plus model-conditional statistical inference | posterior degeneracy and priors prevent unique source-history reconstruction |
+| B8 | quantum fields on curved spacetime plus classical gravity | semiclassical or stochastic gravity and the quantum-gravity interface | controlled semiclassical approximation in restricted regimes; full handoff unresolved | mean and noise records do not reconstruct quantum geometry |
 
-Plainly: many rows have real and powerful bridges. The unresolved issue is not whether the rows communicate, but whether every required handoff descends from one physical state or whether some handoffs are supplied independently because they work in their own domains.
+Plainly: many islands have real and powerful connections. The matrix makes the narrower unresolved issue visible: a reliable forward bridge can coexist with a non-unique reverse reconstruction, and an intermediate bridge can be successful without reaching full common-history closure.
 
 ## Bridges Have Unequal Authority
 
@@ -99,6 +96,19 @@ $$
 where $\mathcal{D}_i$ and $\mathcal{D}_j$ are the source and target state domains, $M_{j\leftarrow i}$ is the bridge map, $\mathcal{R}_{ij}$ is its validity regime, $\epsilon_{ij}$ is its declared error or residual bound, $\mathcal{I}_{ij}$ is the information preserved, $\mathcal{L}_{ij}$ is the information discarded or left unresolved, and $\mathcal{F}_{ij}$ is an operator-checkable failure condition.
 
 Plainly: a line between two theories is not enough. The bridge must say what is being translated, where the translation works, how accurately it works, what survives, what disappears, and what observation would show that the bridge has failed.
+
+The reverse direction is generally a compatibility fiber rather than an inverse function. For an effective record $y\in\mathcal D_j$, define
+
+$$
+\mathfrak F_{i\mid y}^{(\epsilon)}
+=
+\left\{
+x\in\mathcal D_i:
+d_j\!\left(M_{j\leftarrow i}(x),y\right)\leq\epsilon_{ij}
+\right\}.
+$$
+
+Plainly: the effective record may exclude many possible fine histories without identifying one. This is why the [full bridge certificates](evidence-backed-bridge-matrix.md#bidirectional-certificate) record both the controlled reduction and the ambiguity of lifting the result back toward the source theory.
 
 Graph connectivity is not full unification. A common-source theory requires one physical history space $\mathcal{H}$ and projections
 
@@ -215,20 +225,11 @@ That commitment is not evidence that the recovery has been achieved. It increase
 
 The first mathematical artifact for this document is therefore the theory-domain bridge matrix, not a declaration of victory. Each row must name a tested domain, the description currently used, the bridge to its neighbors, the bridge's authority, the information it preserves and discards, the proposed common-history projection, and the result that would falsify that projection.
 
-## Draft Evidence Program
+## First Evidence Pass
 
-The next development pass should replace the illustrative inventory with an evidence-backed matrix. It should begin with a small set of bridges that span the range from strong derivation to open handoff:
+The [first eight-row evidence matrix](evidence-backed-bridge-matrix.md) now spans controlled effective matching, asymptotic reduction, statistical and constitutive closure, inverse inference, and unresolved handoffs. Each row names a primary or authoritative technical source, the map and its regime, residual authority, preserved and discarded information, parameter provenance, reverse fiber, common-history target, scientific owner, and falsifier.
 
-1. electroweak theory to Fermi's low-energy interaction;
-2. quantum electrodynamics to nonrelativistic atomic theory and precision corrections;
-3. QCD to hadronic and nuclear descriptions;
-4. microscopic dynamics to statistical mechanics and hydrodynamics;
-5. quantum dynamics to stable classical apparatus records;
-6. general relativity to Newtonian and post-Newtonian limits;
-7. general relativity plus matter models to cosmological parameter inference;
-8. quantum field theory on curved backgrounds to the unresolved quantum-gravity interface.
-
-For each case, the evidence pass should identify a primary or authoritative technical source, state the exact theorem or approximation used, declare its assumptions and error control, and separate what the bridge proves from what remains supplied phenomenologically.
+Three results govern the wider argument. First, forward predictive control and reverse reconstructability must be assessed separately. Second, a single bridge may mix derivation, numerical transport, calibration, nuisance modeling, and measured inputs, so its fields require separate claim grades. Third, the network cannot be represented by one scale axis: logarithmic zooming describes several important bridges, but record selection, weak-field reduction, statistical inversion, and the classical-quantum geometry interface have different structures.
 
 ## Document Ownership and Relocation Plan
 
@@ -242,6 +243,6 @@ The detailed provisional syntheses now live in this lane's [brainstorming file](
 
 ## Current Completion Boundary
 
-This first draft establishes the thesis, fairness boundaries, bridge taxonomy, common-source diagram, gauge and scale examples, initial domain inventory, and relocation plan. It does not yet provide an exhaustive history of effective-theory practice, an authoritative bridge matrix, or evidence that every listed handoff is incomplete. Those are the next research burdens.
+This draft now establishes the thesis, fairness boundaries, bridge taxonomy, common-source diagram, gauge and scale examples, first evidence-backed network, and relocation plan. It does not provide an exhaustive history of effective-theory practice, a catalog of every domain, or evidence that every handoff is incomplete. The representative matrix instead shows, case by case, which bridge components are controlled and which common-history burdens remain open.
 
-**Next artifact:** complete the first eight-row evidence-backed theory-domain bridge matrix, beginning with the electroweak-to-Fermi and QCD-to-nuclear cases because they display two very different strengths of cross-domain connection.
+**Next artifact:** complete ONMT-002, the section-level Weyl ownership split packet, using the evidence-backed matrix as the destination test for the broader scale and cross-domain material.

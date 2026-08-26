@@ -28,10 +28,10 @@ Plainly: the slogan presents two continents to be joined by one bridge. Actual p
 - **Proof burden:** inventory the empirically indispensable domains, classify each bridge as exact, asymptotic, renormalization-group, statistical, constitutive, phenomenological, or absent, and identify whether one retained substrate record supplies both sides of every required handoff.
 - **Falsifier:** the criticism is overstated if the supposedly independent domains already follow through explicit controlled maps from one common physical state space with no private constants, carrier substitutions, or phenomenological insertions.
 - **Promotion target:** the prospective reader-facing `one-nature-many-theories.md` chapter after the bridge inventory is source-backed.
-- **Next artifact:** complete [ONMT-001](work-queue.md#onmt-001--evidence-backed-bridge-matrix).
+- **Next artifact:** use the completed [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md) to complete [ONMT-002](work-queue.md#onmt-002--weyl-ownership-split-packet).
 
 ## Additional Lines of Inquiry
 
-- **[inferred] Bridge path dependence.** If two routes through the theory graph produce inequivalent target records beyond declared tolerances, at least one bridge is incomplete or the intermediate descriptions do not share the proposed common state. First artifact: evaluate the composition residual already defined in the working draft on one three-level case.
-- **[guessed] Hidden-retuning test.** A cross-domain account is not unified when each projection privately refits parameters to its own target data. First artifact: add parameter provenance and consumed-data columns to the bridge matrix.
+- **[inferred] Bridge path dependence.** If two routes through the theory graph produce inequivalent target records beyond declared tolerances, at least one bridge is incomplete or the intermediate descriptions do not share the proposed common state. The [path-consistency residual](evidence-backed-bridge-matrix.md#path-consistency-test) is now defined; the next artifact is one evaluated atomic/nuclear chain with a fixed parameter ledger.
+- **[guessed] Hidden-retuning test.** A cross-domain account is not unified when each projection privately refits parameters to its own target data. The first matrix now records parameter and consumed-data provenance for every bridge; the next test is whether two routes can share those inputs without route-specific refitting.
 - **[closure target] Emergent autonomy.** Full theory closure must explain why higher-level laws are stable and useful without requiring microscopic recalculation of every event. First artifact: identify one domain in which universality or a controlled limit establishes autonomy while preserving common-history provenance.

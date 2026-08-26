@@ -12,7 +12,7 @@ Develop an evidence-backed account of physics as one natural world represented b
 
 ## Current
 
-The [working draft](one-nature-many-theories.md) establishes the central thesis, domain inventory, bridge taxonomy, common-history projection criterion, gauge and scale examples, fairness boundaries, and a relocation plan. The first-pass inventory is illustrative rather than source-complete. No reader-facing corpus promotion, global priority rank, or new $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery claim follows from the lane's creation.
+The [working draft](one-nature-many-theories.md) establishes the central thesis, bridge taxonomy, common-history projection criterion, gauge and scale examples, fairness boundaries, and relocation plan. The completed [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md) adds eight bidirectional certificates spanning controlled effective matching, asymptotic reduction, statistical and constitutive closure, inverse inference, and unresolved handoffs. It records the reverse direction as a compatibility fiber rather than implying unique reconstruction. No reader-facing corpus promotion, global priority rank, or new $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery claim follows from this evidence pass.
 
 ## Scope
 
@@ -34,12 +34,13 @@ The locally ordered evidence, ownership, and promotion tasks live in [work-queue
 ## Supporting Files
 
 - [One Nature, Many Theories](one-nature-many-theories.md) — focused working draft and mathematical nucleus.
+- [Evidence-Backed Bridge Matrix](evidence-backed-bridge-matrix.md) — completed first-pass network and eight bidirectional bridge certificates.
 - [Brainstorming](brainstorming.md) — provisional insights, assumptions, proof burdens, and promotion candidates.
 - [Work log](work-log.md) — chronological ownership and validation record.
 
 ## Promotion Surface
 
-The provisional corpus destination is `content/markdown/aaa/philosophy-history/one-nature-many-theories.md`. Promotion requires the evidence-backed bridge matrix, primary or authoritative sources for the representative cases, and an explicit section-level split plan for the current Weyl episode. Until those conditions are met, this directory remains the sole owner of the wider draft.
+The provisional corpus destination is `content/markdown/aaa/philosophy-history/one-nature-many-theories.md`. The evidence-backed matrix and representative technical sources are now present. Promotion still requires the explicit section-level split plan for the current Weyl episode and the reader-facing promotion review. Until those conditions are met, this directory remains the sole owner of the wider draft.
 
 ## Related Owners
 

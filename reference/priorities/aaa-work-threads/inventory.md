@@ -65,7 +65,7 @@ These rows multiply several owners and therefore retain their own numeric attent
 
 | Directory | Local rank-1 object | Present role and ownership boundary | Admission rule |
 | --- | --- | --- | --- |
-| [`one-nature-many-theories`](../one-nature-many-theories/priorities.md) | `evidence_backed_bridge_matrix` | Owns the cross-domain theory-and-bridge audit, the wider Weyl/scale synthesis, and the prospective reader-facing essay; scientific mechanisms remain with their domain owners. | Remains unranked until its first evidence object is scored and inserted through a complete unified-table rerank. |
+| [`one-nature-many-theories`](../one-nature-many-theories/priorities.md) | `weyl_ownership_split_packet` | Owns the cross-domain theory-and-bridge audit, the wider Weyl/scale synthesis, and the prospective reader-facing essay; scientific mechanisms remain with their domain owners. Its first eight-row evidence object is complete. | Remains unranked until its current local winner is scored and inserted through a complete unified-table rerank. |
 
 ## Dormant-Deferred Archive
 
