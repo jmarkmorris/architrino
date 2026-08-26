@@ -119,6 +119,15 @@ This campaign establishes no retention, stability, equilibrium, binding, particl
 
 ## Reproduction and validation
 
-The campaign used normalized $c_f=1$ in every new calculation. Static ruler checks used the existing five-coordinate initializer and direct F6c closed-form geometry; no EOM campaign was run. The five-coordinate geometry tests passed 7/7. The score packet was independently reconstructed from raw values. Repository validation is recorded in the shared-owner closeout after integration.
+The campaign used normalized $c_f=1$ in every new calculation. Static ruler checks used the existing five-coordinate initializer and direct F6c closed-form geometry; no EOM campaign was run. The score packet was independently reconstructed from raw values.
+
+- `git diff --check`: passed.
+- `node scripts/validate-content.mjs --check --strict`: passed with 0 errors and 0 warnings.
+- `node --test tests/three-binary-five-coordinate-initialization-ledger.test.js`: passed 7/7.
+- `node scripts/build-agent-startup-orientation.mjs --check`: current.
+- Candidate coverage audit: 30 score identities and 30 disposition identities, with no missing or extra row.
+- `node scripts/check-content-integrity.mjs`: canonical content validation passed, then the generated-manifest phase stopped because `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md` are out of date. This campaign did not run a generated write. The owning repair command is `node scripts/build-scene-graph.mjs --write --strict`, followed by the corresponding check.
+
+Plainly: the campaign-owned source files pass their checks. The only incomplete repository-wide receipt is known generated Textbook TOC drift outside this campaign's write authority.
 
 Closure goal: bind one current candidate identity to its exact next unblocking artifact, with any future `M07`--`M13` value predeclared under the accepted common ruler/clock and exact-action reporting boundary.

@@ -264,4 +264,4 @@ This first pass satisfies ONMT-001's eight-certificate acceptance condition. Eve
 
 The matrix remains representative rather than exhaustive. It does not yet include chemistry and Born-Oppenheimer reduction, condensed-matter universality, thermodynamic irreversibility as a separate certificate, plasma physics, material constitutive laws, detector engineering, or the full reaction network. Adding those rows should be driven by a specific historical or closure claim, not by a goal of cataloging every useful theory.
 
-**Next object:** ONMT-002 should use this file as the independent destination test when assigning the Weyl episode's renormalization, effective-theory, scale, information-loss, and constituent-continuity material to this lane.
+**Next object:** ONMT-002 used this file as the independent destination test and is complete. ONMT-003 should use both this matrix and the [Weyl ownership split packet](weyl-ownership-split-packet.md) during the reader-facing promotion review.

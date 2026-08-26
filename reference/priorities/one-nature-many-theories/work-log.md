@@ -4,6 +4,14 @@ This file records dated ownership changes, evidence passes, review decisions, va
 
 ## Log Entries
 
+### 2026-08-26 — ONMT-002 Weyl ownership split packet completed
+
+- Resolved the live lane and reader-facing Weyl episode after checking for concurrent reorganization; both remained at their established paths.
+- Created the focused [Weyl Ownership Split Packet](weyl-ownership-split-packet.md) against the exact current line-314-through-line-440 source slice and recorded its SHA-256 drift guard.
+- Assigned every paragraph, six display-equation groups, and twelve external sources to the focused historical episode, prospective network chapter, or scientific gauge owners.
+- Drafted replacement transitions and gauge-specific closing prose, reconciled the scale fiber with the network chapter's existing compatibility-fiber notation, and specified an atomic ONMT-003 execution order.
+- Removed ONMT-002 from the live queue and advanced ONMT-003 to local rank 1. No reader-facing corpus prose, generated artifact, priority rank, or $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery status changed.
+
 ### 2026-08-26 — ONMT-001 evidence-backed bridge matrix completed
 
 - Replaced the illustrative inventory in the working draft with an eight-edge source-backed network summary and created the focused [Evidence-Backed Bridge Matrix](evidence-backed-bridge-matrix.md).
