@@ -1,14 +1,11 @@
-# App UI Guidelines Brainstorming
+# App UI Guidelines Concept Synthesis
 
-This file preserves provisional ideas, interface sketches, comparison notes, and draft app-facing guidance for the `app-ui-guidelines` priority area.
+This document retains provisional cross-app interface guidance that is not an accepted standard or migration task. Reader-facing canon remains in the Archie UI guides, accepted work belongs in [work-queue.md](work-queue.md), and stable detailed standards belong in focused sibling files.
 
-## Routing Rules
+## Routing Boundary
 
-- Keep loose app UI ideas here until they have a concrete implementation target, claim level, and owner.
-- Promote a selected task or migration item into [work-queue.md](work-queue.md); route standards and document/app destinations through [priorities.md](priorities.md).
-- Keep reader-facing canon in [../../../content/markdown/aaa/archie/ui-guidelines.md](../../../content/markdown/aaa/archie/ui-guidelines.md) and [../../../content/markdown/aaa/archie/navigation-and-controls.md](../../../content/markdown/aaa/archie/navigation-and-controls.md).
-- Keep detailed accepted standards in focused sibling files when their structure deserves more than a dated log entry.
+Interface guidance advances only when it has a concrete app class, user need, accessible interaction contract, implementation owner, and validation route. Local visual preference alone does not establish a suite-wide standard.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-No loose app UI guideline ideas have been moved here yet.
+- None currently recorded.

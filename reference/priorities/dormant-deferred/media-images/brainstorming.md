@@ -1,13 +1,11 @@
-# Media Images Brainstorming
+# Image-Format Media Synthesis
 
-This file preserves image-format ideas and insights before they have a concrete production target, claim level, and owner.
+This synthesis reserves a low-priority location for provisional image concepts, explanatory diagrams, prompt notes, visual references, and publication ideas. It is not an active production lane.
 
-## Routing Rules
+## Production Boundary
 
-- Keep loose image concepts, diagrams, prompt notes, visual references, and publication notes here until they become a queue item, working note, or production packet.
-- Promote only selected material into a dedicated media-images control file if the bucket becomes an active media lane.
-- Keep theory claims downstream of accepted corpus and validation material.
+An image concept becomes eligible for a focused brief only after it has an audience, a claim level, a production target, an owner, and a testable acceptance condition. Diagrams may clarify accepted relationships but cannot supply missing theory evidence or elevate speculative content.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-No loose media-images ideas have been promoted into this bucket yet.
+- None currently recorded.

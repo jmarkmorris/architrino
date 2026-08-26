@@ -1,13 +1,15 @@
-# Media Videos Brainstorming
+# Video-Media Conceptual Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis reserves space for provisional video concepts beyond the selected prototype, character, script, quality-control, asset, and platform work already owned by focused sibling documents.
 
-## Routing Rules
+## Established Ownership
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote material into the control file only when it becomes a queue item, proof route, app task, or document/app destination.
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The first prototype decision stack belongs in [first-prototype-priorities.md](first-prototype-priorities.md), character continuity belongs in [character-development.md](character-development.md), and stable production requirements belong in [videos-requirements.md](videos-requirements.md). Their accepted lifecycle remains in [priorities.md](priorities.md).
 
-## Ideas And Insights
+## Promotion Boundary
 
-- No loose ideas have been moved here yet.
+A new video concept requires a reviewed factual source, explicit claim level, audience, platform profile, asset provenance, quality-control rule, and publication owner. Media polish cannot substitute for theory validation.
+
+## Unresolved Ideas
+
+- None currently recorded.

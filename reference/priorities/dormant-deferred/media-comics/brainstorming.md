@@ -1,13 +1,11 @@
-# Media Comics Brainstorming
+# Comic-Format Media Synthesis
 
-This file preserves comic-format ideas and insights before they have a concrete production target, claim level, and owner.
+This synthesis reserves a low-priority location for provisional comic concepts, panel structures, visual beats, and publication ideas. It is not an active production lane.
 
-## Routing Rules
+## Production Boundary
 
-- Keep loose comic concepts, panel ideas, visual beats, and publication notes here until they become a queue item, working note, or production packet.
-- Promote only selected material into a dedicated media-comics control file if the bucket becomes an active media lane.
-- Keep theory claims downstream of accepted corpus and validation material.
+A comic concept becomes eligible for a focused brief only after it has an audience, a claim level, a production target, an owner, and a testable acceptance condition. Theory content remains downstream of accepted corpus and validation material, and visual humor cannot strengthen the underlying claim.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-No loose media-comics ideas have been promoted into this bucket yet.
+- None currently recorded.

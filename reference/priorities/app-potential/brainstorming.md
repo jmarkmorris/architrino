@@ -1,14 +1,11 @@
-# Potential App Brainstorming
+# Potential App Concept Synthesis
 
-This file preserves ideas working toward promotion into the Potential app. Shared path, interchange, codec, compute, and cross-application service ideas belong to [AAA Core](../app-aaa-core/brainstorming.md).
+This document retains provisional Potential app concepts that are not accepted tasks. Shared interchange, codec, compute, and service ideas belong to [AAA Core](../app-aaa-core/brainstorming.md); Potential-specific observables and interactions remain here until accepted.
 
-## Routing Rules
+## Routing Boundary
 
-- Keep app-specific display and interaction ideas here.
-- Route suite-wide interchange and shared-library ideas to [AAA Core](../app-aaa-core/brainstorming.md).
-- Promote a testable app task into [work-queue.md](work-queue.md) and remove the promoted item here in the same edit.
-- Preserve imported experimental evidence at observer level unless an explicit mapping grants another role.
+Accepted implementation work belongs in [work-queue.md](work-queue.md), stable product requirements belong in [requirements-and-design.md](requirements-and-design.md), and imported experimental evidence remains observer-level unless an explicit mapping grants another role.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-- No loose app-specific ideas are currently staged. The initial suite-wide ideas moved to [AAA Core brainstorming](../app-aaa-core/brainstorming.md) when that owner was accepted on 2026-08-02.
+- None currently recorded.

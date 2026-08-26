@@ -1,13 +1,11 @@
-# App Photon Brainstorming
+# Photon App Concept Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This document retains provisional Photon app concepts that are not accepted tasks. Photon remains a visualization and analysis consumer of declared histories and photon-closure records; it does not establish photon ontology or branch retention.
 
-## Routing Rules
+## Routing Boundary
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+Accepted work belongs in [work-queue.md](work-queue.md), strategy and promotion routing belong in [priorities.md](priorities.md), and scientific photon claims remain with their owning theory packets.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-- No loose ideas have been moved here yet.
+- None currently recorded.

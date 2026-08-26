@@ -16,7 +16,7 @@ The strongest live starting point is the Braid Program's priority-side proposal 
 
 This lane owns the cross-lane categorical vocabulary, type boundaries, comparison map, and prospective recovery-functor program. It does not duplicate the Braid Program's executable atlas work, decide that any proposed category is physically realized, or grant retention, stability, particle identity, quantum closure, effective-metric closure, or Standard Model closure.
 
-No substrate-to-observer recovery functor is currently derived. Causal-incidence, lawful-history-extension, braid-category, monoidal-assembly, and higher-category formulations remain provisional candidates until their composition laws and physical carriers are specified and tested.
+No substrate-to-observer recovery functor is currently derived. Causal-incidence, lawful-history-extension, reaction-process, braid-category, monoidal-assembly, and higher-category formulations remain provisional candidates until their composition laws and physical carriers are specified and tested. The reaction ledger's polarity-preserving identity-routing bijection $\Pi_{\mathsf e}$ supplies native generating data for a candidate reaction category, but event-level routing does not yet prove lawful history composition, associativity, or an effective recovery functor.
 
 ## Continuous Discussion Capture
 
@@ -55,6 +55,7 @@ The accepted task order, dependencies, acceptance boundaries, and completion con
 | Causal-incidence category | Organize emission events, reception events, and certified causal-root hits without treating graph paths as new dynamics. | Master Equation and causal-root owners remain authoritative for hit legality and acceleration. | Speculation. |
 | Lawful-history-extension category | Treat complete boundary-history fibers as objects and lawful Master-Equation extensions as morphisms. | Master-equation closure and EOM solver contracts own well-posedness and executable evolution. | Derivation/closure target. |
 | Recovery functors | Express substrate-to-assembly, assembly-to-medium, and medium-to-observer mappings with compositional residuals. | Existing quantum, Standard Model, mapping-equation, Lorentz/effective-metric, and Noether sea owners retain physical closure. | Derivation/closure target. |
+| Reaction/process category | Organize assembly/environment repartition, lawful event histories, polarity-preserving identity routing, inventory factorization, and effective particle-number appearance. | `CT-004` and `CT-005` own categorical composition/recovery obligations; reaction-ledger and reaction-mode owners retain physical channel closure. | Derivation/closure target. |
 | Braid, assembly, monoidal, or higher categories | Test whether retained topology or assembly composition supplies a proved categorical product or higher morphism. | Braid, assembly, reaction, and topology owners retain the physical carrier and certification burden. | Speculation. |
 
 Plainly: this lane can describe and test how already-declared physical records relate; it cannot manufacture the records or their dynamics.

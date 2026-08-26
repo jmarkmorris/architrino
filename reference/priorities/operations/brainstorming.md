@@ -1,13 +1,15 @@
-# Operations Brainstorming
+# Operations Conceptual Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis reserves space for provisional operational ideas concerning deployment, reliability, cost, performance, security, support, and public release. It is not a theory or solver-design lane.
 
-## Routing Rules
+## Established Ownership
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+Hosting assumptions, measured budget classes, release criteria, browser performance, artifact retention, observability, rollback, route ownership, dependency review, and feedback intake already have accepted task records in [work-queue.md](work-queue.md). Static hosting costs, browser resources, and EOM solver throughput remain separate measurements.
 
-## Ideas And Insights
+## Advancement Boundary
 
-- No loose ideas have been moved here yet.
+An additional operations idea must name a measurable risk, affected public surface, owner, completion condition, and rollback behavior. Operational polish cannot create a second solver authority or change theory evidence.
+
+## Unresolved Ideas
+
+- None currently recorded.

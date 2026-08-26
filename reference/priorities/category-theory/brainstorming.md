@@ -20,6 +20,7 @@ This file preserves category-theory explanations, comparison structures, provisi
 | Complete-history symmetry, finite-history certification, causal incidence, lawful history extension, recovery, braid, assembly, monoidal, operadic, and higher-category candidates | [Candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ Structures](#candidate-mathbbamathbbamathbba-structures) |
 | Reaction states, provenance-preserving process morphisms, polarity-inventory functor, open-system source ports, and effective particle-number recovery | [Reaction/process category from identity routing](#7-reactionprocess-category-from-identity-routing) |
 | Path history as the organizing constraint on objects, composition, symmetry, approximation, conservation, and effective-state recovery | [Path History As The Organizing Categorical Constraint](#path-history-as-the-organizing-categorical-constraint-2026-08-25) |
+| Why an architrino speed ceiling at $c_f$ simplifies causal-root multiplicity without making the instantaneous Master Equation Markovian | [A speed ceiling does not remove delayed memory](#a-speed-ceiling-does-not-remove-delayed-memory) |
 | Controlled “fuzzing” of path-history detail through uncertainty, finite truncation, or physical coarse-graining | [Controlled abstraction of path-history detail](#controlled-abstraction-of-path-history-detail) |
 | Exact and effective symmetries, symmetric retained histories, coarse-grained equivalence, and mappings among existing theories—the “house of mirrors” | [Symmetry, Coarse-Graining, And The House Of Mirrors](#symmetry-coarse-graining-and-the-house-of-mirrors-2026-08-25) |
 | Long-term assessment that category theory is removable mapping scaffold unless it earns fundamental status, paired with a concrete interim organizational role | [Long-Term Assessment And Interim Use](#long-term-assessment-and-interim-use-2026-08-25) |
@@ -282,9 +283,7 @@ General-relativistic models can be organized as Lorentzian spacetimes with suita
 
 #### External comparison anchors
 
-- John C. Baez and Mike Stay, [Physics, Topology, Logic and Computation: A Rosetta Stone](https://arxiv.org/abs/0903.0340), for closed symmetric monoidal categories across quantum physics, topology, logic, and computation.
 - Samson Abramsky and Bob Coecke, [Categorical quantum mechanics](https://arxiv.org/abs/0808.1023), for the categorical quantum-process program.
-- John C. Baez and John Huerta, [The Algebra of Grand Unified Theories](https://arxiv.org/abs/0904.1556), for the representation-theoretic structure surrounding Standard Model and grand-unified multiplets.
 - Romeo Brunetti, Klaus Fredenhagen, and Rainer Verch, [The generally covariant locality principle](https://arxiv.org/abs/math-ph/0112041), for locally covariant quantum field theory as functors between spacetime and algebra categories.
 - Sarita Rosenstock, Thomas William Barrett, and James Owen Weatherall, [On Einstein Algebras and Relativistic Spacetimes](https://arxiv.org/abs/1506.00124), for categorical equivalence between formulations of general relativity.
 
@@ -473,13 +472,15 @@ Plainly: matching identity lists do not prove that two reactions join. The secon
 $$
 U:\mathscr{Rxn}\longrightarrow\mathbf{FinSet}^{\pm},
 \qquad
+U(\mathsf X)=(R,q|_R),
+\qquad
 U(\mathsf e)=\Pi_{\mathsf e},
 $$
 
-forgets assembly partition, branch, and environment structure while retaining the participating architrino identities and their polarities. A further inventory map
+forgets assembly partition, branch, and environment structure while retaining the participating architrino identities and their polarities. Let $\mathbf{Inv}^{\pm}$ be the discrete category on pairs of nonnegative polarity counts. A candidate counting functor $N:\mathbf{FinSet}^{\pm}\to\mathbf{Inv}^{\pm}$ sends an object to
 
 $$
-N(R)
+N(R,q|_R)
 =
 \left(
 \#\{a\in R:q_a=-\epsilon\},
@@ -487,7 +488,7 @@ N(R)
 \right)
 $$
 
-is invariant under every arrow in $\mathbf{FinSet}^{\pm}$. Therefore, if $\mathscr{Rxn}$ and $U$ are established on a closed domain, preservation of the polarity-inventory vector—and hence the corresponding signed electric-charge inventory under the accepted observer mapping—is a mathematical corollary of the routing bijection. This does not independently derive the fixed ontic inventory postulate or the observer-level charge map.
+and every polarity-preserving bijection to the identity on that pair. Therefore, if $\mathscr{Rxn}$ and $U$ are established on a closed domain, $N\circ U$ is constant along every reaction morphism. Preservation of the polarity-inventory vector—and hence the corresponding signed electric-charge inventory under the accepted observer mapping—is then a mathematical corollary of the routing bijection. This does not independently derive the fixed ontic inventory postulate or the observer-level charge map.
 
 Plainly: the functor keeps exactly which architrinos participate and which polarity each carries, but deliberately forgets how those architrinos are grouped into observer-facing particles. Count conservation then follows from bijectivity; the physical work remains in proving that the event record is closed and lawfully composable.
 
@@ -536,6 +537,57 @@ $$
 $$
 
 This is a proposed mathematical architecture, not a new substrate postulate. It follows the existing path-history ontology by asking what categorical objects and compositions can actually carry the records already required by the Master Equation.
+
+#### A speed ceiling does not remove delayed memory
+
+Adjusting the Master Equation so that architrino speed cannot exceed $c_f$ would not by itself make the law Markovian in the instantaneous variables $(\mathbf X(T),\mathbf V(T))$. The received acceleration would still be evaluated from past transmitter events selected by
+
+$$
+\left\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\right\|
+=
+c_f(T_r-T_t),
+\qquad
+T_t<T_r.
+$$
+
+Two admissible histories can therefore arrive at the same instantaneous positions and velocities while having different past transmitter positions, causal-root times, wake directions, or boundary-wake records. If those differences change the received acceleration, the instantaneous state does not determine the next update.
+
+Plainly: limiting how fast an architrino moves does not tell the receiver where that architrino was when the currently arriving wake was emitted.
+
+A **strict** sub-field-speed bound on the relevant transmitter interval does simplify the root structure. The canonical delay map is then strictly monotone, so a partner's retained causal-root set is generically a singleton rather than a folded multi-root family. Strict sub-field-speed motion on the entire emission-to-reception interval also forbids an ordinary noncoincident self-hit. These are substantial geometric simplifications, but a unique delayed root is still a function of the transmitter's past path. If the ceiling permits equality $\|\mathbf V\|=c_f$, the strict monotonicity floor can vanish and tangent or degenerate boundary cases remain.
+
+##### Strictly sub-field-speed case
+
+If every admissible architrino history satisfies $\|\mathbf V_i(T)\|<c_f$, not merely $\|\mathbf V_i(T)\|\le c_f$, then the present canonical geometry gives four sharper consequences:
+
+1. **No ordinary noncoincident self-hits:** a simple self-hit requires a super-field-speed interval somewhere between emission and reception, apart from the excluded tangent field-speed boundary case. A universal strict constraint therefore removes that entire self-hit mechanism from the admissible dynamics.
+2. **At most one retained partner root per monotone interval:** the transmitter delay map cannot fold while it remains strictly sub-field-speed, so partner interaction becomes single-root rather than multi-root on the declared interval.
+3. **The law remains delayed:** the unique root still selects $\mathbf X_t(T_t)$ and $\mathbf V_t(T_t)$ at $T_t<T_r$. Equal present positions and velocities do not reconstruct a generally accelerated transmitter's earlier path.
+4. **Strictness is not yet a uniform regularity margin:** the pointwise inequality can approach $c_f$ arbitrarily closely. A theorem needing a positive transversality bound must assume or derive a uniform gap such as $\|\mathbf V\|\le c_f-\delta$ with $\delta>0$ on the consumed history window.
+
+Plainly: universal sub-$c_f$ motion would make the Master Equation a simpler single-partner-hit delayed system, but it would still be a delayed system. It would also be a materially different theory because the current simple self-hit channel would be unavailable.
+
+A genuinely Markovian instantaneous reduction can occur on special restricted families—for example, an inertial segment whose entire relevant past is uniquely reconstructible from its present position and velocity—but that does not establish a general Markov property for interacting, accelerated histories. The general test remains whether two allowed histories sharing the same proposed present state can produce different next acceleration rows.
+
+There are two further history qualifications. First, imposing a ceiling only from some finite time onward does not erase wakes emitted during an earlier super-field-speed interval; those records can still arrive later. Second, a fundamental ceiling imposed on all admissible history would remove that particular super-field-speed self-hit memory source, but not ordinary delayed partner interaction or boundary-wake memory.
+
+The word **Markovian** is state-relative. The same delayed law can be written as a Markov evolution on an enlarged, generally infinite-dimensional history state
+
+$$
+\mathbf Y_T(\theta)=\mathbf Y(T+\theta),
+\qquad
+\theta\in[-h,0],
+$$
+
+together with the required causal-root, wake, branch, and boundary records. That does not make the law Markovian in the smaller instantaneous projection; it says the history segment has been promoted into the state itself. A genuinely finite-dimensional Markov reduction would require an additional closure theorem showing that a finite set of present variables reconstructs every delayed input consumed by the law.
+
+Plainly: the ceiling may turn “many possible past hits” into “one past hit,” but it does not turn that past hit into present information. Memory disappears only if the delayed wake law is replaced or if a sufficient finite state is independently proved.
+
+- **Claim level:** persistence of delayed history dependence under a speed ceiling is derived from the causal-root form of the Master Equation; existence of a finite-dimensional Markov reduction is an open closure target.
+- **Assumptions and proof burden:** specify whether the ceiling is strict or permits equality, whether a uniform gap below $c_f$ exists, whether it applies to the complete relevant history or only future continuation, how the boundary response enforces it, and which wake/branch records remain active; then test whether equal instantaneous projections always yield equal next accelerations and identify which current assembly mechanisms depended on self-hit.
+- **Falsifier:** prove that, on the declared speed-limited domain, every causal-root time, direction, acceleration contribution, and boundary-wake update is a single-valued function of a finite instantaneous state with no retained-history input.
+- **Promotion target:** `CT-001` and `CT-004` for history-state typing and lawful composition, with the field-speed-ceiling and Master Equation owners retaining authority over the constrained dynamics.
+- **Next artifact:** construct a matched pair of strictly sub-field-speed histories with identical $(\mathbf X(T),\mathbf V(T))$ but different earlier transmitter paths, then evaluate whether their next causal-root acceleration rows differ; this is the direct Markov-sufficiency counterexample test.
 
 #### History objects and lawful-extension arrows
 

@@ -1,13 +1,15 @@
-# 3x3 Brainstorming
+# Dormant 3x3 Concept Synthesis
 
-This file holds provisional ideas for reactivating, splitting, or promoting the deferred `3x3` binary-slot matrix note.
+This document retains provisional ideas for the parked 3x3 binary-slot matrix note. The packet remains dormant and is not an active theory or implementation lane.
 
-## Routing Rules
+## Existing Mathematical Owner
 
-- Keep loose ideas here until they name a target live priority workstream or corpus destination.
-- Do not use this file as an active task queue while the packet remains dormant.
-- Move selected work out of `dormant-deferred` before substantive theory advancement begins.
+The composition count, slot matrix, polarity inventory, charge relation, quark-template comparison, and open bridge to the ordered-axis construction already belong to [priorities.md](priorities.md). No large duplicate is retained here.
 
-## Ideas And Insights
+## Reactivation Boundary
 
-- No loose `3x3` reactivation ideas are staged here yet.
+Substantive work requires an explicit decision to move the selected object out of dormant status and into a live owning workstream. Editorial clarity alone does not reactivate the packet.
+
+## Unresolved Ideas
+
+- None currently recorded.

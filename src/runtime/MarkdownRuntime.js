@@ -1,4 +1,5 @@
 import { createMermaidMarkdownRuntime } from "./MermaidMarkdownRuntime.js";
+import { createMarkdownColumnPaginationRuntime } from "./MarkdownColumnPaginationRuntime.js";
 
 export function createMarkdownRuntime(deps) {
   const {
@@ -22,6 +23,12 @@ export function createMarkdownRuntime(deps) {
     markdownBody,
     mermaidRenderer,
     documentLike,
+  });
+  const columnPaginationRuntime = createMarkdownColumnPaginationRuntime({
+    markdownBody,
+    markdownContent,
+    documentLike,
+    eventSignal,
   });
 
   let activeMarkdownPath = null;
@@ -500,7 +507,11 @@ export function createMarkdownRuntime(deps) {
     if (version !== mathTypesetRetryVersion) {
       return;
     }
-    if (typesetMarkdown() || retriesRemaining <= 0) {
+    if (typesetMarkdown()) {
+      columnPaginationRuntime.scheduleRefresh();
+      return;
+    }
+    if (retriesRemaining <= 0) {
       return;
     }
     const browserWindow = getBrowserWindow();
@@ -528,6 +539,7 @@ export function createMarkdownRuntime(deps) {
       markdownContent.removeAttribute("aria-label");
     }
     if (markdownBody) {
+      columnPaginationRuntime.clear();
       markdownBody.innerHTML = "";
     }
     if (documentLike && previousDocumentTitle !== null) {
@@ -622,6 +634,7 @@ export function createMarkdownRuntime(deps) {
         ? "Switch to single column"
         : `Switch to ${markdownPreferredColumnCount}-column layout`
     );
+    columnPaginationRuntime.apply(resolvedCount);
   }
 
   function resetMarkdownScroll() {
@@ -757,6 +770,7 @@ export function createMarkdownRuntime(deps) {
       markdownTitle.textContent = level.markdownShowTitle === false ? "" : (level.name ?? "Notes");
     }
     if (markdownBody) {
+      columnPaginationRuntime.clear();
       markdownBody.innerHTML = html;
     }
     markdownPanel.classList.add("is-open");
@@ -779,11 +793,13 @@ export function createMarkdownRuntime(deps) {
     setMarkdownKind(markdownPath);
     decorateMarkdownImages();
     decorateLocalAssetLinks();
-    void mermaidRuntime.renderDiagrams();
-    applyMarkdownLayout();
-    typesetMarkdownWithRetry(startTypesetRetryCycle());
     decorateTextbookToc();
     decorateSupportResearch();
+    applyMarkdownLayout();
+    typesetMarkdownWithRetry(startTypesetRetryCycle());
+    void mermaidRuntime.renderDiagrams().then(() => {
+      columnPaginationRuntime.scheduleRefresh();
+    });
     resetMarkdownScroll();
     if (markdownContent && typeof markdownContent.focus === "function") {
       try {

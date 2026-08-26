@@ -1,11 +1,15 @@
-# Archie Brainstorming
+# Archie Conceptual Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis reserves space for provisional ideas concerning Archie as the public guide, question interface, and service surface for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-## Routing Rules
+## Established Ownership
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The assistant modes, source classes, answer contracts, interface design, deployment boundary, privacy controls, and service architecture already have focused owners listed in [priorities.md](priorities.md). Accepted implementation work and its dependencies remain in [work-queue.md](work-queue.md).
 
-## Ideas And Insights
+## Promotion Boundary
+
+Archie may explain only material authorized by its source and claim-level contracts. A polished response mode, interface concept, or service design cannot elevate priority-only material, replace a missing theory result, or bypass the platform's source, privacy, cost, and deployment gates.
+
+## Unresolved Ideas
+
+- None currently recorded.

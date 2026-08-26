@@ -1,70 +1,31 @@
-# Strong-Field Brainstorming
+# Strong-Field Geometry and Release Synthesis
 
-## Brainstorming Metadata
+This synthesis preserves priority-stage strong-field hypotheses without turning the watchlist into a proof queue. Accepted tasks, blockers, and completion boundaries remain in [work-queue.md](work-queue.md).
 
-- Kind: `brainstorming`
-- Parent: [strong-field-closure](priorities.md)
-- Status: `watchlist`
+## Horizon-Interface Geometry
 
-The accepted watchlist-maintenance tasks and their blockers live in [work-queue.md](work-queue.md). Discussion disposition remains operator option (a), 2026-07-11: the [scope decision](terminal-barrel-horizon-release-scope-decision.md) routes the all-rail barrel and horizon-interface alignment into separate priority-only theorem targets, retains `4:2:1` and dark-sector photon-like release as watchlists, and forbids horizon/light-ring identification by assumption.
+The horizon-interface problem must distinguish a retained boundary condition, a packed or aligned internal geometry, exterior effective-metric recovery, photon light-ring behavior, and release-channel accounting. An all-layer field-speed alignment or barrel geometry is a theorem target, not an identification of the event horizon.
 
-## Scope
+A viable solution must avoid zero-volume collapse, preserve complete member and wake provenance, and derive any throat, cylinder, rough radial layer, planar neck, or return to three-dimensional motion from one causal-history record. Horizon and photon-sphere coincidence may occur only on a derived branch.
 
-This is a sibling brainstorming file for [strong-field-closure](priorities.md). It exists to keep strong-field and three-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
+## Three-Binary and `4:2:1` Hypotheses
 
-This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [work-queue.md](work-queue.md), doubling-frequency-lock, or another active workstream.
+The `4:2:1` family remains a registry hypothesis. Candidate choices of baseline, maximum cadence, freeze-out reference, subtraction rule, self-hit ordering, or Planck alignment do not become physics through numerical resemblance. Reactivation requires an accepted reduced map or retained branch and at least one discriminating invariant consequence.
 
-## Routing Map
+## Dark-Sector Photon-Like Release
 
-| Watch item | Detailed source | Promotion target | Promotion gate |
-| --- | --- | --- | --- |
-| `keep_hypothesis_registry` | This file | [strong-field-closure](priorities.md) and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | A preserved hypothesis gains a concrete boundary condition, equation, simulation target, or observable before leaving the watchlist. |
-| `protect_421_model` | This file | doubling-frequency-lock, [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), or [planck-scale-nested-shell-braid-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md) | The `4:2:1` idea is rederived from a reduced-map, branch-ledger, or Planck-alignment result before being promoted beyond hypothesis status. |
-| `dark_sector_photon_like_modes` | [dark-sector-photon-like-mode](../dark-sector/dark-sector-photon-like-mode.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), and [cosmology-closure](../cosmology-closure/priorities.md) | [dark-sector](../dark-sector/priorities.md), [strong-field-closure](priorities.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), or [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | The hypothesis gains a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / thermalization / re-entry criterion, and at least one discriminating observable before being promoted beyond watchlist status. |
+A strong-field event may hypothetically release a photon-channel-adjacent mode that is initially weakly visible and later converts, thermalizes, or re-enters visible channels. The focused [dark-sector packet](../dark-sector/dark-sector-photon-like-mode.md) owns the assembly registry, transport hypotheses, CMB implications, and high-redshift compact-source controls.
 
-## Hypotheses To Preserve
+The hypothesis requires one source event ledger, a release-channel law, radiation Gate C, a medium-dependent transport or conversion rule, and a discriminating observable that survives ordinary AGN, dust, dense-gas, and star-formation explanations.
 
-- The three-binary may open up inside the black hole, with quadrupole resonance if a core pops early or late.
-- The event horizon may have rough radial depth rather than being a clean sphere.
-- There may be a brief neck to planar motion before returning to 3D motion.
-- The `4:2:1` model idea should be preserved even if it turns out to be wrong.
-- SMBH horizon interfaces may emit **dark-sector photon-like modes**: photon-channel-adjacent release modes that remain initially weakly visible, redshift through the Noether sea, and later thermalize, convert, or re-enter visible photon channels under specific medium conditions. This is a speculative release-channel hypothesis, not a settled dark-photon ontology.
+## Curvature and Retained History
 
-## Open Strong-Field Questions
+A maximal-curvature binary could prevent a singular continuation only if a self-consistent causal-history loop retains the assembly and closes boundary flux. Reversible trapping, persistent excitation, and radiative export are distinct outcomes. A scale ratio such as $\epsilon_{\mathrm{geo}}\sim\ell_{\mathrm{core}}/L_{\mathrm{curv}}$ is useful only after both lengths arise from the same accepted carrier.
 
-- Avoiding zero volume at the event horizon is still unresolved.
-- It is still unclear whether there is a viable exact solution at the horizon when all three binaries sit at $c_f$.
-- An alternative horizon geometry may look more like a throat or cylinder than a sphere.
-- There may be a nontrivial connection to Fermi-Dirac versus Pauli exclusion.
-- What threshold lets a dark-sector photon-like mode re-enter the visible photon channel after redshift or medium transport?
-- Could high-redshift compact red sources, including the Little Red Dot class now commonly compared with young AGN or dense SMBH cocoons, become a discriminating observable for dark-sector photon-like release without overriding ordinary AGN, dust, dense-gas, or star-forming explanations?
-- Does a maximal-curvature binary act as a singularity preventer by trapping energy in a self-consistent causal-history loop, and if so, which retained wake-history and boundary-flux rows distinguish reversible trapping from radiative export?
-- Does $\epsilon_{\text{geo}}\sim \ell_{\text{core}}/L_{\text{curv}}$ provide a useful strong-field routing variable, with $\epsilon_{\text{geo}}\ll1$ marking GR-like effective-metric recovery and $\epsilon_{\text{geo}}\sim1$ marking black-hole-core, sharp-gradient, or Planck-alignment deviations?
+## Assessment and Promotion Boundary
 
-## Dark-Sector Photon-Like Mode Detail
+Horizon boundary conditions, entropy, release channels, high-energy routing, terminal barrel geometry, `4:2:1`, and dark-sector photon-like modes already have accepted or preserved queue ownership. This synthesis neither reactivates them nor changes their claim level.
 
-The expanded dark-sector photon-like mode brainstorm, candidate assembly registry, redshift-triggered reaction ideas, CMB speculation, and Little Red Dot observational checklist now live in [dark-sector-photon-like-mode](../dark-sector/dark-sector-photon-like-mode.md). This file keeps only the strong-field watchlist pointer so the detailed packet has one main home.
+## Unresolved Ideas
 
-## `4:2:1` Hypothesis Variants To Keep
-
-- Maybe the zero on the `4:2:1` scale is wrong.
-- Maybe the correct baseline is the MCB frequency rather than `1` Hz.
-- Maybe the reference scale is $f_{\mathrm{MCB}}$, with $f_{\max}$, $f_{\max}/2$, $f_{\max}/4$, then subtracting `1`, `2`, `4` from there for each click.
-- Maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out.
-- Maybe nature wants $v = c_f$ and the Planck-scale juncture to define zero.
-- Maybe the internal radius can enter self-hit first as the three-binary rides the rail.
-- One gravity / MOND-style intuition may still be loosely tied to the inner binary crossing $c_f$, though that currently looks doubtful.
-
-## Related Priorities
-
-- [strong-field-closure](priorities.md)
-- [dark-sector](../dark-sector/priorities.md)
-- phenomenological-heuristics
-- [cosmology-closure](../cosmology-closure/priorities.md)
-
-## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
-
-- [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
-- [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md)
-- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics)
-- [noether-sea-pro-anti-coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md)
+- None currently recorded.

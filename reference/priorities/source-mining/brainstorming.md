@@ -1,13 +1,11 @@
-# Source Mining Brainstorming
+# Source-Mining Conceptual Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis reserves space for provisional source leads that do not yet have a selected acquisition, mining, or promotion target.
 
-## Routing Rules
+## Source Boundary
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+A lead becomes actionable only when it identifies an artifact, authority class, claim-level purpose, consumer, acquisition route, and disposition test. Accepted passes belong in the queue, source evidence belongs in focused packets, and dated outcomes belong in the mining history.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-No loose source-mining ideas are currently staged.
+- None currently recorded.

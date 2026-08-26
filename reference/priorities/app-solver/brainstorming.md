@@ -1,152 +1,38 @@
-# EOM Brainstorming
+# EOM Solver Concept Synthesis
 
-This file holds provisional feature ideas, performance directions, validation possibilities, and later-stage application concepts for EOM. Promote an item into [priorities.md](priorities.md) only when it has a concrete consumer, mathematical requirement, implementation target, or acceptance condition.
+This document synthesizes unaccepted numerical, performance, and consumer ideas for the EOM solver. The live evolution law and numerical obligations belong in the [evolution contract](contracts/evolution-contract-v1.md), accepted implementation work belongs in [work-queue.md](work-queue.md), and reusable instruments belong in the [attractor-search packet](campaigns/attractor-search-instrument.md).
 
-## Routing Rules
+## Numerical Control and Precision
 
-- Keep the defining evolution contract in [application-and-engine-contract.md](./contracts/application-and-engine-contract.md).
-- Keep the active queue in [work-queue.md](work-queue.md) and the strategic contract compact in [priorities.md](priorities.md).
-- Do not let performance, UI, storage, or visualization work outrank correct coupled Master EOM evolution and independent validation.
+The EOM solver requires event-aware time integration, explicit error budgets, retained-history sufficiency, root identity, reproducible convergence ladders, and bounded precision escalation. Fixed, adaptive, multirate, and event-focused methods are implementation candidates behind one contract; none gains authority from speed alone. A genuinely coarse-grained slow-sector law would be a separate model with its own validation envelope, not merely a larger timestep.
 
-## Feature Candidates
+Precision strategy begins with nondimensional charts and local origins, then escalates only the difficult roots, predicates, or reductions that require more arithmetic range. Checkpoints must preserve numeric representation, controller state, root identities, and pending escalations. Exhausted precision or event budgets produce a Verification incomplete outcome rather than silent continuation.
 
-### Numerical Control
+## History, Roots, and Restartability
 
-- Fixed, adaptive, and event-focused timestep modes.
-- Individual-path and grouped block-step multirate schedules spanning many orders of magnitude.
-- Power-of-two or otherwise exactly nested step bins as a candidate way to keep synchronization events reproducible.
-- A renormalization-inspired hierarchy in which slow sectors can be evaluated less frequently than fast sectors while their retained histories remain available at every required emission time.
-- A strict distinction between same-law coarse stepping and a genuinely coarse-grained slow-sector model; the latter needs its own validation envelope and claim limit.
-- Independent integration cadence, diagnostic cadence, checkpoint cadence, and output cadence.
-- Embedded error estimation, step rejection, rollback, and retry limits.
-- Root-event prediction so the engine can refine before a birth, death, fold, or same-transmitter onset rather than discovering it only after a large step.
-- Multiple integration methods behind one EOM contract for cross-integrator comparison; no method becomes authoritative merely because it is fastest.
-- Dense interpolation over accepted steps for output and root search, with interpolation error included in the budget.
-- A reproducible convergence-run mode that automatically executes a declared timestep and precision ladder.
+Every run must demonstrate adequate retained history before and during continuation. Accelerated root tracking may continue known branches, but periodic exhaustive scans remain necessary to detect missed births or additional roots. Active, inactive-gap, unresolved, caustic, and excluded-coincidence states remain distinct, and a restart must reproduce the integrator, controller, history, and active-root state exactly.
 
-### Precision Beyond Hardware
+## Performance Architecture
 
-- Nondimensionalized model charts and local coordinate/time origins to prevent scale range from consuming significant digits before the physics calculation begins.
-- Epoch-plus-offset absolute time so a very small local step remains representable during a long absolute-time run.
-- A measured precision ladder: binary64 bulk work; hardware extended precision where it is real and portable enough; software double-double, quad-double, expansions, or binary128-class arithmetic; arbitrary precision; and interval or ball certification.
-- Per-root and per-reduction escalation so a small irregular tail can use expensive arithmetic without forcing every ordered pair onto it.
-- Certified sign and ordering predicates around root activity, event order, transmitter-side-factor and receiver-side-factor factors, and branch transitions.
-- Compensated, pairwise, binned, or expansion reductions for many-source acceleration accumulation and reproducibility across worker counts.
-- Cross-precision shadow samples during long runs to measure whether the current fast path remains inside its declared envelope.
-- Precision-aware checkpointing that preserves representations, rounding policy, controller state, and pending escalations.
-- Explicit maximum-precision and maximum-escalation budgets with a result with a Verification incomplete outcome rather than an unbounded computation.
+Performance is measured as accepted simulated time per wall-clock time, including root difficulty, transfers, checkpointing, diagnostics, convergence, and reproducibility. CPU, GPU, mixed-precision, distributed, and hierarchical methods are candidates only after the same correctness and independent-reference boundaries close. At large path counts, certified exclusion or contribution enclosures may reduce work; any approximation must retain membership, root-topology, and conservative remainder certificates.
 
-### Language And Toolchain Candidates
+The mature far-field enclosure idea is owned by the implemented [Certified Far-Field Contribution Enclosure](contracts/far-field-contribution-enclosure.md) and its evidence packet. It is not duplicated here.
 
-- Benchmark a modern C++ native core because it offers direct memory control, mature CPU/SIMD tooling, broad accelerator ecosystems, and established multiprecision options; measure its safety and build-complexity costs rather than assuming them away.
-- Benchmark a Rust native core because it offers explicit ownership and concurrency safety with strong native performance; verify that required accelerator, SIMD, arbitrary-precision, interval, profiler, and cross-platform capabilities are mature enough for the exact EOM workload.
-- Benchmark a hybrid native architecture only where a clean boundary is measurable, such as one host language with separately compiled accelerator kernels or a dedicated precision service. Avoid duplicating mathematical kernels across languages without generated/shared definitions and cross-backend tests.
-- Consider modern Fortran, Julia, or another numerical environment for independent reference implementations and algorithm prototypes when useful. Do not make an interpreted or runtime-dynamic implementation the production hot path without end-to-end evidence that it meets the same performance, accelerator, precision, deployment, and reproducibility requirements.
-- Keep JavaScript or TypeScript in a thin application shell if useful for the existing app environment. Do not put production root solving, Master EOM evaluation, integration, or precision certification there.
-- Evaluate CUDA, HIP, SYCL, Metal, and other accelerator routes by target hardware coverage, precision capability, deterministic behavior, tooling, maintenance burden, and measured EOM throughput; do not select an accelerator API independently of the host-language decision.
-- Score candidate stacks on accepted simulated time per wall-clock time, not only arithmetic throughput: include difficult-row escalation, transfers, branch divergence, checkpointing, diagnostics, build time, portability, testability, and long-term maintainability.
+## Consumer and Migration Boundary
 
-### History And Root Handling
+Headless batch execution is the first reference surface. Monitoring, pause/resume, dry-run resource estimates, run comparison, compact export, and application playback consume accepted solver records without changing their authority. Animator, Photon, Borg, and braid applications may use EOM histories only after their initial-history and branch-closure conditions are defined without prescribing the desired future path.
 
-- Per-path retained-history sufficiency checks before the run starts and during continuation.
-- Hot-history windows selected from actual causal reach, with behavior for a Not advanced disposition when an omitted tail may contribute.
-- Root identity continuation between steps to reduce search cost without hiding births or missing additional roots.
-- Exhaustive fallback scans that periodically verify accelerated/indexed root search.
-- Separate active, inactive-gap, unresolved, caustic, and excluded-coincidence rows.
-- History interpolation methods chosen per precision path and recorded in provenance.
-- Exact restart of active root identities and integrator/controller state from checkpoints.
+## Unresolved Ideas
 
-### Candidate Assembly Formation
-
-- **First measurement target:** record the four-path separation matrix across $T$, assign the minimum-cost opposite-polarity pairing at each frame, and report pair swaps, each pair's separation band and relative speed, the ratio of within-pair to between-pair separation, and persistence duration. Repeat over declared seeds and timestep/sample ladders. The candidate fails if pair identity repeatedly swaps, within-pair separation grows without bound, the separation gap disappears, or the behavior vanishes under refinement.
-- **Promotion route:** a Display-grade run can nominate the geometry and measurement window. Assembly status requires an EOM-evolved claim-grade record plus the owning assembly program's branch, convergence, perturbation, and independent-evidence gates.
-
-### Moving-Branch Drift Relaxation Instrument
-
-Claim level: instrument target. This capability can measure a moving branch; it does not establish Lorentz recovery by itself.
-
-- Consume an accepted rest-branch record and apply declared axial and two-axis drift seeds with $c_f=1$, without prescribing the target contraction or phase split.
-- Evolve each seed until the same branch either reaches a certified relative-periodic state, changes identity, disperses, collapses, or remains unresolved within the declared budget.
-- On the retained branch, emit the cycle-averaged shape tensor, drift-axis semiaxes $R_{\parallel}(u)$ and $R_{\perp}(u)$, clock phase, bidirectional one-way leg offsets, transverse eigenvalue split after composed drifts, root identity, history coverage, and convergence ladders.
-- Include a direct-drift versus sequential-drift comparison at the same resultant velocity. The scientific consumer can then test attractor uniqueness and path independence without asking the solver to label a Lorentz pass.
-- Route seed choice and branch identity through the Braid Program; route observer-level clock, ruler, synchronization, and preferred-frame acceptance through [Mapping Benchmarks](../mapping-benchmarks/lorentz-invariance-test-suite.md).
-
-### CPU Performance
-
-- Receiver-major, source-major, and history-chunk work partition benchmarks.
-- Work stealing only if deterministic result ordering remains controlled.
-- Thread-local interaction sums followed by deterministic reduction.
-- Vectorized distance/residual evaluation and structure-of-arrays state layout where profiling proves value.
-- Spatial-temporal candidate indices that reduce impossible source-history segments before root isolation.
-- NUMA-aware allocation and thread placement for large native runs if ordinary workstation benchmarks show a real need.
-- Asynchronous output compression and checkpoint writes that never mutate or reorder accepted evolution.
-- Performance counters for root candidates, isolated roots, interpolation calls, correction iterations, rejected steps, synchronization, storage, and time per accepted simulated interval.
-
-### GPU And Heterogeneous Performance
-
-- GPU-resident hot histories and path state with compact device-side indices.
-- Batched residual evaluation followed by root-bracket compaction to reduce branch-divergent work.
-- Separate kernels for regular bulk root work and rare difficult branch/caustic events, with the CPU or a specialized GPU queue handling the irregular tail.
-- Deterministic segmented reduction by receiver, plus a reproducible compensated alternative when exact bitwise order is too costly.
-- CPU/GPU pipeline overlap: CPU schedules accepted-time events and history/storage work while GPU batches root and force kernels.
-- Multi-GPU receiver partition, source partition, history-chunk partition, and spatial-domain partition benchmarks.
-- Device-to-device and distributed transfer of immutable history chunks with content hashes.
-- Mixed-precision kernels only when an error estimator promotes difficult rows to a stricter path and the final result passes the same convergence gate.
-
-### Million-Path Scaling
-
-- Benchmark envelopes at $N=10^4$, $10^5$, and $10^6$, with exhaustive smaller controls.
-- Treat $10^{12}$ logical ordered receiver-transmitter relationships at $N=10^6$ as the synchronized brute-force domain before root multiplicity and history scans.
-- Use certified receiver-transmitter-time block enclosures for exact root-free exclusion and retain complete pair membership records.
-- Root-branch continuation and predictive brackets between accepted receiver events.
-- Evaluate every surviving active candidate exactly in the first production implementation.
-- Admit later hierarchical source grouping, multipole-style summaries, and low-rank history representations only with certified root topology and conservative acceleration remainder bounds.
-- Dynamic scheduling based on measured root density rather than equal entity counts alone.
-- Prefer deterministic receiver ownership with immutable content-addressed source-history chunks replicated or fetched according to causal reach.
-- Stream accepted history, ledger, and checkpoint chunks through manifests sized for accelerator memory, host memory, local storage, and distributed storage separately.
-- Reject projected dense noncompressible workloads outside the declared resource envelope before candidate publication.
-
-### Performance Search Program
-
-- Compare algorithms before micro-optimizing one implementation: exhaustive scans, indexed scans, branch continuation, hierarchical approximations, and hybrid strategies.
-- Maintain one correctness-first single-thread implementation and one independently authored oracle while performance backends evolve.
-- Use hardware counters and profilers for cache misses, vector utilization, branch divergence, occupancy, bandwidth, transfer, synchronization, and NUMA effects.
-- Benchmark total time to accepted EOM history, not isolated kernel speed alone.
-- Track energy use and cost per accepted simulated interval for workstation, GPU, multi-GPU, and distributed envelopes when measurements become available.
-
-### Application And Operations
-
-- Headless batch mode as the first performance/reference surface.
-- A thin local run monitor for configuration, progress, resource use, first failure, and accepted output inspection.
-- Pause only at accepted step boundaries.
-- Resume from a content-hashed checkpoint on the same or a compatible runtime.
-- Dry-run simulation-envelope estimation before allocating a large history store.
-- A run comparison view for convergence ladders and current-solver-versus-EOM shadow runs.
-- Export of compact summaries plus full ledgers without requiring the visualization layer.
-- Reproducible command manifest for every run.
-
-### Migration-Dependent Possibilities
-
-- Live EOM-backed Animator playback after Animator has been converted into an output viewer rather than a future-path author.
-- EOM-produced photon and braid histories only after their initial-history and branch-closure conditions are defined without prescribing the target orbit.
-
-## Explicit Non-Goals For The First Build
-
-- Migrating current apps before EOM validation.
-- Reproducing current prescribed paths as a parity objective.
-- Tuning EOM until it visually matches Borg, Photon, Animator, or braid fixtures.
-- Promoting a GPU, multi-GPU, distributed, multirate, or reduced-model backend before it passes the independent correctness and convergence boundary.
-- UI polish that delays the mathematical operation, independent oracle, or convergence evidence.
-- Treating a path that looks stable as a certified branch without the required root, history, error, conservation, and stability records.
-
-## Far-Field Contribution Enclosure (operator brainstorm, 2026-07-16)
-
-Claim level: priority-design (operator-directed brainstorm; quantitative examples are back-of-envelope from the declared Borg budgets, not measured runs).
-
-Root-free block exclusion asks "can this pair interact at all?" and measured useless at Borg scale (nothing in a small box is root-free). The stronger, so-far-unbuilt axis is contribution enclosure — the reserved $P_{\mathrm{enclosed}}$ term in the block-exclusion pair accounting: certify that a pair's total acceleration contribution lies within a declared $\pm\varepsilon$ and charge it against the acceleration error budget instead of root-searching it.
-
-- Threshold derivation: the cutoff radius is a function of the declared budget, never a constant. Per-hit magnitude is bounded by $\kappa |q_i q_j| / (r^2 \cdot D_{s,\min})$ with a certified far-pair lower bound on the source normal (for subluminal far sources it grows like $r(1 - v_{\max})$). With Borg's $\kappa = 0.005$ and a 10% slice of the demo acceleration tolerance the enclosure radius is a few box lengths; at research tolerance ($10^{-8}$) it is $\mathcal{O}(10^3)$.
-- Memory payoff (the run-length lever): an enclosed pair needs no root search and hence no retained history. This directly removes the dispersal death observed 2026-07-16 (a 3:3 run at t=6.0 with the population outside the box halted `minimum_step_exhausted` via memory-boundary root rows once pair delays exceeded the fixed wake horizon).
-- Geometry primitive: keep per-axis interval boxes (free from interval Horner over the cubic segments); the certified distance bracket $[r_{\min}, r_{\max}]$ — the "circle test" — is one norm away from the box. A sphere-native pipeline saves nothing.
-- Dense-sea obligation: individual far hits are weak but shell counts grow like $r^2$; sea-scale enclosures must bound membership groups collectively (the traversal tree is the natural organizer). For 6-path Borg the per-pair form suffices.
-- Physical framing (operator): assemblies that persist in a wake-filled universe are, by existence, insensitive to far-field detail; near-set accuracy is what matters. The far-field enclosure makes that intuition a declared, certified error term rather than a silent truncation.
+- **[inferred] Event-aware integration portfolio.** Compare fixed, adaptive, event-focused, and exactly nested multirate schedules behind the same evolution contract; required evidence: independent analytical cases, cross-integrator convergence, and event-order preservation.
+- **[closure target] Precision-escalation policy.** Define portable binary64-through-certified-arithmetic escalation with bounded cost and explicit refusal semantics; falsifier: a difficult-root case changes accepted identity or order across the declared ladder.
+- **[inferred] Production toolchain benchmark.** Compare candidate host and accelerator stacks on accepted simulated time, reproducibility, precision capability, portability, build complexity, and maintenance using the same workload and oracle.
+- **[closure target] Accelerated root continuation.** Prove that predictive brackets and indices do not miss births or additional roots by pairing them with exhaustive fallback scans and a declared miss criterion.
+- **[measured target] Candidate assembly formation diagnostic.** On refined four-path runs, track minimum-cost opposite-polarity pairing, swaps, separation bands, relative speeds, within/between separation ratio, and persistence; assembly promotion still requires the owning branch and independent-evidence gates.
+- **[instrument target] Moving-branch drift relaxation.** Evolve declared drift seeds from an accepted rest branch with $c_f=1$, emit shape, clock, synchronization, root, history, and convergence records, and compare direct with sequential drift; Lorentz acceptance remains with Mapping Benchmarks.
+- **[inferred] Deterministic CPU decomposition.** Benchmark receiver, source, and history partitioning with fixed reductions and measured counters before adopting work stealing, NUMA placement, or asynchronous output.
+- **[inferred] Heterogeneous root pipeline.** Test batched bulk root work with a separate difficult-event path while preserving deterministic reduction and certified mixed-precision escalation.
+- **[closure target] Million-path execution envelope.** Measure $N=10^4$, $10^5$, and $10^6$ workloads, admit hierarchical grouping only with certified topology and acceleration remainder bounds, and reject noncompressible cases outside declared resources.
+- **[inferred] Performance search program.** Compare exhaustive, indexed, continuation, hierarchical, and hybrid algorithms against one correctness-first implementation and an independently authored oracle; record wall time, energy use, and cost per accepted simulated interval.
+- **[inferred] Solver operations surface.** Specify headless run, monitor, accepted-boundary pause, content-hashed resume, dry-run resource estimate, comparison, and export behavior without coupling UI state to evolution semantics.
+- **[closure target] Application migration readiness.** Define the record and branch conditions under which Animator, Photon, Borg, and braid consumers may use EOM histories without authored-future-path controls.
