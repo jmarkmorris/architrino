@@ -10,6 +10,20 @@ The color and anomaly chain has a related missing first link. Three indexed axes
 
 Plainly: anomaly arithmetic can check a derived inventory. It cannot explain why the geometry supplies that inventory.
 
+## Gauge Agreement Versus Gauge Origin
+
+**Claim level: effective.** Gauge transformations are coordinated changes of description within one observer-level equivalence class. Transition functions, covariant derivatives, and chart-overlap conditions make those descriptions agree; they do not by themselves identify a physical transfer apparatus operating between observers. This is the non-alarming content of the convention analogy: the arbitrary item is the local representative, while curvature, holonomy, charge compatibility, anomaly cancellation, and measured reaction records remain convention-independent constraints.
+
+**Claim level: speculation and closure target.** The historically unsettling possibility is that mathematical agreement machinery became an accepted explanatory stopping point before the origin of the shared gauge structure was derived. The unexplained inputs are not each local gauge choice but the effective gauge group, representation inventory, coupling structure, topology, and the fact that one invariant record is available across all admissible charts and scale regimes. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the proposed stronger burden is that one retained assembly, causal-wake, and Noether sea history must generate both the effective equivalence classes and their gauge-invariant observables without inserting primitive gauge fields or separate transfer rules.
+
+Plainly: changing the name of a currency does not change anyone's wealth, but the existence of a common economy with definite exchange constraints still needs an account. Gauge theory rigorously removes dependence on descriptive relabeling; the open substrate question is why nature supplies this particular invariant structure to be relabeled.
+
+- **Assumptions:** gauge variables remain observer-level redundant coordinates; one physical branch record is held fixed under passive relabeling; Standard Model gauge data enter only as recovery targets.
+- **Proof burden:** construct an explicit many-to-one map from one retained substrate history to gauge-equivalent effective representatives, then independently recover curvature or holonomy, charge continuity, anomaly cancellation, reaction-channel records, and null-channel exclusions from that same history.
+- **Falsifier:** the synthesis fails if gauge-equivalent observer records require different substrate states, if the invariant records must be inserted separately, or if one declared substrate map cannot reproduce the tested gauge sector without added observable channels.
+- **Promotion target:** [Gauge Structure Emergence](../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) after the common-record map is derived; the historical distinction already belongs in [Historical Context and Missed Opportunities](../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md).
+- **Next artifact:** write a gauge-chart quotient certificate that names the fixed substrate record, the effective projection, the equivalence relation among chart representatives, and one independently checked loop observable.
+
 ## Bottom Forward–Backward Asymmetry Comparator
 
 The LEP bottom asymmetry is compatible at the observer level with a small rotation of effective left- and right-channel couplings that approximately preserves their norm:
