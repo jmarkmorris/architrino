@@ -1,6 +1,6 @@
 # Prescribed Worldline Readiness Matrix
 
-Status: Phase-0 implementation inventory for the migration from `prescribed-braid-spec.v1` to the individual-architrino and individual-worldline prescribed assembly specification. This matrix records executable readiness only. It does not change candidate admission, Borg sign-off, analytical status, dynamical status, or particle-facing claims.
+Status: Implemented inventory for the migration from `prescribed-braid-spec.v1` to the individual-architrino and individual-worldline prescribed assembly specification. All class-1 and class-5 sources are migrated, SD3 and F6b have executable canonical sources and generated records, and the exact F6c operator is registered. The F6c representative row and the pending Borg approvals remain external decisions. This matrix records executable readiness only. It does not change candidate admission, Borg sign-off, analytical status, dynamical status, or particle-facing claims.
 
 ## Disposition Classes
 
@@ -63,4 +63,4 @@ The matrix is a measured repository inventory plus derived routing from the name
 
 Plainly: this document decides what can be encoded honestly today. It does not decide which geometry nature keeps.
 
-Closure goal: migrate every class-1 and class-5 executable source through one individual-architrino/worldline implementation, add the class-2 SD3 and F6c histories, and preserve all non-executable dispositions without invented coordinates.
+Closure goal: freeze the operator-selected F6c representative, generate its canonical source and record, and complete the pending Borg approvals without inventing coordinates or changing any candidate's analytical or dynamical status.

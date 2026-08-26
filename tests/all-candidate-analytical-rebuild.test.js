@@ -254,7 +254,10 @@ test("check is nonpublishing, post-swap failure rolls back, and success swaps at
     });
     assert.equal(published.published, true);
     assert.equal(published.fingerprint, checked.fingerprint);
-    assert.equal(published.candidateCount, BORG_BRAID_RECORD_CATALOG.entries.length);
+    assert.equal(
+      published.candidateCount,
+      loadAllCandidateCampaignRegistry().candidates.length,
+    );
     assert.equal(
       published.acceptedCandidateCount + published.rejectedCandidateCount,
       published.candidateCount,

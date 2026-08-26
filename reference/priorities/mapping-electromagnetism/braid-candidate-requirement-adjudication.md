@@ -35,7 +35,7 @@ Plainly: the bracket names why a judgment is allowed. Derived geometry and bound
 | `H2` | Geometric and coincidence admissibility | At least one nondegenerate realization preserves every exact centroid, polarity, dipole, and symmetry condition claimed for it, while every member pair is either certified noncoincident on the claimed history or continued through each declared coordinate coincidence by one finite, provenance-preserving, regulator-independent outgoing history. | Degeneracy, an exact incompatibility among claimed geometric conditions, an undeclared coordinate coincidence, a nonfinite or refinement-path-dependent coincidence limit, or loss of member provenance. |
 | `H3` | Causal admissibility | On one declared complete history in normalized $c_f=1$ units, every required causal root is certified complete; each ordinary root has positive causal range and transmitter-factor margin; each zero-range or nonordinary event is owned by a declared regularized event chart; and every member remains below field speed. | Missing or unresolved required roots, an unowned zero-range or nonordinary event, an unclassified fold, or loss of the speed margin. |
 | `H4` | Ordinary EOM compatibility | A nonzero-horizon EOM solver release preserves declared identities and remains inside the `H2` and `H3` guards over its entire stated scope without prescribed continuation. | The tested realization immediately violates its defining relations or exits a geometric or causal guard. A bounded prefix pass does not establish retention. |
-| `H5` | Retained branch | Refined ordinary evolution establishes a root-complete positive-width retained or metastable basin with a declared nondegenerate return action, member permutation, valid event-chart continuations, and recovery margin. | No qualifying return, zero-width fine tuning, degenerate scalar recrossing, unresolved event continuation, or branch loss under declared refinement or neighborhood perturbation. |
+| `H5` | Retained branch | Refined multi-prehistory ordinary evolution establishes a root-complete positive-width retained or metastable basin with a declared nondegenerate return action, member permutation, valid event-chart continuations, prehistory collapse, and a positive-width retained-neighborhood certificate. | No qualifying return, zero-width fine tuning, persistent prehistory separation, degenerate scalar recrossing, unresolved event continuation, or branch loss under declared refinement or neighborhood perturbation. |
 
 Plainly: `H1` asks whether the candidate is a well-defined initial-state family. `H2` and `H3` ask whether one complete history is legal. `H4` asks whether ordinary dynamics can follow it for a bounded interval. `H5` is the first requirement that establishes a retained braid rather than a drawing, prescribed path, or short guarded release.
 
@@ -156,7 +156,7 @@ Plainly: both accessory programs have search coordinates, not associated assembl
 
 ## Candidate-Level Outcome
 
-No admitted or exploratory candidate currently passes `H5`, so this matrix selects no physical braid and authorizes no weighted candidate ranking. The immediately discriminating rows are:
+No admitted or exploratory candidate currently passes `H5`, so this matrix selects no physical braid. The separately governed allocation percentages in the [candidate registry](../braid-program/candidate-registry.md) do not alter that conclusion. The immediately discriminating rows are:
 
 1. for taxonomy rows other than A3, obtain the first candidate-specific `H2`--`H4` record; for F1--F4, close `H1` before attempting those gates;
 2. for A3 and SD3, extend beyond the one bounded slice only through a separately predeclared coverage campaign, while keeping the existing no-return result scoped to that row;
@@ -167,9 +167,11 @@ No admitted or exploratory candidate currently passes `H5`, so this matrix selec
 
 Plainly: the matrix does not say which candidate is best. It says exactly what each candidate has established, what it has failed in a bounded scope, and which missing hard requirement prevents a physical verdict.
 
-## Weighted Ranking Boundary
+## Weighted Score Boundary
 
-If a later experiment-allocation score is desired, it must be a search-priority score rather than a physical score. It may use expected discriminatory value, independent-evidence gain, remaining campaign cost measured empirically, and reuse of the resulting instrument. It must exclude every `H1`--`H5` disposition from compensation, preserve all `U` cells visibly, and publish its weights and sensitivity to plausible alternative weights. No such score is part of the current adjudication.
+The registry's two percentages are experiment-allocation summaries rather than physical scores. Their [current score packet](../braid-program/candidate-weighted-score-packet.md) preserves every `U`, overlays the noncompensable `H1`--`H5` dispositions, publishes the factual inputs and normalization, and tests sensitivity to alternative weights. Expected discriminatory value, measured campaign cost, and instrument reuse may choose the next test after the hard gates and evidence scores are read; they do not add braid-evidence points.
+
+Plainly: the scores help decide which missing measurement may be worth buying. They do not change a hard-gate failure or turn a candidate into a physical braid.
 
 ## Maintenance Rule
 

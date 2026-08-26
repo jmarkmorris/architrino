@@ -2,9 +2,9 @@
 
 This library calculates causal-wake and acceleration-response measures from exact prescribed paths. It does not evolve those paths and does not call the EOM solver.
 
-The owning `prescribed-assembly-spec.v2` geometry contract, including regular, seeded-random, and template-only lattice declarations, is documented in [Prescribed Geometry](../prescribed-geometry/README.md). Lattice metadata reaches this library only through the explicit constituent worldlines materialized by that contract.
+The owning `prescribed-assembly-spec.v2` geometry contract, including regular, seeded-random, and template-only lattice declarations plus assembly-level sea declarations, is documented in [Prescribed Geometry](../prescribed-geometry/README.md). Lattice and sea metadata reach this library only through the explicit constituent worldlines materialized by that contract; population labels and group-motion declarations do not add acceleration contributions by themselves.
 
-Plainly: the analysis layer evaluates declared paths. It does not invent unmaterialized lattice sites or treat a lattice template as a physical source population.
+Plainly: prescribed analysis evaluates the architrino paths actually present in the record. Calling those paths a lattice or a sea does not silently add neighbors, medium behavior, or new dynamics.
 
 The canonical braid-analysis entry point is:
 

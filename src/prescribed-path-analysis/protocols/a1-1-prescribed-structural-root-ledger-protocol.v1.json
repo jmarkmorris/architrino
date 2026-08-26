@@ -29,12 +29,14 @@
   "sealedInputs": {
     "baseProtocol": {
       "path": "src/prescribed-path-analysis/protocols/a1-1-continuous-ratio-phase-root-inventory-protocol.v1.json",
-      "sha256": "7b2a3a2a56abbe97971d3fae447cd3406724cb2c5916e8ba3a0d39ad80772849"
+      "sha256": "b4517dd8058644dd9ca7f20ff7388a83ad68b92bc26e97163b0e9b0302ee1f56",
+      "migrationDisposition": "The v2 source path and hash replace the v1 display-source provenance only; the parity receipt establishes the same individual worldlines, and no structural-root formula, sample, result, or physical claim is changed."
     },
     "continuousInventorySummary": {
       "path": "reference/priorities/braid-program/evidence/a1-1-continuous-ratio-phase-root-inventory-summary.v2.json",
       "summaryHash": "624f5350ac3a0e4e57cf9da08225c1d7a635daa16c959dd96dc0778440256cdb",
-      "resultHash": "c2673e581fed4948536c18478b364f516ea821761e8d45c03d38dfeed814ab9f"
+      "resultHash": "c2673e581fed4948536c18478b364f516ea821761e8d45c03d38dfeed814ab9f",
+      "migrationDisposition": "This sealed summary remains bound to the pre-migration source serialization. It is reused only as parity-preserved analytical provenance; generated-record parity is not independent evidence and does not establish the geometry."
     },
     "rootSheetSummary": {
       "path": "reference/priorities/braid-program/evidence/a1-1-root-sheet-monotonic-enclosure-treatment-summary.v1.json",

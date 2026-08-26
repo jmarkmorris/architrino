@@ -1,11 +1,11 @@
-# App Borg Brainstorming
+# Borg App Concept Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This document retains provisional Borg concepts that are not accepted tasks. Borg is an app-facing consumer of EOM-solver histories and sealed assembly-view records; it does not own forward physics or upgrade replay output into evidence.
 
-## Routing Rules
+## Routing Boundary
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+Accepted implementation work belongs in [work-queue.md](work-queue.md), strategic and promotion routing belongs in [priorities.md](priorities.md), and detailed design belongs in the existing focused requirements and replay packets.
 
-## Ideas And Insights
+## Unresolved Ideas
+
+- None currently recorded.

@@ -1,13 +1,11 @@
-# App iOS Brainstorming
+# iOS App Concept Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This document retains provisional iOS concepts that are not accepted tasks. Stable product requirements, packaging rules, and implementation work remain with their focused owners and the accepted queue.
 
-## Routing Rules
+## Routing Boundary
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+Accepted implementation work belongs in [work-queue.md](work-queue.md), while strategic and promotion routing belongs in [priorities.md](priorities.md).
 
-## Ideas And Insights
+## Unresolved Ideas
 
-- No loose ideas have been moved here yet.
+- None currently recorded.

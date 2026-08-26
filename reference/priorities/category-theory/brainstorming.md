@@ -18,9 +18,11 @@ This file preserves category-theory explanations, comparison structures, provisi
 | Morphism, endomorphism, isomorphism, automorphism, monomorphism, epimorphism, homomorphism, homeomorphism, and diffeomorphism | [Morphism and its variants](#morphism-and-its-variants) |
 | Standard Model, quantum theory, general relativity, and quantum field theory | [Category Theory In Modern Physics](#category-theory-in-modern-physics) |
 | Complete-history symmetry, finite-history certification, causal incidence, lawful history extension, recovery, braid, assembly, monoidal, operadic, and higher-category candidates | [Candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ Structures](#candidate-mathbbamathbbamathbba-structures) |
+| Reaction states, provenance-preserving process morphisms, polarity-inventory functor, open-system source ports, and effective particle-number recovery | [Reaction/process category from identity routing](#7-reactionprocess-category-from-identity-routing) |
 | Path history as the organizing constraint on objects, composition, symmetry, approximation, conservation, and effective-state recovery | [Path History As The Organizing Categorical Constraint](#path-history-as-the-organizing-categorical-constraint-2026-08-25) |
 | Controlled “fuzzing” of path-history detail through uncertainty, finite truncation, or physical coarse-graining | [Controlled abstraction of path-history detail](#controlled-abstraction-of-path-history-detail) |
 | Exact and effective symmetries, symmetric retained histories, coarse-grained equivalence, and mappings among existing theories—the “house of mirrors” | [Symmetry, Coarse-Graining, And The House Of Mirrors](#symmetry-coarse-graining-and-the-house-of-mirrors-2026-08-25) |
+| Long-term assessment that category theory is removable mapping scaffold unless it earns fundamental status, paired with a concrete interim organizational role | [Long-Term Assessment And Interim Use](#long-term-assessment-and-interim-use-2026-08-25) |
 | Candidate architrino-level isomorphisms, non-isomorphisms, automorphism groups, particle-identity classes, and staged-versus-whole recovery | [Recovered Side-Chat Discussion](#recovered-side-chat-discussion-2026-08-25) |
 | Relationship to group theory, group actions, stabilizers, and representation theory | [Relation To Group Theory](#relation-to-group-theory-2026-08-25) |
 | Relationship to topology, fundamental groupoids, homology, cohomology, homotopy, and distinct $\mathbb{A}\mathbb{A}\mathbb{A}$ topology classes | [Relation To Topology](#relation-to-topology-2026-08-25) |
@@ -110,7 +112,7 @@ S_0\xrightarrow{U_{01}}S_1\xrightarrow{U_{12}}S_2,
 U_{02}=U_{12}\circ U_{01}.
 $$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, however, an instantaneous position-and-velocity state may omit delayed path history needed for later evaluation. Two equal instantaneous snapshots with different consumed histories may admit different future continuations. A candidate composable object must therefore be a sufficiently complete boundary-history fiber $\mathcal H_t$, not merely a snapshot $S(t)$.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, however, the history-free instantaneous projection $X(T)$ may omit delayed path history needed for later evaluation. Two equal projections with different consumed histories may admit different future continuations. The canonical complete state $S(T)=(X(T),H_T,\mathcal N_{\mathrm{sea}}(T,\cdot),\mathcal B_T)$ already includes that history and is therefore a candidate source for a sufficiently complete composable boundary object; whether all of $S(T)$ or a smaller sufficient boundary-history fiber is needed remains a closure target.
 
 Plainly: category theory turns “what information is the state?” into a sharp test. If information discarded at a cut can change what happens next, the reduced snapshot is not yet a valid object for deterministic composition.
 
@@ -140,12 +142,12 @@ Plainly: the prefixes specify what kind of arrow is meant. An automorphism is bo
 
 #### Candidate exact isomorphisms at the architrino level
 
-The recovered discussion identified four clean **candidate** full-record isomorphisms:
+The canonical [Master Equation symmetry theorem](../../../content/markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group) proves invariance of the kernel and transformed full histories under $G_{\mathrm{fund}}=E(3)\times\mathbb R_{\mathrm{time}}$. On that base, the recovered discussion identified four clean full-history symmetry cases, with the categorical object-and-arrow realization still **candidate**:
 
 1. a persistent-label permutation among otherwise identical same-polarity architrinos, applied consistently throughout the complete record;
 2. translation of the entire path history by a constant spatial vector;
-3. proper rotation of the entire path history, not only a present-time snapshot; and
-4. an absolute-time-origin shift $t\mapsto t+\Delta t$, provided the substrate law has no distinguished zero of absolute time.
+3. an orthogonal spatial transformation of the entire path history, including rotations and reflections, not only a present-time projection; and
+4. an absolute-time-origin shift $T\mapsto T+\Delta T$.
 
 For a full history $H$, a translation or rotation may give a coordinate-distinct record $H'$ with
 
@@ -163,12 +165,12 @@ $$
 
 Plainly: rotating a visible shape is insufficient. The full delayed history must transform consistently before two records count as physically equivalent.
 
-The complementary boundary question is equally important: **what is not an isomorphism?** Changing polarity, deleting an architrino, coarse-graining away causal history, or altering prehistory while preserving only the current snapshot are not reversible full-record arrows under the candidate definition. Time reversal, spatial reflection, scale change, polarity conjugation, and more elaborate internal transformations remain undecided until the Master Equation and the complete ambient/boundary record are shown to transform lawfully.
+The complementary boundary question is equally important: **what is not an isomorphism?** Changing polarity, deleting an architrino, coarse-graining away causal history, or altering prehistory while preserving only the current projection are not reversible full-record arrows under the candidate definition. Spatial reflection is parity-even for the declared primitive wake kernel and belongs to the proved $O(3)$ action on transformed full histories. Time reversal is different: because the Master Equation uses past-emission support only, a time-reflected history solves a different future-supported law unless the causal-support convention is also changed. Scale change, polarity conjugation, and more elaborate internal transformations remain undecided. Even for the proved kernel symmetries, a bounded physical record still has to show that its Noether sea, boundary, and provenance data transform lawfully.
 
 Plainly: visible resemblance, equal present coordinates, or equal effective output does not by itself provide an invertible substrate map.
 
-- **Claim level:** candidate definition and symmetry-screen target, not a current Master Equation symmetry theorem.
-- **Assumptions and proof burden:** specify the complete history object and transformation action, then prove covariance of every consumed record. The time-shift case additionally requires time-homogeneity, which is distinct from the ontology of absolute time.
+- **Claim level:** the $E(3)\times\mathbb R_{\mathrm{time}}$ kernel/full-history invariance is derived in the current Master Equation canon; its realization as arrows in a fully typed history category and any additional transformations remain closure targets.
+- **Assumptions and proof burden:** specify the complete history object and transformation action, then prove covariance of every consumed Noether sea, boundary, branch, and provenance record on the bounded domain.
 - **Falsifier:** a candidate transformation changes a causal-root identity, acceleration contribution, boundary condition, ambient record, or later classification.
 - **Promotion target:** `CT-001`, with any full-history realization remaining under Braid Program `BP-002` ownership.
 - **Next artifact:** place these four candidates in the `CT-001` ownership matrix beside one counterexample that preserves the snapshot but not the consumed history.
@@ -244,6 +246,12 @@ For a Standard Model gauge group $G_{\mathrm{SM}}$, including the conventional g
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ boundary:** a future mapping into $\operatorname{Rep}(G_{\mathrm{SM}})$ would have to derive effective charge, weak, color, multiplet, and coupling records from retained assembly and medium dynamics. It may not assign those labels directly to architrinos.
 
+**Falsifier:** the proposed mapping fails to preserve a tested Standard Model multiplet, invariant interaction, or composition law on its declared retained domain, or it requires assigning Standard Model labels as substrate premises.
+
+**Promotion target:** the existing Standard Model closure owner, after a retained native carrier exists.
+
+**Next artifact:** one bounded representation map from a retained assembly symmetry record to one tested effective multiplet, with a counterexample and no per-channel retuning.
+
 #### Quantum comparison
 
 Categorical quantum mechanics uses monoidal and dagger structure to encode systems, processes, adjoints or reversed orientations, entanglement, measurements, and classical interfaces. Special algebraic structures can distinguish classical data that admit copying and deletion operations from general quantum data that do not. This process-first grammar supports reasoning about circuits, entanglement, teleportation, and measurement protocols without choosing matrix coordinates at the outset. It is potentially useful for an $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery map because preparation, propagation, apparatus coupling, and durable record formation can be typed separately.
@@ -252,6 +260,12 @@ Categorical quantum mechanics uses monoidal and dagger structure to encode syste
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ boundary:** a functor into a quantum-process category would have to recover amplitudes or probabilities, composition, tensor-like behavior, measurement records, and no-signaling constraints from one retained substrate record. Diagrammatic resemblance is not Born-rule or Bell closure.
 
+**Falsifier:** direct and staged recovery of one preparation-propagation-measurement process disagree outside a predeclared residual, or the construction fails a tested probability, composition, or no-signaling constraint.
+
+**Promotion target:** the existing quantum-closure and measurement owners, after a retained native carrier exists.
+
+**Next artifact:** one bounded process map carrying a single retained preparation, propagation, apparatus coupling, and durable record into a quantum-process diagram with independently checked residuals.
+
 #### General-relativistic and quantum-field-theoretic comparison
 
 General-relativistic models can be organized as Lorentzian spacetimes with suitable isometric embeddings, metrics in a groupoid under diffeomorphisms, or Einstein algebras in a categorically equivalent algebraic presentation under stated conditions. Locally covariant quantum field theory uses functors from globally hyperbolic spacetime categories into algebra categories and natural transformations for locally covariant fields.
@@ -259,6 +273,12 @@ General-relativistic models can be organized as Lorentzian spacetimes with suita
 **Claim level:** effective comparison structure and possible recovery codomain.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ boundary:** Lorentzian geometry is not the substrate category. A future recovery map must derive observer clocks, rulers, signals, metric reconstruction, and field observables from assemblies and Noether sea response inside absolute timespace.
+
+**Falsifier:** the recovered clock, ruler, signal, metric, or local-observable routes fail to compose or disagree on overlap outside their declared residual, or a Lorentzian structure is inserted as substrate data.
+
+**Promotion target:** the existing Lorentz/effective-metric and quantum-field-theory recovery owners.
+
+**Next artifact:** one bounded commuting square comparing direct and staged recovery of a shared clock-signal or local-observable record.
 
 #### External comparison anchors
 
@@ -281,10 +301,10 @@ These sources support comparison mathematics. They do not supply $\mathbb{A}\mat
 **Candidate structure.** A full object is
 
 $$
-B=(\mathbf X,\mathbf q,\mathcal A,\mathcal E,\chi),
+B=(\mathbf X,\mathbf q,\mathcal N_{\mathrm{sea}},\mathcal E,\chi),
 $$
 
-where $\mathbf X$ is the labeled path history, $\mathbf q$ is the polarity record, $\mathcal A$ is the declared ambient Noether sea record, $\mathcal E$ carries boundary and retained-history declarations, and $\chi$ carries chart and evidence metadata. An admitted symmetry $\gamma$ is an arrow $B\to B'$ only if it preserves the entire record, including every consumed causal-root and delayed-acceleration row. The proposed action groupoid is
+where $\mathbf X$ is the labeled path history, $\mathbf q$ is the polarity record, $\mathcal N_{\mathrm{sea}}$ is the declared ambient Noether sea record, $\mathcal E$ carries boundary and retained-history declarations, and $\chi$ carries chart and evidence metadata. An admitted symmetry $\gamma$ is an arrow $B\to B'$ only if it preserves the entire record, including every consumed causal-root and delayed-acceleration row. The proposed action groupoid is
 
 $$
 \mathscr G=\Gamma\ltimes\mathscr H\rightrightarrows\mathscr H.
@@ -313,7 +333,7 @@ B_{H,N}
 P_N\mathbf X|_{[T_0-H,T_1]},
 \mathcal U_{H,N},
 \beta_H,
-\mathcal A_H,
+\mathcal N_{\mathrm{sea},H},
 \chi_{H,N}
 \right),
 $$
@@ -409,6 +429,97 @@ Plainly: the visual or linguistic resemblance is a clue about possible mathemati
 - **Falsifier:** the proposed composition changes under an allowed history deformation, loses required root identity, or acquires unavoidable cross-coupling inconsistent with the claimed product.
 - **Promotion target:** existing braid, topology, assembly, reaction, or quantum owners only after a concrete theorem selects the structure.
 - **Next artifact:** screen one proposed composition against topology preservation, full-record preservation, and delayed cross-coupling before developing a broad categorical formalism.
+
+#### 7. Reaction/process category from identity routing
+
+**Native trigger and current evidence.** The canonical [reaction ledger](../../../content/markdown/aaa/validation/reaction-ledger.md#provenance-preserving-polarity-inventory) starts from the fixed ontic identity set $\mathcal A$ and requires every closed event $\mathsf e$ to carry a polarity-preserving routing bijection
+
+$$
+\Pi_{\mathsf e}:R_{\mathsf e}^{\mathrm{in}}\longrightarrow R_{\mathsf e}^{\mathrm{out}},
+\qquad
+q_{\Pi_{\mathsf e}(a)}=q_a.
+$$
+
+This is existing event-level provenance data, not yet a proof that all admitted reaction events form a category.
+
+Plainly: an assembly reaction does not create or destroy architrinos. It reorganizes a finite set of persistent, polarity-bearing identities, including any identities explicitly recruited from or returned to the Noether sea.
+
+**Candidate objects.** A reaction boundary object may be written
+
+$$
+\mathsf X
+=
+\left(
+R,\pi,\{\mathfrak B_k\}_{k\in\pi},\mathcal E_{\partial}
+\right),
+$$
+
+where $R\subset\mathcal A$ is the finite participating identity set after named reservoir terms are included, $\pi$ partitions $R$ into assemblies or declared environmental blocks, $\mathfrak B_k$ is the retained branch/provenance record for block $k$, and $\mathcal E_{\partial}$ records the boundary and Noether sea ports needed to close the event.
+
+**Candidate morphisms.** A channel $\mathsf e:\mathsf X\to\mathsf Y$ is a lawful Master-Equation history segment carrying the sufficient input boundary record to the output boundary record together with $\Pi_{\mathsf e}$. If two channels are lawfully composable, their routing must obey
+
+$$
+\Pi_{\mathsf e'\circ\mathsf e}
+=
+\Pi_{\mathsf e'}\circ\Pi_{\mathsf e}.
+$$
+
+History concatenation, not identity routing alone, supplies the proposed composition law. It must pass the same boundary sufficiency and associativity burden as the lawful-history-extension category.
+
+Plainly: matching identity lists do not prove that two reactions join. The second event must consume the complete branch, wake, medium, and boundary output of the first without revising the first event's certified history.
+
+**Provenance-forgetting functor.** Let $\mathbf{FinSet}^{\pm}$ be the groupoid of finite polarity-labeled identity sets and polarity-preserving bijections. The candidate functor
+
+$$
+U:\mathscr{Rxn}\longrightarrow\mathbf{FinSet}^{\pm},
+\qquad
+U(\mathsf e)=\Pi_{\mathsf e},
+$$
+
+forgets assembly partition, branch, and environment structure while retaining the participating architrino identities and their polarities. A further inventory map
+
+$$
+N(R)
+=
+\left(
+\#\{a\in R:q_a=-\epsilon\},
+\#\{a\in R:q_a=+\epsilon\}
+\right)
+$$
+
+is invariant under every arrow in $\mathbf{FinSet}^{\pm}$. Therefore, if $\mathscr{Rxn}$ and $U$ are established on a closed domain, preservation of the polarity-inventory vector—and hence the corresponding signed electric-charge inventory under the accepted observer mapping—is a mathematical corollary of the routing bijection. This does not independently derive the fixed ontic inventory postulate or the observer-level charge map.
+
+Plainly: the functor keeps exactly which architrinos participate and which polarity each carries, but deliberately forgets how those architrinos are grouped into observer-facing particles. Count conservation then follows from bijectivity; the physical work remains in proving that the event record is closed and lawfully composable.
+
+**Factorization targets.** The sharp recovery question is which effective conserved labels factor through $U$ or the coarse count $N$, and which require an intermediate quotient that retains partition and branch invariants. Signed electric-charge inventory has the stated factorization target. Lepton number, baryon number, color, and species labels are not presently proved to factor through polarity counts alone; a candidate derivation must exhibit the smallest retained record through which each label factors and prove invariance under every admitted reaction morphism. Possible carrier fields include pro/anti orientation, polarity character, certified framing or linking, and axial pattern, but none may be assumed sufficient before the reaction owners derive it.
+
+**Effective particle-number appearance.** A later recovery functor
+
+$$
+F:\mathscr{Rxn}\longrightarrow\mathscr E_{\mathrm{SM}}
+$$
+
+may retain effective assembly blocks while forgetting $\Pi_{\mathsf e}$. A repartition such as the observer-labeled neutron beta channel can then appear as one incoming particle and three outgoing particles even though the substrate arrow routes a fixed participating identity set. This is a categorical restatement of the native preference for association, dissociation, and reconfiguration over fundamental particle creation or destruction; it is not yet a recovery theorem for that channel.
+
+**Open-system constraint.** The monoidal unit cannot be interpreted physically as creation from nothing. Spontaneous assembly-pair production draws on a typed two-braid source $\mathcal P_2$, local Noether sea state, and energy-transfer record. A schematic observer-level arrow $\varnothing\to e^-\otimes e^+$ must therefore lift to an open-system arrow with explicit environment ports, schematically
+
+$$
+\mathsf N
+\longrightarrow
+e^-\otimes e^+\otimes\mathsf N',
+$$
+
+where $\mathsf N$ and $\mathsf N'$ stand for typed input and output environment records rather than literal substrate nothing. Structured cospans are one possible formalism, but an ordinary category with explicit environment objects may be sufficient.
+
+**Continuation domain.** Reaction composition is admitted only on a domain where the regularized Master Equation's local well-posedness assumptions and finite-continuation criterion are certified. A unique continuation supplies one candidate history arrow; a finite labeled continuation family can supply several candidate arrows only after the event classifier shows that its members really are distinct reaction channels with common typed boundaries. Empty, infinite, unlabeled, or non-gluing families do not define admitted reaction arrows. Basin measures may later enrich a finite hom-set, but they are not supplied by category theory and must come from the same declared physical record.
+
+Plainly: the continuation criterion can tell the proposed category where composition is currently licensed. It does not automatically turn every mathematical continuation branch into a physical reaction or a branching ratio.
+
+- **Claim level:** the fixed identity set and event-level polarity-preserving bijection are canonical; the reaction category, functors, charge corollary on a composable domain, factorization targets, and open-system formalism are derivation/closure targets.
+- **Assumptions and proof burden:** define sufficient boundary objects; include every recruited and returned reservoir identity; prove lawful history concatenation, identity and associativity; verify $U$ preserves those operations; derive each effective factorization without importing Standard Model labels; and certify the continuation domain.
+- **Falsifier:** a closed promoted event requires unequal participating identity counts after all named reservoir terms; an admitted composite fails $\Pi_{\mathsf e'\circ\mathsf e}=\Pi_{\mathsf e'}\circ\Pi_{\mathsf e}$; parenthesization changes the physical record; an omitted environment port supplies identities or conserved records; or a claimed effective label fails invariance under an admitted reaction morphism.
+- **Promotion target:** `CT-004` for history concatenation, `CT-005` for recovery functors, and the existing reaction-ledger and reaction-mode owners for physical channel closure. No queue item is promoted by this brainstorm alone.
+- **Next artifact:** define one fully typed free-neutron beta-reaction candidate morphism from the existing reaction ledger, including $\mathsf X$, $\mathsf Y$, $\Pi_{\mathsf e}$, environment ports, continuation certificate, polarity inventory, proposed effective image, and the smallest branch-record quotient conjectured to carry each non-charge label.
 
 ### Path History As The Organizing Categorical Constraint (2026-08-25)
 
@@ -637,7 +748,7 @@ Q(\gamma\cdot H)=Q(H)
 \text{for every admitted }\gamma\in\Gamma.
 $$
 
-In the equivariant case, the effective target carries an induced action $\gamma_{mathrm{eff}}$ and
+In the equivariant case, the effective target carries an induced action $\gamma_{\mathrm{eff}}$ and
 
 $$
 Q(\gamma\cdot H)
@@ -690,8 +801,8 @@ Plainly: symmetries provide stable handles for comparing theories because they c
 
 The “house of mirrors” program should keep symmetry grades explicit:
 
-1. **Canonical exact substrate symmetries:** the currently stated $E(3)\times\mathbb R_{\mathrm{time}}$ action on full histories.
-2. **Conditional substrate symmetries:** persistent-label permutations and any polarity, reflection, conjugation, or reversal actions only on histories whose complete records satisfy the required covariance.
+1. **Canonical exact substrate symmetries:** the currently stated $E(3)\times\mathbb R_{\mathrm{time}}$ action on transformed full histories, including spatial reflections through the $O(3)$ factor.
+2. **Conditional or barred substrate transformations:** persistent-label permutations only on provenance-covariant histories; polarity or conjugation actions only when separately derived; and time reversal barred as a symmetry of the declared past-supported law unless the causal-support convention is changed.
 3. **Retained-history stabilizers:** automorphism groups of actual retained assembly histories, separated from mere snapshot point groups.
 4. **Topological and branch symmetries:** braid, link, exchange, root-sheet, fold, and continuation transformations only after their carriers and equivalence relations are certified.
 5. **Effective symmetries:** quantum, gauge, Lorentz, diffeomorphism, and Standard Model symmetry structures as recovery targets.
@@ -779,6 +890,70 @@ The principal failure mode is **structure laundering**: restating an open physic
 
 Plainly: category theory is most valuable here as a precision tool for composition, equivalence, approximation, and recovery—not as a substitute for solving the Master Equation or certifying physical branches.
 
+### Long-Term Assessment And Interim Use (2026-08-25)
+
+The long-term assessment is that category theory should be treated as removable mathematical scaffolding unless it earns a deeper role through a unique theorem, obstruction, reconstruction, or prediction. It has not earned status as part of the fundamental physical ontology or dynamical law. In the interim it has a legitimate supporting role in $\mathbb{A}\mathbb{A}\mathbb{A}$, especially for mapping among descriptions, typing ontology levels, organizing symmetries, and checking that coarse-graining and recovery compose.
+
+| Horizon | Intended role | Continuation or exit condition |
+| --- | --- | --- |
+| Immediate | Organize vocabulary, ontology-level types, symmetry actions, history records, ownership, and mapping obligations. | Continue while it reduces ambiguity or catches an invalid identification; use simpler notation when it does not. |
+| Intermediate mapping campaigns | Scaffold explicit maps from substrate history through retained assemblies and medium records into quantum, relativistic, Standard Model, or other effective descriptions; compare existing theories on shared sectors. | Continue only when diagrams expose a missing carrier, noncommuting route, residual, or reusable cross-theory structure. |
+| Long term | Retain categorical language in the finished theory only where it states a necessary theorem or materially compresses several independently established mappings. | Remove the scaffold when native derivations can state the physics more directly; deepen its status only after a unique categorical payoff is independently verified. |
+
+Plainly: “not fundamental” does not mean “not useful.” Scaffolding can be extremely valuable while a complicated theoretical structure is being built, checked, and connected.
+
+The main reason for restraint is that categorical packaging is inexpensive. Almost any mathematical theory can be rewritten in terms of objects, arrows, and composition after its physical content is already known. The existence of such a category therefore has little explanatory force by itself. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substantive native content remains absolute time, Euclidean void, persistent architrino identity and polarity, causal wakes, path history, causal-root selection, and the acceleration-first Master Equation. Category theory presently organizes relations among those items; it does not derive them.
+
+Plainly: a good filing system for physical laws is not automatically one of the laws of nature.
+
+Path history strengthens the case for careful composition but does not by itself make category theory fundamental. The physical fact is that delayed acceleration consumes history and branch records. Category theory helps state the required history object and lawful concatenation rule. The causal delay, root geometry, and acceleration kernel—not the categorical vocabulary—remain the source of the dynamics.
+
+The same applies to the house-of-mirrors program. Symmetry orbits, functors, natural transformations, and commuting diagrams can discipline mappings among substrate, assembly, medium, quantum, relativistic, and Standard Model descriptions. Their value is methodological: they can expose inconsistent translations, illicit identification, lost stabilizers, or non-compositional recovery. They do not explain why nature chose the Master Equation or why a particular retained assembly exists.
+
+### Interim organizational uses
+
+The interim value is intentionally organizational:
+
+1. **Ontology-level type map:** keep substrate histories, retained assemblies, medium variables, observer records, and effective theories from being mixed as though they were objects of one level.
+2. **Symmetry inventory:** record each exact, conditional, retained, coarse, effective, and intertheory symmetry with its carrier, orbit, stabilizer, and claim boundary.
+3. **Mapping scaffold:** show every proposed recovery route as typed arrows with source, target, physical rule, residual, and falsifier.
+4. **Commutativity audit:** compare direct and staged mappings so “recover all at once” can be checked against “recover each stage and compose.”
+5. **Coarse-graining register:** state exactly which path-history details are forgotten, which consumers lose access to them, and when the mapping must abstain.
+6. **Ownership and promotion routing:** attach each mathematical obligation to its actual physics owner so category theory coordinates rather than duplicates the Master Equation, braid, assembly, medium, quantum, Standard Model, or effective-geometry work.
+
+Plainly: $\mathbb{A}\mathbb{A}\mathbb{A}$ benefits from disciplined organization. Category theory can serve as the architecture language for that organization without being promoted into the substrate ontology.
+
+This organizational use should remain light. It should improve existing derivations and owner interfaces rather than generate a parallel hierarchy of abstract artifacts with no physical consumer.
+
+### What would change the verdict
+
+Category theory would deserve a deeper role only if it produced at least one result that is not merely a reformulation of known physics:
+
+1. **Nontrivial constraint:** categorical coherence forbids a plausible substrate or recovery map that otherwise appears admissible.
+2. **Uniqueness or reconstruction:** a universal property selects one history object, composition law, symmetry quotient, or recovery map from physically declared premises.
+3. **New prediction:** the categorical structure predicts a symmetry, invariant, multiplet, obstruction, or relation that is later independently recovered from the Master Equation or observation.
+4. **Cross-observable compression:** one functorial construction recovers several effective records without per-observable retuning and replaces multiple unrelated mapping rules.
+5. **Necessary higher structure:** ordinary groups, topology, delay-equation analysis, and direct commuting diagrams provably cannot express a physically required compatibility, while a groupoid, double category, monoidal category, or higher category can.
+
+Plainly: category theory should “pay rent” by constraining, selecting, predicting, or compressing physical results—not merely by renaming them.
+
+### Recommended working posture
+
+- Keep the lane `unranked / supporting` and use the smallest categorical structure adequate for each mapping problem.
+- Prefer group theory for reversible symmetries, topology for deformation and invariant questions, and direct delay/history analysis for Master Equation dynamics whenever those tools suffice.
+- Use categories at interfaces: full history to finite record, substrate to assembly, assembly to medium, medium to observer, and one effective theory to another.
+- Do not introduce grand monoidal, operadic, stack, topos, or higher-category machinery without a named physical obstruction that simpler mathematics cannot resolve.
+- Treat categorical diagrams as obligation maps. Every arrow must name its physical carrier, derivation, residual, and falsifier.
+- Allow the scaffold to disappear from the final theory if the completed native derivations can be stated more clearly without it.
+
+Plainly: the category-theory lane should help build and inspect the bridges. It need not become part of the landscape once those bridges are independently established.
+
+- **Claim level:** this is a methodological judgment based on the present state of the corpus, not a theorem that category theory can never be fundamental.
+- **Assumptions and proof burden:** reassess if a categorical universal property, obstruction, reconstruction, or cross-observable prediction becomes indispensable to a native derivation.
+- **Falsifier:** one categorical construction yields a novel, independently verified $\mathbb{A}\mathbb{A}\mathbb{A}$ constraint or prediction that cannot be obtained comparably from simpler existing mathematics.
+- **Promotion target:** retain this posture in the category-theory priority lane; promote only concrete derived results into the existing physical owner, not category theory as an ontology claim.
+- **Next artifact:** add three columns to the `CT-001` ownership map—`simpler adequate tool`, `unique categorical payoff`, and `stop condition`—so every proposed categorical structure must justify why it is more than repackaging.
+
 ## Part VI — Mathematical Relations
 
 ### Relation To Group Theory (2026-08-25)
@@ -827,7 +1002,7 @@ Plainly: representation theory converts abstract symmetry operations into linear
 
 | Structure | Group-theoretic role | Category-theoretic extension | Claim boundary |
 | --- | --- | --- | --- |
-| Euclidean translations and proper rotations | Elements of a declared spatial symmetry group or subgroup. | Become arrows between complete history objects only when they preserve the full delayed record. | Euclidean geometry alone does not prove a Master-Equation symmetry for a history with changed prehistory or ambient record. |
+| Euclidean translations and orthogonal transformations, including rotations and reflections | Elements of the canonical $E(3)$ spatial symmetry group or a declared subgroup. | Become arrows between complete history objects when the transformed full history and its consumed records are carried together. | Kernel covariance does not permit changing prehistory, provenance, boundary, or ambient records independently. |
 | Polarity-preserving persistent-label permutations | Finite permutation-group actions on labeled inventories. | Generate history-groupoid arrows when root identity, acceleration, boundary, and ambient records transform consistently. | A similar unlabeled shape is not automatically quotient-history equivalence. |
 | Stabilizer of a symmetric history | Automorphism group of one history. | Retained explicitly by the groupoid rather than flattened into a singular quotient coordinate. | A large stabilizer is symmetry data, not retention or stability evidence. |
 | Symmetry decomposition of shape or record coordinates | Representation theory splits variables into invariant channels. | Functors can carry those channels into root, acceleration, or effective record categories. | An invariant kinematic channel is not automatically dynamically closed. |
@@ -907,9 +1082,21 @@ Plainly: ordinary categories remember objects and transformations; higher catego
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ topology/category map
 
+The Master Equation already declares the regularized finite-memory phase space
+
+$$
+\mathcal H
+=
+C^1\!\left([-h,0],\mathbb R^{6N}\right)
+$$
+
+as its current conditional well-posedness scaffold. It also flags $W^{1,\infty}([-h,0],\mathbb R^{6N})$ or an absolutely continuous history class as possible sharper choices when acceleration bounds rather than classical second derivatives supply the natural control. Thus the topology is not wholly unspecified: $C^1$ is the current declared local proof scaffold, while the final regularity class remains an obligation of the theorem being proved. The more abstract symbol $\mathscr H$ below denotes whichever fully typed history space or category is selected after that regularity and record-content burden is closed.
+
+Plainly: there is already a concrete starting topology for finite retained histories. Category theory still needs the completed choice because continuity, composition, and symmetry can change when the admissible history class changes.
+
 | Structure | Topological content | Categorical content | Claim boundary |
 | --- | --- | --- | --- |
-| Full history space $\mathscr H$ | A compact-open $C^r$ or other declared topology says when complete histories and their required derivatives are close. | Continuous maps, restrictions, and group actions can be tested on that space. | Closeness of histories does not establish that either history satisfies the Master Equation. |
+| Full history space $\mathscr H$ | The current regularized scaffold uses $\mathcal H=C^1([-h,0],\mathbb R^{6N})$; $W^{1,\infty}$ or an absolutely continuous class remains a flagged refinement. | Continuous maps, restrictions, and group actions can be tested on the finally selected typed space. | Closeness of histories does not establish that either history satisfies the Master Equation, and the current well-posedness theorem remains conditional on unverified framework hypotheses. |
 | Fundamental groupoid $\Pi_1(\mathscr H)$ | Paths and loops in history/configuration space are classified up to a declared homotopy. | Objects are histories or configurations; arrows are deformation classes between them. | A loop class does not establish dynamical retention, effective phase, or holonomy. |
 | Symmetry action groupoid $\Gamma\ltimes\mathscr H$ | The object and arrow spaces may carry topology, producing a topological groupoid. | Arrows are declared full-record symmetries generated by $\Gamma$. | This is not the same as $\Pi_1(\mathscr H)$: a symmetry arrow need not be a deformation path, and a deformation path need not be a symmetry. |
 | Spatial or worldline knot/link topology | Embeddings and closure conventions determine knot, link, framing, and chirality classes. | Functors may carry certified embedding classes into invariant categories. | A Noether braid name or causal-root count does not certify a protected mathematical braid or link class. |

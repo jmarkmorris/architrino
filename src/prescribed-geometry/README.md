@@ -1,8 +1,8 @@
 # Prescribed Geometry
 
-`prescribed-assembly-spec.v2` is the declarative source for display-only prescribed architrino histories. Every executable finite assembly retains one explicit `constituents` row and one explicit `worldlines` row per architrino. Optional `geometry.lattices` rows describe how those individual rows occupy a repeated or procedurally generated population.
+`prescribed-assembly-spec.v2` is the declarative source for display-only prescribed architrino histories. Every executable finite assembly retains one explicit `constituents` row and one explicit `worldlines` row per architrino. Optional `geometry.lattices` rows describe how those individual rows occupy a repeated or procedurally generated architrino population. Optional `geometry.seas` rows group explicit constituents into assemblies that inhabit or pass through a declared visualization frame.
 
-Plainly: a lattice declaration explains the pattern. It does not erase the persistent identity or path of any architrino that is actually present in an executable record.
+Plainly: a lattice explains architrino sites; a sea explains assembly populations. Neither declaration erases the persistent identity or path of any architrino that is actually present in an executable record.
 
 ## Lattice Contract
 
@@ -109,12 +109,92 @@ Plainly: the seed and algorithm make the random coordinates auditable. Randomnes
 
 Plainly: template-only JSON can preserve an idea that is not finite or not yet instantiated, while preventing downstream code from treating imagined sites as source worldlines.
 
+## Sea Contract
+
+Each `geometry.seas[]` row has a stable `id`, one versioned `model`, and one `materialization` declaration. `assembly-population-sea.v1` is the registered model. It declares a `visualization-frame.v1`, an optional axis-aligned viewing `region`, and one or more `assemblyTemplates`. A template declares `assemblyClass`, optional `variant`, `populationRole`, `memberCount`, and `geometryOwner`. The class and variant are extensible concrete labels, so current rows can distinguish `braid` variants `pro` and `anti`, or name `neutrino`, `photon`, and later assembly ideas without changing the schema.
+
+Plainly: the sea model is not another kind of lattice. It says which complete assemblies are present and how their group centers move through the view.
+
+An explicit assembly instance binds `memberConstituentIds` to one template and declares `inertial-group.v1` motion relative to the visualization frame. At the declared epoch, the validator evaluates every member worldline and requires their geometric mean position and velocity to match the declared group state within $10^{-12}$. This is an unweighted geometric centroid, not a mass center. The frame velocity is then added to the relative group velocity to obtain the absolute prescribed velocity.
+
+Plainly: `velocity: [0,0,0]` on `groupMotion` means group-$v=0$ in the visualization frame. The architrinos inside that assembly may still move internally, provided their velocities average to the declared group motion.
+
+## Pro/Anti Sea With Passing Assemblies
+
+The following JSON is a schematic contract example. Its member counts, identifiers, and owner strings are placeholders and do not define or approve a braid, neutrino, or photon geometry.
+
+Plainly: use the counts and owner identifiers from each assembly's accepted geometry source when constructing a real configuration.
+
+```json
+{
+  "id": "visualized-noether-sea",
+  "model": {
+    "kind": "assembly-population-sea.v1",
+    "frame": {
+      "kind": "visualization-frame.v1",
+      "epochTime": 0,
+      "originAtEpoch": [0, 0, 0],
+      "velocity": [0, 0, 0]
+    },
+    "region": {
+      "kind": "axis-aligned-box.v1",
+      "minimum": [-10, -10, -10],
+      "maximumExclusive": [10, 10, 10]
+    },
+    "assemblyTemplates": [
+      { "id": "pro-braid", "assemblyClass": "braid", "variant": "pro", "populationRole": "sea-background", "memberCount": 8, "geometryOwner": "canonical-pro-braid-spec-id" },
+      { "id": "anti-braid", "assemblyClass": "braid", "variant": "anti", "populationRole": "sea-background", "memberCount": 8, "geometryOwner": "canonical-anti-braid-spec-id" },
+      { "id": "neutrino", "assemblyClass": "neutrino", "populationRole": "transient", "memberCount": 6, "geometryOwner": "canonical-neutrino-spec-id" },
+      { "id": "photon", "assemblyClass": "photon", "populationRole": "transient", "memberCount": 4, "geometryOwner": "canonical-photon-spec-id" }
+    ]
+  },
+  "materialization": {
+    "status": "explicit-finite",
+    "boundaryInterpretation": "visualization-window",
+    "instances": [
+      {
+        "id": "pro-0",
+        "templateId": "pro-braid",
+        "memberConstituentIds": ["pro-0-0", "pro-0-1", "pro-0-2", "pro-0-3", "pro-0-4", "pro-0-5", "pro-0-6", "pro-0-7"],
+        "groupMotion": { "kind": "inertial-group.v1", "epochTime": 0, "positionAtEpoch": [-2, 0, 0], "velocity": [0, 0, 0] }
+      },
+      {
+        "id": "anti-0",
+        "templateId": "anti-braid",
+        "memberConstituentIds": ["anti-0-0", "anti-0-1", "anti-0-2", "anti-0-3", "anti-0-4", "anti-0-5", "anti-0-6", "anti-0-7"],
+        "groupMotion": { "kind": "inertial-group.v1", "epochTime": 0, "positionAtEpoch": [2, 0, 0], "velocity": [0, 0, 0] }
+      },
+      {
+        "id": "neutrino-0",
+        "templateId": "neutrino",
+        "memberConstituentIds": ["nu-0", "nu-1", "nu-2", "nu-3", "nu-4", "nu-5"],
+        "groupMotion": { "kind": "inertial-group.v1", "epochTime": 0, "positionAtEpoch": [0, 3, 0], "velocity": [0, 0, 0] }
+      },
+      {
+        "id": "photon-0",
+        "templateId": "photon",
+        "memberConstituentIds": ["photon-0", "photon-1", "photon-2", "photon-3"],
+        "groupMotion": { "kind": "inertial-group.v1", "epochTime": 0, "positionAtEpoch": [0, -3, 0], "velocity": [0, 0.4, 0] }
+      }
+    ]
+  }
+}
+```
+
+Every named member above must also appear once in the enclosing specification's `constituents` array and own one row in `worldlines`. `geometryOwner` identifies the canonical geometry authority for the assembly template; the extensible `assemblyClass` label does not establish that geometry or a physical particle identity by itself. A `visualization-window` is only the displayed finite population and does not imply that unseen assemblies exist outside its region.
+
+Plainly: pro and anti braids can form the background, while a neutrino or photon can pass through slowly or remain stationary in the chosen view. The JSON still has to provide the actual constituent paths for every displayed assembly.
+
+Sea declarations may also use `status: "template-only"` with `boundaryInterpretation: "population-template"`. Such a row declares possible assembly types but has no `instances` and produces no executable source worldlines.
+
+Plainly: a template-only sea records a future population idea without pretending that its assemblies have already been built.
+
 ## Extension Rule
 
-New procedural families are added in `PrescribedLatticeOperators.mjs` with a new versioned `generator.kind`, complete validation, deterministic site identities, explicit boundary semantics, and tests with independently fixed expected coordinates. Existing generator meanings are not broadened silently.
+New procedural lattice families are added in `PrescribedLatticeOperators.mjs` with a new versioned `generator.kind`, complete validation, deterministic site identities, explicit boundary semantics, and tests with independently fixed expected coordinates. New sea families are added in `PrescribedSeaModels.mjs` with a new versioned `model.kind`, explicit frame and population semantics, and matching fail-closed tests. Existing generator or model meanings are not broadened silently.
 
-Plainly: future lattice ideas have a deliberate extension point, but malformed or unregistered ideas fail closed.
+Plainly: future lattice and sea ideas have deliberate extension points, but malformed or unregistered ideas fail closed.
 
-The lattice layer is prescribed geometry. It invokes no EOM solver, causal-root evaluator, retention test, stability test, energy calculation, or candidate-acceptance rule.
+The lattice and sea layers are prescribed geometry. They invoke no EOM solver, causal-root evaluator, retention test, stability test, energy calculation, constitutive sea-response law, or candidate-acceptance rule.
 
-Closure goal: encode repeated and randomized architrino populations reproducibly while preserving individual finite constituent identities and preventing finite crops from claiming an unmaterialized infinite environment.
+Closure goal: encode repeated and randomized architrino populations and assembly-level sea populations reproducibly while preserving individual finite constituent identities and preventing finite visualization windows from claiming an unmaterialized infinite environment or a derived Noether-sea law.

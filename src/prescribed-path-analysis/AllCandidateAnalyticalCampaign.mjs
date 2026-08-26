@@ -431,9 +431,9 @@ export function buildAllCandidateAnalyticalCampaign(registryPath, options = {}) 
   const artifacts = [];
   const manifestCases = [];
   for (const candidate of loaded.candidates) {
-    if (candidate.spec.prescribedReturnPeriod !== protocol.returnWindow.period ||
-        protocol.history.start < candidate.spec.recordInterval.start ||
-        protocol.history.end > candidate.spec.recordInterval.end) {
+    if (candidate.spec.history.returnPeriod !== protocol.returnWindow.period ||
+        protocol.history.start < candidate.spec.history.start ||
+        protocol.history.end > candidate.spec.history.end) {
       fail(`candidate ${candidate.declaration.candidateId} does not support the registry protocol span.`);
     }
     const exactSource = validateExactPrescribedSourceRecord(
@@ -688,9 +688,9 @@ function buildCompleteCycleAllCandidateCampaign(registryPath, options) {
   const startedAt = Date.now();
   const runtimeTimings = [];
   for (const [candidateIndex, candidate] of loaded.candidates.entries()) {
-    if (candidate.spec.prescribedReturnPeriod !== protocol.completeCycle.period ||
-        protocol.eventEvaluator.history.start < candidate.spec.recordInterval.start ||
-        protocol.eventEvaluator.history.end > candidate.spec.recordInterval.end) {
+    if (candidate.spec.history.returnPeriod !== protocol.completeCycle.period ||
+        protocol.eventEvaluator.history.start < candidate.spec.history.start ||
+        protocol.eventEvaluator.history.end > candidate.spec.history.end) {
       fail(`candidate ${candidate.declaration.candidateId} does not support the cohort protocol span.`);
     }
     const exactSource = validateExactPrescribedSourceRecord(

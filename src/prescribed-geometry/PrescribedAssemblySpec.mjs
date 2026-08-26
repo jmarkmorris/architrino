@@ -10,10 +10,17 @@ import {
   materializePrescribedLatticeDeclarations,
   validatePrescribedLatticeDeclarations,
 } from "./PrescribedLatticeOperators.mjs";
+import {
+  materializePrescribedSeaDeclarations,
+  validatePrescribedSeaDeclarations,
+} from "./PrescribedSeaModels.mjs";
 
 export {
   PRESCRIBED_LATTICE_GENERATOR_KINDS,
 } from "./PrescribedLatticeOperators.mjs";
+export {
+  PRESCRIBED_SEA_MODEL_KINDS,
+} from "./PrescribedSeaModels.mjs";
 
 export const PRESCRIBED_ASSEMBLY_SPEC_SCHEMA = "prescribed-assembly-spec.v2";
 export const PRESCRIBED_ASSEMBLY_EVALUATOR_ID = "prescribed-assembly-evaluator.v2";
@@ -75,10 +82,12 @@ export function materializePrescribedAssemblySpec(rawSpec) {
     (spec.relationships.neutralPairs ?? []).map((row) => [row.id, row]),
   );
   const lattices = materializePrescribedLatticeDeclarations(spec.geometry.lattices, spec);
+  const seas = materializePrescribedSeaDeclarations(spec.geometry.seas, spec);
   return Object.freeze({
     spec,
     worldlines: Object.freeze(worldlines),
     lattices,
+    seas,
     constituentById,
     worldlineById,
     relationshipByPairId,
@@ -263,6 +272,7 @@ function validateGeometry(geometry, spec) {
     });
   }
   validatePrescribedLatticeDeclarations(geometry.lattices, spec);
+  validatePrescribedSeaDeclarations(geometry.seas, spec);
 }
 
 function validateRelationships(relationships, constituents) {

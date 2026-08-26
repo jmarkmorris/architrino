@@ -7,7 +7,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA } from "../../src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs";
+import {
+  EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
+  validateExactPrescribedSourceRecord,
+} from "../../src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs";
 import {
   PRESCRIBED_ASSEMBLY_EVALUATOR_ID,
   PRESCRIBED_ASSEMBLY_SPEC_SCHEMA,
@@ -102,7 +105,7 @@ export function evaluatePrescribedBraidSite(rawSpec, componentIndex, pairIndex, 
 export function createPrescribedBraidExactSourceRecord(rawSpec, options = {}) {
   const materialized = materializePrescribedAssemblySpec(rawSpec);
   const { spec } = materialized;
-  return {
+  return validateExactPrescribedSourceRecord({
     schema: EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA,
     recordId: spec.specId,
     sourceSchema: spec.schema,
@@ -127,7 +130,7 @@ export function createPrescribedBraidExactSourceRecord(rawSpec, options = {}) {
       charge: row.constituent.polarity,
       trajectory: structuredClone(row.operator),
     })),
-  };
+  });
 }
 
 function createParameterVector(materialized) {
