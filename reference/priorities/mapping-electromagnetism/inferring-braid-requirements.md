@@ -10,6 +10,7 @@
 - Exact equation and score owner: [Equation Mapping](../mapping-equations/priorities.md)
 - Independent benchmark owner: [Mapping Benchmarks](../mapping-benchmarks/priorities.md)
 - Retained-geometry and dynamics owners: Braid Program, Master Equation Closure, Photon Closure, Standard Model Closure, and the EOM solver
+- Candidate adjudication owner: [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md)
 
 ## Purpose
 
@@ -3760,6 +3761,155 @@ The six fermion seeds make different weak-field predictions:
 
 Claim grades: the centroid/internal decomposition and matched-pair algebra are derived identities. Pair cancellation in the weak uniform electric-isolation limit and noncancelling charge-facing translation are inferred native mechanisms. The seed responses are guessed discriminators. Falsifier: the root-resolved same-update record violates the algebra, or a retained candidate recovers group translation and internal deformation with a simpler exposure structure that invalidates the proposed seed distinction.
 
+### Accessory Placement Relative To The Braid
+
+An Accessory Configuration contains six architrinos associated with a braid but not included among the braid architrinos. Existing requirements do not prescribe whether those six paths lie inside, cross, or remain outside the braid's dynamic exclusion envelope. The placement question must therefore be inferred from delayed acceleration, symmetry, braid response, association, and reaction-provenance requirements rather than settled by a static drawing.
+
+The first correction is that a lower accessory energy ledger does not multiply the accessory contribution by a small coupling. On a simple causal-root branch, the contribution from accessory transmitter $p$ to braid receiver $i$ has the schematic form
+
+$$
+\mathbf A_{i\leftarrow p}(T_r)
+=
+\sum_{\ell}
+\kappa\sigma_{ip}|q_iq_p|
+\frac{\hat{\mathbf r}_{ip,\ell}}{r_{ip,\ell}^2}
+\frac{c_f}{\left|c_f-\hat{\mathbf r}_{ip,\ell}\mathbin{\cdot}\mathbf V_p(T_{t,\ell})\right|}.
+$$
+
+Here $r_{ip,\ell}$ is the delayed transmitter--receiver separation on retained root $\ell$, not the simultaneous distance in one displayed frame. Numerical work uses $c_f=1$. The contribution contains no primitive mass, momentum, or source-energy denominator. Lower accessory speed can change the transmitter-side weight and future root geometry, but it does not turn the accessory wake off. High total braid-member speed also does not by itself amplify or suppress a hit; the relevant velocity entry is the transmitter component along the delayed line of action.
+
+Plainly: the revised hypothesis is not that lower-energy accessories produce intrinsically weak acceleration. It is that a rapidly cycling retained braid may change only slightly when the complete six-accessory contribution is added. Distance and cancellation can help, but the decisive quantity is how the braid geometry responds.
+
+#### Braid Response Rather Than Primitive Inertial Resistance
+
+Primitive architrinos do not become harder to accelerate because they carry more energy. The admissible high-energy-braid hypothesis is instead an assembly-level response claim: a retained braid with a large internal action/energy ledger may also have strong phase locking, a large retained basin, and low response in its destructive shape modes. That correlation is guessed rather than automatic. A high-activity branch near a causal-root fold, collision surface, or unstable return multiplier could be more fragile rather than less fragile.
+
+For one actually retained braid history $B$, decompose the accessory-dressed displacement of the braid members as
+
+$$
+\delta\mathbf X_{B}
+=
+\delta\mathbf X_{\mathrm{rigid}}
++
+\delta\mathbf X_{\mathrm{branch}}
++
+\delta\mathbf X_{\perp}.
+$$
+
+The rigid part is common translation and orientation. The branch-tangent part changes coordinates already admitted by the retained family, such as phase, cadence, or symmetry-preserving breathing. The transverse part changes member relationships outside that admitted branch neighborhood and contains the candidate decay, collision, root-topology-change, and branch-exit directions.
+
+Plainly: accessories may translate the complete assembly, retime the braid, or dress it with a small breathing change without destroying it. The dangerous response is the differential part that shears the braid, separates a protected pair, changes the active causal roots, or grows on repeated cycles.
+
+The relevant diagnostic is a braid-response operator on a retained history,
+
+$$
+\mathcal S_{B\leftarrow\mathrm{acc}}:
+\left(\mathbf A_{i\leftarrow p}\right)_{i,p}
+\longmapsto
+\delta\mathbf q_{\perp},
+$$
+
+where $\delta\mathbf q_{\perp}$ denotes the reduced transverse shape-and-history coordinates after rigid and admitted branch-tangent directions have been removed under the declared Gram metric. This is not a primitive susceptibility law. It is a branch-relative map to be reconstructed from matched fixed-law histories about an actual solution. A small raw accessory acceleration is sufficient but not necessary for a small transverse response; symmetry can make several large contributions cancel in the destructive modes. Conversely, a small asymmetric contribution can excite a soft transverse mode and destroy the branch.
+
+Plainly: measure which braid motions the accessories excite. The same total acceleration can be harmless when it points along a permitted breathing direction and destructive when it points across the retained braid family.
+
+#### Frequency Separation And Axial Dwell
+
+A lower-activity accessory layer is kinematically plausible only if its motion is specified separately from the braid-member cadence. Let
+
+$$
+\epsilon_{\omega}
+=
+\frac{\omega_{\mathrm{acc}}}{\omega_{B}}.
+$$
+
+The proposed slow-accessory regime has $\epsilon_{\omega}\ll1$ or a separately certified subharmonic/libration relation. Placing an accessory at a larger radius while forcing it to corotate at the braid frequency would increase its tangential speed rather than make it a lower-activity member. The three-binary picture avoids that contradiction if accessories dwell near the binary-axis rays while the braid architrinos circulate rapidly around those axes. A slowly moving accessory arrangement is then nearly stationary during one braid cycle, allowing cycle cancellation or a nearby accessory-dressed return branch to be tested. Frequency separation does not guarantee stability: resonant mode projection, secular phase drift, and causal-root-fold approach remain explicit failure channels.
+
+Plainly: an exterior accessory need not race around the outside of the braid. It can occupy a slowly moving polar dwelling region while the braid architrinos execute the fast motion.
+
+#### Candidate Location Families
+
+The dynamic exclusion envelope is a wake-history interface rather than a material wall. Accessory paths must therefore be classified over the complete history as interior, boundary-crossing, or exterior relative to the breathing envelope, with separate minimum delayed clearance from every braid member.
+
+| Candidate location family | Why it may work | Principal burden | Current grade |
+| --- | --- | --- | --- |
+| symmetry-preserving exterior polar shell | Larger braid--accessory and accessory--accessory separation lowers typical inverse-square magnitudes; polar placement can reduce destructive mode projection and leave a reaction-accessible corridor | a neutral braid's leading distant polarity contributions may cancel too strongly to retain accessories placed far away | inferred best first family |
+| symmetry-preserving boundary shell | stronger association than a remote shell while retaining polar access and avoiding continual strand crossings | breathing can move the envelope across the paths, producing phase-sensitive gradients, root changes, or intermittent penetration | inferred strong second family |
+| high-symmetry interior configuration | large individual contributions may cancel in rigid or branch-tangent modes and dress the braid without large transverse deformation | close delayed separations, steep gradients, collisions, accessory mutual contributions, and root-fold sensitivity | guessed serious family, not merely a control |
+| asymmetric exterior configuration | reduced raw magnitude may compensate partly for broken symmetry | persistent torque, shear, dipole, or trace-free deformation may survive cycle averaging | guessed lower-priority family |
+| generic asymmetric interior configuration | may exploit a branch-specific pocket missed by symmetry seeds | combines large raw contributions with destructive mode exposure and high collision risk | guessed last-priority family |
+
+Plainly: exterior placement is the safest prior, but it is not a theorem. A symmetric interior arrangement can be viable if the braid is dynamically stiff and the accessory contributions land mainly in allowed collective motions. Location should be ranked by transverse braid response, not by radius alone.
+
+For a three-binary braid with persistent body-axis directions $\hat{\mathbf n}_1$, $\hat{\mathbf n}_2$, and $\hat{\mathbf n}_3$, the smallest polar search family is
+
+$$
+\mathcal S_{\mathrm{acc}}
+=
+\left\{
+\pm a_1\hat{\mathbf n}_1,
+\pm a_2\hat{\mathbf n}_2,
+\pm a_3\hat{\mathbf n}_3
+\right\}.
+$$
+
+Equal radii on an orthonormal triad give an octahedral angular arrangement. For six same-polarity charged-lepton accessories at radius $a$, adjacent octahedral sites have separation $\sqrt2a$ and opposite sites have separation $2a$, so radial expansion reduces their mutual repulsive contributions as well as their typical contribution to the braid members. Mixed-polarity quark-facing or neutral inventories can instead develop attractive accessory--accessory pairings, so the same spatial seed cannot be assumed to retain every polarity decoration. All seven polarity-count classes and their inequivalent decorations remain separate search strata.
+
+Plainly: six sites at left/right, up/down, and front/back spread same-sign accessories efficiently. Changing which sites carry which polarity can change the dynamics completely even when the undecorated geometry is identical.
+
+A very remote shell is not automatically preferred. If the retained braid has zero leading polarity moment, the first nonzero braid-to-accessory binding contribution can decay faster or cancel more strongly than the individual $1/r^2$ hits. The likely exterior target is therefore a finite annulus just beyond the high-activity strand-swept region: far enough to reduce destructive close-history contributions, but close enough to retain a coherent restoring and phase-locking pattern. This sweet-annulus inference fails if the complete delayed braid history supplies an unsuppressed retaining channel at large radius or no retaining exterior channel at any radius.
+
+#### F6c Accessory Continuation
+
+F6c is the eight-architrino, four-tetrahedral-axis, six-coordinate candidate geometry. Its decorated symmetry supplies a two-site axial orbit plus a four-site transverse orbit,
+
+$$
+\mathcal S_{2+4}(a_{\parallel},a_{\perp})
+=
+\left\{
+\pm a_{\parallel}\mathbf e_x,
+\pm a_{\perp}\mathbf e_y,
+\pm a_{\perp}\mathbf e_z
+\right\}.
+$$
+
+The equal-scale central octahedral reference at $a_{\parallel}=a_{\perp}=h/\sqrt3$ lies inside both F6c polarity-sector envelopes. That is derived reference geometry, not evidence of capture and not a reason to privilege interior placement. The same $2+4$ angular seed should be continued independently through interior, boundary, just-exterior, and remote-exterior radii. Because an accessory polarity decoration can reduce the undecorated $D_{2d}$ symmetry, distinct axial-dyad assignments remain separate histories. The interior continuation is a legitimate high-symmetry candidate rather than only a dangerous control; its viability depends on transverse braid response and full fourteen-member evolution.
+
+Plainly: F6c already gives the six search directions. The open variables are how far along the axial pair and transverse quartet the accessories dwell, how they move, and which polarities occupy those paths.
+
+#### Required Calculation Order
+
+Accessory placement cannot be inferred from one static acceleration minimum or from an energy ratio. The minimum staged calculation is:
+
+1. establish the braid's retained history and positive-width basin without accessories;
+2. hold that braid history fixed while evolving one accessory probe across polarity, position, velocity, prehistory, and phase, producing a residence/escape atlas rather than a capture claim;
+3. prescribe one complete six-accessory history while evolving the braid members, producing a one-way braid-response diagnostic and the mode projections of $\delta\mathbf q_{\perp}$;
+4. evolve all six accessories together against the same fixed braid history, including every accessory--accessory contribution;
+5. evolve the complete braid-plus-six system with full backreaction, root inventory, clearance, energy/action, boundary, and member-provenance records;
+6. remove or route the accessories through a declared reaction corridor and test whether the braid returns to its original basin or a separately classified retained braid branch.
+
+Steps 2--4 are complementary diagnostics with one side held prescribed. Only step 5 can establish an accessory-dressed retained assembly. Step 6 is required before accessory mobility in a weak-sector reaction can be used as evidence that the braid survives accessory transfer. Weak-sector accessibility does not itself prove weak binding: a stable charged fermion requires the accessory inventory to remain retained outside a qualified reaction history.
+
+Plainly: first ask whether the braid can host the accessories and whether the accessories disturb the braid. Then let every member respond at once. Finally, test the proposed transfer while checking that the braid survives the event.
+
+The full record must report at least:
+
+| Requirement | Required readout | Failure |
+| --- | --- | --- |
+| braid preservation | normalized rigid-removed shape residual, branch-tangent and transverse mode amplitudes, return action, and basin distance | transverse response grows secularly or leaves the retained basin |
+| causal-history preservation | complete active/excluded root inventory, transmitter-factor floors, and classified fold transitions | an apparent small shape change hides root loss or an unclassified root-topology change |
+| geometric safety | all braid--braid, braid--accessory, and accessory--accessory delayed clearances | collision, unresolved near-contact history, or clearance collapse |
+| accessory association | positive-width six-member position--velocity--history basin with bounded phase drift | visually plausible sites escape, exchange labels outside the contract, or survive only under prescribed motion |
+| energy distinction | same-record braid, accessory, interaction, wake, boundary, and Noether sea ledger partition | a claimed low accessory share omits interaction or exported history |
+| reaction accessibility | complete before/corridor/after provenance and recovery of the braid basin | accessory transfer requires braid decay, identity loss, or unledgered recruitment |
+| polarity coverage | all seven six-site polarity-count classes and inequivalent decorated symmetry orbits | one convenient electron-like decoration is generalized to quarks or neutral states |
+
+Plainly: the desired result is not six quiet points. It is a retained braid whose destructive modes remain small, plus six associated histories that remain bounded and can be routed only through a fully accounted reaction event.
+
+Claim grades: the delayed inverse-square contribution, absence of primitive inertial resistance, rigid/internal decomposition, and need for full backreaction are derived from the declared substrate and assembly ledger. Symmetry-mode cancellation, frequency separation, and an exterior sweet annulus are inferred mechanisms. A high-energy braid with sufficiently low transverse response, any particular accessory placement, and weak-sector transfer without braid decay remain guessed until measured on a retained branch. The location hypothesis is falsified for a declared braid and polarity class if every clearance-valid exterior component escapes, every interior or boundary component drives transverse branch loss, every six-member basin disappears under mutual contributions, or every apparent association vanishes under full backreaction.
+
+The next concrete artifact is one accessory-placement and braid-response predeclaration that scans interior, boundary, and exterior radii on the same retained braid, projects accessory loading into the braid's rigid, branch-tangent, and transverse modes, and advances to full braid-plus-six evolution only for rows that preserve roots, clearance, and a positive response margin.
+
 ### Candidate Impact On A Neutral Sea Braid
 
 A neutral Noether braid contains balanced positive- and negative-polarity architrinos. For one resolved sea braid $N$, define the mean source-driven acceleration contribution to each polarity sector,
@@ -4645,6 +4795,8 @@ The key comparison between F5 and F6 is now structural:
 | principal overgeneration risk | many interlaced full-system modes | exceptional-sign patterns and tetrahedral mode families |
 
 #### F6b — Balanced Tetrahedral Edge Partition
+
+Registry disposition: **scoped negative / demoted realization**. The exact circular F6b chart remains here because its clearance and root results are useful, but the measured member-acceleration residual rejects that realization from active search. Re-entry requires a materially different direction-bearing path or member inventory and a new exact admission audit; rescaling the rejected path is insufficient.
 
 The one-versus-three circulation character preserves a three-module stabilizer but does not automatically control transverse centroid and dipole oscillation. A stronger eight-identity variant uses a two-versus-two circulation partition. Choose the ordered tetrahedral axes
 
@@ -5555,17 +5707,17 @@ maximum member speed $0.968961c_f$, and opposite-polarity corridor $0.2749050$.
 
 Plainly: the favorable phase rows repeatedly approach a positive-sector radius maximum while the negative sector continues to expand and accelerate. The failure is structured, not random: phase chooses the corridor and cadence transfer, but a circular prehistory does not supply the missing breathing phase needed to close both sectors.
 
-#### F6c Breathing-Section Bias
+#### A Generic Breathing Section Has One Scalar Crossing
 
-Every ordinary release above begins from a fixed-radius circular prehistory, which imposes four simultaneous section conditions at release:
+A fixed-radius circular prehistory imposes four simultaneous section conditions at release:
 
 $$
 \dot h_+=\dot h_-=\dot\rho_+=\dot\rho_-=0.
 $$
 
-A generic periodic six-coordinate history has only one freely selectable time origin. One time shift can generically place the history on one scalar section, such as $\dot\rho_+=0$, but not on four independent turning sections at once. Simultaneous satisfaction of all four conditions requires an additional synchronization or symmetry that has not been derived. This is a dimension counting inference, not a nonexistence theorem.
+A generic periodic six-coordinate history has only one freely selectable time origin. One time shift can generically place the history on one scalar section, such as $\dot\rho_+=0$, but not on four independent turning sections at once. Simultaneous satisfaction of all four conditions selects an exceptional synchronized subset unless a derived symmetry supplies that synchronization. This is a dimension-counting inference, not a nonexistence theorem.
 
-The evolved $(2.0,2.0,\pi/2)$ history demonstrates the distinction at its positive-radius section. Near $T=0.19425$ it had
+The evolved $(2.0,2.0,\pi/2)$ history provides a measured example at its positive-radius section. Near $T=0.19425$ it had
 
 $$
 \dot\rho_+\approx-2.87\times10^{-5},
@@ -5577,7 +5729,7 @@ $$
 
 with sector cadences $(1.206147,3.101637)$. This is not a periodic return or a new seed certificate; it is a measured example of a legitimate one-coordinate section carrying nonzero motion in the other breathing coordinates.
 
-Plainly: the circular search has been asking a prospective breathing braid to arrive at four turning points simultaneously. That is an exceptional event, not the generic way to cut a periodic trajectory. The next F6c search must prescribe and certify a breathing path history, choose one Poincare section, and allow the other three axial/radial rates to be nonzero. Continued tuning of fixed circles is now a low-value path.
+Plainly: a return search should prescribe and certify a breathing path history, choose one Poincare section, and normally allow the other three axial and radial rates to remain nonzero. Four simultaneous turning points are exceptional unless an additional synchronization is proved.
 
 Claim grade: measured EOM-solver diagnostics on three bounded release screens, seven distinct evolved releases, and one finite-time refinement, plus an inferred section-dimension argument; not an independent oracle, retained braid, stability result, particle identity, or global basin. Falsifier: failure to reproduce the coordinate records from the declared seeds, nonconvergent turn times or coordinates under further refinement, loss of complete roots, a nonvanishing symmetry leakage under refinement, or a certified breathing return family whose trajectories generically cross all four zero-rate sections simultaneously.
 
@@ -6868,10 +7020,19 @@ Plainly: this packet narrows the search and makes the proof obligations explicit
 56. Does the charge-preserving F6c history admit an invariant reduction to three collective configuration coordinates, does its reduced return derivative have exactly three admissible modes, and do those modes retain common charge/spin rows while producing data-blind cadence, action, lifetime, and reaction differences?
 57. Does the F6c current axis survive ordinary evolution with the required $2\pi/4\pi$ ordered-frame history, or is its prescribed alignment erased by breathing, root transitions, or off-manifold leakage?
 58. Do symmetric, weakly odd, and strongly odd F6c return basins provide a reusable neutral-sea, neutral-fermion, and charged-conjugate grammar, or do those roles require distinct retained cores?
+59. For a retained three-binary or F6c braid, do any six-accessory interior, boundary, or exterior symmetry orbits produce a positive-width associated basin while keeping the braid's transverse response, causal-root inventory, clearance, and recovery-after-transfer rows inside the original or a separately classified retained branch?
+
+## 2026-08-26 Braid Evaluation Dispositions
+
+The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` to the declared F5 two-ring realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the F6b circular realization at its measured `H4` member-acceleration failure, and `STASIS` to F6c at `H5`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
+
+The B1/B1.1--B1.3 and C1--C6 charts also remain in `STASIS` at `H2`. Their exact `R1/R2` capability passes and failures do not adjudicate a universal hard gate. Historical C-family records remain ineligible for the current identities.
+
+Plainly: the seed comparisons still narrow what each geometry can attempt, but only F5 and F6b carry realization-scoped rejection evidence. Every other row stops at a missing chart, current-identity hard-gate record, or retained return.
 
 ## Current Concrete Pass And Blocker
 
-The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, and cross-sector geometry. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, and ranked summary are all present at report grade. The six residual recommendations each have an owner or explicit prerequisite.
+The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, cross-sector geometry, and accessory placement relative to a retained braid. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, accessory-placement and braid-response requirements, ranked summary, and [candidate-by-requirement adjudication](braid-candidate-requirement-adjudication.md) are all present at report grade. The adjudication covers every active registry row without converting unknowns into failures or introducing a weighted physical score. The six residual recommendations each have an owner or explicit prerequisite.
 
 The fixed-law continuation instrument also evaluates a signed weak regime and its first native geometric transition while keeping pair capture and backreaction fail-closed. Its prescribed fixture is `candidate_only`; it is an implementation check, not physical electromagnetic evidence.
 
@@ -6883,7 +7044,9 @@ The single highest-value general evidence blocker is one accepted, EOM-evolved, 
 4. continue the same fixed law through the first certified transition; and
 5. attempt pair capture or backreaction only if that same record supplies certified conjugate product basins and exact inventory partition.
 
-Within the present geometry campaign, the narrowest next experiment is a nonlinear F6c return-map search against the exact direct and reflected proper- rotation actions, using the certified full-cycle harmonic residual only as a prefilter and initial seed. Each candidate must carry its discrete winding cell and module-permutation provenance. Ordinary evolution has already confirmed exact surface invariance, two-sector radial turning on one history, and two-sector axial turning on a second. The first nonlinear seed returned one axial section but transferred cadence into the negative sector until its self-history root margin closed at $0.999765c_f$. The unresolved discriminator is whether a nearby root-valid history can reduce every component of the exact action residual while coordinating radial and cadence turns before a pair corridor or the $c_f=1$ boundary closes. Existing releases have now reached that causal boundary once through cadence runaway and once through near-wake-speed radial collapse. The return must also carry a nontrivial direct winding or a declared reflected action; the first scalar recrossing is degenerate because an almost tangent out-and-back arc can make its residual arbitrarily small without completing an ordered braid cycle. The reflected action is not an ordered recurrence unless the delayed exchange history establishes that its same-polarity module permutation preserves braid identity.
+Within the present geometry campaign, the completed nonlinear F6c return-map and radial-frequency continuation are seed evidence, not a return. The radial-frequency coordinate improved the best eligible reflected section RMS by only $0.781421\%$, below its predeclared 10% material gate, so that direction is closed without refinement. A later campaign must predeclare a materially different coordinated-turn variable or a matched guarded/full-causal-root comparison. Each candidate must still carry its discrete winding cell and module-permutation provenance, and any return must use one eligible event and exact direct or declared reflected action across position, rate, and retained history. A scalar recrossing remains degenerate, and quotient-history equivalence under a same-polarity permutation is not labeled-history return.
+
+Plainly: searching harder along the same radial-frequency knob is not justified. The next F6c calculation must change the dynamical question, not merely widen or repeat the exhausted search.
 
 The response-mode matrix, trapped-electron `D1` matrix, dedicated nucleon polarizability comparison, and internal-speed inference remain behind their declared prerequisites. No additional prescribed geometry sweep can remove the retained-branch blocker.
 

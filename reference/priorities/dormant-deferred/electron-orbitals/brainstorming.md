@@ -1,13 +1,15 @@
-# Electron Orbitals Brainstorming
+# Electron-Orbital Recovery Synthesis
 
-This file holds provisional ideas for reactivating, splitting, or promoting the deferred electron-orbitals packet.
+This synthesis reserves space for provisional ideas about recovering electron-orbital descriptions from accepted assembly dynamics. The packet remains dormant and does not authorize theory advancement.
 
-## Routing Rules
+## Recovery Boundary
 
-- Keep loose ideas here until they name a target live priority workstream or corpus destination.
-- Do not use this file as an active task queue while the packet remains dormant.
-- Move selected work out of `dormant-deferred` before substantive theory advancement begins.
+Orbital geometry, spectra, transition rules, and chemistry are observer-level recovery targets rather than architrino-level premises. Any later reactivation must first identify an accepted assembly owner, native path-history variables, an independently sourced target, and an operator-checkable falsifier.
 
-## Ideas And Insights
+## Ownership and Promotion
 
-- No loose electron-orbitals reactivation ideas are staged here yet.
+Stable status and any future routing decision belong in [priorities.md](priorities.md), while dated activity belongs in [work-log.md](work-log.md). Substantive work must leave the dormant-deferred packet only through an explicit reactivation decision.
+
+## Unresolved Ideas
+
+- None currently recorded.

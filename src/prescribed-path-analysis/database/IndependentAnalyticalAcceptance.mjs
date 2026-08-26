@@ -124,6 +124,12 @@ function expectedTransmitterIds(packet) {
     const ids = vector.sources.map((source) => source?.id);
     return uniqueStrings(ids) ? ids : null;
   }
+  if (Array.isArray(vector?.worldlines)) {
+    const ids = vector.worldlines.map((worldline) => worldline?.id);
+    return uniqueStrings(ids) ? ids : null;
+  }
+  // Historical packet compatibility only. Live exact-source records use the
+  // explicit v2 worldlines branch above.
   if (Array.isArray(vector?.braids)) {
     const ids = vector.braids.flatMap((braid) =>
       Array.isArray(braid?.binaries)

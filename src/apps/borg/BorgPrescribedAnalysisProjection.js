@@ -402,7 +402,23 @@ function projectEvent(event, polarity, binaryByWorldline) {
 
 function sourceBinaryMembership(source) {
   const membership = new Map();
-  for (const braid of source?.parameterVector?.braids ?? []) {
+  const vector = source?.parameterVector;
+  if (Array.isArray(vector?.constituentInventory) &&
+      Array.isArray(vector?.relationships?.neutralPairs)) {
+    const worldlineByConstituent = new Map(
+      vector.constituentInventory.map((row) => [row.id, row.worldlineId]),
+    );
+    for (const pair of vector.relationships.neutralPairs) {
+      for (const constituentId of pair?.members ?? []) {
+        const worldlineId = worldlineByConstituent.get(constituentId);
+        if (worldlineId != null) membership.set(String(worldlineId), String(pair.id));
+      }
+    }
+    return membership;
+  }
+  // Historical packet compatibility only. Live exact-source records use the
+  // explicit v2 relationship branch above.
+  for (const braid of vector?.braids ?? []) {
     for (const binary of braid?.binaries ?? []) {
       for (const worldlineId of binary?.worldlineIds ?? []) {
         membership.set(String(worldlineId), String(binary.binaryId));

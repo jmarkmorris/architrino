@@ -25,7 +25,7 @@ The main directory stays small. Four document classes with different lifecycles:
 | Class | Files | Rule |
 | --- | --- | --- |
 | Live state | [priorities.md](priorities.md) | One page. Rewritten forward-only. The only file an agent must read to join the program. |
-| Reference | this charter, [method.md](method.md), [configuration-chart.md](configuration-chart.md) | Current policy and definitions. Rewritten forward-only when policy changes. |
+| Reference | this charter, [candidate-registry.md](candidate-registry.md), [method.md](method.md), [configuration-chart.md](configuration-chart.md) | Current policy and definitions. The candidate registry is the master name/status/next-action index; detailed geometry and evidence remain with their owners. Rewritten forward-only when policy changes. |
 | Append-only logs | [work-log.md](work-log.md), [brainstorming.md](brainstorming.md) | Dated entries, never rewritten. |
 | Artifacts | `campaigns/`, `evidence/`, `mining/` | Subdirectories only. Campaign specs define one search each; evidence files are write-once results; mining holds staged legacy leads. |
 

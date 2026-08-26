@@ -6,6 +6,8 @@ Status: DRAFT INVENTORY, pending scope review and operator ratification. This do
 
 One coordinate system for every configuration the program screens or evolves, so that every negative is a statement of the form "no solution in this declared region of the chart" and every candidate is a point or slice with declared coordinates. The chart is what makes the searched-territory record compact and honest.
 
+The [Braid Candidate Registry](candidate-registry.md) is the master index of admitted and actively considered candidate names, concise status, dynamical claim boundary, and next action. This chart owns admitted coordinate scope; it does not duplicate the registry's routing role.
+
 Research input: [Neutral-Braid Configuration Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
 
 Family A, Family B, Family C, their members and constrained variants, and every other admitted proposal remain finite ansatz subcharts. The chart adds a common scope-and-provenance overlay; it does not replace the family taxonomy or turn any subchart into an exhaustive classification.
@@ -35,9 +37,11 @@ Plainly: the chart may classify exactly the history it was given. It may not sil
 5. **Chart-to-instrument contract.** For each axis: which instrument can vary it, which holds it frozen. A frozen axis in the instrument is a scoping clause in every verdict.
 6. **Scope-and-provenance overlay.** For every admitted subchart, record its source and scope; histories and prehistory; declared architrino and ambient inventory; boundary and tail status; free and frozen coordinates; discrete choices; record-preserving symmetry assumptions; numerical representation, resolution, and approximation status; topology closure convention; and whether collision, causal-root-fold, field-speed, matching, or stabilizer-change strata are excluded, crossed, or unresolved. Type derived diagnostics separately from inputs. Declare the expressible domain, the actually evaluated domain, and the separately coverage-certified domain with exclusions and abstentions. A finite scan cannot support a family-level negative without a separate coverage proof over the exact stated domain.
 
-## Admitted taxonomy subcharts
+## Admitted candidate subcharts
 
-The live family definitions are [Braid Taxonomy](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../content/markdown/aaa/noether-braid/braid-family-a.md), [Braid Family B](../../../content/markdown/aaa/noether-braid/braid-family-b.md), and [Braid Family C](../../../content/markdown/aaa/noether-braid/braid-family-c.md). The [Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js) materializes twenty active representatives: eleven Family-A members, B1.1 through B1.3, and C1 through C6. The admitted B1 parent remains a subchart without a separate catalog representative, giving the twenty-one active taxonomy rows below. Each row inherits one complete scope profile:
+The live family definitions are [Braid Taxonomy](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md), [Braid Family A](../../../content/markdown/aaa/noether-braid/braid-family-a.md), [Braid Family B](../../../content/markdown/aaa/noether-braid/braid-family-b.md), and [Braid Family C](../../../content/markdown/aaa/noether-braid/braid-family-c.md). The [Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js) materializes twenty of the twenty-three admitted candidates; B1, `SD3`, and `F6c` have no catalog representative. Admission fixes geometry scope; Borg depiction and dynamical retention are separate.
+
+Each A/B/C row inherits one complete scope profile:
 
 | Profile | History, prehistory, and declared inventory | Numerical representation and reach | Exclusions, abstentions, and claim boundary |
 | --- | --- | --- | --- |
@@ -89,6 +93,17 @@ Every Family-C row carries twelve persistent coaxial worldlines, a fixed-point-f
 | `C6` | `T12` | Two component-B1.3 radius and phase sets, $d_C>0$, component frequencies, relative phase, $s_{\mathrm{grp}}$, and frame | C4 with $h_{ba}=0$ and $\rho_{ba}=R_{ba}$ for all six component binaries |
 
 Plainly: C3 through C6 are constrained loci inside the general C1 or C2 charts. Neither a two-B1 decomposition nor an Accessory Configuration is inferred when the source record does not declare it.
+
+### SD3 And F6c
+
+Both charts have complete member inventories, polarities, persistent identities, gauge removal, coordinates and rates, and reconstruction maps. Their focused geometry owners carry the equations and evidence.
+
+| Subchart | Declared inventory and history surface | Free internal axes | Frozen relations and exact scope | Evaluation and claim boundary |
+| --- | --- | --- | --- | --- |
+| `SD3` | Six architrinos in three persistent opposite-polarity pairs on one cyclic order-three chart; exact position and velocity maps at the declared initialization history. | Five length coordinates $(\xi_h,\xi_\rho,\xi_\tau,\xi_c,\xi_s)$ and their five rates, plus separately declared assembly center and center velocity. | The cyclic map $Q$, polarity and pair identities, seed frame, and transverse basis are fixed; the common translation coordinate and rate obey $\gamma=\dot\gamma=0$. The [five-coordinate initialization ledger](../mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md) owns the exact forward and inverse maps, tangent metric, collision guard, and speed guard. | Expressible: the exact centered five-coordinate SD3 position-and-velocity chart. Evaluated: one metric-matched bounded slice through $T=0.15$. Coverage-certified: only that immutable slice, not the full chart. The bounded pass establishes no return, retention, stability, or particle identity. |
+| `F6c` | Eight architrinos on four ordered tetrahedral axes, with four positrino tracks and four electrino tracks forming two co-centered polarity sectors on an exact symmetry-invariant history surface. | Six internal coordinates $(h_+,\rho_+,\theta_+,h_-,\rho_-,\theta_-)$ and their rates, plus separately declared rigid placement or translation when a campaign includes it. | Tetrahedral axes, module identities, polarity assignment, circulation signs, and phase offsets are fixed; each sector shares one axial scale, transverse radius, and phase. [F6c Geometry](../mapping-electromagnetism/f6c-geometry.md) owns the exact member map, symmetry, clearance, and reduced diagnostics. | Expressible: the exact six-coordinate F6c history surface. Evaluated: the bounded records and continuations declared by the owner. Coverage-certified: only their frozen rows and intervals, not the continuous surface or the full causal-root regime. No complete return, positive-width retained branch, stability, or particle identity has been established. |
+
+Plainly: these rows define reproducible search geometries; neither establishes a lasting braid.
 
 ## Current campaign-restricted subcharts
 

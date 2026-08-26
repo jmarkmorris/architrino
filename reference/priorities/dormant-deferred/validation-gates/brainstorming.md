@@ -1,13 +1,13 @@
-# Validation Gates Brainstorming
+# Cross-Sector Validation Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis reserves space for provisional validation concepts beyond the accepted closure-intersection framework.
 
-## Routing Rules
+## Established Framework
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote material into the control file only when it becomes a queue item, proof route, app task, or document/app destination.
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The gate requires a local sector result to extend into at least one shared record that simultaneously satisfies every applicable sector acceptance set. The equations, known tensions, failure routing, and first accepted worked object belong in [closure-intersection-ledger.md](closure-intersection-ledger.md) and [priorities.md](priorities.md).
 
-## Ideas And Insights
+Local success therefore cannot be promoted when it makes another accepted sector impossible. Additional gate ideas must protect an existing consumer and cannot replace a missing derivation with another ledger or fixture.
 
-- No loose ideas have been moved here yet.
+## Unresolved Ideas
+
+- None currently recorded.

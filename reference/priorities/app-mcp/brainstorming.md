@@ -1,13 +1,21 @@
-# Architrino MCP Brainstorming
+# Architrino MCP Concept Synthesis
 
-This file holds provisional ideas for the `app-mcp` workstream. Promote an idea into [priorities.md](priorities.md) or a focused contract only when it has a concrete owner, completion boundary, source-authority rule, and validation path.
+This document retains provisional retrieval and service ideas that are not accepted app-mcp tasks. Stable protocol, transport, deployment, indexing, and client-conformance rules belong in the existing focused contracts and [work-queue.md](work-queue.md).
 
-## Ideas
+## Retrieval and Capability Boundaries
 
-- Consider a compact `capabilities` resource or tool that returns supported tool schemas, snapshot freshness, service version, and declared limits without exposing internal deployment details.
-- Explore a user-selectable retrieval budget expressed as maximum records, characters, graph depth, and response bytes so clients can build context without hidden truncation.
-- Measure deterministic-search recall with a reviewed question set before introducing embeddings. Use misses to define the semantic fallback's job rather than adding embeddings by default.
-- Consider precomputed typed graph-path caches only after ordinary bounded traversal is profiled. Cost and latency claims require measurement.
-- Explore client-facing deep links that open the matching Architrino GitHub Pages route while returning repository paths separately for developer clients.
-- Consider signed snapshot manifests if clients need to verify that an index was built from the declared repository commit. The signing and key-distribution model needs a separate security decision.
-- Preserve the possibility of a private operator profile that can retrieve priority material, but do not mix that visibility with the public service or public cache keys.
+Client-facing discovery should expose only the declared service capabilities, snapshot identity, freshness, limits, and public routes needed for safe use. Retrieval budgets should be explicit across record count, character count, graph depth, and response bytes so truncation is visible rather than inferred.
+
+## Evidence and Performance Boundaries
+
+Semantic retrieval, traversal caches, signatures, and private visibility profiles require separate evidence and security decisions. Search misses define the need for a semantic fallback; measured traversal cost defines the need for caches; a signature is meaningful only with a declared key-distribution and trust model; and private priority access must remain isolated from public visibility and cache identities.
+
+## Unresolved Ideas
+
+- **[inferred] Capability discovery surface.** Determine whether a compact resource or tool should expose supported schemas, snapshot freshness, service version, and declared limits without revealing internal deployment details; next object: a typed response and negative disclosure cases.
+- **[inferred] Client-selected retrieval budget.** Define bounded record, character, graph-depth, and response-byte controls with explicit truncation semantics; falsifier: a supported client context cannot be reconstructed within the declared budget contract.
+- **[closure target] Deterministic-search recall benchmark.** Build a reviewed question set and measure misses before considering embeddings; the benchmark must state corpus scope, relevance judgments, and the semantic fallback's exact job.
+- **[inferred] Typed graph-path caches.** Profile ordinary bounded traversal before specifying cached paths; promotion is blocked unless measured latency or cost identifies a reproducible bottleneck.
+- **[inferred] Reader deep links.** Return a matching public Architrino route separately from repository paths for developer clients; next object: a route/path distinction in the tool contract and client fixtures.
+- **[guessed] Signed snapshot manifests.** Specify signing, key distribution, rotation, and trust before treating a signature as commit verification; likely destination: a focused security contract if accepted.
+- **[closure target] Private operator retrieval profile.** Define authorization and cache isolation for priority material without mixing it into the public service; falsifier: any public response, index, or cache key reveals private-scope content or identity.

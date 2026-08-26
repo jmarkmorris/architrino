@@ -716,9 +716,33 @@
       }
 
       #markdown-panel.multi-columns #markdown-content {
-        column-count: var(--markdown-column-count, 2);
-        column-gap: 32px;
-        column-fill: balance;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      #markdown-panel.multi-columns #markdown-body.markdown-column-pages {
+        display: flex;
+        flex-direction: column;
+        gap: var(--markdown-column-page-gap, 24px);
+      }
+
+      #markdown-panel.multi-columns .markdown-column-page {
+        display: grid;
+        grid-template-columns: repeat(var(--markdown-column-count, 2), minmax(0, 1fr));
+        gap: 32px;
+        min-height: var(--markdown-column-page-height);
+        align-items: start;
+        box-sizing: border-box;
+      }
+
+      #markdown-panel.multi-columns .markdown-column-page + .markdown-column-page {
+        padding-top: var(--markdown-column-page-gap, 24px);
+        border-top: 1px solid rgba(148, 163, 184, 0.16);
+      }
+
+      #markdown-panel.multi-columns .markdown-column-page-column,
+      #markdown-panel.multi-columns .markdown-column-wide-block {
+        min-width: 0;
       }
 
       #markdown-panel.multi-columns #markdown-content h1,
@@ -876,7 +900,22 @@
         }
 
         #markdown-panel.multi-columns #markdown-content {
-          column-count: 1;
+          overflow-x: hidden;
+        }
+
+        #markdown-panel.multi-columns #markdown-body.markdown-column-pages {
+          display: block;
+        }
+
+        #markdown-panel.multi-columns .markdown-column-page {
+          display: block;
+          min-height: 0;
+          padding-top: 0;
+          border-top: 0;
+        }
+
+        #markdown-panel.multi-columns .markdown-column-page-column {
+          height: auto !important;
         }
       }
 
@@ -913,6 +952,16 @@
           font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
           font-size: 11pt !important;
           line-height: 1.5 !important;
+        }
+
+        #markdown-body.markdown-column-pages,
+        .markdown-column-page,
+        .markdown-column-page-column {
+          display: block !important;
+          height: auto !important;
+          min-height: 0 !important;
+          padding-top: 0 !important;
+          border-top: 0 !important;
         }
       }
     </style>

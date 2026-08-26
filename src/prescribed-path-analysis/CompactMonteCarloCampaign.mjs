@@ -17,6 +17,10 @@ import {
   createPrescribedBraidExactSourceRecord,
   validatePrescribedBraidSpec,
 } from "../../scripts/eom/generate-prescribed-braid-record.mjs";
+import {
+  applyCircularRelationshipParameters,
+  projectCircularRelationshipParameters,
+} from "../prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
 
 export const COMPACT_MONTE_CARLO_CAMPAIGN_SCHEMA =
   "prescribed-path-analysis/compact-monte-carlo-campaign.v1";
@@ -98,10 +102,10 @@ function randomPhase(seed, candidateId, sampleOrdinal, coordinateId) {
     uniform01(seed, candidateId, sampleOrdinal, coordinateId);
 }
 
-function setRadiusDecomposition(binary, radius, axialFraction) {
-  binary.radius = radius;
-  binary.axialHalfSeparation = radius * axialFraction;
-  binary.transverseOrbitRadius =
+function setRadiusDecomposition(pair, radius, axialFraction) {
+  pair.radius = radius;
+  pair.axialHalfSeparation = radius * axialFraction;
+  pair.transverseOrbitRadius =
     radius * Math.sqrt(Math.max(0, 1 - axialFraction * axialFraction));
 }
 
@@ -129,10 +133,10 @@ function addVectorArrays(left, right) {
 }
 
 function conservativeStaticExtent(spec) {
-  return Math.max(...spec.braids.flatMap((braid) =>
-    braid.binaries.map((binary) =>
-      vectorNormArray(addVectorArrays(braid.centerOffset, binary.centerOffset)) +
-      binary.radius)));
+  return Math.max(...spec.components.flatMap((component) =>
+    component.pairs.map((pair) =>
+      vectorNormArray(addVectorArrays(component.centerOffset, pair.centerOffset)) +
+      pair.radius)));
 }
 
 function assignBoundedCommonTranslation({
@@ -151,8 +155,8 @@ function assignBoundedCommonTranslation({
   );
   const maximumAbsoluteTime = Math.max(
     1,
-    Math.abs(spec.recordInterval.start),
-    Math.abs(spec.recordInterval.end),
+    Math.abs(spec.history.start),
+    Math.abs(spec.history.end),
   );
   const maximumSpeed =
     FULL_TAXONOMY_DOMAIN.translationMarginFraction *
@@ -176,7 +180,7 @@ function assignBoundedCommonTranslation({
     cosine,
   ];
   if (spec.taxonomy.familyId === "A") {
-    const sum = spec.braids[0].frameDefinition.nearRestAxes.reduce(
+    const sum = spec.components[0].frameDefinition.nearRestAxes.reduce(
       (vector, axis) => addVectorArrays(vector, axis),
       [0, 0, 0],
     );
@@ -189,9 +193,9 @@ function assignBoundedCommonTranslation({
     sampleOrdinal,
     "translation-speed-fraction",
   );
-  spec.group.velocity = scaleVector(direction, speed);
+  spec.assemblyPlacement.velocity = scaleVector(direction, speed);
   return {
-    velocity: [...spec.group.velocity],
+    velocity: [...spec.assemblyPlacement.velocity],
     speed,
     maximumSafeSampledSpeed: maximumSpeed,
     sourceEnvelopeRadius: targetEnvelope,
@@ -260,7 +264,7 @@ export function sampleLocalReferenceNeighborhood({
     candidate?.declaration?.candidateId,
     "candidate.declaration.candidateId",
   );
-  const sampled = structuredClone(candidate.spec);
+  const sampled = projectCircularRelationshipParameters(candidate.spec);
   const geometryScale =
     0.35 + 0.1 * uniform01(seed, candidateId, sampleOrdinal, "geometry-scale");
   const spacingScale =
@@ -272,27 +276,27 @@ export function sampleLocalReferenceNeighborhood({
     familyAFlattening: null,
     braidPhaseOffsets: [],
     fixedCoordinates: {
-      groupVelocity: sampled.group.velocity,
-      frequencies: sampled.braids.flatMap((braid) =>
-        braid.binaries.map((binary) => binary.frequency)),
-      circulationSenses: sampled.braids.map((braid) => braid.circulationSense),
-      polarityAssignments: sampled.braids.flatMap((braid) =>
-        braid.binaries.map((binary) => binary.polarityAssignment)),
+      groupVelocity: sampled.assemblyPlacement.velocity,
+      frequencies: sampled.components.flatMap((component) =>
+        component.pairs.map((pair) => pair.frequency)),
+      circulationSenses: sampled.components.map((component) => component.circulationSense),
+      polarityAssignments: sampled.components.flatMap((component) =>
+        component.pairs.map((pair) => pair.polarityAssignment)),
     },
   };
 
-  sampled.braids.forEach((braid, braidIndex) => {
+  sampled.components.forEach((component, componentIndex) => {
     const phaseOffset =
       2 * Math.PI * uniform01(
         seed,
         candidateId,
         sampleOrdinal,
-        `braid-${braidIndex}-phase-offset`,
+        `component-${componentIndex}-phase-offset`,
       );
-    braid.phaseOffset = phaseOffset;
+    component.phaseOffset = phaseOffset;
     coordinates.braidPhaseOffsets.push(phaseOffset);
     if (sampled.taxonomy.familyId === "C") {
-      braid.centerOffset = scaleVector(braid.centerOffset, spacingScale);
+      component.centerOffset = scaleVector(component.centerOffset, spacingScale);
     }
     if (sampled.taxonomy.familyId === "A") {
       const flattening = uniform01(
@@ -301,21 +305,23 @@ export function sampleLocalReferenceNeighborhood({
         sampleOrdinal,
         "family-a-flattening",
       );
-      braid.frameDefinition.flattening = flattening;
+      component.frameDefinition.flattening = flattening;
       coordinates.familyAFlattening = flattening;
     }
-    braid.binaries.forEach((binary) => {
-      binary.radius *= geometryScale;
-      binary.axialHalfSeparation *= geometryScale;
-      binary.transverseOrbitRadius *= geometryScale;
+    component.pairs.forEach((pair) => {
+      pair.radius *= geometryScale;
+      pair.axialHalfSeparation *= geometryScale;
+      pair.transverseOrbitRadius *= geometryScale;
       if (sampled.taxonomy.familyId === "C") {
-        binary.centerOffset = scaleVector(binary.centerOffset, spacingScale);
+        pair.centerOffset = scaleVector(pair.centerOffset, spacingScale);
       }
     });
   });
 
   return {
-    spec: validatePrescribedBraidSpec(sampled),
+    spec: validatePrescribedBraidSpec(
+      applyCircularRelationshipParameters(candidate.spec, sampled),
+    ),
     coordinates,
     samplingDisposition:
       "diagnostic local-neighborhood pipeline and performance sample; " +
@@ -334,7 +340,7 @@ export function sampleFullConstraintPreservingTaxonomy({
     candidate?.declaration?.candidateId,
     "candidate.declaration.candidateId",
   );
-  const sampled = structuredClone(candidate.spec);
+  const sampled = projectCircularRelationshipParameters(candidate.spec);
   const familyId = sampled.taxonomy.familyId;
   const memberId = sampled.taxonomy.memberId;
   const componentSpacingMember =
@@ -372,15 +378,15 @@ export function sampleFullConstraintPreservingTaxonomy({
   };
 
   if (componentSpacingMember) {
-    sampled.braids.forEach((braid) => {
-      braid.centerOffset = scaleVector(braid.centerOffset, spacingScale);
-      braid.binaries.forEach((binary) => {
-        binary.centerOffset = scaleVector(binary.centerOffset, spacingScale);
+    sampled.components.forEach((component) => {
+      component.centerOffset = scaleVector(component.centerOffset, spacingScale);
+      component.pairs.forEach((pair) => {
+        pair.centerOffset = scaleVector(pair.centerOffset, spacingScale);
       });
     });
   }
 
-  const allBinaries = sampled.braids.flatMap((braid) => braid.binaries);
+  const allPairs = sampled.components.flatMap((component) => component.pairs);
   const equalRadius =
     ["A1.2", "A2", "A3.2"].includes(memberId);
   const commonRadiusMultiplier = uniformRange(
@@ -390,25 +396,25 @@ export function sampleFullConstraintPreservingTaxonomy({
     "common-radius-multiplier",
     FULL_TAXONOMY_DOMAIN.relativeRadiusMultiplier,
   );
-  const radiusFor = (binary, braidIndex, binaryIndex) =>
-    binary.radius * geometryScale * (equalRadius
+  const radiusFor = (pair, componentIndex, pairIndex) =>
+    pair.radius * geometryScale * (equalRadius
       ? commonRadiusMultiplier
       : uniformRange(
         seed,
         candidateId,
         sampleOrdinal,
-        `braid-${braidIndex}-binary-${binaryIndex}-radius-multiplier`,
+        `component-${componentIndex}-pair-${pairIndex}-radius-multiplier`,
         FULL_TAXONOMY_DOMAIN.relativeRadiusMultiplier,
       ));
 
-  sampled.braids.forEach((braid, braidIndex) => {
-    braid.phaseOffset = randomPhase(
+  sampled.components.forEach((component, componentIndex) => {
+    component.phaseOffset = randomPhase(
       seed,
       candidateId,
       sampleOrdinal,
-      `braid-${braidIndex}-phase-offset`,
+      `component-${componentIndex}-phase-offset`,
     );
-    coordinates.braidPhaseOffsets.push(braid.phaseOffset);
+    coordinates.braidPhaseOffsets.push(component.phaseOffset);
     if (familyId === "A") {
       const flattening = uniform01(
         seed,
@@ -416,11 +422,11 @@ export function sampleFullConstraintPreservingTaxonomy({
         sampleOrdinal,
         "family-a-flattening",
       );
-      braid.frameDefinition.flattening = flattening;
+      component.frameDefinition.flattening = flattening;
       coordinates.familyAFlattening = flattening;
     }
-    braid.binaries.forEach((binary, binaryIndex) => {
-      const radius = radiusFor(binary, braidIndex, binaryIndex);
+    component.pairs.forEach((pair, pairIndex) => {
+      const radius = radiusFor(pair, componentIndex, pairIndex);
       let axialFraction;
       if (memberId === "A1" || memberId.startsWith("A1.") ||
           memberId === "B1.3" || memberId === "C5" || memberId === "C6") {
@@ -432,7 +438,7 @@ export function sampleFullConstraintPreservingTaxonomy({
           seed,
           candidateId,
           sampleOrdinal,
-          `braid-${braidIndex}-binary-${binaryIndex}-axial-fraction`,
+          `component-${componentIndex}-pair-${pairIndex}-axial-fraction`,
           FULL_TAXONOMY_DOMAIN.axialDominantFraction,
         );
       } else if (memberId === "A2") {
@@ -448,7 +454,7 @@ export function sampleFullConstraintPreservingTaxonomy({
           seed,
           candidateId,
           sampleOrdinal,
-          `braid-${braidIndex}-binary-${binaryIndex}-axial-fraction`,
+          `component-${componentIndex}-pair-${pairIndex}-axial-fraction`,
           [0.05, 0.2],
         );
       } else {
@@ -456,33 +462,33 @@ export function sampleFullConstraintPreservingTaxonomy({
           seed,
           candidateId,
           sampleOrdinal,
-          `braid-${braidIndex}-binary-${binaryIndex}-axial-fraction`,
+          `component-${componentIndex}-pair-${pairIndex}-axial-fraction`,
           FULL_TAXONOMY_DOMAIN.genericAxialFraction,
         );
       }
-      setRadiusDecomposition(binary, radius, axialFraction);
+      setRadiusDecomposition(pair, radius, axialFraction);
       coordinates.radii.push({
-        binaryId: binary.binaryId,
+        pairId: pair.pairId,
         value: radius,
       });
       coordinates.axialFractions.push({
-        binaryId: binary.binaryId,
+        pairId: pair.pairId,
         value: axialFraction,
       });
-      binary.polarityAssignment = randomSign(
+      pair.polarityAssignment = randomSign(
         seed,
         candidateId,
         sampleOrdinal,
-        `braid-${braidIndex}-binary-${binaryIndex}-polarity`,
+        `component-${componentIndex}-pair-${pairIndex}-polarity`,
       );
       coordinates.polarityAssignments.push({
-        binaryId: binary.binaryId,
-        value: binary.polarityAssignment,
+        pairId: pair.pairId,
+        value: pair.polarityAssignment,
       });
     });
   });
 
-  const setCommonFrequency = (binaries, coordinateId) => {
+  const setCommonFrequency = (pairs, coordinateId) => {
     const harmonic = choose(
       seed,
       candidateId,
@@ -490,12 +496,12 @@ export function sampleFullConstraintPreservingTaxonomy({
       coordinateId,
       FULL_TAXONOMY_DOMAIN.returnPeriodHarmonics,
     );
-    binaries.forEach((binary) => {
-      binary.frequency = harmonic / sampled.prescribedReturnPeriod;
+    pairs.forEach((pair) => {
+      pair.frequency = harmonic / sampled.history.returnPeriod;
     });
   };
   if (["A1.1", "A1.2", "A2", "A3.1", "A3.2"].includes(memberId)) {
-    setCommonFrequency(allBinaries, "common-frequency-harmonic");
+    setCommonFrequency(allPairs, "common-frequency-harmonic");
   } else if (memberId === "A1.3" || memberId === "A3.3" ||
       memberId === "A1.4" || memberId === "A3.4") {
     const ratio = memberId.endsWith(".3") ? [4, 2, 1] : [3, 2, 1];
@@ -506,48 +512,48 @@ export function sampleFullConstraintPreservingTaxonomy({
       "ratio-base-frequency-harmonic",
       FULL_TAXONOMY_DOMAIN.ratioBaseHarmonics,
     );
-    allBinaries.forEach((binary, index) => {
-      binary.frequency =
-        ratio[index] * baseHarmonic / sampled.prescribedReturnPeriod;
+    allPairs.forEach((pair, index) => {
+      pair.frequency =
+        ratio[index] * baseHarmonic / sampled.history.returnPeriod;
     });
   } else if (familyId === "B" ||
       ["C3", "C4", "C5", "C6"].includes(memberId)) {
-    sampled.braids.forEach((braid, braidIndex) =>
+    sampled.components.forEach((component, componentIndex) =>
       setCommonFrequency(
-        braid.binaries,
-        `braid-${braidIndex}-common-frequency-harmonic`,
+        component.pairs,
+        `component-${componentIndex}-common-frequency-harmonic`,
       ));
   } else {
-    allBinaries.forEach((binary, index) => {
+    allPairs.forEach((pair, index) => {
       const harmonic = choose(
         seed,
         candidateId,
         sampleOrdinal,
-        `binary-${index}-frequency-harmonic`,
+        `pair-${index}-frequency-harmonic`,
         FULL_TAXONOMY_DOMAIN.returnPeriodHarmonics,
       );
-      binary.frequency = harmonic / sampled.prescribedReturnPeriod;
+      pair.frequency = harmonic / sampled.history.returnPeriod;
     });
   }
 
   const fixedPhasePattern =
     ["A1.2", "A2", "A3.2"].includes(memberId);
-  allBinaries.forEach((binary, index) => {
+  allPairs.forEach((pair, index) => {
     if (!fixedPhasePattern) {
-      binary.phase = randomPhase(
+      pair.phase = randomPhase(
         seed,
         candidateId,
         sampleOrdinal,
-        `binary-${index}-phase`,
+        `pair-${index}-phase`,
       );
     }
     coordinates.frequencies.push({
-      binaryId: binary.binaryId,
-      value: binary.frequency,
+      pairId: pair.pairId,
+      value: pair.frequency,
     });
     coordinates.phases.push({
-      binaryId: binary.binaryId,
-      value: binary.phase,
+      pairId: pair.pairId,
+      value: pair.phase,
     });
   });
 
@@ -557,19 +563,19 @@ export function sampleFullConstraintPreservingTaxonomy({
     sampleOrdinal,
     "braid-0-circulation",
   );
-  sampled.braids[0].circulationSense = firstCirculation;
-  if (sampled.braids.length === 2) {
-    sampled.braids[1].circulationSense =
+  sampled.components[0].circulationSense = firstCirculation;
+  if (sampled.components.length === 2) {
+    sampled.components[1].circulationSense =
       ["C2", "C4", "C6"].includes(memberId)
         ? -firstCirculation
         : firstCirculation;
   }
-  coordinates.circulationSenses = sampled.braids.map(
-    (braid) => braid.circulationSense,
+  coordinates.circulationSenses = sampled.components.map(
+    (component) => component.circulationSense,
   );
 
   if (memberId === "C1" || memberId === "C2") {
-    const binaries = sampled.braids.flatMap((braid) => braid.binaries);
+    const pairs = sampled.components.flatMap((component) => component.pairs);
     const gaps = Array.from({ length: 11 }, (_, gapIndex) =>
       uniformRange(
         seed,
@@ -585,39 +591,39 @@ export function sampleFullConstraintPreservingTaxonomy({
       positions[index] = position - center;
     });
     const order = shuffled(
-      binaries,
+      pairs,
       seed,
       candidateId,
       sampleOrdinal,
       "general-c-orbit-order",
     );
-    order.forEach((binary, index) => {
+    order.forEach((pair, index) => {
       const lower = positions[2 * index];
       const upper = positions[2 * index + 1];
       const midpoint = (lower + upper) / 2;
       const axialHalfSeparation = (upper - lower) / 2;
-      if (!(binary.radius > axialHalfSeparation)) {
+      if (!(pair.radius > axialHalfSeparation)) {
         throw new RangeError(
-          `general C sampled axial half-separation exceeds ${binary.binaryId} radius.`,
+          `general C sampled axial half-separation exceeds ${pair.pairId} radius.`,
         );
       }
-      binary.centerOffset = [0, 0, midpoint];
+      pair.centerOffset = [0, 0, midpoint];
       setRadiusDecomposition(
-        binary,
-        binary.radius,
-        axialHalfSeparation / binary.radius,
+        pair,
+        pair.radius,
+        axialHalfSeparation / pair.radius,
       );
       const coordinate = coordinates.axialFractions.find(
-        (row) => row.binaryId === binary.binaryId,
+        (row) => row.pairId === pair.pairId,
       );
-      coordinate.value = binary.axialHalfSeparation / binary.radius;
+      coordinate.value = pair.axialHalfSeparation / pair.radius;
     });
-    sampled.sourceOrder = order.map((binary) => binary.binaryId);
-    coordinates.orbitOrder = [...sampled.sourceOrder];
+    sampled.pairOrder = order.map((pair) => pair.pairId);
+    coordinates.orbitOrder = [...sampled.pairOrder];
     coordinates.generalCAxialSpacings = gaps;
     coordinates.generalCOrbitCenterPositions = positions;
   } else {
-    coordinates.orbitOrder = [...sampled.sourceOrder];
+    coordinates.orbitOrder = [...sampled.pairOrder];
   }
 
   coordinates.translation = assignBoundedCommonTranslation({
@@ -628,7 +634,9 @@ export function sampleFullConstraintPreservingTaxonomy({
   });
 
   return {
-    spec: validatePrescribedBraidSpec(sampled),
+    spec: validatePrescribedBraidSpec(
+      applyCircularRelationshipParameters(candidate.spec, sampled),
+    ),
     coordinates,
     samplerId: FULL_TAXONOMY_SAMPLER_ID,
     samplingDisposition:

@@ -425,7 +425,38 @@ function validateManifestAndSummary(manifest, summary) {
 }
 
 function capAnglesFromPacket(packet) {
-  const binaries = packet.source?.parameterVector?.braids?.flatMap(
+  const vector = packet.source?.parameterVector;
+  if (Array.isArray(vector?.worldlines) &&
+      Array.isArray(vector?.constituentInventory) &&
+      Array.isArray(vector?.relationships?.neutralPairs)) {
+    const constituentById = new Map(
+      vector.constituentInventory.map((row) => [row.id, row]),
+    );
+    const worldlineById = new Map(vector.worldlines.map((row) => [row.id, row]));
+    if (vector.relationships.neutralPairs.length !== 3) return null;
+    return vector.relationships.neutralPairs.map((pair) => {
+      const members = pair.members.map((constituentId) => {
+        const constituent = constituentById.get(constituentId);
+        return constituent && worldlineById.get(constituent.worldlineId);
+      });
+      if (members.some((row) => row?.operator?.kind !== "moving-circular.v1")) {
+        return Number.NaN;
+      }
+      const axis = pair.display?.axis;
+      if (!Array.isArray(axis) || axis.length !== 3) return Number.NaN;
+      const centerDelta = members[0].operator.centerAtEpoch.map(
+        (value, index) => value - members[1].operator.centerAtEpoch[index],
+      );
+      const axialHalfSeparation = Math.abs(
+        centerDelta.reduce((sum, value, index) => sum + value * axis[index], 0) / 2,
+      );
+      const transverseOrbitRadius = Math.hypot(...members[0].operator.radiusU);
+      return Math.atan2(axialHalfSeparation, transverseOrbitRadius);
+    });
+  }
+  // Historical packet compatibility only. Live exact-source records use the
+  // explicit v2 relationship branch above.
+  const binaries = vector?.braids?.flatMap(
     (braid) => braid.binaries ?? [],
   );
   if (!Array.isArray(binaries) || binaries.length !== 3) return null;

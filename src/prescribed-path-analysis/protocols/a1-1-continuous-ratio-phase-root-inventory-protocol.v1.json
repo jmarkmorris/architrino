@@ -29,8 +29,8 @@
       "memberId": "A1.1"
     },
     "displaySourceProvenance": {
-      "path": "reference/priorities/braid-program/configurations/family-a-a1-1-equal-frequency.v1.json",
-      "sha256": "2bcc3858413003248fc5b91ee8160aac77418fa8d4617be7242dadfda6038489",
+      "path": "reference/priorities/braid-program/configurations/family-a-a1-1-equal-frequency.v2.json",
+      "sha256": "0870cf663a675def2c95b78fc273cc2881421bc44d22d7ccc4fbf2710f94fa6f",
       "use": "endpoint identities, cyclic plane frames, polarity assignments, and common circulation only; display radii and display phases are not imported"
     },
     "fieldSpeed": 1,

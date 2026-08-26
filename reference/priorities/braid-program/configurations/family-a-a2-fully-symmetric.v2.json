@@ -1,0 +1,531 @@
+{
+  "schema": "prescribed-assembly-spec.v2",
+  "specId": "family-a-a2-fully-symmetric-v1",
+  "label": "A2 — fully symmetric",
+  "provenanceDescription": "Exact A2 prescribed display paths with equal binary geometry, equal frequency, common circulation, 120-degree phases, and cyclic path equivalence.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-07-22",
+  "identity": {
+    "candidateId": "A2",
+    "displayLabel": "A2 — fully symmetric",
+    "status": "admitted-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/braid-family-a.md#a2",
+    "taxonomy": {
+      "familyId": "A",
+      "familyLabel": "Family A",
+      "memberId": "A2",
+      "memberLabel": "fully symmetric",
+      "displayLabel": "A2 — fully symmetric",
+      "canonSource": "content/markdown/aaa/noether-braid/braid-family-a.md#a2"
+    }
+  },
+  "illustrativeCoordinates": {
+    "status": "prescribed-display-coordinates",
+    "choices": [
+      "The flattening coordinate lambda_A=0 selects the mutually orthogonal near-rest endpoint, with binary orbit planes yz, xz, and xy in the declared relative frame.",
+      "The common radius R=0.32, axial half-separation h=0.12, transverse orbit radius rho=sqrt(R^2-h^2), and frequency f=0.25 are prescribed display choices.",
+      "Phase-compensated cyclic frames make the declared 120-degree rotation permute the complete endpoint paths.",
+      "Normalized linear axis interpolation defines the wider taxonomy path but does not alter this near-rest representative."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "a2-binary-1-endpoint-1-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "a2-binary-1-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "a2-binary-1"
+      }
+    },
+    {
+      "id": "a2-binary-1-endpoint-2-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "a2-binary-1-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "a2-binary-1"
+      }
+    },
+    {
+      "id": "a2-binary-2-endpoint-1-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "a2-binary-2-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "a2-binary-2"
+      }
+    },
+    {
+      "id": "a2-binary-2-endpoint-2-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "a2-binary-2-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "a2-binary-2"
+      }
+    },
+    {
+      "id": "a2-binary-3-endpoint-1-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "a2-binary-3-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "a2-binary-3"
+      }
+    },
+    {
+      "id": "a2-binary-3-endpoint-2-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "a2-binary-3-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "a2-binary-3"
+      }
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "a2-binary-1-endpoint-1",
+      "constituentId": "a2-binary-1-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.12,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0,
+          0.2966479394838265,
+          0
+        ],
+        "radiusV": [
+          0,
+          0,
+          0.2966479394838265
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      },
+      "metadata": {
+        "legacyBinaryId": "a2-binary-1",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "a2-binary-1-endpoint-2",
+      "constituentId": "a2-binary-1-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.12,
+          0,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0,
+          -0.2966479394838265,
+          0
+        ],
+        "radiusV": [
+          0,
+          0,
+          -0.2966479394838265
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      },
+      "metadata": {
+        "legacyBinaryId": "a2-binary-1",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "a2-binary-2-endpoint-1",
+      "constituentId": "a2-binary-2-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0.12,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.2569046515733026,
+          0,
+          -0.1483239697419132
+        ],
+        "radiusV": [
+          -0.1483239697419132,
+          0,
+          0.2569046515733026
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.0943951023931953
+      },
+      "metadata": {
+        "legacyBinaryId": "a2-binary-2",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "a2-binary-2-endpoint-2",
+      "constituentId": "a2-binary-2-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          -0.12,
+          0
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.2569046515733026,
+          0,
+          0.1483239697419132
+        ],
+        "radiusV": [
+          0.1483239697419132,
+          0,
+          -0.2569046515733026
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.0943951023931953
+      },
+      "metadata": {
+        "legacyBinaryId": "a2-binary-2",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "a2-binary-3-endpoint-1",
+      "constituentId": "a2-binary-3-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.12
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.1483239697419134,
+          0.2569046515733025,
+          0
+        ],
+        "radiusV": [
+          -0.2569046515733025,
+          -0.1483239697419134,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      },
+      "metadata": {
+        "legacyBinaryId": "a2-binary-3",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "a2-binary-3-endpoint-2",
+      "constituentId": "a2-binary-3-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.12
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.1483239697419134,
+          -0.2569046515733025,
+          0
+        ],
+        "radiusV": [
+          0.2569046515733025,
+          0.1483239697419134,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      },
+      "metadata": {
+        "legacyBinaryId": "a2-binary-3",
+        "persistentEndpointIndex": 2
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [
+      {
+        "braidId": "a2-braid-1",
+        "frameDefinition": {
+          "type": "family-a-flattening.v1",
+          "nearRestAxes": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "flattening": 0,
+          "interpolation": "normalized-linear-to-equal-component/v1",
+          "phaseCompensatedCyclicFrames": true
+        }
+      }
+    ]
+  },
+  "relationships": {
+    "sourceOrder": [
+      "a2-binary-1-endpoint-1-architrino",
+      "a2-binary-1-endpoint-2-architrino",
+      "a2-binary-2-endpoint-1-architrino",
+      "a2-binary-2-endpoint-2-architrino",
+      "a2-binary-3-endpoint-1-architrino",
+      "a2-binary-3-endpoint-2-architrino"
+    ],
+    "neutralPairs": [
+      {
+        "id": "a2-binary-1",
+        "members": [
+          "a2-binary-1-endpoint-1-architrino",
+          "a2-binary-1-endpoint-2-architrino"
+        ],
+        "componentBraidId": "a2-braid-1",
+        "display": {
+          "binaryIndex": 1,
+          "axis": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "id": "a2-binary-2",
+        "members": [
+          "a2-binary-2-endpoint-1-architrino",
+          "a2-binary-2-endpoint-2-architrino"
+        ],
+        "componentBraidId": "a2-braid-1",
+        "display": {
+          "binaryIndex": 2,
+          "axis": [
+            0,
+            1,
+            0
+          ]
+        }
+      },
+      {
+        "id": "a2-binary-3",
+        "members": [
+          "a2-binary-3-endpoint-1-architrino",
+          "a2-binary-3-endpoint-2-architrino"
+        ],
+        "componentBraidId": "a2-braid-1",
+        "display": {
+          "binaryIndex": 3,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    ],
+    "componentBraids": [
+      {
+        "id": "a2-braid-1",
+        "members": [
+          "a2-binary-1-endpoint-1-architrino",
+          "a2-binary-1-endpoint-2-architrino",
+          "a2-binary-2-endpoint-1-architrino",
+          "a2-binary-2-endpoint-2-architrino",
+          "a2-binary-3-endpoint-1-architrino",
+          "a2-binary-3-endpoint-2-architrino"
+        ],
+        "metadata": {
+          "centerOffset": [
+            0,
+            0,
+            0
+          ],
+          "phaseOffset": 0,
+          "circulationSense": 1,
+          "frameDefinition": {
+            "type": "family-a-flattening.v1",
+            "nearRestAxes": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "flattening": 0,
+            "interpolation": "normalized-linear-to-equal-component/v1",
+            "phaseCompensatedCyclicFrames": true
+          }
+        }
+      }
+    ],
+    "polaritySectors": [
+      {
+        "id": "family-a-a2-fully-symmetric-v1-positive-sector",
+        "polarity": 1,
+        "members": [
+          "a2-binary-1-endpoint-1-architrino",
+          "a2-binary-2-endpoint-2-architrino",
+          "a2-binary-3-endpoint-1-architrino"
+        ]
+      },
+      {
+        "id": "family-a-a2-fully-symmetric-v1-negative-sector",
+        "polarity": -1,
+        "members": [
+          "a2-binary-1-endpoint-2-architrino",
+          "a2-binary-2-endpoint-1-architrino",
+          "a2-binary-3-endpoint-2-architrino"
+        ]
+      }
+    ],
+    "symmetryOrbits": [],
+    "accessorySets": []
+  },
+  "history": {
+    "start": 0,
+    "end": 8,
+    "delayHorizon": 2,
+    "periodic": true,
+    "returnPeriod": 4
+  },
+  "constraints": {
+    "validators": [
+      "legacy-family-a.v1"
+    ],
+    "centering": {
+      "declaration": "source-preserved",
+      "gauge": "source-preserved"
+    },
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "preserve-and-report",
+      "observedBound": 0.46597349369246954,
+      "migrationBoundary": "geometry-preservation-only"
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.55,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 96
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.05,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  },
+  "compatibility": {
+    "retainedIdentifiers": [
+      {
+        "kind": "source-schema",
+        "value": "prescribed-braid-spec.v1",
+        "reason": "migration provenance only; no v1 compiler is retained"
+      },
+      {
+        "kind": "source-spec-id",
+        "value": "family-a-a2-fully-symmetric-v1",
+        "reason": "preserve established source identity and Borg URL routing"
+      }
+    ]
+  }
+}

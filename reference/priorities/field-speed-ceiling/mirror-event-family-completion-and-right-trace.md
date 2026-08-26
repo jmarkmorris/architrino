@@ -1,6 +1,6 @@
 # Mirror event-family completion and right-trace construction
 
-**Status:** proposed exact-mirror event map constructed; isolated straight-trace compatibility derived; delayed-history review complete; continuation selection open pending the trailing-front activation dichotomy and independent measure review. **Claim grade:** proposed nonordinary event law with derived consequences inside the declared exact mirror class. It is not an adopted canonical law and does not establish general delayed-system existence or uniqueness.
+**Status:** proposed exact-mirror event map constructed; isolated straight-trace compatibility and positive-waiting-time delayed-braking local existence derived; continuation proven multivalued in the declared class; selection decision and independent review open. **Claim grade:** proposed nonordinary event law with derived consequences inside the declared exact mirror class. It is not an adopted canonical law and does not establish general delayed-system well-posedness, reversal, or a breather.
 
 ## Purpose
 
@@ -270,7 +270,7 @@ $$
 E(T)=\int_0^T(c_f-v(u))\,du,
 $$
 
-allowing a new, unowned post-event partner root to detach from the endpoint. The [trailing-front activation dichotomy](trailing-front-activation-dichotomy.md) records a reduced-system delayed-braking branch and the remaining full-system proof burden. Uniqueness now requires either refuting that branch or adopting an activation selection clause as new foundational data. Neither disposition is selected here.
+allowing a new, unowned post-event partner root to detach from the endpoint. The [trailing-front local-existence theorem](trailing-front-activation-dichotomy.md) proves that for every $u_*>0$ a local full-vector mirror-collinear branch agrees with the straight trace through $u_*$ and then brakes on exactly one new ordinary partner root per receiver. The restart therefore does not select a unique continuation in its declared absolutely continuous, almost-everywhere solution class. Retaining multivaluedness or adopting a separate activation selection clause is a foundational decision not made here.
 
 Plainly: free passage was not put into the event instruction. It appears in the isolated calculation because the event supplies no velocity jump and the complete ledger after the event contains no active row.
 
@@ -306,23 +306,23 @@ When $\boldsymbol{\mathsf R}_i\ne0$, the right-trace equation retains those cont
 4. single ownership of the noncrossing event family; and
 5. ordinary post-event evolution from the complete remainder ledger.
 
-A general local existence and uniqueness theorem for this history-dependent restart is not proved here. FSC-007 still owns genuinely regular atom-free charts, but its positive inactive-gap hypotheses exclude this margin-zero mirror chart. The exact-mirror continuation remains a possibly multivalued relation until the trailing-front activation dichotomy is disposed.
+A general well-posedness theorem for this history-dependent restart is not proved here. FSC-007 still owns genuinely regular atom-free charts, but its positive inactive-gap hypotheses exclude this margin-zero mirror chart. In the exact isolated mirror class, the straight trace and the proved positive-waiting-time braking branches establish that the continuation relation is multivalued. A unique continuation requires additional selection data.
 
 ## Review obligations
 
 The completed Jack K. Hale delayed-history review is recorded in [FSC-006b-JKH3](jack-k-hale-third-review-2026-08-02.md). Remaining review and proof obligations are:
 
-1. an independent measure-typing review of the event map, ownership record, and remainder ledger;
-2. a proof or refutation of the delayed-ignition branch at full-system rigor;
-3. the event-adjacent no-cascade estimate for thin activation sets; and
-4. a decision on activation selection only if the branch is confirmed.
+1. an independent theorem review of the delayed-ignition local-existence proof and full-vector embedding;
+2. an independent measure-typing review of the event map, ownership record, and remainder ledger;
+3. the event-adjacent no-cascade estimate for thin activation sets, which can classify the immediate boundary but cannot restore uniqueness; and
+4. an explicit decision whether to retain multivalued continuation or propose a separate selection law.
 
 An independent measure review should test that the divergent ordinary positive-range approach measure, the finite common event measure, and the post-event remainder ledger remain separately typed.
 
 ## Claim boundary
 
-The proposed law is limited to the exact equal-magnitude, opposite-polarity mirror event. It does not adopt a general coincidence law, swept-source reception on every channel, the field-speed ceiling, or a conservation rule. It constructs a labeled restart equation and proves one exact isolated right-trace compatibility result. It does not prove general existence, uniqueness, stability, causal decoupling under perturbation, or a breather.
+The proposed law is limited to the exact equal-magnitude, opposite-polarity mirror event. It does not adopt a general coincidence law, swept-source reception on every channel, the field-speed ceiling, or a conservation rule. It constructs a labeled restart equation, proves one exact isolated straight trace, and now has a local-existence theorem for a continuum of positive-waiting-time delayed-braking branches. It does not select one of those branches, prove general well-posedness, establish stability or causal decoupling under perturbation, continue the braking branch to reversal, or prove a breather.
 
 ## Closure goal
 
-Submit this construction to a Jack K. Hale delayed-history review, with a Lars Hörmander measure-typing check. Then dispose any corrections before promoting the exact-mirror restart from `constructed proposed law` to a completed event- family prerequisite.
+Independently review the delayed-ignition local-existence theorem and complete the Lars Hörmander measure-typing check. Then decide whether the exact-mirror proposal retains a multivalued continuation relation or adds an explicit selection law before treating the event-family prerequisite as complete.

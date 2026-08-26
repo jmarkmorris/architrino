@@ -22,9 +22,9 @@ import {
   serializePrescribedRecordAnalysis,
 } from "../scripts/eom/evaluate-prescribed-source-wake.mjs";
 import {
-  createSpindleExactSourceRecord,
-  evaluateSpindleSite,
-} from "../scripts/eom/generate-spindle-chart-record.mjs";
+  createPrescribedBraidExactSourceRecord,
+  evaluatePrescribedAssemblySite,
+} from "../scripts/eom/generate-prescribed-braid-record.mjs";
 
 function sourceRecord(sources, history = { start: 0, end: 4 }) {
   return {
@@ -247,25 +247,26 @@ test("uniformly translating closed form exercises the transmitter-side causal fa
   assertNear(result.virtualProbeAcceleration.x, 12 / 25);
 });
 
-test("compatibility adapter preserves every exact B1 source path and supports a six-source evaluation", () => {
+test("the canonical assembly evaluator preserves every exact B1 source path and supports a six-source evaluation", () => {
   const spec = JSON.parse(fs.readFileSync(
     new URL(
-      "../reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v0.json",
+      "../reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v2.json",
       import.meta.url,
     ),
     "utf8",
   ));
-  const exactRecord = createSpindleExactSourceRecord(spec);
+  const exactRecord = createPrescribedBraidExactSourceRecord(spec);
   assert.equal(exactRecord.schema, EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA);
   assert.equal(exactRecord.engineId, "prescribed-geometry");
   assert.equal(exactRecord.sources.length, 6);
 
   const testTime = 1.2345;
-  spec.braids[0].binaries.forEach((binary, binaryIndex) => {
-    binary.worldlineIds.forEach((worldlineId, endpointIndex) => {
-      const source = exactRecord.sources.find((row) => row.id === worldlineId);
+  spec.relationships.neutralPairs.forEach((pair) => {
+    pair.members.forEach((constituentId) => {
+      const constituent = spec.constituents.find((row) => row.id === constituentId);
+      const source = exactRecord.sources.find((row) => row.id === constituent.worldlineId);
       const actual = evaluateExactPrescribedSourceState(source, testTime);
-      const expected = evaluateSpindleSite(spec, binaryIndex, endpointIndex, testTime);
+      const expected = evaluatePrescribedAssemblySite(spec, constituent.worldlineId, testTime);
       assertNear(actual.position.x, expected.position[0], 1e-12);
       assertNear(actual.position.y, expected.position[1], 1e-12);
       assertNear(actual.position.z, expected.position[2], 1e-12);

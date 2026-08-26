@@ -1,13 +1,13 @@
-# App Animator Brainstorming
+# Animator Conceptual Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis bounds provisional ideas for the animation-authoring surface that stages assemblies, paths, observer framing, overlays, media, and playback.
 
-## Routing Rules
+## Established Ownership
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The stable authoring model, observer model, visual grammar, and interface boundaries belong in [design-and-interfaces.md](design-and-interfaces.md). Simulation-data separation and the authoring loop belong in [simulation-mode.md](simulation-mode.md), while accepted implementation work remains in [work-queue.md](work-queue.md).
 
-## Ideas And Insights
+No additional concept remains outside those owners. Future ideas should enter this synthesis only when they are explanatory possibilities rather than accepted tasks or implementation requirements.
 
-- No loose ideas have been moved here yet.
+## Unresolved Ideas
+
+- None currently recorded.

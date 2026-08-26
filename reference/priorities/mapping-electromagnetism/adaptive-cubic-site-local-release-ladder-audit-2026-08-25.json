@@ -1,0 +1,86 @@
+{
+  "schema": "adaptive-cubic-site-local-release-ladder-audit/v1",
+  "recordDate": "2026-08-25",
+  "claimGrade": "measured-eom-solver-finite-replicated-release-diagnostic",
+  "seedFamily": "f6c-cubic-site-local-v1",
+  "orientationField": "tetrahedral-parity-v1",
+  "historyFamily": "site-local-circular",
+  "normalizedWakeSpeed": 1,
+  "frozenCoordinates": {
+    "latticeSpacing": 1,
+    "orbitRadius": 0.05,
+    "angularRate": 1,
+    "historyDepth": 3.2,
+    "historySegmentStep": 0.01,
+    "delayHorizon": 2,
+    "rootTolerance": 0.00001,
+    "transmitterFactorFloor": 0.1,
+    "normalizedReleaseAccelerationTolerance": 1e-8,
+    "orientationTolerance": 1e-12
+  },
+  "derivation": {
+    "normalRule": "n_g=3^(-1/2)((-1)^gx,(-1)^gy,(-1)^gz)",
+    "evenCellSecondMoment": "population_mean(n_g n_g^T)=I/3",
+    "prescribedReleaseAcceleration": "A_expected=-rho*omega^2*(p_g*cos(theta_g)+q_g*sin(theta_g))",
+    "falsifier": "a certified EOM release-acceleration residual lower bound above the frozen tolerance"
+  },
+  "decision": "site_local_circular_history_rejected_across_declared_ladder",
+  "declaredSides": [2, 4, 6],
+  "complete": true,
+  "totalOrderedRootRows": 50816,
+  "rows": [
+    {
+      "latticeSide": 2,
+      "population": 8,
+      "runId": "f6c-cubic-site-local-release-n2-2026-08-25",
+      "modelFingerprint": "fnv1a64:fc524516eb6ffd2b",
+      "releaseRootsComplete": true,
+      "minimumTransmitterFactorMagnitude": 0.958564666772293,
+      "maximumOrientationSecondMomentError": 1.1102230246251565e-16,
+      "maximumNormalizedReleaseResidualLower": 0.2680958096054972,
+      "maximumNormalizedReleaseResidualUpper": 0.26809592893958967,
+      "decision": "site_local_circular_history_rejected_at_release"
+    },
+    {
+      "latticeSide": 4,
+      "population": 64,
+      "runId": "f6c-cubic-site-local-release-n4-2026-08-25",
+      "modelFingerprint": "fnv1a64:452a725e7af9fc7c",
+      "releaseRootsComplete": true,
+      "minimumTransmitterFactorMagnitude": 0.950810966471514,
+      "maximumOrientationSecondMomentError": 1.1102230246251565e-16,
+      "maximumNormalizedReleaseResidualLower": 0.24509272401555549,
+      "maximumNormalizedReleaseResidualUpper": 0.24509295873800854,
+      "decision": "site_local_circular_history_rejected_at_release"
+    },
+    {
+      "latticeSide": 6,
+      "population": 216,
+      "runId": "f6c-cubic-site-local-release-n6-2026-08-25",
+      "modelFingerprint": "fnv1a64:30a434fac461f6d4",
+      "releaseRootsComplete": true,
+      "minimumTransmitterFactorMagnitude": 0.9508109664715082,
+      "maximumOrientationSecondMomentError": 1.2212453270876722e-15,
+      "maximumNormalizedReleaseResidualLower": 0.2450927240155446,
+      "maximumNormalizedReleaseResidualUpper": 0.24509295873801842,
+      "decision": "site_local_circular_history_rejected_at_release"
+    }
+  ],
+  "boundary": "finite_replicated_diagnostic",
+  "infiniteMediumClaim": "excluded_no_exterior_tail_envelope",
+  "onePeriodHistoryReturn": "not_evaluated_release_gate_first",
+  "propagationRows": "not_run",
+  "physicalReceiverRows": "not_run",
+  "claimBoundary": "Rejects the tetrahedral-parity site-local circular history under the declared finite N=2,4,6 ladder. It does not reject every site-local history, an exact periodic-image construction, lawful reorganization, or the literal cubic architecture.",
+  "artifactHashesSha256": {
+    ".tmp/f6c-cubic-site-local-release-n2/run-manifest.json": "2af0261b7b299020c9b99b36c065688c82b28f03223def90493f0ba1a9ccd041",
+    ".tmp/f6c-cubic-site-local-release-n2/release-acceleration.json": "11239e01844b0bc8b96b9c178fb1860fd18b7ac377a6af922a439f5c6c0b15ac",
+    ".tmp/f6c-cubic-site-local-release-n4/run-manifest.json": "406a6c340f1c37dfe56f545e8f642e6fb053f194b7c2b0a210554829064ac6c1",
+    ".tmp/f6c-cubic-site-local-release-n4/release-acceleration.json": "150822005cd0565e3929ddb5a55ecb9de38dfcea9661c983649c1d5c5594bf7d",
+    ".tmp/f6c-cubic-site-local-release-n6/run-manifest.json": "e822b352a1a3269af03ae90be60e048a400fc845c7692500b87656e1efc7a799",
+    ".tmp/f6c-cubic-site-local-release-n6/release-acceleration.json": "ebe9b0ad28225f288984335542ffae2872c002de56915bc7f8673d0549006b50",
+    "scripts/eom/attractor-ensemble-harness.cpp": "5100c4d555646e3d8a64a9282c22537ea0f4a72934b88f7be9b892c9328bc87a",
+    ".tmp/eom-native-dev/attractor-ensemble-harness": "5b5e557e26c935d7e78a510d90475ab2799d702830ca79ea5be33f93078993c3",
+    "scripts/mapping-electromagnetism/adaptive-cubic-site-local-release-analysis.mjs": "e529b4207fd9e339cbce9265c18e80ef0f5278e51f482e7e33dbad045c69da54"
+  }
+}

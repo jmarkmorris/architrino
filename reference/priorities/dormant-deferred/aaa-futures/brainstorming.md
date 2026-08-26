@@ -1,13 +1,13 @@
-# AAA Futures Brainstorming
+# Future Research and Institutional Implications
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis bounds provisional ideas about the institutional, publishing, funding, public-impact, and corporate-research consequences of a mature $\mathbb{A}\mathbb{A}\mathbb{A}$ research program. It does not alter the evidential status of the underlying theory.
 
-## Routing Rules
+## Ownership and Promotion Boundary
 
-- Keep loose future-facing research, funding, institutional, publishing, public-impact, and corporate R&D ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route strategy packets and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+Developed transition analysis belongs in [research-revolution.md](research-revolution.md), while accepted work and its completion conditions remain in [work-queue.md](work-queue.md). Reader-facing promotion requires an identified audience and claim-by-claim separation between present theory results, conditional consequences, and organizational proposals.
 
-## Ideas And Insights
+The lane contains no explanatory material independent of those focused owners. Institutional implications remain downstream of theory closure and cannot serve as evidence for it.
 
-No separate loose `aaa-futures` ideas were moved in the current migration audit. The active research-transition material remains in [research-revolution.md](research-revolution.md) because it is already a focused working note, not a general idea bank.
+## Unresolved Ideas
+
+- None currently recorded.

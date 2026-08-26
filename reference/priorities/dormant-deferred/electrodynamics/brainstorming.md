@@ -1,6 +1,6 @@
-# Electrodynamics Brainstorming
+# Electrodynamics Recovery Synthesis
 
-## Brainstorming Metadata
+## Scope and Status
 
 - Kind: `brainstorming`
 - Parent: [electrodynamics](priorities.md)
@@ -169,11 +169,9 @@ If reopened, the first artifact would be an impossibility-or-viability screen, n
 
 Plainly: the idea remains available, but evidence—not curiosity—must pull it back into active work.
 
-## Parked Questions
+## Unresolved Ideas
 
-- Can existing delayed multi-hit geometry generate a stable transverse assembly response without modifying the Master Equation?
-- Can one Noether sea constitutive state jointly determine effective permittivity, permeability, impedance, dispersion, and material boundaries?
-- Do gravitational loading and physically accelerated apparatus loading share a local photon/clock response while remaining distinguishable by gradients and response history?
-- Can magnetic-charge null results be recovered entirely from assembly neutrality and exposure without a primitive magnetic sign?
-
-These are brainstorming prompts only. Promote none of them into a queue until the operator explicitly reactivates the lane and a question has a concrete input record, independent comparison, and falsifier.
+- **[inferred] Transverse assembly response from delayed multi-hit geometry.** Requires an accepted evolved assembly, motion-reversed path-history pair, independent moving-source benchmark, and a stable nonzero odd transverse aggregate; failure rejects the tested assembly and regime as a magnetic precursor.
+- **[guessed] Unified Noether sea constitutive state.** Derive effective permittivity, permeability, impedance, dispersion, and material-boundary response from one state family without per-observable retuning; likely destination is [electrodynamics-recovery-scope.md](electrodynamics-recovery-scope.md) if the lane is reactivated.
+- **[guessed] Loading equivalence and distinction.** Determine whether gravitational loading and physically driven apparatus loading share a local photon or clock response while remaining distinguishable through gradients and response history; required object is one native constitutive comparison.
+- **[closure target] No-isolated-magnetic-source recovery.** Establish whether assembly neutrality, shielding, and exposure can explain magnetic-charge null results without a primitive magnetic sign; a demonstrated observer constraint that cannot be recovered this way would reopen the primitive-inventory screen.

@@ -1,8 +1,15 @@
-# App Causal Delay Feedback Brainstorming
+# Causal-Delay Feedback Conceptual Synthesis
 
-The immediate implementation lane is closed. This file retains only ideas that are not already part of the accepted eight-lesson-plus-Laboratory surface.
+This synthesis records only provisional teaching ideas beyond the accepted causal-delay lesson sequence and Laboratory surface. The implementation lane remains closed unless the reopening conditions in the current product requirements are met.
 
-## Open Ideas
+## Established Teaching Model
 
+The app teaches how delayed path-history geometry determines causal roots, self-hits, and branch structure without importing observer-level laws as substrate premises. The accepted learner progression, numerical boundaries, and validation authority belong in [v1-product-requirements.md](v1-product-requirements.md); deferred root-teaching material remains in its dedicated focused packet.
 
-All earlier Story, path-history, roots, self-hit, branch, sandbox, styling, and control ideas were either implemented, promoted into the current requirements, superseded by the accepted surface, or left as internal helpers. Git history remains their record.
+## Promotion Boundary
+
+An additional teaching idea becomes actionable only when it adds a distinct learning objective, preserves acceleration-first language, identifies its numerical authority, and satisfies the explicit reopening rules. Earlier Story, root, self-hit, branch, sandbox, styling, and control proposals are already implemented, superseded, or owned elsewhere.
+
+## Unresolved Ideas
+
+- None currently recorded.

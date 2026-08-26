@@ -22,6 +22,10 @@ import {
   createPrescribedBraidExactSourceRecord,
   validatePrescribedBraidSpec,
 } from "../../scripts/eom/generate-prescribed-braid-record.mjs";
+import {
+  applyCircularRelationshipParameters,
+  projectCircularRelationshipParameters,
+} from "../prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
 
 export const COMPLETE_CYCLE_CANDIDATE_RESULT_SCHEMA =
   "prescribed-path-analysis/complete-cycle-candidate-result.v1";
@@ -998,9 +1002,11 @@ function endpointRmsVector(endpointReduction) {
 }
 
 export function perturbDeclaredPrimaryBraidPhaseOffset(spec, delta) {
-  const perturbed = structuredClone(spec);
-  perturbed.braids[0].phaseOffset += delta;
-  return validatePrescribedBraidSpec(perturbed);
+  const parameters = projectCircularRelationshipParameters(spec);
+  parameters.components[0].phaseOffset += delta;
+  return validatePrescribedBraidSpec(
+    applyCircularRelationshipParameters(spec, parameters),
+  );
 }
 
 export function centeredSensitivityDerivative(minus, plus, denominator) {

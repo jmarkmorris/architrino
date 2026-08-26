@@ -1,13 +1,11 @@
-# Media Posts Brainstorming
+# Short-Form Media Synthesis
 
-This file preserves post-format ideas and insights before they have a concrete publication target, claim level, and owner.
+This synthesis reserves a low-priority location for provisional posts, threads, captions, audience notes, and publication hooks. It is not an active publication lane.
 
-## Routing Rules
+## Publication Boundary
 
-- Keep loose short-form post ideas, thread concepts, captions, audience notes, and publication hooks here until they become a queue item, working note, or production packet.
-- Promote only selected material into a dedicated media-posts control file if the bucket becomes an active media lane.
-- Keep theory claims downstream of accepted corpus and validation material.
+A post concept becomes eligible for a focused brief only after it has an audience, a claim level, a publication surface, an owner, and a testable acceptance condition. Compression for short-form media must preserve the authority and uncertainty of the source material.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-No loose media-posts ideas have been promoted into this bucket yet.
+- None currently recorded.

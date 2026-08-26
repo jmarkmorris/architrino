@@ -1,13 +1,11 @@
-# App Equation Mapping Brainstorming
+# Equation Mapping App Concept Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This document retains provisional Equation Mapping concepts that are not accepted tasks. The app provides addressable equation records and authoring support without changing the authority of an equation or its source passage.
 
-## Routing Rules
+## Routing Boundary
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote material into the control file only when it becomes a queue item, proof route, app task, or document/app destination.
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+Accepted implementation work belongs in [work-queue.md](work-queue.md), strategy belongs in [priorities.md](priorities.md), and stable registry or authoring rules belong in the existing focused contracts.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-- No loose ideas have been moved here yet.
+- None currently recorded.

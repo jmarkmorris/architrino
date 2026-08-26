@@ -152,6 +152,30 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
     recordUrl:
       "content/assets/borg/records/family-c-c2-1-counter-rotating-b1-3-pair.assembly-view-record.v0.json",
   },
+  {
+    id: "sd3-centered-five-coordinate-v2",
+    label: "SD3 — centered five-coordinate representative",
+    familyId: "SD3",
+    familyLabel: "SD3",
+    recordUrl:
+      "content/assets/borg/records/sd3-centered-five-coordinate.assembly-view-record.v0.json",
+  },
+  {
+    id: "f6c-polarity-resolved-harmonic-v2",
+    label: "F6c — small asymmetric counter-breathing representative",
+    familyId: "F6c",
+    familyLabel: "F6c",
+    recordUrl:
+      "content/assets/borg/records/f6c-polarity-resolved-harmonic.assembly-view-record.v0.json",
+  },
+  {
+    id: "f6b-scoped-negative-circular-v2",
+    label: "F6b — scoped-negative circular realization",
+    familyId: "F6b",
+    familyLabel: "F6b",
+    recordUrl:
+      "content/assets/borg/records/f6b-scoped-negative-circular.assembly-view-record.v0.json",
+  },
 ]);
 
 export function createBorgBraidRecordCatalog(entries) {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T05:43:44.273Z",
-  "total_links": 6645,
+  "generated_at": "2026-08-26T05:08:01.264Z",
+  "total_links": 6685,
   "links": [
     {
       "sourceChapterId": "archie__about_architrino",
@@ -28534,6 +28534,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-4514a1f4aead3177"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../equation-mapping.html#corpus-equation-459f5be1d4e14c86",
       "kind": "external",
       "status": "web_redirect",
@@ -29734,6 +29742,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-793978b6b1a5fa1d",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-793978b6b1a5fa1d"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../equation-mapping.html#corpus-equation-794d0d1c004b093f",
       "kind": "external",
       "status": "web_redirect",
@@ -30218,6 +30234,14 @@
       "kind": "external",
       "status": "web_redirect",
       "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-8b226fa7d9a1c37a"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-8b30dc678926f3e6"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -31226,6 +31250,14 @@
       "kind": "external",
       "status": "web_redirect",
       "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-b3fdcdf5f335bca0"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-b44957fa1f24bad8"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -32574,6 +32606,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-e897dc3f23a715e5"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../equation-mapping.html#corpus-equation-e9a1883e8f5ee1cb",
       "kind": "external",
       "status": "web_redirect",
@@ -32746,6 +32786,14 @@
       "kind": "external",
       "status": "web_redirect",
       "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-f37ded5a32fad4c0"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-f3a8866472772602",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-f3a8866472772602"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -33230,10 +33278,74 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauss-law-source-and-closure-benchmarks",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-symmetries.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-symmetries.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-symmetries.md#gauge-redundancy-and-anomaly-ledger",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-symmetries.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-symmetries.md#gauge-redundancy-and-anomaly-ledger",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-symmetries.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-symmetries.md#standard-model-recovery-gate",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-symmetries.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -34127,6 +34239,14 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
@@ -36030,6 +36150,30 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://arxiv.org/abs/hep-ph/9810524",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://arxiv.org/abs/hep-th/0110114",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://assets.press.princeton.edu/chapters/i8959.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://cds.cern.ch/record/2845047",
       "kind": "external",
       "status": "external",
@@ -36046,7 +36190,31 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1016/j.hm.2005.11.007",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1016/j.shpsb.2019.02.005",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://doi.org/10.1017/S0370164600032508",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1038/nphys3425",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
@@ -36078,7 +36246,47 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1086/289379",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://doi.org/10.1103/lgl2-6cb8",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1103/PhysRev.115.485",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1103/PhysRev.96.191",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1103/PhysRev.96.191",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://doi.org/10.1103/PhysRevD.11.2856",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
@@ -36102,6 +36310,22 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://edition-open-sources.org/sources/10/14/index.html",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://edition-open-sources.org/sources/10/14/index.html",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://eudml.org/doc/58546",
       "kind": "external",
       "status": "external",
@@ -36110,7 +36334,31 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://eudml.org/doc/58792",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://muon-g-2.fnal.gov/publications.html",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://pdg.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://plato.stanford.edu/archives/sum2024/entries/weyl/",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
@@ -36127,6 +36375,78 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://sites.pitt.edu/~jdnorton/teaching/Einstein_graduate/2590_Einstein_2015/pdfs/Einstein_On_Present_Status_old.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://tannerlectures.org/wp-content/uploads/2024/07/Penrose96.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.damtp.cam.ac.uk/user/tong/string.html",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.duden.de/rechtschreibung/eichen_pruefen_einstellen",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.etymonline.com/word/gauge",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.ias.edu/scholars/weyl",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.math.uni-bonn.de/people/ursula/weyl.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.nobelprize.org/uploads/2018/06/wilson-lecture-2.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.nobelprize.org/uploads/2018/06/wilson-lecture-2.pdf",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://www.originalsources.com/Document.aspx?DocID=1M5T8JH7CAU8EIG",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""

@@ -1,105 +1,186 @@
-# Trailing-front activation dichotomy
+# Trailing-front delayed-ignition local-existence theorem
 
-**Status:** focused theorem target; reduced exact-mirror branch derived up to the ignition-instant existence step and numerically reproduced; full-system existence or exclusion not proved. **Owner:** FSC-006b/FSC-005. **Primary review input:** [Jack K. Hale third review](jack-k-hale-third-review-2026-08-02.md), finding JKH3-6.
+**Status:** derived local existence and continuation nonuniqueness inside the proposed exact-mirror restart; independent theorem review pending. **Owner:** FSC-006b/FSC-005. **Primary precursor:** [Jack K. Hale third review](jack-k-hale-third-review-2026-08-02.md), finding JKH3-6. **Claim boundary:** this theorem is conditional on the proposed field-speed response and proposed exact-mirror event completion. It adopts neither law canonically.
 
-## Purpose
+## Purpose and verdict
 
-The proposed exact-mirror event map has a zero matched impulse, continuous position and velocity, a complete labeled history splice, and single ownership of the event family. The isolated straight separating trace is exactly compatible with that map. Compatibility does not yet imply that the trace is the unique continuation.
+The proposed exact-mirror event map has zero matched impulse, continuous position and velocity, a complete labeled history splice, and single ownership of the event family. The isolated straight separating trace is one exact continuation. This note proves that it is not the unique continuation in the declared absolutely continuous, almost-everywhere solution class.
 
-The decisive question is whether a post-event partner front can become an ordinary root after an arbitrarily long interval of straight motion and start a self-consistent continuous slowdown. This note states that question as one prove-or-refute target. It adopts neither a multivalued continuation law nor an activation floor.
+For every selected waiting time $u_*>0$, there is a local mirror-collinear solution that agrees exactly with the straight field-speed trace through $u_*$ and then begins continuous braking on one newly activated ordinary partner root per receiver. No external perturbation, row clipping, reweighting, or new contact event is used. The waiting time is not selected by the equation.
 
-Plainly: the event itself is settled provisionally, but the future may still fork. We must determine whether the delayed wake law permits a pair to fly straight for any chosen time and then begin slowing without a separate kick.
+Plainly: the unchanged post-event wake equation permits the pair to fly straight for any chosen positive time and then begin slowing. It also permits them to continue straight. The current law therefore gives a set of futures rather than one future.
 
-## Exact reduced mirror equations
+## Declared setting
 
-Normalize $T_{\mathrm c}=0$ and use symbolic $c_f$ in the derivation. On a mirror-collinear candidate trace write
+Use normalized wake-speed units $c_f=1$, put coincidence at $T_{\mathrm c}=0$, and let $K>0$ be the normalized opposite-polarity partner coupling. Work in the isolated two-label exact-mirror class after the proposed zero-impulse restart, with no external remainder rows. Let $\mathbf e$ be the collinear direction and write
 
 $$
-\mathbf V_1(w)=v(w)\mathbf e,
+\mathbf X_1(t)=x(t)\mathbf e,
 \qquad
-\mathbf V_2(w)=-v(w)\mathbf e,
+\mathbf X_2(t)=-x(t)\mathbf e,
+$$
+
+$$
+x(t)=t-E(t),
 \qquad
-0\le v(w)\le c_f,
-$$
-
-and define the speed deficit and accumulated distance deficit by
-
-$$
-m(w)=c_f-v(w),
+v(t)=x'(t)=1-m(t),
 \qquad
-E(w)=\int_0^w m(u)\,du.
+E'(t)=m(t).
 $$
 
-For a label-2 emission at $s>0$ received by label 1 at $w>s$, the causal-root equation reduces to
+The solution class has continuous position, absolutely continuous velocity, $0\le v\le1$ on the local interval, and satisfies the complete-ledger restart equation almost everywhere. The already-owned event family remains silent under the restart ownership rule; every isolated positive-delay post-event root is admitted normally.
+
+Fix $u_*>0$ and prescribe the common straight history
+
+$$
+E(t)=m(t)=0
+\qquad
+\text{for }0\le t\le u_*.
+$$
+
+Plainly: both architrinos leave coincidence at field speed and remain exactly straight until the candidate ignition time. The theorem asks whether the existing equation itself can supply a lawful continuation after that time.
+
+## Theorem
+
+**Delayed-ignition local-existence and nonuniqueness theorem.** For every $u_*>0$, there is $h>0$ and a mirror-collinear solution on $[0,u_*+h]$ such that:
+
+1. $E=m=0$ on $[0,u_*]$;
+2. $m(t)>0$ for every $t\in(u_*,u_*+h]$, so both architrinos slow below field speed;
+3. each receiver has exactly one new isolated positive-delay partner root $s(t)\in(0,u_*)$, with $D_t=2$, $D_r=m(t)>0$, and positive range;
+4. neither ordered same-transmitter channel has a new positive-delay root;
+5. the complete ordinary ledger contains exactly the two mirror partner rows, one per receiver, and the proposed ceiling response is the identity because each velocity is sub-field-speed and each partner contribution is speed-reducing; and
+6. the vector paths solve the full isolated two-label restart equation, not only a scalar diagnostic.
+
+The straight solution and every $u_*$-branch share the same complete event data and the same labeled history through $u_*$. Hence the proposed exact-mirror continuation relation is locally multivalued in the declared solution class.
+
+## Proof
+
+### 1. Exact partner-root equation
+
+For a label-2 emission at $s\in(0,t)$ received by label 1 at $t$, the displacement points along $+\mathbf e$ on the local separating interval and has magnitude
+
+$$
+r(t,s)=t+s-E(t)-E(s).
+$$
+
+The causal equality $r(t,s)=t-s$ is therefore equivalent to
+
+$$
+\boxed{2s=E(t)+E(s).}
+$$
+
+Define $H(s)=2s-E(s)$. Wherever $0\le m(s)\le1$,
+
+$$
+H'(s)=2-m(s)=1+v(s)\ge1,
+$$
+
+so $H$ is strictly increasing and there is at most one post-event partner root for each receiver time.
+
+Plainly: mirror symmetry reduces the complete partner-root search to one increasing scalar function. Root multiplicity cannot hide inside this local branch.
+
+### 2. The first activated root lies in the stored straight segment
+
+Choose a right neighborhood of $u_*$ on which $E(t)<2u_*$. Any root with $s<u_*$ lies in the straight stored history, so $E(s)=0$ and the root equation becomes
+
+$$
+\boxed{s(t)=\frac{E(t)}2.}
+$$
+
+For $E(t)>0$ this root is new and unowned because $s(t)>0$. It detaches continuously from the coincidence endpoint $s=0$ but does not rebill any emission owned by the event.
+
+### 3. Smooth local ODE
+
+On this first-root chart the stored source speed is $v(s)=1$, the range is $r=t-s$, and the normalized canonical partner-row magnitude is
+
+$$
+\frac{K}{(t-s)^2[1+v(s)]}.
+$$
+
+Opposite polarity makes this contribution backward, so the speed deficit satisfies
 
 $$
 \boxed{
-2c_f s=E(w)+E(s).
+E'(t)=m(t),
+\qquad
+m'(t)=\frac{K}{2\left(t-E(t)/2\right)^2},
+\qquad
+E(u_*)=m(u_*)=0.
 }
 $$
 
-On the exact straight trace, $E=0$, so no $s>0$ root exists. Its inactive margin is
+The active-branch right-hand side admits a smooth extension to a neighborhood of $(t,E,m)=(u_*,0,0)$ because $u_*>0$. The Picard--Lindelof theorem applied to that extension therefore gives a unique local solution for this fixed $u_*$. The extension value at the single boundary instant $t=u_*$ need not be identified with an active ordinary row: the physical root exists for every $t>u_*$ and the restart equation is imposed almost everywhere. The solution's right-hand onset values are
 
 $$
-g(w,s)=2c_f s,
+m'(u_*^+)=\frac{K}{2u_*^2}>0,
 $$
 
-whose infimum over $s>0$ is zero. Therefore the straight chart has no uniform inactive-gap neighborhood.
-
-Plainly: every new partner front stays behind a receiver moving at $c_f$, but fronts emitted arbitrarily soon after coincidence are arbitrarily close to catching it. The ordinary regular-chart theorem requires a positive safety gap, and this chart has none.
-
-## Candidate delayed-ignition branch
-
-Fix an ignition time $u_*>0$. A candidate branch agrees with the straight trace through $u_*$ and has $m(w)>0$ for $w>u_*$. The root then detaches continuously from $s=0$. At onset,
-
 $$
-D_t=c_f+v(s)\longrightarrow2c_f,
+m(t)=\frac{K}{2u_*^2}(t-u_*)+O\!\left((t-u_*)^2\right),
 \qquad
-D_r=c_f-v(w)=m(w)>0,
+E(t)=\frac{K}{4u_*^2}(t-u_*)^2+O\!\left((t-u_*)^3\right).
 $$
 
-so the detached root is an isolated, positive-delay, ordinary partner root and sweeps new post-event source history. For opposite polarities its acceleration contribution is backward. The formal onset coefficient is
+After reducing $h$ if necessary, this solution has $0<m<1$, $0<E<2u_*$, and $t-E/2>0$ throughout $(u_*,u_*+h]$. Concatenating it to the straight trace gives continuous velocity with a bounded jump in acceleration at $u_*$. That velocity is locally Lipschitz and therefore belongs to the declared absolutely continuous solution class. The restart equation is required almost everywhere, so the single ignition instant needs no acceleration atom or new event coefficient.
+
+Plainly: once a positive waiting time is fixed, the first braking interval is not a singular delay problem. It is an ordinary smooth ODE with a positive initial braking slope. The acceleration switches on immediately to the right of $u_*$, while velocity remains continuous.
+
+### 4. Complete local root census
+
+For $t>u_*$, the constructed $E(t)>0$ gives the root $s(t)=E(t)/2\in(0,u_*)$. Strict monotonicity of $H$ proves it is the only post-event partner root. Its factors are
 
 $$
-A_0
-=
-\frac{K}{2c_f^3u_*^2},
-$$
-
-with local behavior
-
-$$
-m(w)=A_0(w-u_*)+o(w-u_*),
+D_t=1+v(s(t))=2,
 \qquad
-E(w)=\frac{A_0}{2}(w-u_*)^2+o((w-u_*)^2).
+D_r=1-v(t)=m(t)>0,
 $$
 
-The independent reduced-system integration recorded in JKH3 reproduced this onset slope and continued one ordinary root monotonically after ignition. That is measured evidence for the reduced equations, not a full existence theorem.
+and its range is $t-s(t)>0$. Its playback derivative also agrees exactly with the implicit-root identity:
 
-Immediate sustained ignition at $u_*=0$ is excluded in the declared absolutely continuous class: the onset row scales as $w^{-2}$ and is not locally integrable. A sufficiently thin event-adjacent activation cascade has not yet been excluded.
+$$
+s'(t)=\frac{m(t)}2=\frac{D_r}{D_t}.
+$$
 
-Plainly: beginning the slowdown exactly at coincidence is too singular. Waiting a positive time removes that divergence, and the newly caught partner front then supplies acceleration in the same direction as the slowdown. The open question is whether that formal feedback loop is an exact solution of the full law.
+The owned pre-event partner family cannot reactivate by the owned-family permanence lemma. For a same-transmitter candidate $0\le s<t$,
 
-## Required disposition
+$$
+\left|x(t)-x(s)\right|
+\le
+\int_s^t v(q)\,dq
+<t-s
+$$
 
-Exactly one of the following must be established:
+whenever the interval includes any part of $(u_*,t)$, because $v<1$ there. Thus no new positive-delay same-transmitter root exists. The straight same-transmitter family before ignition remains an already classified noncrossing characteristic family and supplies no ordinary row.
 
-1. **Existence.** Prove a Caratheodory solution through the ignition instant, prove the complete reduced root census, and embed the mirror-collinear solution in the full three-dimensional delayed system. The restart then defines a multivalued continuation relation unless another selection law is adopted.
-2. **Exclusion.** Identify and prove the existing clause, estimate, or ledger contribution that prevents the branch. The exclusion must apply to a class containing the straight trace and cannot assume a positive inactive margin that this chart lacks.
+Plainly: after ignition, exactly one genuinely new partner front catches each architrino. No old event wake is charged again, and no self-wake supplies a hidden additional contribution.
 
-A third option—postulating a positive activation floor—would select the straight trace locally, but it is new foundational data rather than a proof of either branch above. No such floor is adopted here.
+### 5. Response and full vector embedding
 
-## Acceptance checks
+The partner row points opposite each receiver's velocity and has the magnitude used in the displayed ODE. For $t>u_*$, $v(t)<1$, so the velocity is strictly inside the proposed speed ball and the constrained response leaves the complete ordinary ledger unchanged. Mirror symmetry gives equal and opposite vector accelerations, preserves $\mathbf X_2=-\mathbf X_1$, and produces no transverse component. The scalar solution therefore embeds directly as a solution of both ordered partner equations in the full three-dimensional isolated two-label system.
 
-An existence result must provide:
+This completes the local existence proof. Because the straight trace remains an exact solution and the same construction works for every $u_*>0$, local continuation from the proposed event state is not unique. $\square$
 
-- a precise function space and one-sided ignition trace;
-- a complete all-channel root census before, at, and after ignition;
-- local integrability of the complete post-sum ledger;
-- proof that the owned event family is not re-billed;
-- proof that the solution satisfies the speed-ceiling inclusion; and
-- a full-system embedding, not only a sampled reduced integration.
+## Exact decision
 
-An exclusion result must name its falsifier and show exactly where the formal onset expansion fails.
+The unchanged ordinary delayed equation does permit a first departure from $c_f$ after any positive waiting time. No external perturbation is mathematically required for existence. Exact straight passage is compatible but is not selected by the current law.
 
-Closure goal: verify or refute the delayed-ignition family at full-system rigor, then state whether the exact-mirror restart is a single-valued local continuation or a multivalued relation requiring a new selection law.
+Selecting straight passage would require additional data, such as an activation-continuity or positive-floor postulate, or a separately proved approximation-limit solution criterion that excludes the waiting-time branches. Conversely, retaining the present absolutely continuous, almost-everywhere solution class means accepting a multivalued continuation relation at this proposed event class. This theorem does not choose between those foundational dispositions.
+
+Plainly: the first slowdown is permitted, but its start time is undetermined. The missing object is no longer a perturbation that starts braking; it is a rule that selects one future from the continuum already allowed by the equation.
+
+## Remaining boundaries
+
+- Immediate sustained ignition at $u_*=0$ remains excluded in the declared absolutely continuous class because the row scales as $K/(2t^2)$ and is not locally integrable.
+- Event-adjacent thin activation cascades remain unclassified, but they cannot restore uniqueness because the positive-waiting-time branches already prove nonuniqueness.
+- The theorem is local. It does not prove that braking reaches zero speed, reverses either path, returns the pair to coincidence, or produces a breather.
+- The exact collinear embedding is not a perturbative-stability theorem and says nothing about noncollinear histories.
+- The event aggregation, zero-impulse restart, and field-speed response remain proposed laws rather than canonical dynamics.
+- Independent theorem and measure-typing review remain required before broader promotion.
+
+## Falsifiers
+
+The theorem is overturned by any of the following inside the declared class: a second admitted local root omitted by the census; failure of the partner row to reduce to the displayed ODE; a violation of event-family ownership by the new $s(t)>0$ root; failure of the local ODE solution to satisfy the complete vector restart equation almost everywhere; or an already-adopted solution requirement stronger than absolute continuity that excludes a bounded acceleration jump at an ordinary-root activation time.
+
+## Closure goal
+
+Independently review the local-existence proof and the event/receiver-measure typing. Then decide whether the proposed exact-mirror model accepts a multivalued continuation relation or adds a separately explicit selection law; only after that decision should the braking branch be extended toward reversal and a possible return.

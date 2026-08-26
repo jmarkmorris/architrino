@@ -1,0 +1,158 @@
+{
+  "schema": "f6c-radial-frequency-continuation-campaign/v1",
+  "date": "2026-08-24",
+  "claimGrade": "measured bounded EOM-solver diagnostic",
+  "instrument": "scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs",
+  "fieldSpeed": 1,
+  "parentSeed": {
+    "campaign": "f6c-dual-turn-return-search-2026-08-24.json",
+    "rawSummary": ".tmp/f6c-dual-turn-stage-a-24-v2/search-summary.json",
+    "rowIndex": 12,
+    "runId": "f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1"
+  },
+  "coordinateExtension": {
+    "name": "radialBreathingRatio",
+    "definition": "radialBreathingRate / axialBreathingRate",
+    "axialAndCadenceHarmonicRate": 0.7871087192596784,
+    "radialHarmonicRate": "0.7871087192596784 * radialBreathingRatio",
+    "fixedCoordinates": [
+      "positiveRate",
+      "negativeRate",
+      "negativeTheta",
+      "breathingRate",
+      "cyclePhase",
+      "positiveHAmplitude",
+      "negativeHAmplitude",
+      "positiveRhoAmplitude",
+      "negativeRhoAmplitude",
+      "positivePhaseAmplitude",
+      "negativePhaseAmplitude",
+      "positiveHPhaseOffset",
+      "negativeHPhaseOffset",
+      "positiveRhoPhaseOffset",
+      "negativeRhoPhaseOffset"
+    ],
+    "implementationBoundary": "The added ratio changes only the radial sinusoid argument, radial release rate, radial speed admission term, and radial part of the cubic-history error enclosure. Axial breathing and cadence modulation retain the parent breathing rate."
+  },
+  "closedFormReleaseControl": {
+    "ratios": [1, 0.9],
+    "acceptedEndTime": 0.002,
+    "rejectedSteps": 0,
+    "releaseRootClearance": "certified_complete",
+    "maximumWrappedStateResidualAgainstIndependentAnalyticalFormula": 4.440892098500626e-16,
+    "invariantChannels": ["h", "rho", "theta", "hDot", "thetaDot"],
+    "scaledChannel": "rhoDot",
+    "measuredRatio09ToRatio1RhoDot": {
+      "positive": 0.9,
+      "negative": 0.9
+    },
+    "artifacts": [
+      {"path": ".tmp/f6c-ratio-closed-form-smoke-r1/run-manifest.json", "sha256": "0924b0b11ca4eaa8083de4433d4c19047392b8822a378e4f306ccba104427312"},
+      {"path": ".tmp/f6c-ratio-closed-form-smoke-r1/census.jsonl", "sha256": "bc6e1a3b01dbf66124b9d3eb40490920e02b8b2cc7954737aa38f5f54ef7e6dc"},
+      {"path": ".tmp/f6c-ratio-closed-form-smoke-r09/run-manifest.json", "sha256": "b0589b8d803fb25ad4e203a1f0959e5714038e51e846fd04f65fb6cf34a4cad9"},
+      {"path": ".tmp/f6c-ratio-closed-form-smoke-r09/census.jsonl", "sha256": "83a274ee322d044741995acdab70a7b44d577e00a4de393efd15027435a58173"}
+    ]
+  },
+  "sweepContract": {
+    "ratiosInAttemptOrder": [1, 0.95, 1.05, 0.9, 1.1, 0.85, 1.15, 0.8, 1.2],
+    "requestedRows": 9,
+    "admittedRows": 9,
+    "prefilterRejectedRows": 0,
+    "concurrency": 2,
+    "threadsPerCandidate": 4,
+    "plannedEndTime": 0.3,
+    "integrationStep": 0.004,
+    "minimumStep": 0.001,
+    "historySegmentStep": 0.01,
+    "rootTolerance": 0.00001,
+    "candidateWallSeconds": 180,
+    "maximumPlannedWallSeconds": 900,
+    "measuredWallSeconds": 900.535,
+    "section": {
+      "sector": "positive",
+      "coordinate": "radial",
+      "minimumExcursion": 0.0001
+    },
+    "materialImprovementRule": {
+      "baselineRowIndex": 0,
+      "baselineRms": 1.412764370246449,
+      "requiredFraction": 0.1,
+      "thresholdRms": 1.271487933221804,
+      "refineOnlyIfAchieved": true
+    }
+  },
+  "outcomes": {
+    "rowsAnalyzed": 9,
+    "timeCappedRows": 9,
+    "dualTurnHistories": 9,
+    "radialTurnHistories": 9,
+    "cadenceTurnHistories": 9,
+    "exactActionSectionCandidates": 9,
+    "rows": [
+      {"rowIndex": 0, "ratio": 1, "acceptedEndTime": 0.14, "radialTurnTime": 0.06788857605966467, "cadenceTurnTime": 0.10939034085654134, "sectionTime": 0.1140798550123851, "rms": 1.412764370246449, "maximum": 3.315717126798396, "minimumPairDistance": 0.264450374241049, "maximumMemberSpeed": 0.8775071102798276},
+      {"rowIndex": 1, "ratio": 0.95, "acceptedEndTime": 0.14, "radialTurnTime": 0.06545816684164225, "cadenceTurnTime": 0.10910488626230763, "sectionTime": 0.11006640569432045, "rms": 1.4096368096781007, "maximum": 3.2893495813388403, "minimumPairDistance": 0.26476831881195506, "maximumMemberSpeed": 0.8753570282380729},
+      {"rowIndex": 2, "ratio": 1.05, "acceptedEndTime": 0.14, "radialTurnTime": 0.07024560065623531, "cadenceTurnTime": 0.1096779687448574, "sectionTime": 0.11799161208657775, "rms": 1.4161320551130414, "maximum": 3.3427602641698515, "minimumPairDistance": 0.2641317848575131, "maximumMemberSpeed": 0.8796717024189964},
+      {"rowIndex": 3, "ratio": 0.9, "acceptedEndTime": 0.14, "radialTurnTime": 0.06296410079733815, "cadenceTurnTime": 0.10882130299224746, "sectionTime": 0.10594922551107354, "rms": 1.4067524450923048, "maximum": 3.2636637217445412, "minimumPairDistance": 0.2650856275642434, "maximumMemberSpeed": 0.8732217993071218},
+      {"rowIndex": 4, "ratio": 1.1, "acceptedEndTime": 0.14, "radialTurnTime": 0.07253962742161597, "cadenceTurnTime": 0.10996755305648974, "sectionTime": 0.12179819506704793, "rms": 1.419734586566779, "maximum": 3.370448664616754, "minimumPairDistance": 0.26381250961358027, "maximumMemberSpeed": 0.881850644313983},
+      {"rowIndex": 5, "ratio": 0.85, "acceptedEndTime": 0.14, "radialTurnTime": 0.060407882117976854, "cadenceTurnTime": 0.10853994166749308, "sectionTime": 0.10172431244890641, "rms": 1.4041138392402686, "maximum": 3.238657404791141, "minimumPairDistance": 0.26540231248284657, "maximumMemberSpeed": 0.8711017249444023},
+      {"rowIndex": 6, "ratio": 1.15, "acceptedEndTime": 0.14, "radialTurnTime": 0.07476639520234749, "cadenceTurnTime": 0.11025821721439587, "sectionTime": 0.1255037436668655, "rms": 1.4235686364543731, "maximum": 3.3987798455506675, "minimumPairDistance": 0.26349253647790694, "maximumMemberSpeed": 0.8840435876328296},
+      {"rowIndex": 7, "ratio": 0.8, "acceptedEndTime": 0.16, "radialTurnTime": 0.057783059254026575, "cadenceTurnTime": 0.10826124339106445, "sectionTime": 0.09739408499228944, "rms": 1.4017247295659199, "maximum": 3.2143506591596473, "minimumPairDistance": 0.24872525193940834, "maximumMemberSpeed": 0.9320899626707742},
+      {"rowIndex": 8, "ratio": 1.2, "acceptedEndTime": 0.14, "radialTurnTime": 0.07692704440149782, "cadenceTurnTime": 0.11055032978789363, "sectionTime": 0.12911037489573096, "rms": 1.4276299203108176, "maximum": 3.427741202977538, "minimumPairDistance": 0.26317184359739165, "maximumMemberSpeed": 0.8862502327051015}
+    ]
+  },
+  "bestRow": {
+    "rowIndex": 7,
+    "radialBreathingRatio": 0.8,
+    "radialBreathingRate": 0.6296869754077428,
+    "relativeRmsImprovement": 0.007814212272782114,
+    "materialImprovementAchieved": false,
+    "action": "reflected",
+    "sectionTime": 0.09739408499228944,
+    "sectionExcursion": 0.00012456606761135358,
+    "rms": 1.4017247295659199,
+    "maximum": 3.2143506591596473,
+    "componentResiduals": {
+      "positive": {"h": 0.005384318023786805, "rho": 0, "theta": -1.72538245607738, "hDot": -0.0021818188223285753, "rhoDot": -0.00962933468636996, "thetaDot": 0.6534787689347779},
+      "negative": {"h": 0.007629207650364289, "rho": -0.014145162109196474, "theta": -3.1298613365145735, "hDot": -0.0004941283277218739, "rhoDot": -0.21340181067440106, "thetaDot": 3.2143506591596473}
+    },
+    "windingCell": {"positive": 1, "negative": 0},
+    "labeledHistoryEquivalent": false,
+    "quotientHistoryEquivalentUnderDeclaredSamePolarityPermutation": true,
+    "guards": {
+      "releaseRootRows": 64,
+      "unresolvedReleaseRootRows": 0,
+      "allRecordedAcceptedSnapshotsCertified": true,
+      "maximumRootMultiplicity": 1,
+      "maximumRootTimePressureRatio": 0.5726604907708888,
+      "minimumTransmitterFactorMagnitude": 0.6700454136674762,
+      "minimumPairDistance": 0.24872525193940834,
+      "maximumMemberSpeed": 0.9320899626707742,
+      "speedMargin": 0.06791003732922585,
+      "memberIds": ["0+", "0-", "1+", "1-", "2+", "2-", "3+", "3-"],
+      "maximumNormalizedManifoldResidual": {"position": 4.110501313604156e-16, "velocity": 7.403316395757943e-16},
+      "maximumCentroidNorm": 1.0037440421529648e-16,
+      "maximumDipoleNorm": 4.710277376051325e-16,
+      "maximumCurrentAxisOffXFraction": 1.857040995929646e-13
+    }
+  },
+  "refinement": {
+    "authorizedByStoppingRule": false,
+    "performed": false,
+    "reason": "The best eligible full-state section RMS improved by 0.781421 percent, below the predeclared 10 percent material threshold."
+  },
+  "rawSummaryProvenance": {
+    "path": ".tmp/f6c-radial-frequency-sweep-9-v1/search-summary.json",
+    "sha256": "dce8536af05268251fbeb1c7112a66eacbc052352c7059c8d9d569a2c1fafe5b"
+  },
+  "result": "The independent radial-to-axial breathing-frequency ratio preserved guarded dual turns across the nine-point sweep but did not materially improve the exact reflected-action return residual.",
+  "falsifier": "A guarded one-coordinate frequency-ratio continuation that reproduces under numerical refinement and lowers the full-state exact-action section RMS by at least the declared material threshold would supersede this bounded negative result.",
+  "excludedClaims": [
+    "retention",
+    "stability",
+    "particle identity",
+    "clock",
+    "energy closure",
+    "Lorentz recovery",
+    "global nonexistence of an F6c return"
+  ]
+}

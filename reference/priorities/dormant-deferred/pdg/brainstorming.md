@@ -1,13 +1,15 @@
-# PDG Brainstorming
+# PDG Pipeline Synthesis
 
-This file holds provisional ideas for reactivating, splitting, or promoting the deferred PDG packet.
+This synthesis reserves space for provisional changes to the deferred `pdgfeed → pdgsolve → pdgedit` pipeline. It does not reactivate that pipeline.
 
-## Routing Rules
+## Stable Boundary
 
-- Keep loose ideas here until they name a target live priority workstream, app lane, operations lane, or corpus destination.
-- Do not use this file as an active task queue while the packet remains dormant.
-- Move selected work out of `dormant-deferred` before substantive PDG work resumes.
+The preserved architecture uses explicit versioned contracts: `pdgfeed` owns ingest and request emission, `pdgsolve` owns assembly-native solving and acceptance, and `pdgedit` owns the final authored surface. The detailed frozen responsibilities remain in the component documents listed by [priorities.md](priorities.md).
 
-## Ideas And Insights
+## Reactivation Boundary
 
-- No loose PDG reactivation ideas are staged here yet.
+Any new idea must first identify the live owner it serves and must preserve the contract-first stage separation. Substantive behavior changes require an explicit reactivation decision and revalidation of the frozen schemas, examples, manifests, and tests.
+
+## Unresolved Ideas
+
+- None currently recorded.

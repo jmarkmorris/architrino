@@ -526,6 +526,23 @@ for (const frame of coordinateFrames) {
   );
 }
 
+const stateCoordinateNames = [
+  "h", "rho", "theta", "hDot", "rhoDot", "thetaDot",
+];
+
+function interpolateSectorState(left, right, fraction) {
+  return Object.fromEntries(["positive", "negative"].map((sector) => [
+    sector,
+    Object.fromEntries(stateCoordinateNames.map((coordinate) => [
+      coordinate,
+      left.sectors[sector][coordinate] + fraction * (
+        right.sectors[sector][coordinate]
+          - left.sectors[sector][coordinate]
+      ),
+    ])),
+  ]));
+}
+
 function allSignChanges(sector, derivative) {
   let previous = null;
   const changes = [];
@@ -534,15 +551,21 @@ function allSignChanges(sector, derivative) {
     if (Math.abs(value) < 1e-12) continue;
     if (previous && Math.sign(value) !== Math.sign(previous.value)) {
       const fraction = -previous.value / (value - previous.value);
+      const state = interpolateSectorState(previous.frame, frame, fraction);
+      state[sector][derivative] = 0;
       changes.push({
         bracket: [previous.time, frame.time],
         linearlyInterpolatedTime:
           previous.time + fraction * (frame.time - previous.time),
         before: previous.value,
         after: value,
+        direction: previous.value > 0
+          ? "positive-to-negative" : "negative-to-positive",
+        interpolationFraction: fraction,
+        state,
       });
     }
-    previous = { time: frame.time, value };
+    previous = { time: frame.time, value, frame };
   }
   return changes;
 }
@@ -553,7 +576,6 @@ function firstSignChange(sector, derivative) {
 
 function initialLevelReturnCrossings(sectionSector, coordinate) {
   const target = coordinateFrames[0].sectors[sectionSector][coordinate];
-  const coordinates = ["h", "rho", "theta", "hDot", "rhoDot", "thetaDot"];
   const crossings = [];
   let previous = coordinateFrames[0];
   let armed = false;
@@ -572,14 +594,10 @@ function initialLevelReturnCrossings(sectionSector, coordinate) {
     }
     if (previousDelta * delta <= 0 && Math.sign(previousDelta) !== Math.sign(delta)) {
       const fraction = -previousDelta / (delta - previousDelta);
-      const interpolatedState = Object.fromEntries(
-        ["positive", "negative"].map((sector) => [sector, Object.fromEntries(
-          coordinates.map((entry) => [entry,
-            previous.sectors[sector][entry] + fraction * (
-              frame.sectors[sector][entry] - previous.sectors[sector][entry]
-            ),
-          ]),
-        )]),
+      const interpolatedState = interpolateSectorState(
+        previous,
+        frame,
+        fraction,
       );
       crossings.push({
         bracket: [previous.time, frame.time],
@@ -593,7 +611,7 @@ function initialLevelReturnCrossings(sectionSector, coordinate) {
         state: interpolatedState,
         finalMinusInitial: Object.fromEntries(
           ["positive", "negative"].map((sector) => [sector, Object.fromEntries(
-            coordinates.map((entry) => [entry,
+            stateCoordinateNames.map((entry) => [entry,
               interpolatedState[sector][entry]
                 - coordinateFrames[0].sectors[sector][entry],
             ]),
@@ -602,7 +620,7 @@ function initialLevelReturnCrossings(sectionSector, coordinate) {
       });
       const crossing = crossings.at(-1);
       const remainingResiduals = ["positive", "negative"].flatMap((sector) =>
-        coordinates.filter((entry) =>
+        stateCoordinateNames.filter((entry) =>
           sector !== sectionSector || entry !== coordinate)
           .map((entry) => crossing.finalMinusInitial[sector][entry]),
       );
@@ -617,6 +635,12 @@ function initialLevelReturnCrossings(sectionSector, coordinate) {
         positive: crossing.finalMinusInitial.positive.theta,
         negative: crossing.finalMinusInitial.negative.theta,
       };
+      crossing.properRotationReturnResidual = Object.fromEntries(
+        Object.entries(properReturnActions).map(([name, action]) => [
+          name,
+          returnActionResidual({ sectors: interpolatedState }, action),
+        ]),
+      );
     }
     previous = frame;
   }

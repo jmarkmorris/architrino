@@ -18,6 +18,8 @@ Here, a "near miss" means all three conditions were present:
 
 The point is not to claim historical error across the board. Most "misses" were productive choices for their time. The claim is narrower: those choices also occluded specific lines that now matter for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+The recurring criticism is therefore directed at a promotion of authority, not at the original calculation. A method may earn permission to predict within a declared regime without resolving the structure beneath that regime. It does not thereby earn permission to treat its compressed variables as final ontology, to treat the inverse problem as meaningless, or to close the constitutive question. Across field theory, quantum foundations, gravitation, and cosmology, a locally justified calculational shortcut has repeatedly been enlarged into a general standard of explanation.
+
 This chapter also treats missed opportunities dynamically rather than as one-time mistakes. An assumption set may be locally rational at one stage of science and still deserve reopening later when the admissible state space, constituent inventory, or structural vocabulary expands. New discoveries do not merely add facts. They can also change which earlier rejections remain justified. One recurring historical question is therefore whether a once-rejected ontology family was ruled out in principle, or only in the primitive form then available.
 
 The minimal lens used in this chapter is:
@@ -62,6 +64,7 @@ Bell's theorem adds a later physical-theorem caution to the same pattern. The EP
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
 | 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
 | 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
+| 1918-1929 (Weyl's two gauges) | A local length-calibration connection, its empirical failure, and its reconstruction as local quantum phase covariance | Keep local convention, comparison transport, and convention-independent loop content separate while asking what physical record produces the effective connection | The object being calibrated changed from ruler length to wavefunction phase while the inherited name encouraged a descriptive redundancy to be discussed as though it were an ontological ingredient |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, particle-wave dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
 | 1941-1954 (Wheeler's particles-first to fields-first turn) | Wheeler-Feynman direct-action electrodynamics, Machian inertia pressure, liaison/light-ray reconstruction attempts, EIH point-particle motion, and geon-style nonsingular field configurations | A constituent-first program could have asked whether field-like and inertial behavior are derived summaries of causal interaction records rather than primitive continua | The failed liaison-action program and the success of GR/QED redirected pressure toward fields-first formalism before a delayed causal-wake ontology was available |
@@ -305,6 +308,148 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**. Tra
 ### Recovery Target
 
 The long-term relevance of this episode is permanent process guidance. Recovery would require deriving metric behavior, geodesic motion, causal-order recovery, admissible continuation, and gravitational effective phenomena from a non-geometric constitutive ontology without losing general relativity's observational success. Until such a derivation exists, the historical lesson remains cautionary but active.
+
+---
+
+## Weyl's Gauge: Calibration Survived Its Object
+
+### Overview
+
+**Episode:** Weyl's length gauge and quantum phase gauge. **Short Name:** Weyl Gauge Near Miss. **Period:** 1918-1929, from the first local scale theory through the quantum reconstruction of gauge invariance. The near-miss thesis is that physics preserved Weyl's rule for local comparison after the physical object being calibrated changed completely, but did not preserve the discarded scale-comparison question as a constituent-level obligation.
+
+Weyl's importance is not exhausted by one failed unification proposal. The same program supplied the name and local-comparison grammar that became gauge theory, while his broader work supplied two-component spinors, group-representation machinery, phase-space quantization, conformal geometry, spectral asymptotics, and a sustained analysis of the continuum. That breadth makes the episode diagnostically useful: a structural idea can survive an empirical failure, change its mathematical carrier, and then become so successful that the history of the change disappears behind the inherited word.
+
+### Where The Opening Appeared
+
+In his [1918 "Gravitation and Electricity"](https://www.originalsources.com/Document.aspx?DocID=1M5T8JH7CAU8EIG) and related 1918-1919 work, Weyl extended general relativity by denying that a single standard of length could be carried unchanged across spacetime. A length unit could be chosen independently at each event, and comparing lengths at separated events required a connection, meaning a transport rule that says how the local standard changes along a path. Weyl identified that connection with the electromagnetic four-potential. In one common sign convention, a local recalibration by $\lambda(x)$ acts as
+
+$$
+L(x)\mapsto e^{\lambda(x)}L(x),
+\qquad
+A_\mu(x)\mapsto A_\mu(x)+\partial_\mu\lambda(x)
+$$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-793978b6b1a5fa1d)
+
+Plainly: $L(x)$ is the ruler standard chosen at event $x$, $\lambda(x)$ is the freely chosen local rescaling, and $A_\mu$ is the comparison rule connecting neighboring standards. The two changes compensate, so a physical statement cannot depend on which local ruler convention was selected. Reversing the sign used to define the connection reverses the sign in the transformation but not the content.
+
+Einstein's objection exposed the physical failure. If length calibration depended on the path through the proposed electromagnetic connection, identical atoms that followed different routes could return with different clock rates or spectral lines. Stable atomic spectra do not show that history-dependent calibration. The objection, printed with Weyl's 1918 paper and reviewed in the historical literature, rejected the proposed identification of electromagnetism with length transport; it did not erase the mathematical idea that local standards require a comparison rule. The historical sequence and the objection are documented in the [O'Raifeartaigh-Straumann review](https://arxiv.org/abs/hep-ph/9810524) and in the review of the predicted [second-clock effect](https://doi.org/10.1016/j.shpsb.2019.02.005).
+
+Quantum mechanics supplied a different object to calibrate. Fock and London had already connected electromagnetic potentials to local wavefunction phase, and in 1929 Weyl rebuilt the gauge principle around that phase rather than ruler length. For a charged effective field, the local relabeling $\psi\mapsto e^{iq\lambda(x)}\psi$ is compensated by the connection inside
+
+$$
+D_\mu=\partial_\mu-iqA_\mu
+$$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f3a8866472772602)
+
+Plainly: $\psi$ is the quantum wavefunction, $q$ is its charge label, $\lambda(x)$ is the arbitrary local phase convention, $A_\mu$ is the electromagnetic connection, and $D_\mu$ is the derivative that compares phases at neighboring events without mistaking a convention change for a physical change. Weyl's [1929 paper](https://edition-open-sources.org/sources/10/14/index.html) made this new gauge principle explicit. Yang and Mills then generalized local gauge covariance to a non-Abelian internal symmetry in their [1954 paper](https://doi.org/10.1103/PhysRev.96.191), supplying the structural form later used by the Standard Model.
+
+The name preserves the earlier calibration problem. Weyl used *Eichung* and *Eichinvarianz*; the German verb *eichen* means to test or adjust a measuring instrument against a standard, and an *Eichamt* is a public weights-and-measures office. The [Duden entry for *eichen*](https://www.duden.de/rechtschreibung/eichen_pruefen_einstellen) preserves that calibration sense. English *gauge* likewise entered as a fixed standard or measuring rod through Anglo-French and Old North French *gauge/jauge*, as recorded by the [Online Etymology Dictionary](https://www.etymonline.com/word/gauge). The familiar railway-track comparison is a useful later explanation of a shared standard across a network, but the available primary text does not support attributing that analogy to Weyl himself; a [later editorial introduction](https://assets.press.princeton.edu/chapters/i8959.pdf) presents railway gauge only as a possible inspiration. The defensible historical statement is therefore narrower: Weyl called the local unit system a gauge system, and later writers illustrated that system with railway gauge.
+
+The object being calibrated changed completely between 1918 and 1929 while the name did not. The first gauge was a local length standard and failed as electromagnetism. The second was local phase convention and became the electromagnetic template. What survived was not the 1918 ontology but the demand that arbitrary local description choices be joined by a connection and excluded from observable results.
+
+Two analogies provide reader orientation only; neither supplies an assembly mechanism. First, everyday readout gauges and convention gauges must be separated. Wire gauge, feeler gauges, and pressure gauges report a physically real quantity; the reading is constrained by the object and there is no freedom to choose another value without changing the report. Railway gauge, gear module, and thread pitch are network conventions: the chosen standard is contingent, but connected components must agree, and a boundary between standards requires transfer machinery. Physics uses *gauge* in the second sense of coordinated convention. The analogy stops at its decisive point: railway spacing is physically measurable with a tape, whereas a gauge relabeling is unobservable by construction. A choice with no observable consequence is a choice on which the physics must not depend. The mechanism burden remains in [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target), not in this historical analogy.
+
+Second, currency and arbitrage orient the loop structure. A country's currency unit corresponds to a local phase convention, redenomination to a gauge transformation, neighboring exchange rates to the connection, cross-border price comparison to a covariant derivative, and field strength $F_{\mu\nu}$ to the infinitesimal round-trip arbitrage return. A round trip such as USD $\to$ EUR $\to$ JPY $\to$ USD corresponds to a closed loop. Redenomination alone changes only bookkeeping, but a nonzero round-trip arbitrage return is convention-independent. The careful physics statement is therefore not that every value of the potential is unreal: a local potential representative is gauge-dependent, while closed-loop holonomy, meaning the accumulated transport around a loop, is gauge-invariant. The [Aharonov-Bohm result](https://doi.org/10.1103/PhysRev.115.485) is the experimental comparison: charged quantum phases can record enclosed electromagnetic flux even when the particle paths lie in a region where the local field strength vanishes. In orientation shorthand, the local potential is convention-dependent and the loop is physics. The formal recovery burden remains with [Gauge Symmetries](../assemblies/gauge-symmetries.md#gauge-redundancy-and-anomaly-ledger), which already treats gauge symmetry as redundancy in the observer-level record rather than a primitive symmetry substance in nature.
+
+### What Current Physics Still Gets Right
+
+Modern gauge theory is one of the central structural successes of physics. It separates redundant coordinates from gauge-invariant observables, organizes electromagnetism and the weak and strong interactions, and makes local comparison mathematically precise through connections, curvatures, covariant derivatives, and holonomies. The Standard Model's gauge record, chiral representation structure, anomaly cancellation, running couplings, and measured reaction channels are mandatory recovery targets.
+
+Renormalization-group and effective-field-theory practice is equally substantial. The renormalization group connects descriptions at different resolution scales by flowing effective couplings and operators, while effective field theory exploits scale hierarchies to make controlled low-energy predictions without resolving every high-energy detail. Wilson's [many-length-scales account](https://www.nobelprize.org/uploads/2018/06/wilson-lecture-2.pdf) made the connection between microscopic fluctuation and macroscopic law explicit. Appelquist and Carazzone's [1975 decoupling theorem](https://doi.org/10.1103/PhysRevD.11.2856) established, within its stated renormalizable-theory conditions, that heavy fields decouple from low-momentum behavior apart from renormalization effects and suppressed corrections. These methods are extraordinarily productive, rest on real mathematical results, and do connect scales.
+
+Fermi's beta theory gives the clean pedagogical example. At energies far below the $W$-boson scale, the four-fermion coefficient $G_F$ compresses the mediator structure into one low-energy parameter; at tree level in the electroweak theory,
+
+$$
+\frac{G_F}{\sqrt{2}}=\frac{g^2}{8M_W^2}.
+$$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8)
+
+Plainly: the low-energy coefficient carries an effect of the higher-energy theory, but it does not contain enough information to infer uniquely that the hidden completion contains a spin-$1$ mediator of mass $M_W$. Prediction survived the compression; the detailed structure did not. The normalization and low-momentum relation are summarized in the [Particle Data Group electroweak review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf).
+
+### Where Interpretation Locked In
+
+The first lock-in came from the naming residue. Because *gauge* survived while its calibrated object changed, a word born from standards of measure could be heard as the name of a physical ingredient. Modern field theory is most exact when it resists that reading: a gauge transformation moves between descriptions of one physical state, while gauge-invariant curvature, holonomy, charge, and reaction records carry observable content. A century of habit has nevertheless allowed a redundancy of description to be spoken of as though it were an ontology. That linguistic drift is an inferred historical pressure, not a claim that working gauge theorists generally confuse the two.
+
+The second lock-in concerns scale. The segregation of models by scale was not an oversight. Renormalization-group flow and effective field theory formalized why long-distance observables often become insensitive to short-distance detail, and the decoupling theorem supplied a qualified theorem for ignoring heavy structure in a low-energy domain. Physics thereby acquired principled permission not to carry a detailed constituent account through every successful calculation. The accurate criticism is not that the resulting models are disconnected: the renormalization group connects their effective couplings and operators. The narrower criticism is that it connects descriptions, not necessarily persistent constituents. No theorem requires the carrier named at one scale to be the same ontic object at the next.
+
+The metaphor of **logarithmic chutes and ladders** gives this architecture a useful reader orientation. The vertical coordinate of the board is logarithmic resolution, such as $\log\mu$ or $\log\ell^{-1}$, not physical altitude or distance traveled. The ladders are renormalization-group running and matching relations that carry selected observables and coefficients between adjacent regimes. The chutes are thresholds, symmetry-breaking transitions, confinement, and phase changes at which the active variables, symmetry realization, or named carriers change. Zooming out means resolving less structure: it sends many substrate histories to the same effective record even when the measured event occurred locally or the signal traveled a great distance.
+
+Plainly: turning the zoom control does not move nature from one place to another. It changes what distinctions the description can see. A photon emitted in a small region is not automatically a probe of every smaller structure in that region; its wavelength and wavepacket determine the resolution available to the interaction.
+
+This metaphor is not a replacement technical name for gauge theory. Gauge covariance governs local changes of descriptive basis, whereas logarithmic chutes and ladders describes the scale-organized tower of effective theories. The criticism applies to the tower: at different landings physics may use different variables, different symmetry realizations, different active degrees of freedom, and in practice different effective theories. Running and matching make that tower calculationally coherent, but calculational coherence is not yet one unified theory of nature with one persistent constituent inventory.
+
+The irony is what makes this a near-miss episode. The discarded half of Weyl's 1918 proposal was the scale-comparison problem: how a standard here is compared with a standard there. The surviving 1929 half attached the comparison rule to phase, a dimensionless convention. Four decades later, scale returned through the renormalization group as flow among effective couplings rather than as transport of one constituent inventory. This sequence does not show that effective field theory is wrong or incomplete within its domain. It identifies a different burden for any substrate program that claims one persistent ontology across those domains.
+
+### What Was Left Unfinished
+
+The unfinished historical question is whether a single constituent record can survive successive coarse-grainings while reproducing the effective laws that make scale segregation useful. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not receive decoupling as permission to change ontology between scales. It must retain one architrino inventory and show how assemblies, Noether sea response, effective fields, particles, and bulk variables arise as projections of that inventory. The price is a much harder derivation: the coarse-graining maps, boundary fluxes, information loss, running couplings, and observer residuals must all be explicit. The possible gain is explanatory continuity: effective variables at separated scales would become audited views of one causal record rather than autonomous ontologies joined only by matching coefficients.
+
+This burden is sharper than the complaint that physics built different models at different scales. The renormalization group already explains why different effective descriptions can belong to one flow. The open question is whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can add constituent continuity without losing the autonomy and predictive economy that make effective theory work. A substrate account that merely renames each effective field as an assembly has not paid that price.
+
+The information loss is not uniform. Anomaly matching, topology, symmetry-breaking patterns, and certain low-dimension operators preserve exact or unusually sensitive constraints across a change of scale, while scalar masses and vacuum energy remain exposed to high-scale matching in ways that create the hierarchy and vacuum-energy problems. Confinement reorganizes the useful degrees of freedom rather than merely deleting a heavy field. These channels are therefore stronger probes of a proposed substrate than a generic low-energy coefficient. They still do not usually reconstruct a unique microscopic theory: they preserve selected invariants and sensitivities through an otherwise many-to-one projection.
+
+Plainly: most of the microscopic picture disappears when physics zooms out, but a few features leave indelible marks. Those marks can rule out candidate substrate histories even when they cannot identify one history uniquely.
+
+### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+
+> **Claim grade: derived.** The current corpus treats gauge transformations as passive relabelings of one observer-level record and assigns mechanism ownership to the assembly gauge chapters. **Falsifier:** inspect [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target) and [Gauge Symmetries](../assemblies/gauge-symmetries.md#gauge-redundancy-and-anomaly-ledger) and find that a gauge relabeling is instead defined as a change of the retained physical branch or as primitive Euclidean-void ontology.
+
+> **Claim grade: inferred.** The unchanged word *gauge* helped obscure the complete change from length calibration to phase calibration and made ontology-level readings easier to sustain. The extra inference is historical and linguistic: terminological continuity influenced interpretation beyond the content of the equations. **Falsifier:** a representative historical record showing that the term was consistently taught with the calibrated object and redundancy/observable distinction explicit, so that the naming residue did not contribute to interpretive drift.
+
+> **Claim grade: inferred.** Renormalization-group and effective-field-theory methodology connects scale-dependent descriptions without requiring one persistent carrier ontology across those descriptions. The extra inference is the burden distinction between coupling flow and constituent identity. **Falsifier:** an RG/EFT theorem that, under the domains used here, reconstructs and preserves a unique constituent identity and provenance ledger rather than only matching low-energy observables, operators, and couplings.
+
+> **Claim grade: guessed.** Carrying one constituent inventory across coarse-grainings will buy explanatory continuity sufficient to derive multiple effective sectors with fewer independent ontological assumptions. **Falsifier:** a completed cross-scale $\mathbb{A}\mathbb{A}\mathbb{A}$ construction that preserves constituent provenance but yields no predictive compression, no shared parameter constraints, and no improvement over independently matched effective descriptions.
+
+No new measured $\mathbb{A}\mathbb{A}\mathbb{A}$ result is claimed in this episode. The historical source record establishes the inherited structures; the scale-continuity proposal remains an open closure burden.
+
+### Recovery Target
+
+Gauge recovery remains owned by the assembly lane. [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target) owns the map from retained assembly, causal-wake, axial-layer, and Noether sea records to effective connections and curvatures. [Gauge Symmetries](../assemblies/gauge-symmetries.md#standard-model-recovery-gate) owns the theorem-facing recovery gate for the Standard Model representation, coupling-running, chirality, anomaly, holonomy, and null-channel record. This episode adds no competing gauge mechanism.
+
+The scale-transport statement is a closure target, not an achieved result. Let $C_{\ell_2\leftarrow\ell_1}$ denote a declared coarse-graining map from resolution $\ell_1$ to resolution $\ell_2$, let $H$ be a retained substrate history on a window $W$, let $\Pi_I$ extract its constituent inventory and provenance, and let $\Phi_I(\partial W)$ record constituent flow through the window boundary. The target is
+
+$$
+C_{\ell_3\leftarrow\ell_2}\circ C_{\ell_2\leftarrow\ell_1}
+=
+C_{\ell_3\leftarrow\ell_1},
+\qquad
+\Pi_I\!\left(C_{\ell_2\leftarrow\ell_1}H\right)
+=
+\Pi_I(H)-\Phi_I(\partial W)
+$$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6)
+
+Plainly: $C$ is the rule for changing resolution, so coarse-graining in two steps must agree with coarse-graining directly to the final scale. $H$ is the underlying history, $\Pi_I$ reads which architrinos and provenance records remain in the chosen window, and $\Phi_I$ accounts for constituents that physically cross the boundary. Coarse-graining may discard detail, but it may not create a different constituent inventory merely because the description changed.
+
+> **Claim grade: guessed.** The composition and inventory equations above are a candidate minimum closure target for cross-scale constituent continuity. **Falsifier:** use the declared coarse-graining artifacts to find a benchmark window for which two-step and direct projection disagree beyond tolerance, or for which the inventory mismatch cannot be accounted for by the measured boundary-flow record. Until those tests exist and pass, the equations are obligations rather than results.
+
+The inverse problem needs a separate statement. Let $P_\ell$ map a substrate history to the observer-level record visible at resolution $\ell$, and let $\mathcal{F}_\ell(o)$ be the fiber, meaning the set of all histories that produce the same record $o$:
+
+$$
+P_\ell:\mathcal{H}\longrightarrow\mathcal{O}_\ell,
+\qquad
+\mathcal{F}_\ell(o)=\left\{H\in\mathcal{H}:P_\ell(H)=o\right\}.
+$$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177)
+
+A protected cross-scale quantity $I_a$ must factor through the observable record,
+
+$$
+I_a(H)=\overline I_{a,\ell}\!\left(P_\ell(H)\right),
+$$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5)
+
+for every admissible history in the declared domain.
+
+Plainly: $\mathcal{F}_\ell(o)$ collects every underlying history that looks identical at the chosen zoom level. A protected invariant does not reveal the whole history; it gives every compatible history one non-negotiable property. The unified-theory burden is therefore not to claim a unique inverse from one effective measurement, but to produce one retained history whose projections reproduce many scale-dependent theories, shared coefficients, and protected invariants without changing constituent ontology or privately retuning each landing.
+
+> **Claim grade: inferred.** Non-decoupling and protected-invariant channels constrain the fiber of compatible histories without generally collapsing it to one history. **Falsifier:** an applicable inverse theorem showing that the declared low-energy record uniquely reconstructs the relevant high-resolution constituent history, rather than only fixing selected coefficients, symmetry data, or invariants.
 
 ---
 

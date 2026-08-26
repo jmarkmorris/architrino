@@ -1,0 +1,67 @@
+{
+  "schema": "prescribed-assembly-v2-migration-parity-receipt.v1",
+  "date": "2026-08-25",
+  "instrument": {
+    "grade": "measured",
+    "sampleRule": "257 uniform samples including both boundaries over each declared legacy history interval",
+    "baseline": "pre-migration prescribed-braid-spec.v1 evaluator bound to the legacy source and Borg-record hashes in borg-candidate-signoff.md",
+    "comparison": "prescribed-assembly-spec.v2 individual-worldline evaluator",
+    "independence": "migration preservation only; both representations encode the same prescribed geometry"
+  },
+  "claimBoundary": {
+    "preservationOnly": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "excludedClaims": [
+      "retention",
+      "stability",
+      "binding",
+      "energy closure",
+      "particle identity",
+      "physical realization"
+    ]
+  },
+  "sampleTimesPerCandidate": 257,
+  "sealedRecordPlayback": {
+    "grade": "measured",
+    "instrument": "EomHistoryDataset piecewise-cubic-Hermite playback compared with the pre-migration exact evaluator samples",
+    "acceptanceRule": "Every sampled position and velocity difference must remain at or below the containing record segment's declared positionError and velocityError bounds.",
+    "falsifier": "Any sampled difference above its containing segment's declared error bound overturns the playback-preservation claim.",
+    "candidateCount": 21,
+    "sampleTimesPerCandidate": 257,
+    "failedSamples": 0,
+    "global": {
+      "maximumPositionDifference": 0.000005318302793254334,
+      "maximumVelocityDifference": 0.0003191334502872185,
+      "maximumPositionBoundRatio": 0.9090909068859452,
+      "maximumVelocityBoundRatio": 0.8952029344719076
+    }
+  },
+  "rows": [
+    { "candidate": "A1", "specPath": "reference/priorities/braid-program/configurations/family-a-a1-general.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 4.449557262054371e-16 },
+    { "candidate": "A1.1", "specPath": "reference/priorities/braid-program/configurations/family-a-a1-1-equal-frequency.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.2412670766236366e-16 },
+    { "candidate": "A1.2", "specPath": "reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.2412670766236366e-16 },
+    { "candidate": "A1.3", "specPath": "reference/priorities/braid-program/configurations/family-a-a1-3-4-2-1-frequency.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 2.482534153247273e-16 },
+    { "candidate": "A1.4", "specPath": "reference/priorities/braid-program/configurations/family-a-a1-4-3-2-1-frequency.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 2.2887833992611187e-16 },
+    { "candidate": "A2", "specPath": "reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v2.json", "maximumPositionDifference": 1.0007415106216804e-16, "maximumVelocityDifference": 1.7554167342883506e-16 },
+    { "candidate": "A3", "specPath": "reference/priorities/braid-program/configurations/family-a-a3-general.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 3.1401849173675503e-16 },
+    { "candidate": "A3.1", "specPath": "reference/priorities/braid-program/configurations/family-a-a3-1-equal-frequency.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.2412670766236366e-16 },
+    { "candidate": "A3.2", "specPath": "reference/priorities/braid-program/configurations/family-a-a3-2-equal-frequency-equal-radius.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.1102230246251565e-16 },
+    { "candidate": "A3.3", "specPath": "reference/priorities/braid-program/configurations/family-a-a3-3-4-2-1-frequency.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 2.482534153247273e-16 },
+    { "candidate": "A3.4", "specPath": "reference/priorities/braid-program/configurations/family-a-a3-4-3-2-1-frequency.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.5700924586837752e-16 },
+    { "candidate": "B1.1", "specPath": "reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 7.850462293418876e-17 },
+    { "candidate": "B1.2", "specPath": "reference/priorities/braid-program/configurations/illustrative-extreme-cap-tilt-spindle-variant.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.962615573354719e-17 },
+    { "candidate": "B1.3", "specPath": "reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.5700924586837752e-16 },
+    { "candidate": "B1.4", "specPath": "reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 0 },
+    { "candidate": "C1", "specPath": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-general.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.2412670766236366e-16 },
+    { "candidate": "C2", "specPath": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-general.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.2412670766236366e-16 },
+    { "candidate": "C3", "specPath": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-b1-pair.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 7.850462293418876e-17 },
+    { "candidate": "C4", "specPath": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-b1-pair.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 7.850462293418876e-17 },
+    { "candidate": "C5", "specPath": "reference/priorities/braid-program/configurations/family-c-c1-1-co-rotating-b1-3-pair.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.5700924586837752e-16 },
+    { "candidate": "C6", "specPath": "reference/priorities/braid-program/configurations/family-c-c2-1-counter-rotating-b1-3-pair.v2.json", "maximumPositionDifference": 0, "maximumVelocityDifference": 1.5700924586837752e-16 }
+  ],
+  "global": {
+    "maximumPositionDifference": 1.0007415106216804e-16,
+    "maximumVelocityDifference": 4.449557262054371e-16
+  }
+}

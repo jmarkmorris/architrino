@@ -253,7 +253,7 @@ test("Borg reader-facing fields reject retired candidate labels in every control
 test("Borg prescribed taxonomy scan excludes compatibility identifiers but gates visible metadata", () => {
   const result = scanBorgPrescribedTaxonomyTerminology();
   assert.ok(result.files.some((relativePath) =>
-    relativePath.endsWith("illustrative-spindle-chart-hypothesis.v0.json")));
+    relativePath.endsWith("illustrative-spindle-chart-hypothesis.v2.json")));
   assert.deepEqual(result.findings, []);
 });
 

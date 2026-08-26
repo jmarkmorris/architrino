@@ -1,34 +1,28 @@
-# Mapping Benchmarks Brainstorming
+# Mapping Benchmarks: Cross-Layer Explanatory Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis records provisional bridges that connect observer-level benchmarks to retained substrate and assembly records without using the benchmark theory as a substrate premise.
 
-## Routing Rules
+## Three-Layer Discipline
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The fixed Euclidean void and absolute time, delayed path-history dynamics, and observer-level fields are distinct layers. A bridge becomes derivation-grade only when an explicit map carries one retained substrate record into observer variables and supplies an independent comparison and falsifier.
 
-## Ideas And Insights
+The corresponding scale ladder joins microscopic architrino dynamics, mesoscopic Noether braid geometry, and macroscopic Noether sea response through named stability, aggregation, continuum, and feedback objects. A verbal hierarchy is explanatory orientation rather than closure.
 
-### Dynamo Team Insights Mining
+## Effective Geometry as a Collective Record
 
-- Refractive-gravity comparison: Fermat-path language is useful as a bridge for signal propagation in an inhomogeneous Noether sea, but it is not a full effective metric unless lapse, drift, spatial compliance, and signal-delay rows share one constitutive record. Route comparison details through emergent-metric and PPN recovery work.
-- Weak-solution comparison: entropy-condition language may help frame selection near self-hit singularities, but should stay a comparison analogy until the proof-program lane supplies an AAA-native admissibility condition.
-- Architecture bridge: keep fixed Euclidean void and absolute time, causal path-history dynamics, and observer-level fields as three distinct layers. The bridge becomes derivation-grade only when one explicit map carries a retained substrate record into the observer variables without importing the observer theory as a premise.
-- Three-scale closure target: connect micro architrino delayed dynamics, meso Noether braid stability and topology, and macro Noether sea effective response through named coarse-graining variables. A valid bridge must expose at least one stability statement, aggregation map, continuum-limit variable set, or feedback equation plus a falsifier; a verbal scale ladder is not closure.
+Spacetime geometry may be described publicly as the effective relation among a pervasive assembly population, embedded clock-and-ruler assemblies, and exchanged signal channels. One assembly can provide a cadence or length standard, but the full geometric record is collective. Motion, gradients, signal calibration, and receiver response must follow from the same retained medium record rather than separate fitted laws.
 
-### Assembly-Generated Spacetime as a Public Bridge (2026-08-15)
+## Precision and Ontological Reach
 
-- **The idea.** In public-facing discussion that omits internal theory terminology, describe spacetime as the effective geometry produced collectively by a pervasive population of scalable, deformable assemblies, the clock-and-ruler assemblies embedded in it, and the signal channels exchanged between them. A single assembly can supply a changing cadence and length standard; it does not by itself make the full spacetime record. Motion produces common-mode deformation and clock retuning, while gradients in the surrounding assembly state produce the clock, ruler, signal, and trajectory response read as curved spacetime.
-- **Claim level.** Effective synthesis and reader-facing ontology statement. It is stronger than a comparison metaphor but is not yet a completed derivation of Lorentz, metric, or quantum closure.
-- **Assumptions and proof burden.** The same retained substrate-and-medium record must generate moving-ruler contraction, clock-rate change, signal calibration, trajectory response, and quantum-facing discrete record statistics without independently fitted laws. The framing fails if those channels require separate mechanisms or if a preferred-frame residual remains observable.
-- **Promotion target.** A future plain-language bridge spanning `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `quantum/quantum-summary.md`; no corpus promotion during this brainstorm.
-- **Next artifact.** Draft a 150--200 word reply to John Alison that states the assembly-generated-spacetime thesis without the theory name or internal constituent, wake, or medium labels, and distinguishes the collective geometry from the deformation of one material assembly.
+Quantum theory and renormalized quantum field theory have extraordinary measured precision in tested regimes. That precision validates their effective predictions in those regimes; it does not uniquely determine the fundamental ontology. A deeper account gains no evidence merely from scale separation and must reproduce the precision results while predicting controlled corrections.
 
-### Quantum Precision Does Not Establish Fundamental Ontology (2026-08-15)
+## Comparison Tools
 
-- **The idea.** Add a public-facing distinction between empirical precision and ontological reach. Quantum theory and renormalized quantum field theory are extraordinarily precise inside the energy, length, density, and curvature regimes actually tested. Those tests remain many orders of magnitude from the conventional Planck regime. Large scale separation can suppress the observable influence of deeper dynamics, so excellent low-energy agreement establishes a highly accurate effective law without establishing that its state variables, continua, or probability postulates are fundamental.
-- **Claim level.** Effective-theory comparison argument. The predictive success is measured and must not be minimized; the conclusion that this success does not uniquely determine ontology is an inference about evidential scope.
-- **Assumptions and proof burden.** A deeper assembly account must reproduce the precision results and quantify its correction scale in every tested regime. It cannot use the scale gap as positive evidence for its own mechanism. The conventional Planck scale remains a comparison landmark until a same-record derivation maps it to a retained assembly state; it is not assumed to be a literal substrate lattice spacing or constituent size.
-- **Promotion target.** A future plain-language bridge to `philosophy-history/crisis-in-physics.md` and `philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md`, paired with the assembly-generated-spacetime reply above.
-- **Next artifact.** Add one compact paragraph to the John Alison reply using the formulation: quantum precision is experimentally extraordinary but ontologically modest; it validates the law in its tested domain, not its claim to be the final layer of nature.
+Fermat-path language may compare signal propagation through an inhomogeneous Noether sea, but a full effective metric additionally requires shared lapse, drift, spatial-compliance, and signal-delay rows. Weak-solution and entropy-condition language may compare singular-branch selection, but an admissibility rule must be derived from $\mathbb{A}\mathbb{A}\mathbb{A}$ path histories before it gains native authority.
+
+## Unresolved Ideas
+
+- **[closure target] Three-scale aggregation map.** Supply one retained micro-to-meso-to-macro record with a stability statement, coarse variables, continuum limit or feedback law, and independent falsifier; likely destination is the relevant benchmark packet.
+- **[inferred] Assembly-generated effective-geometry bridge.** Derive clock, ruler, signal, and trajectory projections from one collective record and bound preferred-frame residuals; likely destinations are emergent-metric and Lorentz-recovery material after proof.
+- **[inferred] Precision-versus-ontology public explanation.** Prepare a source-bound reader-facing statement that preserves the measured success of quantum theory while separating effective validity from fundamental ontology; promotion requires a later corpus campaign.
+- **[guessed] Native singular-chart admissibility.** Replace the weak-solution analogy with a path-history selection principle and an operator-checkable counterexample or uniqueness theorem.

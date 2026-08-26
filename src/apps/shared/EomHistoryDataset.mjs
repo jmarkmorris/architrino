@@ -248,14 +248,23 @@ function validatePrescribedGeometryProvenance(provenance, { claimGrade, evidence
     declaration.sphericalEnvelopeRadius,
     "provenance.prescribedGeometry.sphericalEnvelopeRadius",
   );
-  requiredPositiveInteger(
-    declaration.displayTrailPeriods,
-    "provenance.prescribedGeometry.displayTrailPeriods",
-  );
-  requiredPositiveNumber(
-    declaration.prescribedReturnPeriod,
-    "provenance.prescribedGeometry.prescribedReturnPeriod",
-  );
+  const periodic = declaration.prescribedReturnPeriod != null ||
+    declaration.displayTrailPeriods != null;
+  if (periodic) {
+    requiredPositiveInteger(
+      declaration.displayTrailPeriods,
+      "provenance.prescribedGeometry.displayTrailPeriods",
+    );
+    requiredPositiveNumber(
+      declaration.prescribedReturnPeriod,
+      "provenance.prescribedGeometry.prescribedReturnPeriod",
+    );
+  } else {
+    requiredPositiveNumber(
+      declaration.displayTrailDuration,
+      "provenance.prescribedGeometry.displayTrailDuration",
+    );
+  }
 }
 
 function normalizeWindow(record, worldlines, { isAssemblyViewRecord = false } = {}) {

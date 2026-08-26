@@ -1,10 +1,21 @@
-# Architrino Lattice Lab Brainstorming
+# Architrino Lattice Lab Conceptual Synthesis
 
-This file holds provisional geometry, interaction, and interface ideas. Promote an idea into [work-queue.md](work-queue.md) only after it has a concrete owner, completion boundary, and independent validation route.
+This synthesis distinguishes the Lattice Lab's geometric teaching purpose from the stronger claims that require independent certificates. The workstream is dormant-deferred and is not reactivated by this summary.
 
-## Ideas
+## Geometry and Evidence
 
-- A case gallery can begin with simple/primitive cubic, body-centered cubic, and face-centered cubic candidate arrangements, each with an explicit red/blue polarity rule.
-- Show both a finite visual cell and the named boundary convention; do not hide boundary effects behind a visually symmetric crop.
-- Let users toggle site labels, polarity colors, shells, vector contributions, and the evidence label for the selected case.
-- A case card should state whether its conclusion is derived, measured, inferred, or only a proposed construction, plus the exact cancellation test and its reach.
+A lattice case combines a finite visual crop, a declared repeating or finite boundary convention, a polarity assignment, and a selected acceleration calculation. Visual symmetry does not by itself establish cancellation, and zero acceleration in a declared configuration does not establish stability, conservation, or a physical medium.
+
+Case records therefore distinguish geometry facts from derived or measured acceleration claims. Site labels, polarity colors, neighbor shells, vector contributions, and evidence labels are explanatory views of the same declared case rather than independent evidence.
+
+## Established Ownership
+
+The gallery, display conventions, interaction model, and evidence-state requirements belong in [requirements-design.md](requirements-design.md). The exact simple-cubic cancellation result belongs in [simple-cubic-checkerboard-cancellation-certificate.md](simple-cubic-checkerboard-cancellation-certificate.md), and accepted remaining tasks retain their status in [work-queue.md](work-queue.md).
+
+## Promotion Boundary
+
+Future corpus material may explain the separation among a geometric pattern, a finite calculation, a periodic certificate, and a stability result. Promotion remains blocked wherever a statement exceeds the declared boundary convention or lacks an independent analytical authority.
+
+## Unresolved Ideas
+
+- None currently recorded.

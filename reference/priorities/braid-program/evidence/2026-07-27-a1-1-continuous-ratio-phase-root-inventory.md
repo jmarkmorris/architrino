@@ -14,7 +14,7 @@ The exact executable declarations are owned by the [protocol](../../../../src/pr
 - the frozen history reach $\chi_n=9/4$;
 - the symmetric phase baseline $(0,2\pi/3,4\pi/3)$;
 - normalized $c_f=1$ and $\omega_n=1$ for this dimensionless diagnostic;
-- one common positive circulation, endpoint identities, cyclic plane frames, and polarity assignments mapped from the unchanged [A1.1 display source](../configurations/family-a-a1-1-equal-frequency.v1.json);
+- one common positive circulation, endpoint identities, cyclic plane frames, and polarity assignments mapped from the then-current `family-a-a1-1-equal-frequency.v1.json` display source; its canonical parity-preserved successor is the [A1.1 v2 display source](../configurations/family-a-a1-1-equal-frequency.v2.json);
 - all $36$ ordered receiver/transmitter channels, including all six same-transmitter channels; and
 - the nine-rule fail-closed root/fold policy, numerical certification floors, partition scheme, resource ceilings, fold schema, and secondary residual recomputation.
 

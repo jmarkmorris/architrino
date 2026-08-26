@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1539
+      "sections": 1543
     }
   },
   "tocRoot": {
@@ -13168,6 +13168,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Hermann Weyl (1885–1955) — Gauge, Spinors, Representation, and Scale",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Hermann Weyl (1885–1955) — Gauge, Spinors, Representation, and Scale",
+                    "sectionKey": "hermann weyl 1885 1955 gauge spinors representation and scale",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Paul Dirac (1902–1984)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
                     "markdownSection": "Paul Dirac (1902–1984)",
@@ -13184,10 +13192,26 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Chen Ning Yang (1922–) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Chen Ning Yang (1922–) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure",
+                    "sectionKey": "chen ning yang 1922 and robert mills 1927 1999 non abelian gauge structure",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
                     "markdownSection": "Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification",
                     "sectionKey": "abdus salam 1926 1996 sheldon glashow 1932 steven weinberg 1933 2021 electroweak unification",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Kenneth G. Wilson (1936–2013) — Renormalization Group and Scale Flow",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+                    "markdownSection": "Kenneth G. Wilson (1936–2013) — Renormalization Group and Scale Flow",
+                    "sectionKey": "kenneth g wilson 1936 2013 renormalization group and scale flow",
                     "headingLevel": 3
                   },
                   {
@@ -13724,6 +13748,14 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Geometrization After 1915: Ontology Shift",
                 "sectionKey": "geometrization after 1915 ontology shift",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Weyl's Gauge: Calibration Survived Its Object",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Weyl's Gauge: Calibration Survived Its Object",
+                "sectionKey": "weyl s gauge calibration survived its object",
                 "headingLevel": 2
               },
               {

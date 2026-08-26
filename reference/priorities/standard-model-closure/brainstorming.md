@@ -1,75 +1,70 @@
-# Standard Model Closure Brainstorming
+# Standard Model Closure: Geometry and Precision Comparisons
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This synthesis records provisional geometry and collider-comparison ideas that remain below accepted task status. Standard Model laws and fitted parameters are observer-level recovery targets rather than architrino-level premises.
 
-## Routing Rules
+## Charge and Axis Closure
 
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route proof and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The charge unit candidate $\epsilon=e/6$ becomes a derivation only if six retained polarity sites, causal linking, winding, and stability select the allowed exposed sign patterns while excluding unobserved low-energy stable charge patterns. A six-entry inventory or successful charge table alone is not sufficient.
 
-## Ideas And Insights
+The color and anomaly chain has a related missing first link. Three indexed axes may support the color triplet, and the projected doublet inventory may then satisfy the Witten consistency check, but the assembly geometry must first derive exactly three independent polar-dyad normals and exclude stable lower- or higher-rank alternatives.
 
-### Dynamo Team Insights Mining
+Plainly: anomaly arithmetic can check a derived inventory. It cannot explain why the geometry supplies that inventory.
 
-- Derivation-closure target: discrete charge quantization with $\epsilon=e/6$ should be tested as a consequence of six retained polarity sites plus causal linking, winding, and stability selection, not as an arbitrary charge table. Promotion requires a branch-derived sign-pattern rule and a failure case excluding unobserved low-energy stable charge patterns.
-- Gauge-structure implication: if causal linking selects allowed six-site sign counts, route the result into the low-energy charge and gauge mapping only after the same branch evidence also satisfies dynamical exclusion of non-Standard-Model stable assemblies.
-- Three-axis anomaly-chain target: the current corpus uses three indexed Noether braid axes to define the color triplet and then obtains an even Standard Model doublet count for the Witten check. The missing first link is not the anomaly arithmetic; it is a branch-derived lemma showing why the admitted assembly has exactly three independent polar-dyad normals from its three-dimensional Euclidean void geometry and closure conditions. The proof must exclude stable lower- or higher-rank alternatives rather than assume the observed color count. Only then may the Witten consistency row be read as a consequence of the assembly geometry. Falsifier: an accepted stable branch with a different independent-axis count that still projects to the same claimed color record.
+## One Nature, Many Theories Routing
 
-### Collider-Anomaly Comparison — 2026-07-11
+The broader gauge-agreement-versus-gauge-origin synthesis has moved to the dedicated [One Nature, Many Theories brainstorming file](../one-nature-many-theories/brainstorming.md#gauge-agreement-versus-gauge-origin) and [working draft](../one-nature-many-theories/one-nature-many-theories.md#gauge-agreement-versus-gauge-origin). This lane continues to own the concrete Standard Model gauge-recovery burden; the new lane owns the historical and cross-domain criticism.
 
-#### LEP bottom forward-backward asymmetry
+## Bottom Forward–Backward Asymmetry Comparator
 
-- **Claim level:** speculation with a derivation-closure target. The long-standing low $A_{\mathrm{FB}}^b$ result is structurally compatible with a small bottom-branch axial-frame exposure rotation that redistributes effective left- and right-channel $Zb\bar b$ coupling while leaving the total neutral-current coupling norm approximately unchanged. This is not a claimed explanation.
-- **Trigger:** the precision electroweak fit keeps $R_b$ close to the Standard Model while the asymmetry-derived bottom coupling is low. A norm-preserving rotation has exactly that separation:
-  $$
-  \begin{pmatrix}g_L^b\\g_R^b\end{pmatrix}_{\mathbb{A}\mathbb{A}\mathbb{A}}
-  =
-  \begin{pmatrix}
-  \cos\phi_b&-\sin\phi_b\\
-  \sin\phi_b&\cos\phi_b
-  \end{pmatrix}
-  \begin{pmatrix}g_L^b\\g_R^b\end{pmatrix}_{\mathrm{SM}},
-  \qquad
-  (g_L^b)^2+(g_R^b)^2=\text{constant},
-  $$
-  while
-  $$
-  A_b=\frac{(g_L^b)^2-(g_R^b)^2}{(g_L^b)^2+(g_R^b)^2}
-  $$
-  changes at first order by $\delta A_b\simeq-4g_L^bg_R^b\phi_b/[(g_L^b)^2+(g_R^b)^2]$. The observed direction corresponds only to a few-degree effective rotation under the simple two-component model.
-- **Assumptions and proof burden:** the same retained Generation-III bottom branch must derive $\phi_b$ from axial-frame orientation, shielding coherence, weak-coupling-triad exposure, and Noether sea response; the rotation must not be fitted from $A_b$; it must preserve $R_b$, other $Z$-pole covariance rows, tree-level flavor diagonality, and electron/muon neutral-current constraints. A comparable unexplained rotation in other down-type branches would falsify bottom-specific shielding as the mechanism.
-- **Promotion target:** `content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md`, `content/markdown/aaa/assemblies/fermions/quarks.md`, and `content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md` only after a branch-derived operator exists.
-- **Completed observer-level artifact:** [Bottom Axial-Frame Exposure Rotation Covariance](bottom-axial-frame-exposure-rotation-covariance.md) derives the exact trigonometric response, consumes the published heavy-flavor correlations without double-counting asymmetry-derived $A_b$, and finds a current-value screening minimum near $\phi_b=-1.78^\circ$ with only a local $1.97\sigma$ preference. The next artifact is branch-native: compute $\phi_b$ from a predeclared Generation-III bottom exposure record without using the asymmetry data as input.
+The LEP bottom asymmetry is compatible at the observer level with a small rotation of effective left- and right-channel couplings that approximately preserves their norm:
 
-#### $R(D)$ and $R(D^*)$
+$$
+\begin{pmatrix}g_L^b\\g_R^b\end{pmatrix}_{\mathbb{A}\mathbb{A}\mathbb{A}}
+=
+\begin{pmatrix}
+\cos\phi_b&-\sin\phi_b\\
+\sin\phi_b&\cos\phi_b
+\end{pmatrix}
+\begin{pmatrix}g_L^b\\g_R^b\end{pmatrix}_{\mathrm{SM}}.
+$$
 
-- **Claim level:** speculation with a reaction-provenance derivation target. A lepton-only enhancement is not a viable $\mathbb{A}\mathbb{A}\mathbb{A}$ explanation because the shared charged-lepton axial inventory and weak-coupling-triad rule must also satisfy tau, muon, electron, and $W$ universality constraints. Any admissible route must instead be a nonfactorizable finite-event effect coupling the $b\to c$ hadronic transition record to the outgoing tau shielding branch.
-- **Trigger:** the 2025 HFLAV central values correspond roughly to rate multipliers $R(D)_{\mathrm{obs}}/R(D)_{\mathrm{SM}}\simeq1.21$ and $R(D^*)_{\mathrm{obs}}/R(D^*)_{\mathrm{SM}}\simeq1.11$, or amplitude shifts near $10\%$ and $5\%$. Their unequal sizes disfavor one universal tau-coupling rescaling.
-- **Candidate mathematical form:** keep the shared weak normalization fixed and test
-  $$
-  \mathcal M_{D^{(*)},\ell}^{\mathbb{A}\mathbb{A}\mathbb{A}}(q^2)
-  =
-  \mathcal M_{D^{(*)},\ell}^{\mathrm{SM}}(q^2)
-  +
-  \Delta\mathcal M_{\mathrm{corr}}
-  \!\left[
-  \mathcal B_{b\to c},
-  \mathsf s_{\mathrm{sh}}(\ell),
-  \Sigma_{\mathrm{WCT}},
-  \mathcal W_-,
-  \theta_{\mathrm{sea}};
-  q^2
-  \right],
-  $$
-  with $\Delta\mathcal M_{\mathrm{corr}}\to0$ when the hadronic remnant and charged-lepton branch factorize. The same correction must predict the different $D$ and $D^*$ responses rather than fitting two constants.
-- **Assumptions and proof burden:** derive the correction from one event record; preserve light-lepton universality; reproduce differential $q^2$ shapes, tau polarization, $D^*$ polarization, $B_c$ lifetime pressure, and independent tau/$W$ decay constraints; do not insert observed $R(D^{(*)})$ values into the shielding or corridor map.
-- **Promotion target:** `content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md`, `content/markdown/aaa/assemblies/fermions/muon-tau.md`, and the reaction-ledger corpus only after the nonfactorizable term is derived.
-- **Next artifact:** build one amplitude-level $b\to c\tau\bar\nu$ versus $b\to c\ell\bar\nu$ comparison using the existing weak-coupling-triad and reaction-provenance objects, then test whether the same predeclared kernel can produce both rate ratios and the differential observables.
+This preserves $(g_L^b)^2+(g_R^b)^2$ while changing
 
-#### Hadronic-vacuum-polarization data disagreement and muon $g-2$
+$$
+A_b=\frac{(g_L^b)^2-(g_R^b)^2}{(g_L^b)^2+(g_R^b)^2}.
+$$
 
-- **Claim level:** effective-summary recovery target, not an anomaly explanation. Current $\mathbb{A}\mathbb{A}\mathbb{A}$ material can reinterpret hadronic vacuum polarization as an observer-level aggregate of charged-hadron assembly channels and Noether sea response, but it does not yet calculate the required $e^+e^-\to\text{hadrons}$ spectral function. A disagreement among experiments measuring the same cross section is not evidence for substrate dynamics unless a detector- or preparation-dependent residual survives ordinary calibration analysis.
-- **Assumptions and proof burden:** recover the measured spectral ratio and its dispersion contribution from the same photon/charge, hadron, and detector-provenance record; preserve analyticity/dispersion benchmarks at the observer level; do not use the lattice-versus-data disagreement to select a native carrier. The 2025 muon $g-2$ comparison is consistent with the updated Standard Model evaluation, so the composite correction in `gauge-structure-emergence.md` should presently be treated as bounded rather than detected.
-- **Promotion target:** the gauge-running and precision-interface chapters only after a native photon/charge carrier and hadronic spectral calculation exist.
-- **Next artifact:** express the existing `vacuum_polarization_wake_dressing_row` as a recovery of the measured hadronic spectral function with experiment and lattice inputs kept as separate comparison surfaces; do not create a new anomaly gate.
+Plainly: the comparison separates a rate-like norm from a left–right asymmetry, but it does not derive the rotation or identify its assembly carrier.
+
+The observer covariance screen belongs in [bottom-axial-frame-exposure-rotation-covariance.md](bottom-axial-frame-exposure-rotation-covariance.md). A positive mechanism requires a predeclared Generation-III exposure record that predicts $\phi_b$ without consuming the asymmetry data.
+
+## Semileptonic Flavor Comparator
+
+The unequal $R(D)$ and $R(D^*)$ shifts disfavor a single universal tau-coupling rescaling as the explanatory ansatz. A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ contribution would instead have to couple the $b\to c$ hadronic transition record to the outgoing tau shielding branch on one finite-event ledger:
+
+$$
+\mathcal M_{D^{(*)},\ell}^{\mathbb{A}\mathbb{A}\mathbb{A}}(q^2)
+=
+\mathcal M_{D^{(*)},\ell}^{\mathrm{SM}}(q^2)
++
+\Delta\mathcal M_{\mathrm{corr}}[\mathcal B_{b\to c},\mathsf s_{\mathrm{sh}}(\ell),\Sigma_{\mathrm{WCT}},\mathcal W_-,\theta_{\mathrm{sea}};q^2].
+$$
+
+The correction must vanish under factorization, preserve light-lepton and independent weak-sector constraints, and predict both channels and their differential observables from one predeclared kernel.
+
+## Hadronic Spectral Recovery
+
+Hadronic vacuum polarization is an observer-level aggregate of charged-hadron channels. Experimental disagreement over the same cross section does not provide substrate evidence unless an independently specified preparation or detector dependence survives ordinary calibration analysis.
+
+A native recovery must produce the measured hadronic spectral function and its dispersion contribution from one photon, charge, hadron, and detector-provenance record. Lattice and experiment remain separate comparison surfaces; neither selects the native carrier.
+
+## Assessment and Promotion Boundary
+
+These comparators identify discriminating mathematical forms and falsifiers. They do not change the Standard Model closure queue, explain an anomaly, or justify corpus promotion.
+
+## Unresolved Ideas
+
+- **[closure target] Six-site charge selection.** Derive allowed exposed sign patterns and exclude unobserved stable charges from retained branch geometry; likely destination is low-energy charge and gauge mapping.
+- **[closure target] Three-axis admission lemma.** Prove exactly three independent polar-dyad normals and reject stable alternative ranks before reading anomaly consistency as a geometric consequence.
+- **[guessed] Nonfactorizable $b\to c\tau\bar\nu$ event correction.** Derive one predeclared reaction-provenance kernel that predicts $R(D)$, $R(D^*)$, differential shapes, polarization, and independent weak constraints without fitting the target ratios.
+- **[closure target] Hadronic spectral-function recovery.** Derive the observer spectral ratio and dispersion contribution from one source-and-detector record while keeping experiment and lattice as independent comparison surfaces.

@@ -1183,6 +1183,35 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
+### **Hermann Weyl (1885–1955) — Gauge, Spinors, Representation, and Scale**
+**Subject:** Hermann Weyl (1885–1955), mathematician and mathematical physicist whose work joined local gauge comparison, spinors, representation theory, conformal geometry, quantization, spectral analysis, and foundations of the continuum.
+
+**Era / Context**: Weyl worked across the transition from general relativity to quantum mechanics. His 1918 length-gauge unification failed Einstein's measuring-rod and spectral-history objection, but his 1929 reconstruction of gauge invariance around local quantum phase became part of the structural foundation of modern field theory.
+
+**Primary Domain**: Gauge structure, mathematical physics, group representation, spinor theory, differential geometry, spectral geometry, quantum phase-space methods, and foundations of mathematics.
+
+**What Problem They Were Trying To Solve:** Weyl sought a common mathematical account of gravitation and electromagnetism, a principled rule for comparing locally chosen standards, a representation-theoretic organization of quantum states, and a logically disciplined account of continuous magnitude.
+
+**What They Got Right:** The lineage is unusually broad and independently documented. Weyl's 1918 local scale connection and [1929 phase-gauge reconstruction](https://edition-open-sources.org/sources/10/14/index.html) led through Yang-Mills local non-Abelian covariance to the Standard Model gauge framework. His two-component massless spinor equation supplied the left- and right-chiral building blocks used in relativistic quantum field theory, including the chiral weak sector; the same band-crossing mathematics is realized in experimentally observed [Weyl semimetals](https://doi.org/10.1038/nphys3425). *Gruppentheorie und Quantenmechanik* (1928), the Peter-Weyl theorem with Fritz Peter, the Weyl character formula, Weyl groups, and the unitary trick helped make compact-group representation theory a backbone of quantum spectroscopy and much of particle classification, as the historical record on [group theory in quantum mechanics](https://doi.org/10.1016/j.hm.2005.11.007) and the [Institute for Advanced Study summary](https://www.ias.edu/scholars/weyl) document. Weyl's 1927 quantization correspondence and symmetric ordering fed Wigner's quasidistribution and the phase-space and deformation-quantization programs, as the [Weyl-Wigner-Moyal history](https://arxiv.org/abs/hep-th/0110114) records. The Weyl curvature tensor later became central to Penrose's explicitly conjectural [Weyl curvature hypothesis](https://tannerlectures.org/wp-content/uploads/2024/07/Penrose96.pdf). Local conformal rescaling supplied the vocabulary whose quantum failure is the Weyl anomaly; world-sheet anomaly cancellation helps determine critical dimensions in perturbative string theory, as summarized in the [Cambridge string-theory notes](https://www.damtp.cam.ac.uk/user/tong/string.html). Weyl's original [spectral asymptotic law](https://eudml.org/doc/58792) and his 1916 [equidistribution criterion](https://www.math.uni-bonn.de/people/ursula/weyl.pdf) remain standard tools in spectral geometry and analytic number theory. Finally, [*Das Kontinuum* (1918)](https://plato.stanford.edu/archives/sum2024/entries/weyl/) launched a predicative reconstruction of analysis, while his separate 1949 tile argument challenged regular finite-tile models of physical space by showing that tile-count distance need not approach Euclidean diagonal distance; later work also records that the argument does not apply to every reasonable discrete geometry ([Philosophy of Science](https://doi.org/10.1086/289379)).
+
+Plainly: a spinor is the mathematical carrier of handed particle states; a representation says how a state changes under a symmetry; quantization translates classical phase-space quantities into quantum operators; curvature records the part of geometry that local coordinate choices cannot remove; and a spectral law counts high-frequency modes. Weyl supplied or decisively shaped each of these structures, but their shared name does not make any one of them a substrate mechanism.
+
+**What They Got Wrong or Overstated:** The 1918 identification of electromagnetism with path-dependent length calibration fails the observed stability of atomic clocks and spectra. The gauge idea survived only after the calibrated object changed from ruler length to quantum phase. Weyl's 1949 tile argument also has a narrower target than the phrase "discrete substrate" suggests: it attacks physical space modeled as a regular finite adjacency tiling whose distance is tile count. It does not attack discrete matter assemblies moving in a continuous Euclidean void, and it does not rule out discrete models with a separately defined metric that demonstrably recovers Euclidean distance.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Structurally indispensable at the effective layer, cautionary at the ontological layer, and directly relevant to the distinction between local convention, comparison transport, and invariant record. Gauge mechanisms remain owned by the assembly chapters. The tile argument does not open a new closure target for the present ontology because the Euclidean void is continuous; it would bind immediately if the void were redefined as a finite regular lattice.
+
+**Transition Relevance**: Maximal. The transition must recover gauge covariance, holonomy, chirality, anomaly cancellation, representation structure, running couplings, and effective Weyl-curvature comparisons while keeping all of them at the observer or effective layer until their assembly maps are derived.
+
+**Long-Term Relevance**: Permanent as mathematical structure and historical discipline. Weyl's failed first gauge is a standing warning that a powerful invariance can survive while its first physical interpretation does not.
+
+**Core Belief**: Physical law should not depend on arbitrary local standards of description, and the comparison of local standards requires a geometrically controlled connection.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the tested gauge, spinor, representation, curvature, and scale-dependent records as recovery targets while requiring one architrino inventory to produce them through assembly and Noether sea coarse-graining. The historical and conceptual episode is developed in [Weyl's Gauge: Calibration Survived Its Object](historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object); the emergence map remains in [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md), and the formal recovery gate remains in [Gauge Symmetries](../assemblies/gauge-symmetries.md).
+
+**Legacy Shift**: Weyl's name no longer marks one failed scale theory. It marks a family of structures whose durable content lies in local comparison, representation, chirality, and invariants, with each structure assigned to its proper physical layer.
+
+---
+
 ### **Paul Dirac (1902–1984)**
 **Subject:** Paul Dirac (1902–1984), foundational architect of operator quantum mechanics, relativistic quantum theory, and antimatter prediction.
 
@@ -1237,6 +1266,33 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
+### **Chen Ning Yang (1922–) and Robert Mills (1927–1999) — Non-Abelian Gauge Structure**
+**Subject:** Chen Ning Yang (1922–) and Robert Mills (1927–1999), physicists who generalized local gauge covariance from the Abelian electromagnetic case to a non-Abelian isotopic-spin symmetry.
+
+**Era / Context**: Their 1954 work appeared before the electroweak and quantum-chromodynamic applications were known, when isotopic spin organized nuclear states but no accepted local non-Abelian interaction theory existed.
+
+**Primary Domain**: Non-Abelian gauge theory, internal symmetry, and field-theoretic interaction structure.
+
+**What Problem They Were Trying To Solve:** They asked how a global isotopic-spin rotation could be made local without making derivatives of the transformed field physically inconsistent from point to point.
+
+**What They Got Right:** Their [1954 paper](https://doi.org/10.1103/PhysRev.96.191) introduced a compensating connection with nonlinear field equations for local internal rotations. That construction became the mathematical architecture from which electroweak and color gauge theories were built.
+
+**What They Got Wrong or Overstated:** The original isotopic model was not yet a viable theory of the nuclear interactions and left the mass problem for its vector quanta unresolved. The later success of Yang-Mills theory also does not show that gauge coordinates are primitive physical substance; it shows that gauge-invariant reaction and transport records obey a non-Abelian covariance structure.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Mandatory at the effective level and unpromoted at the substrate level.
+
+**Transition Relevance**: Maximal for recovering $SU(2)_L$ and $SU(3)_c$ covariance, nonlinear curvature, self-coupling, representation assignments, anomaly cancellation, and Wilson-loop content from one retained assembly and Noether sea record.
+
+**Long-Term Relevance**: Permanent as the effective comparison grammar of weak and color interactions.
+
+**Core Belief**: A symmetry that organizes an internal degree of freedom can be imposed locally only by introducing a connection whose transformation compensates the local basis change.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover the Yang-Mills covariance and gauge-invariant observables from assembly geometry and causal-wake histories without introducing a second production ontology of primitive non-Abelian fields.
+
+**Legacy Shift**: Yang-Mills structure remains compulsory effective mathematics while its connection variables become reconstructed coordinates on an observer-level record.
+
+---
+
 ### **Abdus Salam (1926–1996), Sheldon Glashow (1932–), Steven Weinberg (1933–2021) — Electroweak Unification**
 **Subject:** Salam, Glashow, and Weinberg, architects of electroweak unification in Standard Model theory.
 
@@ -1261,6 +1317,33 @@ If the framework works, the historical result is not that prior thinkers were si
 **Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from Noether sea response-network organization and phase behavior.
 
 **Legacy Shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
+
+---
+
+### **Kenneth G. Wilson (1936–2013) — Renormalization Group and Scale Flow**
+**Subject:** Kenneth G. Wilson (1936–2013), theoretical physicist who transformed renormalization into a systematic account of how effective descriptions change across length and energy scales.
+
+**Era / Context**: Wilson's mature work emerged around 1970-1975 from quantum field theory, critical phenomena, and statistical mechanics, replacing divergence subtraction as the main conceptual picture with coarse-graining, running couplings, fixed points, and universality.
+
+**Primary Domain**: Renormalization group, critical phenomena, effective field theory, lattice gauge theory, and multiscale physics.
+
+**What Problem They Were Trying To Solve:** Wilson sought a controlled way to derive macroscopic behavior from systems with fluctuations on many interacting length scales and to explain why detailed microscopic differences can yield the same long-distance laws.
+
+**What They Got Right:** Wilson made scale dependence into a calculable flow. His [Nobel lecture on many length scales](https://www.nobelprize.org/uploads/2018/06/wilson-lecture-2.pdf) explains how microscopic fluctuations are successively averaged and how effective couplings change under that averaging. This framework underlies modern universality, critical phenomena, running-coupling analysis, and effective-field-theory reasoning.
+
+**What They Got Wrong or Overstated:** The renormalization group connects descriptions, operators, and couplings across scales; it does not by itself reconstruct a unique constituent identity and provenance ledger. Treating scale autonomy as permission never to seek such a ledger is a later methodological extension, not a defect in Wilson's mathematics.
+
+**Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Essential as a cross-scale recovery framework and insufficient as substrate ontology.
+
+**Transition Relevance**: Maximal. The theory must recover observed running couplings and effective autonomy while demonstrating how one architrino inventory projects through successive assembly, Noether sea, field, particle, and bulk descriptions.
+
+**Long-Term Relevance**: Permanent as the mathematics of scale-dependent description, with the constituent-continuity question supplied separately by the substrate theory.
+
+**Core Belief**: Macroscopic laws are obtained by integrating over short-scale structure, rescaling, and following the resulting flow of effective parameters toward or away from fixed points.
+
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits Wilson's demand for explicit coarse-graining maps and scale-dependent residuals but adds a stronger burden: changes of description may discard inaccessible detail without silently changing the constituent ontology.
+
+**Legacy Shift**: Wilsonian scale flow becomes the required bridge between substrate and effective descriptions, not a substitute for the bridge's constituent provenance.
 
 ---
 

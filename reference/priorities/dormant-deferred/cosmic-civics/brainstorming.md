@@ -1,6 +1,6 @@
-# Cosmic Civics Brainstorming
+# Cosmic Civics: Claims, Passage, and Multiscale Mapping
 
-This file preserves the original ideas, map layers, cross-scale questions, illustrative hypotheticals, and possible record structures that are not yet accepted tasks or reader-facing corpus material.
+This synthesis examines how source-bound assertions, physical passage, operational frames, and map layers could be compared across domains and scales. It remains exploratory priority material and supplies neither legal advice nor a new $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
 ## Routing Rules
 
@@ -178,14 +178,11 @@ These questions are not answers and do not imply that any listed regime should e
 - Where must the map stop at physical description before legal, moral, or institutional reasoning begins?
 - What counterexample would show that `Passage` is too broad to support a coherent cross-domain comparison?
 
-## Possible Future Artifacts
+## Unresolved Ideas
 
-These remain proposals, not queue items:
-
-- a terminology and claim-level crosswalk;
-- a land/water/air/outer-space comparison matrix;
-- a frame-explicit passage-record sketch;
-- a claim/source/objection status model;
-- a set of illustrative GIS wireframes with visible authority and uncertainty labels;
-- a philosophical paper about movement, commons, exclusion, and civic claims across scales;
-- a legal-source-mining packet limited to one jurisdiction or domain, undertaken only with explicit authority and appropriate sourcing.
+- **[closure target] Terminology and claim-level crosswalk.** Decide whether `Passage`, `Claim`, and `Assembly Architecture` remain packet-local; required artifact is a controlled crosswalk with rejection criteria; likely destination is [concept-and-scope.md](concept-and-scope.md).
+- **[guessed] Cross-domain comparison matrix.** Determine which distinctions survive across land, water, air, and outer-space contexts; required evidence is a bounded source-labeled comparison; likely destination is a focused comparative packet.
+- **[inferred] Frame-explicit passage record.** Specify chart provenance, time level, uncertainty, status, and source without selecting a universal legal frame; falsifier is a representative passage that the record cannot express without conflating physical and legal claims.
+- **[guessed] Claim, objection, and status model.** Separate assertions from evidence, authority, objection, adjudication, and outcome; required review is jurisdiction-specific legal sourcing under separate authority.
+- **[guessed] Claims-atlas wireframes.** Test whether uncertainty, conflict, expiry, moving frames, and source authority can remain visible without graphical ranking; likely destination is a focused design packet if execution is authorized.
+- **[guessed] Civic philosophy paper.** Develop the relation among movement, commons, exclusion, stewardship, and passage fees without deriving rights from physics; promotion requires a selected philosophical scope and expert source base.

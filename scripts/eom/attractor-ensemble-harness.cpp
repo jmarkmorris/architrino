@@ -126,7 +126,93 @@ struct SeedRow {
   int sense;
   double tilt_x = 0.0;
   double tilt_y = 0.0;
+  double center_x = 0.0;
+  double center_y = 0.0;
+  double center_z = 0.0;
+  std::array<double, 3> frame_p = {1.0, 0.0, 0.0};
+  std::array<double, 3> frame_q = {0.0, 1.0, 0.0};
 };
+
+std::vector<SeedRow> f6c_cubic_lattice_rows(
+    std::size_t side, double spacing, double orbit_radius,
+    double angular_rate, const std::string& orientation_field) {
+  const bool site_local = orientation_field == "tetrahedral-parity-v1";
+  if (!site_local && orientation_field != "global-plane-v1") {
+    throw std::invalid_argument(
+        "cubic orientation field must be global-plane-v1 or "
+        "tetrahedral-parity-v1");
+  }
+  std::vector<SeedRow> rows;
+  rows.reserve(side * side * side);
+  std::array<std::array<double, 3>, 3> normal_second_moment{};
+  const double center_index =
+      (static_cast<double>(side) - 1.0) / 2.0;
+  for (std::size_t gx = 0; gx < side; ++gx) {
+    for (std::size_t gy = 0; gy < side; ++gy) {
+      for (std::size_t gz = 0; gz < side; ++gz) {
+        const int polarity = ((gx + gy + gz) % 2U == 0U) ? +1 : -1;
+        const std::string coordinate = side == 2U
+            ? std::to_string(gx) + std::to_string(gy) + std::to_string(gz)
+            : std::to_string(gx) + "_" + std::to_string(gy) + "_" +
+                  std::to_string(gz);
+        SeedRow row{
+            "g" + coordinate + (polarity > 0 ? "+" : "-"),
+            polarity > 0 ? kCharge : kNegativeCharge,
+            orbit_radius,
+            (static_cast<double>(gz) - center_index) * spacing,
+            polarity > 0 ? 0.0 : kPi,
+            orbit_radius * angular_rate,
+            +1,
+            0.0,
+            0.0,
+            (static_cast<double>(gx) - center_index) * spacing,
+            (static_cast<double>(gy) - center_index) * spacing,
+            (static_cast<double>(gz) - center_index) * spacing,
+        };
+        if (site_local) {
+          const double sx = gx % 2U == 0U ? 1.0 : -1.0;
+          const double sy = gy % 2U == 0U ? 1.0 : -1.0;
+          const double sz = gz % 2U == 0U ? 1.0 : -1.0;
+          const double inverse_sqrt_two = 1.0 / std::sqrt(2.0);
+          const double inverse_sqrt_six = 1.0 / std::sqrt(6.0);
+          const double inverse_sqrt_three = 1.0 / std::sqrt(3.0);
+          row.frame_p = {
+              sy * inverse_sqrt_two, -sx * inverse_sqrt_two, 0.0};
+          row.frame_q = {
+              sx * sz * inverse_sqrt_six,
+              sy * sz * inverse_sqrt_six,
+              -2.0 * inverse_sqrt_six};
+          const std::array<double, 3> normal = {
+              sx * inverse_sqrt_three,
+              sy * inverse_sqrt_three,
+              sz * inverse_sqrt_three};
+          for (std::size_t left = 0; left < 3U; ++left) {
+            for (std::size_t right = 0; right < 3U; ++right) {
+              normal_second_moment[left][right] +=
+                  normal[left] * normal[right];
+            }
+          }
+        }
+        rows.push_back(row);
+      }
+    }
+  }
+  if (site_local) {
+    const double inverse_population = 1.0 / static_cast<double>(rows.size());
+    for (std::size_t left = 0; left < 3U; ++left) {
+      for (std::size_t right = 0; right < 3U; ++right) {
+        const double expected = left == right ? 1.0 / 3.0 : 0.0;
+        if (std::abs(normal_second_moment[left][right] * inverse_population -
+                     expected) > 1e-12) {
+          throw std::runtime_error(
+              "tetrahedral-parity orientation failed its exact second-rank "
+              "cubic census");
+        }
+      }
+    }
+  }
+  return rows;
+}
 
 // phase0-shell-v1 declared seed family (identical constants to the Phase 0
 // profiler). `seed_offset` selects a distinct member of the ensemble by
@@ -157,12 +243,12 @@ std::vector<SeedRow> seed_rows(std::size_t population, std::size_t offset) {
 
 std::vector<SeedRow> f6c_balanced_tetrahedral_rows(
     double positive_rate, double negative_rate, double negative_theta,
-    double breathing_rate, double cycle_phase, double positive_h_amplitude,
-    double negative_h_amplitude, double positive_rho_amplitude,
-    double negative_rho_amplitude, double positive_phase_amplitude,
-    double negative_phase_amplitude, double positive_h_phase_offset,
-    double negative_h_phase_offset, double positive_rho_phase_offset,
-    double negative_rho_phase_offset) {
+    double breathing_rate, double radial_breathing_ratio, double cycle_phase,
+    double positive_h_amplitude, double negative_h_amplitude,
+    double positive_rho_amplitude, double negative_rho_amplitude,
+    double positive_phase_amplitude, double negative_phase_amplitude,
+    double positive_h_phase_offset, double negative_h_phase_offset,
+    double positive_rho_phase_offset, double negative_rho_phase_offset) {
   constexpr double kScale = 0.3;
   constexpr std::array<std::array<double, 3>, 4> kAxes = {{
       {{1.0, 1.0, 1.0}},
@@ -218,7 +304,7 @@ std::vector<SeedRow> f6c_balanced_tetrahedral_rows(
           h_amplitude * breathing_rate *
               std::cos(cycle_phase + h_phase_offset);
       const double endpoint_rho_rate =
-          rho_amplitude * breathing_rate *
+          rho_amplitude * breathing_rate * radial_breathing_ratio *
               std::cos(cycle_phase + rho_phase_offset);
       const double endpoint_theta_rate =
           rate - phase_amplitude * breathing_rate * std::sin(cycle_phase);
@@ -501,15 +587,90 @@ struct F6cHarmonicState {
   Vector3 velocity;
 };
 
+F6cHarmonicState f6c_cubic_lattice_state(
+    const SeedRow& row, double time, double angular_rate) {
+  const double angle = angular_rate * time + row.phase;
+  const double cosine = std::cos(angle);
+  const double sine = std::sin(angle);
+  const std::array<double, 3> radial = {
+      row.frame_p[0] * cosine + row.frame_q[0] * sine,
+      row.frame_p[1] * cosine + row.frame_q[1] * sine,
+      row.frame_p[2] * cosine + row.frame_q[2] * sine};
+  const std::array<double, 3> tangent = {
+      -row.frame_p[0] * sine + row.frame_q[0] * cosine,
+      -row.frame_p[1] * sine + row.frame_q[1] * cosine,
+      -row.frame_p[2] * sine + row.frame_q[2] * cosine};
+  return {
+      {row.center_x + row.radius * radial[0],
+       row.center_y + row.radius * radial[1],
+       row.center_z + row.radius * radial[2]},
+      {row.radius * angular_rate * tangent[0],
+       row.radius * angular_rate * tangent[1],
+       row.radius * angular_rate * tangent[2]},
+  };
+}
+
+eom::RetainedHistory f6c_cubic_lattice_history(
+    const SeedRow& row, double depth, double segment_step,
+    double angular_rate) {
+  const std::size_t segment_count = static_cast<std::size_t>(
+      std::ceil(depth / segment_step));
+  const double step = depth / static_cast<double>(segment_count);
+  const double fourth_derivative_bound =
+      row.radius * std::pow(std::abs(angular_rate), 4);
+  const double position_error =
+      fourth_derivative_bound * std::pow(step, 4) / 384.0 + 1e-14;
+  const double velocity_error =
+      fourth_derivative_bound * std::pow(step, 3) + 1e-13;
+  std::vector<eom::CubicHistorySegment> segments;
+  segments.reserve(segment_count);
+  for (std::size_t index = 0; index < segment_count; ++index) {
+    const double start = -depth + static_cast<double>(index) * step;
+    const double end = index + 1U == segment_count
+        ? 0.0
+        : -depth + static_cast<double>(index + 1U) * step;
+    const double duration = end - start;
+    const auto left = f6c_cubic_lattice_state(row, start, angular_rate);
+    const auto right = f6c_cubic_lattice_state(row, end, angular_rate);
+    const std::array<double, 3> left_position = {
+        left.position.x, left.position.y, left.position.z};
+    const std::array<double, 3> left_velocity = {
+        left.velocity.x, left.velocity.y, left.velocity.z};
+    const std::array<double, 3> right_position = {
+        right.position.x, right.position.y, right.position.z};
+    const std::array<double, 3> right_velocity = {
+        right.velocity.x, right.velocity.y, right.velocity.z};
+    eom::CubicCoefficientTokens coefficients;
+    for (std::size_t axis = 0; axis < 3U; ++axis) {
+      const double displacement = right_position[axis] - left_position[axis];
+      coefficients[axis] = {
+          token(left_position[axis]),
+          token(left_velocity[axis]),
+          token((3.0 * displacement / duration -
+                 2.0 * left_velocity[axis] - right_velocity[axis]) /
+                duration),
+          token((-2.0 * displacement / duration +
+                 left_velocity[axis] + right_velocity[axis]) /
+                (duration * duration)),
+      };
+    }
+    segments.emplace_back(
+        token(start), token(end), coefficients,
+        token(position_error), token(velocity_error));
+  }
+  return eom::RetainedHistory(
+      row.path_id + "-f6c-cubic-lattice-prehistory", std::move(segments));
+}
+
 F6cHarmonicState f6c_harmonic_state(
     std::size_t module, int polarity, double time,
     double positive_rate, double negative_rate, double negative_theta,
-    double breathing_rate, double cycle_phase, double positive_h_amplitude,
-    double negative_h_amplitude, double positive_rho_amplitude,
-    double negative_rho_amplitude, double positive_phase_amplitude,
-    double negative_phase_amplitude, double positive_h_phase_offset,
-    double negative_h_phase_offset, double positive_rho_phase_offset,
-    double negative_rho_phase_offset) {
+    double breathing_rate, double radial_breathing_ratio, double cycle_phase,
+    double positive_h_amplitude, double negative_h_amplitude,
+    double positive_rho_amplitude, double negative_rho_amplitude,
+    double positive_phase_amplitude, double negative_phase_amplitude,
+    double positive_h_phase_offset, double negative_h_phase_offset,
+    double positive_rho_phase_offset, double negative_rho_phase_offset) {
   constexpr double kScale = 0.3;
   constexpr std::array<std::array<double, 3>, 4> kAxes = {{
       {{1.0, 1.0, 1.0}},
@@ -549,15 +710,18 @@ F6cHarmonicState f6c_harmonic_state(
   const double rho_phase_offset = polarity > 0
       ? positive_rho_phase_offset : negative_rho_phase_offset;
   const double breathing_argument = breathing_rate * time + cycle_phase;
+  const double radial_breathing_rate =
+      breathing_rate * radial_breathing_ratio;
   const double h_argument = breathing_argument + h_phase_offset;
-  const double rho_argument = breathing_argument + rho_phase_offset;
+  const double rho_argument =
+      radial_breathing_rate * time + cycle_phase + rho_phase_offset;
   const double h = kScale + h_amplitude * std::sin(h_argument);
   const double rho =
       kScale + rho_amplitude * std::sin(rho_argument);
   const double h_rate =
       h_amplitude * breathing_rate * std::cos(h_argument);
   const double rho_rate =
-      rho_amplitude * breathing_rate * std::cos(rho_argument);
+      rho_amplitude * radial_breathing_rate * std::cos(rho_argument);
   const double theta = angular_rate * time + cycle_phase +
       phase_amplitude * std::cos(breathing_argument) +
       (polarity > 0 ? 0.0 : negative_theta);
@@ -597,7 +761,8 @@ F6cHarmonicState f6c_harmonic_state(
 eom::RetainedHistory f6c_harmonic_history(
     const SeedRow& row, std::size_t module, int polarity, double depth,
     double segment_step, double positive_rate, double negative_rate,
-    double negative_theta, double breathing_rate, double cycle_phase,
+    double negative_theta, double breathing_rate,
+    double radial_breathing_ratio, double cycle_phase,
     double positive_h_amplitude, double negative_h_amplitude,
     double positive_rho_amplitude, double negative_rho_amplitude,
     double positive_phase_amplitude, double negative_phase_amplitude,
@@ -615,15 +780,20 @@ eom::RetainedHistory f6c_harmonic_history(
       ? positive_phase_amplitude : negative_phase_amplitude;
   const double maximum_radius = 0.3 + std::abs(rho_amplitude);
   const double breathing = std::abs(breathing_rate);
+  const double radial_breathing =
+      std::abs(breathing_rate * radial_breathing_ratio);
   const double phase_one =
       std::abs(angular_rate) + std::abs(phase_amplitude) * breathing;
   const double phase_two = std::abs(phase_amplitude) * std::pow(breathing, 2);
   const double phase_three = std::abs(phase_amplitude) * std::pow(breathing, 3);
   const double phase_four = std::abs(phase_amplitude) * std::pow(breathing, 4);
-  const double radius_one = std::abs(rho_amplitude) * breathing;
-  const double radius_two = std::abs(rho_amplitude) * std::pow(breathing, 2);
-  const double radius_three = std::abs(rho_amplitude) * std::pow(breathing, 3);
-  const double radius_four = std::abs(rho_amplitude) * std::pow(breathing, 4);
+  const double radius_one = std::abs(rho_amplitude) * radial_breathing;
+  const double radius_two =
+      std::abs(rho_amplitude) * std::pow(radial_breathing, 2);
+  const double radius_three =
+      std::abs(rho_amplitude) * std::pow(radial_breathing, 3);
+  const double radius_four =
+      std::abs(rho_amplitude) * std::pow(radial_breathing, 4);
   const double fourth_derivative_bound =
       std::abs(h_amplitude) * std::pow(breathing, 4) +
       radius_four + 4.0 * phase_one * radius_three +
@@ -648,16 +818,16 @@ eom::RetainedHistory f6c_harmonic_history(
     const double duration = end - start;
     const auto left = f6c_harmonic_state(
         module, polarity, start, positive_rate, negative_rate,
-        negative_theta, breathing_rate, cycle_phase, positive_h_amplitude,
-        negative_h_amplitude, positive_rho_amplitude,
+        negative_theta, breathing_rate, radial_breathing_ratio, cycle_phase,
+        positive_h_amplitude, negative_h_amplitude, positive_rho_amplitude,
         negative_rho_amplitude, positive_phase_amplitude,
         negative_phase_amplitude, positive_h_phase_offset,
         negative_h_phase_offset, positive_rho_phase_offset,
         negative_rho_phase_offset);
     const auto right = f6c_harmonic_state(
         module, polarity, end, positive_rate, negative_rate,
-        negative_theta, breathing_rate, cycle_phase, positive_h_amplitude,
-        negative_h_amplitude, positive_rho_amplitude,
+        negative_theta, breathing_rate, radial_breathing_ratio, cycle_phase,
+        positive_h_amplitude, negative_h_amplitude, positive_rho_amplitude,
         negative_rho_amplitude, positive_phase_amplitude,
         negative_phase_amplitude, positive_h_phase_offset,
         negative_h_phase_offset, positive_rho_phase_offset,
@@ -804,6 +974,7 @@ struct Options {
   double f6c_negative_rate = 1.0;
   double f6c_negative_theta = 0.0;
   double f6c_breathing_rate = 0.0;
+  double f6c_radial_breathing_ratio = 1.0;
   double f6c_cycle_phase = 0.0;
   double f6c_positive_h_amplitude = 0.0;
   double f6c_negative_h_amplitude = 0.0;
@@ -815,6 +986,11 @@ struct Options {
   double f6c_negative_h_phase_offset = 0.0;
   double f6c_positive_rho_phase_offset = 0.0;
   double f6c_negative_rho_phase_offset = 0.0;
+  double lattice_spacing = 1.0;
+  double lattice_orbit_radius = 0.05;
+  double lattice_angular_rate = 1.0;
+  std::size_t lattice_side = 2;
+  std::string lattice_orientation_field = "tetrahedral-parity-v1";
   std::string binary_angle = "0";
   std::string refinement = "R0";
   std::string campaign1_grid_manifest;
@@ -832,6 +1008,7 @@ struct Options {
   std::string out_dir = "attractor-ensemble-out";
   std::string run_id;
   std::string root_tolerance = "1e-5";
+  std::string transmitter_factor_floor = "1e-24";
   std::size_t root_max_depth = 192;
   std::string engine_build_id = "unspecified";
   std::string generating_spec = "unspecified";
@@ -864,6 +1041,7 @@ std::string harness_resume_fingerprint(
            token(options.f6c_negative_rate),
            token(options.f6c_negative_theta),
            token(options.f6c_breathing_rate),
+           token(options.f6c_radial_breathing_ratio),
            token(options.f6c_cycle_phase),
            token(options.f6c_positive_h_amplitude),
            token(options.f6c_negative_h_amplitude),
@@ -875,6 +1053,11 @@ std::string harness_resume_fingerprint(
            token(options.f6c_negative_h_phase_offset),
            token(options.f6c_positive_rho_phase_offset),
            token(options.f6c_negative_rho_phase_offset),
+           token(options.lattice_spacing),
+           token(options.lattice_orbit_radius),
+           token(options.lattice_angular_rate),
+           std::to_string(options.lattice_side),
+           options.lattice_orientation_field,
            options.binary_angle,
            options.refinement,
            token(options.step),
@@ -888,6 +1071,7 @@ std::string harness_resume_fingerprint(
            token(options.pin_speed),
            std::to_string(options.thread_count),
            options.root_tolerance,
+           options.transmitter_factor_floor,
            std::to_string(options.root_max_depth),
            options.engine_build_id,
            options.generating_spec,
@@ -917,7 +1101,7 @@ eom::NativeCoupledEvolutionRequest build_request(
   request.field_speed = "1";
   request.coupling = token(kNativeCoupling);
   request.root_tolerance = options.root_tolerance;
-  request.transmitter_factor_floor = "1e-24";
+  request.transmitter_factor_floor = options.transmitter_factor_floor;
   request.acceleration_tolerance = token(5e-3);
   request.chart_policy = "sharp";
   request.causal_width = "0.05";
@@ -1036,6 +1220,23 @@ void write_release_acceleration_atomic(
   write_json_string(output, snapshot.failure_code);
   output << ",\"receptionTime\":";
   write_json_string(output, snapshot.reception_time);
+  double minimum_transmitter_factor_magnitude =
+      std::numeric_limits<double>::infinity();
+  for (const auto& row : snapshot.root_certificates) {
+    for (const auto& root : row.certificate.roots) {
+      minimum_transmitter_factor_magnitude = std::min(
+          minimum_transmitter_factor_magnitude,
+          std::min(
+              std::abs(std::stod(root.transmitter_factor_lower)),
+              std::abs(std::stod(root.transmitter_factor_upper))));
+    }
+  }
+  output << ",\"minimumTransmitterFactorMagnitude\":";
+  if (std::isfinite(minimum_transmitter_factor_magnitude)) {
+    output << minimum_transmitter_factor_magnitude;
+  } else {
+    output << "null";
+  }
   output << ",\"rootCertificates\":[";
   for (std::size_t index = 0;
        index < snapshot.root_certificates.size(); ++index) {
@@ -1786,6 +1987,8 @@ void write_manifest(
          << ",\"rootMaxDepth\":" << options.root_max_depth
          << ",\"rootTolerance\":";
   write_json_string(output, options.root_tolerance);
+  output << ",\"transmitterFactorFloor\":";
+  write_json_string(output, options.transmitter_factor_floor);
   output << ",\"coupling\":";
   write_json_string(output, token(kNativeCoupling));
   output << ",\"modelFingerprint\":";
@@ -1855,6 +2058,11 @@ void write_manifest(
            << ",\"negativeRate\":" << options.f6c_negative_rate
            << ",\"negativeTheta\":" << options.f6c_negative_theta
            << ",\"breathingRate\":" << options.f6c_breathing_rate
+           << ",\"radialBreathingRatio\":"
+           << options.f6c_radial_breathing_ratio
+           << ",\"radialBreathingRate\":"
+           << options.f6c_breathing_rate *
+                  options.f6c_radial_breathing_ratio
            << ",\"cyclePhase\":" << options.f6c_cycle_phase
            << ",\"positiveHAmplitude\":"
            << options.f6c_positive_h_amplitude
@@ -1876,6 +2084,38 @@ void write_manifest(
            << options.f6c_positive_rho_phase_offset
            << ",\"negativeRhoPhaseOffset\":"
            << options.f6c_negative_rho_phase_offset << '}';
+  } else if (options.seed_family == "f6c-cubic-lattice-o0-v1") {
+    output << ",\"f6cCubicLatticeCoordinate\":{\"spacing\":"
+           << options.lattice_spacing
+           << ",\"orbitRadius\":" << options.lattice_orbit_radius
+           << ",\"angularRate\":" << options.lattice_angular_rate
+           << ",\"orbitSpeed\":"
+           << options.lattice_orbit_radius * options.lattice_angular_rate
+           << ",\"boundaryStatus\":\"finite_replicated_diagnostic\""
+           << ",\"latticeSide\":" << options.lattice_side
+           << ",\"siteCell\":\"" << options.lattice_side << "x"
+           << options.lattice_side << "x" << options.lattice_side
+           << "-conventional-open-crop\"}";
+  } else if (options.seed_family == "f6c-cubic-site-local-v1") {
+    output << ",\"adaptiveCubicMediumCoordinate\":{\"spacing\":"
+           << options.lattice_spacing
+           << ",\"orbitRadius\":" << options.lattice_orbit_radius
+           << ",\"angularRate\":" << options.lattice_angular_rate
+           << ",\"candidatePeriod\":"
+           << 2.0 * kPi / options.lattice_angular_rate
+           << ",\"minimumAntipodalChartPrehistory\":"
+           << kPi / options.lattice_angular_rate
+           << ",\"orbitSpeed\":"
+           << options.lattice_orbit_radius * options.lattice_angular_rate
+           << ",\"orientationField\":";
+    write_json_string(output, options.lattice_orientation_field);
+    output << ",\"siteHistoryContract\":"
+              "\"period-antipode-midpoint/v1\""
+           << ",\"boundaryStatus\":\"finite_replicated_diagnostic\""
+           << ",\"latticeSide\":" << options.lattice_side
+           << ",\"siteCell\":\"" << options.lattice_side << "x"
+           << options.lattice_side << "x" << options.lattice_side
+           << "-conventional-open-crop\"}";
   }
   output << ",\"evidence\":{\"eomEvidenceStatus\":"
             "\"executable_architecture_evidence\""
@@ -1915,6 +2155,20 @@ void write_manifest(
       if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
         output << ",\"tiltX\":" << row.tilt_x
                << ",\"tiltY\":" << row.tilt_y;
+      } else if (options.seed_family == "f6c-cubic-site-local-v1") {
+        const std::array<double, 3> normal = {
+            row.frame_p[1] * row.frame_q[2] -
+                row.frame_p[2] * row.frame_q[1],
+            row.frame_p[2] * row.frame_q[0] -
+                row.frame_p[0] * row.frame_q[2],
+            row.frame_p[0] * row.frame_q[1] -
+                row.frame_p[1] * row.frame_q[0]};
+        output << ",\"frameP\":[" << row.frame_p[0] << ','
+               << row.frame_p[1] << ',' << row.frame_p[2] << ']'
+               << ",\"frameQ\":[" << row.frame_q[0] << ','
+               << row.frame_q[1] << ',' << row.frame_q[2] << ']'
+               << ",\"frameNormal\":[" << normal[0] << ','
+               << normal[1] << ',' << normal[2] << ']';
       }
       output << '}';
     }
@@ -2011,6 +2265,9 @@ int main(int argc, char** argv) {
         argc, argv, "f6c-negative-theta", options.f6c_negative_theta);
     options.f6c_breathing_rate = option_double(
         argc, argv, "f6c-breathing-rate", options.f6c_breathing_rate);
+    options.f6c_radial_breathing_ratio = option_double(
+        argc, argv, "f6c-radial-breathing-ratio",
+        options.f6c_radial_breathing_ratio);
     options.f6c_cycle_phase = option_double(
         argc, argv, "f6c-cycle-phase", options.f6c_cycle_phase);
     options.f6c_positive_h_amplitude = option_double(
@@ -2043,6 +2300,17 @@ int main(int argc, char** argv) {
     options.f6c_negative_rho_phase_offset = option_double(
         argc, argv, "f6c-negative-rho-phase-offset",
         options.f6c_negative_rho_phase_offset);
+    options.lattice_spacing = option_double(
+        argc, argv, "lattice-spacing", options.lattice_spacing);
+    options.lattice_orbit_radius = option_double(
+        argc, argv, "lattice-orbit-radius", options.lattice_orbit_radius);
+    options.lattice_angular_rate = option_double(
+        argc, argv, "lattice-angular-rate", options.lattice_angular_rate);
+    options.lattice_side = static_cast<std::size_t>(option_double(
+        argc, argv, "lattice-side", static_cast<double>(options.lattice_side)));
+    options.lattice_orientation_field = option_string(
+        argc, argv, "lattice-orientation-field",
+        options.lattice_orientation_field);
     options.binary_angle = option_string(
         argc, argv, "binary-angle", options.binary_angle);
     options.refinement = option_string(
@@ -2073,6 +2341,9 @@ int main(int argc, char** argv) {
     options.out_dir = option_string(argc, argv, "out-dir", options.out_dir);
     options.root_tolerance = option_string(
         argc, argv, "root-tolerance", options.root_tolerance);
+    options.transmitter_factor_floor = option_string(
+        argc, argv, "transmitter-factor-floor",
+        options.transmitter_factor_floor);
     options.engine_build_id = option_string(
         argc, argv, "engine-build-id", options.engine_build_id);
     options.generating_spec = option_string(
@@ -2114,11 +2385,21 @@ int main(int argc, char** argv) {
       options.population = 8;
       options.prehistory = options.f6c_breathing_rate > 0.0
           ? "harmonic-breathing" : "circular";
+    } else if (options.seed_family == "f6c-cubic-lattice-o0-v1") {
+      options.population = options.lattice_side * options.lattice_side *
+          options.lattice_side;
+      options.prehistory = "antiphase-global-plane";
+      options.lattice_orientation_field = "global-plane-v1";
+    } else if (options.seed_family == "f6c-cubic-site-local-v1") {
+      options.population = options.lattice_side * options.lattice_side *
+          options.lattice_side;
+      options.prehistory = "site-local-circular";
     } else if (options.seed_family != "phase0-shell-v1") {
       throw std::invalid_argument(
           "seed-family must be phase0-shell-v1, "
           "campaign1-subfield-binary-v1, stationary-rest-binary-v1, or "
-          "f6c-balanced-tetrahedral-v1");
+          "f6c-balanced-tetrahedral-v1, f6c-cubic-lattice-o0-v1, or "
+          "f6c-cubic-site-local-v1");
     }
     options.run_id = option_string(
         argc, argv, "run-id",
@@ -2141,6 +2422,10 @@ int main(int argc, char** argv) {
                                       options.f6c_breathing_rate) +
                              "-cp" + campaign1_scalar_id(
                                          options.f6c_cycle_phase) +
+                             (options.f6c_radial_breathing_ratio != 1.0
+                                  ? "-rr" + campaign1_scalar_id(
+                                                options.f6c_radial_breathing_ratio)
+                                  : "") +
                              "-hp" + campaign1_scalar_id(
                                          options.f6c_positive_h_amplitude) +
                              "-hm" + campaign1_scalar_id(
@@ -2163,6 +2448,21 @@ int main(int argc, char** argv) {
                                           options.f6c_negative_rho_phase_offset)
                        : "") +
                   "-v1"
+            : options.seed_family == "f6c-cubic-lattice-o0-v1"
+            ? "f6c-cubic-lattice-o0-n" +
+                  std::to_string(options.lattice_side) + "-d" +
+                  campaign1_scalar_id(options.lattice_spacing) + "-rho" +
+                  campaign1_scalar_id(options.lattice_orbit_radius) +
+                  "-omega" +
+                  campaign1_scalar_id(options.lattice_angular_rate) + "-v1"
+            : options.seed_family == "f6c-cubic-site-local-v1"
+            ? "f6c-cubic-site-local-n" +
+                  std::to_string(options.lattice_side) + "-d" +
+                  campaign1_scalar_id(options.lattice_spacing) + "-rho" +
+                  campaign1_scalar_id(options.lattice_orbit_radius) +
+                  "-omega" +
+                  campaign1_scalar_id(options.lattice_angular_rate) + "-" +
+                  options.lattice_orientation_field
             : "attractor-ensemble-n" + std::to_string(options.population) +
                   "-s" + std::to_string(options.seed_offset) + "-" +
                   options.prehistory);
@@ -2170,8 +2470,9 @@ int main(int argc, char** argv) {
       throw std::invalid_argument("population must be even (neutral mix)");
     }
     if (options.seed_family == "f6c-balanced-tetrahedral-v1") {
-      const std::array<double, 12> breathing_values = {
+      const std::array<double, 13> breathing_values = {
           options.f6c_breathing_rate,
+          options.f6c_radial_breathing_ratio,
           options.f6c_cycle_phase,
           options.f6c_positive_h_amplitude,
           options.f6c_negative_h_amplitude,
@@ -2190,9 +2491,11 @@ int main(int argc, char** argv) {
           !std::all_of(
               breathing_values.begin(), breathing_values.end(),
               [](double value) { return std::isfinite(value); }) ||
-          options.f6c_breathing_rate < 0.0) {
+          options.f6c_breathing_rate < 0.0 ||
+          !(options.f6c_radial_breathing_ratio > 0.0)) {
         throw std::invalid_argument(
-            "F6c rates must be positive and all F6c coordinates finite");
+            "F6c rates and radial breathing ratio must be positive and all "
+            "F6c coordinates finite");
       }
       const bool has_amplitude =
           options.f6c_positive_h_amplitude != 0.0 ||
@@ -2205,18 +2508,20 @@ int main(int argc, char** argv) {
         throw std::invalid_argument(
             "F6c breathing amplitudes require a positive breathing rate");
       }
-      const auto valid_sector = [breathing_rate = options.f6c_breathing_rate](
-                                    double angular_rate,
-                                    double h_amplitude,
-                                    double rho_amplitude,
-                                    double phase_amplitude) {
+      const auto valid_sector = [
+          breathing_rate = options.f6c_breathing_rate,
+          radial_breathing_rate = options.f6c_breathing_rate *
+              options.f6c_radial_breathing_ratio](
+              double angular_rate, double h_amplitude,
+              double rho_amplitude, double phase_amplitude) {
         if (!(std::abs(h_amplitude) < 0.3) ||
             !(std::abs(rho_amplitude) < 0.3)) {
           return false;
         }
         const double maximum_speed = std::sqrt(
             std::pow(std::abs(h_amplitude) * breathing_rate, 2) +
-            std::pow(std::abs(rho_amplitude) * breathing_rate, 2) +
+            std::pow(
+                std::abs(rho_amplitude) * radial_breathing_rate, 2) +
             std::pow(
                 (0.3 + std::abs(rho_amplitude)) *
                     (angular_rate +
@@ -2238,6 +2543,30 @@ int main(int argc, char** argv) {
             "F6c harmonic prehistory must keep h and rho positive and the "
             "conservative member-speed bound strictly below c_f=1");
       }
+    }
+    if ((options.seed_family == "f6c-cubic-lattice-o0-v1" ||
+         options.seed_family == "f6c-cubic-site-local-v1") &&
+        (options.lattice_side < 2U || options.lattice_side % 2U != 0U ||
+         options.population != options.lattice_side * options.lattice_side *
+             options.lattice_side ||
+         !(options.lattice_spacing > 0.0) ||
+         !(options.lattice_orbit_radius > 0.0) ||
+         !(options.lattice_angular_rate > 0.0) ||
+         !std::isfinite(options.lattice_spacing) ||
+         !std::isfinite(options.lattice_orbit_radius) ||
+         !std::isfinite(options.lattice_angular_rate) ||
+         !(options.lattice_orbit_radius * options.lattice_angular_rate <
+           1.0))) {
+      throw std::invalid_argument(
+          "cubic-lattice side must be even and at least two, population must "
+          "equal side cubed, spacing, radius, and angular rate must be "
+          "positive and finite, and orbit speed must remain below c_f=1");
+    }
+    if (options.seed_family == "f6c-cubic-site-local-v1" &&
+        options.lattice_orientation_field != "tetrahedral-parity-v1") {
+      throw std::invalid_argument(
+          "site-local cubic seed currently requires the derived "
+          "tetrahedral-parity-v1 orientation field");
     }
     if (options.seed_family == "phase0-shell-v1" &&
         options.prehistory != "circular" && options.prehistory != "straight") {
@@ -2291,6 +2620,11 @@ int main(int argc, char** argv) {
         options.seed_family == "stationary-rest-binary-v1";
     const bool f6c_balanced_tetrahedral =
         options.seed_family == "f6c-balanced-tetrahedral-v1";
+    const bool f6c_cubic_lattice =
+        options.seed_family == "f6c-cubic-lattice-o0-v1";
+    const bool f6c_cubic_site_local =
+        options.seed_family == "f6c-cubic-site-local-v1";
+    const bool f6c_cubic = f6c_cubic_lattice || f6c_cubic_site_local;
     const auto rows = campaign1_coordinate.has_value()
         ? campaign1_rows(*campaign1_coordinate)
         : stationary_binary
@@ -2299,7 +2633,7 @@ int main(int argc, char** argv) {
         ? f6c_balanced_tetrahedral_rows(
               options.f6c_positive_rate, options.f6c_negative_rate,
               options.f6c_negative_theta, options.f6c_breathing_rate,
-              options.f6c_cycle_phase,
+              options.f6c_radial_breathing_ratio, options.f6c_cycle_phase,
               options.f6c_positive_h_amplitude,
               options.f6c_negative_h_amplitude,
               options.f6c_positive_rho_amplitude,
@@ -2310,6 +2644,11 @@ int main(int argc, char** argv) {
               options.f6c_negative_h_phase_offset,
               options.f6c_positive_rho_phase_offset,
               options.f6c_negative_rho_phase_offset)
+        : f6c_cubic
+        ? f6c_cubic_lattice_rows(
+              options.lattice_side, options.lattice_spacing,
+              options.lattice_orbit_radius, options.lattice_angular_rate,
+              options.lattice_orientation_field)
         : seed_rows(options.population, options.seed_offset);
     std::vector<eom::NativeCoupledPathInput> paths =
         campaign1_coordinate.has_value()
@@ -2323,32 +2662,47 @@ int main(int argc, char** argv) {
       paths.reserve(rows.size());
       for (const auto& row : rows) {
         const int polarity = row.charge == kCharge ? +1 : -1;
-        const std::size_t module = static_cast<std::size_t>(
-            std::stoul(row.path_id.substr(0, row.path_id.size() - 1U)));
+        if (f6c_cubic) {
+          paths.push_back({
+              row.path_id,
+              row.charge,
+              f6c_cubic_lattice_history(
+                  row, options.history_depth, options.history_segment_step,
+                  options.lattice_angular_rate)});
+          continue;
+        }
+        if (f6c_balanced_tetrahedral &&
+            options.prehistory == "harmonic-breathing") {
+          const std::size_t module = static_cast<std::size_t>(
+              std::stoul(row.path_id.substr(0, row.path_id.size() - 1U)));
+          paths.push_back({
+              row.path_id,
+              row.charge,
+              f6c_harmonic_history(
+                  row, module, polarity, options.history_depth,
+                  options.history_segment_step,
+                  options.f6c_positive_rate,
+                  options.f6c_negative_rate,
+                  options.f6c_negative_theta,
+                  options.f6c_breathing_rate,
+                  options.f6c_radial_breathing_ratio,
+                  options.f6c_cycle_phase,
+                  options.f6c_positive_h_amplitude,
+                  options.f6c_negative_h_amplitude,
+                  options.f6c_positive_rho_amplitude,
+                  options.f6c_negative_rho_amplitude,
+                  options.f6c_positive_phase_amplitude,
+                  options.f6c_negative_phase_amplitude,
+                  options.f6c_positive_h_phase_offset,
+                  options.f6c_negative_h_phase_offset,
+                  options.f6c_positive_rho_phase_offset,
+                  options.f6c_negative_rho_phase_offset)});
+          continue;
+        }
         paths.push_back({
             row.path_id,
             row.charge,
-            f6c_balanced_tetrahedral &&
-                    options.prehistory == "harmonic-breathing"
-                ? f6c_harmonic_history(
-                      row, module, polarity, options.history_depth,
-                      options.history_segment_step,
-                      options.f6c_positive_rate,
-                      options.f6c_negative_rate,
-                      options.f6c_negative_theta,
-                      options.f6c_breathing_rate,
-                      options.f6c_cycle_phase,
-                      options.f6c_positive_h_amplitude,
-                      options.f6c_negative_h_amplitude,
-                      options.f6c_positive_rho_amplitude,
-                      options.f6c_negative_rho_amplitude,
-                      options.f6c_positive_phase_amplitude,
-                      options.f6c_negative_phase_amplitude,
-                      options.f6c_positive_h_phase_offset,
-                      options.f6c_negative_h_phase_offset,
-                      options.f6c_positive_rho_phase_offset,
-                      options.f6c_negative_rho_phase_offset)
-                : options.prehistory == "circular"
+            options.prehistory == "circular"
                 ? circular_history(
                       row, options.history_depth, options.history_segment_step)
                 : straight_history(row, options.history_depth)});
@@ -2450,11 +2804,16 @@ int main(int argc, char** argv) {
       }
       const auto snapshot = eom::certify_native_acceleration_snapshot(
           request_template, initial, "0");
-      if (stationary_binary || f6c_balanced_tetrahedral) {
+      if (stationary_binary || f6c_balanced_tetrahedral ||
+          f6c_cubic) {
         write_release_acceleration_atomic(
             release_acceleration_path, snapshot,
             stationary_binary
                 ? "stationary_binary_release_acceleration/v0"
+                : f6c_cubic_site_local
+                ? "f6c_cubic_site_local_release_acceleration/v0"
+                : f6c_cubic_lattice
+                ? "f6c_cubic_lattice_release_acceleration/v0"
                 : "f6c_release_acceleration/v0");
       }
       std::size_t unresolved = 0;

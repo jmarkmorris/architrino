@@ -1,13 +1,13 @@
-# Ruth Kastner Brainstorming
+# Ruth Kastner Source Synthesis
 
-This file holds provisional ideas for reactivating, splitting, or promoting the deferred Ruth Kastner source-mining packet.
+This synthesis reserves space for provisional conclusions beyond the focused Transactional Interpretation source record. The packet remains dormant.
 
-## Routing Rules
+## Source and Theory Boundary
 
-- Keep loose ideas here until they name a target live priority workstream, source-mining packet, or corpus destination.
-- Do not use this file as an active task queue while the packet remains dormant.
-- Move selected work out of `dormant-deferred` before substantive source-mining or corpus promotion begins.
+The existing source packet distinguishes Kastner's measurement, direct-action, Born-rule, absorber, and emergent-spacetime claims from $\mathbb{A}\mathbb{A}\mathbb{A}$-native obligations. Transactional ontology remains comparison material; it is not imported as a quantum substratum, a photon ontology, or a retrocausal substrate mechanism.
 
-## Ideas And Insights
+Useful comparisons concern the physical closure of detector records, the separation between correlating and record-forming interactions, and the need to derive outcome weights. Further mining or promotion requires an explicit reactivation decision and a named live owner.
 
-- No loose Ruth Kastner reactivation ideas are staged here yet.
+## Unresolved Ideas
+
+- None currently recorded.

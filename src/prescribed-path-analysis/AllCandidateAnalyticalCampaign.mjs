@@ -30,6 +30,9 @@ import {
   evaluateCompleteCycleCandidate,
 } from "./CompleteCycleAnalyticalCampaign.mjs";
 import { validateExactPrescribedSourceRecord } from "./ExactPrescribedSourceWake.mjs";
+import {
+  projectCircularRelationshipParameters,
+} from "../prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
 
 export const ALL_CANDIDATE_CAMPAIGN_REGISTRY_SCHEMA =
   "prescribed-path-analysis/all-candidate-campaign-registry.v1";
@@ -134,6 +137,7 @@ function validateRegistryShape(registry) {
     fail(`registry catalog ${registry.catalogId} does not match ${BORG_BRAID_RECORD_CATALOG_ID}.`);
   }
   if (!registry.generatedCampaign || !Array.isArray(registry.candidates) ||
+      !Array.isArray(registry.excludedCatalogCandidates) ||
       !Array.isArray(registry.checkedCampaigns) ||
       !Array.isArray(registry.excludedCampaigns)) {
     fail("all-candidate registry inventories are incomplete.");
@@ -150,16 +154,23 @@ function targetByRecordPath() {
 
 function validateCandidateInventory(registry) {
   const catalogEntries = BORG_BRAID_RECORD_CATALOG.entries;
-  if (registry.candidates.length !== catalogEntries.length) {
-    fail(
-      `registry candidate count ${registry.candidates.length} differs from ` +
-      `catalog count ${catalogEntries.length}.`,
-    );
+  const catalogById = new Map(catalogEntries.map((entry) => [entry.id, entry]));
+  const excludedIds = new Set();
+  for (const exclusion of registry.excludedCatalogCandidates) {
+    concreteString(exclusion.candidateId, "excluded catalog candidateId");
+    concreteString(exclusion.reason, `excluded catalog candidate ${exclusion.candidateId} reason`);
+    if (!catalogById.has(exclusion.candidateId) || excludedIds.has(exclusion.candidateId)) {
+      fail(`excluded catalog candidate ${exclusion.candidateId} is missing or duplicated.`);
+    }
+    excludedIds.add(exclusion.candidateId);
   }
   const targets = targetByRecordPath();
   const candidateIds = new Set();
-  return registry.candidates.map((candidate, ordinal) => {
-    const catalog = catalogEntries[ordinal];
+  const candidates = registry.candidates.map((candidate, ordinal) => {
+    const catalog = catalogById.get(candidate.candidateId);
+    if (!catalog || excludedIds.has(candidate.candidateId)) {
+      fail(`registry analytical candidate ${candidate.candidateId} is absent from or excluded by the Borg catalog.`);
+    }
     if (candidate.candidateId !== catalog.id ||
         candidate.familyId !== catalog.familyId ||
         candidate.recordPath !== catalog.recordUrl) {
@@ -179,14 +190,14 @@ function validateCandidateInventory(registry) {
     const recordBytes = readFileSync(recordPath);
     const spec = validatePrescribedBraidSpec(JSON.parse(specBytes.toString("utf8")));
     if (spec.specId !== candidate.candidateId ||
-        spec.taxonomy.familyId !== candidate.familyId ||
-        spec.taxonomy.memberId !== candidate.memberId) {
+        spec.identity.taxonomy.familyId !== candidate.familyId ||
+        spec.identity.taxonomy.memberId !== candidate.memberId) {
       fail(`registry candidate ${candidate.candidateId} differs from its source specification.`);
     }
-    if (candidate.familyId === "B" &&
-        !spec.braids.some((braid) => braid.binaries.some(
-          (binary) => binary.transverseOrbitRadius > 0,
-        ))) {
+    if (candidate.familyId === "B" && !projectCircularRelationshipParameters(spec)
+      .components.some((component) => component.pairs.some(
+        (pair) => pair.transverseOrbitRadius > 0,
+      ))) {
       fail(
         `active Family-B candidate ${candidate.candidateId} requires ` +
         "nonzero transverse internal motion.",
@@ -201,6 +212,17 @@ function validateCandidateInventory(registry) {
       recordBytes,
     };
   });
+  if (candidateIds.size + excludedIds.size !== catalogEntries.length ||
+      catalogEntries.some((entry) => !candidateIds.has(entry.id) && !excludedIds.has(entry.id))) {
+    fail("every Borg catalog candidate must be either analytically registered or explicitly excluded.");
+  }
+  const registeredOrder = catalogEntries
+    .filter((entry) => candidateIds.has(entry.id))
+    .map((entry) => entry.id);
+  if (canonicalJson(registeredOrder) !== canonicalJson(registry.candidates.map((row) => row.candidateId))) {
+    fail("analytical registry candidates must preserve Borg catalog order after exclusions.");
+  }
+  return candidates;
 }
 
 function validateDeclaredCampaignInventory(registry) {
@@ -409,9 +431,9 @@ export function buildAllCandidateAnalyticalCampaign(registryPath, options = {}) 
   const artifacts = [];
   const manifestCases = [];
   for (const candidate of loaded.candidates) {
-    if (candidate.spec.prescribedReturnPeriod !== protocol.returnWindow.period ||
-        protocol.history.start < candidate.spec.recordInterval.start ||
-        protocol.history.end > candidate.spec.recordInterval.end) {
+    if (candidate.spec.history.returnPeriod !== protocol.returnWindow.period ||
+        protocol.history.start < candidate.spec.history.start ||
+        protocol.history.end > candidate.spec.history.end) {
       fail(`candidate ${candidate.declaration.candidateId} does not support the registry protocol span.`);
     }
     const exactSource = validateExactPrescribedSourceRecord(
@@ -666,9 +688,9 @@ function buildCompleteCycleAllCandidateCampaign(registryPath, options) {
   const startedAt = Date.now();
   const runtimeTimings = [];
   for (const [candidateIndex, candidate] of loaded.candidates.entries()) {
-    if (candidate.spec.prescribedReturnPeriod !== protocol.completeCycle.period ||
-        protocol.eventEvaluator.history.start < candidate.spec.recordInterval.start ||
-        protocol.eventEvaluator.history.end > candidate.spec.recordInterval.end) {
+    if (candidate.spec.history.returnPeriod !== protocol.completeCycle.period ||
+        protocol.eventEvaluator.history.start < candidate.spec.history.start ||
+        protocol.eventEvaluator.history.end > candidate.spec.history.end) {
       fail(`candidate ${candidate.declaration.candidateId} does not support the cohort protocol span.`);
     }
     const exactSource = validateExactPrescribedSourceRecord(

@@ -1,0 +1,227 @@
+{
+  "schema": "f6c-dual-turn-return-search-campaign/v1",
+  "date": "2026-08-24",
+  "claimGrade": "measured bounded EOM-solver diagnostic",
+  "instrument": "scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs",
+  "fieldSpeed": 1,
+  "searchContract": {
+    "stageAObjective": "find a guarded same-trajectory radial turn and cadence turn before ranking return residual",
+    "stageBObjective": "evaluate exact direct and reflected full-state actions at the next positive-sector radial initial-level crossing, with other rates free",
+    "dualTurnThresholds": {
+      "minimumFlightTime": 0.08,
+      "minimumShapeExcursion": 0.02,
+      "minimumLiftedPhaseAdvance": 0.12,
+      "minimumTurnBracketRate": 0.00001
+    },
+    "section": {
+      "sector": "positive",
+      "coordinate": "radial",
+      "minimumExcursion": 0.0001
+    }
+  },
+  "stageA": {
+    "strategy": "rotated deterministic Halton sampling over fifteen prescribed-history coordinates after conservative prehistory admission",
+    "requestedRows": 24,
+    "admittedRows": 24,
+    "prefilterRejectedRows": 0,
+    "plannedEndTime": 0.3,
+    "integrationStep": 0.004,
+    "historySegmentStep": 0.01,
+    "rootTolerance": 0.00001,
+    "candidateWallSeconds": 180,
+    "wallSeconds": 1851.368,
+    "timeCappedRows": 20,
+    "rootOrMinimumStepHaltedRows": 4,
+    "acceptedEndTimeRange": [0, 0.16],
+    "outcomes": {
+      "radialTurnHistories": 13,
+      "cadenceTurnHistories": 8,
+      "dualTurnHistories": 1,
+      "radialOnlyHistories": 6,
+      "cadenceOnlyHistories": 1,
+      "exactActionSectionCandidates": 1
+    },
+    "domain": {
+      "positiveRate": [0.25, 1.65],
+      "negativeRate": [0.25, 1.65],
+      "negativeTheta": [0, 6.283185307179586],
+      "breathingRate": [0.35, 1.6],
+      "cyclePhase": [0, 6.283185307179586],
+      "positiveHAmplitude": [-0.18, 0.18],
+      "negativeHAmplitude": [-0.18, 0.18],
+      "positiveRhoAmplitude": [-0.18, 0.18],
+      "negativeRhoAmplitude": [-0.18, 0.18],
+      "positivePhaseAmplitude": [-0.45, 0.45],
+      "negativePhaseAmplitude": [-0.45, 0.45],
+      "positiveHPhaseOffset": [0, 6.283185307179586],
+      "negativeHPhaseOffset": [0, 6.283185307179586],
+      "positiveRhoPhaseOffset": [0, 6.283185307179586],
+      "negativeRhoPhaseOffset": [0, 6.283185307179586]
+    },
+    "qualifiedRow": {
+      "rowIndex": 12,
+      "sequenceIndex": 13,
+      "runId": "f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1",
+      "modelFingerprint": "fnv1a64:f748eaa24603b62f",
+      "memberIds": ["0+", "0-", "1+", "1-", "2+", "2-", "3+", "3-"],
+      "memberIdentityRule": "EOM path identities remain labeled throughout; no relabeling is performed by the analyzer",
+      "parameters": {
+        "positiveRate": 0.6777475842498528,
+        "negativeRate": 1.2545692425737796,
+        "negativeTheta": 3.3558616268757473,
+        "breathingRate": 0.7871087192596784,
+        "cyclePhase": 1.7608789455930196,
+        "positiveHAmplitude": 0.07708359321456587,
+        "negativeHAmplitude": -0.14726023070320604,
+        "positiveRhoAmplitude": 0.04625367707338149,
+        "negativeRhoAmplitude": -0.13409161558077534,
+        "positivePhaseAmplitude": 0.11575417461112308,
+        "negativePhaseAmplitude": -0.2540441565373307,
+        "positiveHPhaseOffset": 4.823973427622599,
+        "negativeHPhaseOffset": 2.2086340370677515,
+        "positiveRhoPhaseOffset": 5.9991942778841585,
+        "negativeRhoPhaseOffset": 3.437565716154844
+      },
+      "releaseState": {
+        "positive": {"h": 0.3229024917117783, "rho": 0.34604987619024485, "theta": 1.7390083487928554, "hDot": 0.05793332034872763, "rhoDot": 0.003413869880741882, "thetaDot": 0.5882775003577767},
+        "negative": {"h": 0.4084610265005255, "rho": 0.41856143156703257, "theta": -1.1184456250827515, "hDot": 0.07840243440862359, "rhoDot": -0.04930435643762708, "thetaDot": 1.4509280527337263}
+      },
+      "radialTurn": {
+        "sector": "positive",
+        "time": 0.06788857605966467,
+        "bracket": [0.066, 0.068],
+        "direction": "positive-to-negative",
+        "state": {
+          "positive": {"h": 0.32668294396132175, "rho": 0.3462378221865169, "theta": 1.7672952963933535, "hDot": 0.054799511439269956, "rhoDot": 0, "thetaDot": 0.2382727081586399},
+          "negative": {"h": 0.4137669820788913, "rho": 0.4102135085970214, "theta": -1.0141045741708847, "hDot": 0.07778402667964353, "rhoDot": -0.19726542837286004, "thetaDot": 1.6436487509987872}
+        }
+      },
+      "cadenceTurn": {
+        "sector": "positive",
+        "time": 0.10939034085654134,
+        "bracket": [0.109, 0.11],
+        "direction": "positive-to-negative",
+        "state": {
+          "positive": {"h": 0.32899923358966593, "rho": 0.34608905020864383, "theta": 1.7723187322195826, "hDot": 0.05752379929670046, "rhoDot": -0.0078055761592462514, "thetaDot": 0},
+          "negative": {"h": 0.4169794171688847, "rho": 0.4000940879050627, "theta": -0.9421190523646218, "hDot": 0.07695259714108511, "rhoDot": -0.2910467494144899, "thetaDot": 1.837764747499381}
+        }
+      },
+      "turnSeparation": 0.04150176479687667,
+      "continuationAfterSecondTurn": 0.030609659143458673,
+      "maximumShapeExcursion": 0.02847449418476783,
+      "maximumLiftedPhaseAdvance": 0.23549670036146986,
+      "liftedPhaseRecord": {
+        "finalAdvance": {"positive": 0.030403837196893102, "negative": 0.23549670036146986},
+        "finalWindingReal": {"positive": 0.004838920978846773, "negative": 0.03748046394435887}
+      },
+      "guards": {
+        "releaseRootRows": 64,
+        "unresolvedReleaseRootRows": 0,
+        "maximumRootMultiplicity": 1,
+        "maximumRootTimePressureRatio": 0.5127192190673402,
+        "minimumTransmitterFactorMagnitude": 0.6744766875093692,
+        "selfHits": 0,
+        "minimumPair": {"time": 0.14, "ids": ["0+", "3-"], "polarityClass": "opposite-polarity", "distance": 0.264450374241049, "distanceRate": -0.8084915207483523},
+        "maximumMemberSpeed": 0.8775071102798276,
+        "speedMargin": 0.12249288972017236,
+        "maximumNormalizedManifoldResidual": {"position": 4.261384787087326e-16, "velocity": 7.95230957568867e-16},
+        "maximumCentroidNorm": 8.079045087230215e-17,
+        "maximumDipoleNorm": 3.0688430113079403e-16,
+        "maximumCurrentAxisOffXFraction": 5.824253710556178e-12
+      }
+    }
+  },
+  "stageB": {
+    "requestedRows": 8,
+    "admittedRows": 8,
+    "integrationStep": 0.004,
+    "historySegmentStep": 0.01,
+    "rootTolerance": 0.00001,
+    "candidateWallSeconds": 180,
+    "wallSeconds": 661.706,
+    "timeCappedRows": 5,
+    "rootHaltedRows": 3,
+    "outcomes": {
+      "radialTurnHistories": 2,
+      "cadenceTurnHistories": 7,
+      "dualTurnHistories": 2,
+      "radialOnlyHistories": 0,
+      "cadenceOnlyHistories": 5,
+      "exactActionSectionCandidates": 1
+    },
+    "bestSectionEvent": {
+      "action": "reflected",
+      "time": 0.1140798550123851,
+      "sectionExcursion": 0.00018795978395558244,
+      "rms": 1.412764370246449,
+      "maximum": 3.315717126798396,
+      "state": {
+        "positive": {"h": 0.32927033844896364, "rho": 0.34604987619024485, "theta": 1.7722526180673561, "hDot": 0.05811299171943468, "rhoDot": -0.008916939456161803, "thetaDot": -0.02846855325728653},
+        "negative": {"h": 0.41734000128982424, "rho": 0.39870394290050903, "theta": -0.9334384048571981, "hDot": 0.0768284167647296, "rhoDot": -0.3019195974759413, "thetaDot": 1.8647890740646695}
+      },
+      "componentResiduals": {
+        "positive": {"h": 0.006367846737185323, "rho": 0, "theta": -1.7247267891227773, "hDot": 0.00017967137070705463, "rhoDot": -0.012330809336903685, "thetaDot": 0.5598089471004902},
+        "negative": {"h": 0.008878974789298721, "rho": -0.019857488666523537, "theta": -3.0990815811365473, "hDot": -0.0015740176438939907, "rhoDot": -0.25261524103831423, "thetaDot": 3.315717126798396}
+      },
+      "windingCell": {"positive": 1, "negative": 0},
+      "exactActions": {
+        "direct": {"properRotation": "identity", "modulePermutation": [0, 1, 2, 3], "labeledHistoryEquivalent": true, "requiresNonzeroLiftedWinding": true},
+        "reflected": {"properRotation": [[-1, 0, 0], [0, -1, 0], [0, 0, 1]], "modulePermutation": [3, 2, 1, 0], "actionOrder": 2}
+      },
+      "properRotation": [[-1, 0, 0], [0, -1, 0], [0, 0, 1]],
+      "modulePermutation": [3, 2, 1, 0],
+      "labeledHistoryEquivalent": false,
+      "quotientHistoryEquivalentUnderDeclaredSamePolarityPermutation": true,
+      "speedChannelAllocation": {
+        "positive": {
+          "componentsSquared": {"axial": 0.003375878040342729, "radial": 0.00007916702297832746, "tangential": 0.00009375184399155398},
+          "memberSpeed": 0.059571779453971414,
+          "componentFractions": {"axial": 0.9512739467807901, "radial": 0.02230813006379621, "tangential": 0.026417923155413598}
+        },
+        "negative": {
+          "componentsSquared": {"axial": 0.0059029419113445685, "radial": 0.0910432617656429, "tangential": 0.552577392387444},
+          "memberSpeed": 0.8059302674949188,
+          "componentFractions": {"axial": 0.009088110034972476, "radial": 0.1401692907190574, "tangential": 0.8507425992459701}
+        }
+      }
+    }
+  },
+  "refinement": {
+    "integrationStep": 0.002,
+    "historySegmentStep": 0.005,
+    "rootTolerance": 0.000005,
+    "completedEndTime": 0.13,
+    "rejectedSteps": 0,
+    "radialTurnTime": 0.06788958428444399,
+    "cadenceTurnTime": 0.10939042599688387,
+    "coarseToRefinedTurnTimeChanges": {"radial": 0.00000100822477932, "cadence": 8.514034253e-8},
+    "sectionEvent": {"time": 0.11408115667261842, "rms": 1.4127650644504284, "maximum": 3.3157239545869297},
+    "coarseToRefinedRmsChange": 6.942039794e-7,
+    "guards": {
+      "releaseRootRows": 64,
+      "unresolvedReleaseRootRows": 0,
+      "maximumRootMultiplicity": 1,
+      "maximumRootTimePressureRatio": 0.16288461050089845,
+      "minimumTransmitterFactorMagnitude": 0.6777570293400862,
+      "minimumPairDistance": 0.27227998169437667,
+      "maximumMemberSpeed": 0.8484514575609374,
+      "maximumNormalizedManifoldResidual": {"position": 4.638738523784433e-16, "velocity": 9.291846771391616e-16}
+    }
+  },
+  "rawSummaryProvenance": [
+    {"path": ".tmp/f6c-dual-turn-stage-a-24-v2/search-summary.json", "sha256": "42e768acaabca4642e89bc584417ae808ffe16044ab5a65b541579aa1896b361"},
+    {"path": ".tmp/f6c-dual-turn-stage-b-row12-8-v2/search-summary.json", "sha256": "6ed181e1a7b45fd275d148332e347b88fbbbbd4b245827bd0cdd414b8adde473"},
+    {"path": ".tmp/f6c-dual-turn-stage-b-row12-refined-v2/search-summary.json", "sha256": "659dca66f8064ddf36faca8887ddabbd8c82c775be11e4dc14961f82e0ac99f9"}
+  ],
+  "result": "one guarded dual-turn seed found; no exact direct or reflected return found",
+  "falsifier": "A root-complete exact-action return with convergent full-state component residuals, an admissible winding or labeled-history action, open clearance and speed margins, and preserved member identity supersedes this bounded negative return result.",
+  "excludedClaims": [
+    "retention",
+    "stability",
+    "clock",
+    "energy closure",
+    "particle identity",
+    "Lorentz recovery",
+    "global nonexistence of an F6c return"
+  ]
+}

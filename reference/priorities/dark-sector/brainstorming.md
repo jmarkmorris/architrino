@@ -1,13 +1,11 @@
-# Dark-Sector Brainstorming
+# Dark-Sector Concept Synthesis
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+This document retains loose dark-sector ideas that have not acquired a focused candidate packet, simulation target, accepted queue object, or corpus destination. Candidate status does not establish ontology.
 
-## Routing Rules
+## Existing Focused Ownership
 
-- Keep loose dark-sector candidate ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote an accepted, testable task into [work-queue.md](work-queue.md); route candidate packets, proof routes, simulations, and document/app destinations through [priorities.md](priorities.md).
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+The current photon-like mode, visible re-entry, WIMP comparison, and axion-like benchmark material already belongs to focused sibling packets, [priorities.md](priorities.md), and the deferred [work queue](work-queue.md). Those treatments remain watchlist material and are not duplicated here.
 
-## Ideas And Insights
+## Unresolved Ideas
 
-No separate loose dark-sector ideas were moved in the current migration audit. The active dark-sector photon-like mode material remains in [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) because it is already a focused detailed priority packet, not a general idea bank.
+- None currently recorded.
