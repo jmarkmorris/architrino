@@ -425,15 +425,16 @@ export function scanBorgPrescribedTaxonomyTerminology({ rootDir = ROOT_DIR } = {
     if (!filename.endsWith(".json")) continue;
     const relativePath = `${BORG_PRESCRIBED_CONFIG_DIRECTORY}/${filename}`;
     const parsed = JSON.parse(fs.readFileSync(path.join(rootDir, relativePath), "utf8"));
-    if (parsed.schema !== "prescribed-braid-spec.v1") continue;
+    if (parsed.schema !== "prescribed-assembly-spec.v2") continue;
     files.push(relativePath);
+    const taxonomy = parsed.identity?.taxonomy;
     const values = [
       ["source title", parsed.label],
       ["provenance description", parsed.provenanceDescription],
-      ["family label", parsed.taxonomy?.familyLabel],
-      ["member label", parsed.taxonomy?.memberLabel],
-      ["instantiation label", parsed.taxonomy?.instantiationLabel],
-      ["display label", parsed.taxonomy?.displayLabel],
+      ["family label", taxonomy?.familyLabel],
+      ["member label", taxonomy?.memberLabel],
+      ["display label", taxonomy?.displayLabel],
+      ["identity display label", parsed.identity?.displayLabel],
       ...((parsed.illustrativeCoordinates?.choices ?? []).map((value, index) =>
         [`illustrative coordinate description ${index + 1}`, value])),
     ];

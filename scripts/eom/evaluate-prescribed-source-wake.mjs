@@ -16,7 +16,7 @@ const REPOSITORY_ROOT = path.resolve(SCRIPT_DIRECTORY, "../..");
 export const DEFAULT_B1_SOURCE_SPEC_PATH = path.resolve(
   REPOSITORY_ROOT,
   "reference/priorities/braid-program/configurations/" +
-    "illustrative-spindle-chart-hypothesis.v0.json",
+    "illustrative-spindle-chart-hypothesis.v2.json",
 );
 export const DEFAULT_B1_ANALYSIS_PROTOCOL_PATH = path.resolve(
   SCRIPT_DIRECTORY,

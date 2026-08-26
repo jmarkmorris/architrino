@@ -73,7 +73,7 @@ export function createBorgAssemblyViewControls({
     renderRecordOptions();
     renderFilterOptions();
     renderComparisonOptions();
-    renderBinaryGeometryTable(documentLike, dom.binaryGeometryTable, presentation.binaryRows);
+    renderPrescribedGeometryTable(documentLike, dom.binaryGeometryTable, presentation);
     renderOverlayRows(presentation);
 
     dom.cameraMode.value = "free";
@@ -681,6 +681,50 @@ function renderFieldRows(documentLike, container, rows) {
     row.append(labelElement, valueElement);
     container.append(row);
   });
+}
+
+function renderPrescribedGeometryTable(documentLike, table, presentation) {
+  if (presentation.binaryRows.length > 0) {
+    renderBinaryGeometryTable(documentLike, table, presentation.binaryRows);
+    return;
+  }
+  renderConstituentGeometryTable(documentLike, table, presentation.constituentRows);
+}
+
+function renderConstituentGeometryTable(documentLike, table, constituentRows) {
+  table.textContent = "";
+  const caption = documentLike.createElement("caption");
+  caption.textContent = "Source-defined individual architrinos and worldlines";
+  const head = documentLike.createElement("thead");
+  const headRow = documentLike.createElement("tr");
+  ["Field", ...constituentRows.map((_, index) => `Architrino ${index + 1}`)].forEach((label) => {
+    const cell = documentLike.createElement("th");
+    cell.scope = "col";
+    cell.textContent = label;
+    headRow.append(cell);
+  });
+  head.append(headRow);
+  const body = documentLike.createElement("tbody");
+  const rows = [
+    ["Constituent id", (constituent) => constituent.constituentId],
+    ["Worldline id", (constituent) => constituent.worldlineId],
+    ["Polarity", (constituent) => signed(constituent.polarity)],
+    ["Constituent role", (constituent) => constituent.role],
+  ];
+  rows.forEach(([label, read]) => {
+    const row = documentLike.createElement("tr");
+    const heading = documentLike.createElement("th");
+    heading.scope = "row";
+    heading.textContent = label;
+    row.append(heading);
+    constituentRows.forEach((constituent) => {
+      const cell = documentLike.createElement("td");
+      cell.textContent = format(read(constituent));
+      row.append(cell);
+    });
+    body.append(row);
+  });
+  table.append(caption, head, body);
 }
 
 function renderBinaryGeometryTable(documentLike, table, binaryRows) {

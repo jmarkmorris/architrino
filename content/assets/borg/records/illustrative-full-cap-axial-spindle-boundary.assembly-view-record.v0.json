@@ -4,17 +4,18 @@
   "title": "B1.4 — all-axial boundary",
   "provenance": {
     "engineId": "prescribed-geometry",
-    "engineVersion": "prescribed-braid-record-emitter.v1",
+    "engineVersion": "prescribed-assembly-record-emitter.v2",
     "runId": "illustrative-full-cap-axial-spindle-boundary-v0",
     "claimGrade": "chart-hypothesis",
     "evidenceStatus": "display-only",
-    "generatingSpec": "reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v0.json",
+    "generatingSpec": "reference/priorities/braid-program/configurations/illustrative-full-cap-axial-spindle-boundary.v2.json",
     "date": "2026-07-22",
     "prescribedGeometry": {
-      "emitterId": "prescribed-braid-record-emitter.v1",
-      "sourceSchema": "prescribed-braid-spec.v1",
+      "emitterId": "prescribed-assembly-record-emitter.v2",
+      "evaluatorId": "prescribed-assembly-evaluator.v2",
+      "sourceSchema": "prescribed-assembly-spec.v2",
       "interpolation": "piecewise-cubic-hermite/v0",
-      "errorMethod": "fourth-derivative-hermite-envelope/v1",
+      "errorMethod": "sampled-hermite-residual-bound/v1",
       "physicsInvoked": false,
       "responseCenter": {
         "x": 0,
@@ -23,6 +24,7 @@
       },
       "sphericalEnvelopeRadius": 0.5,
       "displayTrailPeriods": 1,
+      "displayTrailDuration": 4,
       "prescribedReturnPeriod": 4,
       "description": "Exact B1.4 prescribed display paths with zero transverse orbit radius for all three binaries; the legacy source identity is retained only for stable machine compatibility.",
       "taxonomy": {
@@ -34,162 +36,497 @@
         "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members"
       },
       "coordinates": {
-        "group": {
-          "centerAtEpoch": [
-            0,
-            0,
-            0
-          ],
-          "velocity": [
-            0,
-            0,
-            0
-          ]
+        "identity": {
+          "candidateId": "B1.4",
+          "displayLabel": "B1.4 — all-axial boundary",
+          "status": "deprecated-reproducibility-control",
+          "geometryOwner": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members",
+          "taxonomy": {
+            "familyId": "B",
+            "familyLabel": "Family B",
+            "memberId": "B1.4",
+            "memberLabel": "all-axial boundary",
+            "displayLabel": "B1.4 — all-axial boundary",
+            "canonSource": "content/markdown/aaa/noether-braid/braid-family-b.md#b1-catalog-members"
+          }
         },
-        "prescribedReturnPeriod": 4,
-        "braids": [
+        "constituentInventory": [
           {
-            "braidId": "b1-all-axial-braid-1",
-            "centerOffset": [
+            "id": "axial-spindle-1-0-architrino",
+            "polarity": 1,
+            "role": "braid",
+            "worldlineId": "axial-spindle-1-0",
+            "metadata": {
+              "persistentEndpointIndex": 1,
+              "legacyBinaryId": "axial-spindle-binary-1"
+            }
+          },
+          {
+            "id": "axial-spindle-1-1-architrino",
+            "polarity": -1,
+            "role": "braid",
+            "worldlineId": "axial-spindle-1-1",
+            "metadata": {
+              "persistentEndpointIndex": 2,
+              "legacyBinaryId": "axial-spindle-binary-1"
+            }
+          },
+          {
+            "id": "axial-spindle-2-0-architrino",
+            "polarity": -1,
+            "role": "braid",
+            "worldlineId": "axial-spindle-2-0",
+            "metadata": {
+              "persistentEndpointIndex": 1,
+              "legacyBinaryId": "axial-spindle-binary-2"
+            }
+          },
+          {
+            "id": "axial-spindle-2-1-architrino",
+            "polarity": 1,
+            "role": "braid",
+            "worldlineId": "axial-spindle-2-1",
+            "metadata": {
+              "persistentEndpointIndex": 2,
+              "legacyBinaryId": "axial-spindle-binary-2"
+            }
+          },
+          {
+            "id": "axial-spindle-3-0-architrino",
+            "polarity": 1,
+            "role": "braid",
+            "worldlineId": "axial-spindle-3-0",
+            "metadata": {
+              "persistentEndpointIndex": 1,
+              "legacyBinaryId": "axial-spindle-binary-3"
+            }
+          },
+          {
+            "id": "axial-spindle-3-1-architrino",
+            "polarity": -1,
+            "role": "braid",
+            "worldlineId": "axial-spindle-3-1",
+            "metadata": {
+              "persistentEndpointIndex": 2,
+              "legacyBinaryId": "axial-spindle-binary-3"
+            }
+          }
+        ],
+        "worldlines": [
+          {
+            "id": "axial-spindle-1-0",
+            "constituentId": "axial-spindle-1-0-architrino",
+            "operator": {
+              "kind": "moving-circular.v1",
+              "epochTime": 0,
+              "centerAtEpoch": [
+                0,
+                0,
+                0.22
+              ],
+              "centerVelocity": [
+                0,
+                0,
+                0
+              ],
+              "radiusU": [
+                0,
+                0,
+                0
+              ],
+              "radiusV": [
+                0,
+                0,
+                0
+              ],
+              "angularVelocity": 1.5707963267948966,
+              "angularAcceleration": 0,
+              "phaseAtEpoch": 0
+            },
+            "metadata": {
+              "legacyBinaryId": "axial-spindle-binary-1",
+              "persistentEndpointIndex": 1
+            }
+          },
+          {
+            "id": "axial-spindle-1-1",
+            "constituentId": "axial-spindle-1-1-architrino",
+            "operator": {
+              "kind": "moving-circular.v1",
+              "epochTime": 0,
+              "centerAtEpoch": [
+                0,
+                0,
+                -0.22
+              ],
+              "centerVelocity": [
+                0,
+                0,
+                0
+              ],
+              "radiusU": [
+                0,
+                0,
+                0
+              ],
+              "radiusV": [
+                0,
+                0,
+                0
+              ],
+              "angularVelocity": 1.5707963267948966,
+              "angularAcceleration": 0,
+              "phaseAtEpoch": 0
+            },
+            "metadata": {
+              "legacyBinaryId": "axial-spindle-binary-1",
+              "persistentEndpointIndex": 2
+            }
+          },
+          {
+            "id": "axial-spindle-2-0",
+            "constituentId": "axial-spindle-2-0-architrino",
+            "operator": {
+              "kind": "moving-circular.v1",
+              "epochTime": 0,
+              "centerAtEpoch": [
+                0,
+                0,
+                0.32
+              ],
+              "centerVelocity": [
+                0,
+                0,
+                0
+              ],
+              "radiusU": [
+                0,
+                0,
+                0
+              ],
+              "radiusV": [
+                0,
+                0,
+                0
+              ],
+              "angularVelocity": 1.5707963267948966,
+              "angularAcceleration": 0,
+              "phaseAtEpoch": 2.0943951023931953
+            },
+            "metadata": {
+              "legacyBinaryId": "axial-spindle-binary-2",
+              "persistentEndpointIndex": 1
+            }
+          },
+          {
+            "id": "axial-spindle-2-1",
+            "constituentId": "axial-spindle-2-1-architrino",
+            "operator": {
+              "kind": "moving-circular.v1",
+              "epochTime": 0,
+              "centerAtEpoch": [
+                0,
+                0,
+                -0.32
+              ],
+              "centerVelocity": [
+                0,
+                0,
+                0
+              ],
+              "radiusU": [
+                0,
+                0,
+                0
+              ],
+              "radiusV": [
+                0,
+                0,
+                0
+              ],
+              "angularVelocity": 1.5707963267948966,
+              "angularAcceleration": 0,
+              "phaseAtEpoch": 2.0943951023931953
+            },
+            "metadata": {
+              "legacyBinaryId": "axial-spindle-binary-2",
+              "persistentEndpointIndex": 2
+            }
+          },
+          {
+            "id": "axial-spindle-3-0",
+            "constituentId": "axial-spindle-3-0-architrino",
+            "operator": {
+              "kind": "moving-circular.v1",
+              "epochTime": 0,
+              "centerAtEpoch": [
+                0,
+                0,
+                0.44
+              ],
+              "centerVelocity": [
+                0,
+                0,
+                0
+              ],
+              "radiusU": [
+                0,
+                0,
+                0
+              ],
+              "radiusV": [
+                0,
+                0,
+                0
+              ],
+              "angularVelocity": 1.5707963267948966,
+              "angularAcceleration": 0,
+              "phaseAtEpoch": 4.1887902047863905
+            },
+            "metadata": {
+              "legacyBinaryId": "axial-spindle-binary-3",
+              "persistentEndpointIndex": 1
+            }
+          },
+          {
+            "id": "axial-spindle-3-1",
+            "constituentId": "axial-spindle-3-1-architrino",
+            "operator": {
+              "kind": "moving-circular.v1",
+              "epochTime": 0,
+              "centerAtEpoch": [
+                0,
+                0,
+                -0.44
+              ],
+              "centerVelocity": [
+                0,
+                0,
+                0
+              ],
+              "radiusU": [
+                0,
+                0,
+                0
+              ],
+              "radiusV": [
+                0,
+                0,
+                0
+              ],
+              "angularVelocity": 1.5707963267948966,
+              "angularAcceleration": 0,
+              "phaseAtEpoch": 4.1887902047863905
+            },
+            "metadata": {
+              "legacyBinaryId": "axial-spindle-binary-3",
+              "persistentEndpointIndex": 2
+            }
+          }
+        ],
+        "relationships": {
+          "sourceOrder": [
+            "axial-spindle-1-0-architrino",
+            "axial-spindle-1-1-architrino",
+            "axial-spindle-2-0-architrino",
+            "axial-spindle-2-1-architrino",
+            "axial-spindle-3-0-architrino",
+            "axial-spindle-3-1-architrino"
+          ],
+          "neutralPairs": [
+            {
+              "id": "axial-spindle-binary-1",
+              "members": [
+                "axial-spindle-1-0-architrino",
+                "axial-spindle-1-1-architrino"
+              ],
+              "componentBraidId": "b1-all-axial-braid-1",
+              "display": {
+                "binaryIndex": 1,
+                "axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "transverseBasis": [
+                  [
+                    1,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1,
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "id": "axial-spindle-binary-2",
+              "members": [
+                "axial-spindle-2-0-architrino",
+                "axial-spindle-2-1-architrino"
+              ],
+              "componentBraidId": "b1-all-axial-braid-1",
+              "display": {
+                "binaryIndex": 2,
+                "axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "transverseBasis": [
+                  [
+                    1,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1,
+                    0
+                  ]
+                ]
+              }
+            },
+            {
+              "id": "axial-spindle-binary-3",
+              "members": [
+                "axial-spindle-3-0-architrino",
+                "axial-spindle-3-1-architrino"
+              ],
+              "componentBraidId": "b1-all-axial-braid-1",
+              "display": {
+                "binaryIndex": 3,
+                "axis": [
+                  0,
+                  0,
+                  1
+                ],
+                "transverseBasis": [
+                  [
+                    1,
+                    0,
+                    0
+                  ],
+                  [
+                    0,
+                    1,
+                    0
+                  ]
+                ]
+              }
+            }
+          ],
+          "componentBraids": [
+            {
+              "id": "b1-all-axial-braid-1",
+              "members": [
+                "axial-spindle-1-0-architrino",
+                "axial-spindle-1-1-architrino",
+                "axial-spindle-2-0-architrino",
+                "axial-spindle-2-1-architrino",
+                "axial-spindle-3-0-architrino",
+                "axial-spindle-3-1-architrino"
+              ],
+              "metadata": {
+                "centerOffset": [
+                  0,
+                  0,
+                  0
+                ],
+                "phaseOffset": 0,
+                "circulationSense": 1,
+                "frameDefinition": {
+                  "type": "orthonormal.v1",
+                  "e1": [
+                    1,
+                    0,
+                    0
+                  ],
+                  "e2": [
+                    0,
+                    1,
+                    0
+                  ],
+                  "axis": [
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              }
+            }
+          ],
+          "polaritySectors": [
+            {
+              "id": "illustrative-full-cap-axial-spindle-boundary-v0-positive-sector",
+              "polarity": 1,
+              "members": [
+                "axial-spindle-1-0-architrino",
+                "axial-spindle-2-1-architrino",
+                "axial-spindle-3-0-architrino"
+              ]
+            },
+            {
+              "id": "illustrative-full-cap-axial-spindle-boundary-v0-negative-sector",
+              "polarity": -1,
+              "members": [
+                "axial-spindle-1-1-architrino",
+                "axial-spindle-2-0-architrino",
+                "axial-spindle-3-1-architrino"
+              ]
+            }
+          ],
+          "symmetryOrbits": [],
+          "accessorySets": []
+        },
+        "geometry": {
+          "representation": "individual-worldlines",
+          "assemblyPlacement": {
+            "centerAtEpoch": [
               0,
               0,
               0
             ],
-            "phaseOffset": 0,
-            "circulationSense": 1,
-            "frameDefinition": {
-              "type": "orthonormal.v1",
-              "e1": [
-                1,
-                0,
-                0
-              ],
-              "e2": [
-                0,
-                1,
-                0
-              ],
-              "axis": [
-                0,
-                0,
-                1
-              ]
-            },
-            "binaries": [
-              {
-                "binaryIndex": 1,
-                "binaryId": "axial-spindle-binary-1",
-                "worldlineIds": [
-                  "axial-spindle-1-0",
-                  "axial-spindle-1-1"
-                ],
-                "centerOffset": [
-                  0,
+            "velocity": [
+              0,
+              0,
+              0
+            ]
+          },
+          "frameProvenance": [
+            {
+              "braidId": "b1-all-axial-braid-1",
+              "frameDefinition": {
+                "type": "orthonormal.v1",
+                "e1": [
+                  1,
                   0,
                   0
                 ],
-                "radius": 0.22,
-                "axialHalfSeparation": 0.22,
-                "transverseOrbitRadius": 0,
-                "frequency": 0.25,
-                "phase": 0,
-                "circulationSense": 1,
-                "polarityAssignment": 1,
-                "axis": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 1
-                },
-                "transverseFrame": [
-                  {
-                    "x": 1,
-                    "y": 0,
-                    "z": 0
-                  },
-                  {
-                    "x": 0,
-                    "y": 1,
-                    "z": 0
-                  }
-                ]
-              },
-              {
-                "binaryIndex": 2,
-                "binaryId": "axial-spindle-binary-2",
-                "worldlineIds": [
-                  "axial-spindle-2-0",
-                  "axial-spindle-2-1"
-                ],
-                "centerOffset": [
+                "e2": [
                   0,
-                  0,
+                  1,
                   0
                 ],
-                "radius": 0.32,
-                "axialHalfSeparation": 0.32,
-                "transverseOrbitRadius": 0,
-                "frequency": 0.25,
-                "phase": 2.0943951023931953,
-                "circulationSense": 1,
-                "polarityAssignment": -1,
-                "axis": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 1
-                },
-                "transverseFrame": [
-                  {
-                    "x": 1,
-                    "y": 0,
-                    "z": 0
-                  },
-                  {
-                    "x": 0,
-                    "y": 1,
-                    "z": 0
-                  }
-                ]
-              },
-              {
-                "binaryIndex": 3,
-                "binaryId": "axial-spindle-binary-3",
-                "worldlineIds": [
-                  "axial-spindle-3-0",
-                  "axial-spindle-3-1"
-                ],
-                "centerOffset": [
+                "axis": [
                   0,
                   0,
-                  0
-                ],
-                "radius": 0.44,
-                "axialHalfSeparation": 0.44,
-                "transverseOrbitRadius": 0,
-                "frequency": 0.25,
-                "phase": 4.1887902047863905,
-                "circulationSense": 1,
-                "polarityAssignment": 1,
-                "axis": {
-                  "x": 0,
-                  "y": 0,
-                  "z": 1
-                },
-                "transverseFrame": [
-                  {
-                    "x": 1,
-                    "y": 0,
-                    "z": 0
-                  },
-                  {
-                    "x": 0,
-                    "y": 1,
-                    "z": 0
-                  }
+                  1
                 ]
               }
-            ]
-          }
-        ],
+            }
+          ]
+        },
+        "history": {
+          "start": 0,
+          "end": 8,
+          "delayHorizon": 2,
+          "periodic": true,
+          "returnPeriod": 4
+        },
         "illustrativeCoordinates": {
           "status": "prescribed-display-coordinates",
           "choices": [
@@ -217,6 +554,16 @@
               "kind": "binary-and-worldline-id-set",
               "value": "axial-spindle-binary-1..3; axial-spindle-1-0..axial-spindle-3-1",
               "reason": "Stable endpoint identities inside the sealed display record."
+            },
+            {
+              "kind": "source-schema",
+              "value": "prescribed-braid-spec.v1",
+              "reason": "migration provenance only; no v1 compiler is retained"
+            },
+            {
+              "kind": "source-spec-id",
+              "value": "illustrative-full-cap-axial-spindle-boundary-v0",
+              "reason": "preserve established source identity and Borg URL routing"
             }
           ]
         }
@@ -235,6 +582,7 @@
       "pathKey": "axial-spindle-1-0",
       "polarity": 1,
       "charge": 1,
+      "role": "braid",
       "stateFlags": 1,
       "coverageStart": 0,
       "coverageEnd": 8,
@@ -4407,6 +4755,7 @@
       "pathKey": "axial-spindle-1-1",
       "polarity": -1,
       "charge": -1,
+      "role": "braid",
       "stateFlags": 2,
       "coverageStart": 0,
       "coverageEnd": 8,
@@ -8579,6 +8928,7 @@
       "pathKey": "axial-spindle-2-0",
       "polarity": -1,
       "charge": -1,
+      "role": "braid",
       "stateFlags": 2,
       "coverageStart": 0,
       "coverageEnd": 8,
@@ -12751,6 +13101,7 @@
       "pathKey": "axial-spindle-2-1",
       "polarity": 1,
       "charge": 1,
+      "role": "braid",
       "stateFlags": 1,
       "coverageStart": 0,
       "coverageEnd": 8,
@@ -16923,6 +17274,7 @@
       "pathKey": "axial-spindle-3-0",
       "polarity": 1,
       "charge": 1,
+      "role": "braid",
       "stateFlags": 1,
       "coverageStart": 0,
       "coverageEnd": 8,
@@ -21095,6 +21447,7 @@
       "pathKey": "axial-spindle-3-1",
       "polarity": -1,
       "charge": -1,
+      "role": "braid",
       "stateFlags": 2,
       "coverageStart": 0,
       "coverageEnd": 8,
@@ -25267,7 +25620,6 @@
     {
       "id": "axial-spindle-binary-1",
       "braidId": "b1-all-axial-braid-1",
-      "binaryIndex": 1,
       "members": [
         "axial-spindle-1-0",
         "axial-spindle-1-1"
@@ -25309,12 +25661,12 @@
       "transverseOrbitRadius": 0,
       "transverseRadius": 0,
       "carrierSpeed": 0,
-      "polarityAssignment": 1
+      "polarityAssignment": 1,
+      "binaryIndex": 1
     },
     {
       "id": "axial-spindle-binary-2",
       "braidId": "b1-all-axial-braid-1",
-      "binaryIndex": 2,
       "members": [
         "axial-spindle-2-0",
         "axial-spindle-2-1"
@@ -25356,12 +25708,12 @@
       "transverseOrbitRadius": 0,
       "transverseRadius": 0,
       "carrierSpeed": 0,
-      "polarityAssignment": -1
+      "polarityAssignment": -1,
+      "binaryIndex": 2
     },
     {
       "id": "axial-spindle-binary-3",
       "braidId": "b1-all-axial-braid-1",
-      "binaryIndex": 3,
       "members": [
         "axial-spindle-3-0",
         "axial-spindle-3-1"
@@ -25403,14 +25755,15 @@
       "transverseOrbitRadius": 0,
       "transverseRadius": 0,
       "carrierSpeed": 0,
-      "polarityAssignment": 1
+      "polarityAssignment": 1,
+      "binaryIndex": 3
     }
   ],
   "ansatz": [
     {
-      "id": "axial-spindle-1-0-prescribed-return-cycle",
+      "id": "axial-spindle-1-0-prescribed-path",
       "worldlineId": "axial-spindle-1-0",
-      "label": "B1.4 — all-axial boundary, axial-spindle-binary-1, endpoint 1",
+      "label": "B1.4 — all-axial boundary, axial-spindle-1-0-architrino",
       "points": [
         {
           "x": 0,
@@ -25900,9 +26253,9 @@
       ]
     },
     {
-      "id": "axial-spindle-1-1-prescribed-return-cycle",
+      "id": "axial-spindle-1-1-prescribed-path",
       "worldlineId": "axial-spindle-1-1",
-      "label": "B1.4 — all-axial boundary, axial-spindle-binary-1, endpoint 2",
+      "label": "B1.4 — all-axial boundary, axial-spindle-1-1-architrino",
       "points": [
         {
           "x": 0,
@@ -26392,9 +26745,9 @@
       ]
     },
     {
-      "id": "axial-spindle-2-0-prescribed-return-cycle",
+      "id": "axial-spindle-2-0-prescribed-path",
       "worldlineId": "axial-spindle-2-0",
-      "label": "B1.4 — all-axial boundary, axial-spindle-binary-2, endpoint 1",
+      "label": "B1.4 — all-axial boundary, axial-spindle-2-0-architrino",
       "points": [
         {
           "x": 0,
@@ -26884,9 +27237,9 @@
       ]
     },
     {
-      "id": "axial-spindle-2-1-prescribed-return-cycle",
+      "id": "axial-spindle-2-1-prescribed-path",
       "worldlineId": "axial-spindle-2-1",
-      "label": "B1.4 — all-axial boundary, axial-spindle-binary-2, endpoint 2",
+      "label": "B1.4 — all-axial boundary, axial-spindle-2-1-architrino",
       "points": [
         {
           "x": 0,
@@ -27376,9 +27729,9 @@
       ]
     },
     {
-      "id": "axial-spindle-3-0-prescribed-return-cycle",
+      "id": "axial-spindle-3-0-prescribed-path",
       "worldlineId": "axial-spindle-3-0",
-      "label": "B1.4 — all-axial boundary, axial-spindle-binary-3, endpoint 1",
+      "label": "B1.4 — all-axial boundary, axial-spindle-3-0-architrino",
       "points": [
         {
           "x": 0,
@@ -27868,9 +28221,9 @@
       ]
     },
     {
-      "id": "axial-spindle-3-1-prescribed-return-cycle",
+      "id": "axial-spindle-3-1-prescribed-path",
       "worldlineId": "axial-spindle-3-1",
-      "label": "B1.4 — all-axial boundary, axial-spindle-binary-3, endpoint 2",
+      "label": "B1.4 — all-axial boundary, axial-spindle-3-1-architrino",
       "points": [
         {
           "x": 0,

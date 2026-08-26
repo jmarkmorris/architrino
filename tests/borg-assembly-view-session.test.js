@@ -123,6 +123,51 @@ test("presentation labels chart and evolved records distinctly without upgrading
   assert.match(evolvedPresentation.authorityNotice, /create no evidence/);
 });
 
+test("presentation exposes individual constituent and worldline identities for nonbinary prescribed records", () => {
+  const raw = record("individual-worldline");
+  raw.provenance.engineId = "prescribed-geometry";
+  raw.provenance.prescribedGeometry = {
+    emitterId: "test-emitter.v0",
+    sourceSchema: "prescribed-assembly-spec.v2",
+    interpolation: "exact-inertial-polynomial/v1",
+    errorMethod: "test-error-method.v0",
+    physicsInvoked: false,
+    responseCenter: { x: 0, y: 0, z: 0 },
+    sphericalEnvelopeRadius: 1,
+    prescribedReturnPeriod: null,
+    displayTrailDuration: 1,
+    coordinates: {
+      constituentInventory: [{
+        id: "individual-positrino",
+        polarity: 1,
+        role: "braid",
+        worldlineId: "individual-worldline-source",
+      }],
+    },
+  };
+  raw.worldlines[0].id = "individual-worldline-source";
+  raw.worldlines[0].pathKey = "individual-worldline-source";
+  const presentation = createBorgAssemblyViewPresentation(
+    createBorgAssemblyViewSession([raw]).selected,
+  );
+
+  assert.deepEqual(presentation.binaryRows, []);
+  assert.deepEqual(
+    presentation.constituentRows.map(({ constituentId, worldlineId, polarity, role }) => ({
+      constituentId,
+      worldlineId,
+      polarity,
+      role,
+    })),
+    [{
+      constituentId: "individual-positrino",
+      worldlineId: "individual-worldline-source",
+      polarity: 1,
+      role: "braid",
+    }],
+  );
+});
+
 test("prescribed chart trails use the source-defined number of full rotations", () => {
   const raw = record("prescribed-trail", {
     binaries: [{

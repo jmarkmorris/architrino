@@ -2,6 +2,10 @@
 
 This library calculates causal-wake and acceleration-response measures from exact prescribed paths. It does not evolve those paths and does not call the EOM solver.
 
+The owning `prescribed-assembly-spec.v2` geometry contract, including regular, seeded-random, and template-only lattice declarations, is documented in [Prescribed Geometry](../prescribed-geometry/README.md). Lattice metadata reaches this library only through the explicit constituent worldlines materialized by that contract.
+
+Plainly: the analysis layer evaluates declared paths. It does not invent unmaterialized lattice sites or treat a lattice template as a physical source population.
+
 The canonical braid-analysis entry point is:
 
 ```js
@@ -172,7 +176,7 @@ When that check passes, publish the same registry contract by atomically replaci
 node scripts/eom/analytical-campaign-database.mjs rebuild-all --publish
 ```
 
-The versioned [all-candidate registry](campaigns/all-candidate-analytical-campaign.registry.v1.json) must match the live Borg catalog and prescribed-record target map exactly. It also requires every checked campaign manifest to be either imported or explicitly excluded with a reason. The command evaluates every registered exact prescribed source record under the common [complete-cycle protocol](protocols/all-candidate-complete-cycle-protocol.v1.json), imports all registered checked campaigns, retains complete independently rejected candidate cases outside `accepted_case`, verifies exact source and raw-ledger coverage, regenerates deterministic exports, records one database-generation hash, and only then swaps the fresh SQLite file into place. A missing candidate, undeclared methodology obligation, changed unreviewed methodology hash, undeclared manifest, hash mismatch, incomplete case, export failure, or post-swap verification failure leaves or restores the prior database. `--check` is always nonpublishing.
+The versioned [all-candidate registry](campaigns/all-candidate-analytical-campaign.registry.v1.json) must cover every live Borg catalog entry either as an analytically registered prescribed-record target or as an explicit catalog exclusion with a reason. Registered analytical candidates must match the active prescribed-record target map exactly. It also requires every checked campaign manifest to be either imported or explicitly excluded with a reason. The command evaluates every registered exact prescribed source record under the common [complete-cycle protocol](protocols/all-candidate-complete-cycle-protocol.v1.json), imports all registered checked campaigns, retains complete independently rejected candidate cases outside `accepted_case`, verifies exact source and raw-ledger coverage, regenerates deterministic exports, records one database-generation hash, and only then swaps the fresh SQLite file into place. A missing disposition, undeclared methodology obligation, changed unreviewed methodology hash, undeclared manifest, hash mismatch, incomplete case, export failure, or post-swap verification failure leaves or restores the prior database. `--check` is always nonpublishing.
 
 The versioned [methodology coverage contract](analytical-measure-coverage.v1.json) maps each methodology obligation to its source fields, applicability, producer, result-packet location, SQLite projection, gates, convergence rule, independent evidence, and publication disposition. Every generation binds the contract, the exact methodology-file SHA-256, the common protocol hash, and the reduction versions. The reusable complete-cycle campaign extends the same canonical event evaluator and surface reducer with fixed internal probes, actual moving endpoint receivers with same-source exclusion, separately retained receiver-side playback derivative $D_r$, branch-by-branch spatial and temporal diagnostics, and legal declared source-phase sensitivity stencils. $D_r$ is not an instantaneous-acceleration multiplier.
 

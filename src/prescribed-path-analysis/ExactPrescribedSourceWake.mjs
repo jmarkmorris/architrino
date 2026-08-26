@@ -1,12 +1,17 @@
-import { evaluateMovingCircularTransmitterHistory } from "./PrescribedOrbitCausalRoots.mjs";
+import {
+  evaluatePrescribedWorldlineOperator,
+  prescribedWorldlineSpeedBound,
+  validatePrescribedWorldlineOperator,
+} from "../prescribed-geometry/PrescribedWorldlineOperators.mjs";
 
 export const EXACT_PRESCRIBED_SOURCE_RECORD_SCHEMA =
   "prescribed-path-analysis/exact-source-record.v1";
 export const PRESCRIBED_SOURCE_WAKE_EVALUATION_SCHEMA =
   "prescribed-path-analysis/causal-wake-evaluation.v1";
 
-const MOVING_CIRCULAR_TRAJECTORY_SCHEMA = "moving-circular.v1";
 const FOUR_PI = 4 * Math.PI;
+const TWO_PI = 2 * Math.PI;
+const MOVING_CIRCULAR_TRAJECTORY_SCHEMA = "moving-circular.v1";
 const DEFAULT_ROOT_TOLERANCE = 1e-12;
 const DEFAULT_MAX_ROOT_ITERATIONS = 128;
 const DEFAULT_MINIMUM_DELAY = 1e-12;
@@ -93,35 +98,82 @@ function magnitude(value) {
   return Math.sqrt(dot(value, value));
 }
 
-function validateMovingCircularTrajectory(trajectory, label) {
-  if (!trajectory || trajectory.kind !== MOVING_CIRCULAR_TRAJECTORY_SCHEMA) {
-    throw new TypeError(`${label}.kind must be ${MOVING_CIRCULAR_TRAJECTORY_SCHEMA}.`);
+function arrayVector(value, label) {
+  if (Array.isArray(value)) {
+    if (value.length !== 3) throw new TypeError(`${label} must contain three coordinates.`);
+    return value.map((entry, index) => finiteNumber(entry, `${label}[${index}]`));
   }
-  const radiusU = vector(trajectory.radiusU, `${label}.radiusU`);
-  const radiusV = vector(trajectory.radiusV, `${label}.radiusV`);
-  const radiusUNorm = magnitude(radiusU);
-  const radiusVNorm = magnitude(radiusV);
-  const scaleTolerance = 1e-12 * Math.max(1, radiusUNorm, radiusVNorm);
-  if (Math.abs(radiusUNorm - radiusVNorm) > scaleTolerance) {
-    throw new RangeError(`${label} must have equal radiusU and radiusV lengths.`);
+  const normalized = vector(value, label);
+  return [normalized.x, normalized.y, normalized.z];
+}
+
+function normalizeRegisteredTrajectory(trajectory, label) {
+  const normalized = structuredClone(trajectory);
+  for (const field of [
+    "position",
+    "positionAtEpoch",
+    "velocity",
+    "centerAtEpoch",
+    "centerVelocity",
+    "radiusU",
+    "radiusV",
+    "assemblyCenterAtEpoch",
+    "assemblyVelocity",
+    "axis",
+    "transverseU",
+    "transverseV",
+  ]) {
+    if (normalized?.[field] != null) normalized[field] = arrayVector(normalized[field], `${label}.${field}`);
   }
-  if (Math.abs(dot(radiusU, radiusV)) > scaleTolerance * Math.max(1, radiusUNorm)) {
-    throw new RangeError(`${label} radiusU and radiusV must be orthogonal.`);
-  }
+  const validated = validatePrescribedWorldlineOperator(normalized, label);
+  if (validated.kind !== MOVING_CIRCULAR_TRAJECTORY_SCHEMA) return validated;
   return {
-    kind: MOVING_CIRCULAR_TRAJECTORY_SCHEMA,
-    epochTime: finiteNumber(trajectory.epochTime ?? 0, `${label}.epochTime`),
-    centerAtEpoch: vector(trajectory.centerAtEpoch, `${label}.centerAtEpoch`),
-    centerVelocity: vector(trajectory.centerVelocity, `${label}.centerVelocity`),
-    radiusU,
-    radiusV,
-    angularVelocity: finiteNumber(trajectory.angularVelocity ?? 0, `${label}.angularVelocity`),
-    angularAcceleration: finiteNumber(
-      trajectory.angularAcceleration ?? 0,
-      `${label}.angularAcceleration`,
-    ),
-    phaseAtEpoch: finiteNumber(trajectory.phaseAtEpoch ?? 0, `${label}.phaseAtEpoch`),
+    ...validated,
+    centerAtEpoch: objectVector(validated.centerAtEpoch),
+    centerVelocity: objectVector(validated.centerVelocity),
+    radiusU: objectVector(validated.radiusU),
+    radiusV: objectVector(validated.radiusV),
   };
+}
+
+function objectVector(value) {
+  return { x: value[0], y: value[1], z: value[2] };
+}
+
+function trajectoryForSharedOperator(trajectory) {
+  if (trajectory.kind !== MOVING_CIRCULAR_TRAJECTORY_SCHEMA) return trajectory;
+  return {
+    ...trajectory,
+    centerAtEpoch: arrayVector(trajectory.centerAtEpoch, "trajectory.centerAtEpoch"),
+    centerVelocity: arrayVector(trajectory.centerVelocity, "trajectory.centerVelocity"),
+    radiusU: arrayVector(trajectory.radiusU, "trajectory.radiusU"),
+    radiusV: arrayVector(trajectory.radiusV, "trajectory.radiusV"),
+  };
+}
+
+function evaluateRegisteredTrajectory(trajectory, time) {
+  const operator = trajectoryForSharedOperator(trajectory);
+  const state = evaluatePrescribedWorldlineOperator(operator, time);
+  const result = {
+    position: { x: state.position[0], y: state.position[1], z: state.position[2] },
+    velocity: { x: state.velocity[0], y: state.velocity[1], z: state.velocity[2] },
+  };
+  if (operator.kind === MOVING_CIRCULAR_TRAJECTORY_SCHEMA) {
+    const dt = time - operator.epochTime;
+    const rawRadians = operator.phaseAtEpoch + operator.angularVelocity * dt
+      + 0.5 * operator.angularAcceleration * dt ** 2;
+    const radians = ((rawRadians % TWO_PI) + TWO_PI) % TWO_PI;
+    result.phase = {
+      rawRadians,
+      radians,
+      degrees: radians * 180 / Math.PI,
+      cycleIndex: Math.floor(rawRadians / TWO_PI),
+    };
+    const center = operator.centerAtEpoch.map((value, index) =>
+      value + operator.centerVelocity[index] * dt);
+    result.center = objectVector(center);
+  }
+  return result;
 }
 
 export function validateExactPrescribedSourceRecord(record) {
@@ -160,7 +212,7 @@ export function validateExactPrescribedSourceRecord(record) {
     return {
       id,
       charge,
-      trajectory: validateMovingCircularTrajectory(source.trajectory, `${label}.trajectory`),
+      trajectory: normalizeRegisteredTrajectory(source.trajectory, `${label}.trajectory`),
     };
   });
   return {
@@ -174,29 +226,25 @@ export function evaluateExactPrescribedSourceState(source, time) {
   const normalized = {
     id: concreteString(source?.id, "source.id"),
     charge: finiteNumber(source?.charge, "source.charge"),
-    trajectory: validateMovingCircularTrajectory(source?.trajectory, "source.trajectory"),
+    trajectory: normalizeRegisteredTrajectory(source?.trajectory, "source.trajectory"),
   };
-  return evaluateMovingCircularTransmitterHistory(normalized.trajectory, finiteNumber(time, "time"));
+  return evaluateRegisteredTrajectory(normalized.trajectory, finiteNumber(time, "time"));
 }
 
 export function evaluateValidatedExactPrescribedSourceState(source, time) {
-  return evaluateMovingCircularTransmitterHistory(
-    source.trajectory,
-    finiteNumber(time, "time"),
-  );
+  return evaluateRegisteredTrajectory(source.trajectory, finiteNumber(time, "time"));
 }
 
 function maximumTrajectorySpeed(trajectory, startTime, endTime) {
-  const startRate = trajectory.angularVelocity +
-    trajectory.angularAcceleration * (startTime - trajectory.epochTime);
-  const endRate = trajectory.angularVelocity +
-    trajectory.angularAcceleration * (endTime - trajectory.epochTime);
-  const maximumAngularRate = Math.max(Math.abs(startRate), Math.abs(endRate));
-  return magnitude(trajectory.centerVelocity) + maximumAngularRate * magnitude(trajectory.radiusU);
+  return prescribedWorldlineSpeedBound(
+    trajectoryForSharedOperator(trajectory),
+    startTime,
+    endTime,
+  );
 }
 
 function residualAt(source, emissionTime, observationTime, probePosition, fieldSpeed) {
-  const state = evaluateMovingCircularTransmitterHistory(source.trajectory, emissionTime);
+  const state = evaluateRegisteredTrajectory(source.trajectory, emissionTime);
   const displacement = subtract(probePosition, state.position);
   const distance = magnitude(displacement);
   return {

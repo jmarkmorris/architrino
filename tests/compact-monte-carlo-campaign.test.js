@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 
 import {
@@ -11,14 +12,32 @@ import {
   sampleLocalReferenceNeighborhood,
 } from "../src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs";
 import {
-  loadAllCandidateCampaignRegistry,
-} from "../src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs";
-import {
   validateB1CompleteCycleProbeProtocol,
 } from "../src/prescribed-path-analysis/B1CompleteCycleProbeProtocol.mjs";
 import {
   sha256Canonical,
 } from "../src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs";
+import {
+  projectCircularRelationshipParameters,
+} from "../src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
+
+function loadSamplerFixture() {
+  const registry = JSON.parse(fs.readFileSync(
+    new URL(
+      "../src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v1.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ));
+  const candidates = registry.candidates.map((declaration) => ({
+    declaration,
+    spec: JSON.parse(fs.readFileSync(declaration.specPath, "utf8")),
+  }));
+  const protocol = validateB1CompleteCycleProbeProtocol(JSON.parse(
+    fs.readFileSync(registry.generatedCampaign.protocolPath, "utf8"),
+  ));
+  return { candidates, protocol };
+}
 
 function tinyProtocol(rawProtocol) {
   const protocol = structuredClone(rawProtocol);
@@ -39,7 +58,7 @@ function tinyProtocol(rawProtocol) {
 }
 
 test("local Monte Carlo sampling is deterministic and preserves member relations", () => {
-  const loaded = loadAllCandidateCampaignRegistry();
+  const loaded = loadSamplerFixture();
   assert.equal(loaded.protocol.eventEvaluator.fieldSpeed, 1);
   const a12 = loaded.candidates.find(
     (candidate) => candidate.declaration.memberId === "A1.2",
@@ -56,23 +75,24 @@ test("local Monte Carlo sampling is deterministic and preserves member relations
   });
 
   assert.equal(sha256Canonical(first), sha256Canonical(second));
+  const firstParameters = projectCircularRelationshipParameters(first.spec);
+  const sourceParameters = projectCircularRelationshipParameters(a12.spec);
+  const firstPairs = firstParameters.components[0].pairs;
+  assert.deepEqual(firstPairs.map((pair) => pair.radius), Array(3).fill(firstPairs[0].radius));
   assert.deepEqual(
-    first.spec.braids[0].binaries.map((binary) => binary.radius),
-    Array(3).fill(first.spec.braids[0].binaries[0].radius),
-  );
-  assert.deepEqual(
-    first.spec.braids[0].binaries.map((binary) => binary.frequency),
+    firstPairs.map((pair) => pair.frequency),
     Array(3).fill(0.25),
   );
-  assert.deepEqual(
-    first.spec.braids[0].binaries.map((binary) => binary.phase),
-    a12.spec.braids[0].binaries.map((binary) => binary.phase),
-  );
-  assert.equal(first.spec.group.velocity.every((value) => value === 0), true);
+  firstPairs.forEach((pair, index) => {
+    assert.ok(Math.abs(
+      pair.phase - sourceParameters.components[0].pairs[index].phase,
+    ) <= Number.EPSILON * 2);
+  });
+  assert.equal(firstParameters.assemblyPlacement.velocity.every((value) => value === 0), true);
 });
 
 test("full taxonomy sampler preserves every declared member constraint", () => {
-  const loaded = loadAllCandidateCampaignRegistry();
+  const loaded = loadSamplerFixture();
   assert.equal(loaded.candidates.length, 20);
   for (const candidate of loaded.candidates) {
     for (let sampleOrdinal = 0; sampleOrdinal < 4; sampleOrdinal += 1) {
@@ -83,16 +103,17 @@ test("full taxonomy sampler preserves every declared member constraint", () => {
       });
       assert.equal(sampled.samplerId, FULL_TAXONOMY_SAMPLER_ID);
       assert.equal(sampled.spec.specId, candidate.spec.specId);
-      assert.equal(sampled.spec.group.velocity.some(
+      const parameters = projectCircularRelationshipParameters(sampled.spec);
+      assert.equal(parameters.assemblyPlacement.velocity.some(
         (value) => Math.abs(value) > 0,
       ), true);
       assert.equal(
         sampled.coordinates.frequencies.length,
-        sampled.spec.braids.length * 3,
+        parameters.components.length * 3,
       );
       assert.equal(
         sampled.coordinates.axialFractions.length,
-        sampled.spec.braids.length * 3,
+        parameters.components.length * 3,
       );
     }
   }
@@ -100,45 +121,45 @@ test("full taxonomy sampler preserves every declared member constraint", () => {
   const byMember = (memberId) => loaded.candidates.find(
     (candidate) => candidate.declaration.memberId === memberId,
   );
-  const a12 = sampleFullConstraintPreservingTaxonomy({
+  const a12 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
     candidate: byMember("A1.2"),
     seed: "full-taxonomy-relations",
     sampleOrdinal: 0,
-  }).spec;
+  }).spec);
   assert.equal(
-    new Set(a12.braids[0].binaries.map((binary) => binary.radius)).size,
+    new Set(a12.components[0].pairs.map((pair) => pair.radius)).size,
     1,
   );
-  const a13 = sampleFullConstraintPreservingTaxonomy({
+  const a13 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
     candidate: byMember("A1.3"),
     seed: "full-taxonomy-relations",
     sampleOrdinal: 0,
-  }).spec;
+  }).spec);
   assert.deepEqual(
-    a13.braids[0].binaries.map((binary) =>
-      binary.frequency / a13.braids[0].binaries[2].frequency),
+    a13.components[0].pairs.map((pair) =>
+      pair.frequency / a13.components[0].pairs[2].frequency),
     [4, 2, 1],
   );
-  const b12 = sampleFullConstraintPreservingTaxonomy({
+  const b12 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
     candidate: byMember("B1.2"),
     seed: "full-taxonomy-relations",
     sampleOrdinal: 0,
-  }).spec;
-  assert.equal(b12.braids[0].binaries.every((binary) =>
-    binary.axialHalfSeparation > binary.transverseOrbitRadius), true);
-  const c2 = sampleFullConstraintPreservingTaxonomy({
+  }).spec);
+  assert.equal(b12.components[0].pairs.every((pair) =>
+    pair.axialHalfSeparation > pair.transverseOrbitRadius), true);
+  const c2 = projectCircularRelationshipParameters(sampleFullConstraintPreservingTaxonomy({
     candidate: byMember("C2"),
     seed: "full-taxonomy-relations",
     sampleOrdinal: 0,
-  }).spec;
+  }).spec);
   assert.equal(
-    c2.braids[0].circulationSense,
-    -c2.braids[1].circulationSense,
+    c2.components[0].circulationSense,
+    -c2.components[1].circulationSense,
   );
 });
 
 test("compact Monte Carlo campaign retains exact rerun rows and no raw packets", () => {
-  const loaded = loadAllCandidateCampaignRegistry();
+  const loaded = loadSamplerFixture();
   const a12 = loaded.candidates.find(
     (candidate) => candidate.declaration.memberId === "A1.2",
   );
@@ -189,7 +210,7 @@ test("compact Monte Carlo campaign retains exact rerun rows and no raw packets",
 });
 
 test("compact campaign retains a drawn point when analytical evaluation balks", () => {
-  const loaded = loadAllCandidateCampaignRegistry();
+  const loaded = loadSamplerFixture();
   const a12 = loaded.candidates.find(
     (candidate) => candidate.declaration.memberId === "A1.2",
   );
@@ -237,7 +258,7 @@ test("compact campaign retains a drawn point when analytical evaluation balks", 
 });
 
 test("resolution calibration identifies coverage false negatives on identical draws", () => {
-  const loaded = loadAllCandidateCampaignRegistry();
+  const loaded = loadSamplerFixture();
   const a12 = loaded.candidates.find(
     (candidate) => candidate.declaration.memberId === "A1.2",
   );

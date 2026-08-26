@@ -16,6 +16,109 @@ Current coverage is twenty-three admitted candidates, six named active explorato
 
 Plainly: a geometry can be admitted and its drawing can be approved while the physical question remains completely open. The two kinds of status are kept separate here so that a display or prescribed-path result cannot be mistaken for a lasting braid.
 
+## Weighted Score Process
+
+The weighted scores are resource-allocation aids, not physical verdicts. They summarize factual derived or measured candidate metrics while preserving three facts that a single percentage would hide: whether a hard requirement has failed, how much of the metric set has actually been evaluated, and how strong the available results are. Candidate age, familiarity, or accumulated effort never contributes to either score.
+
+Plainly: a high score cannot establish a braid, and a new candidate is not rejected merely because most measurements have not yet been made.
+
+### Metric Record And Initial Weights
+
+Every scored cell must retain the raw value or certified interval, unit or dimensionless normalization, derivation or instrument, claim grade, scope, falsifier, and evidence pointer. Only `derived` and `measured` results are available metrics. An inference, guess, prescribed display, or undocumented numerical value remains unavailable. A measured or derived failure is available evidence and normally receives zero credit; it is not converted back into an unknown.
+
+The initial weights total 100. The raw metrics are factual; the weights and normalization maps are declared allocation policy. A weight expresses how much that metric should influence the next allocation decision, not how much nature values it.
+
+| Metric group | Factual metric | Weight | Required raw quantity |
+| --- | --- | ---: | --- |
+| Geometric and causal admissibility | Minimum continuous clearance | 8 | Smallest certified member separation divided by the predeclared characteristic braid scale over the claimed history. Sampled clearance is identified as sampled and does not receive continuous-clearance credit. |
+| Geometric and causal admissibility | Required causal-root completeness | 8 | Number of certified required roots divided by the number required by the predeclared causal-root contract, with unresolved roots counted as incomplete. |
+| Geometric and causal admissibility | Minimum causal-certification margin | 9 | Smallest dimensionless margin to the causal boundary under one predeclared contract shared by the compared candidates. Guarded and full-causal-root margins are not silently mixed. |
+| Equation consistency | Master Equation acceleration residual | 20 | Predeclared dimensionless RMS and peak mismatch between the history-required acceleration and the Master Equation acceleration contribution on the same history. Lower is better. |
+| Ordinary evolution | Certified evolution horizon | 10 | Root-valid, clearance-valid EOM solver evolution time divided by a predeclared common target horizon or nontrivial return timescale. Elapsed wall time does not count. |
+| Ordinary evolution | Geometry and identity leakage | 5 | Largest dimensionless departure from the candidate's declared geometry, symmetry, centering, and persistent-member chart during the certified horizon. Lower is better. |
+| Return evidence | Certified return-cycle traversal | 10 | Largest certified fraction of a predeclared nontrivial lifted direct or relative return action traversed while all validity guards remain satisfied. A scalar recrossing, isolated turn, or elapsed time alone does not count. |
+| Return evidence | Best eligible full-state return residual | 15 | Smallest dimensionless position-and-rate mismatch under the exact declared return action at an eligible nonzero event. Shape-only proximity and scalar-section proximity are reported separately and receive no full-state-return credit. |
+| Numerical reliability | Refinement agreement | 5 | Predeclared dimensionless discrepancy between independently evaluated refinement levels for the scored quantity. Lower is better; this measures numerical reliability, not independent physical confirmation. |
+| Retention evidence | Positive-width retention and recovery margin | 10 | Certified dimensionless width of nearby initial histories that retain or return and recover under the declared criterion. A single fine-tuned trajectory has zero width. |
+|  | **Total** | **100** |  |
+
+Plainly: the largest weights go to equation consistency, an actual full-state return, and positive-width retention. Geometry, causal validity, sustained evolution, and numerical reliability remain necessary, but none earns points merely because a workflow stage was completed.
+
+### Weighting Rationale
+
+The 25 points for geometric and causal admissibility protect the minimum conditions under which later numbers have a defined referent. The 20-point Master Equation residual is the largest single metric because it is the direct acceleration-law mismatch and an efficient early falsifier, while its weight remains far below a majority because a small residual on a prescribed history cannot establish persistence. Certified horizon and chart leakage receive 15 points together because ordinary evolution must last long enough to be informative without losing candidate identity.
+
+Return evidence receives 25 points: traversal records how much of the declared nontrivial cycle has actually been reached, while the larger residual weight rewards proximity of the complete position-and-rate state under the exact return action. Traversal cannot substitute for residual, and residual cannot substitute for causal validity. Refinement receives 5 points because it can invalidate a numerical result but cannot independently confirm the physical claim. Positive-width retention and recovery receives 10 points because it distinguishes a retained neighborhood from one fine-tuned history; its noncompensable hard-gate role, rather than an arbitrarily dominant weight, protects its necessity.
+
+Plainly: the weights favor the measurements that most directly falsify or advance a braid while avoiding one decisive-looking number. Necessary conditions remain necessary through the hard gates, not by assigning them enough points to overwhelm every other metric.
+
+### Normalizing Raw Metrics
+
+For candidate $b$ and metric $i$, let $x_{bi}$ be the raw factual value, $w_i$ the published weight, and $q_{bi}\in[0,1]$ the normalized metric credit. The scoring packet must freeze a common normalization before seeing the candidate results. For a higher-is-better quantity with zero-credit anchor $L_i$ and full-credit anchor $U_i$,
+
+$$
+q_{bi}=\operatorname{clip}\!\left(\frac{x_{bi}-L_i}{U_i-L_i},0,1\right).
+$$
+
+For a lower-is-better quantity whose lower anchor $L_i$ receives full credit and upper anchor $U_i$ receives zero credit,
+
+$$
+q_{bi}=\operatorname{clip}\!\left(\frac{U_i-x_{bi}}{U_i-L_i},0,1\right).
+$$
+
+Here $\operatorname{clip}(z,0,1)=\min(1,\max(0,z))$. A metric spanning several orders of magnitude may use a predeclared logarithmic map, but every candidate in the comparison must use the same map and anchors. Anchors come from the declared campaign gates, exact limiting cases, or a shared benchmark; they are never selected separately for each candidate or adjusted after the results are known.
+
+Plainly: the raw residual, horizon, clearance, or return error remains the evidence. Normalization only puts unlike factual quantities on a common allocation scale, and its choices must be visible and fixed in advance.
+
+### The Two Published Percentages
+
+Let $A_b$ be the metrics applicable to candidate $b$, and let $V_b\subseteq A_b$ be the metrics for which an admissible derived or measured value exists. The registry publishes these two columns:
+
+$$
+S_{\mathrm{all}}(b)=100\,\frac{\sum_{i\in V_b}w_iq_{bi}}{\sum_{i\in A_b}w_i},
+\qquad
+S_{\mathrm{available}}(b)=100\,\frac{\sum_{i\in V_b}w_iq_{bi}}{\sum_{i\in V_b}w_i}.
+$$
+
+The column headings are `All metrics` and `Available metrics`. `All metrics` keeps every applicable but unavailable metric in the denominator, so it combines evidence strength with evaluation coverage. `Available metrics` scores only what has actually been derived or measured, so it shows the quality of the evidence obtained so far. If $V_b$ is empty, `Available metrics` is an em dash rather than zero.
+
+Weighted coverage need not occupy a third registry column because it is exactly recoverable as
+
+$$
+C(b)=100\,\frac{\sum_{i\in V_b}w_i}{\sum_{i\in A_b}w_i},
+\qquad
+S_{\mathrm{all}}(b)=\frac{C(b)}{100}S_{\mathrm{available}}(b).
+$$
+
+An applicable unknown remains visibly `U` in the requirement adjudication and contributes no numerator credit while remaining in the `All metrics` denominator. `N/A` is excluded from both denominators only when non-applicability was established and frozen before measurement. A hard-requirement failure remains noncompensable regardless of either percentage; status and hard-gate disposition are always read before the scores.
+
+Plainly: `All metrics` answers, “How much weighted evidence has this candidate accumulated out of everything it must eventually establish?” `Available metrics` answers, “How good is the factual evidence we have actually obtained?” Their gap reports weighted coverage without pretending that an unknown is a physical failure.
+
+### Allocation Use
+
+Resource allocation uses the hard-gate disposition first, then the relationship between the two percentages, and finally the measured cost and expected discriminatory value of the next test. Cost, instrument reuse, and expected uncertainty reduction choose among next tests; they do not inflate a candidate's evidence score.
+
+| Observed score pattern | Allocation interpretation |
+| --- | --- |
+| No available metrics | Do not discard the candidate for being new. Fund only the smallest bounded test that can close the chart or produce the first high-weight factual discriminator. |
+| Strong `Available metrics`, low `All metrics` | The evidence obtained so far is favorable but sparse. Prefer the missing high-weight metric that can most sharply confirm or falsify the candidate. |
+| Strong and close `All metrics` and `Available metrics` | The candidate has both favorable evidence and broad coverage. Prefer closure tests, refinement, independent checks, and positive-width retention work. |
+| Weak `Available metrics` with broad coverage | The available evidence is unfavorable. Repair a specific failed mechanism or demote the declared realization rather than buying more repetitions of the same test. |
+| Large gap with mixed available results | Coverage is still the controlling uncertainty. Choose the next metric by expected evidence gain per measured resource cost, while preserving hard-gate order. |
+| Any `H1`--`H5` hard-requirement failure | The candidate cannot outrank the failure by accumulating points elsewhere. Further work requires a materially different repair with a new scoped record. |
+
+Plainly: the scores organize attention. They do not permit a cheap, familiar, or heavily studied candidate to outrank a hard failure, and they give a new candidate a defined route to earn its first evidence.
+
+### Exclusions, Sensitivity, And Publication
+
+No score credit is awarded for completing a named stage, producing a document, manifest, test, or display, receiving Borg approval, being old or new, consuming compute, accumulating attempts, matching a hoped-for particle role, or satisfying an inferred capability without a derived or measured metric. Those facts may route work or establish reproducibility, but they are not braid evidence.
+
+Before the two percentage columns are populated, one score packet must publish the applicable-metric set, raw records, normalization maps and anchors, weights, hard-gate overlay, and calculation for every included candidate as one versioned snapshot. It must also recompute the allocation ordering under equal metric weights and plausible weight variations. If a resource decision changes under those alternatives, the result is reported as weight-sensitive rather than as a stable ranking. Rows from different evidence generations are not combined.
+
+This chapter defines the scoring process but does not assign current candidate values. The `All metrics` and `Available metrics` columns are added only after that complete score packet is reviewed; until then, the requirement adjudication's `U`, pass, fail, and scoped-evidence cells remain the authoritative comparison.
+
+Plainly: no percentage appears until every arithmetic choice and every raw input can be audited. The first implementation task is therefore a complete score packet, not hand-entered numbers in selected candidate rows.
+
 ## Admitted Candidates
 
 The [configuration chart](configuration-chart.md) owns the admitted coordinates and scope. The [Borg sign-off ledger](borg-candidate-signoff.md) owns prescribed-display review, and the [work queue](work-queue.md) owns executable campaign state.

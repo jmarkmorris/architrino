@@ -51,8 +51,8 @@ const EXPECTED_BINARY_ROWS = Object.freeze([
 const EXPECTED_DISPLAY_SOURCE = Object.freeze({
   path:
     "reference/priorities/braid-program/configurations/" +
-    "family-a-a1-1-equal-frequency.v1.json",
-  sha256: "2bcc3858413003248fc5b91ee8160aac77418fa8d4617be7242dadfda6038489",
+    "family-a-a1-1-equal-frequency.v2.json",
+  sha256: "0870cf663a675def2c95b78fc273cc2881421bc44d22d7ccc4fbf2710f94fa6f",
 });
 const EXPECTED_FRAME_ROWS = Object.freeze([
   Object.freeze({ axis: [1, 0, 0], e1: [0, 1, 0], e2: [0, 0, 1] }),

@@ -114,9 +114,13 @@ test("every catalog record prepares a Display branch with its record-owned envel
     )));
     const entry = createBorgAssemblyViewSession([catalogRecord]).selected;
     const prescribed = entry.dataset.provenance.prescribedGeometry;
+    const cutTime = prescribed.prescribedReturnPeriod != null &&
+      Number.isFinite(Number(prescribed.prescribedReturnPeriod))
+      ? entry.dataset.window.start + Number(prescribed.prescribedReturnPeriod)
+      : entry.dataset.window.end;
     const branch = createBorgPrescribedDisplayBranch({
       entry,
-      cutTime: entry.dataset.window.start + prescribed.prescribedReturnPeriod,
+      cutTime,
       eomClient: { async evolveRetainedHistories() {} },
       manifest: BORG_DATASET_MANIFEST_V1,
       runDuration: 60,

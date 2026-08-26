@@ -1,0 +1,96 @@
+# Category Theory
+
+## Workstream Metadata
+
+- Kind: `priority`
+- Rank: `unranked / supporting`
+- Status: `draft`
+
+## Objective
+
+Develop category-theoretic structures that make $\mathbb{A}\mathbb{A}\mathbb{A}$ history symmetry, finite-history approximation, lawful composition, and substrate-to-observer recovery obligations mathematically explicit without importing Standard Model, quantum, or general-relativistic structures as substrate premises.
+
+## Current
+
+The strongest live starting point is the Braid Program's priority-side proposal for a stratified topological symmetry groupoid of polarity-labeled histories with certified finite-history pro-presentations. That proposal remains unadopted research architecture, and [`BP-002`](../braid-program/work-queue.md#bp-002--configuration-chart-completion) retains ownership of its braid-atlas objects, arrows, restrictions, uncertainty transport, controls, and abstention rules.
+
+This lane owns the cross-lane categorical vocabulary, type boundaries, comparison map, and prospective recovery-functor program. It does not duplicate the Braid Program's executable atlas work, decide that any proposed category is physically realized, or grant retention, stability, particle identity, quantum closure, effective-metric closure, or Standard Model closure.
+
+No substrate-to-observer recovery functor is currently derived. Causal-incidence, lawful-history-extension, braid-category, monoidal-assembly, and higher-category formulations remain provisional candidates until their composition laws and physical carriers are specified and tested.
+
+## Continuous Discussion Capture
+
+Capture substantive category-theory and adjacent group-theory discussion in this lane as it occurs. Use [brainstorming.md](brainstorming.md) for explanations, questions, comparisons, provisional structures, claim cards, and candidate mathematics; promote only accepted executable work into [work-queue.md](work-queue.md); record dated decisions, results, failed routes, and validation receipts in [work-log.md](work-log.md). Keep `priorities.md` limited to durable strategy, current state, ownership, scope, blockers, and promotion routing.
+
+Plainly: the discussion should leave a durable trail, but each kind of material belongs in its standard owner rather than accumulating indiscriminately in this tracker.
+
+## Scope
+
+- Define candidate objects, morphisms, identities, compositions, functors, naturality conditions, monoidal operations, restriction systems, and abstention boundaries where they clarify an existing $\mathbb{A}\mathbb{A}\mathbb{A}$ proof route.
+- Track the exact relationship among symmetry groups, group actions, stabilizers, representation categories, groupoids, and general categories wherever those distinctions affect a physical claim.
+- Separate topology on a history space, its fundamental groupoid, a symmetry action groupoid, spatial knot/link topology, and causal-root topology; do not let an invariant from one substitute for another.
+- Separate reversible full-record symmetry arrows from irreversible or branching dynamical history extensions.
+- Treat Standard Model, quantum theory, quantum field theory, and general relativity as effective comparison or recovery codomains, never as architrino-level inputs.
+- Require every categorical proposal to name its physical carrier, current claim level, assumptions, proof burden, falsifier, owner, and possible corpus destination.
+- Prefer one concrete commuting diagram, reconstruction theorem, or counterexample over broad categorical analogy.
+
+## Non-Authority Rules
+
+- Category-theoretic coherence is structural evidence only. It is not evidence that the Master Equation realizes a retained branch, stable assembly, medium, particle, probability law, or effective geometry.
+- A diagram does not become a derivation merely because it commutes by definition. Its arrows must be independently tied to physical records or derived transformations.
+- A Noether braid is not automatically a morphism in an Artin braid category; protected braid, linking, framing, and chirality structure require separate certification.
+- Juxtaposition or disjoint union of assemblies is not automatically a physical tensor product because delayed cross-coupling may prevent independence.
+- A functor into an effective Standard Model, quantum, or relativistic category is a closure target until its source objects, target objects, mapping law, preserved structure, residual, and falsifier are derived.
+
+## Work Queue
+
+The accepted task order, dependencies, acceptance boundaries, and completion conditions live in [work-queue.md](work-queue.md).
+
+## Working Architecture
+
+| Candidate structure | Immediate role | Owning boundary | Current grade |
+| --- | --- | --- | --- |
+| Full-history symmetry groupoid | Preserve full-record equivalence, stabilizers, and labeled-versus-quotient distinctions. | Braid Program `BP-002` owns its braid-atlas realization; this lane owns the cross-lane categorical interface. | Priority-side proposed architecture. |
+| Certified finite-history pro-system | Make finite horizon, finite resolution, error enclosure, and tail contracts compose coherently. | Braid Program owns atlas restriction data; this lane owns general naturality and recovery-facing requirements. | Priority-side proposed architecture. |
+| Causal-incidence category | Organize emission events, reception events, and certified causal-root hits without treating graph paths as new dynamics. | Master Equation and causal-root owners remain authoritative for hit legality and acceleration. | Speculation. |
+| Lawful-history-extension category | Treat complete boundary-history fibers as objects and lawful Master-Equation extensions as morphisms. | Master-equation closure and EOM solver contracts own well-posedness and executable evolution. | Derivation/closure target. |
+| Recovery functors | Express substrate-to-assembly, assembly-to-medium, and medium-to-observer mappings with compositional residuals. | Existing quantum, Standard Model, mapping-equation, Lorentz/effective-metric, and Noether sea owners retain physical closure. | Derivation/closure target. |
+| Braid, assembly, monoidal, or higher categories | Test whether retained topology or assembly composition supplies a proved categorical product or higher morphism. | Braid, assembly, reaction, and topology owners retain the physical carrier and certification burden. | Speculation. |
+
+Plainly: this lane can describe and test how already-declared physical records relate; it cannot manufacture the records or their dynamics.
+
+## Detailed Priority Files
+
+| File | Role |
+| --- | --- |
+| [work-queue.md](work-queue.md) | Executable task order, dependencies, acceptance boundaries, and completion conditions. |
+| [brainstorming.md](brainstorming.md) | Category-theory primer, modern-physics comparison, provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ structures, claim cards, and candidate mathematical contracts. |
+| [work-log.md](work-log.md) | Dated status, proof attempts, decisions, validations, and handoffs. |
+
+## Promotion Map
+
+| Priority object | Primary destination if accepted | Promotion gate |
+| --- | --- | --- |
+| `categorical_contract_and_ownership_map` | A focused category-theory architecture packet in this lane and updates to existing owners only where they accept an interface | Every object, arrow, composition, functor, owner, claim grade, and abstention rule is typed without duplicating an existing queue. |
+| `history_record_functor_naturality` | Braid configuration-atlas and Master Equation support material | Full-record symmetries and finite-history restrictions preserve independently classified root and acceleration records. |
+| `causal_incidence_semantics` | Master Equation or causal-action support material | Formal path composition is separated from physical causal-hit legality, and at least one nontrivial control falsifies an invalid transitivity assumption. |
+| `lawful_history_extension_category` | Master-equation closure and EOM evolution contracts | The boundary-history object is sufficient for lawful concatenation, and associativity is proved on a declared domain. |
+| `substrate_recovery_functor_program` | Existing assembly, Noether sea, quantum, Standard Model, and effective-geometry owners | One native carrier maps compositionally to one tested effective record with a declared residual and independent falsifier. |
+| `braid_assembly_composition_screen` | Existing braid, topology, assembly, and reaction owners | A protected topology or independence theorem justifies the proposed categorical composition; visual resemblance or disjoint inventory is insufficient. |
+
+## Related Priorities
+
+- [Braid Program](../braid-program/priorities.md)
+- [Master Equation Closure](../master-equation-closure/priorities.md)
+- [Mapping Equations](../mapping-equations/priorities.md)
+- [Quantum Closure](../quantum-closure/priorities.md)
+- [Standard Model Closure](../standard-model-closure/priorities.md)
+- [Mapping Benchmarks](../mapping-benchmarks/priorities.md)
+
+## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Sources
+
+- [Ontology](../../../content/markdown/aaa/foundations/ontology.md)
+- [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md)
+- [Causal Action Functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md)
+- [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md)
+- [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md)

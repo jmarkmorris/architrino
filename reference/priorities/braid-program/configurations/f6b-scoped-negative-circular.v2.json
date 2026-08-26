@@ -1,0 +1,569 @@
+{
+  "schema": "prescribed-assembly-spec.v2",
+  "specId": "f6b-scoped-negative-circular-v2",
+  "label": "F6b — scoped-negative circular control",
+  "provenanceDescription": "Exact eight-member F6b fixed-radius tetrahedral edge-partition history retained only as the scoped-negative prescribed control whose member-acceleration residual rejected this isolated circular realization.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-08-25",
+  "identity": {
+    "candidateId": "F6b",
+    "displayLabel": "F6b — scoped-negative circular control",
+    "status": "scoped-negative-reproducibility-control",
+    "geometryOwner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen"
+  },
+  "illustrativeCoordinates": {
+    "status": "exact-rejected-prescribed-history",
+    "choices": [
+      "The fixed row uses h=rho=0.30 and angular-rate magnitude 1 in c_f=1 units.",
+      "The display preserves a rejected geometry for reproducibility and does not return it to active search."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "f6b-module-1-positive-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "f6b-module-1-positive-worldline",
+      "metadata": {
+        "moduleIndex": 0,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "f6b-module-1-negative-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "f6b-module-1-negative-worldline",
+      "metadata": {
+        "moduleIndex": 0,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "f6b-module-2-positive-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "f6b-module-2-positive-worldline",
+      "metadata": {
+        "moduleIndex": 1,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "f6b-module-2-negative-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "f6b-module-2-negative-worldline",
+      "metadata": {
+        "moduleIndex": 1,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "f6b-module-3-positive-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "f6b-module-3-positive-worldline",
+      "metadata": {
+        "moduleIndex": 2,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "f6b-module-3-negative-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "f6b-module-3-negative-worldline",
+      "metadata": {
+        "moduleIndex": 2,
+        "polaritySector": "negative"
+      }
+    },
+    {
+      "id": "f6b-module-4-positive-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "f6b-module-4-positive-worldline",
+      "metadata": {
+        "moduleIndex": 3,
+        "polaritySector": "positive"
+      }
+    },
+    {
+      "id": "f6b-module-4-negative-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "f6b-module-4-negative-worldline",
+      "metadata": {
+        "moduleIndex": 3,
+        "polaritySector": "negative"
+      }
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "f6b-module-1-positive-worldline",
+      "constituentId": "f6b-module-1-positive-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.17320508075688776,
+          0.17320508075688776,
+          0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.21213203435596426,
+          0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          -0.12247448713915891,
+          -0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": -1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "f6b-module-1-negative-worldline",
+      "constituentId": "f6b-module-1-negative-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.17320508075688776,
+          -0.17320508075688776,
+          -0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.21213203435596426,
+          0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          -0.12247448713915891,
+          -0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": 1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      }
+    },
+    {
+      "id": "f6b-module-2-positive-worldline",
+      "constituentId": "f6b-module-2-positive-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.17320508075688776,
+          -0.17320508075688776,
+          -0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.21213203435596426,
+          0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          0.12247448713915891,
+          -0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": -1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.141592653589793
+      }
+    },
+    {
+      "id": "f6b-module-2-negative-worldline",
+      "constituentId": "f6b-module-2-negative-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.17320508075688776,
+          0.17320508075688776,
+          0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.21213203435596426,
+          0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          0.12247448713915891,
+          -0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": 1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.141592653589793
+      }
+    },
+    {
+      "id": "f6b-module-3-positive-worldline",
+      "constituentId": "f6b-module-3-positive-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.17320508075688776,
+          0.17320508075688776,
+          -0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.21213203435596426,
+          -0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          -0.12247448713915891,
+          0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": 1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      }
+    },
+    {
+      "id": "f6b-module-3-negative-worldline",
+      "constituentId": "f6b-module-3-negative-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.17320508075688776,
+          -0.17320508075688776,
+          0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.21213203435596426,
+          -0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          -0.12247448713915891,
+          0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": -1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      }
+    },
+    {
+      "id": "f6b-module-4-positive-worldline",
+      "constituentId": "f6b-module-4-positive-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          -0.17320508075688776,
+          -0.17320508075688776,
+          0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.21213203435596426,
+          -0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          0.12247448713915891,
+          0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": 1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.0471975511965976
+      }
+    },
+    {
+      "id": "f6b-module-4-negative-worldline",
+      "constituentId": "f6b-module-4-negative-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0.17320508075688776,
+          0.17320508075688776,
+          -0.17320508075688776
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.21213203435596426,
+          -0.21213203435596426,
+          0
+        ],
+        "radiusV": [
+          0.12247448713915891,
+          0.12247448713915891,
+          0.24494897427831783
+        ],
+        "angularVelocity": -1,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.0471975511965976
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [
+      {
+        "frameId": "f6b-tetrahedral-track-frames",
+        "frameDefinition": {
+          "type": "f6b-tetrahedral-track-frames.v1",
+          "owner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen"
+        }
+      }
+    ],
+    "reconstruction": {
+      "operator": "f6b-fixed-circular.v1",
+      "axes": [
+        [
+          0.5773502691896258,
+          0.5773502691896258,
+          0.5773502691896258
+        ],
+        [
+          0.5773502691896258,
+          -0.5773502691896258,
+          -0.5773502691896258
+        ],
+        [
+          -0.5773502691896258,
+          0.5773502691896258,
+          -0.5773502691896258
+        ],
+        [
+          -0.5773502691896258,
+          -0.5773502691896258,
+          0.5773502691896258
+        ]
+      ],
+      "circulationSigns": [
+        -1,
+        -1,
+        1,
+        1
+      ],
+      "phaseOffsets": [
+        0,
+        3.141592653589793,
+        4.1887902047863905,
+        1.0471975511965976
+      ],
+      "axialScale": 0.3,
+      "transverseRadius": 0.3
+    }
+  },
+  "relationships": {
+    "sourceOrder": [
+      "f6b-module-1-positive-architrino",
+      "f6b-module-1-negative-architrino",
+      "f6b-module-2-positive-architrino",
+      "f6b-module-2-negative-architrino",
+      "f6b-module-3-positive-architrino",
+      "f6b-module-3-negative-architrino",
+      "f6b-module-4-positive-architrino",
+      "f6b-module-4-negative-architrino"
+    ],
+    "neutralPairs": [],
+    "pairings": [
+      {
+        "id": "f6b-axis-module-1",
+        "kind": "opposite-polarity-axis-module",
+        "members": [
+          "f6b-module-1-positive-architrino",
+          "f6b-module-1-negative-architrino"
+        ]
+      },
+      {
+        "id": "f6b-axis-module-2",
+        "kind": "opposite-polarity-axis-module",
+        "members": [
+          "f6b-module-2-positive-architrino",
+          "f6b-module-2-negative-architrino"
+        ]
+      },
+      {
+        "id": "f6b-axis-module-3",
+        "kind": "opposite-polarity-axis-module",
+        "members": [
+          "f6b-module-3-positive-architrino",
+          "f6b-module-3-negative-architrino"
+        ]
+      },
+      {
+        "id": "f6b-axis-module-4",
+        "kind": "opposite-polarity-axis-module",
+        "members": [
+          "f6b-module-4-positive-architrino",
+          "f6b-module-4-negative-architrino"
+        ]
+      }
+    ],
+    "componentBraids": [
+      {
+        "id": "f6b-braid-relationship",
+        "members": [
+          "f6b-module-1-positive-architrino",
+          "f6b-module-1-negative-architrino",
+          "f6b-module-2-positive-architrino",
+          "f6b-module-2-negative-architrino",
+          "f6b-module-3-positive-architrino",
+          "f6b-module-3-negative-architrino",
+          "f6b-module-4-positive-architrino",
+          "f6b-module-4-negative-architrino"
+        ]
+      }
+    ],
+    "polaritySectors": [
+      {
+        "id": "f6b-positive-sector",
+        "polarity": 1,
+        "members": [
+          "f6b-module-1-positive-architrino",
+          "f6b-module-2-positive-architrino",
+          "f6b-module-3-positive-architrino",
+          "f6b-module-4-positive-architrino"
+        ]
+      },
+      {
+        "id": "f6b-negative-sector",
+        "polarity": -1,
+        "members": [
+          "f6b-module-1-negative-architrino",
+          "f6b-module-2-negative-architrino",
+          "f6b-module-3-negative-architrino",
+          "f6b-module-4-negative-architrino"
+        ]
+      }
+    ],
+    "symmetryOrbits": [
+      {
+        "id": "f6b-eight-member-chart-orbit",
+        "members": [
+          "f6b-module-1-positive-architrino",
+          "f6b-module-1-negative-architrino",
+          "f6b-module-2-positive-architrino",
+          "f6b-module-2-negative-architrino",
+          "f6b-module-3-positive-architrino",
+          "f6b-module-3-negative-architrino",
+          "f6b-module-4-positive-architrino",
+          "f6b-module-4-negative-architrino"
+        ]
+      }
+    ],
+    "accessorySets": []
+  },
+  "history": {
+    "start": 0,
+    "end": 6.283185307179586,
+    "delayHorizon": 1,
+    "periodic": true,
+    "returnPeriod": 6.283185307179586
+  },
+  "constraints": {
+    "validators": [
+      "f6b-scoped-negative.v1"
+    ],
+    "centering": {
+      "declaration": "exact zero centroid",
+      "gauge": "fixed assembly center"
+    },
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "reject"
+    },
+    "collisionGuard": {
+      "sampleCount": 4096,
+      "minimumSampledClearance": 0.08
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 0.5,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 160
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.02,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  },
+  "compatibility": {
+    "retainedIdentifiers": [
+      {
+        "kind": "diagnostic-record-id",
+        "value": "f6b-balanced-tetrahedral-edge-partition-h-rho-0p3-v1",
+        "reason": "preserve the exact scoped-negative diagnostic identity"
+      }
+    ]
+  }
+}

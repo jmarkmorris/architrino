@@ -1,0 +1,909 @@
+{
+  "schema": "prescribed-assembly-spec.v2",
+  "specId": "family-c-c2-1-counter-rotating-b1-3-pair-v1",
+  "label": "C6 — counter-rotating B1.3 pair",
+  "provenanceDescription": "Exact C6 prescribed display paths formed from two all-equatorial B1.3 components with opposite circulation senses; no binding or physical realization is implied.",
+  "claimGrade": "chart-hypothesis",
+  "evidenceStatus": "display-only",
+  "date": "2026-07-22",
+  "identity": {
+    "candidateId": "C6",
+    "displayLabel": "C6 — counter-rotating B1.3 pair",
+    "status": "admitted-prescribed-display",
+    "geometryOwner": "content/markdown/aaa/noether-braid/braid-family-c.md#c5-and-c6",
+    "taxonomy": {
+      "familyId": "C",
+      "familyLabel": "Family C",
+      "memberId": "C6",
+      "memberLabel": "counter-rotating B1.3 pair",
+      "displayLabel": "C6 — counter-rotating B1.3 pair",
+      "canonSource": "content/markdown/aaa/noether-braid/braid-family-c.md#c5-and-c6"
+    }
+  },
+  "illustrativeCoordinates": {
+    "status": "prescribed-display-coordinates",
+    "choices": [
+      "Both components use the B1.3 all-equatorial radii, zero axial half-separations, transverse orbit radii, common frequency, phases, and polarity assignments.",
+      "The braid centers at (0,0,-0.55) and (0,0,0.55) lie on the common z axis and select axial center-to-center offset d_C=1.10; identity relative orientation, equal frequencies, and relative phase pi/3 complete the representative.",
+      "The opposite circulation signs are the C6 member relation; the selected first-component sign +1 is an illustrative orientation choice."
+    ]
+  },
+  "constituents": [
+    {
+      "id": "c2-1-braid-1-binary-1-endpoint-1-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-1-binary-1-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "c2-1-braid-1-binary-1"
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-1-endpoint-2-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-1-binary-1-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "c2-1-braid-1-binary-1"
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-2-endpoint-1-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-1-binary-2-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "c2-1-braid-1-binary-2"
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-2-endpoint-2-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-1-binary-2-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "c2-1-braid-1-binary-2"
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-3-endpoint-1-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-1-binary-3-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "c2-1-braid-1-binary-3"
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-3-endpoint-2-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-1-binary-3-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "c2-1-braid-1-binary-3"
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-1-endpoint-1-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-2-binary-1-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "c2-1-braid-2-binary-1"
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-1-endpoint-2-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-2-binary-1-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "c2-1-braid-2-binary-1"
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-2-endpoint-1-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-2-binary-2-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "c2-1-braid-2-binary-2"
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-2-endpoint-2-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-2-binary-2-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "c2-1-braid-2-binary-2"
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-3-endpoint-1-architrino",
+      "polarity": 1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-2-binary-3-endpoint-1",
+      "metadata": {
+        "persistentEndpointIndex": 1,
+        "legacyBinaryId": "c2-1-braid-2-binary-3"
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-3-endpoint-2-architrino",
+      "polarity": -1,
+      "role": "braid",
+      "worldlineId": "c2-1-braid-2-binary-3-endpoint-2",
+      "metadata": {
+        "persistentEndpointIndex": 2,
+        "legacyBinaryId": "c2-1-braid-2-binary-3"
+      }
+    }
+  ],
+  "worldlines": [
+    {
+      "id": "c2-1-braid-1-binary-1-endpoint-1",
+      "constituentId": "c2-1-braid-1-binary-1-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.22,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.22,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-1-binary-1",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-1-endpoint-2",
+      "constituentId": "c2-1-braid-1-binary-1-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.22,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          -0.22,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 0
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-1-binary-1",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-2-endpoint-1",
+      "constituentId": "c2-1-braid-1-binary-2-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.32,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.32,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.0943951023931953
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-1-binary-2",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-2-endpoint-2",
+      "constituentId": "c2-1-braid-1-binary-2-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.32,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          -0.32,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 2.0943951023931953
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-1-binary-2",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-3-endpoint-1",
+      "constituentId": "c2-1-braid-1-binary-3-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.44,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.44,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-1-binary-3",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "c2-1-braid-1-binary-3-endpoint-2",
+      "constituentId": "c2-1-braid-1-binary-3-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          -0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.44,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          -0.44,
+          0
+        ],
+        "angularVelocity": 1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 4.1887902047863905
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-1-binary-3",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-1-endpoint-1",
+      "constituentId": "c2-1-braid-2-binary-1-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.22,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.22,
+          0
+        ],
+        "angularVelocity": -1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.0471975511965976
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-2-binary-1",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-1-endpoint-2",
+      "constituentId": "c2-1-braid-2-binary-1-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.22,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          -0.22,
+          0
+        ],
+        "angularVelocity": -1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 1.0471975511965976
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-2-binary-1",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-2-endpoint-1",
+      "constituentId": "c2-1-braid-2-binary-2-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.32,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.32,
+          0
+        ],
+        "angularVelocity": -1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.141592653589793
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-2-binary-2",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-2-endpoint-2",
+      "constituentId": "c2-1-braid-2-binary-2-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.32,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          -0.32,
+          0
+        ],
+        "angularVelocity": -1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 3.141592653589793
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-2-binary-2",
+        "persistentEndpointIndex": 2
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-3-endpoint-1",
+      "constituentId": "c2-1-braid-2-binary-3-endpoint-1-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          0.44,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          0.44,
+          0
+        ],
+        "angularVelocity": -1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 5.235987755982988
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-2-binary-3",
+        "persistentEndpointIndex": 1
+      }
+    },
+    {
+      "id": "c2-1-braid-2-binary-3-endpoint-2",
+      "constituentId": "c2-1-braid-2-binary-3-endpoint-2-architrino",
+      "operator": {
+        "kind": "moving-circular.v1",
+        "epochTime": 0,
+        "centerAtEpoch": [
+          0,
+          0,
+          0.55
+        ],
+        "centerVelocity": [
+          0,
+          0,
+          0
+        ],
+        "radiusU": [
+          -0.44,
+          0,
+          0
+        ],
+        "radiusV": [
+          0,
+          -0.44,
+          0
+        ],
+        "angularVelocity": -1.5707963267948966,
+        "angularAcceleration": 0,
+        "phaseAtEpoch": 5.235987755982988
+      },
+      "metadata": {
+        "legacyBinaryId": "c2-1-braid-2-binary-3",
+        "persistentEndpointIndex": 2
+      }
+    }
+  ],
+  "geometry": {
+    "representation": "individual-worldlines",
+    "assemblyPlacement": {
+      "centerAtEpoch": [
+        0,
+        0,
+        0
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    "frameProvenance": [
+      {
+        "braidId": "c2-1-braid-1",
+        "frameDefinition": {
+          "type": "orthonormal.v1",
+          "e1": [
+            1,
+            0,
+            0
+          ],
+          "e2": [
+            0,
+            1,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "braidId": "c2-1-braid-2",
+        "frameDefinition": {
+          "type": "orthonormal.v1",
+          "e1": [
+            1,
+            0,
+            0
+          ],
+          "e2": [
+            0,
+            1,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    ]
+  },
+  "relationships": {
+    "sourceOrder": [
+      "c2-1-braid-1-binary-1-endpoint-1-architrino",
+      "c2-1-braid-1-binary-1-endpoint-2-architrino",
+      "c2-1-braid-1-binary-2-endpoint-1-architrino",
+      "c2-1-braid-1-binary-2-endpoint-2-architrino",
+      "c2-1-braid-1-binary-3-endpoint-1-architrino",
+      "c2-1-braid-1-binary-3-endpoint-2-architrino",
+      "c2-1-braid-2-binary-1-endpoint-1-architrino",
+      "c2-1-braid-2-binary-1-endpoint-2-architrino",
+      "c2-1-braid-2-binary-2-endpoint-1-architrino",
+      "c2-1-braid-2-binary-2-endpoint-2-architrino",
+      "c2-1-braid-2-binary-3-endpoint-1-architrino",
+      "c2-1-braid-2-binary-3-endpoint-2-architrino"
+    ],
+    "neutralPairs": [
+      {
+        "id": "c2-1-braid-1-binary-1",
+        "members": [
+          "c2-1-braid-1-binary-1-endpoint-1-architrino",
+          "c2-1-braid-1-binary-1-endpoint-2-architrino"
+        ],
+        "componentBraidId": "c2-1-braid-1",
+        "display": {
+          "binaryIndex": 1,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "c2-1-braid-1-binary-2",
+        "members": [
+          "c2-1-braid-1-binary-2-endpoint-1-architrino",
+          "c2-1-braid-1-binary-2-endpoint-2-architrino"
+        ],
+        "componentBraidId": "c2-1-braid-1",
+        "display": {
+          "binaryIndex": 2,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "c2-1-braid-1-binary-3",
+        "members": [
+          "c2-1-braid-1-binary-3-endpoint-1-architrino",
+          "c2-1-braid-1-binary-3-endpoint-2-architrino"
+        ],
+        "componentBraidId": "c2-1-braid-1",
+        "display": {
+          "binaryIndex": 3,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "c2-1-braid-2-binary-1",
+        "members": [
+          "c2-1-braid-2-binary-1-endpoint-1-architrino",
+          "c2-1-braid-2-binary-1-endpoint-2-architrino"
+        ],
+        "componentBraidId": "c2-1-braid-2",
+        "display": {
+          "binaryIndex": 1,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "c2-1-braid-2-binary-2",
+        "members": [
+          "c2-1-braid-2-binary-2-endpoint-1-architrino",
+          "c2-1-braid-2-binary-2-endpoint-2-architrino"
+        ],
+        "componentBraidId": "c2-1-braid-2",
+        "display": {
+          "binaryIndex": 2,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "c2-1-braid-2-binary-3",
+        "members": [
+          "c2-1-braid-2-binary-3-endpoint-1-architrino",
+          "c2-1-braid-2-binary-3-endpoint-2-architrino"
+        ],
+        "componentBraidId": "c2-1-braid-2",
+        "display": {
+          "binaryIndex": 3,
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    ],
+    "componentBraids": [
+      {
+        "id": "c2-1-braid-1",
+        "members": [
+          "c2-1-braid-1-binary-1-endpoint-1-architrino",
+          "c2-1-braid-1-binary-1-endpoint-2-architrino",
+          "c2-1-braid-1-binary-2-endpoint-1-architrino",
+          "c2-1-braid-1-binary-2-endpoint-2-architrino",
+          "c2-1-braid-1-binary-3-endpoint-1-architrino",
+          "c2-1-braid-1-binary-3-endpoint-2-architrino"
+        ],
+        "metadata": {
+          "centerOffset": [
+            0,
+            0,
+            -0.55
+          ],
+          "phaseOffset": 0,
+          "circulationSense": 1,
+          "frameDefinition": {
+            "type": "orthonormal.v1",
+            "e1": [
+              1,
+              0,
+              0
+            ],
+            "e2": [
+              0,
+              1,
+              0
+            ],
+            "axis": [
+              0,
+              0,
+              1
+            ]
+          }
+        }
+      },
+      {
+        "id": "c2-1-braid-2",
+        "members": [
+          "c2-1-braid-2-binary-1-endpoint-1-architrino",
+          "c2-1-braid-2-binary-1-endpoint-2-architrino",
+          "c2-1-braid-2-binary-2-endpoint-1-architrino",
+          "c2-1-braid-2-binary-2-endpoint-2-architrino",
+          "c2-1-braid-2-binary-3-endpoint-1-architrino",
+          "c2-1-braid-2-binary-3-endpoint-2-architrino"
+        ],
+        "metadata": {
+          "centerOffset": [
+            0,
+            0,
+            0.55
+          ],
+          "phaseOffset": 1.0471975511965976,
+          "circulationSense": -1,
+          "frameDefinition": {
+            "type": "orthonormal.v1",
+            "e1": [
+              1,
+              0,
+              0
+            ],
+            "e2": [
+              0,
+              1,
+              0
+            ],
+            "axis": [
+              0,
+              0,
+              1
+            ]
+          }
+        }
+      }
+    ],
+    "polaritySectors": [
+      {
+        "id": "family-c-c2-1-counter-rotating-b1-3-pair-v1-positive-sector",
+        "polarity": 1,
+        "members": [
+          "c2-1-braid-1-binary-1-endpoint-1-architrino",
+          "c2-1-braid-1-binary-2-endpoint-2-architrino",
+          "c2-1-braid-1-binary-3-endpoint-1-architrino",
+          "c2-1-braid-2-binary-1-endpoint-1-architrino",
+          "c2-1-braid-2-binary-2-endpoint-2-architrino",
+          "c2-1-braid-2-binary-3-endpoint-1-architrino"
+        ]
+      },
+      {
+        "id": "family-c-c2-1-counter-rotating-b1-3-pair-v1-negative-sector",
+        "polarity": -1,
+        "members": [
+          "c2-1-braid-1-binary-1-endpoint-2-architrino",
+          "c2-1-braid-1-binary-2-endpoint-1-architrino",
+          "c2-1-braid-1-binary-3-endpoint-2-architrino",
+          "c2-1-braid-2-binary-1-endpoint-2-architrino",
+          "c2-1-braid-2-binary-2-endpoint-1-architrino",
+          "c2-1-braid-2-binary-3-endpoint-2-architrino"
+        ]
+      }
+    ],
+    "symmetryOrbits": [],
+    "accessorySets": []
+  },
+  "history": {
+    "start": 0,
+    "end": 8,
+    "delayHorizon": 2,
+    "periodic": true,
+    "returnPeriod": 4
+  },
+  "constraints": {
+    "validators": [
+      "legacy-family-c.v1"
+    ],
+    "centering": {
+      "declaration": "source-preserved",
+      "gauge": "source-preserved"
+    },
+    "speedGuard": {
+      "normalizedFieldSpeed": 1,
+      "maximumExclusive": 1,
+      "policy": "preserve-and-report",
+      "observedBound": 0.6911503837897545,
+      "migrationBoundary": "geometry-preservation-only"
+    }
+  },
+  "display": {
+    "responseCenter": [
+      0,
+      0,
+      0
+    ],
+    "sphericalEnvelopeRadius": 1.1,
+    "trailPeriods": 1,
+    "ansatzSampleCount": 96
+  },
+  "interpolation": {
+    "rule": "piecewise-cubic-hermite/v0",
+    "interval": 0.05,
+    "errorMethod": "sampled-hermite-residual-bound/v1",
+    "positionDivisor": 300,
+    "velocityDivisor": 8,
+    "roundoffMultiplier": 64
+  },
+  "compatibility": {
+    "retainedIdentifiers": [
+      {
+        "kind": "source-schema",
+        "value": "prescribed-braid-spec.v1",
+        "reason": "migration provenance only; no v1 compiler is retained"
+      },
+      {
+        "kind": "source-spec-id",
+        "value": "family-c-c2-1-counter-rotating-b1-3-pair-v1",
+        "reason": "preserve established source identity and Borg URL routing"
+      }
+    ]
+  }
+}

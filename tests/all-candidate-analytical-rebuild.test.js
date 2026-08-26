@@ -30,6 +30,9 @@ import {
   createPrescribedBraidExactSourceRecord,
 } from "../scripts/eom/generate-prescribed-braid-record.mjs";
 import {
+  projectCircularRelationshipParameters,
+} from "../src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs";
+import {
   openAnalyticalCampaignDatabase,
   verifyAnalyticalCampaignDatabase,
 } from "../src/prescribed-path-analysis/database/AnalyticalCampaignDatabase.mjs";
@@ -45,14 +48,14 @@ function sha256File(filePath) {
   return createHash("sha256").update(readFileSync(filePath)).digest("hex");
 }
 
-test("all-candidate registry exactly covers the live Borg catalog", () => {
+test("all-candidate registry explicitly covers or excludes every live Borg catalog entry", () => {
   const campaign = buildAllCandidateAnalyticalCampaign(undefined, {
     evaluationMode: "baseline",
   });
-  assert.equal(campaign.candidates.length, BORG_BRAID_RECORD_CATALOG.entries.length);
+  assert.equal(campaign.candidates.length, 20);
   assert.deepEqual(
     campaign.candidates.map((row) => row.declaration.candidateId),
-    BORG_BRAID_RECORD_CATALOG.entries.map((row) => row.id),
+    BORG_BRAID_RECORD_CATALOG.entries.slice(0, 20).map((row) => row.id),
   );
   assert.equal(
     campaign.candidates.some((row) => row.declaration.memberId === "B1.4"),
@@ -61,9 +64,9 @@ test("all-candidate registry exactly covers the live Borg catalog", () => {
   assert.equal(
     campaign.candidates.filter((row) =>
       row.declaration.familyId === "B").every((row) =>
-      row.spec.braids.some((braid) => braid.binaries.some(
-        (binary) => binary.transverseOrbitRadius > 0,
-      ))),
+      projectCircularRelationshipParameters(row.spec).components.some(
+        (component) => component.pairs.some((pair) => pair.transverseOrbitRadius > 0),
+      )),
     true,
   );
   assert.equal(
@@ -155,10 +158,12 @@ test("cohort sensitivity varies the declared braid phase offset without breaking
   const a12 = registry.candidates.find((row) => row.declaration.memberId === "A1.2");
   const delta = Math.PI / 64;
   const perturbed = perturbDeclaredPrimaryBraidPhaseOffset(a12.spec, delta);
-  assert.equal(perturbed.braids[0].phaseOffset, a12.spec.braids[0].phaseOffset + delta);
+  const before = projectCircularRelationshipParameters(a12.spec);
+  const after = projectCircularRelationshipParameters(perturbed);
+  assert.equal(after.components[0].phaseOffset, before.components[0].phaseOffset + delta);
   assert.deepEqual(
-    perturbed.braids[0].binaries.map((binary) => binary.phase),
-    a12.spec.braids[0].binaries.map((binary) => binary.phase),
+    after.components[0].pairs.map((pair) => pair.phase),
+    before.components[0].pairs.map((pair) => pair.phase),
   );
 });
 
@@ -166,12 +171,13 @@ test("coaxial C5 circles satisfy the cohort geometry and exact envelope", () => 
   const registry = loadAllCandidateCampaignRegistry();
   const c5 = registry.candidates.find((row) => row.declaration.memberId === "C5");
   const source = createPrescribedBraidExactSourceRecord(c5.spec);
+  const parameters = projectCircularRelationshipParameters(c5.spec);
   assert.doesNotThrow(() => validateCompleteCycleSourceApplicability(source, registry.protocol));
-  assert.deepEqual(c5.spec.braids.map((braid) => braid.centerOffset), [
+  assert.deepEqual(parameters.components.map((component) => component.centerOffset), [
     [0, 0, -0.55],
     [0, 0, 0.55],
   ]);
-  assert.deepEqual(c5.spec.braids.map((braid) => braid.frameDefinition.axis), [
+  assert.deepEqual(parameters.components.map((component) => component.frameDefinition.axis), [
     [0, 0, 1],
     [0, 0, 1],
   ]);
@@ -205,7 +211,7 @@ test("registry omission fails before replacing the target database", async () =>
         databasePath,
         registryPath,
       }),
-      /candidate count .* differs from catalog count/,
+      /every Borg catalog candidate must be either analytically registered or explicitly excluded/,
     );
     assert.equal(sha256File(databasePath), before);
   } finally {

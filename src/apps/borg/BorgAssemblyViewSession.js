@@ -187,6 +187,18 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
       `Borg assembly-view record ${entry.sourceId} display time must stay inside [${dataset.window.start}, ${dataset.window.end}].`,
     );
   }
+  const constituentInventory =
+    dataset.provenance?.prescribedGeometry?.coordinates?.constituentInventory;
+  const constituentRows = Array.isArray(constituentInventory)
+    ? constituentInventory.map((constituent, sourceIndex) => Object.freeze({
+      sourceIndex,
+      constituentId: String(constituent.id),
+      worldlineId: String(constituent.worldlineId),
+      polarity: finiteOrNull(constituent.polarity),
+      role: constituent.role ?? null,
+      raw: constituent,
+    }))
+    : [];
   const binaryRows = dataset.binaries.map((binary, sourceIndex) => Object.freeze({
     sourceIndex,
     sourceId: String(binary?.id ?? binary?.binaryId ?? `binary-${sourceIndex + 1}`),
@@ -218,6 +230,7 @@ export function createBorgAssemblyViewPresentation(entry, { time } = {}) {
     delayHorizon: dataset.window.delayHorizon,
     displayTime,
     rawRecord: entry.rawRecord,
+    constituentRows: Object.freeze(constituentRows),
     binaryRows: Object.freeze(binaryRows),
     eventRows: Object.freeze(eventRows),
     sourceStatuses,
@@ -279,8 +292,18 @@ export function resolveBorgAssemblyViewTrail(entry) {
     });
   }
   const window = entry?.dataset?.window;
-  const delayHorizon = Number(window?.delayHorizon);
+  const prescribedDuration = Number(prescribed?.displayTrailDuration);
   const recordDuration = Number(window?.end) - Number(window?.start);
+  if (entry?.dataset?.provenance?.engineId === "prescribed-geometry" &&
+      Number.isFinite(prescribedDuration) && prescribedDuration > 0) {
+    return Object.freeze({
+      duration: Math.min(prescribedDuration, recordDuration),
+      period: null,
+      periodCount: null,
+      source: "prescribed-display-duration",
+    });
+  }
+  const delayHorizon = Number(window?.delayHorizon);
   const sampleInterval = Number(window?.sampleInterval);
   const duration = delayHorizon > 0
     ? Math.min(delayHorizon, recordDuration)
