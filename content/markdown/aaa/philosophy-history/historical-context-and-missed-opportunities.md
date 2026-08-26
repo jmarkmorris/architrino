@@ -329,6 +329,8 @@ L(x)\mapsto e^{\lambda(x)}L(x),
 A_\mu(x)\mapsto A_\mu(x)+\partial_\mu\lambda(x)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-793978b6b1a5fa1d)
+
 Plainly: $L(x)$ is the ruler standard chosen at event $x$, $\lambda(x)$ is the freely chosen local rescaling, and $A_\mu$ is the comparison rule connecting neighboring standards. The two changes compensate, so a physical statement cannot depend on which local ruler convention was selected. Reversing the sign used to define the connection reverses the sign in the transformation but not the content.
 
 Einstein's objection exposed the physical failure. If length calibration depended on the path through the proposed electromagnetic connection, identical atoms that followed different routes could return with different clock rates or spectral lines. Stable atomic spectra do not show that history-dependent calibration. The objection, printed with Weyl's 1918 paper and reviewed in the historical literature, rejected the proposed identification of electromagnetism with length transport; it did not erase the mathematical idea that local standards require a comparison rule. The historical sequence and the objection are documented in the [O'Raifeartaigh-Straumann review](https://arxiv.org/abs/hep-ph/9810524) and in the review of the predicted [second-clock effect](https://doi.org/10.1016/j.shpsb.2019.02.005).
@@ -338,6 +340,8 @@ Quantum mechanics supplied a different object to calibrate. Fock and London had 
 $$
 D_\mu=\partial_\mu-iqA_\mu
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f3a8866472772602)
 
 Plainly: $\psi$ is the quantum wavefunction, $q$ is its charge label, $\lambda(x)$ is the arbitrary local phase convention, $A_\mu$ is the electromagnetic connection, and $D_\mu$ is the derivative that compares phases at neighboring events without mistaking a convention change for a physical change. Weyl's [1929 paper](https://edition-open-sources.org/sources/10/14/index.html) made this new gauge principle explicit. Yang and Mills then generalized local gauge covariance to a non-Abelian internal symmetry in their [1954 paper](https://doi.org/10.1103/PhysRev.96.191), supplying the structural form later used by the Standard Model.
 
@@ -360,6 +364,8 @@ Fermi's beta theory gives the clean pedagogical example. At energies far below t
 $$
 \frac{G_F}{\sqrt{2}}=\frac{g^2}{8M_W^2}.
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8)
 
 Plainly: the low-energy coefficient carries an effect of the higher-energy theory, but it does not contain enough information to infer uniquely that the hidden completion contains a spin-$1$ mediator of mass $M_W$. Prediction survived the compression; the detailed structure did not. The normalization and low-momentum relation are summarized in the [Particle Data Group electroweak review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf).
 
@@ -415,6 +421,8 @@ C_{\ell_3\leftarrow\ell_1},
 \Pi_I(H)-\Phi_I(\partial W)
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6)
+
 Plainly: $C$ is the rule for changing resolution, so coarse-graining in two steps must agree with coarse-graining directly to the final scale. $H$ is the underlying history, $\Pi_I$ reads which architrinos and provenance records remain in the chosen window, and $\Phi_I$ accounts for constituents that physically cross the boundary. Coarse-graining may discard detail, but it may not create a different constituent inventory merely because the description changed.
 
 > **Claim grade: guessed.** The composition and inventory equations above are a candidate minimum closure target for cross-scale constituent continuity. **Falsifier:** use the declared coarse-graining artifacts to find a benchmark window for which two-step and direct projection disagree beyond tolerance, or for which the inventory mismatch cannot be accounted for by the measured boundary-flow record. Until those tests exist and pass, the equations are obligations rather than results.
@@ -427,11 +435,15 @@ P_\ell:\mathcal{H}\longrightarrow\mathcal{O}_\ell,
 \mathcal{F}_\ell(o)=\left\{H\in\mathcal{H}:P_\ell(H)=o\right\}.
 $$
 
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177)
+
 A protected cross-scale quantity $I_a$ must factor through the observable record,
 
 $$
 I_a(H)=\overline I_{a,\ell}\!\left(P_\ell(H)\right),
 $$
+
+[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5)
 
 for every admissible history in the declared domain.
 

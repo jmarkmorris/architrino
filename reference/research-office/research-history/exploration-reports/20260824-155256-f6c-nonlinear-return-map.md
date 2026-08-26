@@ -40,4 +40,3 @@ Plainly: the useful negative result is a pruning rule. More resolution around th
 - Search instrument: `scripts/mapping-electromagnetism/f6c-nonlinear-return-map-search.mjs`
 - Bounded campaign summary: `.tmp/f6c-nonlinear-return-map-search-20x-v2/search-summary.json`
 - Refined EOM solver record: `.tmp/f6c-nonlinear-return-map-best-refine-v1`
-
