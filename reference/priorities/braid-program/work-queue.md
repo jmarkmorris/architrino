@@ -4,15 +4,29 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 
 ## Ranked Next Objects
 
-1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
-2. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
-3. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
-4. `undirected_ensemble_campaign` — [BP-004](#bp-004--undirected-ensemble-campaign). Status: `Deferred / blocked`.
-5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
-6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
-8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Awaiting verification`.
-9. `complete_braid_registry_closure` — [Complete registry campaign](#complete-braid-registry-closure-campaign). Status: `Stopped by operator; restart scoped to F5 H3`.
+1. `parallel_braid_prescribed_search` — [Parallel prescribed search](#parallel-braid-prescribed-search). Status: `Ready for bounded agent dispatch`.
+2. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
+3. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
+4. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
+5. `undirected_ensemble_campaign` — [BP-004](#bp-004--undirected-ensemble-campaign). Status: `Deferred / blocked`.
+6. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
+7. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
+8. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
+9. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Awaiting verification`.
+10. `complete_braid_registry_closure` — [Complete registry campaign](#complete-braid-registry-closure-campaign). Status: `Stopped by operator; restart scoped to F5 H3`.
+
+## Ready for bounded agent dispatch
+
+### Parallel braid prescribed search
+
+- **Status:** Ready for bounded agent dispatch.
+- **Dispatch owner:** [Parallel agent search manifest](campaigns/parallel-agent-braid-search.v1.json).
+- **Authorized work:** Ten source-frozen, report-only lanes cover current A/B/C `H1/H2` rows, F1–F4 representation debt, and the independent interpolation-enclosure prerequisite for the approved F5 row. The checked plan dispatches them in two waves under an eight-agent, six-worker ceiling.
+- **Isolation:** Every lane has a unique create-exclusive local output root. Search agents do not edit repository owners or write the analytical database; the coordinator integrates a complete manifest-ordered census.
+- **Boundary:** The manifest authorizes no `H3` root run, ordinary EOM evolution, score change, promotion, binding, retention, stability, particle identity, or physical-realization claim. The F5 `H3` restart and ordinary evolution remain explicitly dependency-gated.
+- **Completion:** Every ready lane returns a source-bound report or an exact incomplete/failed-guard disposition, and the coordinator verifies the complete lane census before any owner edit.
+
+Plainly: this queue item opens broad parallel geometry work while keeping the dynamical F5 restart on its separate evidence chain.
 
 ## All-Candidate Evaluation Disposition Register
 

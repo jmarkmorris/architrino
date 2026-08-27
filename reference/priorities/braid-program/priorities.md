@@ -32,6 +32,9 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 ## Parallel Analytical Lanes
 
 - [`common_axis_braid_train_analytics`](common-axis-braid-train-analytics.md) — Operator-directed prescribed-path lane for the six-architrino Family-B dimension extension and the general twelve-architrino coaxial Family-C chart, with an optional six-worldline Accessory Configuration. C1/C2 are the general co-/counter-rotating members; C3/C4 are the coaxial two-B1 loci; C5/C6 are their all-equatorial loci. The prior twelve-row $c_f=4$ pilot is historical diagnostic evidence only and cannot negatively rank the enormous common-axis space. A current campaign must use $c_f=1$, co-translating exterior probes, translation controls, and space-filling coverage.
+- [`parallel_braid_prescribed_search`](campaigns/parallel-agent-braid-search.v1.json) — Operator-authorized, source-frozen agent dispatch across current A/B/C `H1/H2` rows, F1–F4 representation debt, and the independent F5 interpolation-enclosure prerequisite. Search agents are report-only, outputs are isolated and create-exclusive, the aggregate compact-analysis ceiling is six workers, and repository integration plus any database import remains single-coordinator work. The manifest authorizes no F5 `H3` root run, ordinary EOM evolution, score change, retention, stability, or physical claim.
+
+Plainly: the broad geometry search can proceed in parallel without turning a favorable prescribed path into a claim that the path is dynamically produced or retained.
 
 ## Waiting On
 

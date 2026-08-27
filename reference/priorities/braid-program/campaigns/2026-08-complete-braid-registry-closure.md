@@ -81,9 +81,9 @@ where $R=0.45$ is the declared display envelope, $V=0.5$ is the already-derived 
 
 Plainly: the follow-on proves how far the exact analytic path can depart from each cubic segment, then asks the unchanged root solver to remain complete despite that allowed departure. This is the missing bridge from a successful nominal copy to the declared prescribed history.
 
-## Live candidate closure matrix
+## Stopped campaign plan — historical, do not execute
 
-The source hash binds the exact JSON source and therefore its full stable member order where an executable specification exists. `Parameterized` means that the mathematics exists but at least one numerical or identity field is still campaign-selected. Runtime estimates are initial envelopes and must be replaced by measured pilots before longer work.
+This matrix is the frozen launch-time plan for a campaign that was stopped by the operator. Its `queued` labels and runtime estimates are historical intentions, not current execution authority. Do not resume or dispatch work from this table; use [the current Braid Program work queue](../work-queue.md) for current routing and create a fresh narrow predeclaration for any newly authorized run. The source hash binds the exact JSON source and therefore its full stable member order where an executable specification exists. `Parameterized` means that the mathematics exists but at least one numerical or identity field is still campaign-selected.
 
 | Candidate | Source identity and hash | Start disposition and score | Nearest gate | Executable/history state | Guards and independent reference | Predeclared next experiment and initial envelope | Campaign status / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -132,6 +132,6 @@ Waiting time is not booked unless a live job is monitored and another candidate,
 
 ## Stopping and update rules
 
-The campaign remains running past the twelve-hour floor while safe in-scope work can materially improve closure. It ends only after every row has a verified identity/routing, a justified attempt at its nearest reachable gate or dependency-invalid no-run disposition, one evidence-backed outcome, and one exact next artifact or terminal scoped negative. Results land as write-once evidence packets; this campaign specification receives only status, work-log, coverage, and one-line result pointers.
+The operator stopped this campaign before its planned completion. It must not be resumed from this document. Any unfinished row requires a fresh, narrow predeclaration bound to current sources, current claim boundaries, and the current Braid Program work queue. Completed results remain in their write-once evidence packets; this historical campaign specification records only its frozen launch plan and completed work.
 
-Closure goal: complete the revised F5 executable row and guard certificate first, then rotate across every cheap `H2` certificate and the predeclared F6c/A3/SD3 acceleration packets before any expensive retained-branch work.
+Historical launch closure goal, now superseded: complete the revised F5 executable row and guard certificate first, then rotate across every cheap `H2` certificate and the predeclared F6c/A3/SD3 acceleration packets before any expensive retained-branch work. Current work must instead follow [the live work queue](../work-queue.md), including a clean F5 `H3` predeclaration where authorized.

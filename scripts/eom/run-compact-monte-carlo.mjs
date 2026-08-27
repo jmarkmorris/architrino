@@ -2,8 +2,10 @@
 
 import { createHash } from "node:crypto";
 import {
+  existsSync,
   mkdirSync,
   readFileSync,
+  unlinkSync,
   writeFileSync,
 } from "node:fs";
 import path from "node:path";
@@ -53,6 +55,10 @@ function parseArguments(argv) {
   if (sampler !== "full-taxonomy" && sampler !== "local-reference") {
     fail("--sampler must be full-taxonomy or local-reference.");
   }
+  const output = values.get("--output");
+  if (!flags.has("--help") && !output) {
+    fail("--output is required; parallel campaigns may not use a shared default path.");
+  }
   return {
     help: flags.has("--help"),
     calibrate: flags.has("--calibrate"),
@@ -72,10 +78,7 @@ function parseArguments(argv) {
       .split(",")
       .map((value) => value.trim())
       .filter(Boolean),
-    outputPath: path.resolve(
-      values.get("--output") ??
-        ".local-data/braid-analysis/compact-monte-carlo/latest.json",
-    ),
+    outputPath: output ? path.resolve(output) : null,
   };
 }
 
@@ -91,12 +94,30 @@ function help() {
     "    [--calibrate]",
     "    [--families A,B,C]",
     "    [--members A1.2,B1.3,C5]",
-    "    [--output path]",
+    "    --output unique-create-exclusive-path",
     "",
     "The command is prescribed-path analytical coverage only. It does not invoke",
     "the EOM solver, retain raw event packets, perform independent acceptance, or",
     "publish a database generation.",
+    "The output path is required, reserved before computation, and never overwritten.",
   ].join("\n"));
+}
+
+function acquireOutputLease(outputPath) {
+  mkdirSync(path.dirname(outputPath), { recursive: true });
+  if (existsSync(outputPath)) fail(`${outputPath} already exists.`);
+  const leasePath = `${outputPath}.RUNNING.lock`;
+  writeFileSync(leasePath, `${JSON.stringify({
+    schema: "prescribed-path-analysis/compact-monte-carlo-output-lease.v1",
+    outputPath,
+    pid: process.pid,
+    host: process.env.HOSTNAME ?? null,
+    startedAt: new Date().toISOString(),
+    argv: process.argv.slice(2),
+    recovery:
+      "inspect the recorded process identity and output before removing a stale lease; never delete an unknown live lease",
+  }, null, 2)}\n`, { flag: "wx" });
+  return leasePath;
 }
 
 function selectedCandidates(loaded, options) {
@@ -145,6 +166,7 @@ if (options.help) {
   process.exit(0);
 }
 
+const outputLeasePath = acquireOutputLease(options.outputPath);
 const loaded = loadAllCandidateCampaignRegistry(options.registryPath);
 if (loaded.protocol.eventEvaluator.fieldSpeed !== 1) {
   fail("the canonical complete-cycle protocol must declare fieldSpeed 1.");
@@ -198,8 +220,12 @@ const result = options.calibrate
     implementationIdentity: identity,
     onProgress: progress,
   });
-mkdirSync(path.dirname(options.outputPath), { recursive: true });
-writeFileSync(options.outputPath, `${JSON.stringify(result, null, 2)}\n`);
+writeFileSync(
+  options.outputPath,
+  `${JSON.stringify(result, null, 2)}\n`,
+  { flag: "wx" },
+);
+unlinkSync(outputLeasePath);
 const report = options.calibrate
   ? {
     outputPath: options.outputPath,

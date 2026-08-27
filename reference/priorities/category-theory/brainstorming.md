@@ -9,6 +9,7 @@ The working goal is twofold: determine whether category theory provides unique l
 ## Routing and Ownership
 
 - The accepted minimum extracted from this synthesis is [CT-001 — Minimal Categorical Contract and Ownership Map](categorical-contract-and-ownership-map.md). That packet, rather than this brainstorming document, now owns the complete boundary-history type, three-interval associativity obligation, snapshot-factorization lemma, ownership map, and categorical stop conditions.
+- The bounded realization and first continue-or-pause decision are owned by [CT-004 — Worldline-History Morphism Contract](worldline_history_morphism_contract.md). It proves the append-only record algebra and a manufactured delay-functional separating control, while leaving physical history sufficiency and a lawful Master-Equation witness unclaimed.
 - Provisional definitions, comparisons, and organizing hypotheses remain in this synthesis until a physical carrier and claim boundary are sufficiently clear.
 - Accepted executable obligations belong in [work-queue.md](work-queue.md), while strategy, ownership, and promotion routing belong in [priorities.md](priorities.md).
 - Dated decisions, recovered discussion provenance, failed routes, and validation results belong in [work-log.md](work-log.md).
@@ -651,7 +652,47 @@ Interest-driven work remains welcome when it produces one of four reusable outpu
 
 **Promotion target:** physical results, if any, go to their scientific owners; source-backed methodological synthesis may support the philosophy-history owners after a separate promotion review. Category theory itself is not promoted as substrate ontology.
 
-**Next artifact:** complete the bounded `CT-004` worldline-history morphism contract, then reassess whether its factorization test adds a result unavailable from an ordinary delay-system counterexample. Use that comparison as the lane's first continue-or-pause gate.
+**Completed artifact and decision:** the bounded [CT-004 worldline-history morphism contract](worldline_history_morphism_contract.md) found that the factorization obstruction is not stronger than the ordinary delay-system fiber-constancy test. Its retained payoff is a reusable factorization square plus an explicit boundary-typing rule for cross-owner record composition. Category-specific physical expansion is paused; interest-driven philosophy-history and bridge applications remain welcome when they use that vocabulary to expose preserved or discarded information.
+
+### Why CT-004 remains significant as a tool
+
+CT-004 did not produce a new physical memory theorem: the ordinary delay-system statement already says that endpoint data are insufficient when two endpoint-matched histories yield different delayed responses. Its potentially significant contribution is methodological generality. The same factorization question can test any proposed loss of description:
+
+$$
+Q\circ E
+=
+\overline E\circ Q.
+$$
+
+Here $E$ is lawful evolution or another history-consuming process, $Q$ is the proposed snapshot, coarse-graining, or theory-bridge map, and $\overline E$ is the process claimed to exist after information has been forgotten. The reduced description is dynamically closed only when $Q\circ E$ is constant on every fiber $Q^{-1}(z)$. One separating pair in the same fiber disproves closure on that domain.
+
+Plainly: put all fine histories that look identical under the proposed description into one bucket. If every history in a bucket produces the same reduced future, the bucket can evolve consistently. If two histories in one bucket produce different reduced futures, the description threw away information that the future still uses.
+
+| Consumer | Proposed map $Q$ | What failure would establish | Categorical contribution |
+| --- | --- | --- | --- |
+| Instantaneous assembly state | Full retained history to endpoint assembly data | The snapshot is not a sufficient state for evolution. | One factorization obstruction shared across assembly candidates. |
+| EOM solver checkpoint or restart | Complete accepted record to stored restart record | Restart discarded a continuation-critical root, wake, branch, boundary, or certification field. | Boundary typing and composition rules expose missing restart state. |
+| Finite-history truncation | Longer certified history to shorter retained window | The omitted tail still changes an admitted future or acceleration record. | Restriction arrows make lost reach, uncertainty, and abstention compositional obligations. |
+| Assembly identity or equivalence | Distinct labeled histories to one proposed assembly class | Histories called the same assembly have different admitted reduced futures. | The fiber test separates exact history, symmetry equivalence, and effective identity. |
+| Substrate-to-observer bridge | Full substrate history to one effective record | The effective variables are not closed for the named observable or process. | The same square audits coarse-graining without pretending that the mapping derives the physics. |
+| Bridge among existing theories | A finer theory record to a coarser theory record | Staged translation and direct reading from one common history disagree. | Commuting diagrams provide a common contract for bridge comparison. |
+| Full-history symmetry test | Complete history to a transformed complete history | A purported symmetry moved only visible data or changed a consumed record. | Object typing forces the symmetry to act on the whole physical record. |
+
+Plainly: this is closer to a type system, dimensional analysis, or conservation ledger than to a new equation of nature. Such tools may not generate the dynamics, but they can prevent invalid identifications and reveal exactly which missing record blocks a derivation.
+
+The largest potential payoff is cross-lane reuse. Delay-equation analysis is the shorter tool for proving one history-dependence result. Category theory becomes worthwhile when the same source-map-process square is reused across assembly definition, restart sufficiency, truncation, symmetry, coarse-graining, and theory bridges, with the object and arrow types preventing one lane from silently changing another lane's physical record. Its value is therefore organizational and falsificatory: it can reject an insufficient state or bridge before that insufficiency is hidden inside a later calculation.
+
+The result is also important for philosophy-history. Many successful theories preserve selected predictions while discarding, reinterpreting, or leaving unresolved other information. A factorization diagram provides a disciplined way to ask whether a later theory is an exact reformulation, a controlled effective projection, a phenomenological bridge, or merely compatible on a limited set of observations. It does not supply historical evidence or prove that one ontology generated another, but it sharpens the anatomy of the relationship.
+
+**Claim level:** proved mathematics for the fiber-constancy criterion; inferred methodological value for cross-lane reuse; no physical $\mathbb{A}\mathbb{A}\mathbb{A}$ separating witness or recovery result.
+
+**Assumptions and proof burden:** every use must declare the fine-history domain, the map $Q$, the consumed process $E$, the reduced record, the tolerance if approximate, and an independent way to classify a separating pair or residual. Cross-lane significance requires repeated successful reuse, not merely drawing the same square several times.
+
+**Falsifier:** the strong tool-value assessment fails if each concrete case is stated more clearly and completely by its simpler owner, if the categorical boundary types add no detected omission, or if every diagram commutes only by definition or through same-implementation replay.
+
+**Promotion target:** retain the general tool assessment in the Category Theory lane; route any actual obstruction or sufficiency result to the scientific owner of the assembly, solver record, truncation, symmetry, or theory bridge being tested.
+
+**Next artifact:** apply the CT-004 factorization template to one live, independently checkable consumer—preferably EOM restart sufficiency or finite-history truncation—then record whether it detects an omission or merely restates the existing contract. That comparison decides whether the tool deserves renewed active use.
 
 The principal failure mode is structure laundering: an open physical problem is restated as an elegant diagram, and formal coherence is treated as a derivation. Each proposed structure must therefore name its physical carrier, simpler adequate tool, unique categorical payoff, owner, claim level, assumptions, proof burden, falsifier, and stop condition.
 
