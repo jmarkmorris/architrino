@@ -19,7 +19,7 @@
     "transverseStiffnessId": "K_perp_0001",
     "sourceTargetId": "K_perp_source_target_0001",
     "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
-    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    "priorityContextPath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
   },
   "transverseStiffnessFunctional": {
     "rowId": "K_perp_0001",

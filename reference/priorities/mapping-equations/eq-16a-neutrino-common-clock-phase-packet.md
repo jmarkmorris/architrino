@@ -26,7 +26,7 @@ The active source signals are:
 - [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md): the reader-facing chapter already states the geometric phase-operator target $H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger$ and keeps flavor-basis preparation/detection separate from propagation-basis evolution.
 - iso-frequency-energy-radius-candidate.md: the iso-frequency candidate supplies current-proxy evidence for `(f,f,f)` with phase offsets and different effective lever-arm / speed relations, but retained row-set acceptance is still missing.
 - [neutrino-oscillations.md](../mapping-benchmarks/neutrino-oscillations.md): the cross-theory packet names the phase, weak projection, PMNS import, and matter-effect failure modes.
-- [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md): PMNS recovery must use the same weak-exposure domain as `V-A`, CKM overlap, and weak-reaction provenance.
+- [weak-sector-gauge-closure.md](../mapping-standard-model/weak-sector-gauge-closure.md): PMNS recovery must use the same weak-exposure domain as `V-A`, CKM overlap, and weak-reaction provenance.
 - J Mark Morris, [Implementation of the Weak Nuclear Force](https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/): legacy NPQG source suggesting that neutrino handedness may be a survival/stability discriminator near the photon-boundary geometry; this packet keeps that signal priority-only and translates it into a branch-stability test, not a neutrino doctrine.
 
 ## Common-Clock Decomposition

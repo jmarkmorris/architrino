@@ -6,6 +6,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-27 — Flat mapping directory family
+
+- Renamed six domain-recovery and theory-bridge directories to `mapping-standard-model`, `mapping-quantum`, `mapping-cosmology`, `mapping-strong-field`, `mapping-nuclear-atomic-molecular`, and `mapping-one-nature-many-theories`. The existing `mapping-equations`, `mapping-benchmarks`, and `mapping-electromagnetism` directories remain unchanged. The [priority README](../README.md#mapping-workstreams) owns the flat naming convention; no umbrella directory or parent queue was introduced.
+- Preserved all 50 relocated files, their filenames, scientific ownership, queue states, ranks, scores, and claim grades. Updated incoming links, directory labels, authored source-context paths, the toy-sweep report's context pointer, and the source-mining generator's destination routes. No mathematical rule, numerical result, or acceptance criterion changed.
+- Verification: `node scripts/validate-priority-ranking.mjs` passed with the same 30 active owners and 27 ranked rows; the five nuclear/atomic source-target and toy-sweep test files passed all 40 tests; `git diff --check` passed. The strict content check reported the same 0 errors and 2 pre-existing index-drift warnings before and after the rename.
+- Generated outputs were not edited or regenerated. The [generated archive candidate gaps](../source-mining/archive-analysis/legacy-architrino-candidate-gaps.md) still contains four old destination paths; its canonical generator now has the new paths. Regeneration requires explicit authorization: `"${AAA_VENV:-../.venv}/bin/python" scripts/source-mining/build-legacy-architrino-archive.py --use-cache --write` (requires the archive text cache and refreshes the generator's other outputs too). The stale startup router requires `node scripts/build-agent-startup-orientation.mjs --write`. Recheck the router with `node scripts/build-agent-startup-orientation.mjs --check` and verify the regenerated archive destinations before closing that follow-up.
+
 ### 2026-07-27 — App Ideas owner removed
 
 - Removed the `app-ideas` priority directory after its actionable concepts and implementation packets had been transferred to Causal Delay Feedback and Borg.

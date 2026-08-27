@@ -46,7 +46,7 @@ This lane owns:
 - the comparison map among passive shared record, live coordination, measurement dependence, retrocausality, global nonseparability, and apparatus/trial effects;
 - reconstruction of Bell-route decisions, contradictions, alternatives, and falsifiers across the live corpus.
 
-This lane does not own the substrate derivations needed to calculate a Bell table. [Quantum Closure](../../quantum-closure/priorities.md) retains ownership of the transfer operator, invariant measure, detector-response kernels, pair-provenance source measure, correlation calculation, no-signaling check, Tsirelson check, and Bell rewrite handoff. The [Bell-test comparison packet](../../mapping-benchmarks/bell-test-violations.md) remains an observer-level benchmark map, not the route-decision owner.
+This lane does not own the substrate derivations needed to calculate a Bell table. [Quantum Closure](../../mapping-quantum/priorities.md) retains ownership of the transfer operator, invariant measure, detector-response kernels, pair-provenance source measure, correlation calculation, no-signaling check, Tsirelson check, and Bell rewrite handoff. The [Bell-test comparison packet](../../mapping-benchmarks/bell-test-violations.md) remains an observer-level benchmark map, not the route-decision owner.
 
 ## Canonical Corpus Surfaces Under Audit
 
@@ -57,9 +57,9 @@ This lane does not own the substrate derivations needed to calculate a Bell tabl
 - [Absolute time](../../../../content/markdown/aaa/foundations/absolute-time.md)
 - [Noether sea](../../../../content/markdown/aaa/spacetime/noether-sea.md)
 - [Lorentz kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
-- [Quantum Closure priorities](../../quantum-closure/priorities.md)
-- [Quantum Closure work queue](../../quantum-closure/work-queue.md)
-- [Pair-provenance scope decision](../../quantum-closure/pair-provenance-local-compliance-scope-decision.md)
+- [Quantum Closure priorities](../../mapping-quantum/priorities.md)
+- [Quantum Closure work queue](../../mapping-quantum/work-queue.md)
+- [Pair-provenance scope decision](../../mapping-quantum/pair-provenance-local-compliance-scope-decision.md)
 
 The complete retained-insight and disposition inventory lives in the [discussion record](brainstorming.md#complete-insight-and-open-issue-coverage-audit--2026-08-05). The focused source maps remain the [2026 EPR lecture packet](./tim-maudlin-epr-bell-video-source-mining.md), the [2022 Bell-foundations interview packet](./tim-maudlin-bell-foundations-2022-video-source-mining.md), and the [2024 Stanford Encyclopedia Bell-theorem packet](./stanford-encyclopedia-bell-theorem-source-mining.md).
 

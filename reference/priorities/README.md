@@ -13,6 +13,14 @@ Use `operations/` for repo-wide deployment, hosting, release, cost, reliability,
 
 Use `dormant-deferred/aaa-journey/priorities.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
 
+## Mapping Workstreams
+
+Use the `mapping-` directory prefix for equation mapping, benchmark mapping, domain recovery, and cross-domain theory-bridge assessment. Keep these directories as siblings directly under `reference/priorities/`; the prefix groups related work without creating a parent queue or merging ownership. Directory names have no `.md` extension; the standard tracker, queue, brainstorming, and log filenames remain unchanged.
+
+The current family is [Mapping Equations](mapping-equations/priorities.md), [Mapping Benchmarks](mapping-benchmarks/priorities.md), [Mapping Electromagnetism](mapping-electromagnetism/priorities.md), [Standard Model Closure](mapping-standard-model/priorities.md), [Quantum Closure](mapping-quantum/priorities.md), [Cosmology Closure](mapping-cosmology/priorities.md), [Strong-Field Closure](mapping-strong-field/priorities.md), [Nuclear, Atomic, and Molecular Closure](mapping-nuclear-atomic-molecular/priorities.md), and [One Nature, Many Theories](mapping-one-nature-many-theories/priorities.md). Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping-equations/equation-common-architecture.md#mapping-program-routing).
+
+The prefix changes neither rank, evidence grade, nor active or deferred status. Foundational law and braid programs, cross-workstream mathematical support, speculative assembly candidates, source acquisition, editorial programs, and `app-*` implementation owners remain separate. Parked work remains under `dormant-deferred/` until an explicit reactivation decision.
+
 ## Priority-Doc Maintenance Pattern
 
 The current preferred style for live priority docs is:

@@ -1,0 +1,45 @@
+# Ordinary Evolution Request Preparation Boundary
+
+Status: preparation-only engineering interface, awaiting independent review. This artifact neither selects interaction strength nor authorizes EOM evolution. Its current consumers are the F5 past-only handoff and the eventual ordinary-evolution requests for the sixteen completed A/B/C prescribed-H3 rows. No geometry, cadence, history, mathematical reference, EOM source, score, or prior receipt changes here.
+
+The [preparer](../../../../scripts/eom/prepare-ordinary-evolution-request.mjs) exports `createOrdinaryEvolutionTemplate(candidateId)` and `prepareOrdinaryEvolutionRequest(input)`. It calls the existing public `encodeNativeRequest` in [BorgNativeEomProcessClient.mjs](../../../../scripts/eom/BorgNativeEomProcessClient.mjs), never the process-client constructor. There is no second wire protocol and no solver launch. The [fixture tests](../../../../tests/ordinary-evolution-request-preparation.test.js) exercise ordinary JavaScript preparation and isolated CLI controls only.
+
+Plainly: this prepares the envelope a later run would consume. It cannot run the solver or approve the contents as a physical experiment.
+
+## Closed preparation input
+
+The input has exactly `candidateId`, `releaseTime`, `historyCoverageStart`, `historyEvidence`, `histories`, and `settings`. Every member has `pathId`, `sourceHistoryId`, `sourceFingerprint`, `polarity`, and `segments`. Each segment uses the existing transport fields `startTime`, `endTime`, three arrays of four `coefficients`, and three-axis `positionErrors` and `velocityErrors`. Original decimal strings and local-time origins are copied unchanged; no polynomial is fitted, sampled, translated, or cut by this preparer. Histories must share the declared starting and release tokens, have an ordered gap-free partition, and contain no segment ending after release. Exact decimal comparisons detect tails that binary64 conversion alone would conceal. These checks do not prove compatible joins, analytic containment, or the truth of a supplied provenance claim.
+
+`settings` contains explicit `runId`, `endTime`, `strength`, `numericalControls`, `coreScale`, `certifiedBudget`, and `operationalLimits`. The strength object requires `effectiveStrength`, `chargeMagnitude`, and `coupling` as positive representable decimal strings and checks their exact metadata relation $K=\kappa q_0^2$. Member polarity determines the sign of the explicit magnitude, without changing its decimal digits. The two factorization tokens are retained even though only their product determines the exact sharp-kernel strength on fixed paths. Numerical wake speed is fixed to `1`; this normalization does not select $K$.
+
+Plainly: the preparer checks that the supplied pieces and settings fit together. It does not decide what those settings should be, and it does not prove that the recorded curves describe an evolved braid.
+
+`numericalControls` explicitly requires initial, minimum and maximum step; adaptive-growth choice; root, acceleration, position, velocity and correction tolerances; far-field enclosure fraction; and worker count. `certifiedBudget` requires the complete caller-supplied `borg_certified_budget/v1` allocation, preset identifier, canonical allocation JSON and SHA-256. The existing canonical budget validator and encoder remain the allocation/serialization owners. Duplicate numerical settings must match their allocation tokens exactly. The preparation result separately reports whether these mechanical budget checks passed; it never reports that the EOM request validator ran. The transport's required finite-width/core settings are also explicit even if the selected chart does not consume them. No existing preset is selected by the preparer; preset values used in tests are synthetic controls only.
+
+`operationalLimits` requires explicit wall and heartbeat seconds, aggregate RSS bytes and sampling interval, log/output byte caps, and minimum free disk bytes. No response-pilot or ABC root-campaign resource allowance is inherited. These fields are declared limits, not measured costs or enforcement. A later launch must supervise the inclusive attempt, preserve failures and unvisited work, enforce the declared limits, and independently establish process closure.
+
+Plainly: a complete settings form is not a successful run. The later supervisor still has to measure and enforce the limits around actual solver work.
+
+## History and transport boundaries
+
+The `f5` template fixes only the already declared retained interval `[-1,0]`, release `0`, and pointers to the accepted `handoff.json` and `handoff-conformance.json` recorded in the [launch-readiness owner](2026-08-27-braid-search-launch-readiness.md). It leaves actual history data and all strength, horizon, tolerance, budget and operational settings unset. The template does not read or reauthenticate those files. Caller-supplied histories and evidence references remain unverified until a separately bound consumer checks them against the accepted handoff. No result of this preparer establishes that correspondence.
+
+Every A/B/C template leaves release time, history coverage, evidence references and actual history data unset. An accepted H3 carrier at reception `4` is not silently selected as the ordinary starting history. The completed H3 ladder needs no rerun merely to prepare this interface, but its prescribed-history result does not supply a future trajectory.
+
+Plainly: F5's starting interval is already settled. The A/B/C starting-history choice is still open, and this tool does not make it on the operator's behalf.
+
+The current consumer is the existing [Borg EOM parser](../../../../src/eom/native/eom_borg_shadow_cli.cpp), calling `evolve_native_coupled_histories` under the [evolution contract](../../app-solver/contracts/evolution-contract-v1.md). The initial state comes from `RetainedHistory.endpoint_state_hull()`. No independent nominal position/velocity override or prescribed future is accepted. The parser creates history IDs `borg-eom-shadow/<pathId>`; the preparation records that mapping and leaves the actual consumer fingerprint unset. The ordinary history-chain fingerprint depends on segment tokens, not the history ID, but token equality, actual parsed bits, endpoint boxes, and build identity still require checked transport admission before execution.
+
+The current parser explicitly enables quarter-step publication and disables direct far-field enclosure consumption in evolution. Both facts are recorded in the preparation, rather than inferred from C++ request-struct defaults. Its fixed event-precision escalation is false; a conflicting budget override is rejected. Other parser behavior remains owned by the exact future consumer/build binding. The preparer always uses a fresh, uncached full-history encoding and the certified transport grade; that grade label requests a solver mode and is not an accepted scientific result.
+
+Plainly: the receiving program's behavior matters as much as the JSON fields. A later integration must verify that exact program and the history it receives.
+
+## Output and falsifiers
+
+Incomplete input produces `missing-explicit-settings`, a precise missing-field list, and no wire request. Fully supplied input can produce `mechanically-prepared-not-authorized`, the existing request object, and its encoded bytes/hash. Every output keeps `accepted`, `executionAuthorized`, `eomExecuted`, `historyEvidenceAuthenticated`, `initialStateConformanceEstablished`, `physicalStrengthAuthorized`, `h3EvidenceEligible`, and `scoreAuthorized` false. A copied provenance reference is not an accepted proof. The symbolic F5 release response is not an initial EOM acceleration certificate and is not injected as a warm-start or future constraint.
+
+The CLI accepts only `--template CANDIDATE --out FILE` or `--input FILE --out FILE`. It reads bounded regular files using nonblocking, no-follow descriptors, binds supplied input bytes, rechecks them before and after publication, and creates output exclusively. A file surviving failed publication has no authority. These are preparation controls, not the inclusive resource supervisor required for a scientific run. Falsifiers include any silent default strength or ABC release, changed history token, admitted future segment, nominal initial-state substitution, noncanonical budget, solver process launched by preparation, overwritten output, or true authority flag. The focused tests contain corresponding synthetic controls; agreement with the encoder is transport plumbing evidence, not an independent dynamics proof.
+
+Plainly: the useful deliverable is a checkable, explicitly incomplete request boundary. Scientific acceptance remains with the existing independent evidence and the later authorized run.
+
+Closure goal: independently review this preparation-only interface, then bind explicit scientific settings, accepted past-only data and an inclusive evolution launch plan without changing the frozen mathematical references.

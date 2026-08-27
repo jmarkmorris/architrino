@@ -18,7 +18,7 @@ The parked braid fragments suggest that changes in internal frequency, radius, a
 
 ## One Nature, Many Theories Routing
 
-The two-framework-unification synthesis has moved to the dedicated [One Nature, Many Theories draft](../one-nature-many-theories/one-nature-many-theories.md) and its owning [brainstorming file](../one-nature-many-theories/brainstorming.md). This cross-workstream file retains only the routing boundary; the new lane owns the domain inventory, bridge taxonomy, evidence program, and eventual corpus-promotion decision.
+The two-framework-unification synthesis has moved to the dedicated [One Nature, Many Theories draft](../mapping-one-nature-many-theories/one-nature-many-theories.md) and its owning [brainstorming file](../mapping-one-nature-many-theories/brainstorming.md). This cross-workstream file retains only the routing boundary; the new lane owns the domain inventory, bridge taxonomy, evidence program, and eventual corpus-promotion decision.
 
 ## Relationship to Existing Owners
 
@@ -26,4 +26,19 @@ Accepted cross-workstream tasks remain in [work-queue.md](work-queue.md). Master
 
 ## Unresolved Ideas
 
-- None currently recorded.
+### Conceptual Exploration Options — 2026-08-27
+
+**Operator preference:** keep several enjoyable conceptual projects alongside the main closure work; recent gauge-theory and ontology discussions were enjoyable. The following selection is an inferred preference match, not an accepted queue, a scientific result, or a change to the global priority ranking. Revise the selection if these questions do not sustain the operator's interest or do not yield a concrete explanation, example, or counterexample.
+
+| Candidate exploration and owner | Bounded next artifact | Scope and promotion boundary |
+| --- | --- | --- |
+| [Spinors, rotations, and history](../mapping-quantum/brainstorming.md#spinors-as-a-conceptual-exploration) | Work through one full rotation and two full rotations, then distinguish a mathematical sign from a physically detectable relative phase. | Mathematical learning and an existing recovery target; promote only a separately justified result to the angular-momentum/spin owner. |
+| Gauge, geometric phase, and holonomy; [Standard Model Closure](../mapping-standard-model/priorities.md) | Compare one change of phase convention with one closed transport cycle, identifying the invariant observable and the missing substrate carrier. | Effective comparison; the assembly gauge chapters retain mechanism and recovery ownership. |
+| Information, entropy, and observer access; [entropy mapping](../mapping-benchmarks/entropy.md) | Compare a complete source-history description with a declared observer's accessible record and identify exactly what the projection loses. | Effective comparison or conditional mathematical example; no assumed invertibility, entropy-production law, or wake-account closure. |
+| [One Nature, Many Theories](../mapping-one-nature-many-theories/priorities.md) | Choose one new pair of routes between the same descriptions and compare preserved information, calibration, and prediction. | The prior promotion is complete and its queue is empty; this is a possible new example, not reopening the completed work. |
+| [Category theory](../category-theory/priorities.md) as a supporting laboratory | Construct one explicit example distinguishing identical snapshots from equivalent histories or predictions. | Mathematical organization only; category-specific physical expansion remains paused and simpler mathematics is the comparison baseline. |
+| [Information Relay Machines](../dormant-deferred/information-relay-machines/priorities.md) | Trace one spoken sentence through a phone call, separating carrier changes from preserved and discarded information. | Established engineering comparison and a possible paper example; the directory remains dormant unless explicitly resumed. |
+
+Plainly: these are choices for satisfying conceptual work, with one small result to aim for in each. Learning a mathematical structure does not establish that an architrino assembly realizes it, and an enjoyable project does not automatically become a higher scientific priority.
+
+**Possible new files, not yet created:** a focused `spinors-rotations-and-history.md` under Quantum Closure could supply an accessible learning path into its existing spinor obligation; a `geometric-phase-and-holonomy.md` under Standard Model Closure could connect the gauge discussion to phase-transport examples. Create either only when its bounded scope is selected, link the existing owners, and avoid duplicating their acceptance contracts. No new top-level spinor, gauge, entropy, or ontology workstream is presently needed. The candidate promotion destinations are the existing angular-momentum/spin, assembly-gauge, observer/measurement, and philosophy-history chapters, subject to separate review and promotion authority.

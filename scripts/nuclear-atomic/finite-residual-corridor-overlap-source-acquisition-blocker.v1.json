@@ -11,7 +11,7 @@
   ],
   "nearestCandidateInputs": {
     "nnCorridorOverlapSample": {
-      "candidatePath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "candidatePath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "usableFor": [
         "sample-level p+n and p+p channel comparison",
         "orientation and mismatch table shape",
@@ -65,7 +65,7 @@
       "boundary": "The no-free-color blocker requires a finite residual tail but is not that proof."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "usableFor": [
         "static confinement and residual-potential recovery pressure",
         "same sigma_eff domain requirement"

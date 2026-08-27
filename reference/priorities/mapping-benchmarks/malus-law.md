@@ -71,7 +71,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | angular-momentum-spin/photon-measurement-bell-gates | Keep Malus' law inside photon Gate B and derive the projector, capture measure, material measure, and detector-bias diagnostic there. |
-| This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Treat the photon analyzer kernel as a derived basin pullback, not an assumed $\cos^2\theta$ detector law. |
+| This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Treat the photon analyzer kernel as a derived basin pullback, not an assumed $\cos^2\theta$ detector law. |
 | This file | [assemblies/bosons/electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#gate-b-theorem-scaffold-polarization-and-spin) | Use the benchmark as the simplest Gate B recovery target after Gate A supplies the admissible photon branch. |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add local photon-analyzer recovery as a pre-Bell validation surface for squared-amplitude capture. |
 

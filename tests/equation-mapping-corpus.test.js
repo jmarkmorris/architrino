@@ -4,7 +4,8 @@ import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { buildEquationMappingCorpus } from "../scripts/build-equation-mapping-corpus.mjs";
+import { buildEquationMappingCorpus, extractEquationSymbols, findContextDefinition } from "../scripts/build-equation-mapping-corpus.mjs";
+import { loadVendoredCommonJsBundle } from "../scripts/load-vendored-commonjs-bundle.mjs";
 import {
   EQUATION_MAPPING_CORPUS_REGISTRY_SCHEMA,
   loadEquationMappingCorpusRecords,
@@ -39,10 +40,10 @@ test("generated equation registry covers every corpus display equation", () => {
   });
 
   assert.equal(result.errors.length, 0);
-  assert.equal(result.files, 198);
-  assert.equal(result.equations, 4587);
+  assert.equal(result.files, 199);
+  assert.equal(result.equations, 4598);
   assert.equal(result.promoted, 23);
-  assert.equal(result.symbolDefinitions, 29590);
+  assert.equal(result.symbolDefinitions, 29623);
 });
 
 test("every equation registry record is addressable, sourced, and symbol-defined", () => {
@@ -50,7 +51,7 @@ test("every equation registry record is addressable, sourced, and symbol-defined
   const semanticIds = new Set(normalized.records.map((record) => record.semanticId));
 
   assert.equal(normalized.schema, EQUATION_MAPPING_CORPUS_REGISTRY_SCHEMA);
-  assert.equal(normalized.records.length, 4587);
+  assert.equal(normalized.records.length, 4598);
   assert.equal(semanticIds.size, normalized.records.length);
   assert.equal(normalized.records.filter((record) => record.promoted).length, 23);
   assert.equal(normalized.records.every((record) => record.source.sourcePath && record.source.sourceHeading), true);
@@ -73,7 +74,7 @@ test("corpus loader and public registry expose basic direct equation pages", asy
   const basicRecord = records.find((record) => !record.promoted);
   const page = api.get(basicRecord.semanticId);
 
-  assert.equal(api.list().length, 4587);
+  assert.equal(api.list().length, 4598);
   assert.equal(page.semanticId, basicRecord.semanticId);
   assert.equal(page.promoted, false);
   assert.equal(page.source.sourcePath, basicRecord.source.sourcePath);
@@ -91,8 +92,8 @@ test("promotion changes carousel membership but not baseline equation access", (
     window: {},
   });
 
-  assert.equal(documents.length, 4587);
-  assert.equal(runtime.getVisibleDocumentList().length, 4587);
+  assert.equal(documents.length, 4598);
+  assert.equal(runtime.getVisibleDocumentList().length, 4598);
   assert.equal(runtime.getCarouselDocumentList().length, 23);
   assert.equal(runtime.activeDocument.id, basicDocument.id);
   assert.equal(runtime.activeDocument.source.sourcePath, basicDocument.source.sourcePath);
@@ -115,6 +116,51 @@ test("hash navigation synchronizes an already-open equation page", () => {
   assert.equal(runtime.syncActiveDocumentFromLocation(), true);
   assert.equal(runtime.activeDocument.id, basicDocument.id);
   assert.equal(runtime.activeDocument.promoted, false);
+});
+
+test("local symbol definitions outrank earlier mentions and resolve numeric powers", () => {
+  const context = [
+    "| Matching | $G_F$ alone does not reconstruct the resolved weak sector |",
+    "Fermi's beta theory is a low-energy example involving $G_F$.",
+    "Plainly: $G_F$ is the effective coefficient, $g$ is the coupling, and $M_W$ is the mediator mass. Another sentence.",
+  ];
+  assert.equal(findContextDefinition("G_F", context), "$G_F$ is the effective coefficient, $g$ is the coupling, and $M_W$ is the mediator mass.");
+  assert.equal(findContextDefinition("g^2", context), "$g$ is the coupling, and $M_W$ is the mediator mass.");
+  assert.equal(findContextDefinition("M_W^{2}", context), "$M_W$ is the mediator mass.");
+  assert.equal(findContextDefinition("M_Z^2", context), "");
+  assert.equal(findContextDefinition("g^{eff}", context), "");
+  assert.equal(findContextDefinition("g^2", [...context, "$g^2$ is the squared coupling."]), "$g^2$ is the squared coupling.");
+  assert.equal(findContextDefinition("g", ["$g$ is not defined in this section."]), "");
+});
+
+test("extracted symbol TeX preserves command-separating whitespace", () => {
+  const tex = "W_{r\\leftarrow t}^{\\mathrm{acc}}+\\hat{\\mathbf y}+A_\\text{self}+\\operatorname*{arg\\,max}";
+  const symbols = extractEquationSymbols(tex);
+  assert.deepEqual(symbols, ["W_{r\\leftarrow t}^{\\mathrm{acc}}", "\\hat{\\mathbf y}", "A_\\text{self}", "\\operatorname*{arg\\,max}"]);
+  const katex = loadVendoredCommonJsBundle(path.join(repoRoot, "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"));
+  for (const symbol of symbols) assert.doesNotThrow(() => katex.renderToString(symbol, { throwOnError: true }));
+});
+
+test("the chapter's stable equation links resolve to its current unpunctuated source", () => {
+  const sourcePath = "content/markdown/aaa/philosophy-history/one-nature-many-theories.md";
+  const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
+  // Independent literal Markdown inventory, not the generator's parser.
+  const displays = [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)];
+  assert.equal(displays.length, 9);
+  for (const [, tex, id] of displays) {
+    const record = payload.records.find((entry) => entry.semanticId === id);
+    assert.ok(record, id);
+    assert.equal(record.source.sourcePath, sourcePath, id);
+    assert.equal(record.formulaTeX, tex.trim(), id);
+    assert.doesNotMatch(tex.trim(), /[.,;:]$/u, id);
+    assert.equal(source.split("\n")[record.source.startLine - 1], "$$", id);
+  }
+  const fermi = payload.records.find((entry) => entry.semanticId === "corpus-equation-b44957fa1f24bad8");
+  assert.equal(fermi.source.sourceHeading, "An Evidence-Backed Bridge Network");
+  assert.equal(fermi.formulaTeX, "\\frac{G_F}{\\sqrt{2}}=\\frac{g^2}{8M_W^2}");
+  assert.ok(fermi.symbols.every((symbol) => symbol.definitionSource === "source-context"));
+  assert.match(fermi.symbols.find((symbol) => symbol.tex === "g^2").definition, /electroweak coupling/u);
+  assert.match(fermi.symbols.find((symbol) => symbol.tex === "M_W^2").definition, /boson mass/u);
 });
 
 test("every Equation Mapping link shipped in the iOS package has a public app route", () => {

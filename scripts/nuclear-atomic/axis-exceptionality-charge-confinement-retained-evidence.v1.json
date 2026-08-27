@@ -21,8 +21,8 @@
     "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
     "definitionSourcePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#color-charge-and-strong-confinement",
     "su3SourcePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md#color-hilbert-space-and-su3-structure",
-    "sameSigmaEffDomainPath": "reference/priorities/standard-model-closure/geometry-first-program.md#confinement-as-color-line-defect-strain",
-    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    "sameSigmaEffDomainPath": "reference/priorities/mapping-standard-model/geometry-first-program.md#confinement-as-color-line-defect-strain",
+    "priorityContextPath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
   },
   "axisExceptionalityRows": {
     "definitionRow": {
@@ -54,7 +54,7 @@
     },
     "sameSigmaEffDomainRow": {
       "status": "priority_domain_row",
-      "sourcePath": "reference/priorities/standard-model-closure/geometry-first-program.md",
+      "sourcePath": "reference/priorities/mapping-standard-model/geometry-first-program.md",
       "chargeTensors": [
         "Q_H=E_HH-I_3/3",
         "Q_M=E_MM-I_3/3",

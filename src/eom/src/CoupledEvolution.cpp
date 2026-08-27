@@ -4143,6 +4143,15 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
        !request.use_adaptive_step_growth)) {
     throw std::invalid_argument("invalid adaptive step controller policy");
   }
+  if ((request.initial_consecutive_growth_headroom_steps != 0U &&
+       (!request.use_adaptive_step_growth ||
+        request.use_continuous_adaptive_step)) ||
+      request.initial_consecutive_growth_headroom_steps >
+          std::numeric_limits<std::size_t>::max() - request.max_step_attempts) {
+    // At most one increment is possible per attempt. Reserve that whole
+    // capacity before work rather than wrap or saturate the exact memory.
+    throw std::invalid_argument("invalid adaptive growth restart memory");
+  }
   if (!(multirate_fraction > 0.0 && multirate_fraction <= 1.0)) {
     throw std::invalid_argument("invalid multirate synchronization fraction");
   }
@@ -7301,6 +7310,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
         .accepted_step_count = 0U,
         .rejected_step_count = 0U,
         .controller_step_size = request.initial_step,
+        .controller_consecutive_growth_headroom_steps =
+            request.initial_consecutive_growth_headroom_steps,
         .halt_code = "memory_budget_exhausted",
         .evidence_status = "failed",
         .memory_budget_bytes = request.memory_budget_bytes,
@@ -7321,7 +7332,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
   std::size_t rejected_count = 0;
   std::string halt_code;
   std::string current_time_token = request.start_time;
-  std::size_t consecutive_growth_headroom_steps = 0U;
+  std::size_t consecutive_growth_headroom_steps =
+      request.initial_consecutive_growth_headroom_steps;
   std::size_t certificate_cost_probe_adjustments = 0U;
   std::set<std::pair<std::string, std::string>>
       adjudicated_finite_width_pairs(
@@ -7619,6 +7631,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       .controller_step_size = decimal_token(step_size),
       .controller_certificate_cost_cooldown_remaining =
           certificate_cost_cooldown_remaining,
+      .controller_consecutive_growth_headroom_steps =
+          consecutive_growth_headroom_steps,
       .halt_code = completed ? "" : halt_code,
       .evidence_status =
           completed ? "executable_architecture_evidence" : "failed",

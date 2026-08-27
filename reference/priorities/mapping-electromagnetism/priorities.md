@@ -61,7 +61,7 @@ Plainly: this lane asks which source, assembly, causal-history, boundary, and se
 - [Braid Program](../braid-program/priorities.md) owns retained braid existence, evolution, common-axis geometry, branch identity, and causal-root evidence.
 - [Master Equation Closure](../master-equation-closure/priorities.md) owns the microscopic acceleration law, causal-wake updates, and account closure.
 - [EOM solver](../app-solver/priorities.md) owns production numerical execution and accepted record contracts.
-- [Standard Model Closure](../standard-model-closure/priorities.md) owns electron, positron, charge, gauge, and precision-observable recovery outside this lane's electromagnetic integration role.
+- [Standard Model Closure](../mapping-standard-model/priorities.md) owns electron, positron, charge, gauge, and precision-observable recovery outside this lane's electromagnetic integration role.
 - The parked [Electrodynamics](../dormant-deferred/electrodynamics/priorities.md) packet remains historical and counterfactual reference material; it is not reactivated by this workstream.
 
 ## Claim Boundary

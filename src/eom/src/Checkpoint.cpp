@@ -22,7 +22,9 @@
 namespace architrino::eom {
 namespace {
 
-constexpr char kCheckpointMagic[] = "EOMCPV3\n";
+// v7 carries exact adaptive growth memory. Older payloads cannot establish
+// that memory and are deliberately rejected, not migrated with a zero guess.
+constexpr char kCheckpointMagic[] = "EOMCPV4\n";
 constexpr std::size_t kMaximumTokenBytes = 16U * 1024U * 1024U;
 constexpr std::uint64_t kMaximumPathCount = UINT64_C(10000000);
 constexpr std::uint64_t kMaximumSegmentCount = UINT64_C(1000000000);
@@ -111,6 +113,17 @@ std::string take_string(
   return std::string(begin, begin + static_cast<std::ptrdiff_t>(length));
 }
 
+std::size_t take_growth_headroom_steps(
+    const std::vector<unsigned char>& bytes,
+    std::size_t& cursor,
+    std::size_t payload_end) {
+  const auto value = take_u64(bytes, cursor, payload_end);
+  if (value > std::numeric_limits<std::size_t>::max()) {
+    throw std::invalid_argument("checkpoint growth memory exceeds size_t");
+  }
+  return static_cast<std::size_t>(value);
+}
+
 std::string checkpoint_content_fingerprint(
     const NativeEvolutionCheckpoint& checkpoint) {
   std::uint64_t state = UINT64_C(14695981039346656037);
@@ -122,6 +135,9 @@ std::string checkpoint_content_fingerprint(
       state,
       std::to_string(
           checkpoint.controller_certificate_cost_cooldown_remaining));
+  hash_token(
+      state,
+      std::to_string(checkpoint.controller_consecutive_growth_headroom_steps));
   hash_token(state, checkpoint.joint_history_mode);
   hash_token(state, checkpoint.model_fingerprint);
   hash_token(state, std::to_string(checkpoint.accepted_step_count));
@@ -443,8 +459,11 @@ std::pair<std::string, JointAffineRetainedHistory> take_joint_history(
 
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v6" ||
-      checkpoint.run_id.empty() || checkpoint.paths.empty()) {
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v7") {
+    throw std::invalid_argument(
+        "checkpoint schema requires v7 with explicit adaptive growth memory");
+  }
+  if (checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
   if (checkpoint.checkpoint_fingerprint !=
@@ -673,12 +692,14 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
         "checkpoint joint history state does not follow the request");
   }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v6",
+      .schema = "eom_native_evolution_checkpoint/v7",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,
       .controller_certificate_cost_cooldown_remaining =
           certificate.controller_certificate_cost_cooldown_remaining,
+      .controller_consecutive_growth_headroom_steps =
+          certificate.controller_consecutive_growth_headroom_steps,
       .joint_history_mode = joint_history_mode,
       .model_fingerprint = native_evolution_model_fingerprint(request),
       .checkpoint_fingerprint = "",
@@ -718,6 +739,7 @@ std::vector<unsigned char> serialize_native_evolution_checkpoint(
   append_u64(
       bytes,
       checkpoint.controller_certificate_cost_cooldown_remaining);
+  append_u64(bytes, checkpoint.controller_consecutive_growth_headroom_steps);
   append_string(bytes, checkpoint.joint_history_mode);
   append_string(bytes, checkpoint.model_fingerprint);
   append_string(bytes, checkpoint.checkpoint_fingerprint);
@@ -744,7 +766,8 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
       !std::equal(
           bytes.begin(), bytes.begin() + static_cast<std::ptrdiff_t>(magic_size),
           std::begin(kCheckpointMagic))) {
-    throw std::invalid_argument("checkpoint magic is invalid");
+    throw std::invalid_argument(
+        "checkpoint requires EOMCPV4/v7 with explicit adaptive growth memory");
   }
   const std::size_t payload_end = bytes.size() - 8U;
   std::size_t checksum_cursor = payload_end;
@@ -761,6 +784,8 @@ NativeEvolutionCheckpoint deserialize_native_evolution_checkpoint(
       .controller_step_size = take_string(bytes, cursor, payload_end),
       .controller_certificate_cost_cooldown_remaining =
           static_cast<std::size_t>(take_u64(bytes, cursor, payload_end)),
+      .controller_consecutive_growth_headroom_steps =
+          take_growth_headroom_steps(bytes, cursor, payload_end),
       .joint_history_mode = take_string(bytes, cursor, payload_end),
       .model_fingerprint = take_string(bytes, cursor, payload_end),
       .checkpoint_fingerprint = take_string(bytes, cursor, payload_end),
@@ -908,6 +933,8 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
   resumed.initial_step = checkpoint.controller_step_size;
   resumed.certificate_cost_initial_cooldown_steps =
       checkpoint.controller_certificate_cost_cooldown_remaining;
+  resumed.initial_consecutive_growth_headroom_steps =
+      checkpoint.controller_consecutive_growth_headroom_steps;
   resumed.joint_state_fallback_already_applied =
       checkpoint.joint_history_mode == "ordinary_fallback";
   resumed.joint_root_point_states.clear();

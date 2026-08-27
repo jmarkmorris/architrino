@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history__information_and_the_wake",
+    "title": "Information and the Wake",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/information-and-the-wake.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

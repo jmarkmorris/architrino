@@ -26,7 +26,7 @@
     "tailLimitBlockerPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
     "uniformTailBoundSupportPath": "scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json",
     "corridorWeightSupportPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json",
-    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
   },
   "tailInputs": {
     "tailEnvelopeRef": "T_NN_tail_support_envelope_0001",

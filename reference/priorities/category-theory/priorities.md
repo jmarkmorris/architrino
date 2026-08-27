@@ -96,8 +96,8 @@ Plainly: this lane can describe and test how already-declared physical records r
 - [Braid Program](../braid-program/priorities.md)
 - [Master Equation Closure](../master-equation-closure/priorities.md)
 - [Mapping Equations](../mapping-equations/priorities.md)
-- [Quantum Closure](../quantum-closure/priorities.md)
-- [Standard Model Closure](../standard-model-closure/priorities.md)
+- [Quantum Closure](../mapping-quantum/priorities.md)
+- [Standard Model Closure](../mapping-standard-model/priorities.md)
 - [Mapping Benchmarks](../mapping-benchmarks/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Sources

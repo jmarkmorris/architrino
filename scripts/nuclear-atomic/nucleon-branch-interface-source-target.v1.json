@@ -4,7 +4,7 @@
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "nucleon_branch_interface_source_target_0001",
-    "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
+    "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md",
     "consumer": "scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs",
     "acceptedPromotionBlocker": "missing_accepted_nucleon_branch_interface_ledgers"
   },
@@ -32,7 +32,7 @@
         "same_record_energy_momentum_angular_momentum_ledger",
         "no_open_color_far_field"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction",
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json"
     },
     "accepted_neutron_branch_interface_ledger": {
@@ -47,7 +47,7 @@
         "same_record_energy_momentum_angular_momentum_ledger",
         "no_open_color_far_field"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction",
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction",
       "sourceTargetPath": "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json"
     },
     "same_record_energy_momentum_angular_momentum_ledger": {
@@ -63,7 +63,7 @@
         "angular_momentum_conservation_row",
         "coulomb_separation_row"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json"
     },
     "no_open_color_far_field": {
@@ -76,7 +76,7 @@
         "color_singlet_closure",
         "same_record_no_open_color_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md",
       "sourceTargetPath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json"
     }
   },
@@ -126,7 +126,7 @@
         "sample_level_finite_tail",
         "target_only_no_open_color"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/brainstorming.md#branch-interface-aaa-capture"
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/brainstorming.md#branch-interface-aaa-capture"
     },
     "nucleon_branch_interface_ledgers": {
       "id": "nucleon_branch_interface_ledgers_accepted_source_row_proof_target_0001",
@@ -167,7 +167,7 @@
         "candidate_extracted",
         "target_only_no_open_color"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#accepted-branch-interface-ledger-proof-target"
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#accepted-branch-interface-ledger-proof-target"
     }
   },
   "rows": {
@@ -186,7 +186,7 @@
         "accepted_neutron_branch_interface_ledger",
         "same_record_energy_momentum_angular_momentum_ledger"
       ],
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md"
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md"
     },
     "pn_orientation_count": {
       "id": "pn_orientation_count_candidate_0001",
@@ -210,7 +210,7 @@
         "same_record_energy_momentum_angular_momentum_ledger"
       ],
       "sourceExpression": "B_pn_int_0=(chi_p,chi_n,4/4,0,0,0,0,L_EpJ_pn_bal)",
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
     },
     "pp_orientation_count": {
       "id": "pp_orientation_count_candidate_0001",
@@ -232,7 +232,7 @@
         "same_record_energy_momentum_angular_momentum_ledger"
       ],
       "sourceExpression": "B_pp_int_0=(chi_p,chi_p,1/4,0,0,0,0,L_EpJ_pp_same)",
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
     },
     "same_record_energy_momentum_angular_momentum_ledger": {
       "id": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
@@ -240,7 +240,7 @@
       "requiredScope": "one accepted record that carries the p+n and p+p branch-interface rows, energy, momentum, angular momentum, branch exposure, Coulomb separation, and no-open-color far-field check together",
       "currentEvidenceStatus": "accepted_non_fixture_source",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
-      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md"
+      "currentPriorityPacket": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md"
     }
   },
   "toyBindings": {

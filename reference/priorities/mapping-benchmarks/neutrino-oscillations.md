@@ -36,8 +36,8 @@ These rows decompose the case at draft grade. They are not executable queue auth
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [standard-model-closure/weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md) | Use neutrino oscillation as a PMNS and weak-projection closure target. |
-| This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Treat flavor outcome as detector basin projection after coherent propagation. |
+| This file | [mapping-standard-model/weak-sector-gauge-closure](../mapping-standard-model/weak-sector-gauge-closure.md) | Use neutrino oscillation as a PMNS and weak-projection closure target. |
+| This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Treat flavor outcome as detector basin projection after coherent propagation. |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add baseline-energy and matter-effect constraints to weak/quantum intersection gates. |
 
 ## Failure Modes

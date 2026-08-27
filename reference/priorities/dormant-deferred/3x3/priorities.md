@@ -109,7 +109,7 @@ What it does **not** yet establish is that quark color can be read directly as `
 
 ## Related Priorities
 
-- [standard-model-closure](../../standard-model-closure/priorities.md)
+- [mapping-standard-model](../../mapping-standard-model/priorities.md)
 - mass-map
 
 ## Related AAA Notes

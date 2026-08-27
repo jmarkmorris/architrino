@@ -39,7 +39,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 | --- | --- | --- |
 | This file | [temperature](temperature.md) | Use Brownian motion to discipline temperature as a coarse-grained variable. |
 | This file | mass-map/condensed-matter-medium-transport | Separate reversible medium-dressed inertia from dissipative transport. |
-| This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Use diffusion as a low-risk analogy for deterministic measures producing effective statistics. |
+| This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Use diffusion as a low-risk analogy for deterministic measures producing effective statistics. |
 
 ## Failure Modes
 

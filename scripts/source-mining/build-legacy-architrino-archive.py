@@ -301,7 +301,7 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/quantum",
             "content/markdown/aaa/noether-braid",
-            "reference/priorities/standard-model-closure",
+            "reference/priorities/mapping-standard-model",
             "reference/priorities/braid-archive/braid-mass-response-map",
         ],
         "claim_bucket": "derivation or closure target",
@@ -333,7 +333,7 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/quantum",
             "content/markdown/aaa/dynamics",
-            "reference/priorities/quantum-closure",
+            "reference/priorities/mapping-quantum",
             "reference/priorities/app-photon",
         ],
         "claim_bucket": "effective summary",
@@ -386,7 +386,7 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/cosmology",
             "content/markdown/aaa/spacetime",
-            "reference/priorities/cosmology-closure",
+            "reference/priorities/mapping-cosmology",
             "reference/priorities/dark-sector",
         ],
         "claim_bucket": "effective summary",
@@ -416,8 +416,8 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/spacetime",
             "content/markdown/aaa/cosmology",
-            "reference/priorities/strong-field-closure",
-            "reference/priorities/cosmology-closure",
+            "reference/priorities/mapping-strong-field",
+            "reference/priorities/mapping-cosmology",
         ],
         "claim_bucket": "speculation",
         "priority": 7,
@@ -441,7 +441,7 @@ TOPICS = [
             "content/markdown/aaa/dynamics",
             "content/markdown/aaa/cosmology",
             "reference/priorities/mapping-equations",
-            "reference/priorities/cosmology-closure",
+            "reference/priorities/mapping-cosmology",
         ],
         "claim_bucket": "derivation or closure target",
         "priority": 8,

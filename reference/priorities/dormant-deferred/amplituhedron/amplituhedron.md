@@ -5,7 +5,7 @@
 - **Status:** dormant-deferred external-watch comparison topic; not queued, scored, promoted, or authorized for implementation.
 - **Claim level:** speculation about an effective recovery map.
 - **Dormant home:** `reference/priorities/dormant-deferred/amplituhedron` owns this preserved discussion and its revisit conditions.
-- **Revisit destinations:** `quantum-closure` would own a future amplitude and history-measure question; `mapping-equations`, especially `EQ-30` and the shared finite-window statistical carrier, would own any authorized executable projection and residual.
+- **Revisit destinations:** `mapping-quantum` would own a future amplitude and history-measure question; `mapping-equations`, especially `EQ-30` and the shared finite-window statistical carrier, would own any authorized executable projection and residual.
 - **Priority disposition:** defer internal $\mathbb{A}\mathbb{A}\mathbb{A}$ work and let the collider/scattering-amplitudes community mature the realistic positive-geometry side; reconsider only after the prerequisites and revisit triggers below are satisfied.
 - **Excluded claims:** the amplituhedron is not substrate ontology, a retained Noether braid, a replacement Master Equation, evidence for a retained scattering carrier, or evidence that locality, unitarity, supersymmetry, planarity, momentum twistors, or quantum amplitudes have been recovered by $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
@@ -376,7 +376,7 @@ Plainly: if this topic is reactivated, do not begin with the full amplituhedron.
 
 No standalone top-level amplituhedron priority lane is warranted at this stage.
 
-- `quantum-closure` owns this back-burner comparison packet, the effective amplitude, and the history-measure question.
+- `mapping-quantum` owns this back-burner comparison packet, the effective amplitude, and the history-measure question.
 - `mapping-equations`, through `EQ-30` and the finite-window statistical carrier, owns the executable projection, detector/exposure bindings, and residual calculation.
 - Reaction and gauge-structure owners consume a validated factorization and event-ledger result; they do not independently redefine the amplitude map.
 - The amplituhedron remains a benchmark within the broader positive-geometry scattering question rather than the name of a new $\mathbb{A}\mathbb{A}\mathbb{A}$ physical sector.
@@ -390,7 +390,7 @@ The discussion reached twelve durable conclusions:
 1. The amplituhedron is a positive-geometric formulation, not a physical theory distinct from planar $\mathcal N=4$ super-Yang--Mills theory.
 2. Its most promising relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is as an observer-level target for the pushforward of retained deterministic scattering histories, not as substrate ontology.
 3. The strongest first test is four-point factorization with a physical intermediate-assembly boundary, one wrong-channel falsifier, and spurious-boundary cancellation.
-4. The work should remain a focused packet under `quantum-closure`, with executable ownership in `mapping-equations`, until a nontrivial result justifies a dedicated lane.
+4. The work should remain a focused packet under `mapping-quantum`, with executable ownership in `mapping-equations`, until a nontrivial result justifies a dedicated lane.
 5. Scattering science is performed because controlled incoming states and measured outgoing distributions jointly probe internal structure, interaction channels, transient states, symmetries, and the breakdown of effective descriptions.
 6. The amplitudes program is trying to calculate directly from physical on-shell data, classify consistent interactions, expose the hidden geometry or combinatorics of amplitudes, and determine whether locality and unitarity can be recovered as consequences of deeper structure; extension to real-world physics remains an open research objective.
 7. In a predictive test, the amplitude calculation precedes comparison with experimental event counts; the amplituhedron, when applicable, supplies the amplitude or loop integrand at the calculation stage rather than replacing the later observable and detector pipeline.

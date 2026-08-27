@@ -64,7 +64,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 | --- | --- | --- |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add redshift as a gravity-sector benchmark with no separate clock-only coefficient. |
 | This file | [master-equation-closure](../master-equation-closure/priorities.md) | Route clock retuning through assembly dynamics and Noether sea response. |
-| This file | [cosmology-closure](../cosmology-closure/priorities.md) | Reuse the clock-channel map for cosmological redshift without importing fundamental expansion of the Euclidean void. |
+| This file | [mapping-cosmology](../mapping-cosmology/priorities.md) | Reuse the clock-channel map for cosmological redshift without importing fundamental expansion of the Euclidean void. |
 
 ## Failure Modes
 

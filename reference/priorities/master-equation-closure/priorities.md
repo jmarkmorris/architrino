@@ -117,7 +117,7 @@ These packets may seed a transmitter-side rebuild only after every use of $D_r/D
 
 ## Related Priorities
 
-- [Quantum closure](../quantum-closure/priorities.md)
-- [Strong-field closure](../strong-field-closure/priorities.md)
-- [Cosmology closure](../cosmology-closure/priorities.md)
+- [Quantum closure](../mapping-quantum/priorities.md)
+- [Strong-field closure](../mapping-strong-field/priorities.md)
+- [Cosmology closure](../mapping-cosmology/priorities.md)
 - [Equation mapping](../mapping-equations/priorities.md)

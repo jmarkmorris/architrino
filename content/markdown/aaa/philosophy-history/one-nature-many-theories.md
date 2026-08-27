@@ -51,7 +51,7 @@ Plainly: these islands have real and powerful connections. The unresolved point 
 Fermi's beta theory is the cleanest first example. At energies far below the $W$-boson scale, the four-fermion coefficient $G_F$ compresses the mediator structure into one low-energy parameter. At tree level in the electroweak theory,
 
 $$
-\frac{G_F}{\sqrt{2}}=\frac{g^2}{8M_W^2}.
+\frac{G_F}{\sqrt{2}}=\frac{g^2}{8M_W^2}
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8)
@@ -172,7 +172,7 @@ The exact, zero-tolerance scale specialization of the general compatibility fibe
 $$
 P_\ell:\mathcal{H}\longrightarrow\mathcal{O}_\ell,
 \qquad
-\mathcal{F}_\ell(o)=\left\{H\in\mathcal{H}:P_\ell(H)=o\right\}.
+\mathcal{F}_\ell(o)=\left\{H\in\mathcal{H}:P_\ell(H)=o\right\}
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177)
@@ -180,7 +180,7 @@ $$
 Here $o$ is the observed effective record, and $\mathcal F_\ell(o)$ is not a competing inverse notation; it is the $\epsilon=0$ scale case of the general fiber $\mathfrak F_{i\mid y}^{(\epsilon)}$. A protected cross-scale quantity $I_a$ must factor through the effective record:
 
 $$
-I_a(H)=\overline I_{a,\ell}\!\left(P_\ell(H)\right),
+I_a(H)=\overline I_{a,\ell}\!\left(P_\ell(H)\right)
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5)

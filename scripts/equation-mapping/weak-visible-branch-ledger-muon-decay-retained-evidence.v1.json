@@ -40,7 +40,7 @@
     },
     {
       "label": "Weak flavor event-ledger benchmark packet",
-      "path": "reference/priorities/standard-model-closure/weak-flavor-event-ledger-benchmark-packet.md",
+      "path": "reference/priorities/mapping-standard-model/weak-flavor-event-ledger-benchmark-packet.md",
       "rowsUsed": [
         "measured charged products kept separate from inferred neutral-lepton rows",
         "muon lifetime and V-A spectrum benchmark mapping"

@@ -17,7 +17,7 @@ The candidate task rows, upstream gates, and promotion boundaries live in [work-
 
 This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. Its low numeric rank allocates attention to a candidate packet; it does not make the lane an accepted closure-evidence workstream.
 
-The lane does not replace [strong-field-closure](../strong-field-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
+The lane does not replace [mapping-strong-field](../mapping-strong-field/priorities.md), [mapping-cosmology](../mapping-cosmology/priorities.md), [Radiation](../../../content/markdown/aaa/reactions/radiation.md), or the shared residual-routing event ledger. It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 
 WIMP/neutralino language in this lane is comparison language only. It may organize relic abundance, scattering, annihilation, direct detection, indirect detection, and null-result constraints, but it must not identify a native assembly with a supersymmetric neutralino or treat supersymmetry as Noether braid ontology without a separate ledger-preserving transformation theorem.
 
@@ -64,14 +64,14 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [brainstorming.md](brainstorming.md) | Idea and insight parking for loose dark-sector candidate notes that are not ready to become queue items, candidate packets, simulation targets, or corpus destinations. | Existing dark-sector, strong-field, cosmology, radiation, and app targets after a concrete promotion route is selected. |
-| [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | Working packet for black-hole-adjacent dark-sector photon-like modes, redshift-triggered reactions, visible-channel re-entry, CMB speculation, and Little Red Dot convergence tests. | [strong-field-closure](../strong-field-closure/priorities.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
+| [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | Working packet for black-hole-adjacent dark-sector photon-like modes, redshift-triggered reactions, visible-channel re-entry, CMB speculation, and Little Red Dot convergence tests. | [mapping-strong-field](../mapping-strong-field/priorities.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
 | [wimp-susy-benchmark.md](wimp-susy-benchmark.md) | Source-limited lane-native packet containing the Jungman WIMP benchmark vector and supersymmetry guardrail. | [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) and the candidate assembly registry |
 
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `dark_sector_photon_like_mode` | [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | [strong-field-closure](../strong-field-closure/priorities.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), or [CMB](../../../content/markdown/aaa/cosmology/CMB.md) | The packet states a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / reaction / re-entry criterion, and at least one discriminating observable. |
+| `dark_sector_photon_like_mode` | [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | [mapping-strong-field](../mapping-strong-field/priorities.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), or [CMB](../../../content/markdown/aaa/cosmology/CMB.md) | The packet states a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / reaction / re-entry criterion, and at least one discriminating observable. |
 | `candidate_assembly_registry` | This file and [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md#a1-dynamics), [noether-sea-pro-anti-coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), or [radiation](../../../content/markdown/aaa/reactions/radiation.md) | Candidate assemblies are described by explicit internal variables rather than analogy alone. |
 | `wimp_benchmark_vector` | [wimp-susy-benchmark.md](wimp-susy-benchmark.md) | [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) and this workstream | The arXiv source limitation is stated; $\mathcal{B}_{A}^{\mathrm{WIMP}}$ is restricted to relic abundance, scattering, annihilation, direct/indirect detection, and null-result constraints; no supersymmetry ontology is canonized. |
 | `axion_like_null_benchmark` | This file | [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) and the candidate assembly registry | Axion-like rows remain comparison residuals for neutral weak exposure, photon conversion, stellar cooling, abundance, spin/parity, and null-result limits; no axion ontology is assigned to the Noether sea. |
@@ -79,9 +79,9 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 
 ## Related Priorities
 
-- [strong-field-closure](../strong-field-closure/priorities.md)
-- [strong-field brainstorming](../strong-field-closure/brainstorming.md)
-- [cosmology-closure](../cosmology-closure/priorities.md)
+- [mapping-strong-field](../mapping-strong-field/priorities.md)
+- [strong-field brainstorming](../mapping-strong-field/brainstorming.md)
+- [mapping-cosmology](../mapping-cosmology/priorities.md)
 - braid
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 - [archived validation-gates](../dormant-deferred/validation-gates/priorities.md)

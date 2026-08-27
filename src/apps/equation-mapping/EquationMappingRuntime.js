@@ -33,6 +33,8 @@ import {
   resolveStandaloneAppHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
 import { createPanelCollapseIconSvg } from "../../runtime/PanelCollapseIcons.js";
+import { resolveEquationMappingReturnHref } from "../../runtime/EquationMappingNavigation.js";
+import { createEquationMappingSymbolTooltip } from "./EquationMappingSymbolTooltip.js";
 
 const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
 const SIZE_CALIBRATION_VERSION = 3;
@@ -883,7 +885,10 @@ export class EquationMappingRuntime {
     if (!this.root) {
       throw new Error("Missing #equation-mapping-app");
     }
-    this.handleResize = () => this.scheduleEquationLayout();
+    this.handleResize = () => {
+      this.symbolTooltip?.hide();
+      this.scheduleEquationLayout();
+    };
     this.handleKeyDown = (event) => this.handleDocumentKeyDown(event);
     this.handleHashChange = () => this.syncActiveDocumentFromLocation();
     this.window?.addEventListener?.("resize", this.handleResize);
@@ -894,6 +899,7 @@ export class EquationMappingRuntime {
   }
 
   destroy() {
+    this.symbolTooltip?.hide();
     this.window?.removeEventListener?.("resize", this.handleResize);
     this.window?.removeEventListener?.("keydown", this.handleKeyDown);
     this.window?.removeEventListener?.("hashchange", this.handleHashChange);
@@ -1016,6 +1022,7 @@ export class EquationMappingRuntime {
   }
 
   handleDocumentKeyDown(event) {
+    if (event?.key === "Escape") this.symbolTooltip?.hide();
     if (
       event?.defaultPrevented ||
       event?.altKey ||
@@ -1110,6 +1117,8 @@ export class EquationMappingRuntime {
   }
 
   render() {
+    this.symbolTooltip?.hide();
+    this.symbolTooltip = null;
     this.anchorElements = new Map();
     this.overlayElements = new Map();
     this.root.textContent = "";
@@ -1223,6 +1232,12 @@ export class EquationMappingRuntime {
 
   renderControls() {
     const controls = createElement(this.document, "div", "equation-mapping-controls");
+    const returnHref = resolveEquationMappingReturnHref(this.window?.location?.href);
+    if (returnHref) {
+      const returnLink = createElement(this.document, "a", "equation-mapping-return-link", "← Return to page");
+      returnLink.href = returnHref;
+      controls.append(returnLink);
+    }
     controls.append(
       this.renderIconButton("home", "Go to home", () => {
         navigateStandaloneAppHome(
@@ -1558,14 +1573,18 @@ export class EquationMappingRuntime {
       strip.append(createElement(this.document, "span", "equation-mapping-symbol-empty", "No variable symbols"));
       return strip;
     }
+    this.symbolTooltip = createEquationMappingSymbolTooltip({
+      document: this.document,
+      strip,
+      renderText: (parent, text) => appendInlineMathText(this.window, this.document, parent, text),
+    });
     this.activeDocument.symbols.forEach((symbol) => {
       const button = createElement(this.document, "button", "equation-mapping-symbol-chip");
       button.type = "button";
-      button.title = symbol.definition;
-      button.dataset.definition = symbol.definition;
-      button.setAttribute("aria-label", `${symbol.tex}: ${symbol.definition}`);
+      button.setAttribute("aria-label", symbol.tex);
       button.classList.toggle("is-active", symbol.id === this.activeSymbolId && this.referencePanelOpen);
       renderMath(this.window, button, symbol.tex, { displayMode: false });
+      this.symbolTooltip.bind(button, symbol.definition);
       button.addEventListener("click", () => {
         this.activeSymbolId = symbol.id;
         this.referencePanelOpen = true;

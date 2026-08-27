@@ -160,7 +160,7 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 
 - [app-animator](../dormant-deferred/app-animator/priorities.md)
 - [app-simulation](../app-simulation/priorities.md)
-- [strong-field-closure](../strong-field-closure/priorities.md)
+- [mapping-strong-field](../mapping-strong-field/priorities.md)
 
 ## Related AAA Notes
 

@@ -28,6 +28,19 @@ This is the canonical execution ledger for accepted App Solver work. [priorities
 11. `distributed_history_streaming_and_restart` — [EOM-011](#eom-011--distributed-history-streaming-and-restart). Status: `Deferred / blocked`.
 12. `million_path_performance_and_acceptance_gate` — [EOM-012](#eom-012--million-path-performance-and-acceptance-gate). Status: `Deferred / blocked`.
 
+## Discussion-scoped
+
+### EOM-013 — Safety-zone speed and accuracy assessment
+
+- **Status:** discussion-scoped; assessment only, implementation requires an operator decision.
+- **Priority object:** `architrino_safety_zone_assessment`; unranked pending an agreed operational scope, with the existing ranked next objects unchanged.
+- **Request / acceptance:** Consider a numerical safety or exclusion zone around each architrino as a possible way to simulate much faster. Compare the potential speed benefit with accuracy loss when an unchanged-law trajectory would enter the zone, and with the cost of detecting and handling entry. Treat speedup and acceptable accuracy as unmeasured hypotheses, not established benefits or a physical size assigned to an architrino.
+- **Operational questions:** Define the zone's shape, radius and any adaptive rule; distinguish separation at the same absolute time from receiver-to-delayed-emission separation; specify treatment of partner and self-history interactions. Define boundary equality, overlapping zones, and entry detection throughout a timestep, including interpolation uncertainty. Compare stopping or refining at entry with explicitly approximate continuation; select no clipping, softening, reflection, or omitted interaction by this task alone.
+- **Evidence / blocker:** No zone definition or speed/accuracy measurement is accepted. Inspect the actual close-approach and root-evaluation paths against the [evolution contract](contracts/evolution-contract-v1.md), distinguishing the proposed zone from existing certified block exclusion. Any later authorized experiment must use $c_f=1$, matched initial histories and simulated duration, measured wall time and resource use, and independently checked unchanged-law controls both with and without zone entry. Test smaller radii and tighter timesteps; report path, acceleration, root-accounting and downstream fate differences, and mark any altered continuation's claim boundary explicitly.
+- **Completion / falsifier:** Return a pros-and-cons assessment, a precise proposed operational definition, a reproducible comparison plan, and an operator decision to reject, defer, or authorize a bounded experiment. A later speed/accuracy claim fails if measured savings disappear after zone-handling costs, entries or roots are missed, or discrepancies exceed the declared accuracy budget. Implementation, contract changes, and braid-fate acceptance remain separately authorized work.
+
+Plainly: the task asks whether avoiding expensive close encounters is worth the information lost, and exactly what the solver would do when a path reaches the proposed zone. It does not assume that keeping paths outside the zone reproduces the original motion.
+
 ## In progress
 
 ### EOM-002 — Coupled retained-history integrator
@@ -43,8 +56,8 @@ This is the canonical execution ledger for accepted App Solver work. [priorities
 - **Status:** In progress
 - **Priority object:** `persistent_long_run_checkpoint_and_campaign_driver`
 - **Request / acceptance:** Keep exact retained histories resident, retire prefixes only under solver-owned causal-support certification, and provide checkpoint/resume, crash-surviving manifests, progress, cancellation, deterministic replay, and reusable campaign execution.
-- **Evidence / blocker:** Exact disk-backed history and clearance certification exist; general checkpoint/resume and campaign orchestration remain open. The [CT-004 restart factorization audit](../category-theory/ct004-eom-restart-factorization-audit.md) measured a concrete parity defect: the checkpoint bundle omits the adaptive controller's consecutive-growth-headroom count, so an exact-cut resume can change discrete step decisions and the complete retained-history fingerprint. Depends on EOM-002.
-- **Completion:** Preserve or lawfully reconstruct every continuation-critical controller field, including the growth-headroom count, and add an adaptive exact-cut regression. Interrupted and uninterrupted continuations must agree in discrete decisions and complete accepted records under the declared budget, with complete manifest and history provenance.
+- **Evidence / blocker:** Exact disk-backed history and clearance certification exist; general checkpoint/resume and campaign orchestration remain open. The concrete missing growth-memory defect found by the [CT-004 restart factorization audit](../category-theory/ct004-eom-restart-factorization-audit.md) is repaired and independently checked: checkpoint `v7` preserves the exact consecutive-headroom count, and diagnostic cuts after one, two and four accepted steps preserve the original horizon, later step decisions and complete retained-history tokens. The [repair receipt](work-log.md#2026-08-27--adaptive-growth-memory-checkpoint-repair) records 36 passing tests and 366 additional independent checks. Older incomplete checkpoint formats are explicitly rejected, not silently migrated. Restart cache-use telemetry remains different and is not claimed identical. General continuation-state sufficiency and campaign orchestration still depend on EOM-002.
+- **Completion:** Preserve or lawfully reconstruct every continuation-critical controller field beyond the now-checked growth-memory repair. Interrupted and uninterrupted continuations must agree in discrete decisions and complete accepted records under the declared budget, with complete manifest and history provenance.
 
 ### EOM-004 — Precision convergence and failure policy
 

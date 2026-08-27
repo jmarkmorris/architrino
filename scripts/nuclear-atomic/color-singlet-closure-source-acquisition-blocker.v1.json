@@ -112,7 +112,7 @@
       "boundary": "The confinement source target preserves the ledger component shape but is not accepted color-singlet closure evidence."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "usableFor": [
         "hard color-singlet closure benchmark pressure",
         "no-free-color recovery burden",
