@@ -59,6 +59,28 @@ The winning row is certified separately at 65,536 uniform cycle phases. Let $B_\
 
 Plainly: the search chooses one reproducible interior example and then proves continuous clearance with a derivative bound. Slow cadence is selected from the declared speed enclosure, not from a favorable sampled speed. Neither choice makes the row canonical or dynamically retained.
 
+### F5 EOM root-pilot freeze
+
+The immutable F5 source hash is `bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344`, and its twelve worldline IDs, polarities, and source order are the only admitted row. A candidate-specific C++ adapter may independently reconstruct the owner map and materialize the declared `piecewise-cubic-hermite/v0` history at maximum segment width `0.02`; it may call the production `certify_exact_pair_batch` API but may not modify that API or the already-landed JavaScript independent-conformance reference. The retained window at every reception is exactly one normalized time unit, `c_f=1`, root tolerance `1e-8`, root depth `192`, cell limit `300000`, MPFR ladder `128`--`512` bits, and eight workers.
+
+The reception ladder is 8, 32, then 128 uniform phases on $[0,T)$, where $T=19.63359163663986$. Every rung evaluates all $12^2=144$ ordered source--target rows, including self histories, on the periodic continuation over $[t-1,t]$. A rung passes only when every certificate is `certified_complete`, has a root-free complement, has no memory-boundary contact, every non-self row has at least one positive-delay ordinary root with strictly positive transmitter- and receiver-factor margins, and every self row owns the coincident endpoint exclusion without an unclassified ordinary event. The run stops at the first failed row, exceeded solver resource limit, projected final-rung wall time above thirty minutes, or mismatch against the frozen identities/order. Heartbeats report rung, phase, certified/required rows, elapsed time, output path, and failure count at intervals below sixty seconds.
+
+The first implementation rung uses the nominal cubic interpolant with zero analytic interpolation-error width and a `1e-12` token-roundoff enclosure, and is therefore an interoperability pilot only. It cannot change `H3`, `M02`, or any score even if all rows pass. Promotion requires a separately checkable interpolation enclosure that binds every cubic segment to the analytic prescribed history without changing the root solver or its independent reference. A failed nominal rung is already a valid scoped blocker because adding enclosure width cannot repair a nominal root-certification failure.
+
+Plainly: this pilot asks whether the EOM root engine can account for every delayed interaction on a faithful, finely segmented nominal copy of the F5 path. Success identifies the remaining interpolation-proof burden; failure identifies a concrete row the current path or solver cannot certify.
+
+The analytic-enclosure follow-on is frozen before its result. A standalone JavaScript instrument, importing neither the prescribed-worldline operator nor the C++ adapter, will implement outward-rounded interval arithmetic and factorial-normalized Taylor arithmetic through order four. Primitive controls must enclose the exact fourth derivatives of constants, polynomials, `sin`, `cos`, reciprocal, and positive square root before the F5 map is admitted. The instrument evaluates all twelve independently reconstructed member maps on every adapter segment over `[-1,T]`, records per-member and per-axis fourth-derivative upper bounds, and takes their global maximum $M_4$. With maximum segment width $h=0.02$, the admitted Hermite widths are
+
+$$
+\varepsilon_x=\frac{M_4h^4}{300}+64\epsilon_{64}\max(1,R),
+\qquad
+\varepsilon_v=\frac{M_4h^3}{8}+64\epsilon_{64}\max(1,V),
+$$
+
+where $R=0.45$ is the declared display envelope, $V=0.5$ is the already-derived speed enclosure, and the denominators deliberately match or exceed the conservative EOM circular-history convention. A dense independent residual check at 65,536 points per member must lie inside both widths, but that sampled agreement is only a bug detector; the interval derivative enclosure supplies the derived authority. The C++ adapter may then replace its token-only widths by these frozen values and repeat the unchanged 8/32/128 root ladder. Any primitive-control failure, nonpositive square-root interval, infinite interval, dense residual escape, or root-row failure stops promotion and leaves `H3 U`.
+
+Plainly: the follow-on proves how far the exact analytic path can depart from each cubic segment, then asks the unchanged root solver to remain complete despite that allowed departure. This is the missing bridge from a successful nominal copy to the declared prescribed history.
+
 ## Live candidate closure matrix
 
 The source hash binds the exact JSON source and therefore its full stable member order where an executable specification exists. `Parameterized` means that the mathematics exists but at least one numerical or identity field is still campaign-selected. Runtime estimates are initial envelopes and must be replaced by measured pilots before longer work.

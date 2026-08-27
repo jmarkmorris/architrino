@@ -315,6 +315,57 @@ Plainly: the carrier is well behaved only while the endpoint is excluded. It rec
 
 Claim grade: **derived regular-chart identity and derived allocation obstruction on the stated measure classes; inferred choice of the graph carrier as an observation representation; no constitutive meaning adopted**. The regular equivalence is falsified by a certified injective branch with nonzero $D_t,D_r$ whose independently calculated pushforward differs from $\mathbf K/|D_t|$. The countable-additivity claim is falsified if disjoint receiver-time sets have overlapping source preimages on the declared injective chart. The allocation obstruction is falsified by a receiver-independent nonnegative finite source measure whose restrictions give the displayed finite receiver-interval debits, remain countably additive for arbitrarily many receivers, preserve the canonical regular row, and add no scale or postulate. The endpoint classification is falsified by a finite-Radon closed-endpoint extension agreeing with every exact truncation despite the recorded divergent total variation. The stationary two-receiver control and the exact change-of-variables identity are closed-form analytic references independent of any implementation.
 
+### 2.3 Finite receiver-independent allocation no-go
+
+The preceding two-receiver obstruction extends to arbitrary finite receiver sets without choosing a density or a particular direction partition. Fix a nonzero source-clock interval $I$ and let $\mu_I$ be a receiver-independent nonnegative source-account measure with finite capacity
+
+$$
+C_I=\mu_I(I\times\mathbb S^2)<\infty.
+$$
+
+For a regular reception in direction $\boldsymbol\omega$, write $Q_I(\boldsymbol\omega)\geq0$ for the source-account debit assigned to that reception. Impose four conditions: the debit depends only on the source label and the local source--receiver hit data, not on other receivers or their ordering; every admitted nonzero canonical reception receives a positive debit; adding receivers does not change an already assigned debit; and every finite compatible direction set $F\subset\mathbb S^2$ obeys the no-double-booking bound
+
+$$
+\sum_{\boldsymbol\omega\in F}Q_I(\boldsymbol\omega)\leq C_I.
+$$
+
+Plainly: one fixed emitted account must pay the same local claim whether a receiver is considered alone or alongside other receivers, and all simultaneous claims together must fit within the finite account.
+
+**Theorem (finite universal point-allocation no-go).** No allocation can satisfy all four conditions while preserving the universal regular canonical reception row. If $C_I=0$, positive debit already contradicts the finite-sum bound. If $C_I>0$, define
+
+$$
+U_n
+=
+\{\boldsymbol\omega:Q_I(\boldsymbol\omega)\geq C_I/n\},
+\qquad n=1,2,\ldots .
+$$
+
+Each $U_n$ has at most $n$ members, since any $n+1$ of them would have total debit greater than $C_I$. Every direction with positive debit belongs to some $U_n$, so $\{\boldsymbol\omega:Q_I(\boldsymbol\omega)>0\}=\bigcup_{n=1}^{\infty}U_n$ is at most countable.
+
+Plainly: varying the debit by direction does not solve the problem. A finite account can support positive receiver-independent point debits in only countably many directions.
+
+The exact $c_f=1$ prescribed-history control supplies the incompatible continuum. Keep the source stationary at the origin and, for any finite selection of distinct directions $\boldsymbol\omega_k$, place otherwise identical stationary receivers at $R\boldsymbol\omega_k$. On every source-to-receiver channel,
+
+$$
+S_k(T)=T-R,
+\qquad
+D_{t,k}=D_{r,k}=1,
+\qquad
+\lVert\mathbf A_k\rVert
+=
+\frac{|\kappa q_jq_k|}{R^2}.
+$$
+
+Thus every direction is a regular nonzero canonical reception direction, and every finite subset is an admissible source-to-receiver test set. Universal positive debit would make the positive-debit set all of $\mathbb S^2$, contradicting the countability result. With rotation covariance, the contradiction sharpens further: identical local scalar data give one common positive debit $q(I,R)$, while no-double-booking requires $Nq(I,R)\leq C_I$ for every finite $N$.
+
+Plainly: an unchanged universal wake can be observed at any number of directions, but a finite source account cannot be spent positively and independently at every one of those observations. Calling each observation a transfer copies the debit when receivers are added.
+
+This is a no-go only for a **finite, nonnegative, receiver-independent, depleting point-reception account with arbitrary finite multi-receiver consistency**. It does not rule out the nondepleting observation carrier of Section 2.2; receiver-set-dependent repartition; depletion or shadowing that changes later canonical reception; finite receiver patches with a new cross-section and overlap law; a derived bound on the compatible receiver population; an infinite account; signed bookkeeping that is not a nonnegative capacity; or a separate replenishment and account-channel law. Each escape changes or supplements at least one theorem assumption and therefore remains constitutive work rather than a construction supplied by the canonical regular row.
+
+Plainly: the strict allocation object is ruled out, not MEC-002 as a whole. Progress now requires a derived reason to relax one named assumption and an update law showing what replaces it.
+
+Claim grade: **derived no-go theorem on the stated allocation class**. Its independent reference is the exact stationary prescribed-history control above; no implementation output enters the proof. The theorem is falsified by a finite nonnegative receiver-independent account and positive point-debit rule that obey the finite-sum bound for every compatible finite receiver set while retaining the unchanged regular canonical source-to-receiver row, or by an accepted $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation that forbids the arbitrarily large finite receiver controls used in the proof. MEC-002 remains `In progress`: allocation by universal positive point debit is closed negatively, while the replacement account, reception transfer, maturity, emission law, boundary flux, and one-sided uniqueness remain open.
+
 ## 3. Coincident-birth requirement
 
 On

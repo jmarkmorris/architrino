@@ -8,7 +8,7 @@
 - **Execution interface:** `mapping-equations`, especially `EQ-30` and the shared finite-window statistical carrier, owns any executable history-to-scattering projection and residual.
 - **Excluded claims:** the amplituhedron is not substrate ontology, a retained Noether braid, a replacement Master Equation, evidence for a retained scattering carrier, or evidence that locality, unitarity, supersymmetry, planarity, momentum twistors, or quantum amplitudes have been recovered by $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-This packet captures the initial 2026-08-26 inquiry about what the amplituhedron is, whether it may relate to $\mathbb{A}\mathbb{A}\mathbb{A}$, what its originating research program calls the underlying theory, whether it should become a theory-mapping target, and whether it warrants a standalone priority lane.
+This packet captures the initial 2026-08-26 inquiry about what the amplituhedron is, whether it may relate to $\mathbb{A}\mathbb{A}\mathbb{A}$, what its originating research program calls the underlying theory, why scattering science is performed, what the modern amplitudes program is trying to achieve, whether the amplituhedron should become a theory-mapping target, and whether it warrants a standalone priority lane.
 
 ## Source Concept and Terminology
 
@@ -19,6 +19,8 @@ The primary starting points are:
 - Nima Arkani-Hamed, Jacob Bourjaily, Freddy Cachazo, Alexander Goncharov, Alexander Postnikov, and Jaroslav Trnka, [Scattering Amplitudes and the Positive Grassmannian](https://arxiv.org/abs/1212.5605).
 - Nima Arkani-Hamed and Jaroslav Trnka, [The Amplituhedron](https://arxiv.org/abs/1312.2007).
 - Nima Arkani-Hamed, Yuntao Bai, and Thomas Lam, [Positive Geometries and Canonical Forms](https://arxiv.org/abs/1703.04541).
+- Nima Arkani-Hamed, Tzu-Chen Huang, and Yu-tin Huang, [Scattering Amplitudes For All Masses and Spins](https://arxiv.org/abs/1709.04891).
+- Nima Arkani-Hamed, Hadleigh Frost, Giulio Salvatori, Pierre-Guy Plamondon, and Hugh Thomas, [All Loop Scattering As A Counting Problem](https://arxiv.org/abs/2309.15913).
 
 For positive external kinematic data $Z$, the tree amplituhedron is obtained schematically as the image
 
@@ -35,6 +37,105 @@ Plainly: the amplituhedron is not a material object in spacetime. It packages al
 Different triangulations of the positive geometry provide different intermediate representations of the same canonical form. Internal triangulation boundaries are not physical and must cancel, while external physical boundaries carry the permitted singularities and residues. This is the precise sense in which locality and unitarity can emerge from the positive geometry rather than appear as manifest starting ingredients of that representation.
 
 Plainly: different valid decompositions may look very different during a calculation, but the final physical boundary structure is independent of that bookkeeping. This does not by itself show that spacetime, locality, or causal dynamics is absent from nature.
+
+## What Scattering Science Is
+
+**Observer-level role:** scattering science prepares a known incoming configuration, lets the constituents interact, and records the distribution of outgoing configurations. The central comparison object is the scattering matrix $S$, which maps an asymptotic incoming state to an asymptotic outgoing state,
+
+$$
+\lvert \mathrm{out}\rangle
+=
+S\lvert \mathrm{in}\rangle.
+$$
+
+Its matrix elements are scattering amplitudes. After the preparation flux, final-state phase space, unresolved alternatives, and detector response are supplied, squared amplitudes determine observable event rates and differential cross sections schematically through
+
+$$
+d\sigma_{a\to b}
+=
+\frac{1}{\mathcal F}
+\left|\mathcal M_{a\to b}\right|^2
+d\Pi_b.
+$$
+
+Plainly: the experiment counts what comes out after specified things are sent in. The amplitude is the theory's compact prediction for the alternatives and their interference; the cross section is the calibrated event rate that experiments can compare with data.
+
+Scattering is scientifically valuable because a controlled collision can expose structure that is inaccessible to direct imaging. Varying incoming species, energy, momentum transfer, polarization, angle, and target state asks different questions of the same system. The resulting rates and distributions can:
+
+1. resolve whether an apparently elementary object has internal spatial or dynamical structure through form factors and inelastic channels;
+2. identify interaction channels, coupling strengths, selection rules, and conserved quantities;
+3. reveal transient or metastable states through poles, resonance widths, and branching fractions;
+4. test symmetry relations and factorization across many processes;
+5. determine where an effective description succeeds or breaks down; and
+6. expose new particles, interactions, or compositeness through reproducible departures from a fixed prediction.
+
+This experimental purpose is explicit in CERN's description of collider research: accelerators and detectors test the predictions and limits of the Standard Model, analyze the particles produced in collisions, and pursue unresolved questions about the fundamental structure of matter. See [CERN Physics](https://home.cern/science/physics/) and [The Large Hadron Collider](https://home.cern/science/accelerators/large-hadron-collider/).
+
+Plainly: scattering turns “what is this object and how does it interact?” into a controlled input-output experiment. It is powerful because one hypothesized internal mechanism must survive many energies, angles, channels, and detector arrangements without being retuned separately for each one.
+
+Scattering also has a boundary as evidence. An $S$-matrix describes prepared incoming and outgoing records, often using an idealization of states far before and after the interaction. It does not uniquely reveal what happened inside the interaction window, and different microscopic accounts can agree on the same measured amplitudes over a limited regime. Scattering data therefore constrain substrate dynamics sharply but do not, by themselves, prove a unique substrate ontology.
+
+## What the Scattering-Amplitudes Program Is Trying to Achieve
+
+The modern amplitudes program has both practical and foundational aims.
+
+### Direct and Efficient Calculation
+
+Feynman diagrams make locality and perturbative unitarity manifest, but they introduce large amounts of intermediate redundancy. Individual diagrams depend on gauge choices, off-shell variables, or artificial decompositions that cancel only after many terms are summed. The amplitudes program seeks formulations that work directly with physical on-shell data, expose cancellations before brute-force expansion, and make otherwise impractical calculations tractable.
+
+Plainly: the aim is to compute the measurable answer without carrying every bookkeeping variable that disappears from the answer.
+
+### Classification by Consistency
+
+On-shell methods ask which amplitudes are compatible with declared symmetries, particle masses and spins, factorization, and unitarity. Three-point amplitudes provide elementary building blocks; consistent residues constrain four-point and higher amplitudes. This can classify allowed interactions and recover familiar field-theory structures from consistency of observable scattering data rather than from a preselected Lagrangian description.
+
+Plainly: instead of proposing every possible microscopic equation and calculating its consequences, one asks which observable interaction patterns can fit together consistently at all channel boundaries.
+
+### Expose Hidden Mathematical Structure
+
+The exceptional simplicity and hidden symmetries of final amplitudes suggest that conventional diagrams are not the most economical representation. Positive Grassmannians, on-shell diagrams, cluster-like structures, combinatorics, and positive geometries are attempts to identify the mathematical object whose canonical data is the amplitude. In the amplituhedron, physical poles and factorization residues arise as boundaries, while spurious boundaries introduced by a triangulation cancel.
+
+Plainly: they are looking for the geometry or combinatorial rule that makes the final answer inevitable, rather than treating its simplicity as a miraculous cancellation among thousands of diagram terms.
+
+### Make Locality and Unitarity Derived Features
+
+The original amplituhedron proposal explicitly seeks a formulation in which locality and unitarity are not the central manifest inputs but arise together from positive geometry. This is a statement about reconstructing scattering amplitudes in the declared theory and regime. It is not yet a universal derivation of physical spacetime, quantum mechanics, or the real-world Standard Model.
+
+Plainly: the ambition is not merely a faster calculator. It is to discover whether principles that look fundamental in ordinary quantum field theory are consequences of a deeper mathematical organization.
+
+### Reach Beyond the Special Model
+
+Planar $\mathcal N=4$ super-Yang--Mills theory is an unusually symmetric laboratory, not the observed particle theory. Later work extends on-shell methods to particles of general mass and spin and explores positive or combinatorial formulations in broader theories. The 2023 all-loop counting program describes its longer-term aim as formulating real-world fundamental physics in a radically new language in which locality and unitarity emerge from deeper structures. That is a research objective, not an accomplished reformulation of the full Standard Model or quantum gravity.
+
+Plainly: the special theory is where the hidden organization is easiest to see. The larger project is to determine which parts survive when supersymmetry and planarity are removed and realistic particles and interactions are restored.
+
+The same positive-geometry impulse has also been explored for cosmological wavefunctions, where asymptotic scattering states are not the whole problem. Cosmological polytopes provide an example of extending the geometric program beyond the flat-space scattering matrix, but only in declared model classes; see [Cosmological Polytopes and the Wavefunction of the Universe](https://arxiv.org/abs/1709.02813). This extension reinforces the program's foundational ambition while also showing that the amplituhedron itself is not the universal object for every physical setting.
+
+## Why Scattering Is a High-Value $\mathbb{A}\mathbb{A}\mathbb{A}$ Recovery Target
+
+Scattering is unusually demanding for $\mathbb{A}\mathbb{A}\mathbb{A}$ because it joins ontology, dynamics, coarse-graining, and measurement in one test. A successful account must carry source assemblies and their identities into a finite causal interaction window; resolve transient assemblies, wake and Noether sea exchange, recoil, and remnant channels; produce admissible outgoing histories; define a preparation measure and detector kernel; and recover rates, angular distributions, polarization behavior, thresholds, resonances, and factorization from that same record.
+
+A defensible recovery ladder is
+
+$$
+\mathcal H_{\mathrm{substrate}}
+\longrightarrow
+\mathcal E_{\mathrm{event}}
+\longrightarrow
+\mu_{\mathrm{out}}
+\longrightarrow
+\left(\mathcal M,\sigma,F,\Gamma\right)
+\longrightarrow
+\Omega(\mathcal A)
+$$
+
+only when each arrow is defined and validated. Here $\mathcal E_{\mathrm{event}}$ is the finite interaction ledger, $\mu_{\mathrm{out}}$ is the prepared and detector-conditioned outcome measure, $\mathcal M$ is an effective amplitude, $\sigma$ is a cross section, $F$ is a form factor, $\Gamma$ is a decay or resonance-width record, and $\Omega(\mathcal A)$ is an optional positive-geometry representation in a regime where such a geometry is independently known.
+
+Plainly: the amplituhedron belongs at the far end of the recovery chain. It can test whether a derived scattering description has the correct global organization, but it cannot supply the missing assemblies, causal histories, outcome measure, or detector response at the earlier stages.
+
+This makes scattering a strong anti-retuning test. One accepted retained carrier should account jointly for total and differential rates, allowed and forbidden channels, physical poles, residues, form factors, polarization and spin dependence, resonance behavior, and detector-conditioned event classes. A model that fits each row with a separate effective parameter has not recovered the common physical process.
+
+The mapping target is therefore stronger than numerical agreement with one cross section. The result must explain why the allowed outcome space has its observed boundaries and why the measure on that space has the observed amplitude structure. Positive geometry is valuable precisely because it tests both support and boundary organization; it remains optional unless a source-derived $\mathbb{A}\mathbb{A}\mathbb{A}$ map actually lands there.
 
 ## Relation to the Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
@@ -151,12 +252,14 @@ Reconsider a standalone lane only after the four-point packet establishes a sour
 
 ## Discussion Record — 2026-08-26
 
-The discussion reached four durable conclusions:
+The discussion reached six durable conclusions:
 
 1. The amplituhedron is a positive-geometric formulation, not a physical theory distinct from planar $\mathcal N=4$ super-Yang--Mills theory.
 2. Its most promising relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is as an observer-level target for the pushforward of retained deterministic scattering histories, not as substrate ontology.
 3. The strongest first test is four-point factorization with a physical intermediate-assembly boundary, one wrong-channel falsifier, and spurious-boundary cancellation.
 4. The work should remain a focused packet under `quantum-closure`, with executable ownership in `mapping-equations`, until a nontrivial result justifies a dedicated lane.
+5. Scattering science is performed because controlled incoming states and measured outgoing distributions jointly probe internal structure, interaction channels, transient states, symmetries, and the breakdown of effective descriptions.
+6. The amplitudes program is trying to calculate directly from physical on-shell data, classify consistent interactions, expose the hidden geometry or combinatorics of amplitudes, and determine whether locality and unitarity can be recovered as consequences of deeper structure; extension to real-world physics remains an open research objective.
 
 ## Promotion Target and Next Artifact
 

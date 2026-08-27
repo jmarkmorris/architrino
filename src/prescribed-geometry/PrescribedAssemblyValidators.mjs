@@ -73,8 +73,8 @@ function validateF6b(spec) {
 function validateF5(spec) {
   requireCandidate(spec, "F5", 12, "f5-phase-varying-member.v1");
   requirePolarityCounts(spec, 6, 6);
-  if (spec.identity.status !== "campaign-scoped-provisional-representative") {
-    throw new TypeError("F5 revised history must remain a campaign-scoped provisional representative.");
+  if (spec.identity.status !== "operator-approved-prescribed-display") {
+    throw new TypeError("F5 revised history must remain the operator-approved prescribed display representative.");
   }
   if ((spec.relationships.pairings ?? []).length !== 6) {
     throw new TypeError("F5 requires six declared polarity-conjugate dyads.");

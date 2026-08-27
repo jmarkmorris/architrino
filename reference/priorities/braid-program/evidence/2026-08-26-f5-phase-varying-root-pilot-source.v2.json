@@ -1,25 +1,25 @@
 {
   "schema": "prescribed-assembly-spec.v2",
   "specId": "f5-phase-varying-campaign-v2",
-  "label": "F5 — phase-varying prescribed display history",
-  "provenanceDescription": "Operator-approved twelve-member revised F5 prescribed display history selected by the frozen bounded guard-margin search. It is an executable input and prescribed visualization, not EOM evolution, binding, return under ordinary evolution, retention, stability, particle identity, or physical realization.",
+  "label": "F5 — campaign-scoped phase-varying history",
+  "provenanceDescription": "Campaign-scoped twelve-member revised F5 prescribed history selected by the frozen bounded guard-margin search. It is an executable input and display-only history, not an operator-approved representative and not EOM evolution, binding, return under ordinary evolution, retention, stability, particle identity, or physical realization.",
   "claimGrade": "chart-hypothesis",
   "evidenceStatus": "display-only",
   "date": "2026-08-26",
   "identity": {
     "candidateId": "F5",
-    "displayLabel": "F5 — phase-varying prescribed display representative",
-    "status": "operator-approved-prescribed-display",
+    "displayLabel": "F5 — provisional phase-varying campaign row",
+    "status": "campaign-scoped-provisional-representative",
     "geometryOwner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#the-revised-f5-history-has-one-registered-member-operator"
   },
   "illustrativeCoordinates": {
-    "status": "operator-selected-display-only-representative",
+    "status": "campaign-scoped-bounded-search-selection",
     "choices": [
       "The frozen search fixed h=0.31, rho_1=0.30, rho_2=0.22, A_+=0.24, A_-=0.27, and the standard right-handed frame.",
       "All 64 branch sheets and the predeclared relative-phase grids were evaluated; the selected branch row is (-1,-1,+1,-1,-1,+1) with negative-sector phase 3.0434178831651124.",
       "The common resultant frequency 0.3200222059958718 makes the owner-derived conservative maximum speed exactly 0.5 in normalized c_f=1 units.",
       "The continuous point-clearance lower bound is 0.12014843873518877 and the retained-history depth 1 exceeds the centered-radius delay bound 0.8627861844049196.",
-      "The operator approved this exact bounded-search row as F5's prescribed display-only representative on 2026-08-26."
+      "This row is provisional campaign input, not a canonical display or registry representative."
     ]
   },
   "constituents": [
@@ -57,7 +57,7 @@
     "reconstruction": {
       "operator": "f5-phase-varying-exact-member-map.v1",
       "owner": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md#the-revised-f5-reconstruction-places-all-twelve-members",
-      "representativeSelection": { "authority": "operator", "approvedDate": "2026-08-26", "choice": "phase-varying-bounded-search-row", "selectionProvenance": "campaign-scoped-bounded-guard-margin-search", "predeclarationSha256": "c1d3f1cb4242400dc2a161811dd637b20acceb99dfd3000c0ca2b88017850bdb", "rawRecord": ".local-data/braid-analysis/2026-08-26-complete-registry-closure/f5-phase-varying-guard-search.v1.json" }
+      "representativeSelection": { "authority": "campaign", "predeclarationSha256": "c1d3f1cb4242400dc2a161811dd637b20acceb99dfd3000c0ca2b88017850bdb", "rawRecord": ".local-data/braid-analysis/2026-08-26-complete-registry-closure/f5-phase-varying-guard-search.v1.json" }
     }
   },
   "relationships": {
@@ -92,5 +92,5 @@
   },
   "display": { "responseCenter": [0, 0, 0], "sphericalEnvelopeRadius": 0.45, "trailPeriods": 1, "ansatzSampleCount": 192 },
   "interpolation": { "rule": "piecewise-cubic-hermite/v0", "interval": 0.02, "errorMethod": "sampled-hermite-residual-bound/v1", "positionDivisor": 300, "velocityDivisor": 8, "roundoffMultiplier": 64 },
-  "compatibility": { "retainedIdentifiers": [{ "kind": "campaign-predeclaration", "value": "c1d3f1cb4242400dc2a161811dd637b20acceb99dfd3000c0ca2b88017850bdb", "reason": "bind the selected row to the frozen all-branch guard search" }, { "kind": "operator-selected-display-row", "value": "f5-phase-varying-bounded-search-row-v1", "reason": "preserve the prescribed display representative approved by the operator on 2026-08-26" }] }
+  "compatibility": { "retainedIdentifiers": [{ "kind": "campaign-predeclaration", "value": "c1d3f1cb4242400dc2a161811dd637b20acceb99dfd3000c0ca2b88017850bdb", "reason": "bind the provisional row to the frozen all-branch guard search" }] }
 }
