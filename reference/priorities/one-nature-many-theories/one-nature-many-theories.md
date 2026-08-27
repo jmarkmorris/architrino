@@ -2,7 +2,7 @@
 
 *Domain Models, Effective Bridges, and the Unfinished Work of Unification*
 
-**Status:** Local working draft for historical, philosophical, and mathematical development. This document is not reader-facing canon and does not change any theory claim, priority rank, or recovery status.
+**Status:** Priority-stage source draft and promotion provenance. The reader-facing owner is [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md). This document does not change any theory claim, priority rank, or recovery status.
 
 ## Purpose
 
@@ -231,18 +231,18 @@ The [first eight-row evidence matrix](evidence-backed-bridge-matrix.md) now span
 
 Three results govern the wider argument. First, forward predictive control and reverse reconstructability must be assessed separately. Second, a single bridge may mix derivation, numerical transport, calibration, nuisance modeling, and measured inputs, so its fields require separate claim grades. Third, the network cannot be represented by one scale axis: logarithmic zooming describes several important bridges, but record selection, weak-field reduction, statistical inversion, and the classical-quantum geometry interface have different structures.
 
-## Document Ownership and Relocation Plan
+## Document Ownership After Promotion
 
-This draft should remain the local owner of the cross-domain thesis until its bridge matrix and historical evidence are mature enough for reader-facing promotion. The likely corpus destination is `content/markdown/aaa/philosophy-history/one-nature-many-theories.md`, but promotion should occur only after source verification and a dedicated editorial pass.
+The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter owns the cross-domain thesis, formal bridge audit, evidence-backed network, logarithmic chutes-and-ladders metaphor, scale-continuity equations, and fairness boundaries. This draft remains the priority-stage source and editorial provenance record.
 
-The completed [Weyl ownership split packet](weyl-ownership-split-packet.md) assigns the current [Weyl gauge episode](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object) to a focused historical near-miss. Its 1918 and 1929 history, Einstein's objection, the etymology of *gauge*, the phase reconstruction, the convention-versus-observable distinction, and the bounded gauge-origin question remain there. The broader material on renormalization, effective field theory, Fermi matching, logarithmic chutes and ladders, cross-scale information loss, reverse fibers, and constituent-continuity equations belongs here once this document is promoted.
+The executed [Weyl ownership split packet](weyl-ownership-split-packet.md) leaves the [Weyl gauge episode](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object) as the focused historical near-miss. Its 1918 and 1929 history, Einstein's objection, the etymology of *gauge*, the phase reconstruction, the convention-versus-observable distinction, and the bounded gauge-origin question remain there. The broader material on renormalization, effective field theory, Fermi matching, logarithmic chutes and ladders, cross-scale information loss, reverse fibers, and constituent-continuity equations now resides only in the promoted network chapter.
 
-[Theory Mapping](../../../content/markdown/aaa/philosophy-history/theory-mapping.md) should remain the inventory of inherited theories. Its regime-capture warning can later point readers to the promoted version of this essay, but the matrix entries themselves should not be relocated here. [Gauge Structure Emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) and [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) should remain where they are because they own mechanism and recovery, not the philosophy of theory pluralism.
+[Theory Mapping](../../../content/markdown/aaa/philosophy-history/theory-mapping.md) remains the inventory of inherited theories and now points readers to the promoted network audit. [Gauge Structure Emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) and [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) remain the mechanism and recovery owners rather than the philosophy of theory pluralism.
 
 The detailed provisional syntheses now live in this lane's [brainstorming file](brainstorming.md). [Cross-Workstream Theory Questions](../aaa-work-threads/brainstorming.md#one-nature-many-theories-routing) and [Standard Model Closure brainstorming](../standard-model-closure/brainstorming.md#one-nature-many-theories-routing) retain short routing notes so that this directory is the sole local owner of the wider argument.
 
 ## Current Completion Boundary
 
-This draft now establishes the thesis, fairness boundaries, bridge taxonomy, common-source diagram, gauge and scale examples, first evidence-backed network, and exact Weyl relocation plan. It does not provide an exhaustive history of effective-theory practice, a catalog of every domain, or evidence that every handoff is incomplete. The representative matrix instead shows, case by case, which bridge components are controlled and which common-history burdens remain open.
+The source-backed thesis, fairness boundaries, bridge taxonomy, common-source diagram, gauge and scale examples, representative network, and exact Weyl ownership split have been promoted and routed into the reader-facing corpus. The work remains representative rather than exhaustive and does not establish that every handoff is incomplete.
 
-**Next artifact:** complete ONMT-003 by reviewing the source-backed chapter against reader-facing standards and either executing the snapshot-rechecked split atomically or recording a bounded blocker list.
+**Next artifact:** none. New bridge certificates or extensions should enter this lane only when a specific scientific or historical claim requires them.

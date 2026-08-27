@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history__one_nature_many_theories",
+    "title": "One Nature, Many Theories",
+    "type": "Scene-Markdown-Tree",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "one_nature_many_theories_central_thesis",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "central thesis": {
+            "id": "one_nature_many_theories_central_thesis",
+            "labelTitle": "Central Thesis",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "an evidence backed bridge network": {
+            "labelTitle": "Bridge Network"
+          },
+          "a formal audit of the theory network": {
+            "labelTitle": "Formal Audit"
+          },
+          "logarithmic chutes and ladders": {
+            "labelTitle": "Chutes and Ladders"
+          },
+          "framework unification versus full theory closure": {
+            "labelTitle": "Full Theory Closure"
+          },
+          "fairness boundaries and claim grades": {
+            "labelTitle": "Fairness / Claims"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}

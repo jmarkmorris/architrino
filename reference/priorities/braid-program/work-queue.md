@@ -11,6 +11,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
+8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Awaiting verification`.
 
 ## All-Candidate Evaluation Disposition Register
 
@@ -29,7 +30,7 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 | `F5` declared two-ring realization | `DEMOTED` | No execution queued | materially repaired nonobstructed chart or regulator-independent coordinate-coincidence continuation |
 | `F6` | `STASIS` | No separate campaign queued | materially distinct continuation with its own exact chart |
 | `F6b` circular realization | `DEMOTED` | No repair campaign queued | new direction-bearing path or inventory and fresh admission audit; no rescaling or exhausted repair |
-| `F6c` | `STASIS` | No continuation queued | materially different coordinated-turn/full-root predeclaration or independent normalized member-acceleration packet; do not continue radial-frequency tuning |
+| `F6c` | `STASIS` | `BP-010` awaiting verification; no execution authorized | verify and implement the [same-generation normalized member-acceleration predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md); alternatively predeclare a materially different coordinated-turn/full-root campaign; do not continue radial-frequency tuning |
 | Both accessory-bearing continuations | `STASIS` | No accessory campaign queued | named base-braid `H5` certificate |
 
 The shared metric prerequisite is partially closed: future `M07`, A3/SD3 `M08`, and `M10`--`M13` packets have an accepted centered-RMS ruler, wake-crossing clock, and same-event exact-action reporting boundary. Nonbinary `M09` remains blocked on a candidate-native continuous lift coordinate or independently justified canonical reference path. Existing records are not backfilled.
@@ -127,6 +128,13 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 No rows.
 
 ## Awaiting verification
+
+### BP-010 — F6c normalized member-acceleration predeclaration
+
+- **Status:** Awaiting verification
+- **Priority object:** `f6c_normalized_member_acceleration`
+- **Result:** The [predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) binds `M05/M06` to the same refined dual-turn evidence generation that supplies the current F6c `M02`--`M04` and `M08` rows. It freezes the exact run identity, centered-RMS ruler, full $[0,0.13]$ interval, independent reference boundary, three-rung refinement ladder, fail-closed rules, falsifiers, and excluded claims.
+- **Review boundary:** Verification may accept or return the measurement contract. The packet does not authorize execution, make a metric available, change the F6c score or `STASIS` disposition, continue radial-frequency tuning, or close `H5`.
 
 ### BP-009 — B1.1 score-landscape manifest freeze
 

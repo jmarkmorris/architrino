@@ -20,16 +20,17 @@ Find and certify architrino braid configurations that are genuine solutions of t
 
 ## Directory Layout and Document Classes
 
-The main directory stays small. Four document classes with different lifecycles:
+The main directory stays small. Five document classes have different lifecycles:
 
 | Class | Files | Rule |
 | --- | --- | --- |
 | Live state | [priorities.md](priorities.md) | One page. Rewritten forward-only. The only file an agent must read to join the program. |
 | Reference | this charter, [candidate-registry.md](candidate-registry.md), [method.md](method.md), [configuration-chart.md](configuration-chart.md) | Current policy and definitions. The candidate registry is the master name/status/next-action index; detailed geometry and evidence remain with their owners. Rewritten forward-only when policy changes. |
-| Append-only logs | [work-log.md](work-log.md), [brainstorming.md](brainstorming.md) | Dated entries, never rewritten. |
+| Editable synthesis | [brainstorming.md](brainstorming.md) | Rewritten forward-only as a coherent academic synthesis. Developed technical material routes to focused owners; the final section records only unresolved ideas. |
+| Append-only log | [work-log.md](work-log.md) | Dated entries, newest last, never rewritten. |
 | Artifacts | `campaigns/`, `evidence/`, `mining/` | Subdirectories only. Campaign specs define one search each; evidence files are write-once results; mining holds staged legacy leads. |
 
-The one-sentence hygiene rule: **results land in `evidence/`; every other document holds one-line graded pointers.**
+The one-sentence hygiene rule: **results land in `evidence/`; the synthesis may explain their meaning and boundaries but does not duplicate their complete receipts or change their grades.**
 
 ## Relationship to Other Lanes
 

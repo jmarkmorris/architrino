@@ -4,22 +4,21 @@ This is the canonical execution ledger for accepted category-theory work. Catego
 
 ## Ranked Next Objects
 
-1. `categorical_contract_and_ownership_map` — [CT-001](#ct-001--categorical-contract-and-ownership-map). Status: `Queued`.
+1. `lawful_history_extension_category` — [CT-004](#ct-004--lawful-history-extension-category). Status: `Queued / bounded contract`.
 2. `history_record_functor_naturality` — [CT-002](#ct-002--history-record-functor-naturality). Status: `Deferred / blocked`.
 3. `causal_incidence_semantics` — [CT-003](#ct-003--causal-incidence-semantics). Status: `Deferred / blocked`.
-4. `lawful_history_extension_category` — [CT-004](#ct-004--lawful-history-extension-category). Status: `Deferred / blocked`.
-5. `substrate_recovery_functor_program` — [CT-005](#ct-005--substrate-recovery-functor-program). Status: `Deferred / blocked`.
-6. `braid_assembly_composition_screen` — [CT-006](#ct-006--braid-and-assembly-composition-screen). Status: `Deferred / blocked`.
+4. `substrate_recovery_functor_program` — [CT-005](#ct-005--substrate-recovery-functor-program). Status: `Deferred / blocked`.
+5. `braid_assembly_composition_screen` — [CT-006](#ct-006--braid-and-assembly-composition-screen). Status: `Deferred / blocked`.
 
 ## Queued
 
-### CT-001 — Categorical contract and ownership map
+### CT-004 — Lawful-history-extension category
 
-- **Status:** Queued
-- **Priority object:** `categorical_contract_and_ownership_map`
-- **Request / acceptance:** Define the smallest cross-lane category-theory contract: candidate categories, topological spaces, objects, arrows, identities, compositions, homotopies, fundamental groupoids, symmetry groups, action groupoids, stabilizers, representation categories, functors, naturality conditions, abstention rules, claim grades, and exact existing owners. Preserve Braid Program `BP-002` as owner of the braid-atlas groupoid and avoid creating a second executable atlas specification.
-- **Evidence / blocker:** The live corpus supplies a non-Markovian Master Equation and substrate/effective level separation; the Braid Program supplies a priority-only groupoid and pro-presentation proposal. No general cross-lane type and ownership contract exists yet.
-- **Completion:** One focused packet gives every candidate structure a typed source, target, lawful composition, physical interpretation, owner, claim grade, proof burden, falsifier, and promotion route; proposed duplicates are rejected or routed to the existing owner.
+- **Status:** Queued / bounded contract
+- **Priority object:** `lawful_history_extension_category`
+- **Request / acceptance:** Create `worldline_history_morphism_contract.md` by instantiating the complete boundary-history object from [CT-001](categorical-contract-and-ownership-map.md), then test an identity extension, exact three-interval composition, an endpoint-matched hidden-history separating pair, and a full-history symmetry covariance square. Keep evolution, symmetry, certified restriction, and prospective coarse-graining as distinct arrow or map classes.
+- **Evidence / blocker:** CT-001 fixes the cross-lane types and proves the abstract snapshot-factorization obstruction, so the bounded contract is executable. Physical completion remains blocked by a proved sufficient history domain, verified state-dependent-delay existence and continuation, causal-root continuation and completeness, treatment of branching or nonunique continuation, and a retained carrier if an assembly claim is attempted.
+- **Completion:** Identity and three-interval associativity hold on one declared exact-record domain; a reordered composite is rejected; an independently classified endpoint-matched history pair either separates after projection or closes that proposed obstruction on its tested domain; the full-history symmetry square is checked without same-implementation self-validation. Stop at history-record contract grade unless the physical owners separately establish a retained assembly and lawful continuation domain.
 
 ## Deferred / blocked
 
@@ -38,14 +37,6 @@ This is the canonical execution ledger for accepted category-theory work. Catego
 - **Request / acceptance:** Determine whether emission events, reception events, and certified causal-root hits form a useful category, free category, enriched graph, or another structure without treating a formal path of hits as a new physical interaction.
 - **Evidence / blocker:** The Master Equation defines individual receiver-local delayed hits, but no physical composition law for successive hit arrows is established.
 - **Completion:** The selected structure states exactly which compositions are formal bookkeeping, which are physical, and which are forbidden; at least one counterexample demonstrates why naive causal transitivity fails.
-
-### CT-004 — Lawful-history-extension category
-
-- **Status:** Deferred / blocked
-- **Priority object:** `lawful_history_extension_category`
-- **Request / acceptance:** Define complete boundary-history fibers and lawful Master-Equation extensions, then test whether compatible extensions concatenate associatively on a declared well-posed domain.
-- **Evidence / blocker:** Depends on a sufficient boundary-history specification, continuation semantics, causal-root continuation, and an accepted treatment of branching or nonunique continuation.
-- **Completion:** Identity and associativity are proved on a stated history domain, the composition rejects insufficient or incompatible prehistory, and no uniqueness claim exceeds the proven continuation theorem.
 
 ### CT-005 — Substrate recovery-functor program
 
@@ -73,4 +64,10 @@ No rows.
 
 ## Verified
 
-No rows.
+### CT-001 — Categorical contract and ownership map
+
+- **Status:** Verified at priority-contract grade on 2026-08-26
+- **Priority object:** `categorical_contract_and_ownership_map`
+- **Result:** [CT-001 — Minimal Categorical Contract and Ownership Map](categorical-contract-and-ownership-map.md) fixes complete boundary-history objects; distinct lawful-evolution, full-history-symmetry, certified-restriction, and prospective coarse-graining maps; exact identity and three-interval associativity obligations; the abstract snapshot-factorization obstruction; ownership; abstention; and stop conditions.
+- **Boundary:** The verified result is a mathematical and ownership contract. It does not establish a retained assembly, a recovery functor, a unique continuation, or a need for higher categories. Causal-incidence categories, monoidal or operadic assembly products, and higher categorical structures were rejected from the accepted minimum because simpler graph, group, topology, and delay-equation tools currently own their alleged payoff.
+- **Next consequence:** `CT-004` is materially unblocked at bounded contract grade and remains blocked at physical completion grade by the obligations listed in its queued row.

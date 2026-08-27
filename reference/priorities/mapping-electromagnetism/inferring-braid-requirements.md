@@ -2663,13 +2663,350 @@ $$
 \sum_a\delta\phi_a=0.
 $$
 
+The `Coordinates` field is closed symbolically without selecting a circulation class or numerical representative. Let $N=(\hat{\mathbf n}_1\ \hat{\mathbf n}_2\ \hat{\mathbf n}_3)$ be the ordered matrix of source-declared unit binary axes. Let $\mathcal C_{A2}^{\mathrm{geom,reg}}$ denote the existing A2 coordinate chart with its common-circulation and fixed-phase rows removed, while retaining its common $R,h,\rho,f$, prescribed $\lambda_A$, group-translation row, common center, persistent ports, and source-declared local orbit frames, restricted to the phase-resolving rank-three domain $\rho>0$ and $\det N>0$. For any declared local-chart radius $0<\varepsilon<\pi/3$, define
+
+$$
+\begin{aligned}
+\mathbf b_1&=\frac{1}{\sqrt2}(1,-1,0),
+&
+\mathbf b_2&=\frac{1}{\sqrt6}(1,1,-2),\\
+B_\varepsilon&=\left\{(\eta_1,\eta_2)\in\mathbb R^2:\eta_1^2+\eta_2^2<\varepsilon^2\right\},
+&
+\mathcal Q_{F1}&=\{+1,-1\}^3,\\
+I_\varepsilon&=(-\pi+\varepsilon,\pi-\varepsilon),
+&
+\mathcal C_{F1}(\varepsilon)
+&=\mathcal C_{A2}^{\mathrm{geom,reg}}\times\mathcal Q_{F1}\times I_\varepsilon\times B_\varepsilon,
+&
+\boldsymbol\delta\phi&=\eta_1\mathbf b_1+\eta_2\mathbf b_2,\\
+\boldsymbol\phi
+&=\left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right)+\vartheta\mathbf1+\boldsymbol\delta\phi.
+&&
+\end{aligned}
+$$
+
+This is an eight-sheet local configuration chart: $\mathbf q\in\mathcal Q_{F1}$ is the seed's circulation-sign vector, not an architrino-polarity vector; $\vartheta$ is the inherited A2 common phase; and $(\eta_1,\eta_2)$ are the two continuous relative-phase coordinates. The currently named common and one-reversed search classes are the cyclic-port orbits of $(+,+,+)$ and $(+,+,-)$; their globally reversed partners remain present and are not silently identified. Because $\mathbf b_1$ and $\mathbf b_2$ are an orthonormal basis of $\{\mathbf x\in\mathbb R^3:\sum_a x_a=0\}$, every allowed $\boldsymbol\delta\phi$ has the unique inverse $\eta_i=\mathbf b_i\mathbin\cdot\boldsymbol\delta\phi$. The domains $I_\varepsilon$ and $B_\varepsilon$ imply $|\vartheta|+|\delta\phi_a|<\pi$, which keeps all three phases on their base-centered angular branches; $\varepsilon<\pi/3$ also prevents neighboring base phases from becoming equal. At $(\eta_1,\eta_2)=(0,0)$ with $\mathbf q=(+,+,+)$, varying $\vartheta$ gives the declared A2 common-circulation orbit, and $\vartheta=0$ is its stated phase epoch. The loci $\rho=0$ and $\det N=0$ are coordinate boundaries where phase or ordered-frame recovery fails; excluding them from F1 is not a dynamical or physical rejection of the corresponding Family-A boundaries.
+
+Plainly: F1 has an exact list of independent configuration coordinates. It does not choose a sign sheet, numerical scale, complete history, or physical realization.
+
+Claim grade: the chart and its inverse are derived from the declared A2 chart and F1 zero-sum constraint. The F1 seed itself remains guessed. This field closure is falsified if the displayed basis is not orthonormal, does not span the zero-sum plane, admits two coordinate pairs for one phase vector inside $B_\varepsilon$, fails to recover the A2 row at the stated locus, or is not closed under cyclic port permutation.
+
+The `Gauge` field is also closed at representation grade. Let $\mathbf C\in\mathbb R^3$ be the declared common-center coordinate. On the regular domain, the ordered axes define the rotation-equivariant body frame
+
+$$
+\begin{aligned}
+\mathbf e_1&=\hat{\mathbf n}_1,\\
+\mathbf e_2&=\frac{\hat{\mathbf n}_2-(\hat{\mathbf n}_2\mathbin\cdot\mathbf e_1)\mathbf e_1}{\left\|\hat{\mathbf n}_2-(\hat{\mathbf n}_2\mathbin\cdot\mathbf e_1)\mathbf e_1\right\|},\\
+\mathbf e_3&=\mathbf e_1\mathbin\times\mathbf e_2,
+\qquad
+E=(\mathbf e_1\ \mathbf e_2\ \mathbf e_3)\in SO(3).
+\end{aligned}
+$$
+
+Temporarily write the lifted phase row redundantly as
+
+$$
+\boldsymbol\phi
+=
+\boldsymbol\phi^{A2}
++\vartheta\mathbf 1
++\boldsymbol\xi,
+\qquad
+\boldsymbol\phi^{A2}
+=
+\left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right).
+$$
+
+The passive rigid-presentation and phase-split equivalence is
+
+$$
+(\mathbf C,E,\vartheta,\boldsymbol\xi)
+\sim
+(Q\mathbf C+\mathbf a,QE,\vartheta+\alpha,\boldsymbol\xi-\alpha\mathbf 1),
+\qquad
+(\mathbf a,Q,\alpha)\in\mathbb R^3\times SO(3)\times\mathbb R.
+$$
+
+Every equivalence class has exactly one representative in the section
+
+$$
+\mathbf C=\mathbf 0,
+\qquad
+E=I_3,
+\qquad
+\mathbf 1^{\mathsf T}\boldsymbol\xi=0.
+$$
+
+Existence follows by choosing $Q=E^{\mathsf T}$, $\mathbf a=-E^{\mathsf T}\mathbf C$, and $\alpha=\tfrac13\mathbf 1^{\mathsf T}\boldsymbol\xi$. The phase transformation leaves $\vartheta\mathbf 1+\boldsymbol\xi$ unchanged, and the resulting zero-sum row is exactly $\boldsymbol\delta\phi=\eta_1\mathbf b_1+\eta_2\mathbf b_2$. Uniqueness follows because the ordered-frame condition forces $Q=I_3$, the center condition then forces $\mathbf a=\mathbf0$, and the zero-sum condition on the local lifted branch forces $\alpha=0$. The transformation leaves $\mathbf q$ and every persistent port label unchanged. Cyclic port permutation, reflection, and global circulation reversal are therefore not gauge identifications.
+
+Plainly: this section removes only duplicate ways of writing the same internal F1 coordinates. It is a passive representation choice, not a claim that absolute substrate placement is unphysical and not a quotient of persistent identities. The `Centering` field below separately proves that the declared center equals the six-member centroid.
+
+Claim grade: the representation-gauge section and its trivial stabilizer are derived. It is falsified if an admitted ordered frame is singular or left-handed, if two distinct $(\mathbf a,Q,\alpha)$ values place one local lifted phase record in the section, if the transformation changes an F1 coordinate or persistent identity, or if later reconstruction shows that an additional continuous redundancy survives these three conditions.
+
+The `Reconstruction` field closes on the same regular domain. For each persistent port $a\in\{1,2,3\}$, let $(\hat{\mathbf n}_a,\hat{\mathbf u}_a,\hat{\mathbf v}_a)$ be its source-declared right-handed orthonormal orbit frame and define
+
+$$
+\begin{aligned}
+\mathbf r_a(\phi_a)
+&=
+\hat{\mathbf u}_a\cos\phi_a
++\hat{\mathbf v}_a\sin\phi_a,\\
+\mathbf d_a
+&=
+h\hat{\mathbf n}_a
++\rho\mathbf r_a(\phi_a),\\
+\mathbf X_{a,\sigma}
+&=
+\mathbf C+\sigma\mathbf d_a,
+\qquad
+\sigma\in\{+1,-1\}.
+\end{aligned}
+$$
+
+Here $\sigma$ is the persistent pair-end sign, not architrino polarity. The formula reconstructs all six positions for every $\mathbf q$ sheet; circulation sign changes the later phase-rate row, not an instantaneous position at fixed $\boldsymbol\phi$. Within a fixed sheet and fixed source-declared frame, the position-bearing continuous coordinates have the analytical inverse
+
+$$
+\begin{aligned}
+\mathbf C
+&=
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{a,\sigma},
+&
+\mathbf d_a
+&=
+\frac{\mathbf X_{a,+}-\mathbf X_{a,-}}{2},\\
+h
+&=
+\hat{\mathbf n}_a\mathbin\cdot\mathbf d_a,
+&
+\rho
+&=
+\sqrt{(\hat{\mathbf u}_a\mathbin\cdot\mathbf d_a)^2+(\hat{\mathbf v}_a\mathbin\cdot\mathbf d_a)^2},\\
+\phi_a
+&=
+\operatorname{atan2}_{\phi_a^{A2}}\!\left(\hat{\mathbf v}_a\mathbin\cdot\mathbf d_a,\hat{\mathbf u}_a\mathbin\cdot\mathbf d_a\right),
+&
+\vartheta
+&=
+\frac13\mathbf1^{\mathsf T}\left(\boldsymbol\phi-\boldsymbol\phi^{A2}\right),\\
+\eta_i
+&=
+\mathbf b_i\mathbin\cdot\left(\boldsymbol\phi-\boldsymbol\phi^{A2}-\vartheta\mathbf1\right)
+=
+\mathbf b_i\mathbin\cdot\left(\boldsymbol\phi-\boldsymbol\phi^{A2}\right).
+\end{aligned}
+$$
+
+Here $\operatorname{atan2}_{\phi_a^{A2}}$ means the unique lift of the ordinary two-argument angle into $(\phi_a^{A2}-\pi,\phi_a^{A2}+\pi)$. The equal values of $h$ and $\rho$ recovered from the three ports are the exact F1 consistency conditions, and $R=\sqrt{h^2+\rho^2}$. The $I_\varepsilon\times B_\varepsilon$ domain keeps every $\phi_a$ inside that base-centered branch, making $\vartheta$, each $\phi_a$, and hence each $\eta_i$ unique. Positions alone cannot recover $\mathbf q$; that discrete row belongs to the velocity/history map, so the eight sheets share one instantaneous reconstruction formula rather than being silently identified.
+
+Plainly: every allowed F1 coordinate point places all six pair ends exactly, and the position data recover every continuous shape coordinate on a chosen circulation sheet. This does not choose machine IDs, source order, a circulation sheet, a numerical representative, or a prescribed history.
+
+Claim grade: the member map, pair conjugacy, and fixed-sheet position-bearing inverse are derived from the Family-A geometry. The F1 seed remains guessed. This field closure is falsified if any reconstructed pair is not antipodal about $\mathbf C$, if the inverse fails on the declared regular domain, if two distinct position-bearing coordinate rows on one sheet produce the same six labeled positions, or if an admitted Family-A frame violates the stated orthonormal relations.
+
+The `Velocity` field is the exact differential of that member map. Write
+
+$$
+\overline q=\frac13\mathbf1^{\mathsf T}\mathbf q,
+\qquad
+\omega=2\pi f>0,
+\qquad
+\boldsymbol\zeta=\zeta_1\mathbf b_1+\zeta_2\mathbf b_2.
+$$
+
+The zero-sum phase section and the circulation signs give the coordinate-rate parameterization
+
+$$
+\dot\vartheta=\overline q\,\omega,
+\qquad
+\dot\eta_i=\omega\mathbf b_i\mathbin\cdot\mathbf q+\zeta_i,
+\qquad
+\dot{\boldsymbol\delta\phi}=\omega(\mathbf q-\overline q\mathbf1)+\boldsymbol\zeta,
+\qquad
+\dot{\boldsymbol\phi}=\omega\mathbf q+\boldsymbol\zeta.
+$$
+
+The exact local circulation-rate domain is
+
+$$
+\mathcal D_{\mathbf q}(\omega)
+=
+\left\{(\zeta_1,\zeta_2)\in\mathbb R^2:
+q_a\dot\phi_a
+=
+\omega+q_a\zeta_a>0
+\text{ for }a=1,2,3
+\right\}.
+$$
+
+Thus $\mathbf q$ is constant on each differentiable interval and is exactly the sign vector of the three phase rates. A sign-sheet change is an event boundary, not a finite tangent. At the common A2 locus $\mathbf q=(+,+,+)$ and $\boldsymbol\zeta=\mathbf0$, the formulas give $\dot\vartheta=\omega$, $\dot\eta_1=\dot\eta_2=0$, and the ordinary common phase advance. On a mixed-sign sheet, the term $\omega(\mathbf q-\overline q\mathbf1)$ is the required zero-sum relative-phase drift; $\boldsymbol\zeta$ is the remaining two-coordinate deformation rate.
+
+For a complete moving-frame differential, let $F_a=(\hat{\mathbf n}_a\ \hat{\mathbf u}_a\ \hat{\mathbf v}_a)\in SO(3)$ be the source-declared local orbit frame. Its differentiable rate has the unique form
+
+$$
+\dot F_a=\Omega_aF_a,
+\qquad
+\Omega_a^{\mathsf T}=-\Omega_a,
+$$
+
+where $\Omega_a$ is fixed by the differentiated source-declared frame history, including any chosen $\lambda_A(T)$ history, rather than added as an independent F1 shape coordinate. Define
+
+$$
+\mathbf t_a(\phi_a)
+=
+-\hat{\mathbf u}_a\sin\phi_a
++\hat{\mathbf v}_a\cos\phi_a.
+$$
+
+Then
+
+$$
+\begin{aligned}
+\dot{\mathbf r}_a
+&=
+\Omega_a\mathbf r_a+\dot\phi_a\mathbf t_a,\\
+\dot{\mathbf d}_a
+&=
+\dot h\hat{\mathbf n}_a
++h\Omega_a\hat{\mathbf n}_a
++\dot\rho\mathbf r_a
++\rho\Omega_a\mathbf r_a
++\rho\dot\phi_a\mathbf t_a,\\
+\mathbf V_{a,\sigma}
+&=
+\dot{\mathbf C}+\sigma\dot{\mathbf d}_a.
+\end{aligned}
+$$
+
+The rate domain consists of continuously differentiable $\mathbf C,h,\rho,\vartheta,\eta_1,\eta_2$, and source-declared frames on an interval that remains inside $\rho>0$, $\det N>0$, $I_\varepsilon\times B_\varepsilon$, with constant $\mathbf q$, $\omega>0$, $(\zeta_1,\zeta_2)\in\mathcal D_{\mathbf q}(\omega)$, coordinate rates fixed by the displayed parameterization, and skew $\Omega_a$ compatible with those frames. The dependent radius rate is
+
+$$
+\dot R=\frac{h\dot h+\rho\dot\rho}{R},
+\qquad
+R=\sqrt{h^2+\rho^2},
+$$
+
+so $\dot R$ is not an additional rate. In a fixed frame with $\Omega_a=0$, the differential reduces to the existing pair-conjugate Family-A tangent; the new terms retain exactness when the common center, geometry, relative phases, or declared frames move.
+
+Plainly: every allowed F1 position now has one explicit velocity for every allowed rate row. The sign vector controls which way each binary advances, while the zero-sum rate pair permits small relative deformations. This is a local tangent family, not a selected worldline history, speed certificate, return, or retained solution.
+
+Claim grade: the phase-rate decomposition and six-member velocity map are derived by differentiating the F1 coordinate section and reconstruction formula. Existing Family-A code checks only the fixed-frame common-circulation specialization; it is not the proof of the general rule. The result is falsified if a differentiable admitted coordinate history has a difference quotient that disagrees with $\mathbf V_{a,\sigma}$, if $\sum_a\dot{\delta\phi}_a\ne0$, if an admitted rate violates $\operatorname{sgn}(\dot\phi_a)=q_a$, if the common A2 specialization fails, or if pair conjugacy $\mathbf V_{a,+}+\mathbf V_{a,-}=2\dot{\mathbf C}$ fails.
+
+The `Centering` field follows exactly from pair conjugacy. For every port and every admitted coordinate and rate row,
+
+$$
+\mathbf X_{a,+}+\mathbf X_{a,-}=2\mathbf C,
+\qquad
+\mathbf V_{a,+}+\mathbf V_{a,-}=2\dot{\mathbf C}.
+$$
+
+Therefore the six-member position and velocity centroids are
+
+$$
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{a,\sigma}=\mathbf C,
+\qquad
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf V_{a,\sigma}=\dot{\mathbf C}.
+$$
+
+These identities hold independently of $\mathbf q$, $\vartheta$, $\boldsymbol\delta\phi$, $h$, $\rho$, their admitted rates, and the compatible moving-frame rates. The internal centroid offsets and internal centroid-velocity leakage are identically zero; any declared group translation is carried only by $\mathbf C(T)$.
+
+Plainly: the common center in the F1 formulas is now proved to be the actual six-member centroid, and its derivative is the actual velocity centroid. Internal counterflow or deformation cannot move either centroid away from the declared center row.
+
+Claim grade: both centering identities are derived algebraically from the pair-conjugate member and velocity maps. They establish kinematic centering only, not a stationary center, complete history, binding, return, retention, or stability. The result is falsified by any admitted labeled F1 row for which either displayed centroid differs from $\mathbf C$ or $\dot{\mathbf C}$.
+
+The `Speed` field is an exact guard functional on the velocity map. In normalized wake-speed units $c_f=1$, define for a declared interval $I$
+
+$$
+s_{a,\sigma}(T)=\left\|\mathbf V_{a,\sigma}(T)\right\|,
+\qquad
+S_{F1}[I]=\sup_{T\in I}\max_{a\in\{1,2,3\},\,\sigma\in\{+1,-1\}}s_{a,\sigma}(T).
+$$
+
+The exact strict speed guard is
+
+$$
+S_{F1}[I]<1.
+$$
+
+It is independently evaluable from the displayed F1 coordinate and rate functions without an EOM-solver call. For predeclaration or interval enclosure, let $\|\Omega_a\|_2$ be the Euclidean operator norm of the skew frame-rate matrix and define
+
+$$
+B_a(T)
+=
+\left\|\dot{\mathbf C}\right\|
++|\dot h|
++|\dot\rho|
++(|h|+\rho)\|\Omega_a\|_2
++\rho\left|\omega q_a+\zeta_a\right|.
+$$
+
+Because $\hat{\mathbf n}_a$, $\mathbf r_a$, and $\mathbf t_a$ are unit vectors and $\|\Omega_a\mathbf x\|\le\|\Omega_a\|_2\|\mathbf x\|$,
+
+$$
+s_{a,\sigma}(T)\le B_a(T),
+\qquad
+\sup_{T\in I}\max_a B_a(T)<1
+\Longrightarrow
+S_{F1}[I]<1.
+$$
+
+The conservative bound is sufficient but not necessary; the exact functional remains authoritative when cancellations matter. In the stationary-center, fixed-frame specialization $\dot{\mathbf C}=0$ and $\Omega_a=0$, orthonormality gives the exact reduction
+
+$$
+s_{a,+}^2=s_{a,-}^2
+=
+\dot h^2+\dot\rho^2+\rho^2(\omega q_a+\zeta_a)^2.
+$$
+
+Plainly: F1 now has a precise speed test and a simpler conservative precheck, both in the required $c_f=1$ units. No particular F1 row is certified because no circulation sheet, rate history, or time interval has been selected.
+
+Claim grade: the exact speed functional and conservative bound are derived from the F1 velocity map and Euclidean norm inequalities. Passing the guard for any concrete history would be measured by evaluating or enclosing that history; no pass is claimed here. The formulas are falsified if an admitted member speed exceeds $B_a$, if the fixed-frame reduction disagrees with the velocity map, or if the strict guard accepts any row with speed at or above $c_f=1$.
+
+The `Collision` field also reduces exactly. Since every displacement has
+
+$$
+\|\mathbf d_a\|^2=h^2+\rho^2=R^2,
+$$
+
+the three same-port partner distances are $2R$. For distinct ports $a<b$ and pair-end signs $\sigma,\tau$,
+
+$$
+\left\|\mathbf X_{a,\sigma}-\mathbf X_{b,\tau}\right\|^2
+=
+\left\|\sigma\mathbf d_a-\tau\mathbf d_b\right\|^2
+=
+2R^2-2\sigma\tau\,\mathbf d_a\mathbin\cdot\mathbf d_b.
+$$
+
+Therefore the exact minimum of all fifteen labeled pair distances at time $T$ is
+
+$$
+D_{F1}(T)
+=
+\min\left\{
+2R,
+\min_{1\le a<b\le3}
+\sqrt{2\left(R^2-\left|\mathbf d_a\mathbin\cdot\mathbf d_b\right|\right)}
+\right\}.
+$$
+
+For a declared interval $I$, define
+
+$$
+D_{F1}[I]=\inf_{T\in I}D_{F1}(T).
+$$
+
+The exact continuous collision guard is $D_{F1}[I]>0$. On the regular domain $\rho>0$ already gives $R>0$, so a pointwise cross-port collision occurs exactly when two displacement rows are parallel or antiparallel, equivalently $|\mathbf d_a\mathbin\cdot\mathbf d_b|=R^2$. On a compact declared interval with continuous coordinate and frame functions, exclusion of all such equalities gives a positive minimum by continuity. A finite sample without an enclosure does not prove the interval guard.
+
+Plainly: every possible collision among the six F1 members is now covered by one exact formula. It checks the three binary partners and all cross-binary sign choices, but it does not say that an unselected F1 history stays clear.
+
+Claim grade: the clearance reduction is derived from the pair-conjugate reconstruction map and the common displacement norm. Passing it for a concrete interval would require analytical exclusion or a measured enclosure over that selected history; no pass is claimed here. The formula is falsified if direct enumeration of the fifteen labeled distances disagrees with $D_{F1}(T)$ or if $D_{F1}[I]>0$ admits a collision.
+
 The smallest useful sign classes are the common class $(+,+,+)$ and the one-reversed orbit represented by $(+,+,-)$ under cyclic port permutation. The latter introduces counterflow but also distinguishes one port, so it may be quark-facing rather than lepton-facing unless the full history dynamically cycles the exceptional port or the sector quotient removes it lawfully.
 
 Fast rejection: the independent circulation extension destroys root validity or retention; the one-reversed orbit leaks a permanent laboratory anisotropy into a lepton-like scalar row; or all sign classes are equivalent after the declared quotient and supply no independent current coordinate.
 
 ##### Seed F2 — Dual-A2 Conjugate Counterflow Cage
 
-Compose two A2-like triads with a common center and body frame while varying whole-braid polarity conjugation, relative circulation, relative phase, and a nontrivial port permutation:
+Compose two A2-like triads in one assembly presentation while varying whole-braid polarity conjugation, relative circulation, relative phase, relative placement, and a nontrivial port permutation:
 
 $$
 \Theta_{F2}
@@ -2680,9 +3017,444 @@ $$
 q_{12},
 \Delta\phi_{12},
 \pi_{12},
-d_{12}
+\mathbf d_{12}
 \right).
 $$
+
+The `Gauge` field closes before any of those relative rows are selected. Let the two persistently labeled component records have centers $\mathbf C_1,\mathbf C_2$, ordered body frames $E_1,E_2\in SO(3)$, and locally lifted common phases $\vartheta_1,\vartheta_2$. Define
+
+$$
+\begin{aligned}
+\mathbf C
+&=\frac12(\mathbf C_1+\mathbf C_2),
+&
+E&=E_1,\\
+\mathbf d_{12}
+&=E_1^{\mathsf T}(\mathbf C_2-\mathbf C_1),
+&
+Q_{12}&=E_1^{\mathsf T}E_2,\\
+\overline\vartheta
+&=\frac12(\vartheta_1+\vartheta_2),
+&
+\Delta\vartheta_{12}&=\vartheta_2-\vartheta_1.
+\end{aligned}
+$$
+
+The diagonal rigid-presentation action is
+
+$$
+(\mathbf C_b,E_b)
+\longmapsto
+(Q\mathbf C_b+\mathbf a,QE_b),
+\qquad
+b\in\{1,2\},
+\qquad
+(\mathbf a,Q)\in\mathbb R^3\rtimes SO(3).
+$$
+
+It leaves $\mathbf d_{12}$, $Q_{12}$, $\overline\vartheta$, and $\Delta\vartheta_{12}$ unchanged. Every orbit has exactly one representative in the section
+
+$$
+\mathbf C=\mathbf0,
+\qquad
+E_1=I_3.
+$$
+
+Existence follows from $Q=E_1^{\mathsf T}$ and $\mathbf a=-E_1^{\mathsf T}\mathbf C$. Uniqueness follows because $E_1=I_3$ forces any section-preserving $Q$ to be $I_3$, after which $\mathbf C=\mathbf0$ forces $\mathbf a=\mathbf0$. The phase change of variables has the exact inverse
+
+$$
+\vartheta_1=\overline\vartheta-\frac12\Delta\vartheta_{12},
+\qquad
+\vartheta_2=\overline\vartheta+\frac12\Delta\vartheta_{12},
+$$
+
+so neither the common phase nor the relative phase is discarded. Whole-braid polarity conjugation, $q_{12}$, $\pi_{12}$, component exchange, and every persistent component or port label are also outside the gauge quotient. The shared-center/shared-frame locus is the specialization $\mathbf d_{12}=\mathbf0$ and $Q_{12}=I_3$; a nonzero separation row requires the full body-frame vector unless a later chart separately declares its direction.
+
+Plainly: the gauge section removes only where and how the complete dual-triad record is presented in Euclidean space. The displacement, relative orientation, relative phase, circulation relation, conjugation, permutation, and all labels remain real composition data that a later F2 chart must choose or vary.
+
+Claim grade: the diagonal rigid-presentation section, invariant relative-pose rows, phase reparameterization, and trivial stabilizer are derived for the labeled two-component seed. F2 itself remains guessed, and no association or member map is inferred. The result is falsified if the diagonal action changes a displayed relative row, if two distinct rigid transformations put one labeled record in the section, or if reconstruction later requires quotienting a relative coordinate or persistent label removed here.
+
+The `Coordinates` field is an exact local product without a representative choice. Let $\mathcal C_{A2}^{\mathrm{int,reg}}$ be the regular A2 internal chart with its component center, rigid presentation frame, common phase, and common circulation sign removed, while retaining its common $R,h,\rho,f$, prescribed $\lambda_A$, persistent ports, and body-frame orbit data. For locally chosen phase bases $\vartheta_b^\star$, define
+
+$$
+\begin{aligned}
+\mathcal S_{F2}&=\{+1,-1\}^2,
+&
+\Pi_{F2}&=S_3\setminus\{\mathrm{id}\},\\
+I_b&=(\vartheta_b^\star-\pi,\vartheta_b^\star+\pi),
+&
+B_\pi^3&=\{\boldsymbol\omega\in\mathbb R^3:\|\boldsymbol\omega\|<\pi\},\\
+Q_{12}&=\exp([\boldsymbol\omega]_{\times}),
+&
+q_{12}&=s_1s_2.
+\end{aligned}
+$$
+
+Here $[\boldsymbol\omega]_{\times}\mathbf x=\boldsymbol\omega\mathbin\times\mathbf x$. The full local chart before the representation section is
+
+$$
+\widetilde{\mathcal C}_{F2}
+=
+(\mathbb R^3\times SO(3))
+\times
+(\mathcal C_{A2}^{\mathrm{int,reg}})^2
+\times
+\mathcal S_{F2}
+\times
+\Pi_{F2}
+\times
+I_1\times I_2
+\times
+\mathbb R^3
+\times
+B_\pi^3.
+$$
+
+The first factor is the shared presentation $(\mathbf C,E)$; the remaining factors are the two labeled internal A2 rows, component circulation signs $(s_1,s_2)$, nonidentity persistent-port relation $\pi_{12}$, lifted component phases $(\vartheta_1,\vartheta_2)$, body-frame displacement $\mathbf d_{12}$, and local relative-orientation vector $\boldsymbol\omega$. The F2 polarity-conjugation relation is fixed by assigning the second component the whole-braid conjugate of its A2 polarity row; it is not a continuous coordinate. The gauge-fixed chart is therefore
+
+$$
+\mathcal C_{F2}
+=
+(\mathcal C_{A2}^{\mathrm{int,reg}})^2
+\times
+\mathcal S_{F2}
+\times
+\Pi_{F2}
+\times
+I_1\times I_2
+\times
+\mathbb R^3
+\times
+B_\pi^3.
+$$
+
+The analytical local inverse uses each component's A2 inverse for its internal row, reads $(s_1,s_2)$ and $\pi_{12}$ from the persistent discrete record, recovers $\mathbf d_{12}$ and $Q_{12}$ by the gauge formulas, and uses
+
+$$
+\boldsymbol\omega
+=
+\operatorname{vee}(\log Q_{12})
+$$
+
+on $\|\boldsymbol\omega\|<\pi$. The two component phase lifts recover $\vartheta_1$ and $\vartheta_2$ uniquely and hence recover $\overline\vartheta$ and $\Delta\vartheta_{12}$. A relative phase alone is insufficient for instantaneous reconstruction because the common component phase remains physical. The boundary $\|\boldsymbol\omega\|=\pi$ requires a neighboring orientation chart; excluding it from this local chart is not a physical or dynamical rejection. Likewise, excluding the identity permutation implements the stated nontrivial-permutation F2 seed and does not reject its identity-permutation control as an A2-composition geometry.
+
+Plainly: F2 now has a complete list of independent local coordinates for two labeled A2-like components. It keeps the overall phase, both circulation signs, the full separation direction, relative orientation, and port relation, but selects none of them and supplies no twelve-member position map yet.
+
+Claim grade: the product chart, domains, discrete relations, and local inverse are derived from two regular A2 component charts and the completed F2 gauge section. The F2 seed and its association remain guessed. The coordinate closure is falsified if two admitted coordinate rows yield the same labeled component data in the section, if an admitted labeled component record cannot be inverted locally, if global circulation reversal is silently lost, or if later reconstruction needs an undeclared continuous coordinate.
+
+The `Reconstruction` field composes the two exact A2 member maps. Let
+
+$$
+\epsilon_1=-1,
+\qquad
+\epsilon_2=+1,
+\qquad
+Q_1=I_3,
+\qquad
+Q_2=Q_{12},
+$$
+
+and let $(\hat{\mathbf n}_{b,a},\hat{\mathbf u}_{b,a},\hat{\mathbf v}_{b,a})$ be the source-declared right-handed body-frame orbit basis for port $a$ of component $b$. Define
+
+$$
+\begin{aligned}
+\mathbf C_b
+&=
+\mathbf C+\frac{\epsilon_b}{2}E\mathbf d_{12},\\
+\phi_{b,a}
+&=
+\phi_a^{A2}+\vartheta_b,\\
+\mathbf r_{b,a}
+&=
+\hat{\mathbf u}_{b,a}\cos\phi_{b,a}
++\hat{\mathbf v}_{b,a}\sin\phi_{b,a},\\
+\mathbf D_{b,a}
+&=
+h_b\hat{\mathbf n}_{b,a}+\rho_b\mathbf r_{b,a},\\
+\mathbf X_{b,a,\sigma}
+&=
+\mathbf C_b+\sigma E Q_b\mathbf D_{b,a},
+\qquad
+b\in\{1,2\},\ a\in\{1,2,3\},\ \sigma\in\{+1,-1\}.
+\end{aligned}
+$$
+
+This places exactly twelve labeled members. The pair-end sign $\sigma$ is not architrino polarity. Whole-braid conjugation reverses the second component's declared A2 polarity row, while $\pi_{12}$ records the persistent cross-component port relation; neither operation changes the instantaneous position formula at fixed continuous coordinates.
+
+Within a fixed discrete and declared-frame sheet, the position-bearing rows have the analytical recovery
+
+$$
+\begin{aligned}
+\mathbf C_b
+&=
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{b,a,\sigma},
+&
+\mathbf C&=\frac12(\mathbf C_1+\mathbf C_2),\\
+\mathbf d_{12}
+&=
+E^{\mathsf T}(\mathbf C_2-\mathbf C_1),
+&
+\mathbf D_{b,a}
+&=
+Q_b^{\mathsf T}E^{\mathsf T}
+\frac{\mathbf X_{b,a,+}-\mathbf X_{b,a,-}}{2}.
+\end{aligned}
+$$
+
+Each recovered $\mathbf D_{b,a}$ then enters the regular A2 inverse for $(h_b,\rho_b,\vartheta_b)$ and the remaining internal component row. The ordered component frames recover $Q_{12}=E_1^{\mathsf T}E_2$ and hence $\boldsymbol\omega=\operatorname{vee}(\log Q_{12})$ on the declared orientation chart. Positions alone do not recover $(s_1,s_2)$, $\pi_{12}$, or the polarity-conjugation relation; those discrete sheets belong to the labeled configuration record rather than being silently identified.
+
+Plainly: every allowed F2 coordinate row now places all twelve members in one assembly frame, and the labeled record recovers the component centers, separation, orientation, phases, and internal A2 geometry. This still chooses no relation sheet, numerical composition, tangent, or history.
+
+Claim grade: the twelve-member map, component pair conjugacy, and fixed-sheet recovery are derived from the two A2 reconstruction maps and the F2 gauge/coordinate chart. The F2 association remains guessed. The field closure is falsified if either component does not contain three antipodal pairs about $\mathbf C_b$, if the two component centroids fail to recover the declared relative placement, if a regular fixed-sheet record fails the displayed recovery, or if the map changes a persistent label or polarity relation.
+
+The `Velocity` field is the exact differential of the composite map. Write the assembly and relative-orientation frame rates as
+
+$$
+\dot E=\Omega E,
+\qquad
+\Omega^{\mathsf T}=-\Omega,
+\qquad
+\dot Q_b=\Xi_bQ_b,
+\qquad
+\Xi_1=0,
+\qquad
+\Xi_2=\Xi_{12},
+\qquad
+\Xi_{12}^{\mathsf T}=-\Xi_{12}.
+$$
+
+For the exponential orientation coordinate $Q_{12}=\exp([\boldsymbol\omega]_{\times})$,
+
+$$
+\Xi_{12}
+=
+\left[J_{\ell}(\boldsymbol\omega)\dot{\boldsymbol\omega}\right]_{\times},
+\qquad
+J_{\ell}(\boldsymbol\omega)
+=
+I_3
++\frac{1-\cos\theta}{\theta^2}[\boldsymbol\omega]_{\times}
++\frac{\theta-\sin\theta}{\theta^3}[\boldsymbol\omega]_{\times}^2,
+\qquad
+\theta=\|\boldsymbol\omega\|,
+$$
+
+with $J_{\ell}(\mathbf0)=I_3$. For each source-declared component-local orbit frame $F_{b,a}=(\hat{\mathbf n}_{b,a}\ \hat{\mathbf u}_{b,a}\ \hat{\mathbf v}_{b,a})$, write
+
+$$
+\dot F_{b,a}=\Lambda_{b,a}F_{b,a},
+\qquad
+\Lambda_{b,a}^{\mathsf T}=-\Lambda_{b,a},
+$$
+
+where $\Lambda_{b,a}$ is fixed by the differentiated source-declared component frame, including any chosen $\lambda_{A,b}(T)$ history. Let
+
+$$
+\omega_b=2\pi f_b>0,
+\qquad
+\dot\vartheta_b=s_b\omega_b,
+\qquad
+\mathbf t_{b,a}
+=
+-\hat{\mathbf u}_{b,a}\sin\phi_{b,a}
++\hat{\mathbf v}_{b,a}\cos\phi_{b,a}.
+$$
+
+Then
+
+$$
+\begin{aligned}
+\dot{\mathbf C}_b
+&=
+\dot{\mathbf C}
++\frac{\epsilon_b}{2}
+\left(\Omega E\mathbf d_{12}+E\dot{\mathbf d}_{12}\right),\\
+\dot{\mathbf r}_{b,a}
+&=
+\Lambda_{b,a}\mathbf r_{b,a}
++s_b\omega_b\mathbf t_{b,a},\\
+\dot{\mathbf D}_{b,a}
+&=
+\dot h_b\hat{\mathbf n}_{b,a}
++h_b\Lambda_{b,a}\hat{\mathbf n}_{b,a}
++\dot\rho_b\mathbf r_{b,a}
++\rho_b\Lambda_{b,a}\mathbf r_{b,a}
++\rho_bs_b\omega_b\mathbf t_{b,a},\\
+\mathbf V_{b,a,\sigma}
+&=
+\dot{\mathbf C}_b
++\sigma\left[
+\Omega E Q_b\mathbf D_{b,a}
++E\Xi_bQ_b\mathbf D_{b,a}
++E Q_b\dot{\mathbf D}_{b,a}
+\right].
+\end{aligned}
+$$
+
+The rate domain consists of continuously differentiable $\mathbf C,E,\mathbf d_{12},\boldsymbol\omega,h_b,\rho_b,\vartheta_b$, and source-declared component frames while both internal A2 rows remain regular, $\|\boldsymbol\omega\|<\pi$, and $f_b>0$. The signs $(s_1,s_2)$, nontrivial permutation $\pi_{12}$, conjugation relation, and persistent labels are constant on each differentiable interval. Their changes are event boundaries, not tangent rows. The dependent component-radius rates are
+
+$$
+\dot R_b
+=
+\frac{h_b\dot h_b+\rho_b\dot\rho_b}{R_b},
+\qquad
+R_b=\sqrt{h_b^2+\rho_b^2},
+$$
+
+and the phase coordinates satisfy
+
+$$
+\dot{\overline\vartheta}
+=
+\frac12(s_1\omega_1+s_2\omega_2),
+\qquad
+\dot{\Delta\vartheta}_{12}
+=
+s_2\omega_2-s_1\omega_1.
+$$
+
+When $\Omega=\Xi_{12}=0$, $\dot{\mathbf d}_{12}=\mathbf0$, and the component-local frames are fixed, the formula reduces exactly to two translated and relatively rotated A2 tangents. No extra composite velocity path is introduced.
+
+Plainly: every allowed F2 coordinate rate now gives all twelve member velocities. The formula distinguishes whole-assembly motion, changing component separation, changing relative orientation, internal shape change, and signed circulation, while selecting no history.
+
+Claim grade: the twelve-member tangent and rate domain are derived by differentiating the F2 reconstruction map and the local $SO(3)$ exponential coordinate. The F2 association remains guessed. The result is falsified if a differentiable admitted coordinate history has a member difference quotient that disagrees with $\mathbf V_{b,a,\sigma}$, if the fixed-pose reduction fails, if a discrete sheet changes within a differentiable interval, or if the displayed $J_{\ell}$ does not reproduce $\dot Q_{12}Q_{12}^{\mathsf T}$.
+
+The `Centering` field follows from the antipodal pair-end sign before any component relation or numerical row is selected. For each component,
+
+$$
+\begin{aligned}
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{b,a,\sigma}
+&=
+\mathbf C_b,
+&
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf V_{b,a,\sigma}
+&=
+\dot{\mathbf C}_b,
+\end{aligned}
+$$
+
+because every internal displacement and every internal displacement rate occurs once with each sign. Since the two components have equal member count and $\mathbf C=(\mathbf C_1+\mathbf C_2)/2$,
+
+$$
+\frac1{12}\sum_{b=1}^2\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{b,a,\sigma}
+=
+\mathbf C,
+\qquad
+\frac1{12}\sum_{b=1}^2\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf V_{b,a,\sigma}
+=
+\dot{\mathbf C}.
+$$
+
+These are equal-member geometric centroids. They do not assert that a later exposure-weighted, polarity-weighted, or effective observer-level center equals $\mathbf C$; any such weighted center requires its own declared weights and proof.
+
+Plainly: each six-member component stays centered on its declared component center, and the complete twelve-member record stays centered on the assembly center, even while the two components move relative to one another. This is a counting identity, not a binding or stability result.
+
+Claim grade: component and assembly position/velocity centering are derived on every admitted F2 coordinate-and-rate sheet. The F2 association remains guessed. The result is falsified if a complete labeled component does not contain both signs of every pair-end displacement, if the two components cease to have equal member count without changing the assembly-center definition, or if direct summation of an admitted member row disagrees with the displayed centroids.
+
+The `Speed` field is an exact guard functional on the twelve-member tangent. In normalized wake-speed units $c_f=1$, define on a declared interval $I$
+
+$$
+s_{b,a,\sigma}(T)
+=
+\left\|\mathbf V_{b,a,\sigma}(T)\right\|,
+\qquad
+S_{F2}[I]
+=
+\sup_{T\in I}
+\max_{\substack{b\in\{1,2\},\,a\in\{1,2,3\}\\\sigma\in\{+1,-1\}}}
+s_{b,a,\sigma}(T).
+$$
+
+The exact strict speed guard is
+
+$$
+S_{F2}[I]<1.
+$$
+
+It is independently evaluable from the displayed F2 coordinate and rate functions without an EOM-solver call. For a conservative predeclaration bound, let $\|\cdot\|_2$ denote the Euclidean operator norm, let $R_b=\sqrt{h_b^2+\rho_b^2}$, and define
+
+$$
+\begin{aligned}
+B_{b,a}(T)
+={}&
+\left\|\dot{\mathbf C}\right\|
++\frac12\left(
+\|\Omega\|_2\|\mathbf d_{12}\|
++\|\dot{\mathbf d}_{12}\|
+\right)\\
+&+R_b\left(\|\Omega\|_2+\|\Xi_b\|_2\right)
++|\dot h_b|+|\dot\rho_b|
++(|h_b|+\rho_b)\|\Lambda_{b,a}\|_2
++\rho_b\omega_b.
+\end{aligned}
+$$
+
+Orthogonality of $E$ and $Q_b$, the identity $\|\mathbf D_{b,a}\|=R_b$, and the triangle and operator-norm inequalities give
+
+$$
+s_{b,a,\sigma}(T)
+\le
+B_{b,a}(T),
+\qquad
+\sup_{T\in I}\max_{b,a}B_{b,a}(T)<1
+\Longrightarrow
+S_{F2}[I]<1.
+$$
+
+The bound is sufficient but not necessary; the exact functional remains authoritative when vector cancellations matter. Neither formula supplies a pass until a complete F2 history and interval are selected.
+
+Plainly: F2 now has a precise speed test for every one of its twelve members and a simpler safe upper bound for planning a history. Both use the required $c_f=1$ units, but no F2 history has been chosen or certified.
+
+Claim grade: the exact speed functional and conservative bound are derived from the F2 tangent and Euclidean norm inequalities. Passing the guard for a concrete history would be measured by evaluating or enclosing that history; no pass is claimed here. The formulas are falsified if an admitted member speed exceeds $B_{b,a}$, if orthogonal coordinate changes alter the exact functional, or if the strict guard accepts a row with speed at or above $c_f=1$.
+
+The `Collision` field reduces all $\binom{12}{2}=66$ labeled separations to two within-component minima and one cross-component minimum. For each component, define
+
+$$
+D_b^{\mathrm{int}}(T)
+=
+\min\left\{
+2R_b,
+\min_{1\le a<c\le3}
+\sqrt{2\left(R_b^2-
+\left|\mathbf D_{b,a}\mathbin\cdot\mathbf D_{b,c}\right|
+\right)}
+\right\}.
+$$
+
+This is the exact fifteen-pair A2 reduction inside component $b$. Since $\mathbf C_2-\mathbf C_1=E\mathbf d_{12}$, orthogonality of $E$ reduces the 36 cross-component distances to
+
+$$
+D_{12}^{\mathrm{cross}}(T)
+=
+\min_{\substack{a,c\in\{1,2,3\}\\\sigma,\tau\in\{+1,-1\}}}
+\left\|
+-\mathbf d_{12}
++\sigma\mathbf D_{1,a}
+-\tau Q_{12}\mathbf D_{2,c}
+\right\|.
+$$
+
+Therefore the exact instantaneous clearance and declared-interval clearance are
+
+$$
+D_{F2}(T)
+=
+\min\left\{
+D_1^{\mathrm{int}}(T),
+D_2^{\mathrm{int}}(T),
+D_{12}^{\mathrm{cross}}(T)
+\right\},
+\qquad
+D_{F2}[I]
+=
+\inf_{T\in I}D_{F2}(T).
+$$
+
+The exact continuous collision guard is $D_{F2}[I]>0$. On a compact interval with continuous admitted coordinate functions, analytical exclusion or a validated enclosure of every zero-distance equality establishes a positive minimum. A finite sample without an enclosure does not prove the interval guard. The component relation labels can reorder the 36 cross rows but cannot remove any of them from the minimum.
+
+Plainly: every possible collision among the twelve F2 members is now included: fifteen pairs inside each component and all thirty-six pairs between components. The formula supplies the test, but it does not say that an unselected F2 history stays clear.
+
+Claim grade: the complete clearance functional is derived from the F2 reconstruction map, pair conjugacy, and rigid-frame invariance. Passing it for a concrete interval would require analytical exclusion or a measured enclosure over that selected history; no pass is claimed here. The reduction is falsified if direct enumeration of the 66 labeled distances disagrees with $D_{F2}(T)$, if a component relation omits a physical cross pair, or if $D_{F2}[I]>0$ admits a collision.
 
 This is the cleanest present route to a volumetric counterflow cage and a visible-return/full-identity-return distinction. Exact conjugate symmetry may, however, cancel charge, moment, and weak exposure simultaneously. A viable charged-fermion realization must derive a sector-specific exposure asymmetry or a separate charge decoration while keeping the neutral core and ledger closed.
 
@@ -2692,16 +3464,437 @@ Fast rejection: the two triads do not bind; exact symmetry cancels every axial a
 
 Keep the A2 gross support and circulation class fixed, then search its admissible relative-phase, axial-offset, and identity-return modes inside the A3 chart. Generation is not assigned to three chosen deformations. It is accepted only if ordinary evolution produces exactly three isolated modes, basins, or return characters with a common charge and representation projection:
 
+The earlier shorthand division by an undefined $Q_{\mathrm{A2}}$ is replaced by an explicit representation section and two different finite-quotient uses. Let $\mathbf1=(1,1,1)^{\mathsf T}$ and, on one local lifted phase branch of the regular A3 chart, define
+
 $$
-\mathcal S_{F3}
+\begin{aligned}
+\overline h&=\frac13\mathbf1^{\mathsf T}\mathbf h,
+&
+\boldsymbol\delta h&=\mathbf h-\overline h\mathbf1,\\
+\overline\rho&=\frac13\mathbf1^{\mathsf T}\boldsymbol\rho,
+&
+\boldsymbol\delta\rho&=\boldsymbol\rho-\overline\rho\mathbf1,\\
+\overline\phi&=\frac13\mathbf1^{\mathsf T}(\boldsymbol\phi-\boldsymbol\phi^{A2}),
+&
+\boldsymbol\delta\phi&=\boldsymbol\phi-\boldsymbol\phi^{A2}-\overline\phi\mathbf1,
+\end{aligned}
+$$
+
+so
+
+$$
+\mathbf1^{\mathsf T}\boldsymbol\delta h
+=
+\mathbf1^{\mathsf T}\boldsymbol\delta\rho
+=
+\mathbf1^{\mathsf T}\boldsymbol\delta\phi
+=0.
+$$
+
+The barred rows are the A2 gross-support directions and the three zero-sum rows are the six local A3-relative deformation coordinates. F3 holds the gross-support and circulation-class rows fixed while testing the relative coordinates and a declared $\pi_{\mathrm{return}}\in S_3$; this does not select a mode or return character.
+
+The `Gauge` field removes only continuous presentation and split redundancy. Let $\mathbf C$ be the common center and let $E\in SO(3)$ be the ordered body frame obtained from the source-declared rank-three axes by the F1 Gram--Schmidt construction. A redundant split record transforms as
+
+$$
+\begin{aligned}
+(&\mathbf C,E,
+\overline h,\boldsymbol\delta h,
+\overline\rho,\boldsymbol\delta\rho,
+\overline\phi,\boldsymbol\delta\phi)
+\sim{}&
+(Q\mathbf C+\mathbf a,QE,
+\overline h+\beta_h,\boldsymbol\delta h-\beta_h\mathbf1,\\
+&&\overline\rho+\beta_\rho,\boldsymbol\delta\rho-\beta_\rho\mathbf1,
+\overline\phi+\beta_\phi,\boldsymbol\delta\phi-\beta_\phi\mathbf1),
+\end{aligned}
+$$
+
+with $(\mathbf a,Q,\beta_h,\beta_\rho,\beta_\phi)\in\mathbb R^3\times SO(3)\times\mathbb R^3$, restricted to the admitted local coordinate branch. Every class has exactly one representative satisfying
+
+$$
+\mathbf C=\mathbf0,
+\qquad
+E=I_3,
+\qquad
+\mathbf1^{\mathsf T}\boldsymbol\delta h
+=
+\mathbf1^{\mathsf T}\boldsymbol\delta\rho
+=
+\mathbf1^{\mathsf T}\boldsymbol\delta\phi
+=0.
+$$
+
+Existence follows by taking $Q=E^{\mathsf T}$, $\mathbf a=-E^{\mathsf T}\mathbf C$, and each $\beta$ equal to one third of the corresponding redundant residual sum. Uniqueness follows from the ordered-frame and center conditions and then from the three zero-sum conditions. The transformation leaves the physical rows $\mathbf h$, $\boldsymbol\rho$, $\boldsymbol\phi$, the circulation class, $\pi_{\mathrm{return}}$, and every persistent member label unchanged.
+
+The cyclic port action is separate. If $P(x_1,x_2,x_3)=(x_3,x_1,x_2)$, then $C_3=\langle P\rangle$ acts on the gauge-fixed deformation record by
+
+$$
+P:\left(
+\boldsymbol\delta h,
+\boldsymbol\delta\rho,
+\boldsymbol\delta\phi,
+\pi_{\mathrm{return}}
+\right)
+\longmapsto
+\left(
+P\boldsymbol\delta h,
+P\boldsymbol\delta\rho,
+P\boldsymbol\delta\phi,
+P\pi_{\mathrm{return}}P^{-1}
+\right).
+$$
+
+For shape-only comparison, $Q_{\mathrm{shape}}$ may identify this finite orbit; an executable representative is the lexicographically greatest concatenated row among its three images, with repeated images retained as an explicit stabilizer stratum. For identity/history analysis, $Q_{\mathrm{identity/history}}$ uses only the continuous section above and does not divide by $C_3$. Thus a visible cyclic shape closure cannot silently erase a persistent return permutation, worldline identity, causal-root branch, wake order, or event record.
+
+Plainly: F3 now has one exact rule for removing duplicate coordinates and two clearly different ways to compare the result. A shape-only view may rotate the three equal ports into one another, but the identity/history view keeps track of which persistent member went where. No mode or doubled return is created by the bookkeeping.
+
+Claim grade: the continuous representation/split section, its trivial stabilizer, the six-dimensional zero-sum deformation complement, and the two quotient semantics are derived from the regular A3 chart, the A2 diagonal locus, and the existing persistent-index policy. The F3 seed, isolated modes, and return characters remain guessed. The gauge closure is falsified if two distinct continuous transformations place one admitted record in the section, if reconstruction of $\mathbf h$, $\boldsymbol\rho$, or $\boldsymbol\phi$ changes, if the cyclic action leaves the declared finite orbit, or if the identity/history quotient identifies two records with different persistent provenance.
+
+The `Coordinates` field uses an explicit basis of the zero-sum complement. Define
+
+$$
+\mathsf H_0
+=
+\left\{\mathbf x\in\mathbb R^3:\mathbf1^{\mathsf T}\mathbf x=0\right\},
+\qquad
+\mathbf b_1=\frac1{\sqrt2}(1,-1,0),
+\qquad
+\mathbf b_2=\frac1{\sqrt6}(1,1,-2).
+$$
+
+For $u\in\{h,\rho,\phi\}$, write
+
+$$
+\boldsymbol\delta u
+=
+\eta_{u,1}\mathbf b_1
++
+\eta_{u,2}\mathbf b_2,
+\qquad
+\boldsymbol\eta
+=
+(\eta_{h,1},\eta_{h,2},
+\eta_{\rho,1},\eta_{\rho,2},
+\eta_{\phi,1},\eta_{\phi,2})
+\in\mathbb R^6.
+$$
+
+Let $\mathcal C_{A2}^{\mathrm{gross,reg}}$ be the gauge-fixed regular A2 gross-support chart retaining the common $\overline h$, $\overline\rho$, radius relation, positive cadence, common lifted phase, prescribed $\lambda_A$, circulation class, and source-declared ordered orbit frames, with $\overline\rho>0$ and a rank-three frame. For any $0<\varepsilon<\pi/3$ and gross-support row $g$, define the cyclic-invariant local relative domain
+
+$$
+\mathcal U_{F3}(g,\varepsilon)
 =
 \left\{
-(\boldsymbol\delta h,
- \boldsymbol\delta\rho,
- \boldsymbol\delta\phi,
- \pi_{\mathrm{return}})
-\right\}/Q_{\mathrm{A2}}.
+\boldsymbol\eta\in\mathbb R^6:
+\overline h+\delta h_a>0,
+\quad
+\overline\rho+\delta\rho_a>0,
+\quad
+|\delta\phi_a|<\varepsilon
+\quad
+\text{for every }a
+\right\}.
 $$
+
+The labeled identity/history chart is
+
+$$
+\mathcal C_{F3}^{\mathrm{lab}}(\varepsilon)
+=
+\left\{
+(g,\boldsymbol\eta,\pi_{\mathrm{return}}):
+g\in\mathcal C_{A2}^{\mathrm{gross,reg}},
+\ \boldsymbol\eta\in\mathcal U_{F3}(g,\varepsilon),
+\ \pi_{\mathrm{return}}\in S_3
+\right\}.
+$$
+
+It has six continuous A3-relative coordinates over each A2 gross-support row and six labeled return-permutation sheets. The circulation class remains a separately declared gross-support sheet and is not inferred from $\pi_{\mathrm{return}}$. The instantaneous A3 rows are
+
+$$
+\mathbf h=\overline h\mathbf1+\boldsymbol\delta h,
+\qquad
+\boldsymbol\rho=\overline\rho\mathbf1+\boldsymbol\delta\rho,
+\qquad
+\boldsymbol\phi
+=
+\boldsymbol\phi^{A2}
++\overline\phi\mathbf1
++\boldsymbol\delta\phi,
+\qquad
+R_a=\sqrt{h_a^2+\rho_a^2}.
+$$
+
+The analytical inverse on the declared phase branches is
+
+$$
+\begin{aligned}
+\overline h&=\frac13\mathbf1^{\mathsf T}\mathbf h,
+&
+\eta_{h,i}&=\mathbf b_i\mathbin\cdot\mathbf h,\\
+\overline\rho&=\frac13\mathbf1^{\mathsf T}\boldsymbol\rho,
+&
+\eta_{\rho,i}&=\mathbf b_i\mathbin\cdot\boldsymbol\rho,\\
+\overline\phi&=\frac13\mathbf1^{\mathsf T}(\boldsymbol\phi-\boldsymbol\phi^{A2}),
+&
+\eta_{\phi,i}&=\mathbf b_i\mathbin\cdot(\boldsymbol\phi-\boldsymbol\phi^{A2}),
+\qquad i\in\{1,2\}.
+\end{aligned}
+$$
+
+The discrete return sheet is read from the persistent labeled record rather than reconstructed from instantaneous positions. The $C_3$ action preserves the domain and produces the separate shape orbit described above; it is not applied to $\mathcal C_{F3}^{\mathrm{lab}}$ when identity or history matters. The $h_a=0$, $\rho_a=0$, phase-branch, and frame-rank boundaries require neighboring or lower-dimensional charts and are not rejected as physical configurations.
+
+Plainly: F3 now has six explicit numbers for how the three binaries differ from their common A2-like support, plus a separately recorded return permutation. The formulas recover those numbers uniquely, but they do not choose a special mode or say that any proposed return occurs dynamically.
+
+Claim grade: the labeled local product, domain, six relative coordinates, and inverse are derived from the regular A3 chart and the completed F3 gauge. The F3 seed, isolated modes, and return characters remain guessed. The coordinate closure is falsified if the basis fails to span $\mathsf H_0$, if two admitted coordinate rows yield the same labeled A3 record, if an admitted regular record cannot be inverted, if the cyclic action leaves the domain, or if the chart silently identifies persistent return sheets.
+
+The `Reconstruction` field is the pair-conjugate A3 map restricted to the labeled F3 chart. For each persistent port $a\in\{1,2,3\}$, let $(\hat{\mathbf n}_a,\hat{\mathbf u}_a,\hat{\mathbf v}_a)$ be its source-declared right-handed orthonormal orbit frame in body coordinates, and define
+
+$$
+\begin{aligned}
+\mathbf r_a(\phi_a)
+&=
+\hat{\mathbf u}_a\cos\phi_a
++\hat{\mathbf v}_a\sin\phi_a,\\
+\mathbf D_a
+&=
+h_a\hat{\mathbf n}_a
++\rho_a\mathbf r_a(\phi_a),\\
+\mathbf X_{a,\sigma}
+&=
+\mathbf C+\sigma E\mathbf D_a,
+\qquad
+\sigma\in\{+1,-1\}.
+\end{aligned}
+$$
+
+This places exactly six labeled members. The pair-end sign $\sigma$ is not architrino polarity. The inherited A3 polarity and circulation sheets and the proposed $\pi_{\mathrm{return}}$ remain persistent record data; at fixed continuous coordinates none changes the instantaneous position formula.
+
+Within a fixed source-frame, polarity, circulation, and return-permutation sheet, the position-bearing rows have the analytical recovery
+
+$$
+\begin{aligned}
+\mathbf C
+&=
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{a,\sigma},
+&
+\mathbf D_a
+&=
+E^{\mathsf T}\frac{\mathbf X_{a,+}-\mathbf X_{a,-}}2,\\
+h_a
+&=
+\hat{\mathbf n}_a\mathbin\cdot\mathbf D_a,
+&
+\rho_a
+&=
+\sqrt{
+(\hat{\mathbf u}_a\mathbin\cdot\mathbf D_a)^2
++(\hat{\mathbf v}_a\mathbin\cdot\mathbf D_a)^2
+},\\
+\phi_a
+&=
+\operatorname{atan2}_{\phi_a^{A2}}
+\left(
+\hat{\mathbf v}_a\mathbin\cdot\mathbf D_a,
+\hat{\mathbf u}_a\mathbin\cdot\mathbf D_a
+\right).
+\end{aligned}
+$$
+
+The recovered $\mathbf h$, $\boldsymbol\rho$, and $\boldsymbol\phi$ then enter the completed F3 coordinate inverse to recover the gross-support and six relative coordinates. The ordered axes recover $E$ before the gauge section is applied. Positions alone do not recover the circulation class, polarity assignment, or $\pi_{\mathrm{return}}$; those sheets belong to the persistent labeled record rather than being identified.
+
+Plainly: every allowed F3 coordinate row now places all six pair ends and recovers its continuous geometry from the labeled positions. This supplies a family map, not a chosen mode, a return, or a history.
+
+Claim grade: the six-member map, pair conjugacy, and fixed-sheet inverse are derived from the A3 reconstruction formula and the completed F3 gauge/coordinate chart. The F3 seed, isolated modes, and return characters remain guessed. The reconstruction closure is falsified if a pair is not antipodal about $\mathbf C$, if a regular fixed-sheet record fails the displayed inverse, if two position-bearing coordinate rows yield the same labeled positions, or if the map changes a persistent polarity, circulation, or return sheet.
+
+The `Velocity` field is the exact differential of the F3 reconstruction map. For $u\in\{h,\rho,\phi\}$, let
+
+$$
+\dot{\boldsymbol\delta u}
+=
+\dot\eta_{u,1}\mathbf b_1
++\dot\eta_{u,2}\mathbf b_2,
+\qquad
+\dot u_a
+=
+\dot{\overline u}
++\dot{\delta u}_a.
+$$
+
+Write the body-frame and source-declared local-frame rates as
+
+$$
+\dot E=\Omega E,
+\qquad
+\Omega^{\mathsf T}=-\Omega,
+\qquad
+\dot F_a=\Lambda_aF_a,
+\qquad
+\Lambda_a^{\mathsf T}=-\Lambda_a,
+$$
+
+where $F_a=(\hat{\mathbf n}_a\ \hat{\mathbf u}_a\ \hat{\mathbf v}_a)$ and $\Lambda_a$ includes any differentiated source-declared $\lambda_A(T)$ frame history. Define
+
+$$
+\mathbf t_a
+=
+-\hat{\mathbf u}_a\sin\phi_a
++\hat{\mathbf v}_a\cos\phi_a.
+$$
+
+Then
+
+$$
+\begin{aligned}
+\dot{\mathbf r}_a
+&=
+\Lambda_a\mathbf r_a
++\dot\phi_a\mathbf t_a,\\
+\dot{\mathbf D}_a
+&=
+\dot h_a\hat{\mathbf n}_a
++h_a\Lambda_a\hat{\mathbf n}_a
++\dot\rho_a\mathbf r_a
++\rho_a\Lambda_a\mathbf r_a
++\rho_a\dot\phi_a\mathbf t_a,\\
+\mathbf V_{a,\sigma}
+&=
+\dot{\mathbf C}
++\sigma\left[
+\Omega E\mathbf D_a
++E\dot{\mathbf D}_a
+\right].
+\end{aligned}
+$$
+
+The rate domain consists of continuously differentiable gross-support and six relative coordinate functions while every $h_a>0$, $\rho_a>0$, local phase lift, and ordered frame remains inside the declared chart. The polarity, circulation, return-permutation, and persistent-label sheets are constant on each differentiable interval. If a circulation sheet constrains phase direction, the admitted $\dot\phi_a$ must retain that declared sign; a sign change is a sheet boundary, not a tangent coordinate. The dependent radii satisfy
+
+$$
+\dot R_a
+=
+\frac{h_a\dot h_a+\rho_a\dot\rho_a}{R_a}.
+$$
+
+When $\Omega=0$ and every $\Lambda_a=0$, the formula reduces to three independent pair-conjugate A3 tangents. At the zero-relative-coordinate and zero-relative-rate locus it reduces further to the common A2 tangent on the declared circulation sheet. No mode-specialized velocity path is inserted.
+
+Plainly: every allowed F3 coordinate rate now produces all six member velocities. The tangent keeps common A2-like motion separate from the six ways the three binaries can deform relative to one another, but it does not choose a mode or history.
+
+Claim grade: the six-member tangent and rate domain are derived by differentiating the completed F3 reconstruction map. The F3 seed, isolated modes, and return characters remain guessed. The result is falsified if an admitted differentiable coordinate history has a member difference quotient that disagrees with $\mathbf V_{a,\sigma}$, if any zero-sum rate leaves the six-coordinate tangent complement, if the A2 specialization fails, or if a discrete sheet changes inside a differentiable interval.
+
+The `Centering` field follows exactly from the pair-end signs. For every port and every admitted coordinate and rate row,
+
+$$
+\mathbf X_{a,+}+\mathbf X_{a,-}=2\mathbf C,
+\qquad
+\mathbf V_{a,+}+\mathbf V_{a,-}=2\dot{\mathbf C}.
+$$
+
+Therefore
+
+$$
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf X_{a,\sigma}
+=
+\mathbf C,
+\qquad
+\frac16\sum_{a=1}^3\sum_{\sigma=\pm1}\mathbf V_{a,\sigma}
+=
+\dot{\mathbf C}.
+$$
+
+The identities are independent of all six relative coordinates and rates, the A2 gross-support row, the circulation class, and $\pi_{\mathrm{return}}$. They are equal-member geometric centroids and do not assert that any later polarity-weighted, exposure-weighted, or effective observer-level center equals $\mathbf C$.
+
+Plainly: relative F3 deformations can move each binary differently, but each binary still contributes one displacement and its opposite. The full six-member position and velocity averages therefore remain exactly at the declared center and center velocity; this is not a binding or stability result.
+
+Claim grade: position and velocity centering are derived algebraically from the completed F3 pair-conjugate member and tangent maps. The F3 seed, isolated modes, and return characters remain guessed. The result is falsified by any admitted labeled row whose equal-member centroid differs from $\mathbf C$ or whose velocity centroid differs from $\dot{\mathbf C}$.
+
+The `Speed` field is an exact guard functional on the six-member tangent. In normalized wake-speed units $c_f=1$, define on a declared interval $I$
+
+$$
+s_{a,\sigma}(T)
+=
+\left\|\mathbf V_{a,\sigma}(T)\right\|,
+\qquad
+S_{F3}[I]
+=
+\sup_{T\in I}
+\max_{a\in\{1,2,3\},\,\sigma\in\{+1,-1\}}
+s_{a,\sigma}(T).
+$$
+
+The exact strict speed guard is
+
+$$
+S_{F3}[I]<1.
+$$
+
+For a conservative predeclaration bound, let $\|\cdot\|_2$ denote the Euclidean operator norm and define
+
+$$
+B_a(T)
+=
+\left\|\dot{\mathbf C}\right\|
++R_a\|\Omega\|_2
++|\dot h_a|+|\dot\rho_a|
++(|h_a|+\rho_a)\|\Lambda_a\|_2
++\rho_a|\dot\phi_a|.
+$$
+
+Orthogonality of $E$, the identity $\|\mathbf D_a\|=R_a$, and the triangle and operator-norm inequalities give
+
+$$
+s_{a,\sigma}(T)
+\le
+B_a(T),
+\qquad
+\sup_{T\in I}\max_aB_a(T)<1
+\Longrightarrow
+S_{F3}[I]<1.
+$$
+
+The bound is sufficient but not necessary; the exact functional remains authoritative when vector cancellations matter. Neither formula supplies a pass until a complete F3 mode history and interval are selected.
+
+Plainly: F3 now has a precise speed test for every one of its six members and a simpler safe upper bound for planning a mode history. Both use $c_f=1$, but no mode or history has been chosen or certified.
+
+Claim grade: the exact speed functional and conservative bound are derived from the F3 tangent and Euclidean norm inequalities. Passing the guard for a concrete history would be measured by evaluating or enclosing that selected history; no pass is claimed here. The formulas are falsified if an admitted member speed exceeds $B_a$, if an orthogonal presentation change alters the exact functional, or if the strict guard accepts a row with speed at or above $c_f=1$.
+
+The `Collision` field reduces all fifteen labeled pair distances exactly even when the three A3 radii differ. The three same-port partner distances are $2R_a$. For distinct ports $a<c$ and pair-end signs $\sigma,\tau$,
+
+$$
+\left\|\mathbf X_{a,\sigma}-\mathbf X_{c,\tau}\right\|^2
+=
+R_a^2+R_c^2
+-2\sigma\tau\,\mathbf D_a\mathbin\cdot\mathbf D_c.
+$$
+
+Taking the smaller sign choice gives the exact instantaneous clearance
+
+$$
+D_{F3}(T)
+=
+\min\left\{
+\min_{a\in\{1,2,3\}}2R_a,
+\quad
+\min_{1\le a<c\le3}
+\sqrt{
+R_a^2+R_c^2
+-2\left|\mathbf D_a\mathbin\cdot\mathbf D_c\right|
+}
+\right\}.
+$$
+
+For a declared interval $I$, define
+
+$$
+D_{F3}[I]
+=
+\inf_{T\in I}D_{F3}(T).
+$$
+
+The exact continuous collision guard is $D_{F3}[I]>0$. On a compact interval with continuous admitted coordinate and frame functions, analytical exclusion or a validated enclosure of every zero-distance equality establishes a positive minimum. A finite sample without an enclosure does not prove the interval guard. The return-permutation sheet can reorder labels but cannot remove a physical pair from the minimum.
+
+Plainly: every possible collision among the six F3 members is now included in one formula, including binaries with different radii. The formula supplies the test but does not say that an unselected mode history stays clear.
+
+Claim grade: the complete clearance reduction is derived from the F3 pair-conjugate reconstruction map and Euclidean inner-product algebra. Passing it for a concrete interval would require analytical exclusion or a measured enclosure over the selected history; no pass is claimed here. The formula is falsified if direct enumeration of the fifteen labeled distances disagrees with $D_{F3}(T)$ or if $D_{F3}[I]>0$ admits a collision.
 
 This seed uses the existing continuous deformation chart but adds a discrete selection burden. It is the most direct way to test whether the familiar three-binary scaffold can generate spinor return and three generations as dynamical modes rather than literal extra layers.
 
@@ -2710,6 +3903,545 @@ Fast rejection: the admissible spectrum is continuous, carries fewer or more tha
 ##### Seed F4 — Framed Triad Plus C4 Counterflow Module
 
 Associate one A2/A3 framed triad with one C4-like opposite-circulation module. The framed triad attempts the body-port and multiplet rows; the C4 component attempts the axial current, relative phase, and transaction-corridor rows. The composition is viable only if both are parts of one retained assembly and one angular/action ledger rather than two independently named objects.
+
+The `Inventory` field closes as a tagged disjoint union without choosing the framed variant. Let
+
+$$
+\mathcal V_F=\{A2,A3\},
+$$
+
+and for $v\in\mathcal V_F$ define the framed-component pair ends and the canonical C4 pair ends by
+
+$$
+\begin{aligned}
+\mathcal I_{\mathrm{frame}}(v)
+&=
+\{(\mathrm{frame},v,a,\sigma):a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\},\\
+\mathcal I_{C4}
+&=
+\{(C4,b,a,\sigma):b\in\{1,2\},\ a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\},\\
+\mathcal I_{F4}(v)
+&=
+\mathcal I_{\mathrm{frame}}(v)\mathbin\sqcup\mathcal I_{C4}.
+\end{aligned}
+$$
+
+Both A2 and A3 contain three persistent neutral binaries and therefore six pair ends. Canonical C4 contains two complete B1 components, each with three persistent neutral binaries, and therefore twelve pair ends. Hence
+
+$$
+\left|\mathcal I_{F4}(v)\right|
+=
+6+12
+=18
+\qquad
+\text{for both }v=A2\text{ and }v=A3.
+$$
+
+The component, variant, B1-component, binary, and pair-end tags are structural labels. The pair-end sign $\sigma$ is not architrino polarity, and this inventory does not choose machine IDs, worldline IDs, source order, or the cross-component association relation. In F4, `C4` means the canonical two-B1 opposite-component-circulation chart. A merely C4-like alternative with a different constituent set is outside this tagged inventory and requires a new explicitly named variant rather than silent substitution.
+
+Plainly: whichever framed triad is eventually chosen, F4 contains six framed members plus the canonical C4 module's twelve members, for eighteen total. This fixes what must be counted without deciding how the members are named, ordered, placed, or bound.
+
+Claim grade: the tagged inventory and its cardinality are derived from the admitted A2, A3, and C4 taxonomy rows. The F4 association remains guessed. The inventory closure is falsified if an admitted A2 or A3 row does not contain six pair ends, if canonical C4 does not contain twelve, if the union aliases a framed and C4 member, or if a later F4 construction silently replaces canonical C4 with a different inventory.
+
+The `Polarity` field is inherited pair by pair. Let $q_{\mathrm{frame}}^{v}(a,\sigma)\in\{+1,-1\}$ and $q_{C4}(b,a,\sigma)\in\{+1,-1\}$ be the source-declared polarity maps for the tagged framed chart $v$ and canonical C4. Their neutral-pair relations are
+
+$$
+q_{\mathrm{frame}}^{v}(a,-\sigma)
+=
+-q_{\mathrm{frame}}^{v}(a,\sigma),
+\qquad
+q_{C4}(b,a,-\sigma)
+=
+-q_{C4}(b,a,\sigma).
+$$
+
+Define the integrated assignment on the disjoint inventory by
+
+$$
+q_{F4}^{v}(i)
+=
+\begin{cases}
+q_{\mathrm{frame}}^{v}(a,\sigma),
+&i=(\mathrm{frame},v,a,\sigma),\\
+q_{C4}(b,a,\sigma),
+&i=(C4,b,a,\sigma).
+\end{cases}
+$$
+
+There are three neutral pairs in the framed component and six in canonical C4. Consequently, for either variant tag,
+
+$$
+\#\{i:q_{F4}^{v}(i)=+1\}
+=
+\#\{i:q_{F4}^{v}(i)=-1\}
+=9,
+\qquad
+\sum_{i\in\mathcal I_{F4}(v)}q_{F4}^{v}(i)=0.
+$$
+
+This assignment inherits the exact endpoint-to-polarity rows from the selected source chart; it does not infer polarity from the pair-end sign $\sigma$, circulation direction, component tag, or geometry. Choosing $v$ selects which existing framed source map is read, not a new polarity convention.
+
+Plainly: F4 contains nine positive and nine negative architrinos for either framed-component variant. Their individual signs come from the component charts that already own them, not from the plus/minus symbols used to write antipodal positions.
+
+Claim grade: the integrated polarity assignment and nine-to-nine balance are derived from the admitted A2/A3 and C4 neutral-pair relations plus the completed disjoint inventory. The F4 association remains guessed. The result is falsified if a source component lacks pairwise opposite polarities, if the integrated map changes a source-declared sign, if its positive/negative counts differ, or if circulation reversal is used as a polarity reassignment.
+
+The `Gauge` field uses the exact six-plus-twelve member weighting. Let $(\mathbf C_F,E_F)$ be the center and ordered body frame of the tagged A2/A3 component and let $(\mathbf C_C,E_C)$ be the center and source-declared oriented frame of canonical C4 on its regular transverse-radius domain. Define
+
+$$
+\begin{aligned}
+\mathbf C
+&=
+\frac{6\mathbf C_F+12\mathbf C_C}{18}
+=
+\frac{\mathbf C_F+2\mathbf C_C}{3},
+&
+E&=E_F,\\
+\mathbf d_{FC}
+&=
+E_F^{\mathsf T}(\mathbf C_C-\mathbf C_F),
+&
+Q_{FC}&=E_F^{\mathsf T}E_C.
+\end{aligned}
+$$
+
+The inverse center/frame relations are
+
+$$
+\mathbf C_F
+=
+\mathbf C-\frac23E\mathbf d_{FC},
+\qquad
+\mathbf C_C
+=
+\mathbf C+\frac13E\mathbf d_{FC},
+\qquad
+E_F=E,
+\qquad
+E_C=EQ_{FC}.
+$$
+
+Under the diagonal rigid-presentation action
+
+$$
+(\mathbf C_F,E_F,\mathbf C_C,E_C)
+\longmapsto
+(Q\mathbf C_F+\mathbf a,QE_F,Q\mathbf C_C+\mathbf a,QE_C),
+\qquad
+(\mathbf a,Q)\in\mathbb R^3\rtimes SO(3),
+$$
+
+the weighted center transforms as $\mathbf C\mapsto Q\mathbf C+\mathbf a$, while $\mathbf d_{FC}$ and $Q_{FC}$ remain invariant. Every labeled regular record has exactly one representative in the section
+
+$$
+\mathbf C=\mathbf0,
+\qquad
+E=I_3.
+$$
+
+Existence follows by choosing $Q=E_F^{\mathsf T}$ and $\mathbf a=-E_F^{\mathsf T}\mathbf C$; uniqueness follows because the frame condition fixes $Q$ and the center condition fixes $\mathbf a$. The variant tag, both component-internal coordinate rows, all component phases and circulation relations, $\mathbf d_{FC}$, $Q_{FC}$, polarities, and persistent labels are untouched. The unequal component inventories also rule out treating component exchange as a gauge symmetry.
+
+Plainly: F4 now has one exact way to remove duplicate whole-assembly placement. Its center is the average of all eighteen members, not the midpoint of the two component centers, and every relative position, orientation, phase, and label remains part of the composition data.
+
+Claim grade: the weighted assembly center, relative-pose invariants, inverse, and diagonal rigid-presentation section are derived from the completed F4 inventory and the source component frames. The F4 association remains guessed. The gauge closure is falsified if a diagonal rigid change alters either relative row, if the inverse fails to recover the component centers/frames, if two rigid transformations place one labeled record in the section, or if the section quotients an internal or persistent coordinate.
+
+The `Coordinates` field is a tagged stratified product of already admitted component charts and the full relative pose. Let $\mathcal C_{A2}^{\mathrm{reg}}$, $\mathcal C_{A3}^{\mathrm{reg}}$, and $\mathcal C_{C4}^{\mathrm{reg}}$ denote the gauge-fixed regular source charts with their internal phase, cadence, circulation, polarity, binary, and persistent-label rows retained. Define
+
+$$
+\mathbb B_\pi^3
+=
+\left\{\boldsymbol\omega\in\mathbb R^3:\|\boldsymbol\omega\|<\pi\right\},
+\qquad
+Q_{FC}
+=
+\exp([\boldsymbol\omega]_{\times}).
+$$
+
+The gauge-fixed labeled F4 chart is
+
+$$
+\mathcal C_{F4}^{\mathrm{lab}}
+=
+\bigsqcup_{v\in\{A2,A3\}}
+\left(
+\{v\}
+\times\mathcal C_v^{\mathrm{reg}}
+\times\mathcal C_{C4}^{\mathrm{reg}}
+\times\mathbb R^3_{\mathbf d_{FC}}
+\times\mathbb B_\pi^3
+\right).
+$$
+
+The disjoint-union tag allows the A2 and A3 strata to retain their different internal dimensions without pretending that one is the other. The two source charts keep all internal component coordinates. In particular, their declared reference phases determine every relative phase between the framed and C4 components; no phase is removed or duplicated by the composition chart. The relative displacement is the complete body-frame vector $\mathbf d_{FC}$, not merely an axial separation.
+
+The relative-pose inverse is
+
+$$
+\mathbf d_{FC}
+=
+E_F^{\mathsf T}(\mathbf C_C-\mathbf C_F),
+\qquad
+\boldsymbol\omega
+=
+\operatorname{vee}(\log(E_F^{\mathsf T}E_C)),
+$$
+
+on $\|\boldsymbol\omega\|<\pi$. Each component's coordinates are recovered by its existing source-chart inverse after applying the F4 gauge section. The orientation boundary $\|\boldsymbol\omega\|=\pi$, zero-transverse-radius component boundaries, and singular frame strata require neighboring or lower-dimensional charts; excluding them from this local product is not a physical rejection.
+
+The variant tag, all internal circulation and polarity rows, component membership, binary and pair-end labels, and every C4 two-B1 relation remain explicit. No cross-component binding or association relation is inferred from the Cartesian product.
+
+Plainly: F4 now has a complete local list of coordinates for either possible framed component: all coordinates already owned by that component, all coordinates already owned by C4, and the full three-dimensional separation and orientation between them. The chart selects neither variant nor a numerical composition.
+
+Claim grade: the tagged product, relative-pose domain, and inverse are derived from the admitted component charts and completed F4 gauge. The F4 association remains guessed. The coordinate closure is falsified if an admitted regular component record cannot enter its tagged stratum, if two rows give the same labeled component-and-relative-pose record, if the logarithm fails inside the declared orientation ball, or if the product silently identifies an internal or persistent sheet.
+
+The `Reconstruction` field composes the source member maps in the F4 relative pose. For the tagged framed component, write
+
+$$
+\mathbf D_a^v
+=
+h_a^v\hat{\mathbf n}_a^v
++\rho_a^v
+\left(
+\hat{\mathbf u}_a^v\cos\phi_a^v
++\hat{\mathbf v}_a^v\sin\phi_a^v
+\right),
+$$
+
+with the A2 equal-row restrictions imposed when $v=A2$ and the regular A3 rows retained when $v=A3$. For canonical C4, let $\epsilon_1=-1$, $\epsilon_2=+1$ and define in the C4 module frame
+
+$$
+\mathbf S_{b,a}
+=
+h_{b,a}\hat{\mathbf n}_C
++\rho_{b,a}
+\left(
+\hat{\mathbf e}_1\cos\theta_{b,a}
++\hat{\mathbf e}_2\sin\theta_{b,a}
+\right).
+$$
+
+The eighteen world-frame positions are
+
+$$
+\begin{aligned}
+\mathbf X_{\mathrm{frame},a,\sigma}
+&=
+\mathbf C
+-\frac23E\mathbf d_{FC}
++\sigma E\mathbf D_a^v,\\
+\mathbf X_{C4,b,a,\sigma}
+&=
+\mathbf C
++\frac13E\mathbf d_{FC}
++EQ_{FC}
+\left(
+\frac{\epsilon_b d_C}{2}\hat{\mathbf n}_C
++\sigma\mathbf S_{b,a}
+\right),
+\end{aligned}
+$$
+
+where $a\in\{1,2,3\}$, $b\in\{1,2\}$, and $\sigma\in\{+1,-1\}$. The first row places six framed members and the second places twelve C4 members. Pair-end sign is not polarity. The inherited polarity, circulation, component, binary, and pair-end sheets change no instantaneous position at fixed continuous coordinates.
+
+On a fixed variant, source-frame, polarity, circulation, and label sheet, the component centers are recovered by
+
+$$
+\mathbf C_F
+=
+\frac16\sum_{a,\sigma}\mathbf X_{\mathrm{frame},a,\sigma},
+\qquad
+\mathbf C_C
+=
+\frac1{12}\sum_{b,a,\sigma}\mathbf X_{C4,b,a,\sigma}.
+$$
+
+The completed F4 gauge inverse then recovers $\mathbf C$, $\mathbf d_{FC}$, and $Q_{FC}$. Inside C4, the two B1 component centers and pair displacements are
+
+$$
+\mathbf C_{C,b}
+=
+\frac16\sum_{a,\sigma}\mathbf X_{C4,b,a,\sigma},
+\qquad
+\mathbf S_{b,a}
+=
+Q_{FC}^{\mathsf T}E^{\mathsf T}
+\frac{\mathbf X_{C4,b,a,+}-\mathbf X_{C4,b,a,-}}2,
+$$
+
+and $d_C$ follows from the declared C4 axis projection of $\mathbf C_{C,2}-\mathbf C_{C,1}$. The framed pair differences similarly recover every $\mathbf D_a^v$. Those rows enter the existing A2/A3 and C4 source-chart inverses. Positions alone do not select $v$ or recover persistent polarity/circulation labels; the tagged labeled record owns those sheets.
+
+Plainly: every allowed F4 coordinate row now places all eighteen members in one assembly frame, and the labeled positions recover both component geometries and their relative pose. This still chooses no framed variant, numerical row, association mechanism, or history.
+
+Claim grade: the eighteen-member composite map and fixed-tag/sheet inverse are derived from the admitted A2/A3 and C4 member maps plus the completed F4 gauge/coordinate chart. The F4 association remains guessed. The reconstruction closure is falsified if the member counts differ from 6 and 12, if either component centroid fails, if a regular fixed-sheet record fails the displayed inverse, or if the map changes a persistent component or polarity/circulation relation.
+
+The `Velocity` field is the exact differential of the composite map. Write
+
+$$
+\dot E=\Omega E,
+\qquad
+\dot Q_{FC}=\Xi_{FC}Q_{FC},
+\qquad
+\Omega^{\mathsf T}=-\Omega,
+\qquad
+\Xi_{FC}^{\mathsf T}=-\Xi_{FC}.
+$$
+
+For $Q_{FC}=\exp([\boldsymbol\omega]_{\times})$ on the declared orientation ball,
+
+$$
+\Xi_{FC}
+=
+\left[J_{\ell}(\boldsymbol\omega)\dot{\boldsymbol\omega}\right]_{\times},
+$$
+
+with the same left Jacobian $J_{\ell}$ used in the completed F2 tangent. The component-center rates are
+
+$$
+\begin{aligned}
+\dot{\mathbf C}_F
+&=
+\dot{\mathbf C}
+-\frac23\left(
+\Omega E\mathbf d_{FC}
++E\dot{\mathbf d}_{FC}
+\right),\\
+\dot{\mathbf C}_C
+&=
+\dot{\mathbf C}
++\frac13\left(
+\Omega E\mathbf d_{FC}
++E\dot{\mathbf d}_{FC}
+\right).
+\end{aligned}
+$$
+
+Let $\dot{\mathbf D}_a^v$ be the exact A2 or A3 source-chart differential on the tagged framed stratum. For C4, write $F_C=(\hat{\mathbf n}_C\ \hat{\mathbf e}_1\ \hat{\mathbf e}_2)$ and
+
+$$
+\dot F_C=\Lambda_CF_C,
+\qquad
+\Lambda_C^{\mathsf T}=-\Lambda_C.
+$$
+
+Define
+
+$$
+\begin{aligned}
+\mathbf r_{b,a}
+&=
+\hat{\mathbf e}_1\cos\theta_{b,a}
++\hat{\mathbf e}_2\sin\theta_{b,a},\\
+\mathbf t_{b,a}
+&=
+-\hat{\mathbf e}_1\sin\theta_{b,a}
++\hat{\mathbf e}_2\cos\theta_{b,a},\\
+\dot{\mathbf S}_{b,a}
+&=
+\dot h_{b,a}\hat{\mathbf n}_C
++h_{b,a}\Lambda_C\hat{\mathbf n}_C
++\dot\rho_{b,a}\mathbf r_{b,a}
++\rho_{b,a}\Lambda_C\mathbf r_{b,a}
++\rho_{b,a}\dot\theta_{b,a}\mathbf t_{b,a},\\
+\mathbf Z_{b,a,\sigma}
+&=
+\frac{\epsilon_bd_C}{2}\hat{\mathbf n}_C
++\sigma\mathbf S_{b,a},\\
+\dot{\mathbf Z}_{b,a,\sigma}
+&=
+\frac{\epsilon_b}{2}
+\left(
+\dot d_C\hat{\mathbf n}_C
++d_C\Lambda_C\hat{\mathbf n}_C
+\right)
++\sigma\dot{\mathbf S}_{b,a}.
+\end{aligned}
+$$
+
+The eighteen member velocities are
+
+$$
+\begin{aligned}
+\mathbf V_{\mathrm{frame},a,\sigma}
+&=
+\dot{\mathbf C}_F
++\sigma\left[
+\Omega E\mathbf D_a^v
++E\dot{\mathbf D}_a^v
+\right],\\
+\mathbf V_{C4,b,a,\sigma}
+&=
+\dot{\mathbf C}_C
++\Omega EQ_{FC}\mathbf Z_{b,a,\sigma}
++E\Xi_{FC}Q_{FC}\mathbf Z_{b,a,\sigma}
++EQ_{FC}\dot{\mathbf Z}_{b,a,\sigma}.
+\end{aligned}
+$$
+
+The rate domain consists of continuously differentiable tagged source-chart coordinates, $\mathbf C$, $E$, $\mathbf d_{FC}$, and $\boldsymbol\omega$ while both component charts remain regular and $\|\boldsymbol\omega\|<\pi$. The variant, component, polarity, circulation, binary, pair-end, and persistent-label sheets are constant on each differentiable interval. Their changes are chart or event boundaries, not tangent coordinates. When $\Omega=\Xi_{FC}=0$ and $\dot{\mathbf d}_{FC}=0$, the map reduces exactly to one translated framed-component tangent and one translated/rotated C4 tangent.
+
+Plainly: every allowed F4 coordinate rate now gives all eighteen member velocities. The formula separates whole-assembly motion, changing relative placement/orientation, framed-triad motion, and C4 counterflow motion without selecting a variant or history.
+
+Claim grade: the eighteen-member tangent and rate domain are derived by differentiating the completed F4 reconstruction map and the admitted source-component tangents. The F4 association remains guessed. The result is falsified if an admitted differentiable coordinate history has a member difference quotient that disagrees with the displayed velocity, if either fixed-pose source specialization fails, if the weighted component-center rates disagree with direct differentiation, or if a discrete sheet changes inside a differentiable interval.
+
+The `Centering` field follows exactly from pair conjugacy and the 6:12 weighted gauge. At every admitted coordinate row,
+
+$$
+\frac16\sum_{a,\sigma}\mathbf X_{\mathrm{frame},a,\sigma}
+=
+\mathbf C_F,
+\qquad
+\frac1{12}\sum_{b,a,\sigma}\mathbf X_{C4,b,a,\sigma}
+=
+\mathbf C_C,
+$$
+
+because the two pair-end signs cancel each local displacement. Therefore the full eighteen-member centroid is
+
+$$
+\frac1{18}
+\left(
+\sum_{a,\sigma}\mathbf X_{\mathrm{frame},a,\sigma}
++
+\sum_{b,a,\sigma}\mathbf X_{C4,b,a,\sigma}
+\right)
+=
+\frac{6\mathbf C_F+12\mathbf C_C}{18}
+=
+\mathbf C.
+$$
+
+The same cancellation in the exact tangent gives
+
+$$
+\frac16\sum_{a,\sigma}\mathbf V_{\mathrm{frame},a,\sigma}
+=
+\dot{\mathbf C}_F,
+\qquad
+\frac1{12}\sum_{b,a,\sigma}\mathbf V_{C4,b,a,\sigma}
+=
+\dot{\mathbf C}_C,
+$$
+
+and hence
+
+$$
+\frac1{18}
+\left(
+\sum_{a,\sigma}\mathbf V_{\mathrm{frame},a,\sigma}
++
+\sum_{b,a,\sigma}\mathbf V_{C4,b,a,\sigma}
+\right)
+=
+\frac{6\dot{\mathbf C}_F+12\dot{\mathbf C}_C}{18}
+=
+\dot{\mathbf C}.
+$$
+
+These are equal-member centroids. Exposure-weighted, polarity-weighted, current-facing, or dynamical centers are separate claims and are not inferred here.
+
+Plainly: the six-member framed component centers on its own component center, the twelve-member counterflow component centers on its own component center, and their exact 6:12 average is the assembly center. Differentiating gives the same statement for center velocity, without selecting a history.
+
+Claim grade: the component and assembly position-and-velocity centering identities are derived algebraically from the completed F4 reconstruction, tangent, and weighted gauge. They establish kinematic centering only, not a stationary center, association, binding, return, retention, or stability. The result is falsified by any admitted labeled F4 row for which a displayed component centroid or the full eighteen-member centroid differs from its declared center or center rate.
+
+The `Speed` field is an exact guard functional on the eighteen-member tangent. In normalized wake-speed units $c_f=1$, define for a declared interval $I$
+
+$$
+S_{F4}(I)
+=
+\max\left\{
+\max_{a,\sigma}\sup_{T\in I}\|\mathbf V_{\mathrm{frame},a,\sigma}(T)\|,
+\max_{b,a,\sigma}\sup_{T\in I}\|\mathbf V_{C4,b,a,\sigma}(T)\|
+\right\}.
+$$
+
+The exact strict speed guard is $S_{F4}(I)<1$. Let $\|\cdot\|_2$ denote the operator norm. The displayed velocity map gives the conservative pointwise enclosures
+
+$$
+\begin{aligned}
+B_{\mathrm{frame},a}
+&=
+\|\dot{\mathbf C}\|
++\frac23
+\left(
+\|\Omega\|_2\|\mathbf d_{FC}\|
++\|\dot{\mathbf d}_{FC}\|
+\right)
++\|\Omega\|_2\|\mathbf D_a^v\|
++\|\dot{\mathbf D}_a^v\|,\\
+B_{C4,b,a,\sigma}
+&=
+\|\dot{\mathbf C}\|
++\frac13
+\left(
+\|\Omega\|_2\|\mathbf d_{FC}\|
++\|\dot{\mathbf d}_{FC}\|
+\right)
++\left(
+\|\Omega\|_2+\|\Xi_{FC}\|_2
+\right)
+\|\mathbf Z_{b,a,\sigma}\|
++\|\dot{\mathbf Z}_{b,a,\sigma}\|.
+\end{aligned}
+$$
+
+Orthogonality of $E$ and $Q_{FC}$ plus the Euclidean triangle inequality gives
+
+$$
+\|\mathbf V_{\mathrm{frame},a,\sigma}\|
+\le B_{\mathrm{frame},a},
+\qquad
+\|\mathbf V_{C4,b,a,\sigma}\|
+\le B_{C4,b,a,\sigma}.
+$$
+
+Therefore a certified interval enclosure with $\sup_{T\in I}B<1$ is sufficient for the exact guard. It is not necessary: a row may satisfy the exact functional even when the conservative bound exceeds one. A complete prescribed history must still supply the interval and certified suprema.
+
+Plainly: F4 now has one exact speed test covering all eighteen members and a simpler upper bound that includes whole-assembly motion, changing component separation and orientation, and both components' internal motion. No parameter row or history has been selected or declared safe.
+
+Claim grade: the exact speed functional and conservative enclosures are derived from the completed F4 velocity map, orthogonality, and Euclidean norm inequalities. Passing either guard for a concrete history would be measured by evaluating or enclosing that history; no pass is claimed here. The formulas are falsified if an admitted member speed exceeds its displayed bound or if the strict guard accepts any row with speed at or above $c_f=1$.
+
+The `Collision` field reduces exactly to the finite labeled pair set. Let
+
+$$
+\mathcal I_F=\{(a,\sigma):a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\},
+\qquad
+\mathcal I_C=\{(b,a,\sigma):b\in\{1,2\},\ a\in\{1,2,3\},\ \sigma\in\{+1,-1\}\}.
+$$
+
+At each admitted time, define
+
+$$
+\begin{aligned}
+\delta_{FF}
+&=
+\min_{(a,\sigma)<(c,\tau)}
+\|\sigma\mathbf D_a^v-\tau\mathbf D_c^v\|,\\
+\delta_{CC}
+&=
+\min_{(b,a,\sigma)<(d,c,\tau)}
+\|\mathbf Z_{b,a,\sigma}-\mathbf Z_{d,c,\tau}\|,\\
+\delta_{FC}
+&=
+\min_{(a,\sigma)\in\mathcal I_F\atop(b,c,\tau)\in\mathcal I_C}
+\|\mathbf d_{FC}+Q_{FC}\mathbf Z_{b,c,\tau}-\sigma\mathbf D_a^v\|,\\
+\delta_{F4}
+&=
+\min\{\delta_{FF},\delta_{CC},\delta_{FC}\}.
+\end{aligned}
+$$
+
+The first minimum has $\binom62=15$ framed-internal rows, the second has $\binom{12}2=66$ C4-internal rows, and the third has $6\cdot12=72$ cross-component rows. Their total is $153=\binom{18}2$, so the reduction omits no labeled pair. Orthogonality of $E$ and $Q_{FC}$ removes the common world-frame presentation from the two internal families, while the cross-family formula retains the full relative displacement and orientation.
+
+For a declared interval $I$, the exact point-collision guard is
+
+$$
+\Delta_{F4}(I)=\inf_{T\in I}\delta_{F4}(T)>0.
+$$
+
+If member radii $r_i(T)$ are declared, replace each pair distance by $\|\mathbf X_i-\mathbf X_j\|-r_i-r_j$ and require its interval infimum to be positive. The owner supplies the exact functional, but an unselected F4 parameter/history family supplies no interval certificate or pass.
+
+Plainly: every possible collision among the eighteen members is now accounted for—inside the framed component, inside C4, or between the two. The formulas define what a selected history must clear; they do not say that any current F4 history clears it.
+
+Claim grade: the 153-pair decomposition and interval guard are derived from the completed labeled F4 reconstruction and Euclidean distance invariance. A concrete interval pass would be measured by certified evaluation or enclosure of the selected history; none is claimed here. The reduction is falsified if direct enumeration produces other pair rows, if any displayed local distance disagrees with its world-frame counterpart, or if the guard accepts a zero or negative point or hard-core separation.
 
 Fast rejection: the C4 module remains a detachable unconfined inventory, the two components need separate law coefficients, angular and recoil ledgers do not close, or the module adds stable partner states with no observer role.
 
@@ -4357,6 +6089,102 @@ $$
 
 before cross-axis and causal-root clearances are checked. This is only a geometric bound; it does not establish delayed-history validity or binding.
 
+The declared fixed-frame circular chart also gives an exact `Speed` field. Let $s_+=+1$, $s_-=-1$, define
+
+$$
+\alpha_{a k\sigma}(T)
+=
+s_\sigma\omega_kT+\phi_{a k\sigma},
+\qquad
+\mathbf t_a(\theta)
+=
+\frac{d\mathbf r_a}{d\theta}(\theta),
+$$
+
+and use $\|\mathbf t_a(\theta)\|=1$. The axial offsets are constant, so all twelve velocities are
+
+$$
+\mathbf V_{a k\sigma}(T)
+=
+s_\sigma\rho_k\omega_k
+\mathbf t_a\!\left(\alpha_{a k\sigma}(T)\right),
+$$
+
+with exact member speeds
+
+$$
+\|\mathbf V_{a k\sigma}(T)\|
+=
+\rho_k|\omega_k|.
+$$
+
+For any interval $I$ in this fixed-parameter chart, the exact normalized speed functional is therefore
+
+$$
+S_{F5}(I)
+=
+\max_{a,k,\sigma}\sup_{T\in I}
+\|\mathbf V_{a k\sigma}(T)\|
+=
+\max\!\left(\rho_1|\omega_1|,\rho_2|\omega_2|\right),
+$$
+
+and the strict wake-speed guard is $S_{F5}(I)<1$ in normalized units $c_f=1$. If a revised architecture introduces moving frames, time-dependent radii, or noncircular paths, it requires the differential of that revised chart rather than this fixed-chart formula. The frozen diagnostic row has $S_{F5}=0.40$, but that is only a speed pass for its prescribed circular tracks; it does not repair the gauge obstruction, certify causal roots, or change the realization's demoted status.
+
+Plainly: each F5 member moves around a circle, so its speed is exactly radius times angular rate. The larger of the two ring speeds is the whole twelve-member speed test. That test is exact for the existing circular chart even though the chart still fails a separate centering-and-dipole requirement.
+
+Claim grade: the twelve velocities and exact normalized speed functional are derived by differentiating the declared fixed-frame circular tracks. The value $0.40$ is an exact specialization to the frozen diagnostic parameters, not evidence for a viable assembly. The result is falsified if a declared fixed-chart difference quotient disagrees with the displayed velocity, if a member speed differs from $\rho_k|\omega_k|$, or if the strict guard accepts a speed at or above $c_f=1$.
+
+The same labeled chart gives an exact `Collision` field. Let
+
+$$
+\mathcal I_5
+=
+\{(a,k,\sigma):a\in\{1,2,3\},\ k\in\{1,2\},\ \sigma\in\{+1,-1\}\}.
+$$
+
+Partition its $\binom{12}2=66$ unordered pairs into
+
+$$
+\begin{aligned}
+\delta_{\mathrm{same}}(T)
+&=
+\min_{a\atop(k,\sigma)<(\ell,\tau)}
+\|\mathbf y_{a k\sigma}(T)-\mathbf y_{a\ell\tau}(T)\|,\\
+\delta_{\mathrm{cross}}(T)
+&=
+\min_{a<b\atop k,\ell,\sigma,\tau}
+\|\mathbf y_{a k\sigma}(T)-\mathbf y_{b\ell\tau}(T)\|,\\
+\delta_{F5}(T)
+&=
+\min\{\delta_{\mathrm{same}}(T),\delta_{\mathrm{cross}}(T)\}.
+\end{aligned}
+$$
+
+There are $3\binom42=18$ same-axis rows and $\binom32(4\cdot4)=48$ cross-axis rows, so this partition omits no labeled pair. The declared two-ring geometry supplies the analytic same-axis enclosure
+
+$$
+\delta_{\mathrm{same}}(T)
+\ge
+\min\!\left(2h,\left|\rho_1-\rho_2\right|\right)
+$$
+
+at every time: same-ring counterrotators occupy planes separated by $2h$, while opposite-polarity tracks sharing a plane have radial separation at least $|\rho_1-\rho_2|$. The 48 cross-axis rows remain explicit continuous trigonometric functions rather than a sampled substitute.
+
+For a declared interval $I$, the exact point-collision guard is
+
+$$
+\Delta_{F5}(I)
+=
+\inf_{T\in I}\delta_{F5}(T)>0.
+$$
+
+If member radii are declared, subtract the two applicable radii from every pair distance before taking the minima. The prior frozen-row sweep measured positive sampled clearance, but it did not certify this interval infimum. The exact functional closes the field definition while leaving the continuous certificate, viable gauge, and revised architecture open.
+
+Plainly: all 66 possible member pairs are now in one exact collision test. Eighteen pairs lie within one body-axis module and have a simple analytic floor; the other 48 connect different axes and must be minimized continuously for whichever history is eventually selected.
+
+Claim grade: the 18/48 pair partition, same-axis lower bound, and interval collision functional are derived from the declared labeled F5 tracks and Euclidean distance. Any selected-history clearance pass would be measured by certified minimization or enclosure; none is claimed here. The result is falsified if direct twelve-member enumeration produces another pair class, if a same-axis distance falls below the displayed bound, if the partitioned minimum differs from the full 66-pair minimum, or if the guard accepts zero or negative separation.
+
 The two dyads have opposite axial electric first moments, so their cycle-averaged polar rows cancel under equal exposure:
 
 $$
@@ -4690,6 +6518,606 @@ and their phases differ by $\pi$. But $\rho_1=\rho_2$ puts the opposite-polarity
 Under the declared two-ring, common-cadence, circular, equal-exposure F5 assumptions, exact collision freedom, exact stationary centroid, and exact instantaneous electric-dipole cancellation cannot all hold. The live repairs are unequal derived exposure weights, three or more radial tracks, noncircular or phase-varying paths, an additional compensating module, or accepting a bounded oscillatory projection whose radiation and observer leakage are derived below the required limits.
 
 Claim grade: the same-record values are measured sampled diagnostics; the two-ring obstruction is a conditional mathematical derivation. Falsifier: a two-ring configuration satisfying all declared assumptions has unequal radii, positive clearance, and identically vanishing centroid and dipole, or the complex circular-basis matrix on the declared orthogonal frame is singular.
+
+#### A Phase-Varying Gauge Escapes The Common-Cadence Obstruction
+
+The obstruction is scoped to the common-cadence circular chart, not to every twelve-member two-radius geometry. A revised chart can retain the same inventory, distinct fixed radii, axial offsets, polarity sectors, and ordered orthogonal body triad while replacing independently prescribed constant cadences by jointly constrained phase-varying transverse tracks.
+
+Work first in the ordered body frame $(\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3)$. For each polarity sector $\sigma\in\{+1,-1\}$, choose three real transverse-resultant coordinates $(u_\sigma,v_\sigma,w_\sigma)$ and define
+
+$$
+\begin{aligned}
+\mathbf c_{1\sigma}
+&=
+v_\sigma\hat{\mathbf n}_2
++w_\sigma\hat{\mathbf n}_3,\\
+\mathbf c_{2\sigma}
+&=
+u_\sigma\hat{\mathbf n}_1
+-w_\sigma\hat{\mathbf n}_3,\\
+\mathbf c_{3\sigma}
+&=
+-u_\sigma\hat{\mathbf n}_1
+-v_\sigma\hat{\mathbf n}_2.
+\end{aligned}
+$$
+
+Then $\mathbf c_{a\sigma}\mathbin{\cdot}\hat{\mathbf n}_a=0$ and
+
+$$
+\sum_{a=1}^3\mathbf c_{a\sigma}=\mathbf0
+$$
+
+identically. Thus the sector-null constraint is built into three independent real coordinates rather than imposed afterward on six unrelated phases.
+
+Plainly: each body axis receives one transverse vector, but the three vectors are coupled so their sum is always zero. This is the exact condition the old common-cadence phase chart could not maintain with unequal radii.
+
+Let $0<\rho_1\ne\rho_2$ be the two fixed transverse radii, set $\kappa_{a\sigma}=\|\mathbf c_{a\sigma}\|$, and restrict to the regular open domain
+
+$$
+|\rho_1-\rho_2|
+<
+\kappa_{a\sigma}
+<
+\rho_1+\rho_2.
+$$
+
+Define
+
+$$
+\hat{\mathbf e}_{a\sigma}
+=
+\frac{\mathbf c_{a\sigma}}{\kappa_{a\sigma}},
+\qquad
+\hat{\mathbf t}_{a\sigma}
+=
+\hat{\mathbf n}_a\mathbin{\times}\hat{\mathbf e}_{a\sigma},
+$$
+
+and, for a persistent decomposition branch $\eta_{a\sigma}\in\{+1,-1\}$,
+
+$$
+\alpha_{a\sigma}
+=
+\frac{
+\kappa_{a\sigma}^2+\rho_1^2-\rho_2^2
+}{2\kappa_{a\sigma}},
+\qquad
+\beta_{a\sigma}
+=
+\sqrt{\rho_1^2-\alpha_{a\sigma}^2}.
+$$
+
+The two transverse track vectors on axis $a$ are
+
+$$
+\begin{aligned}
+\mathbf r_{a1\sigma}
+&=
+\alpha_{a\sigma}\hat{\mathbf e}_{a\sigma}
++\eta_{a\sigma}\beta_{a\sigma}\hat{\mathbf t}_{a\sigma},\\
+\mathbf r_{a2\sigma}
+&=
+(\kappa_{a\sigma}-\alpha_{a\sigma})\hat{\mathbf e}_{a\sigma}
+-\eta_{a\sigma}\beta_{a\sigma}\hat{\mathbf t}_{a\sigma}.
+\end{aligned}
+$$
+
+The strict triangle inequalities make $\beta_{a\sigma}>0$, and direct substitution gives
+
+$$
+\|\mathbf r_{a1\sigma}\|=\rho_1,
+\qquad
+\|\mathbf r_{a2\sigma}\|=\rho_2,
+\qquad
+\mathbf r_{a1\sigma}+\mathbf r_{a2\sigma}=\mathbf c_{a\sigma}.
+$$
+
+Plainly: every sector-null vector is split into two unequal fixed-radius vectors by an ordinary triangle construction. The discrete branch records which side of that triangle is used and is never treated as a gauge identification.
+
+Let $\mathbf C$ be the assembly center, $E\in SO(3)$ the ordered world-frame presentation, $h>0$, and $\epsilon_{1\sigma}=\sigma$, $\epsilon_{2\sigma}=-\sigma$. The twelve positions used to establish the gauge are
+
+$$
+\mathbf X_{a k\sigma}
+=
+\mathbf C
++E\left(
+\epsilon_{k\sigma}h\hat{\mathbf n}_a
++\mathbf r_{a k\sigma}
+\right).
+$$
+
+For each polarity sector, the two axial offsets cancel on every body axis and the three transverse resultants sum to zero. Therefore
+
+$$
+\frac16\sum_{a,k}\mathbf X_{a k\sigma}
+=
+\mathbf C
+$$
+
+for both $\sigma=+1$ and $\sigma=-1$. The full equal-member centroid is also $\mathbf C$, and the polarity-weighted position sum relative to $\mathbf C$ vanishes exactly.
+
+Under a diagonal rigid presentation $\mathbf X\mapsto R\mathbf X+\mathbf t$,
+
+$$
+(\mathbf C,E)
+\longmapsto
+(R\mathbf C+\mathbf t,RE),
+$$
+
+while $(u_\sigma,v_\sigma,w_\sigma)$, $h$, $\rho_1$, $\rho_2$, every $\eta_{a\sigma}$, and all persistent labels remain unchanged. Every rigid orbit meets the representation section
+
+$$
+\mathbf C=\mathbf0,
+\qquad
+E=I
+$$
+
+exactly once, because the required transformation is uniquely $R=E^{\mathsf T}$ and $\mathbf t=-E^{\mathsf T}\mathbf C$.
+
+Plainly: the revised chart uses the braid's actual equal-member center and its ordered body frame. Moving or rotating the whole twelve-member record changes only $\mathbf C$ and $E$; it does not relabel a member, change polarity, or switch a decomposition branch.
+
+This construction escapes the old theorem by dropping common cadence: along a differentiable history, the six functions $(u_\sigma,v_\sigma,w_\sigma)$ jointly determine the twelve transverse phases, so their angular rates need not be constant, equal, or independently prescribed. It retains fixed unequal radii and the twelve-member inventory. The boundary $\kappa_{a\sigma}=|\rho_1-\rho_2|$ or $\rho_1+\rho_2$ is a degenerate triangle chart boundary. Collision clearance, a complete coordinate inverse, the revised tangent, a selected history, and a path operator remain separate fields. The previous frozen common-cadence realization remains demoted and is not reinterpreted as a member of this regular chart.
+
+Claim grade: the sector-null parameterization, unequal-radius decomposition, exact polarity-sector centering, and unique diagonal rigid-motion section are derived. They establish a viable representation gauge only, not a selected coordinate row, complete reconstruction/tangent contract, speed or collision pass, causal-root validity, binding, return, retention, stability, particle identity, or physical realization. The gauge closure is falsified if a regular row fails either fixed-radius identity, either polarity-sector centroid differs from $\mathbf C$, a rigid orbit meets the section more than once, or the construction secretly requires the barred equal-radius common-cadence limit.
+
+#### The Revised F5 Coordinates Are Exact On Each Branch
+
+On the representation section, the revised chart has nine continuous internal coordinates,
+
+$$
+q_{F5}
+=
+\left(
+h,
+\rho_1,
+\rho_2,
+u_+,v_+,w_+,
+u_-,v_-,w_-
+\right),
+$$
+
+and six persistent decomposition branches
+
+$$
+\boldsymbol\eta
+=
+(\eta_{1+},\eta_{2+},\eta_{3+},\eta_{1-},\eta_{2-},\eta_{3-})
+\in
+\{+1,-1\}^6.
+$$
+
+The regular domain is
+
+$$
+h>0,
+\qquad
+\rho_1>0,
+\qquad
+\rho_2>0,
+\qquad
+\rho_1\ne\rho_2,
+$$
+
+together with
+
+$$
+|\rho_1-\rho_2|
+<
+\|\mathbf c_{a\sigma}\|
+<
+\rho_1+\rho_2
+$$
+
+for all six axis-sector rows. Assembly translation and orientation are carried separately by $(\mathbf C,E)$. The axis, ring, polarity, and branch labels are persistent sheets; none is quotiented by the coordinate chart.
+
+Plainly: after removing whole-assembly placement, F5 needs three scale coordinates and three transverse-resultant coordinates for each polarity. Six binary branch labels record the two possible unequal-radius triangle decompositions on the three axes in each sector.
+
+The inverse is exact on every fixed ordered-frame and branch sheet. From labeled positions, first recover
+
+$$
+\mathbf C
+=
+\frac1{12}\sum_{a,k,\sigma}\mathbf X_{a k\sigma},
+\qquad
+\mathbf y_{a k\sigma}
+=
+E^{\mathsf T}(\mathbf X_{a k\sigma}-\mathbf C).
+$$
+
+Then
+
+$$
+h
+=
+\frac1{12}
+\sum_{a,k,\sigma}
+\epsilon_{k\sigma}
+\hat{\mathbf n}_a\mathbin{\cdot}\mathbf y_{a k\sigma},
+$$
+
+and the transverse vectors are
+
+$$
+\mathbf r_{a k\sigma}
+=
+\mathbf y_{a k\sigma}
+-
+\epsilon_{k\sigma}h\hat{\mathbf n}_a.
+$$
+
+The two labeled radii follow from
+
+$$
+\rho_k
+=
+\left(
+\frac16
+\sum_{a,\sigma}
+\|\mathbf r_{a k\sigma}\|^2
+\right)^{1/2},
+$$
+
+and
+
+$$
+\mathbf c_{a\sigma}
+=
+\mathbf r_{a1\sigma}
++
+\mathbf r_{a2\sigma}.
+$$
+
+The six continuous sector coordinates are recovered by
+
+$$
+\begin{aligned}
+u_\sigma
+&=
+\frac12
+\hat{\mathbf n}_1\mathbin{\cdot}
+(\mathbf c_{2\sigma}-\mathbf c_{3\sigma}),\\
+v_\sigma
+&=
+\frac12
+\hat{\mathbf n}_2\mathbin{\cdot}
+(\mathbf c_{1\sigma}-\mathbf c_{3\sigma}),\\
+w_\sigma
+&=
+\frac12
+\hat{\mathbf n}_3\mathbin{\cdot}
+(\mathbf c_{1\sigma}-\mathbf c_{2\sigma}).
+\end{aligned}
+$$
+
+Finally, with $\hat{\mathbf t}_{a\sigma}=\hat{\mathbf n}_a\mathbin{\times}\hat{\mathbf e}_{a\sigma}$,
+
+$$
+\eta_{a\sigma}
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf t}_{a\sigma}
+\mathbin{\cdot}
+\mathbf r_{a1\sigma}
+\right),
+$$
+
+because the signed projection is $\eta_{a\sigma}\beta_{a\sigma}$ and $\beta_{a\sigma}>0$ on the regular domain.
+
+Plainly: the labeled positions recover the center, axial separation, both radii, all six sector-resultant coordinates, and every triangle branch. Reapplying the forward formulas returns the same twelve labeled positions, so the chart neither loses nor invents an internal degree of freedom.
+
+The forward and inverse maps are smooth on each fixed branch sheet. Their analytic composition is the identity, so the continuous chart has local rank nine there. At a triangle boundary $\beta_{a\sigma}=0$, two branch sheets meet and this chart must be replaced by a neighboring or lower-dimensional chart. No selected numerical row, time dependence, or return action follows from the coordinate closure.
+
+Claim grade: the nine-coordinate regular domain, six branch sheets, and fixed-sheet inverse are derived from the completed revised gauge. They establish an exact local coordinate chart only, not a selected parameter row, revised velocity map, complete history, path operator, guard pass, dynamics, binding, return, retention, stability, particle identity, or physical realization. The chart is falsified if a regular labeled row fails the displayed inverse, if two coordinate rows on one fixed sheet reconstruct the same labeled record, if the local rank falls below nine, or if a persistent label is silently identified.
+
+#### The Revised F5 Reconstruction Places All Twelve Members
+
+Let
+
+$$
+\mathcal I_{F5}
+=
+\{(a,k,\sigma):a\in\{1,2,3\},\ k\in\{1,2\},\ \sigma\in\{+1,-1\}\}.
+$$
+
+For each regular coordinate and branch row, construct $\mathbf c_{a\sigma}$, $\alpha_{a\sigma}$, $\beta_{a\sigma}$, and $\mathbf r_{a k\sigma}$ by the completed gauge formulas. The exact world-frame reconstruction is
+
+$$
+\mathcal R_{F5}(\mathbf C,E,q_{F5},\boldsymbol\eta)_{a k\sigma}
+=
+\mathbf C
++E\left(
+\epsilon_{k\sigma}h\hat{\mathbf n}_a
++\mathbf r_{a k\sigma}
+\right),
+$$
+
+with $\epsilon_{1\sigma}=\sigma$ and $\epsilon_{2\sigma}=-\sigma$. It produces exactly twelve labeled positions. Direct projection gives
+
+$$
+\hat{\mathbf n}_a\mathbin{\cdot}
+E^{\mathsf T}(\mathbf X_{a k\sigma}-\mathbf C)
+=
+\epsilon_{k\sigma}h,
+$$
+
+while the transverse rows obey
+
+$$
+\|\mathbf r_{a k\sigma}\|=\rho_k,
+\qquad
+\mathbf r_{a1\sigma}+\mathbf r_{a2\sigma}=\mathbf c_{a\sigma}.
+$$
+
+Plainly: every polarity sector has two labeled unequal-radius members on each of three labeled body axes. Their axial sides, transverse radii, and triangle branches are fixed by the coordinate row; the reconstruction neither creates a member nor infers polarity from an endpoint index.
+
+The completed coordinate inverse recovers $(\mathbf C,q_{F5},\boldsymbol\eta)$ exactly on every fixed ordered-frame sheet, and reapplying $\mathcal R_{F5}$ returns the same labeled positions. The ordered frame $E$, axis labels, ring labels, polarity labels, and branch labels are part of the labeled record. Positions alone are not allowed to quotient or regenerate those persistent sheets. A geometric coincidence is a collision-boundary event, not an identity merge.
+
+The map is instantaneous. It defines no worldline IDs, source order, time interval, differentiable history, return action, or display row. Those remain independently owned obligations.
+
+Claim grade: the twelve-member revised reconstruction and its fixed-sheet compatibility with the completed inverse are derived. They establish a position map only, not a selected row, revised velocity, history, operator, guard pass, dynamics, binding, return, retention, stability, particle identity, or physical realization. The reconstruction is falsified if it produces other than twelve labeled rows, violates an axial/radius/resultant identity, changes a persistent label, or fails the completed fixed-sheet inverse.
+
+#### The Revised F5 Tangent Is Exact
+
+Let every continuous coordinate be differentiable on one fixed branch sheet. The sector-resultant rates are
+
+$$
+\begin{aligned}
+\dot{\mathbf c}_{1\sigma}
+&=
+\dot v_\sigma\hat{\mathbf n}_2
++\dot w_\sigma\hat{\mathbf n}_3,\\
+\dot{\mathbf c}_{2\sigma}
+&=
+\dot u_\sigma\hat{\mathbf n}_1
+-\dot w_\sigma\hat{\mathbf n}_3,\\
+\dot{\mathbf c}_{3\sigma}
+&=
+-\dot u_\sigma\hat{\mathbf n}_1
+-\dot v_\sigma\hat{\mathbf n}_2.
+\end{aligned}
+$$
+
+For each axis-sector row,
+
+$$
+\dot\kappa_{a\sigma}
+=
+\hat{\mathbf e}_{a\sigma}
+\mathbin{\cdot}
+\dot{\mathbf c}_{a\sigma},
+$$
+
+$$
+\dot{\hat{\mathbf e}}_{a\sigma}
+=
+\frac{
+\dot{\mathbf c}_{a\sigma}
+-
+\dot\kappa_{a\sigma}\hat{\mathbf e}_{a\sigma}
+}{\kappa_{a\sigma}},
+\qquad
+\dot{\hat{\mathbf t}}_{a\sigma}
+=
+\hat{\mathbf n}_a
+\mathbin{\times}
+\dot{\hat{\mathbf e}}_{a\sigma}.
+$$
+
+The unequal-radius triangle coefficients have exact rates
+
+$$
+\dot\alpha_{a\sigma}
+=
+\frac12\dot\kappa_{a\sigma}
++
+\frac{\rho_1\dot\rho_1-\rho_2\dot\rho_2}{\kappa_{a\sigma}}
+-
+\frac{\rho_1^2-\rho_2^2}{2\kappa_{a\sigma}^2}
+\dot\kappa_{a\sigma},
+$$
+
+$$
+\dot\beta_{a\sigma}
+=
+\frac{
+\rho_1\dot\rho_1
+-
+\alpha_{a\sigma}\dot\alpha_{a\sigma}
+}{\beta_{a\sigma}}.
+$$
+
+Plainly: the six sector-resultant rates first determine how each resultant changes in length and direction. Those changes, together with the two radius rates, determine the exact motion of the unequal-radius triangle on every fixed branch.
+
+Differentiating the two transverse vectors gives
+
+$$
+\begin{aligned}
+\dot{\mathbf r}_{a1\sigma}
+&=
+\dot\alpha_{a\sigma}\hat{\mathbf e}_{a\sigma}
++\alpha_{a\sigma}\dot{\hat{\mathbf e}}_{a\sigma}
++\eta_{a\sigma}
+\left(
+\dot\beta_{a\sigma}\hat{\mathbf t}_{a\sigma}
++\beta_{a\sigma}\dot{\hat{\mathbf t}}_{a\sigma}
+\right),\\
+\dot{\mathbf r}_{a2\sigma}
+&=
+(\dot\kappa_{a\sigma}-\dot\alpha_{a\sigma})
+\hat{\mathbf e}_{a\sigma}
++(\kappa_{a\sigma}-\alpha_{a\sigma})
+\dot{\hat{\mathbf e}}_{a\sigma}
+-\eta_{a\sigma}
+\left(
+\dot\beta_{a\sigma}\hat{\mathbf t}_{a\sigma}
++\beta_{a\sigma}\dot{\hat{\mathbf t}}_{a\sigma}
+\right).
+\end{aligned}
+$$
+
+Let
+
+$$
+\mathbf y_{a k\sigma}
+=
+\epsilon_{k\sigma}h\hat{\mathbf n}_a
++\mathbf r_{a k\sigma},
+\qquad
+\dot{\mathbf y}_{a k\sigma}
+=
+\epsilon_{k\sigma}\dot h\hat{\mathbf n}_a
++\dot{\mathbf r}_{a k\sigma}.
+$$
+
+For $\dot E=\Omega E$ with $\Omega^{\mathsf T}=-\Omega$, the twelve world-frame velocities are
+
+$$
+\mathbf V_{a k\sigma}
+=
+\dot{\mathbf C}
++\Omega E\mathbf y_{a k\sigma}
++E\dot{\mathbf y}_{a k\sigma}.
+$$
+
+Plainly: each member velocity is the sum of assembly-center motion, rigid body-frame rotation, changing axial separation, and the jointly constrained phase-varying transverse motion. No common cadence is inserted.
+
+Because
+
+$$
+\dot{\mathbf r}_{a1\sigma}
++
+\dot{\mathbf r}_{a2\sigma}
+=
+\dot{\mathbf c}_{a\sigma}
+$$
+
+and $\sum_a\dot{\mathbf c}_{a\sigma}=\mathbf0$, both polarity-sector velocity centroids and the full twelve-member velocity centroid equal $\dot{\mathbf C}$ exactly.
+
+The tangent domain requires differentiable $(\mathbf C,E,q_{F5})$ inside the strict triangle inequalities with every $\eta_{a\sigma}$ and persistent axis/ring/polarity label constant. A branch change or $\beta_{a\sigma}=0$ is a chart boundary, not a continuous rate coordinate.
+
+Claim grade: the revised twelve-member tangent and both polarity-sector velocity-centering identities are derived by differentiating the completed reconstruction on its regular domain. They establish kinematics only, not a selected history, path operator, guard pass, dynamics, binding, return, retention, stability, particle identity, or physical realization. The tangent is falsified if a differentiable admitted coordinate history has a member difference quotient that disagrees with $\mathbf V_{a k\sigma}$, if either sector velocity centroid differs from $\dot{\mathbf C}$, or if a discrete branch changes inside a differentiable interval.
+
+#### The Revised F5 Speed Guard Uses The New Tangent
+
+For a declared differentiable interval $I$ inside one regular branch sheet, define the exact normalized speed functional
+
+$$
+S_{F5}^{\mathrm{rev}}(I)
+=
+\max_{a,k,\sigma}
+\sup_{T\in I}
+\|\mathbf V_{a k\sigma}(T)\|.
+$$
+
+The strict wake-speed guard is
+
+$$
+S_{F5}^{\mathrm{rev}}(I)<1
+$$
+
+in normalized units $c_f=1$. With $\|\cdot\|_2$ denoting the operator norm, the completed tangent gives the conservative pointwise enclosure
+
+$$
+\|\mathbf V_{a k\sigma}\|
+\le
+B_{a k\sigma}^{\mathrm{rev}}
+\equiv
+\|\dot{\mathbf C}\|
++\|\Omega\|_2\|\mathbf y_{a k\sigma}\|
++\|\dot{\mathbf y}_{a k\sigma}\|.
+$$
+
+Orthogonality of $E$ and the Euclidean triangle inequality prove this bound directly. Therefore
+
+$$
+\max_{a,k,\sigma}
+\sup_{T\in I}
+B_{a k\sigma}^{\mathrm{rev}}(T)
+<1
+$$
+
+is sufficient for the exact guard. It is not necessary, because the three velocity contributions may partially cancel.
+
+Plainly: the revised speed test checks the actual new phase-varying member velocities, including whole-assembly motion, frame rotation, changing axial separation, changing radii, and coupled transverse-resultant motion. A simpler upper bound can certify the test, but it may be conservative.
+
+The fixed circular diagnostic's exact value $0.40$ belongs only to its constant-radius, constant-cadence history. It is not a pass for the revised chart. A revised pass requires one selected complete history plus certified interval suprema for the new tangent.
+
+Claim grade: the revised exact speed functional and conservative enclosure are derived from the completed revised tangent, orthogonality, and Euclidean norm inequalities. Passing the guard for a concrete revised history would be measured by evaluating or enclosing that history; no pass is claimed here. The speed closure is falsified if an admitted member speed exceeds its displayed bound or if the strict guard accepts any speed at or above $c_f=1$.
+
+#### The Revised F5 Collision Guard Uses All Sixty-Six Pairs
+
+Write the body-frame member displacement as
+
+$$
+\mathbf z_{a k\sigma}
+=
+\epsilon_{k\sigma}h\hat{\mathbf n}_a
++\mathbf r_{a k\sigma}.
+$$
+
+Orthogonality of $E$ gives
+
+$$
+\|\mathbf X_{a k\sigma}-\mathbf X_{b\ell\tau}\|
+=
+\|\mathbf z_{a k\sigma}-\mathbf z_{b\ell\tau}\|.
+$$
+
+At every regular coordinate row, define
+
+$$
+\begin{aligned}
+\delta_{\mathrm{same}}^{\mathrm{rev}}
+&=
+\min_{a\atop(k,\sigma)<(\ell,\tau)}
+\|\mathbf z_{a k\sigma}-\mathbf z_{a\ell\tau}\|,\\
+\delta_{\mathrm{cross}}^{\mathrm{rev}}
+&=
+\min_{a<b\atop k,\ell,\sigma,\tau}
+\|\mathbf z_{a k\sigma}-\mathbf z_{b\ell\tau}\|,\\
+\delta_{F5}^{\mathrm{rev}}
+&=
+\min\left\{
+\delta_{\mathrm{same}}^{\mathrm{rev}},
+\delta_{\mathrm{cross}}^{\mathrm{rev}}
+\right\}.
+\end{aligned}
+$$
+
+The first family has $3\binom42=18$ same-axis rows and the second has $\binom32(4\cdot4)=48$ cross-axis rows. Their total is $66=\binom{12}2$, so the functional omits no labeled pair.
+
+Plainly: the collision test compares every member with every other member. Eighteen comparisons stay inside one axis module; forty-eight connect different axes.
+
+The revised phase-varying decomposition preserves the exact same-axis lower bound
+
+$$
+\delta_{\mathrm{same}}^{\mathrm{rev}}
+\ge
+\min\!\left(
+2h,
+|\rho_1-\rho_2|
+\right).
+$$
+
+Every same-axis pair either lies in planes separated by $2h$ or shares a plane while occupying vectors of unequal fixed lengths $\rho_1$ and $\rho_2$. The reverse triangle inequality supplies the latter bound. The 48 cross-axis rows remain explicit smooth functions of the revised coordinates on each regular branch sheet.
+
+For a declared interval $I$, the exact revised point-collision guard is
+
+$$
+\Delta_{F5}^{\mathrm{rev}}(I)
+=
+\inf_{T\in I}
+\delta_{F5}^{\mathrm{rev}}(T)
+>0.
+$$
+
+If member radii are declared, subtract the two applicable radii from every pair distance before taking the minima. The fixed circular diagnostic's sampled positive clearance is not a pass for this revised chart. A revised pass requires a selected complete history and a certified interval minimum of these new 66 rows.
+
+Plainly: the new chart retains a simple guaranteed floor for pairs on one axis, but different-axis clearance still depends on the chosen phase-varying history. The formula is complete; the pass is deliberately unclaimed.
+
+Claim grade: the revised 18/48 pair partition, same-axis lower bound, world/body distance equality, and interval guard are derived from the completed revised reconstruction and Euclidean distance. A concrete revised-history pass would be measured by certified minimization or enclosure; none is claimed here. The collision closure is falsified if direct enumeration produces another pair class, a same-axis distance falls below the displayed bound, the partitioned minimum differs from the full 66-pair minimum, or the guard accepts zero or negative separation.
 
 ### Seed F6 — Tetrahedral Counterflow Core
 

@@ -15,6 +15,10 @@
         "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
       },
       {
+        "nodeId": "one_nature_many_theories",
+        "scenePath": "content/scenes/philosophy_history/one_nature_many_theories.json"
+      },
+      {
         "nodeId": "theory_differentials",
         "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
       },
@@ -35,6 +39,14 @@
       "radius": 2.25,
       "color": "#2f4f7a",
       "labelTitle": "Theory Mapping"
+    },
+    {
+      "id": "one_nature_many_theories",
+      "title": "One Nature, Many Theories",
+      "radius": 2.25,
+      "color": "#5a4a78",
+      "labelTitle": "One Nature, Many Theories",
+      "labelBadge": "doc"
     },
     {
       "id": "theory_differentials",

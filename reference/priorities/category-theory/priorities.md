@@ -12,11 +12,15 @@ Develop category-theoretic structures that make $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 ## Current
 
-The strongest live starting point is the Braid Program's priority-side proposal for a stratified topological symmetry groupoid of polarity-labeled histories with certified finite-history pro-presentations. That proposal remains unadopted research architecture, and [`BP-002`](../braid-program/work-queue.md#bp-002--configuration-chart-completion) retains ownership of its braid-atlas objects, arrows, restrictions, uncertainty transport, controls, and abstention rules.
+The [CT-001 minimal categorical contract](categorical-contract-and-ownership-map.md) is complete at priority-contract grade. It accepts only three ordinary structures over compatible full-history records: a lawful-history-extension category, a full-history symmetry groupoid, and a certified-restriction system. It also proves the abstract snapshot-factorization obstruction and keeps prospective coarse-graining separate until a physical separating-history test or predictive-closure result exists.
+
+`CT-004` is now materially unblocked at bounded contract grade. Its next artifact can instantiate the complete boundary-history type and test identity, exact three-interval associativity, an endpoint-matched hidden-history pair, and a symmetry covariance square. Physical completion remains blocked by sufficient-history, state-dependent-delay continuation, causal-root completeness, branching, and—if an assembly claim is attempted—retained-carrier obligations.
+
+The Braid Program's priority-side proposal for a stratified topological symmetry groupoid of polarity-labeled histories with certified finite-history pro-presentations remains unadopted research architecture, and [`BP-002`](../braid-program/work-queue.md#bp-002--configuration-chart-completion) retains ownership of its braid-atlas objects, arrows, restrictions, uncertainty transport, controls, and abstention rules.
 
 This lane owns the cross-lane categorical vocabulary, type boundaries, comparison map, and prospective recovery-functor program. It does not duplicate the Braid Program's executable atlas work, decide that any proposed category is physically realized, or grant retention, stability, particle identity, quantum closure, effective-metric closure, or Standard Model closure.
 
-No substrate-to-observer recovery functor is currently derived. Causal-incidence, lawful-history-extension, reaction-process, braid-category, monoidal-assembly, and higher-category formulations remain provisional candidates until their composition laws and physical carriers are specified and tested. The reaction ledger's polarity-preserving identity-routing bijection $\Pi_{\mathsf e}$ supplies native generating data for a candidate reaction category, but event-level routing does not yet prove lawful history composition, associativity, or an effective recovery functor.
+No substrate-to-observer recovery functor is currently derived. Causal-incidence categories, reaction-process categories, braid categories, monoidal-assembly structures, and higher categories are outside the accepted minimum because no current physical obligation requires them beyond simpler graph, topology, group, or delay-equation tools. The reaction ledger's polarity-preserving identity-routing bijection $\Pi_{\mathsf e}$ supplies native data, but event-level routing does not yet prove lawful history composition, associativity, or an effective recovery functor.
 
 ## Continuous Discussion Capture
 
@@ -50,13 +54,13 @@ The accepted task order, dependencies, acceptance boundaries, and completion con
 
 | Candidate structure | Immediate role | Owning boundary | Current grade |
 | --- | --- | --- | --- |
-| Full-history symmetry groupoid | Preserve full-record equivalence, stabilizers, and labeled-versus-quotient distinctions. | Braid Program `BP-002` owns its braid-atlas realization; this lane owns the cross-lane categorical interface. | Priority-side proposed architecture. |
-| Certified finite-history pro-system | Make finite horizon, finite resolution, error enclosure, and tail contracts compose coherently. | Braid Program owns atlas restriction data; this lane owns general naturality and recovery-facing requirements. | Priority-side proposed architecture. |
-| Causal-incidence category | Organize emission events, reception events, and certified causal-root hits without treating graph paths as new dynamics. | Master Equation and causal-root owners remain authoritative for hit legality and acceleration. | Speculation. |
-| Lawful-history-extension category | Treat complete boundary-history fibers as objects and lawful Master-Equation extensions as morphisms. | Master-equation closure and EOM solver contracts own well-posedness and executable evolution. | Derivation/closure target. |
+| Full-history symmetry groupoid | Preserve full-record equivalence, stabilizers, and labeled-versus-quotient distinctions. | Braid Program `BP-002` owns its braid-atlas realization; this lane owns the cross-lane categorical interface. | Accepted CT-001 interface; physical realizations remain owner-graded. |
+| Certified finite-history pro-system | Make finite horizon, finite resolution, error enclosure, and tail contracts compose coherently. | Braid Program owns atlas restriction data; this lane owns general naturality and recovery-facing requirements. | Accepted CT-001 interface; executable realization remains with `BP-002`. |
+| Causal-incidence category | Organize emission events, reception events, and certified causal-root hits without treating graph paths as new dynamics. | Master Equation and causal-root owners remain authoritative for hit legality and acceleration. | Rejected from the minimum; use a typed directed graph unless physical hit composition is proved. |
+| Lawful-history-extension category | Treat complete boundary-history records as objects and lawful Master-Equation extensions as morphisms. | Master-equation closure and EOM solver contracts own well-posedness and executable evolution. | CT-001 contract fixed; bounded CT-004 realization queued. |
 | Recovery functors | Express substrate-to-assembly, assembly-to-medium, and medium-to-observer mappings with compositional residuals. | Existing quantum, Standard Model, mapping-equation, Lorentz/effective-metric, and Noether sea owners retain physical closure. | Derivation/closure target. |
 | Reaction/process category | Organize assembly/environment repartition, lawful event histories, polarity-preserving identity routing, inventory factorization, and effective particle-number appearance. | `CT-004` and `CT-005` own categorical composition/recovery obligations; reaction-ledger and reaction-mode owners retain physical channel closure. | Derivation/closure target. |
-| Braid, assembly, monoidal, or higher categories | Test whether retained topology or assembly composition supplies a proved categorical product or higher morphism. | Braid, assembly, reaction, and topology owners retain the physical carrier and certification burden. | Speculation. |
+| Braid, assembly, monoidal, or higher categories | Test whether retained topology or assembly composition supplies a proved categorical product or higher morphism. | Braid, assembly, reaction, and topology owners retain the physical carrier and certification burden. | Rejected from the minimum; reopen only after ordinary structures fail on a physical consumer. |
 
 Plainly: this lane can describe and test how already-declared physical records relate; it cannot manufacture the records or their dynamics.
 
@@ -64,6 +68,7 @@ Plainly: this lane can describe and test how already-declared physical records r
 
 | File | Role |
 | --- | --- |
+| [categorical-contract-and-ownership-map.md](categorical-contract-and-ownership-map.md) | Verified CT-001 contract: complete history objects, lawful extension, symmetry, restriction, factorization obstruction, ownership, and stop conditions. |
 | [work-queue.md](work-queue.md) | Executable task order, dependencies, acceptance boundaries, and completion conditions. |
 | [brainstorming.md](brainstorming.md) | Category-theory primer, modern-physics comparison, provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ structures, claim cards, and candidate mathematical contracts. |
 | [work-log.md](work-log.md) | Dated status, proof attempts, decisions, validations, and handoffs. |

@@ -4,6 +4,16 @@ This file records dated ownership changes, evidence passes, review decisions, va
 
 ## Log Entries
 
+### 2026-08-26 — ONMT-003 reader-facing promotion completed
+
+- Re-resolved the live Weyl episode by stable lead phrases after the packet's recorded line-314-through-line-440 hash did not reproduce the live source. The complete pre-edit episode occupied lines 314-452 with SHA-256 `540d14fb914472032ff0c16939b086ede271a513dec10eff617db8806c4be4b2`; the extra extent consisted of Equation Mapping link blocks already assigned with their equations, and no new substantive paragraph required ownership adjudication.
+- Promoted [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) as the reader-facing owner of the evidence-backed bridge network, bridge-authority taxonomy, common-history mathematics, reverse fibers, constituent-continuity conditions, protected invariants, scale criticism, and logarithmic chutes-and-ladders metaphor.
+- Reduced the [Weyl episode](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object) to the 1918 and 1929 history, Einstein objection, calibration etymology, convention analogies, gauge success, naming residue, and gauge-origin recovery burden.
+- Preserved all twelve assigned external sources, moved the four scale-equation groups out of the Weyl episode, retained the two historical gauge equations, and kept scientific gauge mechanism ownership in the assembly chapters.
+- Added the new chapter to the inherited-theory scene and philosophy-history reading order, linked Theory Mapping to the full network audit, removed ONMT-003 from the local queue, and left the lane unranked with no executable object.
+- Validation completed with `git diff --check` and priority-ranking checks passing. Strict content and scene checks reported zero errors and only the expected generated-index/scene-graph drift from the new canonical files; the textbook reading copies and Equation Mapping registry likewise require their publication-time generator writes. Generated artifacts were not edited in this ordinary corpus batch.
+- No new measured $\mathbb{A}\mathbb{A}\mathbb{A}$ result, scientific mechanism, or global rank follows from the promotion.
+
 ### 2026-08-26 — ONMT-002 Weyl ownership split packet completed
 
 - Resolved the live lane and reader-facing Weyl episode after checking for concurrent reorganization; both remained at their established paths.

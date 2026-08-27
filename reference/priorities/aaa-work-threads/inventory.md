@@ -63,9 +63,7 @@ These rows multiply several owners and therefore retain their own numeric attent
 
 ## Unranked Active Candidate Owners
 
-| Directory | Local rank-1 object | Present role and ownership boundary | Admission rule |
-| --- | --- | --- | --- |
-| [`one-nature-many-theories`](../one-nature-many-theories/priorities.md) | `reader_facing_promotion_review` | Owns the cross-domain theory-and-bridge audit, the wider Weyl/scale synthesis, and the prospective reader-facing essay; scientific mechanisms remain with their domain owners. Its bridge matrix and Weyl ownership split are complete. | Remains unranked until its current local winner is scored and inserted through a complete unified-table rerank. |
+No rows.
 
 ## Dormant-Deferred Archive
 
