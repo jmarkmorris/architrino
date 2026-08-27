@@ -7119,6 +7119,152 @@ Plainly: the new chart retains a simple guaranteed floor for pairs on one axis, 
 
 Claim grade: the revised 18/48 pair partition, same-axis lower bound, world/body distance equality, and interval guard are derived from the completed revised reconstruction and Euclidean distance. A concrete revised-history pass would be measured by certified minimization or enclosure; none is claimed here. The collision closure is falsified if direct enumeration produces another pair class, a same-axis distance falls below the displayed bound, the partitioned minimum differs from the full 66-pair minimum, or the guard accepts zero or negative separation.
 
+#### A Complete Phase-Varying F5 History Family
+
+The revised chart admits a nonconstant analytic history without selecting one executable numerical row. Fix one branch sheet $\boldsymbol\eta$, constant $\mathbf C_0$, constant $E_0\in SO(3)$, $h>0$, unequal positive radii $\rho_1$ and $\rho_2$, an epoch $T_0$, and a common positive resultant frequency $\omega$. For each polarity sector choose an amplitude $A_\sigma>0$ and phase $\varphi_\sigma$. Require
+
+$$
+\sqrt{2}\,|\rho_1-\rho_2|
+<
+A_\sigma
+<
+\sqrt{\frac{2}{3}}\,(\rho_1+\rho_2)
+$$
+
+for both sectors. Such an interval exists whenever
+
+$$
+|\rho_1-\rho_2|
+<
+\frac{\rho_1+\rho_2}{\sqrt{3}}.
+$$
+
+Define
+
+$$
+\theta_\sigma(T)
+=
+\omega(T-T_0)+\varphi_\sigma
+$$
+
+and the six sector-resultant coordinates by
+
+$$
+\begin{aligned}
+u_\sigma(T)
+&=
+A_\sigma\cos\theta_\sigma(T),\\
+v_\sigma(T)
+&=
+A_\sigma\cos\!\left(\theta_\sigma(T)-\frac{2\pi}{3}\right),\\
+w_\sigma(T)
+&=
+A_\sigma\cos\!\left(\theta_\sigma(T)+\frac{2\pi}{3}\right).
+\end{aligned}
+$$
+
+Plainly: each polarity sector follows a three-phase harmonic loop in the six-resultant coordinate space. The loop is prescribed at the level of the coupled sector resultants, not by assigning one common angular rate to all twelve member circles.
+
+The three-phase identity gives
+
+$$
+u_\sigma^2+v_\sigma^2+w_\sigma^2
+=
+\frac{3}{2}A_\sigma^2.
+$$
+
+Each of the three resultant lengths omits one of these squared coordinates, so
+
+$$
+\frac{A_\sigma}{\sqrt{2}}
+\le
+\kappa_{a\sigma}(T)
+\le
+A_\sigma\sqrt{\frac{3}{2}}
+$$
+
+for every $T$, axis, and polarity sector. The amplitude inequalities therefore imply
+
+$$
+|\rho_1-\rho_2|
+<
+\kappa_{a\sigma}(T)
+<
+\rho_1+\rho_2
+$$
+
+uniformly in time. Substitution into the completed unequal-radius decomposition and reconstruction defines twelve analytic worldlines
+
+$$
+\mathbf X_{a k\sigma}(T)
+=
+\mathcal R_{F5}
+\!\left(
+\mathbf C_0,
+E_0,
+q_{F5}(T),
+\boldsymbol\eta
+\right)_{a k\sigma}
+$$
+
+for all $T\in\mathbb R$, and their derivatives are exactly the completed revised tangent with $\dot{\mathbf C}=\mathbf0$, $\Omega=0$, $\dot h=\dot\rho_1=\dot\rho_2=0$.
+
+Plainly: the amplitude bounds keep every unequal-radius triangle away from both degeneracy boundaries for the entire history. The position and velocity formulas therefore exist smoothly for all time on one unchanged branch sheet.
+
+Let
+
+$$
+P=\frac{2\pi}{\omega}.
+$$
+
+Then $q_{F5}(T+P)=q_{F5}(T)$ and $\dot q_{F5}(T+P)=\dot q_{F5}(T)$, hence every labeled position and velocity returns exactly after $P$. For any declared retained-history depth $H>0$, restricting the all-real formula to
+
+$$
+J_H=[T_0-H,T_0+P]
+$$
+
+supplies an explicit prehistory $[T_0-H,T_0]$ followed by one complete coordinate-history cycle $[T_0,T_0+P]$. No extrapolated path is needed. The executable specification must still freeze $H$, the numerical coordinate row, branch labels, stable identities, source order, registered path operator, and display interval. It must also prove that its chosen retained-history depth covers the causal roots it intends to evaluate.
+
+Plainly: this closes the mathematical history family, not the executable candidate. A later selected row can cut a finite prehistory and one cycle directly from the same analytic worldlines, but causal-root coverage and all numerical choices remain separate checks.
+
+The common frequency $\omega$ belongs to the six resultant coordinates. The individual unequal-radius member phases are reconstructed from time-varying triangle lengths and directions; their angular rates are generally unequal and nonconstant. Thus the history does not restore the demoted common-cadence assumption. No speed or collision pass transfers from the former circular row, and none is asserted for this parameterized family.
+
+Claim grade: the all-real analytic history, uniform strict-triangle enclosure, exact position-and-velocity return, and finite-window prehistory restriction are derived. They establish a complete parameterized prescribed-history family only, not a canonical row, executable operator, selected return contract, causal-root certificate, guard pass, EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The history closure is falsified if the displayed three-phase identity or resultant enclosure fails, an admitted row reaches a triangle boundary, the revised tangent disagrees with the worldline derivative, any persistent branch changes, or any labeled position or velocity fails its $P$ return.
+
+#### The F5 Harmonic Family Has An Exact Labeled Return
+
+For the completed history family, define
+
+$$
+P=\frac{2\pi}{\omega}
+$$
+
+and retain the full label $i=(a,k,\sigma)$ together with the fixed decomposition branch $\eta_{a\sigma}$. Since
+
+$$
+\theta_\sigma(T+P)
+=
+\theta_\sigma(T)+2\pi,
+$$
+
+all six continuous resultant coordinates and their first derivatives return exactly. The triangle reconstruction coefficients and their rates are single-valued smooth functions on the fixed regular branch sheet, so
+
+$$
+\mathbf X_i(T+P)=\mathbf X_i(T),
+\qquad
+\mathbf V_i(T+P)=\mathbf V_i(T)
+$$
+
+for every persistent label $i$. The return action is therefore the identity on the twelve-member label set and on all six branch signs; it is not a cyclic relabeling, polarity exchange, ring exchange, or quotient identification.
+
+Plainly: after one prescribed period, every named member returns to its own position with its own velocity and the same triangle branch. The result does not depend on treating two members as interchangeable.
+
+The same identity holds for every translated retained-history window because the family is defined on all real $T$. This proves that $P$ is a labeled return period. It does not claim that $P$ is the least positive period for every special parameter row. An executable record must still choose numerical $\omega$, epoch, retained-history depth, and interval before serializing a numerical `returnPeriod`.
+
+This is prescribed-history periodicity only. It is not recurrence under the Master Equation, a return-map fixed point of ordinary evolution, a binding result, or retention evidence.
+
+Claim grade: the exact identity return action on positions, velocities, member labels, polarity labels, ring labels, axis labels, and branch signs is derived from the completed harmonic history. It closes the parameterized Periodicity field without selecting a numerical period or executable row. The periodicity closure is falsified if any admitted regular history fails coordinate or rate return after $2\pi/\omega$, if reconstruction changes a persistent label or branch, or if the field is used as evidence of EOM-solver recurrence.
+
 ### Seed F6 — Tetrahedral Counterflow Core
 
 The two-ring obstruction suggests canceling axial dipoles across directions rather than within a nested same-axis module. Let four body-fixed unit vectors point to the vertices of a regular tetrahedron:

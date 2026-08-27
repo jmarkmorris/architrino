@@ -718,6 +718,12 @@ test("the F1-F6 readiness map gives every required field a closed status and eve
   const velocityCells = fieldRows.find((line) => line.startsWith("| Velocity |"))
     .split("|").slice(1, -1).map((cell) => cell.trim());
   assert.ok(velocityCells[5].startsWith("`derived`"));
+  const historyCells = fieldRows.find((line) => line.startsWith("| History |"))
+    .split("|").slice(1, -1).map((cell) => cell.trim());
+  assert.ok(historyCells[5].startsWith("`derived`"));
+  const periodicityCells = fieldRows.find((line) => line.startsWith("| Periodicity |"))
+    .split("|").slice(1, -1).map((cell) => cell.trim());
+  assert.ok(periodicityCells[5].startsWith("`derived`"));
   const centeringCells = fieldRows.find((line) => line.startsWith("| Centering |"))
     .split("|").slice(1, -1).map((cell) => cell.trim());
   assert.ok(centeringCells[2].startsWith("`derived`"));

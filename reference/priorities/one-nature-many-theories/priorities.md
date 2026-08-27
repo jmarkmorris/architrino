@@ -12,7 +12,7 @@ Develop an evidence-backed account of physics as one natural world represented b
 
 ## Current
 
-The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter now owns the cross-domain thesis, bridge taxonomy, common-history projection criterion, evidence-backed eight-edge network, logarithmic chutes-and-ladders metaphor, scale equations, fairness boundaries, and claim grades. The focused [Weyl episode](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object) now owns only the 1918-1929 history, calibration etymology, convention analogies, naming-residue inference, and gauge-origin burden. The local draft, [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md), and executed [Weyl ownership split packet](weyl-ownership-split-packet.md) remain the audit and provenance layer. This promotion changes no global priority rank or $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery result.
+The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter now owns the cross-domain thesis, bridge taxonomy, common-history projection criterion, evidence-backed eight-edge network, logarithmic chutes-and-ladders metaphor, scale equations, fairness boundaries, and claim grades. The focused [Weyl episode](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object) now owns only the 1918-1929 history, calibration etymology, convention analogies, naming-residue inference, and gauge-origin burden. The local draft and [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md) remain the priority-stage audit layer, while the [work log](work-log.md) owns the dated execution provenance. This promotion changes no global priority rank or $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery result.
 
 ## Scope
 
@@ -35,7 +35,6 @@ The locally ordered evidence, ownership, and promotion tasks live in [work-queue
 
 - [One Nature, Many Theories](one-nature-many-theories.md) — priority-stage source draft and promotion provenance.
 - [Evidence-Backed Bridge Matrix](evidence-backed-bridge-matrix.md) — completed first-pass network and eight bidirectional bridge certificates.
-- [Weyl Ownership Split Packet](weyl-ownership-split-packet.md) — executed paragraph, equation, source-link, transition, and ownership map for the reader-facing split.
 - [Brainstorming](brainstorming.md) — provisional insights, assumptions, proof burdens, and promotion candidates.
 - [Work log](work-log.md) — chronological ownership and validation record.
 

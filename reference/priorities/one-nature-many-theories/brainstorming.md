@@ -2,14 +2,14 @@
 
 This document isolates the provisional conceptual insights that remain after the focused [One Nature, Many Theories](one-nature-many-theories.md) draft, evidence audit, ownership split, and reader-facing treatment have received distinct owners. The lane studies how one natural world can support many successful domain theories and how a foundational account must distinguish controlled translation among descriptions from derivation from one common physical history.
 
-The developed thesis, mathematical bridge contract, gauge and scale examples, fairness boundaries, and promotion provenance belong to the focused draft. The completed [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md) owns the eight source-backed bridge certificates, while the executed [Weyl ownership split packet](weyl-ownership-split-packet.md) records the paragraph, equation, and source relocation. The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter owns the promoted explanatory treatment. This synthesis does not duplicate those artifacts or authorize additional reader-facing promotion.
+The developed thesis, mathematical bridge contract, gauge and scale examples, fairness boundaries, and promotion provenance belong to the focused draft. The completed [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md) owns the eight source-backed bridge certificates, while the [ONMT-003 work-log receipt](work-log.md#2026-08-26--onmt-003-reader-facing-promotion-completed) records the paragraph, equation, and source relocation. The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter owns the promoted explanatory treatment. This synthesis does not duplicate those artifacts or authorize additional reader-facing promotion.
 
 ## Routing and Claim Boundary
 
 - Effective-theory comparisons remain observer-level summaries or recovery targets; they are not architrino-level premises.
 - The scientific owners retain responsibility for gauge, quantum, nuclear, thermodynamic, gravitational, and cosmological mechanisms and acceptance tests.
 - Accepted editorial execution belongs in [work-queue.md](work-queue.md), and dated evidence or completion history belongs in [work-log.md](work-log.md).
-- The reader-facing chapter now owns the promoted synthesis, while the focused local draft, bridge matrix, and Weyl packet remain the priority-stage provenance owners.
+- The reader-facing chapter now owns the promoted synthesis, while the focused local draft and bridge matrix remain priority-stage audit owners and the work log owns execution provenance.
 - The local work queue is empty. An unresolved idea listed here is not an accepted executable task and requires separate acceptance before entering [work-queue.md](work-queue.md).
 
 Plainly: this lane audits the connective structure among theories. It does not take ownership of the scientific derivations that make any individual bridge true.
