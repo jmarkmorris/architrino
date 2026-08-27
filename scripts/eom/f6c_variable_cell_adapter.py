@@ -11,9 +11,9 @@ observation and its mutable owner is not called write-once. The old admission's
 
 project(frame_index, J) requires positive J in ONE original frame and parent
 reception cell. The accepted refined cell0 overrides the broad full-cover row.
-An explicit ParentRefinement may additionally select the independently accepted
-original-parent1 generation. No other parent is admitted by that protocol. Its
-historical acceptance owner may be read only through an explicit ArchivedSource;
+Sorted explicit ParentRefinements may additionally select authenticated original
+parents1..159. Each needs separately bound independent acceptance. Historical
+source generations may be read only through explicit ArchivedSource relations;
 logical historical bindings and current physical provenance remain distinct.
 ALL parent emission/three faces/displacement/distance/Dr/Dt are inherited
 unchanged; only receiver coverage is clipped to J. No geometry tightening,
@@ -89,6 +89,23 @@ PARENT_ONE=(
  ('queries',PARENT_BASE+'pilot-parent-1-v1/queries.ndjson','cf4a6c7464f773782c5450d562a999543c60c2d906bf2fa91dc5f6207564db77',2003114),
  ('rows',PARENT_BASE+'pilot-parent-1-v1/rows.ndjson','ad9734afd944cf92994852f3cfbb3c3b64ebcecf090e243cbf7a37ab5c019624',161022),
  ('pieces',PARENT_BASE+'pilot-parent-1-v1/pieces.ndjson','928a7d56104e528170b50f971c3217f157f5ba462a815cd646afba73fd354e46',48578),
+)
+# Only these historical nonexecuting wrapper generations may be archived.
+# The current adapter, numerical references and runtime are never remappable.
+PARENT_ARCHIVE_SOURCES=(
+ ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544',57641),
+ ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py','06cd99bc1f74c3b7dead6089ef20f468f7be8af41ae6702f45ec85d83a1a36ab',40808),
+ ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py','0bb16c232736c895c4f3e38a75e2a0562084710ffdba2503b3ab4457216127fc',46134),
+ ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7',39696),
+ ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6',48579),
+ ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0',20889),
+)
+PARENT_FIXED=(
+ ('declaration',PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'),
+ ('proposalReference','scripts/eom/f6c_parent_emission_refinement.py','1517575f3df783af36d2bf2b758d19427e8ec85247efec892783716c263b7c27'),
+ ('proposalReferenceControls','tests/test_f6c_parent_emission_refinement.py','f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2'),
+ ('comparisonReference','scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec'),
+ ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py','18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04'),
 )
 SOURCES = (
  ('transport','scripts/eom/verify-f6c-refined-acceleration.py','3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae'),
@@ -541,8 +558,8 @@ def _build(a,i,c,export,parents,*,actual,provenance,pool=None,source_sha=None,gk
     require(type(parents)is tuple and 1<=len(parents)<=160,'bounded immutable parents')
     if actual:
         require(len(parents)==160,'complete full160 cover')
-        require(type(_authenticated_refined_indices)is frozenset and _authenticated_refined_indices in
-            (frozenset({0}),frozenset({0,1})),'authenticated admitted parent indices')
+        require(type(_authenticated_refined_indices)is frozenset and 0 in _authenticated_refined_indices
+            and all(type(p)is int and 0<=p<160 for p in _authenticated_refined_indices),'authenticated admitted parent indices')
     cursor=F(0);clips={}
     for n,parent in enumerate(parents):
         require(type(parent)is ParentCell and type(parent.index)is int and parent.index==n
@@ -692,13 +709,17 @@ def _source_binding(value):
 
 def _refinement_descriptors(values,root,owner_sha):
     """Inert immutable declarations, checked before opening any source."""
-    require(type(values)is tuple and len(values)<=1,'ordered unique admitted refinements')
+    require(type(values)is tuple and len(values)<=159,'ordered unique admitted refinements')
+    previous=0;shared={};archive_paths={}
     for value in values:
         require(type(value)is ParentRefinement and type(value.parent_index)is int
-            and value.parent_index==1,'only independently admitted original parent1')
-        for role,path,digest,size in PARENT_ONE[:6]:
-            require(_source_binding(getattr(value,role))==dict(path=str(root/path),sha256=digest,bytes=size),
-                'accepted parent1 '+role+' binding differs')
+            and previous<value.parent_index<160,'sorted unique explicit parents1..159; parent0 is implicit')
+        previous=value.parent_index
+        for role,_,_,_ in PARENT_ONE[:6]:_source_binding(getattr(value,role))
+        legacy=_legacy_parent(value,root)
+        # A partial relabel of the accepted old invocation is not a new one.
+        if any(getattr(value,r).path==str(root/p)for r,p,_,_ in PARENT_ONE[:6]):
+            require(legacy,'accepted parent1 generation differs')
         closure=value.closure
         require(type(closure)is ParentClosure,'explicit external parent closure')
         _source_binding(closure.owner);_source_binding(closure.operation)
@@ -707,52 +728,102 @@ def _refinement_descriptors(values,root,owner_sha):
         require(closure.owner.path==str(root/OWNER)and closure.owner.sha256==owner_sha
             and closure.operation==value.operation,'parent closure bound to current acceptance owner and operation')
         require(type(closure.exit_code)is int and closure.exit_code==0
-            and closure.original_caller_session=='9158'and closure.final_completion_chunk=='1eda87'
-            and closure.elapsed_seconds=='261.94229158400003'and closure.processes_closed is True
+            and re.fullmatch(r'[0-9]{1,32}',closure.original_caller_session)
+            and re.fullmatch(r'[a-zA-Z0-9_-]{1,128}',closure.final_completion_chunk)
+            and 0<number(closure.elapsed_seconds)<=1800 and closure.processes_closed is True
             and closure.independent_audit_accepted is True
             and closure.authority=='attributed-versioned-acceptance-owner-not-fresh-process-observation',
             'independently accepted external parent closure required')
-        require(type(value.archived_sources)is tuple and len(value.archived_sources)<=1,'one explicit historical owner archive')
+        if legacy:require((closure.original_caller_session,closure.final_completion_chunk,closure.elapsed_seconds)==
+            ('9158','1eda87','261.94229158400003'),'legacy external completion differs')
+        require(type(value.archived_sources)is tuple and len(value.archived_sources)<=7,'bounded explicit historical archives')
+        roles=set();original_paths=set()
         for relation in value.archived_sources:
-            require(type(relation)is ArchivedSource and type(relation.role)is str and relation.role=='acceptanceOwner','only historical acceptance-owner substitution')
+            require(type(relation)is ArchivedSource and type(relation.role)is str,'inert historical relation')
+            require(relation.role not in roles,'duplicate historical role');roles.add(relation.role)
             old,new=_source_binding(relation.original),_source_binding(relation.archive)
-            require(old['path']==str(root/OWNER)and old['sha256']=='7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'
-                and old['bytes']==318717,'exact historical owner original tuple')
+            if relation.role=='acceptanceOwner':
+                require(old['path']==str(root/OWNER),'historical owner canonical path')
+                require(old!=asdict(closure.owner),'current acceptance owner is not historical')
+                if legacy:require(old['sha256']=='7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'
+                    and old['bytes']==318717,'exact historical owner original tuple')
+            else:
+                expected={r:dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ARCHIVE_SOURCES}
+                require(relation.role in expected and old==expected[relation.role],'exact nonexecuting historical source tuple')
+            require(old['path']not in original_paths,'duplicate historical original path');original_paths.add(old['path'])
             require(new['path']!=old['path']and (new['sha256'],new['bytes'])==(old['sha256'],old['bytes']),
                 'archive must preserve exact bytes at distinct physical path')
+            forbidden={str(root/p)for _,p,_ in SOURCES}|{str(root/p)for _,p,_,_ in PARENT_ARCHIVE_SOURCES}|{str(root/SELF),str(root/CONTROLS),str(root/OWNER)}
+            require(new['path']not in forbidden,'archive aliases a current canonical source')
+            key=(old['path'],old['sha256'],old['bytes'])
+            require(key not in shared or shared[key]==relation,'conflicting shared historical relation')
+            require(new['path']not in archive_paths or archive_paths[new['path']]==key,'ambiguous physical archive')
+            shared[key]=relation;archive_paths[new['path']]=key
     return values
 
 
+def _legacy_parent(value,root):
+    return value.parent_index==1 and all(_source_binding(getattr(value,r))==
+        dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ONE[:6])
+
+
 class _HistoricalReader:
-    """Resolve only an explicitly declared old owner; never alter _Pool identity.
+    """Resolve exact declared historical tuples; never alter _Pool identity.
 
     Logical maps retain the original binding. Physical provenance contains the
     archive and live owner separately. All physical handles receive the ordinary
     final recheck. This is not fallback discovery or a generic source override.
     """
-    def __init__(self,pool,relations,expected_owner):
-        self.pool=pool;self.relations=relations;self.used=False
-        require(type(relations)is tuple and len(relations)<=1,'unique historical owner mapping')
-        self.original=pool.w.normalized(expected_owner,pool.root)
+    def __init__(self,pool,relations,expected_owner,expected_sources=None):
+        self.pool=pool;self.relations=relations;self.used=set();self.routes={}
+        require(type(relations)is tuple and len(relations)<=7,'bounded historical mappings')
+        expected={'acceptanceOwner':pool.w.normalized(expected_owner,pool.root)}
+        allowed={r:dict(path=str(pool.root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ARCHIVE_SOURCES}
+        for role,b in (expected_sources or {}).items():
+            require(role in allowed,'historical source role')
+            b=pool.w.normalized(b,pool.root)
+            if b==allowed[role]:expected[role]=b
+        roles=set();destinations=set()
         for relation in relations:
-            require(type(relation)is ArchivedSource and type(relation.role)is str and relation.role=='acceptanceOwner','historical role only')
+            require(type(relation)is ArchivedSource and type(relation.role)is str
+                and relation.role in expected and relation.role not in roles,'unique authenticated historical role')
             old,new=_source_binding(relation.original),_source_binding(relation.archive)
-            require(old==self.original and old['path']==str(pool.root/OWNER),'historical owner mapping differs')
+            require(old==expected[relation.role],'historical source mapping differs')
             require(new['path']!=old['path']and(new['sha256'],new['bytes'])==(old['sha256'],old['bytes']),'archive content differs')
-            self.archive=new
+            forbidden={str(pool.root/p)for _,p,_ in SOURCES}|{v['path']for v in allowed.values()}|{str(pool.root/p)for p in (SELF,CONTROLS,OWNER)}
+            require(new['path']not in forbidden and new['path']not in destinations and old['path']not in self.routes,'archive alias or duplicate')
+            roles.add(relation.role);destinations.add(new['path']);self.routes[old['path']]=(old,new)
     def read_binding(self,b,*,capture=False):
         b=self.pool.w.normalized(b,self.pool.root)
-        if self.relations and b['path']==self.original['path']:
-            require(b==self.original,'historical owner generation differs')
-            raw=self.pool.read_binding(self.archive,capture=capture);self.used=True
+        if b['path']in self.routes:
+            old,archive=self.routes[b['path']]
+            require(b==old,'historical source generation differs')
+            raw=self.pool.read_binding(archive,capture=capture);self.used.add(b['path'])
             return raw if capture else dict(b)
         return self.pool.read_binding(b,capture=capture)
     def finish(self):
-        require(not self.relations or self.used,'unused historical owner archive')
+        require(len(self.used)==len(self.routes),'unused historical archive')
         return self.relations
 
 
-def _parent_owner(raw,descriptor):
+def _parent_owner(raw,descriptor,bound=None):
+    require(type(raw)is bytes and 0<len(raw)<=MAX_BYTES,'bounded parent owner')
+    require(descriptor.closure.owner.bytes==len(raw),'parent owner size differs')
+    root=Path(descriptor.closure.owner.path).parents[len(Path(OWNER).parts)-1]
+    if not _legacy_parent(descriptor,root):
+        text=raw.decode('utf-8',errors='strict');p=descriptor.parent_index;c=descriptor.closure
+        heading=f'## Independently accepted actual original-parent-{p} emission refinement\n'
+        all_lines=text.splitlines();require(all_lines.count(heading.rstrip('\n'))==1,'unique indexed parent acceptance section')
+        after=all_lines[all_lines.index(heading.rstrip('\n'))+1:]
+        stop=next((n for n,line in enumerate(after)if line.startswith('## ')),len(after));lines=after[:stop]
+        identity=(f'Original parent index `{p}`; original caller session `{c.original_caller_session}`; '
+            f'final completion chunk `{c.final_completion_chunk}`; exit zero; fresh elapsed seconds `{c.elapsed_seconds}`; '
+            'owned processes closed; independent audit accepted.')
+        require(lines.count(identity)==1 and sum(x.startswith('Original parent index ')for x in lines)==1,'exact parent acceptance identity')
+        require(type(bound)is dict and set(bound)=={r for r,_,_,_ in PARENT_ONE},'all nine owner evidence bindings required')
+        expected=[f'Binding `{role}`: SHA-256 `{b["sha256"]}`; bytes `{b["bytes"]}`.'for role,b in bound.items()]
+        require(all(lines.count(line)==1 for line in expected)and sum(x.startswith('Binding ')for x in lines)==9,'exact unique parent evidence role lines')
+        return
     text=raw.decode('utf-8',errors='strict');heading='## Independently accepted actual parent-one emission refinement\n'
     require(text.count(heading)==1,'unique parent1 acceptance section')
     section=text.split(heading,1)[1].split('\n## ',1)[0]
@@ -761,17 +832,29 @@ def _parent_owner(raw,descriptor):
         require(token in section,'parent1 external closure attribution differs')
     for _,_,digest,size in PARENT_ONE:
         require(digest in section and (str(size)in section or format(size,',')in section),'parent1 accepted evidence differs')
-    require(descriptor.closure.owner.bytes==len(raw),'parent1 owner size differs')
 
 
 def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export,original,a,reference,histories):
     """Consume accepted metadata once, without rerunning any numerical oracle."""
-    _parent_owner(owner.data,descriptor)
-    files={role:pool.capture(path,digest,data=True,size=size)for role,path,digest,size in PARENT_ONE}
+    index=descriptor.parent_index;legacy=_legacy_parent(descriptor,pool.root)
+    require(type(index)is int and 1<=index<160 and original.index==index,'selected original parent index')
+    files={role:pool.capture(b.path,b.sha256,data=True,size=b.bytes)for role in
+        ('plan','manifest','comparison','operation','launcher_log','resource_log')for b in (getattr(descriptor,role),)}
     bound={role:f.binding()for role,f in files.items()}
     raw_plan,m=(core.decode_document(files[k].data)for k in ('plan','manifest'))
     named=('declaration','producer','producerControls','proposalReference','proposalReferenceControls',
         'verifier','verifierControls','comparisonReference','comparisonReferenceControls')
+    _keys(raw_plan,('schema','scope','parentIndex',*named,'dependencies','originalBindings','acceptanceOwner',
+        'priorCoverClosure','runtimeBindings','operationalBindings','limits'))
+    _keys(m,'schema scope status accepted launchPlan producer verifier declaration parent members originalBindings acceptanceOwner priorCoverClosure historicalSourceBindings subjectSourceBindings runtimeBindings operationalBindings algorithm restrictions census helperCalls queries rows pieces libraryFlags claims publicationRequires'.split())
+    for role in ('queries','rows','pieces'):
+        b=w.normalized(m[role],pool.root)
+        require(b['path']==str(Path(bound['manifest']['path']).parent/(role+'.ndjson')),'selected sibling output path')
+        files[role]=pool.capture(b['path'],b['sha256'],data=True,size=b['bytes']);bound[role]=files[role].binding()
+    require(sum(bound[k]['bytes']for k in ('manifest','queries','rows','pieces'))<=MAX_BYTES,'aggregate parent output cap')
+    if legacy:
+        require(all(bound[r]==dict(path=str(pool.root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ONE),'legacy complete output generation')
+    _parent_owner(owner.data,descriptor,bound)
     # The plan stores relative source paths; published records store absolute
     # logical paths. Build a view, leaving captured JSON and old attribution intact.
     p={**raw_plan,**{k:w.normalized(raw_plan[k],pool.root)for k in (*named,'acceptanceOwner')}}
@@ -779,25 +862,53 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         p[key]={k:w.normalized(b,pool.root)for k,b in raw_plan[key].items()}
     for key in ('runtimeBindings','operationalBindings'):
         p[key]=[w.normalized(b,pool.root)for b in raw_plan[key]]
+    # Authenticate fixed mathematical roles independently of either wrapper.
+    for role,path,digest in PARENT_FIXED:
+        require(p[role]['path']==str(pool.root/path)and p[role]['sha256']==digest,'parent frozen comparison/proposal role')
+    for role,path,_,_ in PARENT_ARCHIVE_SOURCES[:4]:
+        require(p[role]['path']==str(pool.root/path),'parent canonical wrapper role')
+    aliases=dict(transport='transport',transportControls='transportControls',scientificDecoder='decoder',
+        scientificDecoderControls='decoderControls',productionHelper='captureHelper',productionHelperControls='captureHelperControls',
+        historyReference='geometryHistory',decimalReference='geometryIntervals',decimalControls='geometryIntervalControls',
+        rootLibrary='geometryRoots',rootControls='geometryRootsControls',independentRootReference='rootComparison',independentRootControls='rootControls')
+    expected_deps={role:next((path,digest)for r,path,digest in SOURCES if r==alias)for role,alias in aliases.items()}
+    expected_deps['cacheEquivalence']=(PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3')
+    require(set(p['dependencies'])==set(expected_deps),'closed parent dependency roles')
+    for role,(path,digest)in expected_deps.items():
+        require(p['dependencies'][role]['path']==str(pool.root/path)and p['dependencies'][role]['sha256']==digest,'parent frozen dependency')
+    require(p['acceptanceOwner']['path']==str(pool.root/OWNER),'historical owner canonical role')
+    historical_sources={role:p[role]for role,_,_,_ in PARENT_ARCHIVE_SOURCES[:4]}
+    for role,path,_,_ in PARENT_ARCHIVE_SOURCES[4:]:
+        matches=[b for b in p['operationalBindings']if b['path']==str(pool.root/path)]
+        require(len(matches)==1,'parent operational source role');historical_sources[role]=matches[0]
     c=w.decode_operational(files['comparison'].data)
     op=w.decode_operational(files['operation'].data,document_class='operational-receipt')
-    reader=_HistoricalReader(pool,descriptor.archived_sources,p['acceptanceOwner'])
+    reader=_HistoricalReader(pool,descriptor.archived_sources,p['acceptanceOwner'],historical_sources)
     _owner_declaration(reader.read_binding(p['acceptanceOwner'],capture=True))
-    scope='original-parent-1-emission-refinement'
+    scope=f'original-parent-{index}-emission-refinement'
     require(p['schema']=='braid-program/f6c-parent-emission-refinement-launch.v1'and p['scope']==scope
-        and type(p['parentIndex'])is int and p['parentIndex']==1 and w.equal(p['limits'],w.LIMITS),'parent plan scope/limits')
+        and type(p['parentIndex'])is int and p['parentIndex']==index and w.equal(p['limits'],w.LIMITS),'parent plan scope/limits')
+    require(w.equal(p['priorCoverClosure'],dict(authority='versioned-acceptance-owner-declaration-not-fresh-observation',
+        originalCallerSession='13512',finalCompletionChunk='c21aa7',exitCode=0,elapsedSeconds='862.951823625',
+        processesClosed=True,independentAuditAccepted=True)),'original full external closure differs')
     require(m['schema']=='braid-program/f6c-parent-emission-refinement-cover.v1'and m['scope']==scope
         and m['status']=='conditional_complete'and m['accepted']is False,'parent manifest disposition')
     require(c['schema']=='braid-program/f6c-parent-emission-refinement-conformance.v1'and c['scope']==scope
         and c['accepted']is True and c['analysis']['conditional_final_cover_conformant']is True
         and c['analysis']['conditional_query_replay_conformant']is True,'independent parent comparison required')
     require(op['schema']=='braid-program/f6c-parent-emission-refinement-operation.v1'
-        and op['scope']=='operational-original-parent1-refinement-completion-only'and op['accepted']is True
-        and type(op['parentIndex'])is int and op['parentIndex']==1,'parent operation disposition')
+        and op['scope']==f'operational-original-parent{index}-refinement-completion-only'and op['accepted']is True
+        and type(op['parentIndex'])is int and op['parentIndex']==index,'parent operation disposition')
     closure=number(descriptor.closure.elapsed_seconds)
     require(0<=F(op['elapsedSecondsBeforePublication'])<closure<=1800,'prepublication is not external closure')
     for obj in (m['claims'],c['candidateClaims'],op['claims']):
-        require(type(obj)is dict and len(obj)==15 and all(v is False for v in obj.values()),'parent scientific authority promoted')
+        require(type(obj)is dict and set(obj)==set('accepted referenceGenerationAuthenticated originalSourceAuthenticated original1760PieceCensusAuthenticated premiseTruthAuthenticated subjectMembershipEstablished historicalTrajectoryIdentityEstablished executionAuthorized eomExecuted h3EvidenceEligible metricsAvailable scoreAuthorized equilibriumEstablished retentionEstablished physicalRealizationEstablished'.split())
+            and all(v is False for v in obj.values()),'parent scientific authority promoted')
+    require(w.equal(m['algorithm'],dict(lowerQueriesPerPair=32,upperQueriesPerPair=32,upperSearchRestartsFromOriginal=True,
+        receptionSubdivision=False,automaticRetry=False))and w.equal(m['libraryFlags'],dict.fromkeys(reference.ROOT_FLAGS,False)),
+        'unchanged parent algorithm and library flags')
+    require(m['publicationRequires']=='fresh successful completion, independent parent refinement comparison, external inclusive deadline and closed owned processes',
+        'parent publication boundary differs')
     for key in ('accelerationEvaluated','eomExecuted','wholeHistoryMetrics'):require(op[key]is False,'parent numerical authority promoted')
     expected_original={k:ancestry[k]for k in ('export','reconstruction','guards')}
     expected_original['fullEntry']=pool.files[str(pool.root/'scripts/eom/run-f6c-cached-root-cover-full.mjs')].binding()
@@ -806,15 +917,20 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         and set(p['originalBindings'])==set(expected_original),'parent exact original sources')
     for key,b in expected_original.items():require(w.equal(p['originalBindings'][key],b),'original role mapping differs')
     subjects=[*(p[k]for k in named),*p['dependencies'].values()]
-    for group,n in ((subjects,23),(p['runtimeBindings'],159),(p['operationalBindings'],8)):
+    for group,n in ((subjects,23),(p['runtimeBindings'],len(p['runtimeBindings'])),(p['operationalBindings'],len(p['operationalBindings']))):
+        require(0<n<=512,'bounded parent source group')
         w.binding_list(group,n);require(len(w.source_map(group,pool.root))==n,'parent source group uniqueness')
+    unique=subjects+p['runtimeBindings']+p['operationalBindings']
+    require(len(w.source_map(unique,pool.root))==len(unique),'new source groups must not overlap')
     current=[*subjects,*p['runtimeBindings'],*p['operationalBindings'],*p['originalBindings'].values(),p['acceptanceOwner'],bound['plan']]
-    current_map=w.source_map(current,pool.root);require(len(current_map)==204,'parent declared204 source closure')
+    current_map=w.source_map(current,pool.root)
+    if legacy:require(len(current_map)==204 and len(p['runtimeBindings'])==159 and len(p['operationalBindings'])==8,'legacy declared204 source closure')
     # _full_chain has already independently derived and captured this exact198.
     # Reuse it; do not derive the ancestry from an unverified parent receipt.
     historical=fdocs['admission']['sourceBindings'];historical_map=w.source_map(historical,pool.root)
     historical_logs=[stage['process'][key]for stage in fdocs['admission']['stages']for key in ('stdoutLog','stderrLog')]
-    combined=w.source_map([*historical,*historical_logs,*current],pool.root);require(len(combined)==230,'parent combined230 source closure')
+    combined=w.source_map([*historical,*historical_logs,*current],pool.root)
+    if legacy:require(len(combined)==230,'legacy combined230 source closure')
     for b in combined.values():reader.read_binding(b)
     for obj in (m,c):
         require(w.equal(w.source_map(obj['historicalSourceBindings'],pool.root),historical_map),'parent historical membership differs')
@@ -826,7 +942,8 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
     require(w.equal(c['verifier'],p['verifier'])and w.equal(op['plan'],bound['plan']),'parent verifier/operation plan differs')
     outputs=[bound[k]for k in ('queries','rows','pieces','manifest')]
     comparison_sources=w.source_map([*combined.values(),*outputs],pool.root)
-    require(len(comparison_sources)==234 and w.equal(w.source_map(c['sourceBindings'],pool.root),comparison_sources),'parent comparison234 source closure')
+    require(w.equal(w.source_map(c['sourceBindings'],pool.root),comparison_sources),'parent comparison source closure')
+    if legacy:require(len(comparison_sources)==234,'legacy comparison234 source closure')
     require(w.equal(w.source_map(op['sourceBindings'],pool.root),current_map),'parent operation204 source closure')
     for key in ('queries','rows','pieces'):
         require(w.equal(m[key],bound[key])and w.equal(c[key],bound[key]),'parent stream binding differs')
@@ -861,7 +978,8 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
     raw=files['resource_log'].data
     require(raw.endswith(b'\n'),'parent resource stream terminated')
     lines=raw.split(b'\n')[:-1]
-    require(len(lines)==1055 and all(0<len(line)<=131072 for line in lines),'parent resource stream census')
+    require(0<len(lines)<=100000 and len(raw)<=16*1024**2 and all(0<len(line)<=131072 for line in lines),'bounded parent resource stream')
+    if legacy:require(len(lines)==1055,'legacy parent resource stream census')
     rss=[w.decode_operational(line)for line in lines]
     for j,row in enumerate(rss):
         require(row['kind']=='aggregate-rss'and 0<=F(row['elapsedSeconds'])<closure
@@ -874,8 +992,15 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
     raw_histories=[dict(**{k:h[k]for k in hkeys},segments=[{k:s[k]for k in skeys}for s in h['segments']])for h in export['retainedHistories']]
     generation=_hash(json.dumps(raw_histories,sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode('ascii'))
     rb=lambda b:dict(lower=b.lower,upper=b.upper,precision=90)
-    parent=dict(schema='braid-program/f6c-original-parent-refinement-input.v1',parentIndex=1,frameIndex=0,
-        frame=dict(lower=export['acceptedFrames'][0]['time'],upper=export['acceptedFrames'][1]['time'],precision=90),
+    frame=index//2
+    require(len(export['acceptedFrames'])==81 and all(len(h['segments'])==1760 for h in export['retainedHistories']),'original full parent/frame incidence')
+    for h in export['retainedHistories']:
+        segment=h['segments'][1600+index]
+        require((segment['startTime'],segment['endTime'])==(original.reception.lower,original.reception.upper),'parent original segment lexemes')
+    require(number(export['acceptedFrames'][frame]['time'])<=number(original.reception.lower)<number(original.reception.upper)
+        <=number(export['acceptedFrames'][frame+1]['time']),'original parent inside original frame')
+    parent=dict(schema='braid-program/f6c-original-parent-refinement-input.v1',parentIndex=index,frameIndex=frame,
+        frame=dict(lower=export['acceptedFrames'][frame]['time'],upper=export['acceptedFrames'][frame+1]['time'],precision=90),
         reception=rb(original.reception),oldestTime='-8',historyGenerationSha256=generation,originalCoverBinding=full['manifest'],
         originalEmissions=[dict(receiverIndex=i,transmitterIndex=j,receiverId=LABELS[i],transmitterId=LABELS[j],emission=rb(original.rows[8*i+j].emission))
             for i in range(8)for j in range(8)if i!=j])
@@ -884,7 +1009,7 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
     w.records(core,files['queries'].data,3584)  # recorded census, never query replay
     bindings=tuple(a.Binding(**v)for v in w.mathematical_bindings(ancestry,bound))
     selected=_parents_from_raw(a,reference,w.records(core,files['rows'].data,64),w.records(core,files['pieces'].data,112),
-        histories,bindings,cells=1,refined=True,original_indices=(1,))[0]
+        histories,bindings,cells=1,refined=True,original_indices=(index,))[0]
     require(selected.reception==original.reception,'parent refinement original reception differs')
     for old,new in zip(original.rows,selected.rows):
         if new.emission is not None:
@@ -1093,8 +1218,11 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
             require(override[0].reception==parents[0].reception,'refined override same original parent')
             selected=override+parents[1:];archived=();refined_indices=frozenset({0})
             for descriptor in parent_refinements:
-                parent,relations=_authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,old['export'],parents[1],a,reference,histories)
-                selected=(selected[0],parent)+selected[2:];archived+=relations;refined_indices=frozenset({0,1})
+                index=descriptor.parent_index
+                parent,relations=_authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,old['export'],parents[index],a,reference,histories)
+                selected=selected[:index]+(parent,)+selected[index+1:]
+                archived+=tuple(r for r in relations if r not in archived)
+                refined_indices=refined_indices|frozenset({index})
             geometry=modules['geometry']
             require(rdocs['manifest']['speedUpper']=='0.85'and rdocs['manifest']['clearanceLower']=='0.27','authenticated shared geometry guards')
             geometry_guards=geometry.Guards('1',(rdocs['manifest']['speedUpper'],)*8,

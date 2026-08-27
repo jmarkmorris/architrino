@@ -37,7 +37,7 @@ Current source-family order: PIRSA, KITP, IAS/Cornell/Simons, and CERN public de
 - **Status:** Deferred / blocked
 - **Priority object:** `solving_the_crisis_source_refresh`
 - **Request / acceptance:** Replace public-list orientation with primary papers, reviews, data releases, or experiment documentation for chapters retained by the Open Problems audit.
-- **Evidence / blocker:** Depends on `open-problems/claim_level_audit`.
+- **Evidence / blocker:** Depends on `mapping-open-problems/claim_level_audit`.
 - **Completion:** Every retained chapter has current primary-source grounding recorded in mining history.
 
 ### SM-004 — Neoclassical repository cleanup

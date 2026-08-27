@@ -404,10 +404,11 @@ class FullChainTests(unittest.TestCase):
 
 class MainFlowTests(unittest.TestCase):
     """Fictional metadata/math but real complete CLI sequencing/publication."""
-    def flow(self,mode='success'):
+    def flow(self,mode='success',parent_index=1):
         temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);root=Path(temp.name).resolve();data=root/s.LANE/'fixture';data.mkdir(parents=True)
         outer=Path(str(data)+'-outer');outer.mkdir();out=outer/'comparison.json';manifest=data/'cover-manifest.json';manifest.write_bytes(b'{}')
         plan=plan_fixture();plan['runtimeBindings']=[binding(Path(sys.executable).resolve()),binding(Path(sys.executable).absolute().parent.parent/'pyvenv.cfg')]
+        plan.update(parentIndex=parent_index,scope=s.parent_scope(parent_index))
         launch=root/'plan.json';events=[];clock=[10.0];runtime_calls=[];real_complete=s.complete;real_publish=s.Publication.publish
         dummy=b'x=1\n';virtual={str(root/s.SELF):dummy,str(launch):encode(plan),str(manifest):encode(dict.fromkeys(s.MANIFEST_KEYS))}
         source_file=root/s.SELF;source_file.parent.mkdir(parents=True);source_file.write_bytes(dummy);closed=[False]
@@ -478,11 +479,13 @@ class MainFlowTests(unittest.TestCase):
                 if mode=='teardown':raise OSError('teardown')
         stdout=io.StringIO();stderr=io.StringIO();error=None
         argv=['--manifest',str(manifest),'--manifest-sha256',H,'--plan',str(launch),'--plan-sha256',H,'--verifier-sha256',H,'--out',str(out),'--budget-seconds','1800','--repo-root',str(root)]
+        def projection(*args,**kwargs):
+            self.assertEqual(kwargs['parent_index'],parent_index);return [{}]*8,dict(parentIndex=parent_index)
         with ExitStack() as stack:
             for name,value in (('__file__',str(root/s.SELF)),('_EXECUTING_CODE',compile(dummy,'synthetic.py','exec',dont_inherit=True,optimize=sys.flags.optimize)),
                 ('bootstrap',bootstrap),('captured_module',module),('Pool',FakePool),('validate_plan',lambda *args:plan),
                 ('decode_role',lambda w,d,raw,role:json.loads(raw)),('authenticate_full',lambda *a:events.append('full-chain-mocked') or []),
-                ('original_projection',lambda *a,**k:([{}]*8,dict(parentIndex=1))),('records',records),('candidate_layout',layout),('compare_manifest',numerical),('complete',complete)):
+                ('original_projection',projection),('records',records),('candidate_layout',layout),('compare_manifest',numerical),('complete',complete)):
                 stack.enter_context(patch.object(s,name,value))
             stack.enter_context(patch.object(s.time,'monotonic',lambda:clock[0]));stack.enter_context(patch.object(s.signal,'signal',lambda *a:None));stack.enter_context(patch.object(s.signal,'setitimer',timer))
             stack.enter_context(patch.object(s.Publication,'publish',publish));stack.enter_context(redirect_stdout(stdout));stack.enter_context(redirect_stderr(stderr))
@@ -494,6 +497,10 @@ class MainFlowTests(unittest.TestCase):
         done=json.loads(stdout);report=json.loads(out.read_bytes());self.assertEqual(set(done),set(s.COMPLETION_KEYS));self.assertEqual(set(report),set(s.REPORT_KEYS))
         self.assertEqual(events.count('comparison-mocked'),1);self.assertEqual(events[-1],'watch-teardown');self.assertFalse(any(report['candidateClaims'].values()));self.assertFalse(report['analysis']['accepted'])
         self.assertIn('external inclusive deadline',done['publicationRequires']);self.assertEqual(len(stdout.splitlines()),1)
+    def test_selected_parent_two_reaches_projection_report_and_completion(self):
+        out,events,stdout,stderr,error=self.flow(parent_index=2);self.assertIsNone(error,str(error))
+        report=json.loads(out.read_bytes());done=json.loads(stdout)
+        self.assertEqual(report['parent']['parentIndex'],2);self.assertEqual(report['scope'],s.parent_scope(2));self.assertEqual(done['scope'],s.parent_scope(2))
     def test_full_main_all_late_failures_retract(self):
         for mode in ('comparison','late-runtime','publication-runtime','published-capture','late-source','publication','pool-cleanup','slow-pool','bootstrap-cleanup','stdout','slow-teardown','teardown'):
             with self.subTest(mode=mode):

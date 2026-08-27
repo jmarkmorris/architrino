@@ -425,7 +425,7 @@ def project_original_parent(export, full_rows, full_pieces, full_manifest_bindin
     """Detached metadata projection, conditional on separately authenticated files.
 
     Checks the COMPLETE original global row/piece identities before extracting
-    parent one. Recomputes only original-token digests and closed coverage, never
+    the selected parent. Recomputes original-token digests and closed coverage, never
     polynomial state, face signs, roots or geometry. Returned built-in trees are
     detached; the frozen proposer performs its own immutable input snapshot.
     """

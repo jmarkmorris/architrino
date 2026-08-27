@@ -3,6 +3,7 @@ import {
   DEFAULT_BACKGROUND_ID,
   DEFAULT_COMMENT_FONT_SIZE,
   DEFAULT_EQUATION_MAP_DOCUMENT_ID,
+  MASTER_EQUATION_MAP_DOCUMENT_ID,
   DEFAULT_EQUATION_SCALE,
   DEFAULT_SECTION_LINE_PLACEMENT,
   createSeedEquationMapDocuments,
@@ -1152,8 +1153,12 @@ export class EquationMappingRuntime {
       this.persistSettings();
       this.render();
     });
+    const returnLink = this.renderReturnLink();
+    if (returnLink) header.append(returnLink);
     header.append(title, collapse);
     const groups = createElement(this.document, "div", "equation-mapping-index-groups");
+    const masterEquation = this.getVisibleDocumentList().find(entry => entry.id === MASTER_EQUATION_MAP_DOCUMENT_ID);
+    if (masterEquation) groups.append(this.renderIndexItem(masterEquation, "Master Equation"));
     groupEquationMapDocumentsBySubject(this.getVisibleDocumentList()).forEach(([subject, entries]) => {
       const group = createElement(this.document, "section", "equation-mapping-index-group");
       const isExpanded = this.expandedSubjectIds.has(subject);
@@ -1179,12 +1184,7 @@ export class EquationMappingRuntime {
       if (isExpanded) {
         const itemList = createElement(this.document, "div", "equation-mapping-index-items");
         entries.forEach((entry) => {
-          const button = createElement(this.document, "button", "equation-mapping-index-item");
-          button.type = "button";
-          button.classList.toggle("is-active", entry.id === this.activeDocument.id);
-          button.append(createElement(this.document, "span", "", entry.title));
-          button.addEventListener("click", () => this.setActiveDocument(entry.id));
-          itemList.append(button);
+          itemList.append(this.renderIndexItem(entry));
         });
         group.append(itemList);
       }
@@ -1192,6 +1192,16 @@ export class EquationMappingRuntime {
     });
     index.append(header, groups);
     return index;
+  }
+
+  renderIndexItem(entry, label = entry.title) {
+    const button = createElement(this.document, "button", "equation-mapping-index-item");
+    button.type = "button";
+    button.classList.toggle("is-active", entry.id === this.activeDocument.id);
+    if (entry.id === this.activeDocument.id) button.setAttribute("aria-current", "true");
+    button.append(createElement(this.document, "span", "", label));
+    button.addEventListener("click", () => this.setActiveDocument(entry.id));
+    return button;
   }
 
   renderCanvas() {
@@ -1230,14 +1240,20 @@ export class EquationMappingRuntime {
     return button;
   }
 
+  renderReturnLink() {
+    const returnHref = resolveEquationMappingReturnHref(this.window?.location?.href);
+    if (!returnHref) return null;
+    const link = createElement(this.document, "a", "equation-mapping-icon-button equation-mapping-return-link");
+    link.href = returnHref;
+    link.title = "Return to page";
+    link.setAttribute("aria-label", "Return to page");
+    // The same left chevron as the scene shell's Go back control.
+    link.innerHTML = createIconSvg("previous");
+    return link;
+  }
+
   renderControls() {
     const controls = createElement(this.document, "div", "equation-mapping-controls");
-    const returnHref = resolveEquationMappingReturnHref(this.window?.location?.href);
-    if (returnHref) {
-      const returnLink = createElement(this.document, "a", "equation-mapping-return-link", "← Return to page");
-      returnLink.href = returnHref;
-      controls.append(returnLink);
-    }
     controls.append(
       this.renderIconButton("home", "Go to home", () => {
         navigateStandaloneAppHome(

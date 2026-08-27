@@ -9,7 +9,7 @@ const sourcePath = "content/markdown/aaa/philosophy-history/one-nature-many-theo
 const semanticId = "corpus-equation-9a8a84e6187eb564";
 const currentHref = "https://example.test/site/index.html#scene=original-section&parent=original-parent&focus=original-node";
 
-test("Map preserves the exact source route, adds an equation landing, and stays inside a deployment prefix", () => {
+test("View preserves the exact source route, adds an equation landing, and stays inside a deployment prefix", () => {
   const destination = new URL(createEquationMappingLaunchHref({ currentHref, semanticId, sourcePath }));
   assert.equal(destination.pathname, "/site/equation-mapping.html");
   assert.equal(destination.hash, `#${semanticId}`);
@@ -21,7 +21,7 @@ test("Map preserves the exact source route, adds an equation landing, and stays 
   assert.equal(resolveEquationMappingReturnHref(destination.href), origin.href);
 });
 
-test("Map constructs a section reader route when the original URL has no scene", () => {
+test("View constructs a section reader route when the original URL has no scene", () => {
   const destination = new URL(createEquationMappingLaunchHref({ currentHref: "https://example.test/site/", semanticId, sourcePath, sourceSection: "A Formal Audit of the Theory Network" }));
   const origin = new URL(destination.searchParams.get("returnTo"));
   assert.equal(new URLSearchParams(origin.hash.slice(1)).get("scene"), `runtime:markdown:reader:${sourcePath}::A%20Formal%20Audit%20of%20the%20Theory%20Network`);
@@ -36,29 +36,81 @@ test("return links reject external, executable, credentialed, unrelated and malf
   assert.equal(resolveEquationMappingReturnHref("https://example.test/equation-mapping.html#direct-link"), null);
 });
 
-test("Equation Mapping renders a real return link only for valid launch context", () => {
+test("Equation Mapping renders the standard Back icon as a return link only for valid launch context", () => {
   for (const launched of [true, false]) {
     const href = launched ? createEquationMappingLaunchHref({ currentHref, semanticId, sourcePath }) : "https://example.test/site/equation-mapping.html";
-    const controls = EquationMappingRuntime.prototype.renderControls.call({
+    const link = EquationMappingRuntime.prototype.renderReturnLink.call({
       document: { createElement: element },
       window: { location: { href } },
-      activeDocument: { promoted: false },
-      renderIconButton: () => element("button"),
     });
-    const links = controls.children.filter(child => child.tagName === "A");
-    assert.equal(links.length, launched ? 1 : 0);
     if (launched) {
-      assert.equal(links[0].textContent, "← Return to page");
-      assert.equal(links[0].href, resolveEquationMappingReturnHref(href));
+      assert.equal(link.tagName, "A");
+      assert.equal(link.textContent, "");
+      assert.equal(link.getAttribute("aria-label"), "Return to page");
+      assert.equal(link.title, "Return to page");
+      assert.equal(link.href, resolveEquationMappingReturnHref(href));
+      const sceneShell = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+      const backIcon = sceneShell.match(/id="nav-up"[\s\S]*?<polyline points="([^"]+)"/u)[1];
+      assert.ok(link.innerHTML.includes(`points="${backIcon}"`));
+    } else {
+      assert.equal(link, null);
     }
   }
+});
+
+test("return navigation belongs at the start of the subject header, not in the right-hand controls", () => {
+  const context = {
+    document: { createElement: element },
+    window: { location: { href: createEquationMappingLaunchHref({ currentHref, semanticId, sourcePath }) } },
+    indexCollapsed: true,
+    getVisibleDocumentList: () => [],
+    renderReturnLink() { return EquationMappingRuntime.prototype.renderReturnLink.call(this); },
+    renderIconButton: () => element("button"),
+    activeDocument: { promoted: false },
+  };
+  const index = EquationMappingRuntime.prototype.renderSubjectIndex.call(context);
+  assert.ok(index.children[0].children[0].className.includes("equation-mapping-return-link"));
+  const controls = EquationMappingRuntime.prototype.renderControls.call(context);
+  assert.equal(controls.children.some(child => child.tagName === "A"), false);
+});
+
+test("Master Equation is the first sidebar item without removing or duplicating its normal record", () => {
+  const masterId = "eq-01b-causal-wake-master-equation";
+  const documents = [
+    { id: "eq-01-causal-wake-master-equation", title: "Causal Wake Per-Hit Law", subject: "Dynamics" },
+    { id: masterId, title: "Causal Wake Master Equation", subject: "Dynamics" },
+  ];
+  let selected;
+  const context = {
+    document: { createElement: element, createTextNode(text) { const node = element("#text"); node.textContent = text; return node; } },
+    window: {},
+    expandedSubjectIds: new Set(["Dynamics"]),
+    activeDocument: documents[1],
+    getVisibleDocumentList: () => documents,
+    renderReturnLink: () => null,
+    renderIndexItem: EquationMappingRuntime.prototype.renderIndexItem,
+    setActiveDocument: id => { selected = id; },
+  };
+  const index = EquationMappingRuntime.prototype.renderSubjectIndex.call(context);
+  const groups = index.children[1];
+  const pinned = groups.children[0];
+  assert.equal(pinned.children[0].textContent, "Master Equation");
+  assert.equal(pinned.getAttribute("aria-current"), "true");
+  pinned.fire("click");
+  assert.equal(selected, masterId);
+  const normalItems = groups.children[1].children[1].children;
+  assert.deepEqual(normalItems.map(item => item.children[0].textContent), ["Causal Wake Per-Hit Law", "Causal Wake Master Equation"]);
+  assert.equal(documents.length, 2);
 });
 
 function element(tagName, className = "") {
   const node = {
     tagName: tagName.toUpperCase(), className, children: [], dataset: {}, textContent: "", attrs: {}, handlers: {},
     get childElementCount() { return this.children.length; },
-    classList: { contains(name) { return node.className.split(" ").includes(name); } },
+    classList: {
+      contains(name) { return node.className.split(" ").includes(name); },
+      toggle(name, enabled) { const classes = new Set(node.className.split(" ").filter(Boolean)); if (enabled) classes.add(name); else classes.delete(name); node.className = [...classes].join(" "); },
+    },
     setAttribute(name, value) { this.attrs[name] = value; },
     getAttribute(name) { return this.attrs[name] ?? null; },
     addEventListener(name, handler) { (this.handlers[name] ??= []).push(handler); },
@@ -95,9 +147,9 @@ test("the trial wraps only the selected equation, preserves its node, and provid
   assert.equal(row.children[0], f.equation);
   const action = row.children[1];
   assert.equal(action.children[0], f.link);
-  assert.equal(f.link.textContent, "Map →");
-  assert.equal(f.link.getAttribute("aria-label"), "Open in Equation Mapping");
-  assert.equal(action.children[1].textContent, "Open in Equation Mapping");
+  assert.equal(f.link.textContent, "View →");
+  assert.equal(f.link.getAttribute("aria-label"), "View in Equation Mapping");
+  assert.equal(action.children[1].textContent, "View in Equation Mapping");
   assert.equal(action.children[1].getAttribute("role"), "tooltip");
   assert.equal(action.children[1].id, f.link.getAttribute("aria-describedby"));
   f.link.fire("keydown", { key: "Escape" });
@@ -118,7 +170,7 @@ test("unselected documents, neighboring equations, and links embedded in prose r
   assert.deepEqual(f.root.children, [f.equation, f.paragraph]);
 });
 
-test("return restoration waits for math, scrolls once, focuses Map, and cancels on a different page", () => {
+test("return restoration waits for math, scrolls once, focuses View, and cancels on a different page", () => {
   for (const navigateAway of [false, true]) {
     const f = fixture();
     f.runtime.decorate(sourcePath);

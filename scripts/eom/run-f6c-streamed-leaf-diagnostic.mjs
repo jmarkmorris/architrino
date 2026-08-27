@@ -40,11 +40,11 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "e8d8adfccd13360d902f05c85ee4824defd449c944532f91a000d48b16641554"
+  "42f2ff25ec3cedb0e04254cfe1d604946d6593aa360a254e7abe6955783367aa"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
-  "7f0bc610e83feabc20ce897a7269bb017952cb53e42cae747967191813c60441"
+  "e4a8c694d978354793b8c99c1c0eeaa16ef5bb6d8250fa265f0b046d53434383"
  ],
  "diagnostic": [
   "scripts/eom/f6c_single_leaf_diagnostic.py",
@@ -52,7 +52,7 @@ export const PINS=Object.freeze({
  ],
  "diagnosticControls": [
   "tests/test_f6c_single_leaf_diagnostic.py",
-  "50c6c6c151330181310f210342f11ccc7a310700334651e62db9bdab9c0daf1f"
+  "438ac35a5c6818d85195308fdd2f986569ea13164318876e2897d80fe2cde75b"
  ],
  "stream": [
   "scripts/eom/f6c_streamed_leaf_session.py",
@@ -60,7 +60,7 @@ export const PINS=Object.freeze({
  ],
  "streamControls": [
   "tests/test_f6c_streamed_leaf_session.py",
-  "c618af01aa455fa4525d139950e845244dbf8f7221e04a0cd8f5a817e7935b0e"
+  "242baa1db7c9a225e2cba8aaf50930c93694a1cb49d4fe19691e5947561dd02d"
  ],
  "codec": [
   "scripts/eom/f6c_leaf_evidence_codec.py",
@@ -80,7 +80,7 @@ export const PINS=Object.freeze({
  ],
  "readiness": [
   "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
-  "5990ee3396c729662115907a45e0463a7f6bb22ab42a6ded6cc73c4065f47f75"
+  null
  ],
  "transport": [
   "scripts/eom/verify-f6c-refined-acceleration.py",
@@ -98,6 +98,16 @@ export const PINS=Object.freeze({
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
   "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944"
  ]
+});
+// Readiness alone is selected by the reviewed invocation. Historical wrapper
+// tuples are metadata, never instructions execute/import or runtime exemptions.
+export const ARCHIVE_SOURCES=Object.freeze({
+ producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py','492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544',57641],
+ producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py','06cd99bc1f74c3b7dead6089ef20f468f7be8af41ae6702f45ec85d83a1a36ab',40808],
+ verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py','0bb16c232736c895c4f3e38a75e2a0562084710ffdba2503b3ab4457216127fc',46134],
+ verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py','92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7',39696],
+ operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6',48579],
+ operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js','231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0',20889]
 });
 const check=(yes,message)=>{if(!yes)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
@@ -121,23 +131,55 @@ function binding(b){keys(b,['path','sha256','bytes']);check(typeof b.path==='str
 export function checkBindings(records,live=()=>{},identities={}){return records.map(b=>{binding(b);const actual=readBound(b.path,b.sha256,false,1024**3,live);check(actual.bytes===b.bytes&&(!identities[b.path]||actual.identity===identities[b.path]),'source bytes/original identity');return clean(actual);});}
 export function decodeSpec(raw){check(raw.length>0&&raw.length<=1024**2,'spec byte bound');const value=JSON.parse(raw.toString());check(Buffer.from(JSON.stringify(value)+'\n').equals(raw),'canonical JSON only; duplicate/extra/trailing syntax rejected');return value;}
 export const LIMITS=Object.freeze({wallSeconds:1800,aggregateRSSBytes:2147483648,rssPollMs:250,maximumRSSGapMs:1000,heartbeatSeconds:15,hostProbeSeconds:2,startFreePercent:40,startDiskBytes:68719476736,stopFreePercent:20,stopDiskBytes:17179869184,scientificBytes:67108864,combinedLogBytes:16777216});
-function archiveRelations(spec){return spec.parentRefinements.flatMap(v=>v.archived_sources);}
-function descriptorBindings(spec){
- const out=[];
- for(const d of spec.parentRefinements){
-  keys(d,['parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure','archived_sources']);
-  check(d.parent_index===1,'only admitted parent1');
-  for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log']){binding(d[k]);out.push(d[k]);}
-  keys(d.closure,['owner','operation','original_caller_session','final_completion_chunk','exit_code','elapsed_seconds','processes_closed','independent_audit_accepted','authority']);
-  const c=d.closure;binding(c.owner);binding(c.operation);check(same(c.owner,spec.bindings.readiness)&&same(c.operation,d.operation),'explicit current closure owner');
-  check(c.original_caller_session==='9158'&&c.final_completion_chunk==='1eda87'&&c.exit_code===0&&c.elapsed_seconds==='261.94229158400003'&&c.processes_closed===true&&c.independent_audit_accepted===true&&c.authority==='attributed-versioned-acceptance-owner-not-fresh-process-observation','attributed accepted closure only');
-  check(Array.isArray(d.archived_sources)&&d.archived_sources.length<=1,'bounded explicit archive');
-  for(const r of d.archived_sources){
-   keys(r,['role','original','archive']);binding(r.original);binding(r.archive);
-   check(r.role==='acceptanceOwner'&&r.original.path===spec.bindings.readiness.path&&r.original.sha256==='7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'&&r.original.bytes===318717,'exact historical owner');
-   check(r.archive.path!==r.original.path&&r.archive.sha256===r.original.sha256&&r.archive.bytes===r.original.bytes,'byte-identical explicit archive');out.push(r.archive);
+const bindingKey=b=>[b.path,b.sha256,b.bytes];
+const equalBinding=(a,b)=>same(bindingKey(a),bindingKey(b));
+export function archiveRelations(spec){
+ const out=[],seen=new Set();
+ for(const r of spec.parentRefinements.flatMap(v=>v.archived_sources)){
+  const key=JSON.stringify([r.role,...bindingKey(r.original),...bindingKey(r.archive)]);
+  if(!seen.has(key)){
+   const copy=b=>({path:b.path,sha256:b.sha256,bytes:b.bytes});
+   out.push({role:r.role,original:copy(r.original),archive:copy(r.archive)});seen.add(key);
   }
  }
+ return out;
+}
+function elapsedToken(token){
+ check(typeof token==='string'&&token.length>0&&token.length<=1152,'bounded elapsed token');
+ const m=/^([+-]?)(?:(\d+)(?:\.(\d*))?|\.(\d+))(?:[eE]([+-]?\d+))?$/u.exec(token);check(m,'decimal elapsed token');
+ const fraction=m[3]??m[4]??'',digits=(m[2]??'')+fraction,exp=m[5]??'0',significantExponent=exp.replace(/^[+-]?0*/u,'')||'0';
+ check(digits.length<=1024&&significantExponent.length<=4&&Math.abs(Number(exp))<=1000,'elapsed format bound');
+ const exponent=Number(exp)-fraction.length;check(Math.abs(exponent)<=1000,'elapsed decimal exponent');
+ const n=BigInt(digits);check(m[1]!=='-'&&n>0n&&(exponent>=0?n*10n**BigInt(exponent)<=1800n:n<=1800n*10n**BigInt(-exponent)),'positive elapsed at most1800s');
+}
+function descriptorBindings(spec){
+ const out=[],originals=new Map(),targets=new Map();let previous=0;
+ const forbidden=new Set([...Object.values(spec.bindings),...spec.runtimeBindings].map(b=>b.path));
+ for(const [p]of Object.values(ARCHIVE_SOURCES))forbidden.add(path.join(spec.root,p));
+ for(const d of spec.parentRefinements){
+  keys(d,['parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure','archived_sources']);
+  check(Number.isInteger(d.parent_index)&&d.parent_index>previous&&d.parent_index<160,'sorted unique original parents1..159');previous=d.parent_index;
+  for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log']){binding(d[k]);out.push(d[k]);}
+  keys(d.closure,['owner','operation','original_caller_session','final_completion_chunk','exit_code','elapsed_seconds','processes_closed','independent_audit_accepted','authority']);
+  const c=d.closure;binding(c.owner);binding(c.operation);check(equalBinding(c.owner,spec.bindings.readiness)&&equalBinding(c.operation,d.operation),'explicit current closure owner');
+  check(typeof c.original_caller_session==='string'&&/^[0-9]{1,32}$/u.test(c.original_caller_session)&&typeof c.final_completion_chunk==='string'&&/^[a-zA-Z0-9_-]{1,128}$/u.test(c.final_completion_chunk)&&c.exit_code===0&&c.processes_closed===true&&c.independent_audit_accepted===true&&c.authority==='attributed-versioned-acceptance-owner-not-fresh-process-observation','attributed accepted closure only');elapsedToken(c.elapsed_seconds);
+  check(Array.isArray(d.archived_sources)&&d.archived_sources.length<=7,'bounded explicit archives');const roles=new Set();
+  for(const r of d.archived_sources){
+   keys(r,['role','original','archive']);binding(r.original);binding(r.archive);
+   check(typeof r.role==='string'&&!roles.has(r.role),'unique archive role');roles.add(r.role);
+   if(r.role==='acceptanceOwner')check(r.original.path===spec.bindings.readiness.path&&!equalBinding(r.original,spec.bindings.readiness),'historical owner distinct from current');
+   else{
+    check(Object.hasOwn(ARCHIVE_SOURCES,r.role),'known historical role');const[p,h,n]=ARCHIVE_SOURCES[r.role];
+    check(r.original.path===path.join(spec.root,p)&&r.original.sha256===h&&r.original.bytes===n,'exact historical source tuple');
+   }
+   check(r.archive.path!==r.original.path&&!forbidden.has(r.archive.path)&&r.archive.sha256===r.original.sha256&&r.archive.bytes===r.original.bytes,'byte-identical explicit nonalias archive');
+   const key=JSON.stringify(bindingKey(r.original)),relation=JSON.stringify([r.role,...bindingKey(r.original),...bindingKey(r.archive)]);
+   check(!originals.has(key)||originals.get(key)===relation,'conflicting shared historical mapping');
+   check(!targets.has(r.archive.path)||targets.get(r.archive.path)===key,'ambiguous physical archive');
+   originals.set(key,relation);targets.set(r.archive.path,key);out.push(r.archive);
+  }
+ }
+ for(const d of spec.parentRefinements)for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log'])check(!targets.has(d[k].path),'archive aliases selected evidence');
  return out;
 }
 function uniqueBindings(records){
@@ -149,9 +191,9 @@ export function validateSpec(s,selfSha){
  check(typeof s.root==='string'&&path.isAbsolute(s.root)&&realpathSync(s.root)===s.root&&typeof s.output==='string'&&path.dirname(s.output)===path.join(s.root,LANE)&&path.resolve(s.output)===s.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(s.output)),'fresh canonical direct-child lane');
  keys(s.bindings,['coordinator','controls',...Object.keys(PINS)]);for(const b of Object.values(s.bindings))binding(b);
  check(s.bindings.coordinator.path===path.join(s.root,SELF)&&s.bindings.coordinator.sha256===selfSha&&s.bindings.controls.path===path.join(s.root,CONTROL),'executing connection and controls');
- for(const[k,[p,h]]of Object.entries(PINS))check(s.bindings[k].path===path.join(s.root,p)&&s.bindings[k].sha256===h,'fixed reviewed '+k);
+ for(const[k,[p,h]]of Object.entries(PINS))check(s.bindings[k].path===path.join(s.root,p)&&(k==='readiness'||s.bindings[k].sha256===h),'fixed reviewed '+k);
  check(Number.isInteger(s.maxAdvances)&&s.maxAdvances>=1&&s.maxAdvances<=3280&&same(s.limits,LIMITS),'unchanged explicit bounds');
- check(Array.isArray(s.parentRefinements)&&s.parentRefinements.length<=1,'explicit accepted parent selection');
+ check(Array.isArray(s.parentRefinements)&&s.parentRefinements.length<=159,'explicit bounded parent selection');
  check(Array.isArray(s.runtimeBindings)&&s.runtimeBindings.length>0&&s.runtimeBindings.length<=256,'fresh bounded runtime census');s.runtimeBindings.forEach(binding);
  const all=[...Object.values(s.bindings),...s.runtimeBindings];check(new Set(all.map(b=>b.path)).size===all.length,'duplicate source/runtime');
  for(const p of[s.python,s.git])check(typeof p==='string'&&path.isAbsolute(p)&&path.resolve(p)===p,'explicit executable');
@@ -241,31 +283,42 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha):
       with BoundFile(key,digest,limit=1073741824,live=live)as f:require(identity(f.initial)==initial,'original postcleanup source replaced')
      runtime_check();live()
     with module(bindings['adapter'])as A,module(bindings['diagnostic'])as D,module(bindings['stream'])as S,module(bindings['codec'])as C,module(bindings['storage'])as P:
-     def captured_python_source(p):
-      p=pathlib.Path(p);return p.suffix=='.py'and p.is_relative_to(root/'scripts'/'eom')
-     source_paths.update(b['path']for b in bindings.values()if captured_python_source(b['path']))
+     source_paths.update(bindings[k]['path']for k in ('adapter','diagnostic','stream','codec','storage','transport'))
+     # Only the adapter's actually loaded captured module roles are code.
+     # Historical source files (including .py archives) confer no runtime bypass.
+     executing_roles={'mapping','decoder','rootComparison','acceleration','integral','correlated','gk','geometry','captureHelper','geometryHistory','geometryRoots','geometryIntervals'}
+     executing_sources={str(root/p)for role,p,_ in A.SOURCES if role in executing_roles}
      def binding(v):
       closed(v,('path','sha256','bytes'));return A.SourceBinding(**v)
      def descriptor(v):
       closed(v,('parent_index','plan','manifest','comparison','operation','launcher_log','resource_log','closure','archived_sources'))
+      require(type(v['parent_index'])is int and 1<=v['parent_index']<160,'explicit original parent index')
+      require(type(v['archived_sources'])is list and len(v['archived_sources'])<=7,'bounded historical relations')
       c=v['closure'];closed(c,('owner','operation','original_caller_session','final_completion_chunk','exit_code','elapsed_seconds','processes_closed','independent_audit_accepted','authority'))
       closure=A.ParentClosure(**{**c,'owner':binding(c['owner']),'operation':binding(c['operation'])})
       relations=[]
       for r in v['archived_sources']:
        closed(r,('role','original','archive'));relations.append(A.ArchivedSource(r['role'],binding(r['original']),binding(r['archive'])))
       return A.ParentRefinement(v['parent_index'],**{k:binding(v[k])for k in ('plan','manifest','comparison','operation','launcher_log','resource_log')},closure=closure,archived_sources=tuple(relations))
-     require(type(spec['parentRefinements'])is list and len(spec['parentRefinements'])<=1,'bounded explicit refinements')
+     require(type(spec['parentRefinements'])is list and len(spec['parentRefinements'])<=159,'bounded explicit refinements')
      selected=tuple(descriptor(v)for v in spec['parentRefinements'])
+     indices=tuple(v.parent_index for v in selected);require(indices==tuple(sorted(set(indices))),'sorted unique original parent indices')
+     expected_archives=[];seen_archives=set()
+     for d in selected:
+      for r in d.archived_sources:
+       key=(r.role,r.original.path,r.original.sha256,r.original.bytes,r.archive.path,r.archive.sha256,r.archive.bytes)
+       if key not in seen_archives:seen_archives.add(key);expected_archives.append(dataclasses.asdict(r))
+     archive_paths={r['archive']['path']for r in expected_archives}
      with A.open_adapter(root,adapter_sha256=bindings['adapter']['sha256'],controls_sha256=bindings['adapterControls']['sha256'],closure_owner_sha256=bindings['readiness']['sha256'],deadline=deadline,parent_refinements=selected)as adapter:
       provenance=tuple(adapter.provenance)
       require(0<len(provenance)<=512 and len({p for p,_,_ in provenance})==len(provenance),'unique captured source census')
       for p,h,n in provenance:
        capture(dict(path=p,sha256=h,bytes=n))
-       if captured_python_source(p):source_paths.add(p)
+       if p in executing_sources and p not in archive_paths:source_paths.add(p)
       require(len(adapter.histories)==8 and all(len(h.segments)==1760 for h in adapter.histories)and len(adapter.frames)==81 and len(adapter.parents)==160,'actual metadata census')
       require(all(adapter.call_counts[k]==0 for k in ('projections','evaluations','residuals','root_queries','emission_refinements'))and all(v==0 for v in adapter.geometry_accounting.values()),'metadata zero numerical calls')
       archives=S.to_wire(adapter.historical_owner_archives)
-      require(archives==[r for v in spec['parentRefinements']for r in v['archived_sources']],'exact explicit historical archive relations')
+      require(archives==expected_archives,'exact unique historical archive relations')
       metadata=dict(sources=len(provenance),members=8,segmentsPerMember=1760,frames=81,parents=160,projections=0,evaluations=0,residuals=0,restrictions=0,historyStateEvaluations=0)
       runtime_check();recheck();progress('metadata',1,1)
       publication=P.LeafStreamPublication(spec['output'],C,deadline=deadline,byte_limit=67108864,live=live)

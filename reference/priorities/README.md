@@ -9,7 +9,7 @@ Current priority staging should favor core geometrical theory closure: master-eq
 For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-16), then use the owning packet for the actual pass/fail fields.
 
 
-Use `operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
+Use `aaa-operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
 
 Use `dormant-deferred/aaa-journey/priorities.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
 

@@ -1,5 +1,6 @@
 export const EQUATION_MAP_SCHEMA = "equation-map-document.v1";
 export const DEFAULT_EQUATION_MAP_DOCUMENT_ID = "eq-00-coordinate-layer-key";
+export const MASTER_EQUATION_MAP_DOCUMENT_ID = "eq-01b-causal-wake-master-equation";
 export const DEFAULT_BACKGROUND_ID = "architrinoPurple";
 export const DEFAULT_SECTION_LINE_PLACEMENT = "below";
 export const DEFAULT_EQUATION_SCALE = "medium";
@@ -460,7 +461,7 @@ const equationMapSeedDocuments = [
     ],
   },
   {
-    id: "eq-01b-causal-wake-master-equation",
+    id: MASTER_EQUATION_MAP_DOCUMENT_ID,
     title: "Causal Wake Master Equation",
     subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
     backgroundId: DEFAULT_BACKGROUND_ID,

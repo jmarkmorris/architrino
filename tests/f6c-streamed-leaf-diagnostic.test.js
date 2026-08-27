@@ -26,6 +26,7 @@ function runtimeBindings(){
  runtime=[...new Set(paths)].map(bind);return runtime;
 }
 const adapterFake=String.raw`import contextlib,dataclasses,hashlib,pathlib,types
+SOURCES=()
 @dataclasses.dataclass(frozen=True)
 class SourceBinding:
  path:str
@@ -64,14 +65,17 @@ def open_adapter(root,**kw):
  histories=tuple(types.SimpleNamespace(segments=(None,)*1760)for _ in range(8))
  a=types.SimpleNamespace(context={'synthetic':'not-original-data'},provenance=((str(source),hashlib.sha256(source.read_bytes()).hexdigest(),source.stat().st_size),),
  histories=histories,frames=tuple(range(81)),parents=tuple(range(160)),
- historical_owner_archives=tuple(r for d in kw['parent_refinements']for r in d.archived_sources),
+ historical_owner_archives=tuple(dict.fromkeys(r for d in kw['parent_refinements']for r in d.archived_sources)),
  call_counts=dict(projections=0,evaluations=0,residuals=0,root_queries=0,emission_refinements=0),
  geometry_accounting=dict(restriction_calls=0,completed_restrictions=0,history_state_evaluations=0,restricted_projections=0))
  extras=[]
  for d in kw['parent_refinements']:
   extras.extend(getattr(d,k)for k in ('plan','manifest','comparison','operation','launcher_log','resource_log'))
   extras.extend(r.archive for r in d.archived_sources)
- a.provenance+=tuple((b.path,b.sha256,b.bytes)for b in extras)
+ a.provenance=tuple(dict.fromkeys(a.provenance+tuple((b.path,b.sha256,b.bytes)for b in extras)))
+ if MODE=='archive-runtime':
+  import sys
+  m=types.ModuleType('_archive_is_not_executing_source');m.__file__=kw['parent_refinements'][0].archived_sources[0].archive.path;sys.modules[m.__name__]=m
  if MODE=='runtime-in-provenance':
   import sys
   p=pathlib.Path(sys.modules['_pylong'].__file__);raw=p.read_bytes()
@@ -175,12 +179,15 @@ function fixture(mode='normal',maximum=2){
  const runtimeList=runtimeBindings().map(x=>({...x}));
  if(mode==='missing-runtime'||mode==='runtime-in-provenance')runtimeList.splice(runtimeList.findIndex(b=>b.path.endsWith('/_pylong.py')),1);
  const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v1',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],maxAdvances:maximum,limits:C.LIMITS};
- if(mode==='archives'){
+ if(mode==='archives'||mode==='shared-archives'||mode==='archive-runtime'){
   const prior={};for(const k of['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'prior-'+k);writeFileSync(p,'prior '+k);prior[k]=bind(p);}
-  const archive=path.join(dir,'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
-  source=source.replace('7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c',ar.sha256).replace('r.original.bytes===318717','r.original.bytes===8');
-  writeFileSync(entry,source);bindings.coordinator=bind(entry);
+  const archive=path.join(dir,mode==='archive-runtime'?'scripts/eom/archived-owner.py':'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
   spec.parentRefinements=[{parent_index:1,...prior,closure:{owner:bindings.readiness,operation:prior.operation,original_caller_session:'9158',final_completion_chunk:'1eda87',exit_code:0,elapsed_seconds:'261.94229158400003',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'},archived_sources:[{role:'acceptanceOwner',original,archive:ar}]}];
+  if(mode==='shared-archives'){
+   const next=structuredClone(spec.parentRefinements[0]);next.parent_index=2;next.closure.original_caller_session='12345';next.closure.final_completion_chunk='abc123';next.closure.elapsed_seconds='3.125';
+   for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'second-'+k);writeFileSync(p,'second '+k);next[k]=bind(p);}
+   next.closure.operation=next.operation;spec.parentRefinements.push(next);
+  }
  }
  const specPath=path.join(dir,'invocation.json');writeFileSync(specPath,JSON.stringify(spec)+'\n');
  // check-ignore needs only a portable ignored synthetic checkout, never repo outputs.
@@ -212,7 +219,7 @@ function alterFixture(f,change){
 }
 
 test('reviewed dependencies remain byte-exact',()=>{
- for(const[p,h]of Object.values(C.PINS))assert.equal(hash(readFileSync(path.join(root,p))),h);
+ for(const[k,[p,h]]of Object.entries(C.PINS)){if(k==='readiness'){assert.equal(h,null);assert(existsSync(path.join(root,p)));}else assert.equal(hash(readFileSync(path.join(root,p))),h);}
  assert(C.PYTHON.length<65536);
 });
 test('genuine two-refined-parent provider connects to frozen stream and codec',()=>{
@@ -331,12 +338,13 @@ test('worker expires before reading source and admission requires closed target'
  for(const proc of[{accepted:true},{accepted:false,processesClosed:false},{accepted:false,processesClosed:true,exit:{code:1,signal:null}}])
   assert.throws(()=>C.fileOperation({kind:'admit',processReceipt:proc,deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)}));
 });
-for(const mode of['normal','exhausted','archives']){
+for(const mode of['normal','exhausted','archives','shared-archives']){
  test('actual captured Python + frozen stream/codec/publication: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-2000));const done=JSON.parse(r.out);
    assert.equal(done.accepted,true);assert.equal(done.physicalClaims,false);assert.equal(done.processesClosed,true);assert.equal(done.lockReleased,true);
    const op=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json'))),completion=op.process.admission.completion;
+   assert.deepEqual(completion.historicalOwnerArchives,C.archiveRelations(f.spec));
    assert.equal(completion.completedAdvances,mode==='exhausted'?1:2);assert.equal(completion.stopReason,mode==='exhausted'?'no-outstanding-request':'explicit-maximum');
    assert.equal(completion.callCounts.projections,4*completion.completedAdvances);
    assert.equal(readFileSync(f.events,'utf8').trim().split('\n').length,completion.completedAdvances);
@@ -346,11 +354,11 @@ for(const mode of['normal','exhausted','archives']){
   }finally{cleanup(f);}
  });
 }
-for(const mode of['missing-runtime','runtime-in-provenance','late-runtime','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
+for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','late-runtime','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
  test('literal Python rejects and preserves only private evidence: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
-   if(mode==='missing-runtime'||mode==='runtime-in-provenance'||mode==='late-runtime'){
+   if(mode==='missing-runtime'||mode==='runtime-in-provenance'||mode==='archive-runtime'||mode==='late-runtime'){
     assert(!existsSync(f.events),'missing runtime stopped before first provide');
     const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/runtime outside declared inventory/);
    }

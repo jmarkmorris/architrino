@@ -1,6 +1,6 @@
 # Open Problems Work Log
 
-This file is the chronological work log for the `open-problems` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
+This file is the chronological work log for the `mapping-open-problems` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
 
 This lane no longer keeps a local theory brainstorming file. Route provisional scientific ideas to the workstream that owns their proof or instrument burden. Use [priorities.md](priorities.md) for paper-control strategy and promotion routing, and use [work-queue.md](work-queue.md) for accepted executable tasks and their local order.
 

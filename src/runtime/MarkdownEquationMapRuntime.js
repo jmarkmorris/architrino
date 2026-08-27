@@ -34,10 +34,10 @@ export function createMarkdownEquationMapRuntime({ markdownBody, documentLike, g
       tooltip.className = "markdown-equation-map-tooltip";
       tooltip.id = `${semanticId}-tooltip`;
       tooltip.setAttribute("role", "tooltip");
-      tooltip.textContent = "Open in Equation Mapping";
+      tooltip.textContent = "View in Equation Mapping";
       link.className = "markdown-equation-map-link";
-      link.textContent = "Map →";
-      link.setAttribute("aria-label", "Open in Equation Mapping");
+      link.textContent = "View →";
+      link.setAttribute("aria-label", "View in Equation Mapping");
       link.setAttribute("aria-describedby", tooltip.id);
       const updateHref = () => {
         const currentHref = getWindow()?.location?.href;

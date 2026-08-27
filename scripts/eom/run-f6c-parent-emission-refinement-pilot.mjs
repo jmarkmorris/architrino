@@ -4,7 +4,7 @@
 import {spawn,execFile} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {closeSync,constants,existsSync,fstatSync,fsyncSync,lstatSync,mkdirSync,openSync,
- readSync,readdirSync,realpathSync,statfsSync,writeSync} from 'node:fs';
+ readSync,readdirSync,realpathSync,statfsSync,writeSync,unlinkSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -21,7 +21,7 @@ export const PINS=Object.freeze({
  outer:['scripts/eom/launch-abc-enclosed-root-pilot.mjs','5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa'],
  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944'],
 });
-export const NAMED=Object.freeze({"declaration":["reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md","652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733"],"producer":["scripts/eom/prepare-f6c-parent-emission-refinement.py","492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544"],"producerControls":["tests/test_f6c_parent_emission_refinement_preparation.py","06cd99bc1f74c3b7dead6089ef20f468f7be8af41ae6702f45ec85d83a1a36ab"],"proposalReference":["scripts/eom/f6c_parent_emission_refinement.py","1517575f3df783af36d2bf2b758d19427e8ec85247efec892783716c263b7c27"],"proposalReferenceControls":["tests/test_f6c_parent_emission_refinement.py","f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2"],"verifier":["scripts/eom/verify-f6c-parent-emission-refinement.py","0bb16c232736c895c4f3e38a75e2a0562084710ffdba2503b3ab4457216127fc"],"verifierControls":["tests/test_f6c_parent_emission_refinement_verification.py","92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7"],"comparisonReference":["scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py","ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec"],"comparisonReferenceControls":["tests/test_f6c_parent_emission_refinement_conformance.py","18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04"]});
+export const NAMED=Object.freeze({"declaration":["reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md","652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733"],"producer":["scripts/eom/prepare-f6c-parent-emission-refinement.py","ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2"],"producerControls":["tests/test_f6c_parent_emission_refinement_preparation.py","517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f"],"proposalReference":["scripts/eom/f6c_parent_emission_refinement.py","1517575f3df783af36d2bf2b758d19427e8ec85247efec892783716c263b7c27"],"proposalReferenceControls":["tests/test_f6c_parent_emission_refinement.py","f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2"],"verifier":["scripts/eom/verify-f6c-parent-emission-refinement.py","53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db"],"verifierControls":["tests/test_f6c_parent_emission_refinement_verification.py","889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9"],"comparisonReference":["scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py","ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec"],"comparisonReferenceControls":["tests/test_f6c_parent_emission_refinement_conformance.py","18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04"]});
 export const DEPENDENCIES=Object.freeze({"transport":["scripts/eom/verify-f6c-refined-acceleration.py","3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae"],"transportControls":["tests/test_f6c_refined_acceleration.py","4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a"],"scientificDecoder":["scripts/eom/oracle/f6c_refined_acceleration_conformance.py","63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2"],"scientificDecoderControls":["tests/test_f6c_refined_acceleration_conformance.py","3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e"],"productionHelper":["scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py","af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386"],"productionHelperControls":["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py","9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427"],"historyReference":["scripts/eom/oracle/certified_history.py","ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"],"decimalReference":["scripts/eom/oracle/decimal_interval.py","fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"],"decimalControls":["tests/test_eom_decimal_interval.py","22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44"],"rootLibrary":["scripts/eom/oracle/continuous_reception_roots_cached.py","daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"],"rootControls":["tests/test_eom_continuous_reception_roots_cached.py","a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"],"independentRootReference":["scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py","19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132"],"independentRootControls":["tests/test_f6c_cached_continuous_reception_root_cover.py","2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117"],"cacheEquivalence":["reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md","798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3"]});
 export const ORIGINAL=Object.freeze({"export":[".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json","f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1"],"reconstruction":[".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json","7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43"],"guards":[".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json","86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880"],"fullEntry":["scripts/eom/run-f6c-cached-root-cover-full.mjs","1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b"],"fullRows":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/rows.ndjson","28491edb2f1faec7adf248f535d29a1600b8bd69f5a46706fd26dbb3eb848b5c",22585784],"fullPieces":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/pieces.ndjson","b3a2ddf2c8cd5b586ef7b374eee94afc395f63496c849ec574e71bf1f487a9ab",7505144],"fullManifest":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/cover-manifest.json","61b0cdfad85696a0b5ead7df838119c9005a28656e9ac3daa26df139054410e2",42922],"fullComparison":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/comparison.json","1c423aece2009a2d7d0852e9558c16464c640abbc5bea3743211af3805b6eed2",43377],"fullAdmission":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json","8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f",332567],"fullLauncherLog":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/launcher-stderr.log","b976d8deb556d8faba5a3aff73a09b77ec26c6da84e42726167eec4ec7a43314",30969],"fullResourceLog":[".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/resource-observations.ndjson","66eb0cfa1811d0a834d18d3bd8e749a941e1964f7276898b80a4e12136d69d03",1710278],"fullPlan":["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-launch.v1.json","5dd7e27084a2e8e5b2c3ed8daf8cf66248a437108710ce91281977e728197ddc",45282]});
 export const PLAN_KEYS=Object.freeze(["schema","scope","parentIndex","declaration","producer","producerControls","proposalReference","proposalReferenceControls","verifier","verifierControls","comparisonReference","comparisonReferenceControls","dependencies","originalBindings","acceptanceOwner","priorCoverClosure","runtimeBindings","operationalBindings","limits"]);
@@ -173,28 +173,49 @@ export function noCompetitor(table,pid){
 }
 export function writeNew(filename,value,live=()=>{}){
  live();const raw=Buffer.from(JSON.stringify(value)+'\n');check(raw.length<=FILE,'publication64MiB');
- const fd=openSync(filename,'wx',0o600);try{let at=0;while(at<raw.length){live();const n=writeSync(fd,raw,at);check(n>0,'short write');at+=n;}fsyncSync(fd);}finally{closeSync(fd);}
- const d=openSync(path.dirname(filename),'r');try{fsyncSync(d);}finally{closeSync(d);}live();return clean(readBound(filename,sha(raw),false,FILE,live));
+ let originalIdentity;const fd=openSync(filename,'wx',0o600);try{let at=0;while(at<raw.length){live();const n=writeSync(fd,raw,at);check(n>0,'short write');at+=n;}fsyncSync(fd);const s=fstatSync(fd,{bigint:true});originalIdentity=[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(':');}finally{closeSync(fd);}
+ const d=openSync(path.dirname(filename),'r');try{fsyncSync(d);}finally{closeSync(d);}live();const bound=readBound(filename,sha(raw),false,FILE,live);check(bound.identity===originalIdentity,'published original identity');return bound;
 }
 function regular(filename,limit=FILE){const s=lstatSync(filename);check(s.isFile()&&s.size<=limit&&!s.isSymbolicLink(),'bounded regular output');return s;}
-export function inspectCandidate(output,complete=false){
- if(!existsSync(output)){check(!complete,'candidate absent');return{bytes:0,bindings:[]};}
+function outputOwner(filename){const s=lstatSync(filename,{bigint:true});check(s.isFile(),'owned output type');return{path:filename,dev:String(s.dev),ino:String(s.ino)};}
+export function retractOwnedOutputs(records){
+ for(const owner of records){
+  try{const s=lstatSync(owner.path,{bigint:true});if(s.isFile()&&String(s.dev)===owner.dev&&String(s.ino)===owner.ino){unlinkSync(owner.path);const fd=openSync(path.dirname(owner.path),'r');try{fsyncSync(fd);}finally{closeSync(fd);}}}
+  catch(e){if(e.code!=='ENOENT')throw e;}
+ }
+}
+export function inspectCandidate(output,complete=false,live=()=>{}){
+ live();
+ if(!existsSync(output)){check(!complete,'candidate absent');return{bytes:0,bindings:[],ownedOutputs:[]};}
  check(lstatSync(output).isDirectory()&&realpathSync(output)===output,'canonical candidate directory');
  const names=readdirSync(output),publicNames=['queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'];
  const privateNames=names.filter(n=>n.startsWith('.parent-emission-private-'));
  check(privateNames.length<=1&&names.every(n=>publicNames.includes(n)||privateNames.includes(n)),'closed candidate layout');
- const inodes=new Map(),bindings=[];
+ const inodes=new Map(),bindings=[],ownedOutputs=[];
  for(const n of names){const p=path.join(output,n);
   if(privateNames.includes(n)){check(lstatSync(p).isDirectory()&&realpathSync(p)===p,'private directory');const inner=readdirSync(p);check(inner.every(n=>publicNames.includes(n))&&(!complete||inner.length===4),'private file census');
    for(const f of inner){const s=regular(path.join(p,f));inodes.set(s.dev+':'+s.ino,s.size);}}
   else{const s=regular(p);inodes.set(s.dev+':'+s.ino,s.size);check(privateNames.length===1,'public file requires owned private generation');
-   const hidden=regular(path.join(output,privateNames[0],n));check(s.dev===hidden.dev&&s.ino===hidden.ino&&s.nlink===2&&hidden.nlink===2,'public/private identity during monitoring');}
+   const hidden=regular(path.join(output,privateNames[0],n));check(s.dev===hidden.dev&&s.ino===hidden.ino&&s.nlink===2&&hidden.nlink===2,'public/private identity during monitoring');ownedOutputs.push(outputOwner(p));}
  }
  if(complete){check(names.length===5&&privateNames.length===1&&publicNames.every(n=>names.includes(n)),'complete four public files');
-  for(const n of publicNames){const p=path.join(output,n),a=regular(p),b=regular(path.join(output,privateNames[0],n));check(a.dev===b.dev&&a.ino===b.ino&&a.nlink===2&&b.nlink===2,'private/public exact hardlinks');bindings.push(clean(readBound(p,undefined,false,FILE)));}}
+  for(const n of publicNames){const p=path.join(output,n),a=regular(p),b=regular(path.join(output,privateNames[0],n));check(a.dev===b.dev&&a.ino===b.ino&&a.nlink===2&&b.nlink===2,'private/public exact hardlinks');bindings.push(clean(readBound(p,undefined,false,FILE,live)));}}
  const bytes=[...inodes.values()].reduce((a,b)=>a+b,0);check(bytes<=FILE,'aggregate candidate64MiB');
- return{bytes,bindings};
+ return{bytes,bindings,ownedOutputs};
 }
+export function inspectFinalLayout(output,live=()=>{}){
+ live();inspectCandidate(output,true,live);
+ const directory=p=>{const s=lstatSync(p,{bigint:true});check(s.isDirectory()&&realpathSync(p)===p,'canonical final directory');return{path:p,dev:String(s.dev),ino:String(s.ino)};};
+ const privateName=readdirSync(output).find(n=>n.startsWith('.parent-emission-private-')),hidden=path.join(output,privateName),ops=output+'-outer';
+ const names=readdirSync(ops),privateNames=names.filter(n=>n.startsWith('.parent-refinement-comparison-private-'));
+ const expected=['producer-process','comparison-process','launcher-stderr.log','resource-observations.ndjson','comparison.json','operation.json',...privateNames];
+ check(privateNames.length===1&&names.length===expected.length&&names.every(n=>expected.includes(n)),'complete final comparison layout');
+ const comparison=path.join(ops,'comparison.json'),privateComparison=path.join(ops,privateNames[0]),a=regular(comparison),b=regular(privateComparison);
+ check(a.dev===b.dev&&a.ino===b.ino&&a.nlink===2&&b.nlink===2,'final comparison exact hardlinks');
+ const result={candidate:directory(output),privateDirectory:directory(hidden),privateFiles:['queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'].map(n=>outputOwner(path.join(hidden,n))),operationDirectory:directory(ops),privateComparison:outputOwner(privateComparison)};
+ live();return result;
+}
+export function checkFinalLayout(output,expected,live=()=>{}){check(same(inspectFinalLayout(output,live),expected),'original final private layout identity');}
 export function checkProcess(receipt,stage,context,stderr){
  check(receipt.accepted===false&&receipt.processesClosed===true&&receipt.exit?.code===0&&!receipt.exit.signal&&receipt.gates?.length===1,'closed pre-admission process');
  const gate=receipt.gates[0];check(gate.retired===true&&gate.acknowledged===true&&gate.target&&gate.measurement?.code===0&&!gate.measurement.signal,'one retired measured registered target');
@@ -265,15 +286,16 @@ export function pollOutputs(output,ops,logTotal,rssTotal){
  const privateNames=readdirSync(ops).filter(n=>n.startsWith('.parent-refinement-comparison-private-'));
  check(privateNames.length<=1,'one private comparison attempt');
  for(const n of [...privateNames,'comparison.json','operation.json'])namedSize(path.join(ops,n),FILE);
- if(existsSync(path.join(ops,'comparison.json'))){check(privateNames.length===1,'public comparison requires private generation');const a=regular(path.join(ops,'comparison.json')),b=regular(path.join(ops,privateNames[0]));check(a.dev===b.dev&&a.ino===b.ino&&a.nlink===2&&b.nlink===2,'comparison alias during monitoring');}
- return {logBytes,candidateBytes:candidate.bytes};
+ const ownedOutputs=[...candidate.ownedOutputs];
+ if(existsSync(path.join(ops,'comparison.json'))){check(privateNames.length===1,'public comparison requires private generation');const a=regular(path.join(ops,'comparison.json')),b=regular(path.join(ops,privateNames[0]));check(a.dev===b.dev&&a.ino===b.ino&&a.nlink===2&&b.nlink===2,'comparison alias during monitoring');ownedOutputs.push(outputOwner(path.join(ops,'comparison.json')));}
+ return {logBytes,candidateBytes:candidate.bytes,ownedOutputs};
 }
 export async function coordinate({planPath,planSha,selfSha,output,python,git,began,deadlineNanoseconds,diagnostics}){
  const root=realpathSync(process.cwd()),self=readBound(path.join(root,SELF),selfSha,true,1024**2);
  check(import.meta.url===url(self.data),'coordinator executes captured generation');
  const helper=readBound(path.join(root,PINS.helpers[0]),PINS.helpers[1],true,1024**2),outerSource=readBound(path.join(root,PINS.outer[0]),PINS.outer[1],true,1024**2);
  const H=await import(url(helper.data)),outer=await import(url(outerSource.data));
- const abort=new AbortController(),owners=new Map(),probes=new Set(),pending=new Set(),hostRecords=[],stages=[];
+ const abort=new AbortController(),owners=new Map(),probes=new Set(),pending=new Set(),hostRecords=[],stages=[],ownedOutputs=new Map();
  const rss={beganMs:began,lastSampleMs:null,samples:0,maximumSampleGapMs:0,maximumSampledRSSBytes:0};
  let failure,lock,timer,deadlineTimer,rssJob,hostJob,logFD,rssFD,active=false,publication,pre,closed=false,ops;
  let currentStage='preflight';const logTotal={bytes:0},rssTotal={bytes:0},originalError=console.error;
@@ -281,7 +303,7 @@ export async function coordinate({planPath,planSha,selfSha,output,python,git,beg
  const live=()=>{check(!failure&&!abort.signal.aborted,failure?.message??'interrupted');check(remaining()>0,'inclusive1800s');};
  const fail=e=>{failure??=e;abort.abort(failure);if(active)process.emit('SIGTERM');};diagnostics.bind(fail);
  const worker=job=>H.runFileWorker({...job,deadlineNanoseconds},self.data,remaining(),abort.signal);
- const poll=()=>ops?pollOutputs(output,ops,logTotal,rssTotal):null;
+ const poll=()=>{if(!ops)return null;const value=pollOutputs(output,ops,logTotal,rssTotal);for(const owner of value.ownedOutputs){if(ownedOutputs.has(owner.path))check(same(ownedOutputs.get(owner.path),owner),'owned output replaced');else ownedOutputs.set(owner.path,owner);}return value;};
  const log=x=>{const raw=Buffer.from((typeof x==='string'?x:JSON.stringify(x))+'\n');H.boundedLogAppend(logFD,raw,logTotal);diagnostics.write(raw);poll();};
  const probe=(command,args,timeout,maxBuffer)=>{
   const p=new Promise((resolve,reject)=>{const child=execFile(command,args,{timeout,killSignal:'SIGKILL',maxBuffer,encoding:'utf8',env:{...process.env,LC_ALL:'C'}},(error,text)=>{probes.delete(child.pid);error?reject(error):resolve({text,pid:child.pid});});if(command==='/bin/ps')probes.add(child.pid);});
@@ -296,8 +318,8 @@ export async function coordinate({planPath,planSha,selfSha,output,python,git,beg
  try{
   // Only bounded plan/composition metadata precedes monitoring; its time and
   // first RSS gap are charged to the original clock, never a refreshed budget.
-  const raw=readBound(planPath,planSha,true,1024**2);validatePlan(parseJSON(raw.data),{root,selfSha,python,git});
-  check(path.isAbsolute(output)&&path.resolve(output)===output&&path.dirname(output)===path.join(root,LANE)&&realpathSync(path.dirname(output))===path.dirname(output)&&/^pilot-parent-1-[A-Za-z0-9][A-Za-z0-9._-]*$/u.test(path.basename(output)),'canonical parent1 output lane');
+  const raw=readBound(planPath,planSha,true,1024**2),initialPlan=validatePlan(parseJSON(raw.data),{root,selfSha,python,git}).plan;
+  check(path.isAbsolute(output)&&path.resolve(output)===output&&path.dirname(output)===path.join(root,LANE)&&realpathSync(path.dirname(output))===path.dirname(output)&&new RegExp('^pilot-parent-'+initialPlan.parentIndex+'-[A-Za-z0-9][A-Za-z0-9._-]*$','u').test(path.basename(output)),'canonical selected-parent output lane');
   ops=output+'-outer';check(!existsSync(output)&&!existsSync(ops),'fresh output and operation sibling');mkdirSync(ops,{mode:0o700});
   logFD=openSync(path.join(ops,'launcher-stderr.log'),'wx',0o600);rssFD=openSync(path.join(ops,'resource-observations.ndjson'),'wx',0o600);
   console.error=(...v)=>{try{log(v.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(' '));}catch(e){fail(e);}};
@@ -325,28 +347,36 @@ export async function coordinate({planPath,planSha,selfSha,output,python,git,beg
    }catch(e){if(e.outerReceipt)stages.push({stage,process:e.outerReceipt});throw e;}finally{active=false;}
    stages.push({stage,process:receipt});
    check(receipt.accepted===true&&receipt.processesClosed===true&&receipt.admission?.accepted===true&&same(receipt.stdoutLog,receipt.admission.completionLog),'closed stage and exact fresh completion');
-   await worker({kind:'recheck',sources:uniqueBindings([...pre.sources,...receipt.admission.capturedSourceBindings,...receipt.admission.outputs,receipt.stdoutLog,receipt.stderrLog])});
+   poll();
+   await worker({kind:'recheck',sources:uniqueBindings([...pre.sources,...receipt.admission.capturedSourceBindings,...receipt.admission.outputs,receipt.stdoutLog,receipt.stderrLog]),sourceIdentities:receipt.admission.sourceIdentities});
    manifest=receipt.admission.manifest;sample(await table());live();
   }
   currentStage='publication';
   const finalStage=stages[1].process,allSources=uniqueBindings([...pre.sources,...stages.flatMap(s=>[...s.process.admission.capturedSourceBindings,...s.process.admission.outputs,s.process.stdoutLog,s.process.stderrLog])]);
-  await worker({kind:'recheck',sources:allSources});sample(await table());await host(false);live();
-  const record={schema:'braid-program/f6c-parent-emission-refinement-operation.v1',accepted:true,scope:OP_SCOPE,parentIndex:1,plan:pre.planBinding,sourceBindings:pre.sources,stages,
+  const sourceIdentities={...pre.sourceIdentities};for(const stage of stages)for(const[p,id]of Object.entries(stage.process.admission.sourceIdentities)){if(Object.hasOwn(sourceIdentities,p))check(sourceIdentities[p]===id,'source identity changed between stages');else sourceIdentities[p]=id;}
+  await worker({kind:'recheck',sources:allSources,sourceIdentities});sample(await table());await host(false);live();
+  // Identity guards remain execution state, not an added receipt schema field.
+  const stageRecords=stages.map(({stage,process:processReceipt})=>{const{sourceIdentities,...admission}=processReceipt.admission;return{stage,process:{...processReceipt,admission}};});
+  const record={schema:'braid-program/f6c-parent-emission-refinement-operation.v1',accepted:true,scope:operationScope(pre.plan.parentIndex),parentIndex:pre.plan.parentIndex,plan:pre.planBinding,sourceBindings:pre.sources,stages:stageRecords,
    observationsBeforePublication:{...rss},hostObservationsBeforePublication:hostRecords,elapsedSecondsBeforePublication:(performance.now()-began)/1000,
    publicationRequires:'matching fresh caller exit0 and whole-attempt deadline/RSS checks after final source/log hashing and closed workers/monitors/lock/stdio',
    claims:CLAIMS,accelerationEvaluated:false,eomExecuted:false,wholeHistoryMetrics:false};
-  publication=await worker({kind:'publish',filename:path.join(ops,'operation.json'),record,sources:allSources});
-  await worker({kind:'recheck',sources:[...allSources,publication]});sample(await table());live();await stop();live();
+  const operationCapture=await worker({kind:'publish',filename:path.join(ops,'operation.json'),record,sources:allSources,sourceIdentities});
+  publication=clean(operationCapture);sourceIdentities[publication.path]=operationCapture.identity;
+  const finalLayout=inspectFinalLayout(output,live);
+  await worker({kind:'recheck',sources:[...allSources,publication],sourceIdentities});sample(await table());live();await stop();live();
   H.releaseLock(lock);lock=undefined;for(const fd of [logFD,rssFD])fsyncSync(fd);
-  const logBindings=['launcher-stderr.log','resource-observations.ndjson'].map(n=>clean(readBound(path.join(ops,n),undefined,false,LOG,live)));
-  const sizes=poll(),final={completed:true,accepted:true,scope:OP_SCOPE,parentIndex:1,operation:publication,outputs:finalStage.admission.outputs,logs:logBindings,census:CENSUS,helperCalls:CALLS,
+  const capturedLogs=['launcher-stderr.log','resource-observations.ndjson'].map(n=>readBound(path.join(ops,n),undefined,false,LOG,live));
+  const logBindings=capturedLogs.map(clean);for(const b of capturedLogs)sourceIdentities[b.path]=b.identity;
+  const sizes=poll(),final={completed:true,accepted:true,scope:operationScope(pre.plan.parentIndex),parentIndex:pre.plan.parentIndex,operation:publication,outputs:finalStage.admission.outputs,logs:logBindings,census:CENSUS,helperCalls:CALLS,
    processesClosed:true,workersAndMonitorsClosed:true,lockReleased:true,maximumSampledRSSBytes:rss.maximumSampledRSSBytes,samples:rss.samples,maximumSampleGapMs:rss.maximumSampleGapMs,
    finalObservationToClosureMs:H.admitFinalObservation(rss,performance.now()),lastSampleStartedMs:rss.lastSampleStartedMs,
    elapsedSeconds:(performance.now()-began)/1000,coordinatorResourceUsage:process.resourceUsage(),candidateBytes:sizes.candidateBytes,operationalLogBytes:sizes.logBytes,
    claims:CLAIMS,accelerationEvaluated:false,eomExecuted:false,wholeHistoryMetrics:false};
+  final.finalSourceBindings=[...allSources,publication,...logBindings];final.finalSourceIdentities=sourceIdentities;final.ownedOutputs=[...ownedOutputs.values()];final.finalLayout=finalLayout;
   closed=true;return final;
  }catch(e){
-  fail(e);await stop();
+  fail(e);await stop();try{retractOwnedOutputs([...ownedOutputs.values()]);}catch{}
   if(ops&&existsSync(ops))try{writeNew(path.join(ops,'rejection.json'),{completed:false,accepted:false,failure:String(failure.message),stageFailure:String(e.message),invalidates:publication??null,
    stages:stages.map(s=>({stage:s.stage,process:s.process})),processesClosed:stages.length>0&&stages.every(s=>s.process.processesClosed===true),claims:CLAIMS});}catch{}
   throw failure;
@@ -355,8 +385,8 @@ export async function coordinate({planPath,planSha,selfSha,output,python,git,beg
   try{if(lock)H.releaseLock(lock);}catch(e){cleanupFailure??=e;}
   console.error=originalError;process.off('SIGINT',interrupt);process.off('SIGTERM',interrupt);
   for(const fd of [logFD,rssFD])if(fd!==undefined)try{closeSync(fd);}catch(e){cleanupFailure??=e;}
-  diagnostics.check();if(cleanupFailure)throw cleanupFailure;
-  if(closed){live();H.admitFinalObservation(rss,performance.now());}
+  try{diagnostics.check();if(cleanupFailure)throw cleanupFailure;if(closed){live();H.admitFinalObservation(rss,performance.now());}}
+  catch(error){try{retractOwnedOutputs([...ownedOutputs.values()]);}catch{}if(publication)try{writeNew(path.join(ops,'terminal-rejection.json'),{completed:false,accepted:false,failure:String(error.message),invalidates:publication,scope:'failed-final-cleanup-no-authority'});}catch{}throw error;}
  }
 }
 export function parseArgs(v){
@@ -374,10 +404,14 @@ async function main(){
   const self=readBound(path.join(root,SELF),options.selfSha,true,1024**2),C=await import(url(self.data));result=await C.coordinate({...options,began,deadlineNanoseconds,diagnostics});
   const H=await import(url(readBound(path.join(root,PINS.helpers[0]),PINS.helpers[1],true,1024**2).data));
   await D.drainDiagnostics({began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();result.elapsedSeconds=(performance.now()-began)/1000;
-  await H.flushCompletion(result,{began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();await diagnostics.close(began);
-  check(performance.now()-began<LIMIT&&performance.now()-result.lastSampleStartedMs<=1000,'postflush deadline/gap');
+  const finalLive=()=>check(performance.now()-began<LIMIT&&performance.now()-result.lastSampleStartedMs<=1000,'postflush deadline/gap');
+  C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);
+  C.checkFinalLayout(options.output,result.finalLayout,finalLive);
+  const{finalSourceBindings,finalSourceIdentities,ownedOutputs,finalLayout,...wire}=result;
+  await H.flushCompletion(wire,{began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();await diagnostics.close(began);
+  C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalLayout(options.output,result.finalLayout,finalLive);finalLive();
  }catch(e){
-  if(result)try{writeNew(path.join(path.dirname(result.operation.path),'terminal-rejection.json'),{completed:false,accepted:false,failure:String(e.message),invalidates:result.operation,scope:'failed-final-publication-no-authority'});}catch{}
+  if(result)try{retractOwnedOutputs(result.ownedOutputs);writeNew(path.join(path.dirname(result.operation.path),'terminal-rejection.json'),{completed:false,accepted:false,failure:String(e.message),invalidates:result.operation,scope:'failed-final-publication-no-authority'});}catch{}
   await D.failedCLICompletion(e,{began});
  }
 }

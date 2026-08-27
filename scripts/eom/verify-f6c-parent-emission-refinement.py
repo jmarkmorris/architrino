@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent source-bound comparison of original F6c parent one.
+"""Independent source-bound comparison of one plan-selected original F6c parent.
 
 Only privately captured transport, scientific decoder, ffe91 comparison and
 19c rational reference execute. Production sources are authenticated inputs,

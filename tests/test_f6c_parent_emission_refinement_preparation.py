@@ -463,9 +463,10 @@ class HistoricalChainTests(unittest.TestCase):
 
 class MainPathTests(unittest.TestCase):
     """Transport/output orchestration with explicitly mocked mathematical work."""
-    def exercise(self,mode='ok'):
+    def exercise(self,mode='ok',parent_index=1):
         with tempfile.TemporaryDirectory() as directory:
             temp=Path(directory).resolve();output=temp/'out';plan=plan_fixture(ROOT)
+            plan.update(parentIndex=parent_index,scope=s.parent_scope(parent_index))
             plan['producer']['sha256']=digest(SOURCE.read_bytes());plan['runtimeBindings']=[bind(Path(sys.executable).resolve(),b'x')]
             plan_path=temp/'plan.json';plan_path.write_bytes(s.encoded(plan));events=[];clock=[0.0];stderr=io.StringIO();stdout=io.StringIO()
             captured_source=temp/'captured-source.json';captured_source.write_bytes(b'{"source":1}\n')
@@ -547,9 +548,11 @@ class MainPathTests(unittest.TestCase):
                 item=real_stream(publication,name,keys);opened_streams.append(item);return item
             argv=['--plan',str(plan_path),'--plan-sha256',digest(plan_path.read_bytes()),'--producer-sha256',plan['producer']['sha256'],
                 '--out-dir',str(output),'--budget-seconds','1800','--git-binary',str(Path(sys.executable).resolve())]
+            def projection(*args,**kwargs):
+                self.assertEqual(kwargs,dict(parent_index=parent_index));return [],dummy
             with ExitStack() as st:
                 for name,value in dict(bootstrap=bootstrap,module_from_bytes=module,CapturePool=Pool,watching=watch,check_output=lambda *a:None,
-                    authenticate_full_chain=lambda *a:[],owner_declaration=lambda *a:s.closure_premise(),project_original_parent=lambda *a,**k:([],dummy),
+                    authenticate_full_chain=lambda *a:[],owner_declaration=lambda *a:s.closure_premise(),project_original_parent=projection,
                     captured_dependencies=deps,check_runtime=runtime).items():st.enter_context(patch.object(s,name,value))
                 st.enter_context(patch.object(w,'records',return_value=[]));st.enter_context(patch.object(s.time,'monotonic',side_effect=lambda:clock[0]))
                 st.enter_context(patch.object(s.Publication,'stream',stream))
@@ -563,6 +566,7 @@ class MainPathTests(unittest.TestCase):
             public=(output/'cover-manifest.json').exists();private=list(output.glob('.parent-emission-private-*'))
             if mode=='ok':
                 packet=json.loads(stdout.getvalue());self.assertEqual(set(packet),set(s.COMPLETION_KEYS));self.assertFalse(packet['accepted']);self.assertEqual(len(packet['outputs']),4)
+                self.assertEqual(packet['parentIndex'],parent_index);self.assertEqual(packet['scope'],s.parent_scope(parent_index))
                 self.assertEqual([Path(b['path']).name for b in packet['outputs']],['queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'])
                 self.assertTrue(public);self.assertEqual(len(private),1)
             else:
@@ -575,6 +579,7 @@ class MainPathTests(unittest.TestCase):
             if mode=='late-runtime':self.assertEqual(proposer_calls,[1]);self.assertFalse((output/'queries.ndjson').exists())
             return events
     def test_positive_main_after_package_capture_and_watch_cleanup(self):self.exercise()
+    def test_selected_parent_two_reaches_projection_and_completion(self):self.exercise(parent_index=2)
     def test_late_source_runtime_package_watch_and_stdout_failures_retract(self):
         for mode in ('late-source','late-runtime','module-close','bootstrap-close','watch-close','watch-deadline','stdout-failure','post-stdout-deadline'):
             with self.subTest(mode=mode):self.exercise(mode)

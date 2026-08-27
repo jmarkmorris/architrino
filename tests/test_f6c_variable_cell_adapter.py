@@ -1055,4 +1055,255 @@ class ParentRefinementTests(unittest.TestCase):
         with self.assertRaises(ValueError):subject._parent_owner(raw+raw,value)
 
 
+class GenericParentTests(unittest.TestCase):
+    """New metadata obligations; the legacy test class stays unchanged."""
+    descriptor=ParentRefinementTests.descriptor
+    def generic(self,index=2):
+        value=self.descriptor();bindings={}
+        for role in ('plan','manifest','comparison','operation','launcher_log','resource_log'):
+            old=getattr(value,role)
+            bindings[role]=replace(old,path=str(ROOT/'synthetic-parent'/str(index)/role),sha256=hsh((role+str(index)).encode()),bytes=1)
+        closure=replace(value.closure,operation=bindings['operation'],original_caller_session='12345',final_completion_chunk='abc123',elapsed_seconds='3.125')
+        return replace(value,parent_index=index,closure=closure,**bindings)
+
+    def test_generic_sorted_descriptors_strict_index_and_closure(self):
+        values=tuple(self.generic(i)for i in (1,2,159))
+        self.assertEqual(subject._refinement_descriptors(values,ROOT,'c'*64),values)
+        class Integer(int):pass
+        for index in (0,160,-1,True,Integer(2),2.0,'2'):
+            with self.assertRaises(ValueError):subject._refinement_descriptors((replace(values[1],parent_index=index),),ROOT,'c'*64)
+        for bad in ((values[1],values[0]),(values[1],values[1])):
+            with self.assertRaises(ValueError):subject._refinement_descriptors(bad,ROOT,'c'*64)
+        for elapsed in ('0','1800.001','NaN','1e1001'):
+            with self.assertRaises(ValueError):subject._refinement_descriptors((replace(values[1],closure=replace(values[1].closure,elapsed_seconds=elapsed)),),ROOT,'c'*64)
+
+    def test_six_historical_roles_exact_generations_and_shared_dedup(self):
+        value=self.generic();relations=[]
+        for role,path,digest,size in subject.PARENT_ARCHIVE_SOURCES:
+            old=subject.SourceBinding(str(ROOT/path),digest,size)
+            relations.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-archive'/role))))
+        value=replace(value,archived_sources=tuple(relations))
+        later=replace(self.generic(159),archived_sources=tuple(relations))
+        self.assertEqual(subject._refinement_descriptors((value,later),ROOT,'c'*64),(value,later))
+        for relation in relations:
+            for bad in (replace(relation,role='runtime'),replace(relation,original=replace(relation.original,bytes=2)),
+                replace(relation,archive=replace(relation.archive,path=str(ROOT/subject.SELF)))):
+                with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(bad,)),),ROOT,'c'*64)
+        conflict=replace(later,archived_sources=(replace(relations[0],archive=replace(relations[0].archive,path=str(ROOT/'other-archive'))),))
+        with self.assertRaises(ValueError):subject._refinement_descriptors((value,conflict),ROOT,'c'*64)
+
+    def test_generic_owner_exact_nine_roles_and_no_conflicting_lines(self):
+        value=self.generic();bound={r:asdict(getattr(value,r))for r,_,_,_ in subject.PARENT_ONE[:6]}
+        bound.update((r,dict(path=str(ROOT/'synthetic'/r),sha256=hsh(r.encode()),bytes=17))for r in ('queries','rows','pieces'))
+        heading='## Independently accepted actual original-parent-2 emission refinement\n'
+        identity='Original parent index `2`; original caller session `12345`; final completion chunk `abc123`; exit zero; fresh elapsed seconds `3.125`; owned processes closed; independent audit accepted.'
+        lines=[f'Binding `{r}`: SHA-256 `{b["sha256"]}`; bytes `{b["bytes"]}`.'for r,b in bound.items()]
+        raw=(heading+identity+'\n'+'\n'.join(lines)+'\n').encode()
+        def check(data):
+            desc=replace(value,closure=replace(value.closure,owner=replace(value.closure.owner,bytes=len(data))))
+            subject._parent_owner(data,desc,bound)
+        check(raw)
+        bad=[raw+raw,raw.replace(b'index `2`',b'index `1`'),raw.replace(b'`3.125`',b'`3.124`'),
+            raw+lines[0].encode()+b'\n',raw+b'Binding `plan`: SHA-256 `wrong`; bytes `1`.\n',
+            raw.replace(lines[-1].encode(),b''),raw+identity.encode()+b'\n',raw.replace(b'original-parent-2',b'original-parent-1')]
+        for data in bad:
+            with self.assertRaises(ValueError):check(data)
+        with self.assertRaises(ValueError):subject._parent_owner(raw,value,None)
+
+    def test_real_source_archive_generation_no_fallback_or_current_alias(self):
+        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
+            root=Path(temp).resolve();source=root/'scripts/old.py';source.parent.mkdir();source.write_bytes(b'new')
+            archive=root/'old-archive';archive.write_bytes(b'old')
+            old=subject.SourceBinding(str(source),hsh(b'old'),3);new=replace(old,path=str(archive))
+            relation=subject.ArchivedSource('producer',old,new)
+            owner=dict(path=str(root/subject.OWNER),sha256='a'*64,bytes=1)
+            pool=subject._Pool(stack,w,root,lambda:None);pool.capture(source,hsh(b'new'))
+            # Synthetic historical tuple substitution only at this test seam;
+            # public descriptor controls above use the genuine fixed six pins.
+            with patch.object(subject,'PARENT_ARCHIVE_SOURCES',(('producer','scripts/old.py',old.sha256,3),)):
+                reader=subject._HistoricalReader(pool,(relation,),owner,{'producer':asdict(old)})
+                self.assertEqual(reader.read_binding(asdict(old),capture=True),b'old');reader.finish()
+                self.assertEqual(pool.files[str(source)].digest,hsh(b'new'));pool.recheck()
+                with self.assertRaises(ValueError):subject._HistoricalReader(pool,(relation,),owner,{'producer':dict(asdict(old),sha256='f'*64)})
+                with self.assertRaises(ValueError):subject._HistoricalReader(pool,(relation,),owner,{})
+                with self.assertRaises(ValueError):subject._HistoricalReader(pool,(relation,relation),owner,{'producer':asdict(old)})
+                fd=pool.files[str(archive)].fd
+                archive.unlink();archive.write_bytes(b'old')
+                with self.assertRaises(ValueError):pool.recheck()
+        with self.assertRaises(OSError):os.fstat(fd)
+
+    def test_generic_local_rows_and_unchanged_nonselected_metadata(self):
+        obj=restricted_adapter();old=obj.parents
+        for index in (1,2,159):
+            rows,pieces=raw_fixture(old[1],obj.histories)
+            for row in rows:row['cellIndex']=index
+            selected=subject._parents_from_raw(a,reference,rows,pieces,obj.histories,old[1].bindings,
+                cells=1,refined=True,original_indices=(index,))[0]
+            self.assertEqual(selected,replace(old[1],index=index,refined=True))
+            self.assertEqual(len(selected.rows),64);self.assertEqual(len(pieces),112)
+        selected=list(old);selected[2]=replace(old[2],refined=True)
+        export,_=fixture(F(1,2));fresh=restricted_adapter(export,tuple(selected))
+        self.assertEqual(tuple(p.refined for p in fresh.parents),(True,False,True,False,False))
+        for index in (0,1,3,4):self.assertIs(fresh.parents[index],old[index])
+        self.assertEqual(dict(fresh.geometry_accounting),dict.fromkeys(fresh.geometry_accounting,0))
+        self.assertTrue(all(fresh.call_counts[k]==0 for k in ('projections','evaluations','residuals','root_queries','emission_refinements')))
+        self.assertGreater(fresh.call_counts['coverage_cache_entries'],0)
+        projected=fresh.project_restricted(1,box(F(1,50),F(3,100)))
+        ranges=fresh.evaluate(projected).ranges
+        for i,member in enumerate(ranges.member_ranges):
+            expected=sum(F(subject.COUPLING)*F(subject.CHARGE)**2*(-1)**(i+j)*(1 if i>j else-1)*4/F((i-j)**2)
+                for j in range(8)if i!=j)
+            self.assertLessEqual(F(member.acceleration[0].lower),expected)
+            self.assertGreaterEqual(F(member.acceleration[0].upper),expected)
+        self.assertEqual((fresh.call_counts['root_queries'],fresh.call_counts['emission_refinements']),(0,0))
+
+    def parent_chain(self,index=2):
+        """Synthetic complete parent-chain plumbing, not original198 attestation.
+
+        The caller's already-validated original histories/full cover and physical
+        source hashes are explicit virtual premises. Actual record decoding,
+        source-role unions, parent/owner matching and local piece checks are real.
+        No producer, proposer or numerical reference is executed here.
+        """
+        payloads={};bindings={};captured=[]
+        def put(path,raw):
+            path=str(ROOT/path);payloads[path]=raw
+            b=dict(path=path,sha256=hsh(raw),bytes=len(raw));bindings[path]=b;return b
+        def record(path,digest='a'*64,size=1):return dict(path=str(ROOT/path),sha256=digest,bytes=size)
+        class File:
+            def __init__(self,b):self.data=payloads.get(b['path']);self.path=Path(b['path']);self._binding=b
+            def binding(self):return dict(self._binding)
+        class Pool:
+            root=ROOT
+            def __init__(self):self.w=w;self.files={}
+            def capture(self,path,digest,*,data=False,size=None):
+                path=str(ROOT/path);b=dict(path=path,sha256=digest,bytes=size)
+                if path in payloads:
+                    assert bindings[path]==b,(path,b,bindings[path])
+                elif data:raise AssertionError('unprovided virtual data '+path)
+                f=File(b);self.files[path]=f;captured.append(path);return f
+            def read_binding(self,b,*,capture=False):
+                b=w.normalized(b,ROOT);f=self.capture(b['path'],b['sha256'],size=b['bytes'],data=capture)
+                return f.data if capture else f.binding()
+        pool=Pool();obj=adapter();export,_=fixture()
+        selected=replace(obj.parents[1],index=index,refined=True)
+        original=replace(selected,refined=False,rows=tuple(replace(row,emission=box(F(row.emission.lower)-1,F(row.emission.upper)+1))
+            if row.emission is not None else row for row in selected.rows))
+        # Fixed length metadata is supplied by the independent full-cover caller;
+        # only selected membership is under test here, not global reconstruction.
+        export['acceptedFrames']=[{'time':'0'}for _ in range(81)]
+        export['acceptedFrames'][index//2]['time']=selected.reception.lower
+        export['acceptedFrames'][index//2+1]['time']=selected.reception.upper
+        for h in export['retainedHistories']:
+            segment=next(s for s in h['segments']if s['startTime']==selected.reception.lower and s['endTime']==selected.reception.upper)
+            h['segments']=[deepcopy(segment)for _ in range(1760)]
+        full={role:record(p,h,n)for role,p,h,n in subject.FULL}
+        ancestry={k:record('synthetic-original/'+k)for k in ('export','reconstruction','guards')}
+        ancestry.update((k,record('synthetic-original/'+k))for k in ('acceleration','enclosure'))
+        entry=next((p,h)for role,p,h in subject.SOURCES if role=='fullEntry')
+        pool.files[str(ROOT/entry[0])]=File(record(*entry))
+        originals={k:ancestry[k]for k in ('export','reconstruction','guards')}
+        originals['fullEntry']=pool.files[str(ROOT/entry[0])].binding()
+        originals.update(('full'+k[0].upper()+k[1:],v)for k,v in full.items())
+        old_owner=('### Independently Accepted Actual Full F6c Conditional Cover\noriginal caller session `13512` '
+            'final completion chunk `c21aa7` exit zero `862.951823625` Independent post-closure review accepts all 160 '+subject.FULL_BASE+'\n'+
+            '\n'.join(h+' '+str(n)for _,_,h,n in subject.FULL[:-1])).encode()
+        owner_binding=put(subject.OWNER,old_owner)
+        named={role:record(path,digest)for role,path,digest in subject.PARENT_FIXED}
+        named.update((role,record(path,'b'*64))for role,path,_,_ in subject.PARENT_ARCHIVE_SOURCES[:4])
+        aliases=dict(transport='transport',transportControls='transportControls',scientificDecoder='decoder',scientificDecoderControls='decoderControls',
+            productionHelper='captureHelper',productionHelperControls='captureHelperControls',historyReference='geometryHistory',decimalReference='geometryIntervals',
+            decimalControls='geometryIntervalControls',rootLibrary='geometryRoots',rootControls='geometryRootsControls',independentRootReference='rootComparison',independentRootControls='rootControls')
+        deps={role:record(*next((p,h)for r,p,h in subject.SOURCES if r==alias))for role,alias in aliases.items()}
+        deps['cacheEquivalence']=record(subject.PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3')
+        closure=dict(authority='versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession='13512',finalCompletionChunk='c21aa7',exitCode=0,
+            elapsedSeconds='862.951823625',processesClosed=True,independentAuditAccepted=True)
+        scope=f'original-parent-{index}-emission-refinement'
+        plan=dict(schema='braid-program/f6c-parent-emission-refinement-launch.v1',scope=scope,parentIndex=index,**named,dependencies=deps,
+            originalBindings=originals,acceptanceOwner=owner_binding,priorCoverClosure=closure,runtimeBindings=[record('synthetic-runtime/python')],
+            operationalBindings=[record(p,'b'*64)for _,p,_,_ in subject.PARENT_ARCHIVE_SOURCES[4:]],limits=w.LIMITS)
+        directory='synthetic-chain/'+str(index)+'/'
+        bound={'plan':put(directory+'plan.json',encoded(plan))}
+        subjects=[*named.values(),*deps.values()]
+        current=w.source_map(subjects+plan['runtimeBindings']+plan['operationalBindings']+list(originals.values())+[owner_binding,bound['plan']],ROOT)
+        historical=list(originals.values())+[record('synthetic-history/'+str(n))for n in range(198-len(originals))]
+        fdocs={'admission':{'sourceBindings':historical,'stages':[]}}
+        combined=w.source_map(historical+list(current.values()),ROOT)
+        rows,pieces=raw_fixture(selected,obj.histories)
+        for row in rows:row['cellIndex']=index
+        for key,values in (('rows',rows),('pieces',pieces),('queries',[{}]*3584)):
+            bound[key]=put(directory+key+'.ndjson',b''.join(encoded(v)for v in values))
+        generation=hsh(json.dumps(export['retainedHistories'],sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode('ascii'))
+        parent=dict(schema='braid-program/f6c-original-parent-refinement-input.v1',parentIndex=index,frameIndex=index//2,
+            frame=rawbox(selected.reception),reception=rawbox(selected.reception),oldestTime='-8',historyGenerationSha256=generation,originalCoverBinding=full['manifest'],
+            originalEmissions=[dict(receiverIndex=i,transmitterIndex=j,receiverId=a.LABELS[i],transmitterId=a.LABELS[j],emission=rawbox(original.rows[8*i+j].emission))for i in range(8)for j in range(8)if i!=j])
+        claims=dict.fromkeys('accepted referenceGenerationAuthenticated originalSourceAuthenticated original1760PieceCensusAuthenticated premiseTruthAuthenticated subjectMembershipEstablished historicalTrajectoryIdentityEstablished executionAuthorized eomExecuted h3EvidenceEligible metricsAvailable scoreAuthorized equilibriumEstablished retentionEstablished physicalRealizationEstablished'.split(),False)
+        manifest=dict(schema='braid-program/f6c-parent-emission-refinement-cover.v1',scope=scope,status='conditional_complete',accepted=False,launchPlan=bound['plan'],
+            **{k:named[k]for k in ('producer','verifier','declaration')},parent=parent,members=[{k:h[k]for k in ('id','pathKey','polarity','charge','historyFingerprint')}for h in export['retainedHistories']],
+            originalBindings=originals,acceptanceOwner=owner_binding,priorCoverClosure=closure,historicalSourceBindings=historical,subjectSourceBindings=subjects,
+            runtimeBindings=plan['runtimeBindings'],operationalBindings=plan['operationalBindings'],algorithm=dict(lowerQueriesPerPair=32,upperQueriesPerPair=32,upperSearchRestartsFromOriginal=True,receptionSubdivision=False,automaticRetry=False),
+            restrictions=[],census=dict(cells=1,members=8,queries=3584,pairRows=64,ordinaryPairs=56,selfZeros=8,pieceRecords=112),helperCalls=dict(build=1,queries=3584,cover=1),
+            **{k:bound[k]for k in ('queries','rows','pieces')},libraryFlags=dict.fromkeys(reference.ROOT_FLAGS,False),claims=claims,
+            publicationRequires='fresh successful completion, independent parent refinement comparison, external inclusive deadline and closed owned processes')
+        bound['manifest']=put(directory+'cover-manifest.json',encoded(manifest))
+        outputs=[bound[k]for k in ('queries','rows','pieces','manifest')]
+        comparison_sources=w.source_map(list(combined.values())+outputs,ROOT)
+        analysis=dict(parent=parent,conditional_final_cover_conformant=True,conditional_query_replay_conformant=True,query_count=3584,row_count=64,
+            piece_record_count=112,ordinary_nonself_rows=56,self_exclusion_rows=8,oldest_boundary_checks=56,final_strict_face_checks=112)
+        comparison=dict(schema='braid-program/f6c-parent-emission-refinement-conformance.v1',scope=scope,accepted=True,analysis=analysis,candidateClaims=claims,parent=parent,
+            historicalSourceBindings=historical,originalBindings=originals,acceptanceOwner=owner_binding,priorCoverClosure=closure,launchPlan=bound['plan'],verifier=named['verifier'],
+            sourceBindings=list(comparison_sources.values()),**{k:bound[k]for k in ('queries','rows','pieces','manifest')})
+        bound['comparison']=put(directory+'comparison.json',encoded(comparison))
+        operation=dict(schema='braid-program/f6c-parent-emission-refinement-operation.v1',scope=f'operational-original-parent{index}-refinement-completion-only',
+            accepted=True,parentIndex=index,elapsedSecondsBeforePublication=2,claims=claims,accelerationEvaluated=False,eomExecuted=False,wholeHistoryMetrics=False,
+            plan=bound['plan'],sourceBindings=list(current.values()),stages=[])
+        for stage in ('producer','comparison'):
+            done=dict(completed=True,accepted=stage=='comparison')
+            done.update(outputs=outputs)if stage=='producer'else done.update(output=bound['comparison'])
+            stdout=put(directory+stage+'.stdout',encoded(done));stderr=put(directory+stage+'.stderr',b'\n')
+            ad=dict(completion=done,accepted=True,h3EvidenceEligible=False,completionLog=stdout,stderrLog=stderr,
+                outputs=outputs if stage=='producer'else outputs+[bound['comparison']],capturedSourceBindings=historical if stage=='producer'else list(comparison_sources.values()),historicalSourceBindings=historical)
+            operation['stages'].append(dict(stage=stage,process=dict(admission=ad,accepted=True,processesClosed=True,exit=dict(code=0,signal=None),stdoutLog=stdout,stderrLog=stderr,
+                gates=[dict(retired=True,acknowledged=True,measurement=dict(code=0,signal=None))])))
+        bound['operation']=put(directory+'operation.json',encoded(operation))
+        bound['launcher_log']=put(directory+'launcher-stderr.log',b'\n')
+        bound['resource_log']=put(directory+'resource-observations.ndjson',encoded(dict(kind='aggregate-rss',elapsedSeconds=1,aggregateResidentBytes=100,sampleGapMs=250)))
+        owner=(f'## Independently accepted actual original-parent-{index} emission refinement\n'
+            f'Original parent index `{index}`; original caller session `12345`; final completion chunk `abc123`; exit zero; fresh elapsed seconds `3.125`; owned processes closed; independent audit accepted.\n'+
+            '\n'.join(f'Binding `{k}`: SHA-256 `{v["sha256"]}`; bytes `{v["bytes"]}`.'for k,v in bound.items())+'\n').encode()
+        current_owner=subject.SourceBinding(str(ROOT/subject.OWNER),hsh(owner),len(owner))
+        descriptor=subject.ParentRefinement(index,**{k:subject.SourceBinding(**bound[k])for k,_,_,_ in subject.PARENT_ONE[:6]},
+            closure=subject.ParentClosure(current_owner,subject.SourceBinding(**bound['operation']),'12345','abc123',0,'3.125',True,True))
+        args=(w,core,pool,descriptor,SimpleNamespace(data=owner),ancestry,full,fdocs,export,original,a,reference,obj.histories)
+        return args,selected,dict(plan=plan,manifest=manifest,comparison=comparison,operation=operation,payloads=payloads,bound=bound,captured=captured)
+
+    def test_complete_generic_authentication_without_numerical_calls(self):
+        for index in (1,2,159):
+            args,expected,data=self.parent_chain(index)
+            with patch.object(w,'mathematical_bindings',return_value=[asdict(x)for x in expected.bindings]),\
+                patch.object(a,'evaluate_cell',side_effect=AssertionError('metadata kernel')),\
+                patch.object(geometry_roots,'history_state_over',side_effect=AssertionError('metadata geometry')):
+                selected,relations=subject._authenticate_parent(*args)
+            self.assertEqual(selected,expected);self.assertEqual(relations,())
+            self.assertTrue(all(b['path']in data['captured']for b in data['bound'].values()))
+            self.assertEqual(len(selected.rows),64)
+
+    def test_generic_authentication_rejects_cross_parent_and_token_identity(self):
+        args,expected,data=self.parent_chain(2)
+        with patch.object(w,'mathematical_bindings',return_value=[asdict(x)for x in expected.bindings]):
+            for mode in ('index','frame','segment','generation','original_emission'):
+                changed=list(args);export=deepcopy(args[8]);original=args[9]
+                if mode=='index':changed[9]=replace(original,index=1)
+                elif mode=='frame':export['acceptedFrames'][1]['time']='0.009'
+                elif mode=='segment':export['retainedHistories'][3]['segments'][1602]['startTime']='0.010'
+                elif mode=='generation':export['retainedHistories'][3]['segments'][0]['positionError']='0.00'
+                else:
+                    row=original.rows[1];changed[9]=replace(original,rows=(original.rows[0],replace(row,emission=replace(row.emission,lower=row.emission.lower+'0')),)+original.rows[2:])
+                changed[8]=export
+                with self.subTest(mode=mode),self.assertRaises(ValueError):subject._authenticate_parent(*changed)
+
+
+if __name__=='__main__':unittest.main()
+
+
 if __name__=='__main__':unittest.main()
