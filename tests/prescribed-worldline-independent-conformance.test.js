@@ -20,6 +20,10 @@ const SD3_URL = new URL(
   "../reference/priorities/braid-program/configurations/sd3-centered-five-coordinate.v2.json",
   import.meta.url,
 );
+const F5_URL = new URL(
+  "../reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+  import.meta.url,
+);
 const F6C_URL = new URL(
   "../reference/priorities/braid-program/configurations/f6c-polarity-resolved-harmonic.v2.json",
   import.meta.url,
@@ -34,6 +38,7 @@ const READINESS_MATRIX_URL = new URL(
 );
 
 const SD3_SPEC = JSON.parse(readFileSync(SD3_URL, "utf8"));
+const F5_SPEC = JSON.parse(readFileSync(F5_URL, "utf8"));
 const F6C_SPEC = JSON.parse(readFileSync(F6C_URL, "utf8"));
 const F6B_SPEC = JSON.parse(readFileSync(F6B_URL, "utf8"));
 const FIELD_SPEED = 1;
@@ -609,9 +614,10 @@ test("F6b exact clearance and fail-closed status preserve the scoped-negative re
   assert.match(catalogEntry.label, /scoped-negative circular realization/);
 });
 
-test("the three cases preserve explicit individual-worldline and fail-closed metadata", () => {
+test("the four owner-derived cases preserve explicit individual-worldline and fail-closed metadata", () => {
   for (const [spec, recordName] of [
     [SD3_SPEC, "sd3-centered-five-coordinate.assembly-view-record.v0.json"],
+    [F5_SPEC, "f5-phase-varying-campaign.assembly-view-record.v0.json"],
     [F6C_SPEC, "f6c-polarity-resolved-harmonic.assembly-view-record.v0.json"],
     [F6B_SPEC, "f6b-scoped-negative-circular.assembly-view-record.v0.json"],
   ]) {
@@ -625,6 +631,8 @@ test("the three cases preserve explicit individual-worldline and fail-closed met
     assert.equal(record.provenance.prescribedGeometry.physicsInvoked, false);
   }
   assert.equal(SD3_SPEC.constituents.length, 6);
+  assert.equal(F5_SPEC.constituents.length, 12);
+  assert.equal(F5_SPEC.identity.status, "operator-approved-prescribed-display");
   assert.equal(F6C_SPEC.constituents.length, 8);
   assert.equal(F6C_SPEC.relationships.neutralPairs.length, 0);
   assert.equal(F6B_SPEC.relationships.neutralPairs.length, 0);
@@ -654,7 +662,7 @@ test("the F1-F6 readiness map gives every required field a closed status and eve
     "Display choice",
   ];
   const candidates = ["F1", "F2", "F3", "F4", "F5", "F6"];
-  const allowedStatus = /^`(?:declared|derived|guessed|missing|not applicable|owned by concrete continuation)`/;
+  const allowedStatus = /^`(?:declared|derived|measured\/derived|guessed|missing|not applicable|owned by concrete continuation)`/;
   const fieldSection = markdown
     .split("### Missing-Field Closure Ledger")[0]
     .split("## F1–F6 Field Completeness")[1];
@@ -743,7 +751,7 @@ test("the F1-F6 readiness map gives every required field a closed status and eve
   assert.ok(collisionCells[2].startsWith("`derived`"));
   assert.ok(collisionCells[3].startsWith("`derived`"));
   assert.ok(collisionCells[4].startsWith("`derived`"));
-  assert.ok(collisionCells[5].startsWith("`derived`"));
+  assert.ok(collisionCells[5].startsWith("`measured/derived`"));
   missing.forEach(([candidate, field]) => {
     assert.ok(
       closureLedger.includes(`| ${candidate} | ${field} |`),

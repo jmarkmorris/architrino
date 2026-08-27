@@ -7343,11 +7343,11 @@ B_2
 K+M_\alpha+M_\beta+4\rho_2\omega.
 $$
 
-Plainly: the runtime can reject a selected row whose conservative bound reaches field speed before sampling it. Passing this bound would be sufficient, not necessary, and no F5 row is claimed to pass here.
+Plainly: the runtime can reject a selected row whose conservative bound reaches field speed before sampling it. Passing this bound is sufficient, not necessary; the operator-approved phase-varying prescribed display row passes through its separately recorded `0.5` enclosure in normalized $c_f=1$ units.
 
-The operator is canonical for this mathematical responsibility; no second F5 implementation path or compatibility alias is introduced. Existing SD3, F6b, F6c, and migrated circular operators are unchanged. No F5 specification consumes the new operator until identities, source order, one numerical row, retained-history depth, and display choice are authorized.
+The operator is canonical for this mathematical responsibility; no second F5 implementation path or compatibility alias is introduced. Existing SD3, F6b, F6c, and migrated circular operators are unchanged. The operator-approved `f5-phase-varying-campaign.v2.json` specification consumes this operator with stable identities, source order, one numerical row, retained-history depth, and prescribed display choice.
 
-Claim grade: the operator formula, strict validation domain, and conservative speed enclosure are derived from the completed F5 history and tangent. Registration and independent expected-position/finite-difference tests are measured implementation evidence. They close the Path operator field only, not identity, source order, parameters, display choice, a speed or collision pass, EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The operator closure is falsified if a regular declared row is rejected, an irregular row advances, its evaluated position or velocity disagrees with the owner formulas, its speed exceeds the registered bound, or any existing prescribed record changes.
+Claim grade: the operator formula, strict validation domain, and conservative speed enclosure are derived from the completed F5 history and tangent. Registration and independent expected-position/finite-difference tests are measured implementation evidence. The later approved specification and guard certificate separately close identity, source order, parameters, prescribed display choice, and one realization-scoped speed/collision pass; they do not establish EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The operator closure is falsified if a regular declared row is rejected, an irregular row advances, its evaluated position or velocity disagrees with the owner formulas, its speed exceeds the registered bound, or any existing prescribed record changes.
 
 ### Seed F6 — Tetrahedral Counterflow Core
 
@@ -9682,11 +9682,11 @@ Plainly: this packet narrows the search and makes the proof obligations explicit
 
 ## 2026-08-26 Braid Evaluation Dispositions
 
-The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` to the declared F5 two-ring realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the F6b circular realization at its measured `H4` member-acceleration failure, and `STASIS` to F6c at `H5`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
+The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the F5 common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the F6b circular realization at its measured `H4` member-acceleration failure, and `STASIS` to F6c at `H5`. The distinct revised phase-varying F5 creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
 
 The B1/B1.1--B1.3 and C1--C6 charts also remain in `STASIS` at `H2`. Their exact `R1/R2` capability passes and failures do not adjudicate a universal hard gate. Historical C-family records remain ineligible for the current identities.
 
-Plainly: the seed comparisons still narrow what each geometry can attempt, but only F5 and F6b carry realization-scoped rejection evidence. Every other row stops at a missing chart, current-identity hard-gate record, or retained return.
+Plainly: the seed comparisons still narrow what each geometry can attempt, but only the F5 common-cadence circular realization and F6b carry realization-scoped rejection evidence. The revised phase-varying F5 geometry is not demoted. Every other row stops at a missing chart, current-identity hard-gate record, or retained return.
 
 ## Current Concrete Pass And Blocker
 

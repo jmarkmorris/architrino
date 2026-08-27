@@ -170,7 +170,7 @@ Plainly: these omissions are not lost work. They identify the exact reporting an
 
 ## All-Candidate Campaign Disposition Overlay
 
-The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 declared two-ring realization, which remains `DEMOTED` at `H2 F[D]`. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
+The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 common-cadence circular realization, which remains `DEMOTED` at `H2 F[D]`. The revised phase-varying F5 creative geometry is a distinct active exploratory row. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
 
 The later [complete-registry campaign](campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 realization to `H1/H2 P[D/M]` without changing a metric. The active revised row remains `0.00% / —`; the demoted circular row retains `0.00% / 0.00%`. No evidence generation is combined.
 

@@ -1,12 +1,12 @@
 # Complete Braid Registry Closure Campaign
 
-Status: RUNNING. Started `2026-08-26T20:46:13-0400`; the twelve-hour minimum ends no earlier than `2026-08-27T08:46:13-0400`. This campaign processes every live registry row through its nearest presently reachable hard gate. It does not preselect a winning braid and it creates no retention, stability, binding, particle-identity, or physical-realization claim.
+Status: STOPPED BY OPERATOR on 2026-08-26 before the twelve-hour minimum and before any `H3` promotion. The campaign started `2026-08-26T20:46:13-0400`; its completed F5 `H1/H2` evidence and [nominal root-pilot provenance](../evidence/2026-08-26-f5-nominal-root-pilot-provisional-receipt.md) are preserved, while post-stop enclosure and adapter work remains unpromoted. This campaign does not preselect a winning braid and creates no retention, stability, binding, particle-identity, or physical-realization claim.
 
 ## Objective and scope
 
 Advance or falsify the nearest reachable gate for all 33 rows in the live census: eleven Family-A rows, four Family-B rows, six Family-C rows, `SD3`, `F6c`, six `F1`--`F6` exploratory rows, the `F6b` and `B1.4` controls, and two accessory continuations. Taxonomy parents `B1` and `F6` receive routing dispositions rather than invented representatives. Accessory work stops at dependency disposition until its base braid passes `H5`.
 
-Plainly: every named row receives an auditable outcome, but only a candidate-specific qualifying result can change a hard gate or score.
+Plainly: the operator stopped the broad campaign. Its completed F5 geometry and guard result remain evidence, but unfinished root and evolution work must restart under a fresh, narrower contract.
 
 ## Start freeze
 
@@ -67,7 +67,7 @@ The reception ladder is 8, 32, then 128 uniform phases on $[0,T)$, where $T=19.6
 
 The first implementation rung uses the nominal cubic interpolant with zero analytic interpolation-error width and a `1e-12` token-roundoff enclosure, and is therefore an interoperability pilot only. It cannot change `H3`, `M02`, or any score even if all rows pass. Promotion requires a separately checkable interpolation enclosure that binds every cubic segment to the analytic prescribed history without changing the root solver or its independent reference. A failed nominal rung is already a valid scoped blocker because adding enclosure width cannot repair a nominal root-certification failure.
 
-Plainly: this pilot asks whether the EOM root engine can account for every delayed interaction on a faithful, finely segmented nominal copy of the F5 path. Success identifies the remaining interpolation-proof burden; failure identifies a concrete row the current path or solver cannot certify.
+Plainly: this pilot asked whether the EOM root engine could account for every delayed interaction on a faithful, finely segmented nominal copy of the F5 path. Its successful nominal run identified the interpolation-proof burden but did not close `H3`; the stopped campaign cannot promote later unfinished enclosure work.
 
 The analytic-enclosure follow-on is frozen before its result. A standalone JavaScript instrument, importing neither the prescribed-worldline operator nor the C++ adapter, will implement outward-rounded interval arithmetic and factorial-normalized Taylor arithmetic through order four. Primitive controls must enclose the exact fourth derivatives of constants, polynomials, `sin`, `cos`, reciprocal, and positive square root before the F5 map is admitted. The instrument evaluates all twelve independently reconstructed member maps on every adapter segment over `[-1,T]`, records per-member and per-axis fourth-derivative upper bounds, and takes their global maximum $M_4$. With maximum segment width $h=0.02$, the admitted Hermite widths are
 

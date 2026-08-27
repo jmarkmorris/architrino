@@ -1,6 +1,6 @@
 # F5 Phase-Varying Executable And Guard Certificate
 
-Status: CLOSED CAMPAIGN-SCOPED REPRESENTATION AND PRESCRIBED-HISTORY CERTIFICATE, 2026-08-26. This packet closes `H1` and `H2` for one provisional revised F5 realization. It does not supersede the exact failure of the demoted common-cadence circular realization, make the selected row canonical, run the EOM solver, close `H3`, or establish return under ordinary evolution, binding, retention, stability, particle identity, or physical realization.
+Status: CLOSED REPRESENTATION AND PRESCRIBED-HISTORY CERTIFICATE, 2026-08-26. This packet closed `H1` and `H2` for one campaign-selected revised F5 realization. The operator subsequently approved the same scientific row for prescribed display. That approval does not supersede the exact failure of the demoted common-cadence circular realization, close `H3`, or establish return under ordinary EOM evolution, binding, retention, stability, particle identity, or physical realization.
 
 ## Predeclaration and frozen input
 
@@ -32,11 +32,11 @@ $$
 \varphi_-=3.0434178831651124.
 $$
 
-The source order is the six positive-sector rows followed by the six negative-sector rows, with axes increasing from 1 to 3 and rings increasing from 1 to 2 inside each axis. The exact identities and operators are frozen in [`f5-phase-varying-campaign.v2.json`](../configurations/f5-phase-varying-campaign.v2.json), SHA-256 `bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344`.
+The source order is the six positive-sector rows followed by the six negative-sector rows, with axes increasing from 1 to 3 and rings increasing from 1 to 2 inside each axis. The exact campaign-time identities, operators, and scientific row are frozen in [`2026-08-26-f5-phase-varying-root-pilot-source.v2.json`](2026-08-26-f5-phase-varying-root-pilot-source.v2.json), SHA-256 `bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344`. The approved canonical specification preserves the scientific fields byte-for-byte in parsed form while changing only display-authority metadata.
 
-The configuration status is `campaign-scoped-provisional-representative`. It is not an operator-approved display row and is not added to the generated Borg target list by this packet.
+At certificate close the configuration status was `campaign-scoped-provisional-representative`. The operator approved the exact row for prescribed display later on 2026-08-26; that later action adds the canonical source to the generated Borg target list without changing this packet's evidence grade.
 
-Plainly: this is one reproducible input chosen for the closure campaign. It does not rename F5, replace the registry family, or receive display endorsement.
+Plainly: this is one reproducible F5 input chosen by the bounded campaign search and later endorsed for display. It does not rename F5, replace the broader creative-geometry family, or turn the prescribed path into dynamics.
 
 ## Continuous collision certificate
 
@@ -116,7 +116,7 @@ Evidence authority is `derived` for the exact history, identity return, Lipschit
 
 - `H1 P[D/M]` for this realization: twelve persistent constituent/worldline identities, polarity, six polarity-conjugate dyads, source order, exact reconstruction/tangent operator, all-real analytic history, finite retained depth, and immutable source hash are complete.
 - `H2 P[D/M]` for this realization: the exact regular-domain conditions hold and the continuous all-66-pair clearance lower bound is positive over the complete declared period.
-- `H3 U`: the speed and retained-depth subguards pass, but no complete required-root ledger exists.
+- `H3 U`: the speed and retained-depth subguards pass. The [nominal root-pilot receipt](2026-08-26-f5-nominal-root-pilot-provisional-receipt.md) preserves a passing 18,432-row run, but it used zero analytic interpolation-error width; the interrupted follow-on was not rebuilt or rerun, so no enclosed complete-root certificate exists.
 - `H4 U` and `H5 U`: no EOM release or retained-branch campaign has run.
 
 The result is falsified if an independent reconstruction finds a labeled pair below `0.12014843873518877`, the selected source fails its fixed-sheet identities, any member exceeds the `0.5` conservative speed enclosure, a release root requires delay beyond `0.8627861844049196`, or the serialized source differs from the declared hash.
@@ -129,4 +129,4 @@ node --test tests/f5-phase-varying-worldline-operator.test.js tests/f5-phase-var
 node --input-type=module -e 'import fs from "node:fs"; import { validatePrescribedAssemblySpec } from "./src/prescribed-geometry/PrescribedAssemblySpec.mjs"; validatePrescribedAssemblySpec(JSON.parse(fs.readFileSync("reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json", "utf8")));'
 ```
 
-Closure goal: run a predeclared complete-root release audit on the immutable revised F5 source before any ordinary EOM evolution or metric scoring.
+Closure goal: restart a clean predeclared enclosed complete-root audit on the approved immutable F5 scientific row before any ordinary EOM evolution or metric scoring.

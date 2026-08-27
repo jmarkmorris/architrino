@@ -97,11 +97,6 @@ add_executable(eom_stationary_joint_frontier_fixture_cli
 )
 
 add_executable(eom_borg_shadow_cli native/eom_borg_shadow_cli.cpp)
-add_executable(eom_f5_root_pilot_cli native/eom_f5_root_pilot_cli.cpp)
-target_link_libraries(eom_f5_root_pilot_cli PRIVATE eom_native)
-target_compile_options(
-  eom_f5_root_pilot_cli PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
-)
 target_link_libraries(eom_borg_shadow_cli PRIVATE eom_native)
 target_compile_options(
   eom_borg_shadow_cli PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off

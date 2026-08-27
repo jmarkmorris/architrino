@@ -12,7 +12,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
 8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Awaiting verification`.
-9. `complete_braid_registry_closure` — [Complete registry campaign](#complete-braid-registry-closure-campaign). Status: `In progress`.
+9. `complete_braid_registry_closure` — [Complete registry campaign](#complete-braid-registry-closure-campaign). Status: `Stopped by operator; restart scoped to F5 H3`.
 
 ## All-Candidate Evaluation Disposition Register
 
@@ -28,7 +28,7 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 | `B1.2`, `B1.3` | `STASIS` | Not queued | current-source $c_f=1$ `H2/H3` packet with independent root verification |
 | `C1`--`C4`, `C6` | `STASIS` | Not queued | renewed display inspection and fresh current-identity analytical records before any evolution campaign |
 | `F1`--`F4` | `STASIS` | Not queued | exact executable `H1` chart; F3 additionally requires a frozen nontrivial mode/return census and F4 one integrated inventory |
-| `F5` declared two-ring realization | `DEMOTED` | No execution queued | materially repaired nonobstructed chart or regulator-independent coordinate-coincidence continuation |
+| `F5` common-cadence circular realization | `DEMOTED` | No execution queued | materially repaired nonobstructed chart or regulator-independent coordinate-coincidence continuation |
 | `F6` | `STASIS` | No separate campaign queued | materially distinct continuation with its own exact chart |
 | `F6b` circular realization | `DEMOTED` | No repair campaign queued | new direction-bearing path or inventory and fresh admission audit; no rescaling or exhausted repair |
 | `F6c` | `STASIS` | `BP-010` awaiting verification; no execution authorized | verify and implement the [same-generation normalized member-acceleration predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md); alternatively predeclare a materially different coordinated-turn/full-root campaign; do not continue radial-frequency tuning |
@@ -38,7 +38,7 @@ The shared metric prerequisite is partially closed: future `M07`, A3/SD3 `M08`, 
 
 Plainly: this register does not launch thirty campaigns. It prevents an old or missing measurement from being treated as progress and says exactly which artifact must exist before each candidate can consume compute again.
 
-The later complete-registry campaign supplies the materially repaired F5 chart required by the historical F5 row: the revised phase-varying realization now passes `H1/H2` and is queued for a complete-root `H3` audit. The common-cadence circular realization remains demoted and is not rerun.
+The later complete-registry campaign supplies the materially repaired F5 chart required by the historical F5 row: the revised phase-varying realization now passes `H1/H2`, and the operator has approved the exact row for prescribed display. The interrupted nominal root pilot is preserved as provisional evidence; a fresh enclosed complete-root `H3` audit is the next execution object. The common-cadence circular realization remains demoted and is not rerun.
 
 ## Neutral-Atlas Review Action Register
 
@@ -126,15 +126,16 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Evidence / blocker:** V1 is closed as calibration-insufficient; no execution is authorized until packet and cost pilot pass fail-closed review.
 - **Completion:** The V2 packet is accepted before execution, or the calibration route is retired.
 
-## In progress
+## Stopped historical campaigns
 
 ### Complete braid registry closure campaign
 
-- **Status:** In progress; twelve-hour minimum began `2026-08-26T20:46:13-0400`.
+- **Status:** Stopped by the operator on 2026-08-26 before any `H3` promotion; the twelve-hour minimum was not completed.
 - **Campaign owner:** [Complete Braid Registry Closure Campaign](campaigns/2026-08-complete-braid-registry-closure.md).
-- **Current result:** The [F5 phase-varying executable and guard certificate](evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) advances one provisional revised realization to `H1/H2 P[D/M]` without changing a score.
-- **Current next object:** A predeclared complete-root `H3` audit on the immutable F5 source. No ordinary release begins before all ordered partner and self-history rows are accounted for.
-- **Completion:** Every registry row receives one audited disposition, all eligible measurements land in evidence owners, and no running job remains unobserved.
+- **Current result:** The [F5 phase-varying executable and guard certificate](evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) advances the revised realization to `H1/H2 P[D/M]` without changing a score. The operator subsequently approved that exact scientific row for prescribed display.
+- **Preserved provisional evidence:** The [nominal root-pilot receipt](evidence/2026-08-26-f5-nominal-root-pilot-provisional-receipt.md) records that all 18,432 ordered rows passed with zero analytic interpolation-error width and therefore did not close `H3`; the post-stop enclosure instrument and unrebuilt adapter edits are not promoted.
+- **Current next object:** Execute the [clean enclosed complete-root restart](evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md) on the approved immutable scientific row. Only after that certificate passes may an ordinary EOM evolution begin from the retained prehistory `[-1,0]`.
+- **Completion:** Historical campaign scope is closed by the operator stop. The fresh F5 `H3` restart owns any further execution.
 
 ## Awaiting verification
 

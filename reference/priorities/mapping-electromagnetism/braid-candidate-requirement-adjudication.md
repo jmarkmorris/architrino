@@ -178,7 +178,7 @@ The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all
 | `A3` measured slice, `SD3` | `STASIS` | bounded `H2`--`H4 P[M]` remains slice-scoped; `H5 U`; no new eligible `M05`--`M08` record |
 | `B1`, `B1.1`--`B1.3`, `C1`--`C6` | `STASIS` | `H2 U`; exact `R1/R2` capability failures or passes do not adjudicate the universal hard gate; former-identity records remain ineligible |
 | `F1`--`F4` | `STASIS` | `H1 U`; executable charts remain incomplete |
-| `F5` declared two-ring realization | `DEMOTED` | existing exact `H2 F[D]` obstruction remains controlling |
+| `F5` common-cadence circular realization | `DEMOTED` | existing exact `H2 F[D]` common-cadence obstruction remains controlling for that realization only |
 | `F6` | `STASIS` | parent-only `H1 P[D]`; no separate continuation and no inherited F6c evidence |
 | `F6b` circular realization | `DEMOTED` | existing measured `H4 F[M]` member-acceleration failure remains controlling |
 | `F6c` | `STASIS` | bounded `H2`--`H4 P[M]`; `H5 U`; no eligible return and no justified radial-frequency refinement |
@@ -190,7 +190,7 @@ Plainly: the hard-gate matrix stays exactly as it was because the campaign found
 
 ### Complete-Registry Follow-On Effect
 
-The later [complete-registry closure campaign](../braid-program/campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 phase-varying realization from incomplete representation to `H1 P[D/M]` and `H2 P[D/M]`. Its bounded selection and continuous-guard certificate were predeclared as score-ineligible, so no `M01`--`M14` availability or percentage changes. `H3` remains `U` until all required ordered-pair and self-history roots are certified on the immutable source. The common-cadence circular realization remains `H2 F[D]`.
+The later [complete-registry closure campaign](../braid-program/campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 phase-varying realization from incomplete representation to `H1 P[D/M]` and `H2 P[D/M]`. The operator subsequently approved that exact scientific row for prescribed display. Its bounded selection and continuous-guard certificate were predeclared as score-ineligible, so no `M01`--`M14` availability or percentage changes. `H3` remains `U` until all required ordered-pair and self-history roots are certified with an analytic interpolation enclosure on the immutable scientific row. The common-cadence circular realization remains `H2 F[D]`.
 
 Plainly: the repaired row is now eligible for a causal-root audit, not for an EOM retention claim. The old failed row stays failed within its own assumptions.
 
