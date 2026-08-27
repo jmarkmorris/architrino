@@ -28,4 +28,5 @@ Horizon boundary conditions, entropy, release channels, high-energy routing, ter
 
 ## Unresolved Ideas
 
-- None currently recorded.
+- **[closure target] Internal strong-field mechanism discriminator.** Beyond SF-005's observer-level comparison with GR-like behavior, identify same-record observables that separate alignment-driven effects from inner-binary maximal-curvature dynamics and determine which Noether sea variables control onset; falsifier: the proposed observables cannot distinguish the mechanisms on refined runs.
+- **[guessed] Strong-field planarity transition.** Determine whether an accepted branch remains planar or changes orientation in a strong-field interior-like regime; the next object is a retained three-dimensional branch comparison, not a geometric analogy.

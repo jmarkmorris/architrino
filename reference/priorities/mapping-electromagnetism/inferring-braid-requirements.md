@@ -7265,6 +7265,90 @@ This is prescribed-history periodicity only. It is not recurrence under the Mast
 
 Claim grade: the exact identity return action on positions, velocities, member labels, polarity labels, ring labels, axis labels, and branch signs is derived from the completed harmonic history. It closes the parameterized Periodicity field without selecting a numerical period or executable row. The periodicity closure is falsified if any admitted regular history fails coordinate or rate return after $2\pi/\omega$, if reconstruction changes a persistent label or branch, or if the field is used as evidence of EOM-solver recurrence.
 
+#### The Revised F5 History Has One Registered Member Operator
+
+The shared prescribed-worldline registry owns the generic operator
+
+```text
+f5-phase-varying-member.v1
+```
+
+for the completed harmonic history. One operator row declares the constant assembly center; ordered right-handed body axes; axis index $a$; ring index $k$; polarity $\sigma$; branch sign $\eta_{a\sigma}$; $h$, $\rho_1$, and $\rho_2$; sector amplitude $A_\sigma$ and phase $\varphi_\sigma$; common positive frequency $\omega$; and the reconstruction-owner token. The evaluator constructs $(u_\sigma,v_\sigma,w_\sigma)$, the applicable $\mathbf c_{a\sigma}$ and its derivative, the unequal-radius triangle, and the exact position and velocity from the completed reconstruction and tangent.
+
+Plainly: each declared worldline carries enough information to evaluate its own labeled F5 member directly. The operator does not look up another candidate, infer a partner, or recover a missing identity from geometry.
+
+Validation fails closed unless the body axes are orthonormal and right-handed; $a\in\{1,2,3\}$; $k\in\{1,2\}$; $\sigma,\eta_{a\sigma}\in\{-1,+1\}$; $h$, $A_\sigma$, and $\omega$ are positive; the radii are positive and unequal; and
+
+$$
+\sqrt{2}\,|\rho_1-\rho_2|
+<
+A_\sigma
+<
+\sqrt{\frac{2}{3}}\,(\rho_1+\rho_2).
+$$
+
+These checks guarantee that every time evaluation stays on one regular triangle sheet. They do not choose the values.
+
+The registered speed-bound method uses the uniform history enclosure. Let
+
+$$
+\kappa_{\min}=\frac{A_\sigma}{\sqrt2},
+\qquad
+\kappa_{\max}=A_\sigma\sqrt{\frac32},
+\qquad
+K=\sqrt2 A_\sigma\omega,
+\qquad
+D=\rho_1^2-\rho_2^2.
+$$
+
+Define
+
+$$
+M_\alpha
+=
+K\max_{\kappa\in\{\kappa_{\min},\kappa_{\max}\}}
+\left|
+\frac12-\frac{D}{2\kappa^2}
+\right|,
+$$
+
+$$
+\beta_{\min}
+=
+\min_{\kappa\in\{\kappa_{\min},\kappa_{\max}\}}
+\sqrt{
+\rho_1^2
+-
+\left(
+\frac{\kappa^2+D}{2\kappa}
+\right)^2
+},
+\qquad
+M_\beta
+=
+\frac{\rho_1M_\alpha}{\beta_{\min}}.
+$$
+
+The exact tangent identities give $|\dot\kappa|\le K$ and $\|\dot{\hat{\mathbf e}}\|\le2\omega$. Therefore the per-member conservative bounds are
+
+$$
+B_1
+=
+M_\alpha+M_\beta+4\rho_1\omega,
+$$
+
+$$
+B_2
+=
+K+M_\alpha+M_\beta+4\rho_2\omega.
+$$
+
+Plainly: the runtime can reject a selected row whose conservative bound reaches field speed before sampling it. Passing this bound would be sufficient, not necessary, and no F5 row is claimed to pass here.
+
+The operator is canonical for this mathematical responsibility; no second F5 implementation path or compatibility alias is introduced. Existing SD3, F6b, F6c, and migrated circular operators are unchanged. No F5 specification consumes the new operator until identities, source order, one numerical row, retained-history depth, and display choice are authorized.
+
+Claim grade: the operator formula, strict validation domain, and conservative speed enclosure are derived from the completed F5 history and tangent. Registration and independent expected-position/finite-difference tests are measured implementation evidence. They close the Path operator field only, not identity, source order, parameters, display choice, a speed or collision pass, EOM-solver evolution, binding, retention, stability, particle identity, or physical realization. The operator closure is falsified if a regular declared row is rejected, an irregular row advances, its evaluated position or velocity disagrees with the owner formulas, its speed exceeds the registered bound, or any existing prescribed record changes.
+
 ### Seed F6 — Tetrahedral Counterflow Core
 
 The two-ring obstruction suggests canceling axial dipoles across directions rather than within a nested same-axis module. Let four body-fixed unit vectors point to the vertices of a regular tetrahedron:

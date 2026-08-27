@@ -42,6 +42,10 @@ Plainly: provenance may summarize a locally available shared preparation history
 
 The scope decision and [dynamic pair-provenance packet](dynamic-pair-provenance-source-measure.md) own the developed treatment and Bell-family obligations.
 
+## Amplituhedron and Positive-Geometry Scattering
+
+The focused [amplituhedron packet](amplituhedron.md) now owns the captured definition, source terminology, $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping hypothesis, claim boundaries, assumptions, proof burden, falsifiers, four-point first artifact, and no-standalone-lane routing decision.
+
 ## Assessment and Promotion Boundary
 
 Measurement, Born-rule, Bell, photon Gate B, Decider, pilot-wave, and algorithmic-resonance work retain their focused owners and queue dependencies. No polished interpretation advances those tasks.

@@ -21,5 +21,4 @@ The accepted baseline and first bounded scan already live as CD-001 and CD-002 i
 - **[inferred] Bidirectional promotion-routing map.** Relate published assertions lacking obvious support owners to internal results lacking future corpus destinations; every route remains untriaged.
 - **[inferred] Priority-lane overlap map.** Detect duplicated task, brainstorming, and queue ownership while preserving lifecycle and acceptance distinctions.
 - **[inferred] Link and generated-source audit.** Separate stale links from generated drift and identify the exact canonical owner or check-only repair route.
-- **[closure target] Scan-boundary policy.** Decide which live roots and archives enter each bounded pass and define confidence thresholds that prevent vague semantic resemblance from entering the durable recommendations ledger.
 - **[policy question] New-lane threshold.** Define when a finding may recommend a new priority lane rather than route to an existing owner; no recommendation may create the lane or task by itself.

@@ -26,10 +26,4 @@ Accepted cross-workstream tasks remain in [work-queue.md](work-queue.md). Master
 
 ## Unresolved Ideas
 
-- **[closure target] Polarity-resolved energy accounting.** Determine whether separate electrino and positrino kinetic and potential entries are required before reduction; derive the minimal lossless ledger and its falsifier; likely destination: Master Equation or energy-accounting packet.
-- **[comparison] Orbital-mechanics bridge.** Identify which center-of-motion identities survive when physical mass and instantaneous interaction premises are removed; the comparison must preserve causal delay and path history; likely destination: dynamics comparison material if useful.
-- **[guessed] Regime-separated strong-field equations.** Test whether one equation family covers the full speed domain while a second branch description is required only near or above the field-speed threshold; first object: a domain and root-topology partition with $c_f=1$.
-- **[closure target] Scalar wake representation.** Prove whether a scalar wake map plus explicit causal-root provenance is sufficient to reconstruct every required acceleration contribution; falsifier: two admissible histories with the same scalar map but different received acceleration ledgers.
-- **[guessed] Coupled frequency-work ledger.** Define a branch-level account linking translation, transverse circulation, radius change, root-status change, and internal frequency increments without importing momentum or quantization as premises; likely destination: Braid Program focused proof packet.
-- **[guessed] Strong-field planarity transition.** Determine whether an accepted branch remains planar or changes orientation in a strong-field interior-like regime; next object: a retained three-dimensional branch comparison, not a geometric analogy.
-- **[guessed] Excitation and reaction mapping.** Test whether internal frequency mismatch predicts specific association, dissociation, radiation, or heating channels; required evidence: retained assembly branches and closed event ledgers; likely destination: reaction and thermodynamic recovery material.
+- None currently recorded.

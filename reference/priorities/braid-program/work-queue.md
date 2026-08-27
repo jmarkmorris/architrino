@@ -12,6 +12,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
 7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
 8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Awaiting verification`.
+9. `complete_braid_registry_closure` — [Complete registry campaign](#complete-braid-registry-closure-campaign). Status: `In progress`.
 
 ## All-Candidate Evaluation Disposition Register
 
@@ -36,6 +37,8 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 The shared metric prerequisite is partially closed: future `M07`, A3/SD3 `M08`, and `M10`--`M13` packets have an accepted centered-RMS ruler, wake-crossing clock, and same-event exact-action reporting boundary. Nonbinary `M09` remains blocked on a candidate-native continuous lift coordinate or independently justified canonical reference path. Existing records are not backfilled.
 
 Plainly: this register does not launch thirty campaigns. It prevents an old or missing measurement from being treated as progress and says exactly which artifact must exist before each candidate can consume compute again.
+
+The later complete-registry campaign supplies the materially repaired F5 chart required by the historical F5 row: the revised phase-varying realization now passes `H1/H2` and is queued for a complete-root `H3` audit. The common-cadence circular realization remains demoted and is not rerun.
 
 ## Neutral-Atlas Review Action Register
 
@@ -125,7 +128,13 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 
 ## In progress
 
-No rows.
+### Complete braid registry closure campaign
+
+- **Status:** In progress; twelve-hour minimum began `2026-08-26T20:46:13-0400`.
+- **Campaign owner:** [Complete Braid Registry Closure Campaign](campaigns/2026-08-complete-braid-registry-closure.md).
+- **Current result:** The [F5 phase-varying executable and guard certificate](evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) advances one provisional revised realization to `H1/H2 P[D/M]` without changing a score.
+- **Current next object:** A predeclared complete-root `H3` audit on the immutable F5 source. No ordinary release begins before all ordered partner and self-history rows are accounted for.
+- **Completion:** Every registry row receives one audited disposition, all eligible measurements land in evidence owners, and no running job remains unobserved.
 
 ## Awaiting verification
 

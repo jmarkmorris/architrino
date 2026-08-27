@@ -58,6 +58,6 @@ Equation inventories guide routing and blocker discovery. They change no score u
 
 ## Unresolved Ideas
 
-- **[inferred] Effective-metric shared carrier.** Derive lapse, drift, spatial compliance, clock, signal, lensing, acceleration, and PPN rows from one retained Noether sea and assembly state; any required per-observable retuning falsifies the proposed carrier.
 - **[guessed] Scale-separation coordinate.** Define $\epsilon_{\mathrm{geo}}\sim\ell_{\mathrm{core}}/L_{\mathrm{curv}}$ from source-backed lengths and test whether it separates weak-field recovery from sharp-gradient deviations; likely destination is the effective-metric mapping packet.
 - **[guessed] Outer-binary pressure projection.** Populate strain, current, release, stress, effective pressure, equation-of-state, and coupling rows from one retained sea record and reject the route if sign or coupling retunes across supernova, BAO, CMB, and growth consumers.
+- **[closure target] Alignment-to-Planck comparison.** Define the observer-level map from retained event-horizon alignment conditions to conventional Planck units on one independently calibrated scale record; falsification occurs if the scale requires a private retune or the retained alignment carrier does not supply the mapped variables.

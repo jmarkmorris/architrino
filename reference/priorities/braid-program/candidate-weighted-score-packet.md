@@ -1,6 +1,6 @@
 # Braid Candidate Weighted Score Packet
 
-Status: CURRENT SCORE SNAPSHOT v2, 2026-08-26. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract. Version 2 records the [all-candidate campaign](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md), accepts a common ruler and clock for future predeclared packets, and leaves every raw metric and percentage unchanged because no existing record satisfies the new reporting contract retrospectively.
+Status: CURRENT SCORE SNAPSHOT v3, 2026-08-26. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract. Version 3 preserves every v2 raw metric and percentage while separating the active revised F5 phase-varying realization from the demoted common-cadence circular record. The revised realization's first guard campaign was predeclared as score-ineligible and therefore changes only the hard-gate overlay.
 
 The percentages are allocation summaries. The [Braid Candidate Requirement Adjudication](../mapping-electromagnetism/braid-candidate-requirement-adjudication.md) remains authoritative for the hard gates, and a failed hard gate cannot be compensated by either percentage. The `A3` values are scoped to the measured five-coordinate pair-conjugate slice, not the full A3 family.
 
@@ -164,12 +164,15 @@ Plainly: each score-bearing record says what calculation or derivation would rem
 - The F6c harmonic-cycle values $2.816$ RMS and $10.518$ peak mix coordinate-acceleration components without the dimensionless member-acceleration normalization required by `M05` and `M06`. The [same-generation F6c predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) now freezes an admissible future measurement route on the refined dual-turn row, but it has not been executed and makes no value available.
 - F6c exact-action screens publish combined coordinate-state residuals, not the canonical member-position, member-rate, and retained-history split required by `M10` through `M12`. No current campaign supplies the candidate-native continuous lift coordinate required for a nonbinary `M09` fraction.
 - No candidate has a refined multi-prehistory collapse record or a positive-width retained-neighborhood certificate, so `M13` and `M14` remain unavailable for every row.
+- The revised F5 phase-varying realization has a continuous prescribed-history clearance certificate and conservative speed bound, but its selecting campaign explicitly excluded score availability. It therefore receives no retrospective `M01` or `M03` row. The `F5` common-cadence circular `M01=0` record remains attached only to that demoted realization.
 
 Plainly: these omissions are not lost work. They identify the exact reporting and mathematical gaps that the next campaign must close before those measurements can earn score credit.
 
 ## All-Candidate Campaign Disposition Overlay
 
 The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 declared two-ring realization, which remains `DEMOTED` at `H2 F[D]`. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
+
+The later [complete-registry campaign](campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 realization to `H1/H2 P[D/M]` without changing a metric. The active revised row remains `0.00% / —`; the demoted circular row retains `0.00% / 0.00%`. No evidence generation is combined.
 
 No score changed. An independent arithmetic audit reproduced every approved, equal-metric, Early, and Late percentage from the raw values and applicability sets. The all-metric ordering among rows with available evidence is unchanged under the sensitivity schemes, while the available-metric ordering among the A3 slice, SD3, and F6c remains weight-sensitive. Hard-gate ordering remains controlling.
 
@@ -208,7 +211,8 @@ For `A3`, `SD3`, `F6b`, and `F6c`, `M01` is predeclared `N/A`, so the all-metric
 | `F2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
-| `F5` | $0$ | $100$ | $8$ | **0.00%** | **0.00%** | `H1 P[D]`; **`H2 F[D]`**; `H3`--`H5 U` |
+| `F5`, revised phase-varying campaign realization | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D/M]`; `H2 P[D/M]`; `H3`--`H5 U`; guard search score-ineligible |
+| `F5`, common-cadence circular realization | $0$ | $100$ | $8$ | **0.00%** | **0.00%** | `H1 P[D]`; **`H2 F[D]`**; `H3`--`H5 U` |
 | `F6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
 | `F6b`, demoted realization | $14.3641715877$ | $92$ | $37$ | **15.61%** | **38.82%** | `H1`--`H3 P`; **`H4 F[M]`**; `H5 U` |
 
@@ -222,7 +226,7 @@ The two alternative group-weight schemes preserve the original within-group prop
 | --- | ---: | ---: | ---: | ---: |
 | `A3`, measured slice | 14.17% / 76.67% | 15.60% / 67.61% | 17.30% / 76.67% | 11.14% / 76.67% |
 | `SD3` | 14.35% / 77.67% | 15.92% / 68.99% | 17.53% / 77.67% | 11.29% / 77.67% |
-| `F5` | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% |
+| `F5`, common-cadence circular realization | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% |
 | `F6b`, demoted realization | 15.61% / 38.82% | 18.53% / 48.19% | 19.07% / 37.97% | 12.28% / 40.17% |
 | `F6c` | 18.47% / 77.25% | 21.76% / 70.73% | 21.45% / 76.35% | 15.59% / 78.47% |
 

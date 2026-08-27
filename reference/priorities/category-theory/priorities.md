@@ -14,6 +14,8 @@ Develop category-theoretic structures that make $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The [CT-001 minimal categorical contract](categorical-contract-and-ownership-map.md) is complete at priority-contract grade. It accepts only three ordinary structures over compatible full-history records: a lawful-history-extension category, a full-history symmetry groupoid, and a certified-restriction system. It also proves the abstract snapshot-factorization obstruction and keeps prospective coarse-graining separate until a physical separating-history test or predictive-closure result exists.
 
+The lane remains open as a low-intensity supporting laboratory, not as an autonomous fundamental-physics program. Its admitted consumers are bounded history and information-loss tests plus philosophy-history analyses of theory bridges, equivalence, reduction, inheritance, and discarded information. Interest-driven work must produce a reusable bridge certificate, counterexample, clarifying vocabulary, or bounded physical contract; otherwise the simpler owning mathematics should be used and the categorical route paused.
+
 `CT-004` is now materially unblocked at bounded contract grade. Its next artifact can instantiate the complete boundary-history type and test identity, exact three-interval associativity, an endpoint-matched hidden-history pair, and a symmetry covariance square. Physical completion remains blocked by sufficient-history, state-dependent-delay continuation, causal-root completeness, branching, and—if an assembly claim is attempted—retained-carrier obligations.
 
 The Braid Program's priority-side proposal for a stratified topological symmetry groupoid of polarity-labeled histories with certified finite-history pro-presentations remains unadopted research architecture, and [`BP-002`](../braid-program/work-queue.md#bp-002--configuration-chart-completion) retains ownership of its braid-atlas objects, arrows, restrictions, uncertainty transport, controls, and abstention rules.
@@ -37,6 +39,7 @@ Plainly: the discussion should leave a durable trail, but each kind of material 
 - Treat Standard Model, quantum theory, quantum field theory, and general relativity as effective comparison or recovery codomains, never as architrino-level inputs.
 - Require every categorical proposal to name its physical carrier, current claim level, assumptions, proof burden, falsifier, owner, and possible corpus destination.
 - Prefer one concrete commuting diagram, reconstruction theorem, or counterexample over broad categorical analogy.
+- Support philosophy-history by distinguishing formal equivalence, controlled reduction, bridge compatibility, common-history derivation, and information loss, while leaving historical claims to source-backed historical owners.
 
 ## Non-Authority Rules
 

@@ -109,3 +109,13 @@ The accepted categorical minimum is one ordinary lawful-history-extension catego
 `CT-004` is materially but only partially unblocked. It is now queued at bounded contract grade for an identity extension, exact three-interval composition, an endpoint-matched hidden-history separating pair, and a full-history symmetry covariance square. Physical completion remains blocked by sufficient-history, state-dependent-delay continuation, causal-root completeness, branching, and retained-carrier obligations. No retained assembly, recovery functor, unique continuation, higher-category requirement, or reader-facing corpus claim was advanced.
 
 Validation receipts: `git diff --check` passed; `node scripts/validate-content.mjs --check --strict` audited 1,118 repository Markdown files with 0 errors and 0 warnings; and the category-theory lane contained no match for the prohibited attribution or disallowed causal-delay terminology.
+
+### 2026-08-26 — Lane retained as constrained philosophy-history support
+
+The operator asked whether Category Theory should remain open for interest and whether it can support the philosophy-history work. The decision is to keep the lane open at `unranked / supporting` as a low-intensity methodological laboratory, not as an autonomous fundamental-physics program.
+
+Its admitted work must serve a named consumer by producing a bridge certificate, an information-loss counterexample, reusable relational vocabulary, or a bounded $\mathbb{A}\mathbb{A}\mathbb{A}$ history-composition test. Philosophy-history use is limited to distinguishing formal equivalence from physical identity, controlled reduction from ontological derivation, bridge compatibility from common-mechanism recovery, and preserved from discarded information. Category theory supplies no historical evidence and does not determine why a theory prevailed.
+
+The first continue-or-pause gate remains `CT-004`: complete the bounded worldline-history morphism and snapshot-factorization test, then compare its payoff with the simpler delay-system formulation. If the categorical presentation adds no clearer obstruction, reusable composition rule, or cross-lane compression, pause further category-specific expansion while retaining the completed documents as reference material.
+
+Scoped formatting validation passed. Repository-wide strict validation was not clean because concurrently added One Nature, Many Theories reader-facing Markdown and scene files were not yet present in their generated indexes; this lane did not regenerate or edit those external owners.

@@ -1,6 +1,6 @@
 # Braid Candidate Requirement Adjudication
 
-Status: CURRENT EVIDENCE-GRADED MATRIX, established 2026-08-25 and campaign-reconciled 2026-08-26. This document applies the consolidated requirements inferred in [Inferring Braid Requirements](inferring-braid-requirements.md) to every admitted or exploratory row in the [Braid Candidate Registry](../braid-program/candidate-registry.md) and retains named scoped-negative rows when their adjudication prevents a rejected realization from silently re-entering search. The registry remains authoritative for names, inclusion, concise status, and next action. This matrix owns requirement dispositions and their evidence grades.
+Status: CURRENT EVIDENCE-GRADED MATRIX, established 2026-08-25, campaign-reconciled 2026-08-26, and updated for the later F5 phase-varying campaign certificate. This document applies the consolidated requirements inferred in [Inferring Braid Requirements](inferring-braid-requirements.md) to every admitted or exploratory row in the [Braid Candidate Registry](../braid-program/candidate-registry.md) and retains named scoped-negative realizations when their adjudication prevents a rejected row from silently re-entering search. The registry remains authoritative for names, inclusion, concise status, and next action. This matrix owns requirement dispositions and their evidence grades.
 
 ## Scope And Non-Score Rule
 
@@ -84,14 +84,15 @@ The taxonomy rows inherit `H1` from the exact [configuration chart](../braid-pro
 | `F2` | `U` | `U` | `U` | `U` | `U` | Bounded dual-triad seed description only; association and executable coordinates remain open. |
 | `F3` | `U` | `U` | `U` | `U` | `U` | Bounded near-A2/A3 mode-search description only; no predeclared census. |
 | `F4` | `U` | `U` | `U` | `U` | `U` | Bounded framed-plus-counterflow composition only; integrated association remains open. |
-| `F5` | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; no coordinate-coincidence continuation is declared for the obstructed branch. |
+| `F5` revised phase-varying campaign realization | `P[D/M]` | `P[D/M]` | `U` | `U` | `U` | The [executable and guard certificate](../braid-program/evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) freezes twelve identities and source order, one all-real analytic history restricted to `H=1`, continuous all-66-pair clearance at least `0.12014843873518877`, and a conservative speed bound `0.5` with $c_f=1$; complete causal-root certification remains absent. |
+| `F5` common-cadence circular realization | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; the revised row is materially different and does not erase this scoped negative. |
 | `F6` | `P[D]` | `U` | `U` | `U` | `U` | Exact tetrahedral parent geometry; F6b and F6c own its concrete continuations. |
 | `F6b` (demoted realization) | `P[D]` | `P[D]` | `P[D]` | `F[M]` | `U` | Exact continuous noncoincidence and complete simple roots pass on the prescribed circular history, but its [measured member-acceleration residual](inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen) rejects that isolated history as an EOM realization. |
 | `F6c` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | Bounded releases in the [F6c geometry program](f6c-geometry.md) preserve the exact symmetry surface and achieve partial turns, but no root-valid nondegenerate complete return exists. |
 | Three-binary plus six accessories | `P[D]` | `U` | `U` | `U` | `U` | Separate six-accessory inventory and placement strata are declared; the base retained branch and full twelve-member history do not exist. |
 | F6c plus six accessories | `P[D]` | `U` | `U` | `U` | `U` | Separate $2+4$ accessory-site inventory and placement strata are declared; retained F6c and full fourteen-member evolution do not exist. |
 
-Plainly: only one A3 slice, one SD3 row, and F6c have bounded ordinary-release passes, and none has passed `H5`. F6b supplies unusually strong exact prescribed-history geometry and causal-root results, but its isolated circular motion fails the local acceleration test. The failure is scoped to that realization rather than generalized to every tetrahedral continuation.
+Plainly: the revised F5 row joins the candidates with a legal prescribed history but has not yet passed the complete-root gate or any ordinary release. Only one A3 slice, one SD3 row, and F6c have bounded ordinary-release passes, and none has passed `H5`. The F5 circular and F6b failures remain scoped to their exact realizations.
 
 ## Functional Geometry Adjudication
 
@@ -160,7 +161,7 @@ No admitted or exploratory candidate currently passes `H5`, so this matrix selec
 
 1. for taxonomy rows other than A3, obtain the first candidate-specific `H2`--`H4` record; for F1--F4, close `H1` before attempting those gates;
 2. for A3 and SD3, extend beyond the one bounded slice only through a separately predeclared coverage campaign, while keeping the existing no-return result scoped to that row;
-3. for F5, repair or replace the exact joint-geometry obstruction before causal or ordinary-evolution work;
+3. for the revised F5 row, run a complete-root `H3` audit before ordinary evolution; retain the common-cadence circular no-go as a separate scoped negative;
 4. for the demoted F6b realization, require a materially different direction-bearing path or inventory row and a new admission audit rather than rescaling one common magnitude;
 5. for F6c, do not refine the completed radial-frequency coordinate without a new coordinated-turn signal; predeclare either a materially different return coordinate or the matched guarded/full-causal-root comparison; and
 6. for accessory-bearing continuations, do not advance beyond site definition until the underlying braid passes `H5`.
@@ -186,6 +187,12 @@ The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all
 No candidate is `ADVANCED`, and no candidate passes `H5`. The campaign accepts a common centered-RMS ruler and wake-crossing clock for future predeclared measurements but rejects retrospective score backfill. It also derives that a nonbinary `M09` traversal fraction needs an additional continuous lift coordinate; turns, crossings, elapsed time, and shape matches remain ineligible.
 
 Plainly: the hard-gate matrix stays exactly as it was because the campaign found blockers and scoped failures, not new gate-closing evidence. The new result is complete disposition coverage and an explicit mathematical reason that partial return progress still cannot be scored.
+
+### Complete-Registry Follow-On Effect
+
+The later [complete-registry closure campaign](../braid-program/campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 phase-varying realization from incomplete representation to `H1 P[D/M]` and `H2 P[D/M]`. Its bounded selection and continuous-guard certificate were predeclared as score-ineligible, so no `M01`--`M14` availability or percentage changes. `H3` remains `U` until all required ordered-pair and self-history roots are certified on the immutable source. The common-cadence circular realization remains `H2 F[D]`.
+
+Plainly: the repaired row is now eligible for a causal-root audit, not for an EOM retention claim. The old failed row stays failed within its own assumptions.
 
 ## Weighted Score Boundary
 

@@ -12,7 +12,7 @@ The evidence-graded [Braid Candidate Requirement Adjudication](../mapping-electr
 
 The dynamical-status column reports only what ordinary Master Equation evolution or an explicitly bounded diagnostic establishes. `No retained braid` is the default until a candidate-specific, root-complete, refined evolution establishes a positive-width retained branch under the Braid Program acceptance rules.
 
-Current coverage is twenty-three admitted candidates, six named active exploratory rows, two accessory-bearing continuations, and two scoped-negative or deprecated rows. These are registry rows, not disjoint configuration-space counts: constrained members and F6 variants remain inside their declared parent families.
+Current coverage is twenty-three admitted candidates, six named active exploratory rows, two accessory-bearing continuations, two named scoped-negative or deprecated rows, and one additional realization-scoped F5 negative retained under the active F5 family. These are registry rows and realization records, not disjoint configuration-space counts: constrained members and F6 variants remain inside their declared parent families.
 
 Plainly: a geometry can be admitted and its drawing can be approved while the physical question remains completely open. The two kinds of status are kept separate here so that a display or prescribed-path result cannot be mistaken for a lasting braid.
 
@@ -213,6 +213,14 @@ No row is `ADVANCED`. The [score packet](candidate-weighted-score-packet.md) ind
 
 Plainly: every active option now has one campaign ending state. Most are unknown at their next hard gate, while F5 and F6b retain exact realization-scoped failures. No percentage overrides those boundaries.
 
+### 2026-08-26 Complete-Registry Follow-On Progress
+
+The later [complete-registry closure campaign](campaigns/2026-08-complete-braid-registry-closure.md) has advanced one materially repaired F5 realization without revising the historical campaign above. The campaign-scoped phase-varying source passes `H1 P[D/M]` and `H2 P[D/M]`: twelve stable identities and source order, an all-real analytic history restricted to `H=1`, an immutable executable specification, continuous all-66-pair clearance at least `0.12014843873518877`, and a conservative speed bound `0.5` in normalized $c_f=1$ units are certified in the [F5 executable and guard packet](evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md). `H3` remains unknown because no complete required-root ledger exists. The common-cadence circular realization remains separately demoted at its exact `H2` obstruction.
+
+The revised row is `ADVANCED` only in this follow-on campaign and remains score-unavailable because its search was predeclared as score-ineligible. No candidate passes `H5`.
+
+Plainly: F5 now has one legal, executable prescribed history that is different from the failed circular history. The next question is whether all of its delayed causal roots can be certified, not whether the prescribed path returns by construction.
+
 ## Admitted Candidates
 
 The [configuration chart](configuration-chart.md) owns the admitted coordinates and scope. The [Borg sign-off ledger](borg-candidate-signoff.md) owns prescribed-display review, and the [work queue](work-queue.md) owns executable campaign state.
@@ -253,7 +261,7 @@ These geometries are active considerations but do not yet satisfy the admitted-c
 | `F2` | Two A2-like triads sharing a center and frame with conjugation, relative circulation, phase, permutation, and separation coordinates. | Exploratory F-series seed. | No ordinary-evolution result and no retained braid. | 0.00% | — | Test whether the two triads associate under one law and whether useful exposure survives excessive symmetry cancellation. |
 | `F3` | Near-A2 mode and return-permutation search within the A3 deformation chart. | Exploratory F-series seed. | No ordinary-evolution result and no retained braid. | 0.00% | — | Define a predeclared mode/return census that can distinguish isolated classes from a continuum or ordinary $2\pi$ return. |
 | `F4` | A2/A3 three-direction frame associated with a C4-like counter-rotating module. | Exploratory F-series seed. | No ordinary-evolution result and no retained braid. | 0.00% | — | Establish one integrated retained assembly rather than a detachable module before testing angular, recoil, or particle-facing rows. |
-| `F5` | Twelve-member balanced double-dyad triad on three orthogonal body axes. | Exploratory F-series seed with bounded prescribed-path geometry diagnostics. | No retained braid; the ordinary everywhere-noncoincident two-ring circular form has a conditional incompatibility among distinct-member geometry, stationary centroid, and instantaneous dipole null. | 0.00% | 0.00% | Repair that joint geometry obstruction or supply a declared coordinate-coincidence continuation, then establish causal-root readiness before any ordinary release. |
+| `F5` | Twelve-member balanced double-dyad triad on three orthogonal body axes. | Exploratory F-series seed with one campaign-scoped executable phase-varying realization; no operator-approved display representative. | No retained braid; the revised realization passes `H1/H2` on its prescribed history, while the common-cadence circular realization remains separately demoted. | 0.00% | — | Run a predeclared complete-root `H3` audit on the immutable revised source before any ordinary release or metric campaign. |
 | `F6` | Eight-member tetrahedral counterflow parent with four body axes and one distinguished motion-moment direction. | Exploratory F-series parent; F6b and F6c are its concrete continuations. | No retained braid. | 0.00% | — | Use F6c as the live dynamical continuation; no separate F6 campaign is queued. |
 
 ## Scoped-Negative And Demoted Candidates
@@ -262,6 +270,7 @@ This is the authoritative list of named candidates that are not currently viable
 
 | Short name | Current disposition | Controlling issue | All metrics | Available metrics | Re-entry condition |
 | --- | --- | --- | ---: | ---: | --- |
+| `F5` common-cadence circular realization | Demoted within the broader active F5 family. | Exact stationary-centroid and instantaneous-dipole-null conditions force equal radii and reinstate same-circle collision under the declared two-ring common-cadence assumptions. | 0.00% | 0.00% | The revised phase-varying realization is a materially different re-entry path and carries its own evidence; the circular row itself requires a regulator-independent coordinate-coincidence continuation. |
 | `F6b` | Demoted from active search; retained as a scoped-negative F6 realization. | Its exact fixed-radius tetrahedral edge-partition history is continuously noncoincident and passes the declared simple-root screens but fails the measured member-acceleration residual. Magnitude-only, phase-grid, simple-shell, and stationary-anchor repairs are exhausted in the declared screens. | 15.61% | 38.82% | A materially different direction-bearing path or member inventory must close a new exact chart and pass the local residual screen before readmission; rescaling the rejected history is insufficient. |
 | `B1.4` | Deprecated control; not an active candidate. | The all-axial B1 limit has zero transverse internal motion. | — | — | None under the unchanged all-axial definition. Preserve its stable identifiers, records, tests, and hashes for historical reproducibility. |
 

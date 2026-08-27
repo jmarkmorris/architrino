@@ -676,7 +676,7 @@ test("the F1-F6 readiness map gives every required field a closed status and eve
   const closureLedger = markdown
     .split("### Missing-Field Closure Ledger")[1]
     .split("Plainly: these are representation debts")[0];
-  assert.equal(missing.length, 27);
+  assert.equal(missing.length, 24);
   assert.ok(!missing.some(([candidate, field]) => candidate === "F1" && field === "Gauge"));
   assert.ok(!missing.some(([candidate, field]) => candidate === "F1" && field === "Reconstruction"));
   assert.ok(!missing.some(([candidate, field]) => candidate === "F1" && field === "Velocity"));
@@ -724,6 +724,9 @@ test("the F1-F6 readiness map gives every required field a closed status and eve
   const periodicityCells = fieldRows.find((line) => line.startsWith("| Periodicity |"))
     .split("|").slice(1, -1).map((cell) => cell.trim());
   assert.ok(periodicityCells[5].startsWith("`derived`"));
+  const pathOperatorCells = fieldRows.find((line) => line.startsWith("| Path operator |"))
+    .split("|").slice(1, -1).map((cell) => cell.trim());
+  assert.ok(pathOperatorCells[5].startsWith("`derived`"));
   const centeringCells = fieldRows.find((line) => line.startsWith("| Centering |"))
     .split("|").slice(1, -1).map((cell) => cell.trim());
   assert.ok(centeringCells[2].startsWith("`derived`"));
