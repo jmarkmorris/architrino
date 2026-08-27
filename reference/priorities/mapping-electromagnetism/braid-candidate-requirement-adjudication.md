@@ -1,6 +1,6 @@
 # Braid Candidate Requirement Adjudication
 
-Status: CURRENT EVIDENCE-GRADED MATRIX, established 2026-08-25, campaign-reconciled 2026-08-26, and updated for the later F5 phase-varying campaign certificate. This document applies the consolidated requirements inferred in [Inferring Braid Requirements](inferring-braid-requirements.md) to every admitted or exploratory row in the [Braid Candidate Registry](../braid-program/candidate-registry.md) and retains named scoped-negative realizations when their adjudication prevents a rejected row from silently re-entering search. The registry remains authoritative for names, inclusion, concise status, and next action. This matrix owns requirement dispositions and their evidence grades.
+Status: CURRENT EVIDENCE-GRADED MATRIX, reconciled 2026-08-27 with the accepted F5 enclosed-root restart and the independently integrated A/B/C prescribed-history evidence. This document applies the consolidated requirements inferred in [Inferring Braid Requirements](inferring-braid-requirements.md) to every admitted or exploratory row in the [Braid Candidate Registry](../braid-program/candidate-registry.md) and retains named scoped-negative realizations when their adjudication prevents a rejected row from silently re-entering search. The registry remains authoritative for names, inclusion, concise status, and next action. This matrix owns requirement dispositions and their evidence grades.
 
 ## Scope And Non-Score Rule
 
@@ -56,35 +56,39 @@ Plainly: these rows say which physical questions a surviving geometry is capable
 
 The taxonomy rows inherit `H1` from the exact [configuration chart](../braid-program/configuration-chart.md) and the Family-A, Family-B, and Family-C definitions. Taxonomy-level prescribed paths do not pass `H2` through `H5` unless a separate row below names bounded evidence.
 
+The [source-frozen A/B/C census](../braid-program/evidence/2026-08-26-parallel-abc-h1-h2-census.md) establishes continuous prescribed-history `H2` for nineteen current representatives, not their entire parameter families. The [independently integrated root ladders](../braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope) establish scoped `H3 P[M]` only for the completed named representatives and their declared finite `8/32/128` reception grids. Their actual cubic histories, nonzero interpolation allowances, root completeness, repeated receptions and operational admissions are independently checked. These grades do not assert continuous-reception root coverage, ordinary evolution or new metric availability.
+
+Plainly: each new pass belongs to an exact saved representative and the scope actually checked. It is not a pass for every geometry in the parent family or for an EOM-generated future.
+
 | Candidate | `H1` | `H2` | `H3` | `H4` | `H5` | Controlling evidence or scoped negative |
 | --- | --- | --- | --- | --- | --- | --- |
-| `A1` | `P[D]` | `U` | `U` | `U` | `U` | Exact Family-A chart; no candidate-specific ordinary release. |
-| `A1.1` | `P[D]` | `U` | `U` | `U` | `U` | Exact A1 common-frequency locus; prescribed geometry only. |
-| `A1.2` | `P[D]` | `U` | `U` | `U` | `U` | Exact equal-scale cyclic phase locus; prescribed geometry only. |
-| `A1.3` | `P[D]` | `U` | `U` | `U` | `U` | Exact $4{:}2{:}1$ cadence locus; the V1 calibration route does not adjudicate retention. |
-| `A1.4` | `P[D]` | `U` | `U` | `U` | `U` | Exact $3{:}2{:}1$ cadence locus; prescribed geometry only. |
-| `A2` | `P[D]` | `U` | `U` | `U` | `U` | Exact cyclic three-binary chart and bounded analytical diagnostics; no ordinary retained release. |
+| `A1` | `P[D]` | `P[D]` | `U` | `U` | `U` | Frozen representative passes continuous H2; its at/above-field-speed cadence blocks this sub-field H3 route. |
+| `A1.1` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen common-frequency representative passes continuous H2 and the independently accepted prescribed root ladder. |
+| `A1.2` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen equal-scale cyclic representative passes continuous H2 and the independently accepted prescribed root ladder. |
+| `A1.3` | `P[D]` | `P[D]` | `U` | `U` | `U` | Frozen $4{:}2{:}1$ representative passes continuous H2; its at/above-field-speed cadence blocks this sub-field H3 route. BP-007 remains a separate calibration route. |
+| `A1.4` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen $3{:}2{:}1$ representative passes continuous H2 and the independently accepted prescribed root ladder; preserve its narrow certified speed margin. |
+| `A2` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen cyclic representative passes continuous H2 and the independently accepted prescribed root ladder; no ordinary release follows. |
 | `A3` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | One pair-conjugate five-coordinate slice completed the [guarded release](three-binary-five-coordinate-bounded-eom-comparison.md) through $T=0.15$ with certified noncoincidence, complete roots, and speed margin; the pass does not cover full A3. |
-| `A3.1` | `P[D]` | `U` | `U` | `U` | `U` | Exact A3 common-frequency locus; no candidate-specific release. |
-| `A3.2` | `P[D]` | `U` | `U` | `U` | `U` | Exact equal-radius/common-frequency locus; historical diagnostics do not establish present retention. |
-| `A3.3` | `P[D]` | `U` | `U` | `U` | `U` | Exact $4{:}2{:}1$ cadence locus; prescribed geometry only. |
-| `A3.4` | `P[D]` | `U` | `U` | `U` | `U` | Exact $3{:}2{:}1$ cadence locus; prescribed geometry only. |
+| `A3.1` | `P[D]` | `P[D/M]` | `P[M]` | `U` | `U` | Frozen representative passes sampled-plus-continuous-enclosure H2 and the independently accepted prescribed root ladder. |
+| `A3.2` | `P[D]` | `P[D/M]` | `P[M]` | `U` | `U` | Frozen representative passes sampled-plus-continuous-enclosure H2 and the independently accepted prescribed root ladder; preserve its tight clearance. |
+| `A3.3` | `P[D]` | `P[D]` | `U` | `U` | `U` | Frozen $4{:}2{:}1$ representative passes continuous H2; its at/above-field-speed cadence blocks this sub-field H3 route. |
+| `A3.4` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen $3{:}2{:}1$ representative passes continuous H2 and the independently accepted prescribed root ladder. |
 | `B1` | `P[D]` | `U` | `U` | `U` | `U` | Exact common-axis parent chart; no frozen executable covering row. |
-| `B1.1` | `P[D]` | `U` | `U` | `U` | `U` | Prescribed-path score landscape is not ordinary evolution. |
-| `B1.2` | `P[D]` | `U` | `U` | `U` | `U` | Exact high-axial locus and bounded analytical diagnostics only. |
-| `B1.3` | `P[D]` | `U` | `U` | `U` | `U` | Exact all-equatorial locus and bounded analytical diagnostics only. |
-| `C1` | `P[D]` | `U` | `U` | `U` | `U` | Exact twelve-member coaxial chart; historical analytical records do not cover the current identity. |
-| `C2` | `P[D]` | `U` | `U` | `U` | `U` | Exact counter-rotating subset chart; historical analytical records do not cover the current identity. |
-| `C3` | `P[D]` | `U` | `U` | `U` | `U` | Exact two-component C1 locus; former-identity records are historical only. |
-| `C4` | `P[D]` | `U` | `U` | `U` | `U` | Exact counter-rotating two-component C2 locus; former-identity records are historical only. |
-| `C5` | `P[D]` | `U` | `U` | `U` | `U` | Exact all-equatorial C3 locus; V1 calibration is insufficient. |
-| `C6` | `P[D]` | `U` | `U` | `U` | `U` | Exact counter-rotating all-equatorial C4 locus; former-identity records are historical only. |
+| `B1.1` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the prescribed root ladder pass; BP-009's center-pilot decision remains separate. |
+| `B1.2` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen high-axial representative passes continuous H2 and the independently accepted prescribed root ladder. |
+| `B1.3` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Frozen all-equatorial representative passes continuous H2 and the independently accepted prescribed root ladder. |
+| `C1` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the independently accepted prescribed root ladder are closed; no ordinary release follows. |
+| `C2` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the independently accepted prescribed root ladder are closed; no ordinary release follows. |
+| `C3` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the independently accepted prescribed root ladder are closed; no ordinary release follows. |
+| `C4` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the independently accepted prescribed root ladder are closed, with the stated history-depth margin preserved; no ordinary release follows. |
+| `C5` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the independently accepted prescribed root ladder are closed; no ordinary release follows. No direct H2 dependency on BP-007 remains. |
+| `C6` | `P[D]` | `P[D]` | `P[M]` | `U` | `U` | Current-identity continuous H2 and the independently accepted prescribed root ladder are closed; no ordinary release follows. |
 | `SD3` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | The metric-matched five-coordinate row completed the [guarded $T=0.15$ release](three-binary-five-coordinate-bounded-eom-comparison.md) and preserved its cyclic slice, but did not return. |
 | `F1` | `U` | `U` | `U` | `U` | `U` | Bounded seed description only; an executable chart remains undeclared. |
 | `F2` | `U` | `U` | `U` | `U` | `U` | Bounded dual-triad seed description only; association and executable coordinates remain open. |
 | `F3` | `U` | `U` | `U` | `U` | `U` | Bounded near-A2/A3 mode-search description only; no predeclared census. |
 | `F4` | `U` | `U` | `U` | `U` | `U` | Bounded framed-plus-counterflow composition only; integrated association remains open. |
-| `F5` revised phase-varying campaign realization | `P[D/M]` | `P[D/M]` | `U` | `U` | `U` | The [executable and guard certificate](../braid-program/evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) freezes twelve identities and source order, one all-real analytic history restricted to `H=1`, continuous all-66-pair clearance at least `0.12014843873518877`, and a conservative speed bound `0.5` with $c_f=1$; complete causal-root certification remains absent. |
+| `F5` revised phase-varying campaign realization | `P[D/M]` | `P[D/M]` | `P[M]` | `U` | `U` | The [executable and guard certificate](../braid-program/evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) preserves the approved twelve-member history and continuous guards. The independently accepted [enclosed-root restart](../braid-program/evidence/2026-08-27-f5-enclosed-root-closure.md) adds scoped prescribed H3 on its finite `8/32/128` reception ladder, with actual-history enclosure and all 24,192 pair certificates. |
 | `F5` common-cadence circular realization | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; the revised row is materially different and does not erase this scoped negative. |
 | `F6` | `P[D]` | `U` | `U` | `U` | `U` | Exact tetrahedral parent geometry; F6b and F6c own its concrete continuations. |
 | `F6b` (demoted realization) | `P[D]` | `P[D]` | `P[D]` | `F[M]` | `U` | Exact continuous noncoincidence and complete simple roots pass on the prescribed circular history, but its [measured member-acceleration residual](inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen) rejects that isolated history as an EOM realization. |
@@ -92,7 +96,7 @@ The taxonomy rows inherit `H1` from the exact [configuration chart](../braid-pro
 | Three-binary plus six accessories | `P[D]` | `U` | `U` | `U` | `U` | Separate six-accessory inventory and placement strata are declared; the base retained branch and full twelve-member history do not exist. |
 | F6c plus six accessories | `P[D]` | `U` | `U` | `U` | `U` | Separate $2+4$ accessory-site inventory and placement strata are declared; retained F6c and full fourteen-member evolution do not exist. |
 
-Plainly: the revised F5 row joins the candidates with a legal prescribed history but has not yet passed the complete-root gate or any ordinary release. Only one A3 slice, one SD3 row, and F6c have bounded ordinary-release passes, and none has passed `H5`. The F5 circular and F6b failures remain scoped to their exact realizations.
+Plainly: the revised F5 row and the named completed A/B/C representatives pass their declared prescribed-root checks, not ordinary evolution. Only one A3 slice, one SD3 row, and F6c have bounded ordinary-release passes, and none has passed `H5`. The F5 circular and F6b failures remain scoped to their exact realizations.
 
 ## Functional Geometry Adjudication
 
@@ -159,18 +163,18 @@ Plainly: both accessory programs have search coordinates, not associated assembl
 
 No admitted or exploratory candidate currently passes `H5`, so this matrix selects no physical braid. The separately governed allocation percentages in the [candidate registry](../braid-program/candidate-registry.md) do not alter that conclusion. The immediately discriminating rows are:
 
-1. for taxonomy rows other than A3, obtain the first candidate-specific `H2`--`H4` record; for F1--F4, close `H1` before attempting those gates;
+1. preserve the accepted A/B/C H2 records and all sixteen independently integrated H3 ladders, and separately predeclare ordinary evolution; A1, A1.3 and A3.3 need slower-cadence H2 reconfirmation before this sub-field H3 route, B1 still needs a frozen executable row, and F1--F4 must close `H1` first;
 2. for A3 and SD3, extend beyond the one bounded slice only through a separately predeclared coverage campaign, while keeping the existing no-return result scoped to that row;
-3. for the revised F5 row, run a complete-root `H3` audit before ordinary evolution; retain the common-cadence circular no-go as a separate scoped negative;
+3. preserve the revised F5 row's accepted prescribed `H3`, independently checked past-only history and actual EOM data handoff; separately declare ordinary evolution with explicit interaction strength and numerical controls, retaining the common-cadence circular no-go as a separate scoped negative;
 4. for the demoted F6b realization, require a materially different direction-bearing path or inventory row and a new admission audit rather than rescaling one common magnitude;
-5. for F6c, do not refine the completed radial-frequency coordinate without a new coordinated-turn signal; predeclare either a materially different return coordinate or the matched guarded/full-causal-root comparison; and
+5. for F6c, complete the source-bound reconstructed-family root coverage and residual measurement under the [member-acceleration predeclaration](../braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md), preserving separate historical-score attribution; do not refine the completed radial-frequency coordinate without a new coordinated-turn signal; and
 6. for accessory-bearing continuations, do not advance beyond site definition until the underlying braid passes `H5`.
 
 Plainly: the matrix does not say which candidate is best. It says exactly what each candidate has established, what it has failed in a bounded scope, and which missing hard requirement prevents a physical verdict.
 
 ### 2026-08-26 Campaign Effect
 
-The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) changes no `H1`--`H5`, `R1`--`R6`, or accessory cell. Its disposition audit is:
+The completed [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) changed no `H1`--`H5`, `R1`--`R6`, or accessory cell. The following historical disposition audit is preserved; the later evidence described below supersedes its missing-H2 and missing-H3 blockers where explicitly stated.
 
 | Candidates | Campaign disposition | Controlling requirement boundary |
 | --- | --- | --- |
@@ -184,15 +188,25 @@ The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all
 | `F6c` | `STASIS` | bounded `H2`--`H4 P[M]`; `H5 U`; no eligible return and no justified radial-frequency refinement |
 | Three-binary plus six accessories, F6c plus six accessories | `STASIS` | `ACC1 U` until the named base braid passes `H5` |
 
-No candidate is `ADVANCED`, and no candidate passes `H5`. The campaign accepts a common centered-RMS ruler and wake-crossing clock for future predeclared measurements but rejects retrospective score backfill. It also derives that a nonbinary `M09` traversal fraction needs an additional continuous lift coordinate; turns, crossings, elapsed time, and shape matches remain ineligible.
+That campaign marked no candidate `ADVANCED`, and no candidate passed `H5`. It accepted a common centered-RMS ruler and wake-crossing clock for future predeclared measurements but rejected retrospective score backfill. It also derived that a nonbinary `M09` traversal fraction needs an additional continuous lift coordinate; turns, crossings, elapsed time, and shape matches remain ineligible.
 
-Plainly: the hard-gate matrix stays exactly as it was because the campaign found blockers and scoped failures, not new gate-closing evidence. The new result is complete disposition coverage and an explicit mathematical reason that partial return progress still cannot be scored.
+Plainly: that historical campaign found blockers and scoped failures rather than new gate-closing evidence. Its disposition table is not the current evidence overlay and does not erase the later accepted results.
 
 ### Complete-Registry Follow-On Effect
 
-The later [complete-registry closure campaign](../braid-program/campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 phase-varying realization from incomplete representation to `H1 P[D/M]` and `H2 P[D/M]`. The operator subsequently approved that exact scientific row for prescribed display. Its bounded selection and continuous-guard certificate were predeclared as score-ineligible, so no `M01`--`M14` availability or percentage changes. `H3` remains `U` until all required ordered-pair and self-history roots are certified with an analytic interpolation enclosure on the immutable scientific row. The common-cadence circular realization remains `H2 F[D]`.
+The later [complete-registry closure campaign](../braid-program/campaigns/2026-08-complete-braid-registry-closure.md) advanced the revised F5 phase-varying realization from incomplete representation to `H1 P[D/M]` and `H2 P[D/M]`. The operator approved that exact scientific row for prescribed display. The separately accepted [enclosed-root restart](../braid-program/evidence/2026-08-27-f5-enclosed-root-closure.md) now establishes scoped prescribed `H3 P[M]`: 24,192 ordered-pair certificates on the declared `8/32/128` reception ladder, with independently checked actual-history interpolation allowances, complete ordinary-root and self-exclusion census, repeated phases, source/build bindings and operational admission. Its [past-only preparation and actual EOM data handoff](../braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#strength-independent-f5-evolution-prerequisite) are also independently accepted. Interaction strength, a validated evolution request, numerical controls and ordinary release remain separate. No `M01`--`M14` availability or percentage changes, and the common-cadence circular realization remains `H2 F[D]`.
 
-Plainly: the repaired row is now eligible for a causal-root audit, not for an EOM retention claim. The old failed row stays failed within its own assumptions.
+Plainly: the approved F5 geometry has passed its declared root audit. This does not show that the EOM solver generates its prescribed future or retains it. The old failed realization remains failed only within its own assumptions.
+
+### Parallel A/B/C Follow-On Effect
+
+The [nineteen-representative H1/H2 census](../braid-program/evidence/2026-08-26-parallel-abc-h1-h2-census.md) closes the historical missing-H2 and stale-current-identity blockers on its frozen sources. `A3.1` and `A3.2` use `H2 P[D/M]`; the other seventeen use `H2 P[D]`. `A1`, `A1.3` and `A3.3` remain outside the strict sub-field admission for this root route. The subsequent [four-worker root campaign and independent integration](../braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope) close scoped prescribed `H3 P[M]` for `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`, `A3.2`, `A3.4`, `B1.1`, `B1.2`, `B1.3`, `C1`, `C2`, `C3`, `C4`, `C5` and `C6`, totaling 205,632 pair certificates. All sixteen complete ladders and the final dispatcher are independently integrated. BP-009 still owns the separate B1.1 center-pilot decision; C5 has no direct H2 dependency on BP-007. None of these updates changes a functional or accessory cell, score, H4 or H5.
+
+Plainly: the geometry-admission work and all sixteen complete prescribed-root ladders are finished. Later ordinary-evolution work must not be blocked by the superseded historical status table.
+
+Changed source or build bindings, incomplete history or pair coverage, failed independent enclosure checks, inconsistent repeated receptions, or failed timed publication would overturn the corresponding acceptance. The three at/above-field-speed rows require a newly frozen slower cadence and H2 reconfirmation, not silent alteration of their existing specifications.
+
+Plainly: a pass remains tied to its original evidence. These updates neither tune a candidate nor convert an unfinished calculation into a failure.
 
 ## Weighted Score Boundary
 

@@ -2,6 +2,13 @@
 
 This file holds dated decisions, implementation status, validation results, failed paths, migration handoffs, and operator/developer communication for the EOM priority area. Keep strategy and status in [priorities.md](priorities.md), accepted executable tasks in [work-queue.md](work-queue.md), provisional ideas in [brainstorming.md](brainstorming.md), and the defining contract in [application-and-engine-contract.md](./contracts/application-and-engine-contract.md).
 
+## 2026-08-26 — CT-004 checkpoint/restart factorization audit
+
+- **Measured:** a normalized-$c_f=1$ one-path constant-history control with accepted-step growth produced equal exact-cut fingerprints but different uninterrupted and checkpoint-resumed accepted-step partitions and final retained-history fingerprints.
+- **Derived implementation cause:** `consecutive_growth_headroom_steps` controls growth after two accepted headroom steps, but it is local to the evolution invocation and absent from the evolution certificate, checkpoint, and resume reconstruction. Restart initializes it to zero.
+- **Boundary:** the inertial endpoint remained equal. This is a complete-record and identical-discrete-decision parity defect under `EOM-003`, not a physical trajectory, Master-Equation, or checkpoint-corruption claim.
+- **Handoff:** preserve or exactly reconstruct the counter and add an adaptive exact-cut parity regression. The focused evidence and CT-004 tool assessment are in [CT-004 Application — EOM Restart Factorization Audit](../category-theory/ct004-eom-restart-factorization-audit.md).
+
 ## 2026-07-26 — Priority Directory Renamed
 
 - Renamed the priority owner directory from `app-eom` to `app-solver`.

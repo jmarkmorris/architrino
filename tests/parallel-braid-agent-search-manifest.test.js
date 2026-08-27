@@ -106,3 +106,43 @@ test("compact Monte Carlo CLI rejects shared or missing output paths before work
   assert.notEqual(collision.status, 0);
   assert.match(collision.stderr, /already exists/u);
 });
+
+test("endpoint residual CLI rejects shared or missing output paths before work", () => {
+  const missing = spawnSync(
+    process.execPath,
+    ["scripts/eom/run-endpoint-residual-search.mjs"],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert.notEqual(missing.status, 0);
+  assert.match(missing.stderr, /--output is required/u);
+
+  const directory = mkdtempSync(path.join(tmpdir(), "endpoint-output-"));
+  const existing = path.join(directory, "result.json");
+  writeLaunchPlanOnce(existing, { occupied: true });
+  const collision = spawnSync(
+    process.execPath,
+    ["scripts/eom/run-endpoint-residual-search.mjs", "--output", existing],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert.notEqual(collision.status, 0);
+  assert.match(collision.stderr, /already exists/u);
+});
+
+test("common-axis CLI requires a unique output directory before work", () => {
+  const missing = spawnSync(
+    process.execPath,
+    ["scripts/eom/run-common-axis-braid-pilot.mjs"],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert.notEqual(missing.status, 0);
+  assert.match(missing.stderr, /--output is required/u);
+
+  const existing = mkdtempSync(path.join(tmpdir(), "common-axis-output-"));
+  const collision = spawnSync(
+    process.execPath,
+    ["scripts/eom/run-common-axis-braid-pilot.mjs", "--output", existing],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert.notEqual(collision.status, 0);
+  assert.match(collision.stderr, /already exists/u);
+});

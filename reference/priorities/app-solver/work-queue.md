@@ -43,8 +43,8 @@ This is the canonical execution ledger for accepted App Solver work. [priorities
 - **Status:** In progress
 - **Priority object:** `persistent_long_run_checkpoint_and_campaign_driver`
 - **Request / acceptance:** Keep exact retained histories resident, retire prefixes only under solver-owned causal-support certification, and provide checkpoint/resume, crash-surviving manifests, progress, cancellation, deterministic replay, and reusable campaign execution.
-- **Evidence / blocker:** Exact disk-backed history and clearance certification exist; general checkpoint/resume and campaign orchestration remain open. Depends on EOM-002.
-- **Completion:** Interrupted and uninterrupted continuations agree under the declared budget, with complete manifest and history provenance.
+- **Evidence / blocker:** Exact disk-backed history and clearance certification exist; general checkpoint/resume and campaign orchestration remain open. The [CT-004 restart factorization audit](../category-theory/ct004-eom-restart-factorization-audit.md) measured a concrete parity defect: the checkpoint bundle omits the adaptive controller's consecutive-growth-headroom count, so an exact-cut resume can change discrete step decisions and the complete retained-history fingerprint. Depends on EOM-002.
+- **Completion:** Preserve or lawfully reconstruct every continuation-critical controller field, including the growth-headroom count, and add an adaptive exact-cut regression. Interrupted and uninterrupted continuations must agree in discrete decisions and complete accepted records under the declared budget, with complete manifest and history provenance.
 
 ### EOM-004 — Precision convergence and failure policy
 

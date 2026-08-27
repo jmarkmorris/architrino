@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import ROUND_CEILING, Decimal, localcontext
+from decimal import Decimal, localcontext
 from hashlib import sha256
 from typing import Mapping, Sequence
 
@@ -91,14 +91,26 @@ def _vector_midpoint_delta(left: IntervalVector, right: IntervalVector) -> Decim
 def _history_endpoint_error(
     history: PiecewisePolynomialHistory,
     time: Decimal,
+    *,
+    position_center: Sequence[Decimal],
+    velocity_center: Sequence[Decimal],
 ) -> tuple[Decimal, Decimal]:
+    """Enclose the endpoint about the actual c0/c1 tokens to be stored."""
+
     state_time = DecimalInterval.point(time, history.precision)
     position, velocity = history.state_interval(state_time)
-    with localcontext() as context:
-        context.prec = history.precision
-        context.rounding = ROUND_CEILING
-        position_radius = max(+(component.width / Decimal(2)) for component in position)
-        velocity_radius = max(+(component.width / Decimal(2)) for component in velocity)
+    # A rounded center need not equal the exact interval midpoint. Directed
+    # subtraction encloses both endpoint distances before selecting their max.
+    position_radius = max(
+        (position[index] - DecimalInterval.point(position_center[index], history.precision))
+        .absolute().upper
+        for index in range(3)
+    )
+    velocity_radius = max(
+        (velocity[index] - DecimalInterval.point(velocity_center[index], history.precision))
+        .absolute().upper
+        for index in range(3)
+    )
     return position_radius, velocity_radius
 
 
@@ -634,7 +646,10 @@ def _append_candidate_segments(
     for path_id, history in histories:
         position, velocity = history.segments[-1].nominal_state(start_time)
         propagated_position_error, propagated_velocity_error = (
-            _history_endpoint_error(history, start_time)
+            _history_endpoint_error(
+                history, start_time,
+                position_center=position, velocity_center=velocity,
+            )
         )
         coefficients: list[tuple[Decimal, Decimal, Decimal, Decimal]] = []
         for index in range(3):

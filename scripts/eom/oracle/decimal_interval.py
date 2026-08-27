@@ -104,7 +104,9 @@ class DecimalInterval:
         return DecimalInterval(lower, upper, self.precision)
 
     def __neg__(self) -> "DecimalInterval":
-        return DecimalInterval(-self.upper, -self.lower, self.precision)
+        return DecimalInterval(
+            self.upper.copy_negate(), self.lower.copy_negate(), self.precision
+        )
 
     def __mul__(self, other: "DecimalInterval") -> "DecimalInterval":
         self._require_compatible(other)
@@ -196,11 +198,15 @@ class DecimalInterval:
         lower_guard = guarded_sqrt(self.lower)
         upper_guard = guarded_sqrt(self.upper)
         if self.lower == self.upper:
-            with localcontext() as context:
-                context.prec = self.precision + 12
-                if lower_guard * lower_guard == self.lower:
-                    exact = +lower_guard
-                    return DecimalInterval(exact, exact, self.precision)
+            # A rounded product can equal the input even when the rounded
+            # square root is irrational. Test exactness with integer ratios.
+            root_numerator, root_denominator = lower_guard.as_integer_ratio()
+            value_numerator, value_denominator = self.lower.as_integer_ratio()
+            if (
+                root_numerator * root_numerator * value_denominator
+                == value_numerator * root_denominator * root_denominator
+            ):
+                return DecimalInterval(lower_guard, lower_guard, self.precision)
         with localcontext() as context:
             context.prec = self.precision + 12
             lower_guard = context.next_minus(lower_guard)
@@ -247,15 +253,19 @@ class DecimalInterval:
         if self.lower >= 0:
             return self
         if self.upper <= 0:
-            return DecimalInterval(-self.upper, -self.lower, self.precision)
-        upper = max(-self.lower, self.upper)
+            return DecimalInterval(
+                self.upper.copy_negate(), self.lower.copy_negate(), self.precision
+            )
+        upper = max(self.lower.copy_negate(), self.upper)
         return DecimalInterval(Decimal(0), upper, self.precision)
 
     def inflate(self, radius: object) -> "DecimalInterval":
         amount = exact_decimal(radius)
         if amount < 0:
             raise ValueError("interval inflation radius must be nonnegative")
-        return self + DecimalInterval.bounds(-amount, amount, self.precision)
+        return self + DecimalInterval.bounds(
+            amount.copy_negate(), amount, self.precision
+        )
 
     def hull(self, other: "DecimalInterval") -> "DecimalInterval":
         self._require_compatible(other)

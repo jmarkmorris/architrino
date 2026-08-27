@@ -1,12 +1,22 @@
 # F6c Normalized Member-Acceleration Predeclaration
 
-Status: PREDECLARED, AWAITING VERIFICATION, NOT EXECUTED, 2026-08-26.
+Status: v2 — SUBJECT PROVENANCE, NAMED REFERENCE REPAIRS, AND DATA EXPORT INDEPENDENTLY VERIFIED; ACCELERATION MEASUREMENT NOT EXECUTED, 2026-08-27.
 
 ## Binding Outcome
 
 This packet binds the admitted `F6c` candidate to one exact unblocking artifact for `M05` and `M06`: an independently evaluated, dimensionless, member-level Master Equation acceleration-residual measurement on the same refined dual-turn evidence generation that currently supplies the F6c `M02`--`M04` and `M08` rows. It does not authorize an EOM run, make either metric available, change a score, close `H5`, or establish retention.
 
 Plainly: the next F6c equation-consistency test now has one named history, one ruler, one interval, and one independent comparison rule. Merely writing this packet earns no evidence.
+
+## Version 2 Subject-Provenance Correction
+
+The subject is the durably preserved [refined Stage B summary](2026-08-27-f6c-refined-stage-b-summary.json) and [refined Stage B row manifest](2026-08-27-f6c-refined-stage-b-manifest.json), not the Stage A release state. The summary's `search.continuationCenterProvenance` names Stage A row `12`; its sole analyzed row is Stage B row `0`, with the same run ID and fifteen selected history parameters. Stage B refines the integration step from `0.004` to `0.002`, history-segment step from `0.01` to `0.005`, and root tolerance from `0.00001` to `0.000005`, and records the trajectory through `0.13`. The Stage A and Stage B protocol fingerprints remain distinct: `fnv1a64:f748eaa24603b62f` and `fnv1a64:6b87d1f138d33e13`. No assertion of byte-identical trajectories or interchangeable release rates is made.
+
+The durable summary has SHA-256 `9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d`. It preserves every byte of the original local summary, SHA-256 `659dca66f8064ddf36faca8887ddabbd8c82c775be11e4dc14961f82e0ac99f9`, followed only by one final newline; the original remains unchanged. The durable row manifest is byte-identical to its local source, SHA-256 `cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b`. Both copies were checked against their declared source hashes before preservation. The original sources remain at `.tmp/f6c-dual-turn-stage-b-row12-refined-v2/search-summary.json` and its `row-000/run-manifest.json`.
+
+Plainly: the selected geometry is unchanged, but the refined calculation has its own exact record. This version names and preserves that record without borrowing the earlier calculation's slightly different rate numbers.
+
+Independent read-only review accepted this v2 provenance correction at document SHA-256 `54860069fc4e5aa2b49929a62b7be42acba6a11c7111e805bd3bed30e85eb546`, before this review-status update. It verified both durable copies, their original sources, all fifteen selected parameters, the exact release quotation, refinement controls, labels, source hashes, and the unchanged ruler. The separately discovered uncertainty-radius, derivative-coefficient, join-admission, exact and merged root-width, and stored-center error-propagation defects are repaired and independently reviewed, with the final 74 affected checks passing; exact source/test generations are tracked in the [launch-readiness packet](2026-08-27-braid-search-launch-readiness.md#bp-010-reference-blocker). The separately reviewed offline data export is also complete. These bounded results do not certify every reference behavior or authorize a run; continuous-reception interval bounds and the independent acceleration measurement remain outstanding.
 
 ## Why This Obligation Is Not A New Gate
 
@@ -22,6 +32,8 @@ Plainly: this is the missing measurement recipe for two existing score rows, not
 | measurement scope | refined dual-turn row from the 2026-08-24 bounded campaign |
 | evidence packet | [F6c dual-turn return search](../../mapping-electromagnetism/f6c-dual-turn-return-search-2026-08-24.json) |
 | evidence-packet SHA-256 | `342e8fc12f61f677a869e6af357691937415c0bf646746f565f1578215676b86` |
+| refined summary | [Durable Stage B summary](2026-08-27-f6c-refined-stage-b-summary.json), SHA-256 `9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d` |
+| refined row manifest | [Durable Stage B manifest](2026-08-27-f6c-refined-stage-b-manifest.json), SHA-256 `cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b` |
 | run ID | `f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1` |
 | refined model fingerprint | `fnv1a64:6b87d1f138d33e13` |
 | generating specification | `F6c-nonlinear-return-map-search-v2-return-continuation` |
@@ -32,7 +44,18 @@ Plainly: this is the missing measurement recipe for two existing score rows, not
 | certified interval | $I=[0,0.13]$ |
 | existing refined subject | step `0.002`; history-segment step `0.005`; root tolerance `0.000005`; 80 accepted and 0 rejected steps |
 
-The frozen release coordinates and rates are those in the evidence packet's `stageA.qualifiedRow.releaseState`; all fifteen prescribed-history parameters are those in `stageA.qualifiedRow.parameters`. A faithful reconstruction must reproduce those literal values, the eight persistent labels, and the refined model fingerprint before measurement.
+The checked-in evidence packet's `stageA.qualifiedRow` owns the candidate selection, not the refined release rates. The authoritative reduced release audit is the durable summary's `rows[0].result.completeStateRecords.release`, quoted literally here:
+
+```json
+{
+  "positive": {"h": 0.3229024917117783, "rho": 0.34604987619024485, "theta": 1.7390083487928554, "hDot": 0.05793332034872768, "rhoDot": 0.0034138698807418544, "thetaDot": 0.5882775003577766},
+  "negative": {"h": 0.4084610265005255, "rho": 0.41856143156703257, "theta": -1.1184456250827515, "hDot": 0.07840243440862339, "rhoDot": -0.049304356437627005, "thetaDot": 1.4509280527337247}
+}
+```
+
+Plainly: these are the refined record's two sector coordinates and rates. They are an audit target, not a replacement for all eight Cartesian histories or their numerical error bounds.
+
+Reconstruction must bind the durable row manifest's exact `f6cCoordinate`, `seeds`, `coupling`, retained-history controls, and integration controls, and the summary's exact fifteen `parameters` literals. In particular, the manifest's recorded coupling is the string `10.304229970992187`; it is not replaced with another candidate's normalization. The manifest's input-coordinate literals and the summary's reconstructed release-coordinate literals have distinct roles and must not be silently substituted for each other. Every refined-rung export must preserve all eight member identities and the complete accepted retained history; a release snapshot alone is insufficient.
 
 The operator-selected [small asymmetric counter-breathing display representative](../configurations/f6c-polarity-resolved-harmonic.v2.json) is explicitly excluded. It is a prescribed visualization from a different evidence generation. The radial-frequency continuation is also excluded because it changes the history and its declared coordinate is already exhausted below its material-improvement gate.
 
@@ -154,4 +177,6 @@ Excluded claims: retained braid, stability, equilibrium, binding, physical reali
 
 Execution must produce one machine-readable packet under `reference/priorities/braid-program/evidence/` containing the frozen identity, source and instrument hashes, per-rung raw residuals and enclosures, complete admission ledger, peak witness, wall-time measurements, disposition, claim grades, falsifiers, and excluded claims. Until that packet exists and passes independent review, F6c remains `STASIS`, `M05/M06` remain unavailable, and no EOM execution is authorized by this predeclaration.
 
-Closure goal: implement and independently review the frozen exporter and normalized member-acceleration evaluator without modifying the EOM solver or the frozen Python reference, then execute the three-rung packet only after this predeclaration is accepted.
+The [launch-readiness packet](2026-08-27-braid-search-launch-readiness.md#bp-010-reference-blocker) records the independently reviewed offline adapter and actual data-only export. All 14,080 original segment records and 648 accepted-frame rows preserve their exact tokens. This closes the data bridge only; continuous-reception interval bounds and the independent acceleration measurement remain outstanding.
+
+Closure goal: preserve the verified Stage B data bridge and repaired references while closing the continuous-reception measurement interface before any three-rung execution.

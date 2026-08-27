@@ -9682,6 +9682,8 @@ Plainly: this packet narrows the search and makes the proof obligations explicit
 
 ## 2026-08-26 Braid Evaluation Dispositions
 
+This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised F5 geometry and all sixteen declared sub-field A/B/C rows without advancing H4, H5, retention or physical claims.
+
 The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the F5 common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the F6b circular realization at its measured `H4` member-acceleration failure, and `STASIS` to F6c at `H5`. The distinct revised phase-varying F5 creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
 
 The B1/B1.1--B1.3 and C1--C6 charts also remain in `STASIS` at `H2`. Their exact `R1/R2` capability passes and failures do not adjudicate a universal hard gate. Historical C-family records remain ineligible for the current identities.

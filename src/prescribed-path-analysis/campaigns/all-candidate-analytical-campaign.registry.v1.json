@@ -164,6 +164,12 @@
       "reason": "F6b is a scoped-negative reproducibility control and is excluded from active analytical comparison."
     }
   ],
+  "routedCatalogCandidates": [
+    {
+      "candidateId": "f5-phase-varying-campaign-v2",
+      "reason": "F5 is an active creative phase-varying geometry with its own exact individual-worldline operator, H1/H2 guard certificate, independent interpolation-enclosure prerequisite, and separately gated H3 restart. The A/B/C circular-relationship sampler cannot represent this family, so F5 is routed to its dedicated instruments without demotion, exclusion from scientific work, score change, or negative disposition."
+    }
+  ],
   "checkedCampaigns": [],
   "excludedCampaigns": []
 }

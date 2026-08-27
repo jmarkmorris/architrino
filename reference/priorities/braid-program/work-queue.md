@@ -4,29 +4,40 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 
 ## Ranked Next Objects
 
-1. `parallel_braid_prescribed_search` — [Parallel prescribed search](#parallel-braid-prescribed-search). Status: `Ready for bounded agent dispatch`.
-2. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
-3. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
-4. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
-5. `undirected_ensemble_campaign` — [BP-004](#bp-004--undirected-ensemble-campaign). Status: `Deferred / blocked`.
-6. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
-7. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-8. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
-9. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Awaiting verification`.
-10. `complete_braid_registry_closure` — [Complete registry campaign](#complete-braid-registry-closure-campaign). Status: `Stopped by operator; restart scoped to F5 H3`.
+1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
+2. `configuration_chart_completion` — [BP-002](#bp-002--configuration-chart-completion). Status: `Queued`.
+3. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
+4. `undirected_ensemble_campaign` — [BP-004](#bp-004--undirected-ensemble-campaign). Status: `Deferred / blocked`.
+5. `mining_disposition_review` — [BP-005](#bp-005--mining-disposition-review). Status: `Queued`.
+6. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
+7. `a1_3_c5_v2_adjudication_packet` — [BP-007](#bp-007--a13c5-v2-adjudication-packet). Status: `Deferred / blocked`.
+8. `f6c_normalized_member_acceleration` — [BP-010](#bp-010--f6c-normalized-member-acceleration-predeclaration). Status: `Provenance, references, reconstructed-history containment, and uniform guards verified; measurement outstanding`.
 
-## Ready for bounded agent dispatch
+## Shared search prerequisites
+
+### Sixteen-row A/B/C H3 pilot
+
+- **Status:** Complete. Two-phase pilot, all sixteen complete ladders, and final dispatcher independently accepted at scoped prescribed H3.
+- **Subject:** The sixteen fixed sub-field candidates in the [root reference](evidence/2026-08-27-abc-subfield-root-reference.md). No new geometry selection is required for these rows.
+- **Completed prerequisite:** The independent fixed-point calculation verifies positive continuous clearance, speed below one, and a two-time distance bound below retained depth two for every row. The derived inventory is exactly one ordinary nonself root and no positive-delay self root. The full source-bound report and independent instrument review are preserved; neither validates an EOM adapter.
+- **Completed pilot:** All 32 actual phases and 2,448 original certificates pass independent audit in `363.281642125` seconds through final output. The [measured resource contract](evidence/2026-08-27-abc-h3-parallel-resource-plan.md) preserves exact receipts and the six C-series resource returns. This is the complete two-phase pilot, not candidate-ladder H3 closure.
+- **Completed ladder:** The unchanged `8/32/128` machine run is complete under the independently accepted [four-worker plan](evidence/2026-08-27-abc-h3-parallel-resource-plan.v1.json). The [complete-ladder audit](evidence/2026-08-27-braid-search-launch-readiness.md#independently-accepted-complete-ladders) closes scoped prescribed `H3 P[M]` for `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`, `A3.2`, `A3.4`, `B1.1`, `B1.2`, `B1.3`, `C1`, `C2`, `C3`, `C4`, `C5`, and `C6`, totaling 205,632 certificates. No declared candidate or dispatcher integration remains outstanding. C1–C6 have the explicit reviewed 3,600-second resource return; A/B retain 1,800 seconds per rung.
+- **Boundary:** The old H1/H2 manifest and mathematical references remain unchanged. The pilot grants no geometry tuning, score change, ordinary evolution, retention, stability, or physical claim.
+
+## Completed bounded agent dispatch
 
 ### Parallel braid prescribed search
 
-- **Status:** Ready for bounded agent dispatch.
+- **Status:** Complete; all ten ready lanes returned and the coordinator completed an independent integration audit.
 - **Dispatch owner:** [Parallel agent search manifest](campaigns/parallel-agent-braid-search.v1.json).
 - **Authorized work:** Ten source-frozen, report-only lanes cover current A/B/C `H1/H2` rows, F1–F4 representation debt, and the independent interpolation-enclosure prerequisite for the approved F5 row. The checked plan dispatches them in two waves under an eight-agent, six-worker ceiling.
 - **Isolation:** Every lane has a unique create-exclusive local output root. Search agents do not edit repository owners or write the analytical database; the coordinator integrates a complete manifest-ordered census.
-- **Boundary:** The manifest authorizes no `H3` root run, ordinary EOM evolution, score change, promotion, binding, retention, stability, particle identity, or physical-realization claim. The F5 `H3` restart and ordinary evolution remain explicitly dependency-gated.
-- **Completion:** Every ready lane returns a source-bound report or an exact incomplete/failed-guard disposition, and the coordinator verifies the complete lane census before any owner edit.
+- **Boundary:** The manifest authorizes no `H3` root run, ordinary EOM evolution, score change, promotion, binding, retention, stability, particle identity, or physical-realization claim. The separately authorized F5 `H3` restart is now complete; ordinary evolution retains its distinct predeclaration requirement.
+- **Result:** All nineteen A/B/C child rows pass `H1` and continuous `H2`; sixteen are strictly sub-field, while `A1`, `A1.3`, and `A3.3` are blocked before H3 by speed. F1/F2 have executable-representation proposals that still require operator selection. F3/F4 now have bounded structural censuses but still lack the named executable fields recorded in the readiness matrix. The independent F5 interpolation enclosure was frozen as its own evidence generation and subsequently consumed by the separately accepted enclosed-root restart.
+- **Evidence:** [Parallel A/B/C H1/H2 census](evidence/2026-08-26-parallel-abc-h1-h2-census.md) and [F5 independent interpolation enclosure](evidence/2026-08-26-f5-independent-interpolation-enclosure.md).
+- **Completion:** Closed. No ready lane remains undispositioned.
 
-Plainly: this queue item opens broad parallel geometry work while keeping the dynamical F5 restart on its separate evidence chain.
+Plainly: this completed dispatch covered the broad prescribed-geometry prerequisites while keeping the F5 restart on its separate evidence chain. The later H3 ladder has its own declaration and live status above.
 
 ## All-Candidate Evaluation Disposition Register
 
@@ -34,25 +45,28 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 
 | Candidate scope | Disposition | Queue status | Exact next object before execution |
 | --- | --- | --- | --- |
-| `A1`, `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`--`A3.4` | `STASIS` | Not queued | one current-identity exact `H2` admission packet; use a strictly sub-field history before any `H3` campaign |
-| `A1.3`, `C5` | `STASIS` | `BP-007` remains deferred / blocked | predeclared V2 packet and cost pilot, or an explicitly substituted direct `H2` route |
+| `A1`, `A1.3`, `A3.3` | `STASIS` | H2 closed; blocked before H3 by speed | freeze a slower-cadence current-identity history, then reconfirm H2 before any H3 predeclaration |
+| `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`, `A3.2`, `A3.4` | `STASIS` | H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `A3` measured slice, `SD3` | `STASIS` | Not queued | independent same-history member-acceleration packet or new campaign predeclared under the accepted ruler/clock and full leakage contract |
 | `B1` | `STASIS` | `BP-002` remains queued | chart ratification followed by one frozen executable slice |
-| `B1.1` | `STASIS` | `BP-009` remains awaiting verification | current-identity binding and separate authorization of the center pilot |
-| `B1.2`, `B1.3` | `STASIS` | Not queued | current-source $c_f=1$ `H2/H3` packet with independent root verification |
-| `C1`--`C4`, `C6` | `STASIS` | Not queued | renewed display inspection and fresh current-identity analytical records before any evolution campaign |
-| `F1`--`F4` | `STASIS` | Not queued | exact executable `H1` chart; F3 additionally requires a frozen nontrivial mode/return census and F4 one integrated inventory |
+| `B1.1` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed; `BP-009` compatibility receipt verified | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; score-free freeze acceptance and center-pilot authorization remain distinct operator decisions |
+| `B1.2`, `B1.3` | `STASIS` | current-source H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
+| `C1`--`C4` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
+| `C5`, `C6` | `STASIS` | current-identity H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; `C5` has no remaining direct H2 dependency on `BP-007`; no score or retention promotion |
+| `F1`, `F2` | `STASIS` | executable-representation proposals available; operator selection required | ratify the proposed F1 circulation/sign sheet and F2 component-relation sheet before creating executable JSON; polarity is already declared or derived |
+| `F3` | `STASIS` | six-dimensional relative representation and return-sheet census closed; no selected mode/history | derive a response or return operator about an occupied history before asking for an operator selection |
+| `F4` | `STASIS` | eighteen-member structural inventory closed; integrated identity, pose, cadence, and history remain absent | define the framed variant, association relation, source order, relative pose, and coupled history before asking for an operator selection |
 | `F5` common-cadence circular realization | `DEMOTED` | No execution queued | materially repaired nonobstructed chart or regulator-independent coordinate-coincidence continuation |
 | `F6` | `STASIS` | No separate campaign queued | materially distinct continuation with its own exact chart |
 | `F6b` circular realization | `DEMOTED` | No repair campaign queued | new direction-bearing path or inventory and fresh admission audit; no rescaling or exhausted repair |
-| `F6c` | `STASIS` | `BP-010` awaiting verification; no execution authorized | verify and implement the [same-generation normalized member-acceleration predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md); alternatively predeclare a materially different coordinated-turn/full-root campaign; do not continue radial-frequency tuning |
+| `F6c` | `STASIS` | `BP-010` provenance, named reference repairs, export, reconstructed-family containment, uniform guards and conditional root-box library reviewed; actual measurement outstanding | complete source-bound family root-box coverage and the residual/quadrature consumer for the [normalized member-acceleration predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md); no replacement-history selection is needed for this diagnostic, while historical-score attribution remains separate; preserve the repaired references and do not continue radial-frequency tuning |
 | Both accessory-bearing continuations | `STASIS` | No accessory campaign queued | named base-braid `H5` certificate |
 
 The shared metric prerequisite is partially closed: future `M07`, A3/SD3 `M08`, and `M10`--`M13` packets have an accepted centered-RMS ruler, wake-crossing clock, and same-event exact-action reporting boundary. Nonbinary `M09` remains blocked on a candidate-native continuous lift coordinate or independently justified canonical reference path. Existing records are not backfilled.
 
 Plainly: this register does not launch thirty campaigns. It prevents an old or missing measurement from being treated as progress and says exactly which artifact must exist before each candidate can consume compute again.
 
-The later complete-registry campaign supplies the materially repaired F5 chart required by the historical F5 row: the revised phase-varying realization now passes `H1/H2`, and the operator has approved the exact row for prescribed display. The interrupted nominal root pilot is preserved as provisional evidence; a fresh enclosed complete-root `H3` audit is the next execution object. The common-cadence circular realization remains demoted and is not rerun.
+The later complete-registry campaign supplies the materially repaired F5 chart required by the historical F5 row: the revised phase-varying realization passes `H1/H2`, and the operator has approved the exact row for prescribed display. The interrupted nominal root pilot remains provisional; the separate [enclosed-root restart](evidence/2026-08-27-f5-enclosed-root-closure.md) now closes scoped `H3 P[M]` on the declared reception ladder. Ordinary EOM evolution is the next separately predeclared object. The common-cadence circular realization remains demoted and is not rerun.
 
 ## Neutral-Atlas Review Action Register
 
@@ -136,8 +150,8 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 
 - **Status:** Deferred / blocked
 - **Priority object:** `a1_3_c5_v2_adjudication_packet`
-- **Request / acceptance:** Predeclare a receipt-bound, purge-aware full adjudication of all 172 rows with raw retention and separately authored independent acceptance.
-- **Evidence / blocker:** V1 is closed as calibration-insufficient; no execution is authorized until packet and cost pilot pass fail-closed review.
+- **Request / acceptance:** Preserve the optional V2 calibration route by predeclaring a receipt-bound, purge-aware full adjudication of all 172 rows with raw retention and separately authored independent acceptance.
+- **Evidence / blocker:** V1 is closed as calibration-insufficient. The parallel current-source census independently closes H2 for both A1.3 and C5, so BP-007 is no longer their H2 admission route and C5 has no direct dependency on it. A1.3 separately requires a slower-cadence history before H3 because its current prescribed speed exceeds the normalized field-speed ceiling. No V2 calibration execution is authorized until its packet and cost pilot pass fail-closed review.
 - **Completion:** The V2 packet is accepted before execution, or the calibration route is retired.
 
 ## Stopped historical campaigns
@@ -148,23 +162,28 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Campaign owner:** [Complete Braid Registry Closure Campaign](campaigns/2026-08-complete-braid-registry-closure.md).
 - **Current result:** The [F5 phase-varying executable and guard certificate](evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) advances the revised realization to `H1/H2 P[D/M]` without changing a score. The operator subsequently approved that exact scientific row for prescribed display.
 - **Preserved provisional evidence:** The [nominal root-pilot receipt](evidence/2026-08-26-f5-nominal-root-pilot-provisional-receipt.md) records that all 18,432 ordered rows passed with zero analytic interpolation-error width and therefore did not close `H3`; the post-stop enclosure instrument and unrebuilt adapter edits are not promoted.
-- **Current next object:** Execute the [clean enclosed complete-root restart](evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md) on the approved immutable scientific row. Only after that certificate passes may an ordinary EOM evolution begin from the retained prehistory `[-1,0]`.
-- **Completion:** Historical campaign scope is closed by the operator stop. The fresh F5 `H3` restart owns any further execution.
+- **Accepted prerequisite:** The [independent interpolation enclosure](evidence/2026-08-26-f5-independent-interpolation-enclosure.md) freezes nonzero position and velocity widths for the approved immutable scientific row and passes its primitive controls and dense residual bug check.
+- **Fresh restart completed:** The independently reviewed [enclosed-root closure](evidence/2026-08-27-f5-enclosed-root-closure.md) accepts actual nominal/API-domain containment and all 24,192 ordered pair certificates across `8/32/128` receptions as scoped `H3 P[M]`. The stopped orchestration receipts and the successful validator-only profiling retry are preserved with their exact operational history. No metric, score, or physical claim changes.
+- **Current next object:** Separately predeclare ordinary EOM evolution from retained prehistory `[-1,0]`; select the coupling scale and explicit numerical controls without borrowing unrelated fixture defaults. The exact prescribed future must remain comparison data, never the generated future. The shared metric horizon is one centered-RMS wake-crossing time if that metric is later authorized.
+- **Completion:** Historical campaign scope is closed by the operator stop; its separate clean F5 `H3` restart is now complete at the bounded prescribed-history grade. Ordinary evolution remains open.
 
-## Awaiting verification
+## Returned or awaiting verification
 
 ### BP-010 — F6c normalized member-acceleration predeclaration
 
-- **Status:** Awaiting verification
+- **Status:** Provenance, named reference repairs, reconstructed-history containment, and uniform guards independently verified; measurement outstanding
 - **Priority object:** `f6c_normalized_member_acceleration`
 - **Result:** The [predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) binds `M05/M06` to the same refined dual-turn evidence generation that supplies the current F6c `M02`--`M04` and `M08` rows. It freezes the exact run identity, centered-RMS ruler, full $[0,0.13]$ interval, independent reference boundary, three-rung refinement ladder, fail-closed rules, falsifiers, and excluded claims.
-- **Review boundary:** Verification may accept or return the measurement contract. The packet does not authorize execution, make a metric available, change the F6c score or `STASIS` disposition, continue radial-frequency tuning, or close `H5`.
+- **Verification result:** Version 2 durably binds the refined Stage B summary (SHA-256 `9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d`) and row manifest (SHA-256 `cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b`), quotes its exact release literals, and distinguishes the Stage A selection from its refined continuation. Independent review verifies all fifteen parameters, fingerprints, controls, identities, source hashes, and normalization. The summary adds only one final newline to its preserved local original; the manifest is byte-identical. No historical source was overwritten.
+- **Review boundary:** Provenance acceptance does not authorize exporter implementation or execution, make a metric available, change the F6c score or `STASIS` disposition, continue radial-frequency tuning, or close `H5`.
+- **Named blockers closed:** The [launch-readiness receipt](evidence/2026-08-27-braid-search-launch-readiness.md#bp-010-reference-blocker) records independently reviewed repairs to uncertainty radii, derivative coefficients, join admission, exact and merged root widths, and stored-center error propagation, with all 74 affected checks passing. The reviewed offline exporter preserved all original segment and frame tokens. Subsequent independent data proofs establish a nonempty anchored reconstructed family contained within the original allowances and uniform speed, separation, and oldest-boundary guards, without EOM execution. The conditional root-box library is reviewed, and the family-diagnostic subject requires no replacement-history selection. Source-bound actual root-box coverage, the residual/quadrature consumer and independent three-rung measurement remain outstanding. Historical-score attribution is a separate stronger obligation; these local results do not establish exact historical trajectory identity or authorize EOM execution.
 
 ### BP-009 — B1.1 score-landscape manifest freeze
 
 - **Status:** Awaiting verification
 - **Priority object:** `b1_1_score_landscape_manifest_freeze`
 - **Result:** The [frozen review packet](evidence/2026-07-27-b1-1-score-landscape-manifest-freeze.md) binds the exact 377-row manifest, complete-cycle protocol, write-once output paths, implementation hashes, null-score dispositions, and separately authored dense-root audit. The dry-run receipt records zero root evaluations and zero scores.
+- **Current verification:** The [new compatibility receipt](evidence/2026-08-27-b1-1-score-landscape-manifest-freeze-refresh.v1.json) passes explicit-path checking against current implementation bindings; the historical receipt and sealed 377-row manifest remain unchanged. Exactly four JavaScript implementation hashes changed. This verifies compatibility with historical v1 artifacts, not independent reconstruction from live v2 geometry, operator acceptance, or an executed score result. See the [launch-readiness receipt](evidence/2026-08-27-braid-search-launch-readiness.md#bp-009-current-identity).
 - **Review boundary:** Operator review may accept or reject the freeze. It does not authorize the center-only pilot, the remaining 376 rows, the multi-frequency slice, any random or broad search, threshold relaxation, or a solver campaign.
 
 ## Verified

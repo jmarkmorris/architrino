@@ -2,11 +2,7 @@
 
 import { createHash } from "node:crypto";
 import {
-  existsSync,
-  mkdirSync,
   readFileSync,
-  unlinkSync,
-  writeFileSync,
 } from "node:fs";
 import path from "node:path";
 
@@ -21,6 +17,10 @@ import {
   sampleFullConstraintPreservingTaxonomy,
   sampleLocalReferenceNeighborhood,
 } from "../../src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs";
+import {
+  acquireExclusiveCampaignOutputLease,
+  publishExclusiveCampaignOutput,
+} from "../../src/prescribed-path-analysis/ExclusiveCampaignOutput.mjs";
 
 function fail(message) {
   throw new Error(message);
@@ -103,23 +103,6 @@ function help() {
   ].join("\n"));
 }
 
-function acquireOutputLease(outputPath) {
-  mkdirSync(path.dirname(outputPath), { recursive: true });
-  if (existsSync(outputPath)) fail(`${outputPath} already exists.`);
-  const leasePath = `${outputPath}.RUNNING.lock`;
-  writeFileSync(leasePath, `${JSON.stringify({
-    schema: "prescribed-path-analysis/compact-monte-carlo-output-lease.v1",
-    outputPath,
-    pid: process.pid,
-    host: process.env.HOSTNAME ?? null,
-    startedAt: new Date().toISOString(),
-    argv: process.argv.slice(2),
-    recovery:
-      "inspect the recorded process identity and output before removing a stale lease; never delete an unknown live lease",
-  }, null, 2)}\n`, { flag: "wx" });
-  return leasePath;
-}
-
 function selectedCandidates(loaded, options) {
   const familyIds = new Set(options.familyIds);
   const memberIds = new Set(options.memberIds);
@@ -166,7 +149,9 @@ if (options.help) {
   process.exit(0);
 }
 
-const outputLeasePath = acquireOutputLease(options.outputPath);
+const outputLeasePath = acquireExclusiveCampaignOutputLease(options.outputPath, {
+  schema: "prescribed-path-analysis/compact-monte-carlo-output-lease.v1",
+});
 const loaded = loadAllCandidateCampaignRegistry(options.registryPath);
 if (loaded.protocol.eventEvaluator.fieldSpeed !== 1) {
   fail("the canonical complete-cycle protocol must declare fieldSpeed 1.");
@@ -220,12 +205,11 @@ const result = options.calibrate
     implementationIdentity: identity,
     onProgress: progress,
   });
-writeFileSync(
+publishExclusiveCampaignOutput(
   options.outputPath,
   `${JSON.stringify(result, null, 2)}\n`,
-  { flag: "wx" },
+  outputLeasePath,
 );
-unlinkSync(outputLeasePath);
 const report = options.calibrate
   ? {
     outputPath: options.outputPath,

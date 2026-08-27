@@ -80,6 +80,16 @@ target_compile_options(eom_history_profile_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 
+find_path(F5_ADAPTER_BOOST_INCLUDE_DIR boost/property_tree/json_parser.hpp
+  HINTS ${MPFR_INCLUDE_DIR} REQUIRED
+)
+add_executable(eom_f5_enclosed_root_cli native/eom_f5_enclosed_root_cli.cpp)
+target_include_directories(eom_f5_enclosed_root_cli PRIVATE ${F5_ADAPTER_BOOST_INCLUDE_DIR})
+target_link_libraries(eom_f5_enclosed_root_cli PRIVATE eom_native)
+target_compile_options(eom_f5_enclosed_root_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
+)
+
 add_executable(eom_native_acceleration_fixture_cli
   native/eom_native_acceleration_fixture_cli.cpp
 )

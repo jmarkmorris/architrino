@@ -694,6 +694,20 @@ The result is also important for philosophy-history. Many successful theories pr
 
 **Next artifact:** apply the CT-004 factorization template to one live, independently checkable consumer—preferably EOM restart sufficiency or finite-history truncation—then record whether it detects an omission or merely restates the existing contract. That comparison decides whether the tool deserves renewed active use.
 
+### First measured application: EOM restart sufficiency
+
+The preferred test was carried out on the live EOM checkpoint boundary. The factorization audit first corrected the reduced object: restart depends on a checkpoint plus a compatible request template, not on the checkpoint file alone. It then compared that bundle with the complete state consumed by the next controller decision.
+
+The audit found one omitted continuation field. Accepted-step growth requires two consecutive steps with sufficient headroom, tracked by `consecutive_growth_headroom_steps`. The checkpoint preserves the current step size and certificate-cost cooldown but not this count, and resumed evolution initializes it to zero. An exact-cut adaptive control consequently produced different accepted partitions for uninterrupted and restarted evolution: `0.01, 0.01, 0.02, 0.02, 0.02` versus `0.01 | 0.01, 0.01, 0.02, 0.02, 0.01`. The checkpoint-cut fingerprints matched, while the final complete retained-history fingerprints did not.
+
+The constant inertial endpoint remained equal, so this is not evidence of a physical trajectory error. It is measured evidence that the implemented restart projection is insufficient for the declared complete-record and identical-discrete-decision parity obligation. The focused result and raw boundary are recorded in [CT-004 Application — EOM Restart Factorization Audit](ct004-eom-restart-factorization-audit.md), and the repair is owned by App Solver `EOM-003`.
+
+This changes the methodological verdict in a narrow but meaningful way. Category theory has now done more than redescribe a hypothetical obstruction: its typed projection question found a real omitted state field at a cross-lane interface. It still has no unique physical payoff, because an ordinary state-machine or serialization audit can express the defect after it is known. The practical value is the reusable discipline of asking what information must cross a boundary before endpoint agreement or formal commutativity is accepted as process equivalence.
+
+**Claim level:** measured implementation audit plus a code-level explanation; no substrate-physics, retained-assembly, or recovery claim.
+
+**Falsifier:** after the EOM owner preserves or reconstructs the missing controller state, the same exact-cut adaptive test must produce identical discrete decisions and complete accepted records. If the categorical template repeatedly finds no omission beyond what the simpler owner already states, its broader practical-value assessment should be reduced again.
+
 The principal failure mode is structure laundering: an open physical problem is restated as an elegant diagram, and formal coherence is treated as a derivation. Each proposed structure must therefore name its physical carrier, simpler adequate tool, unique categorical payoff, owner, claim level, assumptions, proof burden, falsifier, and stop condition.
 
 Category theory should remain removable scaffolding unless it produces a nontrivial obstruction, a uniqueness or reconstruction theorem, an independently verified prediction, cross-observable compression without retuning, or proof that simpler group, topology, and delay-equation tools are inadequate. Grand monoidal, operadic, stack, topos, or higher-category programs remain premature without such a concrete need.

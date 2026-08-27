@@ -1,0 +1,54 @@
+{
+  "schema": "braid-program/abc-candidate-ladder-resource-plan.v1",
+  "resourceBudgetReviewed": true,
+  "independentReviewStatus": "accepted",
+  "h3EvidenceEligible": false,
+  "rungs": [8, 32, 128],
+  "maximumConcurrentCandidates": 4,
+  "totalEomWorkers": 4,
+  "eomWorkersPerCandidate": 1,
+  "wallLimitSecondsPerCandidateRung": 1800,
+  "cohortWallLimitPrecedence": "accepted-hash-bound-cohort-override-otherwise-default",
+  "resourceObservation": {
+    "cadenceSeconds": 15,
+    "commandTimeoutMs": 2000,
+    "memoryPressureCommand": "/usr/bin/memory_pressure",
+    "minimumSystemFreePercent": 20,
+    "planningMemoryBytesPerCandidate": 2147483648,
+    "planningSharedMemoryBytes": 1073741824,
+    "planningOutputBytes": 171798691840,
+    "minimumFreeDiskBytesAtLaunch": 171798691840,
+    "minimumFreeDiskBytesDuringRun": 17179869184,
+    "onContact": "stop-new-dispatch-cancel-owned-active-jobs-preserve-resource-interruption"
+  },
+  "candidates": ["a1-1", "a1-2", "a1-4", "a2", "a3-1", "a3-2", "a3-4", "b1-1", "b1-2", "b1-3", "c1", "c2", "c3", "c4", "c5", "c6"],
+  "resourceReturns": [],
+  "cohorts": [
+    {
+      "id": "a-b",
+      "candidates": ["a1-1", "a1-2", "a1-4", "a2", "a3-1", "a3-2", "a3-4", "b1-1", "b1-2", "b1-3"],
+      "wallLimitSeconds": 1800,
+      "resourceReturn": null
+    },
+    {
+      "id": "c",
+      "candidates": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "wallLimitSeconds": 3600,
+      "resourceReturn": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-abc-h3-parallel-resource-plan.md",
+        "sha256": "ca2cffa258486720eab14f6613d9912a46bf31bd7a14f71c34c47ae91a3e9601",
+        "independentReviewStatus": "accepted"
+      }
+    }
+  ],
+  "pilotAdmission": {
+    "path": ".local-data/braid-analysis/abc-h3-root-pilot-20260827-v1/serial-pilot-20260827-v1/outer-admission.json",
+    "sha256": "ded3e09eb666007aa0067e7871e5519d4a3dc944cd619555227ccead8726ee84"
+  },
+  "buildReceipt": {
+    "path": ".local-data/braid-analysis/abc-h3-root-pilot-20260827-v1/recorded-build-20260827-v2/preparation.json",
+    "sha256": "be6f2e43cc2c608a568d128c79535eacc628ea80cfc62cfe273af7c434243866"
+  },
+  "runnerSha256": "03df64f107254a0435f82599963f80476f053ab750740557d4d60987cfda36ca",
+  "dispatcherSha256": "d8a67ca8b121f36ba726410b25ea5f547d9d1b1305e5341de5a390fba75101ca"
+}

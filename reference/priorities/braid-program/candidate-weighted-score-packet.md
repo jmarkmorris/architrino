@@ -172,7 +172,7 @@ Plainly: these omissions are not lost work. They identify the exact reporting an
 
 The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 common-cadence circular realization, which remains `DEMOTED` at `H2 F[D]`. The revised phase-varying F5 creative geometry is a distinct active exploratory row. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
 
-The later [complete-registry campaign](campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 realization to `H1/H2 P[D/M]` without changing a metric. The active revised row remains `0.00% / —`; the demoted circular row retains `0.00% / 0.00%`. No evidence generation is combined.
+The later [complete-registry campaign](campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 realization to `H1/H2 P[D/M]` without changing a metric. Its separate [enclosed-root restart](evidence/2026-08-27-f5-enclosed-root-closure.md) adds only scoped `H3 P[M]` on the declared `8/32/128` reception ladder, not ordinary evolution or a score. The active revised row remains `0.00% / —`; the demoted circular row retains `0.00% / 0.00%`. No evidence generation is combined.
 
 No score changed. An independent arithmetic audit reproduced every approved, equal-metric, Early, and Late percentage from the raw values and applicability sets. The all-metric ordering among rows with available evidence is unchanged under the sensitivity schemes, while the available-metric ordering among the A3 slice, SD3, and F6c remains weight-sensitive. Hard-gate ordering remains controlling.
 
@@ -182,36 +182,40 @@ Plainly: the campaign finished the disposition audit, not a leaderboard. It foun
 
 For `A3`, `SD3`, `F6b`, and `F6c`, `M01` is predeclared `N/A`, so the all-metric denominator is $100-8=92$. Every other braid option retains the full denominator of 100. The earned weighted credits and available denominators are:
 
+The later [parallel A/B/C H1/H2 census](evidence/2026-08-26-parallel-abc-h1-h2-census.md) updates only the hard-gate overlay below. Its prescribed-history search was score-ineligible, so every earned credit, denominator, percentage, `STASIS` disposition, and availability boundary remains unchanged. The separate [complete-root ladder audit](evidence/2026-08-27-braid-search-launch-readiness.md#independently-accepted-complete-ladders) adds scoped prescribed `H3 P[M]` for `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`, `A3.2`, `A3.4`, `B1.1`, `B1.2`, `B1.3`, `C1`, `C2`, `C3`, `C4`, `C5`, and `C6` only. It changes no metric, credit, availability, percentage, or historical disposition and supplies no ordinary-evolution result.
+
+Plainly: closing a geometry admission gate tells us which test may run next. It does not award evidence points for dynamics that were not tested.
+
 | Candidate | Earned weighted credit | All-metric denominator | Available-metric denominator | All metrics | Available metrics | Hard-gate overlay |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| `A1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
+| `A1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A1.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `A3`, measured five-coordinate slice | $13.0339127952$ | $92$ | $17$ | **14.17%** | **76.67%** | `H1 P[D]`; `H2`--`H4 P[M]` on this slice; `H5 U` |
-| `A3.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A3.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A3.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A3.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
+| `A3.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A3.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A3.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A3.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `B1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `B1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `B1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `B1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C5` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
+| `B1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `B1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `B1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C5` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `SD3` | $13.2042876444$ | $92$ | $17$ | **14.35%** | **77.67%** | `H1 P[D]`; `H2`--`H4 P[M]`; `H5 U` |
 | `F6c` | $16.9949793165$ | $92$ | $22$ | **18.47%** | **77.25%** | `H1 P[D]`; `H2`--`H4 P[M]`; `H5 U` |
 | `F1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
-| `F5`, revised phase-varying campaign realization | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D/M]`; `H2 P[D/M]`; `H3`--`H5 U`; guard search score-ineligible |
+| `F5`, revised phase-varying campaign realization | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D/M]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U`; score-ineligible |
 | `F5`, common-cadence circular realization | $0$ | $100$ | $8$ | **0.00%** | **0.00%** | `H1 P[D]`; **`H2 F[D]`**; `H3`--`H5 U` |
 | `F6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
 | `F6b`, demoted realization | $14.3641715877$ | $92$ | $37$ | **15.61%** | **38.82%** | `H1`--`H3 P`; **`H4 F[M]`**; `H5 U` |
@@ -230,7 +234,7 @@ The two alternative group-weight schemes preserve the original within-group prop
 | `F6b`, demoted realization | 15.61% / 38.82% | 18.53% / 48.19% | 19.07% / 37.97% | 12.28% / 40.17% |
 | `F6c` | 18.47% / 77.25% | 21.76% / 70.73% | 21.45% / 76.35% | 15.59% / 78.47% |
 
-The all-metric evidence ordering among these five rows is unchanged by the three alternatives, but the available-metric ordering of F6c versus SD3 and the A3 slice changes. Any decision based on small differences among their available percentages is therefore weight-sensitive. Hard-gate ordering is unchanged: F5 and the declared F6b realization remain excluded unless materially repaired, and no candidate passes `H5`.
+The all-metric evidence ordering among these five rows is unchanged by the three alternatives, but the available-metric ordering of F6c versus SD3 and the A3 slice changes. Any decision based on small differences among their available percentages is therefore weight-sensitive. Hard-gate ordering is unchanged: the F5 common-cadence circular realization and the declared F6b realization remain excluded unless materially repaired, and no candidate passes `H5`.
 
 Plainly: the broad evidence total is not an artifact of the initial weights in this small snapshot, but the apparent quality ordering among the favorable early packets is. The next allocation should therefore target missing discriminating metrics, not defend a one-point difference in an early score.
 
