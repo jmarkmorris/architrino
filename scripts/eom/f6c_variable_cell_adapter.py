@@ -104,6 +104,19 @@ PARENT_ARCHIVE_SOURCES=(
  ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6',48579),
  ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0',20889),
 )
+# Exact second accepted parent generation, read only as historical metadata.
+# Selection also requires its original plan tuple; parent number alone is not
+# authority to route a different wrapper generation.
+PARENT_TWO_ARCHIVE_PLAN=(PREFIX+'2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json',
+ '928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',51509)
+PARENT_TWO_ARCHIVE_SOURCES=(
+ ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397),
+ ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836),
+ ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615),
+ ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419),
+ ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022),
+ ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303),
+)
 # Exact historical nonexecuting documents changed only by later link edits.
 # Their original mathematical/source identities remain the consumed identities.
 ANCESTRY_ARCHIVE_SOURCES=(
@@ -1113,6 +1126,16 @@ def _fresh_evidence_pool(pool,selections,deadline,already_refined):
     return out
 
 
+def _historical_parent_sources(descriptor,root):
+    """Finite nonexecuting archive generation, never a current-source override."""
+    if descriptor is not None:
+        require(type(descriptor)is ParentRefinement,'inert historical parent descriptor')
+        path,digest,size=PARENT_TWO_ARCHIVE_PLAN
+        if type(descriptor.parent_index)is int and descriptor.parent_index==2 and _source_binding(descriptor.plan)==dict(path=str(root/path),sha256=digest,bytes=size):
+            return PARENT_TWO_ARCHIVE_SOURCES
+    return PARENT_ARCHIVE_SOURCES
+
+
 def _refinement_descriptors(values,root,owner_sha):
     """Inert immutable declarations, checked before opening any source."""
     require(type(values)is tuple and len(values)<=159,'ordered unique admitted refinements')
@@ -1154,7 +1177,7 @@ def _refinement_descriptors(values,root,owner_sha):
                 if legacy:require(old['sha256']=='7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'
                     and old['bytes']==318717,'exact historical owner original tuple')
             else:
-                expected={r:dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ARCHIVE_SOURCES+ANCESTRY_ARCHIVE_SOURCES}
+                expected={r:dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in _historical_parent_sources(value,root)+ANCESTRY_ARCHIVE_SOURCES}
                 require(relation.role in expected and old==expected[relation.role],'exact nonexecuting historical source tuple')
             require(old['path']not in original_paths,'duplicate historical original path');original_paths.add(old['path'])
             require(new['path']!=old['path']and (new['sha256'],new['bytes'])==(old['sha256'],old['bytes']),
@@ -1180,11 +1203,11 @@ class _HistoricalReader:
     archive and live owner separately. All physical handles receive the ordinary
     final recheck. This is not fallback discovery or a generic source override.
     """
-    def __init__(self,pool,relations,expected_owner,expected_sources=None):
+    def __init__(self,pool,relations,expected_owner,expected_sources=None,*,descriptor=None):
         self.pool=pool;self.relations=relations;self.used=set();self.routes={}
         require(type(relations)is tuple and len(relations)<=7,'bounded historical mappings')
         expected={'acceptanceOwner':pool.w.normalized(expected_owner,pool.root)}
-        allowed={r:dict(path=str(pool.root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ARCHIVE_SOURCES}
+        allowed={r:dict(path=str(pool.root/p),sha256=h,bytes=n)for r,p,h,n in _historical_parent_sources(descriptor,pool.root)}
         for role,b in (expected_sources or {}).items():
             require(role in allowed,'historical source role')
             b=pool.w.normalized(b,pool.root)
@@ -1290,7 +1313,7 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
     c=w.decode_operational(files['comparison'].data)
     op=w.decode_operational(files['operation'].data,document_class='operational-receipt')
     ancestry_roles={r for r,_,_,_ in ANCESTRY_ARCHIVE_SOURCES}
-    reader=_HistoricalReader(pool,tuple(r for r in descriptor.archived_sources if r.role not in ancestry_roles),p['acceptanceOwner'],historical_sources)
+    reader=_HistoricalReader(pool,tuple(r for r in descriptor.archived_sources if r.role not in ancestry_roles),p['acceptanceOwner'],historical_sources,descriptor=descriptor)
     _owner_declaration(reader.read_binding(p['acceptanceOwner'],capture=True))
     scope=f'original-parent-{index}-emission-refinement'
     require(p['schema']=='braid-program/f6c-parent-emission-refinement-launch.v1'and p['scope']==scope

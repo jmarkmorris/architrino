@@ -1636,6 +1636,121 @@ class GenericParentTests(unittest.TestCase):
                 with self.subTest(mode=mode),self.assertRaises(ValueError):subject._authenticate_parent(*changed)
 
 
+class ExactParentTwoArchiveTests(unittest.TestCase):
+    """Literal historical tuples; inert routing is not byte or science acceptance."""
+    descriptor=ParentRefinementTests.descriptor
+    generic=GenericParentTests.generic
+    EXPECTED=(
+        ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397),
+        ('producerControls','tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836),
+        ('verifier','scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615),
+        ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419),
+        ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022),
+        ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303),
+    )
+
+    def selection(self):
+        plan=subject.SourceBinding(str(ROOT/'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),
+            '928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',51509)
+        rows=[]
+        for role,path,digest,size in self.EXPECTED:
+            old=subject.SourceBinding(str(ROOT/path),digest,size)
+            rows.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-parent2-archives'/role))))
+        return replace(self.generic(),plan=plan,archived_sources=tuple(rows))
+
+    def test_literal_six_and_full_nine_routes(self):
+        value=self.selection()
+        self.assertEqual(subject._historical_parent_sources(value,ROOT),self.EXPECTED)
+        old=subject.SourceBinding(str(ROOT/subject.OWNER),'b'*64,10)
+        extra=[subject.ArchivedSource('acceptanceOwner',old,replace(old,path=str(ROOT/'synthetic-parent2-archives/owner')))]
+        for role,path,digest,size in (
+            ('memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),
+            ('fullResourcePlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021)):
+            old=subject.SourceBinding(str(ROOT/path),digest,size)
+            extra.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-parent2-archives'/role))))
+        value=replace(value,archived_sources=value.archived_sources+tuple(extra))
+        self.assertEqual(len(value.archived_sources),9)
+        self.assertEqual(subject._refinement_descriptors((value,),ROOT,'c'*64),(value,))
+        legacy=self.descriptor()
+        self.assertEqual(subject._refinement_descriptors((legacy,value),ROOT,'c'*64),(legacy,value))
+        self.assertEqual(subject._historical_parent_sources(legacy,ROOT),subject.PARENT_ARCHIVE_SOURCES)
+        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=value.archived_sources+(extra[0],)),),ROOT,'c'*64)
+
+    def test_generation_requires_exact_plan_and_index(self):
+        value=self.selection()
+        mutations=[replace(value,parent_index=i)for i in (1,3,159)]
+        mutations.extend(replace(value,plan=replace(value.plan,**change))for change in (
+            dict(path=str(ROOT/'different-plan.json')),dict(sha256='a'*64),dict(bytes=51508)))
+        for bad in mutations:
+            with self.subTest(bad=bad.parent_index,plan=bad.plan):
+                with self.assertRaises(ValueError):subject._refinement_descriptors((bad,),ROOT,'c'*64)
+        # Mixing a parent-one wrapper tuple into the pinned parent-two generation
+        # must not silently select the older per-role fallback.
+        role,path,digest,size=subject.PARENT_ARCHIVE_SOURCES[0]
+        old=subject.SourceBinding(str(ROOT/path),digest,size)
+        mixed=subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'mixed-generation')))
+        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(mixed,)+value.archived_sources[1:]),),ROOT,'c'*64)
+
+    def test_each_exact_tuple_and_route_rejects_mutation(self):
+        value=self.selection()
+        for relation in value.archived_sources:
+            for bad in (
+                replace(relation,role='runtime'),
+                replace(relation,original=replace(relation.original,path=str(ROOT/'wrong-source.py'))),
+                replace(relation,original=replace(relation.original,sha256='f'*64)),
+                replace(relation,original=replace(relation.original,bytes=relation.original.bytes+1)),
+                replace(relation,archive=relation.original),
+                replace(relation,archive=replace(relation.archive,sha256='e'*64)),
+                replace(relation,archive=replace(relation.archive,bytes=1)),
+                replace(relation,archive=replace(relation.archive,path=str(ROOT/subject.SELF)))):
+                with self.subTest(role=relation.role,bad=bad):
+                    with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(bad,)),),ROOT,'c'*64)
+        with self.assertRaises(ValueError):subject._refinement_descriptors((replace(value,archived_sources=(value.archived_sources[0],)*2),),ROOT,'c'*64)
+
+    def test_inert_reader_preserves_logical_tuple_and_exact_physical_route(self):
+        value=self.selection();calls=[]
+        def read(b,*,capture=False):
+            self.assertFalse(capture);calls.append(deepcopy(b));return dict(b)
+        pool=SimpleNamespace(root=ROOT,w=w,read_binding=read)
+        owner=asdict(value.closure.owner);sources={r.role:asdict(r.original)for r in value.archived_sources}
+        reader=subject._HistoricalReader(pool,value.archived_sources,owner,sources,descriptor=value)
+        with self.assertRaisesRegex(ValueError,'unused'):reader.finish()
+        for relation in value.archived_sources:
+            logical=asdict(relation.original)
+            self.assertEqual(reader.read_binding(logical),logical)
+        self.assertEqual(calls,[asdict(r.archive)for r in value.archived_sources])
+        self.assertEqual(reader.finish(),value.archived_sources)
+        self.assertFalse(hasattr(pool,'read_identity'))
+        with self.assertRaises(ValueError):reader.read_binding(dict(sources['producer'],bytes=1))
+        with self.assertRaises(ValueError):subject._HistoricalReader(pool,value.archived_sources,owner,sources)
+        with self.assertRaises(ValueError):subject._HistoricalReader(pool,value.archived_sources,owner,sources,descriptor=replace(value,parent_index=3))
+        with self.assertRaises(ValueError):subject._HistoricalReader(pool,value.archived_sources,owner,{},descriptor=value)
+        with self.assertRaises(ValueError):subject._HistoricalReader(pool,(value.archived_sources[0],)*2,owner,sources,descriptor=value)
+
+    def test_real_tiny_parent2_archive_retains_current_five_field_closure(self):
+        # Tiny payloads substitute only the table at this existing private IO
+        # seam. Literal public-tuple controls above remain separate.
+        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
+            root=Path(temp).resolve();source=root/'scripts/old.py';source.parent.mkdir();source.write_bytes(b'new')
+            archive=root/'old-archive';archive.write_bytes(b'old')
+            old=subject.SourceBinding(str(source),hsh(b'old'),3)
+            relation=subject.ArchivedSource('producer',old,replace(old,path=str(archive)))
+            plan=replace(self.selection().plan,path=str(root/Path(self.selection().plan.path).relative_to(ROOT)))
+            descriptor=replace(self.selection(),plan=plan)
+            owner=dict(path=str(root/subject.OWNER),sha256='a'*64,bytes=1)
+            pool=subject._Pool(stack,w,root,lambda:None);pool.capture(source,hsh(b'new'))
+            with patch.object(subject,'PARENT_TWO_ARCHIVE_SOURCES',(('producer','scripts/old.py',old.sha256,3),)):
+                reader=subject._HistoricalReader(pool,(relation,),owner,{'producer':asdict(old)},descriptor=descriptor)
+                self.assertEqual(reader.read_binding(asdict(old),capture=True),b'old');reader.finish();pool.recheck()
+                self.assertEqual(pool.files[str(source)].digest,hsh(b'new'))
+                fd=pool.files[str(archive)].fd;initial=pool.files[str(archive)].initial
+                self.assertEqual(initial.st_dev,archive.stat().st_dev)
+                self.assertNotEqual(initial.st_ino,pool.files[str(source)].initial.st_ino)
+                replacement=root/'replacement';replacement.write_bytes(b'old');os.replace(replacement,archive)
+                with self.assertRaises(ValueError):pool.recheck()
+        with self.assertRaises(OSError):os.fstat(fd)
+
+
 class FreshImmutableMetadataControls(unittest.TestCase):
     def test_exact_frozen_result_is_copied_without_reference_changes(self):
         binding={'path':'/fixture/rows','sha256':'a'*64,'bytes':12}

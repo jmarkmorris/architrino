@@ -13371,16 +13371,16 @@ Minimal geometric reduction: the generation manifold is the three-node chain $(1
 $$
 s_{12}=e^{-\kappa_{12}},\qquad
 s_{23}=e^{-\kappa_{23}},\qquad
-s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=\xi\,s_{12}s_{23},
-\quad \xi\equiv e^{-\sigma}\in(0,1]
+s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=e^{-\sigma}\,s_{12}s_{23},
+\quad e^{-\sigma}\in(0,1]
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-58898312379d9609)
-This captures hierarchy with three real parameters for magnitudes. Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport. Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
+This captures hierarchy with three real parameters for magnitudes. $e^{-\sigma}$ is the **Direct-Transport Suppression Factor** for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport. Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
 
 Holonomy closure postulate (no extra phase fit):
 $$
-\cos\delta=\xi=\frac{s_{13}}{s_{12}s_{23}}
+\cos\delta=e^{-\sigma}=\frac{s_{13}}{s_{12}s_{23}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ccc19aa7c2baec0f)
@@ -13400,7 +13400,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1f26ada8d78b598)
 gives
 $$
-\kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad \xi=0.401
+\kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad e^{-\sigma}=0.401
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-abbd720bd46fe80f)
@@ -13576,12 +13576,12 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 
 ##### Working hypotheses
 1. **Basis misalignment source:** The weak-coupling-triad orientation couples weakly to shielding-induced response axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
-2. **Matrix structure:** Off-diagonal CKM elements scale as geometric transport amplitudes on the generation chain, with $s_{13}=\xi s_{12}s_{23}$ enforcing the observed hierarchy.
-3. **CP phase:** The CKM phase is identified with a transport holonomy angle constrained by $\cos\delta=\xi$.
+2. **Matrix structure:** Off-diagonal CKM elements scale as geometric transport amplitudes on the generation chain, with $s_{13}=e^{-\sigma} s_{12}s_{23}$ enforcing the observed hierarchy.
+3. **CP phase:** The CKM phase is identified with a transport holonomy angle constrained by $\cos\delta=e^{-\sigma}$.
 
 ##### What to compute next
 - Derive $(\kappa_{12},\kappa_{23},\sigma)$ from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry (radii ratios, wake exposure, and triad transport), rather than CKM calibration.
-- Prove or falsify the holonomy closure law $\cos\delta=\xi$ from explicit triad transport on the Noether sea background.
+- Prove or falsify the holonomy closure law $\cos\delta=e^{-\sigma}$ from explicit triad transport on the Noether sea background.
 - Quantify scale dependence: test whether the fitted actions remain stable under renormalization-scale translation of CKM inputs.
 - Simulate wake exposure to confirm/deny a forward-hemisphere weak-coupling triad; falsify the model if trailing-site coupling dominates.
 - Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.

@@ -43,7 +43,7 @@ test("generated equation registry covers every corpus display equation", () => {
   assert.equal(result.files, 199);
   assert.equal(result.equations, 4598);
   assert.equal(result.promoted, 23);
-  assert.equal(result.symbolDefinitions, 29625);
+  assert.equal(result.symbolDefinitions, 29624);
 });
 
 test("every equation registry record is addressable, sourced, and symbol-defined", () => {
@@ -194,6 +194,34 @@ test("period renaming preserves equation links, absolute-time arguments, and pat
     assert.ok(symbol, `${id}: ${symbolTex}`);
     assert.equal(symbol.definitionSource, "source-context", id);
     assert.match(symbol.definition, /cycle[ -]period/u, id);
+  }
+});
+
+test("weak-mixing suppression uses its defined exponential without changing equation identities", () => {
+  const sourcePath = "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md";
+  const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
+  const sourceDisplays = new Map(
+    [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)]
+      .map((match) => [match[2], match[1].trim()])
+  );
+  const expected = new Map([
+    ["corpus-equation-58898312379d9609", String.raw`s_{12}=e^{-\kappa_{12}},\qquad
+s_{23}=e^{-\kappa_{23}},\qquad
+s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=e^{-\sigma}\,s_{12}s_{23},
+\quad e^{-\sigma}\in(0,1]`],
+    ["corpus-equation-ccc19aa7c2baec0f", String.raw`\cos\delta=e^{-\sigma}=\frac{s_{13}}{s_{12}s_{23}}`],
+    ["corpus-equation-abbd720bd46fe80f", String.raw`\kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad e^{-\sigma}=0.401`],
+  ]);
+  assert.doesNotMatch(source, /\\xi(?![A-Za-z])/u);
+  for (const [id, formula] of expected) {
+    assert.equal(sourceDisplays.get(id), formula, id);
+    const record = payload.records.find((entry) => entry.semanticId === id);
+    assert.equal(record?.source.sourcePath, sourcePath, id);
+    assert.equal(record.formulaTeX, formula, id);
+    const factor = record.symbols.find((entry) => entry.tex === String.raw`e^{-\sigma}`);
+    assert.equal(factor?.definitionSource, "source-context", id);
+    assert.match(factor.definition, /Direct-Transport Suppression Factor.*bypassing the intermediate generation/u, id);
+    assert.doesNotMatch(factor.definition, /\\xi(?![A-Za-z])/u, id);
   }
 });
 

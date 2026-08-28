@@ -443,6 +443,31 @@ test('package selection preserves logical descriptors and removes only admitted 
   }
  }finally{cleanup(f);}
 });
+test('parent-two historical wrapper routes require the exact original plan and six literal tuples',async()=>{
+ const expected={
+  producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397],
+  producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836],
+  verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615],
+  verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419],
+  operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022],
+  operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303]
+ };
+ assert.deepEqual(C.PARENT_TWO_ARCHIVE_SOURCES,expected);
+ const f=fixture();try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const b=(name,h='a'.repeat(64),bytes=1)=>({path:path.join(f.dir,'declared',name),sha256:h,bytes});
+  const d={parent_index:2};for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])d[role]=b(role);
+  d.plan={path:path.join(f.dir,'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),sha256:'928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',bytes:51509};
+  d.closure={owner:f.spec.bindings.readiness,operation:d.operation,original_caller_session:'12345',final_completion_chunk:'abc123',exit_code:0,elapsed_seconds:'3.125',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'};
+  d.archived_sources=Object.entries(expected).map(([role,[p,h,n]])=>({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:b('parent2-'+role,h,n)}));
+  const spec={...structuredClone(f.spec),parentRefinements:[d]},before=JSON.stringify(spec);
+  const observed=M.validateSpec(spec,f.selfSha);assert.equal(JSON.stringify(spec),before);
+  for(const r of d.archived_sources){assert(observed.some(b=>b.path===r.archive.path));assert(!observed.some(b=>b.path===r.original.path));}
+  for(const mutate of [s=>s.parentRefinements[0].parent_index=1,s=>s.parentRefinements[0].parent_index=3,s=>s.parentRefinements[0].plan.path+='.other',s=>s.parentRefinements[0].plan.sha256='b'.repeat(64),s=>s.parentRefinements[0].plan.bytes++,s=>s.parentRefinements[0].archived_sources[0].original.sha256=C.ARCHIVE_SOURCES.producer[1],s=>s.parentRefinements[0].archived_sources[0].archive.path=s.bindings.adapter.path]){
+   const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha));
+  }
+ }finally{cleanup(f);}
+});
 test('generic descriptors preserve exact archives, derived inventory and invocation-bound readiness',async()=>{
  const f=fixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));

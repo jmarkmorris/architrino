@@ -7,13 +7,29 @@ import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { acquireLock, authenticateBindings, canonicalFreshOutput, capture, checkOutputBudget, publish,
   readJson, releaseLock, sha256, validateLauncherEnvironment, validateSourceInventory, writeAll } from './run-f5-ordinary-evolution.mjs';
-import { BATCH_ROOT, SHARED_LOCK, acceptRSS, assertScientificGeneration, currentOwnedGroup, descendantRecords,
+import { BATCH_ROOT, SHARED_LOCK, acceptRSS, assertScientificGeneration, descendantRecords,
   observeBatch, parseHostResource, probeBatch, requireBatch as check, sameIdentity, validateCasePlan } from './f5-batch-admission.mjs';
 
 const delay = ms => new Promise(done=>setTimeout(done,ms));
 const alive = pid => { try { process.kill(pid,0); return true; } catch(e) { if(e.code==='ESRCH')return false; throw e; } };
-const signalGroup = (owner, signal) => { try { process.kill(-owner.identity.pgid,signal); } catch(e) { if(e.code!=='ESRCH')throw e; } };
 const withoutValue = binding => ({path:binding.path,bytes:binding.bytes,sha256:binding.sha256});
+
+// This resolver is deliberately local: the historical helper retires ambiguous
+// live groups, which is unsuitable for complete batch accounting. A lost birth
+// link never grants signaling authority, even if a later table looks familiar.
+export function inspectBatchGroup(table, owner) {
+  check(owner?.identity,'registered group identity required');
+  if(owner.closureCertificate)return {ownedRows:[],observedRows:[],reason:null,absent:true};
+  const observedRows=table.filter(row=>row.pgid===owner.identity.pgid);
+  if(!observedRows.length)return {ownedRows:[],observedRows,reason:null,absent:true};
+  const leader=table.find(row=>row.pid===owner.identity.pid);
+  const known=owner.knownMembers??[owner.identity];
+  const reason=owner.identityGap?'previous ownership continuity loss':
+    owner.retired?'live group after observed retirement':
+    leader && !sameIdentity(leader,owner.identity)?'group leader birth changed':
+    !leader && !observedRows.some(row=>known.some(old=>sameIdentity(row,old)))?'leader lost without a remembered surviving member':null;
+  return {ownedRows:reason?[]:observedRows,observedRows,reason,absent:false};
+}
 
 export function admitTargetStart(table, gateIdentity, targetPid) {
   const gate=table.find(r=>r.pid===gateIdentity.pid), target=table.find(r=>r.pid===targetPid);
@@ -124,7 +140,39 @@ export async function main(argv=process.argv.slice(2), control=null) {
   };
   const event=value=>writeRecord(eventsFD,{at:new Date().toISOString(),elapsedSeconds:(performance.now()-start)/1000,...value},'events');
   const send=(state,message)=>{if(state.child?.connected)state.child.send(message,error=>{if(error && !state.exit && !state.interruption)stop(error.message);});};
-  const currentFor=state=>state.owners.flatMap(owner=>currentOwnedGroup(lastTable,owner));
+  const currentOwnedGroup=(table,owner)=>{
+    const view=inspectBatchGroup(table,owner);
+    if(view.absent && !owner.closureCertificate) {
+      if(alive(-owner.identity.pgid))view.reason='group missing from process table but still present in kernel';
+      else owner.closureCertificate={at:new Date().toISOString(),elapsedSeconds:(performance.now()-start)/1000,
+        processTableAbsent:true,kernelGroupAbsent:true};
+    }
+    if(view.reason && !owner.identityGap) {
+      owner.identityGap={reason:view.reason,at:new Date().toISOString(),elapsedSeconds:(performance.now()-start)/1000,observedRows:view.observedRows};
+      stop(`process group ownership continuity lost: ${owner.identity.pgid}: ${view.reason}`);
+      // Evidence-write failure cannot prevent cleanup of other authenticated groups.
+      try{event({event:'ownership-identity-gap',caseId:owner.caseId,identity:owner.identity,...owner.identityGap});}catch{}
+    }
+    if(view.absent)owner.retired=true;
+    else if(!view.reason)owner.knownMembers=view.ownedRows.map(row=>({...row}));
+    return view.ownedRows;
+  };
+  const currentFor=state=>state.owners.flatMap(owner=>{
+    currentOwnedGroup(lastTable,owner);
+    // Uncertain survivors also prevent a worker from settling as complete.
+    return owner.closureCertificate?[]:lastTable.filter(row=>row.pgid===owner.identity.pgid);
+  });
+  const signalOwned=async(state,signal,limit=Infinity)=>{
+    // Fresh acquisition per active owner: a previous owner's failure logging
+    // may block on disk, so its table must not authorize a later owner's signal.
+    for(const owner of state.owners) {
+      if(owner.closureCertificate || owner.identityGap)continue;
+      const table=await observeBatch();lastTable=table;
+      const rows=currentOwnedGroup(table,owner);
+      if(!rows.length || performance.now()>=Math.min(limit,cleanupDeadline??Infinity))continue;
+      try{process.kill(-owner.identity.pgid,signal);}catch(e){if(e.code!=='ESRCH')throw e;}
+    }
+  };
   const remember=(row,state)=>{
     check(row && row.pid===row.pgid,'owned group leader required');
     const prior=owners.get(row.pgid);
@@ -136,7 +184,12 @@ export async function main(argv=process.argv.slice(2), control=null) {
     if(enforce)await control?.beforeObservation?.();
     const began=performance.now(), table=await observeBatch(); lastTable=table;
     const descendants=descendantRecords(table,process.pid);
-    const extra=[...owners.values()].flatMap(owner=>currentOwnedGroup(table,owner));
+    const extra=[...owners.values()].flatMap(owner=>{
+      currentOwnedGroup(table,owner);
+      // Conservative memory census retains ambiguous group rows; attribution
+      // failure remains sticky and precludes acceptance even if they later exit.
+      return owner.closureCertificate?[]:table.filter(row=>row.pgid===owner.identity.pgid);
+    });
     const rows=[...new Map([...descendants,...extra].map(r=>[r.pid,r])).values()];
     check(sameIdentity(table.find(r=>r.pid===process.pid),parent),'batch owner identity lost');
     const stamp=performance.now(),rawRss=rows.reduce((n,r)=>n+r.rssBytes,0);
@@ -145,13 +198,16 @@ export async function main(argv=process.argv.slice(2), control=null) {
     rawMaximumRssBytes=Math.max(rawMaximumRssBytes,rawRss);rawSamples++;
     for(const row of rows)observedIdentities.set(`${row.pid}/${row.started}`,row);
     let sample,sampleError;
-    try{sample=acceptRSS(sampleState,rows,stamp,began);}catch(e){sampleError=e;}
+    if([...owners.values()].some(owner=>owner.identityGap))sampleError=Error('ownership continuity lost');
+    else try{sample=acceptRSS(sampleState,rows,stamp,began);}catch(e){sampleError=e;}
     // The observation that trips a limit is evidence too. Retain its raw rows
     // even though acceptRSS deliberately refuses to update its accepted state.
     writeRecord(resourcesFD,{elapsedSeconds:(began-start)/1000,observationCompletedSeconds:(stamp-start)/1000,
-      observationAccepted:!sampleError,rejection:sampleError?.message??null,aggregateResidentBytes:rawRss,
+      observationAccepted:!sampleError && ![...owners.values()].some(owner=>owner.identityGap),
+      rejection:sampleError?.message??([...owners.values()].some(owner=>owner.identityGap)?'ownership continuity lost':null),aggregateResidentBytes:rawRss,
       sampleGapMs:sample?.sampleGapMs??(stamp-(sampleState.lastSampleStartedMs??sampleState.beganMs)),
       availableDiskBytes:disk?String(disk.bavail*disk.bsize):null,outputBytes,outputResourceRejection:outputError?.message??null,
+      ownershipCoverageComplete:![...owners.values()].some(owner=>owner.identityGap),
       processes:rows.map(({pid,ppid,pgid,started,state,rssBytes,command})=>({pid,ppid,pgid,started,state,rssBytes,command}))},'resources');
     observationCoverageEndSeconds=(stamp-start)/1000;
     if(sampleError){stop(sampleError.message);if(enforce)throw sampleError;}
@@ -248,7 +304,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
     const table=await observeBatch(),row=table.find(r=>r.pid===child.pid);if(row){state.identity=row;remember(row,state);}
   };
   const settle=async(state)=>{
-    if(state.status!=='running' || !state.closed || currentFor(state).length) return;
+    if(state.status!=='running' || !state.closed || currentFor(state).length || state.owners.some(owner=>!owner.closureCertificate)) return;
     await state.queue;
     for(const fd of state.fds){fsyncSync(fd);closeSync(fd);}state.fds=[];
     state.stdoutBinding=withoutValue(capture(resolve(output,`${state.id}.stdout.ndjson`),1024**2));
@@ -278,13 +334,16 @@ export async function main(argv=process.argv.slice(2), control=null) {
       for(const s of states.values()) {
         if(s.activeStage && Date.now()>=s.activeStage.deadlineEpochMs && !s.interruption)failCase(s,`stage deadline: ${s.id}/${s.activeStage.id}`);
         if(s.interruptAt && !s.interruption && !stopping && performance.now()>=s.interruptAt) {
-          check(s.identity && sameIdentity(lastTable.find(r=>r.pid===s.child.pid),s.identity),'interruption target birth differs');
+          const interruptionTable=await observeBatch();lastTable=interruptionTable;
+          check(!stopping && Date.now()<deadline,'stop/deadline before injected interruption');
+          check(s.identity && sameIdentity(interruptionTable.find(r=>r.pid===s.child.pid),s.identity),'interruption target birth differs');
           s.interruption={at:new Date().toISOString(),signal:'SIGKILL',target:s.identity,stage:'coarse-evolution',reason:'predeclared failed-worker isolation control'};
           process.kill(s.child.pid,'SIGKILL');event({event:'injected-worker-interruption',caseId:s.id,...s.interruption});
         }
         if(s.interruption || s.failure || stopping) {
           send(s,{event:'cancel'});
-          for(const owner of s.owners)if(currentOwnedGroup(lastTable,owner).length)signalGroup(owner,performance.now()-(stopAt??s.stopAt??s.interruptAt)>=2000?'SIGKILL':'SIGTERM');
+          await signalOwned(s,performance.now()-(stopAt??s.stopAt??s.interruptAt)>=2000?'SIGKILL':'SIGTERM',
+            (stopAt??s.stopAt??s.interruptAt)+plan.cleanupSeconds*1000);
         }
         await settle(s);
         if(s.failure && s.status==='running' && performance.now()-s.stopAt>=plan.cleanupSeconds*1000){
@@ -309,7 +368,8 @@ export async function main(argv=process.argv.slice(2), control=null) {
     // while any owned group or worker closure remains unresolved.
     const cleanupStart=performance.now();
     if(cleanupDeadline===null)setCleanupDeadline('normal-finalization',cleanupStart+plan.cleanupSeconds*1000);
-    while([...states.values()].some(s=>s.child && (!s.closed || s.status==='running')) && performance.now()<cleanupDeadline) {
+    while(([...states.values()].some(s=>s.child && (!s.closed || s.status==='running')) ||
+      [...owners.values()].some(owner=>!owner.closureCertificate)) && performance.now()<cleanupDeadline) {
       try{await censusObservation(false);}catch(e){failed??=e.message;}
       try {
         // Logging or budget errors cannot bypass identity-safe teardown. This
@@ -318,7 +378,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
         lastTable=await observeBatch();
         for(const s of states.values()) {
           send(s,{event:'cancel'});
-          for(const owner of s.owners)if(currentOwnedGroup(lastTable,owner).length)signalGroup(owner,performance.now()-(stopAt??cleanupStart)>=2000?'SIGKILL':'SIGTERM');
+          await signalOwned(s,performance.now()-(stopAt??cleanupStart)>=2000?'SIGKILL':'SIGTERM',cleanupDeadline);
           await settle(s);
         }
       }catch(e){failed??=e.message;}
@@ -327,8 +387,10 @@ export async function main(argv=process.argv.slice(2), control=null) {
     try{await censusObservation(false);}catch(e){cleanupUnresolved=true;failed??=e.message;}
     finalObservationGapSeconds=sampleState.lastSampleStartedMs===null?null:(performance.now()-sampleState.lastSampleStartedMs)/1000;
     if(finalObservationGapSeconds===null || finalObservationGapSeconds>1)failed??='final observation-to-closure gap exceeds one second';
-    if(performance.now()>=cleanupDeadline)for(const owner of owners.values())if(currentOwnedGroup(lastTable,owner).length)signalGroup(owner,'SIGKILL');
-    cleanupUnresolved ||= [...owners.values()].some(owner=>currentOwnedGroup(lastTable,owner).length || (!owner.retired && alive(-owner.identity.pgid))) || [...states.values()].some(s=>s.child&&!s.closed);
+    cleanupUnresolved ||= [...owners.values()].some(owner=>{
+      currentOwnedGroup(lastTable,owner);
+      return !owner.closureCertificate && (lastTable.some(row=>row.pgid===owner.identity.pgid) || alive(-owner.identity.pgid));
+    }) || [...states.values()].some(s=>s.child&&!s.closed);
     for(const s of states.values()) {
       if(s.status==='running'){s.status='failed';s.failure??='worker closure or terminal result incomplete';}
       for(const fd of s.fds){try{fsyncSync(fd);closeSync(fd);}catch(e){failed??=e.message;}}s.fds=[];
@@ -350,7 +412,9 @@ export async function main(argv=process.argv.slice(2), control=null) {
   if(census.some(c=>c.status==='failed'))failed??='one or more isolated evaluator failures; all planned cases retained';
   const closureBinding=publish(resolve(output,'final-ownership.json'),{syntheticControl:synthetic,benchmarkEligible:false,at:new Date().toISOString(),elapsedSeconds:(performance.now()-start)/1000,
     observedIdentities:[...observedIdentities.values()],finalRelevantRows:lastTable.filter(r=>r.pid===process.pid || [...owners.values()].some(o=>o.identity.pgid===r.pgid)),
-    groups:[...owners.values()].map(o=>({identity:o.identity,retired:o.retired,matchingLiveRows:currentOwnedGroup(lastTable,o),kernelGroupExists:alive(-o.identity.pgid)})),
+    groups:[...owners.values()].map(o=>({identity:o.identity,retired:o.retired,identityGap:o.identityGap??null,closureCertificate:o.closureCertificate??null,
+      observedGroupRows:lastTable.filter(row=>row.pgid===o.identity.pgid),matchingLiveRows:currentOwnedGroup(lastTable,o),kernelGroupExists:alive(-o.identity.pgid)})),
+    ownershipCoverageComplete:![...owners.values()].some(owner=>owner.identityGap),
     ownedProcessClosureEstablished:!cleanupUnresolved,sharedLockReleased:lock===null},{root:output,limits:logLimits});
   const result={schema:'braid-program/f5-complete-evaluator-batch-result.v1',accepted:false,syntheticControl:synthetic,benchmarkEligible:false,
     controlId:control?.controlId??null,independentOutcomeAndCensusReviewRequired:true,

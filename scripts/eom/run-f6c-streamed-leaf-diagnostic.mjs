@@ -40,11 +40,11 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "f60c09a4d00274a047033d54fb3d2946971e3b5fe5568d129234427ce05be219"
+  "d3a6ff0f9203935bd2bd6ecec9907b04efc141f40dc61c9b7e149841fd7973c7"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
-  "7401104f33c94075e72a7cb79ff02c36b55e64adff5ef43426a559128ccf6ec1"
+  "9cf5aae2bcfd5fecd1e3a73855eee86b0c16b19164056f5ce745a4b4b1973a7c"
  ],
  "diagnostic": [
   "scripts/eom/f6c_single_leaf_diagnostic.py",
@@ -52,7 +52,7 @@ export const PINS=Object.freeze({
  ],
  "diagnosticControls": [
   "tests/test_f6c_single_leaf_diagnostic.py",
-  "0de071dd8a89044623d0af6968a87820e9b75e06f9399e32553fc06f10419901"
+  "7a665b6ca9bb3bea918732f3a5aea7aba1afda71d3c87b0805a90c96e7719697"
  ],
  "stream": [
   "scripts/eom/f6c_streamed_leaf_session.py",
@@ -60,7 +60,7 @@ export const PINS=Object.freeze({
  ],
  "streamControls": [
   "tests/test_f6c_streamed_leaf_session.py",
-  "afee38c922c96ab6885d710a7a89cf28cb74a43ef7e13cea34d9cb4846e2c8d7"
+  "10088b235bce2c46f91d212ca4bc12158393330ac772e367e012b1945a863542"
  ],
  "continuation": [
   "scripts/eom/f6c_leaf_continuation.py",
@@ -117,6 +117,21 @@ export const ARCHIVE_SOURCES=Object.freeze({
  operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6',48579],
  operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js','231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0',20889]
 });
+// Only this exact accepted parent-two plan selects its old wrapper generation.
+// These files are nonexecuting historical evidence, never current code aliases.
+export const PARENT_TWO_ARCHIVE_PLAN=Object.freeze(['reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json','928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',51509]);
+export const PARENT_TWO_ARCHIVE_SOURCES=Object.freeze({
+ producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397],
+ producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836],
+ verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615],
+ verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419],
+ operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022],
+ operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303]
+});
+function historicalArchiveSources(d,root){
+ const[p,h,n]=PARENT_TWO_ARCHIVE_PLAN;
+ return d.parent_index===2&&d.plan.path===path.join(root,p)&&d.plan.sha256===h&&d.plan.bytes===n?PARENT_TWO_ARCHIVE_SOURCES:ARCHIVE_SOURCES;
+}
 export const ANCESTRY_ARCHIVE_SOURCES=Object.freeze({
  memberPredeclaration:['reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985],
  fullResourcePlan:['reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021]
@@ -214,7 +229,7 @@ function descriptorBindings(spec){
    check(typeof r.role==='string'&&!roles.has(r.role),'unique archive role');roles.add(r.role);
    if(r.role==='acceptanceOwner')check(r.original.path===spec.bindings.readiness.path&&!equalBinding(r.original,spec.bindings.readiness),'historical owner distinct from current');
    else{
-    const allowed={...ARCHIVE_SOURCES,...ANCESTRY_ARCHIVE_SOURCES};
+    const allowed={...historicalArchiveSources(d,spec.root),...ANCESTRY_ARCHIVE_SOURCES};
     check(Object.hasOwn(allowed,r.role),'known historical role');const[p,h,n]=allowed[r.role];
     check(r.original.path===path.join(spec.root,p)&&r.original.sha256===h&&r.original.bytes===n,'exact historical source tuple');
    }

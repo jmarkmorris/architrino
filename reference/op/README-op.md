@@ -57,7 +57,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] Separate hard guardrails from preferences the agent may trade off.
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
 - [ ] Preserve the returned `Closure goal:` when restarting, splitting, or refocusing a task.
-- [ ] Before broad terminology migrations, ask for a scan of git history and current usage, then name accepted terms and frozen labels before editing.
+- [ ] Before requesting terminology-change approval, complete the current-use/history inventory, conflict/clearance assessment, destinations for displaced meanings and their further conflicts, preserved exceptions, downstream scope, and verification plan; assess the connected set of moves and keep the current planning phase and next prerequisite explicit.
 - [ ] Avoid temporal phrasing for theory claims; use canonical definition/status language such as `canonical Master EOM`.
 - [x] Keep authored Markdown prose unwrapped in source so Codex Review controls visual wrapping; preserve only structural, mathematical, code, table, quotation, and explicit hard breaks.
 
