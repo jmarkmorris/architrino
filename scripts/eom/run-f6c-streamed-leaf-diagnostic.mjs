@@ -1,14 +1,14 @@
 // Source-bound streamed evidence connection; no numerical method or new solver.
-// CLI: node scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs --spec ABS --spec-sha256 SHA --self-sha256 SHA
+// Public execution is through the fixed streamed mode of f6c-bounded-operation.mjs.
 // The separately reviewed canonical JSON spec fixes every source/runtime byte
 // BEFORE admission. This file is also the captured registered entry and file
 // worker. Only the --registered branch can spawn its one Python target.
-import {spawn,execFile} from 'node:child_process';
+import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {closeSync,constants,existsSync,fstatSync,fsyncSync,lstatSync,mkdirSync,openSync,
   readSync,readdirSync,realpathSync,statfsSync,writeSync,unlinkSync} from 'node:fs';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath,pathToFileURL} from 'node:url';
 
 export const SELF='scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs';
 export const CONTROL='tests/f6c-streamed-leaf-diagnostic.test.js';
@@ -38,6 +38,14 @@ export function remainingDuration(deadline,now=process.hrtime.bigint()){
 }
 export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_authenticated premise_truth_authenticated historical_trajectory_identity_established root_coverage_established gauss_kronrod_completed subdivision_allowance_verified three_rung_agreement_established execution_authorized eom_executed metrics_available score_authorized h3_evidence_eligible physical_claim_established'.split(' ');
 export const PINS=Object.freeze({
+ "operationCoordinator": [
+  "scripts/eom/f6c-bounded-operation.mjs",
+  "5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885"
+ ],
+ "operationCoordinatorControls": [
+  "tests/f6c-bounded-operation.test.js",
+  "36a40f31587792dcccfc8141fff591e87d9f07a66a9f587ec69bc7a97cd69f50"
+ ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
   "d3a6ff0f9203935bd2bd6ecec9907b04efc141f40dc61c9b7e149841fd7973c7"
@@ -100,7 +108,7 @@ export const PINS=Object.freeze({
  ],
  "outer": [
   "scripts/eom/launch-abc-enclosed-root-pilot.mjs",
-  "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa"
+  "18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8"
  ],
  "diagnostics": [
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
@@ -469,7 +477,8 @@ export function validateSpec(s,selfSha){
  return boundedSourceUnion([...all,...physical,...packaged.sources,...fresh.sources,...continuation.sources]);
 }
 
-export function writeNew(filename,value,live=()=>{}){
+export function writeNew(filename,value,live=()=>{},includeIdentity=false){
+  check(typeof includeIdentity==='boolean','exact publication identity option');
   live();const raw=Buffer.from(JSON.stringify(value)+'\n');check(raw.length<=FILE,'publication64MiB');
   const directory=path.dirname(filename),parent=lstatSync(directory,{bigint:true}),inode=s=>[s.dev,s.ino].join(':'),identity=s=>[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(':');
   check(parent.isDirectory()&&realpathSync(directory)===directory,'canonical publication directory');let completed;
@@ -477,7 +486,7 @@ export function writeNew(filename,value,live=()=>{}){
    check(inode(original)===inode(completed)&&identity(completed)===identity(lstatSync(filename,{bigint:true})),'original publication inode replaced');
   }finally{closeSync(fd);}
   const d=openSync(directory,constants.O_RDONLY|constants.O_DIRECTORY|constants.O_NOFOLLOW);try{check(inode(fstatSync(d,{bigint:true}))===inode(parent),'publication parent replaced');fsyncSync(d);}finally{closeSync(d);}
-  live();const result=readBound(filename,sha(raw),false,FILE,live);check(result.identity===identity(completed)&&identity(lstatSync(filename,{bigint:true}))===identity(completed)&&inode(lstatSync(directory,{bigint:true}))===inode(parent),'original publication changed after close');return clean(result);
+  live();const result=readBound(filename,sha(raw),false,FILE,live);check(result.identity===identity(completed)&&identity(lstatSync(filename,{bigint:true}))===identity(completed)&&inode(lstatSync(directory,{bigint:true}))===inode(parent),'original publication changed after close');return includeIdentity?{...clean(result),identity:identity(completed)}:clean(result);
 }
 export function noCompetitor(table,ownPid){
   const own=new Set([ownPid]);let changed;do{changed=false;for(const row of table)if(own.has(row.ppid)&&!own.has(row.pid)){own.add(row.pid);changed=true;}}while(changed);
@@ -862,119 +871,83 @@ export function fileOperation(job){
   check(entry.length===1&&same(entry[0].clockTransfer,transfer),'closed entry CPU/clock event');
   return{accepted:true,h3EvidenceEligible:false,scope:'operational-streamed-leaf-completion-only',completion:done,completionLog:job.stdout,outputs:[{path:stream.path,sha256:stream.sha256,bytes:stream.bytes}],historicalSourceBindings:historical,sourceIdentities:{...done.sourceIdentities,[stream.path]:stream.identity},streamOwner:layout.owner,mathematicalAuthority:false};
  }
- if(job.kind==='publish'){checkBindings(job.sources,live,job.sourceIdentities);return writeNew(job.filename,job.record,live);}
+ if(job.kind==='publish'){checkBindings(job.sources,live,job.sourceIdentities);return writeNew(job.filename,job.record,live,true);}
  throw Error('unknown worker operation');
 }
 
-function namedSize(filename,limit){if(!existsSync(filename))return 0;const s=lstatSync(filename);check(s.isFile()&&s.size<=limit,'named file limit/type');return s.size;}
-export async function coordinate({specPath,specSha,selfSha,began,deadlineNanoseconds,diagnostics}){
-  const root=realpathSync(process.cwd()),self=readBound(path.join(root,SELF),selfSha,true,1024**2);
-  check(import.meta.url===url(self.data),'coordinator executes captured generation');
-  const helper=readBound(path.join(root,PINS.helpers[0]),PINS.helpers[1],true,1024**2),outerSource=readBound(path.join(root,PINS.outer[0]),PINS.outer[1],true,1024**2);
-  const H=await import(url(helper.data)),outer=await import(url(outerSource.data));
-  const abort=new AbortController(),owners=new Map(),probes=new Set(),pending=new Set(),hostRecords=[];
-  const rss={beganMs:began,lastSampleMs:null,samples:0,maximumSampleGapMs:0,maximumSampledRSSBytes:0};
-  let failure,lock,timer,deadlineTimer,rssJob,hostJob,logFD,rssFD,active=false,receipt,publication,spec,output,ops,pre,closed=false,rawOwner=null,rawLayout=null,finalSources,finalIdentities;
-  const logTotal={bytes:0},rssTotal={bytes:0},originalError=console.error;
-  const remaining=()=>Math.floor(LIMIT-(performance.now()-began));
-  const live=()=>{check(!failure&&!abort.signal.aborted,failure?.message??'interrupted');check(remaining()>0,'inclusive1800s');};
-  const fail=e=>{failure??=e;abort.abort(e);if(active)process.emit('SIGTERM');};diagnostics.bind(fail);
-  const worker=job=>H.runFileWorker({...job,deadlineNanoseconds},self.data,remaining(),abort.signal);
-  const logs=()=>['runner-stdout.log','runner-stderr.log'].map(n=>path.join(ops,'process',n));
-  const poll=()=>{if(!ops)return;const total=logTotal.bytes+rssTotal.bytes+logs().reduce((n,p)=>n+namedSize(p,LOG),0);check(total<=LOG,'combined16MiB logs');
-    if(output){const observed=inspectStreamLayout(output);if(observed.owner){check(!rawLayout||same(rawLayout,observed.layout),'private stream replaced');rawOwner??=observed.owner;rawLayout??=observed.layout;}else check(!rawOwner,'private stream removed');}};
-  const log=x=>{const raw=Buffer.from((typeof x==='string'?x:JSON.stringify(x))+'\n');H.boundedLogAppend(logFD,raw,logTotal);diagnostics.write(raw);poll();};
-  const probe=(command,args,timeout,maxBuffer)=>{
-    const p=new Promise((resolve,reject)=>{const child=execFile(command,args,{timeout,killSignal:'SIGKILL',maxBuffer,encoding:'utf8',env:{...process.env,LC_ALL:'C'}},(error,text)=>{probes.delete(child.pid);error?reject(error):resolve({text,pid:child.pid});});enrollProbe(probes,command,child.pid);});
-    pending.add(p);p.finally(()=>pending.delete(p)).catch(()=>{});return p;
-  };
-  const table=async()=>{const start=performance.now(),r=await probe('/bin/ps',['-axo','pid=,ppid=,pgid=,lstart=,stat=,rss=,args='],500,8*1024**2),rows=H.parseObservation(r.text).filter(x=>x.pid!==r.pid);Object.defineProperty(rows,'sampleStartedMs',{value:start});return rows;};
-  const sample=rows=>{const value=H.acceptRSS(rss,H.selectOwnedRows(rows,process.pid,owners,outer,probes),performance.now(),rows.sampleStartedMs);H.boundedLogAppend(rssFD,Buffer.from(JSON.stringify({kind:'aggregate-rss',elapsedSeconds:(performance.now()-began)/1000,...value})+'\n'),rssTotal);poll();};
-  const inspect=async()=>{const rows=await table();if(!abort.signal.aborted)try{sample(rows);}catch(e){fail(e);throw e;}return rows.map(({rssBytes,...r})=>r);};
-  const host=async launch=>{const result=await probe('/usr/bin/memory_pressure',[],2000,1024**2),disk=statfsSync(root,{bigint:true}),value={kind:'host-resource',elapsedSeconds:(performance.now()-began)/1000,...H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)};hostRecords.push(value);log(value);};
-  const stop=async()=>{clearInterval(timer);clearTimeout(deadlineTimer);if(rssJob)await rssJob;if(hostJob)await hostJob;await Promise.allSettled([...pending]);};
-  const interrupt=()=>{if(!abort.signal.aborted)fail(Error('operator interrupted'));};
+export async function coordinate({specPath,specSha,selfSha,self,began,deadlineNanoseconds,lifetime}){
+  // The single canonical file-C instance owns the private lifetime registry.
+  // This captured mode never mints a guard or installs another observer.
+  const root=realpathSync(process.cwd()),owner=readBound(path.join(root,PINS.operationCoordinator[0]),PINS.operationCoordinator[1],false,1024**2);
+  const C=await import(pathToFileURL(owner.path).href);C.assertLifetime(lifetime);
+  const live=()=>lifetime.live();
+  check(lifetime.coordinator?.path===owner.path&&lifetime.coordinator.sha256===owner.sha256&&lifetime.coordinator.bytes===owner.bytes&&lifetime.coordinator.identity===owner.identity,'original canonical lifetime owner');
+  check(lifetime.began===began&&lifetime.deadlineNanoseconds===deadlineNanoseconds,'unchanged whole-attempt clock');
+  check(self&&self.path===path.join(root,SELF)&&self.sha256===selfSha&&Buffer.isBuffer(self.data)&&sha(self.data)===selfSha&&self.bytes===self.data.length&&import.meta.url===url(self.data),'exact captured caller generation');
+  checkBindings([clean(owner),clean(self)],live,{[owner.path]:owner.identity,[self.path]:self.identity});
+  let rawOwner=null,rawLayout=null,publication=null;
   try{
-    // Only this tiny metadata read precedes live monitoring; its elapsed time
-    // is charged by acceptRSS's first observation and the original began clock.
-    spec=decodeSpec(readBound(specPath,specSha,true,1024**2).data);validateSpec(spec,selfSha);output=spec.output;ops=output+'-outer';
-    check(!existsSync(output)&&!existsSync(ops),'fresh output and operation sibling');mkdirSync(ops,{mode:0o700});
-    logFD=openSync(path.join(ops,'launcher-stderr.log'),'wx',0o600);rssFD=openSync(path.join(ops,'resource-observations.ndjson'),'wx',0o600);
-    console.error=(...v)=>{try{log(v.map(x=>typeof x==='string'?x:JSON.stringify(x)).join(' '));}catch(e){fail(e);}};
-    process.on('SIGINT',interrupt);process.on('SIGTERM',interrupt);deadlineTimer=setTimeout(()=>fail(Error('wall deadline')),remaining());
-    let nextHost=performance.now()+15000;
-    timer=setInterval(()=>{try{check(rss.lastSampleMs===null||performance.now()-rss.lastSampleStartedMs<=1000,'lost RSS monitor');
-      if(!rssJob)rssJob=table().then(r=>{if(!abort.signal.aborted)sample(r);}).catch(fail).finally(()=>{rssJob=undefined;});
-      if(performance.now()>=nextHost&&!hostJob){nextHost=performance.now()+15000;hostJob=host(false).catch(fail).finally(()=>{hostJob=undefined;});log({kind:'streamed-leaf-heartbeat',elapsedSeconds:(performance.now()-began)/1000,accepted:false});}poll();
-    }catch(e){fail(e);}},250);
-    const initial=await table();sample(initial);noCompetitor(initial,process.pid);lock=H.reserveLock(path.join(root,LOCK),initial.find(r=>r.pid===process.pid));
-    pre=await worker({kind:'preflight',specPath,specSha,selfSha});
-    for(const target of [output,ops])await probe(spec.git,['check-ignore','-q','--',path.relative(root,target)],2000,4096);
-    await host(true);live();
-    active=true;
-    try{receipt=await outer.superviseRegisteredPilot({root,entry:SELF,args:['--registered',specPath,specSha,selfSha,deadlineNanoseconds],
-      sources:[{path:SELF,sha256:selfSha,bytes:self.data}],output:path.join(ops,'process'),startedAtMs:began,limitMs:LIMIT,heartbeatMs:15000,
-      inspectProcesses:H.startupAbortInspection(inspect,abort.signal),admit:({receipt:processReceipt,signal})=>{poll();return H.runFileWorker({kind:'admit',processReceipt,output,spec:pre.spec,specBinding:pre.specBinding,
-        sources:pre.sources,sourceIdentities:pre.sourceIdentities,stdoutPath:path.join(ops,'process/runner-stdout.log'),deadlineNanoseconds},self.data,remaining(),signal);}});
-    }catch(e){receipt=e.outerReceipt;throw e;}finally{active=false;}
+    const capturedSpec=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(capturedSpec.data);
+    // Full evidence/continuation validation stays in the observed file worker.
+    keys(spec,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','continuation','maxAdvances','limits']);
+    check(spec.schema==='braid-program/f6c-streamed-leaf-invocation.v4'&&spec.scope===SCOPE&&spec.root===root,'fixed streamed invocation');
+    check(typeof spec.output==='string'&&path.dirname(spec.output)===path.join(root,LANE)&&path.resolve(spec.output)===spec.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(spec.output)),'fixed streamed output');
+    keys(spec.bindings,['coordinator','controls',...Object.keys(PINS)]);
+    check(Array.isArray(spec.runtimeBindings)&&spec.runtimeBindings.length>0&&spec.runtimeBindings.length<=256,'bounded runtime declaration');
+    const declared=boundedSourceUnion([...Object.values(spec.bindings),...spec.runtimeBindings]);
+    check(equalBinding(spec.bindings.coordinator,clean(self))&&equalBinding(spec.bindings.operationCoordinator,clean(owner)),'exact caller and C declarations');
+    const minimalPaths=[spec.git,realpathSync(process.execPath),'/bin/ps','/usr/bin/memory_pressure'];
+    const minimal=minimalPaths.map(p=>{check(typeof p==='string'&&path.isAbsolute(p)&&path.resolve(p)===p,'canonical observer executable');const b=declared.find(v=>v.path===p);check(b,'declared initial executable');const a=readBound(p,b.sha256,false,1024**3,live);check(a.bytes===b.bytes,'initial executable byte count');return a;});
+    const initial=[self,owner,capturedSpec,...minimal];
+    lifetime.bindSources({sources:initial.map(clean),identities:Object.fromEntries(initial.map(b=>[b.path,b.identity]))});
+    const output=spec.output,ops=output+'-outer';
+    const poll=()=>{const observed=inspectStreamLayout(output);if(observed.owner){check(!rawLayout||same(rawLayout,observed.layout),'private stream replaced');rawOwner??=observed.owner;rawLayout??=observed.layout;}else check(!rawOwner,'private stream removed');return observed;};
+    await lifetime.startStreamed({output,operationDirectory:ops,git:spec.git,poll,
+      failureFinalize:(_error,cleanupLive)=>{
+        cleanupLive();const observed=poll();cleanupLive();
+        // Validate the original public/private directory identities before an
+        // owned alias can be removed; a changed layout supplies no authority.
+        check(!rawOwner||same(observed.layout,rawLayout),'original failure-publication layout');
+        const removed=observed.published&&rawOwner?retractStream(rawOwner):false;
+        cleanupLive();return{retraction:removed?{...rawOwner,removed:true}:null,rejection:null};}});
+    const worker=(job,options)=>lifetime.fileWorker(job,self.data,options);
+    const pre=await worker({kind:'preflight',specPath,specSha,selfSha});
+    check(same(pre.spec,spec)&&equalBinding(pre.specBinding,clean(capturedSpec)),'same consumed invocation');
+    lifetime.bindSources({sources:pre.sources,identities:pre.sourceIdentities});
+    const receipt=await lifetime.runRegistered({entry:SELF,args:['--registered',specPath,specSha,selfSha,deadlineNanoseconds],
+      sources:[{path:SELF,sha256:selfSha,bytes:self.data}],output:path.join(ops,'process'),
+      admit:({receipt:processReceipt,signal})=>{poll();return worker({kind:'admit',processReceipt,output,spec:pre.spec,specBinding:pre.specBinding,
+        sources:pre.sources,sourceIdentities:pre.sourceIdentities,stdoutPath:path.join(ops,'process/runner-stdout.log')},{signal});}});
     check(receipt.accepted&&receipt.processesClosed&&receipt.admission?.accepted,'closed admitted target');
     poll();check(same(rawOwner,receipt.admission.streamOwner),'admitted original stream owner');checkFinalStreamLayout(output,rawLayout,live);
-    const sources=uniqueBindings([...pre.sources,...receipt.admission.historicalSourceBindings,...receipt.admission.outputs,receipt.stdoutLog,receipt.stderrLog]),sourceIdentities=receipt.admission.sourceIdentities;
-    await worker({kind:'recheck',sources,sourceIdentities});sample(await table());await host(false);live();
-    const record={schema:'braid-program/f6c-streamed-leaf-operation.v1',accepted:true,scope:'operational-streamed-leaf-completion-only',process:receipt,invocation:pre.specBinding,
-      sourceBindings:pre.sources,observationsBeforePublication:{...rss},hostObservationsBeforePublication:hostRecords,
-      elapsedSecondsBeforePublication:(performance.now()-began)/1000,publicationRequires:'matching fresh caller exit0 and wholeelapsed after final source/log hashing and closed workers/monitors/lock/stdio',
+    const sources=uniqueBindings([...pre.sources,...receipt.admission.historicalSourceBindings,...receipt.admission.outputs,receipt.stdoutLog,receipt.stderrLog]);
+    const sourceIdentities={...receipt.admission.sourceIdentities};
+    lifetime.bindSources({sources,identities:sourceIdentities});
+    await worker({kind:'recheck',sources,sourceIdentities});
+    const snapshot=await lifetime.checkpoint({host:true});live();
+    const record={schema:'braid-program/f6c-streamed-leaf-operation.v2',accepted:false,scope:'conditional-operational-completion',process:receipt,invocation:pre.specBinding,
+      sourceBindings:pre.sources,observationsBeforePublication:snapshot.rss,hostObservationsBeforePublication:snapshot.hosts,
+      elapsedSecondsBeforePublication:(performance.now()-began)/1000,
+      publicationRequires:'conditional terminal wire plus independently observed actual exit0, original source/output identities, complete process closure and absent exact lock',
       physicalClaims:false,wholeHistoryMetrics:false,rootsEvaluated:false,eomExecuted:false};
-    publication=await worker({kind:'publish',filename:path.join(ops,'operation.json'),record,sources,sourceIdentities});
-    await worker({kind:'recheck',sources:[...sources,publication],sourceIdentities});sample(await table());live();await stop();live();
-    H.releaseLock(lock);lock=undefined;for(const fd of[logFD,rssFD])fsyncSync(fd);
-    const capturedLogs=['launcher-stderr.log','resource-observations.ndjson'].map(n=>readBound(path.join(ops,n),undefined,false,LOG,live));
-    const logBindings=capturedLogs.map(clean),logIdentities=Object.fromEntries(capturedLogs.map(b=>[b.path,b.identity]));
-    const final={completed:true,accepted:true,scope:'operational-streamed-leaf-completion-only',operation:publication,outputs:receipt.admission.outputs,logs:logBindings,
-      processesClosed:true,workersAndMonitorsClosed:true,lockReleased:true,maximumSampledRSSBytes:rss.maximumSampledRSSBytes,samples:rss.samples,maximumSampleGapMs:rss.maximumSampleGapMs,
-      finalObservationToClosureMs:H.admitFinalObservation(rss,performance.now()),lastSampleStartedMs:rss.lastSampleStartedMs,
-      elapsedSeconds:(performance.now()-began)/1000,coordinatorResourceUsage:process.resourceUsage(),physicalClaims:false,wholeHistoryMetrics:false,rootsEvaluated:false,eomExecuted:false};
-    final.operationalLogBytes=logTotal.bytes+rssTotal.bytes+logs().reduce((n,p)=>n+namedSize(p,LOG),0);
-    final.streamOwner=rawOwner;final.finalStreamLayout=rawLayout;final.finalSourceBindings=[...sources,publication,...logBindings];final.finalSourceIdentities={...sourceIdentities,...logIdentities};
-    closed=true;return final;
-  }catch(e){fail(e);await stop();try{retractStream(rawOwner);}catch{}if(ops&&existsSync(ops))try{writeNew(path.join(ops,'rejection.json'),{completed:false,accepted:false,failure:String((failure??e).message),invalidates:publication??null,
-      processesClosed:receipt?.processesClosed??false,cleanupFailure:receipt?.cleanupFailure??null,cancellationUnverifiedPids:receipt?.cancellationUnverifiedPids??null,process:receipt??null});}catch{}throw failure??e;
-  }finally{
-    try{
-      await stop();if(lock)H.releaseLock(lock);console.error=originalError;process.off('SIGINT',interrupt);process.off('SIGTERM',interrupt);
-      if(logFD!==undefined)closeSync(logFD);if(rssFD!==undefined)closeSync(rssFD);diagnostics.check();
-      if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}
-    }catch(error){
-      // A throw from finally prevents delivery of the returned result to main.
-      // Retract here as well, so that late cleanup cannot strand its public link.
-      try{retractStream(rawOwner);}catch{}
-      if(publication)try{writeNew(path.join(ops,'terminal-rejection.json'),{completed:false,accepted:false,failure:String(error.message),invalidates:publication,scope:'failed-final-cleanup-no-authority'});}catch{}
-      throw error;
-    }
-  }
+    const created=await worker({kind:'publish',filename:path.join(ops,'operation.json'),record,sources,sourceIdentities});
+    keys(created,['path','sha256','bytes','identity']);publication=clean(created);
+    check(typeof created.identity==='string'&&/^(?:0|[1-9][0-9]*)(?::(?:0|[1-9][0-9]*)){4}$/u.test(created.identity)&&BigInt(created.identity.split(':')[2])===BigInt(created.bytes),'original publication identity transport');
+    sourceIdentities[publication.path]=created.identity;
+    const finalSources=uniqueBindings([...sources,publication]);
+    lifetime.bindSources({sources:finalSources,identities:sourceIdentities});
+    await worker({kind:'recheck',sources:finalSources,sourceIdentities});
+    await lifetime.checkpoint();
+    return await lifetime.finish({
+      wire:{mode:'streamed-leaf',operation:publication,outputs:receipt.admission.outputs,physicalClaims:false,wholeHistoryMetrics:false,rootsEvaluated:false,eomExecuted:false},
+      finalCheck:finalLive=>{checkBindings(finalSources,finalLive,sourceIdentities);checkFinalStreamLayout(output,rawLayout,finalLive);}
+    });
+  }catch(error){lifetime.fail(error);throw error;}
 }
 
 async function main(){
-  const began=performance.now(),deadlineNanoseconds=String(process.hrtime.bigint()+1800000000000n),v=process.argv.slice(2);
+  const v=process.argv.slice(2);
   if(v[0]==='--registered'){check(v.length===5,'registered arguments');return registered(...v.slice(1));}
-  check(v.length===6&&v[0]==='--spec'&&v[2]==='--spec-sha256'&&v[4]==='--self-sha256','closed coordinator CLI');
-  check(/^[a-f0-9]{64}$/u.test(v[3])&&/^[a-f0-9]{64}$/u.test(v[5]),'explicit specification and caller SHA256 required');
-  const root=realpathSync(process.cwd()),lifetime=readBound(path.join(root,PINS.diagnostics[0]),PINS.diagnostics[1],true,1024**2),D=await import(url(lifetime.data));
-  const diagnostics=D.diagnosticGuard();
-  let result;
-  try{
-    const self=readBound(path.join(root,SELF),v[5],true,1024**2),C=await import(url(self.data));result=await C.coordinate({specPath:v[1],specSha:v[3],selfSha:v[5],began,deadlineNanoseconds,diagnostics});
-    const H=await import(url(readBound(path.join(root,PINS.helpers[0]),PINS.helpers[1],true,1024**2).data));
-    await D.drainDiagnostics({began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();result.elapsedSeconds=(performance.now()-began)/1000;
-    const finalLive=()=>check(performance.now()-began<LIMIT&&performance.now()-result.lastSampleStartedMs<=1000,'final source/stdio deadline/gap');
-    C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);
-    C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);
-    const {streamOwner,finalStreamLayout,finalSourceBindings,finalSourceIdentities,...wire}=result;
-    await H.flushCompletion(wire,{began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();await diagnostics.close(began);
-    C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();
-  }catch(e){
-    if(result)try{retractStream(result.streamOwner);writeNew(path.join(path.dirname(result.operation.path),'terminal-rejection.json'),{completed:false,accepted:false,failure:String(e.message),invalidates:result.operation,scope:'failed-final-publication-no-authority'});}catch{}
-    await D.failedCLICompletion(e,{began});
-  }
+  throw Error('Direct streamed execution is disabled; use scripts/eom/f6c-bounded-operation.mjs with its reviewed streamed-mode invocation.');
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{console.error(e);process.exitCode=1;});

@@ -2,6 +2,17 @@
 
 This is the canonical execution ledger for measure, detector-response, pair-provenance, and Bell closure work.
 
+## Operator-Selected Learning
+
+### QC-013 — Hilbert space and effective state-vector contract
+
+- **Status:** `Queued`; operator-selected learning and exploration accepted 2026-08-28. Home: [mapping-hilbert/](mapping-hilbert/README.md). Surface at the next operator priority review or quantum learning session; this task is separate from the deferred physical-recovery ranking.
+- **Request:** Build an AP-STEM understanding of Hilbert space to help decipher the overall braid mapping. Start with ordinary vectors and coordinate changes, then develop inner products, bases, complex phase, functions as vectors, and the distinction between amplitudes and probabilities. Relate each step to an explicit braid question without assuming that the correspondence has been derived.
+- **First artifact:** A worked and drawn two-dimensional vector example distinguishing the object from its coordinates, followed by the distinction between braid configuration, retained history, and effective quantum state. Preserve the explanation and the operator's open questions in [learning notes](mapping-hilbert/brainstorming.md).
+- **Introductory completion boundary:** Review with the operator a worked basis-change example and a two-outcome amplitude example, distinguish the three state/space roles, and identify one concrete missing braid-to-state mapping with a falsifier. Folder creation or delivery of an explanation alone does not establish understanding or complete this task. Physical state-vector recovery remains open under the [Effective State-Vector Contract](../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract), QC-003, QC-004, and the [transfer-operator and basin-measure packet](transfer-operator-basin-measure.md).
+
+Plainly: learning can start without waiting for a proved braid or a completed probability law. The operator selected an introductory exploration, not activation of the deferred quantum derivation program; ranks and physical acceptance remain unchanged.
+
 ## Ranked Next Objects
 
 1. `detector_response_kernel_acceptance` — Status: `Deferred / blocked`.

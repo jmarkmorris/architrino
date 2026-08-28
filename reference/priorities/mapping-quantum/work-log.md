@@ -6,7 +6,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+- 2026-08-28: The operator selected a dedicated Hilbert-space learning and braid-mapping home; see the [scope decision](#2026-08-28--hilbert-space-learning-and-braid-mapping).
+
 - 2026-07-12: The operator accepted option (a) for `provenance_compliance_bridge`. The [scope decision](pair-provenance-local-compliance-scope-decision.md) rejects ER=EPR as substrate ontology or evidence and retains only a local, setting-independent provenance statistic whose constitutive value must be derived against matched medium-response controls. No implementation or corpus promotion was authorized. `DF-06` was removed from the Operator Discussion Queue.
+
+### 2026-08-28 — Hilbert-space learning and braid mapping
+
+The operator clarified that Hilbert space is not yet understood and that learning it may help decipher the overall braid mapping, explicitly requesting a `mapping-hilbert/` directory at an appropriate level. Created [mapping-hilbert/](mapping-hilbert/README.md) within Quantum Mapping, with an AP-STEM learning path and [initial correspondence questions](mapping-hilbert/brainstorming.md). Converted QC-013 from a discussion reminder to a queued introductory learning task; removed the resolved item from the central Operator Discussion Queue and preserved attention in Current Focus. The introductory task remains open: creating the folder is not evidence of understanding or of a physical mapping. No separate queue, rank, physical recovery claim, corpus promotion, or solver change was introduced.
 
 ### 2026-07-07 — measurement-ontology.md review integration + closure pass
 

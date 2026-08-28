@@ -124,14 +124,42 @@ export function descendantRecords(table, rootPid, enrolledGroups = []) {
 }
 
 export function currentOwnedGroup(table, owner) {
-  if (!owner?.identity || owner.retired) return [];
-  const rows = table.filter(row => row.pgid === owner.identity.pgid);
-  const leader = table.find(row => row.pid === owner.identity.pid);
-  const known = owner.knownMembers ?? [owner.identity];
-  if (!rows.length || (leader && leader.started !== owner.identity.started) ||
-      (!leader && !rows.some(row => known.some(old => old.pid === row.pid && old.started === row.started)))) {
-    owner.retired = true; return [];
+  if (!owner?.identity) return [];
+  const identity = owner.identity, rows = table.filter(row => row.pgid === identity.pgid);
+  const leader = table.find(row => row.pid === identity.pid), known = owner.knownMembers ?? [identity];
+  const moved = leader && leader.started === identity.started && leader.pgid !== identity.pgid;
+  const reason = moved ? "original leader moved process group" :
+    rows.length && owner.retired ? "retired process group is live" :
+    leader && leader.started !== identity.started ? "original leader birth changed" :
+    rows.length && !leader && !rows.some(row => known.some(old => old.pid === row.pid &&
+      old.started === row.started && old.pgid === identity.pgid)) ? "leaderless group has no retained member" : null;
+  if (reason) {
+    // Retain actual affected rows, with one bounded diagnostic and no owner mutation.
+    let bytes = 0, truncated = false, count = 0;
+    const copy = row => {
+      const result = {};
+      for (const key of Object.keys(row)) {
+        const value = row[key];
+        if (typeof value === "string") {
+          result[key] = value.slice(0, 65536);
+          if (result[key] !== value) truncated = true;
+        } else if (value === null || ["number", "boolean"].includes(typeof value)) result[key] = value;
+      }
+      const size = Buffer.byteLength(JSON.stringify(result));
+      if (count >= 4096 || bytes + size > 900 * 1024) { truncated = true; return null; }
+      count++; bytes += size; return result;
+    };
+    const original = copy(identity), affected = [];
+    for (const row of rows) { const saved = copy(row); if (saved) affected.push(saved); else break; }
+    const movedLeader = moved ? copy(leader) : null;
+    const retained = [];
+    for (const row of known) { const saved = copy(row); if (saved) retained.push(saved); else break; }
+    throw Object.assign(new Error("ambiguous live process group: " + reason), {
+      ambiguousGroup: { reason, owner: { identity: original, retired: Boolean(owner.retired), knownMembers: retained },
+        rows: affected, ...(moved ? { movedLeader } : {}), truncated, complete: !truncated }
+    });
   }
+  if (!rows.length) { owner.retired = true; return []; }
   owner.knownMembers = rows.map(row => ({ ...row })); return rows;
 }
 
@@ -266,220 +294,485 @@ async function runAdmissionWorker(job, sourceBytes, limitMs, signal) {
 export async function superviseRegisteredPilot({ root, entry, args, sources, output, limitMs = 1800000,
   heartbeatMs = 15000, graceMs = 5000, admit = async () => ({ accepted: false }), startedAtMs = performance.now(),
   inspectProcesses = processTable }) {
-  requireThat(path.isAbsolute(root) && path.isAbsolute(output) && Number.isInteger(limitMs) && limitMs > 0 &&
-    heartbeatMs > 0 && graceMs > 0, "absolute roots and positive supervision limits required");
-  const began = startedAtMs, elapsed = () => performance.now() - began;
-  const abort = new AbortController(), secret = randomBytes(32).toString("hex"), connections = new Set(), enrolled = new Map(), gateChannels = new Map();
+  const entryAtMs = performance.now(), reserveMs = 15000;
+  requireThat(path.isAbsolute(root) && path.isAbsolute(output) && Number.isSafeInteger(limitMs) &&
+    limitMs > reserveMs && limitMs <= 1800000 && Number.isFinite(startedAtMs) && startedAtMs >= 0 &&
+    startedAtMs <= entryAtMs && Number.isFinite(heartbeatMs) && heartbeatMs > 0 && heartbeatMs <= limitMs &&
+    Number.isFinite(graceMs) && graceMs > 0, "absolute roots and valid original supervision limits required");
+  requireThat(typeof inspectProcesses === "function" && inspectProcesses !== processTable,
+    "explicit independently reviewed and accounted process inspection required");
+  const began = startedAtMs, completionEnd = began + limitMs, workEnd = completionEnd - reserveMs;
+  requireThat(Number.isFinite(completionEnd) && entryAtMs < workEnd, "original work allowance exhausted before startup");
+  const elapsed = () => performance.now() - began;
+  const abort = new AbortController(), secret = randomBytes(32).toString("hex");
+  const connections = new Set(), enrolled = new Map(), gateChannels = new Map(), jobs = new Set(), waits = new Set();
+  const known = new Map(), signalEvents = [], descriptorCloseAttempts = new Set();
   const receipt = { schema: "braid-program/abc-pilot-outer-process.v1", accepted: false, h3EvidenceEligible: false,
     authority: "registered-process-supervision-and-external-terminal-admission-only", startedAt: new Date().toISOString(),
-    limitMs, spawnPlumbing: "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
-    bootstrapSha256: sha(ABC_BOOTSTRAP_SOURCE), gateSha256: sha(ABC_GATE_SOURCE), gates: [], snapshots: [], signals: [] };
-  let child, rootIdentity, rootOwner, failure, stopPromise, rootClosed, heartbeat, deadline, runnerStartMs;
-  let outFD, errFD, outCount = 0, errCount = 0;
-  const outHash = createHash("sha256"), errHash = createHash("sha256");
-  const server = net.createServer();
-  const live = () => requireThat(!failure && !abort.signal.aborted && elapsed() < limitMs, failure?.message ?? "outer deadline/interruption");
-  const remember = (reason, rows) => receipt.snapshots.push({ reason, elapsedMilliseconds: elapsed(), processes: rows });
-  const cancelGateChannels = () => {
-    for (const [gate, connection] of gateChannels) if (gate.acknowledged && !connection.destroyed && connection.writable) {
-      connection.write(JSON.stringify({ event: "cancel", pid: gate.identity.pid, secret }) + "\n");
+    limitMs, scope: "direct-superviseRegisteredPilot-only; caller preparation/publication not guarded",
+    budget: { startedAtMs: began, entryAtMs, workEndMs: workEnd, completionEndMs: completionEnd, reserveMs },
+    inspectionAuthority: "explicit callback; its bounded probe lifetime and complete resource accounting require external review",
+    spawnPlumbing: "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
+    bootstrapSha256: sha(ABC_BOOTSTRAP_SOURCE), gateSha256: sha(ABC_GATE_SOURCE),
+    gates: [], snapshots: [], signals: signalEvents, processesClosed: false,
+    autonomousGateCancellation: "immutable self-owned behavior; no new reaction-time guarantee" };
+  let child, rootIdentity, rootOwner, rootClosed, rootDidClose = false, runnerStartMs;
+  let failure, stopPromise, heartbeat, guard, guardReady = false, guardExitObserved = false, guardTerminating = false;
+  let guardExit, outFD, errFD, outCount = 0, errCount = 0, outDropped = 0, errDropped = 0;
+  let snapshotBytes = 0, lastRows = [], serverClosed = false;
+  const outHash = createHash("sha256"), errHash = createHash("sha256"), server = net.createServer();
+  const owners = () => [rootOwner, ...enrolled.values()].filter(Boolean);
+  const clock = (cleanup = false) => {
+    requireThat(performance.now() < (cleanup ? completionEnd : workEnd),
+      cleanup ? "original completion deadline exhausted" : "original work deadline exhausted");
+    if (!cleanup) requireThat(!failure && !abort.signal.aborted, failure?.message ?? "outer interrupted");
+  };
+  const remaining = (cleanup = false, maximum = Infinity) => {
+    clock(cleanup); const ms = Math.floor(Math.min(maximum, (cleanup ? completionEnd : workEnd) - performance.now()));
+    requireThat(ms > 0, "insufficient original remainder"); return ms;
+  };
+  const fail = error => {
+    if (error?.ambiguousGroup && !receipt.firstOwnershipFailure) {
+      let evidence = JSON.stringify(error.ambiguousGroup);
+      if (Buffer.byteLength(evidence) > 950 * 1024) evidence = JSON.stringify({ complete: false,
+        truncated: true, rows: [], reason: "ownership diagnostic exceeded bound" });
+      receipt.firstOwnershipFailure = { elapsedMilliseconds: elapsed(), afterAbort: abort.signal.aborted,
+        evidence: JSON.parse(evidence) };
+      receipt.processesClosed = false; // Ambiguity is unresolved for this entire attempt.
+      if (!receipt.firstOwnershipFailure.evidence.complete) receipt.evidenceIncomplete = true;
+    }
+    if (!failure) {
+      failure = error instanceof Error ? error : new Error(String(error));
+      // The affected-group diagnostic is already bounded by currentOwnedGroup.
+      const evidence = failure.ambiguousGroup ?? { rows: lastRows,
+        complete: !receipt.evidenceIncomplete, truncated: Boolean(receipt.evidenceIncomplete) };
+      let encoded = JSON.stringify(evidence);
+      if (Buffer.byteLength(encoded) > 950 * 1024) encoded = JSON.stringify({ complete: false, truncated: true,
+        rows: [], reason: "first-failure evidence exceeds one MiB" });
+      receipt.firstFailure = { message: String(failure.message).slice(0, 4096), elapsedMilliseconds: elapsed(),
+        afterAbort: abort.signal.aborted, evidence: JSON.parse(encoded) };
+      if (!receipt.firstFailure.evidence.complete) receipt.evidenceIncomplete = true;
+      abort.abort(failure);
+    }
+  };
+  const bounded = async (start, label, cleanup = false, maximum = Infinity) => {
+    const ms = remaining(cleanup, maximum);
+    let timer, interrupted, settled = false;
+    const pending = Promise.resolve().then(() => { clock(cleanup); return start(); });
+    waits.add(pending);
+    pending.then(() => { settled = true; waits.delete(pending); }, () => { settled = true; waits.delete(pending); });
+    try {
+      const result = await Promise.race([pending, new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error(label + " exceeded original allowance")), ms);
+        if (!cleanup) {
+          interrupted = () => reject(failure ?? new Error(label + " interrupted"));
+          abort.signal.addEventListener("abort", interrupted, { once: true });
+          if (abort.signal.aborted) interrupted();
+        }
+      })]);
+      clock(cleanup); return result;
+    } finally {
+      clearTimeout(timer); if (interrupted) abort.signal.removeEventListener("abort", interrupted);
+      if (!settled) receipt.pendingCallbackObserved = true;
+    }
+  };
+  const pause = (cleanup, maximum = 25) => bounded(() => delay(Math.min(maximum, remaining(cleanup))), "poll wait", cleanup, maximum + 1);
+  const inspect = async cleanup => {
+    const table = await bounded(() => inspectProcesses({ remainingMs: remaining(cleanup),
+      originalDeadlineMs: completionEnd, workDeadlineMs: workEnd, cleanup }), "process inspection", cleanup);
+    requireThat(Array.isArray(table) && table.length <= 65536, "bounded complete process table required");
+    requireThat(Buffer.byteLength(JSON.stringify(table)) <= 8 * 1024 * 1024, "process table byte bound exceeded");
+    clock(cleanup); return table;
+  };
+  const remember = (reason, rows) => {
+    const boundedRows = [], cap = 900 * 1024; let bytes = 0, truncated = false;
+    for (const row of rows) {
+      if (boundedRows.length >= 4096) { truncated = true; break; }
+      const value = {};
+      for (const key of Object.keys(row)) if (typeof row[key] === "string") {
+        value[key] = row[key].slice(0, 65536); if (value[key] !== row[key]) truncated = true;
+      } else if (row[key] === null || ["number", "boolean"].includes(typeof row[key])) value[key] = row[key];
+      const n = Buffer.byteLength(JSON.stringify(value));
+      if (bytes + n > cap) { truncated = true; break; }
+      bytes += n; boundedRows.push(value);
+    }
+    lastRows = boundedRows;
+    const item = { reason, elapsedMilliseconds: elapsed(), processes: boundedRows, complete: !truncated, truncated };
+    const n = Buffer.byteLength(JSON.stringify(item));
+    if (receipt.snapshots.length < 4096 && snapshotBytes + n <= 8 * 1024 * 1024) {
+      receipt.snapshots.push(item); snapshotBytes += n;
+    } else truncated = true;
+    if (truncated) { receipt.evidenceIncomplete = true; throw new Error("bounded ownership evidence is incomplete"); }
+  };
+  const ownedRows = table => {
+    const active = owners().flatMap(owner => currentOwnedGroup(table, owner));
+    const retained = [];
+    // Do not lose an already witnessed orphan merely because it moved groups.
+    for (const old of known.values()) {
+      const now = table.find(row => row.pid === old.pid);
+      if (now && (now.started !== old.started || now.pgid !== old.pgid)) {
+        throw Object.assign(new Error("retained descendant birth/group changed"), {
+          ambiguousGroup: { owner: { identity: old }, rows: [now], complete: true, truncated: false }
+        });
+      }
+      if (now) retained.push(now);
+    }
+    const rooted = descendantRecords(table, rootOwner && !rootOwner.retired ? child.pid : -1,
+      [...new Set(active.map(row => row.pgid))]);
+    // Exact retained birth/group matches remain closure witnesses after reparenting.
+    // Seed only their PIDs, never their entire unvalidated groups; signaling still
+    // requires a separately authenticated owner and a fresh group inspection.
+    const included = new Set([...rooted, ...retained].map(row => row.pid));
+    let added;
+    do {
+      added = false;
+      for (const row of table) if (!included.has(row.pid) && included.has(row.ppid)) {
+        included.add(row.pid); added = true;
+      }
+    } while (added);
+    const rows = table.filter(row => included.has(row.pid));
+    for (const row of rows) {
+      requireThat(known.size < 4096 || known.has(row.pid), "retained ownership census exceeds bound");
+      known.set(row.pid, { pid: row.pid, ppid: row.ppid, pgid: row.pgid, started: row.started });
+    }
+    return rows;
+  };
+  const register = job => {
+    jobs.add(job); job.catch(fail).finally(() => jobs.delete(job));
+    if (jobs.size > 4096) fail(new Error("pending registration/stdio job bound exceeded"));
+  };
+  const writeChannel = (connection, message, cleanup, owner) => bounded(async () => {
+    if (owner) {
+      const table = await inspect(true), rows = currentOwnedGroup(table, owner);
+      remember("fresh-before-gate-cancel", rows); if (!rows.length) return;
+    }
+    // No asynchronous boundary remains between ownership, deadline and write.
+    return new Promise((resolve, reject) => {
+      clock(cleanup); requireThat(!connection.destroyed && connection.writable, "owned gate channel unavailable");
+      connection.write(JSON.stringify(message) + "\n", error => error ? reject(error) : resolve());
+    });
+  }, "gate channel callback", cleanup);
+  const signalGroup = async (owner, signal) => {
+    const table = await inspect(true);
+    const rows = currentOwnedGroup(table, owner); remember("fresh-before-" + signal, rows);
+    if (!rows.length) return;
+    const pgid = owner.identity.pgid;
+    requireThat(Number.isSafeInteger(pgid) && pgid > 1 && owners().includes(owner), "unowned process group signal refused");
+    clock(true);
+    try { process.kill(-pgid, signal); } catch (error) { if (error.code !== "ESRCH") throw error; }
+    clock(true);
+    requireThat(signalEvents.length < 4096, "signal evidence bound exceeded");
+    signalEvents.push({ pgid, signal, original: { pid: owner.identity.pid, pgid: owner.identity.pgid,
+      started: owner.identity.started }, elapsedMilliseconds: elapsed() });
+  };
+  const cancelGateChannels = async () => {
+    for (const [gate, connection] of gateChannels) {
+      if (!gate.acknowledged || connection.destroyed || !connection.writable) continue;
+      await writeChannel(connection, { event: "cancel", pid: gate.identity.pid, secret }, true, gate);
       gate.selfGroupCancellationRequested = true;
     }
   };
-  const signalGroup = (pgid, signal, table, frozenFallback = false) => {
-    const owner = pgid === rootIdentity?.pgid ? rootOwner : enrolled.get(pgid);
-    requireThat(Number.isSafeInteger(pgid) && pgid > 1 && owner, "unowned process group signal refused");
-    if (frozenFallback) requireThat(signal === "SIGKILL" && owner.frozen && !owner.retired, "fallback may kill only already validated frozen groups");
-    else if (!currentOwnedGroup(table, owner).length) return;
-    try { process.kill(-pgid, signal); receipt.signals.push({ pgid, signal, elapsedMilliseconds: elapsed() }); }
-    catch (error) { if (error.code !== "ESRCH") throw error; }
-    if (signal === "SIGSTOP") owner.frozen = true;
-    if (signal === "SIGCONT") owner.frozen = false;
-  };
-  const fail = error => { failure ??= error; abort.abort(failure); if (child && !receipt.processesClosed) void stop().catch(cause => { receipt.cleanupFailure = cause.message; }); };
   const stop = () => stopPromise ??= (async () => {
-    if (!child?.pid || receipt.processesClosed) return;
-    const owners = () => [rootOwner, ...enrolled.values()].filter(Boolean);
-    const activeRows = table => owners().flatMap(owner => currentOwnedGroup(table, owner));
+    if (!child?.pid) { receipt.processesClosed = !receipt.firstOwnershipFailure && (!child || rootDidClose); return; }
     try {
-      // Validate live birth identities BEFORE stopping anything, prune completed
-      // groups permanently, then freeze all validated groups without awaiting.
-      let table = await inspectProcesses(), prior = "";
-      if (!rootOwner) {
-        const row = table.find(item => item.pid === child.pid && item.ppid === process.pid && item.pgid === child.pid);
-        if (row) { rootIdentity = row; rootOwner = { identity: row, knownMembers: [row] }; receipt.runner ??= row; }
-      }
-      for (let pass = 0; pass < 8; pass++) {
-        const rootRows = rootOwner ? currentOwnedGroup(table, rootOwner) : [];
-        const active = activeRows(table), groups = [...new Set(active.map(row => row.pgid))];
-        const rows = descendantRecords(table, rootRows.length ? child.pid : -1, groups);
-        remember(pass ? "stopped-tree-capture" : "validated-pre-stop-tree", rows);
-        for (const row of rows) if (row.pgid !== rootIdentity?.pgid && !enrolled.has(row.pgid)) {
-          const leader = table.find(item => item.pid === row.pgid);
-          requireThat(leader && rows.some(item => item.pid === leader.pid), "unregistered descendant group leader cannot be validated");
-          enrolled.set(row.pgid, { identity: leader, knownMembers: rows.filter(item => item.pgid === row.pgid), cleanupOnly: true });
+      let table = await inspect(true);
+      // No unobserved historical PID is promoted into signal authority during failure.
+      requireThat(rootOwner || rootDidClose && !table.some(row => row.pid === child.pid), "runner birth was never authenticated");
+      for (let pass = 0, previous = ""; pass < 8; pass++) {
+        const rows = ownedRows(table); remember("cleanup-owned-tree", rows);
+        for (const row of rows) if (!owners().some(owner => owner.identity.pgid === row.pgid)) {
+          const leader = rows.find(item => item.pid === row.pgid && item.pgid === row.pgid);
+          requireThat(leader, "unregistered descendant group leader cannot be authenticated");
+          enrolled.set(leader.pgid, { identity: { ...leader }, knownMembers: rows.filter(item => item.pgid === leader.pgid), cleanupOnly: true });
         }
-        if (rootRows.length) signalGroup(rootIdentity.pgid, "SIGSTOP", table);
-        for (const pgid of new Set(rows.map(row => row.pgid))) if (pgid !== rootIdentity?.pgid) signalGroup(pgid, "SIGSTOP", table);
-        const signature = rows.map(row => `${row.pid}:${row.started}:${row.pgid}`).sort().join("|");
-        if (signature === prior) break;
-        prior = signature; requireThat(pass < 7, "owned descendant capture did not stabilize");
-        table = await inspectProcesses();
+        for (const owner of owners()) await signalGroup(owner, "SIGSTOP");
+        const signature = rows.map(row => row.pid + ":" + row.started + ":" + row.pgid).sort().join("|");
+        if (signature === previous) break;
+        requireThat(pass < 7, "owned descendant capture did not stabilize");
+        previous = signature; table = await inspect(true);
       }
       for (const owner of owners()) {
-        signalGroup(owner.identity.pgid, "SIGTERM", table); signalGroup(owner.identity.pgid, "SIGCONT", table);
+        await signalGroup(owner, "SIGTERM");
+        await signalGroup(owner, "SIGCONT");
       }
-      const graceEnd = performance.now() + graceMs;
+      const graceEnd = Math.min(completionEnd, performance.now() + graceMs);
       for (;;) {
-        table = await inspectProcesses(); const rows = activeRows(table);
-        if (!rows.length) { receipt.processesClosed = true; break; }
-        if (performance.now() >= graceEnd) {
-          remember("pre-kill-owned-groups", rows);
-          for (const pgid of new Set(rows.map(row => row.pgid))) signalGroup(pgid, "SIGKILL", table);
-          const killEnd = performance.now() + 2000;
-          while (performance.now() < killEnd) {
-            if (!activeRows(await inspectProcesses()).length) { receipt.processesClosed = true; break; }
-            await delay(25);
-          }
-          requireThat(receipt.processesClosed === true, "owned process groups remained after SIGKILL"); break;
-        }
-        await delay(25);
+        table = await inspect(true); const rows = ownedRows(table); remember("cleanup-census", rows);
+        if (!rows.length && rootDidClose) { receipt.processesClosed = !receipt.firstOwnershipFailure; return; }
+        if (performance.now() >= graceEnd) break;
+        await pause(true, Math.min(25, remaining(true), Math.max(1, graceEnd - performance.now())));
+      }
+      for (const owner of owners()) await signalGroup(owner, "SIGKILL");
+      const killEnd = Math.min(completionEnd, performance.now() + 2000);
+      for (;;) {
+        table = await inspect(true); const rows = ownedRows(table); remember("post-kill-census", rows);
+        if (!rows.length && rootDidClose) { receipt.processesClosed = !receipt.firstOwnershipFailure; return; }
+        requireThat(performance.now() < killEnd, "owned processes remained after bounded SIGKILL wait");
+        await pause(true, Math.min(25, Math.max(1, killEnd - performance.now())));
       }
     } catch (error) {
-      receipt.cleanupFailure = error.message; receipt.processesClosed = false;
-      cancelGateChannels();
-      // Frozen processes cannot voluntarily exit/reuse their IDs. If inspection
-      // fails after STOP, kill only that already validated frozen set now; never
-      // signal historical or unvalidated groups. Closure remains unverified.
-      for (const owner of owners()) if (owner.frozen && !owner.retired) signalGroup(owner.identity.pgid, "SIGKILL", undefined, true);
-      if (!rootOwner?.frozen && child.exitCode === null && child.signalCode === null) child.kill("SIGKILL");
+      fail(error); receipt.cleanupFailure = String(error.message).slice(0, 4096); receipt.processesClosed = false;
+      // Inspection failure never authorizes child.kill, a frozen group or a stale PID fallback.
+      try { await cancelGateChannels(); } catch (cause) { receipt.cancellationFailure = String(cause.message).slice(0, 4096); }
       throw error;
     }
   })();
-  const onSignal = () => fail(new Error("outer operator interruption"));
-  const registrationJobs = new Set();
+  const onSignal = () => fail(new Error("outer operator interruption or original work deadline"));
+  process.on("SIGINT", onSignal); process.on("SIGTERM", onSignal);
+  const GUARD_SOURCE = String.raw`
+const{parentPort,workerData}=require('node:worker_threads');
+const self=process.pid,work=BigInt(workerData.work),end=BigInt(workerData.end);
+let termSent=false;
+function arm(){
+ const now=process.hrtime.bigint();
+ if(now>=end){process.kill(self,'SIGKILL');return;}
+ if(now>=work&&!termSent){termSent=true;process.kill(self,'SIGTERM');}
+ const next=termSent?end:work,remaining=next-process.hrtime.bigint();
+ if(remaining<=0n){setImmediate(arm);return;}
+ const milliseconds=Number(remaining/1000000n);
+ if(milliseconds>0)setTimeout(arm,milliseconds);else setImmediate(arm);
+}
+if(work>=end||process.hrtime.bigint()>=work)throw Error('guard started after original work boundary');
+arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(end)});
+`;
+  const closeGuard = async cleanup => {
+    requireThat(!receipt.firstOwnershipFailure, "ownership ambiguity remains unresolved for this attempt");
+    if (cleanup && !child && (!guard || guardExitObserved)) {
+      clock(true); receipt.guard ??= { ready: false, neverCreated: true };
+      receipt.guard.closed = true; return;
+    }
+    requireThat(guard && (guardReady || cleanup && !child) && !guardExitObserved, "guard readiness/lifetime incomplete");
+    clock(cleanup);
+    await bounded(() => { clock(cleanup); guardTerminating = true; return guard.terminate(); },
+      "deadline guard termination", cleanup);
+    await bounded(() => guardExit, "deadline guard exit", cleanup);
+    requireThat(guardExitObserved, "deadline guard exit unobserved"); clock(cleanup);
+    receipt.guard.closed = true;
+  };
+  server.on("error", fail);
   server.on("connection", connection => {
     connections.add(connection); let pending = "", gate;
-    connection.on("error", error => fail(error)); connection.on("close", () => connections.delete(connection));
+    if (connections.size > 4096) { fail(new Error("gate channel count exceeds bound")); connection.destroy(); return; }
+    connection.on("close", () => connections.delete(connection));
+    connection.on("error", fail);
     connection.on("data", chunk => {
-      pending += chunk.toString(); if (pending.length > 1024 * 1024) { fail(new Error("gate message exceeds bound")); return; }
-      while (pending.includes("\n")) {
-        const end = pending.indexOf("\n"), line = pending.slice(0, end); pending = pending.slice(end + 1);
-        let message; try { message = JSON.parse(line); } catch { fail(new Error("malformed gate event")); return; }
-        if (!gate) {
-          if (message.event !== "register" || message.secret !== secret || message.gateSha256 !== receipt.gateSha256 ||
-            message.parentPid !== child?.pid || !Number.isSafeInteger(message.pid) || enrolled.has(message.pid)) {
-            fail(new Error("invalid child gate registration")); return;
+      try {
+        clock(); pending += chunk.toString();
+        requireThat(pending.length <= 1024 * 1024, "gate message exceeds bound");
+        while (pending.includes("\n")) {
+          clock(); const end = pending.indexOf("\n"), message = JSON.parse(pending.slice(0, end));
+          pending = pending.slice(end + 1);
+          if (!gate) {
+            requireThat(message.event === "register" && message.secret === secret &&
+              message.gateSha256 === receipt.gateSha256 && message.parentPid === child?.pid &&
+              Number.isSafeInteger(message.pid) && !enrolled.has(message.pid), "invalid child gate registration");
+            requireThat(receipt.gates.length < 4096, "gate census exceeds bound");
+            gate = { identity: null, requestedCommand: message.command, requestedArgs: message.args,
+              actualGateCommand: process.execPath, actualGateSourceSha256: receipt.gateSha256,
+              registeredAtMilliseconds: elapsed(), runnerElapsedAtRegistration: (performance.now() - runnerStartMs) / 1000,
+              acknowledged: false };
+            gateChannels.set(gate, connection);
+            register((async () => {
+              const table = await inspect(false), row = table.find(item => item.pid === message.pid);
+              requireThat(row && row.ppid === child.pid && row.pgid === row.pid && rootOwner &&
+                currentOwnedGroup(table, rootOwner).some(item => item.pid === rootIdentity.pid), "gate process identity is not an owned live child");
+              for (const owner of enrolled.values()) currentOwnedGroup(table, owner);
+              gate.identity = { ...row }; gate.knownMembers = [{ ...row }]; enrolled.set(row.pgid, gate);
+              receipt.gates.push(gate); remember("registered-gate", [row]); clock();
+              gate.acknowledged = true;
+              await writeChannel(connection, { event: "start", pid: row.pid, secret }, false);
+            })());
+          } else {
+            requireThat(message.pid === gate.identity?.pid && gate.acknowledged, "unacknowledged gate event");
+            if (message.event === "target-started" && !gate.target) gate.target = { pid: message.targetPid };
+            else if (message.event === "measurement" && !gate.measurement) {
+              const usage = message.resourceUsage;
+              requireThat(usage && [usage.userCPUTime, usage.systemCPUTime, usage.maxRSS].every(value =>
+                Number.isSafeInteger(value) && value >= 0), "gate resource measurement malformed");
+              gate.measurement = message;
+            } else throw new Error("unknown or repeated gate event");
           }
-          gate = { identity: null, requestedCommand: message.command, requestedArgs: message.args,
-            actualGateCommand: process.execPath, actualGateSourceSha256: receipt.gateSha256,
-            registeredAtMilliseconds: elapsed(), runnerElapsedAtRegistration: (performance.now() - runnerStartMs) / 1000,
-            acknowledged: false };
-          gateChannels.set(gate, connection);
-          const job = (async () => {
-            live(); const table = await inspectProcesses();
-            const row = table.find(record => record.pid === message.pid);
-            requireThat(row && row.ppid === child.pid && row.pgid === row.pid && rootIdentity &&
-              table.some(record => record.pid === rootIdentity.pid && record.started === rootIdentity.started), "gate process identity is not an owned live child");
-            for (const owner of enrolled.values()) currentOwnedGroup(table, owner);
-            gate.identity = row; gate.knownMembers = [row]; enrolled.set(row.pgid, gate); receipt.gates.push(gate); remember("registered-gate", [row]);
-            live(); gate.acknowledged = true;
-            connection.write(JSON.stringify({ event: "start", pid: row.pid, secret }) + "\n");
-          })(); registrationJobs.add(job); job.catch(fail).finally(() => registrationJobs.delete(job));
-        } else if (message.pid !== gate.identity?.pid || !gate.acknowledged) fail(new Error("unacknowledged gate event"));
-        else if (message.event === "target-started" && !gate.target) gate.target = { pid: message.targetPid };
-        else if (message.event === "measurement" && !gate.measurement) {
-          const usage = message.resourceUsage;
-          if (!usage || ![usage.userCPUTime, usage.systemCPUTime, usage.maxRSS].every(value => Number.isSafeInteger(value) && value >= 0)) fail(new Error("gate resource measurement malformed"));
-          else gate.measurement = message;
-        } else fail(new Error("unknown or repeated gate event"));
-      }
+        }
+        clock();
+      } catch (error) { fail(error); }
     });
   });
   try {
-    requireThat(!existsSync(output), "outer output already exists");
-    mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
+    clock();
+    const bridgeNs = process.hrtime.bigint(), bridgeMs = performance.now();
+    const workNs = bridgeNs + BigInt(Math.floor((workEnd - bridgeMs) * 1e6));
+    const endNs = bridgeNs + BigInt(Math.floor((completionEnd - bridgeMs) * 1e6));
+    clock();
+    receipt.guard = { sourceSha256: sha(GUARD_SOURCE), bridgeNanoseconds: String(bridgeNs),
+      bridgeMilliseconds: bridgeMs, workDeadlineNanoseconds: String(workNs),
+      completionDeadlineNanoseconds: String(endNs), ready: false, closed: false,
+      schedulingBoundary: "independently schedulable worker and OS; no suspension/uninterruptible-OS guarantee" };
+    guard = new Worker(GUARD_SOURCE, { eval: true, execArgv: [], workerData: { work: String(workNs), end: String(endNs) } });
+    guardExit = new Promise(resolve => guard.once("exit", code => {
+      guardExitObserved = true; receipt.guard.exitCode = code; resolve(code);
+      if (!guardTerminating) {
+        fail(new Error("deadline guard exited prematurely"));
+        // A failed guard cannot protect future parent cleanup. Exit this owner only;
+        // immutable IPC loss may cancel gates later, but descendants remain unresolved.
+        if (guardReady) process.exit(125);
+      }
+    }));
+    await bounded(() => new Promise((resolve, reject) => {
+      guard.once("error", error => { fail(error); reject(error); });
+      guard.once("message", message => {
+        try {
+          clock(); requireThat(message?.event === "ready" && message.self === process.pid &&
+            message.work === String(workNs) && message.end === String(endNs), "deadline guard readiness differs");
+          guardReady = true; receipt.guard.ready = true; resolve();
+        } catch (error) { reject(error); }
+      });
+      guardExit.then(() => { if (!guardReady) reject(new Error("deadline guard exited before readiness")); });
+    }), "deadline guard readiness");
+    requireThat(!existsSync(output), "outer output already exists"); clock();
+    mkdirSync(path.dirname(output), { recursive: true }); clock(); mkdirSync(output); clock();
     receipt.outputReserved = true;
-    outFD = openSync(path.join(output, "runner-stdout.log"), "wx"); errFD = openSync(path.join(output, "runner-stderr.log"), "wx");
-    await inspectProcesses(); // Fail before spawning if process ownership cannot be inspected.
-    await new Promise((resolve, reject) => { server.once("error", reject); server.listen(0, "127.0.0.1", resolve); });
+    outFD = openSync(path.join(output, "runner-stdout.log"), "wx"); clock();
+    errFD = openSync(path.join(output, "runner-stderr.log"), "wx"); clock();
+    await inspect(false);
+    await bounded(() => new Promise((resolve, reject) => {
+      server.once("error", reject); server.listen(0, "127.0.0.1", resolve);
+    }), "registration server startup");
     const port = server.address().port;
-    process.on("SIGINT", onSignal); process.on("SIGTERM", onSignal);
-    heartbeat = setInterval(() => console.error(JSON.stringify({ schema: "braid-program/abc-pilot-outer-heartbeat.v1",
-      pid: child?.pid, elapsedWallSeconds: elapsed() / 1000, registeredGates: receipt.gates.length,
-      stdoutBytes: outCount, stderrBytes: errCount, stopping: Boolean(failure), h3EvidenceEligible: false })), heartbeatMs);
-    deadline = setTimeout(() => fail(new Error("outer pilot wall deadline exceeded")), Math.max(1, limitMs - elapsed()));
-    const data = { root, entry, args, sources: sources.map(record => ({ ...record, bytes: Buffer.from(record.bytes).toString("base64") })),
-      port, secret, gateSource: ABC_GATE_SOURCE, gateSha256: receipt.gateSha256, limitMs };
+    heartbeat = setInterval(() => {
+      try {
+        clock(Boolean(failure));
+        const text = JSON.stringify({ schema: "braid-program/abc-pilot-outer-heartbeat.v1", pid: child?.pid,
+          elapsedWallSeconds: elapsed() / 1000, registeredGates: receipt.gates.length,
+          stdoutBytes: outCount, stderrBytes: errCount, stopping: Boolean(failure), h3EvidenceEligible: false }) + "\n";
+        register(bounded(() => new Promise((resolve, reject) => process.stderr.write(text,
+          error => error ? reject(error) : resolve())), "heartbeat stdio callback", Boolean(failure)));
+      } catch (error) { fail(error); }
+    }, heartbeatMs);
+    const data = { root, entry, args, sources: sources.map(record => ({ ...record,
+      bytes: Buffer.from(record.bytes).toString("base64") })), port, secret, gateSource: ABC_GATE_SOURCE,
+      gateSha256: receipt.gateSha256, limitMs };
+    clock(); requireThat(guardReady && !guardExitObserved, "deadline guard unavailable before target launch");
     child = spawn(process.execPath, ["-e", ABC_BOOTSTRAP_SOURCE, Buffer.from(JSON.stringify(data)).toString("base64")],
       { cwd: root, detached: true, stdio: ["ignore", "pipe", "pipe", "ipc"] });
     const consume = (fd, digest, kind) => chunk => {
+      let offset = 0;
       try {
-        if (kind === "stdout") outCount += chunk.length; else errCount += chunk.length;
-        requireThat(outCount <= 128 * 1024 ** 2 && errCount <= 128 * 1024 ** 2, "outer log exceeds resource bound");
-        let offset = 0; while (offset < chunk.length) { const count = writeSync(fd, chunk, offset); requireThat(count > 0, "outer log write made no progress"); offset += count; }
-        digest.update(chunk);
-      } catch (error) { fail(error); }
+        clock(Boolean(failure));
+        requireThat((kind === "stdout" ? outCount : errCount) + chunk.length <= 128 * 1024 ** 2, "outer log exceeds resource bound");
+        while (offset < chunk.length) {
+          clock(Boolean(failure)); const count = writeSync(fd, chunk, offset);
+          requireThat(count > 0, "outer log write made no progress");
+          digest.update(chunk.subarray(offset, offset + count)); offset += count;
+          if (kind === "stdout") outCount += count; else errCount += count;
+          clock(Boolean(failure));
+        }
+      } catch (error) {
+        if (kind === "stdout") outDropped += chunk.length - offset; else errDropped += chunk.length - offset;
+        fail(error); (kind === "stdout" ? child.stdout : child.stderr).destroy();
+      }
     };
     child.stdout.on("data", consume(outFD, outHash, "stdout")); child.stderr.on("data", consume(errFD, errHash, "stderr"));
-    child.once("message", message => {
-      const job = (async () => {
-        requireThat(message.event === "bootstrap-ready" && message.pid === child.pid, "bootstrap identity differs");
-        const table = await inspectProcesses(), row = table.find(record => record.pid === child.pid);
-        requireThat(row && row.ppid === process.pid && row.pgid === child.pid, "owned runner group could not be identified");
-        rootIdentity = row; rootOwner = { identity: row, knownMembers: [row] }; receipt.runner = row; remember("runner-before-bootstrap", [row]); live(); runnerStartMs = performance.now();
-        child.send({ event: "bootstrap-start", secret });
-      })(); registrationJobs.add(job); job.catch(fail).finally(() => registrationJobs.delete(job));
-    });
     rootClosed = new Promise(resolve => {
-      child.once("error", error => { fail(error); resolve({ code: null, signal: null, error: error.message }); });
-      child.once("close", (code, signal) => resolve({ code, signal }));
+      child.once("error", fail);
+      child.once("close", (code, signal) => { rootDidClose = true; receipt.exit = { code, signal }; resolve(receipt.exit); });
     });
-    let cleanupWaitTimer, boundedFailure;
-    try {
-      receipt.exit = await Promise.race([rootClosed, new Promise((_resolve, reject) => {
-        boundedFailure = () => { cleanupWaitTimer = setTimeout(() => reject(new Error("runner close exceeded bounded failure cleanup")), graceMs + 10000); };
-        abort.signal.addEventListener("abort", boundedFailure, { once: true }); if (abort.signal.aborted) boundedFailure();
-      })]);
-    } finally { clearTimeout(cleanupWaitTimer); abort.signal.removeEventListener("abort", boundedFailure); }
-    await Promise.allSettled([...registrationJobs]);
-    if (receipt.exit.code !== 0 || receipt.exit.signal) fail(new Error("runner did not exit cleanly"));
-    const exitTable = await inspectProcesses();
-    const remaining = [rootOwner, ...enrolled.values()].filter(Boolean).flatMap(owner => currentOwnedGroup(exitTable, owner)); remember("runner-exit-census", remaining);
-    if (remaining.length) fail(new Error("runner exited with owned descendants"));
-    if (failure) { await stop(); throw failure; }
-    receipt.processesClosed = true;
-    requireThat(receipt.gates.every(gate => gate.acknowledged && gate.target && gate.measurement && gate.measurement.code === 0 && !gate.measurement.signal), "gate target/resource census incomplete");
-    live();
-    receipt.admission = await Promise.race([admit({ receipt, remainingMs: Math.floor(limitMs - elapsed()), signal: abort.signal }),
-      new Promise((_resolve, reject) => abort.signal.addEventListener("abort", () => reject(abort.signal.reason), { once: true }))]);
+    child.once("message", message => register((async () => {
+      clock(); requireThat(message?.event === "bootstrap-ready" && message.pid === child.pid, "bootstrap identity differs");
+      const table = await inspect(false), row = table.find(item => item.pid === child.pid);
+      requireThat(row && row.ppid === process.pid && row.pgid === child.pid, "owned runner group could not be identified");
+      rootIdentity = { ...row }; rootOwner = { identity: rootIdentity, knownMembers: [rootIdentity] };
+      receipt.runner = rootIdentity; remember("runner-before-bootstrap", [row]); clock(); runnerStartMs = performance.now();
+      await bounded(() => new Promise((resolve, reject) => {
+        clock(); child.send({ event: "bootstrap-start", secret }, error => error ? reject(error) : resolve());
+      }), "bootstrap start callback");
+    })()));
+    receipt.exit = await bounded(() => rootClosed, "runner close");
+    await bounded(() => Promise.all([...jobs]), "registration and stdio jobs");
+    requireThat(receipt.exit.code === 0 && !receipt.exit.signal, "runner did not exit cleanly");
+    const remainingRows = ownedRows(await inspect(false)); remember("runner-exit-census", remainingRows);
+    requireThat(!remainingRows.length, "runner exited with owned descendants");
+    receipt.processesClosed = !receipt.firstOwnershipFailure;
+    requireThat(receipt.gates.every(gate => gate.acknowledged && gate.target && gate.measurement &&
+      gate.measurement.code === 0 && !gate.measurement.signal), "gate target/resource census incomplete");
+    receipt.admission = await bounded(() => admit({ receipt, remainingMs: remaining(false), signal: abort.signal }), "external terminal admission");
     requireThat(receipt.admission?.accepted === true && receipt.admission.h3EvidenceEligible === false, "external terminal admission rejected");
-    live(); receipt.accepted = true;
-  } catch (error) { failure ??= error; receipt.failure = failure.message; if (child) { try { await stop(); } catch (cause) { receipt.cleanupFailure = cause.message; } } }
-  finally {
-    if (outFD !== undefined) closeSync(outFD); if (errFD !== undefined) closeSync(errFD);
-    receipt.stdoutLog = { path: path.join(output, "runner-stdout.log"), bytes: outCount, sha256: outHash.digest("hex") };
-    receipt.stderrLog = { path: path.join(output, "runner-stderr.log"), bytes: errCount, sha256: errHash.digest("hex") };
-    if (failure) {
-      cancelGateChannels();
-      // With process-table inspection unavailable, only observe these recorded
-      // PIDs; never signal by them. Wait for cancellation to take effect before
-      // returning. An unrelated PID reuse merely prevents a verified absence.
-      const pids = [child?.pid, ...receipt.gates.flatMap(gate => [gate.identity?.pid, gate.target?.pid])].filter(Number.isSafeInteger);
-      const stillPresent = () => pids.filter(pid => { try { process.kill(pid, 0); return true; } catch (error) { return error.code !== "ESRCH"; } });
-      const until = performance.now() + 2000;
-      let remaining = stillPresent();
-      while (remaining.length && performance.now() < until) { await delay(25); remaining = stillPresent(); }
-      receipt.cancellationObservedPidsAbsent = remaining.length === 0;
-      if (remaining.length) receipt.cancellationUnverifiedPids = remaining;
+    clock();
+  } catch (error) {
+    fail(error);
+    if (child) { try { await stop(); } catch (cause) { receipt.cleanupFailure = String(cause.message).slice(0, 4096); } }
+    else receipt.processesClosed = !receipt.firstOwnershipFailure;
+  } finally {
+    clearInterval(heartbeat);
+    const cleanup = Boolean(failure);
+    try {
+      clock(cleanup);
+      if (jobs.size) await bounded(() => Promise.allSettled([...jobs]), "pending registration/stdio closure", cleanup);
+      if (child && !rootDidClose) await bounded(() => rootClosed, "final child/stream close", cleanup);
+      // Channel destruction can trigger the immutable gate's autonomous cancellation.
+      // It is never evidence that a process has already exited.
+      for (const connection of [...connections]) {
+        clock(cleanup);
+        await bounded(() => new Promise(resolve => {
+          if (connection.destroyed) { resolve(); return; }
+          connection.once("close", resolve); connection.destroy();
+        }), "gate channel close", cleanup);
+      }
+      await bounded(() => new Promise((resolve, reject) => {
+        if (!server.listening) { serverClosed = true; resolve(); return; }
+        server.close(error => { if (error) reject(error); else { serverClosed = true; resolve(); } });
+      }), "registration server close", cleanup);
+      if (outFD !== undefined) { clock(cleanup); descriptorCloseAttempts.add(outFD); closeSync(outFD); outFD = undefined; clock(cleanup); }
+      if (errFD !== undefined) { clock(cleanup); descriptorCloseAttempts.add(errFD); closeSync(errFD); errFD = undefined; clock(cleanup); }
+      receipt.stdoutLog = { path: path.join(output, "runner-stdout.log"), bytes: outCount, sha256: outHash.digest("hex") };
+      receipt.stderrLog = { path: path.join(output, "runner-stderr.log"), bytes: errCount, sha256: errHash.digest("hex") };
+      receipt.stdoutDroppedBytes = outDropped; receipt.stderrDroppedBytes = errDropped;
+      const finalRows = child ? ownedRows(await inspect(cleanup)) : [];
+      remember("final-complete-group-census", finalRows);
+      receipt.processesClosed = !receipt.firstOwnershipFailure && !finalRows.length && (!child || rootDidClose);
+      requireThat(receipt.processesClosed && !receipt.firstOwnershipFailure && !connections.size && serverClosed && !jobs.size && !waits.size &&
+        !outDropped && !errDropped && !receipt.evidenceIncomplete, "supervisor closure incomplete");
+      await closeGuard(cleanup);
+      // Guard teardown is followed only by these fixed local checks: no callback,
+      // I/O, publication or process probe occurs after the observed guard exit.
+      clock(cleanup); requireThat((guardExitObserved || !guard && cleanup && !child) &&
+        rootDidClose === Boolean(child), "final owned handle closure differs");
+      receipt.guardClosed = true; receipt.elapsedWallSeconds = elapsed() / 1000;
+      receipt.accepted = !failure && !receipt.firstOwnershipFailure && !abort.signal.aborted && performance.now() < workEnd;
+      process.off("SIGINT", onSignal); process.off("SIGTERM", onSignal);
+    } catch (error) {
+      fail(error); receipt.accepted = false; receipt.processesClosed = false;
+      receipt.finalizationFailure = String(error.message).slice(0, 4096);
+      receipt.unresolved = { runner: rootIdentity ?? (child?.pid ? { pid: child.pid, birthUnobserved: true } : null),
+        stickyOwnershipFailure: Boolean(receipt.firstOwnershipFailure),
+        groups: owners().filter(owner => !owner.retired).map(owner => ({ ...owner.identity })),
+        lastObservation: lastRows, childCloseObserved: rootDidClose, pendingJobs: jobs.size,
+        pendingCallbacks: waits.size, connections: connections.size, serverClosed,
+        descriptors: [outFD, errFD].filter(fd => fd !== undefined),
+        uncertainDescriptorCloses: [...descriptorCloseAttempts].filter(fd => fd === outFD || fd === errFD), guardExitObserved };
+      // Stop only this invocation's owned handles, without any historical-PID signal.
+      // An armed guard stays referenced through the original completion boundary.
+      if (!guardExitObserved) {
+        for (const connection of connections) connection.destroy();
+        server.unref(); child?.unref(); child?.stdout?.destroy(); child?.stderr?.destroy();
+        if (child?.connected) child.disconnect();
+        for (const fd of [outFD, errFD]) if (fd !== undefined && !descriptorCloseAttempts.has(fd)) {
+          descriptorCloseAttempts.add(fd); try { closeSync(fd); } catch {}
+        }
+        outFD = undefined; errFD = undefined;
+      }
+      receipt.guardRetainedForOriginalCompletion = Boolean(guardReady && !guardExitObserved);
+      receipt.autonomousCancellationMayRemain = true;
+      if (!receipt.guardRetainedForOriginalCompletion) {
+        process.off("SIGINT", onSignal); process.off("SIGTERM", onSignal);
+        // No target exists on a pre-readiness startup rejection; otherwise the
+        // unexpected-exit handler terminates this owner without claiming closure.
+      }
     }
-    for (const connection of connections) connection.destroy();
-    if (server.listening) await new Promise(resolve => server.close(resolve));
-    receipt.elapsedWallSeconds = elapsed() / 1000;
-    if (elapsed() >= limitMs || failure || abort.signal.aborted) receipt.accepted = false;
-    clearInterval(heartbeat); clearTimeout(deadline); process.off("SIGINT", onSignal); process.off("SIGTERM", onSignal);
   }
-  if (!receipt.accepted) throw Object.assign(failure ?? new Error("outer pilot rejected"), { outerReceipt: receipt });
+  if (!receipt.accepted) {
+    receipt.failure = String(failure?.message ?? "outer pilot rejected").slice(0, 4096);
+    throw Object.assign(failure ?? new Error(receipt.failure), { outerReceipt: receipt });
+  }
   return receipt;
 }
 

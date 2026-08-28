@@ -1,5 +1,9 @@
 // Synthetic transport/lifecycle controls plus an explicit genuine stationary
 // adapter/driver bridge. No original histories or actual-data numerical work.
+// SOURCE-ONLY MIGRATION: whole-process fixtures are NOT RUN READY. A separately
+// reviewed bounded external ending/closure envelope is still required for the
+// negative cases whose original lock and whole guard intentionally remain held.
+// Keep every case: this fail-closed guard is neither test.skip nor a passing run.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawn,spawnSync} from 'node:child_process';
@@ -17,6 +21,20 @@ const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal
 const H=await load(C.PINS.helpers),D=await load(C.PINS.diagnostics);
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
+const WHOLE_PROCESS_FIXTURES_READY=false;
+const rejectedExit=r=>assert(r.code!==0||r.signal!==null,'actual nonzero/terminated exit, never successful completion');
+const replaceOnce=(source,needle,replacement,label)=>{
+ assert.equal(source.split(needle).length,2,label+' exact single source boundary');
+ return source.replace(needle,replacement);
+};
+const conditionalCompletion=done=>{
+ assert.equal(done.accepted,false);assert.equal(done.completed,false);
+ assert.equal(done.scope,'conditional-operational-completion');assert.equal(done.mode,'streamed-leaf');
+ assert.equal(done.ordinaryProcessesClosed,true);assert.equal(Object.hasOwn(done,'processesClosed'),false);
+ for(const key of ['workersAndMonitorsClosed','lockReleased','wholeGuardClosed','physicalClaims','wholeHistoryMetrics','rootsEvaluated','eomExecuted'])assert.equal(done[key],false,key);
+ assert.deepEqual(done.terminalClosure,{status:'pending-external-exit',requiredExitCode:0,lock:'held',wholeGuard:'armed'});
+ assert.equal(done.failure,null);
+};
 
 test('fresh closure authority is the separately accepted pure checker generation',()=>{
  const prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/';
@@ -216,32 +234,41 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  mkdirSync(path.dirname(output),{recursive:true});mkdirSync(path.dirname(path.join(dir,C.LOCK)),{recursive:true});
  const entry=path.join(dir,C.SELF),controls=path.join(dir,C.CONTROL);mkdirSync(path.dirname(entry),{recursive:true});mkdirSync(path.dirname(controls),{recursive:true});writeFileSync(controls,'synthetic controls\n');
  const events=path.join(dir,'events'),pidfile=path.join(dir,'target.pid'),pins={};
+ const wholeEntry=path.join(dir,C.PINS.operationCoordinator[0]);let wholeSource;
  for(const[key,[rel,digest]]of Object.entries(C.PINS)){
   const filename=path.join(dir,rel);mkdirSync(path.dirname(filename),{recursive:true});
   let raw;
   if(key==='adapter')raw='MODE='+JSON.stringify(mode)+'\n'+adapterFake;
   else if(key==='diagnostic')raw='MODE='+JSON.stringify(mode)+'\nEVENTS='+JSON.stringify(events)+'\nPID='+JSON.stringify(pidfile)+'\nEXTRA='+JSON.stringify(path.join(dir,'unbound.py'))+'\n'+driverFake;
-  else if(['helpers','outer','diagnostics','transport','codec','storage','stream'].includes(key)){raw=readFileSync(path.join(root,rel));assert.equal(hash(raw),digest);}
+  else if(['helpers','outer','diagnostics','transport','codec','storage','stream','operationCoordinator'].includes(key)){raw=readFileSync(path.join(root,rel));assert.equal(hash(raw),digest);}
   else raw='synthetic metadata only\n';
+  if(key==='operationCoordinator'){
+   // Only the copied coordinator's host-observation inputs are synthetic.
+   // Its canonical file instance, actual worker/process/clock/RSS/lock paths,
+   // and the real helper's 40/20%,64/16GiB threshold parser remain intact.
+   // An external real-host-admitted watcher is still required for execution.
+   wholeSource=raw.toString();
+   wholeSource=replaceOnce(wholeSource,"await lifetimeProbe(s,'/usr/bin/memory_pressure',[],2000,1048576,s.phase)",
+    `({text:'System-wide memory free percentage: '+(launch?${launchFree}:${runFree})+'%\\n'})`,'synthetic C memory input');
+   wholeSource=replaceOnce(wholeSource,'statfsSync(s.root,{bigint:true})',
+    `({bavail:launch?${launchDisk}n:${runDisk}n,bsize:1n})`,'synthetic C disk input');
+   assert(wholeSource.includes('s.H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)'),'unchanged real threshold admission');
+   if(mode==='final-cleanup')wholeSource=replaceOnce(wholeSource,
+    'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());',
+    "throw Error('synthetic final cleanup');",'ordinary cleanup boundary');
+   if(mode==='poststdout')wholeSource=replaceOnce(wholeSource,
+    "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();",
+    "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');throw Error('synthetic poststdout failure');",'poststdout boundary');
+   raw=wholeSource;
+  }
   writeFileSync(filename,raw);pins[key]=[rel,hash(raw)];
  }
  let source=readFileSync(path.join(root,C.SELF),'utf8').replace(/export const PINS=Object.freeze\([\s\S]*?\n\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
  // Formatting is intentionally robust to a one-line closing brace.
  if(source.includes(C.PINS.adapter[1]))source=source.replace(/export const PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
  assert(!source.includes(C.PINS.adapter[1]),'fixture source pins replaced');
- // Synthetic worker cases inject only observation inputs. The captured real
- // helper still parses them and enforces its unchanged 40/20%,64/16GiB policy.
- // These fixtures are not observations of the actual host or launch permission.
- const memoryQuery="await probe('/usr/bin/memory_pressure',[],2000,1024**2)",diskQuery='disk=statfsSync(root,{bigint:true})';
- assert.equal(source.split(memoryQuery).length,2);assert.equal(source.split(diskQuery).length,2);
- const guard='H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)';assert.equal(source.split(guard).length,2);
- source=source.replace(memoryQuery,`({text:'System-wide memory free percentage: '+(launch?${launchFree}:${runFree})+'%\\n'})`)
-  .replace(diskQuery,`disk={bavail:launch?${launchDisk}n:${runDisk}n,bsize:1n}`);
- assert.equal(source.split(guard).length,2,'unchanged production host admission call');
  if(mode==='postpublish')source=source.replace("after_close_recheck();publication.verify();publication.close();live()","after_close_recheck();publication.verify();publication.close();live()\n  bad=pathlib.Path(bindings['diagnostic']['path']);replacement=bad.with_suffix('.swap');replacement.write_bytes(bad.read_bytes());replacement.replace(bad)");
  if(mode==='module-cleanup')source=source.replace("finally:require(sys.modules.get(name)is m,'module identity');del sys.modules[name]","finally:\n   require(sys.modules.get(name)is m,'module identity');del sys.modules[name]\n   if b['path'].endswith('f6c_single_leaf_diagnostic.py'):\n    bad=pathlib.Path(b['path']);other=bad.with_suffix('.swap');other.write_bytes(bad.read_bytes());other.replace(bad)");
- if(mode==='final-cleanup')source=source.replace("if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}","if(closed)throw Error('synthetic final cleanup');");
- if(mode==='poststdout')source=source.replace('C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();',"throw Error('synthetic poststdout failure');");
  if(mode==='trailing')source=source.replace('framing=session.finish();sealed=publication.seal();','framing=session.finish();publication.private_path.open(\'ab\').write(b\'{}\\n\');sealed=publication.seal();');
  writeFileSync(entry,source);
  writeFileSync(path.join(dir,'unbound.py'),'# explicit unbound fixture module\n');
@@ -266,7 +293,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  // check-ignore needs only a portable ignored synthetic checkout, never repo outputs.
  for(const args of [['init','-q',dir],['-C',dir,'config','core.hooksPath','/dev/null']])assert.equal(spawnSync('/usr/bin/git',args,{encoding:'utf8'}).status,0);
  writeFileSync(path.join(dir,'.gitignore'),'.local-data/\n');
- return{dir,output,entry,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
+ return{dir,output,entry,wholeEntry,wholeSource,wholeSha:bindings.operationCoordinator.sha256,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
 }
 function packageFixture(mode='package'){
  // Tiny synthetic transport only; these bytes are not a valid evidence package
@@ -291,26 +318,33 @@ function packageFixture(mode='package'){
  writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;return f;
 }
 async function runFixture(f,{interrupt=false,epipe=false}={}){
- const child=spawn(process.execPath,[f.entry,'--spec',f.specPath,'--spec-sha256',f.specSha,'--self-sha256',f.selfSha],{cwd:f.dir,stdio:['ignore','pipe','pipe']});
+ assert.equal(WHOLE_PROCESS_FIXTURES_READY,true,'NOT RUN READY: independent bounded negative-ending and complete external closure envelope required');
+ const child=spawn(process.execPath,[f.wholeEntry,'--streamed','--spec',f.specPath,'--spec-sha256',f.specSha,'--caller-sha256',f.selfSha,'--self-sha256',f.wholeSha],{cwd:f.dir,stdio:['ignore','pipe','pipe']});
  let out='',err='';child.stdout.on('data',b=>{out+=b;assert(out.length<2*1024**2,'bounded completion');});
  if(!epipe)child.stderr.on('data',b=>{err+=b;if(err.length>4*1024**2)err=err.slice(-(1024**2));});
- const timer=setTimeout(()=>child.kill('SIGKILL'),20000);
+ // The removed old20s parent-only kill was not descendant/guard closure.
+ // Do not enable this fixture until the root-owned external ending is reviewed.
  const close=once(child,'close');
- try{
-  if(interrupt||epipe){
-   for(let n=0;n<1000&&!existsSync(f.pidfile)&&child.exitCode===null;n++)await pause(10);
-   assert(existsSync(f.pidfile),'owned target actually started: '+err.slice(-500));
-   if(epipe)child.stderr.destroy();else child.kill('SIGTERM');
-  }
-  const[code,signal]=await close;assert.equal(signal,null,'coordinator not timeout killed');
-  return{code,out,err,childPid:child.pid};
- }finally{clearTimeout(timer);}
+ if(interrupt||epipe){
+  for(let n=0;n<1000&&!existsSync(f.pidfile)&&child.exitCode===null;n++)await pause(10);
+  assert(existsSync(f.pidfile),'owned target actually started: '+err.slice(-500));
+  if(epipe)child.stderr.destroy();else child.kill('SIGTERM');
+ }
+ const[code,signal]=await close;
+ return{code,signal,out,err,childPid:child.pid};
 }
 function cleanup(f){rmSync(f.dir,{recursive:true,force:true});}
 function alterFixture(f,change){
  const before=readFileSync(f.entry,'utf8'),after=change(before);assert.notEqual(after,before,'specific bounded injection applied');
  writeFileSync(f.entry,after);f.spec.bindings.coordinator=bind(f.entry);writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');
- f.selfSha=f.spec.bindings.coordinator.sha256;f.specSha=bind(f.specPath).sha256;
+ f.source=after;f.selfSha=f.spec.bindings.coordinator.sha256;f.specSha=bind(f.specPath).sha256;
+}
+function alterWholeFixture(f,change){
+ const before=readFileSync(f.wholeEntry,'utf8'),after=change(before),old=f.wholeSha;
+ assert.notEqual(after,before,'specific shared-coordinator injection applied');
+ writeFileSync(f.wholeEntry,after);f.wholeSource=after;f.spec.bindings.operationCoordinator=bind(f.wholeEntry);
+ f.wholeSha=f.spec.bindings.operationCoordinator.sha256;
+ alterFixture(f,source=>replaceOnce(source,old,f.wholeSha,'exact copied C source pin'));
 }
 
 test('reviewed dependencies remain byte-exact',()=>{
@@ -404,6 +438,42 @@ test('publication retains original inode through callbacks and preserves foreign
    assert(changed);assert.equal(readFileSync(file,'utf8'),raw);assert(existsSync(retained));
   }finally{rmSync(dir,{recursive:true});}
  }
+});
+test('publication identity option preserves default three-field transport and original five-field identity',()=>{
+ const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-return-')));
+ try{
+  const value={accepted:false},raw=JSON.stringify(value)+'\n';
+  for(const option of [undefined,false,true]){
+   const file=path.join(dir,String(option)+'.json'),b=C.writeNew(file,value,()=>{},option);
+   const expected={path:file,sha256:hash(raw),bytes:Buffer.byteLength(raw)};
+   if(option===true){
+    const s=statSync(file,{bigint:true});assert.deepEqual(b,{...expected,identity:[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(':')});
+    assert.deepEqual(C.clean(b),expected);
+    const original=path.join(dir,'retained-original');renameSync(file,original);writeFileSync(file,raw);
+    assert.throws(()=>C.checkBindings([C.clean(b)],()=>{},{[file]:b.identity}),/identity/);
+    assert.equal(readFileSync(file,'utf8'),raw);assert.equal(readFileSync(original,'utf8'),raw);
+   }else assert.deepEqual(b,expected);
+  }
+ }finally{rmSync(dir,{recursive:true});}
+});
+test('publication identity option rejects non-Booleans before opening an output',()=>{
+ const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-option-')));
+ try{
+  for(const [index,option]of [null,0,1,'true',{},new Boolean(true)].entries()){
+   const file=path.join(dir,index+'.json');let callbacks=0;
+   assert.throws(()=>C.writeNew(file,{accepted:false},()=>{callbacks++;},option),/exact publication identity option/);
+   assert.equal(callbacks,0);assert(!existsSync(file));
+  }
+ }finally{rmSync(dir,{recursive:true});}
+});
+test('publication file-worker returns original identity without promoting the operation',()=>{
+ const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-ipc-')));
+ try{
+  const file=path.join(dir,'operation.json'),record={accepted:false,scope:'conditional-operational-completion'};
+  const result=C.fileOperation({kind:'publish',filename:file,record,sources:[],sourceIdentities:{},deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)});
+  assert.deepEqual(Object.keys(result).sort(),['bytes','identity','path','sha256']);
+  assert.equal(result.identity,C.readBound(file).identity);assert.equal(JSON.parse(readFileSync(file)).accepted,false);
+ }finally{rmSync(dir,{recursive:true});}
 });
 test('competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools',()=>{
  const commands=['run-f5-ordinary-evolution.mjs','run-f6c-evidence-packaging.mjs','f6c-bounded-operation.mjs','eom_f5_enclosed_root_cli','eom_borg_shadow_cli','eom_recursive_block_benchmark_cli','attractor-ensemble-harness'];
@@ -607,7 +677,7 @@ test('frozen observer limits and final observation gap remain unchanged',()=>{
 test('synthetic host inputs reach unchanged real threshold admission',async()=>{
  const f=fixture('normal',1,{launchFree:40,runFree:20,runDisk:16n*1024n**3n});try{
   const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-1500));
-  const completion=JSON.parse(r.out),operation=JSON.parse(readFileSync(completion.operation.path));
+  const completion=JSON.parse(r.out);conditionalCompletion(completion);const operation=JSON.parse(readFileSync(completion.operation.path));
   const hosts=operation.hostObservationsBeforePublication;assert(hosts.some(x=>x.atLaunch&&x.freePercent===40&&x.availableDiskBytes===String(64n*1024n**3n)));
   assert(hosts.some(x=>!x.atLaunch&&x.freePercent===20&&x.availableDiskBytes===String(16n*1024n**3n)));
   assert(existsSync(f.events));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
@@ -641,8 +711,9 @@ for(const mode of['normal','exhausted','archives','shared-archives']){
  test('actual captured Python + frozen stream/codec/publication: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-2000));const done=JSON.parse(r.out);
-   assert.equal(done.accepted,true);assert.equal(done.physicalClaims,false);assert.equal(done.processesClosed,true);assert.equal(done.lockReleased,true);
+   conditionalCompletion(done); // Only the observed exit0 and actual absent lock finish the conditional wire.
    const op=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json'))),completion=op.process.admission.completion;
+   assert.equal(op.schema,'braid-program/f6c-streamed-leaf-operation.v2');assert.equal(op.accepted,false);assert.equal(op.scope,'conditional-operational-completion');
    assert.deepEqual(completion.historicalOwnerArchives,C.archiveRelations(f.spec));
    assert.equal(completion.completedAdvances,mode==='exhausted'?1:2);assert.equal(completion.stopReason,mode==='exhausted'?'no-outstanding-request':'explicit-maximum');
    assert.equal(completion.callCounts.projections,4*completion.completedAdvances);
@@ -674,6 +745,7 @@ for(const mode of ['package','package-runtime']){
    const result=await runFixture(f);
    assert.equal(result.code,mode==='package'?0:1,result.err.slice(-2000));
    if(mode==='package'){
+    conditionalCompletion(JSON.parse(result.out));
     const operation=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json')));
     const completion=operation.process.admission.completion;
     const routes=JSON.parse(readFileSync(f.spec.evidencePackage.inventory.path)).parents.flatMap(p=>[...p.entries,p.archivedOwner]).map(e=>path.join(f.dir,e.physicalPath));
@@ -693,8 +765,13 @@ for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','l
     assert(!existsSync(f.events),'missing runtime stopped before first provide');
     const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/runtime outside declared inventory/);
    }
-   else if(mode==='source-count-overflow'||mode==='source-hardlink'){
+   else if(mode==='source-count-overflow'){
     assert(!existsSync(f.events));const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/complete physical source union bounds|physical source hardlink alias/);
+   }
+   else if(mode==='source-hardlink'){
+    assert(!existsSync(f.events),'combined C capture rejects the declared alias before a provider');
+    assert(!existsSync(path.join(f.output+'-outer','process')),'shared pre-provider union rejects before registered launch');
+    const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.match(rejection.failure,/physical source hardlink alias/);
    }
    else {assert(existsSync(f.events));assert(existsSync(f.output));}
    assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
@@ -704,17 +781,17 @@ for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','l
 for(const epipe of[false,true]){
  test('active stubborn synthetic target is reaped after '+(epipe?'diagnostic EPIPE':'cancellation'),async()=>{
   const f=fixture('stubborn');try{
-   const r=await runFixture(f,{interrupt:!epipe,epipe});assert.equal(r.code,1);assert.equal(r.out,'');
+   const r=await runFixture(f,{interrupt:!epipe,epipe});rejectedExit(r);assert.equal(r.out,'');
    const pid=Number(readFileSync(f.pidfile,'utf8'));assert(absent(pid),'owned target absent before fixture cleanup');
-   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(absent(r.childPid));
+   assert.equal(existsSync(path.join(f.dir,C.LOCK)),epipe,'failed diagnostic closure retains the exact lock');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(absent(r.childPid));
   }finally{cleanup(f);}
  });
 }
 test('poststdout failure is exit1, retracts public stream and invalidates operation',async()=>{
  const f=fixture('poststdout');try{
-  const r=await runFixture(f);assert.equal(r.code,1);assert.equal(JSON.parse(r.out).completed,true);
+  const r=await runFixture(f);assert.equal(r.code,1);conditionalCompletion(JSON.parse(r.out));
   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
-  const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));
+  const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));
   assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
  }finally{cleanup(f);}
@@ -722,19 +799,20 @@ test('poststdout failure is exit1, retracts public stream and invalidates operat
 for(const stage of ['cleanup','prestdout','poststdout'])for(const validName of [false,true]){
  test('original private directory rename rejects at '+stage+' with '+(validName?'valid':'invalid')+' new name',async()=>{
   const f=fixture();try{
-   const original=stage==='cleanup'?'rawOwner':'result.streamOwner';
-   const mutation=`renameSync(path.dirname(${original}.privatePath),path.join(path.dirname(${original}.publicPath),${JSON.stringify(validName?'.leaf-stream-private-renamed':'invalid-private-name')}));`;
-   alterFixture(f,s=>{
-    s=s.replace('import {closeSync,constants,','import {renameSync,closeSync,constants,');
-    const anchor=stage==='cleanup'?'if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}':stage==='prestdout'?'const finalLive=()=>':'C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();';
-    assert(s.includes(anchor),'specific final boundary exists');return s.replace(anchor,mutation+anchor);
+   const mutation=`renameSync(path.dirname(s.streamOwner.privatePath),path.join(path.dirname(s.streamOwner.publicPath),${JSON.stringify(validName?'.leaf-stream-private-renamed':'invalid-private-name')}));`;
+   alterWholeFixture(f,s=>{
+    s=replaceOnce(s,'import {closeSync,constants,','import {renameSync,closeSync,constants,','synthetic rename import');
+    const anchor=stage==='cleanup'?'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());':stage==='prestdout'?'terminal();\n    const result=':"s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();";
+    return replaceOnce(s,anchor,stage==='poststdout'?anchor.replace('terminal();',mutation+'terminal();'):mutation+anchor,'specific shared final boundary');
    });
-   const r=await runFixture(f);assert.equal(r.code,1,r.err.slice(-1500));
-   if(stage==='poststdout')assert.equal(JSON.parse(r.out).completed,true);else assert.equal(r.out,'');
-   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
+   const r=await runFixture(f);rejectedExit(r);
+   if(stage==='poststdout')conditionalCompletion(JSON.parse(r.out));else assert.equal(r.out,'');
+   // The repaired original-layout rule forbids unlink after a directory rename.
+   // Both aliases and the unresolved lock are evidence, not cleanup authority.
+   assert(existsSync(path.join(f.output,'leaf-evidence.ndjson')));
    const kept=path.join(f.output,validName?'.leaf-stream-private-renamed':'invalid-private-name','leaf-evidence.ndjson');assert(statSync(kept).size>0);
-   const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
-   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
+   assert(!existsSync(path.join(f.output+'-outer','rejection.json')),'invalid layout cannot authorize another publication');
+   assert(existsSync(path.join(f.dir,C.LOCK)),'unresolved original layout retains lock');assert(absent(r.childPid));
    const operation=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json')));assert.equal(operation.process.processesClosed,true);
    for(const gate of operation.process.gates){assert(Number.isInteger(gate.target.pid));assert(absent(gate.target.pid));}
   }finally{cleanup(f);}
@@ -744,7 +822,8 @@ for(const mode of ['monitor','private-growth']){
  test('active '+mode+' rejection retains first failure after owned cancellation',async()=>{
   const f=fixture('stubborn');try{
    const expected=mode==='monitor'?'synthetic active monitor failure':'quota';
-   if(mode==='monitor')alterFixture(f,s=>s.replace('const table=async()=>{','const table=async()=>{if(existsSync('+JSON.stringify(f.pidfile)+"))throw Error('synthetic active monitor failure');"));
+   if(mode==='monitor')alterWholeFixture(f,s=>replaceOnce(s,'async function lifetimeTable(s,phase=s.phase,context=null){',
+    'async function lifetimeTable(s,phase=s.phase,context=null){if(phase===\'work\'&&existsSync('+JSON.stringify(f.pidfile)+"))throw Error('synthetic active monitor failure');",'active ordinary observer failure'));
    else{
     const p=f.spec.bindings.diagnostic.path,old=f.spec.bindings.diagnostic.sha256;
     const source=readFileSync(p,'utf8').replace("if MODE=='stubborn':","if MODE=='stubborn':\n   target=next(pathlib.Path("+JSON.stringify(f.output)+").glob('.leaf-stream-private-*/leaf-evidence.ndjson'))\n   with target.open('r+b')as file:file.truncate(67108865)");
@@ -761,14 +840,22 @@ for(const index of [0,1])for(const replacement of [false,true]){
  test('final bound log '+index+' '+(replacement?'identity replacement':'append')+' after stdout rejects',async()=>{
   const f=fixture();try{
    const mutation=replacement?"const raw=readBound(target,undefined,true).data,other=target+'.swap';{const fd=openSync(other,'wx');try{writeSync(fd,raw);fsyncSync(fd);}finally{closeSync(fd);}}renameSync(other,target);":"const fd=openSync(target,'a');try{writeSync(fd,Buffer.from(' '));fsyncSync(fd);}finally{closeSync(fd);}";
-   alterFixture(f,s=>s.replace('diagnostics.check();await diagnostics.close(began);','diagnostics.check();await diagnostics.close(began);{const target=result.logs['+index+'].path;'+mutation+'}').replace('import {closeSync,','import {renameSync,closeSync,'));
-   const r=await runFixture(f);assert.equal(r.code,1,r.err.slice(-1000));assert(r.out,r.err.slice(-2000));assert.equal(JSON.parse(r.out).completed,true);
-   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
-   const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
-   const published=JSON.parse(r.out).logs[index];
+   alterWholeFixture(f,s=>{
+    s=replaceOnce(s,'import {closeSync,constants,','import {renameSync,closeSync,constants,','synthetic log rename import');
+    const anchor="s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();";
+    return replaceOnce(s,anchor,anchor.replace('terminal();','{const target='+(index===0?'s.logPath':'s.rssPath')+';'+mutation+'}terminal();'),'poststdout log mutation');
+   });
+   const r=await runFixture(f);rejectedExit(r);assert(r.out,r.err.slice(-2000));conditionalCompletion(JSON.parse(r.out));
+   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert.equal(existsSync(path.join(f.dir,C.LOCK)),replacement,'replaced output identity blocks census and exact lock release');assert(absent(r.childPid));
+   const expectedPath=path.join(f.output+'-outer',index===0?'launcher-stderr.log':'resource-observations.ndjson');
+   const published=JSON.parse(r.out).outputBindings.find(b=>b.path===expectedPath);assert(published,'exact previously bound operational log');
    if(replacement)assert.equal(bind(published.path).sha256,published.sha256,'replacement preserved exact bytes');
    else assert.notEqual(bind(published.path).sha256,published.sha256,'append changed bound bytes');
-   assert.match(rejection.failure,replacement?/identity/:/changed source/);
+   if(replacement)assert(!existsSync(path.join(f.output+'-outer','rejection.json')),'replaced output forbids new failure publication');
+   else{
+    const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
+    assert.match(rejection.failure,/source changed|changed source|hash mismatch/);
+   }
   }finally{cleanup(f);}
  });
 }
