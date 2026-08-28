@@ -650,7 +650,7 @@ Only after these programs can calculate the common measure set should a broad pa
 
 ## Monte Carlo Configuration-Space Analysis
 
-Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
+Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
 ### Degrees of Freedom by Braid Class
 
@@ -913,7 +913,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-79c627eaede20738)
 
-For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
+For group speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
 
 $$
 \mathbf X_m(T)

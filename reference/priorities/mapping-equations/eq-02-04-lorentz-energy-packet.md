@@ -11,7 +11,7 @@
 
 ## Standard Equation And Regime
 
-The standard observer-level target is the weak homogeneous Lorentz and mass-shell regime. Work in a local Noether sea cell with declared assembly drift
+The standard observer-level target is the weak homogeneous Lorentz and mass-shell regime. Work in a local Noether sea cell with declared assembly group velocity
 
 $$
 \mathbf{w}
@@ -79,7 +79,7 @@ This is not a substrate metric claim. It is an observer-level recovery target fo
 - Smallest next artifact: one retained-support source object for `S_eq` whose raw labels, support id, coframe-source id, holonomy id, and retained-record row ids can be consumed by both the same-branch checker and retained-record runner.
 - Runnable route: run the retained-domain and retained-record attempts; both must remain blocked at the retained-evidence boundary until accepted `S_eq` support lands.
 
-Research input: [Translating-Binary Lorentz Closure](../../research-office/research-history/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) records the conditional root, continuation, fold, kernel, coframe, conservation, and high-drift findings that sharpen this packet's proof burden. It is priority-only research and does not populate a retained branch, conservation ledger, mass-shell row, or Lorentz-recovery result.
+Research input: [Translating-Binary Lorentz Closure](../../research-office/research-history/review-packets/hendrik-lorentz-translating-binary-lorentz-closure-2026-07-28.md) records the conditional root, continuation, fold, kernel, coframe, conservation, and high-group-speed findings that sharpen this packet's proof burden. It is priority-only research and does not populate a retained branch, conservation ledger, mass-shell row, or Lorentz-recovery result.
 
 ```sh
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json --summary --pretty
@@ -91,7 +91,7 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs --s
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| Lorentz clock-rate factor $d\tau/dt=1/\gamma_\star$ | Branch clock phase, cycle period, local Noether sea delay/cadence, and retained drift vector read from $B_q(\mathbf w,\mathcal N)$. | Accepted translating-binary retained branch record with clock row and same-branch chart identity. | Clock phase must share branch id, Noether sea cell, drift vector, root ledger, and support window with ruler, signal, and energy rows. | Same-branch identity failure, support-id mismatch, row-binding split, and raw labeled rows missing from retained history. | Source-backed retained support with raw labeled rows preserved and a clock row extracted on the same branch chart. |
+| Lorentz clock-rate factor $d\tau/dt=1/\gamma_\star$ | Branch clock phase, cycle period, local Noether sea delay/cadence, and retained group-velocity vector read from $B_q(\mathbf w,\mathcal N)$. | Accepted translating-binary retained branch record with clock row and same-branch chart identity. | Clock phase must share branch id, Noether sea cell, group-velocity vector, root ledger, and support window with ruler, signal, and energy rows. | Same-branch identity failure, support-id mismatch, row-binding split, and raw labeled rows missing from retained history. | Source-backed retained support with raw labeled rows preserved and a clock row extracted on the same branch chart. |
 | Ruler contraction and oblate envelope ratio $\xi\to1/\gamma_{\mathrm{eff}}$ | Parallel/perpendicular branch-envelope radii, all-layer loop state, wake-return geometry, and refinement-compatible coframe legs. | Accepted envelope/coframe extraction under the same $W_{\mathrm{supp}}/W_{\mathrm{hol}}$ witness. | $R_{\parallel}$, $R_{\perp}$, extracted coframe legs, branch labels, and holonomy witness must come from the same retained support. | Declared coframe legs without extraction, extraction-basis gamma control, connection/torsion/phase/transport holonomy controls, and refinement-step mismatch. | Retained coframe extraction certificate whose source-backed support and holonomy witness pass before $\xi$ is interpreted. |
 | Two-way signal and preferred-frame leakage | Two-way synchronization residual $\Delta_{\mathrm{tw}}$, signal-speed rows, and leakage budget projected from the same local Noether sea cell. | Accepted signal-speed/leakage row under the retained branch record. | Clock, ruler, signal, photon-channel when invoked, and energy rows must share $c_{\star}$, $c_{\mathrm{eff}}$, $\chi_{\text{sea}}$, and $\epsilon_{\mathrm{LV}}$ provenance. | Clock/signal split, hidden speed retune, and preferred-frame leakage beyond the declared bound. | Same-branch retained support with accepted two-way signal row and no hidden retune against clock/ruler rows. |
 | Energy-momentum mass shell | Moving energy, center-of-mass momentum, wake energy, boundary flux, exposure, internal energy, and event-ledger rows. | Accepted energy-momentum event ledger on $B_q(\mathbf w,\mathcal N)$. | $E_{\mathrm{CM}}$, $p_{\mathrm{CM}}$, $M_0$, $c_{\mathrm{eff}}$, wake ledger, event row, and source/remnant rows must bind to the same branch and event support. | Energy/momentum closure as a fitted center-of-mass label, wake/history bypass, and source shell without retained evidence. | Source-backed retained event ledger proving energy, momentum, wake, boundary, source, recoil, and remnant rows on one support. |
@@ -307,7 +307,7 @@ with the error budget allocated to named causal-root features, Noether sea dress
 | Row family | Minimal row to add or consume | Failure if absent |
 | --- | --- | --- |
 | Branch row | One retained $B_q(\mathbf{w},\mathcal{N})$ with root ledger, phase, wake, energy, exposure, and sea-response entries. | `equation_map.no_braid_carrier` |
-| Event row | Branch update $B_q\to B_{q'}$ for drift or energy transfer, with source event, receiver event, recoil, and boundary exchange. | Energy/momentum response becomes a fitted center-of-mass label. |
+| Event row | Branch update $B_q\to B_{q'}$ for group velocity or energy transfer, with source event, receiver event, recoil, and boundary exchange. | Energy/momentum response becomes a fitted center-of-mass label. |
 | Wake row | $\mathcal{L}_{\mathrm{wake}}$ with wake energy, finite-memory cutoff, boundary flux, and unresolved wake residual. | Internal energy double-counts or omits wake/history terms. |
 | Clock record | $P_q/P_0$ or $\omega_{\text{clk},q}/\omega_0$ extracted from the same branch. | Moving-clock law is assigned independently. |
 | Ruler record | $R_{\parallel,q}$, $R_{\perp,q}$, $\xi_q$, and oblate spheroidal envelope residual. | Envelope is only a visual match. |
@@ -323,7 +323,7 @@ This dated assessment preserves the rationale for the `6/23` ledger. It is not r
 
 | ID | Recorded `6/23` assessment | Justification |
 | --- | --- | --- |
-| `EQ-02` | `4` | The clock-rate and Lorentz-factor map has canonical variables and explicit residuals, but no retained branch ledger has yet derived $P_q/P_0=\gamma_{\star}$ across the required drift range. |
+| `EQ-02` | `4` | The clock-rate and Lorentz-factor map has canonical variables and explicit residuals, but no retained branch ledger has yet derived $P_q/P_0=\gamma_{\star}$ across the required group-speed range. |
 | `EQ-03` | `4` | The oblate spheroidal envelope map $\xi\to1/\gamma_{\text{eff}}$ has a strong closed-return derivation and canonical terminology, but still needs the all-layer branch ledger to prove the envelope ratio rather than assign it. |
 | `EQ-04` | `4` | The shared residual grammar, canonical variables, tensor response, rest-invariance row, and mass-shell residuals are explicit. It is not a `5` because $E_{\text{internal}}$, $\zeta(A)$, $\mathcal{M}_{\text{sea}}^{ab}$, and $M_0$ remain uncomputed for an accepted branch. |
 

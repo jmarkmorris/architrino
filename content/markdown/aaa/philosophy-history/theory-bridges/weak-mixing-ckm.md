@@ -160,7 +160,7 @@ S=\{H_+,H_-,M_+,M_-,L_+,L_-\}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3641b9806abb98dd)
-with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether braid frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether sea.
+with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether braid frame, and let $\hat{\mathbf v}$ be the quark group-velocity direction through the local Noether sea.
 
 The finite-state exposure score for handedness $h\in\{L,R\}$ is
 $$

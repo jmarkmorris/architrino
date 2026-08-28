@@ -138,7 +138,7 @@ $$
 L_{\mathrm{train}}=\xi_{N_w}-\xi_1.
 $$
 
-For prescribed group-translation speed $s_{\mathrm{grp}}$,
+For prescribed group speed $s_{\mathrm{grp}}$,
 
 $$
 \mathbf C_m(T)

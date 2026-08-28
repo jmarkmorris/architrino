@@ -244,7 +244,7 @@ $$
 
 The corpus already has the key map:
 
-- $\mathbf w=\mathbf V_{\mathrm{cm}}-\mathbf u_{\mathrm{sea}}$ is drift through the local Noether sea;
+- $\mathbf w=\mathbf V_{\mathrm{cm}}-\mathbf u_{\mathrm{sea}}$ is group velocity through the local Noether sea;
 - $c_{\star}$ is channel-declared, often $c_{\mathrm{eff}}$ for dressed clock/ruler comparisons;
 - the moving Noether braid must preserve finite-speed causal wake closure;
 - a closed return cycle gives the oblate spheroidal envelope target;
@@ -304,7 +304,7 @@ R_{\xi}^{(q)}(\mathbf w)
 \frac{1}{\gamma_{\star}(\mathbf w)}.
 $$
 
-The pass condition should require both residuals to use the same root ledger, speed convention, branch label, and Noether sea state. The stronger Cartan-style target is a gamma-free moving coframe $e^A_u$ built from causal-root and wake-return data over the drift base, with
+The pass condition should require both residuals to use the same root ledger, speed convention, branch label, and Noether sea state. The stronger Cartan-style target is a gamma-free moving coframe $e^A_u$ built from causal-root and wake-return data over the group-speed base, with
 
 $$
 e^0_u(\partial_t)=\lambda(u),
@@ -410,7 +410,7 @@ $$
 \operatorname{int}(B_{N,u}).
 $$
 
-This proves one point in the declared slice under the stated chart hypotheses; box width is not invariant-set width, stability, trapping, or basin measure. Raw labels become dynamic identity only with a validated root itinerary, predeclared allowed permutation, and overlap continuation. Full-history persistence, drift continuation, and stability are later ordered theorems. Legacy invariant-cell and $\mathcal K_{P_N}$ machine fields retain only their literal contract role until the separately authorized coupled migration.
+This proves one point in the declared slice under the stated chart hypotheses; box width is not invariant-set width, stability, trapping, or basin measure. Raw labels become dynamic identity only with a validated root itinerary, predeclared allowed permutation, and overlap continuation. Full-history persistence, group velocity continuation, and stability are later ordered theorems. Legacy invariant-cell and $\mathcal K_{P_N}$ machine fields retain only their literal contract role until the separately authorized coupled migration.
 
 [eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) now evaluates the direct retained-record shape for $\Theta_{02\text{-}04}^{\mathrm{bin}}(u)$. The attempt fixture [eq02-04-translating-binary-retained-record-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json) reports `blocked_same_branch_identity`, `scoreDecision=no_score_increase`, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`. Its numeric residual diagnostics, gamma-free coframe reciprocity diagnostic, support/holonomy witness diagnostics, and six negative-control diagnostics pass for the illustrative $\beta_f=0.6$ row. The coframe reciprocity diagnostic reports $e^0_u(\partial_t)=1.25$, $e^\parallel_u/e^\perp_u=0.8$, and product $1$, with $\gamma_f$ used only as a comparison output. The separate `coframeExtraction` diagnostic loads [eq02-04-coframe-extraction-attempt.v1.json](../../../scripts/equation-mapping/eq02-04-coframe-extraction-attempt.v1.json) and is `not_evaluated` with `reason=coframe_extraction_evidence_not_accepted`, because the certificate is still attempt-level. This is still not score evidence: every retained-record row and witness is `attempt`, and a single operating point is not invariant-branch evidence. `EQ-02`, `EQ-03`, and `EQ-04` remain at `4` until the support certificate persists under refinement, window-length, transverse-displacement, section-placement, and phase-permutation controls.
 
@@ -430,7 +430,7 @@ The gamma-free input boundary now has a source-internal negative control as well
 
 The scalar transport side is now split into support transport and holonomy transport. A source report with source-backed support, row bindings, stable refinement steps, reciprocal coframe legs, zero torsion, zero phase holonomy, and zero support-transport residual blocks exactly at `connection_holonomy_transport_residual_bound` when `connection.holonomyTransportResidual` exceeds tolerance. This prevents a passing support-transport residual from hiding a holonomy mismatch, but it is still only a guardrail for $W_{\mathrm{hol}}$, not a proof that the connection was constructed independently of the fitted target rows.
 
-The retained-domain fiber product is necessary but not sufficient for no-retune. $W_{\mathrm{supp}}$ proves shared support only. On the one-dimensional drift base, loop holonomy and curvature are trivial implementation facts, so the primary theorem target is frozen-source held-out parallelism $W_{\parallel}$, or $W_{\mathrm{end}}$ when only independently extracted endpoints are available. $W_{\mathrm{NR}}$ is a composite label, and a nontrivial $W_{\mathrm{loop}}$ becomes admissible only after a second retained continuation modulus exists. Current `W_hol`, torsion, and phase-holonomy fields remain diagnostic guardrails pending the separately authorized contract migration; they do not by themselves establish no-retune.
+The retained-domain fiber product is necessary but not sufficient for no-retune. $W_{\mathrm{supp}}$ proves shared support only. On the one-dimensional group-speed base, loop holonomy and curvature are trivial implementation facts, so the primary theorem target is frozen-source held-out parallelism $W_{\parallel}$, or $W_{\mathrm{end}}$ when only independently extracted endpoints are available. $W_{\mathrm{NR}}$ is a composite label, and a nontrivial $W_{\mathrm{loop}}$ becomes admissible only after a second retained continuation modulus exists. Current `W_hol`, torsion, and phase-holonomy fields remain diagnostic guardrails pending the separately authorized contract migration; they do not by themselves establish no-retune.
 
 Residual notation is now explicit. The corpus triple $(R_T^{\mathrm{bin}},R_\xi^{\mathrm{bin}},R_{\mathrm{shape}}^{\mathrm{bin}})$ is the local translating-binary branch-shape test. The priority vector $\mathcal R_{02-04}^{(q)}$ is its broader same-record extension and must retain that triple's carrier identity and shape row before adding signal, account, shell, rest-invariance, or Noether sea coordinates. A small shell row cannot stand in for the triple or for independently derived energy and momentum accounts.
 

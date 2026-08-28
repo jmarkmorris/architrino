@@ -112,7 +112,7 @@ The `x`, `y`, and `z` sliders mark the zero point and snap values very close to 
 
 `Signal c/c_f` sets the causal signal speed used by the current root solve. At the default value `1.00`, the branch signal speed is $c_f$. Lower values let the diagnostic inspect slower local-signal regimes.
 
-`Photon speed c_\gamma/c_f` sets the photon-channel translation speed used by the `Absolute transmitter history` calculation.
+`Photon speed c_\gamma/c_f` sets the photon-channel group speed used by the `Absolute transmitter history` calculation.
 
 When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon speed c_\gamma/c_f` sliders become readouts for the derived value. Change `Lorentz factor γ⋆` to change the solver speed in that mode.
 

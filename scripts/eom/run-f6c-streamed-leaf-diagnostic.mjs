@@ -40,11 +40,11 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "operationCoordinator": [
   "scripts/eom/f6c-bounded-operation.mjs",
-  "5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885"
+  "0e0f728b79f32c3a8c03021748902dca3b450fac6b450d73ce1868b32ae61228"
  ],
  "operationCoordinatorControls": [
   "tests/f6c-bounded-operation.test.js",
-  "36a40f31587792dcccfc8141fff591e87d9f07a66a9f587ec69bc7a97cd69f50"
+  "0738e5134680c2cd0e927b764e5a65ab9b13b3a8e87b65048b56384bc7ae3302"
  ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",

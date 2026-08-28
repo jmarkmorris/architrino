@@ -110,7 +110,7 @@ A later wake-bound binary derivation attempt strengthens the deformation row but
 
 The same source also sharpens the speed-identification burden. A square-root clock law computed with one limiting speed and a photon synchronization row computed with another generically leaves an $O(\beta^2)$ two-way residual. The priority target is therefore common-mode speed identification after Noether sea dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share one homogeneous limiting speed. Do not record this as a proved primitive equality $c_f=c_\gamma=c_{\text{eff}}=c_{\mathrm{GW}}^{\mathrm{eff}}$ until the photon dispersion and gravitational-channel transport derivations are supplied.
 
-For Earth-laboratory preferred-frame rows, use the explicit drift parameter
+For Earth-laboratory preferred-frame rows, use the explicit group-speed parameter
 $$
 \beta_\oplus\equiv\frac{v_\oplus}{c_{\text{eff}}},
 $$

@@ -1090,6 +1090,6 @@ The same shared precision interface owns the lepton-pair production form factor 
 
 1. The same $R_L$ that fits $\Delta a_\mu$ must keep $|\Delta\sigma/\sigma|$ below electroweak precision limits at $\sqrt{s}=91.19\,\text{GeV}$.
 2. The geometric mixing channel must reproduce $m_W/m_Z=\cos\theta_W$ with residuals inside the precision ledger.
-3. Six-pole charge arithmetic must remain exact under allowed drift/deformation, preserving only $Q\in\{0,\pm 1/3,\pm 2/3,\pm 1\}$.
+3. Six-pole charge arithmetic must remain exact under allowed group velocity/deformation, preserving only $Q\in\{0,\pm 1/3,\pm 2/3,\pm 1\}$.
 
 ---

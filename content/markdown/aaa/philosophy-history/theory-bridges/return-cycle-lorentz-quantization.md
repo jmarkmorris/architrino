@@ -54,7 +54,7 @@ This level separation is essential. The Lorentz equation is not being promoted t
 
 ## One-Way Roots Are Not Yet Lorentz Geometry
 
-A one-way causal leg along the drift direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
+A one-way causal leg along the group-velocity direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
 $$
 \beta_\star\equiv\frac{v}{c_\star}
 \qquad
@@ -62,7 +62,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dcfcfd5cb198585e)
-For an envelope semiaxis $R_{\parallel}$ along drift, the forward and rear one-way legs are
+For an envelope semiaxis $R_{\parallel}$ along group velocity, the forward and rear one-way legs are
 $$
 t_{+}
 =
@@ -93,7 +93,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b732691196073fa)
 
-Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly group velocity. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly group velocity.
 
 Combining the fractions gives
 $$
@@ -226,7 +226,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad47d7d0529c2a26)
 
-Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown.
+Here $P$ is the cycle period of the declared clock branch, evaluated at the group-speed argument shown.
 
 in the ideal homogeneous limit. The size of the object sets the base period $P_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
 
@@ -269,7 +269,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ece0442086c80dee)
 
-the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with drift.
+the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with group speed.
 
 The three pillars are therefore one accounting once that identification closes. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, while the **difference** supplies the offset required for relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
 
@@ -413,7 +413,7 @@ This sequence is the main reason the term `return-cycle` is preferred. The break
 
 ## Prediction And Failure Mode
 
-The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in drift speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
+The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in group speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
 
 Schematically, the two-way anisotropy diagnostic should decompose as
 $$
@@ -451,6 +451,6 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-That step has no confirmation from evolved dynamics. What the prescribed translating-family kinematics supply is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own ansatz, and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. The actual moving branch may deform internally. Whether its envelope's relative flattening tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ remains a target that requires evolution under the delayed acceleration law and measurement of the settled relative-periodic branch. The open remainder is therefore confirmation at any drift speed, then across the full drift range, together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
+That step has no confirmation from evolved dynamics. What the prescribed translating-family kinematics supply is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own ansatz, and the leg-difference simultaneity offset is exactly zero at rest and grows with group speed in step with the $v\gamma_\star^2$ prediction. The actual moving branch may deform internally. Whether its envelope's relative flattening tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ remains a target that requires evolution under the delayed acceleration law and measurement of the settled relative-periodic branch. The open remainder is therefore confirmation at any group speed, then across the full group-speed range, together with the joint clock-ruler-leakage solve on a retained branch. At larger group speed the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-group-speed regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.

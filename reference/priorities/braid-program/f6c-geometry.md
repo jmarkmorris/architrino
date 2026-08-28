@@ -2313,13 +2313,13 @@ F6c supplies four ingredients that make a Lorentz calculation well posed:
 1. **A centered rest scaffold.** The two sector centroids coincide exactly, and the phase-averaged sector second moment is isotropic. This provides a definite rest-geometry reference, although phase averaging is not yet a retained-cycle time average.
 2. **Internal clock candidates.** The lifted sector phases and complete return actions can define a material cycle. The clock period must be the return period of the declared clock readout and labeled history, not merely the first recurrence of one scalar shape coordinate.
 3. **A causal speed ledger.** Every sector member obeys the exact speed budget derived in Part II, while every accepted history must retain complete causal roots with normalized primitive speed \(c_f=1\).
-4. **Directional response coordinates.** The tetrahedral \(1\mathbin{\oplus}3\) split separates common scalar deformation from a three-component directional deformation. That triplet is the natural place to represent response to an arbitrary drift direction, but it lies outside strict six-coordinate F6c until an enlarged invariant chart is derived.
+4. **Directional response coordinates.** The tetrahedral \(1\mathbin{\oplus}3\) split separates common scalar deformation from a three-component directional deformation. That triplet is the natural place to represent response to an arbitrary group-velocity direction, but it lies outside strict six-coordinate F6c until an enlarged invariant chart is derived.
 
 Plainly: F6c already has a center, possible clock hands, an exact member-speed ledger, and a way to describe an arrow-shaped deformation. The member-speed ledger can be tested under either the guarded single-hit regime or the full causal-root regime. What is missing is a solved moving assembly that makes all four parts agree on one history.
 
 #### F6c Translating-Branch Test
 
-Choose a unit drift direction \(\hat{\mathbf e}\) and a drift speed \(v\). A candidate translating history would have the native form
+Choose a unit group-velocity direction \(\hat{\mathbf e}\) and a group speed \(v\). A candidate translating history would have the native form
 
 \[
 \mathbf X_{i\sigma}^{(v)}(T)
@@ -2413,19 +2413,19 @@ Here \(P_{\mathrm{clk}}\) is the complete-history period of the chosen F6c clock
 O(\epsilon_{\mathrm{LV}})
 \]
 
-from one fixed-law translating branch family. The term \(\Delta_{\mathrm{tw}}\) is the observer-facing two-way signal anisotropy, while \(\epsilon_{\mathrm{orient}}\) measures whether changing the drift direction relative to the decorated body frame changes the exported result. Causal-root completeness, pair clearance, speed margin, identity return, and stability are admission guards rather than terms that may be traded against a small Lorentz residual.
+from one fixed-law translating branch family. The term \(\Delta_{\mathrm{tw}}\) is the observer-facing two-way signal anisotropy, while \(\epsilon_{\mathrm{orient}}\) measures whether changing the group-velocity direction relative to the decorated body frame changes the exported result. Causal-root completeness, pair clearance, speed margin, identity return, and stability are admission guards rather than terms that may be traded against a small Lorentz residual.
 
 Plainly: a successful moving F6c clock must slow by the Lorentz factor, its cycle-averaged longitudinal size must shrink by the inverse factor, and a round-trip signal test must not reveal which way the assembly points. All of those results must come from the same evolved history; success in one column cannot compensate for failed causal roots or an unstable assembly.
 
 #### Does Strict Six-Coordinate F6c Have Enough Freedom?
 
-That remains open. Strict F6c gives each polarity sector one axial scale, one track radius, and one phase. This preserves the exact decorated tetrahedral surface but does not provide an independent continuous deformation aligned with every possible drift direction. Lorentz recovery can succeed on strict F6c only if its allowed phase, breathing, orientation, and return histories produce the required cycle-averaged tensor for every drift direction without exposing the body-fixed current axis.
+That remains open. Strict F6c gives each polarity sector one axial scale, one track radius, and one phase. This preserves the exact decorated tetrahedral surface but does not provide an independent continuous deformation aligned with every possible group-velocity direction. Lorentz recovery can succeed on strict F6c only if its allowed phase, breathing, orientation, and return histories produce the required cycle-averaged tensor for every group-velocity direction without exposing the body-fixed current axis.
 
 If they do not, the already-derived directional triplets provide the smallest natural enlargement to test. A failure of the strict six-coordinate surface would then mean that F6c is the rest scaffold of a larger translating chart, not that Lorentz mathematics is unavailable. Conversely, arbitrarily adding the desired oblate deformation would not count: the Master Equation must select it and the complete delayed history must retain it.
 
 Plainly: the six shared coordinates may be flexible enough to make the moving average look Lorentz-contracted, or the moving object may need extra directional shape controls. The dynamics, not a drawing convention, decide which answer is correct.
 
-Claim grade: inferred. The absence of substrate boosts, the layer separation, the F6c centering identities, and the definitions of the translating history and shape tensor are derived facts or test definitions. The Lorentz residual equations are **observer-level recovery targets**. F6c Lorentz covariance, clock dilation, ruler contraction, signal isotropy, and a Poincare action are **not measured or proved**. The claim would advance only after one retained rest return and a root-complete, stable translating family produce the same \(\gamma_\star\) in the clock and ruler channels together with compatible synchronization and signal closure for multiple drift magnitudes and orientations. It would fail if those channels require independent tuning, if body orientation remains observable above the declared leakage bound, or if no admissible translating continuation exists.
+Claim grade: inferred. The absence of substrate boosts, the layer separation, the F6c centering identities, and the definitions of the translating history and shape tensor are derived facts or test definitions. The Lorentz residual equations are **observer-level recovery targets**. F6c Lorentz covariance, clock dilation, ruler contraction, signal isotropy, and a Poincare action are **not measured or proved**. The claim would advance only after one retained rest return and a root-complete, stable translating family produce the same \(\gamma_\star\) in the clock and ruler channels together with compatible synchronization and signal closure for multiple group speeds and orientations. It would fail if those channels require independent tuning, if body orientation remains observable above the declared leakage bound, or if no admissible translating continuation exists.
 
 Plainly: F6c supports the mathematics of a decisive Lorentz test. It does not yet support the statement “F6c is Lorentz invariant.” Lorentz recovery requires a family of actual moving returns, not a coordinate transformation of the existing fixed-center geometry. The corpus-wide comparison and acceptance criteria remain in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md).
 

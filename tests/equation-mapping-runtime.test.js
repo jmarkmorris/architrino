@@ -381,6 +381,12 @@ test("equation mapping search includes subject, formula text, anchors, and overl
   assert.equal(filterEquationMapDocuments(documents, "Lorentz factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "transmitter-side").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
+  assert.equal(
+    filterEquationMapDocuments(documents, "group speed").some(
+      (document) => document.id === "eq-02-lorentz-clock-rate"
+    ),
+    true
+  );
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
 });
 
@@ -390,6 +396,9 @@ test("equation mapping can target an inner Lorentz marker without splitting the 
   );
   const driftSpeedPart = document.formulaParts.find((part) => part.id === "driftSpeed");
   const driftOverlay = document.overlays.find((overlay) => overlay.id === "drift-through-sea");
+
+  assert.equal(document.anchors.find((anchor) => anchor.id === "driftSpeed").label, "group speed");
+  assert.equal(driftOverlay.title, "Group velocity through sea");
 
   assert.equal(
     driftSpeedPart.tex,

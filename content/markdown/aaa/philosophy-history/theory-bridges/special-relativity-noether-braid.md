@@ -45,7 +45,7 @@ This table uses $c$ only as the inherited observer constant. Maxwell's electroma
 
 ## Observer-Level Minkowski Export
 
-The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For drift speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
+The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For group speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
 $$
 \tanh\varphi_{\text{eff}}
 =
@@ -96,7 +96,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-af640a70ebdf782d)
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
-For the Noether braid bridge, the velocity entering the material response is the assembly drift through the local Noether sea, not an abstract coordinate label:
+For the Noether braid bridge, the velocity entering the material response is the assembly group velocity through the local Noether sea, not an abstract coordinate label:
 $$
 \mathbf{w}
 =
@@ -104,7 +104,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13ee3ed1dac0189f)
-In the local Noether sea rest frame, this reduces to the center-of-mass drift. The corresponding effective Lorentz factor is
+In the local Noether sea rest frame, this reduces to the group velocity (center-of-mass convention). The corresponding effective Lorentz factor is
 $$
 \gamma_{\text{eff}}(\mathbf{w})
 =
@@ -132,7 +132,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2e00e29e08587032)
 
-The Noether braid mechanism behind that target is finite-speed causal closure. As the center of mass drifts through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a drift component and a transverse closure component:
+The Noether braid mechanism behind that target is finite-speed causal closure. As the assembly center of mass moves through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a group-speed component and a transverse closure component:
 $$
 c_{\text{eff}}^2
 =
@@ -200,7 +200,7 @@ In the geometry canon, this contraction is recorded first as the Noether braid e
 
 ### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
-The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. In this subsection, $v$ denotes the scalar drift magnitude $\|\mathbf{w}\|$. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
+The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. In this subsection, $v$ denotes the scalar group speed $\|\mathbf{w}\|$. A one-way causal leg in the group-velocity direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -221,7 +221,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b86338288cb5866a)
 
-Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly group velocity. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly group velocity.
 
 The transverse cycle uses the remaining transverse causal budget,
 $$
@@ -503,7 +503,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline.
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
 
-At the primitive two-architrino level, [Master Equation, Proposition 5](../../dynamics/master-equation.md#moving-transceiver-geometry-and-received-branch-strength) supplies a narrower exact checkpoint. For a fixed point cloud in uniform translation with instantaneous separation perpendicular to the drift, the canonical per-hit acceleration has a transverse projection reduced by exactly $1/\gamma_f$, derived from the causal-root geometry and transmitter-side acceleration weight without a relativistic premise. The same proposition retains a first-order longitudinal component, fails the comparison target for parallel separation, and varies with general orientation. The [exact fixed point-cloud residual](../../dynamics/master-equation.md#exact-fixed-point-cloud-residual) further shows that this deliberately frozen control needs a signed directional second-moment null, not visual symmetry alone. Candidate braids are not frozen point clouds: their members orbit internally and their pair distances may vary. A translating braid must instead pass the [relative-periodic moving-assembly test](../../dynamics/master-equation.md#relative-periodic-moving-assembly-test) on its complete evolved history, including delayed-root return, state return modulo translation and permitted relabeling, and stability. These are exact projection, negative-control, and acceptance-contract results, not a Lorentz-recovery proof or an assembly clock, ruler, momentum, covariance, or certified moving-branch result.
+At the primitive two-architrino level, [Master Equation, Proposition 5](../../dynamics/master-equation.md#moving-transceiver-geometry-and-received-branch-strength) supplies a narrower exact checkpoint. For a fixed point cloud in uniform translation with instantaneous separation perpendicular to the group velocity, the canonical per-hit acceleration has a transverse projection reduced by exactly $1/\gamma_f$, derived from the causal-root geometry and transmitter-side acceleration weight without a relativistic premise. The same proposition retains a first-order longitudinal component, fails the comparison target for parallel separation, and varies with general orientation. The [exact fixed point-cloud residual](../../dynamics/master-equation.md#exact-fixed-point-cloud-residual) further shows that this deliberately frozen control needs a signed directional second-moment null, not visual symmetry alone. Candidate braids are not frozen point clouds: their members orbit internally and their pair distances may vary. A translating braid must instead pass the [relative-periodic moving-assembly test](../../dynamics/master-equation.md#relative-periodic-moving-assembly-test) on its complete evolved history, including delayed-root return, state return modulo translation and permitted relabeling, and stability. These are exact projection, negative-control, and acceptance-contract results, not a Lorentz-recovery proof or an assembly clock, ruler, momentum, covariance, or certified moving-branch result.
 
 At the comparison-law level, the unification is derivation-grade exact algebra. A Lorentz boost is the full one-way causal-leg ledger of the moving assembly. The sum of the fore and aft legs,
 $$

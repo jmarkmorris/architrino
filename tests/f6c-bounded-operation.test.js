@@ -6,6 +6,9 @@ import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,renameSync,linkSync,sym
 import os from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
+import * as fs from 'node:fs';
+import {EventEmitter} from 'node:events';
+import {runInNewContext} from 'node:vm';
 import * as C from '../scripts/eom/f6c-bounded-operation.mjs';
 
 const digest=raw=>createHash('sha256').update(raw).digest('hex');
@@ -114,10 +117,13 @@ test('write-once operation receipt retains foreign bytes and obeys deadline call
   const partial=path.join(root,'partial.json');assert.throws(()=>C.writeNew(partial,{accepted:false},()=>{throw Error('deadline');}));assert.ok(lstatSync(partial).isFile());
 });
 
-test('production entry rejects missing original start/deadline before any work',async()=>{
-  await assert.rejects(C.runBoundedOperation({}),/SHA-256/u);
-  await assert.rejects(C.runBoundedOperation({selfSha256:'a'.repeat(64),planSha256:'b'.repeat(64)}),/begin/u);
-  await assert.rejects(C.runBoundedOperation({selfSha256:'a'.repeat(64),planSha256:'b'.repeat(64),began:performance.now(),deadlineNanoseconds:'0'}),/deadline/u);
+test('production entries reject absent or invented actual lifetime before any work',async()=>{
+  for(const lifetime of [undefined,null,{},Object.freeze({began:1,deadlineNanoseconds:'1',live(){}})]){
+    assert.throws(()=>C.assertLifetime(lifetime),/canonical C-owned/u);
+    await assert.rejects(C.runBoundedOperation({lifetime}),/canonical C-owned/u);
+    await assert.rejects(C.coordinate({lifetime}),/canonical C-owned/u);
+    await assert.rejects(C.closeUnexpectedProcesses({lifetime}),/canonical C-owned/u);
+  }
 });
 
 test('direct CLI has exact flags, absolute plan and explicit hashes',()=>{
@@ -144,9 +150,254 @@ test('pure hook guards block ordinary and low-level process creation',async()=>{
   assert.equal(await C.pureHook(async()=>({accepted:true})).then(x=>x.accepted),true);
 });
 
-test('unexpected-process cleanup only signals verified births and excludes own PID',async()=>{
-  let alive=true,clock=0;const signals=[],r={pid:2,ppid:1,pgid:2,started:'original',command:'synthetic'};
-  const result=await C.closeUnexpectedProcesses({inspect:async()=>alive?[r]:[],select:rows=>rows,ownPid:1,clock:()=>clock,delay:async ms=>{clock+=ms;},signal:(pid,s)=>{signals.push([pid,s]);if(s==='SIGTERM')alive=false;}});
-  assert.equal(result.processesClosed,true);assert.ok(signals.some(([,s])=>s==='SIGSTOP'));assert.ok(signals.every(([pid])=>pid===2));
-  await assert.rejects(C.closeUnexpectedProcesses({inspect:async()=>[{...r,pid:1}],select:rows=>rows,ownPid:1}),/coordinator signal/u);
+test('renewed-clock cleanup interface has no unguarded fallback',async()=>{
+  let called=false;
+  await assert.rejects(C.closeUnexpectedProcesses({inspect:async()=>{called=true;return[];},select:x=>x,ownPid:1,clock:()=>0,delay:async()=>{},signal:()=>{called=true;}}),/canonical C-owned/u);
+  assert.equal(called,false);
+});
+
+// Source-fragment controls execute only these actual inert function bodies with
+// literal clocks/actions and explicit fake handles. They do not import a K
+// candidate, start a Worker/child, or establish measured lifecycle closure.
+const source=readFileSync(new URL('../scripts/eom/f6c-bounded-operation.mjs',import.meta.url),'utf8');
+const fragment=(start,end)=>{const a=source.indexOf(start),z=source.indexOf(end,a+start.length);assert.ok(a>=0&&z>a);return source.slice(a,z);};
+const checked=(ok,message)=>{if(!ok)throw Error(message);};
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+const exactKeys=(o,wanted)=>assert.deepEqual(Object.keys(o).sort(),[...wanted].sort());
+
+test('writer optional original identity is exact and default binding remains clean',t=>{
+  const {root}=fixture(t),p=path.join(root,'ordinary.json'),q=path.join(root,'identified.json');
+  exactKeys(C.writeNew(p,{accepted:false}),['path','sha256','bytes']);
+  const result=C.writeNew(q,{accepted:false},()=>{},true),st=lstatSync(q,{bigint:true});
+  exactKeys(result,['path','sha256','bytes','identity']);
+  assert.equal(result.identity,[st.dev,st.ino,st.size,st.mtimeNs,st.ctimeNs].join(':'));
+  assert.deepEqual(C.clean(result),actual(q));
+  const lock=path.join(root,'lock');C.writeNew(lock,{pid:100,started:'R'},()=>{},true);
+  assert.equal(readFileSync(lock,'utf8'),'{"pid":100,"started":"R"}\n');
+});
+
+test('writer rejects every non-Boolean option before opening output',t=>{
+  const {root}=fixture(t);let n=0;
+  for(const option of [null,0,1,'true',{},new Boolean(true)]){
+    const p=path.join(root,'invalid-'+n++);assert.throws(()=>C.writeNew(p,{},()=>{},option),/Boolean/u);assert.equal(fs.existsSync(p),false);
+  }
+});
+
+test('initial output fstat exception closes original descriptor and retains path',t=>{
+  const {root}=fixture(t),p=path.join(root,'stat-failure.json');let opened,closes=0;
+  const code=fragment('export function writeNew(', '\nexport async function pureHook').replace(/^export /u,'');
+  const write=runInNewContext(code+'\nwriteNew',{Buffer,LIMITS:C.LIMITS,path,constants:fs.constants,check:checked,absolute:()=>{},realpathSync,
+    lstatSync,openSync:(...args)=>(opened=fs.openSync(...args)),fstatSync:()=>{throw Error('injected original stat');},
+    closeSync:fd=>{assert.equal(fd,opened);closes++;fs.closeSync(fd);},writeSync:fs.writeSync,fsyncSync:fs.fsyncSync,readBound:C.readBound,sha:digest,identity:()=>{},clean:C.clean});
+  assert.throws(()=>write(p,{}),/injected original stat/u);assert.equal(closes,1);assert.ok(lstatSync(p).isFile());assert.throws(()=>fs.fstatSync(opened),{code:'EBADF'});
+});
+
+test('publication original token is inserted before first observation and cannot be replaced',()=>{
+  const code=fragment('function validatePublicationIdentity(', '\nfunction lifetimeFileWorker');
+  const result={path:'/fixture/output.json',sha256:'a'.repeat(64),bytes:40,identity:'7:11:40:31:37'};
+  let current=result.identity,observations=0;
+  const captureUnion=(bindings,ids,live)=>{assert.equal(ids[result.path],result.identity);observations++;live();assert.equal(current,ids[result.path],'original publication mismatch');return{sources:bindings,identities:ids};};
+  const remember=runInNewContext(code+'\nrememberPublication',{check:checked,keys:exactKeys,binding:C.binding,clean:C.clean,sourceUnion:C.sourceUnion,captureUnion});
+  const state=()=>({sourceMap:new Map(),sourceIdentities:{},observed:new Map(),live(){assert.equal(this.sourceIdentities[result.path],result.identity);}});
+  const s=state();assert.deepEqual(remember(s,result),result);assert.equal(observations,1);
+  for(const identity of ['7:12:40:31:37','7:11:40:32:37','7:11:40:31:38']){current=identity;const rejected=state();assert.throws(()=>remember(rejected,result),/original publication mismatch/u);assert.equal(rejected.sourceIdentities[result.path],result.identity);}
+  for(const identity of [null,12,'7:11:41:31:37','07:11:40:31:37','7:11:40:31','7:11:40:31:37:9'])assert.throws(()=>remember(state(),{...result,identity}));
+  assert.throws(()=>remember(state(),{...result,extra:true}));
+});
+
+function inertLifetime(control=false){
+  const clock={now:1001.125},events=new EventEmitter(),workers=[],exits=[];
+  const process={pid:100,cwd:()=>'/fixture',hrtime:{bigint:()=>5000000000n},on:events.on.bind(events),emit:events.emit.bind(events),exit:code=>{exits.push(code);throw Object.assign(Error('literal self exit'),{code});}};
+  class FakeWorker extends EventEmitter{constructor(code,options){super();this.code=code;this.options=options;workers.push(this);}}
+  const make=runInNewContext(fragment('function makeLifetime(', '\nfunction bindLifetimeSources')+'\nmakeLifetime',{
+    path,performance:{now:()=>clock.now},process,AbortController,Buffer,Worker:FakeWorker,
+    DEFAULT_PROFILE:Object.freeze({name:'default',inclusiveMilliseconds:1800000,workMilliseconds:1770000,kWorkMilliseconds:1755000}),
+    CONTROL_PROFILE:Object.freeze({name:'fixed-control-plan',inclusiveMilliseconds:120000,workMilliseconds:90000,kWorkMilliseconds:75000}),WHOLE_GUARD_SOURCE:'inert-not-executed',
+    LIVE_LIFETIMES:new WeakSet(),LIFETIME_STATE:new WeakMap(),check:checked,equal:same,sha:digest,setTimeout,clearTimeout});
+  return{clock,workers,exits,s:make(1000,control?'125000000000':'1805000000000',control)};
+}
+
+test('literal inherited clock cutoffs and conservative bridge use no real worker',()=>{
+  const {clock,workers,s}=inertLifetime();assert.equal(workers.length,1);
+  assert.equal(workers[0].options.workerData.work,'1774998875000');assert.equal(workers[0].options.workerData.end,'1804998875000');
+  s.activeK=true;clock.now=1755999;assert.doesNotThrow(()=>s.live());clock.now=1756000;assert.throws(()=>s.live(),/deadline/u);
+  clock.now=1770999;assert.doesNotThrow(()=>s.live('cleanup'));assert.equal(s.remainingMs('cleanup'),1);clock.now=1771000;assert.throws(()=>s.live('cleanup'),/deadline/u);
+  s.activeK=false;clock.now=1770999;assert.doesNotThrow(()=>s.live());clock.now=1771000;assert.throws(()=>s.live(),/deadline/u);
+  clock.now=1800999;assert.doesNotThrow(()=>s.live('cleanup'));assert.equal(s.remainingMs('cleanup'),1);clock.now=1801000;assert.throws(()=>s.live('cleanup'),/deadline/u);
+});
+
+test('ready acknowledgment is exact and failure never turns back into work success',async()=>{
+  const {workers,s}=inertLifetime();assert.equal(s.guardReady,false);
+  const data=workers[0].options.workerData;workers[0].emit('message',{kind:'whole-guard-ready',...data});await s.ready();assert.equal(s.guardReady,true);
+  s.fail(Error('first'));const first=s.failure;assert.throws(()=>s.live(),/first/u);assert.doesNotThrow(()=>s.live('cleanup'));
+  // Supply a plain hostile record through the same-realm error constructor so
+  // the fragment control does not confuse VM realm conversion with evidence.
+  const second=new first.constructor('second');second.ambiguousGroup={rows:[{pid:303}],complete:true};s.fail(second);
+  assert.equal(s.failure,first);assert.equal(s.ambiguity.rows[0].pid,303);
+});
+
+test('full H worker promise remains pending through termination and rejected closure stays unresolved',async()=>{
+  const run=runInNewContext(fragment('function lifetimeFileWorker(', '\nasync function lifetimeRegistered')+'\nlifetimeFileWorker',
+    {Buffer,AbortSignal,check:checked,rememberPublication:()=>{throw Error('not a publication control');}});
+  const make=()=>{const {s}=inertLifetime(),bytes=Buffer.from('literal controlled source');s.mode='streamed';s.caller={path:'/fixture/caller.mjs',sha256:digest(bytes),data:bytes};s.sourceMap.set(s.caller.path,{path:s.caller.path,sha256:s.caller.sha256,bytes:bytes.length});return{s,bytes};};
+  const positive=make();let finish;positive.s.H={runFileWorker:()=>new Promise(resolve=>{finish=resolve;})};
+  const pending=run(positive.s,{kind:'capture'},positive.bytes);assert.ok(positive.s.pending.size>0);finish({captured:true});assert.equal((await pending).captured,true);assert.equal(positive.s.pending.size,0);
+  const negative=make();let reject;negative.s.H={runFileWorker:()=>new Promise((_,fail)=>{reject=fail;})};
+  const failed=run(negative.s,{kind:'capture'},negative.bytes);reject(Error('termination uncertain'));await assert.rejects(failed,/termination uncertain/u);
+  assert.equal(negative.s.workerClosureFailures.length,1);assert.equal(negative.s.pending.size,0);
+  const stop=runInNewContext(fragment('async function stopLifetimeObservations(', '\nfunction checkLifetimeLock')+'\nstopLifetimeObservations',{clearInterval,check:checked});
+  await assert.rejects(stop(negative.s,'cleanup'),/unresolved termination/u);
+});
+
+test('fixed control profile contracts every nested cutoff without altering science limits',()=>{
+  const {clock,workers,s}=inertLifetime(true);assert.equal(C.LIMITS.inclusiveMilliseconds,1800000);
+  assert.equal(s.profile.name,'fixed-control-plan');assert.equal(Object.isFrozen(s.profile),true);
+  assert.deepEqual([s.kWorkEnd,s.workEnd,s.end],[76000,91000,121000]);
+  assert.equal(workers[0].options.workerData.work,'94998875000');assert.equal(workers[0].options.workerData.end,'124998875000');
+  s.activeK=true;clock.now=75999;assert.doesNotThrow(()=>s.live());clock.now=76000;assert.throws(()=>s.live(),/deadline/u);
+  clock.now=90999;assert.equal(s.remainingMs('cleanup'),1);clock.now=91000;assert.throws(()=>s.live('cleanup'),/deadline/u);
+  s.activeK=false;clock.now=120999;assert.equal(s.remainingMs('cleanup'),1);clock.now=121000;assert.throws(()=>s.live('cleanup'),/deadline/u);
+});
+
+test('finite control CLI accepts no arbitrary duration or mixed-mode fallback',()=>{
+  const parse=runInNewContext(fragment('function parseWholeArguments(', '\nasync function wholeAttemptMain')+'\nparseWholeArguments',
+    {parseArguments:C.parseArguments,absolute:()=>{},hashToken:h=>assert.match(h,/^[a-f0-9]{64}$/u),check:checked});
+  const fixed=['--control-plan','/fixture/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)];
+  const parsed=parse(fixed);assert.equal(parsed.mode,'plan');assert.equal(parsed.control,true);assert.equal(parsed.planPath,'/fixture/plan.json');
+  for(const bad of [fixed.slice(0,-1),[...fixed,'--duration','120'],['--control-plan=120',...fixed.slice(1)],['--plan',...fixed.slice(1),'--control-plan'],['--control-plan','--streamed',...fixed.slice(2)]])assert.throws(()=>parse(bad));
+  const main=fragment('async function wholeAttemptMain(){','\nif(process.argv[1]');
+  assert.ok(main.indexOf('entryHr=process.hrtime.bigint()')<main.indexOf("process.argv[2]==='--control-plan'"));
+  assert.ok(main.indexOf("process.argv[2]==='--control-plan'")<main.indexOf('makeLifetime('));
+  assert.ok(main.indexOf('await s.ready()')<main.indexOf('parseWholeArguments('));
+});
+
+test('actual unexpected guard-exit event marks local failure and only exits self',()=>{
+  const {workers,exits,s}=inertLifetime();let aborted=0;s.activeK=true;s.lock={path:'/fixture/held-lock'};
+  s.abort.signal.addEventListener('abort',()=>aborted++);
+  assert.throws(()=>workers[0].emit('exit',1),{code:125});assert.deepEqual(exits,[125]);assert.equal(aborted,0);
+  assert.equal(s.guardExited,true);assert.equal(s.unexpectedGuardExit,true);assert.equal(s.lock.path,'/fixture/held-lock');assert.equal(s.lockReleased,false);
+});
+
+test('scoped stderr charges outward copies and waits for actual callbacks',()=>{
+  const writes=[],callbacks=[],stream={write(chunk,encoding,callback){writes.push({chunk,encoding});callbacks.push(callback);return false;}};
+  const original=stream.write;
+  const api=runInNewContext(fragment('function installLifetimeStderr(', '\nfunction ownedLifetimeRows')+'\n({installLifetimeStderr,restoreLifetimeStderr})',
+    {process:{stderr:stream},Buffer,Uint8Array,LIMITS:C.LIMITS,check:checked,lifetimeCensus:s=>({logBytes:s.retained+s.outwardStderrBytes})});
+  const s={retained:100,outwardStderrBytes:0,stderrPending:0,stderrFailure:null,phase:'work',live(){},fail(error){this.failure=error;}};
+  api.installLifetimeStderr(s);let delivered=0;
+  assert.equal(stream.write('x'.repeat(100),'utf8',()=>delivered++),false);assert.equal(s.retained+s.outwardStderrBytes,200);assert.equal(s.stderrPending,1);
+  assert.equal(writes[0].encoding,'utf8');assert.equal(writes[0].chunk,'x'.repeat(100));assert.throws(()=>api.restoreLifetimeStderr(s),/callbacks unresolved/u);
+  callbacks.shift()();assert.equal(delivered,1);assert.equal(s.stderrPending,0);api.restoreLifetimeStderr(s);assert.equal(stream.write,original);
+  const edge={...s,retained:16777116,outwardStderrBytes:0,stderrOriginal:null,stderrWrapper:null};api.installLifetimeStderr(edge);
+  stream.write(Buffer.alloc(100));assert.equal(edge.retained+edge.outwardStderrBytes,16777216);assert.throws(()=>stream.write('x'),/allowance/u);
+  callbacks.shift()();api.restoreLifetimeStderr(edge);
+});
+
+test('verified empty output log has an identity without becoming a positive-byte source',()=>{
+  const helper=runInNewContext(fragment('function validatePublicationIdentity(', '\nfunction rememberPublication')+'\ncapturedOutputIdentities',
+    {check:checked,keys:exactKeys,absolute:p=>assert.equal(p,'/fixture/runner-stderr.log'),hashToken:h=>assert.match(h,/^[a-f0-9]{64}$/u),LIMITS:C.LIMITS});
+  const row={path:'/fixture/runner-stderr.log',sha256:'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',bytes:0,identity:'7:11:0:31:37'};
+  assert.equal(helper([row])[row.path],'7:11:0:31:37');assert.throws(()=>C.originalIdentities([row]),/source binding/u);
+  for(const bad of [{...row,bytes:-1},{...row,bytes:false},{...row,identity:'7:11:1:31:37'},{...row,sha256:'bad'}])assert.throws(()=>helper([bad]));
+  assert.throws(()=>helper([row,row]),/duplicate/u);
+});
+
+test('lost RSS gap remains failure while a bounded cleanup observation is scheduled',async()=>{
+  const start='  s.timer=setInterval(()=>{',end='\n  },250);';let body=fragment(start,end).slice(start.length);
+  // fragment excludes its end marker, so this is only the actual callback body.
+  const events=[],s={phase:'work',rss:{lastSampleStartedMs:0},nextHost:5000,
+    live(phase){events.push(['live',phase]);},fail(error){this.phase='cleanup';this.failure=error;events.push(['failure']);}};
+  const tick=runInNewContext('(s)=>{'+body+'\n}',{performance:{now:()=>2001},Error,check:checked,lifetimeTable:async(_,phase)=>{events.push(['table',phase]);return[];},lifetimeHost:async()=>{},lifetimeLog:()=>{},lifetimeCensus:()=>({})});
+  tick(s);assert.match(s.failure.message,/lost whole-attempt/u);assert.ok(events.some(([kind,phase])=>kind==='table'&&phase==='cleanup'));await s.rssJob;
+});
+
+test('publication and raw rejection log quotas reject before output creation',()=>{
+  let census={files:[],scientificBytes:0,logBytes:0};
+  const preflight=runInNewContext(fragment('function preflightNewOutput(', '\nfunction lifetimeFileWorker')+'\npreflightNewOutput',
+    {check:checked,absolute:p=>assert.ok(p.startsWith('/fixture/outer/')),beneath:(p,d)=>p.startsWith(d+'/'),existsSync:()=>false,LIMITS:C.LIMITS,lifetimeCensus:()=>census});
+  const s={phase:'cleanup',live(){},layout:{operationDirectory:'/fixture/outer'},logPaths:['/fixture/outer/rejection.json']};
+  census={files:Array(511),scientificBytes:67108863,logBytes:16777215};
+  assert.doesNotThrow(()=>preflight(s,'/fixture/outer/operation.json',1));assert.doesNotThrow(()=>preflight(s,'/fixture/outer/rejection.json',1));
+  assert.throws(()=>preflight(s,'/fixture/outer/operation.json',2),/bytes before/u);assert.throws(()=>preflight(s,'/fixture/outer/rejection.json',2),/bytes before/u);
+  census={files:Array(512),scientificBytes:0,logBytes:0};assert.throws(()=>preflight(s,'/fixture/outer/operation.json',1),/path allowance/u);
+  const rejection=fragment('async function rejectLifetime(', '\nexport async function runBoundedOperation');
+  assert.ok(rejection.indexOf('preflightNewOutput(s,filename,raw.length)')<rejection.indexOf('writeNew(filename,record'));
+});
+
+test('v2 prior declaration is closed and may name its already captured plan',t=>{
+  const {root,plan}=fixture(t),p=path.join(root,'plan.json');
+  const v2={...plan,schema:'braid-program/f6c-bounded-operation-plan.v2',priorArtifacts:[{path:p,classification:'scientific'}]};
+  assert.ok(C.validatePlan(v2,root).length>0);
+  const captured={...b(p),bytes:71},ids={[p]:'7:11:71:31:37'};
+  assert.throws(()=>C.derivePriorContext(v2,[],{}),/absent from captured/u);
+  const context=C.derivePriorContext(v2,[captured],ids);
+  assert.equal(context.scientificBytes,71);assert.equal(context.pathCount,1);assert.equal(context.artifacts[0].identity,ids[p]);
+  assert.ok(Object.isFrozen(context)&&Object.isFrozen(context.artifacts)&&Object.isFrozen(context.artifacts[0]));
+  for(const mutate of [v=>delete v.priorArtifacts,v=>v.priorArtifacts[0].bytes=0,v=>v.priorArtifacts[0].classification='other',
+    v=>v.priorArtifacts.push({...v.priorArtifacts[0]}),v=>v.priorArtifacts[0].path=v.operationDirectory+'/prior',v=>v.schema='unknown']){
+    const invalid=structuredClone(v2);mutate(invalid);assert.throws(()=>C.validatePlan(invalid,root));
+  }
+  assert.throws(()=>C.validatePlan({...plan,priorArtifacts:[]},root));
+  assert.deepEqual(C.derivePriorContext(plan,[],{}),{artifacts:[],pathCount:0,physicalFiles:0,scientificBytes:0,retainedLogBytes:0});
+});
+
+test('prior context derives literal byte totals and rejects aliases and uncaptured identities',()=>{
+  const plan={schema:'braid-program/f6c-bounded-operation-plan.v2',operationDirectory:'/fixture/outer',outputDirectories:['/fixture/data'],
+    priorArtifacts:[{path:'/fixture/old-science',classification:'scientific'},{path:'/fixture/old-log',classification:'log'}]};
+  const sources=[{...b('/fixture/old-science'),bytes:4194304},{...b('/fixture/old-log'),bytes:8388608}],ids={'/fixture/old-science':'7:11:4194304:31:37','/fixture/old-log':'7:12:8388608:31:37'};
+  const c=C.derivePriorContext(plan,sources,ids);assert.deepEqual([c.pathCount,c.physicalFiles,c.scientificBytes,c.retainedLogBytes],[2,2,4194304,8388608]);
+  assert.throws(()=>C.derivePriorContext(plan,sources,{...ids,'/fixture/old-log':'7:11:8388608:31:37'}),/physical alias/u);
+  assert.throws(()=>C.derivePriorContext(plan,sources,{}),/captured/u);
+  assert.throws(()=>C.derivePriorContext(plan,sources,{...ids,'/fixture/old-log':'7:12:1:31:37'}),/identity/u);
+  const overflow=[{...sources[0],bytes:67108865},sources[1]];
+  assert.throws(()=>C.derivePriorContext(plan,overflow,{...ids,'/fixture/old-science':'7:11:67108865:31:37'}),/byte limits/u);
+});
+
+test('prior files remain inputs across repeated census and exact generation checks',t=>{
+  const {root,plan}=fixture(t),prior=path.join(root,'prior.json');writeFileSync(prior,'prior');
+  const v2={...plan,schema:'braid-program/f6c-bounded-operation-plan.v2',priorArtifacts:[{path:prior,classification:'scientific'}]},captured=C.captureUnion([actual(prior)]),context=C.derivePriorContext(v2,captured.sources,captured.identities);
+  mkdirSync(plan.operationDirectory);mkdirSync(plan.outputDirectories[0]);const current=path.join(plan.outputDirectories[0],'current');writeFileSync(current,'new');
+  assert.throws(()=>C.outputCensus(v2),/requires captured prior/u);
+  for(let n=0;n<100;n++){const c=C.outputCensus(v2,new Map(),context);assert.deepEqual(c.files.map(f=>f.path),[current]);assert.equal(c.scientificBytes,8);assert.equal(c.currentScientificBytes,3);assert.equal(c.combinedOutputPaths,2);assert.equal(c.combinedPhysicalFiles,2);}
+  const outputs=C.captureOutputs(C.outputCensus(v2,new Map(),context));assert.deepEqual(outputs.map(f=>f.path),[current]);
+  for(const changed of [{...context,scientificBytes:0},{...context,pathCount:-1},{...context,physicalFiles:0},
+    {...context,artifacts:[]},{...context,artifacts:[...context.artifacts,...context.artifacts]},
+    {...context,artifacts:[{...context.artifacts[0],classification:'log'}]}])assert.throws(()=>C.outputCensus(v2,new Map(),changed));
+  renameSync(prior,prior+'.preserved');writeFileSync(prior,'prior');assert.throws(()=>C.outputCensus(v2,new Map(),context),/prior artifact changed/u);
+  const symlink=path.join(root,'linked');symlinkSync(prior,symlink);assert.throws(()=>C.captureUnion([actual(symlink)]),/symlink/u);
+  const empty={...v2,priorArtifacts:[]},zero=C.derivePriorContext(empty,[],{});assert.equal(C.outputCensus(empty,new Map(),zero).scientificBytes,3);
+});
+
+test('literal combined limits include old bytes and current outward traffic without accumulation',()=>{
+  const plan={schema:'braid-program/f6c-bounded-operation-plan.v2',operationDirectory:'/fixture/outer',outputDirectories:['/fixture/data'],
+    priorArtifacts:[{path:'/fixture/old-science',classification:'scientific'},{path:'/fixture/old-log',classification:'log'}]};
+  const sources=[{...b('/fixture/old-science'),bytes:4194304},{...b('/fixture/old-log'),bytes:8388608}],ids={'/fixture/old-science':'7:11:4194304:31:37','/fixture/old-log':'7:12:8388608:31:37'};
+  const prior=C.derivePriorContext(plan,sources,ids),plain=x=>JSON.parse(JSON.stringify(x));
+  const combine=runInNewContext(fragment('function applyPriorContext(', '\nexport function outputCensus')+'\napplyPriorContext',{
+    check:checked,keys:exactKeys,LIMITS:C.LIMITS,equal:(a,b)=>{try{assert.deepEqual(plain(a),plain(b));return true;}catch{return false;}},
+    derivePriorContext:(p,s,i)=>C.derivePriorContext(plain(p),plain(s),plain(i)),
+    lstatSync:p=>({isFile:()=>true,isSymbolicLink:()=>false,token:ids[p]}),realpathSync:p=>p,identity:st=>st.token});
+  const current={files:[],directories:[],scientificBytes:62914560,retainedLogBytes:4194304,logBytes:8388608,physicalFiles:0};
+  for(let n=0;n<100;n++){const c=combine(plan,current,prior);assert.equal(c.scientificBytes,67108864);assert.equal(c.retainedLogBytes,12582912);assert.equal(c.logBytes,16777216);assert.equal(c.currentLogBytes,8388608);}
+  assert.throws(()=>combine(plan,{...current,scientificBytes:62914561},prior),/combined/u);
+  assert.throws(()=>combine(plan,{...current,logBytes:8388609},prior),/combined/u);
+  assert.throws(()=>combine(plan,{...current,files:[{inode:'7:11'}]},prior),/aliases prior/u);
+});
+
+test('combined path reserve precedes initial logs, publication and registered logs',()=>{
+  let census={files:Array(501),combinedOutputPaths:511,scientificBytes:0,logBytes:0};
+  const preflight=runInNewContext(fragment('function preflightNewOutput(', '\nfunction lifetimeFileWorker')+'\npreflightNewOutput',
+    {check:checked,absolute:()=>{},beneath:()=>true,existsSync:()=>false,LIMITS:C.LIMITS,lifetimeCensus:()=>census});
+  const state={phase:'work',live(){},layout:{operationDirectory:'/fixture/outer'},logPaths:[]};
+  assert.doesNotThrow(()=>preflight(state,'/fixture/outer/operation.json',1));
+  census={...census,files:Array(502),combinedOutputPaths:512};assert.throws(()=>preflight(state,'/fixture/outer/operation.json',1),/path allowance/u);
+  const start=fragment('async function startLifetimeAccounting(', '\nfunction readDirectoryIdentity');
+  assert.ok(start.indexOf('two initial log paths fit combined allowance')<start.indexOf('mkdirSync(layout.operationDirectory'));
+  assert.ok(start.indexOf('two initial log paths fit combined allowance')<start.indexOf("s.logFD=openLog('launcher-stderr.log')"));
+  const registered=fragment('async function lifetimeRegistered(', '\nasync function lifetimeCheckpoint');
+  assert.ok(registered.indexOf('two registered log paths fit combined allowance')<registered.indexOf('s.outer.superviseRegisteredPilot'));
+  for(const prior of [510,511,512])assert.equal(prior+2<=512,prior===510);
+  const worker=fragment('function lifetimeFileWorker(', '\nasync function lifetimeRegistered');
+  assert.match(worker,/runFileWorker\(\{\.\.\.job,deadlineNanoseconds:s\.deadlineNanoseconds,priorContext:s\.priorContext\}/u);
+  assert.match(fragment('export async function fileOperation(', '\n// PRIVATE SOURCE CANDIDATE'),/outputCensus\(job\.plan,new Map\(\),job\.priorContext\)/u);
 });

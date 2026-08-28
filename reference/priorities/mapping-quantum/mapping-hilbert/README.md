@@ -6,7 +6,7 @@ Build an AP-STEM understanding of Hilbert space, then use that understanding to 
 
 This is an operator-selected learning and exploration folder within [Quantum Mapping](../priorities.md), alongside the [spinors, rotations, and history exploration](../spinors-rotations-and-history/brainstorming.md). It is not a separately ranked domain workstream. [QC-013](../work-queue.md#qc-013--hilbert-space-and-effective-state-vector-contract) is the sole task owner; this directory does not create another queue.
 
-Read [brainstorming.md](brainstorming.md) for the starting distinctions and provisional braid questions. The [parent work log](../work-log.md#2026-08-28--hilbert-space-learning-and-braid-mapping) records the operator's scope decision. Creating this folder does not establish that the learning or a physical mapping is complete.
+Read [brainstorming.md](brainstorming.md) for the academic synthesis of the ongoing discussion: Hilbert-space explanations, worked mathematics, and provisional braid mappings. Update that same document as dialogue develops by integrating insights and corrections into its sections; keep conversation transcripts and task chronology out of the synthesis. The [parent work log](../work-log.md#2026-08-28--hilbert-space-learning-and-braid-mapping) records the operator's scope decision. A written draft does not establish that the learning or a physical mapping is complete.
 
 ## Learning Path
 

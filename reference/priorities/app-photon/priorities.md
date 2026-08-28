@@ -50,7 +50,7 @@ The current candidate picture is:
 
 - A photon is represented as a pair of flat Noether braids.
 - The current co-moving diagnostic exposes a branch signal speed control $c_{\mathrm{sig}}/c_f$.
-- The app uses a photon-channel translation speed control $c_\gamma/c_f$ in the default `Absolute history` mode.
+- The app uses a photon-channel group speed control $c_\gamma/c_f$ in the default `Absolute history` mode.
 - The app can either use direct speed sliders or a first Lorentz-factor local-$c$ mode; a later version should derive local $c$ from declared Noether sea state variables rather than only direct slider input or the provisional $\gamma$ mapping.
 - The trailing braid is shown on the left in the face-on view and rotates counter-clockwise.
 - The leading braid is shown on the right in the face-on view and rotates clockwise.
@@ -70,7 +70,7 @@ Current defaults:
 - plotted cycle count: `3`;
 - Slow/Fast animation scale: `0.20`;
 - signal speed: $c_{\mathrm{sig}}/c_f=1.00$;
-- photon-channel translation speed: $c_\gamma/c_f=1.00$;
+- photon-channel group speed: $c_\gamma/c_f=1.00$;
 - analyzer angle: `0 deg`;
 - Virtual Observer coordinate: $(x,y,z)=(0,0,0)$;
 - all six binaries enabled;

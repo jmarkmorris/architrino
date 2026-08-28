@@ -451,7 +451,7 @@ The focused structural tests establish eight implementation facts:
 7. population replacement is rejected as identity loss and a neighbor change remains incomplete without bracket-or-dwell timing evidence; and
 8. mismatched apparatus/readout fingerprints and refinement residuals above tolerance block adjudication rather than producing an architecture verdict.
 
-The five adapter tests establish separately that the EOM-history bridge evaluates the declared local cubic polynomial, accepts an analytically known site-local circular population inside its error bounds, rejects a common-drift identity return, blocks a numerically returning finite-boundary fixture, and detects a certified excursion placed entirely between sparse rejection-witness samples.
+The five adapter tests establish separately that the EOM-history bridge evaluates the declared local cubic polynomial, accepts an analytically known site-local circular population inside its error bounds, rejects a common-group-velocity identity return, blocks a numerically returning finite-boundary fixture, and detects a certified excursion placed entirely between sparse rejection-witness samples.
 
 The three site-local release tests establish separately that the parity-tetrahedral frames have the exact second-rank census, a certified nonzero circular-acceleration residual rejects a release, and the $N=2,4$ subset cannot be promoted as a completed $N=2,4,6$ ladder. The live ladder then supplies the measured EOM rows recorded above; the synthetic tests do not supply those values.
 

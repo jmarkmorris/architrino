@@ -260,7 +260,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-94ce20f3e0e34977)
 
-Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial drift. The B1 transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed B1 kinematics.
+Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial group velocity. The B1 transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed B1 kinematics.
 
 The axis sector has an equally clean kinematic reduction. Take as slow coordinates the per-binary plane inclinations about two transverse axes, $\eta_a^{x}$ and $\eta_a^{y}$. The cycle-averaged tilt inertia of a layer about a transverse axis through the braid center is
 
@@ -280,7 +280,7 @@ The total rotational ledger is the kinematic spine plus the same branch-resolved
 - Whether the per-binary axial wake torques close binary by binary — and, if not, which binaries carry a standing tangential surplus that must be transacted into the outgoing wake — is the first wake measurement the validated engine must supply for this family. No per-binary closure values are carried here.
 - The tilt stiffness block $K$ — the matrix of cycle-averaged transverse-torque responses to per-binary tilts — is **not required to be symmetric, and any asymmetry would be physics rather than error**. Its rows must sum to zero (a global tilt is a symmetry of the isotropic delayed law, so the global mode is an exact null), but its columns need not: in an instantaneous-interaction theory internal torques cancel pairwise and no column imbalance can exist, while in a causal-delay theory the field in flight carries angular momentum, and a column imbalance is exactly a tilt-sector posting to the wake ledger. Measuring $K$ is an open target for the validated engine.
 
-How the transacted half of the wake ledger behaves under axial drift — whether the wake angular impulse per accepted transaction is invariant or runs with drift speed — is likewise open; it is the comparison consumed by the $h$ and $\hbar$ convention section of this bridge and by closure target 17 below.
+How the transacted half of the wake ledger behaves under axial group velocity — whether the wake angular impulse per accepted transaction is invariant or runs with group speed — is likewise open; it is the comparison consumed by the $h$ and $\hbar$ convention section of this bridge and by closure target 17 below.
 
 ### The Iso-Frequency Partition Map
 
@@ -326,7 +326,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76a653275e26c9e7)
 
-On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any drift-orientation preference remain open.
+On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
 
 ### Gyroscopic-Circulatory Axis Dynamics
 
@@ -350,7 +350,7 @@ $$
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline axial torques, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
-Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether drift changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
+Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether group velocity changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
 
 ## A1 Spin Scaffold
 
@@ -1731,7 +1731,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa95181fdfc586e6)
 
-This is a branch-chart reduction of the full six-architrino history. It keeps binary radii, frequencies, phases, binary-plane normals, radian-normalized rotational actions, binary and cross-binary causal-root ledgers, and the center/group velocity through the Noether sea. A theorem-target configuration space for this reduction is
+This is a branch-chart reduction of the full six-architrino history. It keeps binary radii, frequencies, phases, binary-plane normals, radian-normalized rotational actions, binary and cross-binary causal-root ledgers, and the group velocity through the Noether sea. A theorem-target configuration space for this reduction is
 
 $$
 \mathcal Q_C^{\text{red}}
@@ -2453,7 +2453,7 @@ $$
 
 and, in the primary iso-frequency chart, the same total allocated through the B1 scaffold's partition map (radii, tilts, shared cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
-Whether the transacted unit is constant under drift has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would derive Planck-constant constancy from the family's dynamics; divergence would convert observed constancy into a selection constraint on which family members can be dressed into matter.
+Whether the transacted unit is constant under group velocity has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would derive Planck-constant constancy from the family's dynamics; divergence would convert observed constancy into a selection constraint on which family members can be dressed into matter.
 
 ## Foundation-Up Closure Route
 
