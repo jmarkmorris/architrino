@@ -301,4 +301,16 @@ Independent preservation review `shared-k-preservation-independent-review-v1.jso
 
 Plainly: the old execution can remain reproducible while a separately reviewed operational generation is prepared. This does not authorize a scientific change or relax any safety limit.
 
+### First complete-observer invocation: rejected before observer entry
+
+The independently admitted first specification, SHA-256 `2ec33fc73eea709228773fa2b0e019d8f2688c3a92eeed7ba815624ba43e1764`, was actually invoked after both peer tasks released compute and a fresh parent check authenticated 239 consumed files and 33 aliases. The exact clean-environment Bash/Node invocation and final tool result are retained in `whole-observer-fast-v2-actual-tool-packet.json`. Tool `82ea49` exited one: the adapter reported `inert invocation differs` before importing the observer or launching workers. The immediate host clock after final tool completion gives a conservative adapter-entry-to-completion upper bound of 0.133261042 seconds. There is no observer memory sample, completed evaluation or throughput result.
+
+Independent diagnosis `whole-observer-first-attempt-invocation-order-diagnosis-v1.json`, SHA-256 `57ff7fbd58e1a3e5ddf666790c7cfc1dc3af345f658bb6343e981a7dc6f0b094`, found equal paths, sizes and hashes but different JSON property order. The builder wrote binding fields as `path,bytes,sha256`; the frozen inner plan uses `path,sha256,bytes`. Both adapter and observer require exact serialized equality. The first specification review had checked structural equality and missed this serialization requirement. Its admission is consumed by this retained failed attempt, not reused. The smallest repair is a fresh builder preserving the original invocation representation, without changing the adapter, observer or historical inputs.
+
+Plainly: the failure concerns how identical metadata was written, not an altered scientific input. It stopped before any of the planned worker stages began.
+
+Independent failure closure at `2026-08-28T08:11:36.930Z` is preserved in `whole-observer-fast-v2-independent-failure-closure-v1.json`, SHA-256 `c4d8aa8e2300b2fcf82d4dfb4fa7edfb4991b27816a301b891bc5db6c66dcd16`. Fresh process-table and signal-zero checks found adapter PID 19384 and post-tool clock PID 19385 absent, with no matching selected process, shared lock or observer/inner output directory. No birth identity or process group was recorded for those processes, so no group-closure theorem is invented. Source/runtime/alias and postpublication checks remained unchanged. The census explicitly lists two selected workers and all 24 roles as not started, plus four unadmitted schema cases. The scoped failure review completed within its original 600-second allowance. Main read and rehashed the receipt, then released compute; no retry was reserved.
+
+Plainly: the failed launch is fully visible in the attempt census, and the available evidence supports safe idle release. It is not a passing control or benchmark.
+
 Closure goal: complete the remaining operational checks and execute the approved batch within the original campaign boundary.

@@ -124,4 +124,16 @@ Plainly: successful compilation did not satisfy the advance input contract. The 
 
 Plainly: the failed attempt remains reproducible evidence, with its measurement limits intact. The repair changes operational dependency accounting, not the fixed F5 mathematics or input history.
 
+## Reviewed operational successors
+
+**Source-accepted header repair:** the [independent review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/harness-header-retry-independent-review-v1.json), SHA-256 `b663211b735e56291e2cd90308287435dfcaa89f238d62f2f762b0c953e1577c`, reconciles all 310 files, 1039 literal include/probe operations and 320 absent candidate paths. Acceptance is limited to the independently inspected fixed corpus; the scanner is not a general preprocessor. The exact successor compiler plan received separate review before its second attempt. That attempt's actual tool exited 0, with the new dependency list contained in the declared inventory according to the wrapper. Independent outcome and process closure remain pending; the executable is unaccepted and unrun. The conservative second-attempt charge is 8.329 seconds, bringing compute/build charges to 30.401158333 seconds.
+
+**Source-accepted control wiring:** the [parent's independent CMake review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/capture-proposal/control-wiring-parent-independent-review-v1.json), SHA-256 `582b82d28c2f8c84f24e41b089b5c1fb4c644298801039601fe13deecf68efc6`, accepts only the private optional control target. Removing the two added blocks recovers the preserved old bytes; the other 58 private file bindings and canonical CMake remain unchanged. The target is off by default, excluded from the ordinary all target and linked to the same EOM library. No configuration, EOM build or control ran.
+
+Plainly: these are reviewed preparations for compilation and testing. Neither a source review nor the latest compiler exit establishes correct diagnostic behavior.
+
+**Independently checked static runtime evidence:** the bundled Node review `75df2b5776a621b64b18fbbacf89acd55ed6324cb08d2f73ed848d95918c19e3` and fixed process-helper review `9a9bc8f2240af2f27e591dc09419a3f557bea2b044c41033e46281424d0e9171` authenticate their declared load-command bytes and ordinary-file dependencies, retaining an explicit OS cache boundary. The parent read both reports and reauthenticated fourteen and nine unique linked bindings respectively. Actual loaded images, clock calibration, observer controls and complete invocation acceptance remain separate, unperformed obligations.
+
+Plainly: the files and their declared dependencies are identified. The process helper still has to demonstrate that its actual observations meet the control contract.
+
 Closure goal: validate observation and passive capture through admitted controls, then complete the unchanged F5 evaluation within its original limits.
