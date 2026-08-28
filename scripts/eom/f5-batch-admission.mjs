@@ -19,8 +19,62 @@ export const probeBatch = (command, args) => new Promise((done, fail) => execFil
 export async function observeBatch() {
   return parseObservation(await probeBatch('/bin/ps', ['-axo','pid=,ppid=,pgid=,lstart=,stat=,rss=,comm=']));
 }
-export function assertScientificGeneration(original, current) {
+function assertCampaignRenewal(original, current, readBoundJson) {
+  const admission=current.operationalAdmission, descriptor=admission.campaignRenewal;
+  requireBatch(typeof readBoundJson==='function', 'campaign renewal requires authenticated JSON reader');
+  const binding=b=>{
+    requireBatch(b && typeof b.path==='string' && Number.isSafeInteger(b.bytes) && b.bytes>=0 && /^[a-f0-9]{64}$/u.test(b.sha256), 'invalid renewal binding');
+    return {path:resolve(BATCH_ROOT,b.path),bytes:b.bytes,sha256:b.sha256};
+  };
+  const same=(a,b)=>isDeepStrictEqual(binding(a),binding(b));
+  const sources=new Map();
+  for(const b of current.sourceBindings) {
+    const p=binding(b).path;
+    requireBatch(!sources.has(p), 'duplicate normalized renewal source path'); sources.set(p,b);
+  }
+  const read=(b, inventoried=false)=>{
+    const expected=binding(b);
+    if(inventoried) requireBatch(sources.has(expected.path) && same(sources.get(expected.path),b), 'renewal input missing from source inventory');
+    const captured=readBoundJson(expected.path,1024*1024);
+    requireBatch(same(captured,b), 'authenticated renewal input differs');
+    requireBatch(captured.value && typeof captured.value==='object' && !Array.isArray(captured.value), 'renewal JSON object required');
+    return captured.value;
+  };
+  const renewal=read(descriptor,true);
+  requireBatch(renewal.schema==='braid-program/f5-benchmark-campaign-renewal.v1' && renewal.approved===true &&
+    renewal.scope==='operational-time-renewal-only', 'explicit time-only renewal required');
+  requireBatch(same(renewal.originalDeclaration,admission.originalDeclaration) &&
+    isDeepStrictEqual(read(renewal.originalDeclaration),original), 'renewal original declaration differs');
+  requireBatch(same(renewal.scientificCaseFreeze,admission.scientificCaseFreeze), 'renewal scientific case freeze differs');
+  const cases=['serial-1','serial-2','parallel-1','parallel-2','isolation-1','isolation-2'];
+  requireBatch(renewal.caseId==='f5-ordinary-evolution-20260827' && isDeepStrictEqual(renewal.caseIds,cases), 'renewal case census differs');
+  requireBatch(renewal.scientificChangesAuthorized===false && renewal.limitsChangesAuthorized===false &&
+    renewal.automaticExtensionAuthorized===false, 'renewal exceeds time-only scope');
+  requireBatch(renewal.originalCampaignStart===original.campaignStart && renewal.originalCampaignDeadline===original.campaignDeadline,
+    'renewal historical dates differ');
+  requireBatch(current.campaignStart===renewal.authorizedStart && current.campaignDeadline===renewal.authorizedDeadline,
+    'campaign dates differ from renewal');
+  const start=Date.parse(renewal.authorizedStart),end=Date.parse(renewal.authorizedDeadline);
+  requireBatch(Number.isFinite(start) && Number.isFinite(end) && end-start===12*60*60*1000 && start>=Date.parse(original.campaignDeadline),
+    'renewal must be a distinct fixed twelve-hour window');
+  const window=read(renewal.window,true), startTool=read(renewal.startTool,true);
+  requireBatch(window.schema==='braid-program/benchmark-campaign-window.v1' && window.recordedStart===current.campaignStart &&
+    window.hardStop===current.campaignDeadline && isDeepStrictEqual(window.cases,cases) && window.authorization?.userMessage==='y',
+    'renewal window authority differs');
+  requireBatch(startTool.schema==='braid-program/campaign-start-tool.v1' && startTool.hardStop===current.campaignDeadline &&
+    startTool.authorization?.directUserMessage==='y' && startTool.actualTool?.command==="date -u '+%Y-%m-%dT%H:%M:%SZ'" &&
+    startTool.actualTool.exit_code===0 && startTool.actualTool.output===current.campaignStart+'\n' &&
+    typeof startTool.actualTool.chunk_id==='string' && startTool.actualTool.chunk_id.length>0 &&
+    Number.isFinite(startTool.actualTool.wall_time_seconds) && startTool.actualTool.wall_time_seconds>=0, 'renewal start tool differs');
+  // These checks authenticate consistency, not operator consent. The separately
+  // bound independent declaration review must pin the actual authorized record.
+}
+export function assertScientificGeneration(original, current, readBoundJson=null) {
   const changedOperationalFields = new Set(['sourceBindings', 'independentDeclarationReview', 'frozenAt']);
+  if(Object.hasOwn(current.operationalAdmission??{},'campaignRenewal')) {
+    assertCampaignRenewal(original,current,readBoundJson);
+    changedOperationalFields.add('campaignStart'); changedOperationalFields.add('campaignDeadline');
+  }
   for (const key of Object.keys(original)) if (!changedOperationalFields.has(key))
     requireBatch(isDeepStrictEqual(original[key], current[key]), `historical scientific/deadline field changed: ${key}`);
   for (const key of Object.keys(current))
@@ -81,7 +135,7 @@ export async function connectBatchWorker({planPath, caseId, declaration, output,
   requireBatch(admission?.mode === 'registered-batch-v1', 'registered batch declaration required');
   api.authenticateBindings([admission.originalDeclaration, admission.archiveManifest, admission.archiveReview]);
   const original = api.readJson(admission.originalDeclaration.path);
-  assertScientificGeneration(original.value,d);
+  assertScientificGeneration(original.value,d,api.readJson);
   const archiveReview=api.readJson(admission.archiveReview.path).value;
   requireBatch(archiveReview.acceptedForHistoricalPreservationBeforeScopedCallerAndTestEdits === true &&
     isDeepStrictEqual(archiveReview.manifest,admission.archiveManifest), 'historical archive preservation scope/binding differs');

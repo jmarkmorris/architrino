@@ -79,6 +79,10 @@ Plainly: state what every successful geometry must produce before proposing what
 
 ## Theory-Layer Boundary
 
+The canonical architrino velocity domain is unbounded: finite speeds below, at, and above $c_f$ are admitted. The [universal H3 requirement](../braid-program/braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) concerns complete partner- and self-root inventories and valid causal-event continuation, not a member-speed ceiling. Strict sub-field bounds in the seed constructions, proofs, and bounded releases below are hypotheses of those specific methods. Historical speed stops, margins, and negative results retain that scope; they neither reject every faster history nor certify an unevaluated continuation. A separately versioned capped model would require explicit adoption, which the [field-speed-ceiling compatibility decision](../field-speed-ceiling/field-speed-ceiling-compatibility-decision.md) does not provide.
+
+Plainly: a calculation that stops at its speed guard has reached the limit of that calculation, not an established speed limit of nature.
+
 At the substrate layer, an architrino follows a path in Euclidean void and receives acceleration contributions from potential-bearing causal-wake intersections according to the Master Equation. It does not evaluate a Lorentz-force expression, carry a primitive electric or magnetic field, or interact with an autonomous field substance.
 
 At the assembly and observer layers, stable regularities may be compressed into effective charge, current, electric and magnetic fields, potentials, constitutive coefficients, radiation fields, and coupling parameters. These are recovery targets and comparison variables. They may enter this packet only as behavioral requirements or projected outputs, never as microscopic premises.
@@ -8239,7 +8243,7 @@ while both axial scales expanded to about $0.3067$, the negative cadence fell to
 
 Plainly: balancing radial acceleration at one release instant substantially reduced radius loss relative to the unit-cadence seed, but it did not create a cycle or even a radius turn. Delayed geometry immediately changes the radial response as phase, height, and cadence evolve. A retained braid must balance the complete history or return map, not one instantaneous acceleration row.
 
-A nearby launch moved just beyond the simultaneous radial-balance row while remaining below the field-speed ceiling:
+A nearby launch moved just beyond the simultaneous radial-balance row while remaining inside the declared sub-field method:
 
 $$
 \dot\theta_+=2.38,
@@ -8338,7 +8342,7 @@ $$
 
 The framewise formula residual remained below $5.00\times10^{-16}$. Maximum member speed rose to $0.983222c_f$, leaving only $0.016778c_f$ of field-speed margin, so the record was not extended further.
 
-Plainly: phase can redirect the dangerous corridor from same-polarity to opposite-polarity pairs, but the tested high-cadence row does not solve the return problem. It converts radial collapse into rapid radial expansion and approach to the field-speed ceiling. A retained branch must find a phase and cadence combination that turns both envelope and corridor motion before either coincidence or field-speed contact.
+Plainly: phase can redirect the dangerous corridor from same-polarity to opposite-polarity pairs, but the tested high-cadence row does not solve the return problem. It converts radial collapse into rapid radial expansion and approach to this method's speed guard. Certifying a return within this sub-field method requires both envelope and corridor motion to turn before its coincidence or speed guards are reached. A faster continuation requires a root method valid in that regime; this stopped record neither certifies nor rules out one.
 
 Plainly: cadence controls whether a sector initially contracts or expands and how large its first radial excursion becomes. More importantly, the two polarity sectors turn at different times. F6c therefore carries at least two coupled radial clocks: a common breathing coordinate and a polarity-differential breathing coordinate. Any retained version must phase-lock both clocks while also controlling a same-polarity edge-pinch coordinate that the sector radius does not determine by itself. Within F6c that pinch remains a derived function of the six coordinates, especially relative sector phase; it is not a seventh independent coordinate. One shared orbital frequency and two envelope radii are not enough.
 
@@ -8807,7 +8811,7 @@ s_\sigma\frac43
 \right).
 $$
 
-The two terms separate rotation of the shape-dependent current direction from Master Equation acceleration of the sector rate vector. A current-supporting candidate must therefore control at least five distinct release quantities: current magnitude and alignment, pair clearance, limiting-corridor distance rate, field-speed margin and speed derivative, and $\|\dot{\mathbf q}_\sigma\|$. A decreasing speed does not imply a gentle trajectory because $\dot{\mathbf q}_\sigma$ can be almost perpendicular to $\mathbf q_\sigma$.
+The two terms separate rotation of the shape-dependent current direction from Master Equation acceleration of the sector rate vector. Within the declared sub-field method, a current-supporting candidate must therefore control at least five distinct release quantities: current magnitude and alignment, pair clearance, limiting-corridor distance rate, method-specific field-speed margin and speed derivative, and $\|\dot{\mathbf q}_\sigma\|$. A decreasing speed does not imply a gentle trajectory because $\dot{\mathbf q}_\sigma$ can be almost perpendicular to $\mathbf q_\sigma$.
 
 Plainly: a braid can carry a large current at one instant while already being aimed to lose it, collide, or sharply redirect its internal motion. Current, clearance, and motion smoothness are separate requirements.
 
@@ -9088,7 +9092,7 @@ The resulting geometry requirement is joint:
 1. conjugate sectors may exchange current contribution while keeping $\dot I_{\mathrm{tot}}$ small;
 2. each sector must retain adequate same-polarity causal-history spacing;
 3. opposite-polarity spatial corridors must remain open or turn before collapse; and
-4. the combined motion must preserve field-speed margin and the exact identity action through a complete return; and
+4. the combined motion must preserve the exact identity action through a complete return and, to remain certified by this sub-field method, preserve its field-speed margin; and
 5. certified root-time enclosure pressure must remain controlled under tolerance and history-enclosure refinement.
 
 Claim grade: the current and current-flow identities are derived on the F6c chart; census counts, threshold classes, and continuations are measured EOM- solver diagnostics on bounded declared records, not an independent retained- braid result. The active-handoff thresholds are declared diagnostic cuts, not natural constants. Falsifier: a direct member-current derivative that disagrees with the formula, a root-certified continuation that fails the recorded sector slopes, or a reproduction in which the stated halt is instead caused by collision or a $c_f=1$ speed crossing. The pressure-precursor inference is falsified if refinement removes or reverses the monotone rise before the same boundary, or if root-complete candidates repeatedly cross $P_{\mathrm{root}}=1$ without a corresponding change in the declared tolerance/enclosure contract. The cadence- reversal inference is falsified if independent tighter histories do not reproduce the turn and current handoff, or if a complete return requires permanently same-sense circulation after all.

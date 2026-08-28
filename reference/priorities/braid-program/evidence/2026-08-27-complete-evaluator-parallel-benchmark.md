@@ -1,5 +1,11 @@
 # Complete-Evaluator Parallel Benchmark
 
+## Current checkpoint — scientific benchmark not completed
+
+As of `2026-08-28T12:17:25.716Z`, all six authorized scientific attempts and their 72 required roles remain unrun. No serial scientific baseline, parallel scientific batch, worker-count agreement, scientific evaluation rate or hardware capacity ceiling was established. The scientific entry cutoff has passed. The final stop-during-admission control failed, and its parent integration also exceeded the unchanged 600-second review limit. The recorded-process closure was independently checked at its narrower scope; the compute window is explicitly released and no further root control or scientific launch is planned. Final independent checkpoint accounting continues only within the original `12:56:50Z` campaign stop.
+
+Plainly: this campaign produced operational measurements and exposed real supervision and review limits, but it did not deliver the requested scientific benchmark. Wider search and four-worker admission are unsupported. The sections below retain the chronological record; earlier proposals and pending states are not current launch authority.
+
 ## Campaign boundary
 
 Closure goal: demonstrate an actually completed, independently checked parallel batch of complete braid evaluations and measure its operating capacity before recommending a wider launch.
@@ -442,3 +448,99 @@ Plainly: the remaining time cannot accommodate the already-declared scientific w
 The next-stage recommendation is to withhold wider search and four-worker admission. A future separately authorized session would first need the missing process-ownership and cleanup controls, fresh source and host admission, and enough time for the unchanged two-case serial baseline followed by the same two cases with two workers. The accepted historical 1,261-second F5 invocation and short inert memory peaks do not establish parallel scientific capacity. Scientific evaluations per hour and speedup remain unmeasured, rather than zero.
 
 Closure goal: preserve the six-case census, finish justified bounded operational evidence, and publish the original-deadline checkpoint without claiming benchmark closure.
+
+### Measured operational CPU counters
+
+Independent retained-metadata recomputation `independent-campaign-census-metadata-draft-v1.json`, SHA-256 `a836bdf58ea270789d2629e18a04786151eb4da05f0c58cbacd6b1643e092b2e`, subtracts the actual recorded `process.resourceUsage()` endpoints. The following values are microseconds, not wall time or completed-evaluator rates.
+
+| Inert control | Coordinator user CPU | Coordinator system CPU | Observer user CPU | Observer system CPU |
+| --- | ---: | ---: | ---: | ---: |
+| v7 positive | 6,323,572 | 2,203,082 | 822,727 | 417,397 |
+| v7 unexpected exit | 3,595,189 | 1,283,014 | 624,484 | 261,109 |
+| v7 wedged worker | 3,752,942 | 1,330,463 | 675,808 | 294,013 |
+
+Plainly: these counters measure CPU consumed by the operational machinery during its recorded intervals. They are not subtracted from elapsed time to infer overhead or used to estimate scientific speedup.
+
+The coordinator interval ends after cleanup and source authentication; it excludes runtime/module startup and later ownership, result, inventory and seal publication. The observer interval includes its sampler thread through the pre-receipt capture, excluding child/probe CPU and the final publication tail. The separately reported public-call wall intervals include their internal coordination; the remaining outer preparation/publication/tail interval is not a pure coordinator overhead measurement. No claim is made for unmeasured CPU outside these boundaries. The wedged attempt's late parent integration remains a timing failure despite these usable recorded counters.
+
+Before these additions, the exact 101,273-byte report reviewed by `5fa86577…` was preserved at `benchmark-report-reviewed-a567df53907c4b1201e6a8f658fdfe3bcfbc91285ba43f5e1080835f19ceba8e.archive`; preservation receipt `bbb809393de978add46124f663a9888d4a352bcdbd9773a71e24ba3a7dfdea3f` retains its original identity. Historical review does not silently bind later report edits.
+
+### Reader authentication limitation found during remaining preparation
+
+Independent review `stop-pending-v7-closure-census-independent-source-review-v1.json`, SHA-256 `fa61e4ef8a5bc832b3c28d64c355c9124a7489739b12005151019cd29ef7ca13`, rejected the unrun stop-control closure/census scripts. Findings include parsing a separate buffer after hashing, lost failed-probe observations, incomplete audit-invocation binding, an unbound prior late-result assertion and deadline/publication gaps. The rejected sources remain unchanged; no stop-control execution or acceptance follows from that preparation.
+
+The subsequent source assessment `historical-read-hash-scope-assessment-v1.json`, SHA-256 `f3f69c35ec0b49dae786262095dce3de6a60139dd31a456fcf6072040b395780`, identifies the same hash-then-separate-read pattern in ten historical fresh-closure/final-census helpers. Their repeated hashes establish endpoint agreement, not authentication of the exact intervening parsed buffer against concurrent substitution. The separately authored wedged stream auditor hashes the stream it parses; that specific property remains distinct. The root's late integration command also parsed JSON before its later endpoint revalidation, as a parent-reported implementation fact.
+
+Plainly: no actual changed read or tampering was observed, and the finding does not contradict the recorded inert outcomes, resource samples or successful PID/group absence checks. It does limit stronger claims about resistance to concurrent evidence mutation. Old receipts cannot supply that missing guarantee to a new control.
+
+Historical measurements remain available at their stated scopes with this limitation attached. Failed-probe branches that did not execute are not validated by successful absence checks. Scientific capacity remains unmeasured, all six scientific attempts remain unstarted, and the 701.271117291-second wedged integration remains a timing failure. Any repaired reader requires its own preserved source generation and independent review.
+
+### Stop-control preparation after the scientific cutoff
+
+The expected-stop reader and fresh/final census sources were repaired in preserved successors. Independent source review `a2460b82bf15d3b7a0e6c47d2e0c5683bea44435f23f87037a0e1fb54442d3fb` accepts exact fresh source `8caa944d80137c515175338b59e053086a657f65d3ed9c9b82441a852158b643` and final source `cf43239803e660141c691f58528c2b92ded17aa467b6da0a4c6249107b551956` at source scope only. They retain returned probe evidence before output publication, authenticate the parsed descriptor bytes, check actual review-clock ordering and keep the original review deadline. The rejected first and second versions and their reviews remain unchanged.
+
+The operative admission script also replaces its unbounded second reads with bounded descriptor reads charged to the existing 512 MiB ceiling. Independent source review `f64994f15256a6dbc0fd2b2250fd6f260cdbe67167363be8b7a5c4e32f3d609a` verifies exactly those read changes and three accepted audit bindings against the preserved proposal. Exact metadata invocation `/opt/homebrew/Cellar/node/26.3.0/bin/node .local-data/braid-analysis/complete-evaluator-parallel-20260827/review-stop-pending-whole-observer-spec-v7-operative-v1.mjs` completed with exit zero, 10,834 assertions and 340,834,375 bytes read. Its own elapsed interval was 0.268667542 seconds. Actual tool `c4ea45` and immediate same-cell clock `08380e` are retained in `stop-pending-v7-operative-admission-actual-tool-v1.json`, SHA-256 `d2a81000bac36686cc503077ca6963061bec7d105f044c2a6eeda1d2e5074bbe`; the resulting 174,617-byte metadata admission is `b03224dd1a8a8dbce25c58587e3afcee7e751837205dc2fbd6466bcc17ab447e`.
+
+Plainly: these were source and metadata operations, not a stop-control run or a scientific evaluation. Runtime admission still requires the exact reviewed parent integration, fresh machine coordination, unchanged source/host limits and enough remaining time for every closure step. The metadata instrument's synchronous clock does not claim to preempt a stalled operating-system call.
+
+The corrected independent checkpoint snapshot `13b95eb4ac0714a56e569859461bf8ccd3a1da08f733835ea1c6b591f6083d24` restores the original F5 handoff's `resourceSummary` field. An earlier snapshot accidentally read a nonexistent field and emitted null; that was an extraction omission, not absence of the historical measurement. The historical 1,261-second invocation remains separate from all six unrun benchmark attempts. No scientific launch interval is reopened by either correction.
+
+### Final stop-during-admission control: failed observation and late integration
+
+The fixed stop specification `9bd53b44af19b3704238bc7b5885cdf0682ae6f86a99a3154154e448f7007b73` ran once after both peers acknowledged nonoverlap and a fresh preflight checked 303 sources and 33 aliases. The exact clean-environment command, pre-exec PID sidecar, all three actual execution chunks and immediate completion clock are preserved in `whole-observer-stop-pending-v7-actual-tool-packet.json`, SHA-256 `2e6393d451d70ecde692266f3af539c6528c3b8c5522719356ecaf9c7b19eec1`. Actual tool chunks were `f7c39c`, `b2daf7` and `9156f0`; the final exit was one. Same-cell clock `15c553` returned `12:05:19.673Z`, fixing the external-review end at `12:15:19.673Z`. Adapter entry to that conservative completion upper bound was 15.441394833 seconds.
+
+The independently authored failure reader ran exactly as recorded in `whole-observer-stop-pending-v7-failure-audit-actual-tool-v1.json`, SHA-256 `4d336c8f2d1a76c64e14cbb7a75d38e57350438779b5686317e8717f55e14ff1`: `/usr/bin/env -i PATH=/usr/bin:/bin LC_ALL=C LANG=C /opt/homebrew/Cellar/node/26.3.0/bin/node` followed by the absolute `audit-whole-observer-stop-pending-failure-v2.mjs` path and the frozen `--spec`, `--packet` and fresh `--report` paths. Actual tool `04aec8` exited one. Its 271,534-byte report, SHA-256 `53c85af123bb6dc77c0d1b2b2f18c512687686463bdee5aeacc67977e0bdd807`, rejected the watchdog record loss, aborted read and absent final ownership barrier. The source-accepted expected-pass fresh/final checkers and parent integration were therefore not invoked.
+
+Plainly: the stop reached the inner coordinator, but the surrounding observer did not produce the complete evidence required to accept that fault control. A nonzero exit expected from interruption does not excuse missing observation records.
+
+The retained watchdog file is 8,345,857 bytes with exactly 251 durable JSON records. Its last attempted sequence is 505, leaving 254 missing sequence numbers; 505 is not the number of durable records. The final watchdog record reports `evidenceLoss: "watchdog evidence ceiling"`, `closed: false` and an identity gap because another cleanup process query could not fit before its unchanged cutoff. The Brotli observation file is zero bytes. Independent correction `c242267eb1d7fb92af8ecc3fac62a0d0b7f9e030936089c1fde6246f94cd1510` preserves the earlier commentary count error without rewriting the original receipt. This is an observed operational evidence failure, not proof that scientific computation exhausted memory or that the machine reached a hardware capacity ceiling.
+
+Independent retained-record reconciliation `whole-observer-stop-pending-v7-limited-outcome-census-v1.json`, SHA-256 `2b109a16a875b9c500147378bb92631c93ed1b70cb6c7d3d6c038a59dfff056e`, supports only the surviving inner account: two successful host admissions at 67 percent free memory, then operator-interruption cleanup; the two selected inert cases remain recorded not started with no role outcomes. The source gate places that stop before worker-state construction and spawning. Three retained inner RSS samples have a sampled peak of 217,251,840 bytes and maximum gap 352.791958 milliseconds over a 0.735828875-second inner cleanup envelope. These are limited inner-controller measurements, not full observer coverage or scientific cost.
+
+Plainly: the surviving inner records support a narrow account of where this stop occurred. They cannot reconstruct the missing observer history or turn the failed control into a complete accepted result.
+
+The first restricted closure collector failed before any process probe because of an optional-identity handling error; its actual failure remains preserved. A narrowly corrected collector used the still-unused one-probe allowance and the same original deadline. Independent report `whole-observer-stop-pending-v7-restricted-failure-closure-v2.json`, SHA-256 `f567376d466229b12e7b0a8615bd19ad7c8289b4cb4e23498b8e497d5b14c5a2`, records 82 prior recorded PIDs and one owned group absent at `12:10:24.017Z`, with all 83 signal-zero observations returning ESRCH. It reauthenticated 303 sources, 33 aliases, retained output identities and shared-lock absence. Actual collector `d4223d` and immediate clock `dccefe` establish completion before the original review deadline. The collector's own process, probe and later clock lie outside the prior-control census; no universal unseen-descendant theorem is asserted.
+
+Parent integration `whole-observer-stop-pending-v7-parent-limited-failure-integration-v1.json`, SHA-256 `aaea1a78fd5e3f03b52ed356283d302c4633bb0617e7ff0e403de41f73bbd2b0`, rechecked the exact parsed buffers, 303 current sources, 33 aliases, retained outputs and lock absence, then reconciled the independent closure and limited inner census. It published at `12:17:13.529Z`, 713.875540083 seconds after the original review origin, exceeding the unchanged 600-second allowance. The parent first misnamed the raw `sequence` field as `seq`; that metadata invocation failed without publication, probe or subject launch. The corrected invocation `6154af` exited zero, followed immediately by clock `191b93`. Both invocations and the correction are retained in `whole-observer-stop-pending-v7-parent-limited-failure-actual-tool-v1.json`, SHA-256 `c08f7c30377bf923105f18b321bb7c81c926847e085f9937832b3d88f0d99536`. Postpublication check `30f211` rehashed both artifacts and observed lock absence at `12:17:25.716Z`.
+
+Plainly: recorded-process absence is supported, but parent review and publication were late. The window was released on limited failure closure; expected-stop, complete-history, whole-resource, scientific, benchmark and timely-whole-window acceptance all remain false. Neither the deadline nor a failed result was rewritten.
+
+### Final scientific case disposition and next-stage decision
+
+| Planned scientific attempt | Required roles | Disposition | Scientific result |
+| --- | ---: | --- | --- |
+| `serial-1` | 12 | Not started; operational admission incomplete before cutoff | None |
+| `serial-2` | 12 | Not started; operational admission incomplete before cutoff | None |
+| `parallel-1` | 12 | Not started; required serial predecessor absent | None |
+| `parallel-2` | 12 | Not started; required serial predecessor absent | None |
+| `isolation-1` | 12 | Not started; scientific batch prerequisite absent | None |
+| `isolation-2` | 12 | Not started; scientific batch prerequisite absent | None |
+
+Plainly: six attempts and 72 role slots are accounted for, with zero launched or completed scientific benchmark evaluations. The original accepted F5 invocation is a separate historical result, and inert controls are a separate operational census. Scientific evaluations per wall-clock hour and speedup remain unmeasured, represented as null rather than zero.
+
+The measured short controls support only the following operating observations. Times are actual public-call and review envelopes; resident memory is the simultaneous sampled aggregate, not a continuous maximum. Retained output sums exclude separately named codec fixtures and external audit artifacts.
+
+| Actual inert control | Inner public call / limited inner envelope (s) | Internal review (s) | Adapter completion upper bound (s) | Sampled aggregate RSS (bytes) | Maximum retained sample gap (ms) | Inner + observer output (bytes) | Parent review/publication disposition |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| v7 positive | 13.959172583 | 0.459643916 | 15.307087416 | 1,306,312,704 | 345.396584 | 651,649 | 249.8722305 s; within 600 s |
+| v7 unexpected worker exit | 10.114233333 | 0.451241958 | 11.461649791 | 1,110,491,136 | 335.279333 | 441,871 | 490.602489042 s; within 600 s |
+| v7 wedged worker | 10.324902333 | 0.458817042 | 11.635786542 | 1,170,636,800 | 350.149458 | 445,708 | 701.271117291 s; late |
+| v7 stop during admission | 0.735828875, limited inner only | Required expected-pass review unrun; failure reader rejected | 15.441394833 | 217,251,840, limited inner only | 352.791958, limited inner only | 8,364,541 | 713.875540083 s; late and observation incomplete |
+
+Plainly: supervision and review are substantial measured costs even for tiny inert jobs. Two review windows exceeded their budgets, and the final stop failed to preserve complete observation evidence. The measurements do not establish a sustainable scientific evaluation rate or justify four workers.
+
+**Recommendation: do not widen the scientific search.** A future separately authorized bounded session should retain one scientific case, fixed strength and all twelve evaluator roles; resolve the five unadmitted process-ownership/cleanup component obligations and the failed stop-observation path first; reauthenticate the actual source/runtime generation; then obtain the same two complete serial evaluations before admitting the same pair with two workers. Retain the actual frozen F5 batch limits: `aggregateRssBytes=2147483648`, `outputBytes=134217728`, `aggregateOutputBytes=2147483648`, and `logBytes=workerLogBytes=16777216`, together with stricter enclosing observer budgets and the 40-percent/64-GiB launch and 20-percent/16-GiB running floors. F6c's separate 64-MiB scientific-output limit is not an F5 batch setting. Do not enlarge the case set, change geometry, shorten mandatory checks or admit four workers from these controls. Any different evaluator generation needs its own scientific admission; old acceptance is not transferable.
+
+The limiting demonstrated facts are incomplete operational evidence and a review/publication schedule that did not consistently fit its declared allowance. The machine's scientific throughput, simultaneous two-evaluator memory requirement and long-run output rate remain unknown. The historical F5 1,261-second complete bounded-unresolved invocation, its stage aggregate of 430,178,304 bytes, and its nonaggregate external RSS observation of 735,903,744 bytes are not a parallel capacity measurement. A future campaign must reserve its full scientific and independent-closure allowances before entry; the existing scientific sequence requires 12,960 seconds plus uncovered setup and no longer fits this campaign.
+
+Plainly: the next supported scale is a newly admitted small serial baseline followed by two workers, after the unresolved operational checks are actually passed. This is a recommendation to finish the missing experiment, not a claim that two workers have measured scientific capacity.
+
+### Source and evidence handoff boundary
+
+This task authored the operational changes to `scripts/eom/run-f5-ordinary-evolution.mjs` and `tests/f5-ordinary-evolution-runner.test.js`, and added `scripts/eom/f5-batch-admission.mjs`, `scripts/eom/f5-registered-stage-gate.mjs` and `scripts/eom/run-f5-complete-evaluator-batch.mjs`. Task-specific observers, adapters, independent reviewers, declarations, exact command packets, source archives and failed/successful control artifacts remain under `.local-data/braid-analysis/complete-evaluator-parallel-20260827/`. The earlier detailed sections identify their individual generations and invocations. The original evaluator, source bindings, binary, scientific requests and references remain preserved; this task did not change their scientific settings or run their numerical stages.
+
+The exact 107,815-byte report previously reviewed as `de67bfae838d8a77ae74ff714a57ab3f16f8aaff121ed64bc3da327c25bb495f` is retained unchanged at `benchmark-report-reviewed-de67bfae838d8a77ae74ff714a57ab3f16f8aaff121ed64bc3da327c25bb495f.archive`. Root rechecked equality before adding this checkpoint. Shared readiness, registry and queue are not edited. After the limited stop-window release, the root relinquished its future live-K execution hold while retaining the exact historical `18cc7d6a…` binding in archived scientific-v3 objects. Any peer K transition still requires its own preservation, exact review and affected-owner agreement; neither canonical promotion nor runtime acceptance is granted by that release.
+
+Plainly: source ownership is separated from scientific authority. The campaign leaves reproducible evidence and explicit open obligations, with no further root launches or silent deadline extension.
+
+Closure goal: complete final independent accounting and stop at the original twelve-hour boundary; the requested parallel scientific benchmark remains unmet.

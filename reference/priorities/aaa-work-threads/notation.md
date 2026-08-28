@@ -22,7 +22,7 @@ Plainly: this is one priority, not 44 cleanup jobs. Retain means keep the workin
 
 ### First priority: assembly group velocity versus internal motion
 
-**Terminology approved, 2026-08-28:** use `group velocity` for whole-assembly translation and `group speed` for its magnitude. Preserve constant-motion and averaging assumptions, the declared center, the void/sea/observer reference frame, and the distinction from wave-packet group velocity. Source and app-label implementation is complete; generated publication copies await the separately requested regeneration permission. Section 4.7 records the scope and checks. Mathematical symbol choices remain unchanged. Historical records, literal machine identifiers, distinct medium/statistical/numerical uses, and on-demand iOS/PDF snapshots retain their recorded language.
+**Terminology approved and synchronized, 2026-08-28:** use `group velocity` for whole-assembly translation and `group speed` for its magnitude. Preserve constant-motion and averaging assumptions, the declared center, the void/sea/observer reference frame, and the distinction from wave-packet group velocity. Source and app-label implementation is complete; the separately authorized publication rebuild is also complete. Section 4.7 records the scope and checks. Mathematical symbol choices remain unchanged. Historical records, literal machine identifiers, distinct medium/statistical/numerical uses, and on-demand iOS/PDF snapshots retain their recorded language.
 
 **Observed conflict:** the guide assigns $v$ to assembly group speed and $\beta_f=v/c_f$ to the corresponding group-speed/wake-speed ratio. The [Master Equation circular-orbit section](../../../content/markdown/aaa/dynamics/master-equation.md#sub-field-speed-two-body-uniform-circular-orbit) instead uses the same pair for the orbital speed $\omega R$ on a symmetric circle. Its [single-architrino self-hit section](../../../content/markdown/aaa/dynamics/master-equation.md#super-field-speed-single-architrino-uniform-circular-self-hit) uses that orbital ratio above one. [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) uses the group velocity meaning for translating assemblies and clock/ruler targets. Those are different moving objects and different physical uses, even though both ratios are dimensionless.
 
@@ -716,7 +716,7 @@ Plainly: this one cleanup is finished, including the actual app display. Other n
 
 ### 4.7 Approved terminology: group velocity and group speed
 
-**Source implementation, 2026-08-28:** the operator approved global implementation of the assembly-motion terminology. The scoped edit set contains 68 source files: 38 corpus documents, 25 active guidance/planning documents, four app source files, and one existing test file. Publication-output synchronization remains pending explicit regeneration permission; this is not yet a completed source-and-output transition.
+**Source implementation, 2026-08-28:** the operator approved global implementation of the assembly-motion terminology. The scoped edit set contains 68 source files: 38 corpus documents, 25 active guidance/planning documents, four app source files, and one existing test file. The operator subsequently approved regeneration; the source-and-output terminology transition is complete within the stated scope.
 
 | Previous wording and meaning | Current wording | Preserved boundary |
 | --- | --- | --- |
@@ -734,9 +734,9 @@ Plainly: one assembly motion now has one name. The change preserves what moves, 
 
 Plainly: the checks establish a wording change with preserved mathematical content. They do not prove the physics or settle the unresolved choice of symbols for internal motion.
 
-**Validation:** strict content validation passed with zero errors, zero warnings, and 30 existing informational notes. Scene-graph freshness and all 23 registered equation links passed. The scoped app/test batch passed 92 of 93 tests. Its sole failure is the existing `Braid Search is exposed through the public standalone launch inventory` assertion: the applications list lacks `braid_search`. The failing test, launch runtime, and applications list are unchanged from `HEAD`; this failure is outside the terminology edit. The app-equation browser DOM contains the new caption and magnitude explanation with loaded fonts and zero KaTeX errors. Generated symbol descriptions are not claimed current before regeneration.
+**Source-stage validation:** strict content validation passed with zero errors, zero warnings, and 30 existing informational notes. Scene-graph freshness and all 23 registered equation links passed. The scoped app/test batch passed 92 of 93 tests. Its sole failure was the existing `Braid Search is exposed through the public standalone launch inventory` assertion: the applications list lacked `braid_search`. At that checkpoint, the failing test, launch runtime, and applications list were unchanged from `HEAD`; this failure was outside the terminology edit. The app-equation browser DOM contained the new caption and magnitude explanation with loaded fonts and zero KaTeX errors. Generated symbol descriptions were not claimed current before regeneration.
 
-**Publication checkpoint still pending:** generator checks report a stale equation registry, ten stale textbook reading copies, and a stale generated startup-guidance index. After permission, run the following writes and then the corresponding checks; inspect the resulting diff and confirm that equation identities and formulas remain unchanged. Do not regenerate the iOS package or historical PDFs.
+**Authorized publication checkpoint completed, 2026-08-28:** reran the three generators below against the live sources, then passed all corresponding freshness checks. The registry, eleven textbook reading copies, and startup-guidance index changed. All thirteen reading copies are now current. The extra copy beyond the earlier ten-copy estimate was cosmology; its only change carries the approved `drift inward` to `move inward` source edit. The guidance index reflects its current source files, including already-existing reference-policy guidance; no guidance policy was authored in this regeneration step.
 
 ```bash
 node scripts/build-equation-mapping-corpus.mjs --write
@@ -747,7 +747,19 @@ node scripts/build-textbook-md-pdf.mjs --check
 node scripts/build-agent-startup-orientation.mjs --check
 ```
 
-Plainly: the source wording and live app captions are updated. Generated copies still need their authorized rebuild before this terminology change can be called synchronized everywhere. After that checkpoint, the next notation step is the complete group-speed/internal-motion conflict assessment described in Section 0, with no symbol changes until its proposal is approved.
+Plainly: the approved wording now reaches the equation registry and textbook reading copies, and the generated guidance index matches its sources. Regeneration does not change the calculations or approve another notation decision.
+
+**Publication preservation and checks:** a frozen pre-write registry and SHA-256 snapshot of 961 files were compared with the rebuilt files. All 4,598 equation formulas, IDs, semantic IDs, source paths, promotion bindings, and symbol IDs/TeX are unchanged; the count remains 23 promoted equations and 29,624 symbol definitions. The generator added zero source links. Changes affect 282 records through headings, source context/line locations, search text, or descriptions, including 128 records with changed symbol-description data. Every TeX span in all eleven changed reading copies matches the pre-write copy. All 199 corpus sources, 52 inspected iOS files, and 18 inspected PDFs remain byte-identical to the pre-write snapshot. Local comparison artifacts are under `/tmp/aaa-notation-publication-4UvOtG/`.
+
+Plainly: this comparison independently checks preservation against the files before regeneration. Freshness checks establish that outputs match current generators, while the frozen-file comparison checks that the rebuild preserved formulas and excluded artifacts; neither is a physics proof.
+
+**Final publication validation:** all three generator checks, strict content validation, strict scene-graph validation, the 23-link equation validator, and `git diff --check` passed. Content validation again reported zero errors, zero warnings, and 30 informational notes. The selected equation corpus, runtime, sidebar, and tooltip suite passed 98 tests with zero failures. The iOS-package-specific test was excluded explicitly, as in the earlier web-output cleanup; this is not a claim about the complete iOS or dashboard suite.
+
+```bash
+node --test --test-skip-pattern='shipped in the iOS package' tests/equation-mapping-corpus.test.js tests/equation-mapping-runtime.test.js tests/equation-mapping-sidebar.test.js tests/equation-mapping-symbol-tooltip.test.js
+```
+
+Plainly: this terminology batch is complete for active sources, app captions, and the authorized generated publication surfaces. iOS packaging, historical PDFs, deployment, commits, and any further symbol migration remain outside this batch. The next notation step is the complete group-speed/internal-motion conflict assessment described in Section 0, with no symbol changes until its proposal is approved.
 
 ## 5. Detailed Plan Before Execution
 

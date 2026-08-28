@@ -4971,7 +4971,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-94ce20f3e0e34977)
 
-Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial drift. The B1 transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed B1 kinematics.
+Every binary normal coincides with the spin axis, $\hat{\mathbf n}_1=\hat{\mathbf n}_2=\hat{\mathbf n}_3=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the indexed spin magnitudes $J_a$. The kinematic linear momentum vanishes exactly at rest because each binary is antipodal and is exactly axial under axial group velocity. The B1 transport state therefore reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label. Claim level: derived from the prescribed B1 kinematics.
 
 The axis sector has an equally clean kinematic reduction. Take as slow coordinates the per-binary plane inclinations about two transverse axes, $\eta_a^{x}$ and $\eta_a^{y}$. The cycle-averaged tilt inertia of a layer about a transverse axis through the braid center is
 
@@ -4991,7 +4991,7 @@ The total rotational ledger is the kinematic spine plus the same branch-resolved
 - Whether the per-binary axial wake torques close binary by binary — and, if not, which binaries carry a standing tangential surplus that must be transacted into the outgoing wake — is the first wake measurement the validated engine must supply for this family. No per-binary closure values are carried here.
 - The tilt stiffness block $K$ — the matrix of cycle-averaged transverse-torque responses to per-binary tilts — is **not required to be symmetric, and any asymmetry would be physics rather than error**. Its rows must sum to zero (a global tilt is a symmetry of the isotropic delayed law, so the global mode is an exact null), but its columns need not: in an instantaneous-interaction theory internal torques cancel pairwise and no column imbalance can exist, while in a causal-delay theory the field in flight carries angular momentum, and a column imbalance is exactly a tilt-sector posting to the wake ledger. Measuring $K$ is an open target for the validated engine.
 
-How the transacted half of the wake ledger behaves under axial drift — whether the wake angular impulse per accepted transaction is invariant or runs with drift speed — is likewise open; it is the comparison consumed by the $h$ and $\hbar$ convention section of this bridge and by closure target 17 below.
+How the transacted half of the wake ledger behaves under axial group velocity — whether the wake angular impulse per accepted transaction is invariant or runs with group speed — is likewise open; it is the comparison consumed by the $h$ and $\hbar$ convention section of this bridge and by closure target 17 below.
 
 ###### The Iso-Frequency Partition Map
 
@@ -5037,7 +5037,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76a653275e26c9e7)
 
-On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any drift-orientation preference remain open.
+On that subset, the axis, axial polarity dipole, and a declared azimuthal reference form a fixed-coordinate locked triple. The handedness label is the pseudoscalar pairing of dipole and spin. Claim level: derived kinematics for the stated B1 subset; the $2\pi/4\pi$ transport response and any group-velocity orientation preference remain open.
 
 ###### Gyroscopic-Circulatory Axis Dynamics
 
@@ -5061,7 +5061,7 @@ $$
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline axial torques, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
-Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether drift changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
+Everything beyond this chart is open. $M$ and $G$ follow from the exact kinematics; $K$, $\Gamma$, and any delay-memory (tilt-rate) contribution are measurements the validated engine has yet to supply. Whether B1 holds its axis, whether an axis-sector surplus exists that must be absorbed, and whether group velocity changes the answer are questions for direct EOM-solver evolution, subject to the quotient discipline above. A causal-root fold crossing lies outside any cycle-averaged linearization, so no pencil alone can close the axis sector. Claim level: the pencil is the standard fixed-coordinate binary linearization chart; every block beyond $M$ and $G$, and every stability statement, is an open measurement.
 
 ##### A1 Spin Scaffold
 
@@ -6442,7 +6442,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aa95181fdfc586e6)
 
-This is a branch-chart reduction of the full six-architrino history. It keeps binary radii, frequencies, phases, binary-plane normals, radian-normalized rotational actions, binary and cross-binary causal-root ledgers, and the center/group velocity through the Noether sea. A theorem-target configuration space for this reduction is
+This is a branch-chart reduction of the full six-architrino history. It keeps binary radii, frequencies, phases, binary-plane normals, radian-normalized rotational actions, binary and cross-binary causal-root ledgers, and the group velocity through the Noether sea. A theorem-target configuration space for this reduction is
 
 $$
 \mathcal Q_C^{\text{red}}
@@ -7164,7 +7164,7 @@ $$
 
 and, in the primary iso-frequency chart, the same total allocated through the B1 scaffold's partition map (radii, tilts, shared cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
-Whether the transacted unit is constant under drift has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would derive Planck-constant constancy from the family's dynamics; divergence would convert observed constancy into a selection constraint on which family members can be dressed into matter.
+Whether the transacted unit is constant under group velocity has not been established. The comparison that decides it — the $J_z$-conserving trajectory against the closure-optimal trajectory on a retained family — is an open EOM-solver calculation (closure target 17 below). Coincidence would derive Planck-constant constancy from the family's dynamics; divergence would convert observed constancy into a selection constraint on which family members can be dressed into matter.
 
 ##### Foundation-Up Closure Route
 
@@ -11252,7 +11252,7 @@ This table uses $c$ only as the inherited observer constant. Maxwell's electroma
 
 ##### Observer-Level Minkowski Export
 
-The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For drift speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
+The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For group speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
 $$
 \tanh\varphi_{\text{eff}}
 =
@@ -11303,7 +11303,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-af640a70ebdf782d)
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
-For the Noether braid bridge, the velocity entering the material response is the assembly drift through the local Noether sea, not an abstract coordinate label:
+For the Noether braid bridge, the velocity entering the material response is the assembly group velocity through the local Noether sea, not an abstract coordinate label:
 $$
 \mathbf{w}
 =
@@ -11311,7 +11311,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13ee3ed1dac0189f)
-In the local Noether sea rest frame, this reduces to the center-of-mass drift. The corresponding effective Lorentz factor is
+In the local Noether sea rest frame, this reduces to the group velocity (center-of-mass convention). The corresponding effective Lorentz factor is
 $$
 \gamma_{\text{eff}}(\mathbf{w})
 =
@@ -11339,7 +11339,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2e00e29e08587032)
 
-The Noether braid mechanism behind that target is finite-speed causal closure. As the center of mass drifts through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a drift component and a transverse closure component:
+The Noether braid mechanism behind that target is finite-speed causal closure. As the assembly center of mass moves through the local Noether sea, each internal wake return must close across a slanted path-history geometry. In the local Noether sea rest frame, the channel speed budget separates into a group-speed component and a transverse closure component:
 $$
 c_{\text{eff}}^2
 =
@@ -11407,7 +11407,7 @@ In the geometry canon, this contraction is recorded first as the Noether braid e
 
 ###### Closed Return Cycle And Oblate Spheroidal Envelope Map
 
-The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. In this subsection, $v$ denotes the scalar drift magnitude $\|\mathbf{w}\|$. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
+The shortest derivation of the oblate spheroidal envelope map uses the difference between a one-way leg and a closed return cycle. In this subsection, $v$ denotes the scalar group speed $\|\mathbf{w}\|$. A one-way causal leg in the group-velocity direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -11428,7 +11428,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b86338288cb5866a)
 
-Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly group velocity. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly group velocity.
 
 The transverse cycle uses the remaining transverse causal budget,
 $$
@@ -11710,7 +11710,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline.
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
 
-At the primitive two-architrino level, [Master Equation, Proposition 5](../../../../markdown/aaa/dynamics/master-equation.md#moving-transceiver-geometry-and-received-branch-strength) supplies a narrower exact checkpoint. For a fixed point cloud in uniform translation with instantaneous separation perpendicular to the drift, the canonical per-hit acceleration has a transverse projection reduced by exactly $1/\gamma_f$, derived from the causal-root geometry and transmitter-side acceleration weight without a relativistic premise. The same proposition retains a first-order longitudinal component, fails the comparison target for parallel separation, and varies with general orientation. The [exact fixed point-cloud residual](../../../../markdown/aaa/dynamics/master-equation.md#exact-fixed-point-cloud-residual) further shows that this deliberately frozen control needs a signed directional second-moment null, not visual symmetry alone. Candidate braids are not frozen point clouds: their members orbit internally and their pair distances may vary. A translating braid must instead pass the [relative-periodic moving-assembly test](../../../../markdown/aaa/dynamics/master-equation.md#relative-periodic-moving-assembly-test) on its complete evolved history, including delayed-root return, state return modulo translation and permitted relabeling, and stability. These are exact projection, negative-control, and acceptance-contract results, not a Lorentz-recovery proof or an assembly clock, ruler, momentum, covariance, or certified moving-branch result.
+At the primitive two-architrino level, [Master Equation, Proposition 5](../../../../markdown/aaa/dynamics/master-equation.md#moving-transceiver-geometry-and-received-branch-strength) supplies a narrower exact checkpoint. For a fixed point cloud in uniform translation with instantaneous separation perpendicular to the group velocity, the canonical per-hit acceleration has a transverse projection reduced by exactly $1/\gamma_f$, derived from the causal-root geometry and transmitter-side acceleration weight without a relativistic premise. The same proposition retains a first-order longitudinal component, fails the comparison target for parallel separation, and varies with general orientation. The [exact fixed point-cloud residual](../../../../markdown/aaa/dynamics/master-equation.md#exact-fixed-point-cloud-residual) further shows that this deliberately frozen control needs a signed directional second-moment null, not visual symmetry alone. Candidate braids are not frozen point clouds: their members orbit internally and their pair distances may vary. A translating braid must instead pass the [relative-periodic moving-assembly test](../../../../markdown/aaa/dynamics/master-equation.md#relative-periodic-moving-assembly-test) on its complete evolved history, including delayed-root return, state return modulo translation and permitted relabeling, and stability. These are exact projection, negative-control, and acceptance-contract results, not a Lorentz-recovery proof or an assembly clock, ruler, momentum, covariance, or certified moving-branch result.
 
 At the comparison-law level, the unification is derivation-grade exact algebra. A Lorentz boost is the full one-way causal-leg ledger of the moving assembly. The sum of the fore and aft legs,
 $$
@@ -11843,7 +11843,7 @@ This level separation is essential. The Lorentz equation is not being promoted t
 
 ##### One-Way Roots Are Not Yet Lorentz Geometry
 
-A one-way causal leg along the drift direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
+A one-way causal leg along the group-velocity direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
 $$
 \beta_\star\equiv\frac{v}{c_\star}
 \qquad
@@ -11851,7 +11851,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dcfcfd5cb198585e)
-For an envelope semiaxis $R_{\parallel}$ along drift, the forward and rear one-way legs are
+For an envelope semiaxis $R_{\parallel}$ along group velocity, the forward and rear one-way legs are
 $$
 t_{+}
 =
@@ -11882,7 +11882,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b732691196073fa)
 
-Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly group velocity. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly group velocity.
 
 Combining the fractions gives
 $$
@@ -12015,7 +12015,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad47d7d0529c2a26)
 
-Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown.
+Here $P$ is the cycle period of the declared clock branch, evaluated at the group-speed argument shown.
 
 in the ideal homogeneous limit. The size of the object sets the base period $P_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
 
@@ -12058,7 +12058,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ece0442086c80dee)
 
-the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with drift.
+the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with group speed.
 
 The three pillars are therefore one accounting once that identification closes. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, while the **difference** supplies the offset required for relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
 
@@ -12202,7 +12202,7 @@ This sequence is the main reason the term `return-cycle` is preferred. The break
 
 ##### Prediction And Failure Mode
 
-The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in drift speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
+The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in group speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
 
 Schematically, the two-way anisotropy diagnostic should decompose as
 $$
@@ -12240,7 +12240,7 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-That step has no confirmation from evolved dynamics. What the prescribed translating-family kinematics supply is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own ansatz, and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. The actual moving branch may deform internally. Whether its envelope's relative flattening tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ remains a target that requires evolution under the delayed acceleration law and measurement of the settled relative-periodic branch. The open remainder is therefore confirmation at any drift speed, then across the full drift range, together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
+That step has no confirmation from evolved dynamics. What the prescribed translating-family kinematics supply is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own ansatz, and the leg-difference simultaneity offset is exactly zero at rest and grows with group speed in step with the $v\gamma_\star^2$ prediction. The actual moving branch may deform internally. Whether its envelope's relative flattening tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ remains a target that requires evolution under the delayed acceleration law and measurement of the settled relative-periodic branch. The open remainder is therefore confirmation at any group speed, then across the full group-speed range, together with the joint clock-ruler-leakage solve on a retained branch. At larger group speed the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-group-speed regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.
 
@@ -13102,7 +13102,7 @@ S=\{H_+,H_-,M_+,M_-,L_+,L_-\}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3641b9806abb98dd)
-with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether braid frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether sea.
+with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether braid frame, and let $\hat{\mathbf v}$ be the quark group-velocity direction through the local Noether sea.
 
 The finite-state exposure score for handedness $h\in\{L,R\}$ is
 $$
@@ -20217,7 +20217,7 @@ n(\mathbf X,T),\,
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f91527347e6756c4)
-Here $v$ is drift speed relative to the Euclidean-void rest frame before observer export, not a speed already measured by Einstein synchronization. Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits.
+Here $v$ is group speed relative to the Euclidean-void rest frame before observer export, not a speed already measured by Einstein synchronization. Its velocity sector must recover special-relativistic time dilation; its potential sector must recover weak-field gravitational redshift and the PPN limits.
 
 The velocity-sector condition is not only the square-root form: absolute-frame $v$ may enter the substrate equation, but after observer export it must appear only in combinations inseparable from synchronization, clock, ruler, and signal-channel records. Equivalence-principle recovery is precisely the demand that both sectors derive from one Noether sea response and one assembly-clock map, not from two fitted clock laws.
 

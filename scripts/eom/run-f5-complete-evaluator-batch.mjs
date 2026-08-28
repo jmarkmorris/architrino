@@ -79,7 +79,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
     declarationReview.value.scientificLaunchAuthorized===false && declarationReview.value.syntheticControl===true : declarationReview.value.accepted===true && declarationReview.value.syntheticControl!==true),'independent scope-specific operational declaration acceptance required');
   check(d.operationalAdmission?.mode==='registered-batch-v1','operational generation required');
   authenticateBindings([d.operationalAdmission.originalDeclaration,d.operationalAdmission.archiveManifest,d.operationalAdmission.archiveReview]);
-  assertScientificGeneration(readJson(d.operationalAdmission.originalDeclaration.path).value,d);
+  assertScientificGeneration(readJson(d.operationalAdmission.originalDeclaration.path).value,d,readJson);
   const phase=plan.phases.find(p=>p.id===argv[3]); check(phase,'unknown phase');
   const output=canonicalFreshOutput(phase.output);
   for(const c of phase.cases) check(resolve(c.output)===resolve(output,c.id),'case output must be a direct phase child');
