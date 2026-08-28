@@ -12,8 +12,8 @@ The completed attempt is `pilot-cell-0-v1` under `.local-data/braid-analysis/f6c
 | --- | --- |
 | [Governing mathematical and resource predeclaration](2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md) | `765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079` |
 | [One-cell machine launch plan](2026-08-27-f6c-root-cover-pilot-launch.v1.json) | `bcac71226b855efee534ffa29fb13e6148068d2663708f0d29e9d201ab1a9e3d` |
-| [Pilot admission receipt](../../../../.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-v1/pilot-admission.json) | `1514c3226ea7d87f350b74fa9865025d9693bdf69b957e2d99d6496212a13699` |
-| [Independent comparison receipt](../../../../.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-v1/comparison.json) | `8cb1699f43ab70baa660942b3a351f9c2f2ee48b363255a7ee9a425ec43b0d94` |
+| Pilot admission receipt — `.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-v1/pilot-admission.json` | `1514c3226ea7d87f350b74fa9865025d9693bdf69b957e2d99d6496212a13699` |
+| Independent comparison receipt — `.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-v1/comparison.json` | `8cb1699f43ab70baa660942b3a351f9c2f2ee48b363255a7ee9a425ec43b0d94` |
 | Frozen consumer, `scripts/eom/prepare-f6c-continuous-reception-root-cover.py` | `4ce6436c09c445030192aeb5b894239b7fa04cee578e6067f1088151695a5e9e` |
 | Frozen independent comparison, `scripts/eom/verify-f6c-continuous-reception-root-cover.py` | `2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd` |
 | Frozen conditional root library, `scripts/eom/oracle/continuous_reception_roots.py` | `f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c` |
