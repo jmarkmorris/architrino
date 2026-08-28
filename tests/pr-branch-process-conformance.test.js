@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 
@@ -44,6 +46,47 @@ test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
   assert.match(aggregate, /tests\/pre-push-gate-policy\.test\.js/);
   assert.match(aggregate, /tests\/pr-branch-process-conformance\.test\.js/);
   assert.match(aggregate, /tests\/pr-validation-receipt\.test\.js/);
+});
+
+test("routine PR validation excludes on-demand iOS package freshness without dropping web checks", () => {
+  const aggregate = read("scripts/check-content-integrity.mjs");
+  const procedure = read("reference/op/git/codex-pr-branch.md");
+  const iosReadme = read("apps/ios/ArchitrinoReader/README.md");
+
+  assert.doesNotMatch(aggregate, /scripts\/export-ios-textbook-package\.mjs/);
+  assert.match(aggregate, /scripts\/build-scene-graph\.mjs/);
+  assert.match(aggregate, /scripts\/build-textbook-md-pdf\.mjs/);
+  assert.match(aggregate, /scripts\/build-equation-mapping-corpus\.mjs/);
+  assert.match(procedure, /iOS textbook package is on-demand and excluded from routine PR freshness requirements/);
+  assert.match(iosReadme, /node scripts\/export-ios-textbook-package\.mjs --write --strict/);
+  assert.match(iosReadme, /node scripts\/export-ios-textbook-package\.mjs --check --strict/);
+  assert.match(iosReadme, /App Store release work is deferred until theory closure/);
+});
+
+test("routine notation validation ignores a saved iOS snapshot but rejects authored notation drift", (t) => {
+  const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "architrino-ios-snapshot-policy-"));
+  t.after(() => fs.rmSync(fixtureRoot, { recursive: true, force: true }));
+  const authoredPath = path.join(fixtureRoot, "content/markdown/aaa/example.md");
+  const snapshotPath = path.join(fixtureRoot, "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/example.md");
+  for (const filePath of [authoredPath, snapshotPath]) {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  }
+  fs.writeFileSync(authoredPath, "# Current authored content\n");
+  fs.writeFileSync(snapshotPath, "# Older device-test snapshot\nO:M:I\n");
+  const run = () => spawnSync(process.execPath, [path.join(ROOT, "scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs")], {
+    cwd: fixtureRoot,
+    encoding: "utf8",
+  });
+
+  const snapshotOnlyDrift = run();
+  assert.equal(snapshotOnlyDrift.status, 0, snapshotOnlyDrift.stderr);
+  assert.match(snapshotOnlyDrift.stdout, /scanned 1 files/);
+
+  fs.writeFileSync(authoredPath, "# Invalid current authored notation\nO:M:I\n");
+  const authoredDrift = run();
+  assert.equal(authoredDrift.status, 1);
+  assert.match(authoredDrift.stderr, /content\/markdown\/aaa\/example\.md:2/);
+  assert.doesNotMatch(authoredDrift.stderr, /GeneratedTextbookPackage/);
 });
 
 test("PR procedure makes unattended execution measurable and requires verification for advancement", () => {

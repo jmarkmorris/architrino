@@ -123,6 +123,8 @@ Important generated outputs include:
 - `content/generated/pdf/textbook/review-copies/`
 - `reference/op/agent-startup-orientation.generated.md`
 
+The [iOS Reader](apps/ios/ArchitrinoReader/README.md) and its package exporter are retained development capabilities. Its textbook package is generated on demand, not refreshed or freshness-gated on every PR. App Store release is deferred until theory closure and an explicit operator release decision.
+
 ## Common Commands
 
 Focused content and graph checks:

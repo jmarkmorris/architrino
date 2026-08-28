@@ -26,6 +26,7 @@ resource extension, source authentication or numerical authority is added.
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 from fractions import Fraction as F
+import json
 import re
 
 
@@ -445,20 +446,25 @@ class LeafResponseSession:
     provide(current_state) consumes a request before adapter work; advance
     accepts only that exact issued provision. Any failure poisons the session.
     The external caller retains the original deadline/resources and publication
-    duties. No checkpoint, retry, automatic loop or budget reset is provided.
+    duties. A separately captured pure replay module may supply a single-use
+    prefix; no serialized state, retry, automatic loop or budget reset is accepted.
     """
     __slots__ = ('_adapter', '_ref', '_gk', '_a', '_context', '_provenance',
                  '_frames', '_parents', '_metadata', '_plan', '_state', '_phase',
-                 '_provision', '_completed', '_expected_counts', '_expected_geometry')
+                 '_provision', '_completed', '_expected_counts', '_expected_geometry',
+                 '_inherited', '_continuation')
 
     def __setattr__(self, *_):
         raise TypeError('read-only leaf-response session')
 
-    def __init__(self, adapter):
+    def __init__(self, adapter, *, continuation=None, prefix=None):
+        _require((continuation is None) == (prefix is None), 'complete optional continuation seam')
         _require(_counts(adapter) == (0, 0, 0, 0, 0)
                  and _geometry_counts(adapter) == (0, 0, 0, 0), 'fresh unmeasured geometry adapter required')
         # Retain these exact proxies: frozen respond checks reference identity.
-        ref, gk, a = adapter.integral_reference, adapter.gk_protocol, adapter.acceleration_reference
+        ref, gk = ((adapter.integral_reference, adapter.gk_protocol) if prefix is None else
+                   continuation.references(prefix, adapter))
+        a = adapter.acceleration_reference
         metadata = _partition_metadata(adapter)
         frames = tuple(ref.Frame(n, ref.Bounds(lo, hi))
                        for n, (lo, hi) in enumerate(zip(metadata[0], metadata[0][1:])))
@@ -470,7 +476,8 @@ class LeafResponseSession:
             ('_context', adapter.context), ('_provenance', tuple(adapter.provenance)),
             ('_frames', adapter.frames), ('_parents', adapter.parents), ('_metadata', metadata),
             ('_plan', plan), ('_state', None), ('_phase', 'initializing'), ('_provision', None),
-            ('_completed', 0), ('_expected_counts', (0, 0, 0, 0, 0)), ('_expected_geometry', (0, 0, 0, 0))):
+            ('_completed', 0), ('_inherited', 0), ('_continuation', None),
+            ('_expected_counts', (0, 0, 0, 0, 0)), ('_expected_geometry', (0, 0, 0, 0))):
             object.__setattr__(self, name, value)
         try:
             state = gk.start(ref, plan)
@@ -480,6 +487,14 @@ class LeafResponseSession:
             for leaf, endpoints in zip(state.leaves, metadata[1]):
                 _require((leaf.request.domain.lower, leaf.request.domain.upper) == endpoints,
                          'initial request must preserve exact parent endpoint tokens')
+            if prefix is not None:
+                state, inherited = continuation.consume(prefix, adapter, ref, gk, plan)
+                _require(type(state) is gk.State and 0 < len(state.evaluations) <= gk.MAX_EVALUATED_LEAVES
+                         and inherited['inheritedPairs'] == len(state.evaluations), 'genuine bounded replay prefix')
+                object.__setattr__(self, '_plan', state.plan)
+                object.__setattr__(self, '_inherited', len(state.evaluations))
+                object.__setattr__(self, '_continuation', inherited)
+                self._check()
             object.__setattr__(self, '_state', state)
             object.__setattr__(self, '_phase', 'idle')
         except BaseException:
@@ -525,6 +540,17 @@ class LeafResponseSession:
     def status(self):
         return self._phase
 
+    @property
+    def logical_accounting(self):
+        self._generation_check()
+        return dict(inherited_pairs=self._inherited, new_pairs=self._completed,
+                    total_pairs=self._inherited+self._completed)
+
+    @property
+    def continuation(self):
+        self._generation_check()
+        return None if self._continuation is None else json.loads(json.dumps(self._continuation))
+
     def provide(self, state, progress=None):
         """Return LeafResponse evidence; ZERO evaluate_leaf/respond calls."""
         try:
@@ -534,7 +560,7 @@ class LeafResponseSession:
             self._check()
             request = self._gk.request(state)
             _require(request is not None, 'no outstanding request in completed or unresolved State')
-            _require(self._completed < self._gk.MAX_EVALUATED_LEAVES, 'frozen evaluation census exhausted')
+            _require(self._inherited+self._completed < self._gk.MAX_EVALUATED_LEAVES, 'frozen cumulative evaluation census exhausted')
             matches = tuple(parent for parent in self._parents
                             if _q(parent.reception.lower) <= _q(request.domain.lower)
                             < _q(request.domain.upper) <= _q(parent.reception.upper))

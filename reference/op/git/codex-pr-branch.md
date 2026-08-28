@@ -201,6 +201,8 @@ Closure goal: Regenerate.
 
 A full regeneration checkpoint means running the write commands above, staging the intended outputs, then running the exact-state PR gate in step 4. Do not run the write commands after every small code or documentation edit. For priority-only mathematics packets, stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
 
+The iOS textbook package is on-demand and excluded from routine PR freshness requirements and full web-content regeneration checkpoints. A saved package may lag the current corpus without blocking a PR. Preserve the app and export software, and follow the [iOS packaging procedure](../../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging) only when the operator requests an iOS build or iOS package work is in scope. Do not refresh it merely to accompany a corpus change. App Store release remains deferred until theory closure and an explicit operator release decision.
+
 Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 
 Regenerate both layers before the final check pass whenever a PR touches any source that can affect textbook PDF reading copies:
@@ -244,7 +246,7 @@ git add -A
 This gate is mandatory after final staging and before commit. It runs:
 
 - foundational-impact routing against the exact current `origin/main`;
-- the canonical content-integrity aggregate, including generated-artifact, terminology, taxonomy, package, runtime-smoke, and process-conformance checks; and
+- the canonical content-integrity aggregate, including required web generated-artifact, terminology, taxonomy, runtime-smoke, and process-conformance checks, but not iOS package freshness; and
 - animator runtime-wiring validation.
 
 Command:

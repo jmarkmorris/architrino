@@ -1,7 +1,8 @@
 """Source-bound F6c variable-cell mapping with explicit geometry restriction.
 
 open_adapter(repo_root, *, adapter_sha256, controls_sha256,
-             closure_owner_sha256, deadline, parent_refinements=()) is a context manager. Construction
+             closure_owner_sha256, deadline, parent_refinements=(),
+             evidence_package=None) is a context manager. Construction
 captures original files and authenticates preserved metadata only: NO root,
 acceleration, residual or GK evaluation. The expected closure-owner hash MUST
 be fixed before construction. The captured readiness version attributes the
@@ -15,6 +16,9 @@ Sorted explicit ParentRefinements may additionally select authenticated original
 parents1..159. Each needs separately bound independent acceptance. Historical
 source generations may be read only through explicit ArchivedSource relations;
 logical historical bindings and current physical provenance remain distinct.
+An explicit EvidencePackage may replace only the frozen accepted parent1/2
+payload inventory. It preserves logical records and archive attribution, holds
+one checked physical package handle, and never falls back to loose members.
 ALL parent emission/three faces/displacement/distance/Dr/Dt are inherited
 unchanged; only receiver coverage is clipped to J. No geometry tightening,
 emission subsetting, root search, hidden retry or accuracy guarantee occurs.
@@ -57,7 +61,7 @@ import stat
 import sys
 import time
 import weakref
-from types import ModuleType, MappingProxyType
+from types import ModuleType, MappingProxyType, SimpleNamespace
 
 
 SELF = 'scripts/eom/f6c_variable_cell_adapter.py'
@@ -99,6 +103,33 @@ PARENT_ARCHIVE_SOURCES=(
  ('verifierControls','tests/test_f6c_parent_emission_refinement_verification.py','92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7',39696),
  ('operationalEntry','scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6',48579),
  ('operationalControls','tests/f6c-parent-emission-refinement-pilot.test.js','231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0',20889),
+)
+# Exact historical nonexecuting documents changed only by later link edits.
+# Their original mathematical/source identities remain the consumed identities.
+ANCESTRY_ARCHIVE_SOURCES=(
+ ('memberPredeclaration',PREFIX+'2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),
+ ('fullResourcePlan',PREFIX+'2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021),
+)
+# Storage code and literal accepted inventory are separately captured, never
+# taken from a package's index. This initial inventory covers parents1/2 only.
+PACKAGE_SOURCES=(
+ ('reader','scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'),
+ ('readerControls','tests/test_f6c_evidence_package.py','df81708fb1877ce549c4eacfd66c7d7f47f192d57d716a65f184039adb075cbf'),
+ ('inventory','tests/fixtures/f6c-lossless-packaging-expectations.v1.json','79a91daedff0fdb712b5b76ff0a4d8c345711eb2c4b69c0731a509da701e48fc'),
+)
+# The pure v2 parser has independently frozen semantic expectations. Fresh
+# operation authority is a separate, explicitly pinned captured instrument.
+PARENT_INVENTORY_SOURCES=(
+ ('parser','scripts/eom/f6c_parent_evidence_inventory.py','d69db22ad20881a94a950102e70d438792493fa52efde666575bc53100bd784b'),
+ ('parserControls','tests/test_f6c_parent_evidence_inventory.py','369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551'),
+ ('schema','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md','856c05077241bf9c28d75c21fcb50beac0afd23546c4bbbad9be7abd5d0f6710'),
+)
+# Empty until a separately reviewed fresh-closure instrument is frozen. This
+# fail-closed table is never populated from an inventory's self-named issuer.
+FRESH_CLOSURE_SOURCES=()
+FRESH_NUMERICAL_SETTINGS=(
+ '.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/three-request-independent-expectations.v1.json',
+ 'ebd03873e7b57d6f59508b36d3ef1f1f797071524d1ed9cf7ceee33cdc431d51',6116,
 )
 PARENT_FIXED=(
  ('declaration',PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'),
@@ -220,6 +251,26 @@ class SourceBinding:
     path: str
     sha256: str
     bytes: int
+
+
+@dataclass(frozen=True,slots=True)
+class EvidencePackage:
+    package: SourceBinding
+    inventory: SourceBinding
+
+
+@dataclass(frozen=True,slots=True)
+class AdmittedClosure:
+    binding: SourceBinding
+    expected_instrument: SourceBinding
+
+
+@dataclass(frozen=True,slots=True)
+class AcceptedParentEvidence:
+    inventory: SourceBinding
+    closures: tuple
+    expected_authority: tuple
+    package: SourceBinding | None = None
 
 
 @dataclass(frozen=True,slots=True)
@@ -403,7 +454,7 @@ def _register_evaluation(registry,key,evaluated):
 
 class Adapter:
     __slots__=('_a','_i','_c','_gk','histories','frames','parents','context','provenance','_closed','_pool','_actual','_issued','_evaluated','_clips','_residuals',
-        '_geometry','_geometry_refs','_geometry_histories','_geometry_parents','_geometry_guards','_geometry_counts','_successful_counts','historical_owner_archives')
+        '_geometry','_geometry_refs','_geometry_histories','_geometry_parents','_geometry_guards','_geometry_counts','_successful_counts','historical_owner_archives','fresh_provenance')
     def __init__(self,*_):raise TypeError('use open_adapter or make_synthetic_adapter')
     def __setattr__(self,*_):raise TypeError('immutable captured adapter generation')
 
@@ -580,7 +631,7 @@ def _build(a,i,c,export,parents,*,actual,provenance,pool=None,source_sha=None,gk
     adapter=object.__new__(Adapter)
     for name,value in (('_a',a),('_i',i),('_c',c),('_gk',gk),('histories',histories),('frames',frames),('parents',parents),
         ('context',i.Context(i.FAMILY,source_sha or _hash(_encoded(export)),_hash(_encoded(export['acceptedFrames'])),'1',COUPLING,RULER)),
-        ('provenance',provenance),('historical_owner_archives',historical_owner_archives),('_closed',False),('_pool',pool),('_actual',actual),('_issued',{}),('_evaluated',{}),('_clips',clips),('_residuals',[0]),('_successful_counts',[0,0]),
+        ('provenance',provenance),('fresh_provenance',()),('historical_owner_archives',historical_owner_archives),('_closed',False),('_pool',pool),('_actual',actual),('_issued',{}),('_evaluated',{}),('_clips',clips),('_residuals',[0]),('_successful_counts',[0,0]),
         ('_geometry',geometry),('_geometry_refs',None),('_geometry_histories',()),('_geometry_parents',()),('_geometry_guards',None),
         ('_geometry_counts',dict(restriction_calls=0,completed_restrictions=0,history_state_evaluations=0,restricted_projections=0))):
         object.__setattr__(adapter,name,value)
@@ -669,7 +720,25 @@ def _bootstrap(path,digest,live):
 
 
 class _Pool:
-    def __init__(self,stack,transport,root,live):self.stack=stack;self.w=transport;self.root=root;self.live=live;self.files={};self.inodes={};self.bytes=0
+    def __init__(self,stack,transport,root,live):self.stack=stack;self.w=transport;self.root=root;self.live=live;self.files={};self.inodes={};self.bytes=0;self._observers=[]
+    @contextmanager
+    def observe(self,consumed):
+        """Attribute physical reads during explicitly delimited metadata work."""
+        require(type(consumed)is dict,'internal physical observation dictionary')
+        self._observers.append(consumed)
+        try:yield
+        finally:
+            require(self._observers[-1]is consumed,'nested physical observation order')
+            self._observers.pop()
+    def note(self,file):
+        self.live();key=str(file.path)
+        require(self.files.get(key)is file,'physical observation requires owned handle')
+        s=file.initial;record=(key,file.digest,s.st_size)
+        identity=(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+        for consumed in self._observers:
+            require(key not in consumed or consumed[key]==(record,identity),'observed physical generation changed')
+            consumed[key]=(record,identity)
+            require(len(consumed)<=512 and sum(v[0][2]for v in consumed.values())<=1024**3,'observed source census/bytes bound')
     def capture(self,path,digest,*,data=False,size=None):
         self.live();path=self.root/Path(path);key=str(path)
         require(path.is_absolute()and path==path.resolve(),'canonical captured path')
@@ -687,14 +756,162 @@ class _Pool:
                 require(found.initial.st_size<=MAX_BYTES,'capture upgrade byte bound')
                 found.data,observed=found.scan(True);require(observed==digest,'late capture changed')
         if size is not None:require(type(size)is int and found.initial.st_size==size,'source byte count differs')
+        self.note(found)
         return found
     def read_binding(self,b,*,capture=False):
         b=self.w.normalized(b,self.root)
         f=self.capture(b['path'],b['sha256'],data=capture,size=b['bytes'])
         return f.data if capture else f.binding()
+    def adopt(self,physical):
+        """Account an already owned package handle without opening it twice."""
+        self.live();key=str(physical.path);inode=(physical.initial.st_dev,physical.initial.st_ino)
+        require(key not in self.files and inode not in self.inodes,'duplicate package or hardlink source alias')
+        require(len(self.files)<512 and self.bytes+physical.initial.st_size<=1024**3,'package physical source census/bytes bound')
+        self.files[key]=physical;self.inodes[inode]=key;self.bytes+=physical.initial.st_size
+        self.note(physical)
     def recheck(self):
         for f in self.files.values():self.live();f.recheck()
         self.live()
+
+
+class _LogicalFile:
+    """Inert historical metadata view; the backing physical handle stays owned."""
+    def __init__(self,physical,original):
+        self._physical=physical;self.path=Path(original.path);self.digest=original.sha256
+        self.initial=physical.initial;self._original=original
+    @property
+    def data(self):return self._physical.data
+    def binding(self):return asdict(self._original)
+
+
+class _AncestryPool:
+    """Two explicit document routes, never executable/runtime source overrides."""
+    def __init__(self,pool,relations):
+        self._pool=pool;self.root=pool.root;self.w=pool.w;self.live=pool.live
+        self.files=pool.files;self.routes={};self.used=set()
+        allowed={r:SourceBinding(str(self.root/p),h,n)for r,p,h,n in ANCESTRY_ARCHIVE_SOURCES}
+        require(type(relations)is tuple and len(relations)<=2,'bounded ancestry document routes')
+        destinations=set()
+        forbidden={str(self.root/p)for _,p,_ in SOURCES}|{str(self.root/p)for _,p,_,_ in PARENT_ARCHIVE_SOURCES+ANCESTRY_ARCHIVE_SOURCES}|{str(self.root/p)for p in (SELF,CONTROLS,OWNER)}
+        for r in relations:
+            require(type(r)is ArchivedSource and type(r.role)is str and r.role in allowed,'known ancestry document role')
+            old,new=_source_binding(r.original),_source_binding(r.archive)
+            require(r.original==allowed[r.role]and old['path']not in self.routes,'exact unique ancestry generation')
+            require(new['path']not in forbidden and new['path']not in destinations
+                and(new['sha256'],new['bytes'])==(old['sha256'],old['bytes']),'distinct exact ancestry archive')
+            self.routes[old['path']]=r;destinations.add(new['path'])
+    def capture(self,path,digest,*,data=False,size=None):
+        key=str(self.root/Path(path));route=self.routes.get(key)
+        if route is None:return self._pool.capture(path,digest,data=data,size=size)
+        require(digest==route.original.sha256 and(size is None or type(size)is int and size==route.original.bytes),'ancestry generation differs')
+        physical=self._pool.capture(route.archive.path,route.archive.sha256,data=data,size=route.archive.bytes)
+        self.used.add(key);return _LogicalFile(physical,route.original)
+    def read_binding(self,b,*,capture=False):
+        b=self.w.normalized(b,self.root)
+        f=self.capture(b['path'],b['sha256'],data=capture,size=b['bytes'])
+        return f.data if capture else f.binding()
+    def recheck(self):
+        require(self.used==set(self.routes),'unused ancestry archive')
+        self._pool.recheck()
+
+
+class _PackagePhysicalFile:
+    """Physical-only provenance view of the reader's single retained handle."""
+    def __init__(self,reader):
+        self.reader=reader;self.path=Path(reader.physical_binding.path)
+        self.digest=reader.physical_binding.sha256;self.data=None
+        s=reader.physical_identity
+        self.initial=SimpleNamespace(st_dev=s.device,st_ino=s.inode,st_size=s.bytes,
+                                     st_mtime_ns=s.mtime_ns,st_ctime_ns=s.ctime_ns)
+    def binding(self):return asdict(self.reader.physical_binding)
+    def recheck(self):self.reader.recheck()
+    def scan(self,*_):raise ValueError('package is not a direct scientific record')
+
+
+class _PackageLogicalFile:
+    def __init__(self,reader,member,logical):
+        self.reader=reader;self.member=member;self._logical=logical
+        self.path=Path(logical.path);self.digest=logical.sha256
+        self.initial=SimpleNamespace(st_size=logical.bytes);self.data=None
+    def binding(self):return asdict(self._logical)
+    def capture(self):
+        if self.data is None:self.data=self.reader.read_binding(self.member.original,capture=True)
+        return self
+
+
+class _PackagePool:
+    """Exact inert member routes; archive attribution remains in descriptors.
+
+    ``members`` comes only from the separately frozen literal inventory. The
+    package is fully validated before this view is created. Nonpackaged sources
+    retain ordinary capture, while any error on a declared route fails closed.
+    """
+    def __init__(self,pool,reader,members,descriptors):
+        self._pool=pool;self.root=pool.root;self.w=pool.w;self.live=pool.live
+        self.files=pool.files;self.reader=reader;self.routes={};self.views={}
+        owner_path=str(self.root/OWNER);self.historical_owners=set()
+        by_name={m.name:m for m in members}
+        for d in descriptors:
+            if d.parent_index not in (1,2):continue
+            for role,_,_,_ in PARENT_ONE[:6]:
+                m=by_name.get(f'parents/{d.parent_index}/{role}')
+                require(m is not None and asdict(m.original)==asdict(getattr(d,role)),
+                        'packaged parent descriptor generation differs')
+            relations=tuple(r for r in d.archived_sources if r.role=='acceptanceOwner')
+            require(len(relations)==1,'packaged parent requires exact historical owner relation')
+            r=relations[0];m=by_name.get('owners/'+r.original.sha256)
+            require(m is not None and asdict(m.original)==asdict(r.original)
+                    and asdict(r.archive)==dict(path=m.source_path,sha256=m.original.sha256,bytes=m.original.bytes),
+                    'historical archive and package owner differ')
+        for m in members:
+            original=SourceBinding(**asdict(m.original))
+            if m.role=='acceptanceOwner':
+                require(original.path==owner_path,'packaged historical owner path')
+                self.historical_owners.add((original.sha256,original.bytes))
+                logical=replace(original,path=m.source_path)
+            else:
+                require(m.source_path==original.path,'evidence package cannot redirect a logical path')
+                logical=original
+            require(logical.path not in self.routes and logical.path not in pool.files,
+                    'duplicate packaged route or already captured loose evidence')
+            self.routes[logical.path]=(m,logical)
+        physical=_PackagePhysicalFile(reader);pool.adopt(physical)
+    def capture(self,path,digest,*,data=False,size=None):
+        self.live();key=str(self.root/Path(path));route=self.routes.get(key)
+        if route is None:
+            require(not(key==str(self.root/OWNER)and any(digest==h for h,_ in self.historical_owners)),
+                    'historical package owner requires explicit archive route')
+            return self._pool.capture(path,digest,data=data,size=size)
+        m,logical=route
+        require(digest==logical.sha256 and(size is None or type(size)is int and size==logical.bytes),
+                'packaged logical generation differs')
+        base=_physical_pool(self);base.note(base.files[str(self.reader.physical_binding.path)])
+        view=self.views.get(key)
+        if view is None:view=_PackageLogicalFile(self.reader,m,logical);self.views[key]=view
+        if data:view.capture()
+        return view
+    def read_binding(self,b,*,capture=False):
+        b=self.w.normalized(b,self.root)
+        f=self.capture(b['path'],b['sha256'],data=capture,size=b['bytes'])
+        return f.data if capture else f.binding()
+    def recheck(self):self._pool.recheck()
+
+
+def _packaged_pool(pool,selection,descriptors,deadline):
+    require(type(selection)is EvidencePackage,'single immutable package selection')
+    physical=_source_binding(selection.package);inventory=_source_binding(selection.inventory)
+    required={r:(str(pool.root/p),h)for r,p,h in PACKAGE_SOURCES}
+    require((inventory['path'],inventory['sha256'])==required['inventory'],'fixed independent package inventory required')
+    require(physical['bytes']<=MAX_BYTES and physical['path'].startswith(str(pool.root/'.local-data/braid-analysis')+'/'),
+            'bounded package in owned evidence lane')
+    require(physical['path']not in pool.files,'package already captured')
+    source={r:pool.capture(p,h,data=r in ('reader','inventory'))for r,p,h in PACKAGE_SOURCES}
+    require(source['inventory'].initial.st_size==inventory['bytes'],'package inventory byte count')
+    module=pool.stack.enter_context(_module(source['reader'].data,source['reader'].path))
+    members=module.inventory_members(source['inventory'].data,expected_sha256=inventory['sha256'],root=pool.root)
+    reader=pool.stack.enter_context(module.PackageReader(module.Binding(**physical),members,
+        deadline=deadline,live=lambda _:pool.live()))
+    return _PackagePool(pool,reader,members,descriptors)
 
 
 def _source_binding(value):
@@ -705,6 +922,191 @@ def _source_binding(value):
     require(type(value.sha256)is str and _SHA.fullmatch(value.sha256),'source SHA256')
     require(type(value.bytes)is int and 0<value.bytes<=1024**3,'source byte bound')
     return asdict(value)
+
+
+def _physical_pool(pool):
+    while hasattr(pool,'_pool'):pool=pool._pool
+    return pool
+
+
+def _file_identity(file):
+    """Current physical identity, or the fixed original identity of a member."""
+    if isinstance(file,_PackageLogicalFile):
+        s=file.member.source_identity
+        return dict(device=str(s.device),inode=str(s.inode),bytes=str(s.bytes),
+                    mtimeNs=str(s.mtime_ns),ctimeNs=str(s.ctime_ns))
+    s=file.initial
+    return dict(device=str(s.st_dev),inode=str(s.st_ino),bytes=str(s.st_size),
+                mtimeNs=str(s.st_mtime_ns),ctimeNs=str(s.st_ctime_ns))
+
+
+def _fresh_selections(values,root):
+    """Closed inert inputs checked before file capture or provider creation."""
+    require(type(values)is tuple and len(values)<=159,'bounded immutable fresh selections')
+    authority={str(root/p):h for role,p,h in FRESH_CLOSURE_SOURCES if role=='instrument'}
+    inventories=set();closures=set();packages=set();metadata_bytes=0
+    for value in values:
+        require(type(value)is AcceptedParentEvidence,'explicit fresh evidence variant')
+        b=_source_binding(value.inventory)
+        require(b['bytes']<=16*1024**2 and value.inventory not in inventories,'bounded unique fresh inventory')
+        inventories.add(value.inventory)
+        metadata_bytes+=b['bytes']
+        require(type(value.expected_authority)is tuple and len(value.expected_authority)==1,'one externally reviewed fresh authority')
+        instrument=_source_binding(value.expected_authority[0])
+        require(authority.get(instrument['path'])==instrument['sha256'],'unreviewed fresh closure instrument')
+        require(type(value.closures)is tuple and 0<len(value.closures)<=159,'bounded immutable closure selection')
+        for closure in value.closures:
+            require(type(closure)is AdmittedClosure,'explicit immutable admitted closure')
+            b=_source_binding(closure.binding);_source_binding(closure.expected_instrument)
+            require(b['bytes']<=16*1024**2 and closure.binding not in closures,'bounded unique fresh closure')
+            require(closure.expected_instrument==value.expected_authority[0],'externally fixed closure authority differs')
+            closures.add(closure.binding)
+            metadata_bytes+=b['bytes']
+        if value.package is not None:
+            b=_source_binding(value.package)
+            require(b['bytes']<=MAX_BYTES and b['path'].startswith(str(root/'.local-data/braid-analysis')+'/')
+                and value.package not in packages,'bounded unique explicitly selected package')
+            packages.add(value.package)
+    require(len(closures)<=159,'combined fresh closure bound')
+    require(metadata_bytes<=MAX_BYTES,'aggregate fresh metadata byte bound')
+    return values
+
+
+class _FreshEvidencePool:
+    """Exact original-tuple routes for explicitly selected fresh evidence.
+
+    A package error never falls back to loose files. Distinct packages may
+    share only the identical independently expected owner route; every package
+    still contributes its own physical handle to the complete source union.
+    """
+    def __init__(self,pool):
+        self._pool=pool;self.root=pool.root;self.w=pool.w;self.live=pool.live
+        self.files=pool.files;self.routes={};self.views={};self.metadata=[]
+        self.members={};self.member_paths={};self.member_inodes={};self.original_paths={}
+    def add(self,members,reader):
+        for member in members:
+            self.live();original=SourceBinding(**asdict(member.original))
+            require(member.role=='acceptanceOwner'or member.source_path==original.path,
+                'cross-inventory nonowner physical redirect is forbidden')
+            original_key=(original.path,original.sha256,original.bytes)
+            previous=self.members.get(original_key)
+            if previous is not None:
+                require(member.role==previous.role=='acceptanceOwner'and asdict(member)==asdict(previous),
+                    'conflicting shared evidence route')
+                continue  # The first explicit identical owner route owns reads.
+            s=member.source_identity;inode=(s.device,s.inode)
+            prior_roles=self.original_paths.get(original.path,set())
+            require(not prior_roles or prior_roles=={'acceptanceOwner'}and member.role=='acceptanceOwner',
+                'cross-inventory original path generation alias')
+            require(member.source_path not in self.member_paths and inode not in self.member_inodes,
+                'cross-inventory physical path or original inode alias')
+            require(inode not in _physical_pool(self._pool).inodes,'member aliases already captured physical source')
+            self.members[original_key]=member;self.member_paths[member.source_path]=original_key
+            self.member_inodes[inode]=original_key
+            self.original_paths.setdefault(original.path,set()).add(member.role)
+            aliases={original.path,member.source_path}
+            for path in aliases:
+                # The live owner is always a direct captured input, even when
+                # an exact historical-consumption copy has the same bytes.
+                if member.role=='acceptanceOwner'and path==str(self.root/OWNER):
+                    direct=self.files.get(path)
+                    if direct is not None and direct.digest==original.sha256:
+                        require(direct.initial.st_size==original.bytes,'direct current owner byte count')
+                        continue
+                key=(path,original.sha256,original.bytes)
+                prior=self.routes.get(key)
+                if prior is not None:
+                    prior_member,_=prior
+                    require(member.role==prior_member.role=='acceptanceOwner'
+                        and asdict(member)==asdict(prior_member),'conflicting shared evidence route')
+                    continue
+                require(path not in self.files or member.role=='acceptanceOwner'and path==str(self.root/OWNER),
+                    'fresh member already captured outside its declared route')
+                self.routes[key]=(member,reader)
+            if reader is None:
+                f=self._pool.capture(member.source_path,original.sha256,size=original.bytes)
+                s=member.source_identity
+                expected=dict(device=str(s.device),inode=str(s.inode),bytes=str(s.bytes),
+                    mtimeNs=str(s.mtime_ns),ctimeNs=str(s.ctime_ns))
+                require(_file_identity(f)==expected,'loose evidence original identity differs')
+    def capture(self,path,digest,*,data=False,size=None):
+        self.live();path=str(self.root/Path(path))
+        if path==str(self.root/OWNER):
+            direct=self.files.get(path)
+            if direct is not None and direct.digest==digest:
+                require(size is None or size==direct.initial.st_size,'direct current owner byte count')
+                return self._pool.capture(path,digest,data=data,size=size)
+        found=[(k,v)for k,v in self.routes.items()if k[0]==path and k[1]==digest and(size is None or k[2]==size)]
+        if not found:
+            require(not any(k[0]==path for k in self.routes),'declared fresh evidence generation differs')
+            return self._pool.capture(path,digest,data=data,size=size)
+        require(len(found)==1,'ambiguous fresh evidence route')
+        key,(member,reader)=found[0]
+        if reader is None:
+            physical=self._pool.capture(member.source_path,digest,data=data,size=member.original.bytes)
+            return _LogicalFile(physical,SourceBinding(*key))
+        view_key=(member.source_path,member.original.sha256,member.original.bytes)
+        base=_physical_pool(self);base.note(base.files[str(reader.physical_binding.path)])
+        if view_key not in self.views:
+            self.views[view_key]=_PackageLogicalFile(reader,member,SourceBinding(**asdict(member.original)))
+        view=self.views[view_key]
+        if data:view.capture()
+        return view
+    def read_binding(self,b,*,capture=False):
+        b=self.w.normalized(b,self.root)
+        f=self.capture(b['path'],b['sha256'],data=capture,size=b['bytes'])
+        return f.data if capture else b
+    def read_identity(self,b):
+        b=self.w.normalized(b,self.root)
+        return _file_identity(self.capture(b['path'],b['sha256'],size=b['bytes']))
+    def release(self,bindings):
+        """Drop optional raw transcript buffers, never the retained handles."""
+        for binding in bindings:
+            b=self.w.normalized(binding,self.root)
+            route=self.routes.get((b['path'],b['sha256'],b['bytes']))
+            if route is None:continue
+            member,reader=route
+            if reader is None:
+                f=self.files.get(member.source_path)
+                if f is not None:f.data=None
+            else:
+                view=self.views.get((member.source_path,member.original.sha256,member.original.bytes))
+                if view is not None:view.data=None
+    def recheck(self):self._pool.recheck()
+
+
+def _fresh_evidence_pool(pool,selections,deadline,already_refined):
+    """Capture v2 metadata/storage; independent operation audit follows later."""
+    base=_physical_pool(pool);out=_FreshEvidencePool(pool)
+    source={role:pool.capture(path,h,data=role in ('reader','parser'))for role,path,h in
+        (*PACKAGE_SOURCES[:2],*PARENT_INVENTORY_SOURCES)}
+    package=base.stack.enter_context(_module(source['reader'].data,source['reader'].path))
+    parser=base.stack.enter_context(_module(source['parser'].data,source['parser'].path))
+    indices=set(already_refined);raw_bytes=0
+    for selection in selections:
+        inventory_raw=pool.read_binding(asdict(selection.inventory),capture=True)
+        admitted=tuple(dict(binding=asdict(c.binding),raw=pool.read_binding(asdict(c.binding),capture=True),
+            expectedInstrument=asdict(c.expected_instrument))for c in selection.closures)
+        raw_bytes+=len(inventory_raw)+sum(len(x['raw'])for x in admitted)
+        require(raw_bytes<=MAX_BYTES,'aggregate fresh metadata byte bound')
+        members=parser.parse_inventory(inventory_raw,asdict(selection.inventory),package,
+            admitted_closures=admitted,expected_authority=tuple(asdict(b)for b in selection.expected_authority))
+        inventory=parser.decode(inventory_raw,asdict(selection.inventory))
+        fresh=tuple(p['parentIndex']for p in inventory['parents'])
+        require(not(indices&set(fresh))and len(indices)+len(fresh)<=160,'duplicate or overlapping selected parent')
+        indices.update(fresh)
+        current=inventory['currentAcceptanceOwner']
+        require(current['binding']['path']==str(pool.root/OWNER),'direct canonical current owner')
+        f=pool.capture(**dict(path=current['binding']['path'],digest=current['binding']['sha256'],size=current['binding']['bytes']))
+        require(_file_identity(f)==current['identity'],'current owner original identity differs')
+        reader=None
+        if selection.package is not None:
+            reader=base.stack.enter_context(package.PackageReader(package.Binding(**asdict(selection.package)),members,
+                deadline=deadline,live=lambda _:pool.live()))
+            base.adopt(_PackagePhysicalFile(reader))
+        out.add(members,reader)
+        out.metadata.append((selection,inventory,admitted))
+    return out
 
 
 def _refinement_descriptors(values,root,owner_sha):
@@ -736,7 +1138,7 @@ def _refinement_descriptors(values,root,owner_sha):
             'independently accepted external parent closure required')
         if legacy:require((closure.original_caller_session,closure.final_completion_chunk,closure.elapsed_seconds)==
             ('9158','1eda87','261.94229158400003'),'legacy external completion differs')
-        require(type(value.archived_sources)is tuple and len(value.archived_sources)<=7,'bounded explicit historical archives')
+        require(type(value.archived_sources)is tuple and len(value.archived_sources)<=9,'bounded explicit historical archives')
         roles=set();original_paths=set()
         for relation in value.archived_sources:
             require(type(relation)is ArchivedSource and type(relation.role)is str,'inert historical relation')
@@ -748,12 +1150,12 @@ def _refinement_descriptors(values,root,owner_sha):
                 if legacy:require(old['sha256']=='7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c'
                     and old['bytes']==318717,'exact historical owner original tuple')
             else:
-                expected={r:dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ARCHIVE_SOURCES}
+                expected={r:dict(path=str(root/p),sha256=h,bytes=n)for r,p,h,n in PARENT_ARCHIVE_SOURCES+ANCESTRY_ARCHIVE_SOURCES}
                 require(relation.role in expected and old==expected[relation.role],'exact nonexecuting historical source tuple')
             require(old['path']not in original_paths,'duplicate historical original path');original_paths.add(old['path'])
             require(new['path']!=old['path']and (new['sha256'],new['bytes'])==(old['sha256'],old['bytes']),
                 'archive must preserve exact bytes at distinct physical path')
-            forbidden={str(root/p)for _,p,_ in SOURCES}|{str(root/p)for _,p,_,_ in PARENT_ARCHIVE_SOURCES}|{str(root/SELF),str(root/CONTROLS),str(root/OWNER)}
+            forbidden={str(root/p)for _,p,_ in SOURCES}|{str(root/p)for _,p,_,_ in PARENT_ARCHIVE_SOURCES+ANCESTRY_ARCHIVE_SOURCES}|{str(root/SELF),str(root/CONTROLS),str(root/OWNER)}
             require(new['path']not in forbidden,'archive aliases a current canonical source')
             key=(old['path'],old['sha256'],old['bytes'])
             require(key not in shared or shared[key]==relation,'conflicting shared historical relation')
@@ -883,7 +1285,8 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         require(len(matches)==1,'parent operational source role');historical_sources[role]=matches[0]
     c=w.decode_operational(files['comparison'].data)
     op=w.decode_operational(files['operation'].data,document_class='operational-receipt')
-    reader=_HistoricalReader(pool,descriptor.archived_sources,p['acceptanceOwner'],historical_sources)
+    ancestry_roles={r for r,_,_,_ in ANCESTRY_ARCHIVE_SOURCES}
+    reader=_HistoricalReader(pool,tuple(r for r in descriptor.archived_sources if r.role not in ancestry_roles),p['acceptanceOwner'],historical_sources)
     _owner_declaration(reader.read_binding(p['acceptanceOwner'],capture=True))
     scope=f'original-parent-{index}-emission-refinement'
     require(p['schema']=='braid-program/f6c-parent-emission-refinement-launch.v1'and p['scope']==scope
@@ -986,6 +1389,18 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
             and(j==0 or F(rss[j-1]['elapsedSeconds'])<=F(row['elapsedSeconds'])),'parent resource time ordering')
         require(type(row['aggregateResidentBytes'])is int and 0<=row['aggregateResidentBytes']<=2*1024**3
             and 0<=F(row['sampleGapMs'])<=1000,'parent resource limits')
+    selected=_selected_parent_metadata(w,core,files,bound,m,c,index,ancestry,full,export,original,a,reference,histories)
+    reader.finish()
+    return selected,descriptor.archived_sources
+
+
+def _selected_parent_metadata(w,core,files,bound,m,c,index,ancestry,full,export,original,a,reference,histories):
+    """Common original-token/row construction after external acceptance.
+
+    Both historical and fresh operation transports enter here only after their
+    distinct complete source and process acceptance obligations have passed.
+    This block neither evaluates a provider nor grants operation acceptance.
+    """
     # Independent original-token identity reconstruction, not numerical work.
     hkeys=('id','pathKey','polarity','charge','historyFingerprint','coverageStart','coverageEnd')
     skeys=('startTime','endTime','coefficients','positionErrors','velocityErrors','positionError','velocityError')
@@ -1015,7 +1430,97 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         if new.emission is not None:
             require(number(old.emission.lower)<number(new.emission.lower)<=number(new.emission.upper)<number(old.emission.upper),
                 'accepted parent emission must narrow both sides')
-    return selected,reader.finish()
+    return selected
+
+
+def _thaw_fresh_metadata(value,live):
+    """Copy the independent immutable result into exact inert wire types.
+
+    The historical comparison helpers intentionally require plain dictionaries
+    and lists. Do not loosen those helpers or accept arbitrary mapping objects.
+    """
+    nodes=0;string_bytes=0
+    def visit(v,depth=0):
+        nonlocal nodes,string_bytes
+        nodes+=1
+        require(nodes<=1000000 and depth<=64,'bounded fresh metadata result')
+        if nodes%256==1:live()
+        if type(v)in(dict,MappingProxyType):
+            require(len(v)<=20000 and all(type(k)is str for k in v),'exact fresh metadata keys')
+            return {visit(k,depth+1):visit(x,depth+1)for k,x in v.items()}
+        if type(v)in(tuple,list):
+            require(len(v)<=20000,'bounded fresh metadata sequence')
+            return [visit(x,depth+1)for x in v]
+        if type(v)is str:
+            n=len(v.encode('utf-8'));string_bytes+=n
+            require(n<=8*1024**2 and string_bytes<=MAX_BYTES,'bounded fresh metadata strings')
+            return v
+        require(v is None or type(v)is bool or type(v)is int and -(2**63)<=v<2**63,
+            'inert fresh metadata scalar')
+        return v
+    result=visit(value);live();return result
+
+
+def _authenticate_fresh_parents(w,core,pool,owner,ancestry,full,fdocs,export,parents,a,reference,histories,integral):
+    """Normalize separately checked fresh closure into common parent metadata."""
+    base=_physical_pool(pool)
+    source={role:pool.capture(path,h,data=role=='instrument')for role,path,h in FRESH_CLOSURE_SOURCES}
+    require(set(source)=={'instrument','controls','contract'},'complete independently reviewed fresh authority')
+    validator=base.stack.enter_context(_module(source['instrument'].data,source['instrument'].path))
+    p,h,n=FRESH_NUMERICAL_SETTINGS
+    settings_binding=pool.capture(p,h,size=n).binding()
+    numerical_settings=dict(declaration=settings_binding,settingIndex=0,step='0.002',historySegmentStep='0.005',rootTolerance='0.000005')
+    family=dict(retainedHistory=ancestry['export'],reconstruction=ancestry['reconstruction'],fullCoverPlan=full['plan'],
+        fullCoverManifest=full['manifest'],fullCoverComparison=full['comparison'],fullCoverOperation=full['admission'])
+    context=dict(family=integral.FAMILY,source_generation_sha256=ancestry['export']['sha256'],
+        frame_generation_sha256=_hash(_encoded(export['acceptedFrames'])),field_speed='1',coupling=COUPLING,ruler=RULER)
+    original={k:ancestry[k]for k in ('export','reconstruction','guards')}
+    original['fullEntry']=pool.files[str(pool.root/'scripts/eom/run-f6c-cached-root-cover-full.mjs')].binding()
+    original.update(('full'+k[0].upper()+k[1:],v)for k,v in full.items())
+    expected_full=tuple(fdocs['admission']['sourceBindings'])
+    selected=[];archives=[]
+    for selection,inventory,admitted in pool.metadata:
+        require(w.equal(inventory['family'],family)and w.equal(inventory['context'],context)
+            and w.equal(inventory['numericalSettings'],numerical_settings),'fresh original family/context/settings differ')
+        require(w.equal(inventory['currentAcceptanceOwner']['binding'],owner.binding()),'fresh current owner binding differs')
+        indexed={p['parentIndex']:p for p in inventory['parents']};objects={x['memberName']:x for x in inventory['objects']}
+        for item in admitted:
+            pool.live()
+            require(w.equal(item['expectedInstrument'],source['instrument'].binding()),'captured fresh instrument differs')
+            verified=validator.verify_closure(item['raw'],item['binding'],expected_instrument=source['instrument'].binding(),
+                expected_controls=source['controls'].binding(),read_binding=pool.read_binding,read_identity=pool.read_identity,
+                expected_family=family,expected_context=context,expected_owner=owner.binding(),expected_originals=original,
+                expected_full_source_bindings=expected_full,live=pool.live)
+            _keys(verified,('parents','sourceBindings'))
+            require(type(verified['parents'])is tuple and 0<len(verified['parents'])<=159
+                and type(verified['sourceBindings'])is tuple and len(verified['sourceBindings'])<=512,'bounded verified fresh result')
+            verified=_thaw_fresh_metadata(verified,pool.live)
+            for binding in verified['sourceBindings']:pool.read_binding(binding)
+            for accepted in verified['parents']:
+                index=accepted['parentIndex'];require(type(index)is int and index in indexed,'verified fresh parent selection differs')
+                declared=indexed[index]
+                require(w.equal(declared['independentAcceptance'],item['binding']),'fresh selected closure differs')
+                for field in ('parentIndex','frameIndex','reception','historyGenerationSha256'):
+                    require(w.equal(accepted[field],declared[field]),'verified original fresh metadata differs')
+                bound={role:objects[name]['original']for role,name in declared['roles'].items()}
+                require(w.equal(accepted['roles'],bound)
+                    and w.equal(accepted['acceptanceOwner'],objects[declared['acceptanceOwner']]['original']),
+                    'verified fresh role/owner tuple differs')
+                data_roles=('manifest','comparison','queries','rows','pieces')
+                require(sum(b['bytes']for role,b in bound.items()if role in data_roles)<=MAX_BYTES,'bounded fresh parent transcripts')
+                files={role:pool.capture(b['path'],b['sha256'],data=True,size=b['bytes'])for role,b in bound.items()if role in data_roles}
+                m=core.decode_document(files['manifest'].data);c=w.decode_operational(files['comparison'].data)
+                selected.append(_selected_parent_metadata(w,core,files,bound,m,c,index,ancestry,full,export,parents[index],a,reference,histories))
+                pool.release(bound.values())
+            pool.live()
+        for obj in inventory['objects']:
+            if obj['role']=='acceptanceOwner':
+                relation=ArchivedSource('acceptanceOwner',SourceBinding(**obj['original']),
+                    SourceBinding(obj['physicalPath'],obj['original']['sha256'],obj['original']['bytes']))
+                if relation not in archives:archives.append(relation)
+        require(sorted(p.index for p in selected if p.index in indexed)==sorted(indexed),'complete fresh inventory selected')
+    require(len(selected)==len({p.index for p in selected}),'duplicate independently selected fresh parent')
+    return tuple(selected),tuple(archives)
 
 
 def _owner_declaration(raw):
@@ -1163,7 +1668,7 @@ def _parents_from_raw(a,reference,rows,pieces,histories,bindings,*,cells,refined
 
 
 @contextmanager
-def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256,deadline,parent_refinements=()):
+def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256,deadline,parent_refinements=(),evidence_package=None,accepted_parent_evidence=()):
     """Capture-only constructor. Caller fixes all three expected hashes first.
 
     deadline is the caller's finite monotonic absolute deadline, at most1800s
@@ -1174,16 +1679,24 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
     require(root.is_absolute()and root==root.resolve()and root==Path(__file__).resolve().parents[2],'executing canonical repository')
     for h in (adapter_sha256,controls_sha256,closure_owner_sha256):require(type(h)is str and _SHA.fullmatch(h),'explicit pre-fixed expected hash')
     parent_refinements=_refinement_descriptors(parent_refinements,root,closure_owner_sha256)
+    accepted_parent_evidence=_fresh_selections(accepted_parent_evidence,root)
     began=time.monotonic();require(type(deadline)in(int,float)and began<deadline<=began+1800,'finite bounded absolute deadline')
     def live():require(time.monotonic()<deadline,'adapter inclusive deadline')
     adapter=None
     transport_path,transport_sha=next((p,h)for r,p,h in SOURCES if r=='transport')
     with _bootstrap(root/transport_path,transport_sha,live)as raw:
         with _module(raw,root/transport_path)as w,ExitStack()as stack:
-            pool=_Pool(stack,w,root,live)
+            pool=_Pool(stack,w,root,live);physical_pool=pool;fresh_consumed={}
             own=pool.capture(SELF,adapter_sha256,data=True)
             require(compile(own.data,_EXECUTING_CODE.co_filename,'exec',dont_inherit=True)==_EXECUTING_CODE,'executing adapter bytes differ')
             pool.capture(CONTROLS,controls_sha256)
+            if evidence_package is not None:pool=_packaged_pool(pool,evidence_package,parent_refinements,deadline)
+            ancestry_roles={r for r,_,_,_ in ANCESTRY_ARCHIVE_SOURCES}
+            ancestry_routes=tuple(dict.fromkeys(r for d in parent_refinements for r in d.archived_sources if r.role in ancestry_roles))
+            if ancestry_routes:pool=_AncestryPool(pool,ancestry_routes)
+            if accepted_parent_evidence:
+                with physical_pool.observe(fresh_consumed):
+                    pool=_fresh_evidence_pool(pool,accepted_parent_evidence,deadline,{0,*(d.parent_index for d in parent_refinements)})
             module_roles=('mapping','decoder','rootComparison','acceleration','integral','correlated','gk','geometry','captureHelper')
             source={role:pool.capture(path,digest,data=role in module_roles+('fullEntry','geometryHistory','geometryRoots','geometryIntervals'))for role,path,digest in SOURCES}
             modules={role:stack.enter_context(_module(source[role].data,source[role].path))for role in module_roles}
@@ -1223,6 +1736,13 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
                 selected=selected[:index]+(parent,)+selected[index+1:]
                 archived+=tuple(r for r in relations if r not in archived)
                 refined_indices=refined_indices|frozenset({index})
+            if accepted_parent_evidence:
+                with physical_pool.observe(fresh_consumed):
+                    fresh,relations=_authenticate_fresh_parents(w,core,pool,owner,ancestry,full,fdocs,old['export'],parents,a,reference,histories,modules['integral'])
+                for parent in fresh:
+                    selected=selected[:parent.index]+(parent,)+selected[parent.index+1:]
+                    refined_indices=refined_indices|frozenset({parent.index})
+                archived+=tuple(r for r in relations if r not in archived)
             geometry=modules['geometry']
             require(rdocs['manifest']['speedUpper']=='0.85'and rdocs['manifest']['clearanceLower']=='0.27','authenticated shared geometry guards')
             geometry_guards=geometry.Guards('1',(rdocs['manifest']['speedUpper'],)*8,
@@ -1233,6 +1753,9 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
                 provenance=provenance,pool=pool,source_sha=ancestry['export']['sha256'],gk=modules['gk'],
                 geometry=geometry,geometry_references=geometry_references,geometry_guards=geometry_guards,
                 _authenticated_refined_indices=refined_indices,historical_owner_archives=archived)
+            fresh_provenance=tuple(sorted(record for record,_ in fresh_consumed.values()))
+            require(set(fresh_provenance)<=set(provenance),'fresh physical sources belong to complete source union')
+            object.__setattr__(adapter,'fresh_provenance',fresh_provenance)
             pool.recheck();live()
             try:yield adapter
             finally:

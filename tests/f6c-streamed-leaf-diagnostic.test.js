@@ -33,6 +33,10 @@ class SourceBinding:
  sha256:str
  bytes:int
 @dataclasses.dataclass(frozen=True)
+class EvidencePackage:
+ package:SourceBinding
+ inventory:SourceBinding
+@dataclasses.dataclass(frozen=True)
 class ArchivedSource:
  role:str
  original:SourceBinding
@@ -72,7 +76,19 @@ def open_adapter(root,**kw):
  for d in kw['parent_refinements']:
   extras.extend(getattr(d,k)for k in ('plan','manifest','comparison','operation','launcher_log','resource_log'))
   extras.extend(r.archive for r in d.archived_sources)
+ if kw['evidence_package']is not None:
+  package=kw['evidence_package'];inventory=__import__('json').loads(pathlib.Path(package.inventory.path).read_bytes())
+  replaced={str(root/e['physicalPath'])for p in inventory['parents']for e in (*p['entries'],p['archivedOwner'])}
+  extras=[b for b in extras if b.path not in replaced]+[package.package,package.inventory]
+  if MODE=='package-runtime':
+   import sys
+   m=types.ModuleType('_inert_package_member_not_code');m.__file__=next(iter(replaced));sys.modules[m.__name__]=m
  a.provenance=tuple(dict.fromkeys(a.provenance+tuple((b.path,b.sha256,b.bytes)for b in extras)))
+ if MODE=='source-count-overflow':
+  extra=[]
+  for index in range(400):
+   p=root/f'extra-source-{index}';p.write_bytes(b'x');extra.append((str(p),hashlib.sha256(b'x').hexdigest(),1))
+  a.provenance+=tuple(extra)
  if MODE=='archive-runtime':
   import sys
   m=types.ModuleType('_archive_is_not_executing_source');m.__file__=kw['parent_refinements'][0].archived_sources[0].archive.path;sys.modules[m.__name__]=m
@@ -186,8 +202,11 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  writeFileSync(path.join(dir,'unbound.py'),'# explicit unbound fixture module\n');
  const bindings={coordinator:bind(entry),controls:bind(controls),...Object.fromEntries(Object.entries(pins).map(([k,[p]])=>[k,bind(path.join(dir,p))]))};
  const runtimeList=runtimeBindings().map(x=>({...x}));
+ if(mode==='source-hardlink'){
+  const alias=path.join(dir,'adapter-hardlink');linkSync(bindings.adapter.path,alias);runtimeList.push(bind(alias));
+ }
  if(mode==='missing-runtime'||mode==='runtime-in-provenance')runtimeList.splice(runtimeList.findIndex(b=>b.path.endsWith('/_pylong.py')),1);
- const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v1',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],maxAdvances:maximum,limits:C.LIMITS};
+ const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v4',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],continuation:null,maxAdvances:maximum,limits:C.LIMITS};
  if(mode==='archives'||mode==='shared-archives'||mode==='archive-runtime'){
   const prior={};for(const k of['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'prior-'+k);writeFileSync(p,'prior '+k);prior[k]=bind(p);}
   const archive=path.join(dir,mode==='archive-runtime'?'scripts/eom/archived-owner.py':'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
@@ -203,6 +222,28 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  for(const args of [['init','-q',dir],['-C',dir,'config','core.hooksPath','/dev/null']])assert.equal(spawnSync('/usr/bin/git',args,{encoding:'utf8'}).status,0);
  writeFileSync(path.join(dir,'.gitignore'),'.local-data/\n');
  return{dir,output,entry,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
+}
+function packageFixture(mode='package'){
+ // Tiny synthetic transport only; these bytes are not a valid evidence package
+ // and the fake adapter is not an independent package-content checker.
+ const f=fixture(mode),parents=[],descriptors=[],roles=['plan','manifest','comparison','operation','launcher_log','resource_log','queries','rows','pieces','producer_stdout','producer_stderr','comparison_stdout','comparison_stderr'];
+ for(const parentIndex of [1,2]){
+  const entries=roles.map(role=>{const physicalPath=`evidence/p${parentIndex}/${role}`,p=path.join(f.dir,physicalPath);mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,`synthetic ${parentIndex} ${role}\n`);const b=bind(p);return{role,physicalPath,logicalBinding:b,sha256:b.sha256,bytes:b.bytes};});
+  const physicalPath=`evidence/owner${parentIndex}`,p=path.join(f.dir,physicalPath);writeFileSync(p,`synthetic owner${parentIndex}\n`);const b=bind(p);
+  const archivedOwner={role:'acceptanceOwner',physicalPath,logicalBinding:{...b,path:f.spec.bindings.readiness.path},sha256:b.sha256,bytes:b.bytes};
+  parents.push({parentIndex,entries,archivedOwner});const prior=Object.fromEntries(entries.slice(0,6).map(e=>[e.role,e.logicalBinding]));
+  descriptors.push({parent_index:parentIndex,...prior,closure:{owner:f.spec.bindings.readiness,operation:prior.operation,original_caller_session:'1',final_completion_chunk:'test',exit_code:0,elapsed_seconds:'1',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'},archived_sources:[{role:'acceptanceOwner',original:archivedOwner.logicalBinding,archive:b}]});
+ }
+ const inventory={schema:'braid-program/f6c-lossless-packaging-expectations.v1',parents,observedEligibleBytes:parents.flatMap(p=>[...p.entries,p.archivedOwner]).reduce((n,e)=>n+e.bytes,0)};
+ const pins={},selection={};
+ for(const[k,[rel]]of Object.entries(C.PACKAGE_PINS)){
+  const p=path.join(f.dir,rel);mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,k==='inventory'?JSON.stringify(inventory)+'\n':'# synthetic package metadata\n');selection[k]=bind(p);pins[k]=[rel,selection[k].sha256];
+ }
+ const packagePath=path.join(f.dir,C.LANE,'synthetic-inert-package');writeFileSync(packagePath,'synthetic adapter transport only\n');selection.package=bind(packagePath);
+ f.source=f.source.replace(/export const PACKAGE_PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PACKAGE_PINS=Object.freeze('+JSON.stringify(pins)+');');
+ assert(!f.source.includes(C.PACKAGE_PINS.inventory[1]),'synthetic independent inventory pins');writeFileSync(f.entry,f.source);
+ f.spec.bindings.coordinator=bind(f.entry);f.selfSha=f.spec.bindings.coordinator.sha256;f.spec.parentRefinements=descriptors;f.spec.evidencePackage=selection;
+ writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;return f;
 }
 async function runFixture(f,{interrupt=false,epipe=false}={}){
  const child=spawn(process.execPath,[f.entry,'--spec',f.specPath,'--spec-sha256',f.specSha,'--self-sha256',f.selfSha],{cwd:f.dir,stdio:['ignore','pipe','pipe']});
@@ -298,6 +339,65 @@ test('closed spec caps and parent selection reject before target creation',()=>{
   }).finally(()=>cleanup(f));
  }catch(e){cleanup(f);throw e;}
 });
+test('complete input union includes combined runtime, metadata and invocation bounds',()=>{
+ const b=(i,bytes=1)=>({path:'/private/tmp/union-'+i,sha256:'a'.repeat(64),bytes});
+ const records=Array.from({length:512},(_,i)=>b(i));assert.equal(C.boundedSourceUnion(records).length,512);
+ assert.equal(C.boundedSourceUnion([...records,records[0]]).length,512);
+ assert.throws(()=>C.boundedSourceUnion([...records,b('invocation')]),/complete physical/);
+ assert.equal(C.boundedSourceUnion([b(0,1024**3)]).length,1);
+ assert.throws(()=>C.boundedSourceUnion([b(0,1024**3),b('runtime')]),/complete physical/);
+ assert.throws(()=>C.boundedSourceUnion([b(0),{...b(0),sha256:'b'.repeat(64)}]),/conflicting/);
+});
+test('publication retains original inode through callbacks and preserves foreign replacements',()=>{
+ for(const afterWrite of [false,true]){
+  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-identity-')));
+  try{
+   const file=path.join(dir,'receipt.json'),retained=path.join(dir,'retained-original'),value={accepted:false},raw=JSON.stringify(value)+'\n';let changed=false;
+   assert.throws(()=>C.writeNew(file,value,()=>{
+    if(!changed&&existsSync(file)&&(!afterWrite||statSync(file).size===Buffer.byteLength(raw))){changed=true;renameSync(file,retained);writeFileSync(file,raw);}
+   }),/original publication/);
+   assert(changed);assert.equal(readFileSync(file,'utf8'),raw);assert(existsSync(retained));
+  }finally{rmSync(dir,{recursive:true});}
+ }
+});
+test('competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools',()=>{
+ const commands=['run-f5-ordinary-evolution.mjs','run-f6c-evidence-packaging.mjs','f6c-bounded-operation.mjs','eom_f5_enclosed_root_cli','eom_borg_shadow_cli','eom_recursive_block_benchmark_cli','attractor-ensemble-harness'];
+ for(const command of commands){
+  assert.throws(()=>C.noCompetitor([{pid:2,ppid:1,command}],10),/competing/);
+  C.noCompetitor([{pid:11,ppid:10,command}],10);
+ }
+});
+test('every late publication callback preserves original identity and foreign evidence',()=>{
+ for(const ordinal of [2,3,4,5,6]){
+  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-callback-')));
+  try{
+   const file=path.join(dir,'receipt.json'),original=path.join(dir,'original'),raw='{"accepted":false}\n';let calls=0,replaced=false;
+   assert.throws(()=>C.writeNew(file,{accepted:false},()=>{
+    if(++calls===ordinal){renameSync(file,original);writeFileSync(file,raw);replaced=true;}
+   }),/original publication|changed source/);
+   assert(replaced,'specified callback reached');assert.equal(readFileSync(file,'utf8'),raw);assert(existsSync(original));
+  }finally{rmSync(dir,{recursive:true});}
+ }
+});
+test('package selection preserves logical descriptors and removes only admitted physical inputs',async()=>{
+ const f=packageFixture();try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const original=JSON.stringify(f.spec.parentRefinements),sources=M.validateSpec(f.spec,f.selfSha),routes=M.packageInputs(f.spec).routes;
+  assert.equal(routes.size,28);assert.equal(JSON.stringify(f.spec.parentRefinements),original);
+  for(const p of routes.keys())assert(!sources.some(b=>b.path===p),'loose payload not recaptured');
+  for(const b of Object.values(f.spec.evidencePackage))assert(sources.some(s=>s.path===b.path&&s.sha256===b.sha256));
+  assert(sources.some(b=>b.path===f.spec.bindings.readiness.path));
+  for(const mutate of[
+   s=>delete s.evidencePackage,s=>s.evidencePackage=[],s=>s.evidencePackage.extra=true,
+   s=>s.evidencePackage.package.bytes=C.FILE+1,s=>s.evidencePackage.package.path=s.bindings.adapter.path,
+   s=>s.evidencePackage.reader.sha256='a'.repeat(64),s=>s.evidencePackage.readerControls.sha256='a'.repeat(64),
+   s=>s.evidencePackage.inventory.sha256='a'.repeat(64),s=>s.evidencePackage.inventory.bytes++,
+   s=>s.parentRefinements[0].plan.sha256='a'.repeat(64),s=>s.parentRefinements[0].manifest.bytes++,
+   s=>s.parentRefinements[1].archived_sources[0].archive.sha256='a'.repeat(64)]){
+   const spec=structuredClone(f.spec);mutate(spec);assert.throws(()=>M.validateSpec(spec,f.selfSha));
+  }
+ }finally{cleanup(f);}
+});
 test('generic descriptors preserve exact archives, derived inventory and invocation-bound readiness',async()=>{
  const f=fixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
@@ -356,6 +456,27 @@ test('generic descriptors preserve exact archives, derived inventory and invocat
 test('fresh metadata inventory includes existing lazy integer helper without science',()=>{
  const records=runtimeBindings();assert(records.some(b=>b.path.endsWith('/_pylong.py')));
  assert(records.some(b=>b.path===realpathSync(python)));assert(records.some(b=>b.path.endsWith('/pyvenv.cfg')));
+});
+test('two explicit nonexecuting ancestry documents retain exact historical tuples',async()=>{
+ const f=fixture('archives');try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const spec=structuredClone(f.spec),d=spec.parentRefinements[0];
+  for(const[role,[p,h,n]]of Object.entries(C.ANCESTRY_ARCHIVE_SOURCES)){
+   d.archived_sources.push({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:{path:path.join(f.dir,'document-'+role),sha256:h,bytes:n}});
+  }
+  const sources=M.validateSpec(spec,f.selfSha);
+  assert.equal(M.archiveRelations(spec).length,3);
+  for(const r of d.archived_sources.slice(1))assert(sources.some(b=>b.path===r.archive.path));
+  for(const mutate of[
+   s=>s.parentRefinements[0].archived_sources[1].role='mathematicalReference',
+   s=>s.parentRefinements[0].archived_sources[1].original.sha256='a'.repeat(64),
+   s=>s.parentRefinements[0].archived_sources[1].original.bytes++,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.bindings.adapter.path,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.parentRefinements[0].archived_sources[1].original.path,
+   s=>s.parentRefinements[0].archived_sources[2].archive.path=s.parentRefinements[0].archived_sources[1].archive.path,
+   s=>s.parentRefinements[0].archived_sources.push(s.parentRefinements[0].archived_sources[1]),
+  ]){const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha));}
+ }finally{cleanup(f);}
 });
 test('shared competitor guard excludes only own descendants',()=>{
  const own={pid:10,ppid:1,command:'node coordinator'},child={pid:11,ppid:10,command:'run-f6c-streamed-leaf-diagnostic.mjs'};
@@ -469,7 +590,7 @@ d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['so
 `;
     const result=spawnSync(python,['-I','-B','-c',decode,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],stream],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});
     assert.equal(result.status,0,result.stderr);const header=JSON.parse(result.stdout);
-    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements});
+    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements,evidencePackage:f.spec.evidencePackage,acceptedParentEvidence:f.spec.acceptedParentEvidence});
     assert.deepEqual(header.archives,C.archiveRelations(f.spec));assert.equal(header.archives.length,1);assert.equal(header.accepted,false);
    }
    assert.equal(C.inspectStreamLayout(f.output).bytes,statSync(stream).size);
@@ -477,13 +598,33 @@ d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['so
   }finally{cleanup(f);}
  });
 }
-for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','late-runtime','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
+for(const mode of ['package','package-runtime']){
+ test('synthetic package transport keeps source/runtime distinction: '+mode,async()=>{
+  const f=packageFixture(mode);try{
+   const result=await runFixture(f);
+   assert.equal(result.code,mode==='package'?0:1,result.err.slice(-2000));
+   if(mode==='package'){
+    const operation=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json')));
+    const completion=operation.process.admission.completion;
+    const routes=JSON.parse(readFileSync(f.spec.evidencePackage.inventory.path)).parents.flatMap(p=>[...p.entries,p.archivedOwner]).map(e=>path.join(f.dir,e.physicalPath));
+    assert(completion.historicalSourceBindings.some(b=>b.path===f.spec.evidencePackage.package.path));
+    assert(!completion.historicalSourceBindings.some(b=>routes.includes(b.path)));
+    assert.deepEqual(completion.historicalOwnerArchives,C.archiveRelations(f.spec));
+   }else assert(readFileSync(path.join(f.output+'-outer','process/runner-stderr.log'),'utf8').includes('runtime outside declared inventory'));
+   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(result.childPid));
+  }finally{cleanup(f);}
+ });
+}
+for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','late-runtime','source-count-overflow','source-hardlink','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
  test('literal Python rejects and preserves only private evidence: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
    if(mode==='missing-runtime'||mode==='runtime-in-provenance'||mode==='archive-runtime'||mode==='late-runtime'){
     assert(!existsSync(f.events),'missing runtime stopped before first provide');
     const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/runtime outside declared inventory/);
+   }
+   else if(mode==='source-count-overflow'||mode==='source-hardlink'){
+    assert(!existsSync(f.events));const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/complete physical source union bounds|physical source hardlink alias/);
    }
    else {assert(existsSync(f.events));assert(existsSync(f.output));}
    assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));

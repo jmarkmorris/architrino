@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <array>
+#include <bit>
 #include <charconv>
 #include <cmath>
 #include <cstdlib>
@@ -743,6 +744,95 @@ void print_segment(
             << "\"}";
 }
 
+std::string binary64_bits(double value) {
+  if (!std::isfinite(value)) {
+    throw std::invalid_argument("inspection endpoint must be finite");
+  }
+  std::ostringstream out;
+  out << std::hex << std::setfill('0') << std::setw(16)
+      << std::bit_cast<std::uint64_t>(value);
+  return out.str();
+}
+
+void print_inspected_interval_vector(const eom::IntervalVector& value) {
+  std::cout << '[';
+  for (std::size_t axis = 0U; axis < 3U; ++axis) {
+    if (axis > 0U) std::cout << ',';
+    const auto& box = value[axis];
+    const auto lower_bits = binary64_bits(box.lower());
+    const auto upper_bits = binary64_bits(box.upper());
+    std::cout << "{\"lower\":" << box.lower()
+              << ",\"upper\":" << box.upper()
+              << ",\"lowerBits\":\"" << lower_bits
+              << "\",\"upperBits\":\"" << upper_bits << "\"}";
+  }
+  std::cout << ']';
+}
+
+// Parser-observation schema v1: original RUN tokens, resolved parser switches,
+// and ordered paths containing original cubic tokens plus the actual History
+// endpoint-state boxes (max_digits10 numbers and exact binary64 hex bits).
+// This branch neither calls validate_request nor any root/evolution entrypoint.
+// Its true parserInspected flag is deliberately separate from authority flags.
+void print_request_inspection(
+    const eom::NativeCoupledEvolutionRequest& request,
+    const std::vector<std::string>& run_tokens,
+    const std::vector<ParsedPath>& paths) {
+  const auto prior_precision = std::cout.precision();
+  std::cout << std::setprecision(std::numeric_limits<double>::max_digits10)
+            << "{\"schema\":\"eom_borg_request_inspection/v1\","
+               "\"status\":\"parser-inspection-only\","
+               "\"parserInspected\":true,\"requestValidated\":false,"
+               "\"rootsEvaluated\":false,\"eomExecuted\":false,"
+               "\"executionAuthorized\":false,\"scienceApproved\":false,"
+               "\"runId\":\"" << json_escape(request.run_id)
+            << "\",\"fieldSpeed\":\"" << json_escape(request.field_speed)
+            << "\",\"coupling\":\"" << json_escape(request.coupling)
+            << "\",\"startTime\":\"" << json_escape(request.start_time)
+            << "\",\"endTime\":\"" << json_escape(request.end_time)
+            << "\",\"runTokens\":[";
+  for (std::size_t index = 0U; index < run_tokens.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    std::cout << '"' << json_escape(run_tokens[index]) << '"';
+  }
+  std::cout << "],\"resolvedParserControls\":{"
+               "\"useQuarterStepPublication\":"
+            << (request.use_quarter_step_publication ? "true" : "false")
+            << ",\"useFarFieldEnclosureInEvolution\":"
+            << (request.use_far_field_enclosure_in_evolution ? "true" : "false")
+            << ",\"useCertifiedTraversal\":"
+            << (request.use_certified_traversal ? "true" : "false")
+            << ",\"traversalExactTilePairLimit\":"
+            << request.traversal_exact_tile_pair_limit
+            << ",\"forceEventPrecisionEscalation\":"
+            << (request.force_event_precision_escalation ? "true" : "false")
+            << ",\"jointHistoryCount\":" << request.joint_histories.size()
+            << ",\"freshHistoryCache\":true},\"paths\":[";
+  for (std::size_t index = 0U; index < paths.size(); ++index) {
+    if (index > 0U) std::cout << ',';
+    const auto& path = paths[index];
+    const auto endpoint = path.history.endpoint_state_hull();
+    std::cout << "{\"pathId\":\"" << json_escape(path.path_id)
+              << "\",\"charge\":\"" << json_escape(path.charge)
+              << "\",\"stateFlags\":" << path.state_flags
+              << ",\"historyId\":\"" << json_escape(path.history.history_id())
+              << "\",\"historyFingerprint\":\""
+              << json_escape(path.history.provenance_fingerprint())
+              << "\",\"segmentCount\":" << path.input_segment_count
+              << ",\"segments\":[";
+    for (std::size_t segment = 0U; segment < path.input_segment_count; ++segment) {
+      if (segment > 0U) std::cout << ',';
+      print_segment(path.history.segments().at(segment), "parser-inspection-only");
+    }
+    std::cout << "],\"endpointState\":{\"position\":";
+    print_inspected_interval_vector(endpoint.position);
+    std::cout << ",\"velocity\":";
+    print_inspected_interval_vector(endpoint.velocity);
+    std::cout << "}}";
+  }
+  std::cout << "]}\n" << std::setprecision(prior_precision);
+}
+
 void run(
     unsigned maximum_mpfr_bits,
     std::size_t quadrature_max_depth,
@@ -752,7 +842,9 @@ void run(
     std::uint64_t traversal_exact_tile_pair_limit,
     eom::ShadowAffineDiagnostic* shadow_affine_diagnostic = nullptr,
     std::optional<IncrementalSnapshotCache>* incremental_cache = nullptr,
-    bool* request_boundary_consumed = nullptr) {
+    bool* request_boundary_consumed = nullptr,
+    bool inspect_request_only = false,
+    bool accepted_step_progress = false) {
   if (request_boundary_consumed != nullptr) {
     *request_boundary_consumed = false;
   }
@@ -767,6 +859,10 @@ void run(
   const std::string run_grade = run[53];
   if (run_grade != "certified" && run_grade != "display") {
     throw std::invalid_argument("RUN grade must be certified or display");
+  }
+  if ((inspect_request_only || accepted_step_progress) && run_grade != "certified") {
+    throw std::invalid_argument(
+        "request inspection and accepted-step progress require certified grade");
   }
   if (incremental_cache != nullptr) {
     const auto disk_stats = eom::history_disk_storage_stats();
@@ -865,6 +961,9 @@ void run(
   }
   if (read_required_line("END record") != "END") {
     throw std::invalid_argument("missing Borg EOM native END record");
+  }
+  if (inspect_request_only && std::cin.peek() != std::char_traits<char>::eof()) {
+    throw std::invalid_argument("request inspection rejects trailing protocol input");
   }
   if (request_boundary_consumed != nullptr) {
     *request_boundary_consumed = true;
@@ -1004,6 +1103,26 @@ void run(
     // both the 3:3 and larger 4:4 Borg populations.
     request.joint_histories = seed_exact_joint_histories(parsed_paths);
   }
+  if (inspect_request_only) {
+    if (incremental_cache != nullptr || shadow_affine_diagnostic != nullptr) {
+      throw std::invalid_argument("inspection requires an uncached diagnostic-free request");
+    }
+    print_request_inspection(request, run, parsed_paths);
+    return;
+  }
+  if (accepted_step_progress) {
+    // Progress only: published count/time are observations, not a checkpoint.
+    // The external supervisor owns fixed-cadence liveness/resource heartbeats.
+    request.accepted_step_callback = [&request](
+        std::size_t count, const std::string& time) {
+      std::cerr << "{\"schema\":\"eom_accepted_step_progress/v1\","
+                   "\"event\":\"accepted-step\",\"runId\":\""
+                << json_escape(request.run_id)
+                << "\",\"acceptedStepCount\":" << count
+                << ",\"acceptedTime\":\"" << json_escape(time)
+                << "\"}\n" << std::flush;
+    };
+  }
   std::optional<eom::NativeAccelerationSnapshotCertificate> rebased_snapshot;
   const eom::NativeAccelerationSnapshotCertificate* reusable_snapshot = nullptr;
   bool rebased_incremental_chunk_snapshot = false;
@@ -1135,6 +1254,9 @@ void run(
                "\"status\":\""
             << json_escape(result.status) << "\",\"evidenceStatus\":\""
             << json_escape(output_grade)
+            << "\",\"runId\":\"" << json_escape(request.run_id)
+            << "\",\"fieldSpeed\":\"" << json_escape(request.field_speed)
+            << "\",\"coupling\":\"" << json_escape(request.coupling)
             << "\",\"runGrade\":\"" << json_escape(run_grade)
             << "\",\"coreScale\":\"" << json_escape(request.core_scale)
             << "\",\"claimGrade\":\""
@@ -1426,6 +1548,34 @@ void run(
       std::cout << ",\"correctionRetryScale\":"
                 << step.correction_retry_scale;
     }
+    // Actual estimator values, not reconstructed from published endpoints.
+    // Empty means no local estimate was reached on that attempted step.
+    const auto prior_precision = std::cout.precision();
+    std::cout << std::setprecision(std::numeric_limits<double>::max_digits10)
+              << ",\"localErrors\":[";
+    for (std::size_t index = 0U; index < step.local_errors.size(); ++index) {
+      if (index > 0U) std::cout << ',';
+      const auto& error = step.local_errors[index];
+      std::cout << "{\"pathId\":\"" << json_escape(error.path_id)
+                << "\",\"positionError\":";
+      print_json_number(error.position_error);
+      std::cout << ",\"velocityError\":";
+      print_json_number(error.velocity_error);
+      const auto print_axes = [](const auto& values) {
+        std::cout << '[';
+        for (std::size_t axis = 0U; axis < 3U; ++axis) {
+          if (axis > 0U) std::cout << ',';
+          print_json_number(values[axis]);
+        }
+        std::cout << ']';
+      };
+      std::cout << ",\"positionErrors\":";
+      print_axes(error.position_errors);
+      std::cout << ",\"velocityErrors\":";
+      print_axes(error.velocity_errors);
+      std::cout << '}';
+    }
+    std::cout << ']' << std::setprecision(prior_precision);
     std::cout << ",\"attemptedStart\":\""
               << json_escape(step.attempted_start)
               << "\",\"attemptedEnd\":\""
@@ -1938,7 +2088,46 @@ void run(
     }
     std::cout << "]}";
   }
-  std::cout << "],\"publishedExtensions\":[";
+  // Stored accepted-final snapshot only. Never run a new calculation here or
+  // substitute an unaccepted candidate. Decimal strings round-trip the actual
+  // binary64 bounds, rather than formatting them with stdout's display precision.
+  const eom::NativeAccelerationSnapshotCertificate* final_snapshot = nullptr;
+  for (auto step = result.steps.rbegin(); step != result.steps.rend(); ++step) {
+    if (step->status == "accepted" && step->accepted_snapshot.has_value() &&
+        step->accepted_time == result.accepted_end_time &&
+        step->accepted_snapshot->reception_time == result.accepted_end_time) {
+      final_snapshot = &*step->accepted_snapshot;
+      break;
+    }
+  }
+  std::cout << "],\"finalAccelerationSnapshot\":";
+  if (final_snapshot == nullptr) {
+    std::cout << "null";
+  } else {
+    std::cout << "{\"status\":\"" << json_escape(final_snapshot->status)
+              << "\",\"receptionTime\":\"" << json_escape(final_snapshot->reception_time)
+              << "\",\"failureCode\":\"" << json_escape(final_snapshot->failure_code)
+              << "\",\"rootRowCount\":" << final_snapshot->root_certificates.size()
+              << ",\"receiverTotals\":[";
+    for (std::size_t index = 0U;
+         index < final_snapshot->acceleration.receiver_totals.size(); ++index) {
+      if (index > 0U) std::cout << ',';
+      const auto& receiver = final_snapshot->acceleration.receiver_totals[index];
+      std::cout << "{\"receiverPathId\":\"" << json_escape(receiver.receiver_path_id)
+                << "\",\"acceleration\":[";
+      for (std::size_t axis = 0U; axis < 3U; ++axis) {
+        if (axis > 0U) std::cout << ',';
+        const auto& component = receiver.acceleration[axis];
+        std::cout << "{\"lower\":\""
+                  << eom::finite_double_token(component.lower())
+                  << "\",\"upper\":\""
+                  << eom::finite_double_token(component.upper()) << "\"}";
+      }
+      std::cout << "]}";
+    }
+    std::cout << "]}";
+  }
+  std::cout << ",\"publishedExtensions\":[";
   for (std::size_t path_index = 0; path_index < result.histories.size();
        ++path_index) {
     if (path_index > 0U) {
@@ -2006,6 +2195,7 @@ int main(int argc, char** argv) {
     if (argc < 2) {
       std::cerr << "usage: eom_borg_shadow_cli "
                    "print-protocol-version|borg-shadow-v0|borg-shadow-server-v0 "
+                   "[--inspect-request-only] [--accepted-step-progress] "
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
                    "[--quadrature-max-cells=N] "
@@ -2026,6 +2216,8 @@ int main(int argc, char** argv) {
     std::size_t quadrature_max_cells = 200000;
     std::size_t event_max_cells = 200000;
     bool use_certified_traversal = true;
+    bool inspect_request_only = false;
+    bool accepted_step_progress = false;
     std::uint64_t traversal_exact_tile_pair_limit = 64;
     std::string shadow_affine_output_path;
     std::size_t shadow_affine_symbol_cap = 256U;
@@ -2085,6 +2277,10 @@ int main(int argc, char** argv) {
         }
       } else if (option == "--disable-certified-traversal") {
         use_certified_traversal = false;
+      } else if (option == "--inspect-request-only") {
+        inspect_request_only = true;
+      } else if (option == "--accepted-step-progress") {
+        accepted_step_progress = true;
       } else if (option.starts_with(traversal_tile_prefix)) {
         traversal_exact_tile_pair_limit = parse_size(
             option.substr(std::char_traits<char>::length(
@@ -2145,6 +2341,14 @@ int main(int argc, char** argv) {
         throw std::invalid_argument("unsupported Borg EOM native option");
       }
     }
+    const std::string mode = argv[1];
+    if ((inspect_request_only || accepted_step_progress) && mode != "borg-shadow-v0") {
+      throw std::invalid_argument(
+          "request inspection and accepted-step progress require borg-shadow-v0");
+    }
+    if (inspect_request_only && !shadow_affine_output_path.empty()) {
+      throw std::invalid_argument("request inspection prohibits shadow diagnostics");
+    }
     std::optional<eom::ShadowAffineDiagnostic> shadow_affine_diagnostic;
     if (!shadow_affine_output_path.empty()) {
       shadow_affine_diagnostic.emplace(eom::ShadowAffineDiagnosticOptions{
@@ -2158,7 +2362,6 @@ int main(int argc, char** argv) {
     }
     auto* shadow_affine = shadow_affine_diagnostic.has_value()
         ? &*shadow_affine_diagnostic : nullptr;
-    const std::string mode = argv[1];
     if (mode == "print-protocol-version") {
       std::cout << kBorgNativeProtocolMagic << '\n';
     } else if (mode == "borg-shadow-v0") {
@@ -2170,7 +2373,8 @@ int main(int argc, char** argv) {
             maximum_mpfr_bits, quadrature_max_depth, quadrature_max_cells,
             event_max_cells,
             use_certified_traversal, traversal_exact_tile_pair_limit,
-            shadow_affine);
+            shadow_affine, nullptr, nullptr,
+            inspect_request_only, accepted_step_progress);
         std::cout.rdbuf(published_output);
         std::cout << response.str();
       } catch (...) {
@@ -2219,6 +2423,7 @@ int main(int argc, char** argv) {
     } else {
       std::cerr << "usage: eom_borg_shadow_cli "
                    "print-protocol-version|borg-shadow-v0|borg-shadow-server-v0 "
+                   "[--inspect-request-only] [--accepted-step-progress] "
                    "[--maximum-mpfr-bits=N] "
                    "[--quadrature-max-depth=N] "
                    "[--quadrature-max-cells=N] "

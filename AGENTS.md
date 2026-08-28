@@ -73,6 +73,7 @@ This document distinguishes three audience scopes:
 - Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/git/codex-pr-branch.md](reference/op/git/codex-pr-branch.md).
 - Outside an explicit regeneration/fix-drift request or the final branch/PR process, if a generator `--check` reports generated drift, report the drift and the exact `--write` command needed instead of running it.
 - If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
+- The iOS textbook package is an on-demand development snapshot, not a routine PR output. Do not regenerate it or require its freshness during ordinary edits, full web-content regeneration, or the final branch/PR process unless the operator explicitly requests iOS packaging or iOS package work is in scope. Preserve the app and exporter; use the strict package checks in [apps/ios/ArchitrinoReader/README.md](apps/ios/ArchitrinoReader/README.md) for requested builds. App Store release is deferred until theory closure and an explicit operator release decision.
 
 ### Evidence Independence
 

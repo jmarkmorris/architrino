@@ -16,17 +16,35 @@ Other AI systems or local AI agents that materially assist the project at a give
 
 ## The Inheritance of Inquiry
 
-Architrino is developed within humanity's long inheritance of inquiry: observation and recordkeeping, experiment and measurement, mathematics and philosophy, criticism and correction, and repeated attempts to understand patterns in nature. That inheritance reaches from the earliest surviving human records through modern scientific disciplines. It is the intellectual setting in which this project works, not evidence for an Architrino claim and not an assertion that earlier thinkers endorsed the project.
+Architrino acknowledges all who have contributed to humanity’s search for understanding nature and the universe: those who observed, questioned, calculated, experimented, taught, preserved knowledge, challenged accepted explanations, and made further inquiry possible. This inheritance includes celebrated discoveries and innumerable contributions whose authors and influence cannot now be individually identified.
 
-Direct intellectual debts are treated more specifically. Where an identifiable work, result, method, datum, or argument bears on a claim, the project should provide a direct citation or a declared validation record appropriate to that use. The broader historical inheritance cannot be exhaustively enumerated or individually weighted, and acknowledging it does not make prior thinkers coauthors. Historical lineage never substitutes for the sources and validation a particular factual, legal, scientific, or theoretical claim requires.
+The project’s human and AI collaborators work within that shared inheritance. No bibliography can fully enumerate the ideas, methods, language, and accumulated understanding that make their work possible. This acknowledgment expresses gratitude for that collective achievement; it does not imply endorsement of Architrino by earlier contributors or serve as evidence for the project’s claims.
 
-AI-mediated synthesis helps current human and AI research synthesizers and collaborators connect, compare, critique, and organize accessible material. It does not make model-training data a complete, transparent, or weighted account of intellectual lineage, nor does training provenance become author credit or source evidence. AI systems do not thereby acquire independent academic or legal authorship or agency. Human editorial review and publication accountability remain with the named human contributors.
+Where a particular work, result, method, or dataset contributes directly to an argument, a specific reference serves a different purpose: it allows that contribution to be identified and examined.
 
-## Source and AI-Assistance Disclosure
+## Sources, References, and Attribution
 
-Factual, legal, and scientific assertions require independently checkable sources or declared validation records appropriate to the claim. A model response is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted drafting or analysis gains no authority merely because a model produced it.
+Architrino uses references selectively to support understanding, verification, and continued research. The corpus is not intended to provide an exhaustive bibliography of its intellectual influences, and references are not added merely to give an explanation the appearance of authority.
 
-Repository history, discussions, source notes, review records, and validation ledgers aid transparency and reconstruction. They do not establish that every claim has been independently verified, and they do not create passage-level AI provenance where no such record exists. Readers should inspect the applicable claim status, cited sources, validation records, and open burdens. The [People](people.md), [Values](values.md), [GitHub Presence and Community](github-presence-and-community.md), and [Validation Protocols](../validation/validation-protocols.md) pages provide the surrounding role, review, and evidence standards.
+A specific reference is appropriate when a passage depends on an external measurement, a borrowed result or method, a quotation, or a substantive claim about another person’s work or historical events. Original derivations are supported by their stated premises and reasoning; they do not require external citations merely because they are original. Familiar background explanations do not require a citation on every sentence, but consequential or disputed claims need identifiable support.
+
+References also support continuity between research sessions and collaborators. They allow human and AI readers to recover assumptions, inspect original arguments, distinguish evidence from interpretation, and reconsider conclusions. Their presence does not require every reader to consult them.
+
+A useful reference identifies the work, not only its current web address. Author, title, publication year, and a stable identifier such as a DOI or arXiv identifier should be retained where available. Page, section, equation, or dataset details should be included when they are needed to locate the relevant material. Links provide convenient access, but permanent availability is not guaranteed. A changed address does not by itself invalidate the work or justify discarding its bibliographic identity.
+
+Required attribution for third-party material remains separate from this selective-reference policy. The applicable notices and credit requirements are preserved for each item, as described in the project’s [Licenses, Attribution & Source Use](licenses-attributions.md) page.
+
+## AI-Assisted Research and Review
+
+AI collaborators assist with source discovery, comparison, analysis, drafting, and review. When adding a reference or relying substantively on one, contributors—including AI collaborators—are expected to inspect the relevant source material and check that it supports the stated use. A working link, a plausible citation, or an AI-generated summary is not sufficient verification.
+
+Source checking is part of research and revision rather than a promise that every reference is continuously monitored. Existing references are not presumed verified merely because they appear in the corpus. Uncertainty about a source or its relevance should be stated when it affects a claim.
+
+AI-generated wording and model-training provenance are not independent evidence. Claims require support appropriate to their kind: an explicit derivation, an independently checkable source, or a declared validation record. Broad acknowledgment of inherited knowledge does not replace that support.
+
+Human editorial judgment and publication accountability remain with the project’s human publisher. This does not assert that the publisher has personally read every cited work or independently repeated every check. Source notes, review records, and repository history support examination and correction without implying exhaustive verification or a complete record of every AI contribution.
+
+The [People](people.md), [Values](values.md), [GitHub Presence and Community](github-presence-and-community.md), and [Validation Protocols](../validation/validation-protocols.md) pages provide the surrounding role, review, and evidence standards.
 
 ## What Architrino Provides
 
@@ -47,4 +65,4 @@ The [About the Webapp](about-the-webapp.md) page explains the runtime and reader
 
 ## Operating Standard
 
-Architrino should remain public, inspectable, and claim-disciplined. Its strongest posture is to expose the architecture, the evidence, the remaining proof burdens, and the failure conditions clearly enough that serious readers can help test or improve the work.
+Architrino open-source offers should remain public, inspectable, and claim-disciplined. Its strongest posture is to expose the architecture, the evidence, the remaining proof burdens, and the failure conditions clearly enough that serious readers can help test or improve the work.

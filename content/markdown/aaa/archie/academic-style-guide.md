@@ -371,7 +371,9 @@ Do not use qualification to evade commitment. If the text is making a real claim
 
 ### Source and AI-Assistance Disclosure
 
-Factual, legal, and scientific assertions must point to independently checkable sources or declared validation records appropriate to the claim. Model output is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted wording, analysis, or implementation does not acquire authority from generation alone.
+Follow the [selective-reference policy](about-architrino.md#sources-references-and-attribution) and [AI-assisted research and review policy](about-architrino.md#ai-assisted-research-and-review) in About Architrino for source selection, durable identification, checking, and disclosure.
+
+Factual, legal, and scientific assertions require support appropriate to their kind: an explicit derivation, an independently checkable source, or a declared validation record. Model output is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted wording, analysis, or implementation does not acquire authority from generation alone.
 
 When AI systems, including generative-AI tools or local AI agents, materially assist a publication, they may be acknowledged by a documented, reader-comprehensible contribution role such as research synthesis, analysis, drafting, critique, software implementation, or review support. Do not claim that every AI use is individually recorded or that attribution is exhaustive unless such a record actually exists. Named human contributors retain editorial and publication accountability; do not present an AI system as an independent legal person or academically accountable author.
 
@@ -388,7 +390,7 @@ Before finalizing a reader-facing chapter or section, check the following:
 5. Is the tone formal and explanatory rather than conversational?
 6. Are all project-specific notation and terminology rules respected?
 7. Does the final paragraph clarify what survives, what changes, or what remains open?
-8. Are factual, legal, and scientific assertions tied to independently checkable sources or declared validation records?
+8. Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?
 9. Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?
 
 ## Relation to Local Templates

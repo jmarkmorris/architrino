@@ -96,6 +96,15 @@ def to_wire(value):
     return visit(value, 0)
 
 
+def state_summary(protocol, state):
+    """Complete existing public frontier summary; not a serialized State."""
+    return to_wire(dict(status=state.status, aggregate_is_none=state.aggregate is None,
+                        next_generation=state.next_generation, split_counts=state.split_counts,
+                        leaf_count=len(state.leaves), evaluated_count=len(state.evaluations),
+                        pending_count=sum(leaf.evaluation is None for leaf in state.leaves),
+                        next_request=protocol.request(state)))
+
+
 class StreamedLeafSession:
     """One fresh session, with explicit one-request advance and explicit finish.
 
@@ -104,13 +113,15 @@ class StreamedLeafSession:
     caller without erasing completed work or altering inherited ownership maps.
     """
 
-    def __init__(self, adapter, diagnostic, codec, metadata, sink, *, byte_limit=MAX_BYTES, live=None):
+    def __init__(self, adapter, diagnostic, codec, metadata, sink, *, byte_limit=MAX_BYTES, live=None,
+                 continuation=None, prefix=None):
         self._phase = 'constructing'
         self._encoder = None
         self._callback = False
         self._providing = False
         self._deltas = []
         self._completed = 0
+        self._inherited = 0
         try:
             _require(callable(sink) and (live is None or callable(live)), 'sink and optional live callbacks')
             _require(type(byte_limit) is int and 0 < byte_limit <= MAX_BYTES, 'aggregate byte limit')
@@ -124,7 +135,13 @@ class StreamedLeafSession:
             self._adapter, self._sink, self._live = adapter, sink, live
             self._context, self._provenance = adapter.context, tuple(adapter.provenance)
             self._frames, self._parents = adapter.frames, adapter.parents
-            self._session = diagnostic.LeafResponseSession(adapter)
+            _require((continuation is None) == (prefix is None), 'complete optional continuation seam')
+            self._session = (diagnostic.LeafResponseSession(adapter) if prefix is None else
+                             diagnostic.LeafResponseSession(adapter, continuation=continuation, prefix=prefix))
+            if prefix is not None:
+                self._inherited = self._session.logical_accounting['inherited_pairs']
+                _require('continuation' not in metadata['spec'], 'continuation metadata is derived from replay token')
+                metadata['spec']['continuation'] = to_wire(self._session.continuation)
             self._ref, self._protocol = self._session.integral_reference, self._session.gk_protocol
             self._state = self._session.state
             self._expected = self._counters()
@@ -239,12 +256,7 @@ class StreamedLeafSession:
         return claims
 
     def _summary(self):
-        state = self._state
-        pending = self._protocol.request(state)
-        return to_wire(dict(status=state.status, aggregate_is_none=state.aggregate is None,
-                            next_generation=state.next_generation, split_counts=state.split_counts,
-                            leaf_count=len(state.leaves), evaluated_count=len(state.evaluations),
-                            pending_count=sum(leaf.evaluation is None for leaf in state.leaves), next_request=pending))
+        return state_summary(self._protocol, self._state)
 
     def advance(self, progress=None):
         self._begin('advancing')
@@ -254,7 +266,7 @@ class StreamedLeafSession:
             old = self._state
             request = self._protocol.request(old)
             _require(request is not None, 'no outstanding request')
-            _require(self._completed < self._protocol.MAX_EVALUATED_LEAVES, 'original leaf budget')
+            _require(self._inherited+self._completed < self._protocol.MAX_EVALUATED_LEAVES, 'original cumulative leaf budget')
 
             def report(*args):
                 self._tick()
@@ -307,6 +319,10 @@ class StreamedLeafSession:
             self._tick()
             receipt = dict(complete=True, accepted=False, completed_pairs=self._encoder.completed_pairs,
                            acknowledged_records=self._encoder.acknowledged_records, acknowledged_bytes=self._encoder.acknowledged_bytes)
+            if self._inherited:
+                receipt['logical_accounting'] = dict(inherited_pairs=self._inherited,
+                    new_pairs=self._completed, total_pairs=self._inherited+self._completed,
+                    replayed_gk_evaluations=self._inherited)
             self._phase = 'finished'
             return receipt
         except BaseException:

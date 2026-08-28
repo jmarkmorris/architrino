@@ -42,7 +42,7 @@ Review questions:
 - Distinguish theorem-level statements, plausible conjectures, and heuristics.
 - If a claim depends on assumptions not yet stated in the documents, say so explicitly.
 - Prioritize equations, lemmas, invariants, proof routes, branch certificates, and simulation diagnostics.
-- Do not ask for citations unless Op explicitly turns this into source work.
+- Apply the [selective-reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution). Flag missing or unsuitable source support when it matters to a claim under review; do not request citations merely for completeness or expand into a literature search unless Op asks for source work.
 
 ## Output Format
 

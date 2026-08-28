@@ -1,0 +1,1344 @@
+{
+  "schema": "braid-program/f5-ordinary-evolution-declaration.v1",
+  "status": "frozen",
+  "campaignStart": "2026-08-27T20:56:11-04:00",
+  "campaignDeadline": "2026-08-28T08:56:11-04:00",
+  "authorization": {
+    "approved": true,
+    "operatorMessage": "Yes, I approve your experimentation efforts going forward. Please proceed.",
+    "effectiveStrength": "0.002",
+    "chargeMagnitude": "1",
+    "coupling": "0.002",
+    "proposedEffectiveStrength": "0.002"
+  },
+  "scientificConditions": {
+    "candidateId": "f5",
+    "releaseTime": "0",
+    "historyStart": "-1",
+    "endTime": "0.5",
+    "fieldSpeed": "1",
+    "chartPolicy": "sharp",
+    "prescribedFuture": "comparison-only; never supplied to solver",
+    "initialState": "RetainedHistory.endpoint_state_hull; no nominal override",
+    "strengthSearch": false,
+    "historyRefinement": false,
+    "geometryChange": false
+  },
+  "history": {
+    "path": ".local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff.json",
+    "sha256": "4e0696a848a0d36ccbe5948295e71738c933b7ea120e9aee00e2effdd6ecc149",
+    "bytes": 908879,
+    "conformancePath": ".local-data/braid-analysis/f5-prehistory-handoff-20260827-v1/handoff-conformance.json",
+    "conformanceSha256": "5b7ddc53d47a97f81383bd043c37e93daa80fe5a9b595d400faddd4c9724b622",
+    "members": 12,
+    "piecesPerMember": 51
+  },
+  "rungs": [
+    {
+      "id": "coarse",
+      "initialStep": "0.00390625",
+      "minimumStep": "0.0001220703125",
+      "maximumStep": "0.00390625",
+      "rootTolerance": "2e-8",
+      "accelerationTolerance": "8e-6",
+      "positionTolerance": "1e-7",
+      "velocityTolerance": "1e-7",
+      "correctionTolerance": "1e-6"
+    },
+    {
+      "id": "medium",
+      "initialStep": "0.001953125",
+      "minimumStep": "0.00006103515625",
+      "maximumStep": "0.001953125",
+      "rootTolerance": "1e-8",
+      "accelerationTolerance": "4e-6",
+      "positionTolerance": "2.5e-8",
+      "velocityTolerance": "2.5e-8",
+      "correctionTolerance": "5e-7"
+    },
+    {
+      "id": "fine",
+      "initialStep": "0.0009765625",
+      "minimumStep": "0.000030517578125",
+      "maximumStep": "0.0009765625",
+      "rootTolerance": "5e-9",
+      "accelerationTolerance": "2e-6",
+      "positionTolerance": "6.25e-9",
+      "velocityTolerance": "6.25e-9",
+      "correctionTolerance": "2.5e-7"
+    }
+  ],
+  "commonNumericalControls": {
+    "useAdaptiveStepGrowth": false,
+    "quarterStepPublication": true,
+    "useFarFieldEnclosureInEvolution": false,
+    "farFieldEnclosureFraction": "0",
+    "transmitterFactorFloor": "1e-12",
+    "rootMaximumDepth": 256,
+    "rootMaximumCells": 100000,
+    "correctionIterations": 16,
+    "maximumStepAttempts": 4096,
+    "maximumRejectedSteps": 128,
+    "workerThreads": 1,
+    "requestMemoryBytes": 1073741824,
+    "initialMpfrBits": 128,
+    "maximumMpfrBits": 512,
+    "roundingMode": "outward",
+    "deterministicReduction": "fixed-pairwise",
+    "positionIncrementBudget": "1e-6",
+    "velocityIncrementBudget": "1e-6",
+    "dormantFiniteWidth": {
+      "reason": "Explicit transport-only tokens; sharp chart forbids finite-width rescue. These values do not authorize regulator-dependent evolution.",
+      "causalWidth": "0.0001",
+      "coreScale": "0.0001",
+      "quadratureTolerance": "1e-8",
+      "receiverImpulseTotal": "1e-8",
+      "receiverPositionMomentTotal": "1e-8",
+      "independentOverlap": "0",
+      "regulatorRefinementRatio": "0.5",
+      "regulatorLevels": 3,
+      "receiverAllocationRule": "equal-routed-pair-weight/v1",
+      "rowFractions": {
+        "quadrature": "0.35",
+        "causalWidthRegulator": "0.15",
+        "coreRegulator": "0.15",
+        "finiteWidthStateNumerical": "0.15",
+        "amendment1RegulatorMatching": "0.20"
+      },
+      "finiteWidthStateNumericalFractions": {
+        "retainedHistory": "0.04",
+        "interpolation": "0.04",
+        "rounding": "0.02",
+        "endpointLinearShortcut": "0.05"
+      },
+      "quadratureMaximumDepth": 16,
+      "quadratureMaximumCells": 10000,
+      "eventMaximumDepth": 16,
+      "eventMaximumCells": 10000
+    }
+  },
+  "outcomeControls": {
+    "center": [
+      "0",
+      "0",
+      "0"
+    ],
+    "collapseDistance": "0.02",
+    "separationRadius": "0.8",
+    "bernsteinSubdivisions": 8,
+    "maximumPanels": 100000,
+    "comparisonDomainPolicy": "declared-grid-plus-common-prefix-end; unreachable-grid-explicit",
+    "comparisonTimes": [
+      "0",
+      "0.03125",
+      "0.0625",
+      "0.09375",
+      "0.125",
+      "0.15625",
+      "0.1875",
+      "0.21875",
+      "0.25",
+      "0.28125",
+      "0.3125",
+      "0.34375",
+      "0.375",
+      "0.40625",
+      "0.4375",
+      "0.46875",
+      "0.5"
+    ],
+    "positionComparisonTolerance": "1e-4",
+    "velocityComparisonTolerance": "1e-4",
+    "eventMeaning": "Post-run finite threshold witnesses, not live stopping events: distance 0.02 is one named pair close approach, not literal collision or whole-assembly collapse; fixed-origin radius 0.8 is radial excursion that can include rigid translation, not constituent separation or permanent escape.",
+    "thresholdQuantifiers": "Close approach: there exists a distinct pair and observed time with distance <= 0.02. Radial excursion: there exists a member and observed time with origin radius >= 0.8. Persistence: every distinct pair has distance > 0.02 and every member has origin radius < 0.8 throughout the complete observed interval [0,0.5]. Unresolved bounds are not witnesses.",
+    "persistenceMeaning": "Measured finite-horizon generated history stays outside collapse threshold and inside separation radius, with independent dynamics checks and declared sensitivity agreement; no permanent retention or stability claim.",
+    "incompleteMeaning": "Unresolved unless accepted generated history independently proves a declared threshold event. Zero accepted steps do not close the requested evolution experiment."
+  },
+  "independentDynamics": {
+    "firstStepEndTime": "0.0009765625",
+    "firstStepPolicy": "minimum-of-declared-target-and-first-accepted-fine-step-end; none-if-no-accepted-step",
+    "numericalWorkWallSeconds": 840,
+    "comparisonTolerances": {
+      "position": "6.25e-9",
+      "velocity": "6.25e-9",
+      "acceleration": "2e-6"
+    },
+    "comparisonPolicy": "interval overlap and midpoint delta within the fine-rung declared position, velocity or acceleration tolerance; no bit parity or global solution enclosure",
+    "finalAccelerationSnapshot": true,
+    "pairCount": 144,
+    "existingOracle": "scripts/eom/oracle/certified_evolution.py",
+    "existingOracleSha256": "00567dfef3163d40634dd5790d5eeb667cff8698394831130e8cb91937ddc80a",
+    "authority": "Independent first-step numerical compatibility and final-snapshot root/acceleration comparison, not a global validated-integration theorem or independent verification of propagated EOM uncertainty.",
+    "initialStateLimitation": "The EOM solver uses endpoint_state_hull centers; the frozen oracle uses last-piece nominal coefficients with enlarged scalar radii. These are distinct constructions; actual first-step numerical compatibility is checked, not assumed.",
+    "uncertaintyPropagationLimitation": "The frozen oracle carries endpoint radii unchanged into the candidate before adding local full/half error. The EOM solver additionally transports velocity and acceleration radii with step length. Agreement does not validate the EOM propagated uncertainty rule. Initial history radii remain unchanged; MPFR refinement cannot remove data uncertainty."
+  },
+  "numericalScopeLimitations": [
+    "Bundled step/root/acceleration/tolerance sensitivity is conditional on the same fixed initial-history uncertainty; it is not history refinement or an absolute solution-error proof.",
+    "Fine root tolerance 5e-9 is tighter than the accepted prescribed ladder and has no inherited evolution acceptance. Fail-closed uncertainty-floor halts remain unresolved.",
+    "The 100000-panel independent geometry cap can be exhausted before 4096 accepted atomic steps (8 panels per each of four quarter pieces). This is an unresolved independent-check budget boundary; no cap expansion after outcomes is authorized."
+  ],
+  "stoppingEvents": [
+    "requested horizon",
+    "EOM solver halt",
+    "operator stop",
+    "campaign deadline",
+    "per-stage resource limit",
+    "source or input identity change",
+    "lost observation or unsafe host resource state"
+  ],
+  "operationalLimits": {
+    "wallSeconds": 1800,
+    "oracleWallSeconds": 900,
+    "geometryWallSeconds": 900,
+    "evaluationWallSeconds": 12600,
+    "heartbeatSeconds": 15,
+    "aggregateRssBytes": 2147483648,
+    "rssSampleIntervalSeconds": 0.5,
+    "maximumRssSampleGapSeconds": 2,
+    "logBytes": 16777216,
+    "outputBytes": 134217728,
+    "aggregateOutputBytes": 1073741824,
+    "diskMinimumBytes": 5368709120,
+    "minimumHostMemoryFreePercent": 20,
+    "simultaneousScientificProcesses": 1
+  },
+  "executable": {
+    "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/build-v2/eom_borg_shadow_cli",
+    "bytes": 1720512,
+    "sha256": "b24bfb23bc80adce79061273d01ac5e2094653a213041ca27fe44f6021a873aa"
+  },
+  "runtime": {
+    "python": "/Users/markmorris/vibe/.venv/bin/python",
+    "node": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "launcherEnvironment": {
+      "PATH": "/usr/bin:/bin",
+      "LC_ALL": "C",
+      "LANG": "C"
+    },
+    "launcherPolicy": "env -i with only declared launcherEnvironment; no preloaded Node or dynamic-loader options",
+    "pythonArguments": [
+      "-I",
+      "-S",
+      "-B"
+    ],
+    "childEnvironment": {
+      "PATH": "/usr/bin:/bin",
+      "LC_ALL": "C",
+      "LANG": "C",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONNOUSERSITE": "1"
+    },
+    "platform": "darwin-arm64",
+    "operatingSystem": "macOS 26.5.2 build 25F84",
+    "trustedPlatformPremises": "macOS kernel and system shared-cache libraries; runtime/library identity checks do not prove platform correctness",
+    "pythonObservedExecutable": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python",
+    "pythonObservedExecutableMeaning": "Observed runtime executable in synthetic consumer process records; the invoked shared-venv path passes through the separately bound launcher."
+  },
+  "sourceBindings": [
+    {
+      "path": "/opt/homebrew/Cellar/ada-url/3.4.4/lib/libada.3.4.4.dylib",
+      "bytes": 613248,
+      "sha256": "a55588fab581b41c9b918f4a5bab044e946091eb72cbed3bc82a8df00db189a2",
+      "invokedPaths": [
+        "/opt/homebrew/opt/ada-url/lib/libada.3.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlicommon.1.2.0.dylib",
+      "bytes": 167264,
+      "sha256": "3426742c78df5c3b523071df603f07f2bb8dea6bd8e65c366a2c6adf2bf0a3ad",
+      "invokedPaths": [
+        "/opt/homebrew/opt/brotli/lib/libbrotlicommon.1.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlidec.1.2.0.dylib",
+      "bytes": 87728,
+      "sha256": "d7ac1e69b6c443341fb4302de0169d187489d58d8a641c8eadd6db9ca2cd0cbf",
+      "invokedPaths": [
+        "/opt/homebrew/opt/brotli/lib/libbrotlidec.1.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlienc.1.2.0.dylib",
+      "bytes": 653328,
+      "sha256": "32e38a8ab06c8770ea4bfaf11ea324d7bcb6fe5f07eaff9d6260f93984ee6729",
+      "invokedPaths": [
+        "/opt/homebrew/opt/brotli/lib/libbrotlienc.1.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/c-ares/1.34.6/lib/libcares.2.19.5.dylib",
+      "bytes": 243456,
+      "sha256": "e5595a0c640a2341e2df5a0fedaa63e7e9afe99b01c9880338064e0746414518",
+      "invokedPaths": [
+        "/opt/homebrew/opt/c-ares/lib/libcares.2.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/gmp/6.3.0/lib/libgmp.10.dylib",
+      "bytes": 452816,
+      "sha256": "1bb9184824b82f40bd50279634290d6cbdf9c1a371c045c7b10815e7955cd696",
+      "invokedPaths": [
+        "/opt/homebrew/opt/gmp/lib/libgmp.10.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/hdrhistogram_c/0.11.9/lib/libhdr_histogram.6.2.3.dylib",
+      "bytes": 75600,
+      "sha256": "d1f4ba22087781611f0187787217ffef1ef97b96cd76ff2af3fb600a4434bbb6",
+      "invokedPaths": [
+        "/opt/homebrew/opt/hdrhistogram_c/lib/libhdr_histogram.6.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/icu4c@78/78.3/lib/libicudata.78.3.dylib",
+      "bytes": 33195120,
+      "sha256": "e7dafc3fe6613326daa30d1c930aa66219ab5524fe576b0e7b3039451652b6bf",
+      "invokedPaths": [
+        "/opt/homebrew/opt/icu4c@78/lib/libicudata.78.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/icu4c@78/78.3/lib/libicui18n.78.3.dylib",
+      "bytes": 3168272,
+      "sha256": "f319e50c965a1a0065d2cc5595d8553ff60b0e78a2e76bc3173774fd112de9ed",
+      "invokedPaths": [
+        "/opt/homebrew/opt/icu4c@78/lib/libicui18n.78.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/icu4c@78/78.3/lib/libicuuc.78.3.dylib",
+      "bytes": 1866592,
+      "sha256": "177dab8ae0bf0b1357d7ec6404a1e145bcc3d927aa15c3064171d23b2a1fd263",
+      "invokedPaths": [
+        "/opt/homebrew/opt/icu4c@78/lib/libicuuc.78.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libffi/3.5.2/lib/libffi.8.dylib",
+      "bytes": 137520,
+      "sha256": "a2c53a56fc0107f4b98e81e81fcb619db9eaa83329f0d18ee4c05e33a5ecbd54",
+      "invokedPaths": [
+        "/opt/homebrew/opt/libffi/lib/libffi.8.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libnghttp2/1.69.0/lib/libnghttp2.14.dylib",
+      "bytes": 201232,
+      "sha256": "b56cd6b95765b0c608a6cb50ab44ffb4ab29303d627f0c2d96a028aa11688cc2",
+      "invokedPaths": [
+        "/opt/homebrew/opt/libnghttp2/lib/libnghttp2.14.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libnghttp3/1.16.0/lib/libnghttp3.9.7.0.dylib",
+      "bytes": 200688,
+      "sha256": "5cd76fedd92e4db6a022bbce9b845fba46e5e406dd80bdfe37f86b21950cd0d7",
+      "invokedPaths": [
+        "/opt/homebrew/opt/libnghttp3/lib/libnghttp3.9.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libngtcp2/1.23.0/lib/libngtcp2.16.dylib",
+      "bytes": 366128,
+      "sha256": "67f329d57b039c58c9cf3714fcfac79ef56d4a13ada72d21d0e2f7937bd9ec23",
+      "invokedPaths": [
+        "/opt/homebrew/opt/libngtcp2/lib/libngtcp2.16.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libuv/1.52.1/lib/libuv.1.0.0.dylib",
+      "bytes": 206320,
+      "sha256": "34d4e2cd30b56dca5bda539f4448667360f0994c6b337ffebc5d37d818bc15d5",
+      "invokedPaths": [
+        "/opt/homebrew/opt/libuv/lib/libuv.1.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/llhttp/9.4.1/lib/libllhttp.9.4.1.dylib",
+      "bytes": 95216,
+      "sha256": "e8f9c65d7aff5633ca09ab643684500df8ff9125acc91f080056f97d85a50aa4",
+      "invokedPaths": [
+        "/opt/homebrew/opt/llhttp/lib/libllhttp.9.4.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/merve/1.2.2_1/lib/libmerve.1.2.2.dylib",
+      "bytes": 95328,
+      "sha256": "a39e3416af9b155ba8ab441f30b2ea58b853d5ae955cb35efd53bd72d299299f",
+      "invokedPaths": [
+        "/opt/homebrew/opt/merve/lib/libmerve.1.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/mpdecimal/4.0.1/lib/libmpdec.4.0.1.dylib",
+      "bytes": 188176,
+      "sha256": "14286ba02244c25537b3b5c74902c5fa81959d5d2c1fcf06f89808badb67dea8",
+      "invokedPaths": [
+        "/opt/homebrew/opt/mpdecimal/lib/libmpdec.4.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/mpfr/4.2.2/lib/libmpfr.6.dylib",
+      "bytes": 465616,
+      "sha256": "1b151049a88e86e245c300f129ebd13e2915ebc66658e59540b0223a31ddcd8e",
+      "invokedPaths": [
+        "/opt/homebrew/opt/mpfr/lib/libmpfr.6.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/nbytes/0.1.4/lib/libnbytes.dylib",
+      "bytes": 52944,
+      "sha256": "2ebb8415d537b47420fc46efb6d6271b93befd22b30ad2afba75ab5e2be55fcc",
+      "invokedPaths": [
+        "/opt/homebrew/opt/nbytes/lib/libnbytes.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "bytes": 68384,
+      "sha256": "56694c81b093cc8da273fa017cf91765b3653e5f64f16727976ffaa87b2b6b31",
+      "invokedPaths": [
+        "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/lib/libnode.147.dylib",
+      "bytes": 71318928,
+      "sha256": "9f9751defe52e68e8140d622235bb1718824caf289d6fdb3e7bb5d5039f94148",
+      "invokedPaths": [
+        "/opt/homebrew/opt/node/lib/libnode.147.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/openssl@3/3.6.2/lib/libcrypto.3.dylib",
+      "bytes": 4845712,
+      "sha256": "ef2239cec921003b54b61968f00489271e2a2805d7d1b4e69d632423f38efe1e",
+      "invokedPaths": [
+        "/opt/homebrew/Cellar/openssl@3/3.6.2/lib/libcrypto.3.dylib",
+        "/opt/homebrew/opt/openssl@3/lib/libcrypto.3.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/openssl@3/3.6.2/lib/libssl.3.dylib",
+      "bytes": 884560,
+      "sha256": "26ecfd43c742914a142c8b414b1f308cefe0531fcc6e38b6d45021649850e758",
+      "invokedPaths": [
+        "/opt/homebrew/opt/openssl@3/lib/libssl.3.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "bytes": 52640,
+      "sha256": "42f792544842512d02eb8a95a6009062591476558f09f07553c138661a0bca8e",
+      "invokedPaths": [
+        "/Users/markmorris/vibe/.venv/bin/python"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__future__.py",
+      "bytes": 5218,
+      "sha256": "981d4c398849f9ebcab72300d9c1fe288fd6d7f28957b3b3fa3a493a5836d95c"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_collections_abc.py",
+      "bytes": 32264,
+      "sha256": "2cfe340c4cf54077f054cd366a2c7a515e9ee8da7d8b3fa071251f280034756d"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_opcode_metadata.py",
+      "bytes": 9265,
+      "sha256": "9a27d5830732442110b5945ddac1668db17abb51c44882ba9d4a8536bcc0ea1c"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_weakrefset.py",
+      "bytes": 5893,
+      "sha256": "91895a451d06e9f521a1171b31b9b19bc9740f35af00d4fa106338ab7167c9ac"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/abc.py",
+      "bytes": 6538,
+      "sha256": "e558702a95cdce3febd289da021715d2b92bc43995b8a1bc58dfa1c3d8010287"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/argparse.py",
+      "bytes": 101648,
+      "sha256": "a21e8ced677ee3710d7361c39e903819c702668a37f022c0feafb7275f53dead"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ast.py",
+      "bytes": 65446,
+      "sha256": "287a92c9f6d2658b71e93c4cc3881cb14f2181e56b4b16a6046fbdcf80495ab9"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/bisect.py",
+      "bytes": 3423,
+      "sha256": "f1cf7b85fc36b5da249813fc5ab97d9464f8cc1bc817f7146206fa2713e35999"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/codecs.py",
+      "bytes": 36928,
+      "sha256": "514b00fe93120b4face4508351aa9f1246ecc808c4da3e599dfee7430fe459f9"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/collections/__init__.py",
+      "bytes": 52500,
+      "sha256": "987b438cbfdd2f354a92e8a42655239ee5791c6869ab40c5d01cdb4cde229ad6"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py",
+      "bytes": 27801,
+      "sha256": "c1e0d67b2007de11ae93cd36cf6faf38d9ab32656a832d592a49325eec579f96"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/copy.py",
+      "bytes": 8975,
+      "sha256": "d6b858961b91b48a4bf5a115b0420c890d677bdf058ab2323a8a75298eed47db"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/copyreg.py",
+      "bytes": 7614,
+      "sha256": "c8eda41f05c6bf95a4da4726a530409d2485ae060b8d019b3a8034389a15d3e9"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/dataclasses.py",
+      "bytes": 64545,
+      "sha256": "18b8b97f6c43ece379793745dfd505ed713a4c86bc6babdcdec593101b5f4399"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/datetime.py",
+      "bytes": 268,
+      "sha256": "ef20dc6b3554cd585dddffdc573f1f9a7a54c522f2a3fb4576c44edbb1e14238"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/decimal.py",
+      "bytes": 2798,
+      "sha256": "ed070025c9742f71f7ea92ec1a3d24f85b3199dd79b9d15a141716154e647989"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/dis.py",
+      "bytes": 40962,
+      "sha256": "1852129bf55039f192d90174334fbe459d5f982cae33a04e700fe7cdb2748a51"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__init__.py",
+      "bytes": 5884,
+      "sha256": "78c4744d407690f321565488710b5aaf6486b5afa8d185637aa1e7633ab59cd8"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/aliases.py",
+      "bytes": 15713,
+      "sha256": "cac92d68c7ea5bc0f05b448b9144e3bdf236d0b7d27ab66112e96d43aad15b3f"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/utf_8.py",
+      "bytes": 1005,
+      "sha256": "ba0cac060269583523ca9506473a755203037c57d466a11aa89a30a5f6756f3d"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/enum.py",
+      "bytes": 85442,
+      "sha256": "5b8ea83cb9876d6699c2ef016a4312e739db090587a4177c9c29781418e6da13"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fnmatch.py",
+      "bytes": 6180,
+      "sha256": "95391dac2ce9f60084d65eba2f4b9d9735e28136d55b684e1fde7d6342555963"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fractions.py",
+      "bytes": 40021,
+      "sha256": "58f7750133f2e23999ba3f634d1b14edfec6dc48bf8bb00a9911262cd7198f63"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py",
+      "bytes": 39617,
+      "sha256": "b723e5cef13d0d2426068f8d594219f6e2d6bbcb944be7463dc7641ce909cebe"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/genericpath.py",
+      "bytes": 5976,
+      "sha256": "515ac740dc0c68fdc8003594b29ab69fc2f20c62eba76f12b67caadfbbfe4b8c"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/gettext.py",
+      "bytes": 21534,
+      "sha256": "69fc9d5be6762a2d8ab7aff924e34c0655a54df143f92691232ac47564aea2e3"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/glob.py",
+      "bytes": 19720,
+      "sha256": "3399f242a9bfb4e0b2b8bbbcdc0231487e453a861f4a4ca109c2a560e05698e8"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/hashlib.py",
+      "bytes": 9349,
+      "sha256": "6dbdebf270868b391080e21dc9687eddfaf321c965ad979f68d3f5c423c613ab"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py",
+      "bytes": 4767,
+      "sha256": "72b07de4133a7e39b2f6a7920465669aa04626f217e800779587bc0713fe002e"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/_abc.py",
+      "bytes": 1354,
+      "sha256": "80aab7931dc999dee581c8b8b56fcd973fe156335a96ceeaf6acfc03cebf10e8"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/_bootstrap_external.py",
+      "bytes": 73147,
+      "sha256": "bf2a271ee85fc78a28c08e919894785c04b7da3f6a6dca9534470144f6b34a4e"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/_bootstrap.py",
+      "bytes": 57081,
+      "sha256": "33365c02a341300d8a8cad4be59040690d19bcb1af301d1058a15ebfa7cc9483"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/machinery.py",
+      "bytes": 934,
+      "sha256": "2e558d293587d18a5919f7093f8c5c10ea54dd9336f6b2c4ed9d6233c114652a"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/util.py",
+      "bytes": 11199,
+      "sha256": "47eed68cfc84cdb4950edc092fc1a81abf37b47cadd6ff68d3460b1c9f536e9b"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/inspect.py",
+      "bytes": 126989,
+      "sha256": "d92f922cb947f058c5ea0d0f3a4a9912c21b1c1a15ab5687f79b4f4a873b6ed7"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/io.py",
+      "bytes": 3582,
+      "sha256": "7cec3cb8ac004058dd0a5af246e6d950fb59c7ddd0058fda48bcb3fcb98d8822"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py",
+      "bytes": 14020,
+      "sha256": "d5d41e2c29049515d295d81a6d40b4890fbec8d8482cfb401630f8ef2f77e4d5"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py",
+      "bytes": 12872,
+      "sha256": "6d95679fccf178f2af9e9eead42f8efb084c58735951dc47fce89aec11d44955"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py",
+      "bytes": 16074,
+      "sha256": "3c9263358ba86870d71c52d64a64889ca968c54083ba690dd79c4c0e03f13e8d"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/scanner.py",
+      "bytes": 2434,
+      "sha256": "572958017eae8842eeddd0e3d18d3c56cc0a197348224915e1d87ce937841764"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/keyword.py",
+      "bytes": 1073,
+      "sha256": "18c2be738c04ad20ad375f6a71db34b3823c7f40b0340f5294d0e89f3c9b093b"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_bisect.cpython-313-darwin.so",
+      "bytes": 70992,
+      "sha256": "27d0fae8a3a9bf8f88be275e7602691e54a65ef78c43e5f7aca726b5c5a4c96e"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_blake2.cpython-313-darwin.so",
+      "bytes": 89488,
+      "sha256": "4cb0977dfb664d6186ff4e248587f800dfbcf6e47dd0a8253f666c1da55f7be1"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_datetime.cpython-313-darwin.so",
+      "bytes": 135600,
+      "sha256": "c244c98a0b586f3c395b299e144d095f1a19e4aa67a2e0fa2f6fba881c3a95a5"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_decimal.cpython-313-darwin.so",
+      "bytes": 195040,
+      "sha256": "cb1ecdbd3d62e770e8aeba5730a60323026a9e4fc59ac20394b4fc8032806e81"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_hashlib.cpython-313-darwin.so",
+      "bytes": 98192,
+      "sha256": "00df69dac58fd9fd0dd7db5ec30cb98d9ae3c04a3118988a262950c11f1562e0"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_json.cpython-313-darwin.so",
+      "bytes": 90800,
+      "sha256": "49debc16e31dd940437f3fb31cbd61e214a29daf17793bef7451c68b60720ee6"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_opcode.cpython-313-darwin.so",
+      "bytes": 72816,
+      "sha256": "28921e06d27d0fd67e07d29370269020f75654a506a8766ef77760918537be50"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/grp.cpython-313-darwin.so",
+      "bytes": 71136,
+      "sha256": "dc5bcfaf9d330b6c852233972cc400b03211b206372358c06298d152cbb355df"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/math.cpython-313-darwin.so",
+      "bytes": 111792,
+      "sha256": "cb4805a471f0addef98bc21ca065a5812e78b0b8be06b5de365253c2ee5e3c7c"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/resource.cpython-313-darwin.so",
+      "bytes": 70896,
+      "sha256": "1445934e50fbf19af57ce9b3c81a3de7567a359c21edcac80a0a20da952705cc"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/linecache.py",
+      "bytes": 6418,
+      "sha256": "3a82129c1fb31e6cbb531553a8defb39557564623e2df590576cd53cdf4dade6"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ntpath.py",
+      "bytes": 32299,
+      "sha256": "e3416242daf336e1755a6bef9bb901f35b88777406ab6460b40b2c3989760b82"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/numbers.py",
+      "bytes": 11467,
+      "sha256": "ac381960a3dc1db0498b0bd43d8ef278d6599713121a186b153ff09d9552e0db"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/opcode.py",
+      "bytes": 2825,
+      "sha256": "aaf8e6e0291b6ff439c27ad1657d5b1d2fc738f961bee3fa4863a51e494dc843"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/operator.py",
+      "bytes": 10980,
+      "sha256": "c048f8a6852832d5fa750d6ae772d7658c52c3511d261cb902f7edfd262e9127"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/os.py",
+      "bytes": 41554,
+      "sha256": "cf83304364b417fd2bd89a99247d4122a70f0696a7a0e932df3856692cf43623"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/__init__.py",
+      "bytes": 296,
+      "sha256": "07921047886282e3d324acf95f7d9f840faa806664ee7007e7333a7df4cdcaf6"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py",
+      "bytes": 33565,
+      "sha256": "75e6bc728013d11446126d535f92b8907fb6dae7404df3d0268ac7b6865a2090"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+      "bytes": 31412,
+      "sha256": "0530b4186ec5845e000bedf5817ff1ac970b9a39a6891ba6789a1776abdea42b"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/posixpath.py",
+      "bytes": 17950,
+      "sha256": "8ee3f4fdb65631dea0e07a61f9904d557f122ce98614ad0dbd3f014618eb9aef"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__init__.py",
+      "bytes": 17876,
+      "sha256": "dbe158a677c6aaacf717ea2abc23c56233453d38024aef75b7c3d93612cabb93"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_casefix.py",
+      "bytes": 5444,
+      "sha256": "1b12d9136f23db6c3f6f26053fefc15ca964b886838c7b9c1fabf8d2efc1e5c8"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_compiler.py",
+      "bytes": 26290,
+      "sha256": "83537237a82294d084d40abaa42e86149be33eef338a5ef028a7fd2fad0dafd5"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_constants.py",
+      "bytes": 5939,
+      "sha256": "1dbe236d34fa934e3e7172ba9d6b0dcfab338ecf7717f370f1fd4a9d24b2ecdb"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_parser.py",
+      "bytes": 41237,
+      "sha256": "c7a6c80b3b448f50684c320265a7b5efb5d0b1daf0a36fb5dee8dd83628359d7"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/reprlib.py",
+      "bytes": 7192,
+      "sha256": "af33116cdd0d8baf2d5d41d9e6eafa9f5a0b7fb5af7e7343218877a04965f2f3"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/signal.py",
+      "bytes": 2495,
+      "sha256": "0363c964c90ac0b3e515de5749205e6e6454051a1211058375d84d91eab6071a"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/stat.py",
+      "bytes": 6147,
+      "sha256": "f76eaa7f02d6ef4a8c3c3e82cae34ed72870b643b8c94937a34c697d1e9d6ca2"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/token.py",
+      "bytes": 2489,
+      "sha256": "1d2ab814992e6afbd6f1e5323edcddd681f65f7679ad1eb87fe1357a433a5bdf"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/tokenize.py",
+      "bytes": 21568,
+      "sha256": "1369f7f9e57c722d1627333b705aabfaf943c24680920942e773fd4e1776be2e"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/types.py",
+      "bytes": 11207,
+      "sha256": "74516af714d270b59d67e5ae5e60a02cb4ff32ecdd373e165ad1d780fbfd2c5d"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/typing.py",
+      "bytes": 132718,
+      "sha256": "b73770ed2e40b88c864efb79ed1bfd1ebdc9337ff832b3ee612ab9d7a417532e"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/warnings.py",
+      "bytes": 26938,
+      "sha256": "5cc9b8e41a54e5bad7b09b11116d7d9f4dc3f442ecd80305ead48f9c51b90846"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/weakref.py",
+      "bytes": 21513,
+      "sha256": "56f8d313fb74019e53eb9287400702fbce788b7fe30e097b0b6e06296f3f080c"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/zipimport.py",
+      "bytes": 32890,
+      "sha256": "ec9f157ff6d4ebd26a6fd1715247578068b5af2799d07ecf06f2b531a5605e13"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Python",
+      "bytes": 5080224,
+      "sha256": "0836c5c0b7568e42b39517c8eb6a8244a25389ec46aebaf1d1ea7392a897b1a1",
+      "invokedPaths": [
+        "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Python",
+        "/opt/homebrew/opt/python@3.13/Frameworks/Python.framework/Versions/3.13/Python"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/simdjson/4.6.4/lib/libsimdjson.33.0.0.dylib",
+      "bytes": 112704,
+      "sha256": "9ac6d74a81c248a5a946fae44bc88ad0705f3a32a495aa1a906fb6a35fe3d258",
+      "invokedPaths": [
+        "/opt/homebrew/opt/simdjson/lib/libsimdjson.33.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/simdutf/9.0.0/lib/libsimdutf.34.0.0.dylib",
+      "bytes": 238768,
+      "sha256": "9491fe37cead254d8fd5655699f6832606ae45fc885a42ddaa072560c27dc1fc",
+      "invokedPaths": [
+        "/opt/homebrew/opt/simdutf/lib/libsimdutf.34.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/sqlite/3.53.2/lib/libsqlite3.3.53.2.dylib",
+      "bytes": 1270496,
+      "sha256": "9e4ab895749ed559870520a40e4c0ead0ecffb27678e5186b30a6076e6de0b35",
+      "invokedPaths": [
+        "/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/uvwasi/0.0.23/lib/libuvwasi.dylib",
+      "bytes": 83232,
+      "sha256": "c922288c5179279316b32b2c83d5c50d7b87216b442473ada8c99ef4a58ba312",
+      "invokedPaths": [
+        "/opt/homebrew/opt/uvwasi/lib/libuvwasi.dylib"
+      ]
+    },
+    {
+      "path": "/opt/homebrew/Cellar/zstd/1.5.7_1/lib/libzstd.1.5.7.dylib",
+      "bytes": 649648,
+      "sha256": "e2847c4613b386683c234913ae3b7b04299254096caf7616e3b3cd9bb97a39ab",
+      "invokedPaths": [
+        "/opt/homebrew/opt/zstd/lib/libzstd.1.dylib"
+      ]
+    },
+    {
+      "path": "/Users/markmorris/vibe/.venv/pyvenv.cfg",
+      "bytes": 384,
+      "sha256": "88e31dc4e6670178b2ecbeb33ecb70074a2858883621c3f01f748bd9a5fa43f0"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/build-completion-v2.json",
+      "bytes": 10459,
+      "sha256": "fc173111fcd028d75a4bb01626d106eef33ed33f819504a5c89ecbbadbf032d0"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/build-v2/eom_borg_shadow_cli",
+      "bytes": 1720512,
+      "sha256": "b24bfb23bc80adce79061273d01ac5e2094653a213041ca27fe44f6021a873aa"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/compiler-dependency-snapshot-v2.json",
+      "bytes": 3643438,
+      "sha256": "5a16ff88704bc10dec69bdec68be287828880b8f868c7017d9e4c148e2eba463"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/dynamics-wrapper-revision-review-cbf60f6b-v1.json",
+      "bytes": 7979,
+      "sha256": "5c98a12e65d5878cc8e55689e944e2547d0724e4edf06fab2c60871ecfa37bd2"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/python-runtime-inventory-v2.json",
+      "bytes": 21146,
+      "sha256": "ea2ea88695f5cb51ba3e6a6501528e5ae6a7dc3351d09ca33abfb5b85f9ad765"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/runtime-library-closure-v1.json",
+      "bytes": 32964,
+      "sha256": "b8f1c4ceedcbac4b4da2bd9efb14b3859c2b36077acc246ea054e00ec20f71e2"
+    },
+    {
+      "path": "scripts/eom/BorgNativeEomProcessClient.mjs",
+      "bytes": 31635,
+      "sha256": "aee16e2fb7350c3e2903bc0f5d7cce01bf61ad74d866b621ae53ec1fdca186dc"
+    },
+    {
+      "path": "scripts/eom/check-f5-evolution-dynamics.py",
+      "bytes": 31798,
+      "sha256": "cbf60f6b7e4a48a4622ce475393880689c155199c7f4f3513f0b382528761a6f"
+    },
+    {
+      "path": "scripts/eom/oracle/__init__.py",
+      "bytes": 47,
+      "sha256": "de6f7aeb0acfc97c996d601059ad243b886d9381247fbf9541acacc74bac3ae1"
+    },
+    {
+      "path": "scripts/eom/oracle/certified_acceleration.py",
+      "bytes": 35429,
+      "sha256": "62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83"
+    },
+    {
+      "path": "scripts/eom/oracle/certified_evolution.py",
+      "bytes": 47772,
+      "sha256": "00567dfef3163d40634dd5790d5eeb667cff8698394831130e8cb91937ddc80a"
+    },
+    {
+      "path": "scripts/eom/oracle/certified_history.py",
+      "bytes": 50352,
+      "sha256": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"
+    },
+    {
+      "path": "scripts/eom/oracle/decimal_interval.py",
+      "bytes": 11321,
+      "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"
+    },
+    {
+      "path": "scripts/eom/prepare-ordinary-evolution-request.mjs",
+      "bytes": 22772,
+      "sha256": "b641292c3597baacb558c1c48db471dfc038d1260ddd79ec32b80b037f72f5f4"
+    },
+    {
+      "path": "scripts/eom/run-f5-ordinary-evolution.mjs",
+      "bytes": 44154,
+      "sha256": "2844ad05ddba2e1246d89a431de42aab9f113fda5769f6faea91d7ea245934b3"
+    },
+    {
+      "path": "scripts/eom/verify-f5-ordinary-evolution.py",
+      "bytes": 29310,
+      "sha256": "4e8f2c532da6543223525c2168b7d27d6f117c414cc98cdb0c74e3333de5e93a"
+    },
+    {
+      "path": "src/apps/borg/BorgCausalHistoryRetention.js",
+      "bytes": 5062,
+      "sha256": "b931afeb4692149803d9811f19995220818e44cb5619c519bfbefe164c42deac"
+    },
+    {
+      "path": "src/apps/borg/BorgCertifiedBudgets.js",
+      "bytes": 7306,
+      "sha256": "b7003c59d326cf2f2c83d82bd430638636b96c653f97b6b8ab13ccfad259044c"
+    },
+    {
+      "path": "src/apps/borg/BorgDisplayHostMemoryEnvelope.js",
+      "bytes": 2580,
+      "sha256": "8a4f65ef451e664d35adcbfe52736d879bbd6387e26f060d5cd724503ef05bc8"
+    },
+    {
+      "path": "src/eom/CMakeLists.txt",
+      "bytes": 4907,
+      "sha256": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/BlockExclusion.hpp",
+      "bytes": 1027,
+      "sha256": "f576f253bc7194d75445569b4d3788512395fbe3f08acfdbf494f1c7edcc6490"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/CenteredAffine.hpp",
+      "bytes": 1714,
+      "sha256": "a2c7f515db7c79a9b96a40c0b3b2dcca2b76bf78279debaca6936330c03e7818"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/CertifiedAcceleration.hpp",
+      "bytes": 5289,
+      "sha256": "91ab55e2c3570b36f7249b6433379286a41f8cae966eadd4b66f00670de7d406"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/CertifiedTraversal.hpp",
+      "bytes": 4024,
+      "sha256": "b5765672674be6f9de9afeb97a463a2df5fb46875a8552aecd5a2d0f7ca58cbb"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/Checkpoint.hpp",
+      "bytes": 1890,
+      "sha256": "7625031e3b726cbcbde9c191891ab2c1bbdf92a51f44d07895bc5bb726fabf36"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/CoupledEvolution.hpp",
+      "bytes": 30666,
+      "sha256": "ad83d1bbe9ea02a4f664b9a2e9eefc9fda40433fe21ab736f625d6e1c459b952"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/Decimal.hpp",
+      "bytes": 1320,
+      "sha256": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/DelayedRootSensitivity.hpp",
+      "bytes": 2005,
+      "sha256": "fb28860fcffd3e92032d77d0adf9b55b8db19d244dfd5a421b60ed1a38330fcf"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/DisplayEvaluation.hpp",
+      "bytes": 1872,
+      "sha256": "59963b603cc2473492323ec840f5030418780353a2626a5875599e3183613a2d"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+      "bytes": 6996,
+      "sha256": "bc4e09892c01f6b855bd4b1378c90999aefda0a747fdd5a816d86283a0e8d751"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/History.hpp",
+      "bytes": 15845,
+      "sha256": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/Interval.hpp",
+      "bytes": 2708,
+      "sha256": "880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/JointAccelerationSnapshot.hpp",
+      "bytes": 2016,
+      "sha256": "e8c726a936f7fbac9160f3e6fccd0a64384d460b7406b4c4f368ddc20aa71627"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/JointAffineHistory.hpp",
+      "bytes": 4540,
+      "sha256": "40a556c4e63f1fc385e590e4d111d94ff416342f94864df3338966630ab28760"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/JointEndpointCorrector.hpp",
+      "bytes": 1530,
+      "sha256": "b91034725aa6b4afc23eefa3c1812aceb94555688106fc0eb784ebac310ef03e"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/JointRootBracket.hpp",
+      "bytes": 1498,
+      "sha256": "2d95c236bf845faf9e8f52d0a2549deb5a9a161fd9630ce843b57fee22acf5eb"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/JointSharpRow.hpp",
+      "bytes": 1991,
+      "sha256": "7d51bc8d806ffe3e4a1ce3b4df08307473be546c5a01e049ecd6e8c2dfd51159"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/JointState.hpp",
+      "bytes": 1964,
+      "sha256": "6e7efc0632a42f1d81d61ea8e54cdb8c5a14475a3642bcc2642661206de2ff2b"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/Krawczyk.hpp",
+      "bytes": 1348,
+      "sha256": "4a0c3e7432af40721be4cfcf525e9062ce58a66710b138a23821173d4ba6f11a"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/MultiprecisionAcceleration.hpp",
+      "bytes": 1345,
+      "sha256": "81078fd046710e1c0975fab9a7d96dfa9252b37471cecc54dc81ce7262b6c934"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/RootTimeBudget.hpp",
+      "bytes": 1679,
+      "sha256": "a1352d075b9cb8cbd705c0526e7a8e6d2fb08677e9821923298c27f579d97280"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/ShadowAffineDiagnostic.hpp",
+      "bytes": 1603,
+      "sha256": "134cf73c4c7d30d5e18395600fc58d82302c53e21312df89a93fd4438ba96138"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/SharpAccelerationSensitivity.hpp",
+      "bytes": 1823,
+      "sha256": "b38885b2541a85c4b77922aaba6d238bc09e0a62a982916ded30e8ff6b9cae1a"
+    },
+    {
+      "path": "src/eom/native/eom_abc_enclosed_root_cli.cpp",
+      "bytes": 46875,
+      "sha256": "a2f3d278367c406136428bb3096edb40390bc744278a6c231028aeeaa8ae83e1"
+    },
+    {
+      "path": "src/eom/native/eom_borg_shadow_cli.cpp",
+      "bytes": 109324,
+      "sha256": "725b922df7f04ec339489d216ae25010de372ecb5da45a5f6a823ad56b9c3bf1"
+    },
+    {
+      "path": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "bytes": 46309,
+      "sha256": "9f7661f4000174d631d4c60f7078e124d77ae9b2ddba6af36197f13096095f81"
+    },
+    {
+      "path": "src/eom/native/eom_f5_prehistory_inspector.cpp",
+      "bytes": 10042,
+      "sha256": "b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36"
+    },
+    {
+      "path": "src/eom/native/eom_history_profile_cli.cpp",
+      "bytes": 19743,
+      "sha256": "f24f2a99a14d99c70dce52b149bb134daccc3c4e9ad3d03bf11e338ef3018522"
+    },
+    {
+      "path": "src/eom/native/eom_native_acceleration_fixture_cli.cpp",
+      "bytes": 22102,
+      "sha256": "c951a5adb30424b48246721008616fd6a7feda8cdc3a645b549b056f71741ee3"
+    },
+    {
+      "path": "src/eom/native/eom_native_evolution_fixture_cli.cpp",
+      "bytes": 98334,
+      "sha256": "ae4cb8c01ff50e75e0d182c6160a6383264ac0f2d8986ea5ceb0e4d04f8071c4"
+    },
+    {
+      "path": "src/eom/native/eom_native_fixture_cli.cpp",
+      "bytes": 69065,
+      "sha256": "c41ffae16a701cfa7dfd0b2758d46fa2062ec461c655a3ef1ea7b8809a07841f"
+    },
+    {
+      "path": "src/eom/native/eom_recursive_block_benchmark_cli.cpp",
+      "bytes": 19032,
+      "sha256": "4827f793ce357abe995ad439256aa86cf47f2172f3c6af3ee704f0c95b5a9de6"
+    },
+    {
+      "path": "src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp",
+      "bytes": 23506,
+      "sha256": "5fb7631607a0095332b8e30b4d770218748671423f8521eb7c8a84514b6ed672"
+    },
+    {
+      "path": "src/eom/README.md",
+      "bytes": 9203,
+      "sha256": "87b97a22c70dbfcaa8502ecf5fe67b0f224ce2fb997b80779bc646a1e2897651"
+    },
+    {
+      "path": "src/eom/src/BlockExclusion.cpp",
+      "bytes": 3899,
+      "sha256": "17d3d1b6f9416feffc8881679f3c5b77186de417e7032e21d8cae4caee5e0fe6"
+    },
+    {
+      "path": "src/eom/src/CenteredAffine.cpp",
+      "bytes": 5512,
+      "sha256": "ddfbf20ecf0dd7ad81ea1db7d80a069eca04b295273961a0bd90fcc734bdc787"
+    },
+    {
+      "path": "src/eom/src/CertifiedAcceleration.cpp",
+      "bytes": 80803,
+      "sha256": "58f425847442aa8772a1d3a63bb09bbae8d0883c56fd60a3d300273dc5e68878"
+    },
+    {
+      "path": "src/eom/src/CertifiedTraversal.cpp",
+      "bytes": 23763,
+      "sha256": "b08675123f40563b1600d11616364ec28f3b20ca0840a352265e870811d95ae0"
+    },
+    {
+      "path": "src/eom/src/Checkpoint.cpp",
+      "bytes": 37539,
+      "sha256": "9439d73be90d74ab7f994a5953983c3179981e072fc88d503783d532d3a379e6"
+    },
+    {
+      "path": "src/eom/src/CoupledEvolution.cpp",
+      "bytes": 339120,
+      "sha256": "fe1c0b7a3f130c88634f111b842a6c87cbc5d6343255ae05a2d429550c487915"
+    },
+    {
+      "path": "src/eom/src/DelayedRootSensitivity.cpp",
+      "bytes": 3617,
+      "sha256": "7da0396aba07cbdf21f67a4e30965931ced12a52761f28e7e5ee6c2fcc6e4b07"
+    },
+    {
+      "path": "src/eom/src/DisplayEvaluation.cpp",
+      "bytes": 33953,
+      "sha256": "fac7b6d020b7607e0d5700960c6fd1aab36a6353d0d107fe8a4bfbe3a9e6518c"
+    },
+    {
+      "path": "src/eom/src/ExactPairBatch.cpp",
+      "bytes": 154892,
+      "sha256": "c82b71c8335bd02a98941439d26a17ba3fc452318adb91cb5f42a015933e23c1"
+    },
+    {
+      "path": "src/eom/src/History.cpp",
+      "bytes": 72320,
+      "sha256": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5"
+    },
+    {
+      "path": "src/eom/src/Interval.cpp",
+      "bytes": 11812,
+      "sha256": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5"
+    },
+    {
+      "path": "src/eom/src/JointAccelerationSnapshot.cpp",
+      "bytes": 29982,
+      "sha256": "535fb930e074820979403fdcb5ab7dc756ecc39c74a37459a2808406da26403d"
+    },
+    {
+      "path": "src/eom/src/JointAffineHistory.cpp",
+      "bytes": 20288,
+      "sha256": "8c2d3cb50540027c5b213c90d1787120ed7994c799625bf4e8bec2f0213c81a4"
+    },
+    {
+      "path": "src/eom/src/JointEndpointCorrector.cpp",
+      "bytes": 8159,
+      "sha256": "84e819086e02fde699db8b4ba968a41f968b0e7370b79078653f9bf192a192a9"
+    },
+    {
+      "path": "src/eom/src/JointRootBracket.cpp",
+      "bytes": 3859,
+      "sha256": "5d9bd6cc18057e3337346fae679e268079242d16fc137aae5442745c4292dcf7"
+    },
+    {
+      "path": "src/eom/src/JointSharpRow.cpp",
+      "bytes": 13335,
+      "sha256": "eb0b6864539de68b9b641e9d16d19164b34103c8c45de0d4fe11a533f4b208e3"
+    },
+    {
+      "path": "src/eom/src/JointState.cpp",
+      "bytes": 6287,
+      "sha256": "9ea62b42798e144b26787deee027f52fb8655c4ed64a8a045db1c568e4fb9645"
+    },
+    {
+      "path": "src/eom/src/Krawczyk.cpp",
+      "bytes": 7827,
+      "sha256": "8e45748f3c12bed75251dbbbdf42072d24d385a6a120635064eb891d99f0cfdc"
+    },
+    {
+      "path": "src/eom/src/MultiprecisionAcceleration.cpp",
+      "bytes": 33744,
+      "sha256": "131d86f6b66396cbc8deb2c60e7d3f49c294be5728fe5ea742f9c416502becc0"
+    },
+    {
+      "path": "src/eom/src/RootTimeBudget.cpp",
+      "bytes": 5338,
+      "sha256": "f4819c5fea7b8b681a3436345fc81b9e4fb83c774e1938b33c3252b10aa7fac4"
+    },
+    {
+      "path": "src/eom/src/ShadowAffineDiagnostic.cpp",
+      "bytes": 60392,
+      "sha256": "ae5de8c7dbcf14648b096c57a91d9d6fe476f218f6faa5b93c085523934a1254"
+    },
+    {
+      "path": "src/eom/src/SharpAccelerationSensitivity.cpp",
+      "bytes": 4339,
+      "sha256": "198fdbd118e103fc64dfa5cab1785318ae54075238852f96a02c2b81cf0b286c"
+    },
+    {
+      "path": "tests/f5-ordinary-evolution-runner.test.js",
+      "bytes": 15353,
+      "sha256": "9deecc9756bc518d13e6c8b9245425ebd57f1523cefb95987d3d53550b4ae739"
+    },
+    {
+      "path": "tests/test_eom_borg_native_process.py",
+      "bytes": 52104,
+      "sha256": "e0b6cf3a39571b1a16f14bd10ce6f31298674cbf3548cc31f2e851e47bba34d2"
+    },
+    {
+      "path": "tests/test_f5_evolution_dynamics_checker.py",
+      "bytes": 15760,
+      "sha256": "c582879d5f83810df4c5f3bf02e6f485d221b9038573da73bcc66d13e05d4998"
+    },
+    {
+      "path": "tests/test_f5_ordinary_evolution_outcome.py",
+      "bytes": 21011,
+      "sha256": "b0dd0cdde0c63a0b099c1156e341b367f684c269939db5dd3d1a00db02176806"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/build-v2/libeom_native.a",
+      "bytes": 2537272,
+      "sha256": "d732261035ca9dc35b7c5975d081d35dbd264f5e127e93041269a8e95d183788"
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python",
+      "bytes": 51584,
+      "sha256": "8fea9a9c79967d080d79ba7957ef19b7940166225a589f825c61b9186e326a4e"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/operator-authorization-v1.json",
+      "bytes": 667,
+      "sha256": "83a1e46e91b5c554f0937d4fc7420f3df7c3981690b308b6cca2c95ad4d4bcd2"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/prepared-v1/coarse-request.json",
+      "bytes": 2343554,
+      "sha256": "21f96044be1274b7c80ec5d020ba465c42ceb18506793ec13ea0044a1850bdf2"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/prepared-v1/medium-request.json",
+      "bytes": 2343610,
+      "sha256": "660b7dd20d46945f14e8bb29efe0a6fb7ed983b308a9182253fd809106ddd618"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/prepared-v1/fine-request.json",
+      "bytes": 2343644,
+      "sha256": "cc77a7cb655cdc1de8f2f76644bb3519bc490deaeb9c34e45e84665aa7015ae3"
+    }
+  ],
+  "independentDeclarationReview": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/frozen-declaration-review-v1.json",
+  "excludedClaims": [
+    "stability",
+    "permanent retention",
+    "physical realization",
+    "equilibrium",
+    "score increase",
+    "global validated solution enclosure"
+  ],
+  "buildArtifactScope": "Executable plus post-build static-library identity; project sources checked before/after build, external compiler dependency identities recorded after build only.",
+  "frozenRequests": [
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/prepared-v1/coarse-request.json",
+      "bytes": 2343554,
+      "sha256": "21f96044be1274b7c80ec5d020ba465c42ceb18506793ec13ea0044a1850bdf2",
+      "rung": "coarse",
+      "wireSha256": "d120cb581d15d50dcae62c0ec85766d207bfa659cb4568e1847f075536e84832",
+      "wireBytes": 511583,
+      "runId": "f5-ordinary-evolution-20260827-coarse"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/prepared-v1/medium-request.json",
+      "bytes": 2343610,
+      "sha256": "660b7dd20d46945f14e8bb29efe0a6fb7ed983b308a9182253fd809106ddd618",
+      "rung": "medium",
+      "wireSha256": "cb84652dfabe0fc97b8aeab128f5d09c88b03a50a2a4bacf3e87f94c92c7ee98",
+      "wireBytes": 511597,
+      "runId": "f5-ordinary-evolution-20260827-medium"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-ordinary-evolution-20260827/prepared-v1/fine-request.json",
+      "bytes": 2343644,
+      "sha256": "cc77a7cb655cdc1de8f2f76644bb3519bc490deaeb9c34e45e84665aa7015ae3",
+      "rung": "fine",
+      "wireSha256": "63a0c07c035ce886d957c260d82d23ff436c5387fa8d1324bbd53fc0ca6a6e66",
+      "wireBytes": 511605,
+      "runId": "f5-ordinary-evolution-20260827-fine"
+    }
+  ],
+  "frozenAt": "2026-08-28T03:13:02.855Z"
+}

@@ -18,7 +18,7 @@ from pathlib import Path
 import sys
 import tempfile
 import time
-from types import SimpleNamespace
+from types import MappingProxyType,SimpleNamespace
 import unittest
 import weakref
 from unittest.mock import patch
@@ -26,6 +26,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts/eom'))
 import f6c_variable_cell_adapter as subject
+import f6c_evidence_package as storage
 import f6c_reception_geometry_restriction as geometry
 from oracle import continuous_reception_acceleration as a
 from oracle import f6c_residual_integral_supremum as integral
@@ -451,6 +452,314 @@ class RestrictedProjectionTests(unittest.TestCase):
         count=obj.geometry_accounting['history_state_evaluations']
         with localcontext()as ctx:ctx.prec=70;q=obj.project_restricted(0,J)
         self.assertEqual(p.cell,q.cell);self.assertEqual(obj.geometry_accounting['history_state_evaluations'],2*count)
+
+
+class AncestryArchiveTests(unittest.TestCase):
+    @contextmanager
+    def setup_pool(self):
+        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
+            root=Path(temp).resolve();old=root/'source.md';archive=root/'archive.md'
+            old.write_bytes(b'current link');archive.write_bytes(b'original link')
+            original=subject.SourceBinding(str(old),hsh(b'original link'),13)
+            relation=subject.ArchivedSource('memberPredeclaration',original,replace(original,path=str(archive)))
+            with patch.object(subject,'ANCESTRY_ARCHIVE_SOURCES',(('memberPredeclaration','source.md',original.sha256,13),)):
+                base=subject._Pool(stack,w,root,lambda:None)
+                yield root,base,relation
+
+    def test_logical_bytes_and_physical_provenance_are_separate(self):
+        with self.setup_pool()as(root,base,r):
+            pool=subject._AncestryPool(base,(r,))
+            view=pool.capture('source.md',r.original.sha256,data=True,size=13)
+            self.assertEqual(view.data,b'original link');self.assertEqual(view.binding(),asdict(r.original))
+            self.assertEqual(str(view.path),r.original.path)
+            self.assertEqual(set(pool.files),{r.archive.path});self.assertEqual(base.bytes,13)
+            self.assertEqual(pool.read_binding(asdict(r.original),capture=True),b'original link')
+            pool.recheck();self.assertEqual((root/'source.md').read_bytes(),b'current link')
+
+    def test_wrong_or_unused_generation_rejects(self):
+        with self.setup_pool()as(root,base,r):
+            pool=subject._AncestryPool(base,(r,))
+            with self.assertRaisesRegex(ValueError,'unused'):pool.recheck()
+            for h,n in (('a'*64,13),(r.original.sha256,12),(r.original.sha256,True)):
+                with self.assertRaisesRegex(ValueError,'generation'):pool.capture('source.md',h,size=n)
+            pool.capture('source.md',r.original.sha256);pool.recheck()
+
+    def test_foreign_duplicate_and_alias_routes_reject(self):
+        with self.setup_pool()as(root,base,r):
+            bads=[(r,r),(replace(r,role='runtime'),),
+                (replace(r,original=replace(r.original,sha256='a'*64)),),
+                (replace(r,archive=r.original),),
+                (replace(r,archive=replace(r.archive,path=str(root/subject.SELF))),),
+                (replace(r,archive=replace(r.archive,bytes=12)),)]
+            for relations in bads:
+                with self.subTest(relations=relations),self.assertRaises(ValueError):subject._AncestryPool(base,relations)
+
+    def test_archive_mutation_and_identical_replacement_reject(self):
+        for replacement in (False,True):
+            with self.subTest(replacement=replacement),self.assertRaises(ValueError):
+                with self.setup_pool()as(root,base,r):
+                    pool=subject._AncestryPool(base,(r,));pool.capture('source.md',r.original.sha256)
+                    if replacement:
+                        sibling=root/'replacement';sibling.write_bytes(b'original link');os.replace(sibling,r.archive.path)
+                    else:Path(r.archive.path).write_bytes(b'mutated bytes')
+                    pool.recheck()
+
+    def test_physical_hardlink_alias_rejects(self):
+        with self.setup_pool()as(root,base,r):
+            alias=root/'alias';os.link(r.archive.path,alias)
+            base.capture(alias,r.archive.sha256)
+            pool=subject._AncestryPool(base,(r,))
+            with self.assertRaisesRegex(ValueError,'hardlink'):pool.capture('source.md',r.original.sha256)
+
+    def test_unmapped_source_uses_original_capture_and_limits(self):
+        with self.setup_pool()as(root,base,r):
+            pool=subject._AncestryPool(base,(r,))
+            other=root/'other';other.write_bytes(b'plain')
+            self.assertEqual(pool.capture(other,hsh(b'plain'),data=True).data,b'plain')
+            pool.capture('source.md',r.original.sha256);self.assertEqual(base.bytes,18);pool.recheck()
+
+    def test_data_capture_upgrade_keeps_original_binding(self):
+        with self.setup_pool()as(root,base,r):
+            pool=subject._AncestryPool(base,(r,));view=pool.capture('source.md',r.original.sha256)
+            self.assertIsNone(view.data)
+            self.assertEqual(pool.read_binding(asdict(r.original),capture=True),b'original link')
+            self.assertEqual(view.data,b'original link');self.assertEqual(view.binding(),asdict(r.original));pool.recheck()
+
+
+class PackageRoutingTests(unittest.TestCase):
+    """Independent literal byte container; never uses the package writer."""
+    @contextmanager
+    def fixture(self,parents=(1,2)):
+        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
+            root=Path(temp).resolve();owner=root/subject.OWNER
+            owner.parent.mkdir(parents=True);owner.write_bytes(b'current approval')
+            members=[];descriptors=[];expected={}
+            for parent in (1,2):
+                bound={}
+                for role in sorted(storage.ROLES):
+                    p=root/'accepted'/str(parent)/(role+'.json');p.parent.mkdir(parents=True,exist_ok=True)
+                    raw=f'unchanged parent {parent} role {role}\n'.encode();p.write_bytes(raw)
+                    original=storage.Binding(str(p),hsh(raw),len(raw));expected[str(p)]=raw
+                    members.append(storage.ExpectedMember(f'parents/{parent}/{role}',role,parent,original,str(p),storage.SourceIdentity.from_stat(p.stat())))
+                    bound[role]=subject.SourceBinding(**asdict(original))
+                p=root/'owners'/f'{parent}.md';p.parent.mkdir(exist_ok=True)
+                raw=f'historical owner {parent}\n'.encode();p.write_bytes(raw)
+                old=subject.SourceBinding(str(owner),hsh(raw),len(raw));archive=replace(old,path=str(p))
+                m=storage.ExpectedMember('owners/'+old.sha256,'acceptanceOwner',None,storage.Binding(**asdict(old)),str(p),storage.SourceIdentity.from_stat(p.stat()))
+                members.append(m);expected[str(p)]=raw
+                closure=subject.ParentClosure(subject.SourceBinding(str(owner),hsh(b'current approval'),16),bound['operation'],'1','abc',0,'1',True,True)
+                descriptors.append(subject.ParentRefinement(parent,**{r:bound[r]for r,_,_,_ in subject.PARENT_ONE[:6]},closure=closure,
+                    archived_sources=(subject.ArchivedSource('acceptanceOwner',old,archive),)))
+            members=tuple(sorted(members,key=lambda m:m.name));offset=0;entries=[];payload=b''
+            for m in members:
+                raw=expected[m.source_path]
+                entries.append(dict(name=m.name,role=m.role,parentIndex=m.parent_index,original=asdict(m.original),offset=offset))
+                offset+=len(raw);payload+=raw
+            index=dict(schema='braid-program/f6c-lossless-evidence-package.v1',entries=entries,payloadBytes=offset)
+            raw=b'F6C-EVIDENCE-PACKAGE-v1\n'+json.dumps(index,sort_keys=True,separators=(',',':')).encode()+b'\n'+payload+b'\nF6C-EVIDENCE-PACKAGE-END-v1\n'
+            package=root/'package.data';package.write_bytes(raw)
+            reader=stack.enter_context(storage.PackageReader(storage.Binding(str(package),hsh(raw),len(raw)),members,deadline=time.monotonic()+60,live=lambda _:None))
+            base=subject._Pool(stack,w,root,lambda:None)
+            yield SimpleNamespace(root=root,owner=owner,package=package,reader=reader,members=members,base=base,
+                descriptors=tuple(d for d in descriptors if d.parent_index in parents),expected=expected,raw=raw)
+
+    def test_complete_inventory_reads_without_opening_loose_sources(self):
+        with self.fixture()as f:
+            pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+            # Reopening even one old path would fail. Container pread is allowed.
+            with patch.object(subject._Pool,'capture',side_effect=AssertionError('loose source reopened')):
+                for p,raw in f.expected.items():
+                    view=pool.capture(p,hsh(raw),data=True,size=len(raw))
+                    self.assertEqual(view.data,raw)
+                    self.assertEqual(view.binding(),dict(path=p,sha256=hsh(raw),bytes=len(raw)))
+                pool.recheck()
+            self.assertEqual(len(pool.files),1);self.assertEqual(f.base.bytes,len(f.raw))
+            self.assertEqual(len(f.reader._entries),28)
+            self.assertEqual({str(p):p.read_bytes()for p in map(Path,f.expected)},f.expected)
+
+    def test_singletons_and_default_parent_zero_accept_complete_package(self):
+        for parents in ((),(1,),(2,),(1,2)):
+            with self.subTest(parents=parents),self.fixture(parents)as f:
+                pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors);pool.recheck()
+                self.assertEqual(len(pool.files),1)
+
+    def test_historical_owner_original_and_archive_attribution_stays_distinct(self):
+        with self.fixture()as f:
+            pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+            for d in f.descriptors:
+                relation=d.archived_sources[0]
+                historical=subject._HistoricalReader(pool,(relation,),asdict(relation.original))
+                self.assertEqual(historical.read_binding(asdict(relation.original)),asdict(relation.original))
+                self.assertEqual(historical.read_binding(asdict(relation.original),capture=True),f.expected[relation.archive.path])
+                self.assertEqual(historical.finish(),(relation,))
+            current=pool.capture(f.owner,hsh(b'current approval'),data=True)
+            self.assertEqual(current.data,b'current approval');self.assertEqual(len(pool.files),2)
+            for d in f.descriptors:
+                with self.assertRaisesRegex(ValueError,'explicit archive'):
+                    pool.capture(f.owner,d.archived_sources[0].original.sha256)
+            pool.recheck()
+
+    def test_route_field_mutations_fail_without_fallback(self):
+        with self.fixture()as f:
+            pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+            p,raw=next(iter(f.expected.items()))
+            with patch.object(subject._Pool,'capture',side_effect=AssertionError('fallback')):
+                for digest,size in (('a'*64,len(raw)),(hsh(raw),len(raw)+1),(hsh(raw),True)):
+                    with self.assertRaisesRegex(ValueError,'generation'):pool.capture(p,digest,size=size)
+            for change in (dict(sha256='a'*64),dict(bytes=1),dict(path=str(f.root/'foreign'))):
+                d=f.descriptors[0];bad=replace(d,manifest=replace(d.manifest,**change))
+                with self.assertRaisesRegex(ValueError,'descriptor generation'):
+                    subject._PackagePool(f.base,f.reader,f.members,(bad,))
+
+    def test_wrong_owner_archive_or_missing_relation_rejects(self):
+        with self.fixture()as f:
+            d=f.descriptors[0];r=d.archived_sources[0]
+            for relations in ((),(replace(r,archive=replace(r.archive,path=str(f.root/'foreign'))),),
+                              (replace(r,original=replace(r.original,sha256='a'*64)),)):
+                with self.assertRaisesRegex(ValueError,'owner relation|owner differ'):
+                    subject._PackagePool(f.base,f.reader,f.members,(replace(d,archived_sources=relations),))
+
+    def test_already_consumed_member_and_duplicate_package_reject(self):
+        with self.fixture()as f:
+            p,raw=next(iter(f.expected.items()));f.base.capture(p,hsh(raw))
+            with self.assertRaisesRegex(ValueError,'already captured'):subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+        with self.fixture()as f:
+            subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+            with self.assertRaisesRegex(ValueError,'duplicate package'):subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+
+    def test_package_hardlink_alias_and_limits_count_physical_bytes_once(self):
+        # Creating the second link also changes ctime and must reject at close.
+        with self.assertRaisesRegex(ValueError,'replaced, renamed or mutated'),self.fixture()as f:
+            alias=f.root/'alias';os.link(f.package,alias);f.base.capture(alias,hsh(f.raw))
+            with self.assertRaisesRegex(ValueError,'hardlink'):subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+        for extra,accepted in ((0,True),(1,False)):
+            with self.subTest(extra=extra),self.fixture()as f:
+                f.base.bytes=1024**3-len(f.raw)+extra
+                if accepted:
+                    subject._PackagePool(f.base,f.reader,f.members,f.descriptors);self.assertEqual(f.base.bytes,1024**3)
+                else:
+                    with self.assertRaisesRegex(ValueError,'census/bytes'):subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+        for count,accepted in ((511,True),(512,False)):
+            with self.subTest(count=count),self.fixture()as f:
+                f.base.files.update({f'placeholder-{i}':None for i in range(count)})
+                if accepted:subject._PackagePool(f.base,f.reader,f.members,f.descriptors);self.assertEqual(len(f.base.files),512)
+                else:
+                    with self.assertRaisesRegex(ValueError,'census/bytes'):subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+
+    def test_complete_final_recheck_detects_unrequested_tamper_and_replacement(self):
+        for replace_inode in (False,True):
+            with self.subTest(replace_inode=replace_inode),self.assertRaises(ValueError):
+                with self.fixture()as f:
+                    pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+                    if replace_inode:
+                        sibling=f.root/'replacement';sibling.write_bytes(f.raw);os.replace(sibling,f.package)
+                    else:
+                        with f.package.open('r+b')as file:file.seek(len(f.raw)-35);file.write(b'X')
+                    pool.recheck()
+            self.assertIsNone(f.reader._file.fd)
+
+    def test_capture_upgrade_keeps_binding_and_reader_failure_does_not_fallback(self):
+        with self.fixture()as f:
+            pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors);p,raw=next(iter(f.expected.items()))
+            view=pool.capture(p,hsh(raw));self.assertIsNone(view.data)
+            self.assertIs(pool.capture(p,hsh(raw),data=True),view);self.assertEqual(view.data,raw)
+            other=list(f.expected)[1]
+            with patch.object(f.reader,'read_binding',side_effect=ValueError('reader failure')):
+                with self.assertRaisesRegex(ValueError,'reader failure'):pool.capture(other,hsh(f.expected[other]),data=True)
+            pool.recheck()
+
+    def test_package_selection_cannot_replace_external_inventory_or_expand_scope(self):
+        with self.fixture()as f:
+            inventory=subject.SourceBinding(str(f.root/'foreign-inventory.json'),'a'*64,100)
+            selection=subject.EvidencePackage(subject.SourceBinding(str(f.package),hsh(f.raw),len(f.raw)),inventory)
+            with patch.object(subject._Pool,'capture',side_effect=AssertionError('unexpected source open')):
+                with self.assertRaisesRegex(ValueError,'fixed independent'):
+                    subject._packaged_pool(f.base,selection,f.descriptors,time.monotonic()+60)
+                for malformed in ((selection,),[selection],asdict(selection)):
+                    with self.assertRaisesRegex(ValueError,'single immutable'):
+                        subject._packaged_pool(f.base,malformed,f.descriptors,time.monotonic()+60)
+
+
+class FreshEvidenceRoutingTests(unittest.TestCase):
+    """Explicit transport seam; synthetic bytes do not admit a fresh batch."""
+    fixture=PackageRoutingTests.fixture
+
+    def test_original_tuple_reads_keep_original_identity_and_one_package(self):
+        with self.fixture()as f:
+            pool=subject._FreshEvidencePool(f.base)
+            f.base.adopt(subject._PackagePhysicalFile(f.reader));pool.add(f.members,f.reader)
+            with patch.object(subject._Pool,'capture',side_effect=AssertionError('loose fallback')):
+                for member in f.members:
+                    b=asdict(member.original)
+                    self.assertEqual(pool.read_binding(b,capture=True),f.expected[member.source_path])
+                    s=member.source_identity
+                    self.assertEqual(pool.read_identity(b),dict(device=str(s.device),inode=str(s.inode),bytes=str(s.bytes),
+                        mtimeNs=str(s.mtime_ns),ctimeNs=str(s.ctime_ns)))
+            self.assertEqual(len(pool.files),1);self.assertEqual(f.base.bytes,len(f.raw));pool.recheck()
+
+    def test_identical_owner_route_is_shared_but_nonowner_duplicate_rejects(self):
+        with self.fixture()as f:
+            pool=subject._FreshEvidencePool(f.base);f.base.adopt(subject._PackagePhysicalFile(f.reader));pool.add(f.members,f.reader)
+            owner=next(m for m in f.members if m.role=='acceptanceOwner')
+            foreign=SimpleNamespace(read_binding=lambda *_a,**_k:(_ for _ in ()).throw(AssertionError('second route')))
+            pool.add((owner,),foreign)
+            self.assertEqual(pool.read_binding(asdict(owner.original),capture=True),f.expected[owner.source_path])
+            with self.assertRaisesRegex(ValueError,'conflicting shared'):
+                pool.add((next(m for m in f.members if m.role!='acceptanceOwner'),),f.reader)
+            with self.assertRaisesRegex(ValueError,'conflicting shared'):
+                pool.add((replace(owner,source_identity=replace(owner.source_identity,inode=owner.source_identity.inode+1)),),f.reader)
+
+    def test_declared_generation_or_reader_failure_never_falls_back(self):
+        with self.fixture()as f:
+            pool=subject._FreshEvidencePool(f.base);f.base.adopt(subject._PackagePhysicalFile(f.reader));pool.add(f.members,f.reader)
+            member=next(m for m in f.members if m.role!='acceptanceOwner');b=asdict(member.original)
+            with patch.object(subject._Pool,'capture',side_effect=AssertionError('fallback')):
+                with self.assertRaisesRegex(ValueError,'generation'):pool.read_binding({**b,'sha256':'a'*64},capture=True)
+                with patch.object(f.reader,'read_binding',side_effect=ValueError('reader rejection')):
+                    with self.assertRaisesRegex(ValueError,'reader rejection'):pool.read_binding(b,capture=True)
+
+    def test_cross_inventory_path_generation_and_original_inode_alias_reject(self):
+        with self.fixture()as f:
+            member=next(m for m in f.members if m.role!='acceptanceOwner')
+            for bad in (
+                replace(member,original=replace(member.original,sha256='a'*64)),
+                replace(member,original=replace(member.original,path=str(f.root/'other')),source_path=str(f.root/'other')),
+                replace(member,original=replace(member.original,path=str(f.root/'other')),
+                    source_identity=replace(member.source_identity,inode=member.source_identity.inode+1000)),
+            ):
+                with self.subTest(member=bad):
+                    pool=subject._FreshEvidencePool(f.base);pool.add((member,),f.reader)
+                    with self.assertRaisesRegex(ValueError,'cross-inventory'):pool.add((bad,),f.reader)
+
+    def test_raw_release_does_not_drop_retained_package(self):
+        with self.fixture()as f:
+            pool=subject._FreshEvidencePool(f.base);f.base.adopt(subject._PackagePhysicalFile(f.reader));pool.add(f.members,f.reader)
+            b=asdict(f.members[0].original);pool.read_binding(b,capture=True)
+            self.assertTrue(any(v.data is not None for v in pool.views.values()))
+            pool.release((b,));self.assertTrue(all(v.data is None for v in pool.views.values()))
+            self.assertEqual(len(pool.files),1);pool.recheck()
+            self.assertEqual(pool.read_binding(b,capture=True),f.expected[f.members[0].source_path])
+
+    def test_same_generation_consumption_copy_never_replaces_current_owner(self):
+        with self.fixture()as f:
+            raw=f.owner.read_bytes();direct=f.base.capture(f.owner,hsh(raw),data=True)
+            archive=f.root/'same-generation-consumed-owner.md';archive.write_bytes(raw)
+            b=storage.Binding(str(f.owner),hsh(raw),len(raw))
+            member=storage.ExpectedMember('owners/'+b.sha256,'acceptanceOwner',None,b,str(archive),storage.SourceIdentity.from_stat(archive.stat()))
+            pool=subject._FreshEvidencePool(f.base);pool.add((member,),None)
+            self.assertIs(pool.capture(f.owner,b.sha256),direct)
+            self.assertEqual(pool.read_identity(asdict(b)),subject._file_identity(direct))
+            physical={**asdict(b),'path':str(archive)}
+            self.assertNotEqual(pool.read_identity(asdict(b)),pool.read_identity(physical))
+            self.assertEqual(pool.read_binding(physical,capture=True),raw);self.assertEqual(len(pool.files),2);pool.recheck()
+
+    def test_explicit_selection_rejects_unreviewed_authority_before_capture(self):
+        root=ROOT;instrument=subject.SourceBinding(str(root/'unreviewed.py'),'a'*64,1)
+        b=subject.SourceBinding(str(root/'inert.json'),'b'*64,1)
+        selection=subject.AcceptedParentEvidence(b,(subject.AdmittedClosure(b,instrument),),(instrument,))
+        with patch.object(subject,'_bootstrap',side_effect=AssertionError('capture before rejection')):
+            for values in ((selection,),[selection],(asdict(selection),)):
+                with self.subTest(values=values),self.assertRaises(ValueError):subject._fresh_selections(values,root)
 
 
 class OwnershipLifetimeTests(unittest.TestCase):
@@ -1303,7 +1612,72 @@ class GenericParentTests(unittest.TestCase):
                 with self.subTest(mode=mode),self.assertRaises(ValueError):subject._authenticate_parent(*changed)
 
 
-if __name__=='__main__':unittest.main()
+class FreshImmutableMetadataControls(unittest.TestCase):
+    def test_exact_frozen_result_is_copied_without_reference_changes(self):
+        binding={'path':'/fixture/rows','sha256':'a'*64,'bytes':12}
+        parent={'parentIndex':3,'reception':MappingProxyType({'lower':'0.003','upper':'0.004'}),
+            'roles':MappingProxyType({'rows':MappingProxyType(binding)})}
+        frozen={'parents':(MappingProxyType(parent),),'sourceBindings':(MappingProxyType(binding),)}
+        expected={'parents':[{'parentIndex':3,'reception':{'lower':'0.003','upper':'0.004'},
+            'roles':{'rows':binding}}],'sourceBindings':[binding]}
+        calls=[];actual=subject._thaw_fresh_metadata(frozen,lambda:calls.append(True))
+        self.assertEqual(actual,expected);self.assertGreaterEqual(len(calls),2)
+        self.assertIs(type(actual['parents']),list)
+        self.assertIs(type(actual['parents'][0]),dict)
+        actual['sourceBindings'][0]['bytes']=99
+        self.assertEqual(binding['bytes'],12)
+
+    def test_nonwire_objects_and_unbounded_metadata_fail_closed(self):
+        class OtherDict(dict):pass
+        cyclic=[];cyclic.append(cyclic)
+        values=[OtherDict(a=1),SimpleNamespace(a=1),1.0,Decimal('1'),2**63,{1:'bad'},cyclic,
+            ['x']*20001,'x'*(8*1024**2+1)]
+        for value in values:
+            with self.subTest(kind=type(value).__name__),self.assertRaises(ValueError):
+                subject._thaw_fresh_metadata(value,lambda:None)
+        def expired():raise TimeoutError('original deadline')
+        with self.assertRaises(TimeoutError):subject._thaw_fresh_metadata({},expired)
+
+
+class FreshPhysicalAttributionControls(unittest.TestCase):
+    fixture=PackageRoutingTests.fixture
+
+    def test_scope_counts_reused_direct_handles_and_restores_after_failure(self):
+        with self.fixture()as f:
+            raw=f.owner.read_bytes();file=f.base.capture(f.owner,hsh(raw))
+            consumed={}
+            with f.base.observe(consumed):
+                self.assertIs(f.base.capture(f.owner,hsh(raw),data=True),file)
+            expected=(str(f.owner),hsh(raw),len(raw))
+            self.assertEqual(consumed[str(f.owner)][0],expected)
+            with self.assertRaisesRegex(ValueError,'scope stopped'):
+                with f.base.observe(consumed):raise ValueError('scope stopped')
+            self.assertEqual(f.base._observers,[])
+            with f.base.observe(consumed):f.base.read_binding(file.binding())
+            self.assertEqual(len(consumed),1)
+            self.assertEqual(consumed[str(f.owner)][1],(file.initial.st_dev,file.initial.st_ino,
+                file.initial.st_size,file.initial.st_mtime_ns,file.initial.st_ctime_ns))
+
+    def test_legacy_package_cached_reads_attribute_physical_container(self):
+        with self.fixture()as f:
+            pool=subject._PackagePool(f.base,f.reader,f.members,f.descriptors)
+            p,raw=next(iter(f.expected.items()));pool.capture(p,hsh(raw),data=True)
+            consumed={}
+            with f.base.observe(consumed):pool.capture(p,hsh(raw),data=True)
+            physical=f.reader.physical_binding
+            self.assertEqual([v[0]for v in consumed.values()],[(physical.path,physical.sha256,physical.bytes)])
+
+    def test_fresh_package_adoption_and_cached_reads_share_one_physical_source(self):
+        with self.fixture()as f:
+            consumed={};pool=subject._FreshEvidencePool(f.base)
+            with f.base.observe(consumed):
+                f.base.adopt(subject._PackagePhysicalFile(f.reader));pool.add(f.members,f.reader)
+            b=asdict(f.members[0].original);pool.read_binding(b,capture=True)
+            with f.base.observe(consumed):
+                pool.read_binding(b,capture=True);pool.read_identity(b)
+            physical=f.reader.physical_binding
+            self.assertEqual([v[0]for v in consumed.values()],[(physical.path,physical.sha256,physical.bytes)])
+            self.assertNotIn(b['path'],consumed)
 
 
 if __name__=='__main__':unittest.main()

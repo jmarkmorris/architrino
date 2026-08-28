@@ -1,0 +1,920 @@
+{
+  "schema": "braid-program/f6c-lossless-packaging-expectations.v1",
+  "capturedAt": "2026-08-28T00:56:34.661Z",
+  "instrument": "independently authored Node fs/crypto/assert read-only inventory; no packaging writer or adapter import",
+  "currentAcceptanceOwner": {
+    "physicalPath": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+    "sha256": "04a889345ee7c4cd43b0f41bebb70cb2f176ac4d13af035204347f3c6904feaf",
+    "bytes": 359719,
+    "identity": {
+      "device": "16777233",
+      "inode": "188348333",
+      "bytes": "359719",
+      "mtimeNs": "1787876752643705374",
+      "ctimeNs": "1787876752643705374"
+    }
+  },
+  "parents": [
+    {
+      "parentIndex": 1,
+      "attempt": "pilot-parent-1-v1",
+      "closure": {
+        "originalCallerSession": "9158",
+        "finalCompletionChunk": "1eda87",
+        "exitCode": 0,
+        "elapsedSeconds": "261.94229158400003",
+        "processesClosed": true,
+        "independentAuditAccepted": true,
+        "authority": "attributed-versioned-acceptance-owner-not-fresh-process-observation"
+      },
+      "historyGenerationSha256": "2ebdc2c9c7ccdabaaf798eae16ee1b333f25707736602e7246c1b12fb6459cd1",
+      "reception": {
+        "lower": "0.001",
+        "precision": 90,
+        "upper": "0.002"
+      },
+      "entries": [
+        {
+          "memberName": "parents/1/plan",
+          "role": "plan",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-launch.v1.json",
+            "sha256": "2ef79411d22b646136352b83a92dfb18b42e2d01733aec6dff828ab258dc68d4",
+            "bytes": 51509
+          },
+          "physicalPath": "reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-launch.v1.json",
+          "sha256": "2ef79411d22b646136352b83a92dfb18b42e2d01733aec6dff828ab258dc68d4",
+          "bytes": 51509,
+          "identity": {
+            "device": "16777233",
+            "inode": "188348356",
+            "bytes": "51509",
+            "mtimeNs": "1787876752646669185",
+            "ctimeNs": "1787876752646669185"
+          }
+        },
+        {
+          "memberName": "parents/1/manifest",
+          "role": "manifest",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/cover-manifest.json",
+            "sha256": "952aa6a5951407af57b68478a3f19381d81dd2a970a82d3f3475bdd075936df6",
+            "bytes": 113112
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/cover-manifest.json",
+          "sha256": "952aa6a5951407af57b68478a3f19381d81dd2a970a82d3f3475bdd075936df6",
+          "bytes": 113112,
+          "identity": {
+            "device": "16777233",
+            "inode": "188233188",
+            "bytes": "113112",
+            "mtimeNs": "1787865979593353827",
+            "ctimeNs": "1787865979593670397"
+          }
+        },
+        {
+          "memberName": "parents/1/comparison",
+          "role": "comparison",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/comparison.json",
+            "sha256": "8015590d0c2a39557411e1f3e3e3e6892565afc2a0b7741a225952c2e79f13f7",
+            "bytes": 127948
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/comparison.json",
+          "sha256": "8015590d0c2a39557411e1f3e3e3e6892565afc2a0b7741a225952c2e79f13f7",
+          "bytes": 127948,
+          "identity": {
+            "device": "16777233",
+            "inode": "188233239",
+            "bytes": "127948",
+            "mtimeNs": "1787866033379567418",
+            "ctimeNs": "1787866033379870506"
+          }
+        },
+        {
+          "memberName": "parents/1/operation",
+          "role": "operation",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/operation.json",
+            "sha256": "d912a2b1daeddf0f6bafe852a876fde517b9d1da49260a557144ecacfb925029",
+            "bytes": 657555
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/operation.json",
+          "sha256": "d912a2b1daeddf0f6bafe852a876fde517b9d1da49260a557144ecacfb925029",
+          "bytes": 657555,
+          "identity": {
+            "device": "16777233",
+            "inode": "188233244",
+            "bytes": "657555",
+            "mtimeNs": "1787866033944642630",
+            "ctimeNs": "1787866033944642630"
+          }
+        },
+        {
+          "memberName": "parents/1/launcher_log",
+          "role": "launcher_log",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/launcher-stderr.log",
+            "sha256": "4e5f4ca8c305b409a27bab70339dc1aed2f0a1b6962843b0e340118538dd6a71",
+            "bytes": 7488
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/launcher-stderr.log",
+          "sha256": "4e5f4ca8c305b409a27bab70339dc1aed2f0a1b6962843b0e340118538dd6a71",
+          "bytes": 7488,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232906",
+            "bytes": "7488",
+            "mtimeNs": "1787866033891412430",
+            "ctimeNs": "1787866033891412430"
+          }
+        },
+        {
+          "memberName": "parents/1/resource_log",
+          "role": "resource_log",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/resource-observations.ndjson",
+            "sha256": "ccc61d5b04f22baf85fe3981db293903c446b788e77ae852ca6b41311dc27dda",
+            "bytes": 520798
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/resource-observations.ndjson",
+          "sha256": "ccc61d5b04f22baf85fe3981db293903c446b788e77ae852ca6b41311dc27dda",
+          "bytes": 520798,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232907",
+            "bytes": "520798",
+            "mtimeNs": "1787866034030533609",
+            "ctimeNs": "1787866034030533609"
+          }
+        },
+        {
+          "memberName": "parents/1/queries",
+          "role": "queries",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/queries.ndjson",
+            "sha256": "cf4a6c7464f773782c5450d562a999543c60c2d906bf2fa91dc5f6207564db77",
+            "bytes": 2003114
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/queries.ndjson",
+          "sha256": "cf4a6c7464f773782c5450d562a999543c60c2d906bf2fa91dc5f6207564db77",
+          "bytes": 2003114,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232919",
+            "bytes": "2003114",
+            "mtimeNs": "1787865978929442927",
+            "ctimeNs": "1787865979553447277"
+          }
+        },
+        {
+          "memberName": "parents/1/rows",
+          "role": "rows",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/rows.ndjson",
+            "sha256": "ad9734afd944cf92994852f3cfbb3c3b64ebcecf090e243cbf7a37ab5c019624",
+            "bytes": 161022
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/rows.ndjson",
+          "sha256": "ad9734afd944cf92994852f3cfbb3c3b64ebcecf090e243cbf7a37ab5c019624",
+          "bytes": 161022,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232920",
+            "bytes": "161022",
+            "mtimeNs": "1787865979542579706",
+            "ctimeNs": "1787865979557937586"
+          }
+        },
+        {
+          "memberName": "parents/1/pieces",
+          "role": "pieces",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/pieces.ndjson",
+            "sha256": "928a7d56104e528170b50f971c3217f157f5ba462a815cd646afba73fd354e46",
+            "bytes": 48578
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1/pieces.ndjson",
+          "sha256": "928a7d56104e528170b50f971c3217f157f5ba462a815cd646afba73fd354e46",
+          "bytes": 48578,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232921",
+            "bytes": "48578",
+            "mtimeNs": "1787865979542441871",
+            "ctimeNs": "1787865979558358304"
+          }
+        },
+        {
+          "memberName": "parents/1/producer_stdout",
+          "role": "producer_stdout",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/producer-process/runner-stdout.log",
+            "sha256": "6e46034b7eeedb9ca1ddbe676c61b6eebea841c195f24148027cd17aaacfcc5b",
+            "bytes": 2064
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/producer-process/runner-stdout.log",
+          "sha256": "6e46034b7eeedb9ca1ddbe676c61b6eebea841c195f24148027cd17aaacfcc5b",
+          "bytes": 2064,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232910",
+            "bytes": "2064",
+            "mtimeNs": "1787865979702702543",
+            "ctimeNs": "1787865979702702543"
+          }
+        },
+        {
+          "memberName": "parents/1/producer_stderr",
+          "role": "producer_stderr",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/producer-process/runner-stderr.log",
+            "sha256": "db7985282b0e79f5d41d9adeeee557f640840eb1c31671fb141318d3fe741320",
+            "bytes": 2530
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/producer-process/runner-stderr.log",
+          "sha256": "db7985282b0e79f5d41d9adeeee557f640840eb1c31671fb141318d3fe741320",
+          "bytes": 2530,
+          "identity": {
+            "device": "16777233",
+            "inode": "188232911",
+            "bytes": "2530",
+            "mtimeNs": "1787865979771231773",
+            "ctimeNs": "1787865979771231773"
+          }
+        },
+        {
+          "memberName": "parents/1/comparison_stdout",
+          "role": "comparison_stdout",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/comparison-process/runner-stdout.log",
+            "sha256": "d1ef6325c50e6b25ed332665f92334cdc8aacda4447d0d62a141aecca2a27d8a",
+            "bytes": 553
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/comparison-process/runner-stdout.log",
+          "sha256": "d1ef6325c50e6b25ed332665f92334cdc8aacda4447d0d62a141aecca2a27d8a",
+          "bytes": 553,
+          "identity": {
+            "device": "16777233",
+            "inode": "188233193",
+            "bytes": "553",
+            "mtimeNs": "1787866033487086795",
+            "ctimeNs": "1787866033487086795"
+          }
+        },
+        {
+          "memberName": "parents/1/comparison_stderr",
+          "role": "comparison_stderr",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/comparison-process/runner-stderr.log",
+            "sha256": "36f9b96b9248461fcccd162d891dd8b51ea34792cc3561b63feef43ff8f4ba6d",
+            "bytes": 1430
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-1-v1-outer/comparison-process/runner-stderr.log",
+          "sha256": "36f9b96b9248461fcccd162d891dd8b51ea34792cc3561b63feef43ff8f4ba6d",
+          "bytes": 1430,
+          "identity": {
+            "device": "16777233",
+            "inode": "188233194",
+            "bytes": "1430",
+            "mtimeNs": "1787866033560446022",
+            "ctimeNs": "1787866033560446022"
+          }
+        }
+      ],
+      "archivedOwner": {
+        "memberName": "owners/7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c",
+        "role": "acceptanceOwner",
+        "logicalBinding": {
+          "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+          "sha256": "7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c",
+          "bytes": 318717
+        },
+        "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/readiness-owner.7b4fb2.md",
+        "sha256": "7b4fb29001fac6cd21b91f8e3e0b6f38a5fc93a53a52c4f7939a75304e548d7c",
+        "bytes": 318717,
+        "identity": {
+          "device": "16777233",
+          "inode": "188233047",
+          "bytes": "318717",
+          "mtimeNs": "1787865900586112996",
+          "ctimeNs": "1787865900586112996"
+        }
+      },
+      "historicalSourceMappings": [
+        {
+          "role": "producer",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-parent-emission-refinement.py",
+            "sha256": "492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544",
+            "bytes": 57641
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/prepare-f6c-parent-emission-refinement.py.492882b6.archive",
+          "sha256": "492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544",
+          "bytes": 57641,
+          "identity": {
+            "device": "16777233",
+            "inode": "188255819",
+            "bytes": "57641",
+            "mtimeNs": "1787870839265082684",
+            "ctimeNs": "1787870839265082684"
+          }
+        },
+        {
+          "role": "producerControls",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_preparation.py",
+            "sha256": "06cd99bc1f74c3b7dead6089ef20f468f7be8af41ae6702f45ec85d83a1a36ab",
+            "bytes": 40808
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/test_f6c_parent_emission_refinement_preparation.py.06cd99bc.archive",
+          "sha256": "06cd99bc1f74c3b7dead6089ef20f468f7be8af41ae6702f45ec85d83a1a36ab",
+          "bytes": 40808,
+          "identity": {
+            "device": "16777233",
+            "inode": "188255820",
+            "bytes": "40808",
+            "mtimeNs": "1787870839369546411",
+            "ctimeNs": "1787870839369546411"
+          }
+        },
+        {
+          "role": "verifier",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-parent-emission-refinement.py",
+            "sha256": "0bb16c232736c895c4f3e38a75e2a0562084710ffdba2503b3ab4457216127fc",
+            "bytes": 46134
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/verify-f6c-parent-emission-refinement.py.0bb16c23.archive",
+          "sha256": "0bb16c232736c895c4f3e38a75e2a0562084710ffdba2503b3ab4457216127fc",
+          "bytes": 46134,
+          "identity": {
+            "device": "16777233",
+            "inode": "188255821",
+            "bytes": "46134",
+            "mtimeNs": "1787870839481928122",
+            "ctimeNs": "1787870839481928122"
+          }
+        },
+        {
+          "role": "verifierControls",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py",
+            "sha256": "92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7",
+            "bytes": 39696
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/test_f6c_parent_emission_refinement_verification.py.92da2b09.archive",
+          "sha256": "92da2b09c629ecbc0fdcdddac9de69353da0e29795e0b1d3bf2d23a05a9a26f7",
+          "bytes": 39696,
+          "identity": {
+            "device": "16777233",
+            "inode": "188255822",
+            "bytes": "39696",
+            "mtimeNs": "1787870839580103046",
+            "ctimeNs": "1787870839580103046"
+          }
+        },
+        {
+          "role": "operationalEntry",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+            "sha256": "398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6",
+            "bytes": 48579
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/run-f6c-parent-emission-refinement-pilot.mjs.398d604f.archive",
+          "sha256": "398d604f9e5f8a5d85247df0d619c23726c727980881d185d3cc61545df563f6",
+          "bytes": 48579,
+          "identity": {
+            "device": "16777233",
+            "inode": "188255823",
+            "bytes": "48579",
+            "mtimeNs": "1787870839736890345",
+            "ctimeNs": "1787870839736890345"
+          }
+        },
+        {
+          "role": "operationalControls",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/tests/f6c-parent-emission-refinement-pilot.test.js",
+            "sha256": "231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0",
+            "bytes": 20889
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/f6c-parent-emission-refinement-pilot.test.js.231427f4.archive",
+          "sha256": "231427f4a98561b8a4377a0a4894e7f7be31ffa8d5f77966d86f77daada4a3e0",
+          "bytes": 20889,
+          "identity": {
+            "device": "16777233",
+            "inode": "188255824",
+            "bytes": "20889",
+            "mtimeNs": "1787870839828300294",
+            "ctimeNs": "1787870839828300294"
+          }
+        }
+      ],
+      "memberBytes": 4016418,
+      "limits": {
+        "inclusiveSeconds": 1800,
+        "maximumAggregateRssBytes": 2147483648,
+        "maximumRssSampleGapMs": 1000,
+        "heartbeatSeconds": 15,
+        "admissionFreeMemoryPercent": 40,
+        "admissionDiskBytes": 68719476736,
+        "stopFreeMemoryBelowPercent": 20,
+        "stopDiskBelowBytes": 17179869184,
+        "hostObservationSeconds": 15,
+        "hostObservationTimeoutSeconds": 2,
+        "maximumScientificFileBytes": 67108864,
+        "maximumOutputFileBytes": 67108864,
+        "maximumCombinedLogBytes": 16777216,
+        "serialWorkers": 1,
+        "eomWorkers": 0
+      }
+    },
+    {
+      "parentIndex": 2,
+      "attempt": "pilot-parent-2-v2",
+      "closure": {
+        "originalCallerSession": "95033",
+        "finalCompletionChunk": "01a7f4",
+        "exitCode": 0,
+        "elapsedSeconds": "274.738",
+        "processesClosed": true,
+        "independentAuditAccepted": true,
+        "authority": "attributed-versioned-acceptance-owner-not-fresh-process-observation"
+      },
+      "historyGenerationSha256": "2ebdc2c9c7ccdabaaf798eae16ee1b333f25707736602e7246c1b12fb6459cd1",
+      "reception": {
+        "lower": "0.002",
+        "precision": 90,
+        "upper": "0.0030000000000000001"
+      },
+      "entries": [
+        {
+          "memberName": "parents/2/plan",
+          "role": "plan",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json",
+            "sha256": "928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e",
+            "bytes": 51509
+          },
+          "physicalPath": "reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json",
+          "sha256": "928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e",
+          "bytes": 51509,
+          "identity": {
+            "device": "16777233",
+            "inode": "188348355",
+            "bytes": "51509",
+            "mtimeNs": "1787876752646594935",
+            "ctimeNs": "1787876752646594935"
+          }
+        },
+        {
+          "memberName": "parents/2/manifest",
+          "role": "manifest",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/cover-manifest.json",
+            "sha256": "2de3a29480b7303556b284aaa3e043f224f551b767b8019b92e9af0795095a5c",
+            "bytes": 112678
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/cover-manifest.json",
+          "sha256": "2de3a29480b7303556b284aaa3e043f224f551b767b8019b92e9af0795095a5c",
+          "bytes": 112678,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313822",
+            "bytes": "112678",
+            "mtimeNs": "1787874454035166809",
+            "ctimeNs": "1787874454035480044"
+          }
+        },
+        {
+          "memberName": "parents/2/comparison",
+          "role": "comparison",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/comparison.json",
+            "sha256": "4c1dc04563a6a19a8be3a986ed4e78b1163b3996fb4129bb66110d65e2cdfc7f",
+            "bytes": 127767
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/comparison.json",
+          "sha256": "4c1dc04563a6a19a8be3a986ed4e78b1163b3996fb4129bb66110d65e2cdfc7f",
+          "bytes": 127767,
+          "identity": {
+            "device": "16777233",
+            "inode": "188314217",
+            "bytes": "127767",
+            "mtimeNs": "1787874510244295355",
+            "ctimeNs": "1787874510244614774"
+          }
+        },
+        {
+          "memberName": "parents/2/operation",
+          "role": "operation",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/operation.json",
+            "sha256": "88f3b862f4901b1f6bf179722e3dfb1bb655446b96de4cd0e681693b0724f169",
+            "bytes": 710516
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/operation.json",
+          "sha256": "88f3b862f4901b1f6bf179722e3dfb1bb655446b96de4cd0e681693b0724f169",
+          "bytes": 710516,
+          "identity": {
+            "device": "16777233",
+            "inode": "188314220",
+            "bytes": "710516",
+            "mtimeNs": "1787874510834989296",
+            "ctimeNs": "1787874510834989296"
+          }
+        },
+        {
+          "memberName": "parents/2/launcher_log",
+          "role": "launcher_log",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/launcher-stderr.log",
+            "sha256": "6d81a9d10e89e06af777202d07bb50797aa40fd69653b1cc81649645e44021cf",
+            "bytes": 7673
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/launcher-stderr.log",
+          "sha256": "6d81a9d10e89e06af777202d07bb50797aa40fd69653b1cc81649645e44021cf",
+          "bytes": 7673,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313011",
+            "bytes": "7673",
+            "mtimeNs": "1787874510776392431",
+            "ctimeNs": "1787874510776392431"
+          }
+        },
+        {
+          "memberName": "parents/2/resource_log",
+          "role": "resource_log",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/resource-observations.ndjson",
+            "sha256": "7137eacbb311120dc9783393b595840f54928fe248d9bfde15bcaf9376284e02",
+            "bytes": 538514
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/resource-observations.ndjson",
+          "sha256": "7137eacbb311120dc9783393b595840f54928fe248d9bfde15bcaf9376284e02",
+          "bytes": 538514,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313012",
+            "bytes": "538514",
+            "mtimeNs": "1787874510927003493",
+            "ctimeNs": "1787874510927003493"
+          }
+        },
+        {
+          "memberName": "parents/2/queries",
+          "role": "queries",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/queries.ndjson",
+            "sha256": "3cb0ede0e0c0a985c558f57fc2a6f10b9ede2c026f236d8f9c377a92484198a9",
+            "bytes": 1950950
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/queries.ndjson",
+          "sha256": "3cb0ede0e0c0a985c558f57fc2a6f10b9ede2c026f236d8f9c377a92484198a9",
+          "bytes": 1950950,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313049",
+            "bytes": "1950950",
+            "mtimeNs": "1787874453491720643",
+            "ctimeNs": "1787874453988996113"
+          }
+        },
+        {
+          "memberName": "parents/2/rows",
+          "role": "rows",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/rows.ndjson",
+            "sha256": "d6723b665ed38199892114893df8e2363e6470e30dbb8c26f3628b07eed8f115",
+            "bytes": 161211
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/rows.ndjson",
+          "sha256": "d6723b665ed38199892114893df8e2363e6470e30dbb8c26f3628b07eed8f115",
+          "bytes": 161211,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313050",
+            "bytes": "161211",
+            "mtimeNs": "1787874453975516214",
+            "ctimeNs": "1787874453994263428"
+          }
+        },
+        {
+          "memberName": "parents/2/pieces",
+          "role": "pieces",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/pieces.ndjson",
+            "sha256": "570d7b6d902f6d0059d9e85cb32e40d1ba87ea5445da852f179e10fa735ad6c8",
+            "bytes": 49002
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2/pieces.ndjson",
+          "sha256": "570d7b6d902f6d0059d9e85cb32e40d1ba87ea5445da852f179e10fa735ad6c8",
+          "bytes": 49002,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313051",
+            "bytes": "49002",
+            "mtimeNs": "1787874453975358305",
+            "ctimeNs": "1787874453994848973"
+          }
+        },
+        {
+          "memberName": "parents/2/producer_stdout",
+          "role": "producer_stdout",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/producer-process/runner-stdout.log",
+            "sha256": "c20fe9e5629debe97a964afdfea49f1a0863e1e3d0e28ccf47deca8b04e9c99c",
+            "bytes": 2056
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/producer-process/runner-stdout.log",
+          "sha256": "c20fe9e5629debe97a964afdfea49f1a0863e1e3d0e28ccf47deca8b04e9c99c",
+          "bytes": 2056,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313015",
+            "bytes": "2056",
+            "mtimeNs": "1787874454148724121",
+            "ctimeNs": "1787874454148724121"
+          }
+        },
+        {
+          "memberName": "parents/2/producer_stderr",
+          "role": "producer_stderr",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/producer-process/runner-stderr.log",
+            "sha256": "fe8d799232857c8c188a0d1d58e4720380fdba7e4c75bccaa6e3a136fcf4a7b5",
+            "bytes": 2650
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/producer-process/runner-stderr.log",
+          "sha256": "fe8d799232857c8c188a0d1d58e4720380fdba7e4c75bccaa6e3a136fcf4a7b5",
+          "bytes": 2650,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313016",
+            "bytes": "2650",
+            "mtimeNs": "1787874454233863692",
+            "ctimeNs": "1787874454233863692"
+          }
+        },
+        {
+          "memberName": "parents/2/comparison_stdout",
+          "role": "comparison_stdout",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/comparison-process/runner-stdout.log",
+            "sha256": "74b5ad32a2eacc7d0ec37c4bce386cb0eb4b8c38c6130ab9a19278374c408018",
+            "bytes": 553
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/comparison-process/runner-stdout.log",
+          "sha256": "74b5ad32a2eacc7d0ec37c4bce386cb0eb4b8c38c6130ab9a19278374c408018",
+          "bytes": 553,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313826",
+            "bytes": "553",
+            "mtimeNs": "1787874510361302335",
+            "ctimeNs": "1787874510361302335"
+          }
+        },
+        {
+          "memberName": "parents/2/comparison_stderr",
+          "role": "comparison_stderr",
+          "logicalBinding": {
+            "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/comparison-process/runner-stderr.log",
+            "sha256": "9dc03c9262fa45e1c6db1a83a0f235e2767749cff38f99e00358ecfbe918644c",
+            "bytes": 1442
+          },
+          "physicalPath": ".local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-outer/comparison-process/runner-stderr.log",
+          "sha256": "9dc03c9262fa45e1c6db1a83a0f235e2767749cff38f99e00358ecfbe918644c",
+          "bytes": 1442,
+          "identity": {
+            "device": "16777233",
+            "inode": "188313827",
+            "bytes": "1442",
+            "mtimeNs": "1787874510437651463",
+            "ctimeNs": "1787874510437651463"
+          }
+        }
+      ],
+      "archivedOwner": {
+        "memberName": "owners/07762d5c1b0478e7030e9846b3aab237c1ca6d28581090061ab04b5c5d10fd42",
+        "role": "acceptanceOwner",
+        "logicalBinding": {
+          "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+          "sha256": "07762d5c1b0478e7030e9846b3aab237c1ca6d28581090061ab04b5c5d10fd42",
+          "bytes": 350973
+        },
+        "physicalPath": ".local-data/braid-analysis/f6c-parent-adapter-20260827/readiness-owner.07762d5c.md",
+        "sha256": "07762d5c1b0478e7030e9846b3aab237c1ca6d28581090061ab04b5c5d10fd42",
+        "bytes": 350973,
+        "identity": {
+          "device": "16777233",
+          "inode": "188310825",
+          "bytes": "350973",
+          "mtimeNs": "1787874144736604877",
+          "ctimeNs": "1787874144736604877"
+        }
+      },
+      "historicalSourceMappings": [],
+      "memberBytes": 4067494,
+      "limits": {
+        "inclusiveSeconds": 1800,
+        "maximumAggregateRssBytes": 2147483648,
+        "maximumRssSampleGapMs": 1000,
+        "heartbeatSeconds": 15,
+        "admissionFreeMemoryPercent": 40,
+        "admissionDiskBytes": 68719476736,
+        "stopFreeMemoryBelowPercent": 20,
+        "stopDiskBelowBytes": 17179869184,
+        "hostObservationSeconds": 15,
+        "hostObservationTimeoutSeconds": 2,
+        "maximumScientificFileBytes": 67108864,
+        "maximumOutputFileBytes": 67108864,
+        "maximumCombinedLogBytes": 16777216,
+        "serialWorkers": 1,
+        "eomWorkers": 0
+      }
+    }
+  ],
+  "sourcePins": [
+    {
+      "physicalPath": "scripts/eom/f6c_variable_cell_adapter.py",
+      "sha256": "42f2ff25ec3cedb0e04254cfe1d604946d6593aa360a254e7abe6955783367aa",
+      "bytes": 88210,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348567",
+        "bytes": "88210",
+        "mtimeNs": "1787876752674870379",
+        "ctimeNs": "1787876752674870379"
+      }
+    },
+    {
+      "physicalPath": "tests/test_f6c_variable_cell_adapter.py",
+      "sha256": "e4a8c694d978354793b8c99c1c0eeaa16ef5bb6d8250fa265f0b046d53434383",
+      "bytes": 94665,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348803",
+        "bytes": "94665",
+        "mtimeNs": "1787876752750895073",
+        "ctimeNs": "1787876752750895073"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/f6c_parent_emission_refinement.py",
+      "sha256": "1517575f3df783af36d2bf2b758d19427e8ec85247efec892783716c263b7c27",
+      "bytes": 27692,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348563",
+        "bytes": "27692",
+        "mtimeNs": "1787876752674368133",
+        "ctimeNs": "1787876752674368133"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+      "sha256": "ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec",
+      "bytes": 21854,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348590",
+        "bytes": "21854",
+        "mtimeNs": "1787876752679640383",
+        "ctimeNs": "1787876752679640383"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+      "sha256": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+      "bytes": 41336,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348631",
+        "bytes": "41336",
+        "mtimeNs": "1787876752688781645",
+        "ctimeNs": "1787876752688781645"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/oracle/continuous_reception_acceleration.py",
+      "sha256": "abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8",
+      "bytes": 19379,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348580",
+        "bytes": "19379",
+        "mtimeNs": "1787876752676465242",
+        "ctimeNs": "1787876752676465242"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/oracle/f6c_correlated_residual_enclosure.py",
+      "sha256": "b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1",
+      "bytes": 7830,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348587",
+        "bytes": "7830",
+        "mtimeNs": "1787876752679312594",
+        "ctimeNs": "1787876752679312594"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/oracle/f6c_residual_integral_supremum.py",
+      "sha256": "fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a",
+      "bytes": 20129,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348592",
+        "bytes": "20129",
+        "mtimeNs": "1787876752679806215",
+        "ctimeNs": "1787876752679806215"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/oracle/f6c_gk13_protocol.py",
+      "sha256": "a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb",
+      "bytes": 24388,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348589",
+        "bytes": "24388",
+        "mtimeNs": "1787876752679535717",
+        "ctimeNs": "1787876752679535717"
+      }
+    },
+    {
+      "physicalPath": "scripts/eom/f6c_reception_geometry_restriction.py",
+      "sha256": "e4bc1ff8bd23346f58a934ace429dbf65b11d0b2bb71ebc55dc34036ab9c51e7",
+      "bytes": 17602,
+      "identity": {
+        "device": "16777233",
+        "inode": "188348564",
+        "bytes": "17602",
+        "mtimeNs": "1787876752674450882",
+        "ctimeNs": "1787876752674450882"
+      }
+    }
+  ],
+  "observedEligiblePhysicalCount": 28,
+  "observedEligibleBytes": 8083912,
+  "allScientificAuthority": false,
+  "format": {
+    "magic": "F6C-EVIDENCE-PACKAGE-v1\n",
+    "footer": "\nF6C-EVIDENCE-PACKAGE-END-v1\n",
+    "indexSchema": "braid-program/f6c-lossless-evidence-package.v1",
+    "encoding": "ASCII canonical JSON: sorted object keys, compact comma/colon separators, no floating values, one LF terminator",
+    "indexFields": [
+      "schema",
+      "entries",
+      "payloadBytes"
+    ],
+    "entryFields": [
+      "name",
+      "role",
+      "parentIndex",
+      "original",
+      "offset"
+    ],
+    "originalFields": [
+      "path",
+      "sha256",
+      "bytes"
+    ],
+    "payload": "exact source bytes concatenated in lexicographic member-name order",
+    "offsetBase": "first byte after index LF",
+    "maxIndexBytes": 1048576,
+    "maxEntries": 4096,
+    "maxPackageBytes": 67108864,
+    "maxMemberBytes": 67108864,
+    "duplicates": "reject duplicate member names and duplicate original path/hash/bytes tuples; same original path with different hashes is permitted only for explicitly mapped historical owners",
+    "currentOwnerAndExecutableRuntimeMembersForbidden": true
+  },
+  "mandatoryRejections": [
+    "wrong magic/schema/footer; missing footer; trailing bytes; early EOF anywhere",
+    "oversized index/package/member; offset or sum overflow; noninteger or negative offsets; nonpositive member bytes; bool used as integer",
+    "unknown/missing/duplicate JSON fields, noncanonical JSON or non-ASCII index, NaN or infinity",
+    "duplicate/unsorted member names; duplicate logical binding tuples; gaps, overlap, or unindexed payload bytes",
+    "absolute member name, empty component, dot or dot-dot component, slash alias, backslash, NUL or any non-allowlisted member name",
+    "package self-declared binding not matched to externally frozen expected inventory",
+    "one-byte member edit even when package index checksum is updated; wrong original path/size/hash/role/parent",
+    "historical owner substituted for current approval; old owner bytes relabeled with current owner identity",
+    "rejected parent-two-v1 or foreign evidence added, omitted accepted role, source executable/runtime payload admission",
+    "symlink/hardlink/renamed/replaced source or package identity; source changed before final recheck",
+    "source physical union exceeds 512 files or 1073741824 bytes; aggregate output/log/time/RSS limits breached",
+    "partial write, interrupted close, false durability or acknowledgement, output collision, failure deleting/replacing foreign evidence"
+  ],
+  "unchangedLimits": {
+    "adapterPhysicalFiles": 512,
+    "adapterPhysicalBytes": 1073741824,
+    "inclusiveSeconds": 1800,
+    "maximumAggregateRssBytes": 2147483648,
+    "maximumScientificFileBytes": 67108864,
+    "maximumOutputFileBytes": 67108864,
+    "maximumCombinedLogBytes": 16777216,
+    "serialWorkers": 1
+  }
+}

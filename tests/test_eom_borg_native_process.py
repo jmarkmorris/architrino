@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import struct
 import subprocess
 import tempfile
 import unittest
@@ -97,6 +98,131 @@ class NativeBorgProcessTests(unittest.TestCase):
         )
         self.assertEqual(completed.stdout, f"{PROTOCOL_MAGIC}\n")
         self.assertEqual(completed.stderr, "")
+
+    def test_request_inspection_preserves_tokens_and_actual_endpoint_bits(self) -> None:
+        # end == start is invalid for evolution. Parser inspection must not
+        # silently claim that the full EOM request validator has accepted it.
+        coefficients = (
+            ("1.12500", "0.25", "0", "0"),
+            ("-2.5", "0.5", "0", "0"),
+            ("0.0625", "-0.125", "0", "0"),
+        )
+        position_errors = ("1e-10", "2e-10", "3e-10")
+        velocity_errors = ("4e-9", "5e-9", "6e-9")
+        segment = "\t".join((
+            "SEG", "-1", "0",
+            *(token for axis in coefficients for token in axis),
+            *position_errors, *velocity_errors,
+        ))
+        protocol = "\n".join((
+            PROTOCOL_MAGIC, run_record("inspect-affine", "0", "0"),
+            "PATH\tp\t-1.000\t7\t0\t1", segment, "END", "",
+        ))
+        completed = subprocess.run(
+            [str(self.binary), "borg-shadow-v0", "--inspect-request-only"],
+            input=protocol, check=True, cwd=ROOT, capture_output=True, text=True,
+        )
+        response = json.loads(completed.stdout)
+        self.assertEqual(response["schema"], "eom_borg_request_inspection/v1")
+        self.assertEqual(response["status"], "parser-inspection-only")
+        self.assertTrue(response["parserInspected"])
+        self.assertEqual((response["runId"], response["fieldSpeed"], response["coupling"]),
+                         ("inspect-affine", "1", "1"))
+        for key in ("requestValidated", "rootsEvaluated", "eomExecuted",
+                    "executionAuthorized", "scienceApproved"):
+            self.assertFalse(response[key])
+        self.assertEqual(response["runTokens"], protocol.splitlines()[1].split("\t"))
+        path, = response["paths"]
+        self.assertEqual(path["historyId"], "borg-eom-shadow/p")
+        self.assertRegex(path["historyFingerprint"], r"^fnv1a64-chain-v1:[0-9a-f]{16}$")
+        self.assertEqual((path["charge"], path["stateFlags"]), ("-1.000", 7))
+        piece, = path["segments"]
+        self.assertEqual(piece["coefficients"], [list(axis) for axis in coefficients])
+        self.assertEqual(piece["positionErrors"], list(position_errors))
+        self.assertEqual(piece["velocityErrors"], list(velocity_errors))
+        self.assertEqual((piece["startTime"], piece["endTime"]), ("-1", "0"))
+        for name, exact in (("position", (1.375, -2.0, -0.0625)),
+                            ("velocity", (0.25, 0.5, -0.125))):
+            for box, value in zip(path["endpointState"][name], exact):
+                self.assertLessEqual(box["lower"], value)
+                self.assertGreaterEqual(box["upper"], value)
+                for side in ("lower", "upper"):
+                    self.assertEqual(struct.pack(">d", box[side]).hex(), box[f"{side}Bits"])
+        self.assertEqual(completed.stderr, "")
+        self.assertNotIn("publishedExtensions", response)
+
+    def test_request_inspection_rejects_wrong_modes_and_trailing_input(self) -> None:
+        protocol = "\n".join((
+            PROTOCOL_MAGIC, run_record("inspect-controls", "0", "0.1"),
+            "PATH\tp\t1\t0\t0\t1",
+            "\t".join(("SEG", "-1", "0", *(["0"] * 18))), "END", "",
+        ))
+        display = protocol.replace("\tcertified\t1\tnone\t", "\tdisplay\t1\tnone\t")
+        for arguments, supplied in (
+            (("borg-shadow-server-v0", "--inspect-request-only"), protocol),
+            (("print-protocol-version", "--inspect-request-only"), ""),
+            (("borg-shadow-v0", "--inspect-request-only"), display),
+            (("borg-shadow-v0", "--inspect-request-only"), protocol + "EXTRA\n"),
+            (("borg-shadow-v0", "--inspect-request-only"), protocol.replace("SEG\t-1", "BAD\t-1")),
+        ):
+            with self.subTest(arguments=arguments, supplied=supplied[-12:]):
+                completed = subprocess.run(
+                    [str(self.binary), *arguments], input=supplied,
+                    cwd=ROOT, capture_output=True, text=True,
+                )
+                self.assertNotEqual(completed.returncode, 0)
+                self.assertEqual(completed.stdout, "")
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "must-not-exist.json"
+            completed = subprocess.run(
+                [str(self.binary), "borg-shadow-v0", "--inspect-request-only",
+                 f"--shadow-affine-diagnostic={target}"],
+                input=protocol, cwd=ROOT, capture_output=True, text=True,
+            )
+            self.assertNotEqual(completed.returncode, 0)
+            self.assertFalse(target.exists())
+
+    def test_accepted_step_progress_preserves_result_and_reports_local_errors(self) -> None:
+        protocol = "\n".join((
+            PROTOCOL_MAGIC, run_record("progress-static", "0", "0.1"),
+            "PATH\tp\t1\t0\t0\t1",
+            "\t".join(("SEG", "-1", "0", *(["0"] * 18))), "END", "",
+        ))
+        results = []
+        for options in ([], ["--accepted-step-progress"]):
+            completed = subprocess.run(
+                [str(self.binary), "borg-shadow-v0", *options],
+                input=protocol, check=True, cwd=ROOT, capture_output=True, text=True,
+            )
+            results.append((json.loads(completed.stdout), completed.stderr))
+        plain, progress = results
+        self.assertEqual(plain[1], "")
+        events = [json.loads(line) for line in progress[1].splitlines()]
+        self.assertEqual(events, [{
+            "schema": "eom_accepted_step_progress/v1", "event": "accepted-step",
+            "runId": "progress-static", "acceptedStepCount": 1, "acceptedTime": "0.1",
+        }])
+        for field in ("status", "acceptedEndTime", "acceptedStepCount",
+                      "rejectedStepCount", "stepFailures", "publishedExtensions",
+                      "finalAccelerationSnapshot"):
+            self.assertEqual(plain[0][field], progress[0][field])
+        self.assertEqual((progress[0]["runId"], progress[0]["fieldSpeed"], progress[0]["coupling"]),
+                         ("progress-static", "1", "1"))
+        final = progress[0]["finalAccelerationSnapshot"]
+        self.assertEqual((final["status"], final["receptionTime"], final["rootRowCount"]),
+                         ("certified_complete", "0.1", 1))
+        receiver, = final["receiverTotals"]
+        self.assertEqual(receiver["receiverPathId"], "p")
+        self.assertEqual(receiver["acceleration"], [{"lower": "0", "upper": "0"}] * 3)
+        step, = progress[0]["stepFailures"]
+        error, = step["localErrors"]
+        self.assertEqual(error["pathId"], "p")
+        for key in ("positionError", "velocityError"):
+            self.assertGreaterEqual(error[key], 0)
+            self.assertLessEqual(error[key], 1e-8)
+        for key in ("positionErrors", "velocityErrors"):
+            self.assertEqual(len(error[key]), 3)
+            self.assertTrue(all(0 <= value <= 1e-8 for value in error[key]))
 
     def test_native_process_extends_continuous_history_and_returns_only_published_segments(self) -> None:
         protocol = "\n".join(

@@ -30,6 +30,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [x] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [x] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
+- [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
