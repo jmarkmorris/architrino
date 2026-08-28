@@ -186,4 +186,3 @@ test('real active-target diagnostic EPIPE cancels owned group releases lock and 
  const rejected=JSON.parse(readFileSync(path.join(started.ops,'pilot-rejection.json')));assert.equal(rejected.accepted,false);assert.match(rejected.diagnosticFailure,/EPIPE/);
  assert.equal(existsSync(path.join(started.ops,'pilot-admission.json')),false);
 });
-

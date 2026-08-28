@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-26T05:08:01.264Z",
-  "total_links": 6685,
+  "generated_at": "2026-08-28T00:09:53.210Z",
+  "total_links": 6712,
   "links": [
     {
       "sourceChapterId": "archie__about_architrino",
@@ -27606,6 +27606,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../../equation-mapping.html#corpus-equation-209d4a0656bd323e",
+      "kind": "external",
+      "status": "web_redirect",
+      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-209d4a0656bd323e"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../equation-mapping.html#corpus-equation-20e201007dbe8e77",
       "kind": "external",
       "status": "web_redirect",
@@ -28530,14 +28538,6 @@
       "kind": "external",
       "status": "web_redirect",
       "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-44512e61db12779e-2"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177",
-      "kind": "external",
-      "status": "web_redirect",
-      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-4514a1f4aead3177"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -30238,14 +30238,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6",
-      "kind": "external",
-      "status": "web_redirect",
-      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-8b30dc678926f3e6"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../equation-mapping.html#corpus-equation-8b3fff18c6143341",
       "kind": "external",
       "status": "web_redirect",
@@ -31250,14 +31242,6 @@
       "kind": "external",
       "status": "web_redirect",
       "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-b3fdcdf5f335bca0"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../../equation-mapping.html#corpus-equation-b44957fa1f24bad8",
-      "kind": "external",
-      "status": "web_redirect",
-      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-b44957fa1f24bad8"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -32606,14 +32590,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../../equation-mapping.html#corpus-equation-e897dc3f23a715e5",
-      "kind": "external",
-      "status": "web_redirect",
-      "targetBundlePath": "https://architrino.com/equation-mapping.html#corpus-equation-e897dc3f23a715e5"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../../equation-mapping.html#corpus-equation-e9a1883e8f5ee1cb",
       "kind": "external",
       "status": "web_redirect",
@@ -33502,10 +33478,82 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -33626,6 +33674,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#trajectory-work-reconstruction-and-total-energy-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -34326,6 +34390,30 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/one-nature-many-theories.md#logarithmic-chutes-and-ladders",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/philosophy-history.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -34654,6 +34742,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -34906,6 +35002,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -35262,6 +35366,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-inheritance-discipline.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-mapping.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -35386,6 +35498,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -35606,6 +35734,38 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/black-holes.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/black-holes.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/black-holes.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/black-holes.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -35698,6 +35858,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -35790,6 +35966,38 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/spacetime/observer-framework.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -35826,6 +36034,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -36134,6 +36350,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://arxiv.org/abs/1911.12333",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://arxiv.org/abs/2505.21476",
       "kind": "external",
       "status": "external",
@@ -36159,6 +36383,22 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://arxiv.org/abs/hep-th/0110114",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://arxiv.org/abs/hep-th/0603001",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "https://arxiv.org/abs/hep-th/9802150",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
@@ -36286,14 +36526,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "https://doi.org/10.1103/PhysRevD.11.2856",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://doi.org/10.1103/PhysRevLett.130.071801",
       "kind": "external",
       "status": "external",
@@ -36343,14 +36575,6 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://muon-g-2.fnal.gov/publications.html",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "https://pdg.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""
@@ -36423,14 +36647,6 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "https://www.math.uni-bonn.de/people/ursula/weyl.pdf",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "https://www.nobelprize.org/uploads/2018/06/wilson-lecture-2.pdf",
       "kind": "external",
       "status": "external",
       "targetBundlePath": ""

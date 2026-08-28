@@ -230,4 +230,3 @@ async function main(began,diagnostics){const deadlineNanoseconds=String(process.
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   const began=performance.now(),diagnostics=diagnosticGuard();main(began,diagnostics).catch(error=>failedCLICompletion(error,{began}));
 }
-

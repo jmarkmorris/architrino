@@ -94,7 +94,7 @@ function validateSourceBindings(bindings, { verifyFiles, cwd }) {
   return ids;
 }
 
-function validateLane(lane, sourceIds, outputRoot, seenLaneIds, seenOutputs) {
+function validateLane(lane, frozenBindingIds, outputRoot, seenLaneIds, seenOutputs) {
   if (!/^[a-z0-9][a-z0-9-]*$/u.test(lane.laneId ?? "")) {
     fail(`invalid lane id ${lane.laneId}.`);
   }
@@ -104,7 +104,7 @@ function validateLane(lane, sourceIds, outputRoot, seenLaneIds, seenOutputs) {
     fail(`${lane.laneId} has an invalid status.`);
   }
   if (!Array.isArray(lane.sourceBindingIds) ||
-      lane.sourceBindingIds.some((id) => !sourceIds.has(id))) {
+      lane.sourceBindingIds.some((id) => !frozenBindingIds.has(id))) {
     fail(`${lane.laneId} references an unknown frozen source.`);
   }
   if (!Array.isArray(lane.candidates) || lane.candidates.length === 0) {
@@ -200,7 +200,7 @@ export function validateParallelBraidAgentSearchManifest(manifest, {
   if (outputRoot !== expectedRoot || !isSafeRelativePath(outputRoot)) {
     fail("output root must be the campaign-isolated local-data path.");
   }
-  const sourceIds = validateSourceBindings(
+  const frozenBindingIds = validateSourceBindings(
     manifest.sourceBindings,
     { verifyFiles, cwd },
   );
@@ -211,7 +211,7 @@ export function validateParallelBraidAgentSearchManifest(manifest, {
   const seenOutputs = new Set();
   manifest.lanes.forEach((lane) => validateLane(
     lane,
-    sourceIds,
+    frozenBindingIds,
     outputRoot,
     seenLaneIds,
     seenOutputs,

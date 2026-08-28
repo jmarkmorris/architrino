@@ -51,17 +51,17 @@
     {
       "id": "configuration-chart",
       "path": "reference/priorities/braid-program/configuration-chart.md",
-      "sha256": "0a02c2a885aef8fde99d252db6caefe90004588bea80b5d30c4adfe61ee5d3f4"
+      "sha256": "4f988af4d60a50c2aa6ed6e7e371d961faa353f4bcc96ca1140572f9a269be22"
     },
     {
       "id": "readiness-owner",
       "path": "reference/priorities/braid-program/prescribed-worldline-readiness-matrix.md",
-      "sha256": "af776518907dfa70ef7fad111a284c292f77f4a1b30b588432830114ba215296"
+      "sha256": "fa1d82f02a8a5136737e4391808d8773ac49c7fa1f5415a59d94baef6ae5c41e"
     },
     {
       "id": "f-series-owner",
-      "path": "reference/priorities/mapping-electromagnetism/inferring-braid-requirements.md",
-      "sha256": "365f10db840b30f5d36af3659c7e3c23962053ab667e3877933b9c69ac75d0a2"
+      "path": "reference/priorities/mapping-equations/inferring-braid-requirements.md",
+      "sha256": "448a9023c3fb7e8cabfd87f238637928f419cb481ee1da20c32824b0358bd163"
     },
     {
       "id": "a1",

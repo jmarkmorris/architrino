@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 608,
-      "edges": 1375,
-      "scenes": 392,
+      "nodes": 610,
+      "edges": 1379,
+      "scenes": 393,
       "markdownIndexes": 0,
-      "markdownDocs": 199,
+      "markdownDocs": 200,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2501,6 +2501,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "philosophy_history__information_and_the_wake",
+      "name": "Information and the Wake",
+      "path": "content/scenes/philosophy_history/information_and_the_wake.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3152,6 +3158,12 @@
       "id": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "name": "Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework",
       "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "name": "One Nature, Many Theories",
+      "path": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6136,6 +6148,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/information_and_the_wake.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__information_and_the_wake",
+      "name": "Information and the Wake",
+      "path": "content/scenes/philosophy_history/information_and_the_wake.json",
+      "searchTarget": "content/scenes/philosophy_history/information_and_the_wake.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/information_computation.json",
       "nodeType": "scene",
       "id": "information_computation",
@@ -8203,6 +8224,15 @@
       "name": "Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework",
       "path": "content/markdown/aaa/philosophy-history/major-thinkers.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/major-thinkers.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "name": "One Nature, Many Theories",
+      "path": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
       "implicit": false
     },
     {
@@ -12969,14 +12999,21 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/crisis_in_physics.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12990,14 +13027,21 @@
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/information_and_the_wake.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -13011,7 +13055,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -13032,14 +13076,14 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -13053,7 +13097,7 @@
       "to": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[14]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
@@ -14673,11 +14717,25 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/information_and_the_wake.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/information_and_the_wake.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/information_computation.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/information-computation.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/information_computation.json",
       "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "field": "one_nature_many_theories.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/major_thinkers.json",

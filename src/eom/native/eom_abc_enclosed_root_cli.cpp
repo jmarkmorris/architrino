@@ -113,7 +113,6 @@ std::string sha256(std::string_view bytes) {
   for (const auto word : h) out << std::setw(8) << word;
   return out.str();
 }
-
 std::string quote(std::string_view text) {
   std::ostringstream out;
   out << '"';
@@ -847,4 +846,3 @@ int main(int argc, char** argv) {
    return run(options(argc, argv));
  } catch (const std::exception& error) { std::cerr << error.what() << '\n'; return 2; }
 }
-

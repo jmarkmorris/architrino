@@ -1,10 +1,10 @@
 # Parallel A/B/C H1/H2 Census
 
-Date: 2026-08-26  
-Status: Accepted source-frozen prescribed-history census  
-Claim grade: `H1 P[D]` for all nineteen rows; `H2 P[D]` except `A3.1` and `A3.2`, which are `H2 P[D/M]` because an independent dense sample is completed by a continuous Lipschitz-and-roundoff enclosure  
-Search manifest: `campaigns/parallel-agent-braid-search.v1.json`  
-Manifest canonical-object SHA-256: `ec61a199dc772b9a37d6090120280b3e9a9e2bdfb05c742dd4c3180acba05b8d`  
+Date: 2026-08-26
+Status: Accepted source-frozen prescribed-history census
+Claim grade: `H1 P[D]` for all nineteen rows; `H2 P[D]` except `A3.1` and `A3.2`, which are `H2 P[D/M]` because an independent dense sample is completed by a continuous Lipschitz-and-roundoff enclosure
+Search manifest: `campaigns/parallel-agent-braid-search.v1.json`
+Manifest canonical-object SHA-256: `ec61a199dc772b9a37d6090120280b3e9a9e2bdfb05c742dd4c3180acba05b8d`
 Manifest byte SHA-256: `739eb4706ae1be9d427c1a643419c7e5d5455fe85a26ad5d6e490bb114d411ee`
 
 ## Scope And Method

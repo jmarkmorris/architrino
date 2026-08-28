@@ -1959,6 +1959,11 @@
       "id": "topo",
       "name": "Topo",
       "path": "content/scenes/archie/topo.json"
+    },
+    {
+      "id": "philosophy_history__information_and_the_wake",
+      "name": "Information and the Wake",
+      "path": "content/scenes/philosophy_history/information_and_the_wake.json"
     }
   ]
 }
