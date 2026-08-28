@@ -203,6 +203,8 @@ A full regeneration checkpoint means running the write commands above, staging t
 
 The iOS textbook package is on-demand and excluded from routine PR freshness requirements and full web-content regeneration checkpoints. A saved package may lag the current corpus without blocking a PR. Preserve the app and export software, and follow the [iOS packaging procedure](../../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging) only when the operator requests an iOS build or iOS package work is in scope. Do not refresh it merely to accompany a corpus change. App Store release remains deferred until theory closure and an explicit operator release decision.
 
+The children's-book pilot exports are also on-demand and excluded from routine PR output and full web-content regeneration. Preserve the tracked sources, manifest, QA and frozen appearance baseline; do not stage or publish the ignored `.local-data/childrens-books/` exports. When pilot manuscripts, source inventory, or export software change, use the focused checks in [the pilot export procedure](../../learning-office/childrens-books/production/README.md); render only when explicitly requested or needed to verify exporter work. The manifest's `on_demand` statuses do not depend on local export existence.
+
 Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 
 Regenerate both layers before the final check pass whenever a PR touches any source that can affect textbook PDF reading copies:

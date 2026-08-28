@@ -89,6 +89,24 @@ test("routine notation validation ignores a saved iOS snapshot but rejects autho
   assert.doesNotMatch(authoredDrift.stderr, /GeneratedTextbookPackage/);
 });
 
+test("children's-book pilot exports stay local and optional during routine PRs", () => {
+  const procedure = read("reference/op/git/codex-pr-branch.md");
+  const aggregate = read("scripts/check-content-integrity.mjs");
+  const ignore = read(".gitignore");
+  const manifest = JSON.parse(read("reference/learning-office/childrens-books/production/generation-manifest.json"));
+  assert.match(procedure, /children's-book pilot exports are also on-demand and excluded from routine PR output/);
+  assert.match(ignore, /^\/\.local-data\/childrens-books\/$/m);
+  assert.doesNotMatch(aggregate, /render_book_pages|build_review_bundle|pilot_appearance/);
+  for (const entry of manifest.entries) {
+    for (const key of ["page_landscape_png", "derivative_4x5_png", "derivative_9x16_png"]) {
+      assert.ok(entry.paths[key].startsWith(".local-data/childrens-books/exports/"));
+    }
+    for (const key of ["page_layout", "derivative_4x5", "derivative_9x16"]) {
+      assert.equal(entry.status[key], "on_demand");
+    }
+  }
+});
+
 test("PR procedure makes unattended execution measurable and requires verification for advancement", () => {
   const procedure = read("reference/op/git/codex-pr-branch.md");
   const verification = read(

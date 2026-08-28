@@ -31,6 +31,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [x] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
 - [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
+- [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
@@ -42,6 +43,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Clarity
 
+- [ ] Use [math-preview](../../.agents/skills/math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
 - [ ] When a decision, action, or headline exists, state it first; use the following nonlinear exploration as context rather than burying the lead. Keep free-association brainstorming welcome when no immediate decision is needed.
 - [ ] Treat an unresolved discussion-scoped priority as requiring an explicit accept, reject, or defer response; do not infer implementation authority from silence.
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.

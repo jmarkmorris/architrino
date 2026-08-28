@@ -371,7 +371,7 @@ Do not use qualification to evade commitment. If the text is making a real claim
 
 ### Source and AI-Assistance Disclosure
 
-Follow the [selective-reference policy](about-architrino.md#sources-references-and-attribution) and [AI-assisted research and review policy](about-architrino.md#ai-assisted-research-and-review) in About Architrino for source selection, durable identification, checking, and disclosure.
+About Architrino is the policy authority for references and sources. Follow its [selective-reference policy](about-architrino.md#sources-references-and-attribution) for inclusion, omission, durable identification, and presentation, and its [AI-assisted research and review policy](about-architrino.md#ai-assisted-research-and-review) for source checking and disclosure. Apply those policies rather than maintaining a separate citation requirement in a chapter template or review checklist.
 
 Factual, legal, and scientific assertions require support appropriate to their kind: an explicit derivation, an independently checkable source, or a declared validation record. Model output is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted wording, analysis, or implementation does not acquire authority from generation alone.
 

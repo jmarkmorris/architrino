@@ -6,6 +6,8 @@ All reusable prompts in this directory should begin with `Closure goal:` and sho
 
 The compact cross-agent startup map is generated at [../../../op/agent-startup-orientation.generated.md](../../../op/agent-startup-orientation.generated.md). Use the generated map for quick routing, then read the live prompt file selected for the task.
 
+All prompts that select, review, or promote sources apply the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Prompts may specify acquisition, verification, and reporting procedures, but must not establish a competing citation policy.
+
 ## Current Prompts
 
 | Prompt | Use |
@@ -14,6 +16,7 @@ The compact cross-agent startup map is generated at [../../../op/agent-startup-o
 | [start-research.md](start-research.md) | Guide a Principal Investigator in selecting and launching only the necessary role-based Specialists and integrating their reports. |
 | [convergence-campaign.md](convergence-campaign.md) | Shared AAA corpus convergence protocol, including audit/report, edit-batch, self-running exploration, and team-agent variants. |
 | [corpus-reviewer.md](corpus-reviewer.md) | Review every file in an Op-provided directory in scene/textbook reading order, one file per turn. |
+| [selective-reference-pass.md](selective-reference-pass.md) | Search the corpus for qualifying reference opportunities for up to 48 elapsed hours; verify and propose source notes without editing the corpus. |
 | [integrator-reviewer.md](integrator-reviewer.md) | Integrate supplied review comments, then perform a full document closure review and improve the target as needed. |
 | [review-comment-assessor.md](review-comment-assessor.md) | Assess pasted review comments against current repo canon without editing files. |
 | [review-closure-verifier.md](review-closure-verifier.md) | Verify whether another agent's edits resolved a specific review, without editing files. |

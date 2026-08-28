@@ -10,6 +10,8 @@ Architrino should remain public, source-grounded, and reviewable.
 
 The project should show the strongest supported claim, the source basis for that claim, and the open burden when the claim is not closed. A reader should be able to distinguish a published explanation, an app diagnostic, a comparison, a priority-only development idea, a speculative proposal, and an unsupported request.
 
+[About Architrino](about-architrino.md#sources-references-and-attribution) defines which references serve that purpose and how they are presented; its [research and review disclosure](about-architrino.md#ai-assisted-research-and-review) explains what source checking does and does not establish.
+
 ## Claim Discipline
 
 Generated artifacts must not create authority.

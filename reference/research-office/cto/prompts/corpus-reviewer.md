@@ -98,7 +98,7 @@ Use the quality bar of the Architrino Geometry & Dynamics Working Group:
 - Use Grothendieck for moduli, functorial structure, and structural maps.
 - Use Einstein for physical coherence and observer-level interpretation.
 
-Apply the [selective-reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution). Flag missing or unsuitable source support when it matters to a claim under review; do not request citations merely for completeness or expand into a literature search unless Op asks for source work.
+Apply the [selective-reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) in About Architrino. Flag missing or unsuitable source support when it matters to a claim under review; do not request citations merely for completeness or expand into a literature search unless Op asks for source work.
 
 Do not recommend new gates, ledgers, or validators unless they protect a concrete tested constraint or current proof route. Keep claim levels precise. Do not imply proof closure, canon status, or validation success unless the file and repo evidence directly support it.
 

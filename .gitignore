@@ -7,6 +7,9 @@ tmp/
 .codex/
 node_modules/
 
+# Children's-book pilot: reproducible local exports and retained migration copies
+/.local-data/childrens-books/
+
 # Local analytical-campaign SQLite runtime data
 /.local-data/braid-analysis/
 

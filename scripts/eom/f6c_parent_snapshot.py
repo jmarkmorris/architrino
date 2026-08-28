@@ -494,13 +494,12 @@ def materialize_snapshot(manifest_binding, read_binding, *, expected_base,
         _keys(block, ('schema', 'parents'))
         _require(block['schema'] == BLOCK_SCHEMA and type(block['parents']) is list
                  and 0 < len(block['parents']) <= 160, 'override block schema')
-        by_index, prior = {}, -1
+        by_index = {}
         for parent in block['parents']:
             budget.live()
             index = _parent(parent)
-            _require(index > prior, 'strict block parent order')
+            _require(index not in by_index, 'duplicate block parent index')
             by_index[index] = parent
-            prior = index
         for index in selected:
             _require(index in by_index, 'selected whole parent missing')
             replacement = by_index[index]

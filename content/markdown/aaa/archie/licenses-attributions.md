@@ -3,6 +3,7 @@
 This page is the public receipt drawer for third-party material and project-owned media. It tells readers where assets, libraries, data, and generated or curated media came from, and which license or attribution rule travels with them.
 
 - For plain-language use boundaries, see [Legal Terms](legal-terms.md).
+- For editorial source selection, reference presentation, and source-checking disclosures, see [About Architrino](about-architrino.md#sources-references-and-attribution). This page retains the item-specific license and attribution records; selective citation does not waive their requirements.
 
 ## Source Use and Fair-Use Boundaries
 

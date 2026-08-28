@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-08-28T03:55:21.008243+00:00",
+  "schema_version": 2,
+  "generated_at": "2026-08-28T04:03:07.994875+00:00",
   "root": "reference/learning-office/childrens-books",
   "total_source_images": 111,
   "generation_order": [
@@ -145,16 +145,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -179,16 +179,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -213,16 +213,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -247,16 +247,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -281,16 +281,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -315,16 +315,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -349,16 +349,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -383,16 +383,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -417,16 +417,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -451,16 +451,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/here-there-back/here-there-back-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/here-there-back/here-there-back-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/here-there-back/landscape/here-there-back-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/4x5/here-there-back-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/here-there-back/9x16/here-there-back-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/here-there-back/landscape/here-there-back-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/here-there-back/4x5/here-there-back-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/here-there-back/9x16/here-there-back-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -485,16 +485,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -519,16 +519,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -553,16 +553,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -587,16 +587,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -621,16 +621,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -655,16 +655,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -689,16 +689,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -723,16 +723,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -757,16 +757,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -791,16 +791,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -825,16 +825,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -859,16 +859,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/roll-turn-again/roll-turn-again-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/roll-turn-again/roll-turn-again-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/roll-turn-again/landscape/roll-turn-again-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/4x5/roll-turn-again-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/roll-turn-again/9x16/roll-turn-again-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/roll-turn-again/landscape/roll-turn-again-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/roll-turn-again/4x5/roll-turn-again-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/roll-turn-again/9x16/roll-turn-again-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -893,16 +893,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -927,16 +927,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -961,16 +961,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -995,16 +995,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1029,16 +1029,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1063,16 +1063,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1097,16 +1097,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1131,16 +1131,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1165,16 +1165,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1199,16 +1199,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1233,16 +1233,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1267,16 +1267,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-11.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-11.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-11.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-11.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-11.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-11.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-11.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-11.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-11.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1301,16 +1301,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-12.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-12.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-spread-12.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-spread-12.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-spread-12.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-spread-12.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-spread-12.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-spread-12.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-spread-12.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1335,16 +1335,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/nature-remembers-motion/nature-remembers-motion-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/nature-remembers-motion/nature-remembers-motion-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/nature-remembers-motion/landscape/nature-remembers-motion-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/4x5/nature-remembers-motion-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/nature-remembers-motion/9x16/nature-remembers-motion-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/nature-remembers-motion/landscape/nature-remembers-motion-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/nature-remembers-motion/4x5/nature-remembers-motion-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/nature-remembers-motion/9x16/nature-remembers-motion-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1369,16 +1369,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1403,16 +1403,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1437,16 +1437,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1471,16 +1471,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1505,16 +1505,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1539,16 +1539,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1573,16 +1573,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1607,16 +1607,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1641,16 +1641,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1675,16 +1675,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1709,16 +1709,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1743,16 +1743,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-11.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-11.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-11.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-11.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-11.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-11.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-11.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-11.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-11.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1777,16 +1777,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-12.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-12.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-spread-12.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-12.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-12.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-12.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-spread-12.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-spread-12.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-spread-12.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1811,16 +1811,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/again-makes-a-pattern/again-makes-a-pattern-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/again-makes-a-pattern/landscape/again-makes-a-pattern-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/4x5/again-makes-a-pattern-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/again-makes-a-pattern/9x16/again-makes-a-pattern-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/again-makes-a-pattern/landscape/again-makes-a-pattern-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/again-makes-a-pattern/4x5/again-makes-a-pattern-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/again-makes-a-pattern/9x16/again-makes-a-pattern-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1845,16 +1845,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1879,16 +1879,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1913,16 +1913,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1947,16 +1947,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -1981,16 +1981,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2015,16 +2015,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2049,16 +2049,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2083,16 +2083,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2117,16 +2117,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2151,16 +2151,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2185,16 +2185,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2219,16 +2219,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-11.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-11.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-11.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-11.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-11.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-11.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-11.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-11.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-11.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2253,16 +2253,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-12.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-12.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-spread-12.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-spread-12.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-spread-12.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-spread-12.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-spread-12.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-spread-12.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-spread-12.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2287,16 +2287,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/what-changed/what-changed-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/what-changed/landscape/what-changed-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/4x5/what-changed-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/what-changed/9x16/what-changed-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/what-changed/landscape/what-changed-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/what-changed/4x5/what-changed-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/what-changed/9x16/what-changed-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2321,16 +2321,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2355,16 +2355,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2389,16 +2389,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2423,16 +2423,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2457,16 +2457,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2491,16 +2491,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2525,16 +2525,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2559,16 +2559,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2593,16 +2593,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2627,16 +2627,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2661,16 +2661,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2695,16 +2695,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-11.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-11.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-11.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-11.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-11.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-11.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-11.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-11.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-11.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2729,16 +2729,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-12.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-12.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-spread-12.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-spread-12.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-spread-12.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-spread-12.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-spread-12.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-spread-12.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-spread-12.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2763,16 +2763,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2797,16 +2797,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-message-that-traveled/the-message-that-traveled-backmatter-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-backmatter-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-message-that-traveled/the-message-that-traveled-backmatter-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-message-that-traveled/landscape/the-message-that-traveled-backmatter-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/4x5/the-message-that-traveled-backmatter-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-message-that-traveled/9x16/the-message-that-traveled-backmatter-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-message-that-traveled/landscape/the-message-that-traveled-backmatter-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-message-that-traveled/4x5/the-message-that-traveled-backmatter-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-message-that-traveled/9x16/the-message-that-traveled-backmatter-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2831,16 +2831,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2865,16 +2865,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2899,16 +2899,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2933,16 +2933,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -2967,16 +2967,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3001,16 +3001,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3035,16 +3035,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3069,16 +3069,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3103,16 +3103,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3137,16 +3137,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3171,16 +3171,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3205,16 +3205,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-11.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-11.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-11.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-11.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-11.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-11.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-11.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-11.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-11.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3239,16 +3239,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-12.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-12.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-spread-12.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-spread-12.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-spread-12.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-spread-12.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-spread-12.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-spread-12.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-spread-12.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3273,16 +3273,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3307,16 +3307,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-backmatter-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-backmatter-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/patterns-that-hold/patterns-that-hold-backmatter-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/patterns-that-hold/landscape/patterns-that-hold-backmatter-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/4x5/patterns-that-hold-backmatter-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/patterns-that-hold/9x16/patterns-that-hold-backmatter-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/patterns-that-hold/landscape/patterns-that-hold-backmatter-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/patterns-that-hold/4x5/patterns-that-hold-backmatter-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/patterns-that-hold/9x16/patterns-that-hold-backmatter-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "approved",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3341,16 +3341,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-cover.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-cover.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-cover.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-cover.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-cover.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-cover.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-cover.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-cover.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-cover.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3375,16 +3375,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3409,16 +3409,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3443,16 +3443,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-03.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-03.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-03.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-03.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-03.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-03.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-03.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-03.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-03.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3477,16 +3477,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-04.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-04.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-04.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-04.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-04.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-04.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-04.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-04.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-04.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3511,16 +3511,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-05.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-05.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-05.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-05.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-05.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-05.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-05.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-05.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-05.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3545,16 +3545,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-06.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-06.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-06.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-06.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-06.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-06.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-06.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-06.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-06.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3579,16 +3579,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-07.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-07.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-07.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-07.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-07.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-07.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-07.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-07.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-07.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3613,16 +3613,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-08.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-08.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-08.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-08.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-08.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-08.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-08.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-08.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-08.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3647,16 +3647,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-09.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-09.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-09.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-09.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-09.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-09.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-09.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-09.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-09.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3681,16 +3681,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-10.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-10.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-10.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-10.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-10.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-10.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-10.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-10.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-10.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3715,16 +3715,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-11.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-11.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-11.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-11.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-11.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-11.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-11.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-11.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-11.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3749,16 +3749,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-12.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-12.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-12.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-12.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-12.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-12.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-12.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-12.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-12.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3783,16 +3783,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-13.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-13.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-13.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-13.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-13.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-13.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-13.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-13.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-13.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3817,16 +3817,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-14.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-14.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-spread-14.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-14.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-14.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-14.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-spread-14.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-spread-14.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-spread-14.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3851,16 +3851,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-01.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-backmatter-01.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-backmatter-01.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-backmatter-01.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-backmatter-01.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-01.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-backmatter-01.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-backmatter-01.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-01.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     },
     {
@@ -3885,16 +3885,16 @@
         "source_png": "content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.png",
         "qa_json": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.qa.json",
         "qa_markdown": "reference/learning-office/childrens-books/production/qa/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.qa.md",
-        "page_landscape_png": "content/assets/images/archie/childrens-books/pages/the-tiny-transceivers/landscape/the-tiny-transceivers-backmatter-02.png",
-        "derivative_4x5_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/4x5/the-tiny-transceivers-backmatter-02.png",
-        "derivative_9x16_png": "reference/learning-office/childrens-books/production/derivatives/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-02.png"
+        "page_landscape_png": ".local-data/childrens-books/exports/the-tiny-transceivers/landscape/the-tiny-transceivers-backmatter-02.png",
+        "derivative_4x5_png": ".local-data/childrens-books/exports/the-tiny-transceivers/4x5/the-tiny-transceivers-backmatter-02.png",
+        "derivative_9x16_png": ".local-data/childrens-books/exports/the-tiny-transceivers/9x16/the-tiny-transceivers-backmatter-02.png"
       },
       "status": {
         "source_image": "generated",
         "qa": "pending",
-        "page_layout": "exported",
-        "derivative_4x5": "exported",
-        "derivative_9x16": "exported"
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand"
       }
     }
   ]

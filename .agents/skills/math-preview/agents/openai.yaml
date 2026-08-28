@@ -1,0 +1,4 @@
+interface:
+  display_name: "Math Preview"
+  short_description: "Show verified KaTeX documents and purple previews."
+  default_prompt: "Closure goal: Use $math-preview to render this mathematics in the project theme, preserve its source, and show a verified preview and image."

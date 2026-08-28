@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { performance } from 'node:perf_hooks';
 import { prepareOrdinaryEvolutionRequest } from './prepare-ordinary-evolution-request.mjs';
 import { canonicalStringify } from '../../src/apps/borg/BorgCertifiedBudgets.js';
+import { connectBatchWorker, STAGE_GATE } from './f5-batch-admission.mjs';
 
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const check = (condition, message) => { if (!condition) throw new Error(message); };
@@ -123,6 +124,7 @@ export function requiredSourcePaths(d) {
       if (match[1].startsWith('.')) addModule(resolve(dirname(path), match[1]));
   };
   addModule('scripts/eom/run-f5-ordinary-evolution.mjs');
+  if (d.operationalAdmission) paths.add(STAGE_GATE);
   for (const file of ['verify-f5-ordinary-evolution.py', 'check-f5-evolution-dynamics.py',
     'oracle/certified_evolution.py', 'oracle/certified_acceleration.py', 'oracle/certified_history.py', 'oracle/decimal_interval.py']) paths.add(resolve(ROOT, 'scripts/eom', file));
   const walk = path => { for (const entry of readdirSync(path, { withFileTypes: true })) {
@@ -163,6 +165,97 @@ export function validateDeclarationShape(d) {
   for (const key of ['aggregateRssBytes', 'logBytes', 'outputBytes', 'aggregateOutputBytes', 'diskMinimumBytes']) check(Number.isSafeInteger(limits[key]), `integer byte limit required: ${key}`);
   check(limits.simultaneousScientificProcesses === 1 && limits.heartbeatSeconds === 15, 'fixed concurrency/heartbeat required');
   check(Number.isFinite(Date.parse(d.campaignDeadline)), 'campaign deadline required');
+  validateOperationalSchedule(d);
+}
+
+// Optional operational accounting only: no schedule field enters a scientific
+// request. The ordered IDs follow the public caller's existing stage sequence.
+export function validateOperationalSchedule(d) {
+  if (d.operationalSchedule === undefined) return null;
+  const s = d.operationalSchedule, l = d.operationalLimits;
+  check(s?.schema === 'braid-program/f5-operational-schedule.v1', 'invalid operational schedule');
+  const exact = (o, keys) => check(o && Object.keys(o).sort().join(',') === [...keys].sort().join(','), 'unknown or missing schedule field');
+  exact(s, ['schema', 'startupSeconds', 'stages', 'finalizationSeconds']);
+  const seconds = n => Number.isSafeInteger(n) && n >= 0;
+  check(seconds(s.startupSeconds) && seconds(s.finalizationSeconds) && s.finalizationSeconds > 0, 'invalid schedule reserve');
+  const expected = d.rungs.flatMap(r => [
+    { id: `${r.id}-inspection`, ceiling: l.wallSeconds },
+    { id: `${r.id}-evolution`, ceiling: l.wallSeconds },
+    { id: `${r.id}-geometry-process`, ceiling: l.geometryWallSeconds },
+  ]);
+  for (let i = 1; i < d.rungs.length; i++) expected.push({ id: `${d.rungs[i - 1].id}-${d.rungs[i].id}-sensitivity-process`, ceiling: l.geometryWallSeconds });
+  expected.push({ id: 'independent-dynamics-process', ceiling: l.oracleWallSeconds });
+  check(Array.isArray(s.stages) && s.stages.length === expected.length, 'complete ordered schedule required');
+  for (let i = 0; i < expected.length; i++) {
+    const stage = s.stages[i]; exact(stage, ['id', 'wallSeconds', 'preparationSeconds']);
+    check(stage.id === expected[i].id, 'schedule stage order differs');
+    check(seconds(stage.wallSeconds) && stage.wallSeconds > 0 && stage.wallSeconds <= expected[i].ceiling && seconds(stage.preparationSeconds), 'invalid stage allowance');
+  }
+  const totalSeconds = s.startupSeconds + s.finalizationSeconds + s.stages.reduce((n, x) => n + x.wallSeconds + x.preparationSeconds, 0);
+  check(Number.isSafeInteger(totalSeconds) && totalSeconds <= l.evaluationWallSeconds, 'infeasible complete operational schedule');
+  return { ...structuredClone(s), totalSeconds };
+}
+
+export function createEvaluationSchedule(d, beganEpoch, deadlineEpochMs, clock = Date.now) {
+  const schedule = validateOperationalSchedule(d); if (!schedule) return null;
+  check(beganEpoch + schedule.totalSeconds * 1000 <= deadlineEpochMs, 'full operational schedule does not fit inclusive deadline');
+  let index = 0, active = null, lastTerminal = null, finalizationBegan = null, lastClock = beganEpoch;
+  const events = [];
+  const now = () => { const t = clock(); check(Number.isFinite(t) && t >= lastClock, 'schedule clock moved backwards'); lastClock = t; return t; };
+  const suffixSeconds = from => schedule.stages.slice(from).reduce((n, x) => n + x.wallSeconds + x.preparationSeconds, 0) + schedule.finalizationSeconds;
+  const fits = (t, seconds) => check(t + seconds * 1000 <= deadlineEpochMs, 'full remaining schedule and closure reserve do not fit');
+  const assertFinalization = () => {
+    if (finalizationBegan !== null) check(now() < Math.min(deadlineEpochMs, finalizationBegan + schedule.finalizationSeconds * 1000), 'caller finalization reserve exhausted');
+  };
+  return {
+    begin(id) {
+      const t = now(), stage = schedule.stages[index];
+      check(!active && finalizationBegan === null && stage?.id === id, 'unexpected scheduled stage');
+      if (index === 0) check(t - beganEpoch <= schedule.startupSeconds * 1000, 'startup reserve exhausted');
+      const preparationBegan = lastTerminal ?? t;
+      const preparationDeadline = preparationBegan + stage.preparationSeconds * 1000;
+      check(t <= preparationDeadline, 'interstage preparation reserve exhausted');
+      fits(t, stage.wallSeconds + (preparationDeadline - t) / 1000 + suffixSeconds(index + 1));
+      active = { id, enteredAt: t, preparationBegan, preparationDeadline, spawnChecks: 0 };
+      return stage.wallSeconds;
+    },
+    watchStarted(id) {
+      const t = now(); check(active?.id === id && active.watchBeganEpochMs === undefined, 'unexpected watched-stage entry');
+      check(t <= active.preparationDeadline, 'stage preparation reserve exhausted before watch');
+      active.watchBeganEpochMs = t;
+    },
+    beforeSpawn(id) {
+      const t = now(), stage = schedule.stages[index];
+      check(active?.id === id && active.watchBeganEpochMs !== undefined, 'unregistered scheduled spawn');
+      check(t < active.watchBeganEpochMs + stage.wallSeconds * 1000, 'watched stage allowance exhausted before spawn');
+      // Repeated after asynchronous admission and registration: the entire
+      // current watched allowance and every mandatory successor still fit.
+      // Preparation seconds cover work outside runWatched; its asynchronous
+      // preflight is already charged to the complete watched-stage allowance.
+      fits(t, stage.wallSeconds + suffixSeconds(index + 1));
+      active.spawnChecks++; active.lastSpawnCheckEpochMs = t;
+    },
+    complete(id) {
+      const t = now(), stage = schedule.stages[index];
+      check(active?.id === id && active.spawnChecks > 0, 'scheduled stage lacks terminal spawn accounting');
+      check(t <= active.watchBeganEpochMs + stage.wallSeconds * 1000, 'complete watched stage allowance exhausted');
+      fits(t, suffixSeconds(index + 1));
+      events.push({ ...active, terminalEpochMs: t, wallSeconds: stage.wallSeconds, preparationSeconds: stage.preparationSeconds,
+        elapsedSeconds: (t - active.enteredAt) / 1000, watchedElapsedSeconds: (t - active.watchBeganEpochMs) / 1000,
+        remainingRequiredSeconds: suffixSeconds(index + 1) });
+      index++; lastTerminal = t; active = null;
+    },
+    enterFinalization() {
+      const t = now(); check(index === schedule.stages.length && !active && finalizationBegan === null, 'mandatory scheduled stage missing');
+      // Output decoding after the last terminal stage already consumes this
+      // reserve; entering finalization cannot reset that clock.
+      finalizationBegan = lastTerminal; assertFinalization();
+    },
+    assertFinalization,
+    report() { return { schema: schedule.schema, totalAllocatedSeconds: schedule.totalSeconds, startupSeconds: schedule.startupSeconds,
+      completedStages: index, stages: structuredClone(events), finalizationSeconds: schedule.finalizationSeconds,
+      finalizationBeganEpochMs: finalizationBegan, inclusiveDeadlineEpochMs: deadlineEpochMs, externalReviewCompleted: false }; },
+  };
 }
 export function makePreparedRequest(d, rung, handoff) {
   validateDeclarationShape(d);
@@ -290,7 +383,7 @@ function signal(pid, sig) { try { process.kill(pid, sig); } catch (e) { if (e.co
 export function assertBeforeDeadline(deadline, message = 'inclusive evaluation deadline') { check(Date.now() < deadline, message); }
 
 export async function runWatched({ command, args, input = '', output, limits, deadlineEpochMs = Infinity,
-  budgetRoot = output, beforeSpawn = () => {}, abortState = { stopped: false }, testHooks = {} }) {
+  budgetRoot = output, beforeSpawn = () => {}, abortState = { stopped: false }, testHooks = {}, delegation = null }) {
   const began = performance.now(), startedAt = new Date().toISOString();
   const deadline = Math.min(Date.now() + limits.wallSeconds * 1000, deadlineEpochMs);
   const observe = testHooks.processTable ?? processTable, hostProbe = testHooks.probe ?? probe;
@@ -300,6 +393,7 @@ export async function runWatched({ command, args, input = '', output, limits, de
   let samples = 0, lastSample = began, lastProgress = null, stderrPending = '', nextHeartbeat = began, nextHost = Infinity;
   const observed = new Set(), fds = [], stdoutPath = resolve(output, 'stdout.json'), stderrPath = resolve(output, 'stderr.log');
   let outFD, errFD, obsFD, closureEstablished = true;
+  const gateEvents = []; let gateSpecification;
   const stop = reason => { failure ??= String(reason); stopAt ??= performance.now(); };
   const interrupted = () => { abortState.stopped = true; stop('operator interruption'); };
   const stderrFailure = error => stop(`launcher stderr failed: ${error.message}`);
@@ -353,12 +447,41 @@ export async function runWatched({ command, args, input = '', output, limits, de
     assertBeforeDeadline(deadline, 'deadline before process launch');
     checkOutputBudget(budgetRoot, limits);
     lastSample = performance.now(); nextHost = lastSample + 15000;
-    child = spawn(command, args, { cwd: ROOT, detached: true, stdio: ['pipe', 'pipe', 'pipe'], env: childEnvironment() });
+    if (delegation) gateSpecification = delegation.describeStage({ command, args, input, environment: childEnvironment(), stageId: basename(output), deadlineEpochMs: deadline });
+    child = spawn(delegation ? process.execPath : command, delegation ? [STAGE_GATE, JSON.stringify(gateSpecification)] : args,
+      { cwd: ROOT, detached: true, stdio: delegation ? ['pipe', 'pipe', 'pipe', 'ipc'] : ['pipe', 'pipe', 'pipe'], env: childEnvironment() });
     closureEstablished = false;
     if (child.pid) observed.add(child.pid);
     child.once('error', error => { stop(error.message); childExit = { code: null, signal: null, spawnError: error.message }; });
     child.once('exit', (code, sig) => { childExit = { code, signal: sig }; if (code !== 0) stop('nonzero process exit'); });
     child.once('close', () => { childClosed = true; });
+    if (delegation) {
+      let lifecycle = 'unregistered', gateTargetPid, gateQueue = Promise.resolve();
+      const tellGate = event => { if (child.connected) child.send({ event, stageId: gateSpecification.stageId }, error => { if (error) stop(error.message); }); };
+      child.on('message', message => {
+        gateQueue = gateQueue.then(async () => {
+          check(message?.gatePid === child.pid && message.stageId === gateSpecification.stageId, 'gate protocol identity differs');
+          if (message.event === 'gate-ready') {
+            check(lifecycle === 'unregistered', 'duplicate gate registration'); lifecycle = 'registering';
+            await delegation.registerGate(child, gateSpecification);
+            await beforeSpawn();
+            assertBeforeDeadline(deadline, 'stage deadline before gate start');
+            check(!failure && !abortState.stopped, 'cancelled before gate start'); tellGate('go');
+            lifecycle = 'admitted';
+          } else if (message.event === 'target-started' || message.event === 'target-closed') {
+            if (message.event === 'target-started') {
+              check(lifecycle === 'admitted' && Number.isInteger(message.targetPid) && message.targetPid > 0, 'target start out of order');
+              gateTargetPid = message.targetPid; lifecycle = 'running';
+            } else {
+              check(lifecycle === 'running' && message.targetPid === gateTargetPid, 'target closure out of order or identity differs');
+              lifecycle = 'closed';
+            }
+            gateEvents.push(message); await delegation.targetEvent(message);
+            if (message.event === 'target-closed') { lifecycle = 'released'; tellGate('release'); }
+          } else throw Error('unexpected gate protocol message');
+        }).catch(error => { stop(error.message); tellGate('cancel'); });
+      });
+    }
     child.stdout.on('data', bytes => { try {
       check(stdoutBytes + bytes.length <= limits.outputBytes, 'stdout output limit');
       writeAll(outFD, bytes, writer); stdoutBytes += bytes.length;
@@ -378,6 +501,7 @@ export async function runWatched({ command, args, input = '', output, limits, de
     timer = setTimeout(() => stop('inclusive stage deadline'), Math.max(1, deadline - Date.now()));
     while (!failure) {
       try {
+        check(!abortState.stopped, 'operator or batch interruption');
         const sampleStart = performance.now(), rows = await observe();
         const ids = new Set(observed);
         let changed = true;
@@ -424,6 +548,7 @@ export async function runWatched({ command, args, input = '', output, limits, de
     if (closeError) throw closeError;
   }
   check(closureEstablished, 'missing owned process closure');
+  if (delegation && failure == null) check(gateEvents.length === 2 && gateEvents[0].event === 'target-started' && gateEvents[1].event === 'target-closed', 'complete registered gate census required');
   if (Date.now() >= deadline) stop('inclusive stage deadline');
   const outputs = [stdoutPath, stderrPath, resolve(output, 'resources.ndjson')].filter(existsSync).map(path => {
     const { data, dev, ino, ...binding } = capture(path, limits.outputBytes); return binding;
@@ -433,6 +558,9 @@ export async function runWatched({ command, args, input = '', output, limits, de
     exit: childExit, failure, processGroupClosed: true, observedOwnedPids: [...observed], pid: child?.pid ?? null, lastProgress,
     samples, maximumSampledAggregateRssBytes: maxRss, maximumSampleGapSeconds: maxGap / 1000,
     memoryScope: 'sampled launcher plus owned descendants; sampled RSS is not a continuous allocation ceiling',
+    ...(delegation ? { executionGate: STAGE_GATE, gateEvents,
+      targetTimingScope: 'gate-reported target spawn through close; excludes registration but includes target process startup',
+      stageTimingScope: 'complete watched stage including registration gate, observation and publication preparation' } : {}),
     processScope: 'reviewed invoked code does not detach descendants; observed PID and kernel group liveness checked independently of sampler during teardown',
     stdoutBytes, stderrBytes, observationBytes, outputs };
   // Record scope ends at descriptor closure, not at this record's own publication.
@@ -469,12 +597,14 @@ export function classifyEvaluation(results, comparisons, operation, dynamics) {
 export async function main(argv = process.argv.slice(2)) {
   const beganEpoch = Date.now();
   validateLauncherEnvironment();
-  if (argv.length === 1 && argv[0] === '--help') { process.stdout.write('Usage: --declaration FILE --out FRESH_DIRECTORY [--prepare-only]\n'); return; }
-  check((argv.length === 4 || argv.length === 5) && argv[0] === '--declaration' && argv[2] === '--out' && (argv.length === 4 || argv[4] === '--prepare-only'), 'invalid arguments');
+  if (argv.length === 1 && argv[0] === '--help') { process.stdout.write('Usage: --declaration FILE --out FRESH_DIRECTORY [--prepare-only | --batch-plan FILE --batch-case ID]\n'); return; }
+  const batchMode = argv.length === 8 && argv[4] === '--batch-plan' && argv[6] === '--batch-case';
+  check((argv.length === 4 || (argv.length === 5 && argv[4] === '--prepare-only') || batchMode) && argv[0] === '--declaration' && argv[2] === '--out', 'invalid arguments');
   const declaration = readJson(resolve(argv[1])), d = declaration.value;
   check(d.schema === 'braid-program/f5-ordinary-evolution-declaration.v1', 'wrong declaration schema'); validateDeclarationShape(d);
   const output = canonicalFreshOutput(argv[3]), budget = { root: output, limits: d.operationalLimits }, prepareOnly = argv.includes('--prepare-only');
-  const deadlineEpochMs = Math.min(Date.parse(d.campaignDeadline), beganEpoch + d.operationalLimits.evaluationWallSeconds * 1000);
+  check(prepareOnly || d.operationalAdmission?.controlOnly !== true, 'inert-control declaration cannot launch the scientific caller');
+  let deadlineEpochMs = Math.min(Date.parse(d.campaignDeadline), beganEpoch + d.operationalLimits.evaluationWallSeconds * 1000);
   assertBeforeDeadline(deadlineEpochMs, 'campaign deadline passed');
   const h = readJson(resolve(ROOT, d.history.path)), conformance = readJson(resolve(ROOT, d.history.conformancePath));
   check(h.sha256 === d.history.sha256 && h.bytes === d.history.bytes, 'accepted history identity changed');
@@ -488,15 +618,22 @@ export async function main(argv = process.argv.slice(2)) {
     check(review.value.accepted === true && review.value.declarationSha256 === declaration.sha256, 'independent declaration acceptance required');
     validateSourceInventory(d);
   }
+  const abortState = { stopped: false }, onSignal = () => { abortState.stopped = true; };
+  check(prepareOnly || batchMode === Boolean(d.operationalAdmission), 'operational generation requires its declared admission mode');
+  const delegation = batchMode ? await connectBatchWorker({ planPath:resolve(argv[5]), caseId:argv[7], declaration, output,
+    api:{readJson,capture,authenticateBindings,sha256}, abortState }) : null;
+  if (delegation) deadlineEpochMs = Math.min(deadlineEpochMs,delegation.deadlineEpochMs);
+  const schedule = !prepareOnly ? createEvaluationSchedule(d, beganEpoch, deadlineEpochMs) : null;
   const requests = d.rungs.map(rung => ({ rung: rung.id, prepared: makePreparedRequest(d, rung, h.value) }));
   mkdirSync(output, { mode: 0o700 });
   for (const request of requests) request.artifact = publish(resolve(output, `${request.rung}-request.json`), request.prepared, budget);
   const immutable = [declaration, h, conformance, ...(review ? [review] : []), ...requests.map(x => x.artifact)];
-  const abortState = { stopped: false }, onSignal = () => { abortState.stopped = true; };
   const admit = () => {
     check(!abortState.stopped, 'operator interruption'); assertBeforeDeadline(deadlineEpochMs);
+    schedule?.assertFinalization();
+    delegation?.verify();
     if (!prepareOnly) validateSourceInventory(d);
-    authenticateBindings(immutable); checkOutputBudget(output, d.operationalLimits);
+    authenticateBindings(immutable); checkOutputBudget(output, d.operationalLimits); schedule?.assertFinalization();
   };
   if (prepareOnly) {
     admit(); const receipt = publish(resolve(output, 'preparation.json'), { declaration, requests: requests.map(x => x.artifact), evolutionExecuted: false }, budget);
@@ -506,16 +643,20 @@ export async function main(argv = process.argv.slice(2)) {
   let lock, unsafeClosure = false, finalBinding, finalSummary, primaryError;
   process.on('SIGINT', onSignal); process.on('SIGTERM', onSignal);
   const watched = async ({ limits = d.operationalLimits, ...options }) => {
+    const stageId = basename(options.output), allowance = schedule?.begin(stageId);
+    if (allowance !== undefined) limits = { ...limits, wallSeconds: allowance };
     admit();
     try {
-      const record = await runWatched({ ...options, limits, budgetRoot: output, deadlineEpochMs, beforeSpawn: admit, abortState });
-      admit(); return record;
+      const beforeSpawn = () => { admit(); schedule?.beforeSpawn(stageId); };
+      schedule?.watchStarted(stageId);
+      const record = await runWatched({ ...options, limits, budgetRoot: output, deadlineEpochMs, beforeSpawn, abortState, delegation });
+      schedule?.complete(stageId); admit(); return record;
     } catch (e) { if (e.ownedProcessClosureUnresolved) unsafeClosure = true; throw e; }
   };
   const acceptOutput = path => { const result = readJson(path, d.operationalLimits.outputBytes); immutable.push(result); return result; };
   try {
     admit();
-    lock = acquireLock(resolve(ROOT, '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/.pilot.lock'),
+    if (!delegation) lock = acquireLock(resolve(ROOT, '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/.pilot.lock'),
       { pid: process.pid, task: 'f5-ordinary-evolution', startedAt: new Date().toISOString(), declarationSha256: declaration.sha256 });
     for (const request of requests) {
       const executable = resolve(ROOT, d.executable.path);
@@ -554,6 +695,7 @@ export async function main(argv = process.argv.slice(2)) {
         '--request', fine.request.path, '--response', fine.response.path, '--out', dynamicsPath],
       output: resolve(output, 'independent-dynamics-process'), limits: { ...d.operationalLimits, wallSeconds: d.operationalLimits.oracleWallSeconds } });
     const dynamics = existsSync(dynamicsPath) ? acceptOutput(dynamicsPath) : null;
+    schedule?.enterFinalization();
     admit();
     finalSummary = classifyEvaluation(results, comparisons, dynamicsOperation, dynamics);
     const final = {
@@ -564,7 +706,7 @@ export async function main(argv = process.argv.slice(2)) {
       comparisons, dynamicsOperation, dynamics, ...finalSummary,
       allRungsReachedHorizon: results.every(r => r.geometry.value.completeRequestedHorizon === true),
       elapsedSecondsBeforeFinalPublication: (Date.now() - beganEpoch) / 1000, remainingBurden: d.excludedClaims,
-      completionScope: 'evidence publication only; invocation receipt after lock release is required for operational completion',
+      completionScope: delegation ? 'worker evidence publication; outer batch closure and final census required' : 'evidence publication only; invocation receipt after lock release is required for operational completion',
     };
     finalBinding = publish(resolve(output, 'evaluation.json'), final, budget); immutable.push(finalBinding); admit();
   } catch (error) { primaryError = error; }
@@ -573,17 +715,23 @@ export async function main(argv = process.argv.slice(2)) {
     catch (error) { primaryError ??= error; }
     process.off('SIGINT', onSignal); process.off('SIGTERM', onSignal);
   }
-  if (primaryError) throw primaryError;
+  if (primaryError) { delegation?.close(); throw primaryError; }
   // No success marker can precede owned-process closure, lock release, final
   // rereads and the inclusive deadline check. This is not scientific acceptance.
   admit();
   const receipt = publish(resolve(output, 'invocation-receipt.json'), { ...finalBinding, accepted: false,
-    operationallyComplete: false, finalStdoutSealRequired: true, sharedLockReleased: true, ...finalSummary,
-    elapsedSecondsBeforeInvocationReceipt: (Date.now() - beganEpoch) / 1000 }, budget);
+    operationallyComplete: false, finalStdoutSealRequired: true, sharedLockReleased: !delegation,
+    ...(delegation ? delegation.finish() : {}), ...finalSummary,
+      elapsedSecondsBeforeInvocationReceipt: (Date.now() - beganEpoch) / 1000,
+      ...(schedule ? { operationalSchedule: schedule.report() } : {}) }, budget);
   admit(); authenticateBindings([receipt]); assertBeforeDeadline(deadlineEpochMs, 'inclusive finalization deadline');
+  schedule?.assertFinalization();
   process.stdout.write(JSON.stringify({ ...receipt, accepted: false, operationallyComplete: true,
+    launcherResourceUsage: process.resourceUsage(),
+    ...(schedule ? { operationalSchedule: schedule.report() } : {}),
     elapsedSecondsThroughFinalChecks: (Date.now() - beganEpoch) / 1000 }) + '\n');
+  delegation?.close();
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  main().catch(error => { process.stderr.write(JSON.stringify({ accepted: false, failure: error.message, ownedProcessClosureUnresolved: error.ownedProcessClosureUnresolved === true }) + '\n'); process.exitCode = 1; });
+  main().catch(error => { process.stderr.write(JSON.stringify({ accepted: false, failure: error.message, ownedProcessClosureUnresolved: error.ownedProcessClosureUnresolved === true }) + '\n'); process.exitCode = 1; if(process.connected)process.disconnect(); });
 }

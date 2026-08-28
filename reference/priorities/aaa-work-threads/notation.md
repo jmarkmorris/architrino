@@ -2,7 +2,7 @@
 
 Closure goal: Establish the shortest clear and consistent notation for $\mathbb{A}\mathbb{A}\mathbb{A}$, starting from existing canon, then approve complete transitions by concept before changing the corpus or its consumers.
 
-**Status:** Discussion draft, 2026-08-27. The operator authorized this planning document only. No proposed replacement below is approved for execution, and this document does not override the mathematical guides. The only current write target is this file; this planning task does not change corpus prose, guides, app code, schemas, tests, generated artifacts, or priority rankings.
+**Status:** Discussion draft, updated 2026-08-28. The operator authorized this planning document only. No proposed replacement below is approved for execution, and this document does not override the mathematical guides. The only current write target is this file; this planning task does not change corpus prose, guides, app code, schemas, tests, generated artifacts, or priority rankings.
 
 ## 1. Strategy
 
@@ -12,7 +12,7 @@ The long-term target is a compact working mathematical language, not permanently
 
 The operator's direction supports the following strategy; its exact implementation remains open:
 
-1. **Start with existing knowledge.** The mathematical guides and accepted decisions are the initial draft. Record proposed departures explicitly; do not treat every collision as permission to redesign the notation.
+1. **Straighten out approved notation first.** The mathematical guides and accepted decisions are our initial choices, collected in Section 3.2. Prioritize their consistent use across all active consumers before reviewing the remaining frequency rows. They remain revisable, but record and approve departures explicitly; do not treat every collision as permission to redesign the notation.
 2. **Assign notation by concept.** The same concept should have the same canonical notation wherever it appears. Different spellings of the same concept are a different problem from one familiar letter used for unrelated, explicitly scoped concepts.
 3. **Preserve mathematical familiarity.** Keep established calculus operators, ordinary index conventions, and recognizable comparison formulas. A reframed physical interpretation does not automatically require replacing every familiar symbol.
 4. **Claim short symbols when appropriate.** A central theory quantity can own a short symbol even if another discipline uses that letter differently. Define it clearly, document the reservation, and distinguish the meanings in comparison passages.
@@ -112,41 +112,105 @@ A numeric superscript may mean a power or a space's dimension; an inverse may me
 
 Plainly: a search hit is a place to inspect, not permission to replace. First establish the object, units, indices, and physical layer.
 
-### 3.2 Top 50 from the consultation
+### 3.2 Approved $\mathbb{A}\mathbb{A}\mathbb{A}$ notation — first priority
+
+**Current choices, open to revision.** The [canonical symbol guide](../../../content/markdown/aaa/archie/mathematics-terminology.md) and [style guide](../../../content/markdown/aaa/archie/mathematics-style-guide.md) already assign the meanings below. These are our starting choices, not new proposals and not immutable decisions. Our first priority is to straighten out their definitions and use across the corpus, app-equation, and other active consumers. Any replacement of an approved form must be explicitly agreed before propagation.
+
+Plainly: start with the symbols we already think we want. Make their use consistent everywhere; reconsider a choice when there is a clear reason to improve it.
+
+#### 3.2.1 Approved reservations represented in the top 50
+
+The following 16 rows are moved from the original census table; the remaining 34 follow in Section 3.3. Ranks, counts, and preliminary assessments are unchanged. The meaning column now states the approved role, not the collection of meanings encountered. Counts still include other uses of the counted symbol: the $S$ count, for example, is not a count solely of the approved universe state $S(T)$.
+
+| Census rank | Symbol | Uses | Equations | Approved meaning | Preliminary consistency assessment |
+| ---: | --- | ---: | ---: | --- | --- |
+| 1 | $T$ | 1,786 | 705 | Absolute time | Concern: also cycle period. |
+| 5 | $T_t$ | 648 | 238 | Transmitter emission time | Consistent event role. |
+| 8 | $c_f$ | 443 | 337 | Primitive wake speed | Consistent shared quantity. |
+| 10 | $T_r$ | 398 | 142 | Receiver reception time | Consistent event role. |
+| 12 | $t_{\mathrm{eff}}$ | 342 | 163 | Observer coordinate time | Consistent layer distinction. |
+| 13 | $\mathbf X$ | 338 | 178 | Euclidean position vector | Consistent position/configuration geometry. |
+| 15 | $c_0$ | 317 | 193 | Observer speed calibration | Consistent channel assignment. |
+| 19 | $r$ | 274 | 134 | Causal separation distance | Mixed separation and orbital geometry. |
+| 21 | $v$ | 249 | 119 | Assembly drift speed | Concern: assembly drift and internal orbit. |
+| 24 | $n$ | 212 | 144 | Normalized Noether braid density | Concern to reassess by scope. |
+| 26 | $\beta_f$ | 209 | 111 | Drift/wake-speed ratio | Concern: drift or orbital numerator. |
+| 29 | $\xi$ | 176 | 88 | Envelope shape ratio | Concern: distinct core definitions. |
+| 37 | $\nabla$ | 145 | 104 | Spatial differentiation | Consistent; coordinate layer matters. |
+| 38 | $\kappa$ | 139 | 123 | Interaction coupling | Consistent core role. |
+| 41 | $S$ | 135 | 95 | Universe state, as $S(T)$ | Concern: also surfaces and Bell expressions. |
+| 43 | $\lambda$ | 131 | 75 | Transverse scale ratio | Concern: also wavelength and hidden variable. |
+
+Plainly: “approved” describes the intended symbol and meaning. It does not certify all counted occurrences. A concern in this table is a priority to investigate, not an already approved replacement.
+
+#### 3.2.2 Related approved forms, including those outside the top 50
+
+These families complete the central reservations summarized in Section 2.2 and include other explicit assignments in the live guide. They belong to the same first-priority pass even when they are uncommon. No occurrence counts are assigned here without a fresh census. This is a planning extract; the linked guides remain the full authority.
+
+| Approved form or family | Brief meaning | First-pass obligation |
+| --- | --- | --- |
+| $\mathcal M=\mathbb R\times\mathbb R^3$, $\Sigma_T$, $\mathbf X_i(T)$ | Absolute timespace; slice; worldline | Preserve absolute time and Euclidean space; no substrate spacetime metric. |
+| $\mathbf V=d\mathbf X/dT$, $\mathbf A=d\mathbf V/dT$ | Velocity; acceleration | Keep vectors, scalar speeds, components, and derivatives distinct. |
+| $h_{ij}$, $\hat{\mathbf r}_t$, $\|\cdot\|$, $\nabla^2$ | Spatial metric; direction; norm; Laplacian | Retain spatial layer and vector/operator identity. |
+| $x_{\mathrm{eff}}^i$, $dt_{\mathrm{eff}}$, $dx_{\mathrm{eff}}^i$, $\partial_{t_{\mathrm{eff}}}$ | Observer coordinates and derivatives | Pair with $t_{\mathrm{eff}}$; require an explicit map from absolute coordinates. |
+| $\tau$, $d\tau$ | Derived clock time | Distinguish clock readout from either coordinate time. |
+| $T_W$, $T_{\mathrm{rec}}$, $T_{\mathrm{temp}}$ | Record window; persistence; temperature | Protect bare $T$; do not merge these quantities. |
+| $\mathbb U_{\text{now}}\equiv S(T)$ | Complete universe state | Preserve the required history and provenance; classify other $S$ uses separately. |
+| $c_{\mathrm{eff}}$, $c_\gamma$, $c_{\mathrm{GW}}$, $c_\star$ | Dressed; photon; gravitational-wave; declared speed | Keep channel definitions distinct, alongside $c_f$ and $c_0$. |
+| $\beta_X=v/c_X$, $\gamma_X=(1-\beta_X^2)^{-1/2}$ | Channel drift ratio; Lorentz factor | Use a declared channel $X$; do not silently use internal orbital speed for $v$. |
+| $\rho_{\text{NS}}$, $\rho_{\text{NS},0}$, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | Physical; reference; normalized density | Reserve $n$ for normalized density; decide local-index exceptions explicitly. |
+| $\chi_{\text{sea}}=c_f/c_{\mathrm{eff}}$, $\chi_\gamma=c_0/c_\gamma$ | Sea; photon delay factors | Preserve different reference speeds; neither is density $n$. |
+| $\xi=R_\parallel/R_\perp$, $\lambda=R_\perp/R_{\perp,0}$ | Envelope shape; transverse scale | Separate delay angles, wavelengths, and other parameters from these geometry ratios. |
+| $\Omega(n,\lambda)$, $\omega_{\text{clk}}/\omega_0=d\tau/dt_{\mathrm{eff}}$ | Constitutive factor; clock-rate ratio | Keep geometry, constitutive response, and extracted clock rate distinct. |
+
+Plainly: the less frequent partners matter too. Time, speed, density, shape, and clock readings need complete families of names, not isolated repairs to their most common letters.
+
+| Approved form or family | Brief meaning | First-pass obligation |
+| --- | --- | --- |
+| $\epsilon$, $\epsilon_\pm$, $q_i$, $q_t$, $q_r$, $\sigma_{tr}$ | Polarity magnitude; labels; values; interaction sign | Keep inventories, fixed polarities, and the acceleration sign aligned. |
+| $T_t$, $T_r$, $\Delta_{r\leftarrow t}=T_r-T_t$ | Emission; reception; travel delay | Distinguish a time delay from an angle or finite change. |
+| $\mathbf r_t$, $r=\|\mathbf r_t\|$, $\hat{\mathbf r}_t$ | Causal separation; distance; direction | Use the emission site and reception site, not simultaneous positions. |
+| $\mathcal C_{r\leftarrow t}(T_r)$ | Arriving emission-time set | Preserve transmitter/receiver roles and causal-root membership. |
+| $D_t$, $D_r$, $J^t_{r\leftarrow t}$, $W^{\mathrm{acc}}_{r\leftarrow t}$ | Emission; crossing; Jacobian; acceleration weight | Protect the separate formulas; legacy weight differences are not automatic renames. |
+| $\delta(r-c_f\Delta)$, $\delta_\eta$, $H(\Delta)$, $\Phi$, $\Phi_\eta$ | Causal surface; smoothing; step; potentials | Retain the declared distribution, smoothing, and causal conventions. |
+| $o_{\mathrm{PA}}$, $c_{\mathrm{pol}}$, $\chi_{\mathrm{pol}}$ | Orientation; polarity assignment; handedness | Preserve each sign's definition and domain of validity. |
+| $a\in\{1,2,3\}$, $(R_a,f_a,\phi_a)$, $h\in\{1,2,3\}$ | Binary identity; coordinates; candidate carrier | Do not relabel persistent indices by size or speed; $h$ needs its declared analysis. |
+| $g_{\mu\nu}^{\mathrm{eff}}$, $\gamma_{ij}^{\mathrm{eff}}$, $\Gamma^\lambda_{\mu\nu}(g^{\mathrm{eff}})$ | Observer metrics; connection | Keep tensor indices and observer layer; scalar $\gamma_{\mathrm{eff}}$ is a different object. |
+| $\Phi_N$, $\Phi_{\text{eff}}$, $U$, $U_\Phi$, $U_{\text{eff}}$ | Benchmark; constitutive; branch potentials | Preserve the guide's signs, definitions, and effective/comparison roles. |
+| $K_\parallel,K_\perp$, $(k_2,\ell_2,k_4,\ell_4)$ | Stiffness channels; expansion coefficients | Keep axis roles and expansion conventions together. |
+| $\gamma_{\mathrm{PPN}}$, $\beta_{\mathrm{PPN}}$, $\alpha_i$, $\Xi_i$, $\epsilon_{\mathrm{LV}}$, $\Delta_{\mathrm{tw}}$ | Comparison parameters; leakage diagnostics | Do not consume the dressed drift symbols $\beta_{\mathrm{eff}},\gamma_{\mathrm{eff}}$. |
+| $\mathcal L_{\text{eff}}$, $D_\mu$, $g,g'$, $\theta_W$, $Y$ | Effective Lagrangian and gauge symbols | Preserve labeled effective mappings; these are not primitive premises. |
+| $a(t_{\mathrm{eff}})$, $H(t_{\mathrm{eff}})$, $\Omega_m$, $\Omega_\Lambda$ | Effective cosmology summaries | Keep observer-time dependence and distinguish local index and operator uses. |
+
+Plainly: approved notation does not certify the physical result it names. A recovery target stays a target, a conditional quantity stays conditional, and a change of spelling must not change the mathematics.
+
+**First-priority order:** time and coordinate roles; speed channels and drift ratios; density, delay, shape, and scale; then the remaining approved state, polarity, causal-interaction, and effective families. Start with the documented collisions involving $T$, $v,\beta_f$, and $\xi$, while carrying all related approved forms through each complete dependency batch. Within this pass, keep consistent families unchanged after verification. Review the remaining frequency rows afterward, except where a collision with an approved family makes them part of its batch. An unresolved decision blocks that family, not other approved families; record any deferred approved family explicitly.
+
+### 3.3 Remaining top-50 rows from the consultation
+
+These 34 rows complete the original top 50 after the approved reservations moved to Section 3.2. Their placement does not make ordinary calculus or conventional local notation disapproved. They are a second review priority unless they collide with an approved family; for example, bare $t$ and $c$ must be inspected during the time/channel pass.
 
 `Consistent` means a stable role in sampled contexts. `Mixed` identifies local reuse. `Concern` preserves the preliminary review lead, not a mandatory rename. Section 1 governs reassessment. Ties are ordered by equation count, then normalized spelling.
 
 | Rank | Symbol | Uses | Equations | Brief meaning | Preliminary assessment |
 | ---: | --- | ---: | ---: | --- | --- |
-| 1 | $T$ | 1,786 | 705 | Absolute time | Concern: also cycle period. |
 | 2 | $d$ | 1,224 | 589 | Differential; distance | Mixed: also particle label. |
 | 3 | $\Delta$ | 1,019 | 492 | Change; delay; phase gap | Concern: roles can have different units. |
 | 4 | $\theta$ | 703 | 317 | Angle; parameter collection | Concern: also configuration and history parameter. |
-| 5 | $T_t$ | 648 | 238 | Transmitter emission time | Consistent event role. |
 | 6 | $\sum$ | 508 | 379 | Summation | Consistent operator. |
 | 7 | $\partial$ | 478 | 268 | Derivative; boundary | Mixed conventional roles. |
-| 8 | $c_f$ | 443 | 337 | Primitive wake speed | Consistent shared quantity. |
 | 9 | $a$ | 408 | 219 | Scale factor; index | Mixed: also outcome and coefficient. |
-| 10 | $T_r$ | 398 | 142 | Receiver reception time | Consistent event role. |
 | 11 | $\int$ | 354 | 276 | Integration | Consistent operator. |
-| 12 | $t_{\mathrm{eff}}$ | 342 | 163 | Observer coordinate time | Consistent layer distinction. |
-| 13 | $\mathbf X$ | 338 | 178 | Euclidean position vector | Consistent position/configuration geometry. |
 | 14 | $i$ | 335 | 261 | Index; imaginary unit | Mixed conventional roles. |
-| 15 | $c_0$ | 317 | 193 | Observer speed calibration | Consistent channel assignment. |
 | 16 | $A$ | 317 | 168 | Assembly; coefficient | Mixed: also apparatus and clock factor. |
 | 17 | $\pi$ | 303 | 250 | Circle constant; map | Mixed: also permutation and record map. |
 | 18 | $W$ | 287 | 165 | Observation window/domain | Mixed temporal and spatial scope. |
-| 19 | $r$ | 274 | 134 | Distance; radius | Mixed separation and orbital geometry. |
 | 20 | $b$ | 255 | 146 | Branch; outcome; parameter | Mixed local definitions. |
-| 21 | $v$ | 249 | 119 | Motion speed | Concern: assembly drift and internal orbit. |
 | 22 | $s$ | 235 | 118 | Speed; path parameter | Mixed: also sign and particle label. |
 | 23 | $R$ | 215 | 146 | Radius; map; curvature | Mixed quantity types. |
-| 24 | $n$ | 212 | 144 | Density; integer index | Concern to reassess by scope. |
 | 25 | $\delta$ | 210 | 121 | Variation; delta distribution | Mixed: also local phase difference. |
-| 26 | $\beta_f$ | 209 | 111 | Speed/wake-speed ratio | Concern: drift or orbital numerator. |
 | 27 | $k$ | 196 | 111 | Wavenumber; index | Mixed mode, outcome, component roles. |
 | 28 | $t$ | 195 | 96 | Unqualified time | Concern where working layer is undeclared. |
-| 29 | $\xi$ | 176 | 88 | Shape ratio; delay angle | Concern: distinct core definitions. |
 | 30 | $E$ | 174 | 108 | Energy; endpoint label | Mixed: also environment class. |
 | 31 | $j$ | 173 | 145 | Transmitter/component index | Mixed indexed objects. |
 | 32 | $m$ | 167 | 117 | Effective mass; mode index | Mixed quantity and integer label. |
@@ -154,13 +218,9 @@ Plainly: a search hit is a place to inspect, not permission to replace. First es
 | 34 | $O$ | 158 | 136 | Remainder order; observer | Mixed, predominantly order estimates. |
 | 35 | $\omega$ | 151 | 73 | Angular frequency | Consistent quantity, differing oscillators. |
 | 36 | $\hbar$ | 148 | 117 | Reduced action quantum | Consistent meaning; recovery status separate. |
-| 37 | $\nabla$ | 145 | 104 | Spatial differentiation | Consistent; coordinate layer matters. |
-| 38 | $\kappa$ | 139 | 123 | Interaction coupling | Consistent core role. |
 | 39 | $T'$ | 136 | 47 | Auxiliary/transformed time | Mixed integration/transformation roles. |
 | 40 | $e$ | 135 | 96 | Exponential base; charge | Mixed: also event labels. |
-| 41 | $S$ | 135 | 95 | State; source; entropy | Concern: also surfaces and Bell expressions. |
 | 42 | $N$ | 131 | 81 | Count; clock factor | Mixed discrete and continuous roles. |
-| 43 | $\lambda$ | 131 | 75 | Scale ratio; parameter | Concern: also wavelength and hidden variable. |
 | 44 | $p$ | 130 | 69 | Momentum; spiral pitch | Mixed: also scaling parameter. |
 | 45 | $P$ | 127 | 68 | Probability; momentum magnitude | Mixed local meanings. |
 | 46 | $c$ | 123 | 91 | Comparison speed; label | Concern where speed channel is unspecified. |
@@ -169,9 +229,9 @@ Plainly: a search hit is a place to inspect, not permission to replace. First es
 | 49 | $u$ | 120 | 62 | Drift; auxiliary parameter | Mixed: also integration and particle labels. |
 | 50 | $z$ | 119 | 49 | Redshift; coordinate | Mostly consistent in cosmology; other local roles. |
 
-Plainly: named event times and speed channels are comparatively clear. Generic letters need classification, not automatic renaming. “Mixed” often reflects normal mathematics; “Concern” identifies definitions or scopes needing closer inspection.
+Plainly: these rows retain the rest of the census, with their original ranks and counts. Frequency helps us find common notation, but our approved concepts determine what we straighten out first.
 
-### 3.3 Strongest source-backed leads
+### 3.4 Strongest source-backed leads
 
 - **Time versus period:** [Return-Cycle Lorentz Quantization](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) uses $T(v)=\gamma_\star(v)T_0$ for duration, while canon reserves $T$ for absolute time. [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md) already uses $P_b$ for branch period, an existing short alternative.
 - **Shape versus delay angle:** [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) defines $\xi=\omega\Delta/2$ in circular geometry; [Braid Envelope Geometry](../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md) uses $\xi=R_\parallel/R_\perp$. They are different dimensionless objects.
@@ -246,13 +306,13 @@ Plainly: establish what moves, where it moves, and what stays unchanged before t
 
 ### Phase 1 — Agree on strategy and scope
 
-Review Sections 1 and 2 first. Decide how canonical reservations interact with bound indices and labeled comparisons. Keep layer and channel distinctions until their owning definitions or derivations change. Select transition rows for further design and reject unnecessary renames explicitly.
+Review Sections 1–2 and the approved notation in Section 3.2 first. Adopt that approved set as the first-priority pass, with explicit retain/reconsider decisions rather than redesigning it from the frequency ranking. Decide how canonical reservations interact with bound indices and labeled comparisons. Keep layer and channel distinctions until their owning definitions or derivations change. Select transition rows for further design and reject unnecessary renames explicitly.
 
 **Completion:** approved strategy and scope rules, with named open choices. Completing discussion does not authorize migration.
 
 ### Phase 2 — Build the semantic inventory
 
-Inventory display and inline mathematics, prose definitions, headings, captions, tables, source links, app formulas, labels, explanations, and exports. Search TeX variants, Unicode, vector/scalar forms, subscripts, derivatives, and indexed families. Group by concept and definition, not character alone.
+Start with the approved families in Section 3.2, including their less frequent partners and any colliding symbols from Section 3.3. Inventory display and inline mathematics, prose definitions, headings, captions, tables, source links, app formulas, labels, explanations, and exports. Search TeX variants, Unicode, vector/scalar forms, subscripts, derivatives, and indexed families. Group by concept and definition, not character alone.
 
 Give every occurrence a deterministic path-by-path disposition: change; retain canonical form; retain distinct concept; preserve labeled comparison; preserve immutable provenance; or unresolved and blocked. Include active priority packets and procedures teaching or consuming the convention. Reconcile the census against raw formulas; separate extractor defects from authored notation defects.
 
@@ -270,7 +330,7 @@ Keep proposed guide text here while approval is pending. State any change to a r
 
 ### Phase 4 — Plan complete dependency batches
 
-For each approved concept, identify its full active dependency set. A family may require several editing sessions, but remains unfinished until all consumers are covered. Representative examples are design checks, not permission to publish a partial migration.
+For each approved concept, identify its full active dependency set. Schedule the Section 3.2 families first; record any blocked family and its unresolved decision before moving to lower-priority notation. A family may require several editing sessions, but remains unfinished until all consumers are covered. Representative examples are design checks, not permission to publish a partial migration.
 
 Assign one responsible owner per surface and one integrator for the concept. Keep execution single-owner unless parallel work is explicitly approved. Do not add a notation database or validator when the existing glossary, extractor, tests, and transition table meet the actual need.
 
@@ -283,7 +343,7 @@ Assign one responsible owner per surface and one integrator for the concept. Kee
 | Other apps and scenes | Include formulas, controls, legends, accessible labels, tooltips, scene metadata; inspect rendered output. |
 | Code and tests | Separate display strings from internal names and public contracts; test behavior independently of spelling. |
 | Schemas/interfaces | Review readers/writers, serialization, bindings, fixtures together. Incompatible changes need an explicit version/transition decision; no silent aliases or shims. |
-| Generated outputs | Regenerate web/textbook/iOS artifacts from owners only with explicit authority or during final branch/PR flow; never hand-edit. |
+| Generated outputs | Regenerate affected web/textbook artifacts from owners only with authority; never hand-edit. iOS is on-demand only, including during final PR flow; see Section 5.3. |
 | Historical sources/evidence | Preserve original sources, frozen records, hashes, numerical provenance. Translate at current consumers; these are not active competing conventions. |
 
 Plainly: the accepted meaning must reach the book, app, and working instructions. Historical evidence keeps its recorded notation with an explicit translation. Rewriting frozen evidence would require a separate decision.
@@ -326,9 +386,9 @@ The phases above establish the approval boundaries. The following sequence makes
 
 | Step | Action | Required result before proceeding |
 | ---: | --- | --- |
-| 1 | Agree on the strategy and scope rules in Sections 1–2, including short symbols, qualifiers, local indices, and comparison notation. | Explicit decisions recorded here; unsettled rules remain open. |
+| 1 | Confirm the Section 3.2 approved notation as the first-priority set, with the strategy and scope rules in Sections 1–2. Record which existing choices to retain and which to reconsider. | An ordered approved-family work list; existing notation stays the default until a replacement is explicitly approved. |
 | 2 | Capture the current canonical sources, generated registry, equation IDs, source links, counts, and affected-file hashes. Refresh the census against that snapshot. | A reproducible starting point. The earlier 4,598-equation count is a dated observation, not a permanent target. |
-| 3 | Inventory every form of each selected symbol and classify each occurrence by concept, definition, units, physical layer, and disposition. Include inline mathematics and non-equation surfaces. | Complete occurrence list; ambiguous meanings block that family rather than receiving an automatic replacement. |
+| 3 | Starting with the Section 3.2 approved families and their colliding forms, inventory every form of each selected symbol and classify each occurrence by concept, definition, units, physical layer, and disposition. Include inline mathematics and non-equation surfaces. | Complete occurrence list; ambiguous meanings block that family rather than receiving an automatic replacement. |
 | 4 | Attach each occurrence to its source owner and downstream consumers using Section 5.2. Record existing equation IDs and any curated formula, callout, code, schema, or export dependency. | Exact source and output paths, preservation exceptions, and responsible editor; no unexamined consumer category. |
 | 5 | Approve the completed transition rows and representative before/after equations. Obtain explicit implementation authority and identify whether regeneration is authorized now or reserved for the final publication process. | Approved notation, substitutions, scope, tests, and regeneration boundary. Approval of this plan alone is insufficient. |
 | 6 | Establish the mathematical acceptance cases before editing. For renames, preserve the original expressions for comparison; for transformations, verify units, derivatives, bounds, and substitutions independently. | A way to detect changed mathematics, distinct from app rendering and generator checks. |
@@ -340,7 +400,7 @@ The phases above establish the approval boundaries. The following sequence makes
 | 12 | Compare before/after inventories and equation IDs; run the focused tests and broader applicable checks in Section 5.4. | Every old occurrence is changed or explicitly retained; no unexplained lost/added equation IDs, count changes, or stale descriptions. |
 | 13 | Inspect actual app and reader output, including promoted and basic pages, source navigation, tooltips, search, narrow layouts, PDF pages, and the relevant iOS views. Exercise editor/reset paths in disposable test state. | Correct visible notation and definitions, working links, readable layouts, and no loss of user data. Tests alone do not satisfy this step. |
 | 14 | Review and, only when separately authorized, publish the complete source/output batch through the live branch/PR procedure. Then verify the served app and distributed reader artifacts against the approved revision. | A consistent released version. Pending publication, deployment, or reader distribution remains explicit rather than being reported complete. |
-| 15 | Record completion by concept and adopt the maintenance loop in Section 5.5 for later edits. Refresh the census after each completed family and again after the full migration. | A current canon with checked consumers, not a one-time cleanup that later edits can silently undo. |
+| 15 | Record completion by concept. Account for every first-priority family as verified unchanged, migrated, or explicitly deferred with a blocker before moving to the remaining census rows. Adopt the maintenance loop in Section 5.5 for later edits. Refresh the census after each completed family and again after the full migration. | A current canon with checked consumers, not a one-time cleanup that later edits can silently undo. |
 
 Plainly: decide the names, find every use, change the authoritative sources, update the app's extra explanations, rebuild their copies, and inspect what readers receive. A family stays unfinished while any required copy still uses the old convention.
 
@@ -369,6 +429,8 @@ Plainly: automatic output is only as reliable as its definitions and inputs. A g
 
 ### 5.3 Regeneration order at an authorized checkpoint
 
+**Export scope:** under the current repository policy, the iOS textbook package is an on-demand development snapshot. Every iOS generation, freshness check, view inspection, or distribution step mentioned in this plan applies only when iOS packaging is explicitly requested. It is not a routine notation-batch or final-PR requirement. Preserve historical snapshots; schedule current review-PDF exports only when included in the approved batch.
+
 Run only affected stages, in the order below. These are future commands, not commands run by this planning task. The same live-source snapshot must underlie the entire completed checkpoint; later input changes require rechecking and rebuilding the affected descendants. Each row's check follows its write, and all affected checks run again against the final state.
 
 | Order | Authorized write command | Required check and output |
@@ -392,7 +454,7 @@ Long PDF or package jobs follow the existing [heartbeat procedure](../../op/long
 
 Plainly: unchanged equation counts and working pages are necessary checks, but they cannot tell us whether a symbol means the right thing. That requires the reviewed concept mapping and local definitions.
 
-4. **Generated and broader checks.** Run the affected checks in Section 5.3 and `node scripts/check-content-integrity.mjs`, which already includes equation-registry, graph, reading-copy, iOS-package, and established terminology checks. Actual review-PDF freshness needs its separate check above. Use the live foundational-impact routing and branch/PR procedure for additional checks when the changed sources trigger them; this list is not a replacement for those owners.
+4. **Generated and broader checks.** Run the affected checks in Section 5.3 and the live `node scripts/check-content-integrity.mjs` entrypoint. Inspect its current coverage rather than assuming it checks every output; apply the on-demand iOS boundary in Section 5.3. Actual review-PDF freshness needs its separate check above. Use the live foundational-impact routing and branch/PR procedure for additional checks when the changed sources trigger them; this list is not a replacement for those owners.
 5. **Reader inspection.** Programmatically inspect all affected records, then visually cover each changed rendering pattern: basic versus promoted page, vector and subscript forms, inline versus display math, tooltip with pointer and keyboard focus, long equations on narrow screens, search results, source-return links, and current PDF/iOS representations. Resolve every failed sample and expand inspection to related instances. A sample is evidence for those cases, not proof of every layout.
 6. **Publication and delivery.** When publication is authorized, follow the live [branch/PR workflow](../../op/git/codex-pr-branch.md), including its exact-state validation receipt after final sources and staging. Publish sources, app code, and generated data as one consistent revision. Verify the served registry and app assets correspond to that revision; check normal reload as well as a fresh browser context for stale caching. Verify reader package distribution separately. Do not invent a deployment command or claim that local generation updates installed clients.
 
@@ -433,7 +495,7 @@ Plainly: a tooltip should explain this symbol in this equation. If the meaning i
 
 ## 7. Decisions Still Open
 
-1. Approve or revise the strategy: short canonical concepts, familiar mathematics, qualifiers for meaningful distinctions.
+1. Review the approved notation in Section 3.2 first: retain the current choices by default and explicitly identify any to reconsider. The approved families are the first cleanup priority, not the largest frequency counts.
 2. Decide the scope of bound indices and comparison notation under the existing document-wide meaning rule.
 3. Choose period, half-delay-angle, and internal-speed notation before exact transition design.
 4. Decide whether current layer qualifiers can ever be omitted within a formally declared scope. Initially keep explicit forms; revisit shortening with representative reader examples.
@@ -442,4 +504,4 @@ Plainly: a tooltip should explain this symbol in this equation. If the meaning i
 
 Discuss strategy and scope first, then make remaining choices one at a time. Do not start migration or canonize candidate spellings merely because they appear here.
 
-**Closure goal:** approve compact, familiar, globally consistent notation, then authorize complete concept transitions after their meanings and consumers are accounted for.
+**Closure goal:** straighten out the approved notation first, reconsider specific choices explicitly, then authorize complete concept transitions across the corpus, app-equation, and all active consumers.

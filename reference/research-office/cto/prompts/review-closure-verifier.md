@@ -22,6 +22,8 @@ Then read:
 
 Do not edit files. Do not assume the prior agent's diff is correct merely because it changed the requested area.
 
+Verify reference-related changes against the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Check the qualifying purpose and actual source support, not merely whether a citation or working link was added.
+
 ## Verification Method
 
 For each original review item:

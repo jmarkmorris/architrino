@@ -160,6 +160,8 @@ Do not create deep trees for the sake of mirroring every conceptual sub-branch. 
 
 ## Cross-Reference Standard
 
+For external source selection, citation placement, and checking, follow [About Architrino](../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and its [research and review disclosures](../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). The link-format rules below govern internal document navigation, not a requirement to add references.
+
 Use relative markdown links relative to the current document.
 
 Example from an Archie document linking into foundations:

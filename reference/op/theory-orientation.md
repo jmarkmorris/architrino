@@ -10,6 +10,8 @@ Before any physics reasoning, apply the Theory Layer Discipline section of [AGEN
 
 For active corpus convergence, use the shared [convergence campaign](../research-office/cto/prompts/convergence-campaign.md). For external sources, use the [source-mining best-practice guide](source-mining-best-practice.md).
 
+For which references belong in the corpus and how to present them, follow [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and its [source-checking disclosures](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Mining a source or using it as a research lead does not automatically qualify it for a reader-facing reference.
+
 ## Current Convergence Frontier
 
 The current frontier is core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response.

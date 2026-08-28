@@ -299,13 +299,14 @@ def back_matter_entry(book: dict, index: int, activity: str) -> dict:
 def entry_paths(entry: dict) -> dict:
     slug = entry["book_slug"]
     eid = entry["id"]
+    export = f".local-data/childrens-books/exports/{slug}"
     return {
         "source_png": f"content/assets/images/archie/childrens-books/source/{slug}/{eid}.png",
         "qa_json": f"reference/learning-office/childrens-books/production/qa/{slug}/{eid}.qa.json",
         "qa_markdown": f"reference/learning-office/childrens-books/production/qa/{slug}/{eid}.qa.md",
-        "page_landscape_png": f"content/assets/images/archie/childrens-books/pages/{slug}/landscape/{eid}.png",
-        "derivative_4x5_png": f"reference/learning-office/childrens-books/production/derivatives/{slug}/4x5/{eid}.png",
-        "derivative_9x16_png": f"reference/learning-office/childrens-books/production/derivatives/{slug}/9x16/{eid}.png",
+        "page_landscape_png": f"{export}/landscape/{eid}.png",
+        "derivative_4x5_png": f"{export}/4x5/{eid}.png",
+        "derivative_9x16_png": f"{export}/9x16/{eid}.png",
     }
 
 
@@ -326,15 +327,13 @@ def status_for(paths: dict) -> dict:
         return decision or "reported"
 
     source = exists(paths["source_png"])
-    page = exists(paths["page_landscape_png"])
-    d4 = exists(paths["derivative_4x5_png"])
-    d9 = exists(paths["derivative_9x16_png"])
     return {
         "source_image": "generated" if source else "planned",
         "qa": qa_status(),
-        "page_layout": "exported" if page else "pending",
-        "derivative_4x5": "exported" if d4 else "pending",
-        "derivative_9x16": "exported" if d9 else "pending",
+        # Local export existence must never change a tracked manifest.
+        "page_layout": "on_demand",
+        "derivative_4x5": "on_demand",
+        "derivative_9x16": "on_demand",
     }
 
 
@@ -397,7 +396,7 @@ def build_manifest() -> dict:
         raise SystemExit(f"manifest count mismatch: books={total}, entries={len(entries)}")
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "root": "reference/learning-office/childrens-books",
         "total_source_images": total,
@@ -407,53 +406,31 @@ def build_manifest() -> dict:
     }
 
 
-def refresh_manifest_book(book_slug: str) -> dict:
-    book = next((candidate for candidate in BOOKS if candidate["slug"] == book_slug), None)
-    if not book:
-        raise SystemExit(f"unknown book slug: {book_slug}")
-    if not OUT.exists():
-        raise SystemExit(f"cannot refresh {book_slug}: manifest missing at {OUT}")
-
-    manifest = json.loads(OUT.read_text())
-    book_out, book_entries = build_book_entries(book)
-    manifest["generated_at"] = datetime.now(timezone.utc).isoformat()
-
-    existing_books = manifest.get("books", [])
-    replaced = False
-    for index, existing_book in enumerate(existing_books):
-        if existing_book.get("slug") == book_slug:
-            existing_books[index] = book_out
-            replaced = True
-            break
-    if not replaced:
-        existing_books.append(book_out)
-    manifest["books"] = existing_books
-
-    entries_by_book: dict[str, list[dict]] = {}
-    for entry in manifest.get("entries", []):
-        slug = entry.get("book_slug")
-        if slug != book_slug:
-            entries_by_book.setdefault(slug, []).append(entry)
-    entries_by_book[book_slug] = book_entries
-
-    ordered_entries: list[dict] = []
-    for slug in manifest.get("generation_order", []):
-        ordered_entries.extend(entries_by_book.pop(slug, []))
-    for slug in sorted(entries_by_book):
-        ordered_entries.extend(entries_by_book[slug])
-    manifest["entries"] = ordered_entries
-    return manifest
+def checked_manifest() -> dict:
+    stored = json.loads(OUT.read_text())
+    expected = build_manifest()
+    if {k: v for k, v in stored.items() if k != "generated_at"} != {
+        k: v for k, v in expected.items() if k != "generated_at"
+    }:
+        raise ValueError("manifest drift: run build_generation_manifest.py --write in an authorized refresh")
+    return stored
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--book", help="Refresh only one book in the existing manifest")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true", help="Refresh the tracked manifest explicitly")
+    mode.add_argument("--check", action="store_true", help="Check without writing (default)")
     args = parser.parse_args()
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    manifest = refresh_manifest_book(args.book) if args.book else build_manifest()
-    OUT.write_text(json.dumps(manifest, indent=2) + "\n")
-    print(f"wrote {OUT.relative_to(ROOT.parents[2])}")
+    manifest = build_manifest()
+    if args.write:
+        OUT.parent.mkdir(parents=True, exist_ok=True)
+        OUT.write_text(json.dumps(manifest, indent=2) + "\n")
+        print(f"wrote {OUT.relative_to(ROOT.parents[2])}")
+    else:
+        checked_manifest()
+        print("manifest matches manuscripts, sources and QA; local exports are optional")
     print(f"entries: {len(manifest['entries'])}")
 
 

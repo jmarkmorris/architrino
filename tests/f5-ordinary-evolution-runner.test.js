@@ -1,12 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, rmSync, symlinkSync, unlinkSync, writeFileSync, writeSync } from 'node:fs';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { acquireLock, admitInspection, assertBeforeDeadline, authenticateBindings, canonicalFreshOutput, capture,
-  checkOutputBudget, classifyEvaluation, makePreparedRequest, parseProcessTable, parseUniqueJson, publish, readJson,
-  releaseLock, requiredSourcePaths, runWatched, sha256, validateLauncherEnvironment, validateSourceInventory, writeAll } from '../scripts/eom/run-f5-ordinary-evolution.mjs';
+  checkOutputBudget, classifyEvaluation, createEvaluationSchedule, makePreparedRequest, parseProcessTable, parseUniqueJson, publish, readJson,
+  releaseLock, requiredSourcePaths, runWatched, sha256, validateLauncherEnvironment, validateOperationalSchedule, validateSourceInventory, writeAll } from '../scripts/eom/run-f5-ordinary-evolution.mjs';
+import { assertScientificGeneration, STAGE_GATE } from '../scripts/eom/f5-batch-admission.mjs';
+import { admitTargetStart, terminalCensus } from '../scripts/eom/run-f5-complete-evaluator-batch.mjs';
 
 // Synthetic constant carriers exercise metadata only, never candidate dynamics.
 function fixture() {
@@ -80,7 +82,82 @@ test('declaration rejects ignored scientific flags, unsafe IDs, and invalid limi
   ]) { const { d, h } = fixture(); mutate(d); assert.throws(() => makePreparedRequest(d, d.rungs[0], h)); }
 });
 
-function temporary(t) { const dir = realpathSync(mkdtempSync(resolve(tmpdir(), 'f5-runner-control-'))); t.after(() => rmSync(dir, { recursive: true, force: true })); return dir; }
+function temporary(t) {
+  const retained=process.env.F5_CONTROL_OUTPUT_DIR;
+  const dir=realpathSync(mkdtempSync(resolve(retained ? realpathSync(retained) : tmpdir(),'f5-runner-control-')));
+  if(!retained)t.after(()=>rmSync(dir,{recursive:true,force:true}));
+  return dir;
+}
+
+function scheduledFixture() {
+  const f = fixture(), d = f.d;
+  const stages = d.rungs.flatMap(r => [
+    { id: `${r.id}-inspection`, wallSeconds: 600, preparationSeconds: 30 },
+    { id: `${r.id}-evolution`, wallSeconds: 600, preparationSeconds: 30 },
+    { id: `${r.id}-geometry-process`, wallSeconds: 300, preparationSeconds: 30 },
+  ]);
+  for (let i = 1; i < d.rungs.length; i++) stages.push({ id: `${d.rungs[i - 1].id}-${d.rungs[i].id}-sensitivity-process`, wallSeconds: 300, preparationSeconds: 30 });
+  stages.push({ id: 'independent-dynamics-process', wallSeconds: 900, preparationSeconds: 30 });
+  d.operationalSchedule = { schema: 'braid-program/f5-operational-schedule.v1', startupSeconds: 120, stages, finalizationSeconds: 120 };
+  d.operationalLimits.evaluationWallSeconds = 6600;
+  return f;
+}
+test('optional full-stage schedule preserves prepared scientific bytes and absent-field behavior', () => {
+  const { d, h, prepared } = scheduledFixture();
+  assert.equal(validateOperationalSchedule(d).totalSeconds, 6600);
+  assert.equal(makePreparedRequest(d, d.rungs[0], h).wire.utf8, prepared.wire.utf8);
+  delete d.operationalSchedule;
+  assert.equal(createEvaluationSchedule(d, 0, 1), null);
+  assert.equal(makePreparedRequest(d, d.rungs[0], h).wire.utf8, prepared.wire.utf8);
+});
+test('schedule rejects missing, repeated, reordered, oversized and unrecognized allocations', () => {
+  for (const mutate of [
+    s => s.stages.pop(), s => { s.stages[1] = { ...s.stages[0] }; },
+    s => { [s.stages[0], s.stages[1]] = [s.stages[1], s.stages[0]]; },
+    s => { s.stages[0].wallSeconds = 1801; }, s => { s.stages[0].preparationSeconds = -1; },
+    s => { s.finalizationSeconds = 121; }, s => { s.stages[0].unreviewed = true; },
+    s => { s.startupSeconds = NaN; }, s => { s.extraReserve = 1; },
+  ]) { const { d } = scheduledFixture(); mutate(d.operationalSchedule); assert.throws(() => validateOperationalSchedule(d)); }
+});
+test('complete schedule rejects a clipped inclusive deadline before any stage', () => {
+  const { d } = scheduledFixture();
+  assert.throws(() => createEvaluationSchedule(d, 1000, 6600999, () => 1000), /does not fit/);
+});
+test('schedule suffix preserves all successor allowances and final reserve after each terminal stage', () => {
+  const { d } = scheduledFixture(); let time = 1000;
+  const guard = createEvaluationSchedule(d, time, time + 6600000, () => time);
+  time += 120000;
+  for (const stage of d.operationalSchedule.stages) {
+    assert.equal(guard.begin(stage.id), stage.wallSeconds);
+    time += 29000; guard.watchStarted(stage.id);
+    time += 1000; guard.beforeSpawn(stage.id); guard.beforeSpawn(stage.id);
+    assert.equal(guard.report().completedStages, d.operationalSchedule.stages.indexOf(stage));
+    time += (stage.wallSeconds - 1) * 1000; guard.complete(stage.id);
+  }
+  guard.enterFinalization(); guard.assertFinalization();
+  const report = guard.report();
+  assert.equal(report.completedStages, 12); assert.equal(report.externalReviewCompleted, false);
+  assert.equal(report.stages.at(-1).remainingRequiredSeconds, 120);
+  assert.equal(report.stages.every(s => s.spawnChecks === 2), true);
+  assert.equal(report.stages.every(s => s.watchedElapsedSeconds === s.wallSeconds), true);
+  time += 120000; assert.throws(() => guard.assertFinalization(), /finalization reserve exhausted/);
+});
+test('schedule rejects exhausted startup, preparation, missing terminal stages and clock rollback', () => {
+  for (const fault of ['startup', 'preparation', 'terminal', 'clock']) {
+    const { d } = scheduledFixture(); let time = 1000;
+    const guard = createEvaluationSchedule(d, time, time + 6600000, () => time), id = d.operationalSchedule.stages[0].id;
+    if (fault === 'startup') { time += 120001; assert.throws(() => guard.begin(id), /startup reserve/); }
+    if (fault === 'preparation') { guard.begin(id); time += 30001; assert.throws(() => guard.watchStarted(id), /preparation reserve/); }
+    if (fault === 'terminal') { guard.begin(id); assert.throws(() => guard.complete(id), /terminal spawn/); assert.throws(() => guard.enterFinalization(), /mandatory/); }
+    if (fault === 'clock') { guard.begin(id); time--; assert.throws(() => guard.beforeSpawn(id), /clock moved backwards/); }
+  }
+});
+test('stage allowance includes asynchronous preflight and is not restarted at target spawn', () => {
+  const { d } = scheduledFixture(); let time = 1000;
+  const guard = createEvaluationSchedule(d, time, time + 6600000, () => time), id = d.operationalSchedule.stages[0].id;
+  guard.begin(id); guard.watchStarted(id); time += 1000; guard.beforeSpawn(id);
+  time += 600000; assert.throws(() => guard.complete(id), /watched stage allowance/);
+});
 const controlLimits = { wallSeconds: 8, heartbeatSeconds: 15, aggregateRssBytes: 2 * 1024 ** 3,
   rssSampleIntervalSeconds: 0.03, maximumRssSampleGapSeconds: 2, logBytes: 1024 ** 2, outputBytes: 1024 ** 2,
   aggregateOutputBytes: 8 * 1024 ** 2, diskMinimumBytes: 1, minimumHostMemoryFreePercent: 1 };
@@ -180,4 +257,111 @@ test('bounded process control: finalization after deadline is not successful', {
 test('process table parser retains group and sampled memory without reading command arguments', () => {
   assert.deepEqual(parseProcessTable(' 42 1 42 100 0:00.12 /a program\n'), [{ pid: 42, ppid: 1, pgid: 42, rssBytes: 102400, cpuTime: '0:00.12', executable: '/a program' }]);
   assert.throws(() => parseProcessTable('malformed'));
+});
+
+test('operational successor cannot change science, deadline, reference or EOM generation', () => {
+  const original=fixture().d, current=structuredClone(original);
+  current.operationalAdmission={mode:'registered-batch-v1'};
+  current.independentDeclarationReview='new-review.json';
+  current.sourceBindings.find(b=>b.path.endsWith('run-f5-ordinary-evolution.mjs')).sha256='0'.repeat(64);
+  assert.doesNotThrow(()=>assertScientificGeneration(original,current));
+  for(const mutate of [
+    d=>{d.authorization.effectiveStrength='0.003';},
+    d=>{d.scientificConditions.endTime='1';},
+    d=>{d.campaignDeadline='2027-01-01T00:00:00Z';},
+    d=>{d.operationalLimits.wallSeconds++;},
+    d=>{d.sourceBindings.find(b=>b.path.endsWith('CoupledEvolution.cpp')).sha256='1'.repeat(64);},
+    d=>{d.sourceBindings.find(b=>b.path.endsWith('verify-f5-ordinary-evolution.py')).sha256='2'.repeat(64);},
+  ]) { const changed=structuredClone(current);mutate(changed);assert.throws(()=>assertScientificGeneration(original,changed)); }
+});
+test('old historical declaration rejects the changed live operational caller', () => {
+  const d=fixture().d;
+  const caller=d.sourceBindings.find(b=>b.path.endsWith('run-f5-ordinary-evolution.mjs'));
+  assert.notEqual(capture(caller.path).sha256,caller.sha256);
+  assert.throws(()=>authenticateBindings([caller]),/changed binding|bounded regular input required/);
+});
+test('final census preserves failed and unstarted cases and rejects omission or running cases', () => {
+  const cases=[{id:'serial-1',replicaId:'replica-1',expected:'complete-bounded-unresolved',output:'/one'},
+    {id:'serial-2',replicaId:'replica-2',expected:'complete-bounded-unresolved',output:'/two'}];
+  const states=new Map([['serial-1',{status:'failed',failure:'exit zero without terminal result',exit:{code:0,signal:null}}],['serial-2',{status:'not-started'}]]);
+  assert.deepEqual(terminalCensus(cases,states).map(x=>x.status),['failed','not-started']);
+  states.delete('serial-2');assert.throws(()=>terminalCensus(cases,states),/census/);
+  states.set('serial-2',{status:'running'});assert.throws(()=>terminalCensus(cases,states),/nonterminal/);
+});
+test('fast target exit records absence without inventing a live birth identity',()=>{
+  const gate={pid:100,ppid:90,pgid:100,started:'fixed-birth'};
+  const absent=admitTargetStart([gate],gate,101);
+  assert.equal(absent.independentlyObservedLive,false);assert.equal(absent.started,null);
+  const target={pid:101,ppid:100,pgid:100,started:'target-birth'};
+  assert.equal(admitTargetStart([gate,target],gate,101).independentlyObservedLive,true);
+  assert.throws(()=>admitTargetStart([gate,{...target,ppid:999}],gate,101),/ownership/);
+  assert.throws(()=>admitTargetStart([{...gate,started:'reused'}],gate,101),/gate identity/);
+});
+
+function syntheticDelegation(overrides={}) {
+  return {
+    describeStage({command,args,input,environment,stageId,deadlineEpochMs}) {
+      return {id:stageId,stageId,command,args,inputSha256:sha256(input),inputBytes:Buffer.byteLength(input),
+        workerPid:process.pid,cwd:process.cwd(),environment,deadlineEpochMs};
+    },
+    async registerGate(){}, async targetEvent(){}, ...overrides,
+  };
+}
+test('bounded registered gate preserves input/output bytes and genuine target exit two', {skip:!processControls,timeout:10000}, async t=>{
+  const dir=temporary(t), input='exact synthetic bytes\n\u0000tail';
+  const source="const a=[];process.stdin.on('data',b=>a.push(b));process.stdin.on('end',()=>{process.stdout.write(Buffer.concat(a));process.stderr.write('synthetic error bytes');process.exitCode=2;});";
+  const result=await runWatched({command:process.execPath,args:['-e',source],input,output:resolve(dir,'gated'),limits:controlLimits,
+    delegation:syntheticDelegation(),testHooks:{probe:healthyProbe,processTable:realTable}});
+  assert.equal(result.exit.code,2);assert.equal(result.processSucceeded,false);assert.equal(result.processGroupClosed,true);
+  assert.equal(readFileSync(resolve(dir,'gated/stdout.json'),'utf8'),input);
+  assert.equal(readFileSync(resolve(dir,'gated/stderr.log'),'utf8'),'synthetic error bytes');
+  assert.deepEqual(result.gateEvents.map(x=>x.event),['target-started','target-closed']);
+  for(const pid of result.observedOwnedPids)assert(!isAlive(pid));
+});
+test('bounded registered gate rechecks admission after ACK and never launches rejected target', {skip:!processControls,timeout:10000}, async t=>{
+  const dir=temporary(t),marker=resolve(dir,'forbidden');let admissions=0;
+  const result=await runWatched({command:process.execPath,args:['-e',`require('fs').writeFileSync(${JSON.stringify(marker)},'bad')`],
+    output:resolve(dir,'gated'),limits:controlLimits,delegation:syntheticDelegation(),
+    beforeSpawn:()=>{if(++admissions===2)throw Error('synthetic binding changed after registration');},
+    testHooks:{probe:healthyProbe,processTable:realTable}});
+  assert.equal(admissions,2);assert.equal(result.processSucceeded,false);assert(!existsSync(marker));
+  assert.match(result.failure,/binding changed/);assert.equal(result.processGroupClosed,true);
+});
+test('schedule is rechecked after asynchronous host admission and rejects without target launch', {skip:!processControls,timeout:10000}, async t=>{
+  const { d } = scheduledFixture(); let time = 1000;
+  const guard = createEvaluationSchedule(d, time, time + 6600000, () => time), id = d.operationalSchedule.stages[0].id;
+  guard.begin(id); guard.watchStarted(id);
+  const dir = temporary(t), marker = resolve(dir, 'forbidden');
+  const result = await runWatched({ command: process.execPath, args: ['-e', `require('fs').writeFileSync(${JSON.stringify(marker)},'bad')`],
+    output: resolve(dir, id), limits: controlLimits, beforeSpawn: () => guard.beforeSpawn(id),
+    testHooks: { probe: async () => { await Promise.resolve(); time += 600001; return healthyProbe(); }, processTable: realTable } });
+  assert.equal(result.processSucceeded, false); assert.match(result.failure, /watched stage allowance/);
+  assert.equal(result.processGroupClosed, true); assert(!existsSync(marker)); assert.equal(guard.report().completedStages, 0);
+});
+test('actual watched schedule includes nonzero preflight in the complete stage envelope', {skip:!processControls,timeout:10000}, async t=>{
+  const { d } = scheduledFixture(); d.operationalSchedule.stages[0].wallSeconds = 2;
+  const began = Date.now(), guard = createEvaluationSchedule(d, began, began + 6600000), id = d.operationalSchedule.stages[0].id;
+  const allowance = guard.begin(id), dir = temporary(t);
+  await new Promise(done => setTimeout(done, 100)); // Outside-watch preparation.
+  guard.watchStarted(id);
+  const record = await runWatched({ command: process.execPath, args: ['-e', 'setTimeout(()=>process.stdout.write("inert"),1200)'],
+    output: resolve(dir, id), limits: { ...controlLimits, wallSeconds: allowance }, beforeSpawn: () => guard.beforeSpawn(id),
+    testHooks: { probe: async () => { await new Promise(done => setTimeout(done, 150)); return healthyProbe(); }, processTable: realTable } });
+  guard.complete(id);
+  assert.equal(record.processSucceeded, true); assert.equal(record.processGroupClosed, true);
+  const stage = guard.report().stages[0];
+  assert(stage.watchBeganEpochMs - stage.enteredAt >= 90);
+  assert(stage.watchedElapsedSeconds >= 1.3 && stage.watchedElapsedSeconds <= allowance);
+  assert(stage.elapsedSeconds > stage.watchedElapsedSeconds);
+});
+test('bounded gate enforces its own deadline while controller remains alive', {skip:!processControls,timeout:8000}, async t=>{
+  const dir=temporary(t),marker=resolve(dir,'target'),stageId='synthetic-deadline';
+  const source=`process.on('SIGTERM',()=>{});require('fs').writeFileSync(${JSON.stringify(marker)},String(process.pid));setInterval(()=>{},1000);`;
+  const spec={stageId,workerPid:process.pid,cwd:process.cwd(),command:process.execPath,args:['-e',source],environment:{PATH:'/usr/bin:/bin',LC_ALL:'C',LANG:'C'},
+    inputBytes:0,inputSha256:sha256(''),deadlineEpochMs:Date.now()+800};
+  const child=spawn(process.execPath,[STAGE_GATE,JSON.stringify(spec)],{detached:true,stdio:['pipe','pipe','pipe','ipc'],env:spec.environment});
+  t.after(()=>{if(isAlive(-child.pid))try{process.kill(-child.pid,'SIGKILL');}catch{}});
+  child.on('message',m=>{if(m.event==='gate-ready')child.send({event:'go',stageId});});child.stdin.end();
+  const exit=await new Promise((done,fail)=>{child.once('error',fail);child.once('close',(code,signal)=>done({code,signal}));});
+  assert.equal(exit.signal,'SIGKILL');assert(existsSync(marker));assert(!isAlive(Number(readFileSync(marker))));assert(!isAlive(-child.pid));
 });

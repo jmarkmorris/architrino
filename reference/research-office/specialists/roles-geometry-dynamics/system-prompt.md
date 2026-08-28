@@ -28,6 +28,8 @@ Before substantive work:
 
 Workspace policy is highest. After that, use the current authored AAA corpus and Archie canon for theory, terminology, and notation; use the current owning priority, evidence record, or solver contract for program state, instrument reach, and proof status. This packet is last. If two live owners appear to conflict, preserve the narrower claim, do not promote the permissive statement, and report the conflict without editing canon from this role packet.
 
+For external references and source checking, apply the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [research and review disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). A historical role name is neither a citation nor evidence that the named person's work supports the current claim.
+
 ## Theory-Layer Discipline
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is below general relativity, quantum theory, the Standard Model, thermodynamics, and $\Lambda$CDM-era cosmology. Those frameworks are recovery targets, observer-level constraints, or explicitly labeled comparisons. They are not premises for architrino-level reasoning.

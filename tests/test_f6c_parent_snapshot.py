@@ -247,7 +247,7 @@ class MaterializationControls(unittest.TestCase):
                 f.run()
 
     def test_changed_reception_incomplete_rows_and_redundant_parent(self):
-        for mode in ('reception', 'rows', 'missing-field', 'binding-list', 'redundant', 'unsorted'):
+        for mode in ('reception', 'rows', 'missing-field', 'binding-list', 'redundant', 'duplicate'):
             f = Fixture()
             block = json.loads(f.files[f.block['path']])
             p = block['parents'][0]
@@ -256,12 +256,22 @@ class MaterializationControls(unittest.TestCase):
             elif mode == 'missing-field': del p['refined']
             elif mode == 'binding-list': p['bindings'] = []
             elif mode == 'redundant': block['parents'][0] = f.base[2]
-            else: block['parents'].reverse()
+            else: block['parents'].append(copy.deepcopy(block['parents'][0]))
             revised = f.add('block.json', declared_bytes(block))
             for selection in f.manifest['overrides']: selection['block'] = revised
             f.manifest_binding = f.publish_manifest()
             with self.subTest(mode=mode), self.assertRaises(ValueError):
                 f.run()
+
+    def test_unordered_block_parents_selected_by_unique_index(self):
+        f = Fixture()
+        block = json.loads(f.files[f.block['path']])
+        block['parents'].reverse()
+        revised = f.add('block.json', declared_bytes(block))
+        for selection in f.manifest['overrides']:
+            selection['block'] = revised
+        f.manifest_binding = f.publish_manifest()
+        self.assertEqual(f.run().parents, f.expected)
 
     def test_conflicting_physical_binding_rejects_before_block_read(self):
         f = Fixture()

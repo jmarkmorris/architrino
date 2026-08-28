@@ -42,6 +42,7 @@
 #include <algorithm>
 #include <array>
 #include <chrono>
+#include <cerrno>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -54,13 +55,313 @@
 #include <optional>
 #include <sstream>
 #include <stdexcept>
+#include <streambuf>
 #include <string>
 #include <string_view>
 #include <vector>
 
+#include <dirent.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#if defined(__APPLE__)
+#include <sys/stdio.h>
+#elif defined(__linux__)
+#include <linux/fs.h>
+#include <sys/syscall.h>
+#endif
+
 namespace eom = architrino::eom;
 
 namespace {
+
+// Preparation alone uses exclusive, descriptor-relative publication. These
+// helpers do not remove failed files and never fall back to replacing rename.
+class PreparationFd {
+ public:
+  explicit PreparationFd(int fd = -1) : fd_(fd) {}
+  ~PreparationFd() { if (fd_ >= 0) ::close(fd_); }
+  PreparationFd(const PreparationFd&) = delete;
+  PreparationFd& operator=(const PreparationFd&) = delete;
+  int get() const { return fd_; }
+  void acquire(int fd) {
+    if (fd_ >= 0 || fd < 0) throw std::runtime_error("preparation descriptor open failed");
+    fd_ = fd;
+  }
+  void close_checked() {
+    const int fd = fd_;
+    fd_ = -1;  // A failed close must never retry a possibly recycled descriptor.
+    if (fd >= 0 && ::close(fd) != 0) {
+      throw std::runtime_error("preparation descriptor close failed");
+    }
+  }
+ private:
+  int fd_;
+};
+
+struct stat preparation_stat(int fd) {
+  struct stat value {};
+  if (::fstat(fd, &value) != 0) throw std::runtime_error("preparation fstat failed");
+  return value;
+}
+
+bool preparation_same_inode(const struct stat& a, const struct stat& b) {
+  return a.st_dev == b.st_dev && a.st_ino == b.st_ino && a.st_mode == b.st_mode;
+}
+
+bool preparation_same_payload(const struct stat& a, const struct stat& b) {
+#if defined(__APPLE__)
+  const auto am = a.st_mtimespec, bm = b.st_mtimespec;
+#else
+  const auto am = a.st_mtim, bm = b.st_mtim;
+#endif
+  return preparation_same_inode(a, b) && a.st_size == b.st_size &&
+      a.st_nlink == b.st_nlink && am.tv_sec == bm.tv_sec &&
+      am.tv_nsec == bm.tv_nsec;
+}
+
+bool preparation_same_completed(const struct stat& a, const struct stat& b) {
+#if defined(__APPLE__)
+  const auto ac = a.st_ctimespec, bc = b.st_ctimespec;
+#else
+  const auto ac = a.st_ctim, bc = b.st_ctim;
+#endif
+  return preparation_same_payload(a, b) &&
+      ac.tv_sec == bc.tv_sec && ac.tv_nsec == bc.tv_nsec;
+}
+
+struct stat preparation_named_stat(int fd, const std::string& name) {
+  struct stat value {};
+  if (::fstatat(fd, name.c_str(), &value, AT_SYMLINK_NOFOLLOW) != 0) {
+    throw std::runtime_error("preparation path identity unavailable");
+  }
+  return value;
+}
+
+class PreparationDirectory {
+ public:
+  explicit PreparationDirectory(const std::filesystem::path& requested)
+      : path_(std::filesystem::absolute(requested)), parent_(path_.parent_path()),
+        name_(path_.filename().string()) {
+#if !defined(__APPLE__) && !(defined(__linux__) && defined(SYS_renameat2) && defined(RENAME_NOREPLACE))
+    throw std::runtime_error("prepare-only requires atomic no-replace rename support");
+#endif
+    if (path_.lexically_normal() != path_ || name_.empty() || name_ == "." ||
+        name_ == ".." || std::filesystem::canonical(parent_) != parent_) {
+      throw std::invalid_argument("prepare-only requires a fresh output with an existing canonical parent");
+    }
+    parent_fd_.acquire(::open(parent_.c_str(), O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC));
+    parent_identity_ = preparation_stat(parent_fd_.get());
+    if (::mkdirat(parent_fd_.get(), name_.c_str(), 0700) != 0) {
+      throw std::runtime_error("prepare-only output must be fresh");
+    }
+    identity_ = preparation_named_stat(parent_fd_.get(), name_);
+    directory_fd_.acquire(::openat(parent_fd_.get(), name_.c_str(),
+                                  O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC));
+    verify();
+  }
+  int fd() const { return directory_fd_.get(); }
+  void verify() const {
+    struct stat parent_path {};
+    if (::lstat(parent_.c_str(), &parent_path) != 0 ||
+        std::filesystem::canonical(parent_) != parent_ ||
+        !preparation_same_inode(parent_identity_, parent_path) ||
+        !preparation_same_inode(parent_identity_, preparation_stat(parent_fd_.get())) ||
+        !preparation_same_inode(identity_, preparation_stat(fd())) ||
+        !preparation_same_inode(identity_, preparation_named_stat(parent_fd_.get(), name_))) {
+      throw std::runtime_error("preparation output directory replaced");
+    }
+  }
+  void retain(const std::string& name, int source_fd, const struct stat& identity) {
+    if (completed_count_ >= completed_.size()) throw std::runtime_error("preparation output count exceeded");
+    auto& item = completed_[completed_count_++];
+    item.name = name;
+    item.guard.acquire(::fcntl(source_fd, F_DUPFD_CLOEXEC, 0));
+    item.identity = identity;
+    verify_files();
+  }
+  void finish() {
+    verify();
+    verify_files();
+    if (completed_count_ != 2) throw std::runtime_error("preparation output incomplete");
+    const auto directory_complete = preparation_stat(fd());
+    // A fresh directory contains exactly the two published records, no aliases.
+    PreparationFd census_fd;
+    census_fd.acquire(::openat(fd(), ".", O_RDONLY | O_DIRECTORY | O_CLOEXEC));
+    const int scan_fd = ::fcntl(census_fd.get(), F_DUPFD_CLOEXEC, 0);
+    if (scan_fd < 0) throw std::runtime_error("preparation census descriptor failed");
+    DIR* scan = ::fdopendir(scan_fd);
+    if (!scan) { ::close(scan_fd); throw std::runtime_error("preparation census open failed"); }
+    bool valid = true;
+    std::size_t count = 0;
+    errno = 0;
+    while (const auto* entry = ::readdir(scan)) {
+      const std::string_view name(entry->d_name);
+      if (name == "." || name == "..") continue;
+      if (++count > 2 || (name != "assembly-view-record.json" && name != "run-manifest.json")) {
+        valid = false;
+        break;
+      }
+      errno = 0;
+    }
+    const int scan_error = errno;
+    const int close_error = ::closedir(scan);
+    census_fd.close_checked();
+    if (!valid || count != 2 || scan_error != 0 || close_error != 0) {
+      throw std::runtime_error("preparation output census failed");
+    }
+    if (::fsync(fd()) != 0) throw std::runtime_error("preparation directory flush failed");
+    verify();
+    verify_files();
+    for (auto& item : completed_) item.guard.close_checked();
+    verify_files();
+    if (!preparation_same_completed(directory_complete, preparation_stat(fd()))) {
+      throw std::runtime_error("preparation directory changed after census");
+    }
+    const auto parent_complete = preparation_stat(parent_fd_.get());
+    directory_fd_.close_checked();
+    if (!preparation_same_completed(directory_complete,
+            preparation_named_stat(parent_fd_.get(), name_))) {
+      throw std::runtime_error("preparation directory changed after close");
+    }
+    parent_fd_.close_checked();
+    struct stat parent_path {}, directory_path {};
+    if (::lstat(parent_.c_str(), &parent_path) != 0 ||
+        ::lstat(path_.c_str(), &directory_path) != 0 ||
+        std::filesystem::canonical(parent_) != parent_ ||
+        !preparation_same_completed(parent_complete, parent_path) ||
+        !preparation_same_completed(directory_complete, directory_path)) {
+      throw std::runtime_error("preparation closed directory identity changed");
+    }
+    for (const auto& item : completed_) {
+      struct stat value {};
+      if (::lstat((path_ / item.name).c_str(), &value) != 0 ||
+          !preparation_same_completed(item.identity, value)) {
+        throw std::runtime_error("preparation closed output changed");
+      }
+    }
+  }
+ private:
+  struct Completed { std::string name; PreparationFd guard; struct stat identity {}; };
+  void verify_files() const {
+    for (std::size_t index = 0; index < completed_count_; ++index) {
+      const auto& item = completed_[index];
+      const auto value = preparation_named_stat(fd(), item.name);
+      if (!S_ISREG(value.st_mode) || value.st_nlink != 1 ||
+          !preparation_same_completed(item.identity, value) ||
+          (item.guard.get() >= 0 &&
+           !preparation_same_completed(item.identity, preparation_stat(item.guard.get())))) {
+        throw std::runtime_error("preparation published output changed");
+      }
+    }
+  }
+  std::filesystem::path path_, parent_;
+  std::string name_;
+  PreparationFd parent_fd_, directory_fd_;
+  struct stat parent_identity_ {}, identity_ {};
+  // Fixed storage keeps descriptor ownership stable and bounds output count.
+  std::array<Completed, 2> completed_;
+  std::size_t completed_count_ = 0;
+};
+
+class PreparationBuffer : public std::streambuf {
+ public:
+  explicit PreparationBuffer(int fd) : fd_(fd) { setp(bytes_.data(), bytes_.data() + bytes_.size()); }
+ protected:
+  int sync() override {
+    std::ptrdiff_t offset = 0;
+    const auto length = pptr() - pbase();
+    while (offset < length) {
+      const auto written = ::write(fd_, pbase() + offset, static_cast<std::size_t>(length - offset));
+      if (written < 0 && errno == EINTR) continue;
+      if (written <= 0) return -1;
+      offset += written;
+    }
+    setp(bytes_.data(), bytes_.data() + bytes_.size());
+    return 0;
+  }
+  int_type overflow(int_type value) override {
+    if (sync() != 0) return traits_type::eof();
+    if (!traits_type::eq_int_type(value, traits_type::eof())) {
+      *pptr() = traits_type::to_char_type(value);
+      pbump(1);
+    }
+    return traits_type::not_eof(value);
+  }
+ private:
+  int fd_;
+  std::array<char, 4096> bytes_;
+};
+
+class PreparationOutput {
+ public:
+  PreparationOutput(PreparationDirectory& directory, const std::filesystem::path& path)
+      : directory_(directory), name_(path.filename().string()), temporary_(name_ + ".tmp"),
+        fd_(open_new()), buffer_(fd_.get()), output_(&buffer_) {
+    identity_ = preparation_stat(fd_.get());
+    if (!S_ISREG(identity_.st_mode) || identity_.st_nlink != 1) {
+      throw std::runtime_error("preparation temporary file is not exclusive");
+    }
+    guard_.acquire(::fcntl(fd_.get(), F_DUPFD_CLOEXEC, 0));
+    verify_temporary();
+  }
+  std::ostream& stream() { return output_; }
+  void publish() {
+    output_.flush();
+    if (!output_ || ::fsync(fd_.get()) != 0) {
+      throw std::runtime_error("preparation output write or flush failed");
+    }
+    verify_temporary();
+    const auto written = preparation_stat(guard_.get());
+    fd_.close_checked();
+    verify_temporary();
+    if (!preparation_same_completed(written, preparation_stat(guard_.get()))) {
+      throw std::runtime_error("preparation output changed after write close");
+    }
+    int result = -1;
+#if defined(__APPLE__)
+    result = ::renameatx_np(directory_.fd(), temporary_.c_str(),
+                           directory_.fd(), name_.c_str(), RENAME_EXCL);
+#elif defined(__linux__) && defined(SYS_renameat2) && defined(RENAME_NOREPLACE)
+    result = static_cast<int>(::syscall(SYS_renameat2, directory_.fd(), temporary_.c_str(),
+                                       directory_.fd(), name_.c_str(), RENAME_NOREPLACE));
+#endif
+    if (result != 0) throw std::runtime_error("preparation exclusive publication failed; bytes retained");
+    directory_.verify();
+    const auto published = preparation_stat(guard_.get());
+    if (!preparation_same_payload(written, published) || published.st_nlink != 1 ||
+        !preparation_same_completed(published, preparation_named_stat(directory_.fd(), name_))) {
+      throw std::runtime_error("preparation publication identity changed");
+    }
+    directory_.retain(name_, guard_.get(), published);
+    guard_.close_checked();
+  }
+ private:
+  int open_new() {
+    directory_.verify();
+    if (name_ != "assembly-view-record.json" && name_ != "run-manifest.json") {
+      throw std::runtime_error("preparation output name rejected");
+    }
+    const int fd = ::openat(directory_.fd(), temporary_.c_str(),
+                            O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW | O_CLOEXEC, 0600);
+    if (fd < 0) throw std::runtime_error("preparation exclusive temporary open failed");
+    return fd;
+  }
+  void verify_temporary() const {
+    directory_.verify();
+    const auto value = preparation_named_stat(directory_.fd(), temporary_);
+    if (!preparation_same_inode(identity_, value) || value.st_nlink != 1 ||
+        !preparation_same_completed(value, preparation_stat(guard_.get()))) {
+      throw std::runtime_error("preparation temporary file replaced");
+    }
+  }
+  PreparationDirectory& directory_;
+  std::string name_, temporary_;
+  PreparationFd fd_, guard_;
+  PreparationBuffer buffer_;
+  std::ostream output_;
+  struct stat identity_ {};
+};
 
 constexpr double kPi = 3.141592653589793238462643383279502884;
 constexpr const char* kCharge = "0.1666666666666666666666666666666667";
@@ -1015,6 +1316,7 @@ struct Options {
   std::string record_date = "unspecified";
   double delay_horizon = 8.0;
   bool resume = false;
+  bool prepare_only = false;
 };
 
 void hash_resume_token(std::uint64_t& state, const std::string& value) {
@@ -1481,7 +1783,8 @@ void write_assembly_view_record_atomic(
     const std::vector<std::string>& declared_path_ids,
     const std::vector<std::size_t>& declared_segment_counts,
     const std::string& model_fingerprint,
-    const std::string& accepted_end, const std::string& run_status) {
+    const std::string& accepted_end, const std::string& run_status,
+    PreparationDirectory* preparation = nullptr) {
   if (published_paths.empty() ||
       published_paths.size() != declared_path_ids.size() ||
       published_paths.size() != declared_segment_counts.size()) {
@@ -1490,7 +1793,11 @@ void write_assembly_view_record_atomic(
   }
   const auto temporary_path = path.string() + ".tmp";
   {
-    std::ofstream output(temporary_path, std::ios::trunc);
+    std::ofstream ordinary_output;
+    std::optional<PreparationOutput> prepared_output;
+    if (preparation) prepared_output.emplace(*preparation, path);
+    else ordinary_output.open(temporary_path, std::ios::trunc);
+    std::ostream& output = preparation ? prepared_output->stream() : ordinary_output;
     if (!output) {
       throw std::runtime_error(
           "failed to open assembly-view record temporary file");
@@ -1570,8 +1877,9 @@ void write_assembly_view_record_atomic(
     if (!output) {
       throw std::runtime_error("failed to write assembly-view record");
     }
+    if (preparation) prepared_output->publish();
   }
-  std::filesystem::rename(temporary_path, path);
+  if (!preparation) std::filesystem::rename(temporary_path, path);
 }
 
 struct CensusAccumulator {
@@ -1953,9 +2261,13 @@ void write_manifest(
     std::size_t accepted_steps, std::size_t rejected_steps,
     std::size_t frames_emitted, std::size_t resume_count,
     double cumulative_wall_seconds,
-    const std::string& status) {
+    const std::string& status, PreparationDirectory* preparation = nullptr) {
   const auto temporary_path = path.string() + ".tmp";
-  std::ofstream output(temporary_path, std::ios::trunc);
+  std::ofstream ordinary_output;
+  std::optional<PreparationOutput> prepared_output;
+  if (preparation) prepared_output.emplace(*preparation, path);
+  else ordinary_output.open(temporary_path, std::ios::trunc);
+  std::ostream& output = preparation ? prepared_output->stream() : ordinary_output;
   if (!output) {
     throw std::runtime_error(
         "failed to open run manifest temporary file");
@@ -2016,6 +2328,13 @@ void write_manifest(
             "\"integer-grid-decimal-endpoints/v1\""
          << ",\"status\":";
   write_json_string(output, status);
+  if (options.prepare_only) {
+    output << ",\"preparation\":{\"rootSearchInvoked\":false"
+           << ",\"accelerationInvoked\":false,\"evolutionInvoked\":false"
+           << ",\"fieldSpeed\":\"1\",\"minimumStep\":";
+    write_json_string(output, token(options.minimum_step));
+    output << '}';
+  }
   if (options.seed_family == "campaign1-subfield-binary-v1") {
     output << ",\"campaign1Coordinate\":{\"separation\":"
            << options.binary_separation << ",\"speed\":"
@@ -2117,9 +2436,10 @@ void write_manifest(
            << options.lattice_side << "x" << options.lattice_side
            << "-conventional-open-crop\"}";
   }
-  output << ",\"evidence\":{\"eomEvidenceStatus\":"
-            "\"executable_architecture_evidence\""
-         << ",\"canonicalEomEvidence\":false}"
+  output << ",\"evidence\":{\"eomEvidenceStatus\":";
+  write_json_string(output, options.prepare_only ? "declared-initial-condition"
+                                                : "executable_architecture_evidence");
+  output << ",\"canonicalEomEvidence\":false}"
          << ",\"seeds\":[";
   for (std::size_t index = 0; index < rows.size(); ++index) {
     const auto& row = rows[index];
@@ -2178,8 +2498,12 @@ void write_manifest(
   if (!output) {
     throw std::runtime_error("failed to write run manifest");
   }
-  output.close();
-  std::filesystem::rename(temporary_path, path);
+  if (preparation) {
+    prepared_output->publish();
+  } else {
+    ordinary_output.close();
+    std::filesystem::rename(temporary_path, path);
+  }
 }
 
 // Wrap the streamed frame JSONL into one borg-fixture-trajectory.v1-shaped
@@ -2353,6 +2677,12 @@ int main(int argc, char** argv) {
     options.delay_horizon = option_double(
         argc, argv, "delay-horizon", options.history_depth);
     options.resume = has_flag(argc, argv, "resume");
+    options.prepare_only = has_flag(argc, argv, "prepare-only");
+    if (options.prepare_only &&
+        (options.resume || !options.campaign1_grid_manifest.empty())) {
+      throw std::invalid_argument(
+          "prepare-only excludes resume and campaign1-grid-manifest");
+    }
     if (!options.campaign1_grid_manifest.empty()) {
       write_campaign1_grid_manifest(options.campaign1_grid_manifest);
       std::cout << "campaign1_workload_construction status=completed"
@@ -2599,7 +2929,12 @@ int main(int argc, char** argv) {
     }
 
     const std::filesystem::path out_dir(options.out_dir);
-    std::filesystem::create_directories(out_dir);
+    std::optional<PreparationDirectory> preparation_directory;
+    if (options.prepare_only) {
+      preparation_directory.emplace(out_dir);
+    } else {
+      std::filesystem::create_directories(out_dir);
+    }
     const auto manifest_path = out_dir / "run-manifest.json";
     const auto census_path = out_dir / "census.jsonl";
     const auto frames_path = out_dir / "frames.jsonl";
@@ -2727,6 +3062,24 @@ int main(int argc, char** argv) {
     for (const auto& path : paths) {
       declared_path_ids.push_back(path.path_id);
       declared_segment_counts.push_back(path.history.segments().size());
+    }
+
+    // The same complete declared histories and request as an ordinary run,
+    // published before any root search, acceleration snapshot or evolution.
+    if (options.prepare_only) {
+      write_assembly_view_record_atomic(
+          assembly_record_path, options, paths, declared_path_ids,
+          declared_segment_counts, model_fingerprint, "0", "prepared-only",
+          &*preparation_directory);
+      write_manifest(
+          manifest_path, options, rows, model_fingerprint, "not_checked",
+          0, "0", 0, 0, 0, 0, 0.0, "prepared-only", &*preparation_directory);
+      preparation_directory->finish();
+      std::cout << "ensemble_preparation run_id=" << options.run_id
+                << " status=prepared-only accepted_end=0"
+                << " root_search_invoked=false acceleration_invoked=false"
+                << " evolution_invoked=false out_dir=" << options.out_dir << '\n';
+      return 0;
     }
 
     // Resume state.

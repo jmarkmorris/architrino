@@ -68,7 +68,7 @@ def open_adapter(root,**kw):
  source=pathlib.Path(__file__)
  histories=tuple(types.SimpleNamespace(segments=(None,)*1760)for _ in range(8))
  a=types.SimpleNamespace(context={'synthetic':'not-original-data'},provenance=((str(source),hashlib.sha256(source.read_bytes()).hexdigest(),source.stat().st_size),),
- histories=histories,frames=tuple(range(81)),parents=tuple(range(160)),
+ histories=histories,frames=tuple(range(81)),parents=tuple(range(160)),fresh_provenance=(),
  historical_owner_archives=tuple(dict.fromkeys(r for d in kw['parent_refinements']for r in d.archived_sources)),
  call_counts=dict(projections=0,evaluations=0,residuals=0,root_queries=0,emission_refinements=0),
  geometry_accounting=dict(restriction_calls=0,completed_restrictions=0,history_state_evaluations=0,restricted_projections=0))

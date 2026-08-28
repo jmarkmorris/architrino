@@ -125,6 +125,8 @@ Important generated outputs include:
 
 The [iOS Reader](apps/ios/ArchitrinoReader/README.md) and its package exporter are retained development capabilities. Its textbook package is generated on demand, not refreshed or freshness-gated on every PR. App Store release is deferred until theory closure and an explicit operator release decision.
 
+The [children's-book pilot](reference/learning-office/childrens-books/production/README.md) likewise retains its sources and verified layout recipe. Its pages, PDFs, social derivatives, and review bundles are on-demand local exports, not routine PR or website outputs.
+
 ## Common Commands
 
 Focused content and graph checks:
@@ -198,3 +200,5 @@ The pre-push hook runs the Content Integrity gate and animator runtime wiring au
 ## License
 
 Project-authored code and documents are licensed under the [MIT License](LICENSE), Copyright (c) 2026 J Mark Morris. Bundled third-party libraries, datasets, images, and derivatives retain their own licenses and attribution requirements; see [Licenses, Attribution & Source Use](content/markdown/aaa/archie/licenses-attributions.md).
+
+For the policy on selecting and presenting references, see [About Architrino](content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution); its [research and review disclosure](content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) explains source checking. These editorial rules do not replace item-specific license requirements.

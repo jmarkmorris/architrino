@@ -52,7 +52,7 @@ export const PINS=Object.freeze({
  ],
  "diagnosticControls": [
   "tests/test_f6c_single_leaf_diagnostic.py",
-  "48029c8ef314f4e1dbc311c09bc9243fd510e705d4977780b2afd8e0f278b906"
+  "f2236cafb97003892c3890e3a40f9c58dbeb0557a6c7e6b45fdc3719e67b998d"
  ],
  "stream": [
   "scripts/eom/f6c_streamed_leaf_session.py",
@@ -60,7 +60,7 @@ export const PINS=Object.freeze({
  ],
  "streamControls": [
   "tests/test_f6c_streamed_leaf_session.py",
-  "c2d2bcf7e20e9bec64ece0782665fbac4587e5dfc33610c94d285542ff5ae617"
+  "1446ac122e7fbcb6d376d43f46a29a30f7e589dad1d3d57dd1f79d0c0032e4b0"
  ],
  "continuation": [
   "scripts/eom/f6c_leaf_continuation.py",

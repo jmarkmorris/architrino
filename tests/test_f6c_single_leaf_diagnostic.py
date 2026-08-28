@@ -599,7 +599,7 @@ class BisectedTests(unittest.TestCase):
 
     def test_source_and_numeric_references_remain_the_frozen_contract(self):
         self.assertEqual(hashlib.sha256((ROOT/'scripts/eom/f6c_variable_cell_adapter.py').read_bytes()).hexdigest(),
-                         'dff515459655b5795a5ffd60966fdf2a2a270b2e0602b12eabb318b0c17824c6')
+                         'b4dc731c53c080e6494cbd450fa91842d85f4bd84b57aa4bdba4c03b216087e1')
         for key in ('rms', 'aggregate', 'full_run_authorized'):
             self.assertNotIn(key, D.BisectedRestrictedDiagnostic.__dataclass_fields__)
 
@@ -685,7 +685,7 @@ class SessionSyntheticAdapter(BisectedSyntheticAdapter):
 def genuine_session_adapter(*, refined_indices=(0,)):
     """Independent stationary family, using the genuine frozen adapter methods."""
     V = load('provider_adapter_fixture_helpers', 'tests/test_f6c_variable_cell_adapter.py',
-             'f561c331187b959219c12251cba07bf230758a4bb45c90cba7b838165242c4a3')
+             'a1dc70f71b0f132db01c5d394ec8c45818c60a71d612aa6266fd735b2a014bb2')
     metadata = SessionSyntheticAdapter()
     times = tuple(frame.time for frame in metadata.frames)
     grid_tokens = ('-8', '-1', metadata.parents[0].reception.lower) + tuple(p.reception.upper for p in metadata.parents)
