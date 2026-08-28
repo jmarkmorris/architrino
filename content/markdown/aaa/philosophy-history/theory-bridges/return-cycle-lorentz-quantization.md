@@ -82,7 +82,7 @@ The first structural step is to change the object being analyzed. A material clo
 
 The longitudinal closed return time is the sum of the forward and rear legs:
 $$
-T_{\parallel}
+P_{\parallel}
 =
 t_{+}+t_{-}
 =
@@ -92,9 +92,12 @@ t_{+}+t_{-}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b732691196073fa)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+
 Combining the fractions gives
 $$
-T_{\parallel}
+P_{\parallel}
 =
 \frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
 =
@@ -115,7 +118,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f5fc9cc7a625c20d)
 For transverse semiaxis $R_{\perp}$,
 $$
-T_{\perp}
+P_{\perp}
 =
 \frac{2R_{\perp}}{c_{\perp}}
 =
@@ -126,11 +129,11 @@ $$
 
 The Lorentz-admissible closure condition is that the same material branch closes with one period in the longitudinal and transverse channels:
 $$
-T_{\parallel}
+P_{\parallel}
 =
-T_{\perp}
+P_{\perp}
 +
-O(\epsilon_{\mathrm{LV}}T_0)
+O(\epsilon_{\mathrm{LV}}P_0)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae9bfb34f3a31110)
@@ -218,11 +221,14 @@ In ordinary geometry language, $\beta_\star$ is the eccentricity of the oblate s
 
 The same map explains the clock side. A moving clock branch is a closed return cycle, so time dilation is the stretch of the period required for the branch to return to compatible phase:
 $$
-T(v)=\gamma_\star(v)T_0
+P(v)=\gamma_\star(v)P_0
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad47d7d0529c2a26)
-in the ideal homogeneous limit. The size of the object sets the base period $T_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
+
+Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown.
+
+in the ideal homogeneous limit. The size of the object sets the base period $P_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
 
 This distinction matters near the light-speed limit. The oblate spheroidal envelope becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
 $$
@@ -241,7 +247,7 @@ The visible assembly envelope is not supplied by one taxonomy-designated binary.
 
 ## Simultaneity From the Leg Difference
 
-The closed-return derivation used only the *sum* of the two one-way legs: the forward leg $t_+=R_\parallel/(c_\star-v)$ and the backward leg $t_-=R_\parallel/(c_\star+v)$ add to the round-trip period, and equating longitudinal with transverse closure fixes the ruler contraction $\xi=1/\gamma_\star$ and the clock dilation $T=\gamma_\star T_0$. The *difference* of the same two legs is not discarded structure; it is the third Lorentz pillar. For two sites of the moving assembly separated by rest longitudinal distance $x'$, the fore-and-aft asymmetry of the one-way legs is
+The closed-return derivation used only the *sum* of the two one-way legs: the forward leg $t_+=R_\parallel/(c_\star-v)$ and the backward leg $t_-=R_\parallel/(c_\star+v)$ add to the round-trip period, and equating longitudinal with transverse closure fixes the ruler contraction $\xi=1/\gamma_\star$ and the clock dilation $P=\gamma_\star P_0$. The *difference* of the same two legs is not discarded structure; it is the third Lorentz pillar. For two sites of the moving assembly separated by rest longitudinal distance $x'$, the fore-and-aft asymmetry of the one-way legs is
 
 $$
 \tfrac12\left(t_+-t_-\right)
@@ -279,10 +285,13 @@ $$
 \qquad
 \gamma_{\mathrm{clk}}^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{P_q(v)}{P_0}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-01020a353ac75c6e)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
 The realized material Lorentz response is the branch-indexed tuple
 $$
 q

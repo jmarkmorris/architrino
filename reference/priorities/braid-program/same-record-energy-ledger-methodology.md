@@ -535,15 +535,15 @@ q_jc_f
 \,dA\,dT.
 $$
 
-For one complete return cycle $W=[T_0,T_0+T_{\mathrm{ret}}]$, fixed convex enclosing surfaces, complete retained history, complete roots, and periodic wake storage,
+For one complete return cycle $W=[T_0,T_0+P_{\mathrm{ret}}]$, fixed convex enclosing surfaces, complete retained history, complete roots, and periodic wake storage,
 
 $$
 F_{\mathrm{raw}}(S;W)
 =
-T_{\mathrm{ret}}\sum_j|q_j|
+P_{\mathrm{ret}}\sum_j|q_j|
 $$
 
-for every admissible $S$. The corresponding signed cycle flux equals $T_{\mathrm{ret}}\sum_jq_j$ and is identically zero for a polarity-neutral assembly, so that signed global scalar is too coarse to resolve local external cancellation.
+for every admissible $S$. The corresponding signed cycle flux equals $P_{\mathrm{ret}}\sum_jq_j$ and is identically zero for a polarity-neutral assembly, so that signed global scalar is too coarse to resolve local external cancellation.
 
 When $F_{\mathrm{raw}}>F_{\mathrm{floor}}>0$ is predeclared, define the candidate cancellation diagnostic
 
@@ -568,14 +568,14 @@ For each retained transmitter-root branch $a$, real angular basis function $Y_{\
 $$
 \widetilde f_{a,\ell mn}(R)
 =
-\frac{1}{T_{\mathrm{ret}}}
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\frac{1}{P_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 e^{-in\Omega_0(T-T_0)}
 \int_{S_R}
 f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
 \,dA\,dT,
 \qquad
-\Omega_0=\frac{2\pi}{T_{\mathrm{ret}}}.
+\Omega_0=\frac{2\pi}{P_{\mathrm{ret}}}.
 $$
 
 Retain the transmitter-root tags until both the raw and net rows are formed:
@@ -607,7 +607,7 @@ Falsifiers: reject a frequency row if inverse reconstruction does not recover th
 
 ### 5.11 Candidate spectral bridge to braid energy
 
-The frequency-resolved wake ledger and a future braid-energy ledger are expected to be related because both depend on the same periodic paths, velocities, causal roots, phases, and delayed interaction history. That shared dependency does not make the wake coefficients energy coordinates automatically. The raw full-cycle wake flux is fixed by $T_{\mathrm{ret}}\sum_j|q_j|$ under the Section 5.9 conditions, so it contains no braid-specific potential-like or kinetic-like discrimination by itself. The surviving complex coefficients do carry geometry and phase information, but an external surface projection can have a nontrivial null space: distinct internal braid states can produce the same exterior coefficient ledger.
+The frequency-resolved wake ledger and a future braid-energy ledger are expected to be related because both depend on the same periodic paths, velocities, causal roots, phases, and delayed interaction history. That shared dependency does not make the wake coefficients energy coordinates automatically. The raw full-cycle wake flux is fixed by $P_{\mathrm{ret}}\sum_j|q_j|$ under the Section 5.9 conditions, so it contains no braid-specific potential-like or kinetic-like discrimination by itself. The surviving complex coefficients do carry geometry and phase information, but an external surface projection can have a nontrivial null space: distinct internal braid states can produce the same exterior coefficient ledger.
 
 If an accepted delayed action supplies a periodic-branch Noether charge and its second variation is meaningful on a declared chart, a candidate modal representation has the schematic form
 
@@ -787,7 +787,7 @@ Present:
 - enclosing radii and surface quadrature;
 - $\mathcal L_{\mathrm{ext}}$, $\mathcal L_{\mathrm{raw}}$, and $\eta_{\mathrm{ext}}$;
 - complete-cycle $F_{\mathrm{signed}}$, $F_{\mathrm{raw}}$, $F_{\mathrm{res}}$, and $\eta_{\mathcal W,\mathrm{flux}}$;
-- the raw emission-reference residual against $T_{\mathrm{ret}}\sum_j|q_j|$;
+- the raw emission-reference residual against $P_{\mathrm{ret}}\sum_j|q_j|$;
 - transmitter-root-tagged complex normal wake-flux coefficients, per-$(\ell,m,n)$ cancellation ratios, per-harmonic angular-mode norms, retained-band coverage, and radial scaling;
 - angular coefficient magnitude-squared rows called `power`;
 - anisotropy, spectra, radial scaling, hashes, and quadrature convergence.
@@ -828,7 +828,7 @@ Falsifier: any apparent conservation or leakage result that disappears when $\et
 | Symmetry-protected cancellation | Coincident opposite-polarity sources with retained raw rows | Signed wake may vanish while raw wake-history rows remain nonzero; no energy conclusion follows from cancellation alone. | Signed projection destroyed the raw ledger. |
 | Centered static-source wake flux | Closed-form causal-wake distribution evaluated outside the production reducer | Every enclosing sphere gives $\Phi_{\mathcal W}=q_j$ and the raw row gives $|q_j|$. | Normal projection, normalization, or surface quadrature is wrong. |
 | Two-radius wake shell balance | Independently integrated $N_{\mathcal W}(V_2\setminus V_1,T)$ plus production surface rows | The instantaneous flux difference equals minus the shell-storage derivative. | A surface row, storage row, root, or time derivative is wrong. |
-| Periodic raw wake-flux invariance | Complete-cycle calculation on at least three enclosing radii | $F_{\mathrm{raw}}=T_{\mathrm{ret}}\sum_j|q_j|$ within the predeclared convergence tolerance. | History is incomplete, storage is not periodic, or root/surface/time reduction is inaccurate. |
+| Periodic raw wake-flux invariance | Complete-cycle calculation on at least three enclosing radii | $F_{\mathrm{raw}}=P_{\mathrm{ret}}\sum_j|q_j|$ within the predeclared convergence tolerance. | History is incomplete, storage is not periodic, or root/surface/time reduction is inaccurate. |
 | Coincident opposite-polarity wake control | Independently authored paired-source case | $F_{\mathrm{res}}=0$ while $F_{\mathrm{raw}}>0$. | Transmitter tags were discarded before the raw reduction or signed cancellation is wrong. |
 | Two-radius delayed balance | Same action and branch evaluated at $R_1<R_2$ | Difference in boundary timing is balanced by energy stored in the shell. | In-flight storage or radius synchronization is missing. |
 | Inward/outward angular split | Authored surface case with simultaneous opposite oriented sectors | Gross out and in remain nonzero while net may vanish. | $[\Phi_{\mathrm{net}}]_+$ was incorrectly used as gross transport. |

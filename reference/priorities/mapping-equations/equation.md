@@ -291,7 +291,7 @@ For a branch $q$, derive or bound:
 $$
 R_T^{(q)}(\mathbf w)
 =
-\frac{T_q(\mathbf w)}{T_0}
+\frac{P_q(\mathbf w)}{P_0}
 -
 \gamma_{\star}(\mathbf w),
 $$
@@ -1190,7 +1190,7 @@ $$
 =
 \left(
 \mathcal H_\tau,
-\Phi_T,
+\Phi_{P_{\mathrm{cyc}}},
 \Sigma,
 \mathcal U,
 \mathfrak B_{\mathrm{cyc}},
@@ -1203,7 +1203,7 @@ P_\gamma,
 \right).
 $$
 
-Here $\mathcal H_\tau=C^1([-\tau,0])$ is the constant-delay history space with compatibility conditions, $\Phi_T$ is the period-$T$ flow, $\Sigma$ is a Poincare section, $\mathcal U=D\Phi_T$ is the monodromy operator, $\gamma_0$ is the retained periodic orbit, and $\vartheta_{\mathrm{PC}}$ is the local Poincare-Cartan one-form pulled back to that orbit. $\mathcal T_\gamma$ is the photon-channel transversality data used by the blackbody and photon rows.
+Here $\mathcal H_\tau=C^1([-\tau,0])$ is the constant-delay history space with compatibility conditions, $\Phi_{P_{\mathrm{cyc}}}$ is the period-$P_{\mathrm{cyc}}$ flow, $\Sigma$ is a Poincare section, $\mathcal U=D\Phi_{P_{\mathrm{cyc}}}$ is the monodromy operator, $\gamma_0$ is the retained periodic orbit, and $\vartheta_{\mathrm{PC}}$ is the local Poincare-Cartan one-form pulled back to that orbit. $\mathcal T_\gamma$ is the photon-channel transversality data used by the blackbody and photon rows.
 
 The first toy model should be constant-delay, nonlinear, and orbit-isolating:
 
@@ -1224,7 +1224,7 @@ The state-dependent delay $\tau(x)=\tau_0+\beta x$ is deferred until the constan
 The scalar continuation falsifier is now part of the claim discipline. Near Hopf birth,
 
 $$
-T
+P_{\mathrm{cyc}}
 =
 \frac{2\pi}{\Omega_c}
 +O(|\eta-\eta_c|),
@@ -1253,7 +1253,7 @@ h_\vartheta
 =
 \oint_{\gamma_0}\vartheta_{\mathrm{PC}}
 =
-\int_0^T p(t)\dot q(t)\,dt,
+\int_0^{P_{\mathrm{cyc}}} p(t)\dot q(t)\,dt,
 \qquad
 \hbar_\vartheta=\frac{h_\vartheta}{2\pi}.
 $$

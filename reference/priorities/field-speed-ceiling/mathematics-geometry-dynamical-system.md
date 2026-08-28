@@ -2749,13 +2749,13 @@ $$
 
 subject to $R_a|\omega_a|=c_f$, collision avoidance, simple-root floors, and the declared Noether-braid geometry. A theorem saying that every member of a broad geometric family automatically has $g_i\ge0$ would be stronger, but the existing negative six-path calculation shows that symmetry and clean roots do not automatically close the required vector response. The reverse problem is therefore the primary route: find the parameter tuples for which all twelve conditions---six scalar inequalities and six perpendicular vector equalities---hold for the entire return interval.
 
-Because the root functions and acceleration rows are analytic away from collisions and nonordinary strata, a periodic candidate can be tested by its Fourier residuals. If $T_{\mathrm{ret}}$ is a common return period and $\Omega=2\pi/T_{\mathrm{ret}}$, define
+Because the root functions and acceleration rows are analytic away from collisions and nonordinary strata, a periodic candidate can be tested by its Fourier residuals. If $P_{\mathrm{ret}}$ is a common return period and $\Omega=2\pi/P_{\mathrm{ret}}$, define
 
 $$
 \widehat{\mathbf Q}_{i,m}
 =
-\frac{1}{T_{\mathrm{ret}}}
-\int_0^{T_{\mathrm{ret}}}
+\frac{1}{P_{\mathrm{ret}}}
+\int_0^{P_{\mathrm{ret}}}
 \left[
 \mathbf B_i(T)
 +
@@ -2784,14 +2784,14 @@ Plainly: the analytic search is a nonlinear spectrum problem. A numerical sample
 An unperturbed three-binary chart has one common return period only if there are nonzero integers $k_a$ such that
 
 $$
-\omega_aT_{\mathrm{ret}}
+\omega_aP_{\mathrm{ret}}
 =
 2\pi k_a,
 \qquad
 a\in\{1,2,3\}.
 $$
 
-Writing $\Omega=2\pi/T_{\mathrm{ret}}$ gives
+Writing $\Omega=2\pi/P_{\mathrm{ret}}$ gives
 
 $$
 \omega_a=k_a\Omega,
@@ -3213,7 +3213,7 @@ At the Master Equation level, acceleration is primitive and architrinos have no 
 $$
 \mathcal J_i^{\mathrm{raw}}
 =
-\int_0^{T_a}
+\int_0^{P_a}
 \mathbf V_i(T)
 \mathbin{\cdot}
 \mathbf A_i^{\mathrm{ord}}(T)
@@ -3279,12 +3279,12 @@ $$
 \Pi_a\,dQ_a.
 $$
 
-If a separately derived same-record identity supplies a constant binary energy readout $E_a$, a cycle frequency $f_a$, and the relation $\mathcal A_{\mathrm{cyc},a}=E_aT_a$, then
+If a separately derived same-record identity supplies a constant binary energy readout $E_a$, a cycle frequency $f_a$, and the relation $\mathcal A_{\mathrm{cyc},a}=E_aP_a$, then
 
 $$
 \mathcal A_{\mathrm{cyc},a}
 =
-E_aT_a
+E_aP_a
 =
 \frac{E_a}{f_a},
 \qquad
@@ -3322,7 +3322,7 @@ $$
 
 This is a conditional interface, not a calculated energy gap.  In particular, there is presently no derived tightest binary, minimum admissible radius, terminal frequency, potential-zero convention, or identification of $h_{\mathrm{act}}$ with observer-level $h$ or $\hbar$.
 
-None of these energy equations is licensed until the causal action or wake update defines $\Pi_a$, the cycle allocation, the wake and boundary terms, and the same-record energy account, including the branch-specific identity $\mathcal A_{\mathrm{cyc},a}=E_aT_a$. The phrase ``per revolution'' properly refers to closed-cycle action or transferred account. The displayed energy readout exists only on a branch for which that additional identity is derived.
+None of these energy equations is licensed until the causal action or wake update defines $\Pi_a$, the cycle allocation, the wake and boundary terms, and the same-record energy account, including the branch-specific identity $\mathcal A_{\mathrm{cyc},a}=E_aP_a$. The phrase ``per revolution'' properly refers to closed-cycle action or transferred account. The displayed energy readout exists only on a branch for which that additional identity is derived.
 
 Claim grade: `typed conditional energy/action interface`, not a derived energy level and not an identification of $h_{\mathrm{act}}$ with observer-level Planck $h$. The readout is falsified if an accepted same-record action does not satisfy $\mathcal A_{\mathrm{cyc}}=ET$, if the cycle allocation is not integral in $h_{\mathrm{act}}$, or if the extracted unit changes across the declared equivalence class. Any such failure removes $E=N h_{\mathrm{act}}f$ without changing the orbital or acceleration-work results.
 

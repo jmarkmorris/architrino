@@ -17,6 +17,51 @@ const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal
 const H=await load(C.PINS.helpers),D=await load(C.PINS.diagnostics);
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
+
+test('fresh closure authority is the separately accepted pure checker generation',()=>{
+ const prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/';
+ assert.deepEqual(C.FRESH_CLOSURE_PINS,{
+  instrument:[prefix+'independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'],
+  controls:[prefix+'independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'],
+  contract:[prefix+'fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
+ });
+});
+
+test('fresh source selection checks pinned transport without executing an authority',()=>{
+ // Deliberately tiny in-memory transport records, not checker-accepted evidence.
+ const rows=new Map(),payloads=new Map(),base='/independent-fresh-transport';
+ const put=(name,value)=>{const data=Buffer.from(JSON.stringify(value)+'\n'),b={path:base+'/'+name,sha256:hash(data),bytes:data.length};rows.set(b.path,b);payloads.set(b.path,data);return b;};
+ const pins={...C.FRESH_EVIDENCE_PINS,...C.FRESH_CLOSURE_PINS};
+ for(const [relative,sha256]of Object.values(pins)){const b={path:path.join(base,relative),sha256,bytes:1};rows.set(b.path,b);}
+ const authority=rows.get(path.join(base,C.FRESH_CLOSURE_PINS.instrument[0]));
+ const controls=rows.get(path.join(base,C.FRESH_CLOSURE_PINS.controls[0]));
+ const owner=put('current-owner',{synthetic:true}),archive=put('consumed-owner',{synthetic:true});
+ const declaration=put('declaration',{synthetic:true}),operation=put('operation',{synthetic:true});
+ const invocation=put('invocation',{publicationAliases:[]}),finalCaller=put('final-caller',{synthetic:true});
+ const observation=put('observation',{synthetic:true});
+ const evidence=put('evidence',{controls,processObservation:observation,sourceIdentities:[],outputIdentities:[]});
+ const snapshot=put('snapshot',{instrument:authority,operation,invocation,closure:{evidence,finalCaller},parents:[]});
+ const inventory=put('inventory',{schema:'braid-program/accepted-parent-evidence-inventory.v2',
+  objects:[{memberName:'owners/'+owner.sha256,role:'acceptanceOwner',parentIndex:null,original:owner,physicalPath:archive.path,identity:{synthetic:true}}],
+  parents:[{parentIndex:3}],currentAcceptanceOwner:{binding:owner},family:{},numericalSettings:{declaration}});
+ const selection={inventory,closures:[{binding:snapshot,expected_instrument:authority}],expected_authority:[authority],package:null,sourceBindings:[...rows.values()]};
+ const spec={root:base,parentRefinements:[],acceptedParentEvidence:[selection],bindings:{readiness:owner},runtimeBindings:[]};
+ let reads=0;const read=(p,h)=>{reads++;const data=payloads.get(p);assert(data,'no executable or filesystem read');assert.equal(hash(data),h);return{data,bytes:data.length};};
+ const result=C.freshEvidenceInputs(spec,read);assert(reads>0);assert.equal(result.sources.length,rows.size);assert.deepEqual(result.archives,[{role:'acceptanceOwner',original:owner,archive}]);
+ assert.deepEqual(result.executingSources.sort(),['reader','parser','instrument'].map(k=>path.join(base,pins[k][0])).sort());
+ for(const role of ['instrument','controls','contract']){
+  for(const change of ['missing','hash','path']){
+   const bad=structuredClone(spec),p=path.join(base,pins[role][0]),list=bad.acceptedParentEvidence[0].sourceBindings,index=list.findIndex(b=>b.path===p);
+   if(change==='missing')list.splice(index,1);else if(change==='hash')list[index].sha256='f'.repeat(64);else list[index].path+='.renamed';
+   assert.throws(()=>C.freshEvidenceInputs(bad,()=>{throw Error('read before pin rejection');}),new RegExp('fixed fresh '+role));
+  }
+ }
+ for(const changed of [{...authority,sha256:'a'.repeat(64)},{...authority,path:base+'/unreviewed.py'}]){
+  const bad=structuredClone(spec);bad.acceptedParentEvidence[0].expected_authority=[changed];
+  assert.throws(()=>C.freshEvidenceInputs(bad,()=>{throw Error('read before authority rejection');}),/externally fixed fresh authority/);
+ }
+});
+
 let runtime;
 function runtimeBindings(){
  if(runtime)return runtime;

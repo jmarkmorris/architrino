@@ -80,13 +80,13 @@ $$
 \Delta_{\mathrm{tw}}(\beta,\hat{\mathbf n})
 \equiv
 \frac{
-T_{\circlearrowleft}(\beta,\hat{\mathbf n})
--\langle T_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
+P_{\circlearrowleft}(\beta,\hat{\mathbf n})
+-\langle P_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
 }{
-\langle T_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
+\langle P_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
 },
 $$
-where $T_{\circlearrowleft}$ is the closed-path signal time measured by the same physical clock branch. A Michelson-Morley-style pass requires
+where $P_{\circlearrowleft}$ is the closed-path signal time measured by the same physical clock branch. A Michelson-Morley-style pass requires
 $$
 \sup_{\hat{\mathbf n}}|\Delta_{\mathrm{tw}}(\beta,\hat{\mathbf n})|
 \le
@@ -150,8 +150,8 @@ Kennedy-Thorndike closure requires no boost-dependent drift in the same branch:
 $$
 \Delta_{\mathrm{KT}}(\beta_1,\beta_2)
 \equiv
-\frac{T_{\circlearrowleft}(\beta_1)}{T_{\circlearrowleft}(\beta_2)}-1
--\left[\frac{T_{\circlearrowleft}^{\mathrm{SR}}(\beta_1)}{T_{\circlearrowleft}^{\mathrm{SR}}(\beta_2)}-1\right],
+\frac{P_{\circlearrowleft}(\beta_1)}{P_{\circlearrowleft}(\beta_2)}-1
+-\left[\frac{P_{\circlearrowleft}^{\mathrm{SR}}(\beta_1)}{P_{\circlearrowleft}^{\mathrm{SR}}(\beta_2)}-1\right],
 $$
 with
 $$

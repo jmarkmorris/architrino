@@ -280,12 +280,12 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-054fed8d5a114870)
 for all admissible radial functions $R$ and $S$ in the effective domain.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is not a literal wavefunction wall. It is a branch-domain condition on the assembly return map and causal-wake history. A candidate mode $\Gamma_n$ with return time $T_n$ must satisfy
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is not a literal wavefunction wall. It is a branch-domain condition on the assembly return map and causal-wake history. A candidate mode $\Gamma_n$ with return time $P_{\mathrm{cyc},n}$ must satisfy
 $$
 \mathcal{Q}_{\mathrm{bc}}(n)
 =
 \max\left(
-\frac{\operatorname{dist}(\mathcal{P}_{T_n}(\Gamma_n),\Gamma_n)}{\varepsilon_{\mathrm{return}}},
+\frac{\operatorname{dist}(\mathcal{P}_{P_{\mathrm{cyc},n}}(\Gamma_n),\Gamma_n)}{\varepsilon_{\mathrm{return}}},
 \frac{|\Delta\varphi_n-2\pi q_n|}{\varepsilon_\varphi},
 \frac{|\Delta I_n-N_n h_{\mathrm{eff}}|}{\varepsilon_I},
 \frac{|\mathcal{B}_0^{\mathrm{eff}}|}{\varepsilon_{\mathrm{sa}}}
@@ -294,7 +294,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-348205a53994dd70)
-Here $\mathcal{P}_{T_n}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. This is the boundary-condition bridge: standard eigenvalue discreteness is recovered only when a native causal-wake mode also closes its return, phase, action, and effective-domain tests.
+Here $\mathcal{P}_{P_{\mathrm{cyc},n}}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. This is the boundary-condition bridge: standard eigenvalue discreteness is recovered only when a native causal-wake mode also closes its return, phase, action, and effective-domain tests.
 
 Central potentials add a second comparison target. Standard quantum mechanics uses
 $$

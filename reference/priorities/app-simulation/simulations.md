@@ -66,7 +66,7 @@ The scan variables are declared before output inspection:
 | $\mathsf{branch\_row\_id}$ | Nested shell braid endpoint or transition row consumed from $\mathcal{B}_{\Delta I}$ | Must match the row identifiers used by `action_increment_rows.csv`; no scan-only branch row may vote on `candidate_h_recovery`. |
 | $a$ | Scanned layer or speed coordinate | Must name the layer speed ratio being varied while all unscanned branch labels, plane normals, endpoint charges, and transaction axis remain declared. |
 | $\beta_a=s_a/c_f$ | Dimensionless field-speed coordinate | The only scan coordinate for approach-to-$c_f$ status; fitted reparameterizations are diagnostic-only. |
-| $W=[t_0,t_1]$ and $T$ | Analysis window and declared cycle or certificate period | Must match the action-increment packet window when the row contributes to stable-cycle clustering. |
+| $W=[t_0,t_1]$ and $P$ | Analysis window and declared cycle or certificate period | Must match the action-increment packet window when the row contributes to stable-cycle clustering. |
 | $(\Delta t,\Delta h,\Delta x,\eta)$ | Temporal, history, spatial, and regulator resolutions | Must include at least one refinement pair for each active gate: $(\Delta t,\Delta t/2)$, $(\Delta h,\Delta h/2)$, $(\Delta x,\Delta x/2)$, and $(\eta,\eta/2)$ when the run makes a regulator claim. |
 | $\nu_{\min}$ and $B_{\max}$ | Minimum accepted Jacobian floor and active-root count bound | Must be declared before the scan; rows that choose these after seeing near-boundary behavior route to $\mathsf{hidden\_tuning}$. |
 | $\tau_{E,\mathrm{p+w}}$ and $\tau_{\Delta I}$ | Energy-drift and action-cluster tolerances | Must be no looser than the tolerances in the action-increment packet that consumes the row. |

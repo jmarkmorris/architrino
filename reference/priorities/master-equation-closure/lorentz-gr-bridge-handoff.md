@@ -89,11 +89,11 @@ $$
 The declared clock phase must come from the same branch ledger:
 
 $$
-T_q(v)
+P_q(v)
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0).
+P_0=P_q(0).
 $$
 
 The moving-assembly residuals prepared for the future bridge are
@@ -107,7 +107,7 @@ R_{\parallel}^{(q)}(v)
 \qquad
 R_T^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{P_q(v)}{P_0}
 -
 \gamma_\star(v).
 $$
@@ -199,7 +199,7 @@ The proper-time channel consumes the same moving branch through the Noether sea 
 $$
 \Gamma_N(\mathbf{x},t)
 =
-\frac{T_N(\mathbf{x},t)}{T_{N0}}
+\frac{P_N(\mathbf{x},t)}{P_{N0}}
 =
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)},
 \qquad

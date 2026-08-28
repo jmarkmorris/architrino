@@ -761,6 +761,30 @@ class FreshEvidenceRoutingTests(unittest.TestCase):
             for values in ((selection,),[selection],(asdict(selection),)):
                 with self.subTest(values=values),self.assertRaises(ValueError):subject._fresh_selections(values,root)
 
+    def test_independently_fixed_fresh_checker_roles_and_inert_selection(self):
+        prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/'
+        expected=(
+            ('instrument',prefix+'independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'),
+            ('controls',prefix+'independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'),
+            ('contract',prefix+'fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'),
+        )
+        self.assertEqual(subject.FRESH_CLOSURE_SOURCES,expected)
+        instrument=subject.SourceBinding(str(ROOT/expected[0][1]),expected[0][2],53770)
+        inventory=subject.SourceBinding(str(ROOT/'inert-inventory.json'),'a'*64,1)
+        closure=subject.SourceBinding(str(ROOT/'inert-closure.json'),'b'*64,1)
+        selection=subject.AcceptedParentEvidence(inventory,(subject.AdmittedClosure(closure,instrument),),(instrument,))
+        # This admits only a structural selection. No file or closure is verified.
+        with patch.object(subject,'_bootstrap',side_effect=AssertionError('inert selection captured bytes')):
+            self.assertEqual(subject._fresh_selections((selection,),ROOT),(selection,))
+            for wrong in (replace(instrument,path=str(ROOT/'renamed-checker.py')),
+                          replace(instrument,sha256='c'*64),
+                          replace(instrument,path=str(ROOT/expected[1][1]),sha256=expected[1][2])):
+                bad=replace(selection,expected_authority=(wrong,),closures=(subject.AdmittedClosure(closure,wrong),))
+                with self.subTest(wrong=wrong),self.assertRaisesRegex(ValueError,'unreviewed'):
+                    subject._fresh_selections((bad,),ROOT)
+            with self.assertRaisesRegex(ValueError,'authority differs'):
+                subject._fresh_selections((replace(selection,closures=(subject.AdmittedClosure(closure,replace(instrument,bytes=1)),)),),ROOT)
+
 
 class OwnershipLifetimeTests(unittest.TestCase):
     """Object-lifetime controls are not measurements of full-run RSS or cost."""

@@ -43,7 +43,7 @@ The machine-readable fields use persistent indices. The aliases describe the dec
 | --- | --- |
 | `schema` | version marker for the quotient-coordinate row |
 | `radius_ratios` | $\varepsilon_{12}=R_1/R_2$ and $\varepsilon_{23}=R_2/R_3$; the aliases $\varepsilon_{IM}$ and $\varepsilon_{MO}$ are explanatory only under the declared map above |
-| `period_ratios` | $T_I/T_M$ and $T_M/T_O$, so time-scale separation is checked alongside radius separation |
+| `period_ratios` | $P_I/P_M$ and $P_M/P_O$, where $P_I,P_M,P_O$ are the cycle periods for the declared layer aliases, so time-scale separation is checked alongside radius separation |
 | `delta_2` | source-record binary-2 speed offset $(s_2-c_f)/c_f$; `delta_M` may appear only as a documented input alias and must normalize to `delta_2` before validation |
 | `ellipticity` and `ellipticity_status` | layer ellipticity data and whether Tier 0 used a shared scalar chart |
 | `plane_gram` | $G_{\ell m}$ values for the quotient-reduced binary-plane normals |
@@ -119,7 +119,7 @@ The Tier 0 `certificate_gates` object names the promotion checks directly:
 | `quotient_coordinates` | $z_\Lambda$ must be nondegenerate after global rotations are removed |
 | `scale_separation` | radius and period ratios must remain inside the declared separated-scale regime |
 | `speed_ordering` | $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$ must hold within tolerance |
-| `phase_closure` | layer winding closure over $T_{\mathbf{k}}$ must hold |
+| `phase_closure` | layer winding closure over $P_{\mathbf{k}}$ must hold |
 | `carrier_residuals` | state return and center drift residuals must remain bounded |
 | `root_residual` | active causal-root defects must remain within tolerance |
 | `active_root_ledger` | partner, self, and inter-layer active root classes must all be present |

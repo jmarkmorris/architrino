@@ -953,14 +953,14 @@ Far-field cancellation is a separate hypothesis. Rapid positive- and negative-po
 
 ##### Integer Phase-Closure States
 
-An A1 record should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $T_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
+An A1 record should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $P_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
 
 $$
-\Theta_a(T_0;T_{\mathrm{ret}})
+\Theta_a(T_0;P_{\mathrm{ret}})
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}\omega_a(T')\,dT'
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}\omega_a(T')\,dT'
 +
-\Phi_a^{\text{root}}(T_0;T_{\mathrm{ret}})
+\Phi_a^{\text{root}}(T_0;P_{\mathrm{ret}})
 =
 2\pi k_a,
 \qquad
@@ -3082,13 +3082,13 @@ A **candidate braid** is a proposed Noether braid branch or branch family whose 
 
 The retained record is not an arbitrary internal diary and it is not an arbitrary collection of architrinos. It is the finite branch chart for one Noether braid: the six-body polarity-neutral inventory of three positive-polarity and three negative-polarity architrinos, together with the path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, plane-orientation data, response-center data, group-velocity row, and Noether sea record that can still affect the next delayed update of that same six-body branch. A path-history segment belongs to the retained record only while it can still enter a self-hit, partner-hit, wake-tail, boundary, or branch-return row on the declared memory window.
 
-Let $P_{T_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $T_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, global spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
+Let $P_{P_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $P_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, global spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
 $$
 \mathcal R_{\mathrm{cert}}
 =
 d_{\mathfrak B}
 \left(
-P_{T_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
+P_{P_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
 g\cdot B_{3B}
 \right)
 \le
@@ -3926,7 +3926,7 @@ Every published candidate analysis must identify one source record. At minimum t
 - the paths $\mathbf X_j(T)$, velocities $\mathbf V_j(T)$, polarities $q_j$, and persistent identities of all architrinos;
 - the family/member identifier and complete taxonomy-coordinate row;
 - the prescribed-geometry engine and chart version;
-- the retained history interval, analysis window, return duration $T_{\mathrm{ret}}$, and absolute-time origin $T_0$;
+- the retained history interval, analysis window, return duration $P_{\mathrm{ret}}$, and absolute-time origin $T_0$;
 - the field speed $c_f$, coupling convention, root policy, self-hit policy, and any mollifier or cutoff;
 - the spatial probe set, enclosing surfaces, temporal sampling rule, and numerical tolerances; and
 - the source hash, engine identity, parameter vector, sampling seed, and generated result hash.
@@ -4183,10 +4183,12 @@ Self-hit acceleration, when active, is recorded separately as $\mathbf A_i^{\mat
 Over the complete orbital or return cycle,
 
 $$
-T_0\le T<T_0+T_{\mathrm{ret}},
+T_0\le T<T_0+P_{\mathrm{ret}},
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-387e54177ff768a5)
+
+Here $P_{\mathrm{ret}}$ is the declared complete-history return period of the braid.
 
 the internal report must retain each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
 
@@ -4325,7 +4327,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 
 | Measure | Definition or required record | What it tests |
 | --- | --- | --- |
-| Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+T_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
+| Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+P_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
 | Minimum separation | $d_{\min}=\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Whether the prescribed chart contains a collision, an undeclared coincidence, or a near-singular pair geometry |
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
@@ -4334,7 +4336,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
 | External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
 | Complete-cycle signed normal wake flux | $F_{\mathrm{signed}}(R)$ from the outward-normal projection of the signed causal-wake contributions | The global signed crossing total, which vanishes for a polarity-neutral assembly and is therefore not a cancellation score |
-| Complete-cycle raw normal wake flux | $F_{\mathrm{raw}}(R)$ with transmitter and root identities retained before absolute aggregation | The emitted wake measure crossing $S_R$ before polarity cancellation; its source-normalized reference is $T_{\mathrm{ret}}\sum_j|q_j|$ |
+| Complete-cycle raw normal wake flux | $F_{\mathrm{raw}}(R)$ with transmitter and root identities retained before absolute aggregation | The emitted wake measure crossing $S_R$ before polarity cancellation; its source-normalized reference is $P_{\mathrm{ret}}\sum_j|q_j|$ |
 | Complete-cycle residual normal wake flux | $F_{\mathrm{res}}(R)$ from the absolute locally superposed signed normal flux | How much local signed wake survives cancellation over the complete cycle |
 | Complete-cycle normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}(R)=F_{\mathrm{res}}(R)/F_{\mathrm{raw}}(R)$ | Linear wake cancellation under the declared enclosing-surface convention, not energy or work |
 | Frequency-resolved normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ from transmitter-root-tagged complex coefficients | Which temporal harmonics and angular modes survive phase-sensitive signed superposition at each enclosing radius |
@@ -4346,13 +4348,13 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Temporal variation | $\partial_T\mathcal W$ and $\partial_T\mathbf A_p$ on continuous root branches | Peak rate of change and phase localization of wake features |
 | Radial scaling | The same angular and exposure rows evaluated over a declared sequence of enclosing radii $R$ | Whether a claimed far-field regime and its power-law scaling have been reached |
 | Symmetry residual | Difference between a measure and its transform under each declared chart symmetry | Which prescribed symmetries survive in the causal-wake field |
-| Spectral ledger | Fourier coefficients over $T_{\mathrm{ret}}$ for selected internal and external rows | Harmonic content, sidebands, and phase locking |
+| Spectral ledger | Fourier coefficients over $P_{\mathrm{ret}}$ for selected internal and external rows | Harmonic content, sidebands, and phase locking |
 | Source-parameter sensitivity | Recomputed measures under declared changes of radius, frequency, phase, orientation, and translation | How dependent the analytical result is on the prescribed coordinates |
 | Numerical convergence | Change under tighter root and quadrature tolerances for the same $S$ and $P$ | Whether the analytical result has been evaluated accurately |
 
 Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a gate or an annotation, not a reward to maximize.
 
-The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $T_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}T_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
+The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $P_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}P_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
 
 Spatial and temporal derivatives must be evaluated branch by branch. At a causal-root birth, death, or fold, the discontinuity or singular behavior is itself the reported event; a derivative must not be fabricated by differencing across it.
 
@@ -4361,8 +4363,8 @@ Two additional diagnostics are useful but must not be mislabeled as energy. Defi
 $$
 \mathcal L_{\mathrm{ext}}(R)
 =
-\frac{1}{T_{\mathrm{ret}}}
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\frac{1}{P_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \|\mathbf A_p(T,\mathbf X)\|^2
 \,dA\,dT
@@ -4403,7 +4405,7 @@ where $\widehat{\mathbf n}$ is the outward unit normal. The signed, raw, and res
 $$
 F_{\mathrm{signed}}(R)
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
 f_{j,T_t}(T,\mathbf X)
@@ -4415,7 +4417,7 @@ $$
 $$
 F_{\mathrm{raw}}(R)
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
 \left|f_{j,T_t}(T,\mathbf X)\right|
@@ -4429,7 +4431,7 @@ and
 $$
 F_{\mathrm{res}}(R)
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \left|
 \sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
@@ -4465,17 +4467,17 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bdd8559a176dbb70)
 
-If the prescribed paths, retained history, and in-transit wake measure all return after $T_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
+If the prescribed paths, retained history, and in-transit wake measure all return after $P_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
 
 $$
 F_{\mathrm{raw}}(R)
 =
-T_{\mathrm{ret}}\sum_j|q_j|.
+P_{\mathrm{ret}}\sum_j|q_j|.
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-127c3043301fa2f7)
 
-This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $T_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
+This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $P_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
 
 These quantities measure causal-wake crossings only. They are not energy, potential, realized work, braid depletion, intrinsic leakage, or stability. A packet must reject the accepted wake-flux measures when roots or history are incomplete, a transmitter leaves an enclosing surface, the raw cycle integral fails its source-normalized reference after refinement, or the primary and refined time-and-surface quadratures fail their declared tolerance.
 
@@ -4483,13 +4485,13 @@ These quantities measure causal-wake crossings only. They are not energy, potent
 
 The complete-cycle scalar $\eta_{\mathcal W,\mathrm{flux}}(R)$ combines every temporal frequency and angular pattern. It therefore cannot show whether one wake harmonic cancels strongly while another survives. The phase-sensitive reduction must occur before any absolute aggregation.
 
-Let $a$ identify a retained transmitter-root branch, let $Y_{\ell m}$ be the declared real orthonormal spherical-harmonic basis, and let $\Omega_0=2\pi/T_{\mathrm{ret}}$. Define
+Let $a$ identify a retained transmitter-root branch, let $Y_{\ell m}$ be the declared real orthonormal spherical-harmonic basis, and let $\Omega_0=2\pi/P_{\mathrm{ret}}$. Define
 
 $$
 \widetilde f_{a,\ell mn}(R)
 =
-\frac{1}{T_{\mathrm{ret}}}
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\frac{1}{P_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 e^{-in\Omega_0(T-T_0)}
 \int_{S_R}
 f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
@@ -4497,6 +4499,8 @@ f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e1e595c1c6b986e6)
+
+Here $P_{\mathrm{ret}}$ is the declared complete-history return period of the braid.
 
 The coefficient retains temporal phase, angular mode, enclosing radius, transmitter identity, and root ordinal. Form the raw and net coefficient magnitudes only after every transmitter-root coefficient exists:
 
@@ -5842,9 +5846,9 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
-Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
+Let $P_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
-T_{\parallel}
+P_{\parallel}
 =
 \frac{R_{\parallel}}{c_{\text{eff}}-v}
 +
@@ -5856,13 +5860,13 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
 while the transverse causal-budget return time is
 $$
-T_{\perp}
+P_{\perp}
 =
 \frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
-Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_{\mathrm{ref}})$ gives
+Requiring $P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
 =
@@ -5877,10 +5881,13 @@ The role of the geometry chapter is to record this as an envelope projection, no
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
-\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_{\mathrm{ref}}}
+\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{P_q(v)}{P_{\mathrm{ref}}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f80c6c5e569c99b5)
+
+Here $P_q$ is the cycle period of clock branch $q$.
+
 and that the admitted branches satisfy
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)

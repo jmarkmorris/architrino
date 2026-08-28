@@ -10,6 +10,8 @@ Plainly: this is fresh authorization with its own clock. It neither extends the 
 
 The [single campaign state file](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/state.json) owns current budgets, process identities, the next executable action, and blocked alternatives. The [authorization receipt](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/authorization.json) and preserved prompt are immutable. Raw outputs use fresh paths under that same ignored root. No commit, push, PR, unrelated regeneration, history deletion, or account change is authorized.
 
+A subsequent operator-approval relay from task `01a03b70-88fd-7652-9a89-4a7b08bebb9d` explicitly confirmed unattended operation and covered routine implementation, observability decisions, review, preparation and bounded execution within this same campaign. It repeated the fixed strength, history, geometry, horizon, resource limits, protected ownership and unchanged deadline. This confirmation does not replace the original authorization receipt or restart the clock. No covered approval is being requested again; unresolved source-review findings and host admission remain technical prerequisites.
+
 ## Fixed problem and evidence boundary
 
 The approved F5 geometry and identities, every past-only history token on `[-1,0]`, release at zero, effective strength `K=0.002`, charge magnitude `q0=1`, coupling `0.002`, normalized wake speed $c_f=1$, sharp chart, requested horizon `T=0.5`, and every historical numerical control and acceptance predicate remain fixed. The first successor changes passive observation only. The original geometry and dynamics references remain unchanged.
@@ -22,11 +24,19 @@ Plainly: the starting documents are the ones the operator named. A matching dige
 
 ## Source and compute coordination
 
-Benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` retains the complete F5 caller and its tests. F6c task `01a045dc-2981-7e42-b970-4f659be06958` retains its wrappers, references, harness work, and shared readiness. Neither task's source release grants the other task's release. Canonical EOM sources and historical executables remain untouched while an exact source-generation arrangement is negotiated. Source-only implementation design, independent mathematical bounds, and admission review proceed with disjoint write sets.
+Benchmark task `01a045de-6a34-77f3-bac4-90f2362f6ccd` retains the complete F5 caller and its tests. F6c task `01a045dc-2981-7e42-b970-4f659be06958` retains its wrappers, references, harness work, and shared readiness. Neither task's source release grants the other task's release. Both tasks accepted the temporary diagnostic snapshot arrangement while canonical EOM sources and historical executables remain untouched. Source-only implementation, independent mathematical bounds, and admission review proceed with disjoint write sets.
 
-The proposed arrangement is a temporary snapshot of the same EOM source tree plus a passive diagnostic patch and separately identified executable, all under the campaign's ignored root. The complete caller remains the only production invocation route. A new declaration must bind the actual snapshot and build dependencies as well as the caller's required canonical-source inventory. Preservation alone does not admit execution. An explicit source arrangement, independent noninterference review, feasible complete-stage schedule, and fresh compute window remain required.
+The accepted arrangement is a temporary snapshot of the same EOM source tree plus a passive diagnostic patch and separately identified executable, all under the campaign's ignored root. The complete caller remains the only production invocation route. A new declaration must bind the actual snapshot and build dependencies as well as the caller's required canonical-source inventory. Preservation alone does not admit execution. Independent noninterference review, a feasible complete-stage schedule, and a fresh compute window remain required. Exact original bytes and five-field file identities are preserved in the campaign's original-source manifest and preservation mapping.
 
 Plainly: the other campaigns must keep seeing their frozen files. A separately built diagnostic generation is useful only if its exact source is recorded and the existing complete evaluation path admits it.
+
+## Source-review milestone
+
+**Measured identity check:** the frozen schedule-capable caller, its tests, and standalone schedule handoff were freshly hashed and matched their announced generations: caller `ffb7f5d16e430e99ac12084ee1e4432fbdeb17b4039dddbb7ee6bf334e774194`, tests `4dcd0bc8d9b7012b27116e062ead2c7a2fc4999d876ccf844a0e8b8bb25ce3c5`, and handoff `fc617950d6ff0c3f38cd0aa335f4792a3e6a704882a6a431cfa31592ddf4c98c`. Their accepted scope is operational source and inert controls; no scientific acceptance transfers to the new diagnostic generation.
+
+**Source-derived review:** passive-capture candidate v1 and whole-invocation observer v2 were rejected before execution. Capture v2 is frozen under manifest `567988a75d25e816b4b32b789deef838b33279447882d4d23c32fc0eed2e5311` for independent review; its 59-file snapshot retains 57 unchanged canonical originals and records exact changes separately. The observer is being repaired for process-birth retention, full raw observation evidence, sampling-gap enforcement, auditor admission and terminal publication deadlines. Compiler-bootstrap v2 is separately frozen for source review. No build, test, standalone calculation or complete evaluator attempt has launched in this session at this milestone.
+
+Plainly: rejected candidates were caught before they could affect an experiment. Preparation has produced concrete reviewable code, but it has not yet produced new motion or certification evidence.
 
 ## Current proof burden
 

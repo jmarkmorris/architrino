@@ -2,7 +2,7 @@
 
 Closure goal: Establish the shortest clear and consistent notation for $\mathbb{A}\mathbb{A}\mathbb{A}$, starting from existing canon, then approve complete transitions by concept before changing the corpus or its consumers.
 
-**Status:** Discussion draft, updated 2026-08-28. The operator authorized this planning document only. No proposed replacement below is approved for execution, and this document does not override the mathematical guides. The only current write target is this file; this planning task does not change corpus prose, guides, app code, schemas, tests, generated artifacts, or priority rankings.
+**Status:** First concept transition approved and synchronized locally on 2026-08-28: retain $T$ for absolute time and use the $P$ family for cycle periods, preserving role subscripts and qualifying real collisions. Section 4.4 records the source implementation, authorized web regeneration, and validation. iOS packaging, historical PDFs, and deployment were not included. The next proposed distinction is in Section 4.5; it is not yet approved. The mathematical guides remain the canonical definitions; this file records decisions, scope, and transition evidence.
 
 ## 1. Strategy
 
@@ -154,6 +154,7 @@ These families complete the central reservations summarized in Section 2.2 and i
 | $h_{ij}$, $\hat{\mathbf r}_t$, $\|\cdot\|$, $\nabla^2$ | Spatial metric; direction; norm; Laplacian | Retain spatial layer and vector/operator identity. |
 | $x_{\mathrm{eff}}^i$, $dt_{\mathrm{eff}}$, $dx_{\mathrm{eff}}^i$, $\partial_{t_{\mathrm{eff}}}$ | Observer coordinates and derivatives | Pair with $t_{\mathrm{eff}}$; require an explicit map from absolute coordinates. |
 | $\tau$, $d\tau$ | Derived clock time | Distinguish clock readout from either coordinate time. |
+| $P$, $P_b$, $P_q$, $P_0$, $P_{\mathrm{ret}}$ | Cycle; branch; clock; reference; return periods | Approved 2026-08-28. Preserve the declared return condition and time units; use $P_{\mathrm{cyc}}$ for actual collisions. Source and local web synchronization verified in Section 4.4. |
 | $T_W$, $T_{\mathrm{rec}}$, $T_{\mathrm{temp}}$ | Record window; persistence; temperature | Protect bare $T$; do not merge these quantities. |
 | $\mathbb U_{\text{now}}\equiv S(T)$ | Complete universe state | Preserve the required history and provenance; classify other $S$ uses separately. |
 | $c_{\mathrm{eff}}$, $c_\gamma$, $c_{\mathrm{GW}}$, $c_\star$ | Dressed; photon; gravitational-wave; declared speed | Keep channel definitions distinct, alongside $c_f$ and $c_0$. |
@@ -233,7 +234,7 @@ Plainly: these rows retain the rest of the census, with their original ranks and
 
 ### 3.4 Strongest source-backed leads
 
-- **Time versus period:** [Return-Cycle Lorentz Quantization](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) uses $T(v)=\gamma_\star(v)T_0$ for duration, while canon reserves $T$ for absolute time. [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md) already uses $P_b$ for branch period, an existing short alternative.
+- **Time versus period — source transition applied:** The original census found $T(v)=\gamma_\star(v)T_0$ for a period in [Return-Cycle Lorentz Quantization](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). That source now uses $P(v)=\gamma_\star(v)P_0$, consistent with the existing $P_b$ branch-period family in [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md). The original frequency table remains a dated baseline, not a post-migration count.
 - **Shape versus delay angle:** [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) defines $\xi=\omega\Delta/2$ in circular geometry; [Braid Envelope Geometry](../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md) uses $\xi=R_\parallel/R_\perp$. They are different dimensionless objects.
 - **Drift versus circulation:** the circular Master Equation benchmark uses $v=\omega R$ and $\beta_f=v/c_f$ for internal motion, while the guide assigns $v$ to assembly drift. Existing binary ratio $s$ is a possible compact destination, subject to preserving dimensions.
 
@@ -243,16 +244,16 @@ Each lead is overturned or narrowed by a valid explicit mapping and approved sco
 
 ## 4. Proposed Transition Table
 
-**Every entry is a discussion proposal.** “Retain” recommends keeping canon; it does not authorize enforcement. Candidate spellings require a collision and ownership inventory. A transition includes a concept and all active consumers. It can close separately from other concept families, but not after changing only one chapter.
+**Only the absolute-time/cycle-period transition is approved for implementation.** Other entries remain discussion proposals; “retain” alone does not authorize a new enforcement campaign. Candidate spellings require a collision and ownership inventory. A transition includes a concept and all active consumers. It can close separately from other concept families, but not after changing only one chapter.
 
 ### 4.1 Time, geometry, and speed
 
 | Current use | Proposed destination | Reason and scope | Prerequisite or decision |
 | --- | --- | --- | --- |
-| $T$ absolute time | Retain $T$. | Central short canonical quantity. | Existing canon; enforcement awaits authorization. |
+| $T$ absolute time | Retain $T$. | Central short canonical quantity. | Approved: remove competing cycle-period uses; no blanket change of other time quantities. |
 | Native $t,\mathbf x$ or scalar-styled vectors | $T,\mathbf X$ and indexed native forms. | Existing coordinate-layer rule. | Classify native/comparison uses; preserve actual scalar components; include guidance consumers. |
 | Observer $t,x^i$ in working formulas | $t_{\mathrm{eff}},x_{\mathrm{eff}}^i$. | Distinguish observer and substrate coordinates. | No shortening to bare letters without a guide decision. |
-| $T(v),T_q,T_0$ as periods | Prefer existing $P,P_b$ and corresponding $P_0$; $P_{\mathrm{cyc}}$ only when another $P$ coexists. | Short period notation; reserve $T$. | Approve family reservation; inspect probability, pressure, and momentum collisions first. |
+| $T(v),T_q,T_0$ as periods | Approved $P,P_q,P_0$; preserve existing $P_b$; use $P_{\mathrm{cyc}}$ only when another $P$ coexists. | Short period notation; reserve $T$. | Source migration and authorized local web regeneration complete; role-specific mappings, collisions, and evidence in Section 4.4. |
 | Bare $T$ temperature | $T_{\mathrm{temp}}$ or an existing temperature subscript. | Already settled in the guide. | Preserve true absolute-time uses. |
 | $\tau$ physical-clock readout | Retain $\tau$. | Familiar clock/proper-time bridge. | Do not identify it with absolute time. |
 | $\tau$ native causal travel delay | Prefer $\Delta$ with event subscripts when needed. | Separate travel delay from clock readout. | Comparison relaxation/proper-time meanings are separate concepts. |
@@ -301,6 +302,127 @@ Expand each selected row here before execution: concept and definition; units; s
 Distinguish a pure rename from a variable transformation. A rename preserves the object. Replacing a half-angle by a full angle, or a speed by a normalized ratio, changes substitution rules and requires derivative, bound, and unit checks. An unresolved physical correspondence remains unresolved after either operation.
 
 Plainly: establish what moves, where it moves, and what stays unchanged before touching a formula. This table holds decisions; the occurrence inventory supplies the complete work list.
+
+### 4.4 Approved transition: absolute time and cycle periods
+
+**Decision, 2026-08-28:** retain $T$ for absolute time; use $P$ for a cycle period, with existing role subscripts and a short qualifier where another $P$ coexists. This is a change of notation, not a change of dynamics, units, numerical values, or claim grade. The source migration and separately authorized app/reading-copy regeneration are complete locally. This does not claim a commit, deployment, or update to installed readers.
+
+**Definition and type:** a period is a scalar duration measured in a declared time coordinate. Its dimensions are time until normalization is declared. Specify whether the cycle returns a signal, a reduced shape, an apparatus record phase, or the complete delayed history. A proposed period does not establish existence or stability of the proposed cycle.
+
+Plainly: $T$ tells us when; $P$ tells us how long one declared cycle takes. We changed the names and their explanations, not the physical claims.
+
+#### Approved spellings and actual collisions
+
+| Previous period use | Current period notation | Scope and preservation rule |
+| --- | --- | --- |
+| $T(v)$, $T_q$, $T_u$, $T_0$ | $P(v)$, $P_q$, $P_u$, $P_0$ | Moving, branch, and reference clock periods. The $T$ inside $P_q[v(T),a(T)]$ stays absolute time. |
+| $T_{\mathrm{ret}}$, $T_{\mathbf k}$ | $P_{\mathrm{ret}}$, $P_{\mathbf k}$ | Complete-history return and winding-indexed cycle periods. Epochs in $[T_0,T_0+P_{\mathrm{ret}}]$ remain $T_0$. |
+| $T_N$, $T_{N0}$ | $P_N$, $P_{N0}$ | Local and reference Noether sea cadence periods; frequency relations and ratio direction are unchanged. |
+| $T_a$, $T_I,T_M,T_O$, $T_{\mathrm{ref}}$, $T_{\mathrm{int}}$, $T_\star$, $T_{\mathrm{core}}$ | Corresponding $P$ with the same role subscript | Per-binary, declared layer, reference, internal-cycle, selected-cycle, and core periods. A normalization time or interaction duration with a similar old spelling is not renamed. |
+| $T_{\parallel}$, $T_{\perp}$, $T_{\circlearrowleft}$ | $P_{\parallel}$, $P_{\perp}$, $P_{\circlearrowleft}$ | Complete round-trip signal cycles; one-way travel times remain durations with their existing definitions. |
+| $T_{\mathrm{cycle}}$, $T_{\text{cycle}}$, candidate orbital $t_0$ | $P_{\mathrm{cycle}}$, $P_{\text{cycle}}$, $P_0$ | Preserve the stated cycle and candidate status; do not rename lower-case epochs. |
+| Bare period $T$ beside probability, parity, or a permutation $P$ | $P_{\mathrm{cyc}}$ | Master Equation, Angular Momentum and Spin, and the equation-closure packet need this distinction. Path ordering $\mathcal P$ stays unchanged. |
+| Pilot-wave period $T_n$ beside probability $P_n$ | $P_{\mathrm{cyc},n}$ | Preserve the existing probability $P_n=\mu_*(B_n)$. |
+| Apparatus-cycle $T_{\text{rec}}$ | $P_{\mathrm{rec}}$ | Only the phase-cycle normalization changes; formation time and required persistence duration do not. |
+| Candidate-cycle $\tau$; relative-return $\tau$ | $P_{\mathrm{cyc}}$; $P_{\mathrm{rel}}$ | The recurrence and F6c shape/current sections of the active braid-inference packet. A reflected shape can return after $P_{\mathrm{rel}}$ while its fixed-frame current requires $2P_{\mathrm{rel}}$. |
+| Dimensionless $P(\beta_f)$ in rescaled time $s=T/P_0$ | $P_s(\beta_f)=P(c_f\beta_f)/P_0$ | Separate the dimensionless rescaled period from the physical period $P(v)$. This makes the existing normalization explicit. |
+
+Plainly: most replacements change one letter. Extra subscripts are used where the shorter replacement would confuse two quantities already present in the same document.
+
+#### Interfaces and preserved records
+
+The canonical owners are the existing [Mathematics Style Guide](../../../content/markdown/aaa/archie/mathematics-style-guide.md#absolute-time-and-cycle-periods) and [Mathematical Terminology](../../../content/markdown/aaa/archie/mathematics-terminology.md). The new reader explanation lives in the style guide, not in a new glossary. The equation generator's shared $P$ fallback now includes cycle periods without removing its other valid meanings. Local definitions remain preferable to this deliberately broad fallback.
+
+The serialized key `T_N_over_T_N0` still means the current period ratio $P_N/P_{N0}$; the literal emission-row identifier `clock_period_T_u_T0` still means $P_u/P_0$. Their active documentation now states these translations. Established clock-residual labels such as $R_T$ and $C_T$ remain labels, not period variables. No schema version, serialized key, solver variable, saved app draft, fixture number, or historical result was changed. Promoted app maps were inspected and have no matching period formula requiring a separate authored rename; basic pages now consume the refreshed registry.
+
+Frozen evidence, work logs, dated review records, and past campaign results preserve their original notation. When reading a historical cycle period $T$ or $T_{\mathrm{ret}}$ beside current prose, translate it to $P$ or $P_{\mathrm{ret}}$ only after confirming that the recorded quantity is a cycle duration. Do not translate an epoch, emission/reception time, arbitrary scale, record window, persistence duration, temperature, tensor, map, or interaction duration by its letter alone. The original top-50 census and concern labels above remain the pre-transition baseline; they are not current-use counts.
+
+Plainly: saved data keeps working, and historical evidence stays authentic. Current explanations say how those older field names map to the new period notation.
+
+#### Source scope
+
+The source batch touches 28 canonical Markdown documents, 14 active priority documents, and one developer README. The generator fallback, its existing test suite, and this plan are additional authored changes. The following is the exact Markdown scope, separate from other agents' changes in the shared checkout:
+
+- [content/markdown/aaa/archie/mathematics-style-guide.md](../../../content/markdown/aaa/archie/mathematics-style-guide.md)
+- [content/markdown/aaa/archie/mathematics-terminology.md](../../../content/markdown/aaa/archie/mathematics-terminology.md)
+- [content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
+- [content/markdown/aaa/cosmology/cosmology-ontology.md](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)
+- [content/markdown/aaa/cosmology/expansion-mechanism.md](../../../content/markdown/aaa/cosmology/expansion-mechanism.md)
+- [content/markdown/aaa/dynamics/binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md)
+- [content/markdown/aaa/dynamics/energy.md](../../../content/markdown/aaa/dynamics/energy.md)
+- [content/markdown/aaa/dynamics/entropy.md](../../../content/markdown/aaa/dynamics/entropy.md)
+- [content/markdown/aaa/dynamics/master-equation.md](../../../content/markdown/aaa/dynamics/master-equation.md)
+- [content/markdown/aaa/noether-braid/braid-a1-dynamics.md](../../../content/markdown/aaa/noether-braid/braid-a1-dynamics.md)
+- [content/markdown/aaa/noether-braid/braid-analysis-methodology.md](../../../content/markdown/aaa/noether-braid/braid-analysis-methodology.md)
+- [content/markdown/aaa/noether-braid/braid-envelope-geometry.md](../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md)
+- [content/markdown/aaa/noether-braid/noether-braid-configuration-space.md](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md)
+- [content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md)
+- [content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
+- [content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
+- [content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md)
+- [content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
+- [content/markdown/aaa/spacetime/proper-time-and-time-dilation.md](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
+- [content/markdown/aaa/validation/closure-scorecard.md](../../../content/markdown/aaa/validation/closure-scorecard.md)
+- [content/markdown/aaa/validation/failure-criteria.md](../../../content/markdown/aaa/validation/failure-criteria.md)
+- [content/markdown/aaa/validation/known-tensions.md](../../../content/markdown/aaa/validation/known-tensions.md)
+- [content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md](../../../content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md)
+- [content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md](../../../content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md)
+- [content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md](../../../content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md)
+- [content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md](../../../content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md)
+- [content/markdown/aaa/validation/simulations/perspective.md](../../../content/markdown/aaa/validation/simulations/perspective.md)
+- [content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md](../../../content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md)
+- [reference/priorities/app-simulation/simulations.md](../../../reference/priorities/app-simulation/simulations.md)
+- [reference/priorities/braid-program/same-record-energy-ledger-methodology.md](../../../reference/priorities/braid-program/same-record-energy-ledger-methodology.md)
+- [reference/priorities/field-speed-ceiling/mathematics-geometry-dynamical-system.md](../../../reference/priorities/field-speed-ceiling/mathematics-geometry-dynamical-system.md)
+- [reference/priorities/mapping-benchmarks/cosmological-redshift-distance-ladder.md](../../../reference/priorities/mapping-benchmarks/cosmological-redshift-distance-ladder.md)
+- [reference/priorities/mapping-benchmarks/effective-metric-deformation.md](../../../reference/priorities/mapping-benchmarks/effective-metric-deformation.md)
+- [reference/priorities/mapping-benchmarks/lorentz-invariance-test-suite.md](../../../reference/priorities/mapping-benchmarks/lorentz-invariance-test-suite.md)
+- [reference/priorities/mapping-equations/eq-02-04-lorentz-energy-packet.md](../../../reference/priorities/mapping-equations/eq-02-04-lorentz-energy-packet.md)
+- [reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md](../../../reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md)
+- [reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md](../../../reference/priorities/mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md)
+- [reference/priorities/mapping-equations/equation-score-5-closure-ladder.md](../../../reference/priorities/mapping-equations/equation-score-5-closure-ladder.md)
+- [reference/priorities/mapping-equations/equation.md](../../../reference/priorities/mapping-equations/equation.md)
+- [reference/priorities/mapping-equations/inferring-braid-requirements.md](../../../reference/priorities/mapping-equations/inferring-braid-requirements.md)
+- [reference/priorities/master-equation-closure/lorentz-gr-bridge-handoff.md](../../../reference/priorities/master-equation-closure/lorentz-gr-bridge-handoff.md)
+- [reference/priorities/master-equation-closure/lorentz-test-residual-handoff.md](../../../reference/priorities/master-equation-closure/lorentz-test-residual-handoff.md)
+- [src/prescribed-path-analysis/README.md](../../../src/prescribed-path-analysis/README.md)
+
+#### Validation and publication boundary
+
+- **Measured source identity:** an independent literal Markdown-link comparison against the pre-edit snapshot preserves all 4,598 corpus equation links and their source-file bindings. The scoped display parser finds 98 changed display equations across the canonical and active working documents, with no display added or removed. This is notation/identity evidence, not a physical validity check.
+- **Measured rendering:** the math-preview delimiter parser and bundled KaTeX 0.16.11 check 14,776 expressions in the 43 scoped Markdown files after the local-definition follow-up. There are no new parse/render failures. Three unchanged strict-render failures predate the edit: a Unicode prime in `perspective.md` and two unsupported `\dddot` expressions in `mapping-equations/equation.md`. These are retained as separate rendering debt, not silently corrected by this notation batch.
+- **Source validation:** `node scripts/validate-content.mjs --check --strict` passes with zero errors and zero warnings. The focused period/definition tests pass. The added regression test protects the original equation IDs, absolute-time arguments inside a period expression, and the distinct path-ordering operator.
+- **App suite:** after regeneration the four existing Equation Mapping test files run 97 tests: 96 pass, with only the unrelated iOS snapshot-count assertion failing (4,546 packaged links versus its old 4,543 assertion). The generated registry contains 4,598 equations, 23 promoted pages, and 29,625 symbol records; the count change is two symbol records, not two new equations. The test now also protects precise local definitions for representative cycle-period chips. iOS was not rebuilt or changed.
+- **Generated outputs:** 12 files changed: `content/generated/equation-mapping/corpus-equations.json`, `content/graph/textbook_toc.json`, `content/generated/markdown/textbook/toc.md`, and nine reading copies under `content/generated/markdown/textbook/reading-copies/`: `architrino-textbook.md`, `dynamics.md`, `noether-braid.md`, `noether-sea-and-effective-spacetime.md`, `standard-model-assemblies.md`, `cosmology.md`, `validation.md`, `philosophy-history.md`, and `about-architrino.md`. The authorized rebuild also resolved the previously recorded TOC and About-page drift against current sources. All three generator checks pass.
+- **Formula and source checks:** all 4,598 registry IDs retain their original source-file and promotion bindings. All 65 changed canonical display formulas appear in the combined reading copy; the other 33 changed displays are in active working documents. No equation links were added. SHA-256 comparison confirms the snapshotted iOS package files are unchanged. No PDF export, commit, push, or deployment occurred.
+- **Definition follow-up:** browser inspection exposed broad fallback descriptions for migrated periods. Added 26 explicit local-definition paragraphs in 10 already-scoped source files, then regenerated the registry and reading copies again. All newly introduced period chips in the changed canonical formulas now have detected local definitions. Two distinct non-period symbols still have broad extraction descriptions: the return-map expression $P_{P_{\mathrm{ret}}}^{(\mathbf V)}$ and the unbraced path-ordering token $\mathcal P$. They are not period quantities and were not relabeled as such; their extraction quality remains a separate issue.
+
+Plainly: the local app and textbook copies now agree with the new period notation. The remaining iOS test failure concerns an older packaged snapshot, and no package or historical PDF was changed to make that assertion pass.
+
+**Regeneration executed:** `node scripts/build-scene-graph.mjs --write --strict`, `node scripts/build-equation-mapping-corpus.mjs --write`, and `node scripts/build-textbook-md-pdf.mjs --write`, with their corresponding checks. The equation and reading-copy stages were repeated after the local-definition follow-up. The live local app displays $P(v)=\gamma_\star(v)P_0$ with loaded fonts, no KaTeX errors, and a local cycle-period definition for $P$; its source panel names the current Markdown source. Visual inspection and identity checks establish notation and rendering, not physical correctness.
+
+**Next notation decision:** keep $\xi$ for the envelope ratio $R_\parallel/R_\perp$ and consider $\xi_d$ for the half-delay angle. The detailed proposal is in Section 4.5. It is not yet approved.
+
+Plainly: the time/period web update is finished locally. Next resolve one concrete ambiguity: an envelope's flattening ratio and the angle swept during half a causal delay should not have an indistinguishable name.
+
+**Falsifiers:** an inventoried active period still spelled with the old time symbol without a documented exception; a changed equation ID or numeric value; a probability or absolute-time variable renamed as a period; a new KaTeX failure; or a served app formula/definition that disagrees with its current source. Reopen the relevant transition row when any of these checks fails.
+
+### 4.5 Next decision: shape ratio and half-delay angle
+
+**Proposal only:** retain the approved short symbol $\xi$ for envelope shape. Use $\xi_d$ for the half-delay angle in circular-path causal-root calculations. The subscript $d$ identifies delay; it does not change the angle or its normalization.
+
+| Concept | Current definition | Proposed notation | What changes |
+| --- | --- | --- | --- |
+| Envelope shape ratio | $\xi=R_\parallel/R_\perp$ | Keep $\xi$ | Nothing. Equal semiaxes give $\xi=1$; a shorter longitudinal semiaxis gives $\xi<1$. |
+| Half-delay angle | $\xi=\omega\Delta/2$, with $\Delta=T_r-T_t$, on a constant-cadence circular path | $\xi_d=\omega\Delta/2$ | Add the delay subscript only where the symbol means this angle. Retain the factor of two. |
+
+Plainly: the first number describes how flattened an envelope is. The second tells us half the angle swept while a causal wake travels. Both are dimensionless, but they measure different things.
+
+The angle use is explicit in the [A1.1 frequency-step action ledger](../braid-program/a1-1-frequency-step-action-ledger.md): $\xi=\omega_n(T_r-T_t)/2$. Its self-root equation would change from $|\sin\xi|=\xi/\beta_{a,n}$ to $|\sin\xi_d|=\xi_d/\beta_{a,n}$. Here $\omega_n$ is the circular angular cadence and $\beta_{a,n}$ is that row's existing internal-speed ratio. No speed convention is changed by this proposal.
+
+Plainly: the equation does exactly the same calculation. The extra subscript prevents its angle from being mistaken for the envelope ratio in a neighboring derivation.
+
+After approval, inventory every angle use and candidate collision before editing, preserve shape uses and frozen provenance, update the angle definitions and dependent expressions together, and run the same source/registry/reading-copy checks. This decision does not authorize an angle doubling, a speed-ratio redefinition, or an equality between envelope shape and causal delay.
 
 ## 5. Detailed Plan Before Execution
 
@@ -497,11 +619,11 @@ Plainly: a tooltip should explain this symbol in this equation. If the meaning i
 
 1. Review the approved notation in Section 3.2 first: retain the current choices by default and explicitly identify any to reconsider. The approved families are the first cleanup priority, not the largest frequency counts.
 2. Decide the scope of bound indices and comparison notation under the existing document-wide meaning rule.
-3. Choose period, half-delay-angle, and internal-speed notation before exact transition design.
+3. Decide the half-delay-angle spelling in Section 4.5 while retaining $\xi$ for envelope shape. The approved period transition is synchronized locally; deployment is outside this batch. Internal-speed notation follows as a separate decision.
 4. Decide whether current layer qualifiers can ever be omitted within a formally declared scope. Initially keep explicit forms; revisit shortening with representative reader examples.
 5. Select overloaded families that actually warrant change after inventory; preliminary concern labels are not approval.
 6. Approve complete affected paths, comparison/provenance policy, and validation per family before execution.
 
-Discuss strategy and scope first, then make remaining choices one at a time. Do not start migration or canonize candidate spellings merely because they appear here.
+Discuss strategy and scope first, then make remaining choices one at a time. The approved period transition is the only current implementation authority; other candidate spellings are not authorized merely because they appear here.
 
 **Closure goal:** straighten out the approved notation first, reconsider specific choices explicitly, then authorize complete concept transitions across the corpus, app-equation, and all active consumers.

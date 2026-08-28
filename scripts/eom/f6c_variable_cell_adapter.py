@@ -124,9 +124,13 @@ PARENT_INVENTORY_SOURCES=(
  ('parserControls','tests/test_f6c_parent_evidence_inventory.py','369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551'),
  ('schema','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md','856c05077241bf9c28d75c21fcb50beac0afd23546c4bbbad9be7abd5d0f6710'),
 )
-# Empty until a separately reviewed fresh-closure instrument is frozen. This
-# fail-closed table is never populated from an inventory's self-named issuer.
-FRESH_CLOSURE_SOURCES=()
+# Independently accepted pure checker; an inventory cannot name its own authority.
+# These pins do not admit an unobserved batch or the separate I/O issuer.
+FRESH_CLOSURE_SOURCES=(
+ ('instrument','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'),
+ ('controls','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'),
+ ('contract','.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'),
+)
 FRESH_NUMERICAL_SETTINGS=(
  '.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/three-request-independent-expectations.v1.json',
  'ebd03873e7b57d6f59508b36d3ef1f1f797071524d1ed9cf7ceee33cdc431d51',6116,

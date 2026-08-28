@@ -86,6 +86,18 @@ Plain language: first ask which layer the math is using. Native equations use th
 
 ## Kinematics (Newton–Cartan/Galilean background)
 
+### Absolute time and cycle periods
+
+Use $T$ for absolute time and the $P$ family for cycle periods. A cycle period is a duration: $P=T_2-T_1$ when a declared cycle starts at $T_1$ and ends at $T_2$. Define which signal, shape, or complete history returns, and name the time coordinate used to measure the duration. Changing the period symbol does not establish that a proposed cycle exists or is stable.
+
+Keep useful role subscripts: $P_b$ for branch $b$, $P_q$ for clock branch $q$, $P_0$ for the stated reference period, and $P_{\mathrm{ret}}$ for complete-history return. Use $P_{\mathrm{cyc}}$ only where another meaning of $P$ coexists. Do not rename independently defined probability, pressure, momentum, permutation, or projection symbols merely because they use the same letter.
+
+An epoch $T_0$, an emission time $T_t$, a reception time $T_r$, a normalization scale, a record window $T_W$, and a record persistence duration $T_{\mathrm{rec}}$ are not cycle periods. Preserve their meanings. A dimensionless period in a rescaled time needs its own declared conversion; for example, when $s=T/P_0$, write $P_s=P/P_0$. Preserve literal schema keys and provenance-bound records, and explain their translation at the consuming interface when the recorded spelling differs from current prose.
+
+Plainly: $T$ tells us when; $P$ tells us how long one cycle takes. A cycle can repeat a visible shape without repeating all the history that drives the next motion.
+
+### Native kinematic quantities
+
 - Absolute time $T$ is universal and oriented; durations are
 
   $$

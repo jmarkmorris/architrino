@@ -166,12 +166,12 @@ When a mode asks for a disabled source class, retrieval should record the exclud
 
 ## External Prior-Physics Boundary
 
-External prior-physics retrieval requires a separate curated-source policy or controlled search path.
+External prior-physics retrieval requires an explicitly enabled curated-source configuration or controlled search path. That operational permission does not replace the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) or its [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review), which govern selection and use of the retrieved works.
 
 Minimum requirements before use:
 
 1. source identity, title, author/publisher, and retrieval timestamp;
-2. primary-source preference for technical claims;
+2. source suitability and checked relevance for the intended use under the About policy;
 3. separation between external result, local claim, recovery target, and open burden;
 4. no promotion of external source content into $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology;
 5. citation payloads that the UI can display separately from local source chips.

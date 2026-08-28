@@ -45,6 +45,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
   check(argv.length===4 && argv[0]==='--plan' && argv[2]==='--phase','Usage: --plan FILE --phase serial|parallel|isolation');
   validateLauncherEnvironment();
   const start=performance.now(), startEpoch=Date.now(), cpuStart=process.resourceUsage();
+  const cpuStartCapturedElapsedSeconds=(performance.now()-start)/1000;
   const planBinding=readJson(resolve(argv[1])), plan=planBinding.value, declaration=readJson(plan.declaration.path), d=declaration.value;
   const synthetic=control!==null;
   if(synthetic){
@@ -87,9 +88,27 @@ export async function main(argv=process.argv.slice(2), control=null) {
   let lock, parent, resourcesFD, eventsFD, failed=null, stopping=false, resourceBytes=0,eventBytes=0,peakOutput=0;
   let lastHeartbeat=0, nextHost=0, stopAt=null, cleanupUnresolved=false, lastTable=[];
   let rawMaximumRssBytes=0, rawSamples=0, observationCoverageEndSeconds=null, finalObservationGapSeconds=null, cleanupDeadline=null;
+  let cleanupSequence=0,cleanupPublishedDeadline=null,cleanupPublicationFailure=null,publishingCleanup=false;
   const observedIdentities=new Map();
   const logLimits={outputBytes:plan.outputBytes,aggregateOutputBytes:plan.aggregateOutputBytes};
-  const stop=reason=>{failed??=String(reason);stopping=true;stopAt??=performance.now();cleanupDeadline??=stopAt+plan.cleanupSeconds*1000;};
+  const setCleanupDeadline=(reason,proposed)=>{
+    const next=Math.min(cleanupDeadline??Infinity,proposed);
+    if(next===cleanupDeadline)return;
+    cleanupDeadline=next;
+    // A failed evidence write may call stop again. Preserve the failure without
+    // recursively trying to log it or granting a replacement cleanup interval.
+    if(publishingCleanup){cleanupPublicationFailure??='recursive failure during cleanup deadline publication';return;}
+    publishingCleanup=true;
+    try {
+      check(eventsFD!==undefined,'cleanup began before event log opened');
+      event({event:'global-cleanup-deadline',planSha256:planBinding.sha256,phaseId:phase.id,sequence:cleanupSequence+1,
+        reason:String(reason),cleanupStartedElapsedSeconds:(next-plan.cleanupSeconds*1000-start)/1000,
+        cleanupDeadlineElapsedSeconds:(next-start)/1000,cleanupDeadlineEpochMs:startEpoch+next-start});
+      fsyncSync(eventsFD);cleanupSequence++;cleanupPublishedDeadline=next;
+    }catch(e){cleanupPublicationFailure??=e.message;failed??=`cleanup deadline provenance unavailable: ${e.message}`;}
+    finally{publishingCleanup=false;}
+  };
+  const stop=(reason,earlierDeadline=Infinity)=>{failed??=String(reason);stopping=true;stopAt??=performance.now();setCleanupDeadline(reason,Math.min(stopAt+plan.cleanupSeconds*1000,earlierDeadline));};
   const failCase=(state,reason)=>{state.failure??=String(reason);state.stopAt??=performance.now();};
   const onSignal=()=>stop('operator interruption');
   const outputFailure=error=>stop(`batch diagnostic output failure: ${error.message}`);
@@ -269,7 +288,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
         }
         await settle(s);
         if(s.failure && s.status==='running' && performance.now()-s.stopAt>=plan.cleanupSeconds*1000){
-          stop(`isolated worker cleanup unresolved: ${s.id}`);cleanupDeadline=Math.min(cleanupDeadline,s.stopAt+plan.cleanupSeconds*1000);
+          stop(`isolated worker cleanup unresolved: ${s.id}`,s.stopAt+plan.cleanupSeconds*1000);
         }
       }
       if(stopping)break;
@@ -288,7 +307,8 @@ export async function main(argv=process.argv.slice(2), control=null) {
   finally {
     // Cleanup is bounded and identity checked. Never release the shared lock
     // while any owned group or worker closure remains unresolved.
-    const cleanupStart=performance.now();cleanupDeadline??=cleanupStart+plan.cleanupSeconds*1000;
+    const cleanupStart=performance.now();
+    if(cleanupDeadline===null)setCleanupDeadline('normal-finalization',cleanupStart+plan.cleanupSeconds*1000);
     while([...states.values()].some(s=>s.child && (!s.closed || s.status==='running')) && performance.now()<cleanupDeadline) {
       try{await censusObservation(false);}catch(e){failed??=e.message;}
       try {
@@ -319,7 +339,14 @@ export async function main(argv=process.argv.slice(2), control=null) {
   }
   check(existsSync(output),'batch failed before evidence directory creation');
   try{authenticateBindings(immutable);validateSourceInventory(d);}catch(e){failed??=e.message;}
-  const cpuEnd=process.resourceUsage(),census=terminalCensus(phase.cases,states);
+  const cpuEnd=process.resourceUsage(),cpuEndCapturedElapsedSeconds=(performance.now()-start)/1000,census=terminalCensus(phase.cases,states);
+  let userCpuMicroseconds=null,systemCpuMicroseconds=null,cpuMeasurementFailure=null;
+  try {
+    for(const key of ['userCPUTime','systemCPUTime'])check(Number.isSafeInteger(cpuStart[key]) && cpuStart[key]>=0 &&
+      Number.isSafeInteger(cpuEnd[key]) && cpuEnd[key]>=cpuStart[key],`invalid coordinator CPU counter: ${key}`);
+    userCpuMicroseconds=cpuEnd.userCPUTime-cpuStart.userCPUTime;
+    systemCpuMicroseconds=cpuEnd.systemCPUTime-cpuStart.systemCPUTime;
+  }catch(e){cpuMeasurementFailure=e.message;failed??=e.message;}
   if(census.some(c=>c.status==='failed'))failed??='one or more isolated evaluator failures; all planned cases retained';
   const closureBinding=publish(resolve(output,'final-ownership.json'),{syntheticControl:synthetic,benchmarkEligible:false,at:new Date().toISOString(),elapsedSeconds:(performance.now()-start)/1000,
     observedIdentities:[...observedIdentities.values()],finalRelevantRows:lastTable.filter(r=>r.pid===process.pid || [...owners.values()].some(o=>o.identity.pgid===r.pgid)),
@@ -331,11 +358,17 @@ export async function main(argv=process.argv.slice(2), control=null) {
     allPlannedCasesAccountedFor:true,ownedProcessClosureEstablished:!cleanupUnresolved,sharedLockReleased:lock===null,
     elapsedSecondsThroughCleanup:(performance.now()-start)/1000,resourceSamples:sampleState,rawResourceSamples:rawSamples,rawMaximumRssBytes,
     observationCoverageEndSeconds,finalObservationGapSeconds,finalOwnership:closureBinding,peakObservedOutputBytes:peakOutput,
-    observerLogBytes:resourceBytes+eventBytes,coordinatorUserCpuMicroseconds:cpuEnd.userCPU-cpuStart.userCPU,
-    coordinatorSystemCpuMicroseconds:cpuEnd.systemCPU-cpuStart.systemCPU,
+    observerLogBytes:resourceBytes+eventBytes,coordinatorUserCpuMicroseconds:userCpuMicroseconds,
+    coordinatorSystemCpuMicroseconds:systemCpuMicroseconds,
+    coordinatorCpuMeasurement:{status:cpuMeasurementFailure?'invalid':'measured',failure:cpuMeasurementFailure,pid:process.pid,
+      startResourceUsage:cpuStart,endResourceUsage:cpuEnd,startCapturedElapsedSeconds:cpuStartCapturedElapsedSeconds,
+      endCapturedElapsedSeconds:cpuEndCapturedElapsedSeconds,unit:'microseconds',instrument:'Node process.resourceUsage'},
+    cleanupDeadlineProvenance:{lastSequence:cleanupSequence,deadlineEpochMs:cleanupDeadline===null?null:startEpoch+cleanupDeadline-start,
+      deadlineElapsedSeconds:cleanupDeadline===null?null:(cleanupDeadline-start)/1000,provenanceEventCount:cleanupSequence,
+      complete:cleanupPublishedDeadline===cleanupDeadline && cleanupPublicationFailure===null,publicationFailure:cleanupPublicationFailure},
     memoryScope:'simultaneously sampled coordinator, evaluator workers, stage gates, targets, observed probes and retained owned groups; short probes can fall between samples; not a continuous allocation ceiling',
     timingScope:'wall envelope includes startup authentication, observer, registration, caller checks/publication and cleanup; RSS coverage starts at first sample and ends at recorded owned-process closure; final source authentication/publication is outside RSS coverage; external review/publication excluded',
-    cpuScope:'coordinator process only; gate and evaluator-launcher resourceUsage are separately recorded; transient external probe CPU is unmeasured and is not inferred from wall subtraction',
+    cpuScope:'coordinator process only, main entry through post-cleanup source authentication; runtime/module startup and later ownership/result/inventory/seal publication excluded; gate and evaluator-launcher raw lifetime-to-capture resourceUsage separately recorded; target and transient external probe CPU unmeasured; no wall subtraction or speedup inference',
     originalCampaignDeadline:d.campaignDeadline,scientificAcceptance:false};
   const binding=publish(resolve(output,'batch-result.json'),result,{root:output,limits:logLimits});
   authenticateBindings([binding]);check(Date.now()<hardDeadline,'original campaign deadline reached during closeout');

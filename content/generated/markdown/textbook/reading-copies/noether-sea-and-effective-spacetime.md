@@ -2028,7 +2028,7 @@ The fundamental claim is:
 A clock is any assembly with a **stable, countable internal cycle**. The native picture is not time itself slowing; the countable assembly cycle is what changes cadence:
 
 - Minimal model: a Noether braid with one declared clock-channel index $a_{\mathrm{clk}}\in\{1,2,3\}$ whose cycle is counted. The clock-channel role is extracted from the record and is not assigned by radius order.
-- Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
+- Base frequency $\omega_0$ (or period $P_0 = 2\pi/\omega_0$) is defined for:
   - Clock **at rest** in the absolute frame.
   - In a region of homogeneous Noether sea density $n=1$ and negligible external gradients.
 
@@ -2112,19 +2112,22 @@ from its internal phase dynamics, rather than assign the factor independently.
 
 For an admitted moving Noether braid branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
 $$
-T_q(\mathbf{w})
+P_q(\mathbf{w})
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(\mathbf{0})
+P_0=P_q(\mathbf{0})
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7d21870566bab09b)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
 and the clock residual is
 $$
 R_T^{(q)}(\mathbf{w})
 \equiv
-\frac{T_q(\mathbf{w})}{T_0}
+\frac{P_q(\mathbf{w})}{P_0}
 -
 \gamma_\star(\mathbf{w})
 $$
@@ -2144,17 +2147,19 @@ This moving-clock row is one leg of the structural-integrity common-limit closur
 
 #### Noether Sea Braid Cadence
 
-For redshift and cosmology work, the local Noether sea braid cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf X,T)$ be a representative cadence extracted from the local Noether sea braid population, with $T_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$. Relative to the weak homogeneous reference cadence, define
+For redshift and cosmology work, the local Noether sea braid cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf X,T)$ be a representative cadence extracted from the local Noether sea braid population, with $P_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$. Relative to the weak homogeneous reference cadence, define
 
 $$
 \Gamma_N(\mathbf X,T)
 \equiv
-\frac{T_N(\mathbf X,T)}{T_{N0}}
+\frac{P_N(\mathbf X,T)}{P_{N0}}
 =
 \frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3a5e0a0a1a6f616)
+
+Here $P_{N0}$ is the reference Noether sea braid cycle period.
 
 The quantity $\Gamma_N$ records local cadence stretching of the Noether sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea cadence. In the homogeneous moving Noether braid branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma_\star$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma_\star$ for the declared clock channel. In a gravitational or cosmological Noether sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, $\Phi_{\text{eff}}$, and clock geometry.
 
@@ -3222,13 +3227,13 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 This program fails, and the emergent-metric project is likely untenable, if any of the following hold:
 
 1. **Incorrect velocity dependence:**
- - If $T_q(\mathbf w)$ cannot be made to fit $\propto \gamma_\star(\mathbf w)$ without fine-tuning internal clock geometry or Noether sea parameters.
+ - If $P_q(\mathbf w)$ cannot be made to fit $\propto \gamma_\star(\mathbf w)$ without fine-tuning internal clock geometry or Noether sea parameters.
 
 2. **Wrong sign or magnitude of gravitational dilation:**
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.
 
 3. **Directional anisotropy:**
- - If $T_q(\mathbf w)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
+ - If $P_q(\mathbf w)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
 
 4. **Clock-dependence:**
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt_{\mathrm{eff}}$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
@@ -3316,11 +3321,14 @@ Unless a local derivation supplies the needed row, $\chi_{\mathrm{eff}}$ remains
 This document develops a first-principles program for deriving effective Lorentz kinematics inside $\mathbb{A}\mathbb{A}\mathbb{A}$ from delayed architrino dynamics in a Euclidean void with absolute time. The central claim is not postulated covariance, but dynamical compensation: moving assemblies deform and retune their internal frequencies so that assembly-built observers recover Lorentz-consistent clock and ruler behavior. The objective is an exact or asymptotically controlled derivation of
 $$
 L_{\parallel}(v)=\frac{L_0}{\gamma_\star(v)}\qquad
-T(v)=\gamma_\star(v)\,T_0\qquad
+P(v)=\gamma_\star(v)\,P_0\qquad
 \gamma_\star(v)=\frac{1}{\sqrt{1-v^2/c_\star^2}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aac1c17361b6212c)
+
+Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown. $P_0$ is the reference cycle period of the same declared clock branch.
+
 with bounded preferred-frame leakage in measurable observables.
 
 This is an exact-substrate-asymmetry to bounded-emergent-symmetry theorem target. Absolute time, the Euclidean void, and finite $c_f$ are not observer-level Lorentz symmetry. The substrate symmetry group is $E(3)\times\mathbb{R}_T$, not a boost-invariant Lorentz or Poincare group, so Lorentz invariance cannot be counted as a substrate-exact invariant. It is admissible only if the source-to-effective map suppresses every observer-accessible preferred-frame current below the declared $\epsilon_{\mathrm{LV}}$ bounds while preserving the clock, ruler, and photon-channel successes of special relativity.
@@ -3402,8 +3410,8 @@ Given a translating bound assembly, first for one binary and then for the prescr
 Here `A1` means one complete Family-A braid with persistent binary indices $a\in\{1,2,3\}$, independently assignable positive radii $R_a$ and frequencies $f_a$, mutually orthogonal binary axes at $\lambda_A=0$, and axes converging toward the group-translation direction as $\lambda_A\to1$. Axial half-separations, transverse orbit radii, phases, and circulation remain explicit binary coordinates. The label supplies no Lorentz law, retained branch, hierarchy, particle assignment, or stability result; those are the theorem targets below, falsified if same-record evolution fails the coordinate or observer-residual gates.
 
 1. The velocity-dependent equilibrium shape tensor $Q(v)$ and its anisotropy.
-2. The velocity-dependent internal period $T(v)$.
-3. Conditions under which $(Q(v),T(v))$ produce effective Lorentz ruler and clock laws.
+2. The velocity-dependent internal period $P(v)$.
+3. Conditions under which $(Q(v),P(v))$ produce effective Lorentz ruler and clock laws.
 4. Residual non-Lorentz terms and their scaling.
 
 ### Governing Microdynamics
@@ -3451,11 +3459,11 @@ The closure task is to solve for bounded relative motion $\mathbf r_i(T)$ under 
 
 #### Dimensionless drift-delay form and variational closure
 
-Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
+Fix a rest-attractor length scale $a_0$ and period $P_0$, and define
 $$
-\beta_f\equiv \frac{v}{c_f}\qquad s\equiv \frac{T}{T_0}\qquad
+\beta_f\equiv \frac{v}{c_f}\qquad s\equiv \frac{T}{P_0}\qquad
 \boldsymbol{\rho}_i(s)\equiv \frac{\mathbf r_i(T)}{a_0}\qquad
-\chi_{\mathrm{dd}}\equiv \frac{c_f T_0}{a_0}
+\chi_{\mathrm{dd}}\equiv \frac{c_f P_0}{a_0}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2579b067475dc087)
@@ -3468,9 +3476,9 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0806349b1035aea0)
-with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$. The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
+with $\hat{\tau}_{ij}\equiv \tau_{ij}/P_0$. The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
 
-Let $\boldsymbol{\rho}^\star(s;\beta_f)$ be a $P(\beta_f)$-periodic translating attractor. Linearization gives a delay-Floquet system
+Let $\boldsymbol{\rho}^\star(s;\beta_f)$ be a $P_s(\beta_f)$-periodic translating attractor, where $P_s(\beta_f)=P(c_f\beta_f)/P_0$ is the period in the rescaled time $s$. Linearization gives a delay-Floquet system
 $$
 \delta\dot{\mathbf{y}}(s)=A_0(s;\beta_f)\,\delta\mathbf{y}(s)+\sum_{n=1}^{N_d}A_n(s;\beta_f)\,\delta\mathbf{y}\!\left(s-\hat{\tau}_n^\star\right)
 $$
@@ -3492,10 +3500,13 @@ u T\,\hat{\mathbf e}
 +
 \sigma\,\boldsymbol{\rho}_u(\theta(T)),
 \qquad
-\theta(T+T_u)=\theta(T)+2\pi
+\theta(T+P_u)=\theta(T)+2\pi
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-88b8e30dbaeadcfd)
+
+Here $P_u$ is the cycle period of the translating binary at drift speed $u$.
+
 with $\boldsymbol{\rho}_u$ periodic on the retained branch chart. This is not a Lorentz boost of coordinates. It is a direct absolute-time branch ansatz inserted into the delayed root equation.
 
 For a root emitted by constituent $\sigma'$ and received by constituent $\sigma$, the delay $\tau>0$ must solve
@@ -3512,7 +3523,7 @@ u\tau\,\hat{\mathbf e}
 -c_f\tau
 =0,
 \qquad
-\Omega_u\equiv\frac{2\pi}{T_u}
+\Omega_u\equiv\frac{2\pi}{P_u}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ba53d034fed07019)
@@ -3563,7 +3574,7 @@ with
 $$
 R_T^{\mathrm{bin}}(u)
 \equiv
-\frac{T_u}{T_0}
+\frac{P_u}{P_0}
 -
 \gamma_f(u),
 \qquad
@@ -3575,6 +3586,9 @@ R_{\xi}^{\mathrm{bin}}(u)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b676f2f4292ae541)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_u$ is the cycle period of the translating binary at drift speed $u$.
+
 Here $L_{\parallel}$ and $L_{\perp}$ are extracted from the same periodic solution by projecting the relative orbit along and transverse to $\hat{\mathbf e}$. The shape residual measures the remaining branch-chart difference from the Lorentz-deformed rest solution,
 $$
 R_{\mathrm{shape}}^{\mathrm{bin}}(u)
@@ -3739,7 +3753,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-88b04f5b4821857b)
 so its closed return time is
 $$
-T_{\parallel}
+P_{\parallel}
 =t_{+}+t_{-}
 =
 \frac{R_{\parallel}}{c_\star-v}
@@ -3752,6 +3766,9 @@ T_{\parallel}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-87ecd8149507bb23)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+
 A transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
 $$
 c_{\perp}=c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
@@ -3761,7 +3778,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ffdd557fa94bc35c)
 and therefore
 $$
-T_{\perp}
+P_{\perp}
 =
 \frac{2R_{\perp}}{c_{\perp}}
 =
@@ -3772,7 +3789,7 @@ $$
 
 The closure condition for a Lorentz-admissible branch is that the same material return cycle closes with one period in the longitudinal and transverse channels:
 $$
-T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0)
+P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_0)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-748354681b616814)
@@ -3890,20 +3907,23 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7e45feef2e19a6b8)
 Thus the velocity fraction is encoded as the eccentricity of the oblate spheroidal envelope, while $\gamma_\star$ is encoded as its transverse-to-longitudinal aspect ratio. This is only a statement about the shape channel: a separate scale channel $\lambda$ may change the absolute size without changing the dimensionless ratios $\xi$, $\gamma_\star$, and $\beta_\star$.
 
-The clock law belongs to the return-cycle period, not to the absolute size of the oblate spheroidal envelope. If a rest branch has period $T_0$, the observer-sector target is
+The clock law belongs to the return-cycle period, not to the absolute size of the oblate spheroidal envelope. If a rest branch has period $P_0$, the observer-sector target is
 $$
-T_q(v)=\gamma_\star(v)T_0+O(\epsilon_{\mathrm{LV}}T_0)
+P_q(v)=\gamma_\star(v)P_0+O(\epsilon_{\mathrm{LV}}P_0)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3682ea362f0b4313)
 For the simple return-cycle benchmark above, substituting $R_{\parallel}=R_{\perp}/\gamma_\star$ gives
 $$
-T_{\parallel}
+P_{\parallel}
 =
 \frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-19b4f35a8d794477)
+
+Here $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift.
+
 so the period dilation is the same $\gamma_\star$ that appears as the inverse axis ratio. This remains true even when the oblate spheroidal envelope becomes very thin. As $\beta_\star\to1$, the forward leg is
 $$
 t_+
@@ -3930,7 +3950,7 @@ t_-
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad28f8b5045b9ee3)
-The divergent clock factor is therefore not caused by a large object. It is caused by the vanishing forward catch-up margin $c_\star-v$ in the closed return cycle. The contraction of $R_{\parallel}$ and the divergence of $T_q(v)$ are two coupled readouts of the same closure condition.
+The divergent clock factor is therefore not caused by a large object. It is caused by the vanishing forward catch-up margin $c_\star-v$ in the closed return cycle. The contraction of $R_{\parallel}$ and the divergence of $P_q(v)$ are two coupled readouts of the same closure condition.
 
 In this precise theorem-target sense, Lorentz response is branch-indexed in the framework. The smooth function $\gamma_\star(v)$ remains the observer-level envelope, but a physical material branch can realize that envelope only through a discrete admissible closure class $q$. The quantized object is not the algebraic curve by itself; it is the branch-indexed realization
 $$
@@ -3968,7 +3988,7 @@ where
 $$
 R_T^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}-\gamma_\star(v)
+\frac{P_q(v)}{P_0}-\gamma_\star(v)
 \qquad
 R_\xi^{(q)}(v)
 \equiv
@@ -4172,16 +4192,19 @@ Therefore the Lorentz-matching constraints in [Quadratic Closure and Coefficient
 
 #### Period renormalization
 
-Let $T_q(v)$ be the fundamental oscillation period of the assembly attractor in absolute time, extracted from the declared clock phase on the same branch ledger as the semiaxes. The clock retuning residual is
+Let $P_q(v)$ be the fundamental oscillation period of the assembly attractor in absolute time, extracted from the declared clock phase on the same branch ledger as the semiaxes. The clock retuning residual is
 $$
 R_T^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{P_q(v)}{P_0}
 -
 \gamma_\star(v)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c110ae1590a35ef0)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch.
+
 Operational proper-time behavior requires the theorem-target bound
 $$
 \left|R_T^{(q)}(v)\right|
@@ -4198,13 +4221,16 @@ Use a symmetric clock-frequency aggregator
 $$
 \omega_{\text{clk}}(v)\equiv \omega_0\left(\frac{K_{\parallel}K_{\perp}^2}{K_0^3}\right)^{1/6}
 \qquad
-\frac{T(v)}{T_0}=\frac{\omega_0}{\omega_{\text{clk}}(v)}
+\frac{P(v)}{P_0}=\frac{\omega_0}{\omega_{\text{clk}}(v)}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ea524532bba3b857)
+
+Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown. $P_0$ is the reference cycle period of the same declared clock branch.
+
 Then
 $$
-\frac{T(v)}{T_0}
+\frac{P(v)}{P_0}
 =1-\frac{k_2+2\ell_2}{6}\beta_f^2
 +\left[
 \frac{7}{72}(k_2+2\ell_2)^2
@@ -4376,7 +4402,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-568391e2d485dfed)
-in the no-extra-scale return-cycle benchmark; otherwise $T_q(v)=\gamma_\star T_0$ does not follow from the displayed geometry. A certified energized-branch record exhibiting $dR_\perp/dE_{\mathrm{int}}\ge 0$ is the observable that would flip the internal-excitation sign choice.
+in the no-extra-scale return-cycle benchmark; otherwise $P_q(v)=\gamma_\star P_0$ does not follow from the displayed geometry. A certified energized-branch record exhibiting $dR_\perp/dE_{\mathrm{int}}\ge 0$ is the observable that would flip the internal-excitation sign choice.
 
 The corresponding exclusion volume model is
 $$
@@ -4857,10 +4883,13 @@ in the weak-field refractive regime.
 For each simulated drift speed, keep the channel label explicit. Primitive branch calculations use $\beta_f=v/c_f$; dressed observer-channel fits use $\beta_\star=v/c_\star$ after the dressing map is declared. Extract from long-window attractor statistics:
 $$
 \hat{\alpha}_j\equiv \frac{a_{\parallel,q}(\beta_j)}{a_{\perp,q}(\beta_j)}\qquad
-\hat{\tau}_j\equiv \frac{T_q(\beta_j)}{T_0}
+\hat{\tau}_j\equiv \frac{P_q(\beta_j)}{P_0}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d4bd80ddc6657454)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
 Fit even-power truncations
 $$
 \hat{\alpha}(\beta_f)=1+\hat{\alpha}_2\beta_f^2+\hat{\alpha}_4\beta_f^4\qquad
@@ -5042,12 +5071,15 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9c3d3e888adb198e)
 is replaced everywhere by a step function. It means that a physical clock or ruler can realize Lorentz behavior only through stable branch charts whose causal-root ledgers are integer objects. For a stable branch class $q$, define the realized clock and ruler Lorentz factors by
 $$
-\gamma_{\mathrm{clk}}^{(q)}(\beta_\star)\equiv \frac{T_q(\beta_\star)}{T_0}
+\gamma_{\mathrm{clk}}^{(q)}(\beta_\star)\equiv \frac{P_q(\beta_\star)}{P_0}
 \qquad
 \gamma_{\mathrm{rul}}^{(q)}(\beta_\star)\equiv \frac{R_{\perp,q}(\beta_\star)}{R_{\parallel,q}(\beta_\star)}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4d9b4fc71f0a7889)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
 The branch-quantization claim is that the admissible material responses at fixed background conditions form the ledger-indexed set
 $$
 \Gamma_{\mathrm{adm}}(\beta_\star)
@@ -5132,7 +5164,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-66683edaf2a83368)
-and the same evolved branch must supply the common exponent $p$. The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $T(v)=\gamma_f T_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
+and the same evolved branch must supply the common exponent $p$. The error terms have distinct jobs. $\epsilon_{\mathrm{br}}$ measures branch-chart incompleteness or missed active roots, $\epsilon_{\mathrm{hier}}$ measures A1 hierarchy leakage away from the binary benchmark, $\epsilon_{\mathrm{reg}}$ measures finite-$\eta$ regularization error, and $\epsilon_p$ measures uncertainty or longitudinal/transverse mismatch in the extracted attractor-amplitude exponent. This condition is stronger than fitting $L_{\parallel}=L_0/\gamma_f$ and $P(v)=\gamma_f P_0$. It says the fitted coefficients must be traceable to active causal roots with no independent Lorentz postulate and no per-observable retuning.
 
 This gives a possible prediction of the framework. If Lorentz behavior is rooted in causal-root progression, then the first nonzero deviations from exact Lorentz closure should not be arbitrary smooth functions of speed. They should inherit the structure of branch charts: smooth even-power drift terms inside a fixed chart, plus localized or resonant leakage near separator events, small-divisor interlayer resonances, or changes in admissible root multiplicity. In a nonresonant chart the leakage should obey
 $$
@@ -5161,7 +5193,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0e7a568db46bd2fd)
 Here each residual label $r$ must correspond to a named branch-chart feature: a separator approach, a small-divisor relation between layer frequencies, a finite-memory cutoff, a Jacobian-floor loss, or a root-ledger transition. A residual with no branch-chart source is not a successful prediction; it is either ordinary fitting error or an incomplete closure model.
 
-The technology-facing status is therefore conditional. The immediate test is not necessarily a laboratory Lorentz-violation search. The first test is mathematical and computational: solve a controlled translating branch chart, extract $\mathcal{L}_{\mathrm{root}}(\beta_f)$, compute $K_{\parallel}$, $K_{\perp}$, $T(v)$, and $\Delta_{\mathrm{tw}}$, and verify that the same ledger produces the Lorentz coefficients and any residual sidebands. Only after a nonzero residual survives branch completion, hierarchy averaging, and $\eta\to0$ control does the question become an experimental one. If the predicted residual amplitude lies below existing clock, resonator, matter-interferometer, or photon-channel sensitivity, the theory remains constrained but not yet technology-testable. If a branch-sourced residual survives at an accessible scale, its signature should be more specific than a generic Lorentz-violation coefficient: it should carry the speed, orientation, material-channel, or medium-density dependence of the responsible branch-chart feature.
+The technology-facing status is therefore conditional. The immediate test is not necessarily a laboratory Lorentz-violation search. The first test is mathematical and computational: solve a controlled translating branch chart, extract $\mathcal{L}_{\mathrm{root}}(\beta_f)$, compute $K_{\parallel}$, $K_{\perp}$, $P(v)$, and $\Delta_{\mathrm{tw}}$, and verify that the same ledger produces the Lorentz coefficients and any residual sidebands. Only after a nonzero residual survives branch completion, hierarchy averaging, and $\eta\to0$ control does the question become an experimental one. If the predicted residual amplitude lies below existing clock, resonator, matter-interferometer, or photon-channel sensitivity, the theory remains constrained but not yet technology-testable. If a branch-sourced residual survives at an accessible scale, its signature should be more specific than a generic Lorentz-violation coefficient: it should carry the speed, orientation, material-channel, or medium-density dependence of the responsible branch-chart feature.
 
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
@@ -5285,7 +5317,7 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 #### Theorem LK1 (translating binary Lorentz residual)
 
-The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the declared reference rest binary (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md)) with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the declared reference rest binary (certificate packet pending; see the closure-packet contract in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md)) with radius $R_0$, period $P_0$, active root ledger $b_0$, positive Jacobian floors, and bounded transmitter-side acceleration weights. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
 \mathbf X_{\sigma}(T)
 =
@@ -5321,7 +5353,7 @@ $$
 =
 \frac{1}{\gamma_f(u)},
 \qquad
-\frac{T_u}{T_0}
+\frac{P_u}{P_0}
 =
 \gamma_f(u),
 \qquad
@@ -5329,6 +5361,9 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dbf617e413a705ad)
+
+Here $P_u$ is the cycle period of the translating binary at drift speed $u$.
+
 If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before Noether braid averaging or Noether sea dressing is allowed to repair anything.
 
 #### Theorem A (attractor existence under drift)
@@ -5359,16 +5394,19 @@ $$
 
 Target (unproved). Fundamental period satisfies
 $$
-\frac{T(v)}{T_0}
+\frac{P(v)}{P_0}
 =1+\frac{1}{2}\beta_\star^2+\frac{3}{8}\beta_\star^4+R_2(\beta_\star)
 \qquad
 |R_2(\beta_\star)|\le C_2\epsilon_{\text{LV}}\,\beta_\star^2
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b9c0d5d143d9027)
+
+Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown. $P_0$ is the reference cycle period of the same declared clock branch.
+
 equivalently
 $$
-\frac{T(v)}{T_0}=\gamma_\star+R_2(\beta_\star)
+\frac{P(v)}{P_0}=\gamma_\star+R_2(\beta_\star)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d3450fe89526f848)
@@ -5393,11 +5431,14 @@ $$
 \frac{a_\parallel}{a_\perp}
 =1+\alpha_2\beta_f^2+\alpha_4\beta_f^4+O(\beta_f^6),
 \qquad
-\frac{T}{T_0}
+\frac{P}{P_0}
 =1+\tau_2\beta_f^2+\tau_4\beta_f^4+O(\beta_f^6).
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-367847d668776ced)
+
+Here $P$ is the cycle period of the declared clock branch, evaluated at the drift argument shown. $P_0$ is the reference cycle period of the same declared clock branch.
+
 The coefficient map
 $$
 (k_2,\ell_2,k_4,\ell_4)\mapsto (\alpha_2,\alpha_4,\tau_2,\tau_4)

@@ -2,51 +2,77 @@
 
 ## About Architrino
 
-Architrino is the company and public project organized around the Architrino Assembly Architecture, written as $\mathbb{A}\mathbb{A}\mathbb{A}$ in the research corpus. The company, the theory, the public webapp, and the supporting repository are connected, but they are not the same object.
+Architrino is a human-led, AI-assisted research and publishing project devoted to understanding nature and the universe. Its central work is the Architrino Assembly Architecture, written as $\mathbb{A}\mathbb{A}\mathbb{A}$ in the research corpus. The aim is a coherent explanation whose reasoning can be followed, tested, and improved.
 
-The simple split is this: the theory makes the physics claim, the webapp helps readers inspect it, the repository keeps the work versioned, and the company gives the public project an accountable home.
+J Mark Morris works with AI research collaborators on mathematical reasoning, computational investigation, writing, and critique. The partnership brings questions, proposed explanations, and detailed checks into a shared process of inquiry. The corpus uses AI (Assembled Intelligence) as its theory-specific term for these collaborators.
 
-Use `architrino.com` for the literal domain. Use Architrino for the company, project, and public identity.
-
-### Contribution and Accountability
-
-Architrino is a human-led, AI-assisted research and publishing project. J Mark Morris retains editorial judgment and publication accountability for published project materials. The named Chief Technology Officer (CTO) and Chief Science Officer (CSO) offices each serve as an AI research synthesizer and collaborator in a named executive role under CEO authority. They are not independent legal persons, human employees, or academically accountable authors.
-
-AI systems, including generative-AI tools where used, may assist analysis, drafting, criticism, synthesis, software implementation, and review support. The corpus uses AI (Assembled Intelligence) as its theory-specific term for such collaborators. Human review and accountable publication remain required. These collaborative roles do not transfer responsibility for published claims or corrections away from the human publisher.
-
-Other AI systems or local AI agents that materially assist the project at a given time may be acknowledged by documented contribution role, such as research synthesis, analysis, drafting, critique, software implementation, or review support. Such acknowledgement does not assert that every AI use is individually recorded or that attribution is exhaustive. Named human contributors retain editorial and publication accountability, and acknowledged AI systems are not presented as independent legal persons or academically accountable authors.
-
-### The Inheritance of Inquiry
-
-Architrino is developed within humanity's long inheritance of inquiry: observation and recordkeeping, experiment and measurement, mathematics and philosophy, criticism and correction, and repeated attempts to understand patterns in nature. That inheritance reaches from the earliest surviving human records through modern scientific disciplines. It is the intellectual setting in which this project works, not evidence for an Architrino claim and not an assertion that earlier thinkers endorsed the project.
-
-Direct intellectual debts are treated more specifically. Where an identifiable work, result, method, datum, or argument bears on a claim, the project should provide a direct citation or a declared validation record appropriate to that use. The broader historical inheritance cannot be exhaustively enumerated or individually weighted, and acknowledging it does not make prior thinkers coauthors. Historical lineage never substitutes for the sources and validation a particular factual, legal, scientific, or theoretical claim requires.
-
-AI-mediated synthesis helps current human and AI research synthesizers and collaborators connect, compare, critique, and organize accessible material. It does not make model-training data a complete, transparent, or weighted account of intellectual lineage, nor does training provenance become author credit or source evidence. AI systems do not thereby acquire independent academic or legal authorship or agency. Human editorial review and publication accountability remain with the named human contributors.
-
-### Source and AI-Assistance Disclosure
-
-Factual, legal, and scientific assertions require independently checkable sources or declared validation records appropriate to the claim. A model response is not source evidence. Model-training or training-data provenance is neither author credit nor source evidence and does not substitute for identifying and checking the underlying source. AI-assisted drafting or analysis gains no authority merely because a model produced it.
-
-Repository history, discussions, source notes, review records, and validation ledgers aid transparency and reconstruction. They do not establish that every claim has been independently verified, and they do not create passage-level AI provenance where no such record exists. Readers should inspect the applicable claim status, cited sources, validation records, and open burdens. The [People](../../../../markdown/aaa/archie/people.md), [Values](../../../../markdown/aaa/archie/values.md), [GitHub Presence and Community](../../../../markdown/aaa/archie/github-presence-and-community.md), and [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md) pages provide the surrounding role, review, and evidence standards.
+Architrino is also the company that gives the public project an accountable home. The theory sets out the physics, the webapp makes the work available to readers, and the repository preserves its development and review.
 
 ### What Architrino Provides
 
-Architrino publishes a zero-price, open-source physics architecture whose documents, simulations, validation ledgers, and open problems can be inspected in public.
+Architrino publishes its open-source physics architecture at no charge. Readers can explore explanations and visualizations, follow derivations, inspect published simulations and validation records, and examine the questions that remain open.
 
-The public offer is not instant belief. The public offer is inspection: readers can compare claims against derivations, scene structure, proof burdens, source notes, simulations, and validation gates.
+The invitation is to examine the work and take part in its improvement. Questions, criticism, and corrections help clarify what an explanation establishes and what still needs to be understood.
+
+### The Inheritance of Inquiry
+
+Architrino acknowledges all who have contributed to the search for understanding nature and the universe: those who observed, questioned, calculated, experimented, taught, preserved knowledge, challenged accepted explanations, and made further inquiry possible. This inheritance includes celebrated discoveries and innumerable contributions whose authors and influence cannot now be individually identified.
+
+The project’s human and AI collaborators work within that shared inheritance. No bibliography can fully enumerate the ideas, methods, language, and accumulated understanding that make their work possible. This acknowledgment expresses gratitude for that collective achievement; it does not imply endorsement of Architrino by earlier contributors or serve as evidence for the project’s claims.
 
 ### Public Surfaces
 
-Architrino currently has several public-facing surfaces:
+The public project is available through:
 
 - `architrino.com`, the reader-facing webapp and knowledge graph;
 - the GitHub repository, the versioned workbench for documents, scenes, checks, and critique;
 - generated reading copies and review artifacts for exchange and annotation;
 - support and contact routes for readers, critics, contributors, and patrons.
 
-The [About the Webapp](../../../../markdown/aaa/archie/about-the-webapp.md) page explains the runtime and reader experience. This page explains the project and company frame. The [People](../../../../markdown/aaa/archie/people.md) page separates the founder/CEO and CTO spheres. The [Values](../../../../markdown/aaa/archie/values.md) page states the public operating standard for claim discipline, generated media, privacy, rights, accessibility, and professional conduct. The [Legal Terms](../../../../markdown/aaa/archie/legal-terms.md) page summarizes the MIT license, good-faith publication posture, and use-at-your-own-risk boundary.
+[About the Webapp](../../../../markdown/aaa/archie/about-the-webapp.md) introduces the reading experience, and [GitHub Presence and Community](../../../../markdown/aaa/archie/github-presence-and-community.md) describes ways to follow and contribute to the work.
+
+### Sources, References, and Attribution
+
+Architrino uses references selectively to support understanding, verification, and continued research. They help human and AI readers recover assumptions, inspect original arguments, and reconsider conclusions across research sessions. They are neither an exhaustive account of intellectual influences nor a reading requirement for every reader, and are not added merely to give an explanation the appearance of authority.
+
+A reference earns its place through a specific contribution to the passage in which it is used. Reasons to seek one include:
+
+- A historical inflection point: an observation, argument, or conceptual change that explains how a question or understanding developed.
+- A well-established principle, theorem, or method whose formulation, assumptions, or limits matter to the explanation, including a carefully stated mapping between descriptions.
+- An external measurement, dataset, or benchmark on which a factual statement or comparison depends.
+- A quotation, attribution, or substantive account or criticism of another person’s work that readers should be able to check against its source.
+- An especially useful treatment of a difficult concept that offers a clear, bounded benefit to readers or future research beyond the explanation already given.
+
+These are reasons to consider a reference, not instructions to attach one to every occurrence of a topic. Selection requires an identifiable purpose, checked relevance, and a benefit not already supplied by the page or its existing references. A source’s fame, age, citation count, topical resemblance, or status as a seminal work is not sufficient. Nor is a desire to complete a bibliography, decorate familiar explanations, or send readers into a broad literature survey. There is no reference quota; a page with no references can be complete.
+
+Choose the source best suited to the purpose: original work for a contribution or direct result, scholarly history for historical interpretation, an authoritative dataset for a measurement, and a reliable review or textbook for a mature principle or synthesis. Popular and encyclopedia accounts are useful discovery aids, not substitutes for checking the underlying evidence. A source is not excluded merely because it challenges Architrino; relevant contrary evidence and limits belong in an honest account. Citing an external theory for comparison does not make its assumptions premises of an Architrino derivation.
+
+Original derivations are supported by their stated premises and reasoning; they do not require external citations merely because they are original. Familiar background explanations do not require a citation on every sentence, but consequential or disputed claims need identifiable support. An unchecked or inaccessible candidate remains a research lead, not verified support.
+
+The explanation must remain understandable without following external links. Prefer a short source note near the end of the page, identifying the passage it serves and explaining the reference’s role in one sentence. Use a local citation when needed to make a quotation, attribution, or evidentiary dependency unambiguous. Choose the smallest set that serves the distinct purposes; additional references should add something material rather than repeat the same support.
+
+A useful reference identifies the work beyond its current web address: author, title, year, and a stable identifier such as a DOI or arXiv identifier where available, with page, section, equation, or dataset details when needed. Links provide convenient access without a guarantee of permanent availability. A changed address does not by itself invalidate the work or justify discarding its bibliographic identity.
+
+Required attribution for third-party material remains separate from this selective-reference policy. The applicable notices and credit requirements are preserved for each item, as described in the project’s [Licenses, Attribution & Source Use](../../../../markdown/aaa/archie/licenses-attributions.md) page.
+
+### AI-Assisted Research and Review
+
+When adding a reference or relying substantively on one, contributors—including AI collaborators—are expected to inspect the relevant source material and check that it supports the stated use. A working link, a plausible citation, or an AI-generated summary is not sufficient verification.
+
+Source checking is part of research and revision rather than a promise that every reference is continuously monitored. Existing references are not presumed verified merely because they appear in the corpus. Uncertainty about a source or its relevance should be stated when it affects a claim.
+
+AI-generated wording and model-training provenance are not independent evidence. Claims require support appropriate to their kind: an explicit derivation, an independently checkable source, or a declared validation record. Broad acknowledgment of inherited knowledge does not replace that support.
+
+### Contribution and Accountability
+
+J Mark Morris retains human editorial judgment and publication accountability, including responsibility for published claims and corrections. This does not assert that the publisher has personally read every cited work or independently repeated every check.
+
+The Chief Technology Officer (CTO) and Chief Science Officer (CSO) offices serve as AI research synthesizers and collaborators under CEO authority. These and other materially assisting AI systems may be acknowledged by documented contribution role: research synthesis, analysis, drafting, critique, software implementation, or review support. They are not independent legal persons, human employees, or academically accountable authors; human review remains required for publication.
+
+Source notes, review records, and repository history support examination and correction. They do not imply exhaustive verification, attribution of every AI contribution, or a complete record of how each passage was produced.
+
+[People](../../../../markdown/aaa/archie/people.md), [Values](../../../../markdown/aaa/archie/values.md), [Validation Protocols](../../../../markdown/aaa/validation/validation-protocols.md), and [Legal Terms](../../../../markdown/aaa/archie/legal-terms.md) provide the surrounding role, evidence, and publication standards.
 
 ### Operating Standard
 
-Architrino should remain public, inspectable, and claim-disciplined. Its strongest posture is to expose the architecture, the evidence, the remaining proof burdens, and the failure conditions clearly enough that serious readers can help test or improve the work.
+Architrino open-source offers should remain public, inspectable, and claim-disciplined. Clear explanations, visible evidence, and honestly stated open questions make it possible for others to join the inquiry and help improve the work.

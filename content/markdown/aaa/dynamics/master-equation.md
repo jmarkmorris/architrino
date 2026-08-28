@@ -1052,13 +1052,13 @@ Plainly: the forward root can become very old and very weak at the same time. A 
 
 This is a kinematic starvation result, not an acceleration-balance approximation. It says that a forward structural partner root cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner root for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
 
-With finite retained memory $h$ and internal branch period $T_{\mathrm{int}}$, the same obstruction has a graded scale:
+With finite retained memory $h$ and internal branch period $P_{\mathrm{int}}$, the same obstruction has a graded scale:
 $$
 \Lambda_{\mathrm{starv}}
 =
-\frac{\Delta_{\mathrm{fwd}}}{T_{\mathrm{int}}}
+\frac{\Delta_{\mathrm{fwd}}}{P_{\mathrm{int}}}
 \ge
-\frac{d_{\min}}{(c_f-u)T_{\mathrm{int}}}.
+\frac{d_{\min}}{(c_f-u)P_{\mathrm{int}}}.
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-59c6a20d48d728d3)
@@ -1227,14 +1227,16 @@ $$
 then necessarily
 $$
 C(v)=\sqrt{1-\beta_f^2},\qquad
-T(v)=\frac{T_0}{\sqrt{1-\beta_f^2}},
+P_{\mathrm{cyc}}(v)=\frac{P_0}{\sqrt{1-\beta_f^2}},
 \quad
-T_0=\frac{2L_0}{c_f}
+P_0=\frac{2L_0}{c_f}
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c785b382c51c06c8)
 
-This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE Noether braid dynamics without reducing to a two-leg closure model.
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
+This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $P_{\mathrm{cyc}}$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE Noether braid dynamics without reducing to a two-leg closure model.
 
 The forward parallel leg carries the same starvation constraint as Proposition 4 with $d_{\min}$ replaced by the leading longitudinal leg length $L_\parallel$. Let $h_b^{\mathrm{lock}}(v)$ be the retained-history depth measured on the locked moving branch, distinct from the generic analysis horizon $h$. The two-leg checkpoint is admissible as a retained-record model only in the starvation-free regime
 $$
@@ -1256,9 +1258,9 @@ In spherical-harmonic language this checkpoint is the $\ell=0$ isotropy projecti
 
 Accelerated motion adds a second burden. Even if the inertial translating-loop scaling is recovered, acceleration requires a transport law for the internal phase ledger through the Noether sea. For a stable branch with rest size $L_0$, center speed $v(T)$, and small acceleration scale $a(T)$, the dynamics target is a branch-period transport law of the schematic form
 $$
-T_q[v(T),a(T)]
+P_q[v(T),a(T)]
 =
-T_q[v(T),0]\,
+P_q[v(T),0]\,
 \left(
 1+
 O\!\left(\frac{a^2L_0^2}{c_f^2}\right)

@@ -1433,13 +1433,13 @@ I_a(\lambda)
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-22dd0aed2ee55168)
-If the parameter changes slowly compared with the cycle period $T_a(\lambda)$,
+If the parameter changes slowly compared with the cycle period $P_a(\lambda)$,
 $$
 \epsilon_{\mathrm{ad},a}
 \equiv
 \max_{T\in W}
 \left(
-T_a(\lambda(T))\,
+P_a(\lambda(T))\,
 \left\|\frac{d\lambda}{dT}\right\|\,
 \ell_{\lambda}^{-1}
 \right)

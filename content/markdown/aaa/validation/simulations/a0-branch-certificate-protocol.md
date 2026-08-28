@@ -79,7 +79,7 @@ Third, it reports a running retained-history energy-like functional and its vari
 
 The same row must state whether the energy object is action-derived, quasi-Noether, or diagnostic-only. A diagnostic-only energy row may reject a branch by showing runaway, regulator dependence, or nonconvergent drift, but it cannot promote closed-cycle action spacing or no-runaway conservation as theorem-level output.
 
-Only after those well-posedness rows pass may the packet promote closed-cycle action spacing. The closed-cycle action entry records $\mathcal{A}_{\text{cycle}}(A_0)$, its branch label $\Lambda$, period $T_{\mathbf{k}}$, and spacing relative to neighboring accepted branches. This ordering prevents a numerically periodic carrier with an unbounded self-hit energy ledger from being read as evidence for a derived $h$.
+Only after those well-posedness rows pass may the packet promote closed-cycle action spacing. The closed-cycle action entry records $\mathcal{A}_{\text{cycle}}(A_0)$, its branch label $\Lambda$, period $P_{\mathbf{k}}$, and spacing relative to neighboring accepted branches. This ordering prevents a numerically periodic carrier with an unbounded self-hit energy ledger from being read as evidence for a derived $h$.
 
 The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
 $$
@@ -95,7 +95,7 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 \sum_{a\in A_0}
 \left(X_a^i-C_{A_0}^i\right)
 \left(X_a^j-C_{A_0}^j\right)
-\right\rangle_{T_{\mathbf{k}}}
+\right\rangle_{P_{\mathbf{k}}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-56322f39346f96b8)
@@ -132,7 +132,7 @@ Required outputs:
 | Output | Meaning |
 | --- | --- |
 | `branch_label` | indexed-binary windings, inter-binary closure integers, handedness, and active root-branch summary |
-| `closure_labels` | declared $T_{\mathbf{k}}$, winding integers, inter-binary closure integers, and active root classes |
+| `closure_labels` | declared $P_{\mathbf{k}}$, winding integers, inter-binary closure integers, and active root classes |
 | `z_lambda` | reduced quotient-coordinate row $z_\Lambda$, including radius ratios, period ratios, $\delta_2$, binary ellipticities, plane Gram data $G_{\ell m}$, $\chi_N$, handedness labels, phase-offset quotient status, removed gauges, branch class $[\Lambda]$, and `quotient_degenerate` |
 | `state_vector` | reduced geometry, frequencies, phase offsets, carrier chart, and center gauge |
 | `closure_system` | active causal-root, phase-closure, inter-binary closure, center-gauge, and speed-ordering equations used by the row |
@@ -157,7 +157,7 @@ The row-level `failure_code` field is a machine-readable enum. The accepted valu
 | `quotient-degenerate` | $z_\Lambda$ has degenerate plane-normal Gram or orientation data after quotienting global rotations | reject the row as a reduced moduli coordinate |
 | `scale-separation-collapse` | radius or period ratios violate the declared separated-scale Tier 0 regime | reject the row or widen the scan only as a controlled scale-separation test |
 | `speed-order-collapse` | $\mathcal{R}_{\text{speed}}$ fails the declared $s_1 > c_f$, $s_2 \approx c_f$, $s_3 < c_f$ constraint | reject the row before attractor continuation |
-| `phase-closure-open` | $\mathcal{R}_{\text{phase}}$ fails layer winding closure over $T_{\mathbf{k}}$ | reject the row until integer closure is restored |
+| `phase-closure-open` | $\mathcal{R}_{\text{phase}}$ fails layer winding closure over $P_{\mathbf{k}}$ | reject the row until integer closure is restored |
 | `carrier-residual-open` | $\mathcal{R}_{\text{state}}$ or $\mathcal{R}_{\text{drift}}$ fails the Tier 0 carrier chart tolerance | reject the row as an unclosed diagnostic carrier |
 | `root-residual-open` | $\mathcal{R}_{\text{root}}$ fails on candidate active causal-root branches | reject the row until active roots solve within tolerance |
 | `averaging-residual-open` | $\mathcal{R}_{\text{avg}}$ fails its declared averaging tolerance | keep the term in the branch equations or reject the row |
@@ -183,7 +183,7 @@ Tier 1 promotes a surviving Tier 0 row into direct delayed dynamics with the reg
 
 Required checks:
 
-1. direct evolution over at least one declared $T_{\mathbf{k}}$;
+1. direct evolution over at least one declared $P_{\mathbf{k}}$;
 2. root-ledger stability under $\Delta T$ and history-window refinement;
 3. persistence of averaging, locking, and leakage classifications;
 4. no secular center drift after symmetry modes are removed;
@@ -207,18 +207,21 @@ Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ ext
 
 The fold-layer-locked compact fixture specified here is a controlled negative-control target, not an accepted attractor and not a broad falsification of the $A_0$ program. A conforming direct one-period runner must show that preserving locked self-root keys in $\mathcal{R}_{\text{lock}}$ is insufficient when state return, root closure, phase closure, speed ordering, center drift, or energy closure fails. No current runtime artifact supports a numerical residual claim for this fixture. Any future rerun must predeclare either a non-circular carrier correction $\mathbf d_\ell(T)$ or a richer branch-native interaction basis before residual fitting.
 
-For a declared period window $W=[T_0,T_0+T_{\mathbf{k}}]$, the corrected carrier has the form
+For a declared period window $W=[T_0,T_0+P_{\mathbf{k}}]$, the corrected carrier has the form
 $$
 \mathbf X_{a,\ell}^{\star}(T)
 =
 \mathbf X_{a,\ell}^{(0)}(T)+\mathbf D_\ell(T),
 \qquad
-\mathbf D_\ell(T+T_{\mathbf{k}})=\mathbf D_\ell(T),
+\mathbf D_\ell(T+P_{\mathbf{k}})=\mathbf D_\ell(T),
 \qquad
 \left\langle\mathbf D_\ell\right\rangle_W=0
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ed6d2de7bf72ebb0)
+
+Here $P_{\mathbf{k}}$ is the declared return period indexed by the winding vector $\mathbf k$.
+
 The one-period residual is
 $$
 \mathcal{R}_{\mathrm{1per}}

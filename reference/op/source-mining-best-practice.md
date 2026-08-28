@@ -383,7 +383,7 @@ Acquisition steps:
 
 1. Record page title, URL, access date, section map, and cited references.
 2. Use the article to identify standard vocabulary, topic boundaries, historical context, diagrams/tables, and source leads.
-3. Prefer cited primary papers, review articles, official data products, or textbooks before recommending corpus changes.
+3. Follow cited source leads and choose underlying works for the intended use under the [About Architrino policy](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) before recommending corpus changes.
 4. Treat source reliability as context-dependent and prefer independent, published sources with a reputation for fact-checking and accuracy.
 5. Do not promote a claim solely because it appears in an encyclopedia source.
 
@@ -400,7 +400,7 @@ Acquisition steps:
 - Record page title, URL, access date, section map, revision context if relevant, and cited references.
 - Identify standard vocabulary, topic boundaries, historical framing, diagrams/tables, and source leads.
 - Inspect references behind high-value claims before treating them as candidate corpus input.
-- Prefer cited primary papers, review articles, official data products, or textbooks.
+- Choose underlying works for the intended use under the reference policy in `content/markdown/aaa/archie/about-architrino.md`.
 - Preserve section names, reference numbers, and URLs; do not paste large article text.
 
 Source-specific output additions:

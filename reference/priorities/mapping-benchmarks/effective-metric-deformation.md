@@ -67,7 +67,7 @@ The trajectory through Petrov types $\text{O} \to \text{D} \to \text{N}$ mirrors
 A clock is an assembly whose "tick" is set by internal oscillation. For a core with transverse radius $R_\perp(E)$ and shape parameter $\xi$, the internal period scales as
 
 $$
-T_{\text{core}} \sim \frac{R_\perp(E)}{c_f} \times f(\xi),
+P_{\text{core}} \sim \frac{R_\perp(E)}{c_f} \times f(\xi),
 $$
 
 where $f(\xi)$ is a geometric factor encoding how the oscillation mode distributes across the oblate volume. The proper-time rate is

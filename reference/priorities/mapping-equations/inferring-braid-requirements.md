@@ -219,36 +219,36 @@ Plainly: frequency is one route to geometry, not the route. Counts tell us what 
 
 ### Recurrence Depth
 
-An observer-level frequency does not uniquely imply an architrino orbit. Let $\Theta_T$ denote the complete retained native history ending at absolute time $T$, let $q$ quotient only declared rigid translations, rigid rotations, label permutations, and other physical equivalences, and let $\Pi_k$ be the fixed observer projection for behavior $k$. For candidate period $\tau=2\pi/\omega$, define three recurrence residuals:
+An observer-level frequency does not uniquely imply an architrino orbit. Let $\Theta_T$ denote the complete retained native history ending at absolute time $T$, let $q$ quotient only declared rigid translations, rigid rotations, label permutations, and other physical equivalences, and let $\Pi_k$ be the fixed observer projection for behavior $k$. For candidate period $P_{\mathrm{cyc}}=2\pi/\omega$, define three recurrence residuals:
 
 $$
-R_{\mathrm{obs},k}(\tau)
+R_{\mathrm{obs},k}(P_{\mathrm{cyc}})
 =
 d_k\!\left(
-\Pi_k[\Theta_{T+\tau}],
+\Pi_k[\Theta_{T+P_{\mathrm{cyc}}}],
 \Pi_k[\Theta_T]
 \right),
 $$
 
 $$
-R_{\mathrm{shape}}(\tau)
+R_{\mathrm{shape}}(P_{\mathrm{cyc}})
 =
 d_q\!\left(
-q(\Theta_{T+\tau}),
+q(\Theta_{T+P_{\mathrm{cyc}}}),
 q(\Theta_T)
 \right),
 $$
 
 $$
-R_{\mathrm{hist}}(\tau)
+R_{\mathrm{hist}}(P_{\mathrm{cyc}})
 =
 d_H\!\left(
-\Theta_{[T+\tau-\Delta,T+\tau]},
-\mathsf S_\tau\Theta_{[T-\Delta,T]}
+\Theta_{[T+P_{\mathrm{cyc}}-\Delta,T+P_{\mathrm{cyc}}]},
+\mathsf S_{P_{\mathrm{cyc}}}\Theta_{[T-\Delta,T]}
 \right),
 $$
 
-where $\mathsf S_\tau$ shifts the comparison history by one candidate period and $\Delta$ covers the declared causal-memory horizon. Small $R_{\mathrm{obs},k}$ establishes only recurrence of the measured output. Small $R_{\mathrm{shape}}$ adds recurrence of the assembly geometry after the declared quotient. Small $R_{\mathrm{hist}}$ is the strongest row: the delayed history itself repeats and can support a periodic retained branch after the ordinary retention gates also pass.
+where $\mathsf S_{P_{\mathrm{cyc}}}$ shifts the comparison history by one candidate period and $\Delta$ covers the declared causal-memory horizon. Small $R_{\mathrm{obs},k}$ establishes only recurrence of the measured output. Small $R_{\mathrm{shape}}$ adds recurrence of the assembly geometry after the declared quotient. Small $R_{\mathrm{hist}}$ is the strongest row: the delayed history itself repeats and can support a periodic retained branch after the ordinary retention gates also pass.
 
 Plainly: a spectral line can repeat even when the entire assembly does not. Before calling the motion an orbit, check whether only the detector signal, the assembly shape, or the full delayed history actually returns.
 
@@ -1069,12 +1069,12 @@ Plainly: describe what is present, how it is connected, where it sits, how it mo
 
 The same-inventory comparisons suggest a mode-first search after a genuine retained core is found. A candidate must first be an accepted equilibrium, relative equilibrium, or periodic retained branch under ordinary EOM evolution. No stability spectrum or particle interpretation may be computed about a prescribed path or a configuration that is not actually occupied.
 
-For an accepted periodic branch $\Theta_\star(T)$ with complete-history period $T_\star$, let $\Phi_{T_\star}$ be the delayed-history return map on the declared admissible perturbation space. The linear return operator is
+For an accepted periodic branch $\Theta_\star(T)$ with complete-history period $P_\star$, let $\Phi_{P_\star}$ be the delayed-history return map on the declared admissible perturbation space. The linear return operator is
 
 $$
 \mathcal M_\star
 =
-D\Phi_{T_\star}[\Theta_\star].
+D\Phi_{P_\star}[\Theta_\star].
 $$
 
 Its multipliers and mode histories are meaningful only after removing exactly the declared translation, time-origin, and other genuine redundancy rows. Neutral modes required by those symmetries must not be called instabilities or particle excitations. For a stationary retained branch, the corresponding linear response operator is used only after exact acceleration balance has been certified.
@@ -8725,19 +8725,19 @@ $$
 \mathcal R_{\mathrm{reflected}}^2=\mathcal I.
 $$
 
-Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact relative return under either reflected action obeys
+Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact relative return with reduced shape period $P_{\mathrm{rel}}$ under either reflected action obeys
 
 $$
-\mathbf m_{\mathrm{cur}}(T+\tau)
+\mathbf m_{\mathrm{cur}}(T+P_{\mathrm{rel}})
 =
 -\mathbf m_{\mathrm{cur}}(T),
 \qquad
-\mathbf m_{\mathrm{cur}}(T+2\tau)
+\mathbf m_{\mathrm{cur}}(T+2P_{\mathrm{rel}})
 =
 \mathbf m_{\mathrm{cur}}(T).
 $$
 
-The same action reverses both cadences and exchanges same-polarity modules. Thus its reduced shape period is $\tau$, while its fixed-frame current period is $2\tau$. If the half-cycle symmetry is exact throughout the history, its fixed-frame current average over the doubled period is zero.
+The same action reverses both cadences and exchanges same-polarity modules. Thus its reduced shape period is $P_{\mathrm{rel}}$, while its fixed-frame current period is $2P_{\mathrm{rel}}$. If the half-cycle symmetry is exact throughout the history, its fixed-frame current average over the doubled period is zero.
 
 Plainly: a braid can repeat its shape before it repeats its magnetic posture. After one reflected half-cycle the tetrahedron is the same up to rotation and module exchange, but its current points the other way. Two such steps are needed to restore the current.
 
@@ -8752,7 +8752,7 @@ Claim grade: derived proper-rotation and current-vector geometry on the exact F6
 The F6c factor of two is an instance of a general relative-return rule. Let a complete delayed geometry $Z(T)$ obey
 
 $$
-Z(T+\tau)=gZ(T)
+Z(T+P_{\mathrm{rel}})=gZ(T)
 $$
 
 for one declared symmetry action $g$. If an observable projection $\mathcal O$ transforms by a representation $D_{\mathcal O}$,
@@ -8761,11 +8761,11 @@ $$
 \mathcal O(gZ)=D_{\mathcal O}(g)\mathcal O(Z),
 $$
 
-then its first symmetry-forced return occurs after $k_{\mathcal O}\tau$, where $k_{\mathcal O}$ is the least positive integer for which $D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable. A special observable state can return sooner, so this is a symmetry order, not an assertion that every Fourier component has that fundamental period.
+then its first symmetry-forced return occurs after $k_{\mathcal O}P_{\mathrm{rel}}$, where $k_{\mathcal O}$ is the least positive integer for which $D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable. A special observable state can return sooner, so this is a symmetry order, not an assertion that every Fourier component has that fundamental period.
 
 For the reflected F6c action the executable return ledger is
 
-| Projection | Action after $\tau$ | Return order |
+| Projection | Action after $P_{\mathrm{rel}}$ | Return order |
 | --- | --- | ---: |
 | Orientation-quotiented scalar shape | unchanged | $1$ |
 | Sector cadence vector | sign reversed | $2$ |

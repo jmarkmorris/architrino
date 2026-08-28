@@ -155,14 +155,14 @@ Endpoint records may declare $\Gamma_N$ directly or provide a cadence measuremen
 $$
 \Gamma_N
 =
-\frac{T_N}{T_{N0}}
+\frac{P_N}{P_{N0}}
 =
 \frac{\Omega_{N0}}{\Omega_N}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-13a3a8f06b1c1980)
 
-In JSON, this is supplied as `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or the weak-field proxy `Phi_N_over_c0_squared`, for which the fixture uses $\Gamma_N\approx1-\Phi_N/c_0^2$. Scalar `Gamma_N_E` and `Gamma_N_R` values remain valid fallbacks for older or hand-written scenarios.
+In JSON, this is supplied as `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or the weak-field proxy `Phi_N_over_c0_squared`, for which the fixture uses $\Gamma_N\approx1-\Phi_N/c_0^2$. The literal input key `T_N_over_T_N0` represents the period ratio $P_N/P_{N0}$; its spelling is preserved as a serialization contract. Scalar `Gamma_N_E` and `Gamma_N_R` values remain valid fallbacks for older or hand-written scenarios.
 
 Launch records compute the low-speed source/receiver geometry factor from the radial endpoint velocity,
 

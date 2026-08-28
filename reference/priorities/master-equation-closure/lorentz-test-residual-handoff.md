@@ -52,9 +52,9 @@ The handoff may be emitted in `blocked_upstream` state before `lorentz_gr_bridge
 | --- | --- | --- | --- |
 | `branch_id` | Branch class $q$, drift band $\mathcal{D}_\beta$, active-root ledger, inactive gaps, Jacobian floor, memory depth, and regulator state. | Identifies the retained row. | `residual.branch_unidentified` |
 | `moving_shape` | $a_{\parallel,q}(v)$, $a_{\perp,q}(v)$, drift direction $\hat{\mathbf e}_{\parallel}$, and extraction map from the same branch cycle. | Feeds ruler and anisotropy rows. | `residual.ruler_missing` |
-| `clock_channel` | Clock phase $\theta_{\mathrm{clk},q}$, $T_q(v)$ or $\omega_{\mathrm{clk},q}(v)$, and rest reference $T_0$ or $\omega_0$. | Feeds RMS Ives-Stilwell and weak-field redshift rows. | `residual.clock_missing` |
+| `clock_channel` | Clock phase $\theta_{\mathrm{clk},q}$, $P_q(v)$ or $\omega_{\mathrm{clk},q}(v)$, and rest reference $P_0$ or $\omega_0$. | Feeds RMS Ives-Stilwell and weak-field redshift rows. | `residual.clock_missing` |
 | `clock_branch_certificate` | Certified-braid return residual $\mathcal R_{\mathrm{cert}}$, non-symmetry Floquet margin, memory-boundary recurrence row, and moduli-component / assembly topological charge identifiers for the clock branch. | Establishes that the phase record is a valid proper-time standard rather than a drifting oscillator. | `clock.certified_braid_missing`, `clock.floquet_margin_failed`, or `clock.memory_boundary_leak` |
-| `signal_channel` | Round-trip signal time $T_{\circlearrowleft}(\beta,\hat{\mathbf n})$, synchronization convention, channel speed $c_\star$, and photon specialization $c_\gamma$ when used. | Feeds two-way and Michelson-Morley rows. | `residual.signal_missing` |
+| `signal_channel` | Round-trip signal time $P_{\circlearrowleft}(\beta,\hat{\mathbf n})$, synchronization convention, channel speed $c_\star$, and photon specialization $c_\gamma$ when used. | Feeds two-way and Michelson-Morley rows. | `residual.signal_missing` |
 | `speed_convention` | Declaration of $c_f$, $c_\star$, $c_\gamma$, and $c_0=c_{\text{eff}}(\infty)$ where applicable. | Prevents primitive/dressed speed conflation. | `residual.speed_conflation` |
 | `medium_response` | One Noether sea response record $\mathcal{M}_{\mathrm{sea}}^{ab}$ or bridge equivalent fixing $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, stress, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$, $c_{\text{eff}}$, and $c_\gamma$ projections, together with the same retained-history source record $\Theta_{\mathrm{sea}}(\mathfrak B)$ used by the active-root, event-ledger, and regulator rows. | Feeds clock/ruler, PPN, SME gravity-sector, matter-speed, and photon rows from one sea-constitutive object on one retained branch chart. | `residual.medium_response_missing`, `residual.retained_history_mismatch`, or `gravity.hidden_tuning` |
 | `framing_quadrupoles` | Matter framing quadrupole $Q_A^{ij}$, sea-response trace-free quadrupole or $\zeta_{ij}^{\mathrm{TF}}$, and $D_{\mathrm{plane}}$ or equivalent frame-conditioning row when a Noether braid branch supplies the clock or matter assembly. | Feeds orientation leakage, two-way photon anisotropy, Hughes-Drever matter anisotropy, and scalar-mass anisotropy as one $\ell=2$ obstruction family. | `lorentz.framing_quadrupole_missing` or `lorentz.frame_isotropy_failed` |
@@ -105,20 +105,20 @@ $$
 \Delta_{\mathrm{tw}}^{(q)}(\beta,\hat{\mathbf n})
 =
 \frac{
-T_{\circlearrowleft}^{(q)}(\beta,\hat{\mathbf n})
--\langle T_{\circlearrowleft}^{(q)}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
+P_{\circlearrowleft}^{(q)}(\beta,\hat{\mathbf n})
+-\langle P_{\circlearrowleft}^{(q)}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
 }{
-\langle T_{\circlearrowleft}^{(q)}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
+\langle P_{\circlearrowleft}^{(q)}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
 },
 $$
 $$
 \Delta_{\mathrm{KT}}^{(q)}(\beta_1,\beta_2)
 =
-\frac{T_{\circlearrowleft}^{(q)}(\beta_1)}{T_{\circlearrowleft}^{(q)}(\beta_2)}
+\frac{P_{\circlearrowleft}^{(q)}(\beta_1)}{P_{\circlearrowleft}^{(q)}(\beta_2)}
 -1
 -
 \left[
-\frac{T_{\circlearrowleft}^{\mathrm{SR}}(\beta_1)}{T_{\circlearrowleft}^{\mathrm{SR}}(\beta_2)}
+\frac{P_{\circlearrowleft}^{\mathrm{SR}}(\beta_1)}{P_{\circlearrowleft}^{\mathrm{SR}}(\beta_2)}
 -1
 \right],
 $$
@@ -305,7 +305,7 @@ failure_code: residual.bridge_not_closed
 | --- | --- | --- |
 | `G0_branch_admissibility` | The retained branch has active-root ledger, inactive gaps, Jacobian floor, finite memory depth, stable monodromy or trapping, and no undeclared branch transition. | None by itself; all rows depend on it. |
 | `G1_moving_assembly` | The bridge closes $a_{\parallel}/a_{\perp}=1/\gamma_\star+R_{\parallel}$ on the drift band. | `rms.mm`, `rms.kt` inputs. |
-| `G2_clock_retuning` | The same branch closes $T(v)/T_0=\gamma_\star+R_T$ or the equivalent clock-frequency law. | `rms.is`, clock parts of PPN and SME matter rows. |
+| `G2_clock_retuning` | The same branch closes $P(v)/P_0=\gamma_\star+R_T$ or the equivalent clock-frequency law. | `rms.is`, clock parts of PPN and SME matter rows. |
 | `G3_two_way_signal` | The same branch and channel speed close $\Delta_{\mathrm{tw}}$ within the declared direct photon-sector bound. | `rms.mm`, `sme.photon`. |
 | `G4_effective_metric_and_shift` | The medium-response record derives lapse, shift, spatial compliance, and signal-speed projections from one $\mathcal{M}_{\mathrm{sea}}^{ab}$-level object on the same retained branch chart named by $\Theta_{\mathrm{sea}}(\mathfrak B)$. | All PPN rows and `sme.gravity`. |
 | `G5_frame_projection` | The export supplies lab-frame, preferred-frame, epoch, and Sun-centered comparison-frame transforms. | All SME-style rows and preferred-frame PPN diagnostics. |

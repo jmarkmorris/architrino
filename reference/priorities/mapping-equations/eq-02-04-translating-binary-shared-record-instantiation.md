@@ -48,7 +48,7 @@ u t\,\hat{\mathbf e}
 +
 \sigma\,\boldsymbol{\rho}_u(\theta(t)),
 \qquad
-\theta(t+T_u)=\theta(t)+2\pi.
+\theta(t+P_u)=\theta(t)+2\pi.
 $$
 
 For a root emitted by $\sigma'$ and received by $\sigma$, the delay equation is
@@ -66,7 +66,7 @@ u\tau\,\hat{\mathbf e}
 -c_f\tau
 =0,
 \qquad
-\Omega_u\equiv\frac{2\pi}{T_u}.
+\Omega_u\equiv\frac{2\pi}{P_u}.
 $$
 
 The branch Jacobian is
@@ -139,7 +139,7 @@ $$
 =
 \left(
 \boldsymbol{\rho}_u,
-T_u,
+P_u,
 \Omega_u,
 b_u,
 h_u,
@@ -158,10 +158,10 @@ For any forward translating row, the same branch chart must also expose the mini
 $$
 \mathcal R_{\mathrm{Lor\text{-}root}}(u)
 =
-\frac{\tau_{\mathrm{forward}}(u)/T_u}
+\frac{\tau_{\mathrm{forward}}(u)/P_u}
 {M_b^{\mathrm{mem}}(u)+\epsilon_h},
 \qquad
-M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u}.
+M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{P_u}.
 $$
 
 This is a branch-validity row rather than an extra Lorentz fit. If the moving binary loses the forward causal roots needed by its own clock, envelope, or force rows, a small Lorentz-looking residual is not eligible for promotion.
@@ -210,7 +210,7 @@ $$
 \begin{aligned}
 \Pi_T^C\mathcal C_u
 &=
-\left(T_u,T_0,b_u,\mathcal N_0\right),
+\left(P_u,P_0,b_u,\mathcal N_0\right),
 \\
 \Pi_{\xi}^C\mathcal C_u
 &=
@@ -275,7 +275,7 @@ The branch-level clock and envelope projection rows are
 $$
 R_T^{\mathrm{bin}}\!\left[\Pi_T^C\mathcal C_u;u\right]
 =
-\frac{T_u}{T_0}
+\frac{P_u}{P_0}
 -
 \gamma_f(u),
 \qquad
@@ -389,7 +389,7 @@ This layer keeps the Lorentz and energy-momentum comparison as one retained tran
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| $\gamma_f(u)=(1-u^2/c_f^2)^{-1/2}$ and $T_u/T_0$ | Clock-period readout from the retained translating branch. | `retained_branch_chart`, `clock_row`, `same_branch_chart_identity` | $T_u$, $T_0$, drift $u$, branch ledger $b_u$, Noether sea cell, and common carrier are the same objects used by envelope, energy, and mass-shell rows. | Current proxy rows remain `blocked_current_proxy_only` until raw retained rows and branch identity are accepted. | Accepted retained branch chart plus clock row on one `S_eq` retained-domain carrier. |
+| $\gamma_f(u)=(1-u^2/c_f^2)^{-1/2}$ and $P_u/P_0$ | Clock-period readout from the retained translating branch. | `retained_branch_chart`, `clock_row`, `same_branch_chart_identity` | $P_u$, $P_0$, drift $u$, branch ledger $b_u$, Noether sea cell, and common carrier are the same objects used by envelope, energy, and mass-shell rows. | Current proxy rows remain `blocked_current_proxy_only` until raw retained rows and branch identity are accepted. | Accepted retained branch chart plus clock row on one `S_eq` retained-domain carrier. |
 | $R_{\parallel,u}/R_{\perp,u}=1/\gamma_f(u)$ | Envelope-shape readout from the same oblate branch geometry. | `envelope_row`, `retained_branch_chart`, inactive-root gap cover | Principal axes, branch chart, causal-root ledger, inactive-root gaps, and envelope projection share the same support and retained history. | Root-starvation and split-root witnesses reject envelope rows whose forward roots differ from clock or force rows. | Accepted envelope row with same retained branch chart and root ledger. |
 | Two-way signal leakage $\Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta)$ | Signal-transfer readout over the same active causal-root ledger. | `two_way_signal_row`, path-history rows, causal-root ledger rows | Two-way signal, clock period, endpoint cadence, and path-history rows bind to the same retained event or positive-width domain. | Carrier-split controls reject using a separate signal ledger to tune leakage while clock/envelope rows pass. | Accepted two-way signal row plus path-history and causal-root rows bound to `S_eq`. |
 | $E_{\mathrm{CM},u}=\gamma M_0c_f^2$ and $\mathbf p_{\mathrm{CM},u}=\gamma M_0\mathbf u$ | Energy and momentum readouts from one wake/event ledger. | `energy_row`, `momentum_row`, wake ledger, event ledger | Energy, momentum, boundary flux, recoil/boundary exchange, rest mass, and exposure rows cite the same common carrier and event ledger. | Event-ledger and hidden-retune witnesses reject changing branch ledger, Noether sea cell, speed convention, or rest mass between $E$ and $\mathbf p$. | Accepted energy and momentum rows bound to the same retained branch and wake ledger. |
@@ -446,10 +446,10 @@ For each sampled drift $u_k$, the run must output:
 | Output | Required content | Consumed by |
 | --- | --- | --- |
 | Common carrier | $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ with one shared branch chart, Noether sea cell, root ledger, wake ledger, and energy-momentum-angular-momentum ledger. | All row projections. |
-| Retained branch chart | $\boldsymbol{\rho}_{u_k}$, $T_{u_k}$, $\Omega_{u_k}$, $b_{u_k}$, $h_{u_k}$, $\eta_{u_k}$, $\epsilon_{c,u_k}$, $J_{0,u_k}$, and inactive-root gaps. | Same-record eligibility. |
-| Root-starvation row | $d_{\min}(u_k)$, $h_b^{\mathrm{lock}}(u_k)$, $T_{u_k}$, $M_b^{\mathrm{mem}}(u_k)=h_b^{\mathrm{lock}}(u_k)/T_{u_k}$, and $\mathcal R_{\mathrm{Lor\text{-}root}}(u_k)$ using the same active forward-root rows. | Same-record eligibility and finite-memory falsifier for `EQ-02` and `EQ-03`. |
+| Retained branch chart | $\boldsymbol{\rho}_{u_k}$, $P_{u_k}$, $\Omega_{u_k}$, $b_{u_k}$, $h_{u_k}$, $\eta_{u_k}$, $\epsilon_{c,u_k}$, $J_{0,u_k}$, and inactive-root gaps. | Same-record eligibility. |
+| Root-starvation row | $d_{\min}(u_k)$, $h_b^{\mathrm{lock}}(u_k)$, $P_{u_k}$, $M_b^{\mathrm{mem}}(u_k)=h_b^{\mathrm{lock}}(u_k)/P_{u_k}$, and $\mathcal R_{\mathrm{Lor\text{-}root}}(u_k)$ using the same active forward-root rows. | Same-record eligibility and finite-memory falsifier for `EQ-02` and `EQ-03`. |
 | Same-root conservation row | $\mathcal{R}_{01-05}^{\mathfrak B_{u_k}}(W_k)$ or a declared inherited conservation certificate using the same $\mathfrak B_{u_k}$, active roots, wake ledger, event ledger, and boundary flux convention. | `EQ-05`, same-record eligibility for `EQ-02` through `EQ-04`. |
-| Clock row | $T_{u_k}/T_0$, $\gamma_f(u_k)$, and $R_T^{\mathrm{bin}}(u_k)$. | `EQ-02`. |
+| Clock row | $P_{u_k}/P_0$, $\gamma_f(u_k)$, and $R_T^{\mathrm{bin}}(u_k)$. | `EQ-02`. |
 | Envelope row | $R_{\parallel,u_k}$, $R_{\perp,u_k}$, $\xi_{u_k}$, $R_{\xi}^{\mathrm{bin}}(u_k)$, and $R_{\mathrm{shape}}^{\mathrm{bin}}(u_k)$. | `EQ-03`. |
 | Two-way signal row | $\Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta)$ and angular decomposition of any leakage. | `EQ-02`, `EQ-07`, `EQ-09`. |
 | Energy row | $E_{\mathrm{internal}}(u_k)$, wake-energy convention, boundary flux, event updates, and $E_{\mathrm{CM},u_k}$. | `EQ-04`, `EQ-05`. |
@@ -461,6 +461,8 @@ For each sampled drift $u_k$, the run must output:
 | Split witnesses | $\mathcal S_{\mathrm{root}}^{02\text{-}04}$ and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$. | Common-architecture pass/fail. |
 
 ## Current Solver Proxy Intake
+
+The emission contract retains the literal row identifier `clock_period_T_u_T0`; its period-ratio meaning in current notation is $P_u/P_0$. The diagnostic names $R_T^{\mathrm{bin}}$ and $R_T^{(q)}$ retain their established clock-residual labels. Neither spelling licenses using $T$ as a cycle period in a new equation. Historical fixtures keep their recorded keys and numbers.
 
 The live three-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload requires verification for advancement and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
 
@@ -912,7 +914,7 @@ $$
 Near $\beta=0$, fit even-power rows for clock and envelope:
 
 $$
-\frac{T_u}{T_0}
+\frac{P_u}{P_0}
 =
 1+a_2\beta^2+a_4\beta^4+R_T^{(6)},
 \qquad
@@ -1000,13 +1002,13 @@ b_4^C+\frac{1}{8}
 \right).
 $$
 
-This row is evaluable only when $(k_2,\ell_2,k_4,\ell_4)$, $T_u/T_0$, and $R_{\parallel,u}/R_{\perp,u}$ are extracted from the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ and the same inherited finite-window conservation convention. If that shared extraction is absent, report `blocked_not_evaluable`; do not set $R_{\mathrm{coef}}^{\mathrm{bin}}=0$ by assumption.
+This row is evaluable only when $(k_2,\ell_2,k_4,\ell_4)$, $P_u/P_0$, and $R_{\parallel,u}/R_{\perp,u}$ are extracted from the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ and the same inherited finite-window conservation convention. If that shared extraction is absent, report `blocked_not_evaluable`; do not set $R_{\mathrm{coef}}^{\mathrm{bin}}=0$ by assumption.
 
 ## Negative Controls
 
 The first executable includes six negative controls:
 
-1. **Clock-only retune:** adjust $T_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
+1. **Clock-only retune:** adjust $P_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
 2. **Envelope-only retune:** impose $R_{\parallel}/R_{\perp}=1/\gamma_f$ without the root ledger. This must pass $R_{\xi}$ and fail $\mathcal S_{\mathrm{root}}^{02\text{-}04}$.
 3. **Velocity-dependent rest mass:** let $M_0(u)$ absorb energy-momentum error. This must fail $R_{M_0}^{\mathrm{bin}}$ even if $R_{\mathrm{shell}}$ shrinks.
 4. **Medium-response compensator:** change $\mathcal M_{\mathrm{sea}}^{ab}$ inside the primitive homogeneous cell to repair momentum. This must fail $R_{\mathcal M}^{\mathrm{bin},ab}$ or the declared Noether sea cell equality.

@@ -210,7 +210,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3ec576abc482b8a2)
 Those legs are unequal. A physical clock or ruler branch is not built from either leg alone, however. It is built from a return cycle that must close with a stable phase and root ledger. The longitudinal return time is
 $$
-T_{\parallel}
+P_{\parallel}
 =
 \frac{R_{\parallel}}{c_{\text{eff}}-v}
 +
@@ -220,6 +220,9 @@ T_{\parallel}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b86338288cb5866a)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly drift. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly drift.
+
 The transverse cycle uses the remaining transverse causal budget,
 $$
 c_{\perp}
@@ -233,7 +236,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-63dc89491507d579)
 so
 $$
-T_{\perp}
+P_{\perp}
 =
 \frac{2R_{\perp}}{c_{\perp}}
 =
@@ -244,7 +247,7 @@ $$
 
 If the same branch is to act as Lorentz-admissible clock and ruler material, the longitudinal and transverse return cycles must close with the same period:
 $$
-T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0)
+P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_0)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bebc73f35d00d4f8)
@@ -368,7 +371,7 @@ For the branch $q$, define the realized clock and ruler factors
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0},
+\frac{P_q(v)}{P_0},
 \qquad
 \gamma_{\mathrm{rul}}^{(q)}(v)
 \equiv
@@ -376,6 +379,9 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d62ee9771f478253)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
 The Lorentz bridge closes only if, in a homogeneous weak-field Noether sea cell,
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)

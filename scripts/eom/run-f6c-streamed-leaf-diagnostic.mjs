@@ -40,11 +40,11 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "b4dc731c53c080e6494cbd450fa91842d85f4bd84b57aa4bdba4c03b216087e1"
+  "f60c09a4d00274a047033d54fb3d2946971e3b5fe5568d129234427ce05be219"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
-  "a1dc70f71b0f132db01c5d394ec8c45818c60a71d612aa6266fd735b2a014bb2"
+  "7401104f33c94075e72a7cb79ff02c36b55e64adff5ef43426a559128ccf6ec1"
  ],
  "diagnostic": [
   "scripts/eom/f6c_single_leaf_diagnostic.py",
@@ -52,7 +52,7 @@ export const PINS=Object.freeze({
  ],
  "diagnosticControls": [
   "tests/test_f6c_single_leaf_diagnostic.py",
-  "f2236cafb97003892c3890e3a40f9c58dbeb0557a6c7e6b45fdc3719e67b998d"
+  "0de071dd8a89044623d0af6968a87820e9b75e06f9399e32553fc06f10419901"
  ],
  "stream": [
   "scripts/eom/f6c_streamed_leaf_session.py",
@@ -60,7 +60,7 @@ export const PINS=Object.freeze({
  ],
  "streamControls": [
   "tests/test_f6c_streamed_leaf_session.py",
-  "1446ac122e7fbcb6d376d43f46a29a30f7e589dad1d3d57dd1f79d0c0032e4b0"
+  "afee38c922c96ab6885d710a7a89cf28cb74a43ef7e13cea34d9cb4846e2c8d7"
  ],
  "continuation": [
   "scripts/eom/f6c_leaf_continuation.py",
@@ -132,9 +132,13 @@ export const FRESH_EVIDENCE_PINS=Object.freeze({
  parserControls:['tests/test_f6c_parent_evidence_inventory.py','369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551'],
  schema:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md','856c05077241bf9c28d75c21fcb50beac0afd23546c4bbbad9be7abd5d0f6710']
 });
-// A nonempty selection remains disabled until the independently reviewed
-// validator/control/contract generation is fixed here and in the adapter.
-export const FRESH_CLOSURE_PINS=Object.freeze({});
+// Independently accepted pure checker, not an inventory-selected I/O issuer.
+// Every actual batch still requires complete independently observed closure.
+export const FRESH_CLOSURE_PINS=Object.freeze({
+ instrument:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'],
+ controls:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'],
+ contract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
+});
 export const CONTINUATION_MATH=Object.freeze([
  ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',41336],
  ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',42580],
