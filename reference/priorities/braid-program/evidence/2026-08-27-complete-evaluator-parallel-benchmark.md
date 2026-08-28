@@ -289,4 +289,16 @@ Fresh independent closure at `2026-08-28T07:33:16.591Z` verified wrapper PID/gro
 
 Plainly: every planned pure-control outcome is accounted for, and the recorded processes are closed. The next required evidence is actual complete-path observer integration, followed by the unchanged six scientific attempts.
 
+### Current binding correction and observer integration
+
+The first whole-observer metadata builder invocation, tool `9644cf`, failed before creating any output directory or launching a child. Its absolute-path requirement rejected the 85 repository-relative entries preserved in the current declaration. The same mismatch existed in the observer's required-input lookup. The failed invocation and exact source remain retained in `inert-spec-builder-v1-actual-rejection.json`; no scientific attempt was consumed. Observer v5 changes only the lookup to resolve a copied path against the repository root, retaining all byte/hash checks and the original declaration spelling. Its 74,077-byte source has SHA-256 `d67c6b5f7e9cb88f5d700a8f327491e5ab74e29fb6db4ef98dd69625c483000d`; independent source review `80873be7c20e4ad6246bc0720ed5072e8ae77f15ccac4a2daa3a62b0a5154f02` accepts this narrow delta, without runtime or scientific admission. A fresh metadata builder remains separately reviewed before use.
+
+Plainly: historical paths need not be rewritten to find their current files. The correction changes the lookup, not the experiment or its evidence.
+
+A proposed shared operational repair to `launch-abc-enclosed-root-pilot.mjs` remains a private candidate owned by F6c, with no canonical promotion yet. Exact inspection corrected an earlier dependency assumption: neither this helper nor `launch-prescribed-response-pilot.mjs` appears in the original 194 scientific source bindings. They are additional operational bindings in the newer declarations, and existing metadata builders already capture their current identities. No exception or behavioral amendment to `f5-batch-admission.mjs`, the caller or its tests is needed. The abandoned proposal remains preserved with `shared-k-binding-impact-correction-v1.md` superseding it.
+
+Independent preservation review `shared-k-preservation-independent-review-v1.json`, SHA-256 `dd45b7ef2ec75466bbde5d47413e0c71e382ae0ec11498eebd0d54eade550daa`, verifies 325 paths, 62 exact copies totaling 2,838,073 bytes, 33 aliases and 50 expected absences, including current five-field file identities. This is preservation evidence only. Canonical helper mutation still requires the exact candidate's independent review, proof that benchmark-consumed functions remain unchanged, closure of all old-generation peer windows and explicit safe-point agreement. Changed dependencies will require fresh operational bindings and review; old control acceptance will not transfer.
+
+Plainly: the old execution can remain reproducible while a separately reviewed operational generation is prepared. This does not authorize a scientific change or relax any safety limit.
+
 Closure goal: complete the remaining operational checks and execute the approved batch within the original campaign boundary.

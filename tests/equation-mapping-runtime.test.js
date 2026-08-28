@@ -1039,6 +1039,16 @@ test("equation mapping auto-fit shrinks long equations before wrapping", () => {
     }),
     { fontSize: 13, shouldWrap: true, mode: "wrapped" }
   );
+  assert.deepEqual(
+    calculateEquationAutoFit({
+      availableWidth: 900,
+      naturalWidth: 1700,
+      fixedWidth: 200,
+      baseFontSize: 60,
+      minFontSize: 30,
+    }),
+    { fontSize: 30, shouldWrap: true, mode: "wrapped" }
+  );
 });
 
 test("equation mapping runtime applies fitted font size before enabling wrap", () => {
@@ -1121,6 +1131,44 @@ test("equation mapping runtime keeps explicit solve rows centered instead of mea
   assert.equal(fit.mode, "base");
   assert.equal(equationStyle.flexWrap, "wrap");
   assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "");
+});
+
+test("equation mapping fits the full centered row, including overflow before the scroll origin", () => {
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      getComputedStyle(element) {
+        return element === runtime.equationElement
+          ? { fontSize: "60px" }
+          : { paddingLeft: "2px", paddingRight: "2px" };
+      },
+    },
+  });
+  const equationStyle = createFakeStyle();
+  runtime.equationElement = {
+    children: [createFakeFormulaChild(1204), createFakeFormulaChild(604)],
+    dataset: {},
+    // Centering a 1808px row in 908px puts 450px before the scroll origin.
+    scrollWidth: 1358,
+    style: equationStyle,
+  };
+  runtime.equationShellElement = {
+    clientWidth: 908,
+    getBoundingClientRect() {
+      return { width: 908 };
+    },
+  };
+
+  const fit = runtime.applyEquationAutoFit();
+
+  // The glyphs halve from 1800px to 900px; the two 4px paddings stay fixed.
+  assert.equal(fit.fontSize, 30);
+  assert.equal(fit.shouldWrap, false);
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "30.00px");
+
+  runtime.equationShellElement.clientWidth = 910;
+  runtime.applyEquationAutoFit();
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "30.06px");
 });
 
 test("equation mapping page loads KaTeX assets and focused runtime module", () => {
