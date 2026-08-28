@@ -1106,9 +1106,9 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 - angular-momentum-spin
 - mass-map
 - doubling-frequency-lock
-- [quantum-closure](../../quantum-closure/priorities.md)
-- [strong-field-closure](../../strong-field-closure/priorities.md)
-- [cosmology-closure](../../cosmology-closure/priorities.md)
+- [mapping-quantum](../../mapping-quantum/priorities.md)
+- [mapping-strong-field](../../mapping-strong-field/priorities.md)
+- [mapping-cosmology](../../mapping-cosmology/priorities.md)
 
 ## Related AAA Notes
 

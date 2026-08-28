@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 184,
-      "sections": 1543
+      "entries": 186,
+      "sections": 1557
     }
   },
   "tocRoot": {
@@ -12777,6 +12777,80 @@
             ]
           },
           {
+            "id": "philosophy_history__information_and_the_wake",
+            "title": "Information and the Wake",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/information_and_the_wake.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What a Wake Carries",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "What a Wake Carries",
+                "sectionKey": "what a wake carries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Superposition Without Corruption",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "Superposition Without Corruption",
+                "sectionKey": "superposition without corruption",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Projection Loss",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "The Projection Loss",
+                "sectionKey": "the projection loss",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Conservation Without Instantaneity",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "Conservation Without Instantaneity",
+                "sectionKey": "conservation without instantaneity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "One Law, Heavy State",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "One Law, Heavy State",
+                "sectionKey": "one law heavy state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Concept-Import Discipline",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "The Concept-Import Discipline",
+                "sectionKey": "the concept import discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Placement and Claim Levels",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+                "markdownSection": "Placement and Claim Levels",
+                "sectionKey": "placement and claim levels",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "major_thinkers",
             "title": "Major Thinkers",
             "kind": "markdown-tree",
@@ -14048,6 +14122,64 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
                 "markdownSection": "Appendix And Exclusions",
                 "sectionKey": "appendix and exclusions",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__cosmic_censorship_holography",
+            "title": "Cosmic Censorship and Holography",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Conceptual View",
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "markdownSection": "Conceptual View",
+                "sectionKey": "conceptual view",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Key Equation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "markdownSection": "Key Equation",
+                "sectionKey": "key equation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ View",
+                "sectionKey": "mathbb a mathbb a mathbb a view",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "AdS/CFT Regime Map",
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "markdownSection": "AdS/CFT Regime Map",
+                "sectionKey": "ads cft regime map",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status",
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "markdownSection": "Status",
+                "sectionKey": "status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometric Proof Targets",
+                "markdownPath": "content/markdown/aaa/philosophy-history/cosmic-censorship-and-holography.md",
+                "markdownSection": "Geometric Proof Targets",
+                "sectionKey": "geometric proof targets",
                 "headingLevel": 2
               }
             ]

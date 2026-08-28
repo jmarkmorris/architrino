@@ -1,0 +1,354 @@
+{
+  "schema": "braid-program/parallel-agent-search-manifest.v1",
+  "campaignId": "parallel-braid-prescribed-search-20260826-v1",
+  "status": "operator-authorized-prescribed-search",
+  "authority": {
+    "operatorDecisionDate": "2026-08-26",
+    "authorizedScope": "large parallel agent search over frozen prescribed geometries and missing F1-F4 representation fields",
+    "integrationOwner": "coordinator"
+  },
+  "normalizedUnits": {
+    "fieldSpeed": 1
+  },
+  "executionBoundary": {
+    "prescribedGeometryPermitted": true,
+    "h1IdentityAndHistoryPermitted": true,
+    "h2ContinuousGuardPermitted": true,
+    "h3RootSearchPermitted": false,
+    "ordinaryEomEvolutionPermitted": false,
+    "promotionPermitted": false
+  },
+  "claimBoundary": {
+    "maximumGrade": "bounded prescribed-geometry diagnostic",
+    "excludedClaims": [
+      "binding",
+      "retention",
+      "stability",
+      "candidate-promotion",
+      "score-change",
+      "particle-identity",
+      "physical-realization"
+    ],
+    "missingOutputMeans": "incomplete coverage",
+    "finiteSearchMeans": "only the declared frozen rows were checked"
+  },
+  "resourceBudget": {
+    "maxConcurrentAgents": 8,
+    "maxAggregateWorkerThreads": 6,
+    "maxConcurrentEomThreads": 0,
+    "heartbeatSeconds": 45,
+    "resourceBasis": "measured compact-analysis throughput optimum; no transfer to EOM execution"
+  },
+  "outputContract": {
+    "root": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1",
+    "writePolicy": "create-exclusive-no-overwrite",
+    "retryPolicy": "new-attempt-path-same-lane-identity",
+    "databaseWriterPolicy": "single-writer",
+    "mergeOrder": "manifest-lane-order",
+    "repositoryIntegrationPolicy": "coordinator-only-after-complete-census"
+  },
+  "sourceBindings": [
+    {
+      "id": "configuration-chart",
+      "path": "reference/priorities/braid-program/configuration-chart.md",
+      "sha256": "4f988af4d60a50c2aa6ed6e7e371d961faa353f4bcc96ca1140572f9a269be22"
+    },
+    {
+      "id": "readiness-owner",
+      "path": "reference/priorities/braid-program/prescribed-worldline-readiness-matrix.md",
+      "sha256": "fa1d82f02a8a5136737e4391808d8773ac49c7fa1f5415a59d94baef6ae5c41e"
+    },
+    {
+      "id": "f-series-owner",
+      "path": "reference/priorities/mapping-equations/inferring-braid-requirements.md",
+      "sha256": "448a9023c3fb7e8cabfd87f238637928f419cb481ee1da20c32824b0358bd163"
+    },
+    {
+      "id": "a1",
+      "path": "reference/priorities/braid-program/configurations/family-a-a1-general.v2.json",
+      "sha256": "e89f48a5e17243161c1d67663e9c2b14831bec96d57f6b671688e1ac6b409fdd"
+    },
+    {
+      "id": "a1-1",
+      "path": "reference/priorities/braid-program/configurations/family-a-a1-1-equal-frequency.v2.json",
+      "sha256": "0870cf663a675def2c95b78fc273cc2881421bc44d22d7ccc4fbf2710f94fa6f"
+    },
+    {
+      "id": "a1-2",
+      "path": "reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json",
+      "sha256": "d4ebd94dfb90e4e8245fe4702b478fbd44314a540ea89c808f156c248edb9872"
+    },
+    {
+      "id": "a1-3",
+      "path": "reference/priorities/braid-program/configurations/family-a-a1-3-4-2-1-frequency.v2.json",
+      "sha256": "a603d33794aa60bc02dd3c0186c82231a663c89b6ebb56cffdde395db6daeed0"
+    },
+    {
+      "id": "a1-4",
+      "path": "reference/priorities/braid-program/configurations/family-a-a1-4-3-2-1-frequency.v2.json",
+      "sha256": "aeca1b0c99dbb1e167aab2f9d4fbbd8ccdbddf3d53c9e925adc971abcf8819d7"
+    },
+    {
+      "id": "a2",
+      "path": "reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v2.json",
+      "sha256": "799fda068f8617806a4c81b6d24a7a9001b3c900588e23d2d005a33e264703de"
+    },
+    {
+      "id": "a3-1",
+      "path": "reference/priorities/braid-program/configurations/family-a-a3-1-equal-frequency.v2.json",
+      "sha256": "b5376423186603b8fae0f50bd04753b2ecc15498b8a4773633303ee3f4a3b0ed"
+    },
+    {
+      "id": "a3-2",
+      "path": "reference/priorities/braid-program/configurations/family-a-a3-2-equal-frequency-equal-radius.v2.json",
+      "sha256": "aaf91487ac5aeb5da6e9962d37efd342bd335456f0046d71973c4b10d81eee53"
+    },
+    {
+      "id": "a3-3",
+      "path": "reference/priorities/braid-program/configurations/family-a-a3-3-4-2-1-frequency.v2.json",
+      "sha256": "80423b1c867330b494a294e9fe777c5c451ee1075f4839ab771c2f505a84bbaf"
+    },
+    {
+      "id": "a3-4",
+      "path": "reference/priorities/braid-program/configurations/family-a-a3-4-3-2-1-frequency.v2.json",
+      "sha256": "82766a9ef99a91f64b6f6c432b3f4ceb6f7162f820ad0a5d31987e6543f68164"
+    },
+    {
+      "id": "b1-1",
+      "path": "reference/priorities/braid-program/configurations/illustrative-spindle-chart-hypothesis.v2.json",
+      "sha256": "256551050fb51e308e3190bafb9654684eb67533b9bf324bbe7d32efc5df090b"
+    },
+    {
+      "id": "b1-2",
+      "path": "reference/priorities/braid-program/configurations/illustrative-extreme-cap-tilt-spindle-variant.v2.json",
+      "sha256": "df45ac57eb334679a744b2f539f19d8b2736f73ebd6af888017672ac14b5981f"
+    },
+    {
+      "id": "b1-3",
+      "path": "reference/priorities/braid-program/configurations/illustrative-planar-tri-binary-spindle-boundary.v2.json",
+      "sha256": "d9224763b826247b219c696cb9f9a309e757f4c0a32ecf8f47197f096295c4ac"
+    },
+    {
+      "id": "c1",
+      "path": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-general.v2.json",
+      "sha256": "c594fde4033bcecc416478701aa1c86cc82475efa0f85f0cfeaf6d206c126f10"
+    },
+    {
+      "id": "c2",
+      "path": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-general.v2.json",
+      "sha256": "970d9caec899b368e3996b81056fd932e9b2646c8c5add5e095e40e4db6d0401"
+    },
+    {
+      "id": "c3",
+      "path": "reference/priorities/braid-program/configurations/family-c-c1-co-rotating-b1-pair.v2.json",
+      "sha256": "46aae3c05d127ec551a97cfccada1d8f40d9d9fb5c2cd2ce6e455c8167769c5f"
+    },
+    {
+      "id": "c4",
+      "path": "reference/priorities/braid-program/configurations/family-c-c2-counter-rotating-b1-pair.v2.json",
+      "sha256": "c30ce14042338f89c62897330045bf92d1f698d7e7dd73f9f51ec77865244d79"
+    },
+    {
+      "id": "c5",
+      "path": "reference/priorities/braid-program/configurations/family-c-c1-1-co-rotating-b1-3-pair.v2.json",
+      "sha256": "82147940e60b592fd9b05f79540cd608d55dba25511bb5e1e0e81e6b50bd55ec"
+    },
+    {
+      "id": "c6",
+      "path": "reference/priorities/braid-program/configurations/family-c-c2-1-counter-rotating-b1-3-pair.v2.json",
+      "sha256": "cb2bb996703e25d1ba130c5fe960389e506f5ad7a9b7014bd0bf18d9d345f9b2"
+    },
+    {
+      "id": "f5-approved-row",
+      "path": "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+      "sha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb"
+    },
+    {
+      "id": "f5-h3-predeclaration",
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+      "sha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5"
+    },
+    {
+      "id": "f5-independent-guard",
+      "path": "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs",
+      "sha256": "aab128d5abbd248fb1879ad6dba71844951593b3ef636d67742729bbff886dfd"
+    },
+    {
+      "id": "f5-production-operator",
+      "path": "src/prescribed-geometry/PrescribedWorldlineOperators.mjs",
+      "sha256": "f641daba8184c7e997478494d1642291d40fd6a6d365c289c6ee8b6637ef0a01"
+    }
+  ],
+  "lanes": [
+    {
+      "laneId": "a-core-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["A1", "A1.1", "A1.2"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "a1", "a1-1", "a1-2"],
+      "dependencies": [],
+      "closureGoal": "produce current-source identity, continuous speed, clearance, and history-depth reports for A1, A1.1, and A1.2",
+      "deliverable": "one complete report with a separately reconstructed check for each frozen row",
+      "falsifier": "any source mismatch, field-speed contact, nonpositive continuous clearance bound, missing identity, or incomplete history depth",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/a-core-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "a-frequency-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["A1.3", "A1.4", "A2"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "a1-3", "a1-4", "a2"],
+      "dependencies": [],
+      "closureGoal": "produce current-source identity and complete-period H2 reports for A1.3, A1.4, and A2",
+      "deliverable": "one complete report with exact common-period coverage and independent trigonometric reconstruction",
+      "falsifier": "any incomplete period, source mismatch, speed failure, or nonpositive continuous clearance bound",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/a-frequency-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "a3-low-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["A3.1", "A3.2"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "a3-1", "a3-2"],
+      "dependencies": [],
+      "closureGoal": "rebuild current-identity H1/H2 reports for A3.1 and A3.2 without importing historical diagnostics",
+      "deliverable": "two frozen-row reports with independent geometry reconstruction",
+      "falsifier": "identity drift, speed failure, collision uncertainty, or use of a superseded record",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/a3-low-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "a3-rational-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["A3.3", "A3.4"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "a3-3", "a3-4"],
+      "dependencies": [],
+      "closureGoal": "produce exact common-period H1/H2 reports for A3.3 and A3.4",
+      "deliverable": "two reports with full-period coverage and independent trigonometric reconstruction",
+      "falsifier": "incomplete common-period coverage, source drift, speed failure, or nonpositive continuous clearance bound",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/a3-rational-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "b-spindle-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["B1.1", "B1.2", "B1.3"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "b1-1", "b1-2", "b1-3"],
+      "dependencies": [],
+      "closureGoal": "bind and check the three current B1 child geometries through H1/H2 without scoring",
+      "deliverable": "three source-bound reports with independent spindle or planar reconstruction",
+      "falsifier": "source mismatch, field-speed contact, nonpositive clearance bound, or transfer of B1.1 evidence to another row",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/b-spindle-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "c-corotating-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["C1", "C3", "C5"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "c1", "c3", "c5"],
+      "dependencies": [],
+      "closureGoal": "rebuild all-66-pair current-source H1/H2 reports for the co-rotating C rows",
+      "deliverable": "three complete reports with independently reconstructed two-component geometry",
+      "falsifier": "any missing pair, source drift, speed failure, or nonpositive continuous clearance bound",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/c-corotating-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "f1-f2-representation",
+      "status": "ready",
+      "stage": "H1 representation",
+      "candidates": ["F1", "F2"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "f-series-owner"],
+      "dependencies": [],
+      "closureGoal": "derive the smallest regular interior numerical rows, stable identities, source order, histories, and operators needed to make F1 and F2 executable",
+      "deliverable": "report-only proposed field packets with exact derivations, proof burdens, and operator-choice points",
+      "falsifier": "a singular chart, unresolved identity, unreproducible component relation, or incomplete continuous history",
+      "resources": { "workerThreads": 0 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f1-f2-representation",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "f3-f4-representation",
+      "status": "ready",
+      "stage": "H1 representation",
+      "candidates": ["F3", "F4"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "f-series-owner"],
+      "dependencies": [],
+      "closureGoal": "derive F3 mode and return isolation and one reproducible F4 integrated component inventory before any numerical execution",
+      "deliverable": "report-only mode census and integrated-inventory packet with exact remaining choices",
+      "falsifier": "only a trivial F3 mode survives, the return sheet is ambiguous, or the F4 component association is not reproducible",
+      "resources": { "workerThreads": 0 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f3-f4-representation",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "c-counterrotating-h1-h2",
+      "status": "ready",
+      "stage": "H1/H2",
+      "candidates": ["C2", "C4", "C6"],
+      "sourceBindingIds": ["configuration-chart", "readiness-owner", "c2", "c4", "c6"],
+      "dependencies": [],
+      "closureGoal": "rebuild all-66-pair current-source H1/H2 reports for the counter-rotating C rows",
+      "deliverable": "three complete reports with independently checked circulation and two-component geometry",
+      "falsifier": "any missing pair, circulation mismatch, source drift, speed failure, or nonpositive continuous clearance bound",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/c-counterrotating-h1-h2",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "f5-independent-enclosure",
+      "status": "ready",
+      "stage": "independent interpolation enclosure",
+      "candidates": ["F5 approved phase-varying row"],
+      "sourceBindingIds": ["f5-approved-row", "f5-h3-predeclaration", "f5-independent-guard", "f5-production-operator"],
+      "dependencies": [],
+      "closureGoal": "independently freeze and verify the analytic-to-cubic enclosure required before the approved F5 H3 restart",
+      "deliverable": "an independently authored enclosure report and frozen widths; no root adapter edit in the same lane",
+      "falsifier": "any primitive-control failure, nonpositive square-root interval, infinite interval, dense residual escape, or source mismatch",
+      "resources": { "workerThreads": 1 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "f5-h3-root-restart",
+      "status": "dependency-gated",
+      "stage": "H3 complete-root audit",
+      "candidates": ["F5 approved phase-varying row"],
+      "sourceBindingIds": ["f5-approved-row", "f5-h3-predeclaration"],
+      "dependencies": ["f5-independent-enclosure"],
+      "gateReason": "requires a frozen accepted independent interpolation enclosure and a separately authored clean adapter",
+      "closureGoal": "execute the unchanged 8/32/128 enclosed complete-root ladder only after the independent enclosure is frozen",
+      "deliverable": "future separately authorized H3 certificate",
+      "falsifier": "any declared root-row failure, enclosure escape, ledger incompleteness, or resource-bound contact",
+      "resources": { "workerThreads": 0 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-h3-root-restart",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    },
+    {
+      "laneId": "f5-ordinary-eom-evolution",
+      "status": "dependency-gated",
+      "stage": "ordinary EOM evolution",
+      "candidates": ["F5 approved phase-varying row"],
+      "sourceBindingIds": ["f5-approved-row", "f5-h3-predeclaration"],
+      "dependencies": ["f5-h3-root-restart"],
+      "gateReason": "requires an accepted enclosed 128-phase H3 result and a fresh evolution predeclaration using only retained prehistory [-1,0]",
+      "closureGoal": "build a future ordinary EOM evolution request without feeding the prescribed future into the motion",
+      "deliverable": "future separately authorized evolution packet",
+      "falsifier": "any prescribed state supplied for time greater than zero, incomplete causal-root ledger, or refinement failure",
+      "resources": { "workerThreads": 0 },
+      "outputDirectory": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-ordinary-eom-evolution",
+      "agentContract": { "repositoryWritePolicy": "report-only", "integrationOwner": "coordinator" }
+    }
+  ]
+}

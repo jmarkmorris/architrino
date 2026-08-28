@@ -101,10 +101,11 @@ The member screen is inapplicable unless the declared isolated acceleration inve
 Run the bounded stratified endpoint-only search with:
 
 ```bash
-node scripts/eom/run-endpoint-residual-search.mjs
+node scripts/eom/run-endpoint-residual-search.mjs \
+  --output .local-data/braid-analysis/endpoint-residual-search/<unique-run-id>.json
 ```
 
-The runner evaluates one catalog-reference, two local-neighborhood, and three full bounded-taxonomy draws per active member at 12/24 cycle samples. It then reevaluates the eight lowest complete-inventory member residuals plus up to eight summed-cancellation cases at 48/96 samples. Every eligible row must pass the complete-inventory certificate and a separately recomputed geometric causal-root residual check. The default output stays under `.local-data/braid-analysis/endpoint-residual-search/`; it is diagnostic and does not enter the accepted analytical database.
+The runner requires an explicit unique output, acquires the same create-exclusive process lease as the compact runner, and refuses overwrite. It evaluates one catalog-reference, two local-neighborhood, and three full bounded-taxonomy draws per active member at 12/24 cycle samples. It then reevaluates the eight lowest complete-inventory member residuals plus up to eight summed-cancellation cases at 48/96 samples. Every eligible row must pass the complete-inventory certificate and a separately recomputed geometric causal-root residual check. The result is diagnostic and does not enter the accepted analytical database.
 
 ## Local Evaluation
 
@@ -141,7 +142,7 @@ node scripts/eom/run-compact-monte-carlo.mjs \
 
 Use `--families A,B,C` or `--members A1.2,B1.3,C5` to select a bounded matrix. The default coverage grid uses 12 primary and 24 refined cycle samples with $8\times16$ and $12\times24$ angular grids. `--resolution full` uses the checked-in complete-cycle protocol. Both lanes require `fieldSpeed: 1`.
 
-The runner validates and hashes each sampled exact source, evaluates one shared source-analysis session, and records the sampled specification, protocol hash, implementation hashes, compact score, measured stage costs, and exact rerun instruction. It does not construct or serialize full result packets, recompute source-invariant period-closure and separation rows for every event batch, evaluate source sensitivity, retain raw event ledgers, invoke the EOM solver, perform independent acceptance, or publish a database generation.
+The runner requires an explicit unique `--output`, reserves it with an exclusive process-identity lease before computation, and refuses to overwrite an existing result. A crash leaves the lease for operator inspection; never remove an unknown lease without checking the recorded process. The runner validates and hashes each sampled exact source, evaluates one shared source-analysis session, and records the sampled specification, protocol hash, implementation hashes, compact score, measured stage costs, and exact rerun instruction. It does not construct or serialize full result packets, recompute source-invariant period-closure and separation rows for every event batch, evaluate source sensitivity, retain raw event ledgers, invoke the EOM solver, perform independent acceptance, or publish a database generation.
 
 The default `full-taxonomy` sampler varies every permitted coordinate type through a declared bounded measure while constructing each member directly on its constraint manifold. This includes coupled and independent radii and frequencies, axial/transverse decompositions, phases, Family-A flattening, Family-C spacing and order, circulation, polarity, and bounded common translation. Use `--sampler local-reference` only for compatibility with the earlier pipeline-performance fixture.
 
@@ -210,12 +211,21 @@ Independent database acceptance is a separately authored verification of the ret
 Run the bounded campaign with:
 
 ```bash
-node scripts/eom/run-common-axis-braid-pilot.mjs
+node scripts/eom/run-common-axis-braid-pilot.mjs \
+  --output .local-data/braid-analysis/common-axis-braid-pilot/<unique-run-id>
 ```
 
-The default outputs are `.local-data/braid-analysis/common-axis-braid-pilot/` and `.local-data/braid-analysis/common-axis-braid-pilot.sqlite`. Use `--references-only` for the six reference rows, `--no-import` to stop after campaign generation, and `--output`, `--database`, or `--protocol` to select explicit paths.
+The CLI requires a new explicit output directory and reserves it with an exclusive process-identity lease. Database import is off unless an explicit unused `--database` path is supplied; this keeps parallel workers on immutable JSON artifacts and leaves database publication to one coordinator. Use `--references-only` for the six reference rows, `--no-import` to force report-only execution, and `--protocol` to select an explicit protocol.
 
 The pilot is prescribed-path analytics only. It imports no EOM-solver module, evolves no path, creates no handoff packet, and makes no stability, self-stabilization, retention, binding, photon-identity, energy-closure, quantization, physical-realization, or EOM-solver-compatibility claim.
+
+## F5 Enclosed-Root Prerequisite Checks
+
+The new F5 enclosed-root restart uses separate prerequisite instruments: `scripts/eom/oracle/f5_history_manifest_conformance.py` verifies continuous containment of the actual history coefficients, while `F5EnclosedRootLedgerReducer.mjs` and `scripts/eom/reduce-f5-enclosed-root-ledger.mjs` validate raw ledger/source/history consistency. Both explicitly return `h3EvidenceEligible: false`: the actual-history certificate, complete root ledger, and independently reviewed adapter build must be joined before H3 can be claimed. The [launch-readiness receipt](../../reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md) owns current prerequisite review and remaining blockers; no clean adapter run is implied by these instrument tests.
+
+For the fixed sixteen-row A/B/C pilot, `CircularHistoryConformance.mjs` supplies an independent exact-decimal, single-segment circular-path comparison; `scripts/eom/derive-abc-circular-history-budget.mjs` binds the conditional error allowance to all 132 source members. The proof covers the EOM API's endpoint overhangs and keeps positive exactly representable error radii. These reference-only instruments import no carrier constructor or EOM executor and grant no H3 authority. The [circular construction contract](../../reference/priorities/braid-program/evidence/2026-08-27-abc-subfield-root-reference.md#circular-carrier-construction-reference) owns their reviewed hashes and scope; whole-manifest identity/conformance and actual root certification remain separate.
+
+Plainly: validating a stored path and validating its root ledger are different checks. A passed bookkeeping test is not a root-completeness or dynamics result.
 
 ## Smallest B1 Campaign Follow-Up
 

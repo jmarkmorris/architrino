@@ -98,10 +98,10 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 ## Related Priorities
 
 - braid
-- [quantum-closure](../../quantum-closure/priorities.md)
-- [standard-model-closure](../../standard-model-closure/priorities.md)
-- [strong-field-closure](../../strong-field-closure/priorities.md)
-- [cosmology-closure](../../cosmology-closure/priorities.md)
+- [mapping-quantum](../../mapping-quantum/priorities.md)
+- [mapping-standard-model](../../mapping-standard-model/priorities.md)
+- [mapping-strong-field](../../mapping-strong-field/priorities.md)
+- [mapping-cosmology](../../mapping-cosmology/priorities.md)
 - mass-map
 - [app-simulation](../../app-simulation/priorities.md)
 

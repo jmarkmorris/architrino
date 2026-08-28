@@ -36,6 +36,7 @@ The audit preserves component scores for unchanged marginal objects, removes eig
 
 ## Operator Discussion Queue
 
+- **[`app-solver`](../app-solver/priorities.md) — [EOM-013](../app-solver/work-queue.md#eom-013--safety-zone-speed-and-accuracy-assessment), discussion-scoped.** Assess a numerical safety or exclusion zone around each architrino: potential simulation speed gains, accuracy loss on zone entry, and an operational boundary/response definition. Any changed interaction or trajectory rule requires an explicit EOM contract decision and a declared boundary for Braid Program consumers; no implementation, physical exclusion radius, or ranking change is approved.
 - **[`field-speed-ceiling`](../field-speed-ceiling/priorities.md) — `FSC-001`, discussion-scoped.** Assess the operator-proposed primitive domain $\|\mathbf V\|\le c_f$, including exact-boundary root admission and evolution semantics. This crosses the Master Equation, MEC-007, EOM solver, Braid prescribed diagnostics, and several reader-facing closure hypotheses. It changes no existing theory status while the compatibility map is pending. See [its work queue](../field-speed-ceiling/work-queue.md).
 
 ## Unified Priority Table
@@ -47,27 +48,27 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 | 1 | Engine | [`app-solver`](../app-solver/priorities.md) | `coupled_retained_history_integrator`: claim-ready bounded-population long-horizon kernel | 10.0 | 1.75 | -56 | 1.56 | 1.55 | 10 | 1.50 | 63.47 | 5 | 3 | 5 | 7 | 4.7 | 13.50 |
 | 2 | Program | [`braid-program`](../braid-program/priorities.md) | `binary_subfield_fate`: Campaign 1 opposite-polarity binary fate packet | 10.0 | 1.75 | -56 | 1.56 | 1.35 | 10 | 1.50 | 55.28 | 5 | 3 | 4 | 6 | 4.3 | 12.86 |
 | 3 | Workstream | [`master-equation-closure`](../master-equation-closure/priorities.md) | `causal_wake_update_law`: one independently evolving wake state with declared causal updates and a regular transmitter-side reduction | 10.0 | 1.70 | -56 | 1.56 | 1.45 | 9 | 1.40 | 53.84 | 6 | 6 | 5 | 7 | 6.0 | 8.97 |
-| 4 | Shared packet | [`transfer-operator-basin-measure`](../quantum-closure/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
+| 4 | Shared packet | [`transfer-operator-basin-measure`](../mapping-quantum/transfer-operator-basin-measure.md) | Explicit transfer operator and invariant measure on one persistent accepted assembly state | 9.0 | 1.70 | -56 | 1.56 | 0.90 | 9 | 1.40 | 30.07 | 5 | 7 | 5 | 7 | 6.1 | 4.93 |
 | 5 | Shared packet | [`pressure-dependent-noether-sea-constitutive-response`](../master-equation-closure/pressure-dependent-noether-sea-constitutive-response.md) | `pressure_dependent_noether_sea_constitutive_response/v0` on one accepted transmitter-side branch with causal wake accounts | 8.8 | 1.50 | -45 | 1.45 | 0.95 | 8 | 1.30 | 23.64 | 4 | 5 | 5 | 5 | 4.8 | 4.93 |
 | 6 | Workstream | [`mapping-equations`](../mapping-equations/priorities.md) | `lorentz_envelope_closure`: source-backed positive-width `S_eq` retained-domain carrier | 8.5 | 1.50 | -45 | 1.45 | 0.85 | 8 | 1.30 | 20.43 | 5 | 5 | 5 | 6 | 5.2 | 3.93 |
 | 7 | App | [`app-borg`](../app-borg/priorities.md) | `native_wake_history_and_boundary_residual_fixture` for Borg EOM runs | 7.2 | 1.35 | -56 | 1.56 | 0.90 | 7 | 1.20 | 16.38 | 5 | 3 | 5 | 5 | 4.3 | 3.81 |
-| 8 | Workstream | [`standard-model-closure`](../standard-model-closure/priorities.md) | `quark_mass_predictions`: first geometry-derived row without observed-mass fitting | 8.5 | 1.30 | -56 | 1.56 | 0.95 | 8 | 1.30 | 21.29 | 6 | 6 | 6 | 7 | 6.2 | 3.43 |
+| 8 | Workstream | [`mapping-standard-model`](../mapping-standard-model/priorities.md) | `quark_mass_predictions`: first geometry-derived row without observed-mass fitting | 8.5 | 1.30 | -56 | 1.56 | 0.95 | 8 | 1.30 | 21.29 | 6 | 6 | 6 | 7 | 6.2 | 3.43 |
 | 9 | App | [`app-photon`](../app-photon/priorities.md) | `reusable_absolute_history_solver` generalized beyond Photon circular histories | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 4 | 3 | 4 | 4 | 3.7 | 2.50 |
 | 10 | Shared packet | `exposure-quotient-theorem` | One accepted branch-to-sector exposure quotient with a null-sector bound | 9.5 | 1.65 | -45 | 1.45 | 0.35 | 6 | 1.10 | 8.75 | 4 | 4 | 4 | 5 | 4.2 | 2.08 |
-| 11 | Workstream | [`strong-field-closure`](../strong-field-closure/priorities.md) | `embedded_boundary_conditions` for one Noether sea horizon-interface case | 6.0 | 1.20 | -56 | 1.56 | 0.85 | 7 | 1.20 | 11.46 | 6 | 6 | 6 | 7 | 6.2 | 1.85 |
-| 12 | Candidate | [`nuclear-atomic-molecular-closure`](../nuclear-atomic-molecular-closure/priorities.md) | `iron_group_binding_cusp_recovery` with an accepted nucleon branch-interface ledger | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 5 | 6 | 6 | 6 | 5.8 | 1.59 |
+| 11 | Workstream | [`mapping-strong-field`](../mapping-strong-field/priorities.md) | `embedded_boundary_conditions` for one Noether sea horizon-interface case | 6.0 | 1.20 | -56 | 1.56 | 0.85 | 7 | 1.20 | 11.46 | 6 | 6 | 6 | 7 | 6.2 | 1.85 |
+| 12 | Candidate | [`mapping-nuclear-atomic-molecular`](../mapping-nuclear-atomic-molecular/priorities.md) | `iron_group_binding_cusp_recovery` with an accepted nucleon branch-interface ledger | 6.0 | 1.25 | -45 | 1.45 | 0.85 | 5 | 1.00 | 9.24 | 5 | 6 | 6 | 6 | 5.8 | 1.59 |
 | 13 | Candidate | [`mapping-benchmarks`](../mapping-benchmarks/priorities.md) | `redshift_clock_transport` benchmark mapped to explicit acceptance and failure gates | 7.5 | 1.35 | -56 | 1.56 | 0.40 | 6 | 1.10 | 6.95 | 4 | 4 | 5 | 6 | 4.6 | 1.51 |
 | 14 | App | [`app-animator`](../dormant-deferred/app-animator/priorities.md) | `runtime_cutover` from shared scene-shell behavior to the Animator-owned runtime | 7.0 | 1.20 | 0 | 1.00 | 0.85 | 4 | 0.90 | 6.43 | 5 | 4 | 4 | 4 | 4.3 | 1.50 |
 | 15 | Shared packet | `residual-routing-event-ledger` | One concrete EOM-evolved transition with a closed event ledger | 9.5 | 1.70 | -23 | 1.23 | 0.25 | 6 | 1.10 | 5.46 | 4 | 4 | 4 | 5 | 4.2 | 1.30 |
-| 16 | Workstream | [`quantum-closure`](../quantum-closure/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
-| 17 | Candidate | [`open-problems`](../open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
+| 16 | Workstream | [`mapping-quantum`](../mapping-quantum/priorities.md) | `detector_response_kernel_acceptance` on an accepted assembly basin measure | 6.0 | 1.35 | -56 | 1.56 | 0.40 | 9 | 1.40 | 7.08 | 6 | 8 | 7 | 8 | 7.3 | 0.97 |
+| 17 | Candidate | [`mapping-open-problems`](../mapping-open-problems/priorities.md) | `claim_level_audit` of every Solving the Crisis chapter | 5.0 | 1.25 | -56 | 1.56 | 0.25 | 5 | 1.00 | 2.44 | 4 | 4 | 5 | 5 | 4.4 | 0.55 |
 | 18 | Op queue | [`source-mining`](../source-mining/priorities.md) | `mine_source_material`: one batch yielding a concrete mathematical artifact | 4.0 | 1.10 | 0 | 1.00 | 0.35 | 3 | 0.80 | 1.23 | 4 | 2 | 3 | 2 | 2.7 | 0.46 |
-| 19 | Workstream | [`cosmology-closure`](../cosmology-closure/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
+| 19 | Workstream | [`mapping-cosmology`](../mapping-cosmology/priorities.md) | `component_interfaces` for the first cosmology transfer-function pipeline | 3.5 | 1.20 | -56 | 1.56 | 0.40 | 7 | 1.20 | 3.14 | 6 | 7 | 7 | 8 | 7.0 | 0.45 |
 | 20 | App | [`app-mcp`](../app-mcp/priorities.md) | `named_http_client_conformance`: ephemeral Codex and supported ChatGPT loopback verification | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.06 | 3 | 2 | 3 | 4 | 2.9 | 0.37 |
 | 21 | Design | [`archie`](../dormant-deferred/archie/priorities.md) | `platform_architecture_packet` for the future Archie service boundary | 5.0 | 1.25 | 0 | 1.00 | 0.20 | 3 | 0.80 | 1.00 | 4 | 2 | 4 | 5 | 3.5 | 0.29 |
 | 22 | App | [`app-ios`](../app-ios/priorities.md) | `first_release_device_qa_and_archive`: physical iPhone/iPad QA and signed archive | 5.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.92 | 5 | 2 | 4 | 3 | 3.4 | 0.27 |
 | 23 | App | [`app-equation-mapping`](../app-equation-mapping/priorities.md) | `curated_carousel_promotion_review`: one editorially valuable carousel/callout promotion from the complete corpus registry | 4.0 | 1.15 | 0 | 1.00 | 0.25 | 3 | 0.80 | 0.92 | 4 | 3 | 3 | 4 | 3.5 | 0.26 |
-| 24 | Op queue | [`operations`](../operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
+| 24 | Op queue | [`aaa-operations`](../aaa-operations/priorities.md) | `deployment_budget_contract`: `deployment-budget.v1` applied first to Borg | 5.0 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.84 | 4 | 2 | 4 | 4 | 3.3 | 0.25 |
 | 25 | Design | [`app-ui-guidelines`](../app-ui-guidelines/priorities.md) | `standard_acceptance_pass` for the shared dynamic control bar | 4.5 | 1.20 | 0 | 1.00 | 0.20 | 2 | 0.70 | 0.76 | 4 | 2 | 5 | 4 | 3.5 | 0.22 |
 | 26 | Candidate | [`dark-sector`](../dark-sector/priorities.md) | `dark_sector_photon_like_mode` packet with release-channel predicates | 3.0 | 1.10 | 0 | 1.00 | 0.20 | 5 | 1.00 | 0.66 | 4 | 7 | 6 | 7 | 6.1 | 0.11 |
 | 27 | Candidate | [`aaa-futures`](../dormant-deferred/aaa-futures/priorities.md) | `research_revolution_seed` with opportunity, work, risk, and claim dependencies | 2.0 | 1.05 | 0 | 1.00 | 0.10 | 3 | 0.80 | 0.17 | 3 | 3 | 3 | 2 | 2.8 | 0.06 |
@@ -77,7 +78,7 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 - The top ten are unchanged. Their marginal objects and component scores remain current enough that removing archived rows does not alter their relative order.
 - Eight `dormant-deferred` rows were removed: `app-equation-mapping`, `information-relay-machines`, `validation-gates`, `lissajou`, `media-videos`, `media-images`, `media-comics`, and `media-posts`.
 - `app-mcp` enters at rank `20` on `named_http_client_conformance`. Its score is for the remaining named-client verification object, not for the already completed local service and loopback adapter.
-- The active rows below rank `16` were renumbered contiguously without changing component scores: `open-problems` is now `17`, `source-mining` `18`, `cosmology-closure` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`, `operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and `aaa-futures` `27`.
+- The active rows below rank `16` were renumbered contiguously without changing component scores: `mapping-open-problems` is now `17`, `source-mining` `18`, `mapping-cosmology` `19`, `app-ideas` `21`, `archie` `22`, `app-ios` `23`, `aaa-operations` `24`, `app-ui-guidelines` `25`, `dark-sector` `26`, and `aaa-futures` `27`.
 - Borg and Strong-Field now expose machine-checkable local rank-`1` objects. This changes queue representation, not their scores or evidence grade.
 
 ## App Ideas Owner Removal — 2026-07-27
@@ -96,13 +97,13 @@ The numeric table is the canonical cross-bucket ranking. The `Bucket #1 next unr
 
 - `equation_page_api_access` is verified across the canonical web corpus, generated textbook reading copies, and iOS public-web link bundle, so it no longer receives remaining-value credit.
 - The app's next unresolved object is `symbol_definition_disclosure`. Its rank-18 inferred attention score reflects a useful but downstream accessibility and explanation surface with moderate implementation and cross-device validation burden.
-- `open-problems` moves to rank `17`; all other rows retain their prior order. This rerank changes execution attention only and does not change any equation claim, proof status, corpus authority, or equation-mapping score.
+- `mapping-open-problems` moves to rank `17`; all other rows retain their prior order. This rerank changes execution attention only and does not change any equation claim, proof status, corpus authority, or equation-mapping score.
 
 ## Equation Mapping Full-Corpus Baseline Closure — 2026-08-24
 
 - `symbol_definition_disclosure` and `author_equation_registration_workflow` are verified across all 4,587 corpus display-equation occurrences, so they no longer receive remaining-value credit.
 - The app's next unresolved object is `curated_carousel_promotion_review`. Every equation already has the same search, address, source, and symbol baseline; this object is only an editorial decision about whether one equation merits carousel placement and curated callouts.
-- `app-equation-mapping` moves to rank `23`; `source-mining`, `cosmology-closure`, `app-mcp`, `archie`, and `app-ios` each move up one rank without score changes. The rerank changes execution attention only and does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
+- `app-equation-mapping` moves to rank `23`; `source-mining`, `mapping-cosmology`, `app-mcp`, `archie`, and `app-ios` each move up one rank without score changes. The rerank changes execution attention only and does not change equation claim levels, proof status, corpus authority, or equation-mapping score.
 
 ## Current Focus
 

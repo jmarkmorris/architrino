@@ -3,6 +3,7 @@ export const PRESCRIBED_WORLDLINE_OPERATOR_KINDS = Object.freeze([
   "inertial.v1",
   "moving-circular.v1",
   "sd3-centered-linear-member.v1",
+  "f5-phase-varying-member.v1",
   "f6c-harmonic-member.v1",
 ]);
 
@@ -46,6 +47,63 @@ export function validatePrescribedWorldlineOperator(raw, label = "worldline.oper
       angularVelocity: finite(raw.angularVelocity, `${label}.angularVelocity`),
       angularAcceleration: finite(raw.angularAcceleration ?? 0, `${label}.angularAcceleration`),
       phaseAtEpoch: finite(raw.phaseAtEpoch ?? 0, `${label}.phaseAtEpoch`),
+    });
+  }
+  if (raw.kind === "f5-phase-varying-member.v1") {
+    const bodyAxes = validateBodyAxes(raw.bodyAxes, `${label}.bodyAxes`);
+    const axisIndex = integerInRange(raw.axisIndex, 0, 2, `${label}.axisIndex`);
+    const ringIndex = integerInRange(raw.ringIndex, 1, 2, `${label}.ringIndex`);
+    if (raw.polarity !== -1 && raw.polarity !== 1) {
+      throw new TypeError(`${label}.polarity must be -1 or +1.`);
+    }
+    if (raw.branchSign !== -1 && raw.branchSign !== 1) {
+      throw new TypeError(`${label}.branchSign must be -1 or +1.`);
+    }
+    const axialHalfSeparation = positive(
+      raw.axialHalfSeparation,
+      `${label}.axialHalfSeparation`,
+    );
+    if (!Array.isArray(raw.transverseRadii) || raw.transverseRadii.length !== 2) {
+      throw new TypeError(`${label}.transverseRadii must contain two positive unequal radii.`);
+    }
+    const transverseRadii = raw.transverseRadii.map((value, index) =>
+      positive(value, `${label}.transverseRadii[${index}]`));
+    if (Math.abs(transverseRadii[0] - transverseRadii[1]) <= GEOMETRY_TOLERANCE) {
+      throw new RangeError(`${label}.transverseRadii must remain unequal.`);
+    }
+    const resultantAmplitude = positive(
+      raw.resultantAmplitude,
+      `${label}.resultantAmplitude`,
+    );
+    const resultantAngularFrequency = positive(
+      raw.resultantAngularFrequency,
+      `${label}.resultantAngularFrequency`,
+    );
+    const lowerAmplitude = Math.sqrt(2) * Math.abs(transverseRadii[0] - transverseRadii[1]);
+    const upperAmplitude = Math.sqrt(2 / 3) * (transverseRadii[0] + transverseRadii[1]);
+    if (!(resultantAmplitude > lowerAmplitude && resultantAmplitude < upperAmplitude)) {
+      throw new RangeError(
+        `${label}.resultantAmplitude must keep every unequal-radius triangle strictly regular.`,
+      );
+    }
+    return Object.freeze({
+      kind: raw.kind,
+      epochTime: finite(raw.epochTime ?? 0, `${label}.epochTime`),
+      assemblyCenter: freezeVector(vector3(
+        raw.assemblyCenter ?? [0, 0, 0],
+        `${label}.assemblyCenter`,
+      )),
+      bodyAxes,
+      axisIndex,
+      ringIndex,
+      polarity: raw.polarity,
+      branchSign: raw.branchSign,
+      axialHalfSeparation,
+      transverseRadii: Object.freeze(transverseRadii),
+      resultantAmplitude,
+      resultantPhase: finite(raw.resultantPhase ?? 0, `${label}.resultantPhase`),
+      resultantAngularFrequency,
+      reconstruction: raw.reconstruction == null ? null : structuredClone(raw.reconstruction),
     });
   }
   const axis = vector3(raw.axis, `${label}.axis`);
@@ -101,6 +159,9 @@ export function evaluatePrescribedWorldlineOperator(rawOperator, time) {
     const tangent = add(scale(operator.radiusU, -Math.sin(phase)), scale(operator.radiusV, Math.cos(phase)));
     return freezeState(add(center, radial), add(operator.centerVelocity, scale(tangent, angularRate)));
   }
+  if (operator.kind === "f5-phase-varying-member.v1") {
+    return evaluateF5PhaseVaryingMember(operator, dt);
+  }
   const axial = evaluateHarmonic(operator.axial, dt);
   const radial = evaluateHarmonic(operator.radial, dt);
   const phase = evaluatePhaseHistory(operator.phase, dt);
@@ -145,6 +206,9 @@ export function prescribedWorldlineSpeedBound(rawOperator, startTime, endTime) {
     return norm(operator.centerVelocity)
       + Math.max(Math.abs(startRate), Math.abs(endRate)) * norm(operator.radiusU);
   }
+  if (operator.kind === "f5-phase-varying-member.v1") {
+    return f5PhaseVaryingUniformSpeedBound(operator);
+  }
   const axialSpeed = Math.abs(operator.axial.amplitude * operator.axial.angularFrequency);
   const radialSpeed = Math.abs(operator.radial.amplitude * operator.radial.angularFrequency);
   const maximumRadius = operator.radial.base + Math.abs(operator.radial.amplitude);
@@ -179,6 +243,89 @@ function validatePhaseHistory(raw, label) {
   });
 }
 
+function evaluateF5PhaseVaryingMember(operator, dt) {
+  const theta = operator.resultantAngularFrequency * dt + operator.resultantPhase;
+  const phases = [theta, theta - 2 * Math.PI / 3, theta + 2 * Math.PI / 3];
+  const [u, v, w] = phases.map((phase) => operator.resultantAmplitude * Math.cos(phase));
+  const [uDot, vDot, wDot] = phases.map((phase) =>
+    -operator.resultantAmplitude * operator.resultantAngularFrequency * Math.sin(phase));
+  const [n1, n2, n3] = operator.bodyAxes;
+  const resultants = [
+    add(scale(n2, v), scale(n3, w)),
+    subtract(scale(n1, u), scale(n3, w)),
+    add(scale(n1, -u), scale(n2, -v)),
+  ];
+  const resultantRates = [
+    add(scale(n2, vDot), scale(n3, wDot)),
+    subtract(scale(n1, uDot), scale(n3, wDot)),
+    add(scale(n1, -uDot), scale(n2, -vDot)),
+  ];
+  const axis = operator.bodyAxes[operator.axisIndex];
+  const resultant = resultants[operator.axisIndex];
+  const resultantRate = resultantRates[operator.axisIndex];
+  const kappa = norm(resultant);
+  const e = scale(resultant, 1 / kappa);
+  const kappaDot = dot(e, resultantRate);
+  const eDot = scale(subtract(resultantRate, scale(e, kappaDot)), 1 / kappa);
+  const tangent = cross(axis, e);
+  const tangentDot = cross(axis, eDot);
+  const [rho1, rho2] = operator.transverseRadii;
+  const alpha = (kappa ** 2 + rho1 ** 2 - rho2 ** 2) / (2 * kappa);
+  const alphaDot = 0.5 * kappaDot
+    - 0.5 * (rho1 ** 2 - rho2 ** 2) * kappaDot / kappa ** 2;
+  const beta = Math.sqrt(Math.max(0, rho1 ** 2 - alpha ** 2));
+  const betaDot = -alpha * alphaDot / beta;
+  const branchRate = add(scale(tangent, betaDot), scale(tangentDot, beta));
+  const firstRing = operator.ringIndex === 1;
+  const transverse = firstRing
+    ? add(scale(e, alpha), scale(tangent, operator.branchSign * beta))
+    : subtract(scale(e, kappa - alpha), scale(tangent, operator.branchSign * beta));
+  const transverseRate = firstRing
+    ? add(
+      add(scale(e, alphaDot), scale(eDot, alpha)),
+      scale(branchRate, operator.branchSign),
+    )
+    : subtract(
+      add(scale(e, kappaDot - alphaDot), scale(eDot, kappa - alpha)),
+      scale(branchRate, operator.branchSign),
+    );
+  const axialSign = firstRing ? operator.polarity : -operator.polarity;
+  return freezeState(
+    add(
+      operator.assemblyCenter,
+      scale(axis, axialSign * operator.axialHalfSeparation),
+      transverse,
+    ),
+    transverseRate,
+  );
+}
+
+function f5PhaseVaryingUniformSpeedBound(operator) {
+  const [rho1, rho2] = operator.transverseRadii;
+  const amplitude = operator.resultantAmplitude;
+  const angularFrequency = operator.resultantAngularFrequency;
+  const kappaMinimum = amplitude / Math.sqrt(2);
+  const kappaMaximum = amplitude * Math.sqrt(3 / 2);
+  const kappaRateBound = Math.sqrt(2) * amplitude * angularFrequency;
+  const radiusDifference = rho1 ** 2 - rho2 ** 2;
+  const alphaRateFactor = Math.max(
+    Math.abs(0.5 - radiusDifference / (2 * kappaMinimum ** 2)),
+    Math.abs(0.5 - radiusDifference / (2 * kappaMaximum ** 2)),
+  );
+  const alphaRateBound = alphaRateFactor * kappaRateBound;
+  const betaAt = (kappa) => {
+    const alpha = (kappa ** 2 + radiusDifference) / (2 * kappa);
+    return Math.sqrt(Math.max(0, rho1 ** 2 - alpha ** 2));
+  };
+  const betaMinimum = Math.min(betaAt(kappaMinimum), betaAt(kappaMaximum));
+  const betaRateBound = rho1 * alphaRateBound / betaMinimum;
+  const ringRadius = operator.ringIndex === 1 ? rho1 : rho2;
+  const coefficientRateBound = operator.ringIndex === 1
+    ? alphaRateBound
+    : kappaRateBound + alphaRateBound;
+  return coefficientRateBound + betaRateBound + 4 * ringRadius * angularFrequency;
+}
+
 function evaluateHarmonic(row, dt) {
   const phase = row.angularFrequency * dt + row.phase;
   return {
@@ -207,6 +354,24 @@ function validateOrthonormalFrame(axis, u, v, label) {
   }
 }
 
+function validateBodyAxes(raw, label) {
+  if (!Array.isArray(raw) || raw.length !== 3) {
+    throw new TypeError(`${label} must contain three ordered axes.`);
+  }
+  const axes = raw.map((axis, index) => vector3(axis, `${label}[${index}]`));
+  axes.forEach((axis, index) =>
+    requireNear(norm(axis), 1, GEOMETRY_TOLERANCE, `${label}[${index}] unit length`));
+  for (let left = 0; left < axes.length; left += 1) {
+    for (let right = left + 1; right < axes.length; right += 1) {
+      requireNear(dot(axes[left], axes[right]), 0, GEOMETRY_TOLERANCE, `${label} orthogonality`);
+    }
+  }
+  if (norm(subtract(cross(axes[0], axes[1]), axes[2])) > GEOMETRY_TOLERANCE) {
+    throw new RangeError(`${label} must be right-handed.`);
+  }
+  return Object.freeze(axes.map((axis) => freezeVector(axis)));
+}
+
 function freezeState(position, velocity) {
   return Object.freeze({ position: freezeVector(position), velocity: freezeVector(velocity) });
 }
@@ -218,6 +383,20 @@ function freezeVector(value) {
 function finite(value, label) {
   const number = Number(value);
   if (!Number.isFinite(number)) throw new TypeError(`${label} must be finite.`);
+  return number;
+}
+
+function positive(value, label) {
+  const number = finite(value, label);
+  if (!(number > 0)) throw new RangeError(`${label} must be positive.`);
+  return number;
+}
+
+function integerInRange(value, minimum, maximum, label) {
+  const number = finite(value, label);
+  if (!Number.isInteger(number) || number < minimum || number > maximum) {
+    throw new RangeError(`${label} must be an integer in [${minimum}, ${maximum}].`);
+  }
   return number;
 }
 

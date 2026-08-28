@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import ROUND_HALF_EVEN, Decimal, localcontext
+from fractions import Fraction
 from hashlib import sha256
 from typing import Iterable, Sequence
 
@@ -32,10 +33,36 @@ def _overlaps(left: DecimalInterval, right: DecimalInterval) -> bool:
     return max(left.lower, right.lower) <= min(left.upper, right.upper)
 
 
+def _exact_width(lower: Decimal, upper: Decimal) -> Decimal:
+    """Subtract finite endpoint tokens exactly, outside Decimal arithmetic."""
+
+    lower_tuple, upper_tuple = lower.as_tuple(), upper.as_tuple()
+    exponent = min(lower_tuple.exponent, upper_tuple.exponent)
+    lower_integer = int(Decimal((lower_tuple.sign, lower_tuple.digits, 0)))
+    upper_integer = int(Decimal((upper_tuple.sign, upper_tuple.digits, 0)))
+    difference = (
+        upper_integer * 10 ** (upper_tuple.exponent - exponent)
+        - lower_integer * 10 ** (lower_tuple.exponent - exponent)
+    )
+    result = Decimal(difference).as_tuple()
+    return Decimal((result.sign, result.digits, exponent))
+
+
 def _scaled_decimal(value: Decimal, multiplier: int, precision: int) -> Decimal:
-    with localcontext() as context:
-        context.prec = precision
-        return +(value * Decimal(multiplier))
+    # These are exact nominal coefficients, not interval endpoints. Multiplying
+    # the decimal significand as digits avoids any working-context rounding,
+    # including when the source token is longer than the evaluation precision.
+    sign, digits, exponent = value.as_tuple()
+    carry = 0
+    scaled_digits: list[int] = []
+    for digit in reversed(digits):
+        carry += digit * abs(multiplier)
+        scaled_digits.append(carry % 10)
+        carry //= 10
+    while carry:
+        scaled_digits.append(carry % 10)
+        carry //= 10
+    return Decimal((sign ^ (multiplier < 0), tuple(reversed(scaled_digits)), exponent))
 
 
 def _vector_subtract(left: IntervalVector, right: IntervalVector) -> IntervalVector:
@@ -131,10 +158,20 @@ class CubicHistorySegment:
             raise ValueError(
                 "correlated self displacement requires emission before reception"
             )
-        maximum_delay = reception.upper - emission.lower
+        # Both caps must be upper bounds before taking their minimum. Keeping
+        # the subtraction and products inside interval arithmetic prevents the
+        # ambient Decimal context from shrinking a reconstruction-error radius.
+        delay = reception - emission
+        position_cap = (
+            DecimalInterval.point(2, self.precision)
+            * DecimalInterval.point(self.position_error, self.precision)
+        )
+        velocity_cap = (
+            DecimalInterval.point(self.velocity_error, self.precision) * delay
+        )
         correlated_error = min(
-            Decimal(2) * self.position_error,
-            self.velocity_error * maximum_delay,
+            position_cap.upper,
+            velocity_cap.upper,
         )
         return interval_vector(
             (
@@ -202,6 +239,20 @@ class CubicHistorySegment:
         )
         return position, velocity
 
+    def _exact_nominal_state(
+        self, time: Decimal,
+    ) -> tuple[tuple[Fraction, ...], tuple[Fraction, ...]]:
+        """Exact polynomial endpoint values for local envelope admission."""
+
+        local_time = Fraction(time) - Fraction(self.t_start)
+        rows = tuple(tuple(Fraction(value) for value in row)
+                     for row in self.coefficients)
+        position = tuple(((c3 * local_time + c2) * local_time + c1)
+                         * local_time + c0 for c0, c1, c2, c3 in rows)
+        velocity = tuple((3 * c3 * local_time + 2 * c2) * local_time + c1
+                         for _, c1, c2, c3 in rows)
+        return position, velocity
+
     def canonical_tokens(self) -> tuple[str, ...]:
         return (
             str(self.t_start),
@@ -239,10 +290,14 @@ class PiecewisePolynomialHistory:
             prior = materialized[index - 1]
             if prior.t_end != segment.t_start:
                 raise ValueError("retained-history segments must be contiguous")
-            prior_position, prior_velocity = prior.nominal_state(prior.t_end)
-            next_position, next_velocity = segment.nominal_state(segment.t_start)
-            position_join_error = prior.position_error + segment.position_error
-            velocity_join_error = prior.velocity_error + segment.velocity_error
+            # This admits compatible endpoint uncertainty envelopes; local
+            # overlap does not by itself prove one globally continuous history.
+            # Exact values prevent midpoint or threshold rounding from admitting
+            # disjoint envelopes (or rejecting exactly touching envelopes).
+            prior_position, prior_velocity = prior._exact_nominal_state(prior.t_end)
+            next_position, next_velocity = segment._exact_nominal_state(segment.t_start)
+            position_join_error = Fraction(prior.position_error) + Fraction(segment.position_error)
+            velocity_join_error = Fraction(prior.velocity_error) + Fraction(segment.velocity_error)
             if any(
                 abs(prior_position[axis] - next_position[axis])
                 > position_join_error
@@ -346,12 +401,16 @@ class PiecewisePolynomialHistory:
             )
             if local_lower.upper > local_upper.lower:
                 raise ValueError("correlated self displacement crosses backward")
-            duration = local_upper.upper - local_lower.lower
+            duration = local_upper - local_lower
+            correlated_error = (
+                DecimalInterval.point(segment.velocity_error, self.precision)
+                * duration
+            ).upper
             contribution = interval_vector(
                 (
                     segment._polynomial_interval(row, local_upper)
                     - segment._polynomial_interval(row, local_lower)
-                ).inflate(segment.velocity_error * duration)
+                ).inflate(correlated_error)
                 for row in segment.coefficients
             )
             displacement = _vector_add(displacement, contribution)
@@ -397,7 +456,7 @@ class RootBracket:
 
     @property
     def width(self) -> Decimal:
-        return self.upper - self.lower
+        return _exact_width(self.lower, self.upper)
 
 
 @dataclass(frozen=True)
@@ -801,7 +860,7 @@ def certify_causal_roots(
                 context.prec = precision
                 lower = max(cell_lower, +(point - radius))
                 upper = min(cell_upper, +(point + radius))
-            if lower < point < upper and upper - lower <= tolerance:
+            if lower < point < upper and _exact_width(lower, upper) <= tolerance:
                 lower_sign = residual_for(
                     segment,
                     DecimalInterval.point(lower, precision),
@@ -839,7 +898,7 @@ def certify_causal_roots(
                 context.prec = precision
                 lower = max(left_bound, +(boundary - radius))
                 upper = min(right_bound, +(boundary + radius))
-            if lower < boundary < upper and upper - lower <= tolerance:
+            if lower < boundary < upper and _exact_width(lower, upper) <= tolerance:
                 lower_sign = residual_for(
                     left_segment,
                     DecimalInterval.point(lower, precision),
@@ -1152,7 +1211,7 @@ def certify_causal_roots(
                 lower_sign in (-1, 1)
                 and upper_sign in (-1, 1)
                 and lower_sign != upper_sign
-                and cell.width <= tolerance
+                and _exact_width(cell_lower, cell_upper) <= tolerance
             ):
                 roots.append(
                     RootBracket(
@@ -1196,7 +1255,7 @@ def certify_causal_roots(
             ):
                 return
 
-        if cell.width <= tolerance:
+        if _exact_width(cell_lower, cell_upper) <= tolerance:
             unresolved_reason = (
                 "transmitter_factor_interval_contains_zero"
                 if transmitter_factor_sign is None
@@ -1233,6 +1292,19 @@ def certify_causal_roots(
         classify(segment_index, segment, cell_lower, cell_upper, 0)
 
     merged_roots = _merge_root_brackets(roots, unresolved)
+    # Overlapping individually narrow brackets can acquire a wider merged hull.
+    # Preserve that root evidence, but withhold completeness until its final
+    # exact width satisfies the same declared tolerance as every input bracket.
+    for root in merged_roots:
+        if root.width > tolerance:
+            unresolved.append(
+                CellRecord(
+                    root.lower,
+                    root.upper,
+                    min(root.segment_indices),
+                    "merged_root_bracket_exceeds_tolerance",
+                )
+            )
     memory_boundary_contact = any(
         root.lower <= lower_bound <= root.upper for root in merged_roots
     )

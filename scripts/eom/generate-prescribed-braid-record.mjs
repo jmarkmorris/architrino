@@ -68,6 +68,7 @@ const MIGRATED_TARGETS = [
 
 const NEW_TARGETS = [
   target("sd3-centered-five-coordinate.v2.json", "sd3-centered-five-coordinate.assembly-view-record.v0.json"),
+  target("f5-phase-varying-campaign.v2.json", "f5-phase-varying-campaign.assembly-view-record.v0.json"),
   target("f6c-polarity-resolved-harmonic.v2.json", "f6c-polarity-resolved-harmonic.assembly-view-record.v0.json"),
   target("f6b-scoped-negative-circular.v2.json", "f6b-scoped-negative-circular.assembly-view-record.v0.json", { control: true }),
 ];

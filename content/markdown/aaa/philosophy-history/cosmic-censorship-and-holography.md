@@ -1,58 +1,64 @@
 # Cosmic Censorship and Holography
 
-This chapter groups three closely connected ideas about gravitational extremality and informational closure: cosmic censorship, holography, and AdS/CFT. Cosmic censorship concerns whether singular behavior is hidden behind horizons. Holography concerns whether bulk physics admits lower-dimensional encoding. AdS/CFT provides the strongest formal realization of that idea by relating a gravitational bulk theory to a non-gravitational boundary theory.
+Cosmic censorship, holography, and the anti-de Sitter/conformal field theory correspondence (AdS/CFT) ask different questions about gravitational predictability and information. Cosmic censorship concerns the visibility of singular behavior and the extent to which initial data determine evolution. Holography concerns lower-dimensional descriptions of gravitational systems. AdS/CFT supplies a concrete bulk-boundary correspondence in specified theoretical settings. These ideas illuminate one another, but none is a synonym for the others.
 
-The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after a horizon-interface regime is derived from candidate braid alignment, Noether sea response, and finite boundary data; no taxonomy label supplies that derivation. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to the A1 Geometry](theory-bridges/mapping-planck-scale-a1-geometry.md). This chapter owns only the comparison and proof-pressure map.
+This chapter uses them as comparison mathematics and questions for $\mathbb{A}\mathbb{A}\mathbb{A}$, not as imported ontology. A native horizon-interface account requires its own derivation from architrino histories, candidate braid alignment, and Noether sea response. The mechanism owners are [Black Holes](../spacetime/black-holes.md), [Horizon Chirality](../spacetime/horizon-chirality.md), and [Mapping the Planck Scale to the A1 Geometry](theory-bridges/mapping-planck-scale-a1-geometry.md). The purpose here is to distinguish what the inherited mathematics says from what the candidate assembly picture still has to establish.
 
 ## Conceptual View
 
-The common conceptual pressure is that horizons may not be merely geometric boundaries. They may also be informational interfaces. In weak cosmic censorship, naked singularities are excluded from ordinary outside observation. In strong cosmic censorship, generic evolution remains predictively closed in the relevant sense. Holography then strengthens the role of the boundary by treating it as an encoding surface rather than a passive edge. AdS/CFT turns that intuition into a duality statement between two different descriptions of one underlying structure.
+Weak cosmic censorship conjectures, under specified assumptions on initial data and matter, that singularities produced by gravitational collapse are not visible from the asymptotic exterior. Strong cosmic censorship concerns whether the maximal evolution determined by generic initial data admits a further extension in a specified regularity class. The second question is about predictability, not simply whether a horizon hides a singularity. Both depend on the precise formulation; neither is a universal theorem supplied by the phrase “cosmic censorship.”
+
+Holography addresses a different issue: which bulk information a lower-dimensional description represents. In standard AdS/CFT, a conformal field theory on the conformal boundary describes a gravitational theory in an asymptotically anti-de Sitter bulk. That boundary is not generally the event horizon of a black hole within the bulk, and the boundary theory is not ordinary matter outside that horizon. The distinction is explicit in [Witten's bulk-boundary formulation](https://arxiv.org/abs/hep-th/9802150).
 
 ## Key Equation
 
-A standard schematic form of the AdS/CFT correspondence is
+A standard comparison form of the AdS/CFT generating-functional relation is
 $$
 Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0]
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-209d4a0656bd323e)
 
+Here $Z_{\mathrm{grav}}$ denotes the bulk gravitational partition functional with boundary data $\phi_0$, while $Z_{\mathrm{CFT}}$ denotes the boundary conformal field theory's generating functional with the corresponding source. The equality is schematic: its use requires a specified pair of theories, matched boundary conditions, and the appropriate approximation and renormalization prescriptions. It is not an equality between the spatial inside and outside of a black hole.
+
+Plainly: the two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it investigates horizon structure as a candidate constitutive interface along the prescribed Family-A response: three binary axes run from mutual orthogonality toward the group-translation direction as $\lambda_A$ increases. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself. The black-hole assignment, dynamics, stability, and retention remain unproved.
+The native background is the Euclidean void and absolute time, not a fundamental AdS geometry. The candidate horizon picture instead concerns a constitutive interface: a change in how assemblies and the surrounding Noether sea respond and export observable records. In the prescribed Family-A chart, the alignment coordinate $\lambda_A$ runs from mutually orthogonal binary axes at zero toward axes aligned with the group-translation direction at one. This defines a geometry, not a black hole, a retained dynamical branch, or a conserved boundary encoding.
 
-The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after a horizon-interface regime is derived from the candidate alignment response and Noether sea dynamics.
+The same distinction applies to [Ryu-Takayanagi entropy](https://arxiv.org/abs/hep-th/0603001), which relates boundary entanglement entropy to bulk minimal surfaces in its stated setting, and to [island and replica-wormhole calculations](https://arxiv.org/abs/1911.12333), which recover the Page-curve behavior of radiation entropy in controlled gravitational models. These are comparison results, not derivations of an architrino horizon. Their useful question is which entropy and encoding relations a derived native interface can reproduce in the corresponding effective regime.
 
-| Candidate alignment regime | $f$ | Speed regime | Black-hole region | Volume | AdS/CFT side |
-| :--- | :--: | :---: | :--- | :--- | :--- |
-| Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
-| Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
-| Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
+| Comparison question | Candidate native interpretation | What must be established |
+| --- | --- | --- |
+| Which signals can reach an exterior observer? | Delayed causal paths and Noether sea response determine observable access to a strong-field region | An effective horizon and its signal-access conditions, not merely a constituent speed threshold |
+| Which bulk observables admit boundary encoding? | A terminal-alignment interface supports a reduced description of selected assembly and medium records | The encoded observables, retained information, and reconstruction domain |
+| Can two descriptions reproduce the same observables? | Bulk and interface summaries are constructed from one underlying history | An explicit dictionary and matching predictions; resemblance to AdS/CFT is not enough |
 
-This table is a regime-map hypothesis, not a proved black-hole interior theorem. It is useful only if the native strong-field branch later supplies the same causal-root, transversality, Jacobian-floor, regularization, and bounded-energy rows required of self-hit dynamics elsewhere.
+The table states comparison questions, not three identified physical regions. A native self-hit regime requires actual intersections of an architrino with its own earlier wake, with the same root-completeness and singular-event treatment required elsewhere. Speed above the primitive causal-wake speed $c_f$ alone is not a self-hit certificate, and equality to $c_f$ alone does not establish an event horizon.
 
-The more precise candidate picture is a radial alignment state in which all three persistent binary axes converge while their source record may assign different speed and deformation regimes. In that sense, "inside," "horizon," and "outside" should be read as a proposed constitutive continuum parameterized by the declared alignment coordinate rather than as three disconnected ontological zones.
+The more precise candidate picture is a spatially varying alignment state in which three persistent binary axes approach the local translation direction. Each binary retains its index $a\in\{1,2,3\}$, frequency $f_a$, and declared geometry. An illustrative frequency ratio $f_1:f_2:f_3=4:2:1$ is a source-record choice, not a consequence of the Family-A label or a universal Planck-frequency law. Index, radius order, frequency order, and self-hit role must remain distinct.
 
-That continuum has both a local and a macroscopic reading. Locally, a source record can assign one indexed binary to a self-hit regime, another to the field-speed row, and another to exterior coupling; the taxonomy does not fix those roles. Macroscopically, the same candidate regime split appears as black-hole interior, horizon interface, and exterior observer region. The holographic comparison is therefore not a separate metaphysics added on top of the theory; it is a dual-language description of a candidate transition pattern whose dynamics still must be derived.
+The local and macroscopic questions are different. A local source record specifies constituent speeds and candidate alignment; a macroscopic horizon depends on signal access through an extended assembly and medium configuration. A correspondence between them requires an effective observer map. Calling a binary “inner,” “middle,” or “outer” cannot supply that map.
 
-For this reason the preferred local term is **Horizon interface**: proposed surface degrees of freedom built from terminally aligned candidate braids, without asserting either a retained Family-A branch or that the interface is literally a conventional CFT. Horizon interface means:
+The term **horizon interface** denotes the proposed effective interface associated with a terminal-alignment branch. Its content must come from the same declared history:
 
-- Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
-- Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
-- Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether braids as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
+- Which indexed constituents approach $c_f$, and whether the stated speed is tangential, instantaneous, or averaged.
+- Whether the aligned geometry persists under the Master Equation.
+- Which observable information is retained at the interface and which bulk information is omitted.
+- Whether an allowed change in that history produces a three-dimensional assembly, rather than merely a different prescribed drawing.
 
-That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
+Claim grade: guessed. The alignment-to-horizon identification is a candidate mechanism, not a derived interface or an AdS/CFT duality. Its falsifier is a retained solution with the proposed alignment that fails the signal-access and observer-export conditions specified in [Black Holes](../spacetime/black-holes.md). No retained solution satisfying those conditions is supplied here.
 
 ## AdS/CFT Regime Map
 
-Maldacena's AdS/CFT correspondence is useful here as a precise comparison chart, not as imported ontology. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading, the CFT-like side corresponds to the exterior, observer-facing regime where assemblies, clocks, rulers, and light channels export volumetric expansion or contraction. The horizon interface corresponds to the symmetry-breaking threshold at $v=c_f$, where ordinary volumetric export is compressed into boundary-like records. The AdS-like side corresponds to the candidate self-hit interior regime, where the same record no longer exports as ordinary exterior volume.
+An AdS/CFT comparison has two distinct tasks. First, describe the standard bulk and boundary theories accurately in their own domain. Second, derive any proposed native counterpart before identifying the two. A self-hit history is not automatically an AdS geometry, and an observer outside a black hole is not automatically a conformal field theory on an AdS boundary.
 
-The "mirror" in holographic language is therefore not a separate ontological screen. It is the regime break itself: the point at which a single causal record crosses from partner-only volumetric behavior into interface bookkeeping and then into self-hit interior behavior. The comparison is strongest when the boundary description is read as an effective compression law for accessible records, not as a claim that the boundary field theory is the substrate.
+The useful analogy is narrower: a single history can support descriptions with different accessible observables. An interface description is an effective compression only after its observable set and reconstruction limits are specified. It becomes a dual description only if the claimed matching is established on a declared domain. A lossy summary of a bulk record and an equivalent boundary theory are not interchangeable claims.
 
-The inward and outward readings should be treated as direction-sensitive effective exports of one horizon-interface record. On inward approach, the oblate spheroidal envelope is driven toward terminal alignment, so the AdS-like comparison reads as compression or deflation relative to the exterior observer chart. On outward release, the same branch can export an inflation-like expansion record as it returns through the horizon interface toward volumetric Noether braid or Noether sea behavior. This is a mapping target: it must be derived from the same envelope variables, layer-speed regimes, causal-root ledger, and clock-export rows, not assigned separately for the exterior and interior descriptions.
+The proposed inward and outward transition picture belongs at this candidate level. Increasing alignment is compared with compression of an effective envelope; release from alignment is compared with expansion into three-dimensional assembly behavior. Neither direction follows from the frequency ratio or the speed threshold alone. Both require evolution of the same history, including its causal roots, medium response, and energy accounting. The effective volume is an observer reconstruction; the Euclidean void itself does not expand or contract.
 
-Time follows the same rule. Absolute time remains the substrate parameter. Exterior CFT-like time is the clock reconstruction available to observer-facing assemblies outside the horizon interface. At $v=c_f$, clock export is compressed with the boundary-like record. In the AdS-like self-hit interior, the relevant cadence is the retained self-hit cadence of the branch rather than ordinary exterior clock behavior. A successful map must show how these exported time descriptions are projections of one retained horizon-interface record.
+Time requires the same separation. Absolute time $T$ remains the substrate parameter. Exterior clock readings and any proposed interface or interior cadence must be reconstructed from the corresponding physical histories. Neither stopping an exterior clock nor replacing its readout with a self-hit cadence follows merely from a constituent reaching $c_f$. The clock map is part of the mechanism to derive, not an extra rule attached to a region label.
 
 ## Status
 
@@ -68,5 +74,5 @@ Time follows the same rule. Absolute time remains the substrate parameter. Exter
 
 - Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit candidate braid states, then determine whether the retained branch occupies the prescribed Family-A chart.
 - Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
-- Derive the AdS/CFT regime map from one horizon-interface record: exterior CFT-like clock and volume export, $v=c_f$ boundary compression, AdS-like self-hit cadence, inward deflationary compression, and outward inflation-like release.
+- Derive the clock, volume, and signal-access maps from one retained history before assigning interior, interface, and exterior interpretations. An AdS/CFT identification additionally requires a bulk-boundary dictionary in a specified comparison domain.
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.

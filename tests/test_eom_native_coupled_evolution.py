@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 import unittest
 from decimal import Decimal
+from fractions import Fraction
 from pathlib import Path
 
 from scripts.eom.oracle.certified_evolution import (
@@ -125,7 +126,8 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             text=True,
         )
         subprocess.run(
-            ["cmake", "--build", str(cls.build), "--parallel", "4"],
+            ["cmake", "--build", str(cls.build), "--target",
+             "eom_native_evolution_fixture_cli", "--parallel", "2"],
             check=True,
             cwd=ROOT,
             capture_output=True,
@@ -269,7 +271,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v6"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v7"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
         self.assertEqual(checkpoint["joint_history_mode"], "disabled")
@@ -301,6 +303,119 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             checkpoint["joint_fallback_mode"], "ordinary_fallback"
         )
         self.assertTrue(checkpoint["joint_fallback_resume_applied"])
+
+    def test_adaptive_checkpoint_restores_exact_growth_decisions_at_three_cuts(self) -> None:
+        # Independent two-success state-machine expectation, fixed before the
+        # repair: at cuts 1/2/4 the next proposed widths are .01/.02/.04.
+        control = self.packet["adaptive_checkpoint"]
+        direct = self.evolution("static-adaptive-growth")
+        expected = [(1, 1, Decimal(".01")), (2, 0, Decimal(".02")),
+                    (4, 0, Decimal(".04"))]
+        decision_fields = ("status", "failure_code", "attempted_start",
+                           "attempted_end", "accepted_time", "publication_atomic",
+                           "substep_count", "accepted_ordered_pairs", "local_errors")
+        # Independently specified logical schedule. Printed endpoints carry
+        # binary64 absolute-time rounding, not a changed step-size policy.
+        logical_widths = [Fraction(1, 100), Fraction(1, 100), Fraction(1, 50),
+                          Fraction(1, 50), Fraction(1, 50)]
+        logical_time = Fraction(2)
+        self.assertEqual(len(direct["steps"]), len(logical_widths))
+        for step, width in zip(direct["steps"], logical_widths, strict=True):
+            start, end = Fraction(step["attempted_start"]), Fraction(step["attempted_end"])
+            self.assertLessEqual(abs(start - logical_time), Fraction(1, 10**15))
+            logical_time += width
+            self.assertLessEqual(abs(end - logical_time), Fraction(1, 10**15))
+            self.assertLessEqual(abs((end - start) - width), Fraction(1, 10**15))
+        self.assertEqual(logical_time, Fraction("2.08"))
+        self.assertEqual(len(control["cuts"]), len(expected))
+        for cut, (count, memory, next_step) in zip(control["cuts"], expected, strict=True):
+            with self.subTest(cut=count):
+                prefix, resumed = cut["prefix"], cut["resumed"]
+                self.assertEqual(cut["cut_count"], count)
+                self.assertEqual(prefix["accepted_step_count"], count)
+                self.assertEqual(prefix["status"], "halted")
+                self.assertEqual(prefix["halt_code"], "diagnostic_accepted_step_limit_reached")
+                self.assertEqual(prefix["requested_end_time"], "2.08")
+                self.assertEqual(prefix["requested_end_time"], direct["requested_end_time"])
+                self.assertEqual(prefix["controller_consecutive_growth_headroom_steps"], memory)
+                self.assertEqual(cut["checkpoint_memory"], memory)
+                # Controller values are binary64; .04 is serialized as
+                # 0.040000000000000001. Require the exact binary64 value,
+                # then exact token parity across the persisted boundary.
+                self.assertEqual(float(cut["checkpoint_step"]), float(next_step))
+                self.assertEqual(cut["checkpoint_step"], prefix["controller_step_size"])
+                self.assertEqual(prefix["accepted_end_time"], direct["steps"][count - 1]["accepted_time"])
+                self.assertEqual(resumed["status"], "completed")
+                self.assertEqual(prefix["accepted_step_count"] + resumed["accepted_step_count"], direct["accepted_step_count"])
+                self.assertEqual(prefix["rejected_step_count"] + resumed["rejected_step_count"], 0)
+                self.assertEqual(resumed["controller_consecutive_growth_headroom_steps"], direct["controller_consecutive_growth_headroom_steps"])
+                self.assertEqual(resumed["controller_step_size"], direct["controller_step_size"])
+                timeline = prefix["steps"] + resumed["steps"]
+                self.assertEqual(len(timeline), len(direct["steps"]))
+                for index, (actual, uninterrupted) in enumerate(zip(timeline, direct["steps"], strict=True)):
+                    self.assertEqual({key: actual[key] for key in decision_fields},
+                                     {key: uninterrupted[key] for key in decision_fields})
+                    # Resume indices are local; do not relabel their origin.
+                    offset = 0 if index < count else count
+                    self.assertEqual(actual["step_index"] + offset, uninterrupted["step_index"])
+                    self.assertEqual(actual["root_time_pressure_ratio"], 0)
+
+    def test_adaptive_checkpoint_preserves_every_history_token_not_only_endpoint(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        for cut in control["cuts"]:
+            with self.subTest(cut=cut["cut_count"]):
+                self.assertEqual(cut["direct_cut_tokens"], cut["prefix_tokens"])
+                self.assertEqual(control["direct_tokens"], cut["resumed_tokens"])
+                self.assertEqual(cut["resumed"]["histories"], self.evolution("static-adaptive-growth")["histories"])
+        records = control["direct_tokens"][0]["segments"]
+        self.assertEqual(len(records), 11)
+        self.assertTrue(all(len(record) == 22 for record in records))
+        # Analytic constant path: every polynomial coefficient is zero.
+        self.assertTrue(all(Decimal(token) == 0 for record in records for token in record[2:14]))
+
+    def test_adaptive_checkpoint_rejects_incomplete_legacy_format_and_tampering(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        for field in ("old_schema_rejected", "old_magic_rejected", "memory_tamper_rejected"):
+            self.assertTrue(control[field], field)
+
+    def test_adaptive_restart_memory_rejects_invalid_modes_and_overflow(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        for field in ("disabled_memory_rejected", "continuous_memory_rejected", "overflowing_memory_rejected"):
+            self.assertTrue(control[field], field)
+        self.assertGreater(control["overflow_boundary_input"], 1)
+        self.assertEqual(control["overflow_boundary_input"], control["overflow_boundary_returned"])
+
+    def test_adaptive_restart_memory_survives_pre_step_resource_halt(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        stopped = control["unstarted"]
+        self.assertEqual(stopped["halt_code"], "memory_budget_exhausted")
+        self.assertEqual(stopped["steps"], [])
+        self.assertEqual(stopped["accepted_step_count"], 0)
+        self.assertEqual(stopped["controller_consecutive_growth_headroom_steps"], 1)
+        self.assertEqual(control["unstarted_checkpoint_memory"], 1)
+
+    def test_adaptive_restart_preserves_capped_counts_without_saturation(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        self.assertEqual(control["capped"]["controller_consecutive_growth_headroom_steps"], 8)
+        self.assertEqual(control["capped_resumed"]["controller_consecutive_growth_headroom_steps"], 9)
+        self.assertEqual(control["capped"]["controller_step_size"], control["capped_resumed"]["controller_step_size"])
+
+    def test_growth_memory_resets_on_rejection_no_headroom_and_other_modes(self) -> None:
+        control = self.packet["adaptive_checkpoint"]
+        rejected = control["rejected_reset"]
+        self.assertGreater(rejected["rejected_step_count"], 0)
+        self.assertEqual(rejected["accepted_step_count"], 0)
+        self.assertEqual(rejected["controller_consecutive_growth_headroom_steps"], 0)
+        no_headroom = control["headroom_reset"]
+        self.assertEqual(no_headroom["accepted_step_count"], 1)
+        accepted = [step for step in no_headroom["steps"] if step["status"] == "accepted"]
+        self.assertEqual(len(accepted), 1)
+        self.assertTrue(any(Decimal(str(error["position_error"])) > Decimal("5e-10") / 8
+                            or Decimal(str(error["velocity_error"])) > Decimal("2e-8") / 8
+                            for error in accepted[0]["local_errors"]))
+        self.assertEqual(no_headroom["controller_consecutive_growth_headroom_steps"], 0)
+        for name in ("static-multistep", "static-continuous-adaptive", "static-certificate-cost-feedback"):
+            self.assertEqual(self.evolution(name)["controller_consecutive_growth_headroom_steps"], 0)
 
     def test_self_root_entering_through_excluded_coincident_endpoint_is_not_a_fold(self) -> None:
         certificate = self.packet["endpoint_root_continuation"]

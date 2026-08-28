@@ -4,7 +4,7 @@ Status: mined-source packet; priority-only; no corpus promotion.
 
 Date mined: June 30, 2026.
 
-Scope: CERN, ATLAS, and CMS detector, trigger, event-reconstruction, jet, missing-transverse-momentum, and uncertainty material. This packet strengthens the detector-provenance row in [Standard Model Closure](../standard-model-closure/priorities.md) without turning reconstructed objects into $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate products.
+Scope: CERN, ATLAS, and CMS detector, trigger, event-reconstruction, jet, missing-transverse-momentum, and uncertainty material. This packet strengthens the detector-provenance row in [Standard Model Closure](../mapping-standard-model/priorities.md) without turning reconstructed objects into $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate products.
 
 ## Mining Result
 
@@ -92,6 +92,6 @@ This packet does not advance a retained geometry by itself. Its value is a detec
 
 ## Immediate Reuse
 
-Use this packet when mapping collider channels such as $Z(\ell\ell)+j$, $\gamma+j$, VBF plus $\mathbf{p}_T^{\mathrm{miss}}$, Higgs visible decays, invisible-Higgs searches, top events, or heavy-flavor final states. The first channel-specific consumer is [VBF Photon Missing-Transverse-Momentum Event Ledger](../standard-model-closure/vbf-photon-missing-transverse-momentum-event-ledger.md), which binds visible, hidden, recoil, remnant, and detector rows to the same event record.
+Use this packet when mapping collider channels such as $Z(\ell\ell)+j$, $\gamma+j$, VBF plus $\mathbf{p}_T^{\mathrm{miss}}$, Higgs visible decays, invisible-Higgs searches, top events, or heavy-flavor final states. The first channel-specific consumer is [VBF Photon Missing-Transverse-Momentum Event Ledger](../mapping-standard-model/vbf-photon-missing-transverse-momentum-event-ledger.md), which binds visible, hidden, recoil, remnant, and detector rows to the same event record.
 
 No score movement, canon promotion, or Standard Model closure acceptance follows from this mining pass alone.

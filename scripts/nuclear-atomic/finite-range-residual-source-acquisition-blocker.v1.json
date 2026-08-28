@@ -174,7 +174,7 @@
       "boundary": "The no-free-color blocker names the finite residual tail as required evidence but explicitly accepts no source rows."
     },
     "nnCorridorOverlapSample": {
-      "candidatePath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "candidatePath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
       "usableFor": [
         "sample-level p+n and p+p finite-tail pressure",
         "orientation and mismatch table shape",
@@ -188,7 +188,7 @@
       "boundary": "The priority sample can motivate the finite-tail audit, but it is not durable accepted evidence that the residual tends to zero at large separation."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "usableFor": [
         "static confinement and residual-potential recovery pressure",
         "same sigma_eff domain requirement"

@@ -8,6 +8,8 @@ The working goal is twofold: determine whether category theory provides unique l
 
 ## Routing and Ownership
 
+- The accepted minimum extracted from this synthesis is [CT-001 — Minimal Categorical Contract and Ownership Map](categorical-contract-and-ownership-map.md). That packet, rather than this brainstorming document, now owns the complete boundary-history type, three-interval associativity obligation, snapshot-factorization lemma, ownership map, and categorical stop conditions.
+- The bounded realization and first continue-or-pause decision are owned by [CT-004 — Worldline-History Morphism Contract](worldline_history_morphism_contract.md). It proves the append-only record algebra and a manufactured delay-functional separating control, while leaving physical history sufficiency and a lawful Master-Equation witness unclaimed.
 - Provisional definitions, comparisons, and organizing hypotheses remain in this synthesis until a physical carrier and claim boundary are sufficiently clear.
 - Accepted executable obligations belong in [work-queue.md](work-queue.md), while strategy, ownership, and promotion routing belong in [priorities.md](priorities.md).
 - Dated decisions, recovered discussion provenance, failed routes, and validation results belong in [work-log.md](work-log.md).
@@ -29,6 +31,50 @@ f\circ\operatorname{id}_A=f,
 $$
 
 Plainly: $g\circ f$ can be read as “$g$ after $f$.” The target type of the first arrow must match the source type of the second, and regrouping a lawful sequence must not change the resulting process.
+
+### Associativity does not permit reordering
+
+The equation
+
+$$
+(h\circ g)\circ f
+=
+h\circ(g\circ f)
+$$
+
+changes only the parentheses. If $f:A\to B$, $g:B\to C$, and $h:C\to D$, both sides mean first $f$, then $g$, then $h$. Associativity does not assert that $f$, $g$, and $h$ are interchangeable, and it does not imply a reordered equality such as $g\circ f=f\circ g$. The reordered composite may have a different result or may not be type-correct enough to exist.
+
+Plainly: the image says that a fixed three-step process does not depend on whether we package steps one and two first or steps two and three first. It does not say that we may perform the steps in another chronological order.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ worldline-history morphisms over $T_0<T_1<T_2<T_3$, the candidate statement is
+
+$$
+(\mathsf P_{23}\circ\mathsf P_{12})\circ\mathsf P_{01}
+=
+\mathsf P_{23}\circ(\mathsf P_{12}\circ\mathsf P_{01})
+=
+\mathsf P_{03}.
+$$
+
+Both sides preserve the same absolute-time ordering and the same realized joint history. A reversed expression such as $\mathsf P_{12}\circ\mathsf P_{23}$ is ordinarily ill-typed because the output boundary of $\mathsf P_{23}$ is not the input boundary of $\mathsf P_{12}$; even a specially defined reverse-history arrow would be a distinct physical proposal, not a consequence of associativity.
+
+Plainly: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not need interchangeable history. It needs consistent bookkeeping for one non-interchangeable history. Regrouping the bookkeeping must not change the path, roots, wakes, provenance, or certification.
+
+This turns associativity into a boundary-sufficiency test. If the two parenthesizations produce different retained records, the result does not show that nature is nonassociative. It shows that the proposed objects, arrow data, truncation rule, or composition operation omitted information or changed it during gluing. To make this an ordinary category, every compatibility condition that decides whether two history arrows compose must be represented in their boundary object types; otherwise the proposed category is underspecified.
+
+The path parameter introduces one additional mathematical caution. Ordinary fixed-interval path concatenation may be associative only up to reparameterization because each regrouping rescales the path parameter differently. $\mathbb{A}\mathbb{A}\mathbb{A}$ has an absolute-time parameter, so a candidate exact construction should concatenate timestamped records on their actual intervals rather than rescale them. Strict associativity is then plausible for exact compatible record union, while finite truncation, uncertainty transport, or coarse-graining may require a certified restriction system or an approximate residual rather than silent equality.
+
+Plainly: category theory is not asking $\mathbb{A}\mathbb{A}\mathbb{A}$ to forget absolute order. The useful demand is that merely changing how a computer or proof groups the same time-ordered intervals cannot change the physical answer.
+
+**Claim level:** established mathematics for the distinction between associativity and commutativity; inferred $\mathbb{A}\mathbb{A}\mathbb{A}$ application for timestamped worldline-history composition.
+
+**Assumptions and proof burden:** define boundary objects that carry every overlap, causal-root, wake, environment, identity, and certification field consumed by later intervals, then prove a three-interval associativity theorem without reparameterizing absolute time.
+
+**Falsifier:** the proposed history category fails if two legal parenthesizations of the same three intervals produce different complete records. A reordered or time-reversed sequence is not a falsifier because it is a different or undefined composite.
+
+**Promotion target:** `CT-004` lawful-history-extension category.
+
+**Next artifact:** add a three-interval associativity fixture and a deliberately reordered noncommutativity/type-error control to the `worldline_history_morphism_contract`.
 
 A morphism is an arrow of the selected category, not necessarily a set-theoretic function. An endomorphism is an arrow $A\to A$; an isomorphism has a two-sided inverse; an automorphism is an invertible endomorphism; a monomorphism is left-cancellable; and an epimorphism is right-cancellable. Homeomorphisms and diffeomorphisms are isomorphisms in topological and smooth categories, respectively.
 
@@ -291,6 +337,77 @@ Assembly juxtaposition is likewise not automatically a monoidal product. Delayed
 
 Plainly: exact symmetry arrows transform the full retained assembly record, while coarse assembly isomorphisms are bookkeeping equivalences at the selected effective level. Neither formal composition nor an elegant tensor notation derives a retained assembly or reduces its physical state.
 
+### Worldline-history morphisms
+
+The proposed “path morphism” intuition fits existing category theory, but the $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier must be more specific than an abstract path. Categories may already take paths as arrows, and higher categories may place deformations between paths one level above them. The new work is therefore not a new category axiom; it is an $\mathbb{A}\mathbb{A}\mathbb{A}$-specific physical typing and admissibility rule for the arrows.
+
+An isolated architrino worldline segment is generally insufficient because its acceleration contribution depends on the retained paths of transmitters and because an assembly may carry cross-wake, ambient, and branch-locking records. A candidate exact arrow should instead be a joint labeled worldline-history extension
+
+$$
+\mathsf P_{01}
+=
+\left(
+\{\mathbf X_i|_{[T_0,T_1]}\}_{i\in R},
+\mathcal R_{01},
+\mathcal W_{01},
+\mathcal N_{\mathrm{sea},01},
+\mathcal E_{01},
+\chi_{01}
+\right)
+:
+\mathcal B_{T_0}\longrightarrow\mathcal B_{T_1},
+$$
+
+where $R$ is the persistent participating identity set, the worldline family records the newly realized paths, $\mathcal R_{01}$ records consumed causal roots and branches, $\mathcal W_{01}$ records wake updates, $\mathcal N_{\mathrm{sea},01}$ records the required Noether sea interface, $\mathcal E_{01}$ records boundary and omitted-tail conditions, and $\chi_{01}$ carries certification. This tuple is a candidate contract, not a claim that the listed fields are already minimal or complete.
+
+Plainly: the arrow is not one curve moving through space. It is the coupled piece of assembly history that was added between two absolute-time cuts, together with the causal records needed to show that the piece is lawful.
+
+For consecutive cuts, the intended path composition is
+
+$$
+\mathsf P_{12}\circ\mathsf P_{01}=\mathsf P_{02}.
+$$
+
+This composition is admitted only when the retained overlap agrees, the second arrow consumes the complete certified output of the first, persistent identities and polarity records match, environmental ports close, and no earlier root or branch evaluation is revised. Matching endpoint positions and velocities alone is insufficient.
+
+Plainly: joining two curves at the same visible endpoint does not join two delayed physical histories. Their causal backlogs must also fit.
+
+The resulting structure has at least three distinct candidate levels. A one-morphism is a realized lawful worldline-history extension. A possible two-morphism relates two such extensions by a full-history symmetry or by a boundary-fixed deformation through admissible histories; an ordinary geometric homotopy is insufficient unless every intermediate history satisfies the physical record contract. A recovery functor may then send many exact history morphisms to one effective assembly transition, with the erased distinctions and predictive residual kept explicit. A double category may be the cleaner first test when evolution arrows and full-history symmetry arrows must remain distinct while covariance squares relate them.
+
+Plainly: “morphisms between paths” may eventually be useful, but they cannot mean arbitrary ways of smoothly bending one picture into another. Every intermediate deformation has to remain a lawful $\mathbb{A}\mathbb{A}\mathbb{A}$ history, and coarse identification belongs in a separate map.
+
+This proposal also yields a concrete factorization obstruction. Let $Q$ forget full history and retain only a proposed assembly snapshot, and let $E_{\Delta T}$ be deterministic evolution on a declared full-history domain. If
+
+$$
+Q(H_1)=Q(H_2)
+\qquad\text{but}\qquad
+Q\!\left(E_{\Delta T}(H_1)\right)
+\ne
+Q\!\left(E_{\Delta T}(H_2)\right),
+$$
+
+then no well-defined snapshot evolution $\overline E_{\Delta T}$ can satisfy
+
+$$
+Q\circ E_{\Delta T}
+=
+\overline E_{\Delta T}\circ Q
+$$
+
+on that domain. On a branching domain, the same test compares the complete sets or transition laws of admitted continuations rather than one selected future.
+
+Plainly: if two histories look like the same assembly now but later separate, evolution cannot consistently be pushed down to that snapshot description. The failed square is a precise certificate that the proposed assembly object discarded predictive information.
+
+**Claim level:** established mathematics for path categories, higher arrows, double categories, and factorization; inferred candidate architecture for joint $\mathbb{A}\mathbb{A}\mathbb{A}$ worldline-history morphisms; unproved physical realization until a retained assembly and lawful composition domain exist.
+
+**Assumptions and proof burden:** specify the complete boundary record, prove existence and lawful concatenation on a declared branch domain, classify exact symmetries separately from physical evolution and coarse recovery, and show through independent controls that the arrow contract neither omits consumed history nor stores the same physical degree of freedom twice.
+
+**Falsifier:** the candidate arrow type is insufficient if two identical source objects and arrow records yield different admitted outputs, if concatenation revises an earlier certified root or branch record, or if the proposed two-morphism passes through a history that violates the Master Equation or its boundary contract. The need for higher structure is falsified if an ordinary category with distinguished arrow classes expresses every required compatibility without loss.
+
+**Promotion target:** route a successful ordinary-category contract through `CT-004`; route assembly partition changes through the reaction owner and `CT-006`; consider higher categorical promotion only after a concrete compatibility cannot be expressed by the ordinary contract.
+
+**Next artifact:** build a `worldline_history_morphism_contract` for one bounded retained assembly candidate, including a positive concatenation example, an endpoint-matched hidden-history counterexample, a full-history symmetry square, and a test of whether any genuine two-morphism is required.
+
 ## Causal-Incidence and Reaction Processes
 
 Emission events, reception events, and certified causal-root hits can form a typed directed graph whose generating arrows carry transmitter and receiver identities, delay, polarity product, root Jacobian, direction, and acceleration contribution. A free category on this graph would add formal paths, but a path of consecutive hits is initially bookkeeping rather than a new physical interaction.
@@ -517,6 +634,80 @@ This contract remains a candidate definition and validation target. It is falsif
 
 Category theory presently has three defensible roles in $\mathbb{A}\mathbb{A}\mathbb{A}$: it can prevent invalid quotienting of full histories, express finite-history certification and abstention, and turn future substrate-to-observer mappings into typed compositional obligations. It has not earned status as part of the substrate ontology or dynamical law.
 
+### Decision: keep the lane open as a constrained support laboratory
+
+The Category Theory lane should remain open, but not as an autonomous fundamental-physics program. Its best current role is a low-intensity methodological laboratory serving two consumers: bounded $\mathbb{A}\mathbb{A}\mathbb{A}$ history and information-loss tests, and philosophy-history work on how physical theories relate, inherit structure, change domains, and sometimes mistake formal equivalence for physical explanation.
+
+For philosophy-history, the useful categorical contribution is analytical rather than historical evidence. It can distinguish a change of notation from an equivalence of models, a controlled coarse-graining from an ontological reduction, a successful bridge from a derivation, and a commuting translation from a shared physical mechanism. Those distinctions directly support the existing One Nature, Many Theories, Theory Mapping, Theory Inheritance Discipline, Theory Differentials, and Historical Context and Missed Opportunities treatments. Category theory cannot establish what historical actors believed, why a research program prevailed, or whether a historical path was genuinely available; those claims still require primary and specialist historical sources.
+
+Plainly: category theory can help us diagram the anatomy of a scientific transition, including what information survived and what was silently discarded. It cannot tell the history by itself, and it cannot turn a beautiful relationship among theories into a physical explanation.
+
+Interest-driven work remains welcome when it produces one of four reusable outputs: a bridge certificate for a concrete pair of theories, a counterexample showing that a proposed translation loses necessary information, a compact vocabulary that clarifies a philosophy-history argument, or a bounded $\mathbb{A}\mathbb{A}\mathbb{A}$ composition test such as `CT-004`. Free-standing excursions into grand categorical machinery should pause unless a named consumer cannot be served by group theory, topology, graphs, ordinary mappings, or delay-equation analysis.
+
+**Claim level:** inferred methodological decision based on the completed CT-001 contract and the live philosophy-history bridge architecture; no new physical or historical claim.
+
+**Assumptions and proof burden:** the lane remains worth maintaining only if its vocabulary or tests reduce ambiguity, expose information loss, or compress repeated bridge reasoning across at least one named consumer without importing physical premises.
+
+**Falsifier:** close or archive the active lane if the next bounded artifacts merely rename existing graphs, mappings, symmetry calculations, or historical taxonomies and produce no clearer distinction, obstruction, or reusable bridge test.
+
+**Promotion target:** physical results, if any, go to their scientific owners; source-backed methodological synthesis may support the philosophy-history owners after a separate promotion review. Category theory itself is not promoted as substrate ontology.
+
+**Completed artifact and decision:** the bounded [CT-004 worldline-history morphism contract](worldline_history_morphism_contract.md) found that the factorization obstruction is not stronger than the ordinary delay-system fiber-constancy test. Its retained payoff is a reusable factorization square plus an explicit boundary-typing rule for cross-owner record composition. Category-specific physical expansion is paused; interest-driven philosophy-history and bridge applications remain welcome when they use that vocabulary to expose preserved or discarded information.
+
+### Why CT-004 remains significant as a tool
+
+CT-004 did not produce a new physical memory theorem: the ordinary delay-system statement already says that endpoint data are insufficient when two endpoint-matched histories yield different delayed responses. Its potentially significant contribution is methodological generality. The same factorization question can test any proposed loss of description:
+
+$$
+Q\circ E
+=
+\overline E\circ Q.
+$$
+
+Here $E$ is lawful evolution or another history-consuming process, $Q$ is the proposed snapshot, coarse-graining, or theory-bridge map, and $\overline E$ is the process claimed to exist after information has been forgotten. The reduced description is dynamically closed only when $Q\circ E$ is constant on every fiber $Q^{-1}(z)$. One separating pair in the same fiber disproves closure on that domain.
+
+Plainly: put all fine histories that look identical under the proposed description into one bucket. If every history in a bucket produces the same reduced future, the bucket can evolve consistently. If two histories in one bucket produce different reduced futures, the description threw away information that the future still uses.
+
+| Consumer | Proposed map $Q$ | What failure would establish | Categorical contribution |
+| --- | --- | --- | --- |
+| Instantaneous assembly state | Full retained history to endpoint assembly data | The snapshot is not a sufficient state for evolution. | One factorization obstruction shared across assembly candidates. |
+| EOM solver checkpoint or restart | Complete accepted record to stored restart record | Restart discarded a continuation-critical root, wake, branch, boundary, or certification field. | Boundary typing and composition rules expose missing restart state. |
+| Finite-history truncation | Longer certified history to shorter retained window | The omitted tail still changes an admitted future or acceleration record. | Restriction arrows make lost reach, uncertainty, and abstention compositional obligations. |
+| Assembly identity or equivalence | Distinct labeled histories to one proposed assembly class | Histories called the same assembly have different admitted reduced futures. | The fiber test separates exact history, symmetry equivalence, and effective identity. |
+| Substrate-to-observer bridge | Full substrate history to one effective record | The effective variables are not closed for the named observable or process. | The same square audits coarse-graining without pretending that the mapping derives the physics. |
+| Bridge among existing theories | A finer theory record to a coarser theory record | Staged translation and direct reading from one common history disagree. | Commuting diagrams provide a common contract for bridge comparison. |
+| Full-history symmetry test | Complete history to a transformed complete history | A purported symmetry moved only visible data or changed a consumed record. | Object typing forces the symmetry to act on the whole physical record. |
+
+Plainly: this is closer to a type system, dimensional analysis, or conservation ledger than to a new equation of nature. Such tools may not generate the dynamics, but they can prevent invalid identifications and reveal exactly which missing record blocks a derivation.
+
+The largest potential payoff is cross-lane reuse. Delay-equation analysis is the shorter tool for proving one history-dependence result. Category theory becomes worthwhile when the same source-map-process square is reused across assembly definition, restart sufficiency, truncation, symmetry, coarse-graining, and theory bridges, with the object and arrow types preventing one lane from silently changing another lane's physical record. Its value is therefore organizational and falsificatory: it can reject an insufficient state or bridge before that insufficiency is hidden inside a later calculation.
+
+The result is also important for philosophy-history. Many successful theories preserve selected predictions while discarding, reinterpreting, or leaving unresolved other information. A factorization diagram provides a disciplined way to ask whether a later theory is an exact reformulation, a controlled effective projection, a phenomenological bridge, or merely compatible on a limited set of observations. It does not supply historical evidence or prove that one ontology generated another, but it sharpens the anatomy of the relationship.
+
+**Claim level:** proved mathematics for the fiber-constancy criterion; inferred methodological value for cross-lane reuse; no physical $\mathbb{A}\mathbb{A}\mathbb{A}$ separating witness or recovery result.
+
+**Assumptions and proof burden:** every use must declare the fine-history domain, the map $Q$, the consumed process $E$, the reduced record, the tolerance if approximate, and an independent way to classify a separating pair or residual. Cross-lane significance requires repeated successful reuse, not merely drawing the same square several times.
+
+**Falsifier:** the strong tool-value assessment fails if each concrete case is stated more clearly and completely by its simpler owner, if the categorical boundary types add no detected omission, or if every diagram commutes only by definition or through same-implementation replay.
+
+**Promotion target:** retain the general tool assessment in the Category Theory lane; route any actual obstruction or sufficiency result to the scientific owner of the assembly, solver record, truncation, symmetry, or theory bridge being tested.
+
+**Next artifact:** apply the CT-004 factorization template to one live, independently checkable consumer—preferably EOM restart sufficiency or finite-history truncation—then record whether it detects an omission or merely restates the existing contract. That comparison decides whether the tool deserves renewed active use.
+
+### First measured application: EOM restart sufficiency
+
+The preferred test was carried out on the live EOM checkpoint boundary. The factorization audit first corrected the reduced object: restart depends on a checkpoint plus a compatible request template, not on the checkpoint file alone. It then compared that bundle with the complete state consumed by the next controller decision.
+
+The audit found one omitted continuation field. Accepted-step growth requires two consecutive steps with sufficient headroom, tracked by `consecutive_growth_headroom_steps`. The checkpoint preserves the current step size and certificate-cost cooldown but not this count, and resumed evolution initializes it to zero. An exact-cut adaptive control consequently produced different accepted partitions for uninterrupted and restarted evolution: `0.01, 0.01, 0.02, 0.02, 0.02` versus `0.01 | 0.01, 0.01, 0.02, 0.02, 0.01`. The checkpoint-cut fingerprints matched, while the final complete retained-history fingerprints did not.
+
+The constant inertial endpoint remained equal, so this is not evidence of a physical trajectory error. It is measured evidence that the implemented restart projection is insufficient for the declared complete-record and identical-discrete-decision parity obligation. The focused result and raw boundary are recorded in [CT-004 Application — EOM Restart Factorization Audit](ct004-eom-restart-factorization-audit.md), and the repair is owned by App Solver `EOM-003`.
+
+This changes the methodological verdict in a narrow but meaningful way. Category theory has now done more than redescribe a hypothetical obstruction: its typed projection question found a real omitted state field at a cross-lane interface. It still has no unique physical payoff, because an ordinary state-machine or serialization audit can express the defect after it is known. The practical value is the reusable discipline of asking what information must cross a boundary before endpoint agreement or formal commutativity is accepted as process equivalence.
+
+**Claim level:** measured implementation audit plus a code-level explanation; no substrate-physics, retained-assembly, or recovery claim.
+
+**Falsifier:** after the EOM owner preserves or reconstructs the missing controller state, the same exact-cut adaptive test must produce identical discrete decisions and complete accepted records. If the categorical template repeatedly finds no omission beyond what the simpler owner already states, its broader practical-value assessment should be reduced again.
+
 The principal failure mode is structure laundering: an open physical problem is restated as an elegant diagram, and formal coherence is treated as a derivation. Each proposed structure must therefore name its physical carrier, simpler adequate tool, unique categorical payoff, owner, claim level, assumptions, proof burden, falsifier, and stop condition.
 
 Category theory should remain removable scaffolding unless it produces a nontrivial obstruction, a uniqueness or reconstruction theorem, an independently verified prediction, cross-observable compression without retuning, or proof that simpler group, topology, and delay-equation tools are inadequate. Grand monoidal, operadic, stack, topos, or higher-category programs remain premature without such a concrete need.
@@ -531,6 +722,5 @@ No material in this synthesis is presently ready for direct corpus promotion. Th
 - **[guessed] Native automorphism structures may induce effective multiplets or gauge-like symmetry channels.** A retained assembly, proved full-record action, invariant representation, and cross-representative recovery test are missing; falsification occurs if the action changes a consumed record or fails to map consistently; route to `CT-005` and the relevant effective-symmetry owner.
 - **[inferred] A recovered observer state may require an explicit memory kernel or enlarged effective state.** A predictive finite-state quotient has not been proved; a matched-history counterexample or a finite-dimensional closure theorem decides the issue; route to `CT-004`, `CT-005`, and the owning observer-level mapping lane.
 - **[guessed] Effective non-charge reaction labels may factor through a branch-sensitive quotient finer than polarity inventory.** The smallest sufficient retained record and its invariance under lawful reaction composition are unknown; one separating reaction pair would falsify an insufficient quotient; route to the reaction owners and `CT-005` if resolved.
-- **[closure target] A lossless, nonredundant assembly information ledger may separate boundary state from incremental arrow data.** Classify each field of one retained candidate as object state, newly appended arrow data, reconstructible derived data, or intentionally discarded coarse data; duplicate-count and matched-state future tests must pass before routing the result through `CT-001`, `CT-004`, and the assembly owner.
 - **[closure target] A help-and-hazard case matrix may test whether categorical structure adds physical value or merely renames an existing calculation.** Use one source-backed Standard Model, quantum, relativistic, quantum-field-theoretic, and $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly case; separate physical inputs, categorical result, unique payoff, erased information, possible overreach, and falsifier before considering a focused corpus treatment.
 - **[closure target] Category theory may earn a non-removable role only through a unique physical payoff.** No categorical obstruction, reconstruction, prediction, or cross-observable compression unavailable to simpler mathematics is currently established; the first independently verified example would justify reassessment in `CT-001` and the owning physical lane.

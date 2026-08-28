@@ -32,7 +32,7 @@
         "identity": {
           "candidateId": "SD3",
           "displayLabel": "SD3 — centered five-coordinate history",
-          "status": "admitted-prescribed-display-pending-borg-review",
+          "status": "operator-approved-prescribed-display",
           "geometryOwner": "reference/priorities/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.md"
         },
         "constituentInventory": [

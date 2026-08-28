@@ -32,7 +32,7 @@
     "protonEnvelopeSupportPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
     "neutronEnvelopeSupportPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
     "tailCalculusEvidencePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
-    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
   },
   "acceptedInputRows": {
     "accepted_sigma_eff_extraction": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",

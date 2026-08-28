@@ -29,7 +29,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | angular-momentum-spin/photon-measurement-bell-gates | Treat Stern-Gerlach as the first concrete measurement-response proof target. |
-| This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Route outcome weights through basin measures and detector kernels. |
+| This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Route outcome weights through basin measures and detector kernels. |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add discrete spin outcome recovery and no-signaling discipline. |
 
 ## Failure Modes

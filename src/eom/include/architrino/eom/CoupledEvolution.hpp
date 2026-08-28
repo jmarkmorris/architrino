@@ -114,6 +114,9 @@ struct NativeCoupledEvolutionRequest {
   std::uint64_t memory_budget_bytes =
       std::numeric_limits<std::uint64_t>::max();
   bool use_adaptive_step_growth = false;
+  // Dynamic restart memory for the two-success growth rule, normally zero
+  // for a new run and restored exactly from a checkpoint on continuation.
+  std::size_t initial_consecutive_growth_headroom_steps = 0;
   // Replace the legacy two-hit power-of-two growth rule with a bounded
   // error-scaled controller. Acceptance tolerances are unchanged.
   bool use_continuous_adaptive_step = false;
@@ -648,6 +651,7 @@ struct NativeCoupledEvolutionCertificate {
   std::size_t rejected_step_count;
   std::string controller_step_size;
   std::size_t controller_certificate_cost_cooldown_remaining = 0;
+  std::size_t controller_consecutive_growth_headroom_steps = 0;
   std::string halt_code;
   std::string evidence_status;
   std::uint64_t memory_budget_bytes = 0;

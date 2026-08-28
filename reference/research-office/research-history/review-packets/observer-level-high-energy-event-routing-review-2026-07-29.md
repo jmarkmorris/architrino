@@ -103,7 +103,7 @@ Plainly: one event record describes one event; population claims need their own 
 
 | Review item | Owning destination | Disposition | Limited claim |
 | --- | --- | --- | --- |
-| Carrier-satisfiability event-class equivalence | [High-Energy Astrophysics event routing](../../../priorities/strong-field-closure/high-energy-astrophysics/priorities.md) `event_scale_taxonomy` | Integrate now as the next scoped classification action. | Proposed operational definition only. |
+| Carrier-satisfiability event-class equivalence | [High-Energy Astrophysics event routing](../../../priorities/mapping-strong-field/high-energy-astrophysics/priorities.md) `event_scale_taxonomy` | Integrate now as the next scoped classification action. | Proposed operational definition only. |
 | Source history, validity regime, uncertainty, and covariance fields | Same owner, `source_window_carrier_map` | Integrate now into the routing shell and first trial. | Record-shape requirement only. |
 | No-hidden-retune witness | Same owner and existing EQ-07A route | Retain and make explicit in the trial. | No accepted no-retune result. |
 | Detachability test | Same owner | Integrate now as an observer/native level-separation test. | Proposed operational test only. |

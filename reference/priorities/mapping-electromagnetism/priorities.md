@@ -35,15 +35,15 @@ The first target is the common-axis source/moment/field discriminator in [work-q
 
 The current focused constitutive packet is the [Fine-Structure Coupling Map](fine-structure.md). It develops the factorization $\alpha(\mu;\theta_{\mathrm{sea}})=\alpha_{\mathrm{ref}} \mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ as an application of `EMAP-004` without changing that object's blocked status, the workstream rank, or the `EQ-26A` score.
 
-The focused inverse-method packet is [Inferring Braid Requirements](inferring-braid-requirements.md). It converts existing effective behaviors into graded requirements on source assemblies, matter and receiver braids, the near-to-far Noether sea record and any derived response, propagating carriers, and causal boundary history. It is a pre-derivation constraint artifact for `EMAP-001` through `EMAP-004`, not a new equation or benchmark inventory and not evidence that any candidate geometry is retained.
+The general inverse-method packet is [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md), owned by Equation Mapping. It converts existing effective behaviors into graded requirements on source assemblies, matter and receiver braids, the near-to-far Noether sea record and any derived response, propagating carriers, and causal boundary history across multiple physics domains. This lane consumes its electromagnetic requirements for `EMAP-001` through `EMAP-004`; the packet is not a new equation or benchmark inventory and does not establish that any candidate geometry is retained.
 
-The application owner is [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md). It assigns a graded pass, scoped failure, inferred capability, or unknown to every consolidated requirement for every active registry row, while keeping hard admissibility separate from any future experiment-allocation weighting.
+The Braid Program owns [Braid Candidate Requirement Adjudication](../braid-program/braid-candidate-requirement-adjudication.md), [F6c Geometry](../braid-program/f6c-geometry.md), and the [three-binary comparison](../braid-program/three-binary-orbiting-endpoint-comparison.md) with its initialization and bounded-evolution evidence. Candidate adjudication assigns a graded pass, scoped failure, inferred capability, or unknown to every consolidated requirement for every active registry row, while keeping hard admissibility separate from any future experiment-allocation weighting.
 
 The focused executable continuation packet is [Fixed-Law Source Continuation](fixed-law-source-continuation.md). It evaluates one source-loading family through its weak signed response and first native geometric transition while rejecting hidden retuning and refusing pair capture or backreaction without same-record certified conjugate product basins. Its present prescribed fixture is `candidate_only` and changes no score or retained branch claim.
 
 ## Scope And Ownership
 
-The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md) defines this lane as a domain integrator. For an electromagnetic benchmark set $\mathcal B_{\mathrm{EM}}$, this lane owns the same-record intersection
+The [Shared Equation And Mapping Architecture](../mapping/mapping-method.md) defines this lane as a domain integrator. For an electromagnetic benchmark set $\mathcal B_{\mathrm{EM}}$, this lane owns the same-record intersection
 
 $$
 \mathfrak A_{\mathrm{EM}}
@@ -57,11 +57,11 @@ not the equation rows, benchmark provenance, or native retained records that pop
 Plainly: this lane asks which source, assembly, causal-history, boundary, and sea records survive all required electromagnetic comparisons at once. The contributing workstreams still own the formulas, experiments, and evidence used to answer that question.
 
 - This lane owns electromagnetic case integration, inverse-constraint design, cross-row same-record requirements, the source/moment/field matrix, and the fine-structure coupling derivation packet.
-- [Equation Mapping](../mapping-equations/priorities.md) retains ownership of the exact EQ-13, EQ-15, EQ-26A, and EQ-27 equation rows, scores, focused source-field packets, and executable comparison controls.
-- [Braid Program](../braid-program/priorities.md) owns retained braid existence, evolution, common-axis geometry, branch identity, and causal-root evidence.
+- [Equation Mapping](../mapping-equations/priorities.md) owns the general theory-to-braid requirement method as well as the exact EQ-13, EQ-15, EQ-26A, and EQ-27 equation rows, scores, focused source-field packets, and executable comparison controls.
+- [Braid Program](../braid-program/priorities.md) owns candidate adjudication, focused candidate geometry, retained braid existence, evolution, branch identity, and causal-root evidence.
 - [Master Equation Closure](../master-equation-closure/priorities.md) owns the microscopic acceleration law, causal-wake updates, and account closure.
 - [EOM solver](../app-solver/priorities.md) owns production numerical execution and accepted record contracts.
-- [Standard Model Closure](../standard-model-closure/priorities.md) owns electron, positron, charge, gauge, and precision-observable recovery outside this lane's electromagnetic integration role.
+- [Standard Model Closure](../mapping-standard-model/priorities.md) owns electron, positron, charge, gauge, and precision-observable recovery outside this lane's electromagnetic integration role.
 - The parked [Electrodynamics](../dormant-deferred/electrodynamics/priorities.md) packet remains historical and counterfactual reference material; it is not reactivated by this workstream.
 
 ## Claim Boundary

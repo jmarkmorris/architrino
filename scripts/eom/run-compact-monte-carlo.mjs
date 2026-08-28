@@ -2,9 +2,7 @@
 
 import { createHash } from "node:crypto";
 import {
-  mkdirSync,
   readFileSync,
-  writeFileSync,
 } from "node:fs";
 import path from "node:path";
 
@@ -19,6 +17,10 @@ import {
   sampleFullConstraintPreservingTaxonomy,
   sampleLocalReferenceNeighborhood,
 } from "../../src/prescribed-path-analysis/CompactMonteCarloCampaign.mjs";
+import {
+  acquireExclusiveCampaignOutputLease,
+  publishExclusiveCampaignOutput,
+} from "../../src/prescribed-path-analysis/ExclusiveCampaignOutput.mjs";
 
 function fail(message) {
   throw new Error(message);
@@ -53,6 +55,10 @@ function parseArguments(argv) {
   if (sampler !== "full-taxonomy" && sampler !== "local-reference") {
     fail("--sampler must be full-taxonomy or local-reference.");
   }
+  const output = values.get("--output");
+  if (!flags.has("--help") && !output) {
+    fail("--output is required; parallel campaigns may not use a shared default path.");
+  }
   return {
     help: flags.has("--help"),
     calibrate: flags.has("--calibrate"),
@@ -72,10 +78,7 @@ function parseArguments(argv) {
       .split(",")
       .map((value) => value.trim())
       .filter(Boolean),
-    outputPath: path.resolve(
-      values.get("--output") ??
-        ".local-data/braid-analysis/compact-monte-carlo/latest.json",
-    ),
+    outputPath: output ? path.resolve(output) : null,
   };
 }
 
@@ -91,11 +94,12 @@ function help() {
     "    [--calibrate]",
     "    [--families A,B,C]",
     "    [--members A1.2,B1.3,C5]",
-    "    [--output path]",
+    "    --output unique-create-exclusive-path",
     "",
     "The command is prescribed-path analytical coverage only. It does not invoke",
     "the EOM solver, retain raw event packets, perform independent acceptance, or",
     "publish a database generation.",
+    "The output path is required, reserved before computation, and never overwritten.",
   ].join("\n"));
 }
 
@@ -145,6 +149,9 @@ if (options.help) {
   process.exit(0);
 }
 
+const outputLeasePath = acquireExclusiveCampaignOutputLease(options.outputPath, {
+  schema: "prescribed-path-analysis/compact-monte-carlo-output-lease.v1",
+});
 const loaded = loadAllCandidateCampaignRegistry(options.registryPath);
 if (loaded.protocol.eventEvaluator.fieldSpeed !== 1) {
   fail("the canonical complete-cycle protocol must declare fieldSpeed 1.");
@@ -198,8 +205,11 @@ const result = options.calibrate
     implementationIdentity: identity,
     onProgress: progress,
   });
-mkdirSync(path.dirname(options.outputPath), { recursive: true });
-writeFileSync(options.outputPath, `${JSON.stringify(result, null, 2)}\n`);
+publishExclusiveCampaignOutput(
+  options.outputPath,
+  `${JSON.stringify(result, null, 2)}\n`,
+  outputLeasePath,
+);
 const report = options.calibrate
   ? {
     outputPath: options.outputPath,

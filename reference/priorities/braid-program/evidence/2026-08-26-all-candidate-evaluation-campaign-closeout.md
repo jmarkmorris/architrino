@@ -4,7 +4,7 @@ Status: CLOSED EVIDENCE-GOVERNED CAMPAIGN, 2026-08-26. This packet adjudicates e
 
 ## Scientific outcome
 
-No candidate advanced in this campaign. Twenty-eight active braid options remain in `STASIS`, the declared F5 two-ring realization and the already-demoted F6b circular realization end `DEMOTED` within their exact scopes, and both accessory continuations remain in `STASIS` behind their base-braid dependency. No candidate passes `H5`.
+No candidate advanced in this campaign. Twenty-eight active braid options remain in `STASIS`, the F5 common-cadence circular realization and the already-demoted F6b circular realization end `DEMOTED` within their exact scopes, and both accessory continuations remain in `STASIS` behind their base-braid dependency. The later revised phase-varying F5 creative geometry is a distinct row and is not demoted by this result. No candidate passes `H5`.
 
 Plainly: the campaign found no hidden winner and did not turn an old elapsed time, prescribed path, display review, or near return into evidence. Its scientific result is a complete set of honest stopping boundaries.
 
@@ -78,7 +78,7 @@ Static diagnostic checks reproduced $L_0=0.34775422355450986$ for both the A3 me
 | `F2` | `H1`--`H5 U`; 0.00% / — | `H1` | composition and association remain undeclared | unchanged | `STASIS` | exact twelve-identity composition chart |
 | `F3` | `H1`--`H5 U`; 0.00% / — | `H1` | quotient and nontrivial mode/return census remain undeclared | unchanged | `STASIS` | exact six-identity chart plus frozen census |
 | `F4` | `H1`--`H5 U`; 0.00% / — | `H1` | framed and counterflow components are not one declared inventory | unchanged | `STASIS` | exact integrated-composition chart |
-| `F5` declared two-ring realization | `H1 P[D]`; `H2 F[D]`; 0.00% / 0.00% | `H2` repair audit | exact two-ring no-go remains controlling | unchanged | `DEMOTED` | nonobstructed chart or regulator-independent coordinate-coincidence continuation |
+| `F5` common-cadence circular realization | `H1 P[D]`; `H2 F[D]`; 0.00% / 0.00% | `H2` repair audit | exact common-cadence circular no-go remains controlling for this realization only | unchanged | `DEMOTED` | nonobstructed chart or regulator-independent coordinate-coincidence continuation |
 | `F6` | `H1 P[D]`; 0.00% / — | parent/child evidence audit | no F6c evidence inheritance | unchanged | `STASIS` | materially distinct continuation with its own exact chart |
 | `F6b` circular realization | `H1`--`H3 P`; `H4 F[M]`; 15.61% / 38.82% | re-entry audit | direction-bearing member-acceleration failure remains controlling; exhausted repairs remain exhausted | unchanged | `DEMOTED` | new direction-bearing path or inventory and fresh admission audit |
 | Three-binary plus six accessories | `ACC1 U`; unscored | base dependency | no underlying named three-binary candidate passes `H5` | unchanged | `STASIS` | base-braid `H5` certificate |

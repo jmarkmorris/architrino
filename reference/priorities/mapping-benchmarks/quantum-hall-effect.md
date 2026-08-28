@@ -36,7 +36,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | mass-map/condensed-matter-medium-transport | Use quantum Hall as a high-value material transport benchmark. |
-| This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Treat plateau selection as robust basin/invariant structure. |
+| This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Treat plateau selection as robust basin/invariant structure. |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add topological quantization as a hard recovery target if condensed-matter closure is claimed. |
 
 ## Failure Modes

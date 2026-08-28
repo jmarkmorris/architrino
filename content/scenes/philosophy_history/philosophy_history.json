@@ -34,6 +34,10 @@
         "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json"
       },
       {
+        "nodeId": "information_and_the_wake",
+        "scenePath": "content/scenes/philosophy_history/information_and_the_wake.json"
+      },
+      {
         "nodeId": "major_thinkers",
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
@@ -60,6 +64,10 @@
       {
         "nodeId": "solving_the_crisis",
         "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json"
+      },
+      {
+        "nodeId": "cosmic_censorship_holography",
+        "scenePath": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
       },
       {
         "nodeId": "treasure_physics_overlooked",
@@ -104,6 +112,14 @@
       "radius": 2.688,
       "color": "#7a5430",
       "labelTitle": "Substance / Structure",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "information_and_the_wake",
+      "title": "Information and the Wake",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "labelTitle": "Information and the Wake",
       "labelBadge": "doc"
     },
     {
@@ -155,6 +171,14 @@
       "radius": 2.688,
       "color": "#5a3f73",
       "labelTitle": "Solving the Crisis"
+    },
+    {
+      "id": "cosmic_censorship_holography",
+      "title": "Cosmic Censorship and Holography",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "labelTitle": "Cosmic Censorship and Holography",
+      "labelBadge": "doc"
     },
     {
       "id": "treasure_physics_overlooked",

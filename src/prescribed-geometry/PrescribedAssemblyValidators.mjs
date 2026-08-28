@@ -10,6 +10,7 @@ export const PRESCRIBED_ASSEMBLY_VALIDATOR_IDS = Object.freeze([
   "legacy-family-b.v1",
   "legacy-family-c.v1",
   "sd3-centered-five-coordinate.v1",
+  "f5-phase-varying.v1",
   "f6b-scoped-negative.v1",
   "f6c-exact-map.v1",
 ]);
@@ -19,6 +20,7 @@ const VALIDATORS = new Map([
   ["legacy-family-b.v1", validateCircularFamily("B")],
   ["legacy-family-c.v1", validateCircularFamily("C")],
   ["sd3-centered-five-coordinate.v1", validateSd3],
+  ["f5-phase-varying.v1", validateF5],
   ["f6b-scoped-negative.v1", validateF6b],
   ["f6c-exact-map.v1", validateF6c],
 ]);
@@ -66,6 +68,22 @@ function validateF6b(spec) {
   if ((spec.relationships.neutralPairs ?? []).length !== 0) {
     throw new TypeError("F6b axis modules must not be represented as neutral binaries.");
   }
+}
+
+function validateF5(spec) {
+  requireCandidate(spec, "F5", 12, "f5-phase-varying-member.v1");
+  requirePolarityCounts(spec, 6, 6);
+  if (spec.identity.status !== "operator-approved-prescribed-display") {
+    throw new TypeError("F5 revised history must remain the operator-approved prescribed display representative.");
+  }
+  if ((spec.relationships.pairings ?? []).length !== 6) {
+    throw new TypeError("F5 requires six declared polarity-conjugate dyads.");
+  }
+  if ((spec.relationships.neutralPairs ?? []).length !== 0) {
+    throw new TypeError("F5 polarity-conjugate dyads must not be reclassified as established neutral binaries.");
+  }
+  requireCentroid(spec, 0, 1e-12);
+  requireCentroidVelocity(spec, 0, 1e-12);
 }
 
 function validateF6c(spec) {

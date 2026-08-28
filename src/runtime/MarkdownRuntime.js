@@ -1,5 +1,6 @@
 import { createMermaidMarkdownRuntime } from "./MermaidMarkdownRuntime.js";
 import { createMarkdownColumnPaginationRuntime } from "./MarkdownColumnPaginationRuntime.js";
+import { createMarkdownEquationMapRuntime } from "./MarkdownEquationMapRuntime.js";
 
 export function createMarkdownRuntime(deps) {
   const {
@@ -55,6 +56,7 @@ export function createMarkdownRuntime(deps) {
   const runtimeMarkdownIndexPrefix = `${runtimeMarkdownPrefix}index:`;
   let mathTypesetRetryTimer = null;
   let mathTypesetRetryVersion = 0;
+  const equationMapRuntime = createMarkdownEquationMapRuntime({ markdownBody, documentLike, getWindow: getBrowserWindow });
 
   function escapeHtml(text) {
     return String(text)
@@ -509,6 +511,7 @@ export function createMarkdownRuntime(deps) {
     }
     if (typesetMarkdown()) {
       columnPaginationRuntime.scheduleRefresh();
+      equationMapRuntime.restoreReturnPosition();
       return;
     }
     if (retriesRemaining <= 0) {
@@ -793,6 +796,7 @@ export function createMarkdownRuntime(deps) {
     setMarkdownKind(markdownPath);
     decorateMarkdownImages();
     decorateLocalAssetLinks();
+    equationMapRuntime.decorate(markdownPath, sectionKey);
     decorateTextbookToc();
     decorateSupportResearch();
     applyMarkdownLayout();

@@ -8,7 +8,7 @@
 - **Claim level:** mixed derived geometry, derived stationary cancellation, inferred response coordinates, and guessed medium interpretation
 - **Advancement:** no retained branch, physical Noether sea, equation-score movement, or reader-facing promotion
 
-This document is the durable priority-side home for the alternating cubic population proposed in [Session 23](brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24). It consumes the exact F6c center scaffold from [F6c Geometry](f6c-geometry.md), the stationary theorem from the [Simple-Cubic Checkerboard Stationary-Release Cancellation Certificate](../dormant-deferred/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md), and the campaign discipline in [Simulation Run Protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md). It does not promote the candidate into `content/markdown/aaa`.
+This document is the durable priority-side home for the alternating cubic population proposed in [Session 23](brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24). It consumes the exact F6c center scaffold from [F6c Geometry](../braid-program/f6c-geometry.md), the stationary theorem from the [Simple-Cubic Checkerboard Stationary-Release Cancellation Certificate](../dormant-deferred/app-lattice-lab/simple-cubic-checkerboard-cancellation-certificate.md), and the campaign discipline in [Simulation Run Protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md). It does not promote the candidate into `content/markdown/aaa`.
 
 Plainly: this is a rigorous research seed, not a declaration that the universe is a cubic lattice. The exact results concern corner geometry and one stationary cancellation family. The moving medium remains a testable guess.
 
@@ -651,7 +651,7 @@ Plainly: the rejected rigid seed remains a useful control. The flexible descript
 
 ## Local Provenance
 
-- [F6c Geometry](f6c-geometry.md) supplies the exact tetrahedral axes, member map, track-center versus moving-member distinction, equal-scale *stella octangula*, cube hull, and F6c claim boundaries.
+- [F6c Geometry](../braid-program/f6c-geometry.md) supplies the exact tetrahedral axes, member map, track-center versus moving-member distinction, equal-scale *stella octangula*, cube hull, and F6c claim boundaries.
 - [Session 23 — Deformable Alternating Cubic Sea With Orbiting Sites](brainstorming.md#session-23--deformable-alternating-cubic-sea-with-orbiting-sites-2026-08-24) supplies the candidate synthesis, descriptive site history, common/differential idea, and original proof burden.
 - [Adaptive Cubic-Medium Kinematics And Ledger Contract](adaptive-cubic-medium-kinematics-and-ledger-contract.md) supplies site-local history reconstruction, cutoff-robust neighbor selection, lawful reclassification decisions, and the matched Physical Observer directional adjudicator.
 - [Adaptive Cubic-Background O0 Audit](adaptive-cubic-background-o0-audit-2026-08-25.json) applies the continuous EOM-history return and instantaneous site-chart consumer to the provenance-bound eight-site run and records its four blocking prerequisites.

@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-import {
-  mkdirSync,
-  writeFileSync,
-} from "node:fs";
 import path from "node:path";
 
 import {
@@ -12,6 +8,10 @@ import {
 import {
   runStratifiedEndpointResidualSearch,
 } from "../../src/prescribed-path-analysis/EndpointResidualSearchCampaign.mjs";
+import {
+  acquireExclusiveCampaignOutputLease,
+  publishExclusiveCampaignOutput,
+} from "../../src/prescribed-path-analysis/ExclusiveCampaignOutput.mjs";
 
 function parseArguments(argv) {
   const values = new Map();
@@ -32,15 +32,18 @@ function parseArguments(argv) {
     values.set(key, value);
     index += 1;
   }
+  const output = values.get("--output");
+  if (!flags.has("--help") && !output) {
+    throw new Error(
+      "--output is required; parallel campaigns may not use a shared default path.",
+    );
+  }
   return {
     help: flags.has("--help"),
     seed:
       values.get("--seed") ??
       "stratified-endpoint-residual-search-2026-07-24-v1",
-    output: path.resolve(
-      values.get("--output") ??
-        ".local-data/braid-analysis/endpoint-residual-search/stratified-v1.json",
-    ),
+    output: output ? path.resolve(output) : null,
   };
 }
 
@@ -49,7 +52,7 @@ function printHelp() {
     "Usage:",
     "  node scripts/eom/run-endpoint-residual-search.mjs",
     "    [--seed token]",
-    "    [--output path]",
+    "    --output unique-create-exclusive-path",
     "",
     "Runs six deterministic endpoint-only prescribed-path draws per active",
     "member: one catalog reference, two local-neighborhood, and three full",
@@ -59,6 +62,7 @@ function printHelp() {
     "The output is diagnostic-only. The command does not evolve paths, invoke",
     "the EOM solver, or establish a branch, stability, retention, or taxonomy",
     "existence claim.",
+    "The output path is required, reserved before computation, and never overwritten.",
   ].join("\n"));
 }
 
@@ -68,6 +72,9 @@ if (options.help) {
   process.exit(0);
 }
 
+const outputLeasePath = acquireExclusiveCampaignOutputLease(options.output, {
+  schema: "prescribed-path-analysis/endpoint-residual-output-lease.v1",
+});
 const loaded = loadAllCandidateCampaignRegistry();
 const result = runStratifiedEndpointResidualSearch({
   candidates: loaded.candidates,
@@ -84,8 +91,11 @@ const result = runStratifiedEndpointResidualSearch({
     }
   },
 });
-mkdirSync(path.dirname(options.output), { recursive: true });
-writeFileSync(options.output, `${JSON.stringify(result, null, 2)}\n`);
+publishExclusiveCampaignOutput(
+  options.output,
+  `${JSON.stringify(result, null, 2)}\n`,
+  outputLeasePath,
+);
 console.log(JSON.stringify({
   output: options.output,
   resultHash: result.resultHash,

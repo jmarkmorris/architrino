@@ -41,7 +41,7 @@
       "boundary": "The local prose labels the proton color-exposure inequality as a closure target, not a completed confinement proof."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "usableFor": [
         "hard_no_free_color_constraint",
         "residual_strong_interaction_recovery_burden"

@@ -222,6 +222,150 @@ The transverse patch radius $\varepsilon$, wake thickness, and any emission-time
 
 Claim grade: **derived conditional representation obstructions and cap scaling; representation and observation choices unresolved**. A nonzero ordinary-density integral supported on one singleton, or a direct calculation contradicting the declared cap geometry, would falsify the corresponding mathematical statement.
 
+### 2.2 Labeled source-history pushforward adjudication
+
+Later Field-Speed work supplies a candidate mathematical carrier that was not available in the original MEC-002 audit: a labeled source-clock graph measure and its receiver-time pushforward. The relevant results remain at their recorded Field-Speed authority in [coincidence-open-interval-convergence-and-endpoint-residue.md](../field-speed-ceiling/coincidence-open-interval-convergence-and-endpoint-residue.md), [uniform-translation-spatial-receiver-measure-limit.md](../field-speed-ceiling/uniform-translation-spatial-receiver-measure-limit.md), and [mathematics-geometry-dynamical-system.md](../field-speed-ceiling/mathematics-geometry-dynamical-system.md). In particular, the proposed FSC-009 swept-source rule is not adopted here and does not supply a frozen-root event law.
+
+Fix an ordered receiver-transmitter channel $i\leftarrow j$. Its diffuse emission-label carrier is the Borel measure space
+
+$$
+\Lambda_j=I_s\times S^2,
+\qquad
+d\lambda_j=ds\,d\boldsymbol\omega,
+$$
+
+with transmitter identity, polarity, emission time $s$, and direction $\boldsymbol\omega$ retained as provenance labels. On one certified injective absolutely continuous causal branch, write $T=T_{ij}(s)$ for receiver time, $S_{ij}(T)$ for its inverse, and
+
+$$
+\mathbf K_{ij}(T,s)
+=
+\kappa\,\sigma_{ji}|q_jq_i|
+\frac{c_f}{r(T,s)^2}
+\widehat{\mathbf r}_j(T,s).
+$$
+
+The smallest branch-local graph carrier is the vector measure
+
+$$
+d\widetilde{\boldsymbol\mu}_{ij}
+=
+\delta_{(i\leftarrow j)}
+\otimes
+\frac{\mathbf K_{ij}(T_{ij}(s),s)}{|D_r(T_{ij}(s),s)|}
+\,ds\,
+\delta_{\boldsymbol\omega_{ij}(s)}(d\boldsymbol\omega),
+$$
+
+and its receiver-time observation measure is $\boldsymbol\eta_{ij}=(T_{ij})_\#\widetilde{\boldsymbol\mu}_{ij}$. On compact branch subsets with positive floors on $r$, $|D_t|$, and $|D_r|$, these are finite vector Radon measures. They use only the retained source history, the receiver history through the present root, and the present branch labels; no future receiver history enters.
+
+Plainly: the candidate records which source time and direction produced each already-admitted reception, and it can be pushed forward to the receiver's clock. It is an observation record, not yet an emitted account or a rule for spending one.
+
+**Regular-chart equivalence theorem.** On every sign-stable branch for which $D_tD_r\ne0$ almost everywhere, causal-root differentiation gives
+
+$$
+\frac{dS_{ij}}{dT}=\frac{D_r}{D_t}.
+$$
+
+Consequently the Radon--Nikodym density of the receiver-time pushforward is
+
+$$
+\frac{d\boldsymbol\eta_{ij}}{dT}
+=
+\frac{\mathbf K_{ij}(T,S_{ij}(T))}{|D_r|}
+\left|\frac{dS_{ij}}{dT}\right|
+=
+\kappa\,\sigma_{ji}|q_jq_i|
+\frac{c_f}{r^2|D_t|}
+\widehat{\mathbf r}_j.
+$$
+
+Thus the graph carrier reproduces the canonical transmitter-side acceleration exactly. The signed ratio $D_r/D_t$ remains the orientation of root playback; $D_r$ is only the source-clock coordinate Jacobian and is not a new instantaneous acceleration multiplier. Branches separated by isolated sign changes may be treated chart by chart, but an interval with $D_r=0$ has no inverse source-clock chart. Assigning zero reception there, as proposed by FSC-009, would be new foundational data and is not inferred by this theorem.
+
+Plainly: wherever receiver time and emission time are valid coordinates for the same root, changing coordinates cancels the receiver factor and leaves the existing acceleration row unchanged. The proof says nothing about how much wake account a reception owns.
+
+For one injective channel, disjoint receiver-time Borel sets $B_n$ have disjoint source-clock preimages $T_{ij}^{-1}(B_n)$, so countable additivity of $\widetilde{\boldsymbol\mu}_{ij}$ gives countable additivity of $\boldsymbol\eta_{ij}$. The retained channel, transmitter, polarity, source time, and direction labels make this observation provenance stable. This is a vector observation measure, however, not a nonnegative source-capacity measure, and its receiver-conditioned graph is singular with respect to $ds\,d\boldsymbol\omega$ because each directional singleton has zero spherical measure.
+
+The smallest nonsymmetric closed-form control makes the ownership obstruction explicit. Put one stationary transmitter at the origin and two stationary receivers at $R_1\mathbf e_1$ and $R_2\mathbf e_2$, where $R_1\ne R_2$ and $\mathbf e_1\ne\mathbf e_2$. In normalized numerical units $c_f=1$,
+
+$$
+S_k(T)=T-R_k,
+\qquad
+D_{t,k}=D_{r,k}=1,
+\qquad
+\boldsymbol\omega_k=\mathbf e_k,
+$$
+
+so a receiver interval $B_k=I+R_k$ pulls back to the same emission-time interval $I$ and carries the finite observation measure $\kappa\sigma_k|q_jq_k|\mathbf e_k\,ds/R_k^2$. The two graph cells $I\times\{\mathbf e_1\}$ and $I\times\{\mathbf e_2\}$ are disjoint, but both have zero $ds\,d\boldsymbol\omega$ measure. Giving either cell its finite graph mass therefore does not restrict or partition the diffuse emitted carrier; it introduces a receiver-conditioned singular measure. Direct-summing the two channel measures permits both observations but copies the source label into two receiver ledgers. Reading either copy as a debit makes total debit grow with the receiver set, while draining the whole emission-time label after the first reception suppresses the other direction remotely. No capacity, depletion, mutation, or receiver-independent no-double-booking rule follows.
+
+Plainly: intervals cure the zero-length problem in source time, but they do not give a point direction any share of an emitted spherical account. The graph construction moves the zero-measure difficulty from reception time to direction and leaves ownership undecided.
+
+An isolated simple reception remains a singleton of the non-atomic $ds$ coordinate, so its graph measure is zero even though the Radon--Nikodym acceleration density is finite. A receiver-time interval can carry finite integrated acceleration, but this is accumulated observation, not a finite account transfer. The same labeled emission may be observed by multiple receivers because the pushforward has no source mutation; that property preserves the regular acceleration row but proves neither permissible reuse nor nonduplication.
+
+At the Field-Speed coincidence endpoint, the exact source-clock density on the mirror control scales as $(T_c-s)^{-2}ds$. It is locally finite on every compact subset of the open interval, has no source-clock atom, and has divergent total variation on every closed neighborhood of $T_c$. A fixed far part may collapse to a receiver-time atom in a parameter-family limit, but the full untruncated branch has no finite vector-Radon endpoint measure. At the MEC-007 same-transmitter birth, the unchanged sharp acceleration scales as $\tau^{-3}$; with no maturity supplied by this carrier, the exact requirement
+
+$$
+\int_0^L\frac{M(\tau)}{\tau^3}\,d\tau<\infty
+$$
+
+fails for $M=1$. The pushforward therefore neither creates a finite endpoint atom nor selects a finite transition, maturity profile, cutoff, capacity scale, or speed ceiling.
+
+Plainly: the carrier is well behaved only while the endpoint is excluded. It records the known singular approach but does not regularize it.
+
+**Disposition: `PARTIAL`.** The labeled source-history pushforward derives causal observation geometry, direction-local provenance, countable additivity on one regular channel, and exact regular-chart reduction without changing the acceleration law. It does not derive MEC-002's first allocation object because it supplies no receiver-independent finite share of the emitted direction measure, no debit or transfer ownership, and no multi-receiver capacity rule. Reception transfer, maturity or suppression, emission capacity, motion and wake accounts, retained-boundary flux, and one-sided uniqueness all remain open; allocation itself remains prior to them. MEC-002 status is unchanged.
+
+Claim grade: **derived regular-chart identity and derived allocation obstruction on the stated measure classes; inferred choice of the graph carrier as an observation representation; no constitutive meaning adopted**. The regular equivalence is falsified by a certified injective branch with nonzero $D_t,D_r$ whose independently calculated pushforward differs from $\mathbf K/|D_t|$. The countable-additivity claim is falsified if disjoint receiver-time sets have overlapping source preimages on the declared injective chart. The allocation obstruction is falsified by a receiver-independent nonnegative finite source measure whose restrictions give the displayed finite receiver-interval debits, remain countably additive for arbitrarily many receivers, preserve the canonical regular row, and add no scale or postulate. The endpoint classification is falsified by a finite-Radon closed-endpoint extension agreeing with every exact truncation despite the recorded divergent total variation. The stationary two-receiver control and the exact change-of-variables identity are closed-form analytic references independent of any implementation.
+
+### 2.3 Finite receiver-independent allocation no-go
+
+The preceding two-receiver obstruction extends to arbitrary finite receiver sets without choosing a density or a particular direction partition. Fix a nonzero source-clock interval $I$ and let $\mu_I$ be a receiver-independent nonnegative source-account measure with finite capacity
+
+$$
+C_I=\mu_I(I\times\mathbb S^2)<\infty.
+$$
+
+For a regular reception in direction $\boldsymbol\omega$, write $Q_I(\boldsymbol\omega)\geq0$ for the source-account debit assigned to that reception. Impose four conditions: the debit depends only on the source label and the local source--receiver hit data, not on other receivers or their ordering; every admitted nonzero canonical reception receives a positive debit; adding receivers does not change an already assigned debit; and every finite compatible direction set $F\subset\mathbb S^2$ obeys the no-double-booking bound
+
+$$
+\sum_{\boldsymbol\omega\in F}Q_I(\boldsymbol\omega)\leq C_I.
+$$
+
+Plainly: one fixed emitted account must pay the same local claim whether a receiver is considered alone or alongside other receivers, and all simultaneous claims together must fit within the finite account.
+
+**Theorem (finite universal point-allocation no-go).** No allocation can satisfy all four conditions while preserving the universal regular canonical reception row. If $C_I=0$, positive debit already contradicts the finite-sum bound. If $C_I>0$, define
+
+$$
+U_n
+=
+\{\boldsymbol\omega:Q_I(\boldsymbol\omega)\geq C_I/n\},
+\qquad n=1,2,\ldots .
+$$
+
+Each $U_n$ has at most $n$ members, since any $n+1$ of them would have total debit greater than $C_I$. Every direction with positive debit belongs to some $U_n$, so $\{\boldsymbol\omega:Q_I(\boldsymbol\omega)>0\}=\bigcup_{n=1}^{\infty}U_n$ is at most countable.
+
+Plainly: varying the debit by direction does not solve the problem. A finite account can support positive receiver-independent point debits in only countably many directions.
+
+The exact $c_f=1$ prescribed-history control supplies the incompatible continuum. Keep the source stationary at the origin and, for any finite selection of distinct directions $\boldsymbol\omega_k$, place otherwise identical stationary receivers at $R\boldsymbol\omega_k$. On every source-to-receiver channel,
+
+$$
+S_k(T)=T-R,
+\qquad
+D_{t,k}=D_{r,k}=1,
+\qquad
+\lVert\mathbf A_k\rVert
+=
+\frac{|\kappa q_jq_k|}{R^2}.
+$$
+
+Thus every direction is a regular nonzero canonical reception direction, and every finite subset is an admissible source-to-receiver test set. Universal positive debit would make the positive-debit set all of $\mathbb S^2$, contradicting the countability result. With rotation covariance, the contradiction sharpens further: identical local scalar data give one common positive debit $q(I,R)$, while no-double-booking requires $Nq(I,R)\leq C_I$ for every finite $N$.
+
+Plainly: an unchanged universal wake can be observed at any number of directions, but a finite source account cannot be spent positively and independently at every one of those observations. Calling each observation a transfer copies the debit when receivers are added.
+
+This is a no-go only for a **finite, nonnegative, receiver-independent, depleting point-reception account with arbitrary finite multi-receiver consistency**. It does not rule out the nondepleting observation carrier of Section 2.2; receiver-set-dependent repartition; depletion or shadowing that changes later canonical reception; finite receiver patches with a new cross-section and overlap law; a derived bound on the compatible receiver population; an infinite account; signed bookkeeping that is not a nonnegative capacity; or a separate replenishment and account-channel law. Each escape changes or supplements at least one theorem assumption and therefore remains constitutive work rather than a construction supplied by the canonical regular row.
+
+Plainly: the strict allocation object is ruled out, not MEC-002 as a whole. Progress now requires a derived reason to relax one named assumption and an update law showing what replaces it.
+
+Claim grade: **derived no-go theorem on the stated allocation class**. Its independent reference is the exact stationary prescribed-history control above; no implementation output enters the proof. The theorem is falsified by a finite nonnegative receiver-independent account and positive point-debit rule that obey the finite-sum bound for every compatible finite receiver set while retaining the unchanged regular canonical source-to-receiver row, or by an accepted $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation that forbids the arbitrarily large finite receiver controls used in the proof. MEC-002 remains `In progress`: allocation by universal positive point debit is closed negatively, while the replacement account, reception transfer, maturity, emission law, boundary flux, and one-sided uniqueness remain open.
+
 ## 3. Coincident-birth requirement
 
 On

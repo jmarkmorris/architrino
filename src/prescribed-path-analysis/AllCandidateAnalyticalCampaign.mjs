@@ -138,6 +138,7 @@ function validateRegistryShape(registry) {
   }
   if (!registry.generatedCampaign || !Array.isArray(registry.candidates) ||
       !Array.isArray(registry.excludedCatalogCandidates) ||
+      !Array.isArray(registry.routedCatalogCandidates) ||
       !Array.isArray(registry.checkedCampaigns) ||
       !Array.isArray(registry.excludedCampaigns)) {
     fail("all-candidate registry inventories are incomplete.");
@@ -156,20 +157,28 @@ function validateCandidateInventory(registry) {
   const catalogEntries = BORG_BRAID_RECORD_CATALOG.entries;
   const catalogById = new Map(catalogEntries.map((entry) => [entry.id, entry]));
   const excludedIds = new Set();
-  for (const exclusion of registry.excludedCatalogCandidates) {
-    concreteString(exclusion.candidateId, "excluded catalog candidateId");
-    concreteString(exclusion.reason, `excluded catalog candidate ${exclusion.candidateId} reason`);
-    if (!catalogById.has(exclusion.candidateId) || excludedIds.has(exclusion.candidateId)) {
-      fail(`excluded catalog candidate ${exclusion.candidateId} is missing or duplicated.`);
+  const routedIds = new Set();
+  for (const [kind, rows, ids] of [
+    ["excluded", registry.excludedCatalogCandidates, excludedIds],
+    ["routed", registry.routedCatalogCandidates, routedIds],
+  ]) {
+    for (const row of rows) {
+      concreteString(row.candidateId, `${kind} catalog candidateId`);
+      concreteString(row.reason, `${kind} catalog candidate ${row.candidateId} reason`);
+      if (!catalogById.has(row.candidateId) || ids.has(row.candidateId) ||
+          excludedIds.has(row.candidateId) || routedIds.has(row.candidateId)) {
+        fail(`${kind} catalog candidate ${row.candidateId} is missing, duplicated, or overlaps another disposition.`);
+      }
+      ids.add(row.candidateId);
     }
-    excludedIds.add(exclusion.candidateId);
   }
   const targets = targetByRecordPath();
   const candidateIds = new Set();
   const candidates = registry.candidates.map((candidate, ordinal) => {
     const catalog = catalogById.get(candidate.candidateId);
-    if (!catalog || excludedIds.has(candidate.candidateId)) {
-      fail(`registry analytical candidate ${candidate.candidateId} is absent from or excluded by the Borg catalog.`);
+    if (!catalog || excludedIds.has(candidate.candidateId) ||
+        routedIds.has(candidate.candidateId)) {
+      fail(`registry analytical candidate ${candidate.candidateId} is absent from or separately dispositioned by the Borg catalog.`);
     }
     if (candidate.candidateId !== catalog.id ||
         candidate.familyId !== catalog.familyId ||
@@ -212,9 +221,16 @@ function validateCandidateInventory(registry) {
       recordBytes,
     };
   });
-  if (candidateIds.size + excludedIds.size !== catalogEntries.length ||
-      catalogEntries.some((entry) => !candidateIds.has(entry.id) && !excludedIds.has(entry.id))) {
-    fail("every Borg catalog candidate must be either analytically registered or explicitly excluded.");
+  if (candidateIds.size + excludedIds.size + routedIds.size !== catalogEntries.length ||
+      catalogEntries.some((entry) =>
+        !candidateIds.has(entry.id) &&
+        !excludedIds.has(entry.id) &&
+        !routedIds.has(entry.id))) {
+    fail(
+      "every Borg catalog candidate must be either analytically registered or " +
+      "explicitly excluded; an active nonapplicable family may instead be routed " +
+      "to a named separate instrument.",
+    );
   }
   const registeredOrder = catalogEntries
     .filter((entry) => candidateIds.has(entry.id))

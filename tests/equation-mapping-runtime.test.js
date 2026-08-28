@@ -377,7 +377,7 @@ test("equation mapping rejects overlays that do not target a formula section", (
 
 test("equation mapping search includes subject, formula text, anchors, and overlay content", () => {
   const documents = createSeedEquationMapDocuments();
-  assert.equal(filterEquationMapDocuments(documents, "AAA native").length >= 1, true);
+  assert.equal(filterEquationMapDocuments(documents, "Dynamics").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "Lorentz factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "transmitter-side").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
@@ -932,6 +932,31 @@ test("equation mapping derives callout clearance from the tallest equation row",
   assert.equal(resolveEquationLineClearancePx([], 0), 28);
 });
 
+test("below explainers honor the symbol tooltip band even when the viewport is too short", () => {
+  const layout = resolveCalloutRowLayout({
+    stageWidth: 1400, stageHeight: 700,
+    equationRect: { left: 100, top: 300, bottom: 400, width: 1200, height: 100 },
+    placement: "below", equationGapPx: 100, minBelowY: 620,
+    items: [{ id: "below", width: 300, height: 260, targetCenterX: 700 }],
+  });
+  assert.equal(layout.get("below").y, 620);
+  assert.equal(resolveCarouselClearanceCalloutPosition({
+    position: layout.get("below"), commentRect: { height: 260 },
+    carouselRect: { top: 640 }, minY: 620,
+  }).y, 620, "the carousel must not push an explainer into a tooltip; use scroll space");
+});
+
+test("tall upper explainers push the equation and its lower row into scrollable space", () => {
+  assert.equal(resolveEquationVerticalShift({
+    stageHeight: 700,
+    equationShellRect: { top: 240, bottom: 500, height: 260 },
+    rowRects: [{ top: 240, bottom: 350 }],
+    aboveCalloutRects: [{ top: 80, bottom: 510 }],
+    belowCalloutRects: [{ top: 650, bottom: 850 }],
+    minimumGapPx: 110,
+  }), 380);
+});
+
 test("equation mapping shifts explicit formula rows below a top callout row", () => {
   assert.equal(
     resolveEquationVerticalShift({
@@ -1356,14 +1381,15 @@ test("equation mapping defaults to the coordinate layer key instead of saved doc
 
 test("equation mapping subject selector defaults to folded groups", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const sidebar = readRepoFile("src/apps/equation-mapping/EquationMappingSidebar.js");
   const html = readRepoFile("equation-mapping.html");
-  assert.equal(runtime.includes("groupEquationMapDocumentsBySubject(this.getVisibleDocumentList())"), true);
+  assert.equal(sidebar.includes("groupEquationMapDocumentsBySubject(keyEquations)"), true);
   assert.equal(runtime.includes("this.expandedSubjectIds = normalizeExpandedSubjectIds"), true);
   assert.equal(runtime.includes("expandedSubjectIds: [...this.expandedSubjectIds]"), true);
-  assert.equal(runtime.includes('group.dataset.expanded = isExpanded ? "true" : "false"'), true);
+  assert.equal(sidebar.includes('section.dataset.expanded = String(expanded)'), true);
   assert.match(
     html,
-    /\.equation-mapping-index-group\[data-expanded="false"\] \.equation-mapping-index-items \{[\s\S]*?display: none;/u
+    /\.equation-mapping-index-group\[data-expanded="false"\] > \.equation-mapping-index-items \{[\s\S]*?display: none;/u
   );
 });
 
@@ -1481,9 +1507,9 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
-  assert.match(html, /\.equation-mapping-index-group-toggle strong \{[\s\S]*?font-size: 18px;/u);
-  assert.match(html, /\.equation-mapping-index-item span \{[\s\S]*?font-size: 21px;/u);
-  assert.match(html, /\.equation-mapping-index-item small \{[\s\S]*?font-size: 15px;/u);
+  assert.match(html, /\.equation-mapping-index-group-toggle strong \{[\s\S]*?font-size: 14px;/u);
+  assert.match(html, /\.equation-mapping-index-item > span \{[\s\S]*?font-size: 14px;/u);
+  assert.match(html, /\.equation-mapping-index-item small \{[\s\S]*?font-size: 12px;/u);
   assert.equal(html.includes(".equation-mapping-equation-title span"), false);
   assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?flex: 0 1 auto;[\s\S]*?font-size: 21px;/u);
   assert.match(
@@ -1534,7 +1560,7 @@ test("user-facing equation mapping and scene sources use TeX for stylized AAA", 
 
   assert.equal(equationData.includes("𝔸𝔸𝔸"), false);
   assert.equal(
-    equationData.includes("$\\\\mathbb{A}\\\\mathbb{A}\\\\mathbb{A}$ native ledgers"),
+    equationData.includes("$\\\\mathbb{A}\\\\mathbb{A}\\\\mathbb{A}$ foundations"),
     true
   );
   assert.equal(runtime.includes("createInlineMathTextElement"), true);

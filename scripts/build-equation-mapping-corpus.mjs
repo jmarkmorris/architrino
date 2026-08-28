@@ -186,6 +186,11 @@ function consumeScripts(source, startIndex) {
     } else if (source[cursor] === "\\") {
       const command = source.slice(cursor).match(/^\\[A-Za-z]+/u)?.[0];
       cursor += command?.length ?? 1;
+      if (SKIP_GROUP_COMMANDS.has(command?.slice(1)) || DECORATOR_COMMANDS.has(command?.slice(1))) {
+        while (/\s/u.test(source[cursor] ?? "")) cursor += 1;
+        const group = readBalancedGroup(source, cursor);
+        if (group) cursor = group.end;
+      }
     } else if (cursor < source.length) {
       cursor += 1;
     }
@@ -209,9 +214,12 @@ export function extractEquationSymbols(tex) {
   const seen = new Set();
   let cursor = 0;
   const addSymbol = (start, end) => {
-    const token = source.slice(start, end).replace(/\s+/gu, "").trim();
-    if (!token || seen.has(token)) return;
-    seen.add(token);
+    const token = normalizeTeX(source.slice(start, end));
+    const identity = token.replace(/\s+/gu, "");
+    if (!token || seen.has(identity)) return;
+    // Spaces can terminate TeX commands (e.g. \\leftarrow t); they are not
+    // disposable in the formula shown by chips and fallback definitions.
+    seen.add(identity);
     symbols.push(token);
   };
 
@@ -234,6 +242,7 @@ export function extractEquationSymbols(tex) {
       }
       if (OPERATORNAME_COMMANDS.has(command)) {
         let next = commandEnd;
+        if (source[next] === "*") next += 1;
         while (/\s/u.test(source[next] ?? "")) next += 1;
         const group = readBalancedGroup(source, next);
         const end = consumeScripts(source, group?.end ?? commandEnd);
@@ -272,8 +281,28 @@ export function extractEquationSymbols(tex) {
   return symbols;
 }
 
-function findContextDefinition(symbolTex, contextLines) {
+export function findContextDefinition(symbolTex, contextLines) {
   const target = normalizeTeX(symbolTex);
+  // A numeric power keeps its base symbol's local meaning. Do not strip
+  // subscripts or named superscripts: they can identify different quantities.
+  const baseTarget = target.replace(/\^(?:\{\d+\}|\d)/gu, "");
+  for (const definitionTarget of new Set([target, baseTarget])) {
+    for (const rawLine of contextLines) {
+      if (NEGATED_DEFINITION_CUES.test(rawLine)) continue;
+      for (const match of String(rawLine).matchAll(/\$([^$\n]+)\$/gu)) {
+        if (normalizeTeX(match[1]) !== definitionTarget) continue;
+        const following = rawLine.slice(match.index + match[0].length);
+        if (!/^\s+(?:is|are|denotes?|means?|represents?)\b/iu.test(following)) continue;
+        // Keep the defining sentence rather than unrelated later sentences.
+        const sentenceEnd = /[.!?](?=\s|$)/u.exec(following);
+        const end = sentenceEnd
+          ? match.index + match[0].length + sentenceEnd.index + 1
+          : rawLine.length;
+        const definition = cleanContextLine(rawLine.slice(match.index, end));
+        if (definition && definition.length <= 520) return definition;
+      }
+    }
+  }
   for (const rawLine of contextLines) {
     const inlineMath = [...String(rawLine).matchAll(/\$([^$\n]+)\$/gu)];
     const containsTarget = inlineMath.some((match) =>
@@ -488,7 +517,7 @@ function subjectForPath(sourcePath) {
     archie: "Archie references",
     assemblies: "Assemblies",
     cosmology: "Cosmology and astrophysics",
-    dynamics: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+    dynamics: "Dynamics",
     foundations: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ foundations",
     "noether-braid": "Noether braid",
     "nuclear-atomic": "Nuclear and atomic assemblies",
@@ -551,12 +580,31 @@ function addMissingLinks(source, blocks) {
   return { source: result, linksAdded: modifications.length };
 }
 
+export function createTextbookChapterIndex(tocRoot) {
+  const chapters = new Map();
+  function visit(node) {
+    if (!node) return;
+    if (node.markdownPath && !chapters.has(node.markdownPath)) {
+      chapters.set(node.markdownPath, { sourceTitle: node.title, sourceOrder: chapters.size });
+    }
+    (node.children ?? []).forEach(visit);
+  }
+  visit(tocRoot);
+  return chapters;
+}
+
 function createCorpusRecords(rootDir, files, promotedIds, sceneHrefBySource) {
+  const tocPath = path.join(rootDir, "content/graph/textbook_toc.json");
+  const chapters = createTextbookChapterIndex(
+    fs.existsSync(tocPath) ? JSON.parse(fs.readFileSync(tocPath, "utf8")).tocRoot : null
+  );
   const records = [];
   for (const sourcePath of files) {
     const absolutePath = path.join(rootDir, sourcePath);
     const source = fs.readFileSync(absolutePath, "utf8");
     const lines = source.split(/\r?\n/u);
+    const chapter = chapters.get(sourcePath);
+    const sourceTitle = chapter?.sourceTitle || cleanHeading(lines.find(line => /^#\s+/u.test(line))) || path.basename(sourcePath, ".md").replaceAll("-", " ");
     const blocks = parseCorpusDisplayEquations(sourcePath, source);
     assignSemanticIds(blocks);
     const countsByHeading = new Map();
@@ -587,6 +635,8 @@ function createCorpusRecords(rootDir, files, promotedIds, sceneHrefBySource) {
         source: {
           status: "linked",
           sourcePath,
+          sourceTitle,
+          sourceOrder: chapter?.sourceOrder ?? null,
           sourceHeading: block.heading,
           startLine: block.startLine,
           endLine: block.endLine,

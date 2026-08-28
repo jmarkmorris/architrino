@@ -1,0 +1,17 @@
+# F5 Phase-Varying History-Family Closure
+
+- Thread label: F-series geometry debt, one field artifact at a time
+- Started: 2026-08-26T20:14:56-0400
+- Status: completed
+- Postures: proof-route forge and priority-ledger convergence
+- Lanes: `G` intuition-to-proof synthesis and `H` priority-ledger convergence
+- Path shard: `reference/priorities/mapping-electromagnetism` and the Braid Program prescribed-worldline readiness owner
+- Active claims avoided: the completed F1-F4 mathematical closures; the completed F5 gauge, coordinates, reconstruction, tangent, speed, and collision artifacts; the demoted common-cadence circular realization; the completed F6b/F6c conformance work; and the stable Braid Program brainstorming synthesis
+- Excluded claims read: no stable executable identities or source order, canonical numerical row, registered path operator, selected finite delay horizon, revised speed/collision pass, dynamics, binding, retention, stability, particle identity, candidate promotion, or display representative is authorized
+- Search patterns planned: exact all-real coordinate history; fixed branch sheet; strict triangle-domain enclosure; complete finite-window restriction; return of coordinates, positions, and velocities; no transfer of old sampled guard passes
+- Expected output: one exact parameterized F5 coordinate-history family that supplies complete worldlines and prehistory on every finite restriction while leaving the separate canonical-row, path-operator, periodicity-contract, and guard-pass decisions open
+- Completed output: the F5 owner now defines an all-real three-phase harmonic resultant family, proves the uniform enclosure $A_\sigma/\sqrt{2}\le\kappa_{a\sigma}\le A_\sigma\sqrt{3/2}$, reconstructs twelve analytic worldlines on one fixed branch sheet, and supplies any finite retained prehistory plus one exact position-and-velocity return cycle by restriction; the readiness owner promotes F5 `History` from `guessed` to `derived` while leaving `Periodicity` guessed until a canonical numerical return contract is selected
+- Independent check boundary: the frozen checker `/tmp/f5_phase_varying_history_check.mjs`, authored before the owner edit, evaluated 4,097 times across one cycle and passed the strict-triangle, fixed-radius, sector-centroid, tangent finite-difference, labeled-return, and non-common-cadence checks; the durable conformance test independently re-expresses the mathematics but its agreement with the owner is implementation parity, while the displayed trigonometric identity and enclosure are the proof authority
+- Independent check maxima: radius residual $1.38778\times10^{-16}$, sector-centroid residual $2.74649\times10^{-17}$, tangent finite-difference residual $4.35071\times10^{-10}$, and labeled position/velocity return residual $1.41988\times10^{-15}$; the sampled individual angular-rate range was $[-0.779392,0.779392]$
+- Preserved boundary: no executable JSON, stable identity/source-order ledger, canonical numerical row, finite retained-history depth, registered path operator, revised guard pass, candidate score, dynamics result, retention claim, physical claim, brainstorming, synthesis, or generated-record change
+- Closure goal: close revised F5 `History` at parameterized mathematical authority without silently selecting an executable representative or advancing dynamics claims.

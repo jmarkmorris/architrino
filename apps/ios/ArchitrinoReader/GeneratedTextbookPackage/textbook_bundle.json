@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-08-26T05:08:01.264Z",
-  "package_version": "1.0.0-08258e0e",
+  "generated_at": "2026-08-28T00:09:53.210Z",
+  "package_version": "1.0.0-4885c9d1",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "08258e0e11a188e2002324d6ac4d6a66a2cef8a3198cd568a47a9ae6bd12a5ab",
-    "size": 725649
+    "sha256": "4885c9d11bb7966ab984a2e6c34394819154917e3a18bab2372181ac3c9d7caa",
+    "size": 731948
   },
   "chapters": [
     {
@@ -182,8 +182,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 726163,
-      "sha256": "08258e0e11a188e2002324d6ac4d6a66a2cef8a3198cd568a47a9ae6bd12a5ab"
+      "size": 732462,
+      "sha256": "4885c9d11bb7966ab984a2e6c34394819154917e3a18bab2372181ac3c9d7caa"
     },
     {
       "path": "reading-copies/about-architrino.html",
@@ -302,16 +302,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 11102319,
-      "sha256": "065e3db1302562254c342798469080f80d5f529aad33c7a5a59c0cb2d3f89c49"
+      "size": 11104866,
+      "sha256": "4759306b1357fd19ef7bfa055e8f34aa485bd2597063e905d944f6ec8c36a9f4"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1957419,
-      "sha256": "9cfe52a5021c0787a8ecaaba6550eaa2691476f7c6102a47ca5b3554acf69e1b"
+      "size": 1982403,
+      "sha256": "0411a866ec066db9331c18c87dc00b5bae7b782c9d8f3da1fc571c61e0fd5347"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -462,8 +462,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9017148,
-      "sha256": "fae1cb312669b09c430dc79080e0fee7d694e55b7fed6a05d044a2116575a10e"
+      "size": 9058616,
+      "sha256": "58233a3c561029fef30adb7d35c7e3bd109a8e28322b2424195d9d3e8c468bb0"
     }
   ],
   "links": []

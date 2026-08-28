@@ -37,6 +37,21 @@
       "labelTitle": "Theory Mapping"
     },
     {
+      "id": "one_nature_many_theories",
+      "title": "One Nature, Many Theories",
+      "radius": 2.25,
+      "color": "#5a4a78",
+      "labelTitle": "One Nature, Many Theories",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/one-nature-many-theories.md"
+      },
+      "view": {
+        "columns": 1
+      }
+    },
+    {
       "id": "theory_differentials",
       "title": "Theory Differentials",
       "radius": 2.25,

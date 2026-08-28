@@ -21,6 +21,7 @@ struct NativeEvolutionCheckpoint {
   std::string accepted_time;
   std::string controller_step_size;
   std::size_t controller_certificate_cost_cooldown_remaining = 0;
+  std::size_t controller_consecutive_growth_headroom_steps = 0;
   std::string joint_history_mode;
   std::string model_fingerprint;
   std::string checkpoint_fingerprint;

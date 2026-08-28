@@ -1476,6 +1476,87 @@ body.has-textbook-page-nav #markdown-panel.is-open {
   text-decoration: underline;
 }
 
+#markdown-content .markdown-equation-map-row {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) 60px;
+  gap: 8px;
+  align-items: center;
+  margin: 1em 0;
+  break-inside: avoid;
+}
+
+#markdown-content .markdown-equation-map-row > .markdown-math-block {
+  grid-column: 2;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+#markdown-content .markdown-equation-map-action {
+  position: relative;
+  grid-column: 3;
+  justify-self: end;
+  line-height: 1.25;
+}
+
+#markdown-content .markdown-equation-map-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 8px;
+  border: 1px solid rgba(213, 220, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(10, 12, 24, 0.3);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+#markdown-content .markdown-equation-map-link:hover,
+#markdown-content .markdown-equation-map-link:focus-visible {
+  background: rgba(10, 12, 24, 0.65);
+  border-color: #a7c4ff;
+  text-decoration: none;
+}
+
+#markdown-content .markdown-equation-map-link:focus-visible {
+  outline: 2px solid #a7c4ff;
+  outline-offset: 3px;
+}
+
+#markdown-content .markdown-equation-map-tooltip {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  z-index: 5;
+  visibility: hidden;
+  width: max-content;
+  max-width: min(240px, 70vw);
+  padding: 7px 9px;
+  border: 1px solid rgba(213, 220, 255, 0.4);
+  border-radius: 6px;
+  background: #141025;
+  color: #f5f7ff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+#markdown-content .markdown-equation-map-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+#markdown-content .markdown-equation-map-action:not([data-tooltip-dismissed]):hover .markdown-equation-map-tooltip,
+#markdown-content .markdown-equation-map-action:not([data-tooltip-dismissed]) .markdown-equation-map-link:focus-visible + .markdown-equation-map-tooltip {
+  visibility: visible;
+}
+
 #markdown-content .liberapay-donation-widget {
   margin: 14px 0 10px;
   break-inside: avoid;

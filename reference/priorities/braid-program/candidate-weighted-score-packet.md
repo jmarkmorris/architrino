@@ -1,8 +1,8 @@
 # Braid Candidate Weighted Score Packet
 
-Status: CURRENT SCORE SNAPSHOT v2, 2026-08-26. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract. Version 2 records the [all-candidate campaign](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md), accepts a common ruler and clock for future predeclared packets, and leaves every raw metric and percentage unchanged because no existing record satisfies the new reporting contract retrospectively.
+Status: CURRENT SCORE SNAPSHOT v3, 2026-08-26. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract. Version 3 preserves every v2 raw metric and percentage while separating the active revised F5 phase-varying realization from the demoted common-cadence circular record. The revised realization's first guard campaign was predeclared as score-ineligible and therefore changes only the hard-gate overlay.
 
-The percentages are allocation summaries. The [Braid Candidate Requirement Adjudication](../mapping-electromagnetism/braid-candidate-requirement-adjudication.md) remains authoritative for the hard gates, and a failed hard gate cannot be compensated by either percentage. The `A3` values are scoped to the measured five-coordinate pair-conjugate slice, not the full A3 family.
+The percentages are allocation summaries. The [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md) remains authoritative for the hard gates, and a failed hard gate cannot be compensated by either percentage. The `A3` values are scoped to the measured five-coordinate pair-conjugate slice, not the full A3 family.
 
 Plainly: these numbers summarize the evidence presently attached to each braid option. They do not certify a retained braid, and a row with no measurements is shown as unevaluated rather than physically bad.
 
@@ -125,22 +125,22 @@ Only five braid rows currently supply at least one admissible scored metric. The
 
 | Candidate and scope | Metric | Raw factual record | Grade and evidence | Normalized credit $q$ |
 | --- | --- | --- | --- | ---: |
-| `A3`, measured five-coordinate slice | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](../mapping-electromagnetism/three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
+| `A3`, measured five-coordinate slice | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
 | `A3`, same slice | `M02` | $108/108$ accepted required root certificates; zero unresolved rows | Measured; same record | $1$ |
 | `A3`, same slice | `M03` | $1-0.8921955512=0.1078044488$ | Measured; same record | $0.1078044488$ |
 | `A3`, same slice | `M04` | Minimum certified transmitter-factor lower bound $0.920539$ | Measured; same record | $0.920539$ |
-| `SD3` | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](../mapping-electromagnetism/three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
+| `SD3` | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
 | `SD3` | `M02` | $108/108$ accepted required root certificates; zero unresolved rows | Measured; same record | $1$ |
 | `SD3` | `M03` | $1-0.8563730889=0.1436269111$ | Measured; same record | $0.1436269111$ |
 | `SD3` | `M04` | Minimum certified transmitter-factor lower bound $0.925956$ | Measured; same record | $0.925956$ |
-| `F5`, declared ordinary two-ring circular realization | `M01` | The exact joint conditions require coordinate coincidence, but no finite provenance-preserving continuation is declared | Derived; [two-ring no-go](../mapping-electromagnetism/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) | $0$ |
-| `F6b`, original hashed circular history | `M01` | Exact continuous noncoincidence over the complete prescribed cycle | Derived; [F6b root and acceleration screen](../mapping-electromagnetism/inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen) | `N/A` |
+| `F5`, declared ordinary two-ring circular realization | `M01` | The exact joint conditions require coordinate coincidence, but no finite provenance-preserving continuation is declared | Derived; [two-ring no-go](../mapping-equations/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) | $0$ |
+| `F6b`, original hashed circular history | `M01` | Exact continuous noncoincidence over the complete prescribed cycle | Derived; [F6b root and acceleration screen](../mapping-equations/inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen) | `N/A` |
 | `F6b`, same history | `M02` | $7{,}168/7{,}168$ required partner-root rows | Measured; same record | $1$ |
 | `F6b`, same history | `M03` | $1-0.30=0.70$ | Derived; same record | $0.70$ |
 | `F6b`, same history | `M04` | Minimum measured $D_t/c_f=0.7062275402$ | Measured; same record | $0.7062275402$ |
 | `F6b`, same history | `M05` | $R_{\mathrm{RMS}}=0.2990089834/0.30=0.9966966113$ | Measured residual with derived same-history normalization; same record | $0.0033033887$ |
 | `F6b`, same history | `M06` | $R_{\mathrm{peak}}=0.3644475203/0.30=1.2148250677$ | Measured residual with derived same-history normalization; same record | $0$ |
-| `F6c`, refined dual-turn row | `M01` | Continuous guarded noncoincidence through refined $T=0.13$ | Measured; [dual-turn packet](../mapping-electromagnetism/f6c-dual-turn-return-search-2026-08-24.json) | `N/A` |
+| `F6c`, refined dual-turn row | `M01` | Continuous guarded noncoincidence through refined $T=0.13$ | Measured; [dual-turn packet](f6c-dual-turn-return-search-2026-08-24.json) | `N/A` |
 | `F6c`, same row | `M02` | $64/64$ required release-root rows and complete accepted-snapshot root certification | Measured; same record | $1$ |
 | `F6c`, same row | `M03` | $1-0.8484514575609374=0.1515485424390626$ | Measured; same record | $0.1515485424$ |
 | `F6c`, same row | `M04` | Minimum transmitter-factor magnitude $0.6777570293400862$ | Measured; same record | $0.6777570293$ |
@@ -161,15 +161,18 @@ Plainly: each score-bearing record says what calculation or derivation would rem
 
 - The $T=0.15$ three-pair horizons and the refined F6c $T=0.13$ horizon are real bounded times. Static reconstruction under the new ruler gives diagnostic dimensionless horizons `0.43133911780222495` for both the A3 slice and SD3 and `0.24436033713885164` for F6c, but those campaigns did not predeclare this target or one common stopping contract. `M07` therefore remains unavailable rather than receiving retrospective credit.
 - The A3 and SD3 fixed-tangent residuals are useful slice diagnostics, but their packet does not publish the full position-and-rate horizon-supremum distance and enclosure now required by `M08`.
-- The F6c harmonic-cycle values $2.816$ RMS and $10.518$ peak mix coordinate-acceleration components without the dimensionless member-acceleration normalization required by `M05` and `M06`.
+- The F6c harmonic-cycle values $2.816$ RMS and $10.518$ peak mix coordinate-acceleration components without the dimensionless member-acceleration normalization required by `M05` and `M06`. The [same-generation F6c predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) now freezes an admissible future measurement route on the refined dual-turn row, but it has not been executed and makes no value available.
 - F6c exact-action screens publish combined coordinate-state residuals, not the canonical member-position, member-rate, and retained-history split required by `M10` through `M12`. No current campaign supplies the candidate-native continuous lift coordinate required for a nonbinary `M09` fraction.
 - No candidate has a refined multi-prehistory collapse record or a positive-width retained-neighborhood certificate, so `M13` and `M14` remain unavailable for every row.
+- The revised F5 phase-varying realization has a continuous prescribed-history clearance certificate and conservative speed bound, but its selecting campaign explicitly excluded score availability. It therefore receives no retrospective `M01` or `M03` row. The `F5` common-cadence circular `M01=0` record remains attached only to that demoted realization.
 
 Plainly: these omissions are not lost work. They identify the exact reporting and mathematical gaps that the next campaign must close before those measurements can earn score credit.
 
 ## All-Candidate Campaign Disposition Overlay
 
-The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 declared two-ring realization, which remains `DEMOTED` at `H2 F[D]`. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
+The 2026-08-26 campaign assigns `STASIS` to every active scored row except the F5 common-cadence circular realization, which remains `DEMOTED` at `H2 F[D]`. The revised phase-varying F5 creative geometry is a distinct active exploratory row. The already-demoted F6b circular realization remains `DEMOTED` at `H4 F[M]`. Accessory-bearing continuations are unscored and remain in stasis behind their base-braid `H5` dependency. The complete candidate-by-candidate blocker ledger is in the [campaign closeout](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md).
+
+The later [complete-registry campaign](campaigns/2026-08-complete-braid-registry-closure.md) advances the revised F5 realization to `H1/H2 P[D/M]` without changing a metric. Its separate [enclosed-root restart](evidence/2026-08-27-f5-enclosed-root-closure.md) adds only scoped `H3 P[M]` on the declared `8/32/128` reception ladder, not ordinary evolution or a score. The active revised row remains `0.00% / —`; the demoted circular row retains `0.00% / 0.00%`. No evidence generation is combined.
 
 No score changed. An independent arithmetic audit reproduced every approved, equal-metric, Early, and Late percentage from the raw values and applicability sets. The all-metric ordering among rows with available evidence is unchanged under the sensitivity schemes, while the available-metric ordering among the A3 slice, SD3, and F6c remains weight-sensitive. Hard-gate ordering remains controlling.
 
@@ -179,36 +182,41 @@ Plainly: the campaign finished the disposition audit, not a leaderboard. It foun
 
 For `A3`, `SD3`, `F6b`, and `F6c`, `M01` is predeclared `N/A`, so the all-metric denominator is $100-8=92$. Every other braid option retains the full denominator of 100. The earned weighted credits and available denominators are:
 
+The later [parallel A/B/C H1/H2 census](evidence/2026-08-26-parallel-abc-h1-h2-census.md) updates only the hard-gate overlay below. Its prescribed-history search was score-ineligible, so every earned credit, denominator, percentage, `STASIS` disposition, and availability boundary remains unchanged. The separate [complete-root ladder audit](evidence/2026-08-27-braid-search-launch-readiness.md#independently-accepted-complete-ladders) adds scoped prescribed `H3 P[M]` for `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`, `A3.2`, `A3.4`, `B1.1`, `B1.2`, `B1.3`, `C1`, `C2`, `C3`, `C4`, `C5`, and `C6` only. It changes no metric, credit, availability, percentage, or historical disposition and supplies no ordinary-evolution result.
+
+Plainly: closing a geometry admission gate tells us which test may run next. It does not award evidence points for dynamics that were not tested.
+
 | Candidate | Earned weighted credit | All-metric denominator | Available-metric denominator | All metrics | Available metrics | Hard-gate overlay |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| `A1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A1.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
+| `A1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A1.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `A3`, measured five-coordinate slice | $13.0339127952$ | $92$ | $17$ | **14.17%** | **76.67%** | `H1 P[D]`; `H2`--`H4 P[M]` on this slice; `H5 U` |
-| `A3.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A3.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A3.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `A3.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
+| `A3.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A3.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `A3.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A3.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `B1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `B1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `B1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `B1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C5` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
-| `C6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
+| `B1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `B1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `B1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C5` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
+| `C6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `SD3` | $13.2042876444$ | $92$ | $17$ | **14.35%** | **77.67%** | `H1 P[D]`; `H2`--`H4 P[M]`; `H5 U` |
 | `F6c` | $16.9949793165$ | $92$ | $22$ | **18.47%** | **77.25%** | `H1 P[D]`; `H2`--`H4 P[M]`; `H5 U` |
 | `F1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
 | `F4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1`--`H5 U` |
-| `F5` | $0$ | $100$ | $8$ | **0.00%** | **0.00%** | `H1 P[D]`; **`H2 F[D]`**; `H3`--`H5 U` |
+| `F5`, revised phase-varying campaign realization | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D/M]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U`; score-ineligible |
+| `F5`, common-cadence circular realization | $0$ | $100$ | $8$ | **0.00%** | **0.00%** | `H1 P[D]`; **`H2 F[D]`**; `H3`--`H5 U` |
 | `F6` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
 | `F6b`, demoted realization | $14.3641715877$ | $92$ | $37$ | **15.61%** | **38.82%** | `H1`--`H3 P`; **`H4 F[M]`**; `H5 U` |
 
@@ -222,11 +230,11 @@ The two alternative group-weight schemes preserve the original within-group prop
 | --- | ---: | ---: | ---: | ---: |
 | `A3`, measured slice | 14.17% / 76.67% | 15.60% / 67.61% | 17.30% / 76.67% | 11.14% / 76.67% |
 | `SD3` | 14.35% / 77.67% | 15.92% / 68.99% | 17.53% / 77.67% | 11.29% / 77.67% |
-| `F5` | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% |
+| `F5`, common-cadence circular realization | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% | 0.00% / 0.00% |
 | `F6b`, demoted realization | 15.61% / 38.82% | 18.53% / 48.19% | 19.07% / 37.97% | 12.28% / 40.17% |
 | `F6c` | 18.47% / 77.25% | 21.76% / 70.73% | 21.45% / 76.35% | 15.59% / 78.47% |
 
-The all-metric evidence ordering among these five rows is unchanged by the three alternatives, but the available-metric ordering of F6c versus SD3 and the A3 slice changes. Any decision based on small differences among their available percentages is therefore weight-sensitive. Hard-gate ordering is unchanged: F5 and the declared F6b realization remain excluded unless materially repaired, and no candidate passes `H5`.
+The all-metric evidence ordering among these five rows is unchanged by the three alternatives, but the available-metric ordering of F6c versus SD3 and the A3 slice changes. Any decision based on small differences among their available percentages is therefore weight-sensitive. Hard-gate ordering is unchanged: the F5 common-cadence circular realization and the declared F6b realization remain excluded unless materially repaired, and no candidate passes `H5`.
 
 Plainly: the broad evidence total is not an artifact of the initial weights in this small snapshot, but the apparent quality ordering among the favorable early packets is. The next allocation should therefore target missing discriminating metrics, not defend a one-point difference in an early score.
 

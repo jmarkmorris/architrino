@@ -1,0 +1,895 @@
+{
+  "schema": "braid-program/f6c-continuous-reception-acceleration-launch.v1",
+  "scope": "cached-pilot-cell-0-range",
+  "consumer": {
+    "path": "scripts/eom/prepare-f6c-continuous-reception-acceleration.py",
+    "sha256": "dca5f5b3b42b42347b0b6b49a8974663169171e2293c1eca9c4b4a8c7646a53e",
+    "bytes": 39361
+  },
+  "controls": {
+    "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+    "sha256": "616a4e9c464e95607140dd90b47a8288ae73183f74faa0cc5078b81b8c8767c8",
+    "bytes": 30600
+  },
+  "declaration": {
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md",
+    "sha256": "3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e",
+    "bytes": 20575
+  },
+  "rangeVerifier": {
+    "path": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+    "sha256": "cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299",
+    "bytes": 42580
+  },
+  "runtimeBindings": [
+    {
+      "path": "/Users/markmorris/vibe/.venv/pyvenv.cfg",
+      "sha256": "88e31dc4e6670178b2ecbeb33ecb70074a2858883621c3f01f748bd9a5fa43f0",
+      "bytes": 384
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "sha256": "42f792544842512d02eb8a95a6009062591476558f09f07553c138661a0bca8e",
+      "bytes": 52640
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__future__.py",
+      "sha256": "981d4c398849f9ebcab72300d9c1fe288fd6d7f28957b3b3fa3a493a5836d95c",
+      "bytes": 5218
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/__future__.cpython-313.pyc",
+      "sha256": "745fb7405da72790bbafae87c45800e58880b96e50f9f1f506be2b5d57bfdf83",
+      "bytes": 4799
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/_compression.cpython-313.pyc",
+      "sha256": "eddb23cd4226eb4be27e09c80bfe0a21d2243ee095150dea0a929d2c5eac61a0",
+      "bytes": 7882
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/_opcode_metadata.cpython-313.pyc",
+      "sha256": "413bab4f57590f5b03ca68ab4ff45d47ffabc63911bea86dd7de02152b904577",
+      "bytes": 10755
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/_weakrefset.cpython-313.pyc",
+      "sha256": "2ed7d0998d757b00f69b681303a551a0851902cb51e77ee7bddda30c936ca06a",
+      "bytes": 12126
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/argparse.cpython-313.pyc",
+      "sha256": "7ef1cc513315b373b32116ede62b5a9abe99d857ecfe9862dcb7cc2a8fe9ce89",
+      "bytes": 104141
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/ast.cpython-313.pyc",
+      "sha256": "2931ece84ba585306c000de279ecf5549c5da8b10b255219f529adeb608312e3",
+      "bytes": 103052
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/bisect.cpython-313.pyc",
+      "sha256": "b9f2384c3a4026718bc15d0357bc8cc390ca2f273916ef69e05e3e362bdecb87",
+      "bytes": 3574
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/bz2.cpython-313.pyc",
+      "sha256": "0e2a48b2e37b5f7b54e7bcd15bbb459f287dd3c5c03418c8f0911914fc3abdfd",
+      "bytes": 15242
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/contextlib.cpython-313.pyc",
+      "sha256": "3aedbcc7d27e028adeb8c5c5e3ddf3f677d7907a48869f53485cf243497ad1fb",
+      "bytes": 30571
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/copy.cpython-313.pyc",
+      "sha256": "68bdd9fd6d1c243b155b504af90d55cd51326982a45627e5ba8c509d1074457d",
+      "bytes": 10707
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/copyreg.cpython-313.pyc",
+      "sha256": "d29ebd460fba14c653452abee3fac2cf30d9fb67ae1c87dc650aa35e455713c3",
+      "bytes": 7613
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/dataclasses.cpython-313.pyc",
+      "sha256": "d934ab6abec425de88513fa88216ffdc9b9af39937a2598de5aaaec79120fa40",
+      "bytes": 47901
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/decimal.cpython-313.pyc",
+      "sha256": "6caf68f74dc4c2985668adf790b2ee0e4fc4d4903c93a6cbeb6f3d63163cb292",
+      "bytes": 3079
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/dis.cpython-313.pyc",
+      "sha256": "6c9c802f98b6cfbf26b53ba03563721a6adc5221896d6c4286ae589520d3c0bc",
+      "bytes": 47594
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/enum.cpython-313.pyc",
+      "sha256": "a1b13e10b789f043e2efc0853090ec0cfc2758f07e1ff7603c6c17e80463730c",
+      "bytes": 85765
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/fnmatch.cpython-313.pyc",
+      "sha256": "56237f1e4201c19200d8bf9ac2c9daa8ed02eb8e42e25c8ef6abecdf5fa8b59b",
+      "bytes": 6881
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/fractions.cpython-313.pyc",
+      "sha256": "4a73d92e2daa798b0db37bfd3b0dc324cfca1f36b2250a0fae4675698dcc8cd5",
+      "bytes": 38396
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/functools.cpython-313.pyc",
+      "sha256": "ae38a9bf5602d7ec97ac4a2634119da40f26c1b53f9dcd8d80f78182ad687d21",
+      "bytes": 42772
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/gettext.cpython-313.pyc",
+      "sha256": "8cfe2edb476d52c148e9583409a60b47d35c415fec7c8f1db8b5ae182ba9a89f",
+      "bytes": 22638
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/glob.cpython-313.pyc",
+      "sha256": "f4b14d5e218d8871f7f1cd56744859ce2477b55bc8698c8acd7603a92f0f317e",
+      "bytes": 23743
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/hashlib.cpython-313.pyc",
+      "sha256": "4c8da79fb5ef7c7c18499adcc25a09a41ccfef587a86ce48c90f5e95f02ec6af",
+      "bytes": 8262
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/inspect.cpython-313.pyc",
+      "sha256": "52a93d8e4647e53f7931c0cb8c0ac12974a815691d3265db9eab597072dfb603",
+      "bytes": 135547
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/keyword.cpython-313.pyc",
+      "sha256": "189d53718c2a859ed0b4bef0a4fc1f3c7f95d5969c30df1604446dde215725b7",
+      "bytes": 1118
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/linecache.cpython-313.pyc",
+      "sha256": "4ec8e5a412385071080eec8b73f0ffff084c052dc7b3f42ff85f65221c5cbedb",
+      "bytes": 7291
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/locale.cpython-313.pyc",
+      "sha256": "91d8c6c8457edd479262e832f4dd50c36d09ce70c264770f5a3ea2b1c6c980d6",
+      "bytes": 58382
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/lzma.cpython-313.pyc",
+      "sha256": "46b4f21ef993756e8efa3b3213c321725b22fa7cf0e84d71b55abb8907d9d5c8",
+      "bytes": 15795
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/numbers.cpython-313.pyc",
+      "sha256": "c8e898367185264bed4274a526cbfeb3202af14350d4a044bc262971b9b0dab9",
+      "bytes": 13852
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/opcode.cpython-313.pyc",
+      "sha256": "5e2c049b1b73d01dc23511cddc0e029ea2354ad4d78d2107a955628b83d80b95",
+      "bytes": 4139
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/operator.cpython-313.pyc",
+      "sha256": "a60ecf0a283c19b5374f6d36ebbbbc4d6849bc057a7a3d8126bf709a25b68fb7",
+      "bytes": 17442
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/random.cpython-313.pyc",
+      "sha256": "06a7b6ed4f4cd6493f454d06582c3380a950f59bf415d6c0c5b26dcf4887806a",
+      "bytes": 35325
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/reprlib.cpython-313.pyc",
+      "sha256": "d307e630326701ac2a088530f7cfd1a0c8bf4caf606d509dc650e61e0e32e1d0",
+      "bytes": 10500
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/selectors.cpython-313.pyc",
+      "sha256": "428e9e0d63efd52500b3bea6b2d1fbf9efc9e3c919f739432e208a365aac56f4",
+      "bytes": 26432
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/shutil.cpython-313.pyc",
+      "sha256": "d2a6937ab05dcf48f0dd9aac9fc57029584bccddc6e5dbc911e9e01656bd01b3",
+      "bytes": 67529
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/signal.cpython-313.pyc",
+      "sha256": "c01ce6d98f1d1b59e02970f8fb12600977f6f0bb54f7ddb6f4b4d021efc7d7d1",
+      "bytes": 4621
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/sitecustomize.cpython-313.pyc",
+      "sha256": "6767945421533d81907c1353ebd0a2d298dfb81d763bdfb07253280191da580d",
+      "bytes": 3830
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/subprocess.cpython-313.pyc",
+      "sha256": "729dee2a5ecedbf48687d5f98cdbc111f87a19c12e8e803c21079b39c6411a8f",
+      "bytes": 81559
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/tempfile.cpython-313.pyc",
+      "sha256": "0f4ed348ec6985ee1ad524338a9635b236f49cba22e9b17487f4a52117932e45",
+      "bytes": 40780
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/threading.cpython-313.pyc",
+      "sha256": "b58e23ead541501cd9d50758585352dece604a340692e6c66f60654197c31c7d",
+      "bytes": 63280
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/token.cpython-313.pyc",
+      "sha256": "7494238e70426ad775b1e019f2757bce48b486a3459295e5071ef5e8964bd0d4",
+      "bytes": 3650
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/tokenize.cpython-313.pyc",
+      "sha256": "45b16d2c841bd2974deff231f90cb58d08130607f50d8ba8c07e2a8aecad3dc3",
+      "bytes": 25511
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/types.cpython-313.pyc",
+      "sha256": "ddd2d1504f0611b78b6b2555f5a03f8c2326cf43fde217737abaef49229f64ba",
+      "bytes": 15622
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/typing.cpython-313.pyc",
+      "sha256": "bc72631448062174f82e69e2b7b9acf8daf71f76c6cd9afa7341e754e87be1ea",
+      "bytes": 154659
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/warnings.cpython-313.pyc",
+      "sha256": "e495240c2283819c4afe6c85ecbc684f1258a4e08e2c02d1748e0f81bf7c533c",
+      "bytes": 29612
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/__pycache__/weakref.cpython-313.pyc",
+      "sha256": "c457908ca635fa6fe156c7878778681f5ec5fda832c0d457a59a640731299099",
+      "bytes": 31880
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_collections_abc.py",
+      "sha256": "2cfe340c4cf54077f054cd366a2c7a515e9ee8da7d8b3fa071251f280034756d",
+      "bytes": 32264
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_compression.py",
+      "sha256": "3ad5d60627477a60939ee44fc1bb3a05dbe8fb52f0f75039b8f5d8f1a278b981",
+      "bytes": 5681
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_opcode_metadata.py",
+      "sha256": "9a27d5830732442110b5945ddac1668db17abb51c44882ba9d4a8536bcc0ea1c",
+      "bytes": 9265
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_sitebuiltins.py",
+      "sha256": "b9388bc1d6d12ed6be12da420ab1feca40f99c0e33ec315d92b1e01cb69b25bc",
+      "bytes": 3128
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_weakrefset.py",
+      "sha256": "91895a451d06e9f521a1171b31b9b19bc9740f35af00d4fa106338ab7167c9ac",
+      "bytes": 5893
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/abc.py",
+      "sha256": "e558702a95cdce3febd289da021715d2b92bc43995b8a1bc58dfa1c3d8010287",
+      "bytes": 6538
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/argparse.py",
+      "sha256": "a21e8ced677ee3710d7361c39e903819c702668a37f022c0feafb7275f53dead",
+      "bytes": 101648
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ast.py",
+      "sha256": "287a92c9f6d2658b71e93c4cc3881cb14f2181e56b4b16a6046fbdcf80495ab9",
+      "bytes": 65446
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/bisect.py",
+      "sha256": "f1cf7b85fc36b5da249813fc5ab97d9464f8cc1bc817f7146206fa2713e35999",
+      "bytes": 3423
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/bz2.py",
+      "sha256": "b217459e4c74ccb3da3a44b51dd335cfddcbe9d3014b3279dda1c1a7ca448c08",
+      "bytes": 11969
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/codecs.py",
+      "sha256": "514b00fe93120b4face4508351aa9f1246ecc808c4da3e599dfee7430fe459f9",
+      "bytes": 36928
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/collections/__init__.py",
+      "sha256": "987b438cbfdd2f354a92e8a42655239ee5791c6869ab40c5d01cdb4cde229ad6",
+      "bytes": 52500
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/collections/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "1a81f6a4a258a2b5775b293d4b81f00b960f12f08b8db4f7b94d85d0de7cc213",
+      "bytes": 73277
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py",
+      "sha256": "c1e0d67b2007de11ae93cd36cf6faf38d9ab32656a832d592a49325eec579f96",
+      "bytes": 27801
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/copy.py",
+      "sha256": "d6b858961b91b48a4bf5a115b0420c890d677bdf058ab2323a8a75298eed47db",
+      "bytes": 8975
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/copyreg.py",
+      "sha256": "c8eda41f05c6bf95a4da4726a530409d2485ae060b8d019b3a8034389a15d3e9",
+      "bytes": 7614
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/dataclasses.py",
+      "sha256": "18b8b97f6c43ece379793745dfd505ed713a4c86bc6babdcdec593101b5f4399",
+      "bytes": 64545
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/decimal.py",
+      "sha256": "ed070025c9742f71f7ea92ec1a3d24f85b3199dd79b9d15a141716154e647989",
+      "bytes": 2798
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/dis.py",
+      "sha256": "1852129bf55039f192d90174334fbe459d5f982cae33a04e700fe7cdb2748a51",
+      "bytes": 40962
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__init__.py",
+      "sha256": "78c4744d407690f321565488710b5aaf6486b5afa8d185637aa1e7633ab59cd8",
+      "bytes": 5884
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "764578743b273ca390dbababd6b43a4b27e7faf956520daf8f01701d72fe37e5",
+      "bytes": 6094
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__pycache__/aliases.cpython-313.pyc",
+      "sha256": "398fded359f0838143d591622959a5fa997f4f14857ab0addf0157a409e5d18d",
+      "bytes": 12462
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__pycache__/utf_8.cpython-313.pyc",
+      "sha256": "5dfb8ed645155eb5bfaf6d73cf3f37c3c405c74ec4f45251d35d4b4f1b870013",
+      "bytes": 2361
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__pycache__/utf_8_sig.cpython-313.pyc",
+      "sha256": "40516f18ae2e469b8e23b1867aa07afd2205f3c3c2d11806be476f07273862ba",
+      "bytes": 6990
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/aliases.py",
+      "sha256": "cac92d68c7ea5bc0f05b448b9144e3bdf236d0b7d27ab66112e96d43aad15b3f",
+      "bytes": 15713
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/utf_8.py",
+      "sha256": "ba0cac060269583523ca9506473a755203037c57d466a11aa89a30a5f6756f3d",
+      "bytes": 1005
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/utf_8_sig.py",
+      "sha256": "1ef3da8d8aa08149e7f274dc64dbfce2155da812e5258ca8e8f832428d3b5c2d",
+      "bytes": 4133
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/enum.py",
+      "sha256": "5b8ea83cb9876d6699c2ef016a4312e739db090587a4177c9c29781418e6da13",
+      "bytes": 85442
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fnmatch.py",
+      "sha256": "95391dac2ce9f60084d65eba2f4b9d9735e28136d55b684e1fde7d6342555963",
+      "bytes": 6180
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/fractions.py",
+      "sha256": "58f7750133f2e23999ba3f634d1b14edfec6dc48bf8bb00a9911262cd7198f63",
+      "bytes": 40021
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py",
+      "sha256": "b723e5cef13d0d2426068f8d594219f6e2d6bbcb944be7463dc7641ce909cebe",
+      "bytes": 39617
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/genericpath.py",
+      "sha256": "515ac740dc0c68fdc8003594b29ab69fc2f20c62eba76f12b67caadfbbfe4b8c",
+      "bytes": 5976
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/gettext.py",
+      "sha256": "69fc9d5be6762a2d8ab7aff924e34c0655a54df143f92691232ac47564aea2e3",
+      "bytes": 21534
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/glob.py",
+      "sha256": "3399f242a9bfb4e0b2b8bbbcdc0231487e453a861f4a4ca109c2a560e05698e8",
+      "bytes": 19720
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/hashlib.py",
+      "sha256": "6dbdebf270868b391080e21dc9687eddfaf321c965ad979f68d3f5c423c613ab",
+      "bytes": 9349
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py",
+      "sha256": "72b07de4133a7e39b2f6a7920465669aa04626f217e800779587bc0713fe002e",
+      "bytes": 4767
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "280d4725c42c6b3dbdc220b51a58a88be49923bb2cc6d21a40fa6e5e5bc4eab1",
+      "bytes": 4621
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/_bootstrap.py",
+      "sha256": "33365c02a341300d8a8cad4be59040690d19bcb1af301d1058a15ebfa7cc9483",
+      "bytes": 57081
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/_bootstrap_external.py",
+      "sha256": "bf2a271ee85fc78a28c08e919894785c04b7da3f6a6dca9534470144f6b34a4e",
+      "bytes": 73147
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/machinery.py",
+      "sha256": "2e558d293587d18a5919f7093f8c5c10ea54dd9336f6b2c4ed9d6233c114652a",
+      "bytes": 934
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/inspect.py",
+      "sha256": "d92f922cb947f058c5ea0d0f3a4a9912c21b1c1a15ab5687f79b4f4a873b6ed7",
+      "bytes": 126989
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/io.py",
+      "sha256": "7cec3cb8ac004058dd0a5af246e6d950fb59c7ddd0058fda48bcb3fcb98d8822",
+      "bytes": 3582
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py",
+      "sha256": "d5d41e2c29049515d295d81a6d40b4890fbec8d8482cfb401630f8ef2f77e4d5",
+      "bytes": 14020
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "05c5a301270bfd81f8e098fb54726b998d0273bf6cd68e698293d1515d1d06fd",
+      "bytes": 13587
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__pycache__/decoder.cpython-313.pyc",
+      "sha256": "2281fee34a3de9246ad8f69c5249f3b731a6e6be2b3840134dfabe81a7418195",
+      "bytes": 13899
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__pycache__/encoder.cpython-313.pyc",
+      "sha256": "f8bca45025a1910c787305242dfab280c2cc1d9453013abdb65df5ed1541f5fe",
+      "bytes": 15207
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__pycache__/scanner.cpython-313.pyc",
+      "sha256": "19d8684f2070bc2d67e1337f4c4177e72dfa4ff915214206a72f297468fe8a14",
+      "bytes": 3440
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py",
+      "sha256": "6d95679fccf178f2af9e9eead42f8efb084c58735951dc47fce89aec11d44955",
+      "bytes": 12872
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py",
+      "sha256": "3c9263358ba86870d71c52d64a64889ca968c54083ba690dd79c4c0e03f13e8d",
+      "bytes": 16074
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/scanner.py",
+      "sha256": "572958017eae8842eeddd0e3d18d3c56cc0a197348224915e1d87ce937841764",
+      "bytes": 2434
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/keyword.py",
+      "sha256": "18c2be738c04ad20ad375f6a71db34b3823c7f40b0340f5294d0e89f3c9b093b",
+      "bytes": 1073
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_bisect.cpython-313-darwin.so",
+      "sha256": "27d0fae8a3a9bf8f88be275e7602691e54a65ef78c43e5f7aca726b5c5a4c96e",
+      "bytes": 70992
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_blake2.cpython-313-darwin.so",
+      "sha256": "4cb0977dfb664d6186ff4e248587f800dfbcf6e47dd0a8253f666c1da55f7be1",
+      "bytes": 89488
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_bz2.cpython-313-darwin.so",
+      "sha256": "15e91e1fcba8f66b773db06e889f1aaedac7882c4065f714c4eb60a714bd27f5",
+      "bytes": 73040
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_decimal.cpython-313-darwin.so",
+      "sha256": "cb1ecdbd3d62e770e8aeba5730a60323026a9e4fc59ac20394b4fc8032806e81",
+      "bytes": 195040
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_hashlib.cpython-313-darwin.so",
+      "sha256": "00df69dac58fd9fd0dd7db5ec30cb98d9ae3c04a3118988a262950c11f1562e0",
+      "bytes": 98192
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_json.cpython-313-darwin.so",
+      "sha256": "49debc16e31dd940437f3fb31cbd61e214a29daf17793bef7451c68b60720ee6",
+      "bytes": 90800
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_lzma.cpython-313-darwin.so",
+      "sha256": "7178a29cce31e650f8e520d73fe03a82c8a540569c13014049bab984cc768720",
+      "bytes": 92448
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_opcode.cpython-313-darwin.so",
+      "sha256": "28921e06d27d0fd67e07d29370269020f75654a506a8766ef77760918537be50",
+      "bytes": 72816
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-darwin.so",
+      "sha256": "6c5bd4da9e3f4a54a8b50395d0a622d6a93b2d4306b4fbedd6d0ab13f37af8ab",
+      "bytes": 72720
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_random.cpython-313-darwin.so",
+      "sha256": "5d0a031e305a52ff243a46f2c65a8dfea885cecb69e955c8d01618f8da6ebf7f",
+      "bytes": 71888
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/fcntl.cpython-313-darwin.so",
+      "sha256": "432fa1b943e2878fffe9027046b695dee6f144d6f8597aef2b7f4a93aa831a6c",
+      "bytes": 70608
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/grp.cpython-313-darwin.so",
+      "sha256": "dc5bcfaf9d330b6c852233972cc400b03211b206372358c06298d152cbb355df",
+      "bytes": 71136
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/math.cpython-313-darwin.so",
+      "sha256": "cb4805a471f0addef98bc21ca065a5812e78b0b8be06b5de365253c2ee5e3c7c",
+      "bytes": 111792
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/resource.cpython-313-darwin.so",
+      "sha256": "1445934e50fbf19af57ce9b3c81a3de7567a359c21edcac80a0a20da952705cc",
+      "bytes": 70896
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/select.cpython-313-darwin.so",
+      "sha256": "4413dd1d10291c4c07085321cd92f60cd44746ba602270bf2cce3811eb78db3b",
+      "bytes": 92912
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/zlib.cpython-313-darwin.so",
+      "sha256": "63b91046d70b79e4cab1a2c276cb8c9fab06e685e713a4794ce4601dd29b541e",
+      "bytes": 94016
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/linecache.py",
+      "sha256": "3a82129c1fb31e6cbb531553a8defb39557564623e2df590576cd53cdf4dade6",
+      "bytes": 6418
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/locale.py",
+      "sha256": "2fe71d50c621569c7298da2cb37b10a4db13d25d7bd3323c61cb3ae9a3ae37c7",
+      "bytes": 77469
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lzma.py",
+      "sha256": "6a923ba49b33897152a9398d2a39d08670238290c90c050b8f4d838046339db5",
+      "bytes": 13399
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ntpath.py",
+      "sha256": "e3416242daf336e1755a6bef9bb901f35b88777406ab6460b40b2c3989760b82",
+      "bytes": 32299
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/numbers.py",
+      "sha256": "ac381960a3dc1db0498b0bd43d8ef278d6599713121a186b153ff09d9552e0db",
+      "bytes": 11467
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/opcode.py",
+      "sha256": "aaf8e6e0291b6ff439c27ad1657d5b1d2fc738f961bee3fa4863a51e494dc843",
+      "bytes": 2825
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/operator.py",
+      "sha256": "c048f8a6852832d5fa750d6ae772d7658c52c3511d261cb902f7edfd262e9127",
+      "bytes": 10980
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/os.py",
+      "sha256": "cf83304364b417fd2bd89a99247d4122a70f0696a7a0e932df3856692cf43623",
+      "bytes": 41554
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/__init__.py",
+      "sha256": "07921047886282e3d324acf95f7d9f840faa806664ee7007e7333a7df4cdcaf6",
+      "bytes": 296
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "02dcc9ea60ef51cb9d9c3bf9ada6220c762ebbf50ff96afce6d3534758cdaa81",
+      "bytes": 554
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/__pycache__/_abc.cpython-313.pyc",
+      "sha256": "1c443288de9299df4ad10c5c05479bba90cb58c2c43a277f16d8bd31477eb314",
+      "bytes": 40075
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/__pycache__/_local.cpython-313.pyc",
+      "sha256": "a875d2cfd785a6b320dac5f2454ae20348210c5675abb5f3827e1709365d5a78",
+      "bytes": 40946
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py",
+      "sha256": "75e6bc728013d11446126d535f92b8907fb6dae7404df3d0268ac7b6865a2090",
+      "bytes": 33565
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py",
+      "sha256": "0530b4186ec5845e000bedf5817ff1ac970b9a39a6891ba6789a1776abdea42b",
+      "bytes": 31412
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/posixpath.py",
+      "sha256": "8ee3f4fdb65631dea0e07a61f9904d557f122ce98614ad0dbd3f014618eb9aef",
+      "bytes": 17950
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/random.py",
+      "sha256": "9c32afbb4e316c43468ccdb77212f26054f9d86a4571ab894517d640b8a74f09",
+      "bytes": 37000
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__init__.py",
+      "sha256": "dbe158a677c6aaacf717ea2abc23c56233453d38024aef75b7c3d93612cabb93",
+      "bytes": 17876
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__pycache__/__init__.cpython-313.pyc",
+      "sha256": "85e5532cc54c6f6264394438a12d6e4a36ecb0f85b6a6a3ad8a931bf0f740109",
+      "bytes": 19445
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__pycache__/_casefix.cpython-313.pyc",
+      "sha256": "dc8de31d0f56feb95555814ebc554cd01368739a97a9488fd405e616e01eafe5",
+      "bytes": 1893
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__pycache__/_compiler.cpython-313.pyc",
+      "sha256": "9adef19ea1cc5b4f9b9eaf012d2df68c2e14db900f1303bfef1e00b7a5372b03",
+      "bytes": 26943
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__pycache__/_constants.cpython-313.pyc",
+      "sha256": "5de185776e6de85aea8d86fc82be053ba85dfb795fdcc743a83aa9cedc51efb3",
+      "bytes": 5456
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__pycache__/_parser.cpython-313.pyc",
+      "sha256": "87c0c38db00a88f3b0dd01f3ff264904a6be3cafe38331b38fba4caf587f0900",
+      "bytes": 43641
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_casefix.py",
+      "sha256": "1b12d9136f23db6c3f6f26053fefc15ca964b886838c7b9c1fabf8d2efc1e5c8",
+      "bytes": 5444
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_compiler.py",
+      "sha256": "83537237a82294d084d40abaa42e86149be33eef338a5ef028a7fd2fad0dafd5",
+      "bytes": 26290
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_constants.py",
+      "sha256": "1dbe236d34fa934e3e7172ba9d6b0dcfab338ecf7717f370f1fd4a9d24b2ecdb",
+      "bytes": 5939
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_parser.py",
+      "sha256": "c7a6c80b3b448f50684c320265a7b5efb5d0b1daf0a36fb5dee8dd83628359d7",
+      "bytes": 41237
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/reprlib.py",
+      "sha256": "af33116cdd0d8baf2d5d41d9e6eafa9f5a0b7fb5af7e7343218877a04965f2f3",
+      "bytes": 7192
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/selectors.py",
+      "sha256": "4b8a60cfbb619d080f87dffe1578372e56e8c0ac826f043224a154cf7b77606d",
+      "bytes": 19457
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/shutil.py",
+      "sha256": "ce110d23884b9bdc75f7b1654dbd2d7cf5d6762046a4cf8c316b96fd937d1e0b",
+      "bytes": 57463
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/signal.py",
+      "sha256": "0363c964c90ac0b3e515de5749205e6e6454051a1211058375d84d91eab6071a",
+      "bytes": 2495
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site.py",
+      "sha256": "90b78b1557dc9bf04a7ccaf1630faced1c08d59a0623869dd21dd4e6dab183ef",
+      "bytes": 25386
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/sitecustomize.py",
+      "sha256": "a011f7aec077507ca4674e342a6cc9e6dac3897dc375afaf0037d1b8233cd299",
+      "bytes": 3426
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/stat.py",
+      "sha256": "f76eaa7f02d6ef4a8c3c3e82cae34ed72870b643b8c94937a34c697d1e9d6ca2",
+      "bytes": 6147
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py",
+      "sha256": "12b90fb770ceff2574d7fdcb6ef5fbe9a27ccc857a3c51cd87c96696990156f5",
+      "bytes": 89584
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/tempfile.py",
+      "sha256": "b7e88e94a90953e11f64a5e4ebb9d5ce461d27375be185f9b14ff11c3d597ef0",
+      "bytes": 32216
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/threading.py",
+      "sha256": "dbc5f71103224bac1b650da8c3c306a44a1963315bcdbd9bee8e3421f42fff00",
+      "bytes": 55167
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/token.py",
+      "sha256": "1d2ab814992e6afbd6f1e5323edcddd681f65f7679ad1eb87fe1357a433a5bdf",
+      "bytes": 2489
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/tokenize.py",
+      "sha256": "1369f7f9e57c722d1627333b705aabfaf943c24680920942e773fd4e1776be2e",
+      "bytes": 21568
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/types.py",
+      "sha256": "74516af714d270b59d67e5ae5e60a02cb4ff32ecdd373e165ad1d780fbfd2c5d",
+      "bytes": 11207
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/typing.py",
+      "sha256": "b73770ed2e40b88c864efb79ed1bfd1ebdc9337ff832b3ee612ab9d7a417532e",
+      "bytes": 132718
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/warnings.py",
+      "sha256": "5cc9b8e41a54e5bad7b09b11116d7d9f4dc3f442ecd80305ead48f9c51b90846",
+      "bytes": 26938
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/weakref.py",
+      "sha256": "56f8d313fb74019e53eb9287400702fbce788b7fe30e097b0b6e06296f3f080c",
+      "bytes": 21513
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/zipimport.py",
+      "sha256": "ec9f157ff6d4ebd26a6fd1715247578068b5af2799d07ecf06f2b531a5605e13",
+      "bytes": 32890
+    },
+    {
+      "path": "/usr/bin/git",
+      "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
+      "bytes": 118928
+    }
+  ],
+  "operationalBindings": [
+    {
+      "path": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+      "sha256": "00e7a28decff2a4b012381d7364851405e0564b98251585718462ed0baeb6884",
+      "bytes": 28976
+    },
+    {
+      "path": "scripts/eom/launch-f6c-acceleration-pilot.mjs",
+      "sha256": "2ccbaa6b4b5aa4ecbcbdf95b8efe40665748ad023c99988a6648e83ed09c7550",
+      "bytes": 22007
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot.test.js",
+      "sha256": "853a5fc5c1a2352aed6fe2f7eadc24ea02e90889ce1d8783e98ee462dd04677a",
+      "bytes": 20722
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "sha256": "00d16c95d5cd26750e960731978d9ba6fa46e22044c2bd9802e0872701f39812",
+      "bytes": 13681
+    },
+    {
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9",
+      "bytes": 28305
+    },
+    {
+      "path": "scripts/eom/launch-abc-enclosed-root-pilot.mjs",
+      "sha256": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+      "bytes": 39465
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "sha256": "be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6",
+      "bytes": 37350
+    },
+    {
+      "path": "/bin/ps",
+      "sha256": "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
+      "bytes": 170816
+    },
+    {
+      "path": "/usr/bin/memory_pressure",
+      "sha256": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+      "bytes": 135248
+    },
+    {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "sha256": "56694c81b093cc8da273fa017cf91765b3653e5f64f16727976ffaa87b2b6b31",
+      "bytes": 68384
+    }
+  ],
+  "limits": {
+    "inclusiveSeconds": 1800,
+    "maximumAggregateRssBytes": 2147483648,
+    "maximumRssSampleGapMs": 1000,
+    "heartbeatSeconds": 15,
+    "admissionFreeMemoryPercent": 40,
+    "admissionDiskBytes": 68719476736,
+    "stopFreeMemoryBelowPercent": 20,
+    "stopDiskBelowBytes": 17179869184,
+    "hostObservationSeconds": 15,
+    "hostObservationTimeoutSeconds": 2,
+    "maximumScientificFileBytes": 67108864,
+    "maximumOutputFileBytes": 67108864,
+    "maximumCombinedLogBytes": 16777216,
+    "serialWorkers": 1,
+    "eomWorkers": 0
+  },
+  "priorCoverClosure": {
+    "authority": "externally-reviewed-caller-observation",
+    "ownerSha256": "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+    "admissionSha256": "1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee",
+    "matchingFreshCompletionObserved": true,
+    "exitCode": 0,
+    "elapsedSeconds": "8.534247625",
+    "processesClosed": true,
+    "independentAuditAccepted": true
+  }
+}

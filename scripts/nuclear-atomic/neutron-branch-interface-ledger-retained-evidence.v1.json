@@ -16,7 +16,7 @@
     "sourceTargetId": "accepted_neutron_branch_interface_ledger_target_0001",
     "neutronBranchLabel": "n",
     "sourceTargetPath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
-    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+    "priorityContextPath": "reference/priorities/mapping-nuclear-atomic-molecular/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
   },
   "neutronBranchInterfaceLedger": {
     "rowId": "L_BI_n_0001",

@@ -960,8 +960,8 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - mass-map
 - doubling-frequency-lock
-- [quantum-closure](../quantum-closure/priorities.md)
-- [strong-field-closure](../strong-field-closure/priorities.md)
+- [mapping-quantum](../mapping-quantum/priorities.md)
+- [mapping-strong-field](../mapping-strong-field/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

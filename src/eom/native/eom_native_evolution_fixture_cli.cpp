@@ -135,7 +135,9 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
     }
     const auto& step = steps[index];
     std::cout << "{\"status\":\"" << step.status
-              << "\",\"failure_code\":\"" << step.failure_code
+              << "\",\"step_index\":" << step.step_index
+              << ",\"root_time_pressure_ratio\":" << step.root_time_pressure_ratio
+              << ",\"failure_code\":\"" << step.failure_code
               << "\",\"attempted_start\":\"" << step.attempted_start
               << "\",\"attempted_end\":\"" << step.attempted_end
               << "\",\"accepted_time\":\"" << step.accepted_time
@@ -251,6 +253,7 @@ void print_evolution(
   std::cout << "{\"schema\":\"" << certificate.schema
             << "\",\"status\":\"" << certificate.status
             << "\",\"run_id\":\"" << certificate.run_id
+            << "\",\"requested_end_time\":\"" << certificate.requested_end_time
             << "\",\"accepted_end_time\":\""
             << certificate.accepted_end_time
             << "\",\"accepted_step_count\":"
@@ -259,7 +262,10 @@ void print_evolution(
             << certificate.rejected_step_count
             << ",\"controller_certificate_cost_cooldown_remaining\":"
             << certificate.controller_certificate_cost_cooldown_remaining
-            << ",\"halt_code\":\"" << certificate.halt_code
+            << ",\"controller_consecutive_growth_headroom_steps\":"
+            << certificate.controller_consecutive_growth_headroom_steps
+            << ",\"controller_step_size\":\"" << certificate.controller_step_size
+            << "\",\"halt_code\":\"" << certificate.halt_code
             << "\",\"all_steps_atomic\":"
             << (certificate.all_steps_atomic ? "true" : "false")
             << ",\"evidence_status\":\"" << certificate.evidence_status
@@ -272,6 +278,39 @@ void print_evolution(
   std::cout << ",\"steps\":";
   print_steps(certificate.steps);
   std::cout << '}';
+}
+
+// Complete original decimal records, not endpoint-only parity. This fixture
+// serialization is deliberately independent of Checkpoint.cpp's byte encoder.
+void print_history_tokens(const std::vector<eom::NativePublishedPath>& paths) {
+  std::cout << '[';
+  bool first_path = true;
+  for (const auto& path : paths) {
+    if (!first_path) std::cout << ',';
+    first_path = false;
+    std::cout << "{\"path_id\":\"" << path.path_id
+              << "\",\"history_id\":\"" << path.history.history_id()
+              << "\",\"fingerprint\":\"" << path.history.provenance_fingerprint()
+              << "\",\"segments\":[";
+    bool first_segment = true;
+    for (const auto& segment : path.history.segments()) {
+      if (!first_segment) std::cout << ',';
+      first_segment = false;
+      std::cout << "[\"" << segment.t_start_token() << "\",\""
+                << segment.t_end_token() << '"';
+      for (const auto& axis : segment.coefficient_tokens()) {
+        for (const auto& token : axis) std::cout << ",\"" << token << '"';
+      }
+      for (const auto& token : segment.position_error_tokens())
+        std::cout << ",\"" << token << '"';
+      for (const auto& token : segment.velocity_error_tokens())
+        std::cout << ",\"" << token << '"';
+      std::cout << ",\"" << segment.position_error_token() << "\",\""
+                << segment.velocity_error_token() << "\"]";
+    }
+    std::cout << "]}";
+  }
+  std::cout << ']';
 }
 
 void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
@@ -924,6 +963,86 @@ void print_all() {
   static_continuous_request.use_continuous_adaptive_step = true;
   const auto static_continuous_result =
       eom::evolve_native_coupled_histories(static_continuous_request);
+
+  // Preserve the original horizon; stop only at an accepted diagnostic cut.
+  const std::array<std::size_t, 3> growth_cut_counts{1U, 2U, 4U};
+  std::vector<eom::NativeCoupledEvolutionCertificate> growth_prefixes;
+  std::vector<eom::NativeEvolutionCheckpoint> growth_checkpoints;
+  std::vector<eom::NativeCoupledEvolutionCertificate> growth_resumed;
+  for (const auto cut_count : growth_cut_counts) {
+    auto prefix_request = static_growth_request;
+    prefix_request.diagnostic_maximum_accepted_steps = cut_count;
+    growth_prefixes.push_back(eom::evolve_native_coupled_histories(prefix_request));
+    growth_checkpoints.push_back(eom::deserialize_native_evolution_checkpoint(
+        eom::serialize_native_evolution_checkpoint(
+            eom::create_native_evolution_checkpoint(
+                prefix_request, growth_prefixes.back()))));
+    growth_resumed.push_back(eom::resume_native_coupled_histories(
+        static_growth_request, growth_checkpoints.back(),
+        static_growth_request.end_time));
+  }
+  const auto invalid_growth_memory = [](
+      const eom::NativeCoupledEvolutionRequest& bad) {
+    try {
+      static_cast<void>(eom::evolve_native_coupled_histories(bad));
+    } catch (const std::invalid_argument& error) {
+      return std::string(error.what()) == "invalid adaptive growth restart memory";
+    }
+    return false;
+  };
+  auto disabled_memory_request = static_request;
+  disabled_memory_request.initial_consecutive_growth_headroom_steps = 1U;
+  auto continuous_memory_request = static_continuous_request;
+  continuous_memory_request.initial_consecutive_growth_headroom_steps = 1U;
+  auto overflowing_memory_request = static_growth_request;
+  overflowing_memory_request.initial_consecutive_growth_headroom_steps =
+      std::numeric_limits<std::size_t>::max();
+  const bool disabled_memory_rejected = invalid_growth_memory(disabled_memory_request);
+  const bool continuous_memory_rejected = invalid_growth_memory(continuous_memory_request);
+  const bool overflowing_memory_rejected = invalid_growth_memory(overflowing_memory_request);
+  auto unstarted_growth_request = static_growth_request;
+  unstarted_growth_request.initial_consecutive_growth_headroom_steps = 1U;
+  unstarted_growth_request.memory_budget_bytes = 1U;
+  const auto unstarted_growth = eom::evolve_native_coupled_histories(unstarted_growth_request);
+  const auto unstarted_checkpoint = eom::deserialize_native_evolution_checkpoint(
+      eom::serialize_native_evolution_checkpoint(
+          eom::create_native_evolution_checkpoint(unstarted_growth_request, unstarted_growth)));
+  auto boundary_memory_request = unstarted_growth_request;
+  boundary_memory_request.initial_consecutive_growth_headroom_steps =
+      std::numeric_limits<std::size_t>::max() - boundary_memory_request.max_step_attempts;
+  const auto boundary_memory = eom::evolve_native_coupled_histories(boundary_memory_request);
+  auto capped_growth_request = static_growth_request;
+  capped_growth_request.maximum_step = capped_growth_request.initial_step;
+  capped_growth_request.initial_consecutive_growth_headroom_steps = 7U;
+  capped_growth_request.diagnostic_maximum_accepted_steps = 1U;
+  const auto capped_growth = eom::evolve_native_coupled_histories(capped_growth_request);
+  const auto capped_checkpoint = eom::deserialize_native_evolution_checkpoint(
+      eom::serialize_native_evolution_checkpoint(
+          eom::create_native_evolution_checkpoint(capped_growth_request, capped_growth)));
+  const auto capped_resume = eom::resume_native_coupled_histories(
+      capped_growth_request, capped_checkpoint, static_growth_request.end_time);
+  bool growth_memory_tamper_rejected = false;
+  auto changed_growth_checkpoint = growth_checkpoints.front();
+  ++changed_growth_checkpoint.controller_consecutive_growth_headroom_steps;
+  try {
+    static_cast<void>(eom::serialize_native_evolution_checkpoint(changed_growth_checkpoint));
+  } catch (const std::invalid_argument&) { growth_memory_tamper_rejected = true; }
+  bool old_growth_schema_rejected = false;
+  auto old_growth_checkpoint = growth_checkpoints.front();
+  old_growth_checkpoint.schema = "eom_native_evolution_checkpoint/v6";
+  try {
+    static_cast<void>(eom::serialize_native_evolution_checkpoint(old_growth_checkpoint));
+  } catch (const std::invalid_argument& error) {
+    old_growth_schema_rejected = std::string(error.what()).find("requires v7") != std::string::npos;
+  }
+  bool old_growth_magic_rejected = false;
+  auto old_growth_bytes = eom::serialize_native_evolution_checkpoint(growth_checkpoints.front());
+  old_growth_bytes.at(6) = '3';
+  try {
+    static_cast<void>(eom::deserialize_native_evolution_checkpoint(old_growth_bytes));
+  } catch (const std::invalid_argument& error) {
+    old_growth_magic_rejected = std::string(error.what()).find("requires EOMCPV4/v7") != std::string::npos;
+  }
   auto certificate_cost_request = request(
       "static-certificate-cost-feedback",
       {{"p", "1", history(
@@ -1166,6 +1285,11 @@ void print_all() {
       "5", "5.05", "0.05", "0.00625", "5e-10", "2e-8", "1e-7");
   const auto adaptive_result =
       eom::evolve_native_coupled_histories(adaptive_request);
+  auto headroom_reset_request = adaptive_request;
+  headroom_reset_request.use_adaptive_step_growth = true;
+  headroom_reset_request.initial_consecutive_growth_headroom_steps = 1U;
+  headroom_reset_request.diagnostic_maximum_accepted_steps = 1U;
+  const auto headroom_reset = eom::evolve_native_coupled_histories(headroom_reset_request);
 
   const auto rejected_request = request(
       "binary-rejected-step",
@@ -1178,6 +1302,10 @@ void print_all() {
   }
   const auto rejected_step = eom::certify_native_atomic_coupled_step(
       rejected_request, rejected_histories, 0, "5", "5.1");
+  auto rejected_growth_request = rejected_request;
+  rejected_growth_request.use_adaptive_step_growth = true;
+  rejected_growth_request.initial_consecutive_growth_headroom_steps = 1U;
+  const auto rejected_growth = eom::evolve_native_coupled_histories(rejected_growth_request);
 
   const auto memory_request = request(
       "memory-rejection",
@@ -1710,6 +1838,52 @@ void print_all() {
   print_histories(
       joint_checkpoint_resumed.histories,
       joint_checkpoint_resumed.accepted_end_time);
+  std::cout << "},\"adaptive_checkpoint\":{\"cuts\":[";
+  for (std::size_t i = 0; i < growth_cut_counts.size(); ++i) {
+    if (i) std::cout << ',';
+    std::cout << "{\"cut_count\":" << growth_cut_counts[i]
+              << ",\"checkpoint_memory\":"
+              << growth_checkpoints[i].controller_consecutive_growth_headroom_steps
+              << ",\"checkpoint_step\":\"" << growth_checkpoints[i].controller_step_size
+              << "\",\"prefix\":";
+    print_evolution(growth_prefixes[i]);
+    std::cout << ",\"resumed\":";
+    print_evolution(growth_resumed[i]);
+    std::cout << ",\"direct_cut_tokens\":";
+    print_history_tokens(static_growth_result.steps.at(growth_cut_counts[i] - 1U).published_histories);
+    std::cout << ",\"prefix_tokens\":";
+    print_history_tokens(growth_prefixes[i].histories);
+    std::cout << ",\"resumed_tokens\":";
+    print_history_tokens(growth_resumed[i].histories);
+    std::cout << '}';
+  }
+  std::cout << "],\"direct_tokens\":";
+  print_history_tokens(static_growth_result.histories);
+  std::cout << ",\"unstarted\":";
+  print_evolution(unstarted_growth);
+  std::cout << ",\"unstarted_checkpoint_memory\":"
+            << unstarted_checkpoint.controller_consecutive_growth_headroom_steps
+            << ",\"overflow_boundary_input\":"
+            << boundary_memory_request.initial_consecutive_growth_headroom_steps
+            << ",\"overflow_boundary_returned\":"
+            << boundary_memory.controller_consecutive_growth_headroom_steps
+            << ",\"capped\":";
+  print_evolution(capped_growth);
+  std::cout << ",\"capped_resumed\":";
+  print_evolution(capped_resume);
+  std::cout << ",\"headroom_reset\":";
+  print_evolution(headroom_reset);
+  std::cout << ",\"rejected_reset\":";
+  print_evolution(rejected_growth);
+  for (const auto& [name, value] : std::array<std::pair<const char*, bool>, 6>{{
+           {"disabled_memory_rejected", disabled_memory_rejected},
+           {"continuous_memory_rejected", continuous_memory_rejected},
+           {"overflowing_memory_rejected", overflowing_memory_rejected},
+           {"memory_tamper_rejected", growth_memory_tamper_rejected},
+           {"old_schema_rejected", old_growth_schema_rejected},
+           {"old_magic_rejected", old_growth_magic_rejected}}}) {
+    std::cout << ",\"" << name << "\":" << (value ? "true" : "false");
+  }
   std::cout << "},\"evolutions\":[";
   print_evolution(static_result);
   std::cout << ',';

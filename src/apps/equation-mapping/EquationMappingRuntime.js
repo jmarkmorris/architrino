@@ -6,15 +6,14 @@ import {
   DEFAULT_EQUATION_SCALE,
   DEFAULT_SECTION_LINE_PLACEMENT,
   createSeedEquationMapDocuments,
-  filterEquationMapDocuments,
   getCanvasColorById,
-  groupEquationMapDocumentsBySubject,
   normalizeBackgroundId,
   normalizeCommentFontSize,
   normalizeEquationMapDocument,
   normalizeEquationMapDocuments,
   normalizeEquationScale,
 } from "./EquationMappingData.js";
+import { renderEquationSidebar, revealEquationInSidebar } from "./EquationMappingSidebar.js";
 import {
   createEditableEquationMapDocument,
   createEquationAnchor,
@@ -33,6 +32,8 @@ import {
   resolveStandaloneAppHomeHref,
 } from "../navigator/StandaloneAppHomeRuntime.js";
 import { createPanelCollapseIconSvg } from "../../runtime/PanelCollapseIcons.js";
+import { resolveEquationMappingReturnHref } from "../../runtime/EquationMappingNavigation.js";
+import { createEquationMappingSymbolTooltip } from "./EquationMappingSymbolTooltip.js";
 
 const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
 const SIZE_CALIBRATION_VERSION = 3;
@@ -55,6 +56,8 @@ const CALLOUT_LAYOUT_EQUATION_GAP_PX = 28;
 const CALLOUT_LAYOUT_ITEM_GAP_PX = 24;
 const CALLOUT_LAYOUT_BAND_PADDING_PX = 240;
 const CALLOUT_LAYOUT_TITLE_GAP_PX = 18;
+const SYMBOL_TOOLTIP_GAP_PX = 8;
+const SYMBOL_TOOLTIP_CALLOUT_GAP_PX = 16;
 const COORDINATE_EFFECTIVE_OVERLAY_ID = "effective-coordinates";
 const COORDINATE_EFFECTIVE_ANCHOR_ID = "effectiveLayer";
 const SIDE_CALLOUT_GAP_PX = 32;
@@ -249,7 +252,14 @@ export function resolveEquationVerticalShift({
   aboveCalloutRects = [],
   belowCalloutRects = [],
   marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  minimumGapPx = 0,
 } = {}) {
+  if (stageHeight > 0 && equationShellRect && aboveCalloutRects.length && minimumGapPx > 0) {
+    const clearanceShift = Math.max(...aboveCalloutRects.map(rect => rect.bottom)) + minimumGapPx - equationShellRect.top;
+    // A tall upper explainer needs real content space, even on a short screen.
+    // The stage can scroll; capping this shift would recreate the collision.
+    if (clearanceShift > 0) return clearanceShift;
+  }
   if (
     stageHeight <= 0 ||
     !equationShellRect ||
@@ -497,6 +507,7 @@ export function resolveCalloutRowLayout({
   equationGapPx = CALLOUT_LAYOUT_EQUATION_GAP_PX,
   itemGapPx = CALLOUT_LAYOUT_ITEM_GAP_PX,
   bandPaddingPx = CALLOUT_LAYOUT_BAND_PADDING_PX,
+  minBelowY = equationRect?.bottom ?? 0,
 } = {}) {
   const horizontalPositions = resolveHorizontalCalloutPositions({
     stageWidth,
@@ -522,7 +533,7 @@ export function resolveCalloutRowLayout({
   const y =
     placement === "above"
       ? clamp(unclampedY, safeTop, Math.max(safeTop, equationRect.top - maxHeight))
-      : clamp(unclampedY, equationRect.bottom, Math.max(equationRect.bottom, safeBottom - maxHeight));
+      : Math.max(minBelowY, clamp(unclampedY, equationRect.bottom, Math.max(equationRect.bottom, safeBottom - maxHeight)));
 
   return new Map(
     items.map((item) => [
@@ -563,6 +574,7 @@ export function resolveCarouselClearanceCalloutPosition({
   carouselRect = null,
   marginPx = CALLOUT_LAYOUT_MARGIN_PX,
   clearancePx = COORDINATE_CAROUSEL_CLEARANCE_PX,
+  minY = marginPx,
 } = {}) {
   if (!position || !commentRect || !carouselRect) {
     return position;
@@ -573,7 +585,7 @@ export function resolveCarouselClearanceCalloutPosition({
   }
   return {
     ...position,
-    y: Math.max(marginPx, maxY),
+    y: Math.max(minY, maxY),
   };
 }
 
@@ -849,7 +861,15 @@ export class EquationMappingRuntime {
     this.expandedSubjectIds = normalizeExpandedSubjectIds(
       options.expandedSubjectIds ?? savedSettings.expandedSubjectIds
     );
-    this.searchOpen = false;
+    this.navigationView = "key";
+    this.expandedChapterIds = new Set();
+    this.expandedSectionIds = new Set();
+    if (resolveEquationMapDocumentId(this.documents, requestedDocumentId)) {
+      const fromPage = Boolean(resolveEquationMappingReturnHref(this.window?.location?.href));
+      revealEquationInSidebar(this, this.activeDocument, { all: fromPage });
+      if (fromPage || !this.activeDocument.promoted) this.indexCollapsed = false;
+      this.revealSidebarSelection = true;
+    }
     this.settingsOpen = false;
     this.editorOpen = false;
     this.referencePanelOpen = false;
@@ -883,7 +903,10 @@ export class EquationMappingRuntime {
     if (!this.root) {
       throw new Error("Missing #equation-mapping-app");
     }
-    this.handleResize = () => this.scheduleEquationLayout();
+    this.handleResize = () => {
+      this.symbolTooltip?.hide();
+      this.scheduleEquationLayout();
+    };
     this.handleKeyDown = (event) => this.handleDocumentKeyDown(event);
     this.handleHashChange = () => this.syncActiveDocumentFromLocation();
     this.window?.addEventListener?.("resize", this.handleResize);
@@ -894,6 +917,7 @@ export class EquationMappingRuntime {
   }
 
   destroy() {
+    this.symbolTooltip?.hide();
     this.window?.removeEventListener?.("resize", this.handleResize);
     this.window?.removeEventListener?.("keydown", this.handleKeyDown);
     this.window?.removeEventListener?.("hashchange", this.handleHashChange);
@@ -948,6 +972,10 @@ export class EquationMappingRuntime {
     this.activeAnchorId = this.activeDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = this.activeDocument.overlays[0]?.id ?? "";
     this.expandedSubjectIds = new Set();
+    this.expandedChapterIds = new Set();
+    this.expandedSectionIds = new Set();
+    this.navigationView = "key";
+    this.searchQuery = "";
     this.persistSettings();
     this.render();
   }
@@ -962,7 +990,8 @@ export class EquationMappingRuntime {
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
     this.activeSymbolId = nextDocument.symbols[0]?.id ?? "";
     if (!nextDocument.promoted) this.editorOpen = false;
-    this.expandedSubjectIds.add(nextDocument.subject);
+    revealEquationInSidebar(this, nextDocument);
+    this.revealSidebarSelection = true;
     replaceLocationHashForDocument(this.window, nextDocument);
     this.persistSettings();
     this.render();
@@ -979,7 +1008,10 @@ export class EquationMappingRuntime {
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
     this.activeSymbolId = nextDocument.symbols[0]?.id ?? "";
     if (!nextDocument.promoted) this.editorOpen = false;
-    this.expandedSubjectIds.add(nextDocument.subject);
+    revealEquationInSidebar(this, nextDocument, { all: true });
+    this.indexCollapsed = false;
+    this.searchQuery = "";
+    this.revealSidebarSelection = true;
     this.persistSettings();
     this.render();
     return true;
@@ -1016,11 +1048,13 @@ export class EquationMappingRuntime {
   }
 
   handleDocumentKeyDown(event) {
+    if (event?.key === "Escape") this.symbolTooltip?.hide();
     if (
       event?.defaultPrevented ||
       event?.altKey ||
       event?.ctrlKey ||
       event?.metaKey ||
+      event?.target?.closest?.(".equation-mapping-index") ||
       isTextEntryTarget(event?.target)
     ) {
       return false;
@@ -1110,11 +1144,17 @@ export class EquationMappingRuntime {
   }
 
   render() {
+    this.symbolTooltip?.hide();
+    this.symbolTooltip = null;
     this.anchorElements = new Map();
     this.overlayElements = new Map();
     this.root.textContent = "";
     this.root.append(this.renderShell());
     this.scheduleEquationLayout();
+    if (this.revealSidebarSelection) {
+      this.revealSidebarSelection = false;
+      this.root.querySelector?.(".equation-mapping-index-groups .is-active")?.scrollIntoView?.({ block: "nearest" });
+    }
   }
 
   renderShell() {
@@ -1130,12 +1170,12 @@ export class EquationMappingRuntime {
 
   renderSubjectIndex() {
     const index = createElement(this.document, "aside", "equation-mapping-index");
-    index.setAttribute("aria-label", "Equation subjects");
+    index.setAttribute("aria-label", "Equations");
     const header = createElement(this.document, "div", "equation-mapping-index-header");
     const title = createElement(this.document, "strong", "", "Equations");
     const collapse = createElement(this.document, "button", "equation-mapping-icon-button equation-mapping-index-collapse");
     collapse.type = "button";
-    collapse.title = this.indexCollapsed ? "Open subjects" : "Collapse subjects";
+    collapse.title = this.indexCollapsed ? "Open equations" : "Collapse equations";
     collapse.setAttribute("aria-label", collapse.title);
     collapse.innerHTML = createPanelCollapseIconSvg(this.indexCollapsed);
     collapse.addEventListener("click", () => {
@@ -1143,46 +1183,34 @@ export class EquationMappingRuntime {
       this.persistSettings();
       this.render();
     });
+    const returnLink = this.renderReturnLink();
+    if (returnLink) header.append(returnLink);
     header.append(title, collapse);
-    const groups = createElement(this.document, "div", "equation-mapping-index-groups");
-    groupEquationMapDocumentsBySubject(this.getVisibleDocumentList()).forEach(([subject, entries]) => {
-      const group = createElement(this.document, "section", "equation-mapping-index-group");
-      const isExpanded = this.expandedSubjectIds.has(subject);
-      group.dataset.expanded = isExpanded ? "true" : "false";
-      const toggle = createElement(this.document, "button", "equation-mapping-index-group-toggle");
-      toggle.type = "button";
-      toggle.setAttribute("aria-expanded", String(isExpanded));
-      toggle.append(
-        createElement(this.document, "span", "equation-mapping-index-group-chevron", "›"),
-        createInlineMathTextElement(this.window, this.document, "strong", "", subject),
-        createElement(this.document, "small", "", String(entries.length))
-      );
-      toggle.addEventListener("click", () => {
-        if (this.expandedSubjectIds.has(subject)) {
-          this.expandedSubjectIds.delete(subject);
-        } else {
-          this.expandedSubjectIds.add(subject);
-        }
-        this.persistSettings();
-        this.render();
-      });
-      group.append(toggle);
-      if (isExpanded) {
-        const itemList = createElement(this.document, "div", "equation-mapping-index-items");
-        entries.forEach((entry) => {
-          const button = createElement(this.document, "button", "equation-mapping-index-item");
-          button.type = "button";
-          button.classList.toggle("is-active", entry.id === this.activeDocument.id);
-          button.append(createElement(this.document, "span", "", entry.title));
-          button.addEventListener("click", () => this.setActiveDocument(entry.id));
-          itemList.append(button);
-        });
-        group.append(itemList);
-      }
-      groups.append(group);
+    const body = renderEquationSidebar({
+      document: this.document,
+      documents: this.getVisibleDocumentList(),
+      state: this,
+      renderItem: (entry, label) => this.renderIndexItem(entry, label),
+      renderText: (tag, text) => createInlineMathTextElement(this.window, this.document, tag, "", text),
+      onSelect: entry => {
+        this.searchQuery = "";
+        revealEquationInSidebar(this, entry, { all: true });
+        this.setActiveDocument(entry.id);
+      },
+      onChange: () => this.persistSettings(),
     });
-    index.append(header, groups);
+    index.append(header, body);
     return index;
+  }
+
+  renderIndexItem(entry, label = entry.title) {
+    const button = createElement(this.document, "button", "equation-mapping-index-item");
+    button.type = "button";
+    button.classList.toggle("is-active", entry.id === this.activeDocument.id);
+    if (entry.id === this.activeDocument.id) button.setAttribute("aria-current", "true");
+    button.append(createInlineMathTextElement(this.window, this.document, "span", "", label));
+    button.addEventListener("click", () => this.setActiveDocument(entry.id));
+    return button;
   }
 
   renderCanvas() {
@@ -1221,6 +1249,18 @@ export class EquationMappingRuntime {
     return button;
   }
 
+  renderReturnLink() {
+    const returnHref = resolveEquationMappingReturnHref(this.window?.location?.href);
+    if (!returnHref) return null;
+    const link = createElement(this.document, "a", "equation-mapping-icon-button equation-mapping-return-link");
+    link.href = returnHref;
+    link.title = "Return to page";
+    link.setAttribute("aria-label", "Return to page");
+    // The same left chevron as the scene shell's Go back control.
+    link.innerHTML = createIconSvg("previous");
+    return link;
+  }
+
   renderControls() {
     const controls = createElement(this.document, "div", "equation-mapping-controls");
     controls.append(
@@ -1234,14 +1274,14 @@ export class EquationMappingRuntime {
         );
       }),
       this.renderIconButton("search", "Search equations", () => {
-        this.searchOpen = !this.searchOpen;
+        this.indexCollapsed = false;
         this.settingsOpen = false;
         this.editorOpen = false;
         this.render();
-      }, this.searchOpen),
+        this.root.querySelector(".equation-mapping-search-input")?.focus();
+      }),
       this.renderIconButton("settings", "Canvas settings", () => {
         this.settingsOpen = !this.settingsOpen;
-        this.searchOpen = false;
         this.editorOpen = false;
         this.render();
       }, this.settingsOpen)
@@ -1251,15 +1291,11 @@ export class EquationMappingRuntime {
       controls.insertBefore(
         this.renderIconButton("edit", "Edit map", () => {
           this.editorOpen = !this.editorOpen;
-          this.searchOpen = false;
           this.settingsOpen = false;
           this.render();
         }, this.editorOpen),
         settingsButton
       );
-    }
-    if (this.searchOpen) {
-      controls.append(this.renderSearchPanel());
     }
     if (this.editorOpen) {
       controls.append(this.renderEditorPanel());
@@ -1280,64 +1316,6 @@ export class EquationMappingRuntime {
     button.innerHTML = createIconSvg(iconName);
     button.addEventListener("click", onClick);
     return button;
-  }
-
-  renderSearchPanel() {
-    const panel = createElement(this.document, "section", "equation-mapping-popover equation-mapping-search-panel");
-    panel.setAttribute("aria-label", "Search equations");
-    const input = createElement(this.document, "input", "equation-mapping-search-input");
-    input.type = "search";
-    input.placeholder = "Search equations";
-    input.value = this.searchQuery;
-    input.addEventListener("input", () => {
-      this.searchQuery = input.value;
-      this.render();
-    });
-    const results = createElement(this.document, "div", "equation-mapping-search-results");
-    const matches = this.searchQuery.trim()
-      ? filterEquationMapDocuments(this.documents, this.searchQuery)
-      : [];
-    if (!this.searchQuery.trim()) {
-      results.append(createElement(
-        this.document,
-        "p",
-        "equation-mapping-empty",
-        `Search all ${this.documents.length.toLocaleString()} corpus equations by formula, symbol, topic, or source.`
-      ));
-    }
-    matches.slice(0, 100).forEach((entry) => {
-      const button = createElement(this.document, "button", "equation-mapping-search-result");
-      button.type = "button";
-      button.append(
-        createElement(this.document, "strong", "", entry.title),
-        createInlineMathTextElement(this.window, this.document, "span", "", entry.subject),
-        createElement(
-          this.document,
-          "small",
-          "",
-          [entry.source?.sourceHeading, entry.source?.sourcePath].filter(Boolean).join(" · ")
-        )
-      );
-      button.addEventListener("click", () => {
-        this.searchOpen = false;
-        this.setActiveDocument(entry.id);
-      });
-      results.append(button);
-    });
-    if (this.searchQuery.trim() && matches.length === 0) {
-      results.append(createElement(this.document, "p", "equation-mapping-empty", "No equations found."));
-    }
-    if (matches.length > 100) {
-      results.append(createElement(
-        this.document,
-        "p",
-        "equation-mapping-empty",
-        `Showing the first 100 of ${matches.length.toLocaleString()} matches. Refine the search to narrow the list.`
-      ));
-    }
-    panel.append(input, results);
-    setTimeout(() => input.focus?.(), 0);
-    return panel;
   }
 
   renderEditorPanel() {
@@ -1516,6 +1494,7 @@ export class EquationMappingRuntime {
     const stage = createElement(this.document, "section", "equation-mapping-stage");
     stage.setAttribute("aria-label", this.activeDocument.title);
     stage.dataset.documentId = this.activeDocument.id;
+    stage.addEventListener("scroll", () => this.symbolTooltip?.reposition(), { passive: true });
     this.stageElement = stage;
     const pointerSvg = createSvgElement(this.document, "svg");
     pointerSvg.classList.add("equation-mapping-pointer-layer");
@@ -1553,19 +1532,24 @@ export class EquationMappingRuntime {
 
   renderSymbolStrip() {
     const strip = createElement(this.document, "div", "equation-mapping-symbol-strip");
+    this.symbolStripElement = strip;
     strip.setAttribute("aria-label", "Equation symbols");
     if (this.activeDocument.symbols.length === 0) {
       strip.append(createElement(this.document, "span", "equation-mapping-symbol-empty", "No variable symbols"));
       return strip;
     }
+    this.symbolTooltip = createEquationMappingSymbolTooltip({
+      document: this.document,
+      strip,
+      renderText: (parent, text) => appendInlineMathText(this.window, this.document, parent, text),
+    });
     this.activeDocument.symbols.forEach((symbol) => {
       const button = createElement(this.document, "button", "equation-mapping-symbol-chip");
       button.type = "button";
-      button.title = symbol.definition;
-      button.dataset.definition = symbol.definition;
-      button.setAttribute("aria-label", `${symbol.tex}: ${symbol.definition}`);
+      button.setAttribute("aria-label", symbol.tex);
       button.classList.toggle("is-active", symbol.id === this.activeSymbolId && this.referencePanelOpen);
       renderMath(this.window, button, symbol.tex, { displayMode: false });
+      this.symbolTooltip.bind(button, symbol.definition);
       button.addEventListener("click", () => {
         this.activeSymbolId = symbol.id;
         this.referencePanelOpen = true;
@@ -1762,11 +1746,19 @@ export class EquationMappingRuntime {
 
   scheduleEquationLayout() {
     const run = () => {
+      const scrollTop = this.stageElement?.scrollTop ?? 0;
+      if (this.stageElement) this.stageElement.scrollTop = 0;
       this.resetEquationVerticalLayout();
       this.applyEquationAutoFit();
+      this.symbolTooltipClearance = this.activeDocument.overlays.length && this.symbolTooltip
+        ? this.symbolTooltip.measureMaxHeight() + SYMBOL_TOOLTIP_GAP_PX + SYMBOL_TOOLTIP_CALLOUT_GAP_PX
+        : 0;
+      this.stageElement?.style?.setProperty("--symbol-tooltip-clearance", `${this.symbolTooltipClearance}px`);
       this.applyCalloutLayout();
       this.applyEquationVerticalClearance();
       this.updatePointerLines();
+      this.updateEquationScrollExtent();
+      if (this.stageElement) this.stageElement.scrollTop = scrollTop;
     };
     if (typeof this.window?.requestAnimationFrame === "function") {
       this.window.requestAnimationFrame(run);
@@ -1845,6 +1837,12 @@ export class EquationMappingRuntime {
     const stageRect = this.stageElement.getBoundingClientRect();
     const equationRect = getLocalRect(this.equationElement.getBoundingClientRect(), stageRect);
     const equationGapPx = this.measureEquationLineClearance(stageRect);
+    const symbolStripRect = this.symbolStripElement
+      ? getLocalRect(this.symbolStripElement.getBoundingClientRect(), stageRect)
+      : null;
+    const minBelowY = symbolStripRect && this.symbolTooltipClearance
+      ? symbolStripRect.bottom + this.symbolTooltipClearance
+      : equationRect.bottom;
     const titleRect = this.equationTitleElement
       ? getLocalRect(this.equationTitleElement.getBoundingClientRect(), stageRect)
       : null;
@@ -1906,6 +1904,7 @@ export class EquationMappingRuntime {
         items,
         placement,
         equationGapPx,
+        minBelowY,
       });
       items.forEach((item) => {
         let position = layout.get(item.id);
@@ -1917,6 +1916,7 @@ export class EquationMappingRuntime {
             position,
             commentRect: item.commentRect,
             carouselRect,
+            minY: minBelowY,
           });
         }
         item.element.style.setProperty("--overlay-layout-x", `${position.x.toFixed(1)}px`);
@@ -1941,9 +1941,23 @@ export class EquationMappingRuntime {
     return placements;
   }
 
+  updateEquationScrollExtent() {
+    if (!this.stageElement) return;
+    const stageRect = this.stageElement.getBoundingClientRect();
+    const bottom = Math.max(this.equationShellElement?.getBoundingClientRect().bottom ?? stageRect.top, ...[...this.overlayElements.values()].map(element => element.getBoundingClientRect().bottom));
+    // Leave room to scroll the last explainer above the fixed carousel.
+    const carousel = this.root?.querySelector?.(".equation-mapping-carousel");
+    const footerHeight = carousel?.getBoundingClientRect().height ?? 0;
+    const contentHeight = Math.max(stageRect.height - 1, bottom - stageRect.top + footerHeight + CALLOUT_LAYOUT_MARGIN_PX);
+    this.stageElement.style.setProperty("--equation-content-height", `${contentHeight}px`);
+  }
+
   applyEquationVerticalClearance() {
     if (!this.stageElement || !this.equationShellElement || !this.equationElement) {
       return null;
+    }
+    if (this.window?.getComputedStyle?.(this.equationShellElement)?.position === "static") {
+      return { shiftPx: 0 };
     }
     const stageRect = this.stageElement.getBoundingClientRect();
     const equationShellRect = getLocalRect(
@@ -1955,6 +1969,7 @@ export class EquationMappingRuntime {
     const belowCalloutRects = [];
     const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
+      if (isCoordinateEffectiveSideCallout(this.activeDocument, overlay)) return;
       const commentElement = this.overlayElements.get(overlay.id);
       if (!commentElement) {
         return;
@@ -1973,6 +1988,7 @@ export class EquationMappingRuntime {
       rowRects,
       aboveCalloutRects,
       belowCalloutRects,
+      minimumGapPx: this.measureEquationLineClearance(stageRect),
     });
     if (shiftPx <= 0) {
       return { shiftPx: 0 };
@@ -1983,7 +1999,7 @@ export class EquationMappingRuntime {
       `${nextCenterY.toFixed(1)}px`
     );
     this.activeDocument.overlays.forEach((overlay) => {
-      if (!isCoordinateEffectiveSideCallout(this.activeDocument, overlay)) {
+      if (!isCoordinateEffectiveSideCallout(this.activeDocument, overlay) && placementByOverlayId.get(overlay.id) !== "below") {
         return;
       }
       const commentElement = this.overlayElements.get(overlay.id);

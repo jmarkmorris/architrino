@@ -37,8 +37,8 @@ These rows decompose the case at draft grade. They are not executable queue auth
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [standard-model-closure/weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md) | Use Aharonov-Bohm as a clean gauge-holonomy benchmark. |
-| This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Tie holonomy to interference outcome measures. |
+| This file | [mapping-standard-model/weak-sector-gauge-closure](../mapping-standard-model/weak-sector-gauge-closure.md) | Use Aharonov-Bohm as a clean gauge-holonomy benchmark. |
+| This file | [mapping-quantum/transfer-operator-basin-measure](../mapping-quantum/transfer-operator-basin-measure.md) | Tie holonomy to interference outcome measures. |
 | This file | [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Add gauge-potential observability as a replacement constraint rather than a fundamental ontology import. |
 
 ## Failure Modes

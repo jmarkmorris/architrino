@@ -9,7 +9,7 @@
   "identity": {
     "candidateId": "F6c",
     "displayLabel": "F6c — small asymmetric counter-breathing representative",
-    "status": "operator-selected-prescribed-display-pending-borg-review",
+    "status": "operator-approved-prescribed-display",
     "geometryOwner": "reference/priorities/mapping-electromagnetism/f6c-geometry.md#exact-member-map"
   },
   "illustrativeCoordinates": {

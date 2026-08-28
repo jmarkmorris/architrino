@@ -1,5 +1,7 @@
 # Mapping Benchmarks Priority Candidates
 
+For the overall program and the distinction between benchmark, equation, and domain work, start with the [Mapping overview](../mapping/README.md#what-mapping-benchmarks-means).
+
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
@@ -19,7 +21,7 @@ This directory is a priority-candidate lane for observational and experimental c
 
 The lane is not authored AAA canon. It is source material for later promotion into validation gates, spacetime closure, radiation closure, quantum closure, angular-momentum closure, cosmology closure, and related proof programs.
 
-The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md) governs the boundary between equation-first, benchmark-first, domain-integration, and native-evidence work. Case-local candidate steps decompose a benchmark at draft grade; only [work-queue.md](work-queue.md) owns executable rows for Mapping Benchmarks.
+The [Shared Equation And Mapping Architecture](../mapping/mapping-method.md) governs the boundary between equation-first, benchmark-first, domain-integration, and native-evidence work. Case-local candidate steps decompose a benchmark at draft grade; only [work-queue.md](work-queue.md) owns executable rows for Mapping Benchmarks.
 
 ## Lane Map
 
@@ -92,13 +94,13 @@ This projection is a provenance channel from detector signals to benchmark varia
 
 | Draft case family | Candidate promotion target | Promotion gate |
 | --- | --- | --- |
-| Redshift and cosmology | [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
+| Redshift and cosmology | [mapping-cosmology](../mapping-cosmology/priorities.md), [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
 | Lorentz, Sagnac, and Fizeau | braid, [master-equation-closure](../master-equation-closure/priorities.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
 | Weak-field metric | [validation-gates](../dormant-deferred/validation-gates/priorities.md), mass-map | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
-| Radiation and gravitational waves | [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [strong-field-closure](../strong-field-closure/priorities.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
-| Atomic magnetic spectroscopy, quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/priorities.md), angular-momentum-spin, [Mapping Electromagnetism](../mapping-electromagnetism/priorities.md) | Zeeman splitting, polarization selection, phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from shared retained records rather than imported field or probability postulates. |
+| Radiation and gravitational waves | [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [mapping-strong-field](../mapping-strong-field/priorities.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
+| Atomic magnetic spectroscopy, quantum phase, spin, and Bell | [mapping-quantum](../mapping-quantum/priorities.md), angular-momentum-spin, [Mapping Electromagnetism](../mapping-electromagnetism/priorities.md) | Zeeman splitting, polarization selection, phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from shared retained records rather than imported field or probability postulates. |
 | Topological and statistical emergence | [validation-gates](../dormant-deferred/validation-gates/priorities.md), mass-map | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
-| Collider reconstruction provenance | [standard-model-closure](../standard-model-closure/priorities.md), angular-momentum-spin, [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |
+| Collider reconstruction provenance | [mapping-standard-model](../mapping-standard-model/priorities.md), angular-momentum-spin, [validation-gates](../dormant-deferred/validation-gates/priorities.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |
 
 ## Failure Modes
 
@@ -118,7 +120,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 - braid
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - mass-map
-- [quantum-closure](../quantum-closure/priorities.md)
+- [mapping-quantum](../mapping-quantum/priorities.md)
 - angular-momentum-spin
-- [cosmology-closure](../cosmology-closure/priorities.md)
-- [strong-field-closure](../strong-field-closure/priorities.md)
+- [mapping-cosmology](../mapping-cosmology/priorities.md)
+- [mapping-strong-field](../mapping-strong-field/priorities.md)

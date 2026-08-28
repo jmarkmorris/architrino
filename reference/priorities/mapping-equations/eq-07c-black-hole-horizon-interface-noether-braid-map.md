@@ -7,7 +7,7 @@
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Parent packet: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
-- Related high-energy routing: [High-Energy Astrophysics](../strong-field-closure/high-energy-astrophysics/priorities.md#equation-examination-capture)
+- Related high-energy routing: [High-Energy Astrophysics](../mapping-strong-field/high-energy-astrophysics/priorities.md#equation-examination-capture)
 - Assigned ID: `EQ-07C`
 - Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md), [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md)
 - Claim level: observer-level black-hole horizon/interior benchmark, native carrier dictionary, and residual required for advancement target

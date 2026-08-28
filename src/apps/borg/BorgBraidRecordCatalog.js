@@ -161,6 +161,14 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
       "content/assets/borg/records/sd3-centered-five-coordinate.assembly-view-record.v0.json",
   },
   {
+    id: "f5-phase-varying-campaign-v2",
+    label: "F5 — phase-varying prescribed display representative",
+    familyId: "F5",
+    familyLabel: "F5",
+    recordUrl:
+      "content/assets/borg/records/f5-phase-varying-campaign.assembly-view-record.v0.json",
+  },
+  {
     id: "f6c-polarity-resolved-harmonic-v2",
     label: "F6c — small asymmetric counter-breathing representative",
     familyId: "F6c",
