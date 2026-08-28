@@ -30,7 +30,7 @@ Plainly: this is the missing measurement recipe for two existing score rows, not
 | --- | --- |
 | candidate | `F6c` |
 | measurement scope | refined dual-turn row from the 2026-08-24 bounded campaign |
-| evidence packet | [F6c dual-turn return search](../../mapping-electromagnetism/f6c-dual-turn-return-search-2026-08-24.json) |
+| evidence packet | [F6c dual-turn return search](../f6c-dual-turn-return-search-2026-08-24.json) |
 | evidence-packet SHA-256 | `342e8fc12f61f677a869e6af357691937415c0bf646746f565f1578215676b86` |
 | refined summary | [Durable Stage B summary](2026-08-27-f6c-refined-stage-b-summary.json), SHA-256 `9e053c214e2d09544a488957dde7d59de40ee15937b8c056ef7d56d24eb40d3d` |
 | refined row manifest | [Durable Stage B manifest](2026-08-27-f6c-refined-stage-b-manifest.json), SHA-256 `cbd4fa5392298c3fb72a86c247daa0081f33aa6b39f2982ef5348ca0cd50830b` |

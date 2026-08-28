@@ -15,9 +15,13 @@ Use `dormant-deferred/aaa-journey/priorities.md` for priority-stage reconstructi
 
 ## Mapping Workstreams
 
+Start with the [Mapping overview](mapping/README.md) for the program's purpose, directory map, benchmark explanation, and methodology. `mapping/` is the shared documentation entry point, not a ranked workstream or parent queue.
+
 Use the `mapping-` directory prefix for equation mapping, benchmark mapping, domain recovery, and cross-domain theory-bridge assessment. Keep these directories as siblings directly under `reference/priorities/`; the prefix groups related work without creating a parent queue or merging ownership. Directory names have no `.md` extension; the standard tracker, queue, brainstorming, and log filenames remain unchanged.
 
-The current family is [Mapping Equations](mapping-equations/priorities.md), [Mapping Benchmarks](mapping-benchmarks/priorities.md), [Mapping Electromagnetism](mapping-electromagnetism/priorities.md), [Standard Model Closure](mapping-standard-model/priorities.md), [Quantum Closure](mapping-quantum/priorities.md), [Cosmology Closure](mapping-cosmology/priorities.md), [Strong-Field Closure](mapping-strong-field/priorities.md), [Nuclear, Atomic, and Molecular Closure](mapping-nuclear-atomic-molecular/priorities.md), and [One Nature, Many Theories](mapping-one-nature-many-theories/priorities.md). Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping-equations/equation-common-architecture.md#mapping-program-routing).
+The [directory map](mapping/README.md#how-the-directories-are-organized) identifies the equation, benchmark, domain, and cross-domain assessment owners. Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping/mapping-method.md#mapping-program-routing).
+
+The [shared bidirectional mapping method](mapping/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) develops native derivations toward established physics and uses established results as reverse constraints on the native construction. Its goal is to make the two ends meet and develop a mathematical language grounded in the derived structures that can reframe mapped domains while recovering their tested behavior.
 
 The prefix changes neither rank, evidence grade, nor active or deferred status. Foundational law and braid programs, cross-workstream mathematical support, speculative assembly candidates, source acquisition, editorial programs, and `app-*` implementation owners remain separate. Parked work remains under `dormant-deferred/` until an explicit reactivation decision.
 

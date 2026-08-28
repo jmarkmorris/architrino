@@ -6,6 +6,34 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 
 ## Log Entries
 
+### 2026-08-27 — General requirements and candidate geometry ownership split
+
+Moved the general inference packet to Equation Mapping and the candidate-adjudication, F6c, and three-binary packets to the Braid Program at operator request. The table maps the former files under `reference/priorities/mapping-electromagnetism/` to their current owners. Existing dated entries remain in this log; their navigational links point to the relocated files.
+
+| Former filename | Current document or record |
+| --- | --- |
+| `inferring-braid-requirements.md` | [Equation Mapping requirement inference](../mapping-equations/inferring-braid-requirements.md) |
+| `braid-candidate-requirement-adjudication.md` | [Braid Program candidate adjudication](../braid-program/braid-candidate-requirement-adjudication.md) |
+| `f6c-geometry.md` | [Braid Program F6c geometry](../braid-program/f6c-geometry.md) |
+| `three-binary-orbiting-endpoint-comparison.md` | [Braid Program three-binary geometry](../braid-program/three-binary-orbiting-endpoint-comparison.md) |
+| `three-binary-five-coordinate-initialization-ledger.md` | [Braid Program five-coordinate initialization](../braid-program/three-binary-five-coordinate-initialization-ledger.md) |
+| `three-binary-five-coordinate-bounded-eom-comparison.md` | [Braid Program bounded EOM comparison](../braid-program/three-binary-five-coordinate-bounded-eom-comparison.md) |
+| `f6c-dual-turn-return-search-2026-08-24.json` | [Unchanged F6c dual-turn evidence](../braid-program/f6c-dual-turn-return-search-2026-08-24.json) |
+| `f6c-radial-frequency-continuation-2026-08-24.json` | [Unchanged F6c radial-frequency evidence](../braid-program/f6c-radial-frequency-continuation-2026-08-24.json) |
+| `three-binary-five-coordinate-bounded-eom-comparison-2026-08-25.json` | [Unchanged three-binary comparison evidence](../braid-program/three-binary-five-coordinate-bounded-eom-comparison-2026-08-25.json) |
+
+Plainly: Equation Mapping owns what established behavior requires, the Braid Program owns candidate geometry and its evidence, and this lane continues to own electromagnetic applications.
+
+The three moved JSON records retain their exact bytes. Executable instruments under `scripts/mapping-electromagnetism/` and their tests remain at their established paths. The F5, F6b, F6c, and SD3 prescribed configuration JSON, frozen campaign/source snapshots, and generated Borg records remain unchanged because their bytes participate in evidence and source bindings. Their embedded former owner paths are provenance locators, not live navigation; use the relocation table above to find the current document, retaining any original section anchor. New source records should cite the current owner path. This move does not reissue an approved source, regenerate a display record, change a source hash, or update any physical claim, score, queue state, or candidate disposition.
+
+Fine-structure coupling, the E0–E4 receiver protocol, fixed-law source continuation, the finite-braid Maxwell prompt, and the adaptive cubic-medium application remain in this lane. No corpus promotion or mathematical revision was performed.
+
+Validation: all nine moves are present with no old-path copies; the relocation audit preserved the six documents' headings and all 5,009 math spans across the affected existing Markdown files, checked 450 local links without a new missing target, and verified unchanged SHA-256 values for all thirteen moved or protected JSON files. A repository reference scan found no old-path Markdown links among 6,624 links in 950 reference documents. All 29 focused three-binary, F6c return-group, and prescribed-record tests passed; `node scripts/eom/generate-prescribed-braid-record.mjs --all --check`, priority ranking, and whitespace checks passed.
+
+The broader strict content check reported zero errors but two existing index-drift warnings for the philosophy/history scene and Markdown inventories. Scene-graph checking reported corresponding graph/TOC drift and three warnings; the equation-corpus registry check also reported generated drift. Those surfaces are outside the relocated priority files and were not regenerated. The corresponding repair commands, only under separate regeneration authority, are `node scripts/validate-content.mjs --write`, `node scripts/build-scene-graph.mjs --write --strict`, and `node scripts/build-equation-mapping-corpus.mjs --write`; rerun each check after authorized regeneration.
+
+Plainly: the relocation and its supporting records pass the scoped checks. The full repository checks still need a separate generated-content refresh; no relocation result depends on treating those warnings as passes.
+
 ### 2026-08-25 — Bounded five-coordinate three-binary EOM comparison
 
 - Imported the immutable five-coordinate ledger into the accepted EOM solver route with exact linear retained histories on $-4\leq T\leq0$, normalized $c_f=1$, the same charge and coupling rows, and no added or retuned coordinate.
@@ -14,7 +42,7 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 - At the endpoint, Candidate A had clearance $0.381155$, maximum speed $0.892013$, exact pair-conjugacy residual zero, and fixed-tangent normal leakage $0.00344810$. Candidate B had clearance $0.383659$, maximum speed $0.856195$, cyclic residual below $3.28\times10^{-17}$, and fixed-tangent normal leakage $2.15\times10^{-17}$.
 - Applied the predeclared 10% materiality trigger and repeated both declared rows with $0.025$ rather than $0.05$ chunks. The replicated Candidate-A leakage was $0.00344978$ while Candidate B remained at $2.21\times10^{-17}$; clearance and speed changed by less than $3.60\times10^{-5}$ and $1.83\times10^{-4}$.
 - Measured labeled-identity RMS position displacements of $0.0674350$ and $0.0671614$ in the refined rows, so neither is a labeled return on the declared interval.
-- Added [Bounded Five-Coordinate Three-Binary EOM Comparison](three-binary-five-coordinate-bounded-eom-comparison.md), its machine record, the focused comparison instrument, and three focused history/symmetry tests.
+- Added [Bounded Five-Coordinate Three-Binary EOM Comparison](../braid-program/three-binary-five-coordinate-bounded-eom-comparison.md), its machine record, the focused comparison instrument, and three focused history/symmetry tests.
 - Closed only the requested one-row bounded comparison. No full-A3-family inference, retention, stability, equilibrium, binding, particle identity, electromagnetic recovery, equation score, queue state, or reader-facing corpus claim changed.
 
 ### 2026-08-24 — F6c radial-to-axial breathing-frequency continuation
@@ -24,7 +52,7 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 - Predeclared and completed the nine-point sweep $r_\rho\in\{1,0.95,1.05,0.9,1.1,0.85,1.15,0.8,1.2\}$ with every other seed coordinate fixed. All nine histories passed prehistory admission, produced both guarded turns, supplied an eligible positive-radial exact-action section, and reached the 180-second candidate cap after yielding accepted records through $T=0.14$ or $0.16$.
 - Fixed the continuation rule at a 10% reduction from the ratio-one RMS $1.4127643702$, requiring RMS at most $1.2714879332$. The best bounded row was $r_\rho=0.8$ with reflected RMS $1.4017247296$ at $T=0.0973940850$, a reduction of only $0.781421\%$; its maximum component mismatch remained the negative cadence residual $3.2143506592$.
 - Preserved the best row's guard contract: 64 certified release-root rows, zero unresolved roots, simple root multiplicity, minimum transmitter-factor magnitude $0.670045$, minimum pair distance $0.248725$, maximum member speed $0.932090c_f$, fixed eight-member identity, and normalized F6c position/velocity leakage below $7.41\times10^{-16}$.
-- Applied the predeclared stopping rule and did not refine. Stored the complete bounded campaign, row table, guard record, control hashes, raw-summary hash, falsifier, and excluded claims in [f6c-radial-frequency-continuation-2026-08-24.json](f6c-radial-frequency-continuation-2026-08-24.json).
+- Applied the predeclared stopping rule and did not refine. Stored the complete bounded campaign, row table, guard record, control hashes, raw-summary hash, falsifier, and excluded claims in [f6c-radial-frequency-continuation-2026-08-24.json](../braid-program/f6c-radial-frequency-continuation-2026-08-24.json).
 - Classified the result as a measured bounded negative for this one prescribed-history coordinate. It neither improves the earlier $0.44337314$ reflected near-miss nor establishes retention, stability, particle identity, recovery, or global nonexistence.
 
 ### 2026-08-24 — Five-coordinate matched three-binary initialization ledger
@@ -35,7 +63,7 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 - Selected Candidate A's two additional directions as a seed-derived zero-sum cyclic pair-scale doublet. It preserves exact pair conjugacy, is orthogonal to the three common A2 directions, and uses no external preferred axis.
 - Proved the non-match theorem: the two tangent spaces intersect in exactly the three common A2 directions; Candidate B's remaining polarity-symmetric midpoint doublet cannot be memberwise identical to any polarity-antisymmetric Candidate-A perturbation.
 - Derived exact left inverses for both affine maps and the matched metric $J_A^{\mathsf T}J_A=J_B^{\mathsf T}J_B=6I_5$, so equal coordinate and rate norms give equal six-member root-mean-square displacement and internal speed.
-- Added [Five-Coordinate Matched Three-Binary Initialization Ledger](three-binary-five-coordinate-initialization-ledger.md), `scripts/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.mjs`, and seven focused tests.
+- Added [Five-Coordinate Matched Three-Binary Initialization Ledger](../braid-program/three-binary-five-coordinate-initialization-ledger.md), `scripts/mapping-electromagnetism/three-binary-five-coordinate-initialization-ledger.mjs`, and seven focused tests.
 - On the declared $c_f=1$ sample, measured tangent rank five for both maps, tangent-metric residuals below $2.67\times10^{-15}$, inverse residuals below $2.26\times10^{-17}$, positive minimum pair distance above $0.2683$, and maximum member speed below $0.130c_f$.
 - Closed the initialization prerequisite at geometry grade. A bounded EOM solver protocol may now be authored as a separate artifact, but no EOM solver campaign, retention claim, stability result, physical identity, equation score, or `EMAP-001` queue change follows from this ledger.
 
@@ -47,12 +75,12 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 - Preserved the qualified row through its recorded $T=0.14$ interval with 64 certified release-root rows, zero unresolved release roots, simple root multiplicity, minimum transmitter-factor magnitude $0.674477$, minimum pair distance $0.264450$, maximum member speed $0.877507c_f$, and normalized position/velocity F6c leakage below $7.96\times10^{-16}$.
 - Continued eight local rows around that seed at the next positive-radial initial-level crossing, leaving all other rates free. Two retained the dual-turn marker; one supplied an eligible exact reflected-action comparison. Its full-state RMS residual was $1.4127643702$ at $T=0.1140798550$, with maximum component mismatch $3.3157171268$ and winding cell $(1,0)$.
 - Recomputed the seed with half the integration and history-segment steps and root tolerance $5\times10^{-6}$. It completed through $T=0.13$ without rejection; the radial and cadence turn times changed by $1.01\times10^{-6}$ and $8.51\times10^{-8}$, while the reflected RMS changed by $6.94\times10^{-7}$ to $1.4127650645$.
-- Stored the machine-readable campaign and refinement record in [f6c-dual-turn-return-search-2026-08-24.json](f6c-dual-turn-return-search-2026-08-24.json), including the complete six-coordinate sector states, exact action residuals, causal guards, speed boundary, member provenance, leakage, raw-summary hashes, and falsifier.
+- Stored the machine-readable campaign and refinement record in [f6c-dual-turn-return-search-2026-08-24.json](../braid-program/f6c-dual-turn-return-search-2026-08-24.json), including the complete six-coordinate sector states, exact action residuals, causal guards, speed boundary, member provenance, leakage, raw-summary hashes, and falsifier.
 - Classified the dual-turn history as a measured search seed and the return result as a bounded negative diagnostic. It is not an exact return, retained branch, stability result, clock, energy closure, particle identity, Lorentz recovery, or global nonexistence result; its poorer return residual does not displace the earlier $0.44337314$ reflected near-miss.
 
 ### 2026-08-24 — Pair-conjugate versus sector-differential three-binary geometry
 
-- Closed Session 22 at geometry grade with [Pair-Conjugate And Sector-Differential Three-Binary Geometry](three-binary-orbiting-endpoint-comparison.md), without introducing a new canonical family name or promoting the proposal into reader-facing corpus canon.
+- Closed Session 22 at geometry grade with [Pair-Conjugate And Sector-Differential Three-Binary Geometry](../braid-program/three-binary-orbiting-endpoint-comparison.md), without introducing a new canonical family name or promoting the proposal into reader-facing corpus canon.
 - Proved that the pair-conjugate orthonormal three-axis map is the existing nine-coordinate A3 chart; stated the exact cyclic A2, zero-axial-offset A1, and coincident-axis B1 boundary conditions.
 - Proved that pair conjugacy gives exact whole centering, antipodality, and three geometric pair identities but does not give a polarity-dipole null; its simplest polarity-weighted internal motion moment cancels pairwise.
 - Derived the centered cyclic sector-differential chart and its exact quotient into two transverse sector vectors plus one differential axial coordinate. The sixth raw parameter is common translation along the cyclic axis, so the centered internal tangent has rank five.
@@ -61,7 +89,7 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 - Independently verified the three-of-four tetrahedral identities, including $\det G=16/27$, eigenvalues $(1/3,4/3,4/3)$, and the preferred missing-axis second-moment direction.
 - Added `scripts/mapping-electromagnetism/three-binary-orbiting-endpoint-geometry.mjs` and nine focused tests covering A2, A3, A1, B1 rank loss, generic sector differentiation, exact pair reduction, the tetrahedral subset, collision, nonfinite input, and malformed axes.
 - Measured tangent rank nine for generic A3, rank six for the uncentered raw sector chart, and rank five for its exactly centered cyclic quotient. All declared exact centroid, symmetry, antipodality, and tetrahedral controls agreed to floating-point precision.
-- Issued the exact six-to-six pre-EOM no-go and named the gauge-fixed five-coordinate repair, now completed in [Five-Coordinate Matched Three-Binary Initialization Ledger](three-binary-five-coordinate-initialization-ledger.md). No EOM solver campaign was launched in either geometry pass.
+- Issued the exact six-to-six pre-EOM no-go and named the gauge-fixed five-coordinate repair, now completed in [Five-Coordinate Matched Three-Binary Initialization Ledger](../braid-program/three-binary-five-coordinate-initialization-ledger.md). No EOM solver campaign was launched in either geometry pass.
 - Left `EMAP-001`, the mapping-electromagnetism queue, all retained-braid claims, and all equation scores unchanged.
 
 ### 2026-08-24 — F6c nonlinear return-map continuation
@@ -335,7 +363,7 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 
 ### 2026-08-22 — Braid-requirement inference packet created
 
-- Created [Inferring Braid Requirements](inferring-braid-requirements.md) as the focused pre-derivation bridge from existing equations and benchmarks to native source, matter, Noether sea, carrier, receiver, and boundary requirements.
+- Created [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md) as the focused pre-derivation bridge from existing equations and benchmarks to native source, matter, Noether sea, carrier, receiver, and boundary requirements.
 - Consolidated the field-ontology and long-range-response discussion with the fine-structure thread's absolute-record, near/environment/far sea, matter-retuning, scale-separation, and no-hidden-retune insights.
 - Added an initial effective-field requirement ledger, competing realization families, direct-wake versus sea-mediation controls, a reusable matrix schema, and an explicit inference work order.
 - Kept the packet report-only and pre-derivation. No `EMAP` lifecycle state, equation score, benchmark authority, retained-braid claim, constitutive closure, or reader-facing corpus claim changed.

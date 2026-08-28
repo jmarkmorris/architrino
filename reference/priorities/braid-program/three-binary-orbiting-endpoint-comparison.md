@@ -2,6 +2,7 @@
 
 ## Status And Decision
 
+- Owner: [Braid Program](priorities.md)
 - Kind: focused priority-side geometry derivation and pre-EOM comparison
 - Created: 2026-08-24
 - Permanent short name: `SD3`, meaning sector-differential three-pair geometry; the former `Candidate B` wording survives only in provenance-bound machine fields and append-only records

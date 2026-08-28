@@ -1,11 +1,13 @@
 # Shared Equation And Mapping Architecture
 
+Start with the [Mapping overview](README.md) for the purpose, directory map, and practical introduction. This document owns the shared method and mathematical architecture used by those workstreams.
+
 ## Workstream Metadata
 
 - Kind: `priority`
 - Status: `priority-only`
-- Parent: [Equation Mapping Internal Priority](priorities.md)
-- Source inventory: [Equation Mapping Detail](equation.md)
+- Parent: [Mapping overview](README.md)
+- Source inventory: [Equation Mapping Detail](../mapping-equations/equation.md)
 - Role: current shared method and routing owner for equation-first, benchmark-first, and domain-integration mapping
 - Origin: consolidated from the first score-neutral equation-packet pass; its score dispositions were priority-ledger decisions, not accepted retained evidence.
 - Claim level: priority-only common architecture for reusable mapping components
@@ -13,7 +15,7 @@
 
 ## Purpose
 
-This note identifies equation components that recur across the equation-mapping packets and could become useful equations, residuals, records, or operators in their own right. It is internal priority material. It does not promote any packet into reader-facing corpus prose and does not change any `6/23` score.
+This note owns the shared bidirectional mapping method and identifies equation components that recur across the mapping packets and could become useful equations, residuals, records, or operators in their own right. The working goal is to advance $\mathbb{A}\mathbb{A}\mathbb{A}$ and established-domain recovery toward a common mathematical description, then reframe mapped domains through the structures that have been derived. It is internal priority material. It does not promote any packet into reader-facing corpus prose and does not change any `6/23` score.
 
 The packet set is already converging on one architecture:
 
@@ -29,13 +31,33 @@ $$
 
 The common components below should be treated as reusable mathematical objects, not as new gate proliferation. Each one earns its value only when it reduces hidden retuning, makes a shared carrier explicit, or supplies a first proof or simulation target for multiple equation groups.
 
+## Bidirectional Mapping And Mathematical Reframing
+
+The method develops both ends of a bridge together. The direction of discovery is bidirectional; the authority of a physical derivation still comes from the declared primitives, assumptions, and independent evidence.
+
+1. **From $\mathbb{A}\mathbb{A}\mathbb{A}$ toward established physics:** derive assembly, medium, and observer variables from polarity, causal-delay interactions, and path histories in Euclidean void and absolute time. Determine which familiar equations and measured behaviors those variables recover, in which regimes, and with what remaining error.
+2. **From established physics toward $\mathbb{A}\mathbb{A}\mathbb{A}$:** use measured behavior, successful equations, solved cases, and shared mathematical relationships as inverse constraints. Ask what native geometry, history dependence, degrees of freedom, or effective response would be required to explain them. These constraints guide discovery and expose missing derivations; they do not install an inherited law or interpretation as a substrate premise.
+3. **Make the ends meet:** construct the required native record and its projection to the comparison variables, then test whether that same construction satisfies the declared equation and benchmark constraints together. Distinguish constraints used to construct or calibrate the candidate from the independent evidence used to validate it. Separate fits for each observable do not establish a shared explanation.
+
+Plainly: build upward from the physical ingredients while working backward from what nature already does. Each direction tells the other where to look. They meet when one explicit construction accounts for the required behavior, rather than when two vocabularies merely sound alike.
+
+Bidirectional does not mean uniquely invertible. An observer-level description can discard information, so several underlying histories may fit the same observation. The [admissible native record sets](#admissible-native-record-sets) below express that reverse constraint; the [common-history bridge criterion](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) states the corresponding cross-domain requirement. A candidate fails the meeting condition when no same-record construction survives the required comparisons, or when agreement requires changing its assumptions or parameters separately for each comparison. Surviving those comparisons alone does not establish uniqueness or physical realization.
+
+Plainly: working backward narrows the possible mechanisms; it need not identify just one. A bridge succeeds only at its stated scope, and the forward physical construction still has to earn its own evidence.
+
+**Mathematical reframing is the development goal, not a completed result.** As a bridge advances, seek expressions whose variables and operations name derived path-history, assembly, and medium structures directly. Recover the useful inherited formulas as appropriate limits or observer descriptions, while testing whether a shared native expression explains formerly separate terms, reduces independent assumptions or fitted quantities, or exposes a new checkable relationship. Changing symbols alone is not such a gain. Candidate reformulations can be developed before full domain closure, provided derived steps, inferred structure, and conjectures remain distinguishable and tested behavior is preserved wherever recovery is claimed.
+
+Plainly: the aim is to learn enough from both descriptions to write better mathematics for the mapped subject. We can develop that language as the theory progresses; we must show what each new expression explains, not merely rename the old expression.
+
+This method applies across the `mapping-*` family. It adds no parent queue, score rule, or acceptance gate. Equation rows, benchmark definitions, domain integration, and native derivations retain the owners listed below. The reader-facing method is described in [Theory Bridges](../../../content/markdown/aaa/philosophy-history/theory-bridges.md); [Theory Mapping](../../../content/markdown/aaa/philosophy-history/theory-mapping.md) supplies the comparative survey of inherited frameworks.
+
 ## Mapping Program Routing
 
 The mapping program has three complementary intake directions and one native evidence path. They share this architecture but retain separate ownership.
 
 | Direction | Starts from | Owner | Owned output |
 | --- | --- | --- | --- |
-| Equation-first | One established equation, identity, or tightly coupled equation family | [Equation Mapping](priorities.md) | Exact equation row, direct geometry layer, residual, source-field contract, evidence grade, and score. |
+| Equation-first | One established equation, identity, or tightly coupled equation family | [Equation Mapping](../mapping-equations/priorities.md) | Exact equation row, direct geometry layer, residual, source-field contract, evidence grade, and score. |
 | Benchmark-first | One experiment, observation, or solved comparison case | [Mapping Benchmarks](../mapping-benchmarks/priorities.md) | Benchmark variables, data provenance, tolerance, independent comparison, and falsifier. |
 | Domain integration | Several equation and benchmark constraints that must share one carrier | The domain owner, currently including [Mapping Electromagnetism](../mapping-electromagnetism/priorities.md) | Same-record intersection, cross-row consistency, inverse-geometry constraints, and domain-level failure conditions. |
 | Native derivation and evidence | Candidate assembly, causal-wake, event-ledger, and Noether sea records | Braid Program, Master Equation Closure, EOM solver, and other native owners | Retained records, derived carriers, independent validation, and acceptance evidence consumed by the three mapping directions. |
@@ -45,6 +67,8 @@ These directions are not competing theories and do not duplicate authority. Equa
 Plainly: an equation row says what one formula requires, a benchmark packet says what one tested case requires, and a domain packet asks whether the same assembly-and-sea geometry can satisfy all of them. None of those mapping documents manufactures the retained geometry it needs.
 
 ### Standard-Side Decomposition
+
+The shared reverse-inference application is [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md), owned by Equation Mapping. It develops cross-domain requirements without taking over benchmark definitions or native evidence. The Braid Program's [candidate adjudication](../braid-program/braid-candidate-requirement-adjudication.md) applies those requirements to the candidate registry; domain owners retain their same-record integration tasks.
 
 Every equation or benchmark intake must separate three layers:
 
@@ -88,15 +112,15 @@ Equation Mapping owns the individual equation sets $\mathfrak A_b$; Mapping Benc
 
 Packets inspected for this second pass:
 
-- [EQ-01 And EQ-05 Root-Conservation Closure Packet](eq-01-05-root-conservation-packet.md)
-- [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](eq-02-04-lorentz-energy-packet.md)
-- [EQ-06, EQ-24, And EQ-25 Continuum, Medium, And Thermodynamic Closure Packet](eq-06-24-25-continuum-medium-thermo-packet.md)
-- [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
-- [EQ-11 And EQ-20 Gravity / Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md)
-- [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
-- [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
-- [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md)
-- [EQ-26 Through EQ-31 Observation-First Precision Packet](eq-26-31-observation-first-precision-packet.md)
+- [EQ-01 And EQ-05 Root-Conservation Closure Packet](../mapping-equations/eq-01-05-root-conservation-packet.md)
+- [EQ-02 Through EQ-04 Lorentz-Energy Closure Packet](../mapping-equations/eq-02-04-lorentz-energy-packet.md)
+- [EQ-06, EQ-24, And EQ-25 Continuum, Medium, And Thermodynamic Closure Packet](../mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md)
+- [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](../mapping-equations/eq-07-10-17-19-effective-metric-cosmology-packet.md)
+- [EQ-11 And EQ-20 Gravity / Dark-Energy Packet](../mapping-equations/eq-11-20-gravity-dark-energy-packet.md)
+- [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](../mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
+- [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](../mapping-equations/eq-21-23-32-structure-cmb-bbn-rar-packet.md)
+- [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](../mapping-equations/eq-21-23-32-shared-observation-residual-packet.md)
+- [EQ-26 Through EQ-31 Observation-First Precision Packet](../mapping-equations/eq-26-31-observation-first-precision-packet.md)
 - Equation-Map Bearing On Braid Configuration Search
 
 The unpacketed inventory rows also matter architecturally:
@@ -1177,7 +1201,7 @@ The projection/refinement residual and finite-window statistical pushforward sho
 ## Recommended Coordinator Actions
 
 1. Treat `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20` as common-architecture rows before assigning them as isolated packets. `EQ-01` is the root dependency, `EQ-05` is the event-ledger equation, `EQ-11` is a metric/constitutive projection consumer, and `EQ-20` is a pressure/constitutive projection consumer.
-2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [priorities.md](priorities.md) while other agents are changing them.
+2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](../mapping-equations/equation.md) or [priorities.md](../mapping-equations/priorities.md) while other agents are changing them.
 3. Instantiate the retained event or positive-width domain carrier $\mathfrak D_R$ first on $S_{\mathrm{eq}}$, $\mathsf e_{\gamma e}^{0}$, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$; the first successful instance should show which row binding is easiest to certify.
 4. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already declares clock, envelope, mass-shell, rest-invariance, and Noether sea response projection slots.
 5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score-change review.

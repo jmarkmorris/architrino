@@ -1,5 +1,53 @@
 # Braid Search Launch Readiness
 
+## Independently accepted actual original-parent-2 emission refinement
+
+Original parent index `2`; original caller session `95033`; final completion chunk `01a7f4`; exit zero; fresh elapsed seconds `274.738`; owned processes closed; independent audit accepted.
+
+Binding `plan`: SHA-256 `928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e`; bytes `51509`.
+Binding `manifest`: SHA-256 `2de3a29480b7303556b284aaa3e043f224f551b767b8019b92e9af0795095a5c`; bytes `112678`.
+Binding `comparison`: SHA-256 `4c1dc04563a6a19a8be3a986ed4e78b1163b3996fb4129bb66110d65e2cdfc7f`; bytes `127767`.
+Binding `operation`: SHA-256 `88f3b862f4901b1f6bf179722e3dfb1bb655446b96de4cd0e681693b0724f169`; bytes `710516`.
+Binding `launcher_log`: SHA-256 `6d81a9d10e89e06af777202d07bb50797aa40fd69653b1cc81649645e44021cf`; bytes `7673`.
+Binding `resource_log`: SHA-256 `7137eacbb311120dc9783393b595840f54928fe248d9bfde15bcaf9376284e02`; bytes `538514`.
+Binding `queries`: SHA-256 `3cb0ede0e0c0a985c558f57fc2a6f10b9ede2c026f236d8f9c377a92484198a9`; bytes `1950950`.
+Binding `rows`: SHA-256 `d6723b665ed38199892114893df8e2363e6470e30dbb8c26f3628b07eed8f115`; bytes `161211`.
+Binding `pieces`: SHA-256 `570d7b6d902f6d0059d9e85cb32e40d1ba87ea5445da852f179e10fa735ad6c8`; bytes `49002`.
+
+Plainly: these nine exact artifacts and this fresh caller completion identify the accepted attempt. The earlier rejected `pilot-parent-2-v1` remains separate and unaccepted.
+
+**Measured conditional conformance:** independent post-run audit `b0c5fa` passes 23,787 checks over 247 paths and 55,683,547 bytes. It checks original parent two, its unchanged history generation, all 3,584 query records, 64 pair rows, 112 piece records, the frozen independent comparison reference and geometry reference, and complete source/owner attribution. Final check `72f5da` confirms all 228 original prelaunch/ancestry source identities and hashes unchanged. It does not use reproduction against the rejected attempt as correctness evidence or rerun the producer as its oracle. All 56 emission intervals narrow strictly on both sides: their widths lie between `51514547/67108864000` and `224889021/134217728000` (approximately 0.000767626569 to 0.001675553776), compared with the original width `994/125` (7.952).
+
+Plainly: the third original interval now has independently checked, much narrower causal emission windows. This step has not evaluated its acceleration or established a complete-history result.
+
+**Measured execution and closure:** the 274.738-second caller envelope includes launch-tool approval/transport latency and ends at tool-confirmed process exit; the runner's earlier `271.058199583`-second field is not substituted for that observation. All 1,091 resource samples are retained, with maximum aggregate resident memory 693,780,480 bytes and maximum sample gap 717.2692079999833 milliseconds. Candidate evidence totals 2,273,841 bytes and operational logs 552,888 bytes. The original deadline, memory, disk, file/log and single-worker limits remain unchanged. Independent checks `bcc9b2`, `d27b75` and `5f39fc` confirm all 28 recorded process/group identifiers, all five owned groups and the shared lock absent. Main's separate `40535c` source/resource check passes 869 assertions. Complete public/private file aliases and final log hashes pass the independent audit.
+
+Plainly: the successful attempt finished under its declared limits and left no owned work running. Its accepted grade is conditional emission refinement only: no acceleration, complete-history metric, stability, retention, score or physical-realization claim is promoted.
+
+The exact consumed owner `07762d5c1b0478e7030e9846b3aab237c1ca6d28581090061ab04b5c5d10fd42` (350,973 bytes) remains byte-identical at `.local-data/braid-analysis/f6c-parent-adapter-20260827/readiness-owner.07762d5c.md`. The fresh caller observation is `.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/pilot-parent-2-v2-caller-observation.json`. A later adapter invocation must explicitly bind the current acceptance owner and route the historical plan's owner through that exact archive.
+
+Plainly: recording this acceptance does not silently replace the older document bytes consumed by the run.
+
+## Independently accepted generic streamed caller and final-layout repair
+
+The [streamed caller](../../../../scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs), SHA-256 `d6c79e6209a24cff41dc95626aad5f813dce1343b9a2e259beeb373739ee060f` (57,435 bytes), and [controls](../../../../tests/f6c-streamed-leaf-diagnostic.test.js), SHA-256 `08d31f5c2fdbe897e42e2953ed713d1b04a91a2b25107db47944df407a25777c` (43,038 bytes), are independently accepted for generic original-parent descriptors, explicit historical-source/owner attribution and durable publication. Review `0195cb` supplies 175 assertions and 115 rejection cases. Review `aa4b56` adds 26 assertions and eight final-layout rejections. The first output/private-directory names and identities remain fixed through cleanup and before/after final output; rejection retracts only owned public links while preserving private and foreign evidence. Returned generations `3da28d0f` and `4c439e29` remain archived byte-identically (`e3a150`, 92,435 bytes).
+
+Plainly: the caller can admit the newly checked parent without confusing historical versions, and it rejects a renamed or replaced private-evidence layout even when public bytes still match.
+
+The author's 51-control run closes in `66880/f8edea`; the separate independent rerun closes in `74659/5a2296`, exit zero, with all 51 controls passing in 47.600803958 seconds and watched duration 47.668917917 seconds. All 167 observed processes and 62 groups are absent afterward, without fallback cleanup. Sixteen source/control/dependency files and the embedded Python body remain unchanged; final source hashes pass `8db9a7`. Synthetic host inputs are confined to test fixtures and exercise the unchanged real admission logic, including rejection below the 40%/64-GiB launch and 20%/16-GiB running boundaries. Those tests are not evidence that the current host is ready for a numerical launch. Earlier harness, host-admission and deliberately interrupted test outcomes remain separate from the successful rerun.
+
+Plainly: implementation checks are complete, but the next actual streamed invocation still needs its own fixed inputs, real resource admission, watched run and independent numerical audit.
+
+## Operator pause and exact restart point
+
+The operator requested a pause after these acceptances. No numerical, test or monitoring job remains running, and no new streamed invocation or evidence-package implementation has been launched. Both relocation tasks accepted the protected-file hold; their completed document moves are preserved.
+
+1. On explicit resumption, freeze and independently admit a three-parent streamed invocation using accepted parents zero, one and two, the current acceptance owner, explicit historical-owner/source archives and the accepted caller above. Then perform the separately bounded calculation and independent mathematical audit. Parent-two acceleration and full-history metrics remain uncomputed.
+2. Remove the demonstrated evidence-file capacity obstruction through an independently specified lossless indexed package of already accepted evidence, beginning with parents one and two. Each existing parent requires thirteen evidence/stage-log files; historical readiness-owner versions also consume slots. Preserve complete bytes, original logical bindings and accepted closures; package historical owner text explicitly while keeping current-owner approval and all executable/runtime sources separate. Failed parent-two v1 is ineligible.
+3. Measure the complete physical-source union, package bytes, elapsed time and memory before claiming capacity. The 512-file/1-GiB adapter and 1,800-second/2-GiB/64-MiB attempt limits remain unchanged. Do not assume nine-or-ten-parent numerical batches fit: the measured one-parent producer cost alone does not support that inference. Full-history leaf-stream capacity, three-rung accuracy and measured parallel throughput remain separate obligations. F5 interaction strength remains an operator decision and is not selected here.
+
+Plainly: this pause preserves a verified third-interval refinement and a checked execution connection. The larger braid-search goal remains unfinished; nothing here restarts automatically from this handoff.
+
 Status: F5's separate enclosed prescribed-root restart and all sixteen A/B/C complete ladders are independently accepted at scoped `H3 P[M]`, 2026-08-27. The declared sixteen-row, four-worker machine run and independent final integration are complete. F6c's full conditional root cover, first-cell coarse acceleration range and first-cell emission refinement are independently accepted at their separate diagnostic scopes. The separately authored refined-input producer, independent comparison, operational composition and exact plan are accepted; their actual one-cell run and independent post-run audits pass, with fresh completion reporting 3.384976666 seconds. The resulting residual bounds are substantially tighter but still include zero. The complete-partition integral/supremum definition, pure reference, shared quadrature protocol and correlated residual envelope are independently accepted; the explicit restricted-projection adapter, single-leaf composition and actual bounded execution are independently accepted. The unsplit restricted result is preserved as a valid but wider bound. The independently accepted first-parent bisection reduces local integral uncertainty by 32.98842% versus the better prior result and lowers its peak upper bound by 26.84505%. The request-driven bridge and its first four genuine requests are independently accepted, with 156 initial requests still pending. In that saved four-request run, broad emission evidence prevented useful precision on the remaining three parents. The generic parent-specific emission comparison and separate pure producer are independently accepted and frozen; source-bound preparation and its independent checker are also accepted, and each matches independently frozen expectations for the actual original parent-one inputs. The exact supervised invocation and actual parent-one refinement are independently accepted, with fresh whole-attempt completion in 261.94229158400003 seconds and all 56 emission intervals narrowed. The adapter's record-lifetime repair also passes independent review, and the pure lossless evidence codec is independently accepted; the explicit streamed leaf composition, actual parent-one adapter selection and durable storage helper are independently accepted, and their actual supervised two-refined-parent calculation now passes independent mathematical and operational review in 57.891806040999995 seconds. That fresh run leaves 158 initial requests pending, with no full-history aggregate. The EOM solver's missing adaptive checkpoint memory is repaired and independently checked at its named control scope. Bounded full-history evidence handling, precision, resource cost and three-rung agreement remain open. These F6c results do not promote `H3`, metrics, historical-trajectory identity or physical claims. This packet preserves the reviewed reference boundaries and remaining A/B/C and BP-009/BP-010 obligations; it creates no new hard gate or score. The operator authorized removing parallel-search blockers. Implementation batches preserve their independently reviewed reference bytes. No commit, push, legacy evidence overwrite, or unreviewed root execution is included.
 
 ## F5 independent prerequisite batch
@@ -1406,26 +1454,69 @@ Plainly: separate mathematical reasoning checked the saved result; replay agreem
 
 Plainly: the second interval's uncertainty is vastly narrower, not evidence of a vastly smaller physical mismatch. Balance, imbalance, retention, stability, complete-history metrics and stronger braid status remain unproved.
 
-The next implementation step is authenticated selection of subsequent original parents while retaining the old source generations. Before editing, main preserved nine byte-identical files (`767567`, 737,230 bytes) under `.local-data/braid-analysis/f6c-parent-adapter-20260827/`, named `<original-basename>.<first-eight-SHA-256-characters>.archive`: the six preparation/checker/coordinator and control files at `492882b6`, `06cd99bc`, `0bb16c23`, `92da2b09`, `398d604f`, `231427f4`; adapter and controls at `e8d8adfc`, `7f0bc610`; and consumed readiness owner at `5990ee33`. Old logical source bindings must resolve only through explicit exact archive relations, with physical archives and current sources recorded separately. Generic selection and that extended admission are not yet accepted. Full-history evidence capacity, three-rung accuracy and measured parallel capacity remain open; the 64-MiB aggregate limit must not be reset per worker or file.
+Before editing, main preserved nine byte-identical files (`767567`, 737,230 bytes) under `.local-data/braid-analysis/f6c-parent-adapter-20260827/`, named `<original-basename>.<first-eight-SHA-256-characters>.archive`: the six preparation/checker/coordinator and control files at `492882b6`, `06cd99bc`, `0bb16c23`, `92da2b09`, `398d604f`, `231427f4`; adapter and controls at `e8d8adfc`, `7f0bc610`; and consumed readiness owner at `5990ee33`. The later consumed owner `26beeee22167417a34ef12a9a12af0d2f9ae2fc843f2498c833f2697e737dd7a` (342,401 bytes) is preserved byte-identically as `readiness-owner.26beeee2.md` in the same directory (`523029`). Old logical source bindings resolve only through explicit exact archive relations, with physical archives and current sources recorded separately. Full-history evidence capacity, three-rung accuracy and measured parallel capacity remain open; the 64-MiB aggregate limit must not be reset per worker or file.
 
 Plainly: preserved evidence stays attributable to the version that produced it. A wrong interval identity, changed bound source, failed independent enclosure, incomplete stream, violated resource limit or unclosed process falsifies acceptance. No geometry, interaction strength, score, retention status or physical claim changes.
 
+## Independently accepted generic original-parent selection
+
+The preparation, independent-comparison wrappers and operational coordinator now accept one explicitly selected original parent from zero through 159. The mathematical producer and independent numerical reference remain frozen; this extension changes selection, source attribution and operational checks, not their mathematics. The adapter admits explicitly sorted unique refinements from one through 159 while retaining accepted parent zero implicitly. Each historical owner/source generation has its own explicit archive mapping; admitting an index does not assert that every possible combined source inventory or full-history output fits the unchanged capacity limits.
+
+Plainly: the same checked method can now address the next original interval without confusing it with an earlier interval or silently substituting newer source files.
+
+| Frozen source or control | SHA-256 | Bytes |
+| --- | --- | ---: |
+| [prepare-f6c-parent-emission-refinement.py](../../../../scripts/eom/prepare-f6c-parent-emission-refinement.py) | `ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2` | 58397 |
+| [test_f6c_parent_emission_refinement_preparation.py](../../../../tests/test_f6c_parent_emission_refinement_preparation.py) | `517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f` | 43836 |
+| [verify-f6c-parent-emission-refinement.py](../../../../scripts/eom/verify-f6c-parent-emission-refinement.py) | `53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db` | 46615 |
+| [test_f6c_parent_emission_refinement_verification.py](../../../../tests/test_f6c_parent_emission_refinement_verification.py) | `889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9` | 42419 |
+| [run-f6c-parent-emission-refinement-pilot.mjs](../../../../scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs) | `462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b` | 56022 |
+| [f6c-parent-emission-refinement-pilot.test.js](../../../../tests/f6c-parent-emission-refinement-pilot.test.js) | `dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1` | 33303 |
+| [f6c_variable_cell_adapter.py](../../../../scripts/eom/f6c_variable_cell_adapter.py) | `42f2ff25ec3cedb0e04254cfe1d604946d6593aa360a254e7abe6955783367aa` | 88210 |
+| [test_f6c_variable_cell_adapter.py](../../../../tests/test_f6c_variable_cell_adapter.py) | `e4a8c694d978354793b8c99c1c0eeaa16ef5bb6d8250fa265f0b046d53434383` | 94665 |
+
+Plainly: these exact file versions, rather than whichever files happen to be current later, are the reviewed implementation.
+
+**Measured selection and attribution checks:** the preparation and verification controls pass 39 and 30 tests independently. Review `886345` closes in session `92773`, exit zero, with 506 subject assertions, 106,788 independently derived original-source checks and 52 rejection cases over original parents zero, one, two and 159; all 28 captured files remain unchanged and no scientific calculation is invoked. The adapter passes 92 distinct tests; separate review includes 224 rejections, and the simultaneous historical-parent-one/generic-parent-two reader check `182653` passes 28 assertions and 23 rejection cases. Main's genuine retained-source adapter/provider construction check `a17925` closes in session `29542`, exit zero, in 27.422852999996394 seconds: all 160 initial parent identities agree with separately captured original tokens, only zero and one are marked refined, and all numerical and geometry counters remain zero.
+
+Plainly: these checks establish that the correct saved interval and source generation reach the real calculation interface. They are not new numerical results.
+
+**Measured operational repair:** the first generalized runner was returned after an independent late-directory-rename reproduction showed that unchanged public bytes could conceal a broken private-evidence layout. Its exact runner/control generations `6119480a` and `738951ae` remain archived (`feca4a`, 82,607 bytes). The repaired runner at `462247cf` preserves original private-directory and file identities and checks the complete candidate/comparison layout before and after final output. Independent rerun `32054/0152c5` passes all 52 controls in 45.192497708 seconds, exit zero. The original reproduction now rejects, retracts only owned public outputs, preserves private evidence and closes all owned processes and the lock (`1630/a4b7ce`, 21 assertions). All 28 bound files remain unchanged (`77523d`). The runner's reported elapsed field precedes its final source/layout checks; actual caller-exit duration must therefore be separately observed and must not be replaced by that field.
+
+Plainly: a damaged evidence layout now fails even when the visible file contents still match. The next step is the separately reviewed original-parent-two launch plan and its actual bounded run; neither has been accepted as a numerical result here. The streamed-caller extension is still under independent review. Full-history coverage, three-rung measurement and measured parallel capacity remain outstanding.
+
+## Rejected original-parent-two attempt after concurrent owner relocation
+
+**Measured rejection, not numerical acceptance:** the exact [first parent-two plan](2026-08-27-f6c-parent-2-emission-refinement-launch.v1.json), SHA-256 `0ebf65d591a55e3eca280e5768232099adfec9badade649c5752830430b339ec` (51,509 bytes), passed independent admission `a671a8` with 6,933 checks and the fresh 159-file runtime comparison `487a51`. Its actual caller session `43437` closed with chunk `b6c9a3`, exit one. The separately observed caller envelope was 276.96 seconds, measured from before the launch-tool request through tool-confirmed process exit and including approval/tool latency; it is not the runner's pre-final-check elapsed field. The producer completed 3,584 queries, 64 rows and 112 piece records. The independent checker reported 3,584 queries and 64 rows processed, then rejected during `source-rechecks` with `truncated input`; it published no comparison.
+
+Plainly: the calculation reached its final source checks, but a completed numerical stage is not a completed, accepted attempt.
+
+The captured readiness owner `caf11b8d8a8ac696bd39e7da107f70ffb1ba4b49321d7d58207cf64145f4d17e` (347,707 bytes) became `90413be0e7471215be1a6b9e6399a3710b4babf45192be7d9c8f51cd1f483a12` (347,696 bytes) on the same file identity while the run was active. Independent source checks `ca7dd3`, `1d4a16` and `b272d1` isolate this as the only changed source. The exact diff `a89e48` moves one write-set reference from `mapping-electromagnetism/braid-candidate-requirement-adjudication.md` to `braid-program/braid-candidate-requirement-adjudication.md`. The frozen reader seeks to the start and requires the originally captured byte count; the shorter file explains early end-of-file. The checker itself did not print the failing path, so this attribution comes from the independent source/identity comparison. The relocation is preserved, and no numerical or verifier repair is indicated.
+
+Plainly: this is a correct source-integrity rejection caused by a concurrent document edit, not evidence against the geometry or a reason to weaken the source guard.
+
+Independent closure check `5026ba` confirms all 26 recorded process/group identifiers and the shared lock absent. Check `3df7d3` confirms four exact private evidence files totaling 2,273,841 bytes retained, all public candidate links removed, no comparison or operation publication, and all 15 claim flags false. The rejection record has SHA-256 `e879451ceaad3c9de21239df49a944955c84deddf5c37db5bb99c2f8f0ea6380`. The failed attempt and caller observation remain under `.local-data/braid-analysis/f6c-parent-emission-refinement-20260827/` as `pilot-parent-2-v1`, its `-outer` sibling and `pilot-parent-2-v1-caller-observation.json`. Both readiness generations are preserved byte-identically under `.local-data/braid-analysis/f6c-parent-adapter-20260827/` as `readiness-owner.caf11b8d.md` and `readiness-owner.90413be0.md`.
+
+Plainly: the failed evidence remains inspectable and grants no accepted refinement. After a stable relocation handoff, a fresh separately reviewed plan must bind the updated owner and use a new output directory; the numerical sources and original limits remain unchanged.
+
 ## Current integration validation
 
-The current five-owner link check `ba9651` passes 319 relative targets and confirms 36 distinct existing paths in the integration write set. The new two-refined-parent receipt heading is unique, and scoped `git diff --check` passes (`bce341`). The strict content check closes in session `52830`, chunk `131adb`, with exit one, zero errors and two index-drift warnings: `content/scenes/philosophy_history/information_and_the_wake.json` and `content/markdown/aaa/philosophy-history/one-nature-many-theories.md` are missing from their generated indexes. These concurrent corpus/index changes are outside this Braid edit batch. The exact regeneration command is `node scripts/validate-content.mjs --write`; no regeneration was run.
+The paused handoff passes 353 relative-link checks and confirms 38 distinct existing integration paths (`6f9a28`); scoped whitespace checks pass (`367537`). The frozen adapter accepts the exact parent-two owner section and all nine evidence-role bindings (`18ca3f`), with zero scientific calls. No new full-content job was started for the pause; the preceding strict-content result below remains separately attributed.
+
+The generic-parent integration link check `e2f987` passes 332 relative targets, and `e814e5` confirms 37 distinct existing paths before adding the separately reviewed retry plan. Scoped whitespace check `1a7bce` passes. The strict content check closes in session `23181`, chunk `58405f`, exit one, with zero errors and two index-drift warnings: `content/scenes/philosophy_history/information_and_the_wake.json` and `content/markdown/aaa/philosophy-history/one-nature-many-theories.md` are missing from generated indexes. These independent index changes are outside this Braid edit batch. The exact regeneration command is `node scripts/validate-content.mjs --write`; no regeneration was run.
 
 Plainly: scoped checks pass, while the repository-wide strict check is not green because two generated index entries are missing. That does not invalidate this accepted interval calculation or authorize a broader braid claim.
 
 ## Current integration write set
 
-This integration batch changes the following thirty-six source, control, plan and owner paths. It does not edit the frozen mathematical references, configuration JSON, Borg records, brainstorming files, README files or prior evidence outputs. The ignored source/control and readiness-owner archives described above preserve consumed generations and are additional archival copies, not replacement evidence. No commit, push or generated-index refresh is performed.
+This integration batch covers the following thirty-eight source, control, plan and owner paths, including the separately reviewed next-parent launch plan. It does not edit the frozen mathematical references, configuration JSON, Borg records, brainstorming files, README files or prior evidence outputs. The ignored source/control and readiness-owner archives described above preserve consumed generations and are additional archival copies, not replacement evidence. No commit, push or generated-index refresh is performed.
 
 ```text
 reference/priorities/braid-program/candidate-registry.md
 reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md
 reference/priorities/braid-program/priorities.md
 reference/priorities/braid-program/work-queue.md
-reference/priorities/mapping-electromagnetism/braid-candidate-requirement-adjudication.md
+reference/priorities/braid-program/braid-candidate-requirement-adjudication.md
 reference/priorities/app-solver/work-queue.md
 reference/priorities/app-solver/work-log.md
 scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py
@@ -1439,6 +1530,8 @@ tests/test_f6c_parent_emission_refinement_verification.py
 scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs
 tests/f6c-parent-emission-refinement-pilot.test.js
 reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-launch.v1.json
+reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v1.json
+reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json
 scripts/eom/f6c_leaf_evidence_codec.py
 tests/test_f6c_leaf_evidence_codec.py
 scripts/eom/f6c_streamed_leaf_session.py

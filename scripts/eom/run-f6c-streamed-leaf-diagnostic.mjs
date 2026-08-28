@@ -183,7 +183,7 @@ function descriptorBindings(spec){
  return out;
 }
 function uniqueBindings(records){
- const out=new Map();for(const b of records){binding(b);const prior=out.get(b.path);check(!prior||same(prior,b),'conflicting source generation');out.set(b.path,b);}return [...out.values()];
+ const out=new Map();for(const b of records){binding(b);const prior=out.get(b.path);check(!prior||equalBinding(prior,b),'conflicting source generation');if(!prior)out.set(b.path,b);}return [...out.values()];
 }
 export function validateSpec(s,selfSha){
  keys(s,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','maxAdvances','limits']);
@@ -389,17 +389,20 @@ export async function registered(specPath,specSha,selfSha,deadline){
 }
 
 export function inspectStreamLayout(output){
- if(!existsSync(output))return {bytes:0,owner:null};
- const dir=lstatSync(output);check(dir.isDirectory()&&!dir.isSymbolicLink(),'raw output directory');
+ if(!existsSync(output))return {bytes:0,owner:null,layout:null,published:false};
+ const dir=lstatSync(output,{bigint:true});check(dir.isDirectory()&&!dir.isSymbolicLink(),'raw output directory');
  const names=readdirSync(output),privates=names.filter(n=>n.startsWith('.leaf-stream-private-'));
  check(names.every(n=>n==='leaf-evidence.ndjson'||n.startsWith('.leaf-stream-private-'))&&privates.length<=1,'stream output census');
- const seen=new Set();let total=0,owner=null;
+ const seen=new Set();let total=0,owner=null,layout=null;
  if(privates.length){
-  const d=path.join(output,privates[0]),ds=lstatSync(d);check(ds.isDirectory()&&!ds.isSymbolicLink(),'private stream directory');
+  const d=path.join(output,privates[0]),ds=lstatSync(d,{bigint:true});check(ds.isDirectory()&&!ds.isSymbolicLink(),'private stream directory');
   const inner=readdirSync(d);check(inner.length<=1&&inner.every(n=>n==='leaf-evidence.ndjson'),'private stream census');
   if(inner.length){
    const p=path.join(d,inner[0]),s=lstatSync(p,{bigint:true});check(s.isFile()&&s.nlink>=1n&&s.nlink<=2n&&s.size<=BigInt(FILE),'private stream inode/quota');
    owner={privatePath:p,publicPath:path.join(output,'leaf-evidence.ndjson'),dev:String(s.dev),ino:String(s.ino)};
+   // Directory timestamps legitimately change during publication. Retain their
+   // original names/dev/ino, alongside the stream inode, without freezing time.
+   layout={outputPath:output,outputDev:String(dir.dev),outputIno:String(dir.ino),privateName:privates[0],privateDev:String(ds.dev),privateIno:String(ds.ino),...owner};
    seen.add(s.dev+':'+s.ino);total+=Number(s.size);
   }
  }
@@ -408,7 +411,12 @@ export function inspectStreamLayout(output){
   check(owner&&s.isFile()&&String(s.dev)===owner.dev&&String(s.ino)===owner.ino&&s.nlink===2n,'public is owned private alias');
   const key=s.dev+':'+s.ino;if(!seen.has(key))total+=Number(s.size);
  }
- check(total<=FILE,'aggregate unique-inode scientific quota');return{bytes:total,owner};
+ check(total<=FILE,'aggregate unique-inode scientific quota');return{bytes:total,owner,layout,published:names.includes('leaf-evidence.ndjson')};
+}
+export function checkFinalStreamLayout(output,original,live=()=>{}){
+ live();const observed=inspectStreamLayout(output);
+ check(original&&observed.owner&&observed.published&&same(observed.layout,original),'original published stream layout changed');
+ live();return observed;
 }
 export function retractStream(owner){
  if(!owner)return false;
@@ -517,7 +525,7 @@ export async function coordinate({specPath,specSha,selfSha,began,deadlineNanosec
   const H=await import(url(helper.data)),outer=await import(url(outerSource.data));
   const abort=new AbortController(),owners=new Map(),probes=new Set(),pending=new Set(),hostRecords=[];
   const rss={beganMs:began,lastSampleMs:null,samples:0,maximumSampleGapMs:0,maximumSampledRSSBytes:0};
-  let failure,lock,timer,deadlineTimer,rssJob,hostJob,logFD,rssFD,active=false,receipt,publication,spec,output,ops,pre,closed=false,rawOwner=null,finalSources,finalIdentities;
+  let failure,lock,timer,deadlineTimer,rssJob,hostJob,logFD,rssFD,active=false,receipt,publication,spec,output,ops,pre,closed=false,rawOwner=null,rawLayout=null,finalSources,finalIdentities;
   const logTotal={bytes:0},rssTotal={bytes:0},originalError=console.error;
   const remaining=()=>Math.floor(LIMIT-(performance.now()-began));
   const live=()=>{check(!failure&&!abort.signal.aborted,failure?.message??'interrupted');check(remaining()>0,'inclusive1800s');};
@@ -525,7 +533,7 @@ export async function coordinate({specPath,specSha,selfSha,began,deadlineNanosec
   const worker=job=>H.runFileWorker({...job,deadlineNanoseconds},self.data,remaining(),abort.signal);
   const logs=()=>['runner-stdout.log','runner-stderr.log'].map(n=>path.join(ops,'process',n));
   const poll=()=>{if(!ops)return;const total=logTotal.bytes+rssTotal.bytes+logs().reduce((n,p)=>n+namedSize(p,LOG),0);check(total<=LOG,'combined16MiB logs');
-    if(output){const observed=inspectStreamLayout(output);if(observed.owner){check(!rawOwner||(rawOwner.dev===observed.owner.dev&&rawOwner.ino===observed.owner.ino&&rawOwner.privatePath===observed.owner.privatePath),'private stream replaced');rawOwner??=observed.owner;}}};
+    if(output){const observed=inspectStreamLayout(output);if(observed.owner){check(!rawLayout||same(rawLayout,observed.layout),'private stream replaced');rawOwner??=observed.owner;rawLayout??=observed.layout;}else check(!rawOwner,'private stream removed');}};
   const log=x=>{const raw=Buffer.from((typeof x==='string'?x:JSON.stringify(x))+'\n');H.boundedLogAppend(logFD,raw,logTotal);diagnostics.write(raw);poll();};
   const probe=(command,args,timeout,maxBuffer)=>{
     const p=new Promise((resolve,reject)=>{const child=execFile(command,args,{timeout,killSignal:'SIGKILL',maxBuffer,encoding:'utf8',env:{...process.env,LC_ALL:'C'}},(error,text)=>{probes.delete(child.pid);error?reject(error):resolve({text,pid:child.pid});});enrollProbe(probes,command,child.pid);});
@@ -561,7 +569,7 @@ export async function coordinate({specPath,specSha,selfSha,began,deadlineNanosec
         sources:pre.sources,sourceIdentities:pre.sourceIdentities,stdoutPath:path.join(ops,'process/runner-stdout.log'),deadlineNanoseconds},self.data,remaining(),signal);}});
     }catch(e){receipt=e.outerReceipt;throw e;}finally{active=false;}
     check(receipt.accepted&&receipt.processesClosed&&receipt.admission?.accepted,'closed admitted target');
-    rawOwner=receipt.admission.streamOwner;
+    poll();check(same(rawOwner,receipt.admission.streamOwner),'admitted original stream owner');checkFinalStreamLayout(output,rawLayout,live);
     const sources=uniqueBindings([...pre.sources,...receipt.admission.historicalSourceBindings,...receipt.admission.outputs,receipt.stdoutLog,receipt.stderrLog]),sourceIdentities=receipt.admission.sourceIdentities;
     await worker({kind:'recheck',sources,sourceIdentities});sample(await table());await host(false);live();
     const record={schema:'braid-program/f6c-streamed-leaf-operation.v1',accepted:true,scope:'operational-streamed-leaf-completion-only',process:receipt,invocation:pre.specBinding,
@@ -578,7 +586,7 @@ export async function coordinate({specPath,specSha,selfSha,began,deadlineNanosec
       finalObservationToClosureMs:H.admitFinalObservation(rss,performance.now()),lastSampleStartedMs:rss.lastSampleStartedMs,
       elapsedSeconds:(performance.now()-began)/1000,coordinatorResourceUsage:process.resourceUsage(),physicalClaims:false,wholeHistoryMetrics:false,rootsEvaluated:false,eomExecuted:false};
     final.operationalLogBytes=logTotal.bytes+rssTotal.bytes+logs().reduce((n,p)=>n+namedSize(p,LOG),0);
-    final.streamOwner=rawOwner;final.finalSourceBindings=[...sources,publication,...logBindings];final.finalSourceIdentities={...sourceIdentities,...logIdentities};
+    final.streamOwner=rawOwner;final.finalStreamLayout=rawLayout;final.finalSourceBindings=[...sources,publication,...logBindings];final.finalSourceIdentities={...sourceIdentities,...logIdentities};
     closed=true;return final;
   }catch(e){fail(e);await stop();try{retractStream(rawOwner);}catch{}if(ops&&existsSync(ops))try{writeNew(path.join(ops,'rejection.json'),{completed:false,accepted:false,failure:String((failure??e).message),invalidates:publication??null,
       processesClosed:receipt?.processesClosed??false,cleanupFailure:receipt?.cleanupFailure??null,cancellationUnverifiedPids:receipt?.cancellationUnverifiedPids??null,process:receipt??null});}catch{}throw failure??e;
@@ -586,7 +594,7 @@ export async function coordinate({specPath,specSha,selfSha,began,deadlineNanosec
     try{
       await stop();if(lock)H.releaseLock(lock);console.error=originalError;process.off('SIGINT',interrupt);process.off('SIGTERM',interrupt);
       if(logFD!==undefined)closeSync(logFD);if(rssFD!==undefined)closeSync(rssFD);diagnostics.check();
-      if(closed){live();H.admitFinalObservation(rss,performance.now());}
+      if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}
     }catch(error){
       // A throw from finally prevents delivery of the returned result to main.
       // Retract here as well, so that late cleanup cannot strand its public link.
@@ -610,9 +618,10 @@ async function main(){
     await D.drainDiagnostics({began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();result.elapsedSeconds=(performance.now()-began)/1000;
     const finalLive=()=>check(performance.now()-began<LIMIT&&performance.now()-result.lastSampleStartedMs<=1000,'final source/stdio deadline/gap');
     C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);
-    const {streamOwner,finalSourceBindings,finalSourceIdentities,...wire}=result;
+    C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);
+    const {streamOwner,finalStreamLayout,finalSourceBindings,finalSourceIdentities,...wire}=result;
     await H.flushCompletion(wire,{began,lastSampleStartedMs:result.lastSampleStartedMs});diagnostics.check();await diagnostics.close(began);
-    C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);finalLive();
+    C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();
   }catch(e){
     if(result)try{retractStream(result.streamOwner);writeNew(path.join(path.dirname(result.operation.path),'terminal-rejection.json'),{completed:false,accepted:false,failure:String(e.message),invalidates:result.operation,scope:'failed-final-publication-no-authority'});}catch{}
     await D.failedCLICompletion(e,{began});

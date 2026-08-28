@@ -7,7 +7,7 @@
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
-- Common architecture: [Shared Equation And Mapping Architecture](equation-common-architecture.md)
+- Common architecture: [Shared Equation And Mapping Architecture](../mapping/mapping-method.md)
 - Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
 - Theorem correction: [Invariant-Cell Coframe Certificate](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md)
 - Merge basis: the consolidated row-classification pass identified `S_eq` as the shared retained-domain carrier for `EQ-02` through `EQ-04`; that classification was score-neutral and supplied no accepted retained evidence.

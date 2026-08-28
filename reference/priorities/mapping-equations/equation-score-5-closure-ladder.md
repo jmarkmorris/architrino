@@ -6,7 +6,7 @@
 - Status: `draft`
 - Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
-- Common architecture: [Shared Equation And Mapping Architecture](equation-common-architecture.md)
+- Common architecture: [Shared Equation And Mapping Architecture](../mapping/mapping-method.md)
 - Claim level: score discipline, proof routes, residual targets, and solver-facing closure plan
 - Promotion status: priority-only
 

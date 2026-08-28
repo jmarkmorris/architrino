@@ -2,6 +2,18 @@
 
 This synthesis organizes provisional equation families that constrain Noether braid geometry and Noether sea response. Each familiar equation is an observer-level target or comparison, never an architrino-level premise.
 
+## Bidirectional Mapping And Mathematical Reframing
+
+The operator's development goal is to make native derivation and reverse constraints from established physics meet, advancing $\mathbb{A}\mathbb{A}\mathbb{A}$ while developing a mathematical language that can reframe the mapped domains. The [shared method](../mapping/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) owns that direction; this note preserves the provisional mathematical opportunity.
+
+- **Claim level:** derivation/closure target for a common construction; inferred research value in using both directions; speculative explanatory or predictive gain from the new language until demonstrated.
+- **Assumptions and proof burden:** start from the declared native primitives, preserve the tested observer behavior in the claimed regime, and distinguish discovery constraints from independent validation. A reverse constraint may select several histories rather than a unique inverse. Demonstrate what a native formulation derives or relates beyond a change of notation.
+- **Falsifier:** the proposed bridge fails for its declared case if its common construction cannot recover the required comparisons without separate retuning. A claimed mathematical improvement fails if it only relabels the inherited expression while adding no derived relationship or reduction in assumptions.
+- **Promotion target:** [Theory Bridges](../../../content/markdown/aaa/philosophy-history/theory-bridges.md) for the method and the existing scientific owner for the worked mathematical reformulation; no corpus promotion is made here.
+- **Next artifact:** within the existing `solved_wave_inverse_clue_audit`, develop one solved-case example showing the established result, its reverse structural constraints, the native derivation or exact missing step, the forward comparison, and the candidate native expression. This is a suggested treatment of an existing queued object, not a new task or a claim that the bridge is complete.
+
+Plainly: choose one familiar solved case and show how it helps us discover the underlying construction, then show what that construction explains in return. That example should demonstrate the method more clearly than a new general vocabulary alone.
+
 ## Geometry and Effective Kinematics
 
 The moving Noether braid uses an oblate spheroidal envelope with shape ratio

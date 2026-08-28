@@ -12,7 +12,7 @@ Plainly: anomaly arithmetic can check a derived inventory. It cannot explain why
 
 ## One Nature, Many Theories Routing
 
-The broader gauge-agreement-versus-gauge-origin synthesis has moved to the dedicated [One Nature, Many Theories brainstorming file](../mapping-one-nature-many-theories/brainstorming.md#gauge-agreement-versus-gauge-origin) and [working draft](../mapping-one-nature-many-theories/one-nature-many-theories.md#gauge-agreement-versus-gauge-origin). This lane continues to own the concrete Standard Model gauge-recovery burden; the new lane owns the historical and cross-domain criticism.
+The broader gauge-agreement-versus-gauge-origin synthesis has moved to the dedicated [One Nature, Many Theories brainstorming file](../mapping-one-nature-many-theories/brainstorming.md#gauge-agreement-and-gauge-origin) and [working draft](../mapping-one-nature-many-theories/one-nature-many-theories.md#gauge-agreement-versus-gauge-origin). This lane continues to own the concrete Standard Model gauge-recovery burden; the new lane owns the historical and cross-domain criticism.
 
 ## Bottom Forward–Backward Asymmetry Comparator
 
@@ -59,6 +59,8 @@ Hadronic vacuum polarization is an observer-level aggregate of charged-hadron ch
 A native recovery must produce the measured hadronic spectral function and its dispersion contribution from one photon, charge, hadron, and detector-provenance record. Lattice and experiment remain separate comparison surfaces; neither selects the native carrier.
 
 ## Assessment and Promotion Boundary
+
+The operator-selected [Geometric Phase and Holonomy exploration](geometric-phase-and-holonomy/brainstorming.md) owns the conceptual learning sequence and provisional questions connecting gauge conventions to closed transport and measurable phase comparisons. [SMC-012](work-queue.md#smc-012--geometric-phase-and-holonomy-exploration) owns its first introductory session. The existing assembly gauge chapters retain mechanism and recovery authority.
 
 These comparators identify discriminating mathematical forms and falsifiers. They do not change the Standard Model closure queue, explain an anomaly, or justify corpus promotion.
 

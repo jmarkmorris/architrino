@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {spawn,spawnSync} from 'node:child_process';
 import {once} from 'node:events';
 import {createHash} from 'node:crypto';
-import {existsSync,mkdtempSync,mkdirSync,readFileSync,realpathSync,rmSync,statSync,writeFileSync,renameSync,linkSync,openSync,closeSync,ftruncateSync} from 'node:fs';
+import {existsSync,mkdtempSync,mkdirSync,readFileSync,realpathSync,rmSync,rmdirSync,statSync,writeFileSync,renameSync,linkSync,openSync,closeSync,ftruncateSync} from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import {Writable} from 'node:stream';
@@ -150,7 +150,7 @@ class LeafResponseSession:
   self.state=types.SimpleNamespace(plan=self.state.plan,status='unresolved'if MODE=='exhausted'else'pending',aggregate=None,next_generation=160,split_counts=(1,)*80,leaves=leaves,evaluations=done)
   return self.state
 `;
-function fixture(mode='normal',maximum=2){
+function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64n*1024n**3n,runDisk=64n*1024n**3n}={}){
  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-stream-'))),output=path.join(dir,C.LANE,'synthetic');
  mkdirSync(path.dirname(output),{recursive:true});mkdirSync(path.dirname(path.join(dir,C.LOCK)),{recursive:true});
  const entry=path.join(dir,C.SELF),controls=path.join(dir,C.CONTROL);mkdirSync(path.dirname(entry),{recursive:true});mkdirSync(path.dirname(controls),{recursive:true});writeFileSync(controls,'synthetic controls\n');
@@ -168,10 +168,19 @@ function fixture(mode='normal',maximum=2){
  // Formatting is intentionally robust to a one-line closing brace.
  if(source.includes(C.PINS.adapter[1]))source=source.replace(/export const PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
  assert(!source.includes(C.PINS.adapter[1]),'fixture source pins replaced');
+ // Synthetic worker cases inject only observation inputs. The captured real
+ // helper still parses them and enforces its unchanged 40/20%,64/16GiB policy.
+ // These fixtures are not observations of the actual host or launch permission.
+ const memoryQuery="await probe('/usr/bin/memory_pressure',[],2000,1024**2)",diskQuery='disk=statfsSync(root,{bigint:true})';
+ assert.equal(source.split(memoryQuery).length,2);assert.equal(source.split(diskQuery).length,2);
+ const guard='H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)';assert.equal(source.split(guard).length,2);
+ source=source.replace(memoryQuery,`({text:'System-wide memory free percentage: '+(launch?${launchFree}:${runFree})+'%\\n'})`)
+  .replace(diskQuery,`disk={bavail:launch?${launchDisk}n:${runDisk}n,bsize:1n}`);
+ assert.equal(source.split(guard).length,2,'unchanged production host admission call');
  if(mode==='postpublish')source=source.replace("after_close_recheck();publication.verify();publication.close();live()","after_close_recheck();publication.verify();publication.close();live()\n  bad=pathlib.Path(bindings['diagnostic']['path']);replacement=bad.with_suffix('.swap');replacement.write_bytes(bad.read_bytes());replacement.replace(bad)");
  if(mode==='module-cleanup')source=source.replace("finally:require(sys.modules.get(name)is m,'module identity');del sys.modules[name]","finally:\n   require(sys.modules.get(name)is m,'module identity');del sys.modules[name]\n   if b['path'].endswith('f6c_single_leaf_diagnostic.py'):\n    bad=pathlib.Path(b['path']);other=bad.with_suffix('.swap');other.write_bytes(bad.read_bytes());other.replace(bad)");
- if(mode==='final-cleanup')source=source.replace("if(closed){live();H.admitFinalObservation(rss,performance.now());}","if(closed)throw Error('synthetic final cleanup');");
- if(mode==='poststdout')source=source.replace('C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);finalLive();',"throw Error('synthetic poststdout failure');");
+ if(mode==='final-cleanup')source=source.replace("if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}","if(closed)throw Error('synthetic final cleanup');");
+ if(mode==='poststdout')source=source.replace('C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();',"throw Error('synthetic poststdout failure');");
  if(mode==='trailing')source=source.replace('framing=session.finish();sealed=publication.seal();','framing=session.finish();publication.private_path.open(\'ab\').write(b\'{}\\n\');sealed=publication.seal();');
  writeFileSync(entry,source);
  writeFileSync(path.join(dir,'unbound.py'),'# explicit unbound fixture module\n');
@@ -289,6 +298,61 @@ test('closed spec caps and parent selection reject before target creation',()=>{
   }).finally(()=>cleanup(f));
  }catch(e){cleanup(f);throw e;}
 });
+test('generic descriptors preserve exact archives, derived inventory and invocation-bound readiness',async()=>{
+ const f=fixture();try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const b=(name,h='a'.repeat(64),bytes=1)=>({path:path.join(f.dir,'declared',name),sha256:h,bytes});
+  const make=index=>{
+   const d={parent_index:index};for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])d[role]=b(index+'-'+role);
+   d.closure={owner:f.spec.bindings.readiness,operation:d.operation,original_caller_session:'12345',final_completion_chunk:'abc123',exit_code:0,elapsed_seconds:'3.125',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'};
+   d.archived_sources=[];return d;
+  };
+  const first=make(1),second=make(2),last=make(159);
+  const oldOwner=(h,archive)=>({role:'acceptanceOwner',original:{path:f.spec.bindings.readiness.path,sha256:h,bytes:17},archive:b(archive,h,17)});
+  first.archived_sources=[oldOwner('7'.repeat(64),'owner-seven')];second.archived_sources=[oldOwner('2'.repeat(64),'owner-two')];
+  for(const[role,[p,h,n]]of Object.entries(C.ARCHIVE_SOURCES)){
+   const r={role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:b('archive-'+role,h,n)};
+   first.archived_sources.push(r);second.archived_sources.push(structuredClone(r));
+  }
+  const spec=structuredClone(f.spec);spec.parentRefinements=[first,second,last];
+  const observed=M.validateSpec(spec,f.selfSha),relations=M.archiveRelations(spec);
+  assert.equal(relations.length,8);assert.equal(observed.length,Object.keys(spec.bindings).length+spec.runtimeBindings.length+18+8);
+  assert.deepEqual(relations,[...first.archived_sources,second.archived_sources[0]]);
+  for(const r of relations){assert(observed.some(b=>b.path===r.archive.path));if(r.role!=='acceptanceOwner')assert(!observed.some(b=>b.path===r.original.path));}
+  const before=JSON.stringify(spec);M.validateSpec(spec,f.selfSha);assert.equal(JSON.stringify(spec),before);
+  for(const elapsed of ['0.0001','+1800','18e2','1e-999']){const s=structuredClone(spec);s.parentRefinements[1].closure.elapsed_seconds=elapsed;M.validateSpec(s,f.selfSha);}
+  for(const index of [0,-1,160,true,1.5,'2',null]){const s=structuredClone(spec);s.parentRefinements[1].parent_index=index;assert.throws(()=>M.validateSpec(s,f.selfSha));}
+  const mutations=[
+   s=>s.parentRefinements.reverse(),s=>s.parentRefinements.splice(1,0,structuredClone(s.parentRefinements[0])),
+   s=>s.parentRefinements[0].archived_sources.push(s.parentRefinements[0].archived_sources[0]),
+   s=>s.parentRefinements[0].archived_sources[0].role='runtime',
+   s=>s.parentRefinements[0].archived_sources[1].original.sha256='e'.repeat(64),
+   s=>s.parentRefinements[0].archived_sources[1].original.bytes++,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.bindings.adapter.path,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.runtimeBindings[0].path,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.parentRefinements[2].plan.path,
+   s=>s.parentRefinements[1].archived_sources[1].archive.path+='-conflict',
+   s=>s.parentRefinements[1].archived_sources[0].archive.path=s.parentRefinements[0].archived_sources[0].archive.path,
+   s=>s.parentRefinements[1].closure.owner.sha256='e'.repeat(64),
+   s=>s.parentRefinements[1].closure.operation={...s.parentRefinements[1].closure.operation,sha256:'e'.repeat(64)},
+   s=>s.parentRefinements[1].closure.processes_closed=1,
+   s=>s.parentRefinements[1].closure.independent_audit_accepted=false,
+   s=>s.parentRefinements[1].closure.exit_code=false,
+   s=>s.parentRefinements[1].closure.original_caller_session=12345,
+   s=>s.parentRefinements[1].closure.final_completion_chunk='x\n',
+  ];
+  for(const[index,mutate]of mutations.entries()){const s=structuredClone(spec);mutate(s);assert.throws(()=>M.validateSpec(s,f.selfSha),undefined,'mutation '+index);}
+  for(const elapsed of ['0','-1','1800.00000000000000000000000000001','NaN','Infinity','0x1','1e1001','1e-1001',3.125]){
+   const s=structuredClone(spec);s.parentRefinements[1].closure.elapsed_seconds=elapsed;assert.throws(()=>M.validateSpec(s,f.selfSha));
+  }
+  const reordered=structuredClone(spec);const old=reordered.parentRefinements[1].archived_sources[1].archive;
+  reordered.parentRefinements[1].archived_sources[1].archive={bytes:old.bytes,sha256:old.sha256,path:old.path};
+  assert.deepEqual(M.archiveRelations(reordered),relations);M.validateSpec(reordered,f.selfSha);
+  const changed=structuredClone(f.spec);changed.bindings.readiness={...changed.bindings.readiness,sha256:'d'.repeat(64),bytes:999};M.validateSpec(changed,f.selfSha);
+  changed.bindings.adapter.sha256='d'.repeat(64);assert.throws(()=>M.validateSpec(changed,f.selfSha));
+  assert(!existsSync(f.output));assert(!existsSync(f.events));
+ }finally{cleanup(f);}
+});
 test('fresh metadata inventory includes existing lazy integer helper without science',()=>{
  const records=runtimeBindings();assert(records.some(b=>b.path.endsWith('/_pylong.py')));
  assert(records.some(b=>b.path===realpathSync(python)));assert(records.some(b=>b.path.endsWith('/pyvenv.cfg')));
@@ -312,6 +376,30 @@ test('retraction preserves a foreign public replacement and private prefix',()=>
   assert.equal(C.retractStream(owner),false);assert.equal(readFileSync(pub,'utf8'),'foreign');assert.equal(readFileSync(p,'utf8'),'data\n');
  }finally{rmSync(dir,{recursive:true});}
 });
+test('final layout preserves original directory names and identities, not only public bytes',()=>{
+ for(const mode of['valid-rename','invalid-rename','output-rename','private-replacement','private-file-rename','extra-link','foreign-public']){
+  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-final-layout-')));try{
+   const out=path.join(dir,'output'),priv=path.join(out,'.leaf-stream-private-original');mkdirSync(priv,{recursive:true});
+   const p=path.join(priv,'leaf-evidence.ndjson'),pub=path.join(out,'leaf-evidence.ndjson');writeFileSync(p,'data\n');linkSync(p,pub);
+   const original=C.inspectStreamLayout(out),b=C.readBound(pub),identities={[pub]:b.identity};
+   C.checkFinalStreamLayout(out,original.layout);let kept=p;
+   if(mode==='valid-rename'||mode==='invalid-rename'||mode==='foreign-public'){
+    const moved=path.join(out,mode==='invalid-rename'?'invalid-private-name':'.leaf-stream-private-renamed');renameSync(priv,moved);kept=path.join(moved,'leaf-evidence.ndjson');
+   }else if(mode==='output-rename'){
+    const moved=out+'.original';renameSync(out,moved);mkdirSync(out);renameSync(path.join(moved,'.leaf-stream-private-original'),priv);renameSync(path.join(moved,'leaf-evidence.ndjson'),pub);rmdirSync(moved);
+   }else if(mode==='private-replacement'){
+    const moved=priv+'.original';renameSync(priv,moved);mkdirSync(priv);renameSync(path.join(moved,'leaf-evidence.ndjson'),p);rmdirSync(moved);
+   }else if(mode==='private-file-rename'){kept=p+'.renamed';renameSync(p,kept);}
+   else if(mode==='extra-link')linkSync(p,path.join(dir,'extra-alias'));
+   if(mode==='foreign-public'){writeFileSync(pub+'.swap','foreign\n');renameSync(pub+'.swap',pub);}
+   if(mode==='valid-rename'||mode==='invalid-rename')C.checkBindings([{path:pub,sha256:b.sha256,bytes:b.bytes}],()=>{},identities);
+   assert.throws(()=>C.checkFinalStreamLayout(out,original.layout),/layout|census|inode|alias/);
+   assert.equal(C.retractStream(original.owner),mode!=='foreign-public');
+   assert.equal(readFileSync(kept,'utf8'),'data\n');
+   if(mode==='foreign-public')assert.equal(readFileSync(pub,'utf8'),'foreign\n');else assert(!existsSync(pub));
+  }finally{rmSync(dir,{recursive:true});}
+ }
+});
 test('growing private data is charged before public-link creation',()=>{
  const dir=mkdtempSync(path.join(os.tmpdir(),'f6c-quota-'));try{
   const d=path.join(dir,'.leaf-stream-private-test');mkdirSync(d);const p=path.join(d,'leaf-evidence.ndjson');
@@ -325,6 +413,26 @@ test('frozen observer limits and final observation gap remain unchanged',()=>{
  assert.throws(()=>H.parseHostResource('System-wide memory free percentage: 39%\n',64n*1024n**3n,true));
  assert.throws(()=>H.parseHostResource('System-wide memory free percentage: 20%\n',15n*1024n**3n,false));
 });
+test('synthetic host inputs reach unchanged real threshold admission',async()=>{
+ const f=fixture('normal',1,{launchFree:40,runFree:20,runDisk:16n*1024n**3n});try{
+  const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-1500));
+  const completion=JSON.parse(r.out),operation=JSON.parse(readFileSync(completion.operation.path));
+  const hosts=operation.hostObservationsBeforePublication;assert(hosts.some(x=>x.atLaunch&&x.freePercent===40&&x.availableDiskBytes===String(64n*1024n**3n)));
+  assert(hosts.some(x=>!x.atLaunch&&x.freePercent===20&&x.availableDiskBytes===String(16n*1024n**3n)));
+  assert(existsSync(f.events));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
+ }finally{cleanup(f);}
+});
+for(const [name,inputs,started] of[
+ ['launch-memory',{launchFree:39},false],['running-memory',{runFree:19},true],
+ ['launch-disk',{launchDisk:64n*1024n**3n-1n},false],['running-disk',{runDisk:16n*1024n**3n-1n},true]]){
+ test('synthetic low '+name+' is rejected by unchanged host guard',async()=>{
+  const f=fixture('normal',1,inputs);try{
+   const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert.match(r.err,/host memory\/disk resource stop/);
+   assert.equal(existsSync(f.events),started,'launch failure precedes provide; later failure follows target');
+   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
+  }finally{cleanup(f);}
+ });
+}
 test('attempt-lifetime diagnostic guard retains asynchronous EPIPE',async()=>{
  const stream=new Writable({write(_c,_e,cb){cb(Error('synthetic EPIPE'));}}),guard=D.diagnosticGuard(stream);let cause;
  guard.bind(e=>cause=e);guard.write('x');await pause(10);assert.match(cause.message,/EPIPE/);await assert.rejects(guard.close(performance.now()),/EPIPE/);
@@ -349,6 +457,21 @@ for(const mode of['normal','exhausted','archives','shared-archives']){
    assert.equal(completion.callCounts.projections,4*completion.completedAdvances);
    assert.equal(readFileSync(f.events,'utf8').trim().split('\n').length,completion.completedAdvances);
    const stream=path.join(f.output,'leaf-evidence.ndjson');assert.equal(C.scanStream(stream,bind(stream).sha256).pairs,completion.completedAdvances);
+   if(mode==='shared-archives'){
+    const decode=String.raw`import hashlib,json,pathlib,sys,types
+p=pathlib.Path(sys.argv[1]);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==sys.argv[2]
+m=types.ModuleType('exact_frozen_header_decoder');exec(compile(raw,str(p),'exec'),m.__dict__)
+d=m.StreamDecoder()
+with pathlib.Path(sys.argv[3]).open('rb')as source:
+ first=d.feed(next(source))
+ for line in source:d.feed(line)
+d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['sourceBindings']['historicalOwnerArchives'],accepted=h['accepted'])))
+`;
+    const result=spawnSync(python,['-I','-B','-c',decode,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],stream],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});
+    assert.equal(result.status,0,result.stderr);const header=JSON.parse(result.stdout);
+    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements});
+    assert.deepEqual(header.archives,C.archiveRelations(f.spec));assert.equal(header.archives.length,1);assert.equal(header.accepted,false);
+   }
    assert.equal(C.inspectStreamLayout(f.output).bytes,statSync(stream).size);
    assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
   }finally{cleanup(f);}
@@ -385,6 +508,27 @@ test('poststdout failure is exit1, retracts public stream and invalidates operat
   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
  }finally{cleanup(f);}
 });
+for(const stage of ['cleanup','prestdout','poststdout'])for(const validName of [false,true]){
+ test('original private directory rename rejects at '+stage+' with '+(validName?'valid':'invalid')+' new name',async()=>{
+  const f=fixture();try{
+   const original=stage==='cleanup'?'rawOwner':'result.streamOwner';
+   const mutation=`renameSync(path.dirname(${original}.privatePath),path.join(path.dirname(${original}.publicPath),${JSON.stringify(validName?'.leaf-stream-private-renamed':'invalid-private-name')}));`;
+   alterFixture(f,s=>{
+    s=s.replace('import {closeSync,constants,','import {renameSync,closeSync,constants,');
+    const anchor=stage==='cleanup'?'if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}':stage==='prestdout'?'const finalLive=()=>':'C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();';
+    assert(s.includes(anchor),'specific final boundary exists');return s.replace(anchor,mutation+anchor);
+   });
+   const r=await runFixture(f);assert.equal(r.code,1,r.err.slice(-1500));
+   if(stage==='poststdout')assert.equal(JSON.parse(r.out).completed,true);else assert.equal(r.out,'');
+   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
+   const kept=path.join(f.output,validName?'.leaf-stream-private-renamed':'invalid-private-name','leaf-evidence.ndjson');assert(statSync(kept).size>0);
+   const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
+   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
+   const operation=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json')));assert.equal(operation.process.processesClosed,true);
+   for(const gate of operation.process.gates){assert(Number.isInteger(gate.target.pid));assert(absent(gate.target.pid));}
+  }finally{cleanup(f);}
+ });
+}
 for(const mode of ['monitor','private-growth']){
  test('active '+mode+' rejection retains first failure after owned cancellation',async()=>{
   const f=fixture('stubborn');try{

@@ -12,6 +12,7 @@ export function createEquationMappingSymbolTooltip({ document, strip, renderText
   let active = null;
   let hovered = null;
   let focused = null;
+  const entries = [];
 
   function show(entry) {
     active?.button.removeAttribute("aria-describedby");
@@ -53,8 +54,31 @@ export function createEquationMappingSymbolTooltip({ document, strip, renderText
 
   return {
     hide,
+    reposition() { if (active) show(active); },
+    measureMaxHeight() {
+      // Reserve the tallest definition before hover, using the actual font,
+      // wrapping width and math renderer. Measuring must not expose a tooltip
+      // to assistive technology or change the focused/hovered symbol.
+      const wasHidden = tooltip.hidden;
+      tooltip.hidden = false;
+      tooltip.style.visibility = "hidden";
+      tooltip.setAttribute("aria-hidden", "true");
+      let height = 0;
+      for (const entry of entries) {
+        tooltip.replaceChildren();
+        renderText(tooltip, entry.definition);
+        height = Math.max(height, tooltip.getBoundingClientRect().height);
+      }
+      tooltip.replaceChildren();
+      tooltip.style.visibility = "";
+      tooltip.removeAttribute("aria-hidden");
+      tooltip.hidden = wasHidden;
+      if (active) show(active);
+      return height;
+    },
     bind(button, definition) {
       const entry = { button, definition };
+      entries.push(entry);
       // Native title tooltips must not compete with the math-aware tooltip.
       button.removeAttribute("title");
       button.addEventListener("pointerenter", () => {

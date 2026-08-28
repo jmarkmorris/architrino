@@ -517,7 +517,7 @@ function subjectForPath(sourcePath) {
     archie: "Archie references",
     assemblies: "Assemblies",
     cosmology: "Cosmology and astrophysics",
-    dynamics: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+    dynamics: "Dynamics",
     foundations: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ foundations",
     "noether-braid": "Noether braid",
     "nuclear-atomic": "Nuclear and atomic assemblies",
@@ -580,12 +580,31 @@ function addMissingLinks(source, blocks) {
   return { source: result, linksAdded: modifications.length };
 }
 
+export function createTextbookChapterIndex(tocRoot) {
+  const chapters = new Map();
+  function visit(node) {
+    if (!node) return;
+    if (node.markdownPath && !chapters.has(node.markdownPath)) {
+      chapters.set(node.markdownPath, { sourceTitle: node.title, sourceOrder: chapters.size });
+    }
+    (node.children ?? []).forEach(visit);
+  }
+  visit(tocRoot);
+  return chapters;
+}
+
 function createCorpusRecords(rootDir, files, promotedIds, sceneHrefBySource) {
+  const tocPath = path.join(rootDir, "content/graph/textbook_toc.json");
+  const chapters = createTextbookChapterIndex(
+    fs.existsSync(tocPath) ? JSON.parse(fs.readFileSync(tocPath, "utf8")).tocRoot : null
+  );
   const records = [];
   for (const sourcePath of files) {
     const absolutePath = path.join(rootDir, sourcePath);
     const source = fs.readFileSync(absolutePath, "utf8");
     const lines = source.split(/\r?\n/u);
+    const chapter = chapters.get(sourcePath);
+    const sourceTitle = chapter?.sourceTitle || cleanHeading(lines.find(line => /^#\s+/u.test(line))) || path.basename(sourcePath, ".md").replaceAll("-", " ");
     const blocks = parseCorpusDisplayEquations(sourcePath, source);
     assignSemanticIds(blocks);
     const countsByHeading = new Map();
@@ -616,6 +635,8 @@ function createCorpusRecords(rootDir, files, promotedIds, sceneHrefBySource) {
         source: {
           status: "linked",
           sourcePath,
+          sourceTitle,
+          sourceOrder: chapter?.sourceOrder ?? null,
           sourceHeading: block.heading,
           startLine: block.startLine,
           endLine: block.endLine,

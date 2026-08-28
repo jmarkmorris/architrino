@@ -6,11 +6,12 @@
 - Status: active pre-derivation requirements program
 - Created: 2026-08-22
 - Claim level: methodological inference with explicitly graded requirements and speculative realizations
-- Integration owner: [Mapping Electromagnetism](priorities.md)
-- Exact equation and score owner: [Equation Mapping](../mapping-equations/priorities.md)
+- General inference owner: [Equation Mapping](priorities.md)
+- Electromagnetic application owner: [Mapping Electromagnetism](../mapping-electromagnetism/priorities.md)
+- Exact equation and score owner: [Equation Mapping](priorities.md)
 - Independent benchmark owner: [Mapping Benchmarks](../mapping-benchmarks/priorities.md)
 - Retained-geometry and dynamics owners: Braid Program, Master Equation Closure, Photon Closure, Standard Model Closure, and the EOM solver
-- Candidate adjudication owner: [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md)
+- Candidate adjudication owner: [Braid Candidate Requirement Adjudication](../braid-program/braid-candidate-requirement-adjudication.md)
 
 ## Purpose
 
@@ -18,7 +19,7 @@ This packet is the focused reverse-engineering home for a central $\mathbb{A}\ma
 
 > Given a tested observer-level behavior, equation, or benchmark, what must be true of the source assemblies, matter braids, Noether sea braids, causal-wake history, propagating carriers, and receiver assemblies for that behavior to emerge?
 
-The immediate application is to effective electric and magnetic fields. The goal is not to assign $\mathbf E$ or $\mathbf B$ to an architrino or to rename an unknown sea configuration as a field. The goal is to infer the smallest native requirement bundle whose observer projection has the properties called electric and magnetic behavior.
+The scope spans established equations and tested behavior across electromagnetism, particle structure, quantum measurement, thermodynamics, and gravity. The electromagnetic application does not assign $\mathbf E$ or $\mathbf B$ to an architrino or rename an unknown sea configuration as a field. It infers the smallest native requirement bundle whose observer projection has the properties called electric and magnetic behavior.
 
 The same method also supplies cross-sector clues for Standard Model assembly geometry. Frequencies, mode counts, masses, transformation laws, form factors, moments, polarization ranks, lifetimes, branching fractions, null channels, and controlled differences between related particles are treated as inverse constraints on recurrence, frame, exposure, topology, association, basin, and reaction-corridor records. This cross-sector use remains priority-only and does not transfer equation-score or retained-geometry ownership into this packet.
 
@@ -39,11 +40,11 @@ Tested effective behavior can constrain native geometry before a microscopic bra
 
 The required external constraint surfaces are owned by:
 
-- [Equation Mapping](../mapping-equations/priorities.md) owns equations such as `EQ-13` Maxwell and wave recovery, `EQ-26A` fine-structure coupling and running, and `EQ-27` magnetic moment and precession.
+- [Equation Mapping](priorities.md) owns equations such as `EQ-13` Maxwell and wave recovery, `EQ-26A` fine-structure coupling and running, and `EQ-27` magnetic moment and precession.
 - [Mapping Benchmarks](../mapping-benchmarks/priorities.md) owns independent comparison situations such as the [Zeeman effect](../mapping-benchmarks/zeeman-effect.md), [Aharonov--Bohm effect](../mapping-benchmarks/aharonov-bohm-effect.md), [quantum Hall effect](../mapping-benchmarks/quantum-hall-effect.md), and magnetic-response and polarization tests.
-- [Fine-Structure Coupling Map](fine-structure.md) develops one detailed same-record coupling application involving matter geometry, near-to-far sea state, action-period, photon-channel, exposure, and effective-field rows.
-- [Fine-Grained Braid Maxwell Exploration](fine-grained-braid-maxwell-exploration-prompt.md) defines a finite-braid, equation-first residual protocol.
-- [Mapping Electromagnetism Brainstorming](brainstorming.md) supplies provisional field-ontology, response-state, and behavior-to-geometry hypotheses for testing here.
+- [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md) develops one detailed same-record coupling application involving matter geometry, near-to-far sea state, action-period, photon-channel, exposure, and effective-field rows.
+- [Fine-Grained Braid Maxwell Exploration](../mapping-electromagnetism/fine-grained-braid-maxwell-exploration-prompt.md) defines a finite-braid, equation-first residual protocol.
+- [Mapping Electromagnetism Brainstorming](../mapping-electromagnetism/brainstorming.md) supplies provisional field-ontology, response-state, and behavior-to-geometry hypotheses for testing here.
 
 This packet does not duplicate those inventories. It consumes their strongest constraints and records what they imply for admissible braid geometry.
 
@@ -58,9 +59,9 @@ The 2026-08-22 thread audit identified six recommendations that had been propose
 | Long-wavelength response-mode matrix for counting independent bulk fields | Deferred | Resume only after `EMAP-004` supplies a candidate constitutive operator whose small-$(\omega,\mathbf k)$ spectrum can be computed from resolved braid histories. Until then the matrix would classify an authored response model rather than the Noether sea. |
 | `D1` trapped-electron behavior-to-braid matrix | Deferred | Resume after `EMAP-001` and `EMAP-003` supply enough source and electron/positron magnetic geometry to distinguish orbit, ordered-frame, moment, sea, and receiver contributions without importing a magnetic field. |
 | Initial electric field-identity matrix | Implemented below | The [Electric Field-Identity Matrix](#electric-field-identity-matrix) compares direct-wake, sea-essential, and mixed realizations on one requirement set. |
-| Retained-assembly sweep through Stark reversal, frequency response, gradient response, and first retention loss | Merged | The extension contract now belongs to the [$E0$--$E4$ multi-receiver packet](e0-e4-multi-receiver-electric-response.md#merged-retained-assembly-extension). It remains blocked on a retained receiver branch. |
+| Retained-assembly sweep through Stark reversal, frequency response, gradient response, and first retention loss | Merged | The extension contract now belongs to the [$E0$--$E4$ multi-receiver packet](../mapping-electromagnetism/e0-e4-multi-receiver-electric-response.md#merged-retained-assembly-extension). It remains blocked on a retained receiver branch. |
 | Dedicated proton/neutron polarizability comparison benchmark | Deferred | Resume after a retained neutral-composite carrier exists. The current $R_0$ receiver remains a geometry-neutral surrogate and must not be relabeled as a neutron. |
-| Strong-field timing and path-length ledger for internal-speed inference | Conditionally merged | The [fixed-law continuation packet](fixed-law-source-continuation.md#conditional-internal-speed-extension) owns the rows, but activates them only if one retained transition record supplies precursor identity, path length, cycle time, formation time, and source-coherence time. |
+| Strong-field timing and path-length ledger for internal-speed inference | Conditionally merged | The [fixed-law continuation packet](../mapping-electromagnetism/fixed-law-source-continuation.md#conditional-internal-speed-extension) owns the rows, but activates them only if one retained transition record supplies precursor identity, path length, cycle time, formation time, and source-coherence time. |
 
 Plainly: every recommendation now has one owner and one reason for being active, merged, or deferred. Deferral means that the proposed artifact cannot yet answer its physical question; it does not erase the requirement.
 
@@ -764,7 +765,7 @@ Plainly: charged currents must distinguish generation enough to mix it, neutral 
 
 #### Flavor And Dipole Nulls Require One Factorized Record
 
-The strongest flavor information comes from pairing an allowed route with a nearby suppressed route on the same family record. The present corpus covers ordinary muon decay and quark charged-current mixing through the [weak-visible branch packet](../mapping-equations/eq-16-weak-visible-branch-ledger-source-field-map.md), tree-level neutral-current diagonality and a formal GIM-like cancellation through the [common architecture](../mapping-equations/equation-common-architecture.md), and rare-kaon event bookkeeping, weak $CP$, and a quantitative neutron electric-dipole scaffold through their existing equation and benchmark owners. Coverage is only partial for the electron dipole and neutrinoless double beta decay, and no owned quantitative packet presently covers $\mu\to e\gamma$, $\mu\to3e$, coherent $\mu\to e$ conversion, or representative tau charged-lepton flavor change.
+The strongest flavor information comes from pairing an allowed route with a nearby suppressed route on the same family record. The present corpus covers ordinary muon decay and quark charged-current mixing through the [weak-visible branch packet](eq-16-weak-visible-branch-ledger-source-field-map.md), tree-level neutral-current diagonality and a formal GIM-like cancellation through the [common architecture](../mapping/mapping-method.md), and rare-kaon event bookkeeping, weak $CP$, and a quantitative neutron electric-dipole scaffold through their existing equation and benchmark owners. Coverage is only partial for the electron dipole and neutrinoless double beta decay, and no owned quantitative packet presently covers $\mu\to e\gamma$, $\mu\to3e$, coherent $\mu\to e$ conversion, or representative tau charged-lepton flavor change.
 
 This gap does not license adding those observer processes as substrate laws. It identifies a missing same-record test of whether one generation geometry can allow charged-current flavor routing while suppressing direct charged-lepton relocking.
 
@@ -1022,7 +1023,7 @@ The smallest high-discrimination comparison basis is:
 
 Plainly: this small set separates energy gaps from corridor geometry. A single retained atomic architecture would have to explain why one route is strong, another is suppressed, and another needs two carriers or a different response rank.
 
-The [atomic precision packet](../mapping-equations/eq-26-31-observation-first-precision-packet.md) and [Zeeman benchmark](../mapping-benchmarks/zeeman-effect.md) own the currently mapped gross hydrogen, transition-event, two-photon, fine/Lamb/hyperfine, Zeeman, and general basin-measure grammar. The corpus does not yet contain an explicit atomic E1/M1/E2 comparison matrix, a dedicated Stark benchmark, or a source-backed atomic quadrupole case. Those are coverage gaps, not permission to import an orbital picture. The quadrupole slot should remain unpopulated until a primary comparison source and a retained carrier consumer are selected.
+The [atomic precision packet](eq-26-31-observation-first-precision-packet.md) and [Zeeman benchmark](../mapping-benchmarks/zeeman-effect.md) own the currently mapped gross hydrogen, transition-event, two-photon, fine/Lamb/hyperfine, Zeeman, and general basin-measure grammar. The corpus does not yet contain an explicit atomic E1/M1/E2 comparison matrix, a dedicated Stark benchmark, or a source-backed atomic quadrupole case. Those are coverage gaps, not permission to import an orbital picture. The quadrupole slot should remain unpopulated until a primary comparison source and a retained carrier consumer are selected.
 
 This comparison supplies several compact contradiction cores:
 
@@ -5742,7 +5743,7 @@ To identify a particular sea geometry rather than merely a sea contribution, rec
 
 The present blocker is a retained candidate Noether sea braid whose responsive history can be evolved. Before that geometry exists, `E1` can determine how much electric structure is already present in direct source hits, but no calculation can honestly prove that a nonexistent or unspecified sea response is dispensable.
 
-Claim grade: the run partition and decision rules are a proposed diagnostic; their source/sea decomposition follows from transmitter-labeled native bookkeeping, while physical necessity remains a closure target until the second-stage same-record evolutions and independent effective comparisons are available. Promotion target: the electromagnetic recovery derivation after a retained sea response branch exists. The focused [$E0$--$E4$ Multi-Receiver Electric Response](e0-e4-multi-receiver-electric-response.md) packet now predeclares the common-history comparison across a neutral sea braid, electron/positron conjugate receivers, and a neutral nucleon surrogate. It keeps group translation, orientation, non-rigid deformation, and signed internal polarity response separate. Execution remains blocked on the retained branches and same-update causal-wake accounts named in that packet.
+Claim grade: the run partition and decision rules are a proposed diagnostic; their source/sea decomposition follows from transmitter-labeled native bookkeeping, while physical necessity remains a closure target until the second-stage same-record evolutions and independent effective comparisons are available. Promotion target: the electromagnetic recovery derivation after a retained sea response branch exists. The focused [$E0$--$E4$ Multi-Receiver Electric Response](../mapping-electromagnetism/e0-e4-multi-receiver-electric-response.md) packet now predeclares the common-history comparison across a neutral sea braid, electron/positron conjugate receivers, and a neutral nucleon surrogate. It keeps group translation, orientation, non-rigid deformation, and signed internal polarity response separate. Execution remains blocked on the retained branches and same-update causal-wake accounts named in that packet.
 
 Plainly: first ask whether the source wakes already contain the required electric pattern. Then let real candidate sea braids respond without changing the rules. The sea is essential only if turning off that derived response breaks a required electric behavior that the full evolution restores.
 
@@ -9603,7 +9604,7 @@ Plainly: improve what the search records now, use the new constraints to avoid b
 
 ## Ownership And Non-Advancement Boundary
 
-This file owns the cross-row inference method, requirement statements, candidate realization register, and same-record braid-role map. It does not own or alter:
+This Equation Mapping packet owns the cross-row inference method, requirement statements, candidate realization register, and same-record braid-role map under the [Shared Equation And Mapping Architecture](../mapping/mapping-method.md). The Braid Program owns [candidate adjudication](../braid-program/braid-candidate-requirement-adjudication.md), focused candidate geometry, and dynamical evidence; Mapping Electromagnetism consumes the electromagnetic requirements without owning the general method. This file does not own or alter:
 
 - equation maturity scores or accepted evidence decisions;
 - benchmark provenance or covariance;
@@ -9682,7 +9683,7 @@ Plainly: this packet narrows the search and makes the proof obligations explicit
 
 ## 2026-08-26 Braid Evaluation Dispositions
 
-This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised F5 geometry and all sixteen declared sub-field A/B/C rows without advancing H4, H5, retention or physical claims.
+This section preserves the dated campaign's dispositions, not the current hard-gate frontier. The [current candidate-level overlay](../braid-program/braid-candidate-requirement-adjudication.md#candidate-level-outcome) incorporates the separately accepted prescribed H3 evidence for the revised F5 geometry and all sixteen declared sub-field A/B/C rows without advancing H4, H5, retention or physical claims.
 
 The [all-candidate evaluation campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) assigns `STASIS` to F1--F4 at their incomplete `H1` charts, `DEMOTED` only to the F5 common-cadence circular realization at its exact `H2` obstruction, `STASIS` to parent-only F6, `DEMOTED` to the F6b circular realization at its measured `H4` member-acceleration failure, and `STASIS` to F6c at `H5`. The distinct revised phase-varying F5 creative geometry is active at `H1/H2 P[D/M]`. Both six-accessory continuations remain in stasis behind `ACC1` because no named base braid passes `H5`.
 
@@ -9692,7 +9693,7 @@ Plainly: the seed comparisons still narrow what each geometry can attempt, but o
 
 ## Current Concrete Pass And Blocker
 
-The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, cross-sector geometry, and accessory placement relative to a retained braid. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, accessory-placement and braid-response requirements, ranked summary, and [candidate-by-requirement adjudication](braid-candidate-requirement-adjudication.md) are all present at report grade. The adjudication covers every active registry row without converting unknowns into failures or introducing a weighted physical score. The six residual recommendations each have an owner or explicit prerequisite.
+The requirement-mining pass now covers electric, magnetic, induction, radiation, moment, holonomy, material, multiplet covariance, additive provenance labels, cross-sector geometry, and accessory placement relative to a retained braid. The electric field-identity matrix, magnetic source--sea--receiver reduction, weak-response skew lemma, cross-sector framed causal-history bundle, multiplet-orbit test, accessory-placement and braid-response requirements, ranked summary, and [candidate-by-requirement adjudication](../braid-program/braid-candidate-requirement-adjudication.md) are all present at report grade. The adjudication covers every active registry row without converting unknowns into failures or introducing a weighted physical score. The six residual recommendations each have an owner or explicit prerequisite.
 
 The fixed-law continuation instrument also evaluates a signed weak regime and its first native geometric transition while keeping pair capture and backreaction fail-closed. Its prescribed fixture is `candidate_only`; it is an implementation check, not physical electromagnetic evidence.
 

@@ -15,10 +15,19 @@ This is the canonical execution ledger for geometry-first Standard Model recover
 9. `lattice_qcd_direct_assembly_comparison` — Status: `Deferred / blocked`.
 10. `e8_redundancy_heuristic_audit` — Status: `Deferred / blocked`.
 11. `quark_vortex_coupling_simulation` — Status: `Deferred / blocked`.
+12. `geometric_phase_and_holonomy_exploration` — [SMC-012](#smc-012--geometric-phase-and-holonomy-exploration). Status: `Queued`.
 
 ## Queued
 
 - **SMC-001 — `quark_mass_predictions`.** Extend quark geometry from catalog closure to first-pass mass predictions without fitting observed masses. **Completion:** one source-bound geometry produces a declared mass row and residual with no per-flavor retune.
+
+### SMC-012 — Geometric phase and holonomy exploration
+
+- **Status:** Queued
+- **Priority object:** `geometric_phase_and_holonomy_exploration`
+- **Request / acceptance:** Give the [geometric-phase exploration](geometric-phase-and-holonomy/brainstorming.md) an introductory session. Compare one pure change of phase convention with one closed transport cycle; identify the invariant comparison and connect it to the existing gauge and Aharonov-Bohm targets.
+- **Evidence / blocker:** The learning outline and primary references are available. This operator-selected conceptual session can run independently of the blocked physical recovery tasks; it does not replace SMC-001 as the scientific local winner.
+- **Completion:** One independently checked worked example explains the transport rule, geometric versus dynamical phase, permitted convention changes, and observable comparison, then names the missing native carrier without importing an effective field as substrate ontology. Record the result and next selected question; no gauge-recovery or score claim follows.
 
 ## Deferred / blocked
 

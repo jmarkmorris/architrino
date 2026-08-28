@@ -61,6 +61,10 @@ Closure packets should be durable working files. Prefer one packet per equation 
 
 This priority is equation-first. It should complement, not replace, [Mapping Benchmarks Priority Candidates](../mapping-benchmarks/priorities.md), which is case-first and experiment-first.
 
+[Inferring Braid Requirements](inferring-braid-requirements.md) owns the general reverse inference from equations and tested behavior to braid, assembly, medium, and causal-history requirements under the [Shared Equation And Mapping Architecture](../mapping/mapping-method.md). Its electromagnetic sections are applications of that general method. The Braid Program owns [candidate requirement adjudication](../braid-program/braid-candidate-requirement-adjudication.md), focused candidate geometry, and the evidence used to test those requirements. This ownership does not transfer benchmark provenance, native evidence acceptance, or domain-specific integration into Equation Mapping.
+
+Plainly: this lane develops what the observed behavior requires; the Braid Program tests candidate structures, and each domain lane combines the requirements relevant to its subject.
+
 [Mapping Electromagnetism](../mapping-electromagnetism/priorities.md) is the electromagnetic integration consumer for the EQ-13, EQ-15, EQ-26A, and EQ-27 rows. Its [Fine-Structure Coupling Map](../mapping-electromagnetism/fine-structure.md) owns the cross-row derivation program for $\alpha_{\mathrm{ref}}$ and $\mathcal K_{\mathrm{EM}}$. Mapping Electromagnetism also owns Maxwell cases and inverse constraints on braid, electron, and Noether sea structure; Equation Mapping retains the exact equation carriers, scores, source-field packets, and executable controls.
 
 The workstream should stay internal until a line item produces a mature mathematical object:
@@ -102,7 +106,7 @@ The locally ranked equation objects, live blockers, and completion boundaries li
 
 ## Related Priority Material
 
-- Current score and acceptance routing: [Equation Mapping Detail](equation.md), [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md), and the [Shared Equation And Mapping Architecture](equation-common-architecture.md).
+- Current score and acceptance routing: [Equation Mapping Detail](equation.md), [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md), and the [Shared Equation And Mapping Architecture](../mapping/mapping-method.md).
 - Consolidated closure-pass history and retained audit conclusions: [work-log.md](work-log.md#consolidated-june-closure-pass-history).
 - Lorentz and retained-domain packets: [EQ-02 Through EQ-04 S_eq Retained-Domain Evidence Object](eq-02-04-s-eq-retained-domain-evidence-object.md) and [EQ-02 Through EQ-04 Translating Binary Shared-Record Instantiation](eq-02-04-translating-binary-shared-record-instantiation.md).
 - Effective metric, Noether sea, and cosmology packets: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md), [EQ-11/20 Gravity And Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md), [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-map.md), [EQ-17 Theta-Transfer Source-Field Map](eq-17-theta-transfer-source-field-map.md), [EQ-18 And EQ-19 Theta-Cos Source-Field Map](eq-18-19-theta-cos-source-field-map.md), [EQ-24 Theta-Sea Rho-NS Source-Field Map](eq-24-theta-sea-rho-ns-source-field-map.md), [EQ-25 Theta-Therm CMB Source-Field Map](eq-25-theta-therm-cmb-source-field-map.md), and [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md).

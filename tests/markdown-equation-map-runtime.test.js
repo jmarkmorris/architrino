@@ -63,6 +63,8 @@ test("return navigation belongs at the start of the subject header, not in the r
     document: { createElement: element },
     window: { location: { href: createEquationMappingLaunchHref({ currentHref, semanticId, sourcePath }) } },
     indexCollapsed: true,
+    searchQuery: "",
+    navigationView: "key",
     getVisibleDocumentList: () => [],
     renderReturnLink() { return EquationMappingRuntime.prototype.renderReturnLink.call(this); },
     renderIconButton: () => element("button"),
@@ -77,13 +79,15 @@ test("return navigation belongs at the start of the subject header, not in the r
 test("Master Equation is the first sidebar item without removing or duplicating its normal record", () => {
   const masterId = "eq-01b-causal-wake-master-equation";
   const documents = [
-    { id: "eq-01-causal-wake-master-equation", title: "Causal Wake Per-Hit Law", subject: "Dynamics" },
-    { id: masterId, title: "Causal Wake Master Equation", subject: "Dynamics" },
+    { id: "eq-01-causal-wake-master-equation", title: "Causal Wake Per-Hit Law", subject: "Dynamics", promoted: true },
+    { id: masterId, title: "Causal Wake Master Equation", subject: "Dynamics", promoted: true },
   ];
   let selected;
   const context = {
     document: { createElement: element, createTextNode(text) { const node = element("#text"); node.textContent = text; return node; } },
     window: {},
+    searchQuery: "",
+    navigationView: "key",
     expandedSubjectIds: new Set(["Dynamics"]),
     activeDocument: documents[1],
     getVisibleDocumentList: () => documents,
@@ -94,12 +98,12 @@ test("Master Equation is the first sidebar item without removing or duplicating 
   const index = EquationMappingRuntime.prototype.renderSubjectIndex.call(context);
   const groups = index.children[1];
   const pinned = groups.children[0];
-  assert.equal(pinned.children[0].textContent, "Master Equation");
+  assert.equal(pinned.children[0].children[0].textContent, "Master Equation");
   assert.equal(pinned.getAttribute("aria-current"), "true");
   pinned.fire("click");
   assert.equal(selected, masterId);
-  const normalItems = groups.children[1].children[1].children;
-  assert.deepEqual(normalItems.map(item => item.children[0].textContent), ["Causal Wake Per-Hit Law", "Causal Wake Master Equation"]);
+  const normalItems = groups.children[4].children[0].children[1].children;
+  assert.deepEqual(normalItems.map(item => item.children[0].children[0].textContent), ["Causal Wake Per-Hit Law", "Causal Wake Master Equation"]);
   assert.equal(documents.length, 2);
 });
 
@@ -109,6 +113,7 @@ function element(tagName, className = "") {
     get childElementCount() { return this.children.length; },
     classList: {
       contains(name) { return node.className.split(" ").includes(name); },
+      add(name) { this.toggle(name, true); },
       toggle(name, enabled) { const classes = new Set(node.className.split(" ").filter(Boolean)); if (enabled) classes.add(name); else classes.delete(name); node.className = [...classes].join(" "); },
     },
     setAttribute(name, value) { this.attrs[name] = value; },
@@ -116,6 +121,7 @@ function element(tagName, className = "") {
     addEventListener(name, handler) { (this.handlers[name] ??= []).push(handler); },
     fire(name, event = {}) { for (const handler of this.handlers[name] ?? []) handler(event); },
     append(...children) { for (const child of children) { child.remove(); this.children.push(child); child.parentElement = this; } },
+    replaceChildren(...children) { this.children.forEach(child => { child.parentElement = null; }); this.children = []; this.append(...children); },
     remove() { if (this.parentElement) this.parentElement.children = this.parentElement.children.filter(child => child !== this); this.parentElement = null; },
     replaceWith(replacement) { const parent = this.parentElement; const index = parent.children.indexOf(this); parent.children[index] = replacement; replacement.parentElement = parent; this.parentElement = null; },
     get previousElementSibling() { const siblings = this.parentElement?.children ?? []; return siblings[siblings.indexOf(this) - 1]; },

@@ -14,7 +14,7 @@ export const CANVAS_COLORS = Object.freeze([
 ]);
 
 export const SUBJECT_GROUPS = Object.freeze([
-  "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+  "Dynamics",
   "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ foundations",
   "Classical mechanics",
   "Relativity and effective metric",
@@ -69,6 +69,8 @@ function normalizeEquationSource(source = {}) {
   return {
     status: normalizeText(source.status, "linked"),
     sourcePath: normalizeOptionalText(source.sourcePath),
+    sourceTitle: normalizeOptionalText(source.sourceTitle),
+    sourceOrder: Number.isSafeInteger(source.sourceOrder) ? source.sourceOrder : null,
     sourceHeading: normalizeOptionalText(source.sourceHeading),
     startLine: Number.isSafeInteger(source.startLine) ? source.startLine : null,
     endLine: Number.isSafeInteger(source.endLine) ? source.endLine : null,
@@ -320,7 +322,7 @@ const equationMapSeedDocuments = [
   {
     id: "eq-00-coordinate-layer-key",
     title: "Coordinate Layer Key",
-    subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+    subject: "Dynamics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-source-reference",
     formulaTeX:
@@ -390,7 +392,7 @@ const equationMapSeedDocuments = [
   {
     id: "eq-01-causal-wake-master-equation",
     title: "Causal Wake Per-Hit Law",
-    subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+    subject: "Dynamics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
@@ -463,7 +465,7 @@ const equationMapSeedDocuments = [
   {
     id: MASTER_EQUATION_MAP_DOCUMENT_ID,
     title: "Causal Wake Master Equation",
-    subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
+    subject: "Dynamics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
@@ -1629,6 +1631,7 @@ export function getEquationSearchText(document = {}) {
     document.searchText,
     document.source?.sourcePath,
     document.source?.sourceHeading,
+    document.source?.sourceTitle,
     document.source?.contextBefore,
     document.source?.contextAfter,
     ...(document.symbols ?? []).map((symbol) => `${symbol.tex} ${symbol.definition} ${symbol.scope}`),

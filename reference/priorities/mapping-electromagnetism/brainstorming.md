@@ -46,7 +46,7 @@ For a fine-grained matter–sea record, weak response, strong geometric departur
 
 Observed electromagnetic behavior can constrain candidate geometry only after claim levels are separated. Effective requirements are deduced from measured behavior; native requirements are inferred consequences for an assembly map; a particular F6c, three-binary, or other realization remains a candidate until fixed-law retained-history evidence exists.
 
-The general method and requirement taxonomy belong in [inferring-braid-requirements.md](inferring-braid-requirements.md). Candidate-by-candidate dispositions belong in [braid-candidate-requirement-adjudication.md](braid-candidate-requirement-adjudication.md). F6c geometry, three-binary comparisons, and coordinate matching belong in their focused sibling packets and do not need a second large treatment here.
+The general method and requirement taxonomy belong in Equation Mapping's [inferring-braid-requirements.md](../mapping-equations/inferring-braid-requirements.md). Candidate-by-candidate dispositions belong in the Braid Program's [braid-candidate-requirement-adjudication.md](../braid-program/braid-candidate-requirement-adjudication.md). [F6c geometry](../braid-program/f6c-geometry.md), [three-binary comparisons](../braid-program/three-binary-orbiting-endpoint-comparison.md), and [coordinate matching](../braid-program/three-binary-five-coordinate-initialization-ledger.md) also belong in the Braid Program and do not need a second large treatment here.
 
 ## Adaptive Cubic Noether Sea Candidate
 
@@ -86,7 +86,7 @@ Electromagnetism and effective geometry are required observer-level recovery sec
 
 ## Assessment and Promotion Boundary
 
-The session-derived material now has focused priority-stage owners: source/moment/field tasks in [work-queue.md](work-queue.md), fine-structure coupling in [fine-structure.md](fine-structure.md), inverse requirements in [inferring-braid-requirements.md](inferring-braid-requirements.md), candidate judgments in [braid-candidate-requirement-adjudication.md](braid-candidate-requirement-adjudication.md), fixed-law response in [fixed-law-source-continuation.md](fixed-law-source-continuation.md), F6c and three-binary geometry in their named packets, and adaptive-medium kinematics in its contract. Later corpus promotion requires accepted retained records and independent electromagnetic benchmarks; priority-stage coherence alone changes no score or claim.
+The session-derived material now has focused priority-stage owners: source/moment/field tasks in [work-queue.md](work-queue.md), fine-structure coupling in [fine-structure.md](fine-structure.md), inverse requirements in [inferring-braid-requirements.md](../mapping-equations/inferring-braid-requirements.md), candidate judgments in [braid-candidate-requirement-adjudication.md](../braid-program/braid-candidate-requirement-adjudication.md), fixed-law response in [fixed-law-source-continuation.md](fixed-law-source-continuation.md), F6c and three-binary geometry in their named packets, and adaptive-medium kinematics in its contract. Later corpus promotion requires accepted retained records and independent electromagnetic benchmarks; priority-stage coherence alone changes no score or claim.
 
 ## Unresolved Ideas
 

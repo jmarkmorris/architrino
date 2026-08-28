@@ -120,3 +120,38 @@ test("the old generated-text CSS tooltip is absent", () => {
   assert.doesNotMatch(html, /content:\s*attr\(data-definition\)|symbol-chip(?::hover|:focus-visible)?::after/u);
   assert.match(html, /\.equation-mapping-symbol-tooltip\[hidden\]/u);
 });
+
+test("tooltip clearance measures every definition without exposing or changing tooltip state", () => {
+  const { runtime, tooltip, buttons, mathCalls } = setup();
+  const originalRect = tooltip.getBoundingClientRect.bind(tooltip);
+  tooltip.getBoundingClientRect = () => ({ ...originalRect(), height: tooltip.textContent.includes("coupling") ? 120 : 80 });
+  mathCalls.length = 0;
+  assert.equal(runtime.symbolTooltip.measureMaxHeight(), 120);
+  assert.deepEqual(mathCalls.map(call => call.tex), ["g", "g^2", "M_W"]);
+  assert.equal(tooltip.hidden, true);
+  assert.equal(tooltip.getAttribute("aria-hidden"), null);
+  assert.ok(buttons.every(button => button.getAttribute("aria-describedby") === null));
+  buttons[0].fire("focus");
+  runtime.symbolTooltip.measureMaxHeight();
+  assert.equal(tooltip.hidden, false);
+  assert.equal(buttons[0].getAttribute("aria-describedby"), tooltip.id);
+  assert.equal(tooltip.textContent, "rendered(g) is the coupling and rendered(g^2) its square.");
+});
+
+test("scroll repositioning keeps keyboard tooltips open and follows the symbol", () => {
+  const { runtime, tooltip, buttons } = setup();
+  buttons[0].fire("focus");
+  buttons[0].rect.top = 200;
+  runtime.symbolTooltip.reposition();
+  assert.equal(tooltip.hidden, false);
+  assert.equal(Number.parseFloat(tooltip.style.top), -62);
+  assert.equal(buttons[0].getAttribute("aria-describedby"), tooltip.id);
+});
+
+test("equation tooltips stack above explainers, with scroll clearance on narrow screens", () => {
+  const html = readFileSync(new URL("../equation-mapping.html", import.meta.url), "utf8");
+  assert.match(html, /\.equation-mapping-equation-shell \{[^}]*z-index: 4;/u);
+  assert.match(html, /\.equation-mapping-overlay-layer \{[^}]*z-index: 3;/u);
+  assert.match(html, /margin-top: var\(--symbol-tooltip-clearance, 0px\)/u);
+  assert.match(html, /\.equation-mapping-stage \{[^}]*overflow-y: auto;/u);
+});

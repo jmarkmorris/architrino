@@ -1,5 +1,7 @@
 # Mapping Benchmarks Priority Candidates
 
+For the overall program and the distinction between benchmark, equation, and domain work, start with the [Mapping overview](../mapping/README.md#what-mapping-benchmarks-means).
+
 ## Workstream Metadata
 
 - Kind: `priority-candidate`
@@ -19,7 +21,7 @@ This directory is a priority-candidate lane for observational and experimental c
 
 The lane is not authored AAA canon. It is source material for later promotion into validation gates, spacetime closure, radiation closure, quantum closure, angular-momentum closure, cosmology closure, and related proof programs.
 
-The [Shared Equation And Mapping Architecture](../mapping-equations/equation-common-architecture.md) governs the boundary between equation-first, benchmark-first, domain-integration, and native-evidence work. Case-local candidate steps decompose a benchmark at draft grade; only [work-queue.md](work-queue.md) owns executable rows for Mapping Benchmarks.
+The [Shared Equation And Mapping Architecture](../mapping/mapping-method.md) governs the boundary between equation-first, benchmark-first, domain-integration, and native-evidence work. Case-local candidate steps decompose a benchmark at draft grade; only [work-queue.md](work-queue.md) owns executable rows for Mapping Benchmarks.
 
 ## Lane Map
 

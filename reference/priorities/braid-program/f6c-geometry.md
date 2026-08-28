@@ -2,8 +2,9 @@
 
 ## Document Status
 
+- Owner: [Braid Program](priorities.md)
 - Kind: dependency-ordered priority textbook unit and evidence reference
-- Status: admitted candidate geometry and active companion to [Inferring Braid Requirements](inferring-braid-requirements.md); admission records the exact chart and does not imply a retained branch
+- Status: admitted candidate geometry and active companion to [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md); admission records the exact chart and does not imply a retained branch
 - Created: 2026-08-23
 - Claim level: exact prescribed geometry and symmetry results, measured bounded EOM-solver diagnostics, and explicitly marked inference or speculation
 - Scope: exact F6c construction and geometry; causal-speed, motion-moment, return, and bounded-search evidence; then physical-clock, Lorentz-recovery, strong-field, particle-facing, radiation-facing, and collective six-architrino capture hypotheses
@@ -17,7 +18,7 @@ F6c is not yet a retained braid. It is a symmetry-protected family of complete e
 
 Plainly: F6c is a precisely defined six-coordinate motion template for eight architrinos. It is a candidate architecture, not yet a demonstrated particle or stable assembly.
 
-The [2026-08-26 all-candidate campaign](../braid-program/evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) places F6c in `STASIS` at `H5`. The completed radial-frequency continuation remains closed as a bounded negative under its 10% material-improvement gate. Existing `M02`--`M04` and `M08` values remain available, while the accepted future ruler/clock does not retrospectively make `M05`--`M07` or `M09`--`M13` available. The [normalized member-acceleration predeclaration](../braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) now binds `M05/M06` to the same refined dual-turn evidence generation, but it remains unexecuted and authorizes no EOM run. A different return campaign must still predeclare a materially new coordinated-turn variable or matched guarded/full-root comparison.
+The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evaluation-campaign-closeout.md) places F6c in `STASIS` at `H5`. The completed radial-frequency continuation remains closed as a bounded negative under its 10% material-improvement gate. Existing `M02`--`M04` and `M08` values remain available, while the accepted future ruler/clock does not retrospectively make `M05`--`M07` or `M09`--`M13` available. The [normalized member-acceleration predeclaration](evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md) now binds `M05/M06` to the same refined dual-turn evidence generation, but it remains unexecuted and authorizes no EOM run. A different return campaign must still predeclare a materially new coordinated-turn variable or matched guarded/full-root comparison.
 
 Plainly: F6c has bounded geometry and evolution evidence, but the tested radial tuning direction is finished and no root-valid labeled-history return exists.
 
@@ -1808,7 +1809,7 @@ Plainly: before circulation reversed, the part of the motion that did not change
 
 Opposite breathing-amplitude signs were only modestly enriched relative to the sampled baseline, while opening corridors were less common in active handoffs than in the full archive. The handoff condition is therefore a phase-space relation among shape, motion, and acceleration, not a sign-pattern shortcut.
 
-This result is a measured bounded diagnostic, not a retention or particle claim. The full derivation, census, numerical check, and falsifier are in [Current Transport, Guard Flow, And A Causal-History Boundary](inferring-braid-requirements.md#current-transport-guard-flow-and-a-causal-history-boundary).
+This result is a measured bounded diagnostic, not a retention or particle claim. The full derivation, census, numerical check, and falsifier are in [Current Transport, Guard Flow, And A Causal-History Boundary](../mapping-equations/inferring-braid-requirements.md#current-transport-guard-flow-and-a-causal-history-boundary).
 
 Plainly: the measured histories support one search lesson—current support, pair protection, and cadence reversal use coupled but distinguishable rate directions. The result is overturned if the named record reconstruction or census fails, or if the reported handoff and mode-conversion signatures do not reappear under the stated selection rules.
 
@@ -3975,8 +3976,8 @@ Plainly: the table is a compact review of the core chain. Its exact statements c
 
 ## Local Provenance
 
-- The owning derivation and diagnostic record is [Inferring Braid Requirements](inferring-braid-requirements.md#seed-f6c--polarity-resolved-breathing-tetrahedron).
-- Dated campaign changes are recorded in [work-log.md](work-log.md).
+- The general inference and originating seed record is [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md#seed-f6c--polarity-resolved-breathing-tetrahedron); this document owns the focused F6c geometry and diagnostics.
+- Dated campaign changes belong in the [Braid Program work log](work-log.md). Earlier entries remain in the [Mapping Electromagnetism work log](../mapping-electromagnetism/work-log.md).
 - Exact return-group enumeration is implemented by [f6c-identity-return-group.mjs](../../../scripts/mapping-electromagnetism/f6c-identity-return-group.mjs).
 - EOM coordinate reconstruction is implemented by [f6c-eom-coordinate-analysis.mjs](../../../scripts/mapping-electromagnetism/f6c-eom-coordinate-analysis.mjs).
 - Exact constraint, pair-corridor, and speed/current-capacity calculations are implemented by [f6c-linear-constraint-geometry.mjs](../../../scripts/mapping-electromagnetism/f6c-linear-constraint-geometry.mjs), [f6c-current-transport.mjs](../../../scripts/mapping-electromagnetism/f6c-current-transport.mjs), and [f6c-release-current-capacity-ranking.mjs](../../../scripts/mapping-electromagnetism/f6c-release-current-capacity-ranking.mjs).

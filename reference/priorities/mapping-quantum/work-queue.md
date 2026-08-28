@@ -15,6 +15,19 @@ This is the canonical execution ledger for measure, detector-response, pair-prov
 9. `noether_braid_metastability_decider_minimality` — Status: `Deferred / blocked`.
 10. `transfer_operator_stress_tests` — Status: `Deferred / blocked`.
 11. `xenon_isotope_spin_biology_watch` — Status: `Deferred / blocked`.
+12. `spinors_rotations_and_history_exploration` — [QC-012](#qc-012--spinors-rotations-and-history-exploration). Status: `Queued`.
+
+## Queued Conceptual Exploration
+
+The operator selected this bounded learning session alongside the main closure work. It can receive attention while the physical tasks above remain blocked; it does not change their scientific rank, acceptance conditions, or dependency order.
+
+### QC-012 — Spinors, rotations, and history exploration
+
+- **Status:** Queued
+- **Priority object:** `spinors_rotations_and_history_exploration`
+- **Request / acceptance:** Give the [spinor exploration](spinors-rotations-and-history/brainstorming.md) an introductory session, beginning with rotations and quaternions before relativistic spinors. Produce one worked one-turn/two-turn comparison and explain coordinate sign, phase convention, full-history distinction, and observable response.
+- **Evidence / blocker:** The learning outline and primary references are available. No accepted assembly or solver run is required for this mathematical comparison; a physical spin claim remains subject to QC-002 and the existing ordered-frame target.
+- **Completion:** The worked example and comparison table are independently checked against standard rotation mathematics, with one explicit counterexample to reading a coordinate sign as an observable by itself. Record the result and the next selected question without claiming spin, statistics, or magnetic-moment recovery.
 
 ## Deferred / blocked task records
 

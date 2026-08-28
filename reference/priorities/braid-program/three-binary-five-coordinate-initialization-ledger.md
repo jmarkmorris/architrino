@@ -2,6 +2,7 @@
 
 ## Status And Adjudication
 
+- Owner: [Braid Program](priorities.md)
 - Kind: focused priority-side exact initialization derivation and pre-EOM ledger
 - Created: 2026-08-24
 - Permanent short name: `SD3`, meaning sector-differential three-pair geometry; provenance-bound `candidateB` machine fields retain their recorded schema names

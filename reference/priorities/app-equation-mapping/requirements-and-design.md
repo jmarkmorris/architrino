@@ -56,18 +56,14 @@ The `anchors` field is important. Saved overlays should target named formula sec
 
 ## Subject Index
 
-The first subject index should be a left rail that collapses to an icon-width control.
+The left rail collapses to an icon-width control. Its first equation item is a persistent Master Equation shortcut; the equation also remains in its normal group. The standard Back control occupies the top-left header slot when the app was opened from a textbook page and returns to that exact source route and equation.
 
-Initial subject groups:
+Two collection views separate curated maps from the full corpus:
 
-- Classical mechanics
-- Relativity and effective metric
-- Quantum and QFT
-- Statistical mechanics and thermodynamics
-- Cosmology and astrophysics
-- $\mathbb{A}\mathbb{A}\mathbb{A}$ native rows
+- **Key equations** is the default, showing curated maps in compact, collapsible subject groups. The substrate group is named **Dynamics**, matching the corpus.
+- **All equations** organizes every occurrence by chapter, section, and equation. Chapters follow textbook order; supplementary corpus chapters follow in title order. Sections and equations follow source order. Branch contents render only when expanded.
 
-The subject index should support search filtering. Search should match title, subject, visible equation text, and overlay text where practical.
+Opening an equation from a textbook link selects All equations and reveals its chapter, section, and selected row. This navigation does not change promotion, equation identity, or the return destination.
 
 ## Visual Language
 
@@ -91,6 +87,7 @@ Requirements:
 
 - Comments can contain plain prose and inline or display equations.
 - Comments should wrap cleanly and never overlap the equation unless the operator intentionally places one over empty formula-space.
+- Lower explainer boxes reserve space beneath the symbol strip for its tallest rendered tooltip, with a clear gap. This spacing is computed for every curated map before hover so switching symbols does not move the boxes. Tooltips remain above explainer boxes in the visual stacking order; short windows allow scrolling to the lower boxes rather than reclaiming the tooltip space.
 - Each comment has one pointer line by default.
 - Multiple comments may target the same formula section.
 - The active comment should reveal its target line more strongly than inactive comments.
@@ -121,14 +118,14 @@ The app should remember settings in browser-local state once the first implement
 
 ## Search Menu
 
-The search menu should reuse the normal top-right app pattern.
+Search stays visible in the expanded sidebar. The standard top-right search control opens the sidebar and focuses this same field.
 
 Search requirements:
 
-- Search equations by title, subject, and formula text.
-- Search overlay comments.
-- Selecting a result opens that equation and briefly highlights the matching formula anchor or comment.
-- Search should remain useful when the subject index is collapsed.
+- Search all equations from either collection view by title, subject, formula, symbol, source chapter/section, and overlay text.
+- Show chapter and section context with each result; provide additional results on demand without a fixed access cutoff.
+- Keep typing focus and the equation canvas intact as results update.
+- Selecting a result opens the equation and reveals its chapter and section in All equations. Clearing search restores the chosen collection view.
 
 ## Claim-Level Discipline
 

@@ -2,7 +2,7 @@
 
 Status: CURRENT SCORE SNAPSHOT v3, 2026-08-26. This packet applies the approved [Weighted Score Process](candidate-registry.md#weighted-score-process) to every active admitted, active exploratory, and scoped-negative braid row in the registry. It does not score accessory-bearing associated assemblies, aliases, or the deprecated `B1.4` control because they are not braid options under this metric contract. Version 3 preserves every v2 raw metric and percentage while separating the active revised F5 phase-varying realization from the demoted common-cadence circular record. The revised realization's first guard campaign was predeclared as score-ineligible and therefore changes only the hard-gate overlay.
 
-The percentages are allocation summaries. The [Braid Candidate Requirement Adjudication](../mapping-electromagnetism/braid-candidate-requirement-adjudication.md) remains authoritative for the hard gates, and a failed hard gate cannot be compensated by either percentage. The `A3` values are scoped to the measured five-coordinate pair-conjugate slice, not the full A3 family.
+The percentages are allocation summaries. The [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md) remains authoritative for the hard gates, and a failed hard gate cannot be compensated by either percentage. The `A3` values are scoped to the measured five-coordinate pair-conjugate slice, not the full A3 family.
 
 Plainly: these numbers summarize the evidence presently attached to each braid option. They do not certify a retained braid, and a row with no measurements is shown as unevaluated rather than physically bad.
 
@@ -125,22 +125,22 @@ Only five braid rows currently supply at least one admissible scored metric. The
 
 | Candidate and scope | Metric | Raw factual record | Grade and evidence | Normalized credit $q$ |
 | --- | --- | --- | --- | ---: |
-| `A3`, measured five-coordinate slice | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](../mapping-electromagnetism/three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
+| `A3`, measured five-coordinate slice | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
 | `A3`, same slice | `M02` | $108/108$ accepted required root certificates; zero unresolved rows | Measured; same record | $1$ |
 | `A3`, same slice | `M03` | $1-0.8921955512=0.1078044488$ | Measured; same record | $0.1078044488$ |
 | `A3`, same slice | `M04` | Minimum certified transmitter-factor lower bound $0.920539$ | Measured; same record | $0.920539$ |
-| `SD3` | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](../mapping-electromagnetism/three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
+| `SD3` | `M01` | Continuous guarded noncoincidence through $T=0.15$ | Measured; [bounded comparison](three-binary-five-coordinate-bounded-eom-comparison.md) | `N/A` |
 | `SD3` | `M02` | $108/108$ accepted required root certificates; zero unresolved rows | Measured; same record | $1$ |
 | `SD3` | `M03` | $1-0.8563730889=0.1436269111$ | Measured; same record | $0.1436269111$ |
 | `SD3` | `M04` | Minimum certified transmitter-factor lower bound $0.925956$ | Measured; same record | $0.925956$ |
-| `F5`, declared ordinary two-ring circular realization | `M01` | The exact joint conditions require coordinate coincidence, but no finite provenance-preserving continuation is declared | Derived; [two-ring no-go](../mapping-electromagnetism/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) | $0$ |
-| `F6b`, original hashed circular history | `M01` | Exact continuous noncoincidence over the complete prescribed cycle | Derived; [F6b root and acceleration screen](../mapping-electromagnetism/inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen) | `N/A` |
+| `F5`, declared ordinary two-ring circular realization | `M01` | The exact joint conditions require coordinate coincidence, but no finite provenance-preserving continuation is declared | Derived; [two-ring no-go](../mapping-equations/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) | $0$ |
+| `F6b`, original hashed circular history | `M01` | Exact continuous noncoincidence over the complete prescribed cycle | Derived; [F6b root and acceleration screen](../mapping-equations/inferring-braid-requirements.md#f6b-root-ledger-and-member-acceleration-screen) | `N/A` |
 | `F6b`, same history | `M02` | $7{,}168/7{,}168$ required partner-root rows | Measured; same record | $1$ |
 | `F6b`, same history | `M03` | $1-0.30=0.70$ | Derived; same record | $0.70$ |
 | `F6b`, same history | `M04` | Minimum measured $D_t/c_f=0.7062275402$ | Measured; same record | $0.7062275402$ |
 | `F6b`, same history | `M05` | $R_{\mathrm{RMS}}=0.2990089834/0.30=0.9966966113$ | Measured residual with derived same-history normalization; same record | $0.0033033887$ |
 | `F6b`, same history | `M06` | $R_{\mathrm{peak}}=0.3644475203/0.30=1.2148250677$ | Measured residual with derived same-history normalization; same record | $0$ |
-| `F6c`, refined dual-turn row | `M01` | Continuous guarded noncoincidence through refined $T=0.13$ | Measured; [dual-turn packet](../mapping-electromagnetism/f6c-dual-turn-return-search-2026-08-24.json) | `N/A` |
+| `F6c`, refined dual-turn row | `M01` | Continuous guarded noncoincidence through refined $T=0.13$ | Measured; [dual-turn packet](f6c-dual-turn-return-search-2026-08-24.json) | `N/A` |
 | `F6c`, same row | `M02` | $64/64$ required release-root rows and complete accepted-snapshot root certification | Measured; same record | $1$ |
 | `F6c`, same row | `M03` | $1-0.8484514575609374=0.1515485424390626$ | Measured; same record | $0.1515485424$ |
 | `F6c`, same row | `M04` | Minimum transmitter-factor magnitude $0.6777570293400862$ | Measured; same record | $0.6777570293$ |
