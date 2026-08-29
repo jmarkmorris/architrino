@@ -255,7 +255,7 @@ function buildEvidence() {
         sha256: sha256File(relativePath),
       })),
       reproductionCommand:
-        "node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+        "node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write .local-data/braid-analysis/retained-evidence/orthogonal-plane-weave/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
     },
     claimGrades: {
       geometry: "derived",

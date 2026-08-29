@@ -13,9 +13,11 @@ Plainly: Git should retain the information needed to understand, test, and repro
 - at least `100000` physical lines; or
 - at least `10485760` bytes.
 
+Machine records under a `reference/priorities/**/evidence/` directory use the tighter threshold of `25000` physical lines or `1048576` bytes because those files are analytical evidence rather than runtime payloads.
+
 Each registry entry must name a current consumer, a regeneration command, the retention reason, and why a compact receipt is insufficient. The validator fails when a qualifying record is unregistered, a registered record disappears, or required justification is blank.
 
-Plainly: an oversized machine record needs a named job in the current repository. Historical interest or possible future use is not enough.
+Plainly: an oversized machine record needs a named job in the current repository. Evidence ledgers face an earlier review because they are usually reproducible analysis output rather than data that an application must ship. Historical interest or possible future use is not enough.
 
 ## Version and evidence handling
 

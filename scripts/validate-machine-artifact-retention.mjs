@@ -14,9 +14,20 @@ if (registry.schema !== "architrino/machine-artifact-retention-registry.v1") {
 }
 const lineThreshold = Number(registry.thresholds?.lineCount);
 const byteThreshold = Number(registry.thresholds?.byteCount);
+const evidenceLineThreshold = Number(registry.thresholds?.evidenceLineCount);
+const evidenceByteThreshold = Number(registry.thresholds?.evidenceByteCount);
 if (!Number.isSafeInteger(lineThreshold) || lineThreshold <= 0 ||
-    !Number.isSafeInteger(byteThreshold) || byteThreshold <= 0) {
+    !Number.isSafeInteger(byteThreshold) || byteThreshold <= 0 ||
+    !Number.isSafeInteger(evidenceLineThreshold) || evidenceLineThreshold <= 0 ||
+    !Number.isSafeInteger(evidenceByteThreshold) || evidenceByteThreshold <= 0) {
   throw new Error("machine-artifact retention thresholds must be positive integers");
+}
+
+function thresholdsFor(relativePath) {
+  if (relativePath.startsWith("reference/priorities/") && relativePath.includes("/evidence/")) {
+    return { lineCount: evidenceLineThreshold, byteCount: evidenceByteThreshold };
+  }
+  return { lineCount: lineThreshold, byteCount: byteThreshold };
 }
 
 const listed = spawnSync("git", ["ls-files", "-z", "--", "*.json"], {
@@ -32,10 +43,11 @@ for (const relativePath of trackedJson) {
   const absolutePath = path.join(ROOT, relativePath);
   if (!existsSync(absolutePath)) continue;
   const byteCount = statSync(absolutePath).size;
-  if (byteCount < byteThreshold) {
+  const thresholds = thresholdsFor(relativePath);
+  if (byteCount < thresholds.byteCount) {
     const text = readFileSync(absolutePath, "utf8");
     const lineCount = text.endsWith("\n") ? text.split("\n").length - 1 : text.split("\n").length;
-    if (lineCount < lineThreshold) continue;
+    if (lineCount < thresholds.lineCount) continue;
     qualifying.set(relativePath, { byteCount, lineCount });
     continue;
   }

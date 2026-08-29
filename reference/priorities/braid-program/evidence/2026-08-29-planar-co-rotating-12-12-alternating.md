@@ -1,8 +1,11 @@
 # Regular Alternating $12{:}12$ Circular Acceleration-Balance Extension
 
-Date: 2026-08-29  
-Compatibility identifier: `aaa-corpus-advancement`  
-Machine record: [`2026-08-29-planar-co-rotating-12-12-alternating.v1.json`](2026-08-29-planar-co-rotating-12-12-alternating.v1.json)  
+Date: 2026-08-29
+
+Compatibility identifier: `aaa-corpus-advancement`
+
+Machine receipt: [`2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json`](2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json)
+
 Instrument: [`PlanarCoRotatingRingBalance.mjs`](../../../../src/prescribed-path-analysis/PlanarCoRotatingRingBalance.mjs) and [`PlanarCoRotatingRingSearch.mjs`](../../../../src/prescribed-path-analysis/PlanarCoRotatingRingSearch.mjs), driven by [`analyze-planar-co-rotating-12-12-alternating.mjs`](../../../../scripts/equation-mapping/analyze-planar-co-rotating-12-12-alternating.mjs)
 
 ## Decision
@@ -49,4 +52,4 @@ This result establishes prescribed acceleration balance only. It does not establ
 
 Plainly: the valid B1.3 update is an inventory-boundary comparison showing why this balanced 24-member ring is not B1.3. The next $12{:}12$ landscape blocker is a separately scoped census of the remaining balanced polarity orbits and nonuniform fixed-phase geometries. The next physical blocker for this candidate is a predeclared ordinary EOM-solver evolution with complete retained prehistory and guarded root continuity.
 
-Reproduce without overwriting the durable record by running `node scripts/equation-mapping/analyze-planar-co-rotating-12-12-alternating.mjs --out=.local-data/planar-co-rotating-rings/12-12-alternating-reproduction.json`. Run the independent checks with `node --test tests/planar-co-rotating-ring-balance.test.js tests/circular-self-hit-binary-analysis.test.js`.
+Reproduce the ignored raw record by running `node scripts/equation-mapping/analyze-planar-co-rotating-12-12-alternating.mjs --out=.local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-12-12-alternating.v1.json`, then regenerate the tracked receipt with `node scripts/build-machine-artifact-receipts.mjs --target=ring12 --write`. Run the independent checks with `node --test tests/planar-co-rotating-ring-balance.test.js tests/circular-self-hit-binary-analysis.test.js`.

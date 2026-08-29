@@ -25,6 +25,11 @@ RECEIPT_PATH = (
     / "reference/priorities/braid-program/evidence/"
     "2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json"
 )
+FROZEN_RECEIPT_PATH = (
+    REPO_ROOT
+    / "reference/priorities/braid-program/evidence/"
+    "2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json"
+)
 
 
 def sha256(path: Path) -> str:
@@ -37,6 +42,9 @@ class OrthogonalPlaneWeaveIntervalOracleTests(unittest.TestCase):
         getcontext().prec = 120
         cls.protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
         cls.receipt = json.loads(RECEIPT_PATH.read_text(encoding="utf-8"))
+        cls.frozen_receipt = json.loads(
+            FROZEN_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
         spec = importlib.util.spec_from_file_location(
             "orthogonal_plane_weave_interval_oracle", ORACLE_PATH
         )
@@ -54,8 +62,12 @@ class OrthogonalPlaneWeaveIntervalOracleTests(unittest.TestCase):
         frozen = provenance["frozenSubject"]
         self.assertEqual(frozen["sha256"], sha256(REPO_ROOT / frozen["path"]))
         self.assertEqual(
+            frozen["evidencePath"],
+            self.frozen_receipt["rawArtifact"]["historicalRepositoryPath"],
+        )
+        self.assertEqual(
             frozen["evidenceSha256"],
-            sha256(REPO_ROOT / frozen["evidencePath"]),
+            self.frozen_receipt["rawArtifact"]["sha256"],
         )
         source = ORACLE_PATH.read_text(encoding="utf-8")
         self.assertNotIn("OrthogonalPlaneWeaveBalance", source)
@@ -134,13 +146,9 @@ class OrthogonalPlaneWeaveIntervalOracleTests(unittest.TestCase):
             for row in self.receipt["pointControls"]
             if row["beta"].startswith("3.070356625390253")
         )
-        frozen_path = REPO_ROOT / self.receipt["provenance"]["frozenSubject"]["evidencePath"]
-        frozen = json.loads(frozen_path.read_text(encoding="utf-8"))
-        subject = next(
-            row
-            for row in frozen["completeRootLedgers"]["seed"]["summary"]["residualRows"]
-            if row["phase"] == 0 and row["receiverId"] == "a1+"
-        )
+        subject = self.frozen_receipt["frozenControls"][
+            "seedPhaseZeroReceiverA1Plus"
+        ]
         self.assertEqual(seed["rootCount"], 10)
         self.assertLess(
             abs(Decimal(seed["tangent"]) - Decimal(str(subject["tangent"]))),

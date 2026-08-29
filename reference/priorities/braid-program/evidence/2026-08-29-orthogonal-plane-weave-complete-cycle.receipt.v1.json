@@ -1,0 +1,575 @@
+{
+  "schema": "braid-program/orthogonal-plane-weave-complete-cycle-receipt.v1",
+  "receiptId": "orthogonal-plane-weave-complete-cycle-2026-08-29-v1",
+  "sourceRecord": {
+    "schema": "braid-program/orthogonal-plane-weave-complete-cycle-evidence.v1",
+    "date": "2026-08-29",
+    "generatingCommit": "581724a4f70b417d6a336c941cbab8b010b040d8"
+  },
+  "rawArtifact": {
+    "retention": "ignored-local-analytical-storage",
+    "path": ".local-data/braid-analysis/retained-evidence/orthogonal-plane-weave/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+    "historicalRepositoryPath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+    "sha256": "55a13188eddc8a2e8cbdcec741c9af443f3ab0c5d138e2bc78b8514edc027dc5",
+    "byteCount": 10736020,
+    "lineCount": 261009,
+    "requiredForRuntime": false,
+    "requiredForTests": false,
+    "frozenByIndependentCertificate": true
+  },
+  "modelScope": {
+    "fieldSpeed": 1,
+    "masterEquation": "default uncapped canonical Master Equation",
+    "fieldSpeedCeilingApplied": false,
+    "radiusScaling": "root geometry uses R=1; for each beta the radial projection selects a compatible R in units kappa*abs(q)^2/c_f^2 only if every phase is inward",
+    "prescribedHistoryOnly": true,
+    "eomSolverInvoked": false
+  },
+  "geometry": {
+    "phases": [
+      0,
+      2.0943951023931953,
+      4.1887902047863905
+    ],
+    "frames": [
+      {
+        "normal": [
+          1,
+          0,
+          0
+        ],
+        "e1": [
+          0,
+          1,
+          0
+        ],
+        "e2": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "e1": [
+          -0.8660254037844387,
+          0,
+          -0.4999999999999998
+        ],
+        "e2": [
+          -0.4999999999999998,
+          0,
+          0.8660254037844387
+        ]
+      },
+      {
+        "normal": [
+          0,
+          0,
+          1
+        ],
+        "e1": [
+          -0.5000000000000004,
+          0.8660254037844385,
+          0
+        ],
+        "e2": [
+          -0.8660254037844385,
+          -0.5000000000000004,
+          0
+        ]
+      }
+    ],
+    "polarityRule": "polarity equals endpoint sign; cyclic rotation preserves polarity",
+    "circulationRule": "beta>0 with cross(e1,e2)=plane normal for every binary",
+    "residuals": {
+      "maximumFrameOrthonormalityResidual": 1.1102230246251565e-16,
+      "maximumPlaneNormalOrthogonalityResidual": 0,
+      "maximumRadiusResidual": 2.220446049250313e-16,
+      "maximumAntipodalityResidual": 0,
+      "maximumVelocityResidual": 4.440892098500626e-16,
+      "maximumAccelerationResidual": 0,
+      "maximumCyclicPositionResidual": 1.3322676295501878e-15,
+      "maximumCyclicVelocityResidual": 4.090536743182386e-15,
+      "maximumCyclicAccelerationResidual": 1.2559406590832305e-14
+    },
+    "minimumDistinctEndpointSeparation": 1.0648824330486255,
+    "analyticalSameTimeCrossBinaryDotRange": [
+      -0.5,
+      0.5
+    ],
+    "analyticalMinimumDistinctEndpointSeparation": 1,
+    "analyticalCollisionFreeIdentity": "for every cross-binary endpoint pair, distance^2=2 plus or minus sin(2*beta*T), so distance>=1; antipodal partners have distance=2",
+    "passed": true
+  },
+  "search": {
+    "coarse": {
+      "betaDomain": [
+        0.25,
+        12
+      ],
+      "betaStep": 0.05,
+      "addedBetas": [
+        3.070356625390253,
+        3.070356625390253,
+        6.218454963409138,
+        9.376436028216506
+      ],
+      "phaseSampleCount": 12,
+      "rowCount": 239
+    },
+    "refinement": {
+      "betaDomain": [
+        6.45,
+        6.6
+      ],
+      "betaStep": 0.002,
+      "phaseSampleCount": 12,
+      "rowCount": 76
+    },
+    "bestSampledRow": {
+      "beta": 6.53,
+      "phaseSampleCount": 12,
+      "rootComplete": true,
+      "regular": true,
+      "maximumRootResidual": 5.2868820432649954e-12,
+      "maximumSquaredRootResidual": 1.2017054018542694e-11,
+      "minimumJacobianFloor": 0.9999999999999993,
+      "maximumAbsoluteTangent": 0.9180765053489872,
+      "maximumAbsolutePlaneNormal": 0.8553818945086439,
+      "minimumAbsoluteTransverseVector": 0.40684067446402844,
+      "maximumAbsoluteTransverseVector": 1.0201785958557965,
+      "radialRange": [
+        -1.1166169386428597,
+        0.29780851359934707
+      ],
+      "compatibleRadiusRange": null,
+      "radialSignFailure": true,
+      "bestCompatibleRadius": 0.009601209461379951,
+      "maximumFullVectorResidual": 1.180780063591915
+    },
+    "binaryCircularTangentialZeroControls": [
+      {
+        "beta": 3.070356625390253,
+        "phaseSampleCount": 48,
+        "rootComplete": true,
+        "regular": true,
+        "maximumRootResidual": 3.186673147581587e-12,
+        "maximumSquaredRootResidual": 1.1057821325266559e-11,
+        "minimumJacobianFloor": 0.1944188450881783,
+        "maximumAbsoluteTangent": 12.32003224344455,
+        "maximumAbsolutePlaneNormal": 6.287880604545853,
+        "minimumAbsoluteTransverseVector": 0.1585018238359245,
+        "maximumAbsoluteTransverseVector": 13.831870335442902,
+        "radialRange": [
+          -5.036786042978892,
+          3.3975721153465273
+        ],
+        "compatibleRadiusRange": null,
+        "radialSignFailure": true,
+        "bestCompatibleRadius": 0.08694167347390915,
+        "maximumFullVectorResidual": 13.908265305152678
+      },
+      {
+        "beta": 6.218454963409138,
+        "phaseSampleCount": 48,
+        "rootComplete": true,
+        "regular": true,
+        "maximumRootResidual": 5.445421891181468e-12,
+        "maximumSquaredRootResidual": 1.3075762694825244e-11,
+        "minimumJacobianFloor": 0.1661191496107166,
+        "maximumAbsoluteTangent": 6.114111508884128,
+        "maximumAbsolutePlaneNormal": 3.7900982753388,
+        "minimumAbsoluteTransverseVector": 0.05441265971391631,
+        "maximumAbsoluteTransverseVector": 6.837996784770145,
+        "radialRange": [
+          -6.380137119323088,
+          3.799599839086465
+        ],
+        "compatibleRadiusRange": null,
+        "radialSignFailure": true,
+        "bestCompatibleRadius": 0.033366845870068794,
+        "maximumFullVectorResidual": 8.524374532136024
+      },
+      {
+        "beta": 9.376436028216506,
+        "phaseSampleCount": 48,
+        "rootComplete": true,
+        "regular": true,
+        "maximumRootResidual": 7.932654533249206e-12,
+        "maximumSquaredRootResidual": 2.0764723274169228e-11,
+        "minimumJacobianFloor": 0.3059683216110778,
+        "maximumAbsoluteTangent": 13.608495186495634,
+        "maximumAbsolutePlaneNormal": 1.1832916511485119,
+        "minimumAbsoluteTransverseVector": 0.10200812565814633,
+        "maximumAbsoluteTransverseVector": 13.646451976115728,
+        "radialRange": [
+          -3.2128430819352527,
+          -0.387443182219813
+        ],
+        "compatibleRadiusRange": [
+          0.004406892262130971,
+          0.03654381846675181
+        ],
+        "radialSignFailure": false,
+        "bestCompatibleRadius": 0.020475355364441294,
+        "maximumFullVectorResidual": 13.719379456985685
+      }
+    ],
+    "phaseRefinement": {
+      "sampleCounts": [
+        12,
+        24,
+        48,
+        96
+      ],
+      "seed": [
+        {
+          "beta": 3.070356625390253,
+          "phaseSampleCount": 12,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 2.951361377512285e-12,
+          "maximumSquaredRootResidual": 7.065459328714496e-12,
+          "minimumJacobianFloor": 0.48644846837318156,
+          "maximumAbsoluteTangent": 0.7618035932799334,
+          "maximumAbsolutePlaneNormal": 1.3301832100521778,
+          "minimumAbsoluteTransverseVector": 0.2561368507773927,
+          "maximumAbsoluteTransverseVector": 1.3545679031216622,
+          "radialRange": [
+            -1.7692531659592796,
+            0.13003923832692169
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.0869416734739094,
+          "maximumFullVectorResidual": 1.5129543055492611
+        },
+        {
+          "beta": 3.070356625390253,
+          "phaseSampleCount": 24,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 2.951361377512285e-12,
+          "maximumSquaredRootResidual": 8.37241387330323e-12,
+          "minimumJacobianFloor": 0.4372026439443114,
+          "maximumAbsoluteTangent": 2.7511555197448025,
+          "maximumAbsolutePlaneNormal": 1.378614178222859,
+          "minimumAbsoluteTransverseVector": 0.18251194775731674,
+          "maximumAbsoluteTransverseVector": 3.0556317650701508,
+          "radialRange": [
+            -2.3681343443913168,
+            0.728920416758959
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.0869416734739094,
+          "maximumFullVectorResidual": 3.0766087233121917
+        },
+        {
+          "beta": 3.070356625390253,
+          "phaseSampleCount": 48,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 3.186673147581587e-12,
+          "maximumSquaredRootResidual": 1.1057821325266559e-11,
+          "minimumJacobianFloor": 0.1944188450881783,
+          "maximumAbsoluteTangent": 12.32003224344455,
+          "maximumAbsolutePlaneNormal": 6.287880604545853,
+          "minimumAbsoluteTransverseVector": 0.1585018238359245,
+          "maximumAbsoluteTransverseVector": 13.831870335442902,
+          "radialRange": [
+            -5.036786042978892,
+            3.3975721153465273
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.08694167347390915,
+          "maximumFullVectorResidual": 13.908265305152678
+        },
+        {
+          "beta": 3.070356625390253,
+          "phaseSampleCount": 96,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 3.186673147581587e-12,
+          "maximumSquaredRootResidual": 1.1057821325266559e-11,
+          "minimumJacobianFloor": 0.1944188450881783,
+          "maximumAbsoluteTangent": 12.32003224344455,
+          "maximumAbsolutePlaneNormal": 6.287880604545853,
+          "minimumAbsoluteTransverseVector": 0.07238309212388282,
+          "maximumAbsoluteTransverseVector": 13.831870335442902,
+          "radialRange": [
+            -5.036786042978892,
+            3.3975721153465273
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.08694167347390942,
+          "maximumFullVectorResidual": 13.908265305152678
+        }
+      ],
+      "bestSampledBeta": [
+        {
+          "beta": 6.53,
+          "phaseSampleCount": 12,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 5.2868820432649954e-12,
+          "maximumSquaredRootResidual": 1.2017054018542694e-11,
+          "minimumJacobianFloor": 0.9999999999999993,
+          "maximumAbsoluteTangent": 0.9180765053489872,
+          "maximumAbsolutePlaneNormal": 0.8553818945086439,
+          "minimumAbsoluteTransverseVector": 0.40684067446402844,
+          "maximumAbsoluteTransverseVector": 1.0201785958557965,
+          "radialRange": [
+            -1.1166169386428597,
+            0.29780851359934707
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.009601209461379951,
+          "maximumFullVectorResidual": 1.180780063591915
+        },
+        {
+          "beta": 6.53,
+          "phaseSampleCount": 24,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 5.2868820432649954e-12,
+          "maximumSquaredRootResidual": 1.524025350363445e-11,
+          "minimumJacobianFloor": 0.9999999999999993,
+          "maximumAbsoluteTangent": 8.605766713881462,
+          "maximumAbsolutePlaneNormal": 1.246618437892348,
+          "minimumAbsoluteTransverseVector": 0.09761330907917361,
+          "maximumAbsoluteTransverseVector": 8.67079122031932,
+          "radialRange": [
+            -1.7504235116508788,
+            0.9316150866073689
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.009601209461379927,
+          "maximumFullVectorResidual": 8.773879025095079
+        },
+        {
+          "beta": 6.53,
+          "phaseSampleCount": 48,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 6.1948224328034485e-12,
+          "maximumSquaredRootResidual": 2.2672086430475247e-11,
+          "minimumJacobianFloor": 0.3432113677891331,
+          "maximumAbsoluteTangent": 8.605766713881462,
+          "maximumAbsolutePlaneNormal": 1.246618437892348,
+          "minimumAbsoluteTransverseVector": 0.09761330907917361,
+          "maximumAbsoluteTransverseVector": 8.67079122031932,
+          "radialRange": [
+            -1.822067589281922,
+            1.0032591642384028
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.009601209461379946,
+          "maximumFullVectorResidual": 8.773879025095079
+        },
+        {
+          "beta": 6.53,
+          "phaseSampleCount": 96,
+          "rootComplete": true,
+          "regular": true,
+          "maximumRootResidual": 6.1948224328034485e-12,
+          "maximumSquaredRootResidual": 2.2672086430475247e-11,
+          "minimumJacobianFloor": 0.3432113677891331,
+          "maximumAbsoluteTangent": 16.209070978908933,
+          "maximumAbsolutePlaneNormal": 2.05618454336546,
+          "minimumAbsoluteTransverseVector": 0.09761330907917361,
+          "maximumAbsoluteTransverseVector": 16.338968048064807,
+          "radialRange": [
+            -2.8527032066328957,
+            2.0338947815893866
+          ],
+          "compatibleRadiusRange": null,
+          "radialSignFailure": true,
+          "bestCompatibleRadius": 0.009601209461379951,
+          "maximumFullVectorResidual": 16.437317617803046
+        }
+      ]
+    }
+  },
+  "detailedCycleControls": {
+    "seed": {
+      "beta": 3.070356625390253,
+      "phaseSampleCount": 24,
+      "fullPeriodInReceptionTime": 2.0464024456380443,
+      "directedPairPhaseRowCount": 864,
+      "rootLedgerPhaseCount": 24,
+      "summary": {
+        "beta": 3.070356625390253,
+        "phaseSampleCount": 24,
+        "rootComplete": true,
+        "regular": true,
+        "maximumRootResidual": 2.951361377512285e-12,
+        "maximumSquaredRootResidual": 8.37241387330323e-12,
+        "minimumJacobianFloor": 0.4372026439443114,
+        "maximumAbsoluteTangent": 2.7511555197448025,
+        "maximumAbsolutePlaneNormal": 1.378614178222859,
+        "minimumAbsoluteTransverseVector": 0.18251194775731674,
+        "maximumAbsoluteTransverseVector": 3.0556317650701508,
+        "radialRange": [
+          -2.3681343443913168,
+          0.728920416758959
+        ],
+        "compatibleRadiusRange": null,
+        "radialSignFailure": true,
+        "bestCompatibleRadius": 0.0869416734739094,
+        "maximumFullVectorResidual": 3.0766087233121917
+      }
+    },
+    "bestSampledBeta": {
+      "beta": 6.53,
+      "phaseSampleCount": 24,
+      "fullPeriodInReceptionTime": 0.9622029566890637,
+      "directedPairPhaseRowCount": 864,
+      "rootLedgerPhaseCount": 24,
+      "summary": {
+        "beta": 6.53,
+        "phaseSampleCount": 24,
+        "rootComplete": true,
+        "regular": true,
+        "maximumRootResidual": 5.2868820432649954e-12,
+        "maximumSquaredRootResidual": 1.524025350363445e-11,
+        "minimumJacobianFloor": 0.9999999999999993,
+        "maximumAbsoluteTangent": 8.605766713881462,
+        "maximumAbsolutePlaneNormal": 1.246618437892348,
+        "minimumAbsoluteTransverseVector": 0.09761330907917361,
+        "maximumAbsoluteTransverseVector": 8.67079122031932,
+        "radialRange": [
+          -1.7504235116508788,
+          0.9316150866073689
+        ],
+        "compatibleRadiusRange": null,
+        "radialSignFailure": true,
+        "bestCompatibleRadius": 0.009601209461379927,
+        "maximumFullVectorResidual": 8.773879025095079
+      }
+    }
+  },
+  "frozenControls": {
+    "seedPhaseZeroReceiverA1Plus": {
+      "phase": 0,
+      "receiverId": "a1+",
+      "radial": -1.4935331663878166,
+      "tangent": 0.2558648703177136,
+      "planeNormal": -1.330183210052174,
+      "compatibleRadiusFromRadial": 0.1584299287428532,
+      "balanceResidual": {
+        "radial": -0.6739262025716373,
+        "tangent": 0.2558648703177136,
+        "planeNormal": -1.330183210052174,
+        "fullVector": 1.5129543055492567
+      }
+    }
+  },
+  "numericalCertification": {
+    "tolerances": {
+      "geometryIdentity": 2e-12,
+      "fieldSpeed": 1,
+      "coupling": 1,
+      "polarityMagnitude": 1,
+      "radius": 1,
+      "rootTolerance": 2e-12,
+      "rootFloor": 2e-9,
+      "rootTransversalityFloor": 2e-7,
+      "maximumSubdivisionDepth": 34,
+      "initialCrossPairPartitions": 64
+    },
+    "crossPairRootCompleteness": "At each reported sample, every squared causal-residual interval is certified root-free or monotonic with every sign-changing monotonic interval bisected.",
+    "sameBinaryRootCompleteness": "The independently existing canonical circular half-lobe enumerator supplies every nontrivial same-transmitter and antipodal-partner root.",
+    "continuousPhaseEnclosure": false,
+    "continuousBetaEnclosure": false,
+    "unresolvedFoldRule": "Any phase or beta interval containing an unisolated D_t=0 fold remains outside the ordinary simple-root acceleration chart."
+  },
+  "claimGrades": {
+    "geometry": "derived",
+    "sampledRootLedgersAndResiduals": "measured by the focused evaluator",
+    "boundedNoCandidateFinding": "inferred from the declared finite beta and phase grids",
+    "globalLocusDecision": "unresolved"
+  },
+  "disposition": {
+    "declaredCategory": "remains unresolved because a continuous-beta and continuous-phase enclosure is absent",
+    "boundedFinding": "Every evaluated beta, including the first three complete-binary tangential zeros, fails the sampled six-worldline acceleration-balance requirement. The binary seed is decisively rejected by ordinary-phase residuals and phase-dependent root counts.",
+    "candidateStatus": "no bounded candidate",
+    "taxonomyStatus": "unchanged",
+    "retentionStatus": "not evaluated",
+    "stabilityStatus": "not eligible because acceleration balance is absent"
+  },
+  "independentChecks": {
+    "geometryAndKinematics": "Closed-form explicit-coordinate identities in tests/orthogonal-plane-weave-balance.test.js are separate from the phase-compensated frame evaluation path.",
+    "sameBinaryRoots": "scripts/equation-mapping/analyze-circular-self-hit-binary.mjs is independently authored and unchanged in this work.",
+    "crossPairRootResiduals": "Every reported cross-pair root is checked against the direct-coordinate squared causal equation in the targeted test.",
+    "accelerationOracle": "missing: no independently authored full six-worldline Master Equation acceleration sum is available"
+  },
+  "falsifiers": [
+    "An independent root oracle finds an omitted root or invalidates a retained root in either complete ledger.",
+    "An independent canonical acceleration sum removes the reported transverse or outward-radial mismatch on the same root ledger.",
+    "A continuous beta-phase enclosure isolates a regular branch with zero two-transverse residuals and one common positive compatible radius."
+  ],
+  "exclusions": [
+    "No stability, perturbation, retention, binding, or physical-realization inference is made.",
+    "No variable-speed, breathing, precessing-plane, or other three-dimensional 3:3 history is rejected.",
+    "No N>3 family is defined or promoted."
+  ],
+  "provenance": {
+    "files": [
+      {
+        "path": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
+        "sha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be"
+      },
+      {
+        "path": "scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs",
+        "sha256": "a9cbca269c237a9867f8c29db3cbee4dcea413d30a86d3f566b5860a80a7b4f5"
+      },
+      {
+        "path": "scripts/equation-mapping/analyze-circular-self-hit-binary.mjs",
+        "sha256": "bfdc702749edfd20e53356026f2efa2946b8819d4bf0c5093f7572fb94b5e6fa"
+      },
+      {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "sha256": "0d0ff22d8b8b037d46963791f7b73091ec0bc644fea8acad3715f313b49870a1"
+      },
+      {
+        "path": "content/markdown/aaa/noether-braid/braid-family-a.md",
+        "sha256": "8a375bd07514aa8536ef3535c35198a1e04354394cac610f6119f7a183709efb"
+      },
+      {
+        "path": "content/markdown/aaa/noether-braid/braid-a2-symmetry-and-return-response.md",
+        "sha256": "25ec9d61da3853a6130e2b32dff3a9bd5e9cfe1556d4fbb692c8115916848ffb"
+      },
+      {
+        "path": "reference/priorities/braid-program/brainstorming.md",
+        "sha256": "26ab902dba2bee6af849080a9ad60ce07560580bd99223ba6f4d543876105b7a"
+      },
+      {
+        "path": "reference/priorities/braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json",
+        "sha256": "d4ebd94dfb90e4e8245fe4702b478fbd44314a540ea89c808f156c248edb9872"
+      },
+      {
+        "path": "reference/priorities/braid-program/configurations/family-a-a2-fully-symmetric.v2.json",
+        "sha256": "799fda068f8617806a4c81b6d24a7a9001b3c900588e23d2d005a33e264703de"
+      }
+    ],
+    "reproductionCommand": "node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json"
+  },
+  "reproduction": {
+    "rawCommand": "node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write .local-data/braid-analysis/retained-evidence/orthogonal-plane-weave/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+    "receiptCommand": "node scripts/build-machine-artifact-receipts.mjs --target=orthogonal --write",
+    "exactByteReproduction": false,
+    "exactByteLimitation": "The raw record binds its source state by hashes; regenerate from that state to reproduce the frozen subject exactly."
+  },
+  "claimBoundary": "Bounded prescribed-history acceleration-balance evidence only; no continuous-beta conclusion, retention, binding, stability, release survival, physical identity, score increase, or scientific acceptance follows."
+}

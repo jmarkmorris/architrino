@@ -61,7 +61,8 @@ Plainly: the next mathematical artifact is a two-parameter interval certificate 
 - Focused evaluator: `src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs`
 - Evidence generator: `scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs`
 - Targeted tests: `tests/orthogonal-plane-weave-balance.test.js`
-- Machine record: [2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json](2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json)
-- Reproduction: `node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json`
+- Machine receipt: [2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json](2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json)
+- Raw-record reproduction: `node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write .local-data/braid-analysis/retained-evidence/orthogonal-plane-weave/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json`
+- Receipt regeneration: `node scripts/build-machine-artifact-receipts.mjs --target=orthogonal --write`
 
 Claim grades: geometry identities are derived; sampled root ledgers and residuals are measured by the focused evaluator; the bounded no-candidate finding is inferred from the declared grids; the continuous-locus decision remains unresolved.

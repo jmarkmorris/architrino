@@ -2,9 +2,9 @@
 
 A shared-circle assembly is a prescribed collection of architrinos whose worldlines remain on one common circle. The chart provides a direct bridge from the two-body circular benchmark to many-member rings while keeping braid taxonomy separate from circular appearance. A shared-circle record becomes a named Noether-braid locus only when its member inventory, polarity pairing, centers, axes, frequencies, and circulation satisfy that braid's exact coordinate contract.
 
-The equal-radius, phase-symmetric B1.3 intersection now contains thirty-six independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T72. Their complete causal-root ledgers obey an exact polarity-controlled fold mechanism, an exact root-count ladder, and derived high-speed spacing and scale laws. What remains unresolved is a global zero-count theorem inside every bounded topology interval; none of these results establishes release survival or stability.
+The equal-radius, phase-symmetric B1.3 intersection now contains one hundred independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T200. Their complete causal-root ledgers obey an exact polarity-controlled fold mechanism, an exact root-count ladder, and derived high-speed spacing and scale laws. On $0.05\leq\beta_f\leq20$, an outward-rounded interval certificate now proves that the T02 through T36 rows are the only balances: each even interval contains exactly one simple inward-radial zero, while T00, T01, and every odd interval contain none. Above speed 20, the accepted rows establish existence but not interval-by-interval completeness; none of these results establishes release survival or stability.
 
-Plainly: the major advance is a structured B1.3 balance ladder, not one isolated numerical point. The ladder's local mechanism and asymptotic behavior are understood, while uniqueness inside each interval and freely evolved survival remain separate questions.
+Plainly: the major advance is a structured B1.3 balance ladder, not one isolated numerical point. The first eighteen rungs are now proven to exhaust the whole declared speed interval through 20, and another eighty-two rungs have been checked at arbitrary precision. The higher-speed existence checks do not rule out extra rungs between the listed ones, and no prescribed calculation says the assembly survives release.
 
 This chapter studies the planar rigid co-rotating subchart under the default uncapped Master Equation. It includes sub-field-speed and super-field-speed motion; the wake speed is not imposed as a ceiling on member speed. The established results concern prescribed acceleration balance. They do not establish formation, binding, retention, stability, release survival, physical identity, or scientific acceptance.
 
@@ -56,6 +56,10 @@ B1.3 and the shared-circle chart are not interchangeable. General B1.3 permits t
 
 Plainly: the overlap is exact but narrow. The verified hexagon belongs to both descriptions; the other tested inventories remain shared-circle assemblies, and unequal-radius B1.3 remains outside this chapter's chart.
 
+A common translation along the circle's axis moves the center $\mathbf C(T)$ and turns each circular worldline into a screw path, so it leaves the fixed-center chart defined here while remaining a B1 specialization. The measured translated control and its no-full-balance result therefore belong with [Family B axial translation](../noether-braid/braid-family-b.md#fixed-axial-translation-control), not with the stationary balance ladder.
+
+Plainly: carrying the whole rotating hexagon upward changes every delayed chord even though its instantaneous cross-section still looks like the same circle. That is a different path history, so the stationary radius and speed cannot be assumed to remain balanced.
+
 A twelve-worldline $6{:}6$ shared-circle record does not become Family C from its member count alone. Family C requires a declared fixed-point-free map into six neutral binaries and strictly ordered axial coordinates on its coaxial chart. The tested planar regular alternating $6{:}6$ ring has like-polarity antipodes and one common axial coordinate, so it is outside Family C. In particular, it cannot be C5 or C6, whose two B1.3 component centers must have positive axial separation. The 24-member $12{:}12$ ring lies outside both the six-member B1.3 inventory and the twelve-worldline Family-C inventory.
 
 Plainly: taxonomy follows the coordinate record, not visual resemblance or arithmetic decomposition. A large ring may be compared with a braid locus without being renamed as that braid.
@@ -80,7 +84,7 @@ Plainly: the table reports exact regular candidates, not a ranking of physical a
 
 ### Equal-Radius B1.3 Velocity Search
 
-Holding the B1.3 overlap at the regular alternating hexagon fixes the endpoint phases at multiples of $\pi/3$ and leaves the dimensionless speed $\beta_f$ and compatible scale $R/R_*$ to be solved. A bounded expanding search on $0.05\leq\beta_f\leq20$ found the following eighteen independently checked prescribed acceleration-balance configurations. The topology labels identify ordered complete-root intervals in this one-dimensional speed chart; they are not additional braid-family labels.
+Holding the B1.3 overlap at the regular alternating hexagon fixes the positive-endpoint binary phases at $0$, $2\pi/3$, and $4\pi/3$ and leaves the dimensionless speed $\beta_f$ and compatible scale $R/R_*$ to be solved. The following eighteen independently checked prescribed acceleration balances are now certified to exhaust $0.05\leq\beta_f\leq20$. A topology interval is a speed interval over which the ordinary causal-root inventory is unchanged; its label is not an additional braid-family label.
 
 | Topology interval | $\beta_f$ | $R/R_*$ | Directed roots | Fold events |
 | --- | ---: | ---: | ---: | ---: |
@@ -102,6 +106,8 @@ Holding the B1.3 overlap at the regular alternating hexagon fixes the endpoint p
 | T32 | 17.774230245157778 | 0.08636715760100132 | 408 | 0 |
 | T34 | 18.82299475976613 | 0.08145652726640888 | 432 | 0 |
 | T36 | 19.871593704659002 | 0.07707425407357736 | 456 | 0 |
+
+Plainly: every row is one balanced speed-radius pair, meaning one value of $\beta_f$ together with the common radius required to cancel radial, tangential, and axial residuals. It is not one of the three neutral binaries. All three binaries still share the listed radius and retain their $120^\circ$ phase separation.
 
 > Claim grade: measured. The `run-b13-velocity-search.mjs` instrument used complete emission-site, all-causal-root ledgers, a primary root tolerance of $2\times10^{-13}$, a tightened root tolerance of $2\times10^{-14}$, a balance tolerance of $2\times10^{-8}$, and tangential bisection to $2\times10^{-13}$. The separately authored `verify-b13-velocity-solutions.mjs` instrument checked all eighteen rows with the unchanged `AnalyticalBraidEvaluator` for cross-transmitter acceleration and the unchanged `CircularSelfHitBinaryAnalysis` for same-transmitter roots and acceleration. Its tolerances were $2\times10^{-7}$ for cross acceleration and independent balance, $2\times10^{-9}$ for self acceleration, and $4\times10^{-10}$ for self-root location; the observed maxima were respectively $3.637030232539473\times10^{-8}$, $2.6856177678495606\times10^{-9}$, $3.5166314305001833\times10^{-14}$, and $9.237055564881302\times10^{-14}$. The search record has SHA-256 `406379db93e051453a2df97ba6a2f9ccff1241c2222fd777117fd96fe8833c81`; the independent-check record has SHA-256 `4e7305575b543ae1079ce104c8d347ca2ec3883b1299ab4a3796ee6d709e711c`. A missing or displaced causal root, a nonzero fold on a reported row, a failed topology match under tightening, an incompatible scale, or an independent residual outside these tolerances overturns that row.
 
@@ -183,11 +189,22 @@ $$
 
 Plainly: an odd-$q$ opposite-polarity birth sends the one-sided tangential ledger to $-\infty$, while an even-$q$ like-polarity or same-transmitter birth sends it to $+\infty$. This local sign is derived; it does not say that the ledger is monotone throughout either neighboring interval.
 
-The boundary at $q=0$, where $\beta_0=1$, is the special same-transmitter onset and adds one root in each of six diagonal channels. Every ordinary boundary with $q \geq 1$ is a generic fold on six symmetry-related directed channels, and each channel gains two roots. Thus an ordinary transition adds twelve directed roots. Consecutive observed balances lie after successive odd folds, so their ledgers differ by two transitions and twenty-four directed roots. This exact root-topology indexing is a prescribed-chart example of the finite algebraic structure used by the broader [eigen-braid spectrum](../noether-braid/braid-mathematics.md#the-eigen-braid-spectrum) target; it does not establish a retained spectrum.
+The boundary at $q=0$, where $\beta_0=1$, is the special same-transmitter onset and adds one root in each of six diagonal channels. Every ordinary boundary with $q \geq 1$ is a generic fold on six symmetry-related directed channels, and each channel gains two roots. Thus an ordinary transition adds twelve directed roots. Consecutive accepted balances lie after successive odd folds, so their ledgers differ by two transitions and twenty-four directed roots. This exact root-topology indexing is a prescribed-chart example of the finite algebraic structure used by the broader [eigen-braid spectrum](../noether-braid/braid-mathematics.md#the-eigen-braid-spectrum) target; it does not establish a retained spectrum.
 
 Plainly: roots arrive as six matched pairs after the special first onset. The local sign now explains why an odd fold creates the downward crossing opportunity used by the observed balance ladder, but it does not exclude additional zeros elsewhere in an interval.
 
-Index the observed and independently continued balances by $n=1,\ldots,36$, beginning with T02. Under this established topology convention,
+The exact class count, including the exceptional lowest interval, is
+
+$$
+N_{\mathrm{root}}(\mathrm{T}_{00})=30
+\qquad
+N_{\mathrm{root}}(\mathrm{T}_t)=12t+24
+\quad(t\geq1)
+$$
+
+Plainly: T00 begins with five roots per receiver. T01 adds the special same-transmitter onset and has 36 directed roots; after that, every topology boundary creates two roots in each of six symmetry-related channels, so the total rises by 12.
+
+Index the independently accepted balances by $n=1,\ldots,100$, beginning with T02. Under this established topology convention,
 
 $$
 \text{balance }n\in\mathrm{T}_{2n}
@@ -195,7 +212,7 @@ $$
 N_{\mathrm{root}}(n)=24(n+1)
 $$
 
-Plainly: the first balance is T02 with 48 directed roots, and the thirty-sixth is T72 with 888. This exact map identifies and counts the accepted ladder rows; it does not prove that $\mathrm{T}_{2n}$ contains no second balance or that an odd interval contains none.
+Plainly: the first accepted balance is T02 with 48 directed roots, and the hundredth is T200 with 2,424. Each accepted rung skips the intervening odd class, so adjacent rungs differ by two $+12$ transitions, or 24 roots. The bounded certificate proves uniqueness and odd-class absence only through T36; above that boundary, the map identifies and counts the accepted rows without proving that no extra zero exists.
 
 Define $A_q=\pi(q+3)/6$. Expanding the boundary equation as $\xi_q\to\pi/2$ gives
 
@@ -209,54 +226,59 @@ Plainly: every other fold boundary approaches a spacing of $\pi/3$. The balance-
 
 > Claim grade: derived for the circular root equation, unified integer-level ledger, exact root projections, fold parameterization, local odd/even newborn-pair sign, ordinary $+12$ rule, and fold-boundary asymptotic. A contrary chord reduction, a phase channel that fails the integer-level map, a fold with the wrong polarity or one-sided divergence, or a regular-hexagon boundary with a different six-channel or local two-root multiplicity overturns the corresponding statement.
 
-#### Bounded Numerical Zero Census
+#### Certified Bounded Zero Count
 
-The `analyze-b13-ladder-completeness.mjs` instrument partitioned $0.05\leq\beta_f\leq20$ into all thirty-seven open topology intervals, excluded fold boundaries by explicit one-sided insets, and evaluated 199,555 points with maximum grid gap $9.99998947368421\times10^{-5}$. It bisected every detected tangential sign change and refined every sampled local minimum of the absolute tangential residual. Exactly eighteen sign-changing zeros were detected, all inward and all in T02, T04, through T36. The fine search between the 72-root and 96-root balances traversed T04, the entire 84-root T05 interval, and the relevant part of T06 without detecting an additional zero.
+The independently authored `interval_b13_zero_count.py` instrument uses outward-rounded interval arithmetic, meaning that every computed numerical interval is rounded slightly outward so the exact mathematical value is guaranteed to remain inside it. It covered all thirty-seven topology intervals on $0.05\leq\beta_f\leq20$ with 613 deterministic boxes at maximum subdivision depth 14 and 80-decimal arithmetic. The result is
 
-Plainly: this was a much denser search than the first velocity sweep and it recovered the same eighteen balances. In particular, it found no extra balance between the second and third rows of the table.
+$$
+Z(\mathrm{T}_{2n})=1
+\quad(n=1,\ldots,18)
+\qquad
+Z(\mathrm{T}_{00})=Z(\mathrm{T}_{01})=Z(\mathrm{T}_{2n+1})=0
+$$
 
-> Claim grade: measured bounded numerical result, not interval-certified exhaustiveness. The scan used root tolerance $2\times10^{-14}$, fold tolerance $2\times10^{-12}$, refinement root tolerance $2\times10^{-15}$, and the fail-closed fold policy. Its record has SHA-256 `9b5635bf6450fbcfe366a64a628e3d2b3cc271ff50e68b03279989d4206129b9`; the evaluated `PlanarCoRotatingRingBalance.mjs` subject has SHA-256 `79121e80ca2206a702eaa80c5622d27872c28a545c7ca8e52dc9d8df4012abc6`. A newly resolved sign change, an even-multiplicity zero between samples, a missed fold neighborhood, or a topology mismatch under refinement falsifies numerical completeness. Because the finite grid does not exclude such an even-multiplicity zero, all thirty-seven intervals remain unresolved at interval-certificate grade.
+where $Z(\mathrm T)$ is the number of tangential-ledger zeros in topology interval $\mathrm T$. Every listed zero is simple, meaning its derivative does not include zero, and its complete radial coefficient is strictly inward, so it determines one positive compatible radius.
 
-Plainly: “eighteen detected” is exact for this declared grid and refinement procedure. It is not a proof that the continuous tangential function has only eighteen zeros.
+Plainly: between speed 0.05 and 20, the table of eighteen rows is complete. Each even interval contains one crossing that can support a circular radius; the two lowest intervals and every odd interval contain none. “Simple” means the ledger crosses zero rather than merely touching it, while “inward radial” means the remaining acceleration points in the direction required for a circle.
 
-The local odd/even fold sign does not close this global gap. A one-sided divergence fixes the ledger's sign arbitrarily close to a boundary, but interval-certified exhaustiveness still requires outward-rounded monotonicity or a zero-count argument over the whole open interval.
+The certificate encloses every causal-root branch with opposite endpoint residual signs and one fixed Jacobian sign. Each ledger box is then closed either because the tangential interval has one sign, or because its derivative has one sign and its endpoints settle the zero count. Near a fold, the newborn-pair lower bound is proved to dominate the outward-rounded absolute bound on all older roots; the smallest dominance ratio is greater than $2.7755$. This covering also excludes an even-multiplicity zero, which would touch zero without changing sign, because any box in which neither the function nor derivative argument settles the question would make the certificate fail closed.
 
-Plainly: knowing how the curve leaves each fold does not prove how many times it can turn and cross zero before the next fold.
+Plainly: a dense graph can jump over a zero that only touches the axis. The certificate does not sample and hope: it traps the entire curve and its slope inside guaranteed bounds, subdividing until every piece is either safely away from zero or contains exactly one crossing. The fold calculation separately controls the narrow regions where a new root pair first appears.
 
-#### High-Precision Continuation
+> Claim grade: computer-assisted derived bounded zero count for the fixed equal-radius, phase-symmetric circular ledger. The interval receipt has SHA-256 `fd83e4ea68aace450fc945e410182177c048be05a592608a865e14bc93e463af`; a second full run reproduced it byte for byte. A separately authored 100-decimal point instrument checked all eighteen certified brackets and passed 18 of 18, with receipt SHA-256 `87eaa5770abc06308a3ca8d9b72817a52057d33e596d510a31198dc5f4eee22e`. The theorem record has SHA-256 `f1430523c1b1316435adbe521ffc1c9aaa82f6f9feeb7771917ddeb36464e637`. An independently certified unresolved branch, extra tangential zero, non-simple listed zero, or nonnegative radial coefficient in the declared domain falsifies the result.
 
-The independently authored `high_precision_b13_oracle.py` instrument imports no subject code and solves the scalar root ledger, phase-channel acceleration projections, and radial scale at 100 decimal digits. It accepted all eighteen next even classes T38 through T72. The table displays eighteen digits after the decimal point; the acceptance record retains the full 100-digit evaluations.
+The earlier expanding-offset probes and the later 199,555-point grid were discovery instruments, not the authority for exhaustiveness. The original no-solution probe list was discrete, so it could not exclude a balance between tested speeds. The fine grid found no extra solution between the 72-root and 96-root rows, including the intervening 84-root interval; the outward-rounded cover is what upgrades that observation to a continuous-domain theorem.
 
-| Topology interval | $\beta_f$ | $R/R_*$ | Directed roots |
-| --- | ---: | ---: | ---: |
-| T38 | 20.920052031568546207 | 0.073139414324807692 | 480 |
-| T40 | 21.968389913715301663 | 0.069586808427743486 | 504 |
-| T42 | 23.016623838413938760 | 0.066363319239597373 | 528 |
-| T44 | 24.064767412772655267 | 0.063425236446220533 | 552 |
-| T46 | 25.112831966756425869 | 0.060736262295745917 | 576 |
-| T48 | 26.160827010717754828 | 0.058266004058120032 | 600 |
-| T50 | 27.208760586808622774 | 0.055988820062158922 | 624 |
-| T52 | 28.256639541935977069 | 0.053882926188580837 | 648 |
-| T54 | 29.304469741973809541 | 0.051929696713944245 | 672 |
-| T56 | 30.352256241477595365 | 0.050113111906430311 | 696 |
-| T58 | 31.400003419329044592 | 0.048419317648419972 | 720 |
-| T60 | 32.447715088035526420 | 0.046836271445237322 | 744 |
-| T62 | 33.495394582469053600 | 0.045353455674601813 | 768 |
-| T64 | 34.543044832421618654 | 0.043961643632156524 | 792 |
-| T66 | 35.590668422319914438 | 0.042652707369349046 | 816 |
-| T68 | 36.638267640675611809 | 0.041419458865319482 | 840 |
-| T70 | 37.685844521272952563 | 0.040255517976005926 | 864 |
-| T72 | 38.733400877661225379 | 0.039155202037418725 | 888 |
+Plainly: the search found the pattern and the certificate proved the bounded count. Outside the certified speed domain, negative probe points remain only individual measurements.
 
-Plainly: the independently accepted ladder now contains thirty-six consecutive even topology classes, with eighteen high-precision balances extending the original eighteen beyond speed 20.
+#### Arbitrary-Precision Continuation
 
-> Claim grade: independently measured prescribed acceleration balance. The oracle used 100 decimal digits, absolute root tolerance $10^{-85}$, absolute tangential-balance tolerance $10^{-70}$, and a predeclared minimum transversality of $10^{-4}$. All eighteen rows passed; the smallest observed transversality was $0.008604304539572234\ldots$, the largest root residual was $8.43773690482795\times10^{-86}$, and the largest absolute tangential residual was $1.974\times10^{-94}$. Separate 120-digit evaluations of T38 and T72 changed $\beta_f$ by less than $4.84\times10^{-89}$ and the compatible radius by less than $4.77\times10^{-92}$. The record has SHA-256 60d3ff7bf9d8e4399a44f749459e8244388f5c063bf897a138b3937841924a18; a second full run reproduced the JSON and its non-GUI SVG byte for byte, with SVG SHA-256 008d0c9f54f2ddf3debeb9aec38cb559c12c64b50795d72950bb5a95d75b8dd2. A failed residual, transversality, topology, directed-root count, precision-escalation, or deterministic-rerun check overturns the affected measured claim.
+A separate arbitrary-precision campaign accepted all one hundred listed balances from T02 through T200. Every row was solved at 100 decimal digits, repeated at 120 digits, and evaluated by separately recomputing all six receivers and all 36 directed phase channels. Because a one-hundred-row decimal table would obscure the structure, the table below retains the first two rows and every tenth-rung checkpoint; the exact index law above supplies every topology label and root count, while the acceptance record retains every full-precision speed and radius.
 
-Plainly: this is independent high-precision evidence that the next eighteen prescribed balances exist. It remains evidence about constrained circular acceleration balance, not release survival, retention, binding, stability, a physical spectrum, or scientific acceptance.
+| Ladder index $n$ | Topology interval | $\beta_f$ | $R/R_*$ | Directed roots |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | T02 | 1.82643096465467872500 | 0.97597643180169069680 | 48 |
+| 2 | T04 | 2.97430717611729356802 | 0.56173170007129022074 | 72 |
+| 10 | T20 | 11.4756118021753405397 | 0.13531315439910500962 | 264 |
+| 20 | T40 | 21.9683899137153016633 | 0.06958680842774348659 | 504 |
+| 30 | T60 | 32.4477150880355264206 | 0.04683627144523732263 | 744 |
+| 40 | T80 | 42.9234511305753068232 | 0.03529613489887375592 | 984 |
+| 50 | T100 | 53.3977115049958708764 | 0.02831847630592848360 | 1,224 |
+| 60 | T120 | 63.8712224246338889356 | 0.02364420383661391908 | 1,464 |
+| 70 | T140 | 74.3443007036274832359 | 0.02029436475481185986 | 1,704 |
+| 80 | T160 | 84.8171066324550052910 | 0.01777591061386660738 | 1,944 |
+| 90 | T180 | 95.2897300197560610841 | 0.01581350489389969804 | 2,184 |
+| 100 | T200 | 105.762225096727972863 | 0.01424130339879230602 | 2,424 |
+
+Plainly: the table uses checkpoints so the trend remains readable, not because the omitted rows were skipped. All one hundred even classes were solved. Speed rises by roughly the same amount per rung, radius steadily falls, and the delayed-root ledger grows from 48 to 2,424 directed roots.
+
+> Claim grade: independently measured prescribed acceleration-balance existence for the one hundred listed rows. The maximum 100-to-120-digit speed difference was $1.03\times10^{-105}$, the maximum radius difference was $9.49\times10^{-95}$, the maximum complete six-receiver residual was $1.25\times10^{-110}$, the maximum causal-root residual was $1.00\times10^{-85}$, and the minimum transversality was $0.003151$. The record has SHA-256 `cd2745bffbe792e7d8030d6382ee7f6b76d3f7670d3292559567c46217c70c6b`. A failed precision comparison, phase-channel identity, receiver residual, root residual, transversality, topology label, or directed-root count overturns the affected row.
+
+Plainly: arbitrary precision makes roundoff far smaller than the reported balance residuals and independently checks every receiver, but it does not turn a list of solutions into a zero-count theorem. Completeness above $\beta_f=20$ remains open, and existence still says nothing about release, retention, binding, stability, a physical spectrum, or scientific acceptance.
 
 #### Derived High-Speed Ladder
 
-Across all thirty-six independently accepted points, faster prescribed motion pairs monotonically with a smaller compatible radius. Define
+Across all one hundred independently accepted points, faster prescribed motion pairs monotonically with a smaller compatible radius. Define
 
 $$
 C(\beta_f)
@@ -403,7 +425,7 @@ The scaling law establishes neither formation nor persistence. It does not show 
 
 Plainly: the compatible radius is a balance coordinate, not an observed size-change process.
 
-> Claim grade: measured for the monotone speed-radius ordering of the thirty-six accepted rows and derived for its displayed high-speed law. A verified accepted row that reverses the ordering falsifies the measured pattern; a valid root-ledger derivation or accepted asymptotic sequence that changes either $3/2$ or $3\log 2/\pi$ falsifies the corresponding scale coefficient. Neither grade extends beyond the fixed equal-radius, regular-phase B1.3 circular chart.
+> Claim grade: measured for the monotone speed-radius ordering of the one hundred accepted rows and derived for its displayed high-speed law. A verified accepted row that reverses the ordering falsifies the measured pattern; a valid root-ledger derivation or accepted asymptotic sequence that changes either $3/2$ or $3\log 2/\pi$ falsifies the corresponding scale coefficient. Neither grade extends beyond the fixed equal-radius, regular-phase B1.3 circular chart.
 
 #### From Numerical Pattern to Theorem
 
@@ -415,9 +437,9 @@ The deterministic non-GUI fit and continuation figures remain provenance for how
 
 Plainly: numerical pictures remain useful audit trails, while the exact formulas stand or fall with the ledger mathematics and its stated falsifiers.
 
-The separate binary64 extension through $\beta_f=105.76222509672797$ remains exploratory beyond the independently accepted T72 row: only 44 of its 100 direct six-receiver rows met the original vector tolerance, and the generic independent evaluator lost convergence near high folds. Its decimal regression coefficients are not used as exact constants or as evidence for additional balances.
+The earlier binary64 extension through the same speed range was useful only as a discovery hint because its residual and fold-convergence checks degraded at high topology. The later 100/120-digit campaign supersedes it for the existence of the T74 through T200 rows; the older decimal regression coefficients remain non-authoritative.
 
-Plainly: the independently accepted continuation ends at T72. Farther double-precision rows remain useful only as discovery hints until an independent calculation meets its own numerical gates.
+Plainly: the high-speed rows are no longer inferred from a low-precision curve. They are individually accepted arbitrary-precision balances, while their interval-by-interval completeness remains a separate open theorem.
 
 For $N=2$ through $N=6$, every other regular polarity class is a bounded negative on $0.05\leq\beta_f\leq20$: one class for $N=2$, two for $N=3$, six for $N=4$, twelve for $N=5$, and thirty-four for $N=6$. The regular search therefore closes the declared polarity census only on that bounded speed interval. The nonuniform fixed-phase searches found no additional nonregular solution but do not cover their multidimensional domains; those charts remain unresolved. The dedicated equal-radius antipodal-neutral B1.3 phase search found the regular hexagon and left unequal phases unresolved. The velocity search above held those regular phases fixed. Unequal B1.3 radii were not searched.
 

@@ -186,15 +186,29 @@ test("every seed-phase root passes an independent direct-coordinate root and Jac
   }
 });
 
-test("machine ledgers pass direct-coordinate root, contribution, projection, and all-receiver checks", () => {
-  const evidence = readJson(
-    "../reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+test("regenerated receipt cycles pass direct-coordinate root, contribution, projection, and all-receiver checks", () => {
+  const receipt = readJson(
+    "../reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json",
   );
+  assert.equal(receipt.rawArtifact.requiredForTests, false);
   const labels = new Map(ORTHOGONAL_PLANE_WEAVE_LABELS.map((label) => [label.id, label]));
-  for (const cycle of Object.values(evidence.completeRootLedgers)) {
-    const beta = cycle.beta;
-    assert.equal(cycle.directedPairPhaseRootCounts.length, cycle.phaseSampleCount * 36);
-    for (const phase of cycle.rootLedgers) {
+  for (const control of Object.values(receipt.detailedCycleControls)) {
+    const cycle = evaluateOrthogonalPlaneWeaveCycle({
+      beta: control.beta,
+      phaseSampleCount: control.phaseSampleCount,
+    });
+    const beta = cycle.scan.beta;
+    assert.equal(cycle.phaseEvaluations.length * 36, control.directedPairPhaseRowCount);
+    assert.equal(cycle.summary.rootComplete, control.summary.rootComplete);
+    assert.equal(cycle.summary.regular, control.summary.regular);
+    assert.ok(Math.abs(
+      cycle.summary.maximumAbsoluteTransverseVector -
+      control.summary.maximumAbsoluteTransverseVector,
+    ) < 5e-12);
+    assert.ok(Math.abs(
+      cycle.summary.maximumFullVectorResidual - control.summary.maximumFullVectorResidual,
+    ) < 5e-12);
+    for (const phase of cycle.phaseEvaluations) {
       assert.equal(phase.receivers.length, 6);
       for (const receiver of phase.receivers) {
         assert.equal(receiver.directedPairs.length, 6);

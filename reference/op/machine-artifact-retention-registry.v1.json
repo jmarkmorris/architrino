@@ -2,7 +2,9 @@
   "schema": "architrino/machine-artifact-retention-registry.v1",
   "thresholds": {
     "lineCount": 100000,
-    "byteCount": 10485760
+    "byteCount": 10485760,
+    "evidenceLineCount": 25000,
+    "evidenceByteCount": 1048576
   },
   "records": [
     {
@@ -36,17 +38,6 @@
       "regenerationCommand": "node scripts/archie-service/build-full-corpus-source-index.mjs --write",
       "retentionReason": "The local full-corpus launcher consumes the immutable exact-content, search, graph, and metadata views from a fresh clone.",
       "compactAlternativeInsufficient": "A receipt cannot serve the full source records and graph edges required by the local source-index provider."
-    },
-    {
-      "path": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
-      "owner": "Braid Program orthogonal-plane weave diagnostic",
-      "consumers": [
-        "tests/orthogonal-plane-weave-balance.test.js",
-        "tests/test_orthogonal_plane_weave_interval_oracle.py"
-      ],
-      "regenerationCommand": "node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
-      "retentionReason": "The independent interval certificate binds this exact frozen subject by SHA-256, and focused tests inspect its complete root ledgers.",
-      "compactAlternativeInsufficient": "Removing the detailed root ledgers would break the present independent-control hash and the direct-coordinate contribution audit."
     }
   ]
 }

@@ -259,8 +259,9 @@ test("every promoted regular candidate matches both unchanged independent root i
 
 test("the regular alternating 12:12 candidate balances and matches both unchanged independent root instruments", () => {
   const n = 12;
-  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.v1.json", import.meta.url);
+  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json", import.meta.url);
   const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
+  assert.equal(evidence.rawArtifact.requiredForTests, false);
   assert.equal(evidence.declaredScope.coverage,
     "one exact symmetry class; not a census of all balanced 12:12 polarity classes and not a nonuniform-phase search");
   assert.equal(evidence.taxonomyDecision.verdict, "outside-B1.3");
