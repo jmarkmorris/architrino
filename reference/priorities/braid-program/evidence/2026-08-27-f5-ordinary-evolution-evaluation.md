@@ -2,7 +2,7 @@
 
 Status: independently accepted as a completed bounded unresolved experiment at `2026-08-28T03:46:06.690568Z`, before the original campaign deadline. All three EOM runs halted before the requested horizon, the independent first-step comparison passed, and the completed independent final-snapshot root check failed. Validated motion, collapse, separation and full-horizon persistence are not established. Operational process and lock closure is independently verified.
 
-The final independent receipt is [actual-evaluation-independent-outcome-review-v1.json](../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/actual-evaluation-independent-outcome-review-v1.json), SHA-256 `8af7fe88c538ac6684bfe85dd1ec080a060575c969893356e5e76757781c4847` (`63979` bytes). It records `experimentClosure:true`, `boundedUnresolvedOutcomeAccepted:true`, `declaredChecksCompleted:true`, `declaredChecksAllPassed:false`, and `validatedMotionAccepted:false`. The reviewer independently recomputed 72 first-step interval predicates and 96 sensitivity predicates, checked all pair/path/step censuses, all twelve stage records and 62 output files, all 194 declared bindings, final publication and independent process closure.
+The final independent receipt is actual-evaluation-independent-outcome-review-v1.json (`../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/actual-evaluation-independent-outcome-review-v1.json`), SHA-256 `8af7fe88c538ac6684bfe85dd1ec080a060575c969893356e5e76757781c4847` (`63979` bytes). It records `experimentClosure:true`, `boundedUnresolvedOutcomeAccepted:true`, `declaredChecksCompleted:true`, `declaredChecksAllPassed:false`, and `validatedMotionAccepted:false`. The reviewer independently recomputed 72 first-step interval predicates and 96 sensitivity predicates, checked all pair/path/step censuses, all twelve stage records and 62 output files, all 194 declared bindings, final publication and independent process closure.
 
 Plainly: the experiment is complete because its declared calculations and checks returned a checked unresolved result. Its failed scientific gate remains failed; experiment closure is not acceptance of a validated trajectory.
 
@@ -98,7 +98,7 @@ Plainly: the owned work is safely closed. This point-in-time operational evidenc
 
 ### Accepted evaluator handoff and exact invocation
 
-The machine-readable [accepted evaluator handoff](../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/accepted-evaluator-handoff-v1.json) binds the original declaration, exact requests, source/build/reference identities, independent reviews, output schema and resource observations. The recorded complete invocation from the repository root was:
+The machine-readable accepted evaluator handoff (`../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/accepted-evaluator-handoff-v1.json`) binds the original declaration, exact requests, source/build/reference identities, independent reviews, output schema and resource observations. The recorded complete invocation from the repository root was:
 
 ```sh
 set -o noclobber

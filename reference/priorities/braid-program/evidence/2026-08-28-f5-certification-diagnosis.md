@@ -4,13 +4,13 @@ Status: source-only diagnosis; no successor numerical work authorized or perform
 
 ## Historical identities and present ownership
 
-The live [integrity audit](../../../../.local-data/braid-analysis/f5-certification-successor-20260828/historical-integrity-v1.json), SHA-256 `089b667b95cc8feea2c76aadb1c1ce06a964886dbe901939414459b1e3ddc582`, checked 260 distinct files totaling 170,531,097 bytes and 33 runtime aliases, with no mismatches. This is a source/record identity check, not a repeated numerical evaluation. The historical declaration, handoff and outcome review retain their identities:
+The live integrity audit (`../../../../.local-data/braid-analysis/f5-certification-successor-20260828/historical-integrity-v1.json`), SHA-256 `089b667b95cc8feea2c76aadb1c1ce06a964886dbe901939414459b1e3ddc582`, checked 260 distinct files totaling 170,531,097 bytes and 33 runtime aliases, with no mismatches. This is a source/record identity check, not a repeated numerical evaluation. The historical declaration, handoff and outcome review retain their identities:
 
 | Record | SHA-256 |
 | --- | --- |
 | [Declaration](2026-08-27-f5-ordinary-evolution-declaration.v1.json) | `e908f1fc47acaeb0ba046818fc66a2781251492be2022cdb978e4727e0d72515` |
-| [Accepted evaluator handoff](../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/accepted-evaluator-handoff-v1.json) | `3d802021b53efa5c95f4dc213e0901a5f5aeb9f2aaa483e0f836a2f93993f96f` |
-| [Independent outcome review](../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/actual-evaluation-independent-outcome-review-v1.json) | `8af7fe88c538ac6684bfe85dd1ec080a060575c969893356e5e76757781c4847` |
+| Accepted evaluator handoff (`../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/accepted-evaluator-handoff-v1.json`) | `3d802021b53efa5c95f4dc213e0901a5f5aeb9f2aaa483e0f836a2f93993f96f` |
+| Independent outcome review (`../../../../.local-data/braid-analysis/f5-ordinary-evolution-20260827/actual-evaluation-independent-outcome-review-v1.json`) | `8af7fe88c538ac6684bfe85dd1ec080a060575c969893356e5e76757781c4847` |
 
 Plainly: the saved evidence still has the bytes accepted by the previous reviewers. This does not confer that acceptance on changed code or a new run.
 
@@ -96,7 +96,7 @@ Before launch, obtain the explicit operator decision, source-owner release, an i
 
 ## Validation and remaining proof burden
 
-This phase contains source reading, hash verification, saved-record inspection and independent source review only. It performs no new root calculation, model evaluation, build, heavy process test, commit, push, regeneration or historical-evidence deletion. The separate [producer-obligation audit](../../../../.local-data/braid-analysis/f5-certification-successor-20260828/producer-obligations-v1.md), [reference-obligation audit](../../../../.local-data/braid-analysis/f5-certification-successor-20260828/reference-obligations-v1.md), and [independent diagnosis review](../../../../.local-data/braid-analysis/f5-certification-successor-20260828/diagnosis-review-v1.md) preserve source locations, exact bindings, census methods, conditional deductions and exclusions. The independent challenge found and corrected an initial count of fifteen failure rows to sixteen. No historical record was changed. Focused Markdown link checks and `git diff --check` pass.
+This phase contains source reading, hash verification, saved-record inspection and independent source review only. It performs no new root calculation, model evaluation, build, heavy process test, commit, push, regeneration or historical-evidence deletion. The separate producer-obligation audit (`../../../../.local-data/braid-analysis/f5-certification-successor-20260828/producer-obligations-v1.md`), reference-obligation audit (`../../../../.local-data/braid-analysis/f5-certification-successor-20260828/reference-obligations-v1.md`), and independent diagnosis review (`../../../../.local-data/braid-analysis/f5-certification-successor-20260828/diagnosis-review-v1.md`) preserve source locations, exact bindings, census methods, conditional deductions and exclusions. The independent challenge found and corrected an initial count of fifteen failure rows to sixteen. No historical record was changed. Focused Markdown link checks and `git diff --check` pass.
 
 The conditional diagnosis is falsified by a conflicting sealed failure row, different emitting branch, factor interval containing zero, midpoint outside the containing interval, or source/input identity mismatch. Any later claim attributing width to input uncertainty, rounding or lost correlation requires an independent calculation from the captured exact trial, with its own scope and counterexample condition. Full-history root completeness, final acceleration agreement, independently validated uncertainty transport, full-horizon convergence, stability, permanent retention and physical realization remain open. A completed independently checked successor outcome is still required to complete the operator's overall request.
 
