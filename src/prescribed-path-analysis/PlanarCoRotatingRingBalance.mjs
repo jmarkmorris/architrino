@@ -160,7 +160,8 @@ export function enumerateCircularPairRoots({
       }
       const retained = candidates.filter((delayAngle) =>
         delayAngle > 10 * tolerance && delayAngle <= 2 * speed + 10 * tolerance);
-      if (retained.length === 0) {
+      const isExcludedCoincidentSelfBoundary = sameTransmitter && left === 0 && Math.abs(fLeft) <= tolerance;
+      if (retained.length === 0 && !isExcludedCoincidentSelfBoundary) {
         inactiveRootGaps.push({
           lobeIndex: lobe.lobeIndex,
           branch: segmentIndex === 0 ? "rising" : "falling",

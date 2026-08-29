@@ -83,6 +83,10 @@ The all-axial `B1.4` record is excluded from the admitted active inventory. It r
 
 Plainly: B1.1 through B1.3 are live constrained selections inside B1. B1.4 is not an active taxonomy member or campaign candidate.
 
+The independently checked [planar co-rotating $N{:}N$ circular-balance packet](evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.md) evaluates one exact sublocus of this chart: `B1.3` with $R_1=R_2=R_3$, phases $0$, $2\pi/3$, and $4\pi/3$, and alternating endpoint polarities around the common circle. That prescribed locus balances under the uncapped Master Equation at $\beta_f=2.974307176117306$ and $R/R_*=0.5617317000713459$. The broader unequal-phase equal-radius chart and the unequal-radius B1.3 chart remain unresolved. The existing executable display source remains a distinct source-selected B1.3 record and is not replaced by this result.
+
+Plainly: the new calculation proves acceleration balance for one regular hexagonal point inside B1.3. It neither changes the coordinates that define B1.3 nor makes every B1.3 configuration balanced.
+
 Every Family-C row carries twelve persistent coaxial worldlines, a fixed-point-free neutral-binary map $\pi$, ordered axial coordinates or spacings, source-declared polarities, one common axis, and the exact prescribed path relation. An Accessory Configuration is always separate inventory.
 
 | Subchart | Profile | Free axes | Frozen axes and discrete relations |

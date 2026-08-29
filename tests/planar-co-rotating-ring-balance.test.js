@@ -207,3 +207,33 @@ test("the live B1.3 source record satisfies the independent coordinate mapping",
   const taxonomy = classifyPlanarRingTaxonomy({ n: 3, phases, polarities });
   assert.equal(taxonomy.memberId, "B1.3");
 });
+
+test("every promoted regular candidate matches both unchanged independent root instruments", () => {
+  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.v4.json", import.meta.url);
+  const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
+  assert.equal(evidence.summary.balancedCandidateCount, 5);
+  for (const candidate of evidence.summary.balancedCandidateScopes) {
+    const n = candidate.n;
+    const phases = regularRingPhases(n);
+    const polarities = Array.from({ length: 2 * n }, (_, index) => index % 2 === 0 ? 1 : -1);
+    const beta = candidate.best.beta;
+    const specialized = evaluatePlanarCoRotatingRing({ phases, polarities, beta });
+    const generic = genericCrossLedger({ phases, polarities, beta });
+    assert.equal(generic.reducedMeasures.validity.passed, true, `generic validity for N=${n}`);
+    const independentSelf = selfRoots(beta).map((value) => 2 * value);
+    generic.rawLedgers.causalRoots.forEach((event, receiverIndex) => {
+      const receiver = specialized.receivers[receiverIndex];
+      const selfLedger = receiver.directedPairs[receiverIndex];
+      assert.equal(selfLedger.rootCount, independentSelf.length);
+      selfLedger.roots.forEach((root, rootIndex) => closeTo(root.delayAngle, independentSelf[rootIndex], 4e-10));
+      const specializedCount = receiver.directedPairs.reduce(
+        (sum, pair) => sum + (pair.transmitterIndex === receiverIndex ? 0 : pair.rootCount), 0);
+      assert.equal(event.rootCount, specializedCount);
+      const expectedAcceleration = crossAcceleration(specialized, receiverIndex);
+      const actualAcceleration = event.measures.probeResponses[0].acceleration;
+      closeTo(actualAcceleration.x, expectedAcceleration[0], 7e-8);
+      closeTo(actualAcceleration.y, expectedAcceleration[1], 7e-8);
+      closeTo(actualAcceleration.z, expectedAcceleration[2], 7e-8);
+    });
+  }
+});

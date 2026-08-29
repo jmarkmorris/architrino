@@ -31,7 +31,7 @@ Plainly: every registry row receives an explicit outcome. A row becomes drawable
 | `B1` | 6 | Candidate registry and configuration chart | Keep the family semantics in the registered Family-B validator; do not invent a standalone representative. |
 | `B1.1` | 1 | `configurations/illustrative-spindle-chart-hypothesis.v2.json` | Migrated with stable compatibility identifiers and measured preservation-only parity. |
 | `B1.2` | 1 | `configurations/illustrative-extreme-cap-tilt-spindle-variant.v2.json` | Migrated with stable compatibility identifiers and measured preservation-only parity. |
-| `B1.3` | 1 | `configurations/illustrative-planar-tri-binary-spindle-boundary.v2.json` | Migrated with stable compatibility identifiers and measured preservation-only parity. |
+| `B1.3` | 1 | `configurations/illustrative-planar-tri-binary-spindle-boundary.v2.json` | Migrated with stable compatibility identifiers and measured preservation-only parity. A separately evaluated equal-radius phase-symmetric B1.3 locus has independently checked prescribed acceleration balance; it does not replace this source-selected display record or change its readiness grade. |
 | `B1.4` | 5 | `configurations/illustrative-full-cap-axial-spindle-boundary.v2.json` | Migrated as a deprecated reproducibility control; it remains outside the active Borg catalog. |
 | `C1` | 1 | `configurations/family-c-c1-co-rotating-general.v2.json` | Migrated with measured preservation-only parity and completed display-only Borg inspection. |
 | `C2` | 1 | `configurations/family-c-c2-counter-rotating-general.v2.json` | Migrated with measured preservation-only parity and completed display-only Borg inspection. |

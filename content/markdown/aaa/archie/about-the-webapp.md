@@ -57,21 +57,12 @@ The Archie branch also includes reader-facing reference documents that explain t
 
 The webapp also includes non-document surfaces where interaction is primary.
 
-The authored application index at `content/scenes/archie/applications.json` is the source of truth. Its current thirteen entries are:
+The authored application hierarchy rooted at `content/scenes/archie/applications.json` is the source of truth. It groups the current tools into four reader-facing categories:
 
-- Lorentz Geometry
-- Photon and Polarization Visualization
-- Hyde Periodic Table
-- Periodic Table
-- Atom
-- Standard Model
-- Molecule Visualization
-- Causal Delay Feedback
-- Equation Mapping
-- It’s Greek to Me!
-- Animator
-- Borg
-- Braid Search
+- **Learn & Reference:** Atom, Causal Delay Feedback, It’s Greek to Me!, Hyde Periodic Table, Periodic Table, and Standard Model.
+- **Explore Models:** Lattice Lab, Lorentz Geometry, Molecule Visualization, Photon and Polarization Visualization, and Topo.
+- **Analyze Evidence:** Braid Search and Equation Mapping.
+- **Build & Simulate:** Animator and Borg.
 
 These include display-only lessons, diagnostic workbenches, content-navigation surfaces, and application-specific runtimes. Inclusion in the index is not an evidence or proof grade.
 

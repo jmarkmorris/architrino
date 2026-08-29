@@ -1,0 +1,92 @@
+{
+  "schema": "prescribed-path-analysis/orthogonal-plane-weave-fold-separated-interval-protocol.v1",
+  "protocolId": "orthogonal-plane-weave-fold-separated-interval-2026-08-29",
+  "closureGoal": "Independently certify the fixed 120-degree orthogonal-plane locus over beta_f in [0.25,12] and reception phase in [0,2*pi], returning a bounded no-balance theorem, a certified candidate box, or explicit unresolved fold boxes.",
+  "claimGrade": "bounded-interval-diagnostic",
+  "frozenSubject": {
+    "path": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
+    "sha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be",
+    "evidencePath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+    "evidenceSha256": "55a13188eddc8a2e8cbdcec741c9af443f3ab0c5d138e2bc78b8514edc027dc5",
+    "modificationRule": "The frozen subject and its prior evidence are read-only controls and must not be modified in the independent-oracle change."
+  },
+  "domain": {
+    "fieldSpeed": "1",
+    "beta": ["0.25", "12"],
+    "fullReceptionPhase": ["0", "2*pi"],
+    "witnessReceptionPhase": "0",
+    "dimensionlessDelay": ["0", "2"],
+    "dimensionlessEmissionAngle": ["0", "24"]
+  },
+  "geometry": {
+    "receiver": "a1+",
+    "receiverPositionAtWitnessPhase": ["0", "1", "0"],
+    "receiverBasisAtWitnessPhase": {
+      "radial": ["0", "1", "0"],
+      "tangent": ["0", "0", "1"],
+      "planeNormal": ["1", "0", "0"]
+    },
+    "polarityRule": "polarity equals endpoint sign",
+    "commonCirculationSense": 1
+  },
+  "analyticalReduction": {
+    "variable": "x=beta_f*delay",
+    "rootEquations": {
+      "self": "H_self=2-2*cos(x)-x^2/beta_f^2=0; exclude x=0",
+      "partner": "H_partner=2+2*cos(x)-x^2/beta_f^2=0",
+      "crossPlus": "H_plus=2+2*sin(x)-x^2/beta_f^2=0",
+      "crossMinus": "H_minus=2-2*sin(x)-x^2/beta_f^2=0",
+      "fixedCrossPair": "delay=sqrt(2), D_t=1"
+    },
+    "foldEquation": "For H=C(x)-x^2/beta_f^2, an ordinary-root fold satisfies K(x)=x*C'(x)-2*C(x)=0 with C(x)>0 and beta_f=x/sqrt(C(x)).",
+    "foldCompletenessProof": {
+      "self": "On every complete positive lobe after the first, K has the sign of g=x*cot(x/2)-2; g'=(sin(x)-x)/(2*sin(x/2)^2)<0, and its endpoint limits have opposite signs. The first lobe has K<0 and begins at the beta_f=1 coincident-self boundary.",
+      "partner": "On every complete positive lobe after the first, K=0 is equivalent to g=x*tan(x/2)+2=0; g'=(x+sin(x))/(2*cos(x/2)^2)>0, and its endpoint limits have opposite signs. The first lobe has K<0.",
+      "crossPlus": "On every complete positive lobe after the first, K=0 is equivalent to g=x*cot(x/2+pi/4)-2=0; g'=(cos(x)-x)/(2*sin(x/2+pi/4)^2)<0 on those lobes, and its endpoint limits have opposite signs. The first lobe has K<0.",
+      "crossMinus": "On every complete positive lobe after the first, K=0 is equivalent to g=x*cot(x/2-pi/4)-2=0; g'=(-cos(x)-x)/(2*sin(x/2-pi/4)^2)<0 on those lobes, and its endpoint limits have opposite signs. The first lobe has K<0."
+    },
+    "rootCompletenessProof": "Each complete post-first lobe therefore has exactly one beta-curve minimum: zero roots below it, one double root at it, and two simple roots above it. Each first lobe is monotone and has one simple root above its boundary threshold. The terminal x=24 boundary equals the largest possible beta_f*delay because all unit-radius site separations are at most 2; directed evaluation excludes a boundary root at beta_f=12.",
+    "tangentWitness": "A_t(beta_f)=sum_self_and_partner[2*beta_f*sin(x)/(x^2*abs(H_x))]-cos(sqrt(2)*beta_f)/sqrt(2)",
+    "normalWitness": "A_n(beta_f)=sin(sqrt(2)*beta_f)/sqrt(2)+sum_cross_plus_and_minus[-2*beta_f*cos(x)/(x^2*abs(H_x))]",
+    "logicalReduction": "Complete-phase balance implies A_t(beta_f)=A_n(beta_f)=0 at witness phase phi=0. Excluding their simultaneous zero for every ordinary beta_f is sufficient to reject complete-phase balance."
+  },
+  "numerics": {
+    "decimalDigits": 80,
+    "bisectionSteps": 180,
+    "initialBetaCellWidth": "0.03125",
+    "minimumBetaCellWidth": "0.00000000005",
+    "foldBoxHalfWidth": "0.000000002",
+    "pointRootScanStep": "0.01",
+    "rootBracketWidth": "1e-55",
+    "intervalInflation": "1e-45",
+    "maximumBetaCells": 250000,
+    "maximumGapSubdivisionDepth": 80
+  },
+  "outcomePolicy": {
+    "boundedNoBalance": "Every beta value, including fold points under an admitted fold law, is excluded by a certified nonzero transverse witness.",
+    "certifiedCandidateBox": "An ordinary beta box survives with both transverse intervals containing zero.",
+    "explicitUnresolvedFoldBoxes": "Every ordinary beta value is excluded, while declared boxes containing D_t=0 folds remain unresolved because the canonical simple-root acceleration is nonordinary there."
+  },
+  "claimBoundary": {
+    "model": "default uncapped canonical Master Equation",
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "fieldSpeedCeilingApplied": false,
+    "doesNotEstablish": [
+      "balance or failure outside beta_f in [0.25,12]",
+      "an admitted event law at D_t=0 folds",
+      "retention",
+      "stability",
+      "binding",
+      "physical realization",
+      "failure of other relative phasings or three-dimensional 3:3 histories",
+      "any N>3 braid family"
+    ]
+  },
+  "falsifiers": [
+    "An independently checked root equation has a positive root outside the certified root tubes on an ordinary chart.",
+    "A directed-rounding recomputation places zero inside both transverse witness components for an ordinary beta value excluded by the certificate.",
+    "The frozen subject or canonical Master Equation hash differs from the protocol binding.",
+    "A canonical fold-event law supplies a finite acceleration contribution that closes a currently unresolved fold box."
+  ]
+}

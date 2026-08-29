@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -16,6 +16,7 @@ function parseArguments(argv) {
     b13GlobalSamples: 2400,
     b13RetainedSeeds: 18,
     output: null,
+    reuseRegular: null,
   };
   for (const argument of argv) {
     if (argument === "--quick") {
@@ -39,6 +40,8 @@ function parseArguments(argv) {
       options.b13RetainedSeeds = Number(argument.slice("--b13-retained-seeds=".length));
     } else if (argument.startsWith("--out=")) {
       options.output = argument.slice("--out=".length);
+    } else if (argument.startsWith("--reuse-regular=")) {
+      options.reuseRegular = argument.slice("--reuse-regular=".length);
     } else {
       throw new Error(`unknown argument: ${argument}`);
     }
@@ -52,16 +55,36 @@ function parseArguments(argv) {
   return options;
 }
 
+function loadReusableRegular(source, options) {
+  const packet = JSON.parse(readFileSync(path.resolve(source), "utf8"));
+  const expectedN = [2, 3, 4, 5, 6];
+  const actualN = packet.regular?.map((group) => group.n);
+  const compatible = packet.model?.fieldSpeed === 1 &&
+    packet.model?.universalSpeedCeilingApplied === false &&
+    packet.declaredDomain?.beta?.[0] === options.minimumBeta &&
+    packet.declaredDomain?.beta?.[1] === options.maximumBeta &&
+    packet.declaredDomain?.regularBetaStep === options.betaStep &&
+    JSON.stringify(actualN) === JSON.stringify(expectedN);
+  if (!compatible) {
+    throw new Error("--reuse-regular must name a complete uncapped c_f=1 regular packet with the same beta interval and step");
+  }
+  return packet.regular;
+}
+
 export function runPlanarRingCli(argv = process.argv.slice(2)) {
   const options = parseArguments(argv);
+  const reusedRegular = options.reuseRegular
+    ? loadReusableRegular(options.reuseRegular, options)
+    : null;
   let heartbeatIndex = 0;
   const startedAt = Date.now();
   const campaign = runPlanarRingCampaign({
     ...options,
+    reusedRegular,
     progress: (row) => {
       heartbeatIndex += 1;
       const elapsedSeconds = ((Date.now() - startedAt) / 1000).toFixed(1);
-      process.stderr.write(`[planar-ring heartbeat ${heartbeatIndex}] stage=${row.stage} n=${row.n ?? "-"} classes=${row.classCount ?? "-"} elapsed_s=${elapsedSeconds}\n`);
+      process.stderr.write(`[planar-ring heartbeat ${heartbeatIndex}] stage=${row.stage} n=${row.n ?? "-"} class=${row.classIndex ?? "-"}/${row.classCount ?? "-"} elapsed_s=${elapsedSeconds}\n`);
     },
   });
   const packet = {

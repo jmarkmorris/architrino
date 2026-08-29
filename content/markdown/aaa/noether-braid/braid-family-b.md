@@ -123,6 +123,16 @@ The B1.3 all-equatorial display sets $h_a=0$ for all three binaries. Mixed bound
 
 At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longer change that binary's endpoint positions because its transverse orbit radius is zero. Two axial records that differ only in those labels therefore depict the same path geometry unless another retained record gives the labels an independent dynamical role.
 
+### Equal-Radius Phase-Symmetric Acceleration-Balance Locus
+
+One exact B1.3 sublocus sets $R_1=R_2=R_3=R$ and assigns the three binary phases $0$, $2\pi/3$, and $4\pi/3$. Each binary has antipodal opposite-polarity endpoints. The six endpoints therefore form a regular hexagon with alternating polarities while sharing one center, one axis, one angular rate, and one circulation sense.
+
+For the default uncapped Master Equation with $c_f=1$, a complete-root circular-path calculation gives the dimensionless speed $\beta_f=2.974307176117306$ and compatible scale $R/R_*=0.5617317000713459$, where $R_*=\kappa\epsilon^2/c_f^2$.
+
+The measured 72-root directed ledger includes every nontrivial same-transmitter root and excludes only the coincident self root. Its maximum radial, tangential, axial, and full-vector prescribed-acceleration residuals are respectively $3.2862601528904634\times10^{-14}$, $6.88338275267597\times10^{-14}$, $0$, and $7.62510728881475\times10^{-14}$. Tightening the root tolerance preserves the root topology and gives maximum full-vector residual $4.500069559058899\times10^{-12}$; the minimum Jacobian floor is $0.11680602873827528$. An independently authored generic prescribed-history evaluator checks the cross-transmitter roots and acceleration contributions, while an independently authored circular-binary evaluator checks the nontrivial same-transmitter roots. Rotational covariance is checked both algebraically and over a full cycle.
+
+Plainly: at this one regular hexagonal point, every architrino receives the inward acceleration required by its prescribed circle, with no measurable tangential or out-of-plane remainder. The complete equal-radius chart with unequal binary phases remains unresolved, as does the broader B1.3 chart with unequal radii. This is prescribed acceleration balance, not retention, binding, stability, release survival, physical identity, or scientific acceptance.
+
 ### Deprecated Axial-Limit Control
 
 The former catalog identifier `B1.4` selected the all-axial limit
@@ -177,4 +187,4 @@ The A2 face-opposite seed supplies a second exact overlap: common-frequency co-r
 
 ## Claim Boundary
 
-The B1 equations define prescribed paths exactly. They would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. Until such evidence exists, B1 supplies an exact display geometry and explicit closure targets, not a retained physical braid.
+The B1 equations define prescribed paths exactly. The equal-radius phase-symmetric B1.3 locus above also satisfies prescribed acceleration balance under the stated complete-root calculation. These statements would be falsified as EOM-solver branch claims by a same-record evolution showing that the common-axis, common-frequency, common-center, or fixed-coordinate relations cannot be retained under the required causal-root, acceleration, action, and stability records. B1 therefore supplies exact display geometry, one acceleration-balanced prescribed sublocus, and explicit closure targets, not a retained physical braid.

@@ -100,6 +100,27 @@ function goldenMinimum(fn, left, right, iterations = 72) {
   return fc <= fd ? { x: c, value: fc } : { x: d, value: fd };
 }
 
+function bisectScalar(fn, left, right, iterations = 100) {
+  let fLeft = fn(left);
+  let fRight = fn(right);
+  if (fLeft === 0) return left;
+  if (fRight === 0) return right;
+  if (Math.sign(fLeft) === Math.sign(fRight)) throw new Error("scalar zero is not bracketed");
+  for (let iteration = 0; iteration < iterations; iteration += 1) {
+    const middle = (left + right) / 2;
+    const fMiddle = fn(middle);
+    if (Math.abs(fMiddle) <= 2e-13 || right - left <= 2e-13 * Math.max(1, Math.abs(middle))) return middle;
+    if (Math.sign(fMiddle) === Math.sign(fLeft)) {
+      left = middle;
+      fLeft = fMiddle;
+    } else {
+      right = middle;
+      fRight = fMiddle;
+    }
+  }
+  return (left + right) / 2;
+}
+
 function regularBetaSamples({ minimumBeta, maximumBeta, betaStep }) {
   const values = [
     minimumBeta,
@@ -177,11 +198,49 @@ export function scanRegularPolarityClass({
       minimaBrackets.push([prior.beta, next.beta]);
     }
   }
+  const tangentialZeros = [];
+  for (const topology of topologyIntervals) {
+    const [left, right] = topology.interval;
+    const span = right - left;
+    if (span <= 1e-8) continue;
+    const fractions = [
+      1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 0.003, 0.01,
+      ...linspace(0.02, 0.98, 65),
+      0.99, 0.997, 0.999, 0.9999, 0.99999, 0.999999, 0.9999999, 0.99999999,
+    ];
+    const localSamples = uniqueSorted(fractions.map((fraction) => left + span * fraction))
+      .map((beta) => ({ beta, evaluation: evaluatePlanarCoRotatingRing({ phases, polarities, beta }) }))
+      .filter((row) => row.evaluation.rootTopologySignature === topology.signature &&
+        row.evaluation.rootCompleteness.complete);
+    for (let index = 1; index < localSamples.length - 1; index += 1) {
+      const prior = configurationObjective(localSamples[index - 1].evaluation);
+      const current = configurationObjective(localSamples[index].evaluation);
+      const next = configurationObjective(localSamples[index + 1].evaluation);
+      if (current <= prior && current <= next) {
+        minimaBrackets.push([localSamples[index - 1].beta, localSamples[index + 1].beta]);
+      }
+    }
+    for (let receiverIndex = 0; receiverIndex < phases.length; receiverIndex += 1) {
+      for (let index = 1; index < localSamples.length; index += 1) {
+        const prior = localSamples[index - 1];
+        const next = localSamples[index];
+        const priorValue = prior.evaluation.receivers[receiverIndex].tangentialCoefficient;
+        const nextValue = next.evaluation.receivers[receiverIndex].tangentialCoefficient;
+        if (priorValue === 0 || nextValue === 0 || Math.sign(priorValue) !== Math.sign(nextValue)) {
+          const beta = bisectScalar((candidate) => evaluatePlanarCoRotatingRing({
+            phases, polarities, beta: candidate,
+          }).receivers[receiverIndex].tangentialCoefficient, prior.beta, next.beta);
+          tangentialZeros.push(evaluatePlanarCoRotatingRing({ phases, polarities, beta }));
+        }
+      }
+    }
+  }
   const refined = minimaBrackets.map(([left, right]) => {
     const minimum = goldenMinimum((beta) => configurationObjective(
       evaluatePlanarCoRotatingRing({ phases, polarities, beta })), left, right);
     return evaluatePlanarCoRotatingRing({ phases, polarities, beta: minimum.x });
   });
+  refined.push(...tangentialZeros);
   for (const special of [minimumBeta, 0.99, 1, 1.01, 3.070356625390253, maximumBeta]) {
     if (special >= minimumBeta && special <= maximumBeta) {
       refined.push(evaluatePlanarCoRotatingRing({ phases, polarities, beta: special }));
@@ -338,6 +397,14 @@ export function searchNonuniformPolarityClass({
   const runs = [];
   seeds.forEach((beta, seedIndex) => {
     const initial = initialNonuniformVector({ memberCount, beta, minimumBeta, maximumBeta, seedIndex });
+    const initialDecoded = decodeNonuniformVector(initial, {
+      memberCount, minimumGap: minimumPhaseGap, minimumBeta, maximumBeta,
+    });
+    const initialEvaluation = evaluatePlanarCoRotatingRing({
+      phases: initialDecoded.phases,
+      polarities: polarityClass.polarities,
+      beta: initialDecoded.beta,
+    });
     const result = nelderMead((vector) => {
       const decoded = decodeNonuniformVector(vector, { memberCount, minimumGap: minimumPhaseGap, minimumBeta, maximumBeta });
       return configurationObjective(evaluatePlanarCoRotatingRing({
@@ -352,10 +419,48 @@ export function searchNonuniformPolarityClass({
       polarities: polarityClass.polarities,
       beta: decoded.beta,
     });
-    runs.push({ seedBeta: beta, evaluations: result.evaluations, gaps: decoded.gaps, phases: decoded.phases, evaluation });
+    if (configurationObjective(initialEvaluation) <= configurationObjective(evaluation)) {
+      runs.push({
+        seedBeta: beta,
+        evaluations: result.evaluations,
+        selectedPoint: "initial-seed",
+        gaps: initialDecoded.gaps,
+        phases: initialDecoded.phases,
+        evaluation: initialEvaluation,
+      });
+    } else {
+      runs.push({
+        seedBeta: beta,
+        evaluations: result.evaluations,
+        selectedPoint: "optimized",
+        gaps: decoded.gaps,
+        phases: decoded.phases,
+        evaluation,
+      });
+    }
   });
   runs.sort((left, right) => configurationObjective(left.evaluation) - configurationObjective(right.evaluation));
-  const best = runs[0];
+  const regularSublocusCandidates = uniqueSorted(betaSeeds ?? [])
+    .filter((beta) => beta > minimumBeta && beta < maximumBeta)
+    .map((beta) => {
+      const gaps = Array.from({ length: memberCount }, () => TWO_PI / memberCount);
+      const phases = phasesFromGaps(gaps);
+      return {
+        beta,
+        gaps,
+        phases,
+        evaluation: evaluatePlanarCoRotatingRing({ phases, polarities: polarityClass.polarities, beta }),
+      };
+    });
+  const combined = [
+    ...runs,
+    ...regularSublocusCandidates.map((row) => ({
+      ...row,
+      selectedPoint: "direct-regular-sublocus",
+      evaluations: 1,
+    })),
+  ].sort((left, right) => configurationObjective(left.evaluation) - configurationObjective(right.evaluation));
+  const best = combined[0];
   const tightened = best ? evaluatePlanarCoRotatingRing({
     phases: best.phases,
     polarities: polarityClass.polarities,
@@ -376,8 +481,13 @@ export function searchNonuniformPolarityClass({
     runSummaries: runs.map((run) => ({
       seedBeta: run.seedBeta,
       evaluations: run.evaluations,
+      selectedPoint: run.selectedPoint,
       gaps: run.gaps,
       phases: run.phases,
+      result: compactEvaluation(run.evaluation),
+    })),
+    regularSublocusCandidates: regularSublocusCandidates.map((run) => ({
+      beta: run.beta,
       result: compactEvaluation(run.evaluation),
     })),
     best: best ? {
@@ -392,6 +502,7 @@ export function searchNonuniformPolarityClass({
     } : null,
     independentReference: "no independent global optimizer; ledger identities are checked separately",
     claimGrade: "bounded diagnostic",
+    nonregularExtensionVerdict: "unresolved",
     falsifier: "A lower-residual configuration inside the declared phase-gap and beta domain, a missed root, or failed refinement overturns this optimizer result.",
     verdict: best && best.evaluation.rootCompleteness.complete && best.evaluation.compatibleScale != null &&
       best.evaluation.residuals.maximumFullVector <= balanceTolerance &&
@@ -440,6 +551,7 @@ export function searchB13AntipodalPhaseChart({
   retainedSeeds = 18,
   maxEvaluationsPerSeed = 1200,
   balanceTolerance = 2e-8,
+  regularBetaSeeds = [],
 } = {}) {
   const sampled = [];
   for (let index = 1; index <= globalSamples; index += 1) {
@@ -461,9 +573,9 @@ export function searchB13AntipodalPhaseChart({
     seeds.push(...sampled.filter((row) => row.beta >= left &&
       (index + 1 === stratumBounds.length - 1 ? row.beta <= right : row.beta < right)).slice(0, perStratum));
   }
-  const regularPhaseSeeds = [0.5, 0.99, 1.01, 3.070356625390253, 6.218454963409138,
+  const regularPhaseSeeds = uniqueSorted([...regularBetaSeeds, 0.5, 0.99, 1.01, 3.070356625390253, 6.218454963409138,
     9.376436028216506, 15, maximumBeta - 1e-6]
-    .filter((beta) => beta > minimumBeta && beta < maximumBeta)
+    .filter((beta) => beta > minimumBeta && beta < maximumBeta))
     .map((beta) => ({
       phases: [0, Math.PI, 2 * Math.PI / 3, 5 * Math.PI / 3, 4 * Math.PI / 3, 7 * Math.PI / 3],
       beta,
@@ -485,7 +597,13 @@ export function searchB13AntipodalPhaseChart({
     const evaluation = evaluatePlanarCoRotatingRing(point);
     return { seed, evaluations: result.evaluations, point, evaluation };
   }).sort((left, right) => configurationObjective(left.evaluation) - configurationObjective(right.evaluation));
-  const best = runs[0];
+  const directRegularCandidates = regularPhaseSeeds.map((seed) => {
+    const point = { phases: seed.phases, polarities: [1, -1, 1, -1, 1, -1], beta: seed.beta };
+    return { seed, evaluations: 1, point, evaluation: evaluatePlanarCoRotatingRing(point), selectedPoint: "direct-regular-sublocus" };
+  });
+  const combined = [...runs, ...directRegularCandidates]
+    .sort((left, right) => configurationObjective(left.evaluation) - configurationObjective(right.evaluation));
+  const best = combined[0];
   const tightened = best ? evaluatePlanarCoRotatingRing({ ...best.point, rootTolerance: 2e-14, foldTolerance: 2e-11 }) : null;
   return {
     chart: "complete-equal-radius-antipodal-neutral-B1.3-phase-chart",
@@ -507,6 +625,10 @@ export function searchB13AntipodalPhaseChart({
       beta: run.point.beta,
       result: compactEvaluation(run.evaluation),
     })),
+    regularSublocusCandidates: directRegularCandidates.map((run) => ({
+      beta: run.point.beta,
+      result: compactEvaluation(run.evaluation),
+    })),
     best: best ? {
       phases: best.point.phases,
       beta: best.point.beta,
@@ -519,6 +641,7 @@ export function searchB13AntipodalPhaseChart({
     } : null,
     independentReference: "taxonomy is exact; root-ledger checks are independent; global phase-chart coverage is sampled and optimized, not proved exhaustive",
     claimGrade: "bounded diagnostic",
+    broaderPhaseChartVerdict: "unresolved",
     falsifier: "A lower-residual antipodal-neutral phase point in the declared domain, a missed causal root, a collision below the declared gap, or failed refinement overturns the bounded verdict.",
     verdict: best && best.evaluation.rootCompleteness.complete && best.evaluation.compatibleScale != null &&
       best.evaluation.residuals.maximumFullVector <= balanceTolerance &&
@@ -536,6 +659,7 @@ export function runPlanarRingCampaign({
   nonuniformEvaluationsPerSeed = 900,
   b13GlobalSamples = 2400,
   b13RetainedSeeds = 18,
+  reusedRegular = null,
   progress = () => {},
 } = {}) {
   const regular = [];
@@ -546,18 +670,30 @@ export function runPlanarRingCampaign({
       rotation: verifyRotationCovariance({ phases: regularRingPhases(n), polarities: classes[0].polarities, beta: 3.070356625390253 }),
       reflectionAndCirculationReversal: verifyReflectionCovariance({ phases: regularRingPhases(n), polarities: classes[0].polarities, beta: 3.070356625390253 }),
     };
-    progress({ stage: "regular", n, classCount: classes.length });
-    const rows = classes.map((polarityClass) => scanRegularPolarityClass({
-      n, polarityClass, minimumBeta, maximumBeta, betaStep,
-    }));
-    regular.push({ n, covariance, classes: rows });
+    const reusedGroup = reusedRegular?.find((group) => group.n === n);
+    let rows;
+    if (reusedGroup) {
+      rows = structuredClone(reusedGroup.classes);
+      progress({ stage: "regular-reused", n, classCount: classes.length });
+      regular.push(structuredClone(reusedGroup));
+    } else {
+      progress({ stage: "regular", n, classCount: classes.length });
+      rows = classes.map((polarityClass, classIndex) => {
+        const row = scanRegularPolarityClass({
+          n, polarityClass, minimumBeta, maximumBeta, betaStep,
+        });
+        progress({ stage: "regular-class", n, classIndex: classIndex + 1, classCount: classes.length });
+        return row;
+      });
+      regular.push({ n, covariance, classes: rows });
+    }
     progress({ stage: "nonuniform", n, classCount: classes.length });
     nonuniform.push({
       n,
-      classes: classes.map((polarityClass) => {
+      classes: classes.map((polarityClass, classIndex) => {
         const regularRow = rows.find((row) => row.polarityClass.classId === polarityClass.classId);
         const betaSeeds = regularRow.candidateBetaValues.slice(0, 3).map((row) => row.beta);
-        return searchNonuniformPolarityClass({
+        const row = searchNonuniformPolarityClass({
           n,
           polarityClass,
           betaSeeds,
@@ -566,6 +702,8 @@ export function runPlanarRingCampaign({
           minimumPhaseGap,
           maxEvaluationsPerSeed: nonuniformEvaluationsPerSeed,
         });
+        progress({ stage: "nonuniform-class", n, classIndex: classIndex + 1, classCount: classes.length });
+        return row;
       }),
     });
   }
@@ -576,17 +714,19 @@ export function runPlanarRingCampaign({
     minimumPhaseGap,
     globalSamples: b13GlobalSamples,
     retainedSeeds: b13RetainedSeeds,
+    regularBetaSeeds: regular.find((group) => group.n === 3).classes
+      .find((row) => row.polarityClass.alternating).candidateBetaValues
+      .filter((row) => row.residuals.maximumFullVector <= 2e-8)
+      .map((row) => row.beta),
   });
-  const allRows = [
-    ...regular.flatMap((group) => group.classes),
-    ...nonuniform.flatMap((group) => group.classes),
-    b13AntipodalPhaseChart,
-  ];
-  const balanced = allRows.filter((row) => row.verdict === "balanced-candidate");
-  const unresolved = allRows.filter((row) => row.verdict === "unresolved");
+  const regularRows = regular.flatMap((group) => group.classes);
+  const balanced = regularRows.filter((row) => row.verdict === "balanced-candidate");
+  const unresolvedSearchRowCount = nonuniform.flatMap((group) => group.classes).length + 1;
   return {
     schema: "braid-program/planar-n-n-circular-balance-campaign.v1",
     campaignId: "planar-co-rotating-n-n-uncapped-master-equation-2026-08-29",
+    correctionOf: "reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json",
+    correctionReason: "The third closed run preserved the regular B1.3 chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
     compatibilityIdentifier: "aaa-corpus-advancement",
     model: {
       fieldSpeed: 1,
@@ -614,7 +754,7 @@ export function runPlanarRingCampaign({
     b13AntipodalPhaseChart,
     summary: {
       balancedCandidateCount: balanced.length,
-      unresolvedSearchRowCount: unresolved.length,
+      unresolvedSearchRowCount,
       balancedCandidateScopes: balanced.map((row) => ({
         n: row.n ?? 3,
         phaseConfiguration: row.phaseConfiguration ?? row.chart,
@@ -622,10 +762,8 @@ export function runPlanarRingCampaign({
         best: row.best,
       })),
       verdict: balanced.length > 0
-        ? "one-or-more-balanced-candidates"
-        : unresolved.length > 0
-          ? "no-balanced-candidate-found-with-nonuniform-search-unresolved"
-          : "bounded-negative-over-declared-search",
+        ? "balanced-regular-subloci-found-with-broader-phase-search-unresolved"
+        : "no-balanced-regular-candidate-found-with-broader-phase-search-unresolved",
       claimGrade: "mixed derived taxonomy, independently checked ledger implementation, and bounded numerical search",
       excludedClaims: ["retention", "binding", "stability", "release survival", "physical identity", "score increase", "scientific acceptance"],
       falsifier: "Any missing causal root, failed independent check, nonconvergent residual, or balanced point inside the declared bounded domain overturns the corresponding result.",
