@@ -2,6 +2,10 @@
 
 A shared-circle assembly is a prescribed collection of architrinos whose worldlines remain on one common circle. The chart provides a direct bridge from the two-body circular benchmark to many-member rings while keeping braid taxonomy separate from circular appearance. A shared-circle record becomes a named Noether-braid locus only when its member inventory, polarity pairing, centers, axes, frequencies, and circulation satisfy that braid's exact coordinate contract.
 
+The equal-radius, phase-symmetric B1.3 intersection now contains thirty-six independently accepted prescribed acceleration balances in the consecutive even topology classes T02 through T72. Their complete causal-root ledgers obey an exact polarity-controlled fold mechanism, an exact root-count ladder, and derived high-speed spacing and scale laws. What remains unresolved is a global zero-count theorem inside every bounded topology interval; none of these results establishes release survival or stability.
+
+Plainly: the major advance is a structured B1.3 balance ladder, not one isolated numerical point. The ladder's local mechanism and asymptotic behavior are understood, while uniqueness inside each interval and freely evolved survival remain separate questions.
+
 This chapter studies the planar rigid co-rotating subchart under the default uncapped Master Equation. It includes sub-field-speed and super-field-speed motion; the wake speed is not imposed as a ceiling on member speed. The established results concern prescribed acceleration balance. They do not establish formation, binding, retention, stability, release survival, physical identity, or scientific acceptance.
 
 Plainly: putting several architrinos on the same rotating circle defines a useful dynamics chart, not a new particle family. The chart can intersect an existing braid family without absorbing every ring into that family.
@@ -183,6 +187,16 @@ The boundary at $q=0$, where $\beta_0=1$, is the special same-transmitter onset 
 
 Plainly: roots arrive as six matched pairs after the special first onset. The local sign now explains why an odd fold creates the downward crossing opportunity used by the observed balance ladder, but it does not exclude additional zeros elsewhere in an interval.
 
+Index the observed and independently continued balances by $n=1,\ldots,36$, beginning with T02. Under this established topology convention,
+
+$$
+\text{balance }n\in\mathrm{T}_{2n}
+\qquad
+N_{\mathrm{root}}(n)=24(n+1)
+$$
+
+Plainly: the first balance is T02 with 48 directed roots, and the thirty-sixth is T72 with 888. This exact map identifies and counts the accepted ladder rows; it does not prove that $\mathrm{T}_{2n}$ contains no second balance or that an odd interval contains none.
+
 Define $A_q=\pi(q+3)/6$. Expanding the boundary equation as $\xi_q\to\pi/2$ gives
 
 $$
@@ -211,7 +225,28 @@ Plainly: knowing how the curve leaves each fold does not prove how many times it
 
 #### High-Precision Continuation
 
-The independently authored high_precision_b13_oracle.py instrument imports no subject code and solves the scalar root ledger, phase-channel acceleration projections, and radial scale at 100 decimal digits. It accepted all eighteen next even classes T38 through T72. Across those rows, $\beta_f$ increases from $20.920052031568546207\ldots$ to $38.733400877661225379\ldots$, $R/R_*$ decreases from $0.073139414324807692\ldots$ to $0.039155202037418725\ldots$, and the directed-root count advances by twenty-four per row from 480 to 888.
+The independently authored `high_precision_b13_oracle.py` instrument imports no subject code and solves the scalar root ledger, phase-channel acceleration projections, and radial scale at 100 decimal digits. It accepted all eighteen next even classes T38 through T72. The table displays eighteen digits after the decimal point; the acceptance record retains the full 100-digit evaluations.
+
+| Topology interval | $\beta_f$ | $R/R_*$ | Directed roots |
+| --- | ---: | ---: | ---: |
+| T38 | 20.920052031568546207 | 0.073139414324807692 | 480 |
+| T40 | 21.968389913715301663 | 0.069586808427743486 | 504 |
+| T42 | 23.016623838413938760 | 0.066363319239597373 | 528 |
+| T44 | 24.064767412772655267 | 0.063425236446220533 | 552 |
+| T46 | 25.112831966756425869 | 0.060736262295745917 | 576 |
+| T48 | 26.160827010717754828 | 0.058266004058120032 | 600 |
+| T50 | 27.208760586808622774 | 0.055988820062158922 | 624 |
+| T52 | 28.256639541935977069 | 0.053882926188580837 | 648 |
+| T54 | 29.304469741973809541 | 0.051929696713944245 | 672 |
+| T56 | 30.352256241477595365 | 0.050113111906430311 | 696 |
+| T58 | 31.400003419329044592 | 0.048419317648419972 | 720 |
+| T60 | 32.447715088035526420 | 0.046836271445237322 | 744 |
+| T62 | 33.495394582469053600 | 0.045353455674601813 | 768 |
+| T64 | 34.543044832421618654 | 0.043961643632156524 | 792 |
+| T66 | 35.590668422319914438 | 0.042652707369349046 | 816 |
+| T68 | 36.638267640675611809 | 0.041419458865319482 | 840 |
+| T70 | 37.685844521272952563 | 0.040255517976005926 | 864 |
+| T72 | 38.733400877661225379 | 0.039155202037418725 | 888 |
 
 Plainly: the independently accepted ladder now contains thirty-six consecutive even topology classes, with eighteen high-precision balances extending the original eighteen beyond speed 20.
 
@@ -228,6 +263,42 @@ C(\beta_f)
 \equiv
 \beta_f\frac{R}{R_*}
 $$
+
+Plainly: $C(\beta_f)$ removes the leading inverse-speed contraction from the compatible radius. A finite limit for $C$ is therefore the precise signature of an asymptotic $R/R_*\sim C_\infty/\beta_f$ scale law on this chart.
+
+Let $h=\pi/6$ and $x_l=lh$ for $l\geq1$. Pair the rising root at integer level $m=l$, which approaches $v=0$, with the descending root at level $m=l-6$, which approaches $v=\pi$. The shift by six preserves polarity because $(-1)^{l-6}=(-1)^l$. If $w=\pi-v_{\mathrm{descending}}$, their endpoint locations satisfy
+
+$$
+v
+=
+\frac{x_l}{\beta_f}+\frac{x_l}{\beta_f^2}
++O\left(\beta_f^{-3}\right)
+\qquad
+w
+=
+\frac{x_l}{\beta_f}-\frac{x_l}{\beta_f^2}
++O\left(\beta_f^{-3}\right)
+$$
+
+Plainly: each old rising root has a descending partner six levels below it with the same polarity. Their small endpoint angles differ only in the sign of the first finite-speed correction.
+
+Substitution into the exact per-root projections gives
+
+$$
+a_{t,l}^{\mathrm{pair}}
+=
+\frac{(-1)^{l+1}}
+{2(l\pi/6)^2}
++O\left(\beta_f^{-2}\right)
+\qquad
+a_{r,l}^{\mathrm{pair}}
+=
+\frac{(-1)^l}
+{2l\pi/6}
++O\left(\beta_f^{-2}\right)
+$$
+
+Plainly: the paired tangential terms form an alternating inverse-square series, and the paired radial terms form an alternating harmonic series. Individual hexagonal channels can contain $\sqrt{3}$ through their phase trigonometry, but the unified six-channel lattice depends only on $l\pi/6$ and parity; the complete pairing therefore cancels $\sqrt{3}$ before the limiting sums are taken.
 
 Pairing the old rising and descending roots on the integer-level lattice gives the limiting tangential and radial backgrounds
 
@@ -286,6 +357,19 @@ A_n-\frac{1}{2A_n}-\frac{17}{72A_n^3}
 +o\left(A_n^{-3}\right)
 $$
 
+Equivalently, with the sixfold phase structure displayed explicitly,
+
+$$
+\beta_n
+=
+\frac{\pi(n+1)}{3}
+-\frac{3}{2\pi(n+1)}
+-\frac{51}{8\pi^3(n+1)^3}
++o\left(n^{-3}\right)
+$$
+
+Plainly: the two speed formulas are identical. The second makes visible that the leading ladder spacing comes from the hexagon's $\pi/3$ same-parity step and that the next corrections retain explicit powers of $\pi$.
+
 $$
 \Delta\beta_n
 =
@@ -309,6 +393,28 @@ Plainly: the balance spacing approaches $\pi/3$ from above, and the radius falls
 
 Plainly: the leading high-speed law and its first correction are now mathematical results. The proof does not establish one and only one balance in every topology interval.
 
+#### Scalability on the Prescribed B1.3 Chart
+
+The monotone association of faster balance with smaller compatible radius is a concrete realization of the $\mathbb{A}\mathbb{A}\mathbb{A}$ scalability hypothesis on the prescribed equal-radius B1.3 circular chart. What scales is the common radius $R$ relative to the fixed coupling length $R_*$ as the dimensionless member speed $\beta_f$ changes. The six-member inventory, alternating polarity, regular phase gaps, common center, common circulation, normalized wake speed $c_f=1$, and uncapped Master Equation remain fixed; the derived leading law is $R/R_*\sim3/(2\beta_f)$.
+
+Plainly: within this one constrained B1.3 geometry, a faster prescribed circle balances at a smaller common radius. This is not a claim that an evolving assembly spontaneously shrinks when accelerated, nor a similarity theorem for unequal radii, unequal phases, different inventories, changed coupling, or arbitrary path histories.
+
+The scaling law establishes neither formation nor persistence. It does not show that two ladder rows represent the same released object at different speeds, that a member can move between them dynamically, or that any row is binding, retained, stable, or physically realized.
+
+Plainly: the compatible radius is a balance coordinate, not an observed size-change process.
+
+> Claim grade: measured for the monotone speed-radius ordering of the thirty-six accepted rows and derived for its displayed high-speed law. A verified accepted row that reverses the ordering falsifies the measured pattern; a valid root-ledger derivation or accepted asymptotic sequence that changes either $3/2$ or $3\log 2/\pi$ falsifies the corresponding scale coefficient. Neither grade extends beyond the fixed equal-radius, regular-phase B1.3 circular chart.
+
+#### From Numerical Pattern to Theorem
+
+Inverse-power fits to the first numerical ladder first suggested that $C(\beta_f)$ approached a value near $1.5$ and that its leading correction was proportional to $1/\beta_f$. Those regressions were discovery evidence: their decimal coefficients depended on the finite fitting window and could not decide whether factors such as $\pi$, $\sqrt{3}$, or $\log 2$ survived exact sixfold summation. The complete ledger derivation replaced those decimals with the exact coefficients $C_\infty=3/2$ and $3\log 2/\pi$.
+
+Plainly: the curve fit showed where to look; it did not prove the constants. The proof comes from pairing every old causal root, evaluating the alternating series, and matching that background against the newborn fold pair.
+
+The deterministic non-GUI fit and continuation figures remain provenance for how the pattern was discovered and checked, but the displayed law now rests on the derivation record and the independently accepted high-precision balances. Empirical regression coefficients are not promoted as exact numerators or as proof that geometrically natural symbols cancel.
+
+Plainly: numerical pictures remain useful audit trails, while the exact formulas stand or fall with the ledger mathematics and its stated falsifiers.
+
 The separate binary64 extension through $\beta_f=105.76222509672797$ remains exploratory beyond the independently accepted T72 row: only 44 of its 100 direct six-receiver rows met the original vector tolerance, and the generic independent evaluator lost convergence near high folds. Its decimal regression coefficients are not used as exact constants or as evidence for additional balances.
 
 Plainly: the independently accepted continuation ends at T72. Farther double-precision rows remain useful only as discovery hints until an independent calculation meets its own numerical gates.
@@ -321,6 +427,10 @@ Plainly: the negative rows reject only the tested regular polarity words below s
 
 Acceleration balance makes a prescribed ring a legitimate initial-history candidate for further testing. It does not show that the EOM solver will retain the circle after release. Stability analysis is meaningful only after an ordinary evolution preserves the relevant balanced branch with complete history, controlled root transitions, and a nontrivial return record.
 
-The next genuine blocker is therefore a separately frozen EOM-solver evolution from a balanced locus with complete retained prehistory, unchanged coupling, guarded root continuity, and a candidate-specific return or escape decision. Broader geometric closure separately requires controlled coverage of unequal phase gaps and, for B1.3, unequal binary radii.
+The B1.3 circular result is therefore a mathematically structured prescribed-balance ladder: the original isolated point has become thirty-six independently accepted consecutive even-class balances, the map $n\mapsto\mathrm{T}_{2n}$ fixes their complete directed-root counts, local polarity controls the fold-born crossing mechanism, and the high-speed spacing and radius laws are derived. The result still lacks an outward-rounded global zero-count certificate, so it does not establish uniqueness within every even interval or absence of balances from every odd interval.
 
-Plainly: the chapter closes the taxonomy bridge and records the bounded acceleration-balance landscape. It does not promote any ring from prescribed geometry to a retained physical assembly.
+Plainly: the work has advanced from finding a point to understanding a long balance family and its asymptotic mathematics. The remaining zero-count question is global interval control, not the existence or local fold mechanism of the thirty-six accepted rows.
+
+The next dynamical blocker is a separately frozen EOM-solver evolution from a balanced locus with complete retained prehistory, unchanged coupling, guarded root continuity, and a candidate-specific return or escape decision. Broader geometric closure separately requires controlled coverage of unequal phase gaps and, for B1.3, unequal binary radii.
+
+Plainly: this chapter closes the shared-circle taxonomy bridge and records the accepted acceleration-balance ladder at its exact grade. It does not promote any ring from prescribed geometry to a retained physical assembly, and it supplies no release, binding, retention, stability, physical-spectrum, or scientific-acceptance verdict.

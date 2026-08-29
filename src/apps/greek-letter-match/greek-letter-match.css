@@ -504,6 +504,17 @@ label {
     box-shadow 140ms ease;
 }
 
+.greek-match-center.has-pronunciation {
+  padding-top: 4px;
+  padding-bottom: clamp(28px, calc(var(--ring-size) * 0.066), 48px);
+}
+
+.greek-match-center.has-pronunciation .greek-match-center-kicker,
+.greek-match-center.has-pronunciation .greek-match-center-value,
+.greek-match-center.has-pronunciation .greek-match-center-status {
+  transform: translateY(-10px);
+}
+
 .greek-match-center[data-feedback="correct"] {
   border-color: rgba(192, 255, 214, 0.96);
   background: radial-gradient(circle at 34% 28%, #37c96c, #0e6b36 76%);
@@ -570,6 +581,11 @@ label {
   height: calc(var(--ring-size) * 0.14);
   max-width: 86px;
   max-height: 86px;
+}
+
+.greek-match-center.has-pronunciation .greek-match-center-symbol {
+  width: clamp(32px, calc(var(--ring-size) * 0.112), 72px);
+  height: clamp(32px, calc(var(--ring-size) * 0.112), 72px);
 }
 
 .greek-match-center-symbol text {
@@ -639,7 +655,8 @@ label {
 
 .greek-match-pronunciation {
   position: absolute;
-  top: calc(100% + clamp(5px, calc(var(--ring-size) * 0.012), 10px));
+  top: auto;
+  bottom: clamp(12px, calc(var(--ring-size) * 0.032), 20px);
   left: 50%;
   display: inline-flex;
   align-items: center;
@@ -657,6 +674,46 @@ label {
   line-height: 1;
   white-space: nowrap;
   transform: translateX(-50%);
+}
+
+.greek-match-pronunciation[hidden] {
+  display: none;
+}
+
+@container greek-match-center (max-width: 96px) {
+  .greek-match-pronunciation {
+    bottom: 6px;
+    min-height: 20px;
+    padding: 2px 6px;
+    font-size: 7px;
+  }
+
+  .greek-match-center.has-pronunciation .greek-match-center-kicker,
+  .greek-match-center.has-pronunciation .greek-match-center-value,
+  .greek-match-center.has-pronunciation .greek-match-center-status {
+    transform: translateY(-4px);
+  }
+
+  .greek-match-center-kicker {
+    margin-bottom: 2px;
+  }
+
+  .greek-match-center-symbol {
+    width: 34px;
+    height: 34px;
+  }
+
+  .greek-match-teach-name {
+    font-size: 11px;
+  }
+
+  .greek-match-teach-symbols {
+    height: 18px;
+  }
+
+  .greek-match-center-status {
+    display: none;
+  }
 }
 
 .greek-match-pronunciation:hover,
@@ -1027,6 +1084,10 @@ label {
   .greek-match-workspace {
     padding-right: 6px;
     padding-left: 6px;
+  }
+
+  .greek-match-center.has-pronunciation {
+    padding-bottom: 22px;
   }
 
   .greek-match-stage {

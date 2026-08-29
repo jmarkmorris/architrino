@@ -146,8 +146,8 @@ test("pronunciation playback reuses one audio player and restarts it", () => {
   assert.equal(audio.playCalls, 2);
   assert.equal(audio.currentTime, 0);
   assert.match(audio.src, /\/audio\/beta\.wav$/u);
-  assert.equal(runtime.pronunciationFeedback.textContent, "Playing beta.");
-  assert.equal(runtime.pronunciationFeedback.dataset.state, "playing");
+  assert.equal(runtime.pronunciationFeedback.textContent, "");
+  assert.equal(runtime.pronunciationFeedback.dataset.state, "");
 });
 
 test("teaching selection plays the selected letter without changing the score", () => {
@@ -360,6 +360,16 @@ test("feedback choices use buttons only and avoid dropdown and slider controls",
     css,
     /\.greek-match-center\[data-feedback="teaching"\] \.greek-match-center-status \{[^}]*flex: 0 0 auto;[^}]*white-space: nowrap;/u
   );
+  assert.match(
+    css,
+    /\.greek-match-center\.has-pronunciation \{[^}]*padding-bottom:/u
+  );
+  assert.match(
+    css,
+    /\.greek-match-pronunciation \{[^}]*position: absolute;[^}]*bottom:/u
+  );
+  assert.match(css, /\.greek-match-pronunciation\[hidden\] \{[^}]*display: none;/u);
+  assert.doesNotMatch(runtime, /Hear pronunciation|Choose a Greek letter to hear its pronunciation/u);
   assert.match(
     css,
     /@container greek-match-center \(max-width: 128px\) \{[^}]*\.greek-match-center-value\[data-representation="teaching"\] \+ \.greek-match-center-status \{[^}]*display: none;/u

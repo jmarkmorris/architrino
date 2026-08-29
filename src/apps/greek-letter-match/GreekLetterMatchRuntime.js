@@ -549,7 +549,7 @@ export class GreekLetterMatchRuntime {
       this.document,
       "button",
       "greek-match-pronunciation",
-      "Hear pronunciation"
+      ""
     );
     this.pronunciationButton.type = "button";
     this.pronunciationButton.addEventListener("click", () => {
@@ -748,7 +748,7 @@ export class GreekLetterMatchRuntime {
         );
       }
     };
-    this.setPronunciationFeedback(`Playing ${letter.name}.`, "playing");
+    this.setPronunciationFeedback("");
 
     try {
       const playResult = audio.play();
@@ -980,6 +980,7 @@ export class GreekLetterMatchRuntime {
         : GREEK_LETTERS[activePronunciationIndex];
     this.pronunciationButton.hidden = !activePronunciationLetter;
     this.pronunciationButton.disabled = !activePronunciationLetter;
+    this.center.classList.toggle("has-pronunciation", Boolean(activePronunciationLetter));
     if (activePronunciationLetter) {
       this.pronunciationButton.textContent = `🔊 Hear ${activePronunciationLetter.name}`;
       this.pronunciationButton.setAttribute(
@@ -987,11 +988,8 @@ export class GreekLetterMatchRuntime {
         `Hear ${activePronunciationLetter.name} pronounced`
       );
     } else {
-      this.pronunciationButton.textContent = "🔊 Hear pronunciation";
-      this.pronunciationButton.setAttribute(
-        "aria-label",
-        "Choose a Greek letter to hear its pronunciation"
-      );
+      this.pronunciationButton.textContent = "";
+      this.pronunciationButton.removeAttribute("aria-label");
     }
 
     const showWrongAnswerArrow = Boolean(!isTeaching && lastResult && !lastResult.isCorrect);
