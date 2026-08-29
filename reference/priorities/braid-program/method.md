@@ -27,11 +27,11 @@ The state of a delay system is a function on the delay horizon, not a point. The
 
 Every claim in every program document carries one of: **derived** (closed form or theorem, named), **measured** (instrument named, tolerance declared, evidence pointer), **inferred** (stated as inference, with what would confirm it), **idea** (unproven lead — the only grade permitted for mined legacy content). A verified local fact does not license a global claim; scope travels with the grade.
 
-## User-Visible Candidate Summary
+## Internal Candidate Digest
 
-The analytical database does not replace a readable Markdown digest. After a complete accepted database generation exists, this document keeps a compact table of metric leaders, named reference cases, and operator-selected cases. `Top` means only the leader under the named measure unless a campaign predeclares a combined ranking rule; an undeclared weighted score or global braid ranking is forbidden.
+The analytical database may be accompanied by a readable Markdown digest inside the braid-program priority and evidence area. That digest is an operational aid, not reader-facing corpus content. It may summarize metric leaders, named reference cases, and operator-selected cases under an explicitly declared measure, but an undeclared weighted score or global braid ranking is forbidden.
 
-No candidate row is published without its source hash, protocol hash, database-generation hash, independent acceptance state, selection reason, and authoritative export pointer. The complete table is regenerated as one unit so rows from different analytical generations cannot coexist. Until that publication step passes, this section contains policy only and no candidate measurements.
+No digest row is booked without its source hash, protocol hash, database-generation hash, independent acceptance state, selection reason, and authoritative export pointer. The digest is regenerated as one unit so rows from different analytical generations cannot coexist. When a result becomes corpus-solid, its durable mathematical or evidential substance is restated in the appropriate reader-facing chapter at its exact claim level; campaign status, rankings, hashes, and work-queue state remain here.
 
 ## Acceptance Gates for a Certified Persistent Object
 

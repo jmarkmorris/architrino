@@ -34,6 +34,104 @@ $$
 
 Plainly: this equation states the observer-level geometry to recover. It does not prove that a retained delayed-root ledger produces the required clock, ruler, and signal behavior.
 
+### Full-Matrix Envelope Closure Target
+
+The scalar ratio cannot detect a transverse breathing split, off-axis shear, or orientation change. The existing envelope owner now separates the exact support $H_{\mathrm{env}}$, the centered path second-moment tensor $\mathsf M_{\mathrm{env}}^{ab}$, and an optional quadratic support fit $\mathsf Q_{\mathrm{env}}^{ab}$. For one retained rest branch and one retained moving branch expressed in the same Euclidean frame, define the candidate longitudinal contraction operator
+
+$$
+B_v{}^a{}_b
+=
+h^a{}_b
++
+\left(\gamma_{\mathrm{eff}}^{-1}(v)-1\right)
+\hat v^a\hat v_b
+$$
+
+The stronger moment target is
+
+$$
+\mathsf M_{\mathrm{target}}(v)
+=
+B_v\mathsf M_{\mathrm{env}}(0)B_v^{T}
+$$
+
+with full-matrix residual
+
+$$
+\mathcal R_{M,\mathrm{L}}(v)
+=
+\frac{
+\left\|
+\mathsf M_{\mathrm{env}}(v)
+-
+B_v\mathsf M_{\mathrm{env}}(0)B_v^{T}
+\right\|_F
+}{
+\left\|\mathsf M_{\mathrm{env}}(0)\right\|_F
+}
+$$
+
+The exact-support companion is
+
+$$
+H_{\mathrm{target}}(\hat{\mathbf m};v)
+=
+H_{\mathrm{env}}
+\left(
+B_v^{T}\hat{\mathbf m};0
+\right)
+$$
+
+Here $H_{\mathrm{env}}$ is evaluated through its positively homogeneous extension from unit directions, so the generally non-unit vector $B_v^{T}\hat{\mathbf m}$ is a legal support-function argument.
+
+Plainly: the proposed test contracts the complete rest-envelope record along the group-velocity direction and compares all six independent tensor components, while the support equation checks the actual boundary without assuming it is ellipsoidal. The formulas define what an affine contraction would predict; they do not derive that contraction from the delayed dynamics.
+
+On an aligned axisymmetric branch, the longitudinal eigenvalue of $\mathsf M_{\mathrm{env}}$ scales as $\gamma_{\mathrm{eff}}^{-2}$ because it is a squared length, while the longitudinal RMS radius and the corresponding semiaxis scale as $\gamma_{\mathrm{eff}}^{-1}$. For a general triaxial rest tensor, the expected congruence can rotate principal eigenvectors when $\mathsf M_{\mathrm{env}}(0)$ does not commute with $\hat{\mathbf v}\hat{\mathbf v}^{T}$. A no-rotation condition is therefore admissible only on a spherical or already aligned branch, not as a universal tensor constraint.
+
+- **Claim level:** closure target inferred from the observer-level Lorentz deformation benchmark; not a derived property of any retained Noether braid.
+- **Assumptions and proof burden:** certify the same rest and moving full-history branch, transport both records into one declared Euclidean frame, derive or reject the affine operator from the closed-return causal-root ledger, predeclare the matrix and support norms, and bind the envelope, clock, ruler, and signal rows to the same branch without retuning.
+- **Falsifier:** a retained moving branch fails this route if $\mathcal R_{M,\mathrm{L}}$ or the exact-support residual remains above its predeclared tolerance under time-window, angular, root, and solver refinement. A scalar $\xi$ pass does not rescue that failure.
+- **Promotion target:** `content/markdown/aaa/spacetime/lorentz-kinematics.md` after the affine law is derived or established as the accepted stronger theorem target on a retained branch; the present priority record changes no equation score.
+- **Next artifact:** extend the existing `lorentz_envelope_closure` packet with the six-component moment record, exact-support residual, aligned-axis positive control, deliberately skewed negative control, and same-ledger clock/ruler comparison.
+
+### Many-Braid Moment-to-Compliance Candidate
+
+For a coarse cell with retained braid records $k$, a candidate many-braid moment field is
+
+$$
+\overline{\mathsf M}_{\ell}^{ab}(\mathbf X,T)
+=
+\frac{
+\sum_k K_\ell(\mathbf X-\mathbf X_k(T))\mathsf M_{\mathrm{env},k}^{ab}(W_k)
+}{
+\sum_k K_\ell(\mathbf X-\mathbf X_k(T))
+}
+$$
+
+The candidate constitutive route is
+
+$$
+\left(
+n,\,
+\text{stress},\,
+\text{alignment},\,
+\overline{\mathsf M}_{\ell}^{ab}
+\right)
+\longmapsto
+\left(
+e^a{}_i,\,
+\gamma_{ij}^{\mathrm{eff}}
+\right)
+$$
+
+Plainly: the averaged envelope moments may help describe how a population of braids makes rulers respond differently by direction. An individual envelope tensor is not a metric, and matching the spatial metric's six components does not supply a distance law.
+
+- **Claim level:** guessed constitutive input to the effective spatial-compliance map.
+- **Assumptions and proof burden:** derive the coarse-graining window and transport of each local frame, keep lapse $N$, drift $u^i_{\mathrm{sea,eff}}$, spatial frame $e^a{}_i$, and signal response on one retained Noether sea record, and show that the map predicts clock, ruler, signal, and drift observables without channel-specific fits. No four-dimensional envelope ellipsoid is introduced: the observer-level lapse, shift, and spatial metric retain their existing owners.
+- **Falsifier:** the route fails if no fixed coarse-graining and constitutive map carries one accepted Noether sea record into the required clock, ruler, signal, and drift responses within tolerance, or if the apparent agreement requires identifying one braid's envelope with $\gamma_{ij}^{\mathrm{eff}}$ directly.
+- **Promotion target:** `content/markdown/aaa/spacetime/emergent-metric.md` only after a shared many-braid constitutive map is supplied; no corpus promotion or equation-score change follows from component count.
+- **Next artifact:** within `effective_metric_constitutive_map`, test whether $\overline{\mathsf M}_{\ell}^{ab}$ adds a source-bound anisotropic carrier beyond the already accepted density, stress, and alignment record without hidden retuning.
+
 High-value equation families constrain Lorentz kinematics, energy–momentum bookkeeping, conservation, continuity and transport, effective metric response, photon propagation, action recovery, quantum wave descriptions, and statistical or thermal limits. Cosmological consumers additionally constrain redshift budgets, effective FRW and Friedmann behavior, structure growth, CMB and BAO records, thermal spectra, and freezeout histories.
 
 ## Shared-Carrier Rule

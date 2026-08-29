@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 
 import {
   getStandaloneAppPathForScene,
+  isPublicStandaloneAppSearchEntry,
   resolveStandaloneAppHrefForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
 import {
@@ -23,6 +24,7 @@ import {
   resolveStandaloneGlobalSceneHref,
   resolveStandaloneGlobalSearchHref,
 } from "../src/apps/navigator/StandaloneAppSceneSearchRuntime.js";
+import { createSceneSearchRuntime } from "../src/runtime/SceneSearchRuntime.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -181,6 +183,59 @@ test("standalone global search uses the canonical scene graph and main-app navig
   );
 });
 
+test("public scene search filters internal standalone app entries", () => {
+  const appended = [];
+  const sceneSearchResults = {
+    set innerHTML(_value) {
+      appended.length = 0;
+    },
+    appendChild(item) {
+      appended.push(item);
+    },
+  };
+  const documentRef = {
+    createElement() {
+      return {
+        addEventListener() {},
+      };
+    },
+  };
+  const sceneIndexService = {
+    getSearchEntries() {
+      return [
+        {
+          id: "braid-search",
+          name: "Braid Search",
+          path: "content/scenes/archie/braid_search.json",
+          nodeType: "scene",
+        },
+        {
+          id: "equation-mapping",
+          name: "Equation Mapping",
+          path: "content/scenes/archie/equation_mapping.json",
+          nodeType: "scene",
+        },
+      ];
+    },
+  };
+  const runtime = createSceneSearchRuntime({
+    sceneSearchResults,
+    sceneIndexService,
+    getCurrentLevel: () => null,
+    navigationStack: [],
+    searchBackStack: [],
+    jumpToScene() {},
+    documentRef,
+    isSearchEntryVisible: isPublicStandaloneAppSearchEntry,
+  });
+
+  runtime.updateSearchResults("braid");
+  assert.equal(appended.length, 0);
+  runtime.updateSearchResults("equation");
+  assert.equal(appended.length, 1);
+  assert.equal(appended[0].textContent, "Equation Mapping");
+});
+
 test("standalone global TOC resolves the canonical textbook TOC scene", () => {
   assert.equal(TEXTBOOK_TOC_SCENE_PATH, "content/scenes/archie/textbook_toc.json");
   assert.equal(
@@ -330,7 +385,7 @@ test("Applications scene exposes It's Greek to Me! as a standalone app scene", (
   );
 });
 
-test("Applications scene exposes Braid Search as a standalone app scene", () => {
+test("Braid Search keeps its direct developer route without public Applications discovery", () => {
   const applicationsScene = JSON.parse(
     readRepoFile("content/scenes/archie/applications_analyze_evidence.json"),
   );
@@ -344,7 +399,7 @@ test("Applications scene exposes Braid Search as a standalone app scene", () => 
         child.nodeId === "braid_search" &&
         child.scenePath === "content/scenes/archie/braid_search.json"
     ),
-    true
+    false
   );
   assert.equal(
     applicationsScene.objects.some(
@@ -352,11 +407,25 @@ test("Applications scene exposes Braid Search as a standalone app scene", () => 
         object.id === "braid_search" &&
         object.labelTitle === "Braid Search"
     ),
-    true
+    false
   );
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/braid_search.json"),
     "braid-search.html"
+  );
+  assert.equal(
+    isPublicStandaloneAppSearchEntry({
+      id: "braid-search",
+      path: "content/scenes/archie/braid_search.json",
+    }),
+    false,
+  );
+  assert.equal(
+    isPublicStandaloneAppSearchEntry({
+      id: "equation-mapping",
+      path: "content/scenes/archie/equation_mapping.json",
+    }),
+    true,
   );
 });
 

@@ -89,7 +89,7 @@ test("Braid Search is a focused standalone app with configured local data", () =
   assert.equal(runtime.includes("node:sqlite"), false);
 });
 
-test("Braid Search is exposed through the categorized public standalone launch inventory", () => {
+test("Braid Search keeps a direct developer route outside the categorized public launch inventory", () => {
   const launchRuntime = read(
     "src/apps/navigator/StandaloneAppLaunchRuntime.js",
   );
@@ -111,6 +111,6 @@ test("Braid Search is exposed through the categorized public standalone launch i
         child.nodeId === "braid_search" &&
         child.scenePath === "content/scenes/archie/braid_search.json",
     ),
-    true,
+    false,
   );
 });

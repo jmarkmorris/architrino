@@ -1873,7 +1873,7 @@ test("ordinary binary rendering presents the scalar texture and bypasses coarse 
   assert.match(runtime, /circularBinaryScalarPresentationRenderer && topoScalarFramebuffer\.available/u);
 });
 
-test("Applications retains four category scenes and all fifteen direct app routes", () => {
+test("Applications retains four category scenes and all fourteen public app routes", () => {
   const applications = JSON.parse(
     readRepoFile("content/scenes/archie/applications.json"),
   );
@@ -1885,9 +1885,7 @@ test("Applications retains four category scenes and all fifteen direct app route
     ["explore_models", "applications_explore_models.json", [
       "lattice_lab", "ideal_braid", "molecule", "photon", "topo",
     ]],
-    ["analyze_evidence", "applications_analyze_evidence.json", [
-      "braid_search", "equation_mapping",
-    ]],
+    ["analyze_evidence", "applications_analyze_evidence.json", ["equation_mapping"]],
     ["build_simulate", "applications_build_simulate.json", ["animator", "borg"]],
   ];
   assert.deepEqual(
@@ -1904,8 +1902,8 @@ test("Applications retains four category scenes and all fifteen direct app route
     assert.deepEqual(category.scene.children.map(({ nodeId }) => nodeId), expectedIds);
     appIds.push(...expectedIds);
   }
-  assert.equal(appIds.length, 15);
-  assert.equal(new Set(appIds).size, 15);
+  assert.equal(appIds.length, 14);
+  assert.equal(new Set(appIds).size, 14);
   assert.equal(getStandaloneAppPathForScene("topo"), "topo.html");
   assert.equal(
     getStandaloneAppPathForScene("content/scenes/archie/topo.json"),

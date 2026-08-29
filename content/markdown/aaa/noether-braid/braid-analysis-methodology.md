@@ -20,6 +20,7 @@ Every published candidate analysis must identify one source record. At minimum t
 - the family/member identifier and complete taxonomy-coordinate row;
 - the prescribed-geometry engine and chart version;
 - the retained history interval, analysis window, return duration $P_{\mathrm{ret}}$, and absolute-time origin $T_0$;
+- when envelope geometry is reported, the exact support-direction grid, constant-time emission measure, centered path second-moment convention, and any quadratic-fit rule, tie-break, and tolerance;
 - the field speed $c_f$, coupling convention, root policy, self-hit policy, and any mollifier or cutoff;
 - the spatial probe set, enclosing surfaces, temporal sampling rule, and numerical tolerances; and
 - the source hash, engine identity, parameter vector, sampling seed, and generated result hash.
@@ -422,6 +423,10 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | --- | --- | --- |
 | Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+P_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
 | Minimum separation | $d_{\min}=\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Whether the prescribed chart contains a collision, an undeclared coincidence, or a near-singular pair geometry |
+| Exact path-history support | $H_{\mathrm{env}}(\hat{\mathbf m};W)$ on a declared directional grid, with angular refinement | The furthest centered constituent-path excursion in each direction over the declared window |
+| Centered path second moment | Six independent components, eigenvalues, and non-degenerate principal directions of $\mathsf M_{\mathrm{env}}^{ab}(W)$ under the constant-time emission measure | Dwell-weighted scale, anisotropy, and orientation of the centered path distribution |
+| Quadratic-envelope fit | Positive-definite $\mathsf Q_{\mathrm{env}}^{ab}(W)$, angular fitting rule, tie-break, and $\mathcal R_Q(W)$ | Whether the exact support is adequately compressed by one ellipsoid for the declared consumer |
+| Support-moment disagreement | Principal-subspace angles or normalized-tensor mismatch between admitted $\mathsf Q_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ | Whether boundary extrema and dwell-weighted path occupancy support one quadratic summary |
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
 | Internal prescribed-path response | Per-endpoint peak, RMS, and cycle integral of $\mathbf A_i^{\mathrm{others}}$ evaluated on the prescribed paths | The acceleration that the other prescribed paths would deliver, not whether those paths persist |
@@ -446,6 +451,10 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Numerical convergence | Change under tighter root and quadrature tolerances for the same $S$ and $P$ | Whether the analytical result has been evaluated accurately |
 
 Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a gate or an annotation, not a reward to maximize.
+
+Envelope extraction follows [Braid Envelope Geometry](braid-envelope-geometry.md#exact-support-and-centered-path-second-moments). Report $H_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ from the same declared source record and emission window, refine both temporal sampling and the support-direction grid, and preserve rank loss or repeated-eigenvalue ambiguity rather than inventing a three-dimensional principal frame. A quadratic fit is reportable only when its angular quadrature, optimizer, deterministic tie-break, and tolerance were fixed before inspection and $\mathcal R_Q$ passes that tolerance. Agreement between the support fit and the second moment is same-record implementation consistency, not independent confirmation; disagreement falsifies only the proposed single-quadratic compression for that consumer.
+
+Plainly: the maximum-reach envelope and the dwell-weighted tensor are two readings of the same paths. Refinement checks whether those readings were computed accurately, but their mutual agreement cannot prove that the prescribed paths are dynamically retained or physically realized.
 
 The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $P_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}P_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
 
@@ -1020,7 +1029,13 @@ $$
 
 Report axial, radial, and tangential projections separately over the complete return period. Pointwise rows, signed cycle averages, RMS values, maxima, primary/refined differences, and source-resolved contributions are all required. Cancellation in one projection cannot conceal failure in another. A converged residual remains a prescribed-path analytical result; it is not stability, retention, binding, or physical realization.
 
-## Candidate Grading
+## Screening and Evolution
+
+The analysis has two evidential stages. **Prescribed screening** evaluates the master-equation residual on a declared geometry and motion. A certified nonzero residual rules out that prescribed record within the evaluated domain. A small or converged residual only nominates the record for further study: it establishes neither persistence nor response to unprescribed motion.
+
+**EOM evolution** tests whether a nominated record persists when the EOM solver supplies the motion from declared initial data. Only evolution can rule a candidate in. Because the dynamical state includes path history across the delay horizon, every evolution result must declare its prehistory rather than treating one convenient history as a neutral default. Object-level temporal claims require at least three materially different prehistories matched at the endpoint state, evolution beyond the delay horizon, comparison on symmetry-reduced observables, and a numerical refinement envelope covering the time step, history segmentation, and causal-root search. The claim window begins only after the retained root ledger certifies that no active causal root can still reach the seeded interval.
+
+## Prescribed-Record Grading
 
 The prescribed-record analytical grade is fail-closed and occurs in this order:
 
@@ -1031,13 +1046,11 @@ The prescribed-record analytical grade is fail-closed and occurs in this order:
 
 A prescribed chart receives only an analytical prescribed-record grade. Stability and energy are outside the method and outside its score.
 
-### Candidate Summary Publication
+### Reader-Facing Result Boundary
 
-Candidate-specific coordinates, source hashes, protocol hashes, gate results, and metric values enter this chapter only from a complete accepted generation of the analytical database. A fresh generation must cover the entire registered candidate cohort under one declared protocol before any comparison row is published. Regeneration replaces the table as one unit; values from different database generations must not be mixed.
+This chapter does not publish the current campaign table, metric leaders, candidate rankings, case hashes, work queue, or changing gate status. Those records belong to the operational braid-search program. Regenerating or extending an analytical database therefore does not update this chapter.
 
-The reader-facing summary should remain compact. It may show named reference cases, the leader under an explicitly named measure, and operator-selected cases of analytical interest. Each row must carry its source hash, protocol hash, database-generation hash, acceptance state, and the reason it is included. A rejected case may be shown only when its failed gate is explicit. An undeclared combined score or global braid ranking is not permitted.
-
-Each published table must state the enclosing radius or radius sequence, surface and time reductions, probe polarity, normalization, tolerance, and uncertainty attached to every scalar row. A cell may link to a fuller ledger when a scalar would hide root transitions, angular structure, or phase dependence.
+A candidate-specific result enters the reader-facing corpus only after it is established at its stated claim level and can be presented as durable mathematics or evidence rather than program status. The promoted statement must name its assumptions, domain, claim grade, instrument or independent derivation, uncertainty when measured, and an operator-checkable falsifier. A prescribed-path result remains labeled as prescribed-path evidence, and no such result is described as retention, stability, binding, or physical realization without the corresponding EOM-evolution evidence.
 
 Among prescribed candidates evaluated under the same protocol, report an analytical objective vector rather than hiding choices inside one number. One suitable starting vector is
 
@@ -1088,7 +1101,7 @@ A publishable candidate analysis contains:
 2. the superimposed causal-wake formula and all normalization choices;
 3. the internal receiver-wake ledger through one complete return cycle;
 4. the probe geometry and raw time-dependent curves;
-5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, and source-sensitivity metrics;
+5. prescribed-period closure, root, separation, cancellation, anisotropy, spectral, source-sensitivity, and any claimed envelope support, moment, quadratic-fit, and support-moment disagreement metrics;
 6. an explicit analytical claim boundary that excludes energy and stability conclusions;
 7. the Monte Carlo, directed-refinement, and robustness sampling declarations;
 8. the gate result and multi-objective comparison vector; and

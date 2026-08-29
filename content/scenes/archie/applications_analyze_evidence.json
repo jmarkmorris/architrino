@@ -13,12 +13,10 @@
     },
     "wrapLabels": true,
     "children": [
-      { "nodeId": "braid_search", "scenePath": "content/scenes/archie/braid_search.json" },
       { "nodeId": "equation_mapping", "scenePath": "content/scenes/archie/equation_mapping.json" }
     ]
   },
   "objects": [
-    { "id": "braid_search", "title": "Braid Search", "radius": 2.2, "color": "#0e7490", "labelTitle": "Braid Search", "labelBadge": "" },
     { "id": "equation_mapping", "title": "Equation Mapping", "radius": 2.2, "color": "#146c74", "labelTitle": "Equation Mapping", "labelBadge": "" }
   ]
 }

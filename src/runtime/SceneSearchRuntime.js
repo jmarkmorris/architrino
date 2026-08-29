@@ -12,6 +12,7 @@ export function createSceneSearchRuntime(deps) {
     jumpToScene,
     documentRef = document,
     onOpenChange,
+    isSearchEntryVisible = () => true,
   } = deps;
 
   function normalizeSearch(text) {
@@ -93,6 +94,7 @@ export function createSceneSearchRuntime(deps) {
     }
     const normalized = normalizeSearch(query);
     const matches = getSearchEntries()
+      .filter((scene) => isSearchEntryVisible(scene))
       .map((scene) => {
         const fields = toSearchFields(scene);
         return {
