@@ -42,14 +42,14 @@ Far-field cancellation is a separate hypothesis. Rapid positive- and negative-po
 
 ### Integer Phase-Closure States
 
-An A1 record should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $T_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
+An A1 record should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $P_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
 
 $$
-\Theta_a(T_0;T_{\mathrm{ret}})
+\Theta_a(T_0;P_{\mathrm{ret}})
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}\omega_a(T')\,dT'
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}\omega_a(T')\,dT'
 +
-\Phi_a^{\text{root}}(T_0;T_{\mathrm{ret}})
+\Phi_a^{\text{root}}(T_0;P_{\mathrm{ret}})
 =
 2\pi k_a,
 \qquad

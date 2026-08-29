@@ -30,6 +30,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [x] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [x] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
+- [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
+- [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
@@ -41,6 +43,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Clarity
 
+- [ ] Use [math-preview](../../.agents/skills/math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
 - [ ] When a decision, action, or headline exists, state it first; use the following nonlinear exploration as context rather than burying the lead. Keep free-association brainstorming welcome when no immediate decision is needed.
 - [ ] Treat an unresolved discussion-scoped priority as requiring an explicit accept, reject, or defer response; do not infer implementation authority from silence.
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
@@ -54,7 +57,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] Separate hard guardrails from preferences the agent may trade off.
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
 - [ ] Preserve the returned `Closure goal:` when restarting, splitting, or refocusing a task.
-- [ ] Before broad terminology migrations, ask for a scan of git history and current usage, then name accepted terms and frozen labels before editing.
+- [ ] Before requesting terminology-change approval, complete the current-use/history inventory, conflict/clearance assessment, destinations for displaced meanings and their further conflicts, preserved exceptions, downstream scope, and verification plan; assess the connected set of moves and keep the current planning phase and next prerequisite explicit.
 - [ ] Avoid temporal phrasing for theory claims; use canonical definition/status language such as `canonical Master EOM`.
 - [x] Keep authored Markdown prose unwrapped in source so Codex Review controls visual wrapping; preserve only structural, mathematical, code, table, quotation, and explicit hard breaks.
 

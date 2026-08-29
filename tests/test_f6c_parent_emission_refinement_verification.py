@@ -4,7 +4,7 @@ Mathematical fixtures come from the previously frozen independent stationary/
 affine controls. Whole-original mapping controls use a separately assembled
 8x1760 constant history and160-parent metadata, not any producer projection.
 Full-main tests explicitly mock original authentication/mathematics while
-exercising real publication, routing, cleanup and late-failure retraction.
+exercising real publication, routing, cleanup and retained failed output.
 """
 from __future__ import annotations
 import ast
@@ -56,6 +56,9 @@ def plan_fixture():
     p['originalBindings']={k:binding(v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     p.update(acceptanceOwner=binding(s.OWNER),priorCoverClosure=s.closure_premise(),
         runtimeBindings=[binding('/synthetic/python'),binding('/synthetic/pyvenv.cfg')],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
+    p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.json',h,n)) for name,h,n in (
+        ('2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),
+        ('historical-resource-plan.json','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
     return p
 
 
@@ -90,7 +93,7 @@ def check_fixture(values,core=c):return s.compare_manifest(w,core,r,*values)
 class InterfaceTests(unittest.TestCase):
     def test_closed_plan_and_exact_role_counts(self):
         p=plan_fixture();self.assertIs(s.validate_plan(w,p,H,ROOT),p)
-        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(19,9,14,12))
+        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(20,9,14,12))
         self.assertNotEqual(p['verifierControls']['path'],p['proposalReferenceControls']['path'])
     def test_all_explicit_parent_scopes_and_rejected_index_types(self):
         for parent_index in range(160):
@@ -288,12 +291,20 @@ class FileAndPublicationTests(unittest.TestCase):
             with self.assertRaises(ValueError):pool.capture(link,s.sha(b'x'))
         link.unlink();link.symlink_to(path)
         with ExitStack() as stack,self.assertRaises(ValueError):s.Pool(stack,w,self.root,lambda:None).capture(link,s.sha(b'x'))
-    def test_exclusive_publication_and_owned_retraction(self):
+    def test_exclusive_publication_and_retained_failed_output(self):
         out=self.root/'comparison.json';pub=s.Publication(out,lambda:None);b=pub.publish(dict(accepted=True));self.assertEqual(b,raw_binding(out,out.read_bytes()))
         with patch.object(s.os,'fsync',wraps=s.os.fsync) as sync:pub.reject()
-        self.assertEqual(sync.call_count,1);self.assertFalse(out.exists());self.assertTrue(pub.private.is_file())
+        self.assertEqual(sync.call_count,0);self.assertTrue(out.exists());self.assertTrue(pub.private.is_file())
         out.write_bytes(b'foreign');pub.reject();self.assertEqual(out.read_bytes(),b'foreign')
         with self.assertRaises(FileExistsError):s.Publication(out,lambda:None).publish({})
+    def test_explicit_stage_allowance_and_original_fd_closure(self):
+        out=self.root/'eight.json';pub=s.Publication(out,lambda:None,100,8);self.addCleanup(pub.close_guards)
+        self.assertEqual(pub.publish({'v':1})['bytes'],8);pub.check()
+        self.assertEqual(os.fstat(pub.guard_fd).st_ino,out.stat().st_ino)
+        pub.close_guards();pub.check();self.assertIsNone(pub.guard_fd);self.assertIsNone(pub.directory_fd)
+        short=s.Publication(self.root/'short.json',lambda:None,100,7);self.addCleanup(short.close_guards)
+        with self.assertRaises(ValueError):short.publish({'v':1})
+        self.assertFalse(short.path.exists())
     def test_final_bounded_recapture_preserves_original_identity_after_close(self):
         path=self.root/'source';path.write_bytes(b'abc')
         with ExitStack() as stack:
@@ -312,9 +323,9 @@ class FileAndPublicationTests(unittest.TestCase):
                 other=self.root/'target';other.write_bytes(b'abc');path.unlink();path.symlink_to(other)
             with self.subTest(mode=mode),self.assertRaises(ValueError):s.final_recapture(w,identities,lambda:None)
     def layout(self):
-        data=self.root/'candidate';data.mkdir();private=data/'.parent-emission-private-test';private.mkdir();packet={}
+        data=self.root/'candidate';data.mkdir();private=data;packet={}
         for name in ('queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'):
-            p=private/name;p.write_bytes(b'{}\n');os.link(p,data/name)
+            p=private/(name+'.partial.'+'a'*32);p.write_bytes(b'{}\n');os.link(p,data/name)
             if name!='cover-manifest.json':packet[name.split('.')[0]]=raw_binding(data/name,b'{}\n')
         return data/'cover-manifest.json',private,packet
     def test_layout_closed_hardlink_generation_and_logical_quota(self):
@@ -322,7 +333,7 @@ class FileAndPublicationTests(unittest.TestCase):
         with ExitStack() as stack:
             pool=s.Pool(stack,w,self.root,lambda:None);self.assertEqual(set(s.candidate_layout(path,packet,pool,manifest_binding=raw_binding(path,b'{}\n'))),{'queries','rows','pieces'})
             with patch.object(s,'MAX_BYTES',11),self.assertRaises(ValueError):s.candidate_layout(path,packet,pool,manifest_binding=raw_binding(path,b'{}\n'))
-        (private/'rows.ndjson').unlink();(private/'rows.ndjson').write_bytes(b'{}\n')
+        (private/('rows.ndjson.partial.'+'a'*32)).unlink();(private/('rows.ndjson.partial.'+'a'*32)).write_bytes(b'{}\n')
         with ExitStack() as stack,self.assertRaises(ValueError):s.candidate_layout(path,packet,s.Pool(stack,w,self.root,lambda:None),manifest_binding=raw_binding(path,b'{}\n'))
     def test_layout_extra_file_and_foreign_private_fail(self):
         path,private,packet=self.layout();(path.parent/'extra').write_bytes(b'x')
@@ -368,7 +379,8 @@ def full_chain_fixture():
     owner=('### Independently Accepted Actual Full F6c Conditional Cover\noriginal caller session `13512`, final completion chunk `c21aa7`, exit zero, `862.951823625`, Independent post-closure review accepts all 160\n'+s.FULL_BASE+'\n'+
         '\n'.join(h+' '+str(n) for k,(_,h,n) in s.FULL.items() if k!='fullPlan')).encode()
     class MemoryPool:
-        def __init__(self):self.root=root;self.live=lambda:None;self.visited=[]
+        def __init__(self):self.root=root;self.live=lambda:None;self.visited=[];self.routes={};self.used_routes=set()
+        def historical(self,b):return self.read_binding(b)
         def capture(self,path,digest):
             b=binding(root/path,digest);self.visited.append(b['path']);return SimpleNamespace(binding=lambda:b)
         def read_binding(self,b,*,data=False):
@@ -415,6 +427,7 @@ class MainFlowTests(unittest.TestCase):
         objects=[]
         class FakePool:
             def __init__(self,stack,transport,path,live):self.root=path;self.live=live;self.w=transport;self.files={};stack.callback(self.close)
+            def admit_operation(self,*args):pass
             def capture(self,path,digest,*,data=False,limit=s.MAX_SOURCE_BYTES):
                 p=self.root/path
                 if p==out:
@@ -478,7 +491,7 @@ class MainFlowTests(unittest.TestCase):
                 if mode=='slow-teardown':clock[0]=1811
                 if mode=='teardown':raise OSError('teardown')
         stdout=io.StringIO();stderr=io.StringIO();error=None
-        argv=['--manifest',str(manifest),'--manifest-sha256',H,'--plan',str(launch),'--plan-sha256',H,'--verifier-sha256',H,'--out',str(out),'--budget-seconds','1800','--repo-root',str(root)]
+        argv=['--manifest',str(manifest),'--manifest-sha256',H,'--plan',str(launch),'--plan-sha256',H,'--verifier-sha256',H,'--out',str(out),'--budget-seconds','1800','--repo-root',str(root),'--operation-plan',str(launch),'--operation-plan-sha256',H,'--scientific-bytes-already','0','--maximum-stage-output-bytes',str(s.MAX_BYTES)]
         def projection(*args,**kwargs):
             self.assertEqual(kwargs['parent_index'],parent_index);return [{}]*8,dict(parentIndex=parent_index)
         with ExitStack() as stack:
@@ -501,10 +514,10 @@ class MainFlowTests(unittest.TestCase):
         out,events,stdout,stderr,error=self.flow(parent_index=2);self.assertIsNone(error,str(error))
         report=json.loads(out.read_bytes());done=json.loads(stdout)
         self.assertEqual(report['parent']['parentIndex'],2);self.assertEqual(report['scope'],s.parent_scope(2));self.assertEqual(done['scope'],s.parent_scope(2))
-    def test_full_main_all_late_failures_retract(self):
+    def test_full_main_all_late_failures_retain(self):
         for mode in ('comparison','late-runtime','publication-runtime','published-capture','late-source','publication','pool-cleanup','slow-pool','bootstrap-cleanup','stdout','slow-teardown','teardown'):
             with self.subTest(mode=mode):
-                out,events,stdout,stderr,error=self.flow(mode);self.assertIsNotNone(error);self.assertFalse(out.exists());self.assertIn('watch-teardown',events)
+                out,events,stdout,stderr,error=self.flow(mode);self.assertIsNotNone(error);self.assertIn('watch-teardown',events)
                 if mode not in ('slow-teardown','teardown'):self.assertEqual(stdout,'')
     def test_silent_cleanup_changes_cannot_receive_successful_completion(self):
         for mode in ('silent-report-mutation','silent-source-mutation','silent-source-replacement','silent-runtime-addition','silent-report-replacement'):
@@ -512,7 +525,7 @@ class MainFlowTests(unittest.TestCase):
                 out,events,stdout,stderr,error=self.flow(mode)
                 self.assertIsNotNone(error);self.assertEqual(stdout,'');self.assertIn('pool-close',events)
                 if mode=='silent-report-replacement':self.assertTrue(out.exists())  # Foreign replacement is not ours to unlink.
-                else:self.assertFalse(out.exists())
+                else:self.assertTrue(out.exists())
 
 
 if __name__=='__main__':unittest.main()

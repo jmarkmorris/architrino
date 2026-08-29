@@ -113,7 +113,7 @@ By contrast, the maximum-curvature binary section studies a **uniform circular b
 
 ### Translating Binary Trace
 
-The same binary has a co-moving orbit and an absolute-history trace. If a circular binary translates with center velocity $\mathbf{V}$ while its orbital plane is spanned by orthonormal axes $\mathbf{e}_1,\mathbf{e}_2$, a first kinematic diagnostic is
+The same binary has a co-moving orbit and an absolute-history trace. If a circular binary translates with constant group velocity $\mathbf{V}$ while its orbital plane is spanned by orthonormal axes $\mathbf{e}_1,\mathbf{e}_2$, a first kinematic diagnostic is
 
 $$
 \mathbf X_{\pm}(T)
@@ -127,7 +127,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d21026dd32a1ca98)
 
-When $\mathbf{V}$ is parallel to $\mathbf{n}$, each architrino draws a constant-pitch helical trace with pitch $2\pi\|\mathbf{V}\|/\omega$ per binary cycle. At a tilted orientation, the absolute-history trace combines longitudinal pitch $2\pi|\mathbf{V}\cdot\mathbf{n}|/\omega$ with transverse drift from $\mathbf{V}-(\mathbf{V}\cdot\mathbf{n})\mathbf{n}$. This trace is a visualization and solver diagnostic, not a stability proof: the dynamical question is still whether the translated path-history ledger retains the same active causal roots, Jacobian floors, energy/action records, and branch identity.
+When $\mathbf{V}$ is parallel to $\mathbf{n}$, each architrino draws a constant-pitch helical trace with pitch $2\pi\|\mathbf{V}\|/\omega$ per binary cycle. At a tilted orientation, the absolute-history trace combines longitudinal pitch $2\pi|\mathbf{V}\cdot\mathbf{n}|/\omega$ with the transverse group-velocity component $\mathbf{V}-(\mathbf{V}\cdot\mathbf{n})\mathbf{n}$. This trace is a visualization and solver diagnostic, not a stability proof: the dynamical question is still whether the translated path-history ledger retains the same active causal roots, Jacobian floors, energy/action records, and branch identity.
 
 ## Spiral Momentum Budget Across the Hinge (Speculative)
 
@@ -286,9 +286,9 @@ $$
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-116ae71707d08388)
 where $\boldsymbol{\rho}_0$ is the circular branch studied here and $\boldsymbol{\rho}_u$ is the deformed periodic orbit, if it exists, on the retained moving branch chart.
 
-This is a direct delayed-root calculation, not a coordinate boost imposed on the answer. The root equations must be solved again with the transmitter positions, transmitter velocities, partner-hit records, self-hit records, and Jacobian factors evaluated on the translating history. The decisive outputs are the moving period $T_u$ and the projected size ratio $L_{\parallel}(u)/L_{\perp}(u)$. In primitive units the Lorentz target is
+This is a direct delayed-root calculation, not a coordinate boost imposed on the answer. The root equations must be solved again with the transmitter positions, transmitter velocities, partner-hit records, self-hit records, and Jacobian factors evaluated on the translating history. The decisive outputs are the moving period $P_u$ and the projected size ratio $L_{\parallel}(u)/L_{\perp}(u)$. In primitive units the Lorentz target is
 $$
-\frac{T_u}{T_0}=\gamma_f(u),
+\frac{P_u}{P_0}=\gamma_f(u),
 \qquad
 \frac{L_{\parallel}(u)}{L_{\perp}(u)}=\frac{1}{\gamma_f(u)},
 \qquad
@@ -296,9 +296,12 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ed308a8866ffe052)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch.
+
 The exact residual definitions and Theorem G role are recorded in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#translating-binary-benchmark). A Lorentzian result would make the two-body branch the first derived substrate clock. A non-Lorentzian residual would be equally informative because it would identify the first place where the primitive two-body kernel pressures the larger Lorentz-closure program.
 
-Two conditional results constrain this handoff without producing a moving branch. First, for the exactly circular planar rest record, full spatial equivariance, global polarity-reversal invariance, smooth drift dependence, and local branch uniqueness modulo center and phase imply $T(\mathbf u)=T(-\mathbf u)$, so the first-order period coefficient vanishes. This fails as a branch statement if the symmetry exchanges two inequivalent moving branches, the rest record is chiral or nonplanar, or the retained-history rule distinguishes drift directions.
+Two conditional results constrain this handoff without producing a moving branch. First, for the exactly circular planar rest record, full spatial equivariance, global polarity-reversal invariance, smooth group velocity dependence, and local branch uniqueness modulo center and phase imply $P(\mathbf u)=P(-\mathbf u)$, so the first-order period coefficient vanishes. This fails as a branch statement if the symmetry exchanges two inequivalent moving branches, the rest record is chiral or nonplanar, or the retained-history rule distinguishes group velocity directions.
 
 Second, no real linear map of the restricted form
 
@@ -312,7 +315,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec622d7b2b0d86e0)
 
-preserves every causal-root quadratic at nonzero drift, because coefficient matching requires $c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for that complete map class; a wider class that also changes transverse lengths lies outside the claim. Neither result is evidence that a translating branch exists.
+preserves every causal-root quadratic at nonzero group velocity, because coefficient matching requires $c_f^2\lambda^2=\gamma_f^{-2}-1=-u^2/c_f^2<0$. This is an exact no-go only for that complete map class; a wider class that also changes transverse lengths lies outside the claim. Neither result is evidence that a translating branch exists.
 
 Plainly: symmetry removes one cheap linear-period test, and the restricted map cannot manufacture the desired branch. The delayed dynamics still has to find or reject the branch directly.
 
@@ -332,10 +335,10 @@ as $u\to c_f^-$. Therefore a bare translating binary cannot be promoted to the L
 $$
 \mathcal{R}_{\mathrm{Lor\text{-}root}}(u)
 =
-\frac{\Delta_{\mathrm{forward}}(u)/T_u}
+\frac{\Delta_{\mathrm{forward}}(u)/P_u}
 {M_b^{\mathrm{mem}}(u)+\epsilon_h},
 \qquad
-M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
+M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{P_u},
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e324194a02a56819)
@@ -1008,7 +1011,7 @@ Because the desired MCB branch is expected to graze the $J=0$ wall, the stabilit
 
 If a stable MCB exists, it provides a concrete **rod** and **clock** defined entirely by the two-body delay dynamics. Let
 $$
-d_0 := R_{\text{MCB}}, \qquad T_0 := \frac{2\pi}{\omega_{\text{MCB}}}
+d_0 := R_{\text{MCB}}, \qquad P_0 := \frac{2\pi}{\omega_{\text{MCB}}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1f72dd4e4e729012)
@@ -1024,7 +1027,7 @@ so the first MCB outputs are the dimensionless ratios
 $$
 \frac{R_{\mathrm{MCB}}}{R_*},
 \qquad
-\frac{T_0}{T_*},
+\frac{P_0}{T_*},
 \qquad
 \beta_{\mathrm{MCB}}
 $$
@@ -1032,13 +1035,13 @@ $$
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e6cca7d00e47ed2e)
 rather than additional fitted constants. Once $(c_f,\kappa,\epsilon)$ fixes the length, time, and polarity units, the signed-root ledger and stability problem must compute those ratios as pure numbers.
 
-Then $d_0$ is the candidate fundamental length scale of the architecture, and $T_0$ is the candidate fundamental time scale. Their comparison with the wake propagation speed is the dimensionless MCB speed factor
+Then $d_0$ is the candidate fundamental length scale of the architecture, and $P_0$ is the candidate fundamental time scale. Their comparison with the wake propagation speed is the dimensionless MCB speed factor
 $$
 \beta_{\mathrm{MCB}}
 =
 \frac{R_{\mathrm{MCB}}\omega_{\mathrm{MCB}}}{c_f}
 =
-\frac{2\pi d_0}{c_fT_0}
+\frac{2\pi d_0}{c_fP_0}
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0259af4b1bc11ab2)
@@ -1049,7 +1052,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-159a10b5ae5d31fe)
 
-In this view, any ruler or clock built from architrino assemblies ultimately reduces to multiples of $(d_0, T_0)$. Measurement standards are therefore **dynamical invariants** of the two-body attractor: they persist because the underlying limit cycle (if realized) is stable and reproducible across assemblies.
+In this view, any ruler or clock built from architrino assemblies ultimately reduces to multiples of $(d_0, P_0)$. Measurement standards are therefore **dynamical invariants** of the two-body attractor: they persist because the underlying limit cycle (if realized) is stable and reproducible across assemblies.
 
 A certified MCB would also define the first handedness marker. In the binary plane set
 $$

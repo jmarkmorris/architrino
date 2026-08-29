@@ -108,7 +108,7 @@ Add fixed-frame and co-translating-frame views of the same sealed record.
 - The co-translating frame subtracts only a source-carried common translation for display.
 - Switching frames changes only the display transform.
 - Source positions, path identities, time, source hashes, protocol hashes, and analytical values remain unchanged.
-- If the selected record does not carry enough information to define the transform, disable the control and name the missing carrier. Do not infer a translation velocity from rendered samples.
+- If the selected record does not carry enough information to define the transform, disable the control and name the missing carrier. Do not infer a group velocity from rendered samples.
 
 In the fixed frame, periodic internal paths should sweep into extended spiral or braided strands. In the co-translating frame, the corresponding compact internal orbit geometry should remain visible.
 

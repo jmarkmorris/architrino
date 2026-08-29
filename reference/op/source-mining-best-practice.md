@@ -12,12 +12,15 @@ Use the [Source Mining priority](../priorities/source-mining/priorities.md) for 
 
 ## Authority Map
 
+- [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns reference selection, omission, durable identification, and reader-facing presentation; its [AI-assisted research and review policy](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) owns source-checking and disclosure expectations. Apply those policies to every source family and prompt addendum below rather than treating acquisition as permission to cite.
 - The [convergence campaign](../research-office/cto/prompts/convergence-campaign.md) is the shared protocol authority for convergence behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
 - The compatibility-identifier `aaa-corpus-advancement` skill is a thin router. It should point source-mining work here after loading the shared convergence campaign protocol.
 - Source-mining history remains in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). This guide describes process; the history file records completed sources.
 
 If instructions overlap, apply workspace policy first, then the shared convergence campaign protocol, then this source-intake guide.
+
+That procedural ordering does not replace the About policy for references and sources. Full source mining, a bounded reference-verification pass, and a published bibliography are different activities. Preserve research provenance in the appropriate records without copying every inspected source into the corpus. Explicitly bounded reference passes follow their declared scope and stop conditions; they do not require a full literature survey or theory-development campaign.
 
 ## Inherited Protocol
 
@@ -75,7 +78,7 @@ Source-family addendum:
 
 Required method:
 1. Read `reference/research-office/cto/prompts/convergence-campaign.md`.
-2. Read `reference/op/source-mining-best-practice.md`.
+2. Read `reference/op/source-mining-best-practice.md` and the reference-selection and source-checking sections of `content/markdown/aaa/archie/about-architrino.md`; About controls which sources qualify as reader-facing references.
 3. Identify the source type or mixed source types.
 4. Apply the relevant source-family acquisition steps and traceability rules.
 5. Treat this as edit-batch authority unless report-only was explicitly requested.
@@ -345,7 +348,7 @@ Acquisition steps:
 3. Map abstract, introduction, definitions, theorem statements, equations, figures, tables, appendices, and bibliography trails.
 4. Separate standard result, author interpretation, model assumption, empirical constraint, and speculative extension.
 5. Extract exact equation numbers, page numbers, theorem labels, and figure/table references for traceability.
-6. Prefer review papers and primary sources over popular summaries.
+6. Select sources for their stated purpose under the [About Architrino policy](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution); acquisition of a paper does not itself justify a corpus citation.
 7. Translate external terminology into established project terminology only after checking local canon and nearby corpus usage.
 8. Treat imported frameworks as comparison tools unless they protect a tested observable, mathematical consistency condition, or already accepted recovery target.
 
@@ -363,7 +366,7 @@ Acquisition steps:
 - For arXiv sources, check version, category, abstract, links, and withdrawal or replacement status when visible.
 - Map abstract, introduction, definitions, assumptions, theorem statements, equations, figures, tables, appendices, and bibliography trails.
 - Preserve page numbers, equation numbers, theorem labels, figure/table numbers, section names, and URLs.
-- Prefer primary sources and review papers over popular summaries.
+- Apply the source-selection policy in `content/markdown/aaa/archie/about-architrino.md`; select for the stated use rather than a blanket preference for one source type.
 
 Source-specific output additions:
 - Bibliographic metadata.
@@ -374,13 +377,13 @@ Source-specific output additions:
 
 ### Wikipedia And Encyclopedia-Style Sources
 
-Mine encyclopedia sources as orientation and source discovery, not as authority for corpus claims.
+Apply the [About Architrino policy](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution): mine encyclopedia sources as orientation and source discovery, not as substitutes for checking the underlying evidence.
 
 Acquisition steps:
 
 1. Record page title, URL, access date, section map, and cited references.
 2. Use the article to identify standard vocabulary, topic boundaries, historical context, diagrams/tables, and source leads.
-3. Prefer cited primary papers, review articles, official data products, or textbooks before recommending corpus changes.
+3. Follow cited source leads and choose underlying works for the intended use under the [About Architrino policy](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) before recommending corpus changes.
 4. Treat source reliability as context-dependent and prefer independent, published sources with a reputation for fact-checking and accuracy.
 5. Do not promote a claim solely because it appears in an encyclopedia source.
 
@@ -397,7 +400,7 @@ Acquisition steps:
 - Record page title, URL, access date, section map, revision context if relevant, and cited references.
 - Identify standard vocabulary, topic boundaries, historical framing, diagrams/tables, and source leads.
 - Inspect references behind high-value claims before treating them as candidate corpus input.
-- Prefer cited primary papers, review articles, official data products, or textbooks.
+- Choose underlying works for the intended use under the reference policy in `content/markdown/aaa/archie/about-architrino.md`.
 - Preserve section names, reference numbers, and URLs; do not paste large article text.
 
 Source-specific output additions:

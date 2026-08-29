@@ -86,6 +86,18 @@ Plain language: first ask which layer the math is using. Native equations use th
 
 ## Kinematics (Newton–Cartan/Galilean background)
 
+### Absolute time and cycle periods
+
+Use $T$ for absolute time and the $P$ family for cycle periods. A cycle period is a duration: $P=T_2-T_1$ when a declared cycle starts at $T_1$ and ends at $T_2$. Define which signal, shape, or complete history returns, and name the time coordinate used to measure the duration. Changing the period symbol does not establish that a proposed cycle exists or is stable.
+
+Keep useful role subscripts: $P_b$ for branch $b$, $P_q$ for clock branch $q$, $P_0$ for the stated reference period, and $P_{\mathrm{ret}}$ for complete-history return. Use $P_{\mathrm{cyc}}$ only where another meaning of $P$ coexists. Do not rename independently defined probability, pressure, momentum, permutation, or projection symbols merely because they use the same letter.
+
+An epoch $T_0$, an emission time $T_t$, a reception time $T_r$, a normalization scale, a record window $T_W$, and a record persistence duration $T_{\mathrm{rec}}$ are not cycle periods. Preserve their meanings. A dimensionless period in a rescaled time needs its own declared conversion; for example, when $s=T/P_0$, write $P_s=P/P_0$. Preserve literal schema keys and provenance-bound records, and explain their translation at the consuming interface when the recorded spelling differs from current prose.
+
+Plainly: $T$ tells us when; $P$ tells us how long one cycle takes. A cycle can repeat a visible shape without repeating all the history that drives the next motion.
+
+### Native kinematic quantities
+
 - Absolute time $T$ is universal and oriented; durations are
 
   $$
@@ -289,7 +301,7 @@ Plain language: With slightly thick causal wake surfaces, the optional force-boo
 ## Units and symbols
 
 - Core dynamics chapters set primitive causal-wake speed to $c_f=1$.
-- In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through channel-subscripted ratios such as $\beta_f=v/c_f$, $\beta_{\text{eff}}=v/c_{\text{eff}}$, or $\beta_\star=v/c_\star$; the paired Lorentz factor inherits the same subscript. Reserve bare $\beta$ and $\gamma$ for quoted standard-physics benchmark formulas.
+- In spacetime closure chapters, keep $c_f$ explicit and use $v$ for group speed only through channel-subscripted ratios such as $\beta_f=v/c_f$, $\beta_{\text{eff}}=v/c_{\text{eff}}$, or $\beta_\star=v/c_\star$; the paired Lorentz factor inherits the same subscript. Reserve bare $\beta$ and $\gamma$ for quoted standard-physics benchmark formulas.
 - $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; electrino $q=-\epsilon$, positrino $q=+\epsilon$.
 - In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
@@ -329,7 +341,7 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 
 - Notation lint (common mistakes):
   - Use bold for vectors: $\mathbf V$, not plain $V$.
-  - Use $c_f$ for primitive causal-wake speed and $v$ only as drift magnitude in channel-subscripted ratios such as $\beta_f=v/c_f$.
+  - Use $c_f$ for primitive causal-wake speed and $v$ only as group speed in channel-subscripted ratios such as $\beta_f=v/c_f$.
   - Use $\|\mathbf V\|$ for speed magnitude of a vector velocity.
   - Emission cadence and per-wavefront amplitude are constant.
   - Do not write mixed forms like $|V|$ to mean speed; bold the vector and take its norm.

@@ -13,6 +13,8 @@
 
 The locally ranked quantum closure tasks, proof dependencies, and completion boundaries live in [work-queue.md](work-queue.md).
 
+The operator-selected [Hilbert-space learning and braid-mapping exploration](mapping-hilbert/README.md) is tracked as QC-013 in that queue. It starts from AP-STEM vector examples and can proceed while physical quantum recovery remains deferred; it has no separate rank or physical acceptance authority.
+
 ## Scope
 
 Populate the missing quantum closure notes only after the work becomes testable. The Born-rule target should be measure-theoretic and predictive rather than interpretive.
@@ -25,6 +27,7 @@ Measurement-record formation consumes the shared residual-routing event-ledger t
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
+| [mapping-hilbert/README.md](mapping-hilbert/README.md) and [learning notes](mapping-hilbert/brainstorming.md) | Introductory Hilbert-space learning and provisional questions about the braid-to-state mapping; QC-013 owns execution. | [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract), only after a justified physical mapping; introductory lessons remain priority material. |
 | [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md) | Shared theorem packet for deterministic basin evolution, invariant or metastable measures, Born-rule weights, detector-response kernels, Decider bias shifts, doubling-frequency locks, pilot-wave-like guidance, and algorithmic-resonance coherence depth. | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism](../../../content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) |
 | [dynamic-pair-provenance-source-measure.md](dynamic-pair-provenance-source-measure.md) | Source-measure and joint-record-basin contract for `pair_provenance_measure`, including product-screening obstruction lemmas and a generated-scenario schema for the Bell-family harness. | [entanglement-nonlocality](../../../content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md), [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), [bell-family-record-measure](../../../content/markdown/aaa/validation/simulations/bell-family-record-measure.md) |
 | [agency-decision-and-decider.md](agency-decision-and-decider.md) | Detailed packet for Noether braid metastability, the minimal Switch/Decider distinction, basin-control topology, work ledger, hold time, and measurable basin-weight shift. | [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md), [agency-and-internal-causation](../../../content/markdown/aaa/philosophy-history/agency-and-internal-causation.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) |

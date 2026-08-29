@@ -22,7 +22,7 @@ The system card sphere should grow into a compact public dashboard for:
 - current validated-closure score and date;
 - major open proof burdens;
 - formula, coefficient, parameter, benchmark, and validation gaps;
-- source-authority policy for Archie answers;
+- application of the [About Architrino reference policy](about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](about-architrino.md#ai-assisted-research-and-review) to Archie answers;
 - deployment boundary for the long-term Archie service;
 - enabled input modes: typed questions, speech, and image-grounded questions;
 - launch gates for privacy, cost, logging, citations, and fallback behavior;

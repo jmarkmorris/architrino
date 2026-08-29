@@ -28,7 +28,7 @@ where $R_{\mathrm{braid}}$ is the largest resolved assembly scale and $L_{\mathr
 
 Fine-grained state:
 For each braid $A$, retain at least:
-- center path $\mathbf X_A(T)$ and drift $\mathbf V_A(T)$;
+- center path $\mathbf X_A(T)$ and group velocity $\mathbf V_A(T)$;
 - ordered internal frame and circulation orientation;
 - architrino inventory and polarity-conjugation map;
 - exposed charge $Q_{\mathrm{exp}}[A]$ and exposed internal-current record $\mathbf j_{\mathrm{exp}}[A]$ as derivation targets, never assigned observables;
@@ -93,9 +93,9 @@ These equations are recovery targets applied after projection. Do not use them t
 Minimal source families:
 Use the same braid inventory wherever possible and change one feature at a time.
 
-1. Isotropic neutral null: balanced exposed inventory, no coherent drift, no aligned circulation, stationary coarse state.
-2. Static exposed-density perturbation: localized $Q_{\mathrm{exp}}\ne0$ with no population drift.
-3. Coherent translation: reverse the drift of a fixed exposed-charge population while holding internal records fixed.
+1. Isotropic neutral null: balanced exposed inventory, no coherent group velocity, no aligned circulation, stationary coarse state.
+2. Static exposed-density perturbation: localized $Q_{\mathrm{exp}}\ne0$ with no population group velocity.
+3. Coherent translation: reverse the group velocity of a fixed exposed-charge population while holding internal records fixed.
 4. Internal-circulation alignment: align neutral braid circulation records, then reverse circulation while holding centers fixed.
 5. Exposure reconfiguration without local through-flow: change the local exposed polarity or orientation distribution while no braid center crosses the selected surface.
 6. Propagating transverse disturbance: launch one localized history perturbation through the resolved braid population and test source-free continuation after it leaves the source cell.
@@ -116,7 +116,7 @@ Questions to answer:
 
 Controls:
 - global polarity conjugation;
-- coherent-drift reversal;
+- coherent-group velocity reversal;
 - internal-circulation reversal;
 - rigid rotation and spatial reflection of the full collection;
 - time reversal where the declared histories make it meaningful;

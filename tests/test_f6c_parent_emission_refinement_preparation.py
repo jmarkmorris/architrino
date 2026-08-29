@@ -104,6 +104,9 @@ def plan_fixture(root):
         originalBindings={k:dict(path=v[0],sha256=v[1],bytes=v[2] if len(v)>2 else 1) for k,v in s.ORIGINAL.items()},
         acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[b(str(root/'python'),'d'*64)],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
+    plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.json')),sha256=h,bytes=n)) for name,h,n in (
+        ('2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),
+        ('historical-resource-plan.json','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
     return plan
 
 
@@ -190,7 +193,7 @@ class PlanTests(unittest.TestCase):
     def setUp(self):self.root=Path('/synthetic/repository');self.plan=plan_fixture(self.root)
     def test_closed_plan_subject_census_and_owner_is_plan_selected(self):
         sources,runtime,ops=s.validate_plan(self.plan,'a'*64,self.root,w)
-        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),19);self.assertEqual(len(s.MANIFEST_KEYS),27);self.assertEqual(len(s.COMPLETION_KEYS),14)
+        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),20);self.assertEqual(len(s.MANIFEST_KEYS),27);self.assertEqual(len(s.COMPLETION_KEYS),15)
         self.plan['acceptanceOwner']['sha256']='f'*64;s.validate_plan(self.plan,'a'*64,self.root,w)
         self.assertEqual(self.plan['priorCoverClosure']['originalCallerSession'],'13512')
     def test_closed_plan_changes_rejected(self):
@@ -326,9 +329,10 @@ class CaptureTests(unittest.TestCase):
 
 
 class PublicationTests(unittest.TestCase):
-    setUp=CaptureTests.setUp
+    def setUp(self):
+        CaptureTests.setUp(self);(self.root/'out').mkdir()
     def test_durable_query_ack_and_pending_fsync_failure(self):
-        p=s.Publication(self.root/'out',lambda:None);stream=p.stream('queries.ndjson',('q',));self.addCleanup(stream.close)
+        p=s.Publication(self.root/'out',lambda:None);self.addCleanup(p.close_guards);stream=p.stream('queries.ndjson',('q',));self.addCleanup(stream.close)
         events=[];original=s.os.fsync
         def sync(fd):events.append('fsync');original(fd)
         with patch.object(s.os,'fsync',sync):stream.write({'q':1})
@@ -336,25 +340,34 @@ class PublicationTests(unittest.TestCase):
         with patch.object(s.os,'fsync',side_effect=OSError('disk')):
             with self.assertRaises(OSError):stream.write({'q':2})
         self.assertEqual(stream.count,1);self.assertTrue(stream.path.read_bytes().endswith(b'{"q":2}\n'))
-    def test_four_public_private_links_aggregate_and_owned_retraction(self):
-        p=s.Publication(self.root/'out',lambda:None)
+    def test_declared_stage_allowance_and_retained_original_descriptors(self):
+        p=s.Publication(self.root/'out',lambda:None,100,8);self.addCleanup(p.close_guards)
+        stream=p.stream('queries.ndjson',('v',));self.addCleanup(stream.close)
+        stream.write({'v':1});self.assertEqual(stream.bytes,8)
+        with self.assertRaises(ValueError):stream.write({'v':2})
+        with self.assertRaises(ValueError):p.write_manifest({'v':1})
+        stream.close();self.assertEqual(os.fstat(p.guards['queries.ndjson']).st_ino,p.private_paths['queries.ndjson'].stat().st_ino)
+        self.assertEqual(os.fstat(p.directory_fd).st_ino,p.output.stat().st_ino)
+        self.assertEqual(p.close_guards(),[]);self.assertIsNone(p.directory_fd);self.assertEqual(p.guards,{})
+    def test_four_public_private_links_aggregate_and_retained_failed_output(self):
+        p=s.Publication(self.root/'out',lambda:None);self.addCleanup(p.close_guards)
         for name in ('queries.ndjson','rows.ndjson','pieces.ndjson'):
             stream=p.stream(name,('v',));stream.write({'v':1});stream.close();p.publish_private(name)
         p.write_manifest({'accepted':False});p.validate_private()
-        self.assertEqual(len(list(p.output.iterdir())),5)
+        self.assertEqual(len(list(p.output.iterdir())),8)
         for name in ('queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'):
-            self.assertEqual(os.stat(p.output/name).st_ino,os.stat(p.private/name).st_ino)
+            self.assertEqual(os.stat(p.output/name).st_ino,os.stat(p.private_paths[name]).st_ino)
         replaced=p.output/'rows.ndjson';replaced.unlink();replaced.write_bytes(b'replacement')
         self.assertEqual(p.reject(),[]);self.assertEqual(replaced.read_bytes(),b'replacement')
-        self.assertTrue((p.private/'queries.ndjson').exists());self.assertFalse((p.output/'cover-manifest.json').exists())
+        self.assertTrue(p.private_paths['queries.ndjson'].exists());self.assertTrue((p.output/'cover-manifest.json').exists())
     def test_quota_counts_private_bytes_and_unknown_sidecars(self):
-        p=s.Publication(self.root/'out',lambda:None);stream=p.stream('queries.ndjson',('v',));self.addCleanup(stream.close)
+        p=s.Publication(self.root/'out',lambda:None);self.addCleanup(p.close_guards);stream=p.stream('queries.ndjson',('v',));self.addCleanup(stream.close)
         p.aggregate[0]=s.MAX_BYTES-1
         with self.assertRaises(ValueError):stream.write({'v':1})
         with self.assertRaises(ValueError):p.write_manifest({'accepted':False})
         self.assertEqual(stream.path.stat().st_size,0)
     def test_success_layout_rejects_extra_private_or_public_files(self):
-        p=s.Publication(self.root/'out',lambda:None)
+        p=s.Publication(self.root/'out',lambda:None);self.addCleanup(p.close_guards)
         for name in ('queries.ndjson','rows.ndjson','pieces.ndjson'):
             stream=p.stream(name,('v',));stream.write({'v':1});stream.close();p.publish_private(name)
         p.write_manifest({'accepted':False});p.validate_private()
@@ -367,21 +380,21 @@ class PublicationTests(unittest.TestCase):
         fail=[False]
         def live():
             if fail[0]:raise ValueError('deadline')
-        p=s.Publication(self.root/'out',live);stream=p.stream('rows.ndjson',('v',));stream.write({'v':1});stream.close()
+        p=s.Publication(self.root/'out',live);self.addCleanup(p.close_guards);stream=p.stream('rows.ndjson',('v',));stream.write({'v':1});stream.close()
         fail[0]=True
         with self.assertRaises(ValueError):p.publish_private('rows.ndjson')
         self.assertFalse((p.output/'rows.ndjson').exists())
     def test_private_same_bytes_replacement_with_foreign_hardlink_rejects(self):
-        p=s.Publication(self.root/'out',lambda:None);bindings=[]
+        p=s.Publication(self.root/'out',lambda:None);self.addCleanup(p.close_guards);bindings=[]
         for name in ('queries.ndjson','rows.ndjson','pieces.ndjson'):
             stream=p.stream(name,('v',));stream.write({'v':1});stream.close();bindings.append(p.publish_private(name))
         bindings.append(p.write_manifest({'accepted':False}));p.verify_outputs(bindings)
-        hidden=p.private/'queries.ndjson';payload=hidden.read_bytes();hidden.unlink();hidden.write_bytes(payload)
+        hidden=p.private_paths['queries.ndjson'];payload=hidden.read_bytes();hidden.unlink();hidden.write_bytes(payload)
         foreign=self.root/'foreign-hardlink';os.link(hidden,foreign)
         self.assertNotEqual(hidden.stat().st_ino,(p.output/'queries.ndjson').stat().st_ino)
         self.assertEqual(hidden.stat().st_nlink,2)
-        with self.assertRaisesRegex(ValueError,'private/public owned'):p.verify_outputs(bindings)
-        p.reject();self.assertTrue(hidden.exists());self.assertTrue(foreign.exists());self.assertFalse((p.output/'queries.ndjson').exists())
+        with self.assertRaisesRegex(ValueError,'private/public original'):p.verify_outputs(bindings)
+        p.reject();self.assertTrue(hidden.exists());self.assertTrue(foreign.exists());self.assertTrue((p.output/'queries.ndjson').exists())
     def test_ndjson_exact_eof_and_null_tail(self):
         for raw,count in ((b'{"a":1}',1),(b'{"a":1}\nnull\n',2),(b'{"a":1}\n\n',2),(b'{"a":1}\n{}\n',1)):
             with self.subTest(raw=raw),self.assertRaises(ValueError):w.records(core,raw,count)
@@ -426,8 +439,9 @@ class HistoricalChainTests(unittest.TestCase):
                 gates=[dict(retired=True,acknowledged=True,measurement=dict(code=0,signal=None))])
             admission['stages'].append(dict(stage=stage,process=proc,admission=ad))
         class Pool:
-            def __init__(self):self.root=root
+            def __init__(self):self.root=root;self.routes={};self.used_routes=set()
             def capture(self,b):return File(b)
+            def historical(self,b):return b
             def read_binding(self,b,*,capture=False):return blobs[b['path']] if capture else b
         docs=dict(fullPlan=plan,fullManifest=manifest,fullComparison=comparison,fullAdmission=admission)
         pins={b['path']:b['sha256'] for b in sources[:35]}
@@ -477,6 +491,8 @@ class MainPathTests(unittest.TestCase):
                 def binding(self):return self.b
             class Pool:
                 def __init__(self,*args):self.root=ROOT;self.n=0
+                def admit_operation(self,*args):pass
+                def historical(self,b):return self.capture(b).binding()
                 def capture(self,b,**kwargs):
                     path=s.binding(b,ROOT)['path']
                     raw=SOURCE.read_bytes() if path==str(SOURCE) else (json.dumps(fake_export).encode() if path==str(ROOT/s.ORIGINAL['export'][0]) else b'{}')
@@ -484,7 +500,7 @@ class MainPathTests(unittest.TestCase):
                 def recheck(self):
                     self.n+=1;events.append('recheck')
                     if mode=='late-source' and self.n==2:raise ValueError('late-source')
-                def identities(self):return [(source_binding,source_identity)]
+                def identities(self):return [(source_binding,source_identity),(bind(plan_path,plan_path.read_bytes()),w.BoundFile.identity(plan_path.stat()))]
             @contextmanager
             def bootstrap(*args):
                 try:yield b'transport'
@@ -547,7 +563,8 @@ class MainPathTests(unittest.TestCase):
                 if (mode=='second-stream' and len(opened_streams)==1) or (mode=='third-stream' and len(opened_streams)==2):raise OSError(mode)
                 item=real_stream(publication,name,keys);opened_streams.append(item);return item
             argv=['--plan',str(plan_path),'--plan-sha256',digest(plan_path.read_bytes()),'--producer-sha256',plan['producer']['sha256'],
-                '--out-dir',str(output),'--budget-seconds','1800','--git-binary',str(Path(sys.executable).resolve())]
+                '--out-dir',str(output),'--budget-seconds','1800','--git-binary',str(Path(sys.executable).resolve()),'--operation-plan',str(plan_path),'--operation-plan-sha256',digest(plan_path.read_bytes()),'--scientific-bytes-already','0','--maximum-stage-output-bytes',str(s.MAX_BYTES)]
+            output.mkdir()
             def projection(*args,**kwargs):
                 self.assertEqual(kwargs,dict(parent_index=parent_index));return [],dummy
             with ExitStack() as st:
@@ -563,24 +580,24 @@ class MainPathTests(unittest.TestCase):
                 if mode=='ok':s.main(argv)
                 else:
                     with self.assertRaises((ValueError,OSError)):s.main(argv)
-            public=(output/'cover-manifest.json').exists();private=list(output.glob('.parent-emission-private-*'))
+            public=(output/'cover-manifest.json').exists();private=list(output.glob('*.partial.*'))
             if mode=='ok':
                 packet=json.loads(stdout.getvalue());self.assertEqual(set(packet),set(s.COMPLETION_KEYS));self.assertFalse(packet['accepted']);self.assertEqual(len(packet['outputs']),4)
                 self.assertEqual(packet['parentIndex'],parent_index);self.assertEqual(packet['scope'],s.parent_scope(parent_index))
                 self.assertEqual([Path(b['path']).name for b in packet['outputs']],['queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'])
-                self.assertTrue(public);self.assertEqual(len(private),1)
+                self.assertTrue(public);self.assertEqual(len(private),4)
             else:
-                self.assertFalse(public);failure=json.loads(stderr.getvalue().splitlines()[-1]);self.assertFalse(failure['accepted']);self.assertTrue(private)
+                failure=json.loads(stderr.getvalue().splitlines()[-1]);self.assertFalse(failure['accepted']);self.assertTrue(private)
                 if mode!='post-stdout-deadline':self.assertEqual(stdout.getvalue(),'')
             if mode not in ('second-stream','third-stream'):self.assertIn('package-close',events)
             self.assertIn('watch-close',events);self.assertIn('bootstrap-close',events)
             self.assertTrue(all(stream.file is None for stream in opened_streams))
             if mode in ('runtime-before','second-stream','third-stream'):self.assertEqual(proposer_calls,[])
-            if mode=='late-runtime':self.assertEqual(proposer_calls,[1]);self.assertFalse((output/'queries.ndjson').exists())
+            if mode=='late-runtime':self.assertEqual(proposer_calls,[1])
             return events
     def test_positive_main_after_package_capture_and_watch_cleanup(self):self.exercise()
     def test_selected_parent_two_reaches_projection_and_completion(self):self.exercise(parent_index=2)
-    def test_late_source_runtime_package_watch_and_stdout_failures_retract(self):
+    def test_late_source_runtime_package_watch_and_stdout_failures_retain(self):
         for mode in ('late-source','late-runtime','module-close','bootstrap-close','watch-close','watch-deadline','stdout-failure','post-stdout-deadline'):
             with self.subTest(mode=mode):self.exercise(mode)
     def test_runtime_is_admitted_before_proposer_entry(self):self.exercise('runtime-before')

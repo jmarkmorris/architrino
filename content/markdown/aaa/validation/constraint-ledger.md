@@ -59,7 +59,7 @@ where $\mathcal{E}$ is the declared transient catalog, $\Delta t_{\mathrm{src}}$
 * **Shared Residual** – this is the photon-channel component of the same common-limit residual defined in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure); the $\chi_\gamma$ record cannot be repaired independently of the clock/ruler $c_{\text{eff}}$ record.
 * **Failure Condition** – a photon closure branch fails if it predicts an accumulated frequency-dependent delay in the validated band, hides that delay by changing the source-lag model event by event, or uses a different $c_\gamma$ / $\chi_\gamma$ record from the one used in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
-### The Absolute-Frame Drift Check (Lorentz Contraction Enforcement)
+### The Absolute-Frame Group-Velocity Check (Lorentz Contraction Enforcement)
 
 This entry frames the requirement that the underlying Noether sea affords a dynamical contraction mechanism to assemblies moving through the Euclidean void; without such a mechanism, assemblies would reveal their motion relative to the sea and the preferred frame would manifest.
 

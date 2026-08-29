@@ -1,0 +1,4 @@
+# Verified pilot rendering environment; FreeType 2.13.3 and exact fonts are recorded
+# in production/pilot-appearance.json. Other builds must pass appearance comparison.
+Pillow==11.2.1
+pypdf==5.9.0

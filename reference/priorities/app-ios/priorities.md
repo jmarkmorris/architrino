@@ -7,13 +7,15 @@
 - Value: `0.92`
 - Cost: `3.4`
 - ROI: `0.27`
-- Status: `release-prep`
+- Status: `deferred`
 
 ## Purpose
 
 This workstream owns the in-repo iOS/iPadOS app for reading and inspecting the Architrino textbook.
 
 The first priority is a calm, offline-capable textbook reader with a table of contents, internal links, search, reading position, bookmarks, and reliable math rendering.
+
+The app and packaging software are retained development capabilities. App Store release work is deferred until theory closure and an explicit operator decision to resume it. Textbook packaging is on demand, not a routine PR requirement; existing packages may remain as older development snapshots. Preliminary operator device testing is recorded in [work-log.md](work-log.md), not treated as complete release acceptance.
 
 ## Decisions
 
@@ -36,6 +38,8 @@ Decision 1 (locked): `Xcode` scaffold for v1 lives at `apps/ios/ArchitrinoReader
 15. The first public release target is Unlisted App Store distribution. The app still ships through App Store Connect and ordinary App Review, but the post-approval install path is a direct App Store link rather than App Store search, categories, recommendations, charts, or other listings.
 16. [Causal Delay Feedback App](../dormant-deferred/app-causal-delay-feedback/priorities.md) is a post-v1 visualization candidate. Its iPhone/iPad integration should adapt to landscape and portrait orientation while preserving the one-pair causal-delay scene state.
 17. iPadOS is a first-release quality target, not an opportunistic compatibility target. The first release must be usable on iPad with the same textbook content package, reader controls, search, bookmarks, and local-only persistence as iPhone.
+18. Retain the iOS reader, schema, exporter, and [on-demand packaging procedure](../../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging). Do not regenerate or freshness-gate the saved iOS package for routine corpus changes, PRs, or full web-content regeneration. Requested iOS package/build work still requires strict package validation.
+19. Defer App Store release until theory closure and an explicit operator release decision. Keep release requirements for that future checkpoint without treating them as active work now.
 
 ## Design Thesis
 
@@ -63,6 +67,8 @@ The app should consume generated artifacts rather than infer reading order from 
 The app package should be generated after the existing scene graph and textbook reading-copy checks pass, then copied into the app bundle for the first prototype. The iOS app should not become a new canonical source for textbook prose.
 
 ## Distribution Requirements
+
+The following requirements apply after the release deferral is lifted; they do not authorize current App Store preparation or submission.
 
 The v1 distribution plan is Unlisted App Store distribution through Apple's standard App Store pipeline. Per Apple's current [Unlisted App Distribution](https://developer.apple.com/support/unlisted-app-distribution/) guidance, the app must be on the App Store or ready for final distribution and submitted to App Review before requesting the unlisted direct link. Beta and prerelease builds remain TestFlight-only.
 

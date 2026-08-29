@@ -72,7 +72,7 @@ There are three vastly different energy levels in a nested shell braid.
 
 **Alignment plateau mapping (working target):**
 - Start from a nested shell braid at rest: inner (self-hit), middle ($v = c_f$), and outer ($v < c_f$) binaries are energy-separated with near-orthogonal orbital planes.
-- Increase translational velocity $\mathbf{v}_{\text{trans}}$. Causal path-history coupling shifts the phase relation between middle and outer binaries because arrival times, directions, and magnitudes of received potentials change.
+- Increase group velocity $\mathbf{v}_{\text{trans}}$. Causal path-history coupling shifts the phase relation between middle and outer binaries because arrival times, directions, and magnitudes of received potentials change.
 - As $v_{\text{trans}}$ climbs, the phase difference passes through resonance plateaus (integer frequency ratios). At each plateau, the nested shell braid's geometry and frequency ratio lock temporarily (translation-driven ratchet).
 - The final lock--alignment plateau--is reached when some component of $\mathbf{v}_{\text{total}}$ hits $c_f$. At that point middle and outer binaries both satisfy $v = c_f$, their radii shrink toward the same scale, and planes align. This defines the Planck-scale configuration.
 

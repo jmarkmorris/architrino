@@ -68,12 +68,12 @@ where $\Phi_Q$ is the source-population model, $S_{\mathrm{survey}}$ is the surv
 
 ### Candidate Noether Sea Core Factorization
 
-The more substrate-facing version should use the local Noether sea core cadence itself as the clock. Let $\Omega_N(\mathbf X,T)$ be the representative local Noether sea core cadence and $T_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$ its cycle period. Relative to a weak homogeneous reference core, define the candidate endpoint deformation factor
+The more substrate-facing version should use the local Noether sea core cadence itself as the clock. Let $\Omega_N(\mathbf X,T)$ be the representative local Noether sea core cadence and $P_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$ its cycle period. Relative to a weak homogeneous reference core, define the candidate endpoint deformation factor
 
 $$
 \Gamma_N(\mathbf X,T)
 \equiv
-\frac{T_N(\mathbf X,T)}{T_{N0}}
+\frac{P_N(\mathbf X,T)}{P_{N0}}
 =
 \frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}.
 $$
@@ -517,7 +517,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 - Static response vector fixture: `scripts/spacetime/static-response-vector-toy-model.mjs`, documented in `content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md`, replays candidate $(a_n,a_\chi,a_\lambda,a_R)$ response vectors against the cadence-stretch row, inverse clock-rate row, row-inverse condition, and shared-delay residual; its pressure bridge also checks $b\cdot\delta\mathbf{g}^{P}=\delta\ln\Gamma_N$, the inverse clock-rate pressure row, effective-speed identity, anisotropic pressure residuals, and optional $\gamma_{\text{eff}}$ sweeps.
 - Path-rate functional: $\alpha_{\mathrm{prop},X}=\mathbf p_X\cdot D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}+p_{\nu,X}\mathcal C_N[f_N]+p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}+p_{\sigma,X}\hat k_a\hat k_b\Sigma_{\mathrm{sea},X}^{ab}+\mathcal R_{\mathrm{coh},X}$, where $D_{\gamma}=c_{\gamma}^{-1}\partial_T+\hat{\mathbf k}\cdot\nabla$ and $\mathcal C_N[f_N]=(S_{\mathrm{BH}}+S_{\mathrm{GW}}-R_{\mathrm{eq}}[f_N]-\partial_\nu J_\nu)/(f_N+\epsilon_f)$; acceptance requires image-sharpness, line-coherence, chromaticity, and time-dilation residual bounds.
 - Minimal redshift-budget fixture: $Y_{X,j+1}=Y_{X,j}+\alpha_{\mathrm{prop},X,j}\Delta s_j$, with $\mathcal{P}_{E\to R,X}=\exp(Y_{X,N})$; documented in `content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md` with runtime fixture `scripts/cosmology/redshift-budget-toy-model.mjs`. The fixture now accepts `continuity_transport_by_line` packets that compute $\alpha_{\mathrm{prop},X,j}$ from $\mathbf p_X\cdot\mathbf d_{\theta,j}$, $(S_{\mathrm{BH}}+S_{\mathrm{GW}}-R_{\mathrm{eq}}-\partial_\nu J_\nu)/(f_N+\epsilon_f)$, $\nabla\cdot\mathbf u_{\mathrm{sea}}$, anisotropic projection, and coherence residue.
-- Endpoint/launch runtime extractor: `endpoint_records` computes $\Gamma_N$ from `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or weak-field `Phi_N_over_c0_squared`; `launch_record` computes $D_v$ from `beta_r`, `radial_velocity_km_s`, or endpoint velocity projection along $\hat{\mathbf{k}}$; `extraction_logs` records whether each factor came from record extraction or scalar fallback.
+- Endpoint/launch runtime extractor: `endpoint_records` computes $\Gamma_N$ from `Gamma_N`, `T_N_over_T_N0`, `Omega_N_over_Omega_N0`, or weak-field `Phi_N_over_c0_squared`; the literal period-ratio key `T_N_over_T_N0` means $P_N/P_{N0}$ in current notation and keeps its serialization spelling. `launch_record` computes $D_v$ from `beta_r`, `radial_velocity_km_s`, or endpoint velocity projection along $\hat{\mathbf{k}}$; `extraction_logs` records whether each factor came from record extraction or scalar fallback.
 - Dark-energy handoff target: $\partial_T\boldsymbol{\theta}_\gamma=\mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}+\partial_T\boldsymbol{\theta}_{\gamma,\mathrm{local}}$, where $\mathbf{q}_{\mathrm{DE}}$ carries $\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}$, $\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}$, $\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$, and $\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}$.
 - First-order dark-energy coefficient row: $\boldsymbol{\lambda}_X^T=(a_\chi^X\ a_n^X\ a_R^X)\mathbf{J}_{\mathrm{DE}}$, giving $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}=c_\gamma^{-1}\boldsymbol{\lambda}_X^T\mathbf{q}_{\mathrm{DE}}$ and, in the homogeneous continuity branch, a solved $H_{\mathrm{eff},X}^{\mathrm{DE}}$ transfer slope.
 - Runtime coefficient packet: `dark_energy_transport_by_line` in `scripts/cosmology/redshift-budget-toy-model.mjs`, which converts a declared $\boldsymbol{\lambda}_X$ row and `q_DE_per_s` or `q_DE_per_mpc` record into additive `dark_energy.*` path-rate terms.

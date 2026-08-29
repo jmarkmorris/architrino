@@ -2,6 +2,17 @@
 
 This is the canonical execution ledger for measure, detector-response, pair-provenance, and Bell closure work.
 
+## Operator-Selected Learning
+
+### QC-013 — Hilbert space and effective state-vector contract
+
+- **Status:** `In progress`; operator-selected learning and exploration accepted 2026-08-28. Home: [mapping-hilbert/](mapping-hilbert/README.md). The operator requested an academic synthesis maintained in [brainstorming.md](mapping-hilbert/brainstorming.md) as dialogue develops; the first explanatory and mapping draft is available for discussion. Introductory review and the drawn example remain open. This task is separate from the deferred physical-recovery ranking.
+- **Request:** Build an AP-STEM understanding of Hilbert space to help decipher the overall braid mapping. Start with ordinary vectors and coordinate changes, then develop inner products, bases, complex phase, functions as vectors, and the distinction between amplitudes and probabilities. Relate each step to an explicit braid question without assuming that the correspondence has been derived.
+- **First artifact:** A worked and drawn two-dimensional vector example distinguishing the object from its coordinates, followed by the distinction between braid configuration, retained history, and effective quantum state. Preserve the explanation and the operator's open questions in [learning notes](mapping-hilbert/brainstorming.md).
+- **Introductory completion boundary:** Review with the operator a worked basis-change example and a two-outcome amplitude example, distinguish the three state/space roles, and identify one concrete missing braid-to-state mapping with a falsifier. Folder creation or delivery of an explanation alone does not establish understanding or complete this task. Physical state-vector recovery remains open under the [Effective State-Vector Contract](../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract), QC-003, QC-004, and the [transfer-operator and basin-measure packet](transfer-operator-basin-measure.md).
+
+Plainly: learning can start without waiting for a proved braid or a completed probability law. The operator selected an introductory exploration, not activation of the deferred quantum derivation program; ranks and physical acceptance remain unchanged.
+
 ## Ranked Next Objects
 
 1. `detector_response_kernel_acceptance` — Status: `Deferred / blocked`.
@@ -15,19 +26,6 @@ This is the canonical execution ledger for measure, detector-response, pair-prov
 9. `noether_braid_metastability_decider_minimality` — Status: `Deferred / blocked`.
 10. `transfer_operator_stress_tests` — Status: `Deferred / blocked`.
 11. `xenon_isotope_spin_biology_watch` — Status: `Deferred / blocked`.
-12. `spinors_rotations_and_history_exploration` — [QC-012](#qc-012--spinors-rotations-and-history-exploration). Status: `Queued`.
-
-## Queued Conceptual Exploration
-
-The operator selected this bounded learning session alongside the main closure work. It can receive attention while the physical tasks above remain blocked; it does not change their scientific rank, acceptance conditions, or dependency order.
-
-### QC-012 — Spinors, rotations, and history exploration
-
-- **Status:** Queued
-- **Priority object:** `spinors_rotations_and_history_exploration`
-- **Request / acceptance:** Give the [spinor exploration](spinors-rotations-and-history/brainstorming.md) an introductory session, beginning with rotations and quaternions before relativistic spinors. Produce one worked one-turn/two-turn comparison and explain coordinate sign, phase convention, full-history distinction, and observable response.
-- **Evidence / blocker:** The learning outline and primary references are available. No accepted assembly or solver run is required for this mathematical comparison; a physical spin claim remains subject to QC-002 and the existing ordered-frame target.
-- **Completion:** The worked example and comparison table are independently checked against standard rotation mathematics, with one explicit counterexample to reading a coordinate sign as an observable by itself. Record the result and the next selected question without claiming spin, statistics, or magnetic-moment recovery.
 
 ## Deferred / blocked task records
 
@@ -47,7 +45,7 @@ Completion for QC-001 through QC-010 requires a source-bound mathematical object
 
 ## In progress
 
-No rows.
+QC-013 is tracked in [Operator-Selected Learning](#operator-selected-learning) above. No physical-recovery rows are in progress.
 
 ## Awaiting verification
 
@@ -56,3 +54,9 @@ No rows.
 ## Verified
 
 No rows.
+
+## Completed Exploration Reference
+
+### QC-012 — Spinors, rotations, and history exploration
+
+The introductory exploration is complete and removed from the ranked queue. Its result, independent checks, and remaining native obligation are preserved in the [work log](work-log.md#qc-012--spinors-rotations-and-history-exploration). This link target remains for existing references; it is not an executable task or physical spin acceptance.

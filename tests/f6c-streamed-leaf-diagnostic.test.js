@@ -1,5 +1,9 @@
 // Synthetic transport/lifecycle controls plus an explicit genuine stationary
 // adapter/driver bridge. No original histories or actual-data numerical work.
+// SOURCE-ONLY MIGRATION: whole-process fixtures are NOT RUN READY. A separately
+// reviewed bounded external ending/closure envelope is still required for the
+// negative cases whose original lock and whole guard intentionally remain held.
+// Keep every case: this fail-closed guard is neither test.skip nor a passing run.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawn,spawnSync} from 'node:child_process';
@@ -17,6 +21,65 @@ const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal
 const H=await load(C.PINS.helpers),D=await load(C.PINS.diagnostics);
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
+const WHOLE_PROCESS_FIXTURES_READY=false;
+const rejectedExit=r=>assert(r.code!==0||r.signal!==null,'actual nonzero/terminated exit, never successful completion');
+const replaceOnce=(source,needle,replacement,label)=>{
+ assert.equal(source.split(needle).length,2,label+' exact single source boundary');
+ return source.replace(needle,replacement);
+};
+const conditionalCompletion=done=>{
+ assert.equal(done.accepted,false);assert.equal(done.completed,false);
+ assert.equal(done.scope,'conditional-operational-completion');assert.equal(done.mode,'streamed-leaf');
+ assert.equal(done.ordinaryProcessesClosed,true);assert.equal(Object.hasOwn(done,'processesClosed'),false);
+ for(const key of ['workersAndMonitorsClosed','lockReleased','wholeGuardClosed','physicalClaims','wholeHistoryMetrics','rootsEvaluated','eomExecuted'])assert.equal(done[key],false,key);
+ assert.deepEqual(done.terminalClosure,{status:'pending-external-exit',requiredExitCode:0,lock:'held',wholeGuard:'armed'});
+ assert.equal(done.failure,null);
+};
+
+test('fresh closure authority is the separately accepted pure checker generation',()=>{
+ const prefix='.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/';
+ assert.deepEqual(C.FRESH_CLOSURE_PINS,{
+  instrument:[prefix+'independent_parent_batch_closure.py','3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223'],
+  controls:[prefix+'independent_parent_batch_closure_controls.py','f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979'],
+  contract:[prefix+'fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
+ });
+});
+
+test('fresh source selection checks pinned transport without executing an authority',()=>{
+ // Deliberately tiny in-memory transport records, not checker-accepted evidence.
+ const rows=new Map(),payloads=new Map(),base='/independent-fresh-transport';
+ const put=(name,value)=>{const data=Buffer.from(JSON.stringify(value)+'\n'),b={path:base+'/'+name,sha256:hash(data),bytes:data.length};rows.set(b.path,b);payloads.set(b.path,data);return b;};
+ const pins={...C.FRESH_EVIDENCE_PINS,...C.FRESH_CLOSURE_PINS};
+ for(const [relative,sha256]of Object.values(pins)){const b={path:path.join(base,relative),sha256,bytes:1};rows.set(b.path,b);}
+ const authority=rows.get(path.join(base,C.FRESH_CLOSURE_PINS.instrument[0]));
+ const controls=rows.get(path.join(base,C.FRESH_CLOSURE_PINS.controls[0]));
+ const owner=put('current-owner',{synthetic:true}),archive=put('consumed-owner',{synthetic:true});
+ const declaration=put('declaration',{synthetic:true}),operation=put('operation',{synthetic:true});
+ const invocation=put('invocation',{publicationAliases:[]}),finalCaller=put('final-caller',{synthetic:true});
+ const observation=put('observation',{synthetic:true});
+ const evidence=put('evidence',{controls,processObservation:observation,sourceIdentities:[],outputIdentities:[]});
+ const snapshot=put('snapshot',{instrument:authority,operation,invocation,closure:{evidence,finalCaller},parents:[]});
+ const inventory=put('inventory',{schema:'braid-program/accepted-parent-evidence-inventory.v2',
+  objects:[{memberName:'owners/'+owner.sha256,role:'acceptanceOwner',parentIndex:null,original:owner,physicalPath:archive.path,identity:{synthetic:true}}],
+  parents:[{parentIndex:3}],currentAcceptanceOwner:{binding:owner},family:{},numericalSettings:{declaration}});
+ const selection={inventory,closures:[{binding:snapshot,expected_instrument:authority}],expected_authority:[authority],package:null,sourceBindings:[...rows.values()]};
+ const spec={root:base,parentRefinements:[],acceptedParentEvidence:[selection],bindings:{readiness:owner},runtimeBindings:[]};
+ let reads=0;const read=(p,h)=>{reads++;const data=payloads.get(p);assert(data,'no executable or filesystem read');assert.equal(hash(data),h);return{data,bytes:data.length};};
+ const result=C.freshEvidenceInputs(spec,read);assert(reads>0);assert.equal(result.sources.length,rows.size);assert.deepEqual(result.archives,[{role:'acceptanceOwner',original:owner,archive}]);
+ assert.deepEqual(result.executingSources.sort(),['reader','parser','instrument'].map(k=>path.join(base,pins[k][0])).sort());
+ for(const role of ['instrument','controls','contract']){
+  for(const change of ['missing','hash','path']){
+   const bad=structuredClone(spec),p=path.join(base,pins[role][0]),list=bad.acceptedParentEvidence[0].sourceBindings,index=list.findIndex(b=>b.path===p);
+   if(change==='missing')list.splice(index,1);else if(change==='hash')list[index].sha256='f'.repeat(64);else list[index].path+='.renamed';
+   assert.throws(()=>C.freshEvidenceInputs(bad,()=>{throw Error('read before pin rejection');}),new RegExp('fixed fresh '+role));
+  }
+ }
+ for(const changed of [{...authority,sha256:'a'.repeat(64)},{...authority,path:base+'/unreviewed.py'}]){
+  const bad=structuredClone(spec);bad.acceptedParentEvidence[0].expected_authority=[changed];
+  assert.throws(()=>C.freshEvidenceInputs(bad,()=>{throw Error('read before authority rejection');}),/externally fixed fresh authority/);
+ }
+});
+
 let runtime;
 function runtimeBindings(){
  if(runtime)return runtime;
@@ -32,6 +95,10 @@ class SourceBinding:
  path:str
  sha256:str
  bytes:int
+@dataclasses.dataclass(frozen=True)
+class EvidencePackage:
+ package:SourceBinding
+ inventory:SourceBinding
 @dataclasses.dataclass(frozen=True)
 class ArchivedSource:
  role:str
@@ -64,7 +131,7 @@ def open_adapter(root,**kw):
  source=pathlib.Path(__file__)
  histories=tuple(types.SimpleNamespace(segments=(None,)*1760)for _ in range(8))
  a=types.SimpleNamespace(context={'synthetic':'not-original-data'},provenance=((str(source),hashlib.sha256(source.read_bytes()).hexdigest(),source.stat().st_size),),
- histories=histories,frames=tuple(range(81)),parents=tuple(range(160)),
+ histories=histories,frames=tuple(range(81)),parents=tuple(range(160)),fresh_provenance=(),
  historical_owner_archives=tuple(dict.fromkeys(r for d in kw['parent_refinements']for r in d.archived_sources)),
  call_counts=dict(projections=0,evaluations=0,residuals=0,root_queries=0,emission_refinements=0),
  geometry_accounting=dict(restriction_calls=0,completed_restrictions=0,history_state_evaluations=0,restricted_projections=0))
@@ -72,7 +139,19 @@ def open_adapter(root,**kw):
  for d in kw['parent_refinements']:
   extras.extend(getattr(d,k)for k in ('plan','manifest','comparison','operation','launcher_log','resource_log'))
   extras.extend(r.archive for r in d.archived_sources)
+ if kw['evidence_package']is not None:
+  package=kw['evidence_package'];inventory=__import__('json').loads(pathlib.Path(package.inventory.path).read_bytes())
+  replaced={str(root/e['physicalPath'])for p in inventory['parents']for e in (*p['entries'],p['archivedOwner'])}
+  extras=[b for b in extras if b.path not in replaced]+[package.package,package.inventory]
+  if MODE=='package-runtime':
+   import sys
+   m=types.ModuleType('_inert_package_member_not_code');m.__file__=next(iter(replaced));sys.modules[m.__name__]=m
  a.provenance=tuple(dict.fromkeys(a.provenance+tuple((b.path,b.sha256,b.bytes)for b in extras)))
+ if MODE=='source-count-overflow':
+  extra=[]
+  for index in range(400):
+   p=root/f'extra-source-{index}';p.write_bytes(b'x');extra.append((str(p),hashlib.sha256(b'x').hexdigest(),1))
+  a.provenance+=tuple(extra)
  if MODE=='archive-runtime':
   import sys
   m=types.ModuleType('_archive_is_not_executing_source');m.__file__=kw['parent_refinements'][0].archived_sources[0].archive.path;sys.modules[m.__name__]=m
@@ -155,39 +234,51 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  mkdirSync(path.dirname(output),{recursive:true});mkdirSync(path.dirname(path.join(dir,C.LOCK)),{recursive:true});
  const entry=path.join(dir,C.SELF),controls=path.join(dir,C.CONTROL);mkdirSync(path.dirname(entry),{recursive:true});mkdirSync(path.dirname(controls),{recursive:true});writeFileSync(controls,'synthetic controls\n');
  const events=path.join(dir,'events'),pidfile=path.join(dir,'target.pid'),pins={};
+ const wholeEntry=path.join(dir,C.PINS.operationCoordinator[0]);let wholeSource;
  for(const[key,[rel,digest]]of Object.entries(C.PINS)){
   const filename=path.join(dir,rel);mkdirSync(path.dirname(filename),{recursive:true});
   let raw;
   if(key==='adapter')raw='MODE='+JSON.stringify(mode)+'\n'+adapterFake;
   else if(key==='diagnostic')raw='MODE='+JSON.stringify(mode)+'\nEVENTS='+JSON.stringify(events)+'\nPID='+JSON.stringify(pidfile)+'\nEXTRA='+JSON.stringify(path.join(dir,'unbound.py'))+'\n'+driverFake;
-  else if(['helpers','outer','diagnostics','transport','codec','storage','stream'].includes(key)){raw=readFileSync(path.join(root,rel));assert.equal(hash(raw),digest);}
+  else if(['helpers','outer','diagnostics','transport','codec','storage','stream','operationCoordinator'].includes(key)){raw=readFileSync(path.join(root,rel));assert.equal(hash(raw),digest);}
   else raw='synthetic metadata only\n';
+  if(key==='operationCoordinator'){
+   // Only the copied coordinator's host-observation inputs are synthetic.
+   // Its canonical file instance, actual worker/process/clock/RSS/lock paths,
+   // and the real helper's 40/20%,64/16GiB threshold parser remain intact.
+   // An external real-host-admitted watcher is still required for execution.
+   wholeSource=raw.toString();
+   wholeSource=replaceOnce(wholeSource,"await lifetimeProbe(s,'/usr/bin/memory_pressure',[],2000,1048576,s.phase)",
+    `({text:'System-wide memory free percentage: '+(launch?${launchFree}:${runFree})+'%\\n'})`,'synthetic C memory input');
+   wholeSource=replaceOnce(wholeSource,'statfsSync(s.root,{bigint:true})',
+    `({bavail:launch?${launchDisk}n:${runDisk}n,bsize:1n})`,'synthetic C disk input');
+   assert(wholeSource.includes('s.H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)'),'unchanged real threshold admission');
+   if(mode==='final-cleanup')wholeSource=replaceOnce(wholeSource,
+    'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());',
+    "throw Error('synthetic final cleanup');",'ordinary cleanup boundary');
+   if(mode==='poststdout')wholeSource=replaceOnce(wholeSource,
+    "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();",
+    "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');throw Error('synthetic poststdout failure');",'poststdout boundary');
+   raw=wholeSource;
+  }
   writeFileSync(filename,raw);pins[key]=[rel,hash(raw)];
  }
  let source=readFileSync(path.join(root,C.SELF),'utf8').replace(/export const PINS=Object.freeze\([\s\S]*?\n\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
  // Formatting is intentionally robust to a one-line closing brace.
  if(source.includes(C.PINS.adapter[1]))source=source.replace(/export const PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
  assert(!source.includes(C.PINS.adapter[1]),'fixture source pins replaced');
- // Synthetic worker cases inject only observation inputs. The captured real
- // helper still parses them and enforces its unchanged 40/20%,64/16GiB policy.
- // These fixtures are not observations of the actual host or launch permission.
- const memoryQuery="await probe('/usr/bin/memory_pressure',[],2000,1024**2)",diskQuery='disk=statfsSync(root,{bigint:true})';
- assert.equal(source.split(memoryQuery).length,2);assert.equal(source.split(diskQuery).length,2);
- const guard='H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)';assert.equal(source.split(guard).length,2);
- source=source.replace(memoryQuery,`({text:'System-wide memory free percentage: '+(launch?${launchFree}:${runFree})+'%\\n'})`)
-  .replace(diskQuery,`disk={bavail:launch?${launchDisk}n:${runDisk}n,bsize:1n}`);
- assert.equal(source.split(guard).length,2,'unchanged production host admission call');
  if(mode==='postpublish')source=source.replace("after_close_recheck();publication.verify();publication.close();live()","after_close_recheck();publication.verify();publication.close();live()\n  bad=pathlib.Path(bindings['diagnostic']['path']);replacement=bad.with_suffix('.swap');replacement.write_bytes(bad.read_bytes());replacement.replace(bad)");
  if(mode==='module-cleanup')source=source.replace("finally:require(sys.modules.get(name)is m,'module identity');del sys.modules[name]","finally:\n   require(sys.modules.get(name)is m,'module identity');del sys.modules[name]\n   if b['path'].endswith('f6c_single_leaf_diagnostic.py'):\n    bad=pathlib.Path(b['path']);other=bad.with_suffix('.swap');other.write_bytes(bad.read_bytes());other.replace(bad)");
- if(mode==='final-cleanup')source=source.replace("if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}","if(closed)throw Error('synthetic final cleanup');");
- if(mode==='poststdout')source=source.replace('C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();',"throw Error('synthetic poststdout failure');");
  if(mode==='trailing')source=source.replace('framing=session.finish();sealed=publication.seal();','framing=session.finish();publication.private_path.open(\'ab\').write(b\'{}\\n\');sealed=publication.seal();');
  writeFileSync(entry,source);
  writeFileSync(path.join(dir,'unbound.py'),'# explicit unbound fixture module\n');
  const bindings={coordinator:bind(entry),controls:bind(controls),...Object.fromEntries(Object.entries(pins).map(([k,[p]])=>[k,bind(path.join(dir,p))]))};
  const runtimeList=runtimeBindings().map(x=>({...x}));
+ if(mode==='source-hardlink'){
+  const alias=path.join(dir,'adapter-hardlink');linkSync(bindings.adapter.path,alias);runtimeList.push(bind(alias));
+ }
  if(mode==='missing-runtime'||mode==='runtime-in-provenance')runtimeList.splice(runtimeList.findIndex(b=>b.path.endsWith('/_pylong.py')),1);
- const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v1',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],maxAdvances:maximum,limits:C.LIMITS};
+ const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v4',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],continuation:null,maxAdvances:maximum,limits:C.LIMITS};
  if(mode==='archives'||mode==='shared-archives'||mode==='archive-runtime'){
   const prior={};for(const k of['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'prior-'+k);writeFileSync(p,'prior '+k);prior[k]=bind(p);}
   const archive=path.join(dir,mode==='archive-runtime'?'scripts/eom/archived-owner.py':'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
@@ -202,29 +293,58 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  // check-ignore needs only a portable ignored synthetic checkout, never repo outputs.
  for(const args of [['init','-q',dir],['-C',dir,'config','core.hooksPath','/dev/null']])assert.equal(spawnSync('/usr/bin/git',args,{encoding:'utf8'}).status,0);
  writeFileSync(path.join(dir,'.gitignore'),'.local-data/\n');
- return{dir,output,entry,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
+ return{dir,output,entry,wholeEntry,wholeSource,wholeSha:bindings.operationCoordinator.sha256,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
+}
+function packageFixture(mode='package'){
+ // Tiny synthetic transport only; these bytes are not a valid evidence package
+ // and the fake adapter is not an independent package-content checker.
+ const f=fixture(mode),parents=[],descriptors=[],roles=['plan','manifest','comparison','operation','launcher_log','resource_log','queries','rows','pieces','producer_stdout','producer_stderr','comparison_stdout','comparison_stderr'];
+ for(const parentIndex of [1,2]){
+  const entries=roles.map(role=>{const physicalPath=`evidence/p${parentIndex}/${role}`,p=path.join(f.dir,physicalPath);mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,`synthetic ${parentIndex} ${role}\n`);const b=bind(p);return{role,physicalPath,logicalBinding:b,sha256:b.sha256,bytes:b.bytes};});
+  const physicalPath=`evidence/owner${parentIndex}`,p=path.join(f.dir,physicalPath);writeFileSync(p,`synthetic owner${parentIndex}\n`);const b=bind(p);
+  const archivedOwner={role:'acceptanceOwner',physicalPath,logicalBinding:{...b,path:f.spec.bindings.readiness.path},sha256:b.sha256,bytes:b.bytes};
+  parents.push({parentIndex,entries,archivedOwner});const prior=Object.fromEntries(entries.slice(0,6).map(e=>[e.role,e.logicalBinding]));
+  descriptors.push({parent_index:parentIndex,...prior,closure:{owner:f.spec.bindings.readiness,operation:prior.operation,original_caller_session:'1',final_completion_chunk:'test',exit_code:0,elapsed_seconds:'1',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'},archived_sources:[{role:'acceptanceOwner',original:archivedOwner.logicalBinding,archive:b}]});
+ }
+ const inventory={schema:'braid-program/f6c-lossless-packaging-expectations.v1',parents,observedEligibleBytes:parents.flatMap(p=>[...p.entries,p.archivedOwner]).reduce((n,e)=>n+e.bytes,0)};
+ const pins={},selection={};
+ for(const[k,[rel]]of Object.entries(C.PACKAGE_PINS)){
+  const p=path.join(f.dir,rel);mkdirSync(path.dirname(p),{recursive:true});writeFileSync(p,k==='inventory'?JSON.stringify(inventory)+'\n':'# synthetic package metadata\n');selection[k]=bind(p);pins[k]=[rel,selection[k].sha256];
+ }
+ const packagePath=path.join(f.dir,C.LANE,'synthetic-inert-package');writeFileSync(packagePath,'synthetic adapter transport only\n');selection.package=bind(packagePath);
+ f.source=f.source.replace(/export const PACKAGE_PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PACKAGE_PINS=Object.freeze('+JSON.stringify(pins)+');');
+ assert(!f.source.includes(C.PACKAGE_PINS.inventory[1]),'synthetic independent inventory pins');writeFileSync(f.entry,f.source);
+ f.spec.bindings.coordinator=bind(f.entry);f.selfSha=f.spec.bindings.coordinator.sha256;f.spec.parentRefinements=descriptors;f.spec.evidencePackage=selection;
+ writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;return f;
 }
 async function runFixture(f,{interrupt=false,epipe=false}={}){
- const child=spawn(process.execPath,[f.entry,'--spec',f.specPath,'--spec-sha256',f.specSha,'--self-sha256',f.selfSha],{cwd:f.dir,stdio:['ignore','pipe','pipe']});
+ assert.equal(WHOLE_PROCESS_FIXTURES_READY,true,'NOT RUN READY: independent bounded negative-ending and complete external closure envelope required');
+ const child=spawn(process.execPath,[f.wholeEntry,'--streamed','--spec',f.specPath,'--spec-sha256',f.specSha,'--caller-sha256',f.selfSha,'--self-sha256',f.wholeSha],{cwd:f.dir,stdio:['ignore','pipe','pipe']});
  let out='',err='';child.stdout.on('data',b=>{out+=b;assert(out.length<2*1024**2,'bounded completion');});
  if(!epipe)child.stderr.on('data',b=>{err+=b;if(err.length>4*1024**2)err=err.slice(-(1024**2));});
- const timer=setTimeout(()=>child.kill('SIGKILL'),20000);
+ // The removed old20s parent-only kill was not descendant/guard closure.
+ // Do not enable this fixture until the root-owned external ending is reviewed.
  const close=once(child,'close');
- try{
-  if(interrupt||epipe){
-   for(let n=0;n<1000&&!existsSync(f.pidfile)&&child.exitCode===null;n++)await pause(10);
-   assert(existsSync(f.pidfile),'owned target actually started: '+err.slice(-500));
-   if(epipe)child.stderr.destroy();else child.kill('SIGTERM');
-  }
-  const[code,signal]=await close;assert.equal(signal,null,'coordinator not timeout killed');
-  return{code,out,err,childPid:child.pid};
- }finally{clearTimeout(timer);}
+ if(interrupt||epipe){
+  for(let n=0;n<1000&&!existsSync(f.pidfile)&&child.exitCode===null;n++)await pause(10);
+  assert(existsSync(f.pidfile),'owned target actually started: '+err.slice(-500));
+  if(epipe)child.stderr.destroy();else child.kill('SIGTERM');
+ }
+ const[code,signal]=await close;
+ return{code,signal,out,err,childPid:child.pid};
 }
 function cleanup(f){rmSync(f.dir,{recursive:true,force:true});}
 function alterFixture(f,change){
  const before=readFileSync(f.entry,'utf8'),after=change(before);assert.notEqual(after,before,'specific bounded injection applied');
  writeFileSync(f.entry,after);f.spec.bindings.coordinator=bind(f.entry);writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');
- f.selfSha=f.spec.bindings.coordinator.sha256;f.specSha=bind(f.specPath).sha256;
+ f.source=after;f.selfSha=f.spec.bindings.coordinator.sha256;f.specSha=bind(f.specPath).sha256;
+}
+function alterWholeFixture(f,change){
+ const before=readFileSync(f.wholeEntry,'utf8'),after=change(before),old=f.wholeSha;
+ assert.notEqual(after,before,'specific shared-coordinator injection applied');
+ writeFileSync(f.wholeEntry,after);f.wholeSource=after;f.spec.bindings.operationCoordinator=bind(f.wholeEntry);
+ f.wholeSha=f.spec.bindings.operationCoordinator.sha256;
+ alterFixture(f,source=>replaceOnce(source,old,f.wholeSha,'exact copied C source pin'));
 }
 
 test('reviewed dependencies remain byte-exact',()=>{
@@ -298,6 +418,126 @@ test('closed spec caps and parent selection reject before target creation',()=>{
   }).finally(()=>cleanup(f));
  }catch(e){cleanup(f);throw e;}
 });
+test('complete input union includes combined runtime, metadata and invocation bounds',()=>{
+ const b=(i,bytes=1)=>({path:'/private/tmp/union-'+i,sha256:'a'.repeat(64),bytes});
+ const records=Array.from({length:512},(_,i)=>b(i));assert.equal(C.boundedSourceUnion(records).length,512);
+ assert.equal(C.boundedSourceUnion([...records,records[0]]).length,512);
+ assert.throws(()=>C.boundedSourceUnion([...records,b('invocation')]),/complete physical/);
+ assert.equal(C.boundedSourceUnion([b(0,1024**3)]).length,1);
+ assert.throws(()=>C.boundedSourceUnion([b(0,1024**3),b('runtime')]),/complete physical/);
+ assert.throws(()=>C.boundedSourceUnion([b(0),{...b(0),sha256:'b'.repeat(64)}]),/conflicting/);
+});
+test('publication retains original inode through callbacks and preserves foreign replacements',()=>{
+ for(const afterWrite of [false,true]){
+  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-identity-')));
+  try{
+   const file=path.join(dir,'receipt.json'),retained=path.join(dir,'retained-original'),value={accepted:false},raw=JSON.stringify(value)+'\n';let changed=false;
+   assert.throws(()=>C.writeNew(file,value,()=>{
+    if(!changed&&existsSync(file)&&(!afterWrite||statSync(file).size===Buffer.byteLength(raw))){changed=true;renameSync(file,retained);writeFileSync(file,raw);}
+   }),/original publication/);
+   assert(changed);assert.equal(readFileSync(file,'utf8'),raw);assert(existsSync(retained));
+  }finally{rmSync(dir,{recursive:true});}
+ }
+});
+test('publication identity option preserves default three-field transport and original five-field identity',()=>{
+ const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-return-')));
+ try{
+  const value={accepted:false},raw=JSON.stringify(value)+'\n';
+  for(const option of [undefined,false,true]){
+   const file=path.join(dir,String(option)+'.json'),b=C.writeNew(file,value,()=>{},option);
+   const expected={path:file,sha256:hash(raw),bytes:Buffer.byteLength(raw)};
+   if(option===true){
+    const s=statSync(file,{bigint:true});assert.deepEqual(b,{...expected,identity:[s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(':')});
+    assert.deepEqual(C.clean(b),expected);
+    const original=path.join(dir,'retained-original');renameSync(file,original);writeFileSync(file,raw);
+    assert.throws(()=>C.checkBindings([C.clean(b)],()=>{},{[file]:b.identity}),/identity/);
+    assert.equal(readFileSync(file,'utf8'),raw);assert.equal(readFileSync(original,'utf8'),raw);
+   }else assert.deepEqual(b,expected);
+  }
+ }finally{rmSync(dir,{recursive:true});}
+});
+test('publication identity option rejects non-Booleans before opening an output',()=>{
+ const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-option-')));
+ try{
+  for(const [index,option]of [null,0,1,'true',{},new Boolean(true)].entries()){
+   const file=path.join(dir,index+'.json');let callbacks=0;
+   assert.throws(()=>C.writeNew(file,{accepted:false},()=>{callbacks++;},option),/exact publication identity option/);
+   assert.equal(callbacks,0);assert(!existsSync(file));
+  }
+ }finally{rmSync(dir,{recursive:true});}
+});
+test('publication file-worker returns original identity without promoting the operation',()=>{
+ const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-ipc-')));
+ try{
+  const file=path.join(dir,'operation.json'),record={accepted:false,scope:'conditional-operational-completion'};
+  const result=C.fileOperation({kind:'publish',filename:file,record,sources:[],sourceIdentities:{},deadlineNanoseconds:String(process.hrtime.bigint()+1000000000n)});
+  assert.deepEqual(Object.keys(result).sort(),['bytes','identity','path','sha256']);
+  assert.equal(result.identity,C.readBound(file).identity);assert.equal(JSON.parse(readFileSync(file)).accepted,false);
+ }finally{rmSync(dir,{recursive:true});}
+});
+test('competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools',()=>{
+ const commands=['run-f5-ordinary-evolution.mjs','run-f6c-evidence-packaging.mjs','f6c-bounded-operation.mjs','eom_f5_enclosed_root_cli','eom_borg_shadow_cli','eom_recursive_block_benchmark_cli','attractor-ensemble-harness'];
+ for(const command of commands){
+  assert.throws(()=>C.noCompetitor([{pid:2,ppid:1,command}],10),/competing/);
+  C.noCompetitor([{pid:11,ppid:10,command}],10);
+ }
+});
+test('every late publication callback preserves original identity and foreign evidence',()=>{
+ for(const ordinal of [2,3,4,5,6]){
+  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-publication-callback-')));
+  try{
+   const file=path.join(dir,'receipt.json'),original=path.join(dir,'original'),raw='{"accepted":false}\n';let calls=0,replaced=false;
+   assert.throws(()=>C.writeNew(file,{accepted:false},()=>{
+    if(++calls===ordinal){renameSync(file,original);writeFileSync(file,raw);replaced=true;}
+   }),/original publication|changed source/);
+   assert(replaced,'specified callback reached');assert.equal(readFileSync(file,'utf8'),raw);assert(existsSync(original));
+  }finally{rmSync(dir,{recursive:true});}
+ }
+});
+test('package selection preserves logical descriptors and removes only admitted physical inputs',async()=>{
+ const f=packageFixture();try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const original=JSON.stringify(f.spec.parentRefinements),sources=M.validateSpec(f.spec,f.selfSha),routes=M.packageInputs(f.spec).routes;
+  assert.equal(routes.size,28);assert.equal(JSON.stringify(f.spec.parentRefinements),original);
+  for(const p of routes.keys())assert(!sources.some(b=>b.path===p),'loose payload not recaptured');
+  for(const b of Object.values(f.spec.evidencePackage))assert(sources.some(s=>s.path===b.path&&s.sha256===b.sha256));
+  assert(sources.some(b=>b.path===f.spec.bindings.readiness.path));
+  for(const mutate of[
+   s=>delete s.evidencePackage,s=>s.evidencePackage=[],s=>s.evidencePackage.extra=true,
+   s=>s.evidencePackage.package.bytes=C.FILE+1,s=>s.evidencePackage.package.path=s.bindings.adapter.path,
+   s=>s.evidencePackage.reader.sha256='a'.repeat(64),s=>s.evidencePackage.readerControls.sha256='a'.repeat(64),
+   s=>s.evidencePackage.inventory.sha256='a'.repeat(64),s=>s.evidencePackage.inventory.bytes++,
+   s=>s.parentRefinements[0].plan.sha256='a'.repeat(64),s=>s.parentRefinements[0].manifest.bytes++,
+   s=>s.parentRefinements[1].archived_sources[0].archive.sha256='a'.repeat(64)]){
+   const spec=structuredClone(f.spec);mutate(spec);assert.throws(()=>M.validateSpec(spec,f.selfSha));
+  }
+ }finally{cleanup(f);}
+});
+test('parent-two historical wrapper routes require the exact original plan and six literal tuples',async()=>{
+ const expected={
+  producer:['scripts/eom/prepare-f6c-parent-emission-refinement.py','ff488499f2737860034602ce9559c3ebc817aa8413b827007fb31027815679d2',58397],
+  producerControls:['tests/test_f6c_parent_emission_refinement_preparation.py','517cc307251611177ec19cc5d71938a4086806f48583bcf8e3f2d04e9afb8d9f',43836],
+  verifier:['scripts/eom/verify-f6c-parent-emission-refinement.py','53595cc12589ab56c73a1613922bba2739704cbc78465e3d646d5ae6a43813db',46615],
+  verifierControls:['tests/test_f6c_parent_emission_refinement_verification.py','889d8721d2b51520c0fef78f6a954f9b510cbb46fdf9019205199dfa3658b5a9',42419],
+  operationalEntry:['scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs','462247cf723339dbdc9ce9b4b897720cd4edcedc9b85c22b70694c41663f5c1b',56022],
+  operationalControls:['tests/f6c-parent-emission-refinement-pilot.test.js','dd88eae5729d8ecc5947a27966edb215074d12687f3b5cd0bfc3be69d0400bc1',33303]
+ };
+ assert.deepEqual(C.PARENT_TWO_ARCHIVE_SOURCES,expected);
+ const f=fixture();try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const b=(name,h='a'.repeat(64),bytes=1)=>({path:path.join(f.dir,'declared',name),sha256:h,bytes});
+  const d={parent_index:2};for(const role of ['plan','manifest','comparison','operation','launcher_log','resource_log'])d[role]=b(role);
+  d.plan={path:path.join(f.dir,'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-2-emission-refinement-launch.v2.json'),sha256:'928dbe46bd133ad7bfc26b21e34368afabedcbf09b310066393d3b58588f7b0e',bytes:51509};
+  d.closure={owner:f.spec.bindings.readiness,operation:d.operation,original_caller_session:'12345',final_completion_chunk:'abc123',exit_code:0,elapsed_seconds:'3.125',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'};
+  d.archived_sources=Object.entries(expected).map(([role,[p,h,n]])=>({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:b('parent2-'+role,h,n)}));
+  const spec={...structuredClone(f.spec),parentRefinements:[d]},before=JSON.stringify(spec);
+  const observed=M.validateSpec(spec,f.selfSha);assert.equal(JSON.stringify(spec),before);
+  for(const r of d.archived_sources){assert(observed.some(b=>b.path===r.archive.path));assert(!observed.some(b=>b.path===r.original.path));}
+  for(const mutate of [s=>s.parentRefinements[0].parent_index=1,s=>s.parentRefinements[0].parent_index=3,s=>s.parentRefinements[0].plan.path+='.other',s=>s.parentRefinements[0].plan.sha256='b'.repeat(64),s=>s.parentRefinements[0].plan.bytes++,s=>s.parentRefinements[0].archived_sources[0].original.sha256=C.ARCHIVE_SOURCES.producer[1],s=>s.parentRefinements[0].archived_sources[0].archive.path=s.bindings.adapter.path]){
+   const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha));
+  }
+ }finally{cleanup(f);}
+});
 test('generic descriptors preserve exact archives, derived inventory and invocation-bound readiness',async()=>{
  const f=fixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
@@ -356,6 +596,27 @@ test('generic descriptors preserve exact archives, derived inventory and invocat
 test('fresh metadata inventory includes existing lazy integer helper without science',()=>{
  const records=runtimeBindings();assert(records.some(b=>b.path.endsWith('/_pylong.py')));
  assert(records.some(b=>b.path===realpathSync(python)));assert(records.some(b=>b.path.endsWith('/pyvenv.cfg')));
+});
+test('two explicit nonexecuting ancestry documents retain exact historical tuples',async()=>{
+ const f=fixture('archives');try{
+  const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
+  const spec=structuredClone(f.spec),d=spec.parentRefinements[0];
+  for(const[role,[p,h,n]]of Object.entries(C.ANCESTRY_ARCHIVE_SOURCES)){
+   d.archived_sources.push({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:{path:path.join(f.dir,'document-'+role),sha256:h,bytes:n}});
+  }
+  const sources=M.validateSpec(spec,f.selfSha);
+  assert.equal(M.archiveRelations(spec).length,3);
+  for(const r of d.archived_sources.slice(1))assert(sources.some(b=>b.path===r.archive.path));
+  for(const mutate of[
+   s=>s.parentRefinements[0].archived_sources[1].role='mathematicalReference',
+   s=>s.parentRefinements[0].archived_sources[1].original.sha256='a'.repeat(64),
+   s=>s.parentRefinements[0].archived_sources[1].original.bytes++,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.bindings.adapter.path,
+   s=>s.parentRefinements[0].archived_sources[1].archive.path=s.parentRefinements[0].archived_sources[1].original.path,
+   s=>s.parentRefinements[0].archived_sources[2].archive.path=s.parentRefinements[0].archived_sources[1].archive.path,
+   s=>s.parentRefinements[0].archived_sources.push(s.parentRefinements[0].archived_sources[1]),
+  ]){const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha));}
+ }finally{cleanup(f);}
 });
 test('shared competitor guard excludes only own descendants',()=>{
  const own={pid:10,ppid:1,command:'node coordinator'},child={pid:11,ppid:10,command:'run-f6c-streamed-leaf-diagnostic.mjs'};
@@ -416,7 +677,7 @@ test('frozen observer limits and final observation gap remain unchanged',()=>{
 test('synthetic host inputs reach unchanged real threshold admission',async()=>{
  const f=fixture('normal',1,{launchFree:40,runFree:20,runDisk:16n*1024n**3n});try{
   const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-1500));
-  const completion=JSON.parse(r.out),operation=JSON.parse(readFileSync(completion.operation.path));
+  const completion=JSON.parse(r.out);conditionalCompletion(completion);const operation=JSON.parse(readFileSync(completion.operation.path));
   const hosts=operation.hostObservationsBeforePublication;assert(hosts.some(x=>x.atLaunch&&x.freePercent===40&&x.availableDiskBytes===String(64n*1024n**3n)));
   assert(hosts.some(x=>!x.atLaunch&&x.freePercent===20&&x.availableDiskBytes===String(16n*1024n**3n)));
   assert(existsSync(f.events));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
@@ -450,8 +711,9 @@ for(const mode of['normal','exhausted','archives','shared-archives']){
  test('actual captured Python + frozen stream/codec/publication: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-2000));const done=JSON.parse(r.out);
-   assert.equal(done.accepted,true);assert.equal(done.physicalClaims,false);assert.equal(done.processesClosed,true);assert.equal(done.lockReleased,true);
+   conditionalCompletion(done); // Only the observed exit0 and actual absent lock finish the conditional wire.
    const op=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json'))),completion=op.process.admission.completion;
+   assert.equal(op.schema,'braid-program/f6c-streamed-leaf-operation.v2');assert.equal(op.accepted,false);assert.equal(op.scope,'conditional-operational-completion');
    assert.deepEqual(completion.historicalOwnerArchives,C.archiveRelations(f.spec));
    assert.equal(completion.completedAdvances,mode==='exhausted'?1:2);assert.equal(completion.stopReason,mode==='exhausted'?'no-outstanding-request':'explicit-maximum');
    assert.equal(completion.callCounts.projections,4*completion.completedAdvances);
@@ -469,7 +731,7 @@ d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['so
 `;
     const result=spawnSync(python,['-I','-B','-c',decode,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],stream],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});
     assert.equal(result.status,0,result.stderr);const header=JSON.parse(result.stdout);
-    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements});
+    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements,evidencePackage:f.spec.evidencePackage,acceptedParentEvidence:f.spec.acceptedParentEvidence});
     assert.deepEqual(header.archives,C.archiveRelations(f.spec));assert.equal(header.archives.length,1);assert.equal(header.accepted,false);
    }
    assert.equal(C.inspectStreamLayout(f.output).bytes,statSync(stream).size);
@@ -477,13 +739,39 @@ d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['so
   }finally{cleanup(f);}
  });
 }
-for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','late-runtime','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
+for(const mode of ['package','package-runtime']){
+ test('synthetic package transport keeps source/runtime distinction: '+mode,async()=>{
+  const f=packageFixture(mode);try{
+   const result=await runFixture(f);
+   assert.equal(result.code,mode==='package'?0:1,result.err.slice(-2000));
+   if(mode==='package'){
+    conditionalCompletion(JSON.parse(result.out));
+    const operation=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json')));
+    const completion=operation.process.admission.completion;
+    const routes=JSON.parse(readFileSync(f.spec.evidencePackage.inventory.path)).parents.flatMap(p=>[...p.entries,p.archivedOwner]).map(e=>path.join(f.dir,e.physicalPath));
+    assert(completion.historicalSourceBindings.some(b=>b.path===f.spec.evidencePackage.package.path));
+    assert(!completion.historicalSourceBindings.some(b=>routes.includes(b.path)));
+    assert.deepEqual(completion.historicalOwnerArchives,C.archiveRelations(f.spec));
+   }else assert(readFileSync(path.join(f.output+'-outer','process/runner-stderr.log'),'utf8').includes('runtime outside declared inventory'));
+   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(result.childPid));
+  }finally{cleanup(f);}
+ });
+}
+for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','late-runtime','source-count-overflow','source-hardlink','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
  test('literal Python rejects and preserves only private evidence: '+mode,async()=>{
   const f=fixture(mode);try{
    const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
    if(mode==='missing-runtime'||mode==='runtime-in-provenance'||mode==='archive-runtime'||mode==='late-runtime'){
     assert(!existsSync(f.events),'missing runtime stopped before first provide');
     const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/runtime outside declared inventory/);
+   }
+   else if(mode==='source-count-overflow'){
+    assert(!existsSync(f.events));const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/complete physical source union bounds|physical source hardlink alias/);
+   }
+   else if(mode==='source-hardlink'){
+    assert(!existsSync(f.events),'combined C capture rejects the declared alias before a provider');
+    assert(!existsSync(path.join(f.output+'-outer','process')),'shared pre-provider union rejects before registered launch');
+    const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.match(rejection.failure,/physical source hardlink alias/);
    }
    else {assert(existsSync(f.events));assert(existsSync(f.output));}
    assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
@@ -493,17 +781,17 @@ for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','l
 for(const epipe of[false,true]){
  test('active stubborn synthetic target is reaped after '+(epipe?'diagnostic EPIPE':'cancellation'),async()=>{
   const f=fixture('stubborn');try{
-   const r=await runFixture(f,{interrupt:!epipe,epipe});assert.equal(r.code,1);assert.equal(r.out,'');
+   const r=await runFixture(f,{interrupt:!epipe,epipe});rejectedExit(r);assert.equal(r.out,'');
    const pid=Number(readFileSync(f.pidfile,'utf8'));assert(absent(pid),'owned target absent before fixture cleanup');
-   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(absent(r.childPid));
+   assert.equal(existsSync(path.join(f.dir,C.LOCK)),epipe,'failed diagnostic closure retains the exact lock');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(absent(r.childPid));
   }finally{cleanup(f);}
  });
 }
 test('poststdout failure is exit1, retracts public stream and invalidates operation',async()=>{
  const f=fixture('poststdout');try{
-  const r=await runFixture(f);assert.equal(r.code,1);assert.equal(JSON.parse(r.out).completed,true);
+  const r=await runFixture(f);assert.equal(r.code,1);conditionalCompletion(JSON.parse(r.out));
   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
-  const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));
+  const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));
   assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
  }finally{cleanup(f);}
@@ -511,19 +799,20 @@ test('poststdout failure is exit1, retracts public stream and invalidates operat
 for(const stage of ['cleanup','prestdout','poststdout'])for(const validName of [false,true]){
  test('original private directory rename rejects at '+stage+' with '+(validName?'valid':'invalid')+' new name',async()=>{
   const f=fixture();try{
-   const original=stage==='cleanup'?'rawOwner':'result.streamOwner';
-   const mutation=`renameSync(path.dirname(${original}.privatePath),path.join(path.dirname(${original}.publicPath),${JSON.stringify(validName?'.leaf-stream-private-renamed':'invalid-private-name')}));`;
-   alterFixture(f,s=>{
-    s=s.replace('import {closeSync,constants,','import {renameSync,closeSync,constants,');
-    const anchor=stage==='cleanup'?'if(closed){live();H.admitFinalObservation(rss,performance.now());checkFinalStreamLayout(output,rawLayout,live);}':stage==='prestdout'?'const finalLive=()=>':'C.checkBindings(result.finalSourceBindings,finalLive,result.finalSourceIdentities);C.checkFinalStreamLayout(path.dirname(result.streamOwner.publicPath),result.finalStreamLayout,finalLive);finalLive();';
-    assert(s.includes(anchor),'specific final boundary exists');return s.replace(anchor,mutation+anchor);
+   const mutation=`renameSync(path.dirname(s.streamOwner.privatePath),path.join(path.dirname(s.streamOwner.publicPath),${JSON.stringify(validName?'.leaf-stream-private-renamed':'invalid-private-name')}));`;
+   alterWholeFixture(f,s=>{
+    s=replaceOnce(s,'import {closeSync,constants,','import {renameSync,closeSync,constants,','synthetic rename import');
+    const anchor=stage==='cleanup'?'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());':stage==='prestdout'?'terminal();\n    const result=':"s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();";
+    return replaceOnce(s,anchor,stage==='poststdout'?anchor.replace('terminal();',mutation+'terminal();'):mutation+anchor,'specific shared final boundary');
    });
-   const r=await runFixture(f);assert.equal(r.code,1,r.err.slice(-1500));
-   if(stage==='poststdout')assert.equal(JSON.parse(r.out).completed,true);else assert.equal(r.out,'');
-   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
+   const r=await runFixture(f);rejectedExit(r);
+   if(stage==='poststdout')conditionalCompletion(JSON.parse(r.out));else assert.equal(r.out,'');
+   // The repaired original-layout rule forbids unlink after a directory rename.
+   // Both aliases and the unresolved lock are evidence, not cleanup authority.
+   assert(existsSync(path.join(f.output,'leaf-evidence.ndjson')));
    const kept=path.join(f.output,validName?'.leaf-stream-private-renamed':'invalid-private-name','leaf-evidence.ndjson');assert(statSync(kept).size>0);
-   const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
-   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
+   assert(!existsSync(path.join(f.output+'-outer','rejection.json')),'invalid layout cannot authorize another publication');
+   assert(existsSync(path.join(f.dir,C.LOCK)),'unresolved original layout retains lock');assert(absent(r.childPid));
    const operation=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json')));assert.equal(operation.process.processesClosed,true);
    for(const gate of operation.process.gates){assert(Number.isInteger(gate.target.pid));assert(absent(gate.target.pid));}
   }finally{cleanup(f);}
@@ -533,7 +822,8 @@ for(const mode of ['monitor','private-growth']){
  test('active '+mode+' rejection retains first failure after owned cancellation',async()=>{
   const f=fixture('stubborn');try{
    const expected=mode==='monitor'?'synthetic active monitor failure':'quota';
-   if(mode==='monitor')alterFixture(f,s=>s.replace('const table=async()=>{','const table=async()=>{if(existsSync('+JSON.stringify(f.pidfile)+"))throw Error('synthetic active monitor failure');"));
+   if(mode==='monitor')alterWholeFixture(f,s=>replaceOnce(s,'async function lifetimeTable(s,phase=s.phase,context=null){',
+    'async function lifetimeTable(s,phase=s.phase,context=null){if(phase===\'work\'&&existsSync('+JSON.stringify(f.pidfile)+"))throw Error('synthetic active monitor failure');",'active ordinary observer failure'));
    else{
     const p=f.spec.bindings.diagnostic.path,old=f.spec.bindings.diagnostic.sha256;
     const source=readFileSync(p,'utf8').replace("if MODE=='stubborn':","if MODE=='stubborn':\n   target=next(pathlib.Path("+JSON.stringify(f.output)+").glob('.leaf-stream-private-*/leaf-evidence.ndjson'))\n   with target.open('r+b')as file:file.truncate(67108865)");
@@ -550,14 +840,22 @@ for(const index of [0,1])for(const replacement of [false,true]){
  test('final bound log '+index+' '+(replacement?'identity replacement':'append')+' after stdout rejects',async()=>{
   const f=fixture();try{
    const mutation=replacement?"const raw=readBound(target,undefined,true).data,other=target+'.swap';{const fd=openSync(other,'wx');try{writeSync(fd,raw);fsyncSync(fd);}finally{closeSync(fd);}}renameSync(other,target);":"const fd=openSync(target,'a');try{writeSync(fd,Buffer.from(' '));fsyncSync(fd);}finally{closeSync(fd);}";
-   alterFixture(f,s=>s.replace('diagnostics.check();await diagnostics.close(began);','diagnostics.check();await diagnostics.close(began);{const target=result.logs['+index+'].path;'+mutation+'}').replace('import {closeSync,','import {renameSync,closeSync,'));
-   const r=await runFixture(f);assert.equal(r.code,1,r.err.slice(-1000));assert(r.out,r.err.slice(-2000));assert.equal(JSON.parse(r.out).completed,true);
-   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
-   const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','terminal-rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
-   const published=JSON.parse(r.out).logs[index];
+   alterWholeFixture(f,s=>{
+    s=replaceOnce(s,'import {closeSync,constants,','import {renameSync,closeSync,constants,','synthetic log rename import');
+    const anchor="s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();";
+    return replaceOnce(s,anchor,anchor.replace('terminal();','{const target='+(index===0?'s.logPath':'s.rssPath')+';'+mutation+'}terminal();'),'poststdout log mutation');
+   });
+   const r=await runFixture(f);rejectedExit(r);assert(r.out,r.err.slice(-2000));conditionalCompletion(JSON.parse(r.out));
+   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert.equal(existsSync(path.join(f.dir,C.LOCK)),replacement,'replaced output identity blocks census and exact lock release');assert(absent(r.childPid));
+   const expectedPath=path.join(f.output+'-outer',index===0?'launcher-stderr.log':'resource-observations.ndjson');
+   const published=JSON.parse(r.out).outputBindings.find(b=>b.path===expectedPath);assert(published,'exact previously bound operational log');
    if(replacement)assert.equal(bind(published.path).sha256,published.sha256,'replacement preserved exact bytes');
    else assert.notEqual(bind(published.path).sha256,published.sha256,'append changed bound bytes');
-   assert.match(rejection.failure,replacement?/identity/:/changed source/);
+   if(replacement)assert(!existsSync(path.join(f.output+'-outer','rejection.json')),'replaced output forbids new failure publication');
+   else{
+    const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.equal(rejection.accepted,false);assert(rejection.invalidates.sha256);
+    assert.match(rejection.failure,/source changed|changed source|hash mismatch/);
+   }
   }finally{cleanup(f);}
  });
 }

@@ -27,11 +27,13 @@ const SOURCE_PATHS = [
   "reference/research-office/cto/prompts/start-research.md",
   "reference/research-office/cto/prompts/convergence-campaign.md",
   "reference/research-office/cto/prompts/corpus-reviewer.md",
+  "reference/research-office/cto/prompts/selective-reference-pass.md",
   "reference/research-office/cto/prompts/integrator-reviewer.md",
   "reference/research-office/cto/prompts/review-comment-assessor.md",
   "reference/research-office/cto/prompts/review-closure-verifier.md",
   "reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md",
   "reference/research-office/cto/prompts/priority-lane-resume.md",
+  "content/markdown/aaa/archie/about-architrino.md",
   "content/markdown/aaa/archie/academic-style-guide.md",
   "content/markdown/aaa/archie/mathematics-style-guide.md",
   "content/markdown/aaa/archie/mathematics-terminology.md",
@@ -74,17 +76,19 @@ const WORKFLOWS = [
     name: "Source mining",
     use: "Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations.",
     read: [
+      "content/markdown/aaa/archie/about-architrino.md",
       "reference/research-office/cto/prompts/convergence-campaign.md",
       "reference/op/source-mining-best-practice.md",
       "source-family addendum",
     ],
-    live: "Use the guide for acquisition details, traceability, mining history, and source-family rules.",
+    live: "About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures.",
   },
   {
     name: "Corpus review",
     use: "Prepare a review-only pass across a directory in scene or textbook order, one file per turn.",
     read: [
       "reference/research-office/cto/prompts/corpus-reviewer.md",
+      "content/markdown/aaa/archie/about-architrino.md",
       "reference/op/theory-orientation.md",
       "style and terminology guides listed by the prompt",
     ],
@@ -157,6 +161,10 @@ const PROMPT_INDEX = [
   {
     path: "reference/research-office/cto/prompts/corpus-reviewer.md",
     use: "Review an operator-provided corpus directory, one file per turn.",
+  },
+  {
+    path: "reference/research-office/cto/prompts/selective-reference-pass.md",
+    use: "Find and verify qualifying reference opportunities for up to 48 elapsed hours; propose source notes without editing the corpus.",
   },
   {
     path: "reference/research-office/cto/prompts/integrator-reviewer.md",
@@ -275,6 +283,7 @@ function buildOrientationMarkdown() {
     "- Prefer hard mathematical artifacts over broad prose cleanup in theory-facing work.",
     "- Classify claims as ontology, derivation or closure target, effective summary, or speculation before promotion.",
     "- Use established project terminology; do not introduce a new term when a canonical term already exists.",
+    "- [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns reference selection and presentation; its [source-checking disclosures](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) govern verification and uncertainty. Other guidance applies, not replaces, that policy.",
     "- Do not link from `content/markdown/aaa` to `reference/priorities`; promote or restate priority material in corpus prose when it belongs there.",
     "- For ordinary edits, edit canonical sources first and run check-only validation when needed.",
     "- Use generator `--write` commands only for explicit regeneration, explicit fix-drift, or the final `codex-pr-branch.md` branch/PR process.",

@@ -245,7 +245,7 @@ Here $\mathcal{S}_{\mathrm{eff}}$ is allowed only when it is a projection of ass
 | $\lambda=R_{\perp}/R_{\perp,0}$ | Separate scale channel; must not be folded into $\xi$ or $\Gamma_N$ without a branch derivation. |
 | $R_{\text{core}}/R_{\text{core},0}$ | Representative Noether braid scale entering the $\Gamma_N$ extraction record. |
 | $\lambda_A=R_{\perp,A}/R_{\perp,A,0}$ | Assembly-specific material scale-compression row for dense matter and collapse windows; must remain source-bound to the same branch ledger as the metric projection. |
-| $\Omega_N(\mathbf{x},t)$ and $T_N=2\pi/\Omega_N$ | Local Noether sea braid cadence from which $\Gamma_N=\Omega_{N0}/\Omega_N$ is extracted. |
+| $\Omega_N(\mathbf{x},t)$ and $P_N=2\pi/\Omega_N$ | Local Noether sea braid cadence from which $\Gamma_N=\Omega_{N0}/\Omega_N$ is extracted. |
 | Branch label $q$ and retained root ledger | Carries the causal-root, clock/ruler, and branch-history data behind the effective metric row. |
 | Noether braid orientation, stress, and envelope deformation rows | Feed $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $S_{ij}$, anisotropic residuals, and preferred-frame leakage checks. |
 | Internal clock phase and event ledger | Required for $d\tau/dt$, $S_{\mathrm{clk}}$, source-branch factor $B_X(E)$, and receiver frequency readout. |

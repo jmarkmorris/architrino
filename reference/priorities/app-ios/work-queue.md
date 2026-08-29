@@ -2,45 +2,47 @@
 
 This is the canonical execution ledger for remaining iPhone and iPad release work. Implemented reader history remains in [priorities.md](priorities.md) and [work-log.md](work-log.md).
 
+App Store release work is deferred until theory closure and an explicit operator decision to resume it. The reader and exporter remain available for requested development or device testing; routine PRs do not require a fresh iOS textbook package.
+
 ## Rules
 
 1. Keep live release and post-v1 tasks here; completed prototype inventory is not a live task.
-2. Require current package validation and physical-device evidence where specified.
+2. Require current package validation and physical-device evidence for explicitly requested iOS package/build work and for release work after it resumes, not for unrelated PRs.
 3. Re-check current Apple policy before any external submission or pricing action.
 
 ## Ranked Next Objects
 
-1. `first_release_device_qa_and_archive` — [IOS-001](#ios-001--first-release-device-qa-and-archive). Status: `Queued`.
-2. `app_store_distribution_pricing_plan` — [IOS-002](#ios-002--app-store-distribution-and-pricing-plan). Status: `Queued`.
-3. `app_review_and_unlisted_distribution` — [IOS-003](#ios-003--app-review-and-unlisted-distribution). Status: `Queued`.
+1. `first_release_device_qa_and_archive` — [IOS-001](#ios-001--first-release-device-qa-and-archive). Status: `Deferred / blocked` until theory closure and an operator release decision.
+2. `app_store_distribution_pricing_plan` — [IOS-002](#ios-002--app-store-distribution-and-pricing-plan). Status: `Deferred / blocked` until theory closure and an operator release decision.
+3. `app_review_and_unlisted_distribution` — [IOS-003](#ios-003--app-review-and-unlisted-distribution). Status: `Deferred / blocked` until theory closure and an operator release decision.
 4. `molecule_visualization` — [IOS-004](#ios-004--molecule-visualization). Status: `Deferred / blocked`.
 5. `download_update_path` — [IOS-005](#ios-005--download-update-path). Status: `Deferred / blocked`.
 6. `sync_and_export` — [IOS-006](#ios-006--sync-and-export). Status: `Deferred / blocked`.
 
-## Queued
+## Deferred until theory closure
 
 ### IOS-001 — First-release device QA and archive
 
-- **Status:** Queued
+- **Status:** Deferred / blocked
 - **Priority object:** `first_release_device_qa_and_archive`
 - **Request / acceptance:** Refresh the canonical package, pass strict package validation, verify version/date on physical hardware, complete iPhone and iPad TestFlight smoke tests, capture release screenshots, and produce the signed archive.
-- **Evidence / blocker:** Requires physical iPhone and iPad access plus current package output.
+- **Evidence / blocker:** Await theory closure and an explicit operator release decision. The operator reports preliminary testing on personal devices, not completion of this release checklist; resumed release work requires physical iPhone and iPad access plus current package output.
 - **Completion:** Package checks pass, device evidence and screenshots are captured, and a signed App Store archive packet exists.
 
 ### IOS-002 — App Store distribution and pricing plan
 
-- **Status:** Queued
+- **Status:** Deferred / blocked
 - **Priority object:** `app_store_distribution_pricing_plan`
 - **Request / acceptance:** Reconfirm unlisted-distribution requirements and finalize price, agreements, tax, banking, commission-program posture, promotion policy, and promo-code use from current Apple sources.
-- **Evidence / blocker:** Must be refreshed immediately before submission because policy can change.
+- **Evidence / blocker:** Await theory closure and an explicit operator release decision; policy must be refreshed immediately before submission because it can change.
 - **Completion:** One recorded release plan is accepted and all required commercial-account prerequisites are satisfied.
 
 ### IOS-003 — App Review and unlisted distribution
 
-- **Status:** Queued
+- **Status:** Deferred / blocked
 - **Priority object:** `app_review_and_unlisted_distribution`
 - **Request / acceptance:** Upload the accepted archive, pass App Review, request unlisted distribution, and publish the approved direct install route.
-- **Evidence / blocker:** Depends on IOS-001 and IOS-002; this is an external publication action.
+- **Evidence / blocker:** Await theory closure and an explicit operator release decision, then IOS-001 and IOS-002; this is an external publication action.
 - **Completion:** Apple approves the release and the direct unlisted install link is verified.
 
 ## Deferred / blocked

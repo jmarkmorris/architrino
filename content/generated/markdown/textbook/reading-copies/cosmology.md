@@ -295,7 +295,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-9356cfffd5bfd52b)
 
-The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/T_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
+The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/P_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
 
 ### Observation-First Component Abstraction
 
@@ -1230,17 +1230,19 @@ The central distinction is that nothing happens to absolute time itself. What ch
 
 #### Noether Sea Braid Factorization Target
 
-A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether sea braid cadence itself. Let $\Omega_N(\mathbf X,T)$ denote a representative local Noether sea braid cadence and $T_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$ its cycle period. Relative to a weak homogeneous reference core, define
+A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether sea braid cadence itself. Let $\Omega_N(\mathbf X,T)$ denote a representative local Noether sea braid cadence and $P_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$ its cycle period. Relative to a weak homogeneous reference core, define
 
 $$
 \Gamma_N(\mathbf X,T)
 \equiv
-\frac{T_N(\mathbf X,T)}{T_{N0}}
+\frac{P_N(\mathbf X,T)}{P_{N0}}
 =
 \frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0566b52c894e5738)
+
+Here $P_{N0}$ is the reference Noether sea braid cycle period.
 
 The factor $\Gamma_N$ is not a new time variable. The convention is $\Gamma_N>1$ for a local cadence that is slower than the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether braid deformation factor; outside that limit it remains a Noether sea state diagnostic to be derived from Noether braid geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether braid limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether sea response combination.
 
@@ -6528,7 +6530,7 @@ Each symbol carries a specific medium-level meaning:
 
 - **$\bar{\rho}_m(t_{\mathrm{eff}})$**: the observer-level mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md)).
 
-**Mechanism for the growth term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local Noether sea delay factor $\chi_{\text{sea}}$, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: transmitter motion compresses or dilates the emitted wake sequence through $D_t$ and therefore changes the acceleration weight $c_f/|D_t|$. Receiver motion changes root playback and subsequent paths, but it does not multiply the acceleration delivered by a wake that has already arrived. Surrounding matter assemblies respond to the resulting medium-scale acceleration gradient and drift inward. This positive feedback loop is gravitational instability recast as medium-response dynamics.
+**Mechanism for the growth term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local Noether sea delay factor $\chi_{\text{sea}}$, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: transmitter motion compresses or dilates the emitted wake sequence through $D_t$ and therefore changes the acceleration weight $c_f/|D_t|$. Receiver motion changes root playback and subsequent paths, but it does not multiply the acceleration delivered by a wake that has already arrived. Surrounding matter assemblies respond to the resulting medium-scale acceleration gradient and move inward. This positive feedback loop is gravitational instability recast as medium-response dynamics.
 
 **Where the equation is valid.** This growth equation holds in the regime where:
 - perturbations are small ($|\delta| \ll 1$),

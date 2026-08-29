@@ -45,6 +45,8 @@ Public client code must not include private model API keys, service credentials,
 
 ## Platform Source Policy
 
+The source classes below govern service access, visibility, and claim authority, not a separate bibliography policy. Reference selection, presentation, and source checking defer to [About Architrino](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and its [research and review disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). A permitted source class does not make every source in that class a desirable citation, and a qualifying reference does not enable a disabled retrieval capability.
+
 | Class | Long-term service policy | Notes |
 | --- | --- | --- |
 | `published_corpus` | Allow as the primary answer and route source. | Use authored markdown as the strongest local authority. |

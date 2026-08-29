@@ -12,7 +12,7 @@
 - Scope: one common A2 seed, five position coordinates, five rate coordinates, exact whole centering, inverse maps, tangent metrics, collision and normalized-speed guards
 - Exclusions: no Master Equation evaluation, causal-root certificate, binding, return, retention, stability, current, spin, electromagnetic recovery, particle identity, or EOM solver result
 
-**Decision: the five-coordinate initialization prerequisite closes, with one exact non-equivalence recorded in the ledger.** Both candidates now have injective affine maps from the same five length coordinates and five speed coordinates, the same declared center and center velocity, the same six-member root-mean-square displacement and speed metric, and an exactly identical three-coordinate A2 locus. Their remaining two directions cannot be memberwise identical: Candidate A must preserve polarity-antisymmetric pair conjugacy, whereas SD3's two additional centered directions are polarity-symmetric pair-midpoint motion. The selected Candidate-A complement is a seed-derived, zero-sum cyclic scale doublet with the same norm and coordinate units.
+**Decision: the five-coordinate initialization prerequisite closes, with one exact non-equivalence recorded in the ledger.** Both candidates now have injective affine maps from the same five length coordinates and five speed coordinates, the same declared center and group velocity, the same six-member root-mean-square displacement and speed metric, and an exactly identical three-coordinate A2 locus. Their remaining two directions cannot be memberwise identical: Candidate A must preserve polarity-antisymmetric pair conjugacy, whereas SD3's two additional centered directions are polarity-symmetric pair-midpoint motion. The selected Candidate-A complement is a seed-derived, zero-sum cyclic scale doublet with the same norm and coordinate units.
 
 Plainly: the earlier six-to-six comparison failed because one SD3 parameter moved the whole assembly. The repaired comparison uses five real shape directions on each side. Three directions are literally the same motion. The other two are normalized competitor modes: Candidate A changes conjugate-pair scales, while SD3 moves pair midpoints without moving the whole center.
 
@@ -254,7 +254,7 @@ $$
 
 The same equations hold for $\dot\gamma$ and the center-relative velocity sum.
 
-Plainly: SD3 spends its last two controls moving both polarities of one labeled pair in the same sideways direction. The other two pair midpoints follow by cyclic rotation. Their three shifts balance exactly, so the assembly center and center velocity stay fixed without concealing another coordinate in a centroid correction.
+Plainly: SD3 spends its last two controls moving both polarities of one labeled pair in the same sideways direction. The other two pair midpoints follow by cyclic rotation. Their three shifts balance exactly, so the assembly center and group velocity stay fixed without concealing another coordinate in a centroid correction.
 
 ## Exact Common Locus And Non-Match Theorem
 
@@ -404,7 +404,7 @@ $$
 \|\dot{\boldsymbol\xi}\|^2.
 $$
 
-The common center velocity is excluded from both internal speed budgets. Every actual member speed must still be checked separately against normalized $c_f=1$ because equal root-mean-square speed does not imply equal maximum member speed.
+The common group velocity is excluded from both internal speed budgets. Every actual member speed must still be checked separately against normalized $c_f=1$ because equal root-mean-square speed does not imply equal maximum member speed.
 
 Plainly: the same five-number perturbation has the same total size and the same total internal speed on both sides. A difference in the largest individual member speed remains real and is recorded rather than normalized away.
 
@@ -414,7 +414,7 @@ Plainly: the same five-number perturbation has the same total size and the same 
 | --- | --- | --- | --- |
 | member inventory and labels | three $+/-$ pairs | three $+/-$ module labels | identical |
 | base positions and velocities | common A2 seed | same common A2 seed | identical at $\xi_c=\xi_s=\dot\xi_c=\dot\xi_s=0$ |
-| center and center velocity | declared $\mathbf C,\dot{\mathbf C}$ | same declared $\mathbf C,\dot{\mathbf C}$ | identical and exact |
+| center and group velocity | declared $\mathbf C,\dot{\mathbf C}$ | same declared $\mathbf C,\dot{\mathbf C}$ | identical and exact |
 | first three coordinates | common axial, radial, tangential length | same | memberwise identical |
 | final two coordinates | zero-sum cyclic pair-scale doublet | transverse pair-midpoint doublet | same units and metric; different polarity parity |
 | coordinate count | five | five | matched |

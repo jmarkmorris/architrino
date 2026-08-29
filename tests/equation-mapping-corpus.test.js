@@ -43,7 +43,7 @@ test("generated equation registry covers every corpus display equation", () => {
   assert.equal(result.files, 199);
   assert.equal(result.equations, 4598);
   assert.equal(result.promoted, 23);
-  assert.equal(result.symbolDefinitions, 29623);
+  assert.equal(result.symbolDefinitions, 29624);
 });
 
 test("every equation registry record is addressable, sourced, and symbol-defined", () => {
@@ -161,6 +161,68 @@ test("the chapter's stable equation links resolve to its current unpunctuated so
   assert.ok(fermi.symbols.every((symbol) => symbol.definitionSource === "source-context"));
   assert.match(fermi.symbols.find((symbol) => symbol.tex === "g^2").definition, /electroweak coupling/u);
   assert.match(fermi.symbols.find((symbol) => symbol.tex === "M_W^2").definition, /boson mass/u);
+});
+
+test("period renaming preserves equation links, absolute-time arguments, and path ordering", () => {
+  const sourceFormula = (sourcePath, id) => {
+    const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
+    // These literal IDs predate the rename; the independent Markdown scan must
+    // still associate them with the same equations after their notation changes.
+    const displays = [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)];
+    const found = displays.find((entry) => entry[2] === id);
+    assert.ok(found, id);
+    return found[1].trim();
+  };
+  const clock = sourceFormula("content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md", "corpus-equation-ad47d7d0529c2a26");
+  assert.equal(clock, String.raw`P(v)=\gamma_\star(v)P_0`);
+  const acceleratedClock = sourceFormula("content/markdown/aaa/dynamics/master-equation.md", "corpus-equation-3a2d23af3d6800e0");
+  assert.ok(acceleratedClock.includes("P_q[v(T),a(T)]"));
+  assert.ok(acceleratedClock.includes("P_q[v(T),0]"));
+  const holonomy = sourceFormula("content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md", "corpus-equation-1bd2519b922c4819");
+  assert.ok(holonomy.includes(String.raw`\mathcal P\exp\!\int_0^{P_{\mathrm{cyc}}}`));
+  assert.ok(holonomy.includes(String.raw`(T')\,dT'`));
+  const katex = loadVendoredCommonJsBundle(path.join(repoRoot, "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"));
+  for (const tex of [clock, acceleratedClock, holonomy]) {
+    assert.doesNotThrow(() => katex.renderToString(tex, { throwOnError: true, strict: "error" }));
+  }
+  for (const [id, symbolTex] of [
+    ["corpus-equation-ad47d7d0529c2a26", "P"],
+    ["corpus-equation-3a2d23af3d6800e0", "P_q"],
+    ["corpus-equation-180eeb923714e4b2", String.raw`P_{\mathrm{rec}}`],
+  ]) {
+    const symbol = payload.records.find((record) => record.semanticId === id)?.symbols.find((entry) => entry.tex === symbolTex);
+    assert.ok(symbol, `${id}: ${symbolTex}`);
+    assert.equal(symbol.definitionSource, "source-context", id);
+    assert.match(symbol.definition, /cycle[ -]period/u, id);
+  }
+});
+
+test("weak-mixing suppression uses its defined exponential without changing equation identities", () => {
+  const sourcePath = "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md";
+  const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
+  const sourceDisplays = new Map(
+    [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)]
+      .map((match) => [match[2], match[1].trim()])
+  );
+  const expected = new Map([
+    ["corpus-equation-58898312379d9609", String.raw`s_{12}=e^{-\kappa_{12}},\qquad
+s_{23}=e^{-\kappa_{23}},\qquad
+s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=e^{-\sigma}\,s_{12}s_{23},
+\quad e^{-\sigma}\in(0,1]`],
+    ["corpus-equation-ccc19aa7c2baec0f", String.raw`\cos\delta=e^{-\sigma}=\frac{s_{13}}{s_{12}s_{23}}`],
+    ["corpus-equation-abbd720bd46fe80f", String.raw`\kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad e^{-\sigma}=0.401`],
+  ]);
+  assert.doesNotMatch(source, /\\xi(?![A-Za-z])/u);
+  for (const [id, formula] of expected) {
+    assert.equal(sourceDisplays.get(id), formula, id);
+    const record = payload.records.find((entry) => entry.semanticId === id);
+    assert.equal(record?.source.sourcePath, sourcePath, id);
+    assert.equal(record.formulaTeX, formula, id);
+    const factor = record.symbols.find((entry) => entry.tex === String.raw`e^{-\sigma}`);
+    assert.equal(factor?.definitionSource, "source-context", id);
+    assert.match(factor.definition, /Direct-Transport Suppression Factor.*bypassing the intermediate generation/u, id);
+    assert.doesNotMatch(factor.definition, /\\xi(?![A-Za-z])/u, id);
+  }
 });
 
 test("every Equation Mapping link shipped in the iOS package has a public app route", () => {

@@ -395,7 +395,7 @@ An assembly containing two separate six-worldline braid records does not become 
 
 A base, Family-A, or Family-B Noether braid consists of three neutral binaries. Family C consists of six neutral binaries in one twelve-worldline top-level record. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.
 
-The overarching translation characteristic is the speed of the complete assembly group. Let $\mathbf X_{\mathrm{grp}}(T)$ be the declared translation center of the prescribed assembly group. Its group velocity and group translation speed are
+The overarching translation characteristic is the speed of the complete assembly group. Let $\mathbf X_{\mathrm{grp}}(T)$ be the declared translation center of the prescribed assembly group. Its group velocity and group speed are
 
 $$
 \mathbf V_{\mathrm{grp}}(T)=\frac{d\mathbf X_{\mathrm{grp}}}{dT}
@@ -411,13 +411,13 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-95bdb78df2e065e3)
 
-For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group translation speed is distinct from the internal orbital speeds of the constituent architrinos.
+For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group speed is distinct from the internal orbital speeds of the constituent architrinos.
 
 The braid-level record contains this overarching characteristic and the coordinate collections obtained from its three binaries:
 
 | Coordinate collection | Definition |
 | --- | --- |
-| Group translation speed $s_{\mathrm{grp}}$ | Translation speed of the complete top-level braid or multi-braid assembly group. |
+| Group speed $s_{\mathrm{grp}}$ | Group speed of the complete top-level braid or multi-braid assembly group. |
 | Binary midpoint data | The ordered midpoint vectors $(\mathbf c_1,\mathbf c_2,\mathbf c_3)$. A member row may constrain their relation without redefining the individual midpoint coordinate. |
 | Axis data | The ordered binary-axis unit vectors $(\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3)$. The vectors are recorded directly without assigning an axis-structure class. |
 | Circulation data | The ordered circulation senses of the three binaries. |
@@ -552,7 +552,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7c26273e22e0a49b)
 
-The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
+The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
 
 `A1` is the zero-axial-offset Family-A member. All three binary midpoints coincide with the braid center, and each binary has
 
@@ -678,7 +678,7 @@ The first three tables carry the geometry. The fourth table supplies optional na
 
 #### Individual Braid Master Table
 
-| Member ID | Braid index | Component member | Group translation speed | Binary-midpoint relation | Axis relation | Distinguished direction | Common phase zero | Circulation data |
+| Member ID | Braid index | Component member | Group speed | Binary-midpoint relation | Axis relation | Distinguished direction | Common phase zero | Circulation data |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `A1` | 1 | A1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | Not yet specified |
 | `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | One common sense |
@@ -790,7 +790,7 @@ Family A is a geometry-and-motion definition. It does not establish that an A1, 
 
 Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
 
-At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and the translation speed is the braid's group translation speed rather than an internal architrino speed.
+At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and its group speed is distinct from the internal architrino speeds.
 
 Every Family-A Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider Family-A taxonomy.
 
@@ -953,14 +953,14 @@ Far-field cancellation is a separate hypothesis. Rapid positive- and negative-po
 
 ##### Integer Phase-Closure States
 
-An A1 record should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $T_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
+An A1 record should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $P_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
 
 $$
-\Theta_a(T_0;T_{\mathrm{ret}})
+\Theta_a(T_0;P_{\mathrm{ret}})
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}\omega_a(T')\,dT'
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}\omega_a(T')\,dT'
 +
-\Phi_a^{\text{root}}(T_0;T_{\mathrm{ret}})
+\Phi_a^{\text{root}}(T_0;P_{\mathrm{ret}})
 =
 2\pi k_a,
 \qquad
@@ -1553,7 +1553,7 @@ The two-ring view also organizes the neutral braid's channel bookkeeping. Each s
 
 A **moment** here is a polarity-weighted sum over the configuration: the plain total $\sum_\ell\sigma_\ell$ is the net polarity inventory, the first moment $\sum_\ell\sigma_\ell\mathbf X_\ell$ is the dipole, and higher moments record signed shape at finer order. Moments matter because they are what a distant receiver can reconstruct from the superposed delayed potential, ranked by distance: the $\ell$-th moment controls the contribution fading as $1/r^{\ell+1}$. For a polarity-neutral assembly the dipole is independent of the choice of origin, so the braid's dipole is a well-defined property of the branch rather than of a coordinate convention.
 
-Since $\mathbb I+\varrho+\varrho^2=3\hat{\mathbf n}\hat{\mathbf n}^{\!\top}$ for the cyclic coordinate permutation $\varrho$, the polarity-signed dipole of the channel is exactly axial at all times, even under drift:
+Since $\mathbb I+\varrho+\varrho^2=3\hat{\mathbf n}\hat{\mathbf n}^{\!\top}$ for the cyclic coordinate permutation $\varrho$, the polarity-signed dipole of the channel is exactly axial at all times, even under group velocity:
 
 $$
 \sum_{\ell}\sigma_\ell\,\mathbf X_\ell
@@ -3045,7 +3045,7 @@ The practical search should treat the branch energy row $E_a$, angular-momentum 
 
 ### Branch Group Velocity
 
-The internal plane data do not encode group velocity. The plane normals $\hat{\mathbf n}_a$ describe the assembly's internal angular-momentum frame. The group velocity is the drift of the retained branch envelope or response center through the local Noether sea:
+The internal plane data do not encode group velocity. The plane normals $\hat{\mathbf n}_a$ describe the assembly's internal angular-momentum frame. The group velocity describes the translation of the retained branch envelope or response center through the local Noether sea:
 $$
 \mathbf{V}_{\mathrm{grp}}
 =
@@ -3082,13 +3082,13 @@ A **candidate braid** is a proposed Noether braid branch or branch family whose 
 
 The retained record is not an arbitrary internal diary and it is not an arbitrary collection of architrinos. It is the finite branch chart for one Noether braid: the six-body polarity-neutral inventory of three positive-polarity and three negative-polarity architrinos, together with the path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, plane-orientation data, response-center data, group-velocity row, and Noether sea record that can still affect the next delayed update of that same six-body branch. A path-history segment belongs to the retained record only while it can still enter a self-hit, partner-hit, wake-tail, boundary, or branch-return row on the declared memory window.
 
-Let $P_{T_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $T_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, global spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
+Let $P_{P_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $P_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, global spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
 $$
 \mathcal R_{\mathrm{cert}}
 =
 d_{\mathfrak B}
 \left(
-P_{T_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
+P_{P_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
 g\cdot B_{3B}
 \right)
 \le
@@ -3194,7 +3194,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cafb587d98c45e8f)
 with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. This is an orthogonality-sensitive test: when the normals are not mutually orthogonal, the eigenvectors of $\mathsf{J}_{\mathfrak B}^{ij}$ need not coincide with $\{\hat{\mathbf n}_a\}$ even if the retained weights are nonzero. If two $J_a$ are equal within tolerance, the certificate must use an eigenvalue-gap condition or a subspace-match criterion rather than a unique eigenvector match. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
 
-The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz closure asks whether the family-declared envelope deforms with a longitudinal-to-transverse ratio
+The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the group-velocity direction relative to the Noether sea, and Lorentz closure asks whether the family-declared envelope deforms with a longitudinal-to-transverse ratio
 $$
 \xi
 =
@@ -3558,11 +3558,11 @@ $$
 
 Thus $C$ reverses $c_{\mathrm{pol}}$ at fixed $o_{\mathrm{PA}}$, while $P$ reverses $o_{\mathrm{PA}}$ at fixed $c_{\mathrm{pol}}$. With left/right defined by the sign of $\chi$, $C$ maps a left braid to a right polarity-conjugate braid on the same pro/anti orientation; $CP$ maps it to a left polarity-conjugate braid on the mirrored orientation. This is exact covariance of the declared kernel plus definition-level sign bookkeeping. It does not establish formation, branch retention, or $CP$ conservation in weak reaction channels.
 
-**Any axial polarity-orientation selection must be $C$-covariant.** If a dynamical mechanism selects a preferred drift orientation relative to the axial polarity dipole — one polarity-leading side — the kernel evenness forces the selection to lock to $\chi$ rather than to an absolute polarity: a braid and its $C$-image would lead with opposite polarities, and the two configurations would be exactly degenerate under the kernel covariance. Whether any such selection mechanism exists is an open question; none is asserted here.
+**Any axial polarity-orientation selection must be $C$-covariant.** If a dynamical mechanism selects a preferred group-velocity orientation relative to the axial polarity dipole — one polarity-leading side — the kernel evenness forces the selection to lock to $\chi$ rather than to an absolute polarity: a braid and its $C$-image would lead with opposite polarities, and the two configurations would be exactly degenerate under the kernel covariance. Whether any such selection mechanism exists is an open question; none is asserted here.
 
-**The crossing order is the observable face of $o_{\mathrm{PA}}$, not of $\chi$ alone.** An observer stationed on the incoming drift axis, watching the three binary paths cross a reference meridian as the braid rotates, records a fixed cyclic order — $1{:}2{:}3$ or $1{:}3{:}2$ — whose sign is $o_{\mathrm{PA}}$; the two orders are the $P$-image enantiomers. Polarity conjugation leaves that sequence unchanged while reversing $\chi$. For a prescribed common-frequency co-rotating chart this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the binaries lap and the order scramble.
+**The crossing order is the observable face of $o_{\mathrm{PA}}$, not of $\chi$ alone.** An observer stationed on the incoming group-velocity axis, watching the three binary paths cross a reference meridian as the braid rotates, records a fixed cyclic order — $1{:}2{:}3$ or $1{:}3{:}2$ — whose sign is $o_{\mathrm{PA}}$; the two orders are the $P$-image enantiomers. Polarity conjugation leaves that sequence unchanged while reversing $\chi$. For a prescribed common-frequency co-rotating chart this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the binaries lap and the order scramble.
 
-**Which channels could read the glove.** Effective channels that do not resolve the internal lock are candidates to inherit the declared kernel's parity covariance. A weak-flavored transaction channel that reorganizes the internal lock is a candidate route by which a maximal B1 lock could produce maximal parity selectivity, but no weak-transaction operator has yet been derived from a retained branch record. The primitive kernel remains $CP$-covariant; reproducing the measured nonzero $CP$ asymmetries therefore requires a separate $CP$-odd effective event or branch residual. Candidate sources include Noether sea polarity/chirality texture and interference between transaction paths at different drift-dependent internal angles, but these are hypotheses rather than established next-order terms. The combined $CPT$ benchmark is carried in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+**Which channels could read the glove.** Effective channels that do not resolve the internal lock are candidates to inherit the declared kernel's parity covariance. A weak-flavored transaction channel that reorganizes the internal lock is a candidate route by which a maximal B1 lock could produce maximal parity selectivity, but no weak-transaction operator has yet been derived from a retained branch record. The primitive kernel remains $CP$-covariant; reproducing the measured nonzero $CP$ asymmetries therefore requires a separate $CP$-odd effective event or branch residual. Candidate sources include Noether sea polarity/chirality texture and interference between transaction paths at different group-velocity-dependent internal angles, but these are hypotheses rather than established next-order terms. The combined $CPT$ benchmark is carried in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 The B1 construction therefore supplies a conditional discrete-symmetry scaffold, not yet a recovery of the observed pattern. A retained chiral branch and a derived weak-transaction operator must still produce the observed handedness selectivity, while a separate $CP$-odd event or branch residual must reproduce the measured kaon and B-system asymmetries. Neither recovery has been established. Claim level: derivation target for weak parity and $CP$ recovery; the primitive-kernel covariance is exact within its declared scope.
 
@@ -3618,7 +3618,7 @@ The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. T
 
 When a retained moving branch is exported to a clock, ruler, or photon-synchronization channel, the branch must declare the channel speed used by that export. The primitive branch chart solves causal roots with $c_f$. A dressed clock/ruler comparison uses $c_\star=c_{\text{eff}}(\mathbf X,T)$ after the Noether sea dressing map has been declared, while a photon synchronization comparison uses its declared photon-channel speed $c_\gamma(\mathbf X,T)$. The weak homogeneous measured limit may identify the declared channel speed with $c_0$ only after the clock, ruler, and photon rows collapse to one observer-accessible speed within the preferred-frame leakage budget.
 
-For a branch whose response center drifts through the local Noether sea with material drift $\mathbf w$, the transverse budget is
+For a branch whose response center moves through the local Noether sea with material group velocity $\mathbf w$, the transverse budget is
 $$
 c_\star^2
 =
@@ -3696,9 +3696,9 @@ The same pinned-speed hypothesis appears in the retained A1 scaling material of 
 
 ### Spiral-Helical Motion Picture
 
-A resting Noether braid is a phase-locked structure of coupled binary layers. When the braid moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
+A resting Noether braid is a phase-locked structure of coupled binary layers. When the braid moves with group velocity (center-of-mass convention) $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
 
-The spiral-helical picture is not decorative. A causal wake sent between partners, or between the layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
+The spiral-helical picture is not decorative. A causal wake sent between partners, or between the layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, group velocity is encoded as internal geometry.
 
 This is the common mechanical basis for three later downstream readouts:
 
@@ -3831,9 +3831,9 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cee7b95fd49948bc)
 
-with angular rate $\omega$ and axial drift $u$. On the channel the free data reduce to the representative worldlines of the equivariant reduction, and the natural branch coordinate is the screw pitch, equivalently the pair $(u,\omega)$ with the channel radius.
+with angular rate $\omega$ and constant axial group-velocity component $u$. On the channel the free data reduce to the representative worldlines of the equivariant reduction, and the natural branch coordinate is the screw pitch, equivalently the pair $(u,\omega)$ with the channel radius.
 
-A constant-lag reduction makes the ansatz tractable, and it is a derivation. On the rotating-wave ansatz, every directed-pair causal delay is constant in time: splitting any initial separation into axial and transverse parts relative to $\hat{\mathbf n}$, the rotation acts only on the transverse part and the drift only on the axial part, so the separation norm between reception time $T_r$ and transmitter emission time $T_r-\tau$ depends on $\tau$ alone. Each directed pair's root residual
+A constant-lag reduction makes the ansatz tractable, and it is a derivation. On the rotating-wave ansatz, every directed-pair causal delay is constant in time: splitting any initial separation into axial and transverse parts relative to $\hat{\mathbf n}$, the rotation acts only on the transverse part and the constant group velocity contributes only along the axial part, so the separation norm between reception time $T_r$ and transmitter emission time $T_r-\tau$ depends on $\tau$ alone. Each directed pair's root residual
 
 $$
 F_{ij}(\tau)
@@ -3847,7 +3847,7 @@ $$
 
 is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
-The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed drift and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
+The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
 
 A second interface target rides on the spectrum. Each row carries a definite screw pitch and helicity sign, and the interface hypothesis is that admissible rows at fixed root topology form a discrete pitch ladder whose transitions are root-topology transitions — the click picture below — so that action quantization is inherited from integer root counts rather than imposed.
 
@@ -3926,7 +3926,7 @@ Every published candidate analysis must identify one source record. At minimum t
 - the paths $\mathbf X_j(T)$, velocities $\mathbf V_j(T)$, polarities $q_j$, and persistent identities of all architrinos;
 - the family/member identifier and complete taxonomy-coordinate row;
 - the prescribed-geometry engine and chart version;
-- the retained history interval, analysis window, return duration $T_{\mathrm{ret}}$, and absolute-time origin $T_0$;
+- the retained history interval, analysis window, return duration $P_{\mathrm{ret}}$, and absolute-time origin $T_0$;
 - the field speed $c_f$, coupling convention, root policy, self-hit policy, and any mollifier or cutoff;
 - the spatial probe set, enclosing surfaces, temporal sampling rule, and numerical tolerances; and
 - the source hash, engine identity, parameter vector, sampling seed, and generated result hash.
@@ -4183,10 +4183,12 @@ Self-hit acceleration, when active, is recorded separately as $\mathbf A_i^{\mat
 Over the complete orbital or return cycle,
 
 $$
-T_0\le T<T_0+T_{\mathrm{ret}},
+T_0\le T<T_0+P_{\mathrm{ret}},
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-387e54177ff768a5)
+
+Here $P_{\mathrm{ret}}$ is the declared complete-history return period of the braid.
 
 the internal report must retain each pairwise contribution, the net vector, its components in the declared braid frame, root identities, $D_t$ margins, and root-playback derivatives. Cycle averages must not replace peak values or root-transition events.
 
@@ -4325,7 +4327,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 
 | Measure | Definition or required record | What it tests |
 | --- | --- | --- |
-| Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+T_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
+| Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+P_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
 | Minimum separation | $d_{\min}=\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Whether the prescribed chart contains a collision, an undeclared coincidence, or a near-singular pair geometry |
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
@@ -4334,7 +4336,7 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | External signed exposure | $\mathcal W$ on $S_R$ through the complete cycle | Net polarity-signed wake exposure |
 | External raw exposure | $\mathcal W_{\mathrm{abs}}$ on $S_R$ through the complete cycle | Wake strength before signed cancellation |
 | Complete-cycle signed normal wake flux | $F_{\mathrm{signed}}(R)$ from the outward-normal projection of the signed causal-wake contributions | The global signed crossing total, which vanishes for a polarity-neutral assembly and is therefore not a cancellation score |
-| Complete-cycle raw normal wake flux | $F_{\mathrm{raw}}(R)$ with transmitter and root identities retained before absolute aggregation | The emitted wake measure crossing $S_R$ before polarity cancellation; its source-normalized reference is $T_{\mathrm{ret}}\sum_j|q_j|$ |
+| Complete-cycle raw normal wake flux | $F_{\mathrm{raw}}(R)$ with transmitter and root identities retained before absolute aggregation | The emitted wake measure crossing $S_R$ before polarity cancellation; its source-normalized reference is $P_{\mathrm{ret}}\sum_j|q_j|$ |
 | Complete-cycle residual normal wake flux | $F_{\mathrm{res}}(R)$ from the absolute locally superposed signed normal flux | How much local signed wake survives cancellation over the complete cycle |
 | Complete-cycle normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}(R)=F_{\mathrm{res}}(R)/F_{\mathrm{raw}}(R)$ | Linear wake cancellation under the declared enclosing-surface convention, not energy or work |
 | Frequency-resolved normal wake-flux cancellation | $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ from transmitter-root-tagged complex coefficients | Which temporal harmonics and angular modes survive phase-sensitive signed superposition at each enclosing radius |
@@ -4346,13 +4348,13 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | Temporal variation | $\partial_T\mathcal W$ and $\partial_T\mathbf A_p$ on continuous root branches | Peak rate of change and phase localization of wake features |
 | Radial scaling | The same angular and exposure rows evaluated over a declared sequence of enclosing radii $R$ | Whether a claimed far-field regime and its power-law scaling have been reached |
 | Symmetry residual | Difference between a measure and its transform under each declared chart symmetry | Which prescribed symmetries survive in the causal-wake field |
-| Spectral ledger | Fourier coefficients over $T_{\mathrm{ret}}$ for selected internal and external rows | Harmonic content, sidebands, and phase locking |
+| Spectral ledger | Fourier coefficients over $P_{\mathrm{ret}}$ for selected internal and external rows | Harmonic content, sidebands, and phase locking |
 | Source-parameter sensitivity | Recomputed measures under declared changes of radius, frequency, phase, orientation, and translation | How dependent the analytical result is on the prescribed coordinates |
 | Numerical convergence | Change under tighter root and quadrature tolerances for the same $S$ and $P$ | Whether the analytical result has been evaluated accurately |
 
 Minimum separation is a validity diagnostic, not a claim that architrinos are hard objects. A zero separation may make the $1/r^2$ response singular or expose an undeclared coincidence in the chart. A small separation warns that a reported score may be dominated by a near-singular pair. It should normally be a gate or an annotation, not a reward to maximize.
 
-The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $T_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}T_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
+The term **return residual** is replaced here by **prescribed-period closure residual**. It checks only that the declared orbital path formulas return to the same position relative to the declared common translating center, and to the same velocity and phase, after $P_{\mathrm{ret}}$. The absolute displacement of a translating source is recorded separately as $\mathbf V_{\mathrm{grp}}P_{\mathrm{ret}}$ and is subtracted before computing the orbital position residual. Closure is often zero by construction and is an integrity check on the chart and selected period, not a stability measure. Root and wake ledgers may also be checked for periodicity, but their endpoint differences remain analytical consistency diagnostics.
 
 Spatial and temporal derivatives must be evaluated branch by branch. At a causal-root birth, death, or fold, the discontinuity or singular behavior is itself the reported event; a derivative must not be fabricated by differencing across it.
 
@@ -4361,8 +4363,8 @@ Two additional diagnostics are useful but must not be mislabeled as energy. Defi
 $$
 \mathcal L_{\mathrm{ext}}(R)
 =
-\frac{1}{T_{\mathrm{ret}}}
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\frac{1}{P_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \|\mathbf A_p(T,\mathbf X)\|^2
 \,dA\,dT
@@ -4403,7 +4405,7 @@ where $\widehat{\mathbf n}$ is the outward unit normal. The signed, raw, and res
 $$
 F_{\mathrm{signed}}(R)
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
 f_{j,T_t}(T,\mathbf X)
@@ -4415,7 +4417,7 @@ $$
 $$
 F_{\mathrm{raw}}(R)
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
 \left|f_{j,T_t}(T,\mathbf X)\right|
@@ -4429,7 +4431,7 @@ and
 $$
 F_{\mathrm{res}}(R)
 =
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 \int_{S_R}
 \left|
 \sum_j\sum_{T_t\in\mathcal C_j(T,\mathbf X)}
@@ -4465,17 +4467,17 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bdd8559a176dbb70)
 
-If the prescribed paths, retained history, and in-transit wake measure all return after $T_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
+If the prescribed paths, retained history, and in-transit wake measure all return after $P_{\mathrm{ret}}$, integration over the complete cycle removes this storage difference. For fixed convex enclosing surfaces,
 
 $$
 F_{\mathrm{raw}}(R)
 =
-T_{\mathrm{ret}}\sum_j|q_j|.
+P_{\mathrm{ret}}\sum_j|q_j|.
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-127c3043301fa2f7)
 
-This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $T_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
+This identity is both the source-normalized reference and an independent implementation check. The signed global integral similarly equals $P_{\mathrm{ret}}\sum_jq_j$ and therefore vanishes for a polarity-neutral braid. The residual $F_{\mathrm{res}}(R)$ and its ratio may still depend on radius because the signed contributions superpose differently after different causal travel delays. A far-field plateau is a measured radial result, not an assumed invariance.
 
 These quantities measure causal-wake crossings only. They are not energy, potential, realized work, braid depletion, intrinsic leakage, or stability. A packet must reject the accepted wake-flux measures when roots or history are incomplete, a transmitter leaves an enclosing surface, the raw cycle integral fails its source-normalized reference after refinement, or the primary and refined time-and-surface quadratures fail their declared tolerance.
 
@@ -4483,13 +4485,13 @@ These quantities measure causal-wake crossings only. They are not energy, potent
 
 The complete-cycle scalar $\eta_{\mathcal W,\mathrm{flux}}(R)$ combines every temporal frequency and angular pattern. It therefore cannot show whether one wake harmonic cancels strongly while another survives. The phase-sensitive reduction must occur before any absolute aggregation.
 
-Let $a$ identify a retained transmitter-root branch, let $Y_{\ell m}$ be the declared real orthonormal spherical-harmonic basis, and let $\Omega_0=2\pi/T_{\mathrm{ret}}$. Define
+Let $a$ identify a retained transmitter-root branch, let $Y_{\ell m}$ be the declared real orthonormal spherical-harmonic basis, and let $\Omega_0=2\pi/P_{\mathrm{ret}}$. Define
 
 $$
 \widetilde f_{a,\ell mn}(R)
 =
-\frac{1}{T_{\mathrm{ret}}}
-\int_{T_0}^{T_0+T_{\mathrm{ret}}}
+\frac{1}{P_{\mathrm{ret}}}
+\int_{T_0}^{T_0+P_{\mathrm{ret}}}
 e^{-in\Omega_0(T-T_0)}
 \int_{S_R}
 f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
@@ -4497,6 +4499,8 @@ f_a(T,\mathbf X)Y_{\ell m}(\widehat{\mathbf X})
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e1e595c1c6b986e6)
+
+Here $P_{\mathrm{ret}}$ is the declared complete-history return period of the braid.
 
 The coefficient retains temporal phase, angular mode, enclosing radius, transmitter identity, and root ordinal. Form the raw and net coefficient magnitudes only after every transmitter-root coefficient exists:
 
@@ -4553,7 +4557,7 @@ Only after these programs can calculate the common measure set should a broad pa
 
 ### Monte Carlo Configuration-Space Analysis
 
-Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group-translation speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
+Let $\boldsymbol\theta$ contain the complete taxonomy coordinates, group speed, phase origin, and any permitted prescribed-history coordinates. A sampling campaign must publish the domain $\Theta$, units, constraints, and sampling measure. There is no coordinate-free meaning to “random braid”; uniform sampling in radius, logarithmic radius, speed, or frequency represents different candidate populations.
 
 #### Degrees of Freedom by Braid Class
 
@@ -4816,7 +4820,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-79c627eaede20738)
 
-For group-translation speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
+For group speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
 
 $$
 \mathbf X_m(T)
@@ -5735,7 +5739,7 @@ The envelope form is member data: the union of the swept constituent paths, toge
 
 #### Near-Spherical-to-Oblate Form (A1)
 
-The A1 structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased translation speed or gravitational gradient compresses the envelope along the Family-A $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed Family-A response, not an EOM-solver-retained settling result.
+The A1 structure contains three persistently indexed binaries whose reference orbital planes are mutually orthogonal by definition. Near rest in a weak, homogeneous Noether sea, the working response hypothesis is a nearly spherical time-averaged envelope. Increased group speed or gravitational gradient compresses the envelope along the Family-A $(1,1,1)$ translation direction, so the envelope becomes increasingly oblate as the three binary axes converge toward that direction. This is the prescribed Family-A response, not an EOM-solver-retained settling result.
 
 No binary is assigned the leading boundary by the taxonomy. For a declared branch window $W$ and direction $\hat{\mathbf m}$, define the directional support of binary $a$ by
 $$
@@ -5761,7 +5765,7 @@ In low-stress A1 prose, "A1 envelope" means this effective path-history envelope
 
 ### Canonical Geometry Variables
 
-For either family, use $R_{\parallel}$ for the semiaxis along the declared family axis or moving-branch drift axis and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
+For either family, use $R_{\parallel}$ for the semiaxis along the declared family axis or moving-branch group-velocity axis and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
@@ -5842,9 +5846,9 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bd38f42906e3952d)
-Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
+Let $P_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart. The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
-T_{\parallel}
+P_{\parallel}
 =
 \frac{R_{\parallel}}{c_{\text{eff}}-v}
 +
@@ -5856,13 +5860,13 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f4371071956b229d)
 while the transverse causal-budget return time is
 $$
-T_{\perp}
+P_{\perp}
 =
 \frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e661dcb2facaa3ca)
-Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_{\mathrm{ref}})$ gives
+Requiring $P_{\parallel}=P_{\perp}+O(\epsilon_{\mathrm{LV}}P_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
 =
@@ -5877,10 +5881,13 @@ The role of the geometry chapter is to record this as an envelope projection, no
 
 This distinction prevents a single-binary shortcut. A branch-derived boundary-leading channel can estimate one visible deformation contribution, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
-\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_{\mathrm{ref}}}
+\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{P_q(v)}{P_{\mathrm{ref}}}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f80c6c5e569c99b5)
+
+Here $P_q$ is the cycle period of clock branch $q$.
+
 and that the admitted branches satisfy
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
@@ -5994,7 +6001,7 @@ For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/n
 
 ### Summary Commitment
 
-> **A1 Geometry Commitment:** A1 has a near-spherical weak-stress envelope that becomes oblate under increased translation speed or gravitational gradient. The exclusion envelope is generated by binary path histories and is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
+> **A1 Geometry Commitment:** A1 has a near-spherical weak-stress envelope that becomes oblate under increased group speed or gravitational gradient. The exclusion envelope is generated by binary path histories and is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
 > **Member-Scoping Commitment:** B1's rest aspect ratio depends on its prescribed binary coordinates; A1 is near spherical in its weak-stress reference state and becomes increasingly oblate along its prescribed compression response. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each member.
 

@@ -1662,6 +1662,10 @@ test("Topo UI exposes partner-wake perspectives on one linear display path and p
     /id="topo-scenario-control"[\s\S]*?aria-describedby="topo-scenario-provenance-note"[\s\S]*?These paths are chosen inputs, not predictions of how architrinos naturally move\./u,
   );
   assert.match(html, /<span>Speed<\/span>/u);
+  assert.match(
+    html,
+    /<input\b[^>]*id="topo-beta"[^>]*aria-label="Speed divided by wake speed \(beta\)"/u,
+  );
   assert.match(html, /<span>Topo count<\/span>/u);
   assert.doesNotMatch(html, /Contour reach|topo-contour-reach/iu);
   assert.doesNotMatch(runtime, /steps outward|genuine levels reaching|per sign reaching/iu);

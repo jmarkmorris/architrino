@@ -157,25 +157,28 @@ function hasExplicitFormulaBreak(equation) {
   return Array.from(equation?.children ?? []).some(isFormulaBreakElement);
 }
 
-function measureEquationNaturalWidth(equation) {
+function measureEquationNaturalRows(equation, window) {
   const children = Array.from(equation?.children ?? []);
   if (!children.length) {
-    return Number(equation?.scrollWidth) || 0;
+    return [{ naturalWidth: Number(equation?.scrollWidth) || 0, fixedWidth: 0 }];
   }
-  let maxLineWidth = 0;
-  let currentLineWidth = 0;
-  let sawBreak = false;
+  const rows = [];
+  let row = { naturalWidth: 0, fixedWidth: 0 };
   children.forEach((child) => {
     if (isFormulaBreakElement(child)) {
-      sawBreak = true;
-      maxLineWidth = Math.max(maxLineWidth, currentLineWidth);
-      currentLineWidth = 0;
+      rows.push(row);
+      row = { naturalWidth: 0, fixedWidth: 0 };
       return;
     }
-    currentLineWidth += getMeasuredElementWidth(child);
+    // A centered row can overflow before the scroll origin, beyond scrollWidth.
+    row.naturalWidth += getMeasuredElementWidth(child);
+    const style = window?.getComputedStyle?.(child);
+    // Formula-part padding is in pixels and does not shrink with the glyphs.
+    row.fixedWidth += (Number.parseFloat(style?.paddingLeft) || 0)
+      + (Number.parseFloat(style?.paddingRight) || 0);
   });
-  maxLineWidth = Math.max(maxLineWidth, currentLineWidth);
-  return sawBreak ? maxLineWidth : Number(equation?.scrollWidth) || maxLineWidth;
+  rows.push(row);
+  return rows;
 }
 
 function getUnionRect(rects = []) {
@@ -592,6 +595,7 @@ export function resolveCarouselClearanceCalloutPosition({
 export function calculateEquationAutoFit({
   availableWidth = 0,
   naturalWidth = 0,
+  fixedWidth = 0,
   baseFontSize = 0,
   minFontSize = 0,
 } = {}) {
@@ -611,11 +615,13 @@ export function calculateEquationAutoFit({
   if (natural <= width) {
     return { fontSize: base, shouldWrap: false, mode: "base" };
   }
-  const fitFontSize = (width / natural) * base;
+  const fixed = Math.max(0, Number(fixedWidth) || 0);
+  const scalableWidth = natural - fixed;
+  const fitFontSize = scalableWidth > 0 ? ((width - fixed) / scalableWidth) * base : 0;
   if (fitFontSize >= minimum) {
     return { fontSize: fitFontSize, shouldWrap: false, mode: "scaled" };
   }
-  const minimumWidth = (natural / base) * minimum;
+  const minimumWidth = (scalableWidth / base) * minimum + fixed;
   return {
     fontSize: minimum,
     shouldWrap: minimumWidth > width,
@@ -1781,14 +1787,18 @@ export class EquationMappingRuntime {
     const baseFontSize = Number.parseFloat(computedStyle?.fontSize ?? "");
     const shellRect = shell.getBoundingClientRect();
     const availableWidth = shell.clientWidth || shellRect.width;
-    const naturalWidth = measureEquationNaturalWidth(equation);
-    const fit = calculateEquationAutoFit({
+    const fits = measureEquationNaturalRows(equation, this.window).map((row) => calculateEquationAutoFit({
       availableWidth,
-      naturalWidth,
+      ...row,
       baseFontSize,
       minFontSize:
         EQUATION_AUTO_FIT_MIN_FONT_SIZE[this.equationScale] ?? EQUATION_AUTO_FIT_MIN_FONT_SIZE.medium,
-    });
+    }));
+    const fit = fits.reduce((smallest, candidate) =>
+      candidate.fontSize < smallest.fontSize
+        || (candidate.fontSize === smallest.fontSize && candidate.shouldWrap)
+        ? candidate : smallest
+    );
     if (fit.mode === "unmeasured") {
       equation.style.removeProperty("--equation-fit-font-size");
       if (shouldPreserveFormulaBreaks) {
@@ -1800,7 +1810,8 @@ export class EquationMappingRuntime {
       return fit;
     }
     if (fit.fontSize < baseFontSize) {
-      equation.style.setProperty("--equation-fit-font-size", `${fit.fontSize.toFixed(2)}px`);
+      const fittedFontSize = Math.floor(fit.fontSize * 100) / 100;
+      equation.style.setProperty("--equation-fit-font-size", `${fittedFontSize.toFixed(2)}px`);
     }
     equation.style.flexWrap = fit.shouldWrap || shouldPreserveFormulaBreaks ? "wrap" : "nowrap";
     equation.dataset.fitMode = fit.mode;

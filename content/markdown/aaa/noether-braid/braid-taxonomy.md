@@ -24,7 +24,7 @@ An assembly containing two separate six-worldline braid records does not become 
 
 A base, Family-A, or Family-B Noether braid consists of three neutral binaries. Family C consists of six neutral binaries in one twelve-worldline top-level record. Each binary contains one electrino and one positrino. Other polarity pairings are outside the present taxonomy.
 
-The overarching translation characteristic is the speed of the complete assembly group. Let $\mathbf X_{\mathrm{grp}}(T)$ be the declared translation center of the prescribed assembly group. Its group velocity and group translation speed are
+The overarching translation characteristic is the speed of the complete assembly group. Let $\mathbf X_{\mathrm{grp}}(T)$ be the declared translation center of the prescribed assembly group. Its group velocity and group speed are
 
 $$
 \mathbf V_{\mathrm{grp}}(T)=\frac{d\mathbf X_{\mathrm{grp}}}{dT}
@@ -40,13 +40,13 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-95bdb78df2e065e3)
 
-For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group translation speed is distinct from the internal orbital speeds of the constituent architrinos.
+For one top-level braid record, including Family C, $\mathbf X_{\mathrm{grp}}$ is the declared center of that record. For an assembly containing several top-level braid records, it is the declared center of the complete assembly. The group speed is distinct from the internal orbital speeds of the constituent architrinos.
 
 The braid-level record contains this overarching characteristic and the coordinate collections obtained from its three binaries:
 
 | Coordinate collection | Definition |
 | --- | --- |
-| Group translation speed $s_{\mathrm{grp}}$ | Translation speed of the complete top-level braid or multi-braid assembly group. |
+| Group speed $s_{\mathrm{grp}}$ | Group speed of the complete top-level braid or multi-braid assembly group. |
 | Binary midpoint data | The ordered midpoint vectors $(\mathbf c_1,\mathbf c_2,\mathbf c_3)$. A member row may constrain their relation without redefining the individual midpoint coordinate. |
 | Axis data | The ordered binary-axis unit vectors $(\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3)$. The vectors are recorded directly without assigning an axis-structure class. |
 | Circulation data | The ordered circulation senses of the three binaries. |
@@ -181,7 +181,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7c26273e22e0a49b)
 
-The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group translation speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
+The combined binary envelope is nearly spherical at the near-rest endpoint in a weak-gradient deep-space environment. Increasing group speed or gravitational gradient increases $\lambda_A$, compresses the envelope along $\hat{\mathbf u}_A$, and makes the envelope increasingly oblate. The event-horizon response study and the photon-channel response study use the flat Family-A geometry at $\lambda_A=1$ as prescribed input. These endpoint assignments are geometry-response charts; deriving either physical channel from an EOM-solver record remains open.
 
 `A1` is the zero-axial-offset Family-A member. All three binary midpoints coincide with the braid center, and each binary has
 
@@ -307,7 +307,7 @@ The first three tables carry the geometry. The fourth table supplies optional na
 
 ### Individual Braid Master Table
 
-| Member ID | Braid index | Component member | Group translation speed | Binary-midpoint relation | Axis relation | Distinguished direction | Common phase zero | Circulation data |
+| Member ID | Braid index | Component member | Group speed | Binary-midpoint relation | Axis relation | Distinguished direction | Common phase zero | Circulation data |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `A1` | 1 | A1 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | Not yet specified |
 | `A2` | 1 | A2 | Variable $s_{\mathrm{grp}}$ | $\mathbf c_1=\mathbf c_2=\mathbf c_3=\mathbf X_{\mathrm{grp}}$ | Orthogonal at $\lambda_A=0$; coincident at $\lambda_A=1$ | Translation direction $\hat{\mathbf u}_A$ | $T=0$ | One common sense |

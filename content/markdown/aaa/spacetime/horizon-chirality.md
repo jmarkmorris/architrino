@@ -150,9 +150,9 @@ If this distinction is correct, then the horizon does not necessarily erase `pro
 
 The next question is whether a rapidly translating Family-A braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
 
-The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
+The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the group velocity (center-of-mass convention).
 
-The stronger argument is a conditional cross-section test within the proposed high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Assume, rather than derive here, the ruler-law target from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics):
+The stronger argument is a conditional cross-section test within the proposed high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native group speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Assume, rather than derive here, the ruler-law target from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [A1 Dynamics](../noether-braid/braid-a1-dynamics.md#a1-dynamics):
 
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
@@ -239,7 +239,7 @@ $$
 The intended label flow along that ladder is:
 
 1. In the ordinary 3D regime, `pro/anti` is carried by ordered Family-A braid chirality.
-2. Under high translation speed, the orbital normals are biased toward the translation axis.
+2. Under high group speed, the orbital normals are biased toward the translation axis.
 3. Near the terminal aligned state, the surviving branch data may reduce to the sign of the common axial orientation and then to the sign of the visible planar helicity.
 4. After passage through the lock, the Noether braid may either preserve that branch, re-expand with the same handed history, or undergo a deeper reconfiguration if the planar degeneracy is strong enough.
 
@@ -341,7 +341,7 @@ This chapter mixes canonical inputs with stronger and weaker hypotheses. The dis
 | `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
 | `Wr_c` and causal-locus topology supply the best formalization candidate for that chirality | strong structural candidate only on the same retained branch record that supplies $D_t$, $D_r$, and $W^{\mathrm{acc}}$; not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `1/2/3` binaries | exact combinatorial statement |
-| high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
+| high group speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
 | the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |
 | the six mixed rows are transitional or frustrated rather than stable endpoint states | plausible but still open |
 | the axial sign $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$ supplies a candidate upstream variable for a later left/right spin distinction | live speculative hypothesis requiring the same retained spinor/gauge-control and weak-exposure record |

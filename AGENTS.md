@@ -39,6 +39,7 @@ This document distinguishes three audience scopes:
 ### Math and TeX Rendering
 
 - The detailed authority is [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md); the web-app rendering target is `KaTeX`.
+- For substantial mathematical explanations or notation tables whose normal view is inadequate, use the [math-preview skill](.agents/skills/math-preview/SKILL.md); preserve the source, apply the project theme, and verify the rendered document and image.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Prefer `$...$` for inline math and reserve `$$...$$` for standalone equations; do not place display math inside sentences, headings, list labels, callouts, or preview text.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
@@ -73,6 +74,8 @@ This document distinguishes three audience scopes:
 - Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/git/codex-pr-branch.md](reference/op/git/codex-pr-branch.md).
 - Outside an explicit regeneration/fix-drift request or the final branch/PR process, if a generator `--check` reports generated drift, report the drift and the exact `--write` command needed instead of running it.
 - If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
+- The iOS textbook package is an on-demand development snapshot, not a routine PR output. Do not regenerate it or require its freshness during ordinary edits, full web-content regeneration, or the final branch/PR process unless the operator explicitly requests iOS packaging or iOS package work is in scope. Preserve the app and exporter; use the strict package checks in [apps/ios/ArchitrinoReader/README.md](apps/ios/ArchitrinoReader/README.md) for requested builds. App Store release is deferred until theory closure and an explicit operator release decision.
+- The children's-book pilot is an on-demand export workflow, not a shipped app surface or routine PR output. Preserve its manuscripts, original illustrations, exemplars, prompts, QA records, and appearance baseline; keep generated pages, PDFs, derivatives, and review bundles in ignored local storage. Follow [the pilot export procedure](reference/learning-office/childrens-books/production/README.md) only for requested exports or exporter verification. Do not regenerate source artwork or replace the appearance baseline as part of a normal export.
 
 ### Evidence Independence
 
@@ -100,6 +103,7 @@ This section governs every claim in this repository, at every tier, in code, pro
 
 ### Authoring and Editorial Policy
 
+- [About Architrino — Sources, References, and Attribution](content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns the corpus policy for selecting, omitting, identifying, and presenting references; its [AI-Assisted Research and Review](content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) section owns source-checking and disclosure expectations. All source-mining, review, promotion, and authoring guidance must defer to that policy rather than define competing selection rules. Acquisition procedures, research provenance, and item-specific license obligations remain distinct from deciding which references belong in reader-facing prose.
 - The detailed authorities are [content/markdown/aaa/archie/academic-style-guide.md](content/markdown/aaa/archie/academic-style-guide.md), [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md), [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md), [content/markdown/aaa/archie/terminology-usage.md](content/markdown/aaa/archie/terminology-usage.md), and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
 - In markdown documents, use relative link targets relative to the current document. Do not use absolute filesystem paths and do not use root-absolute deployment-sensitive targets like `/content/...` or `/Users/...`.
 - Do not manually hard-wrap ordinary Markdown prose. Keep each paragraph and each prose-bearing list item on one physical source line so rendered review surfaces can wrap it to the available width. Preserve line breaks required by Markdown structure, display math, code, tables, quotations, or an intentional explicit hard break.

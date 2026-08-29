@@ -2,6 +2,8 @@
 
 This is the canonical execution ledger for accepted Braid Program campaigns and decision objects. App Solver owns reusable execution; this queue owns scientific configurations, gates, fate classification, and campaign conclusions.
 
+The [H3 velocity-domain rule](braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) separates the uncapped canonical theory from method-specific sub-field guards. Existing speed stops and campaign exclusions remain binding for their declared instruments; they are not physical rejection of at/above-field histories. This scope correction authorizes no run, candidate promotion, guard relaxation, or historical rescore.
+
 ## Ranked Next Objects
 
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
@@ -33,7 +35,7 @@ This is the canonical execution ledger for accepted Braid Program campaigns and 
 - **Authorized work:** Ten source-frozen, report-only lanes cover current A/B/C `H1/H2` rows, F1–F4 representation debt, and the independent interpolation-enclosure prerequisite for the approved F5 row. The checked plan dispatches them in two waves under an eight-agent, six-worker ceiling.
 - **Isolation:** Every lane has a unique create-exclusive local output root. Search agents do not edit repository owners or write the analytical database; the coordinator integrates a complete manifest-ordered census.
 - **Boundary:** The manifest authorizes no `H3` root run, ordinary EOM evolution, score change, promotion, binding, retention, stability, particle identity, or physical-realization claim. The separately authorized F5 `H3` restart is now complete; ordinary evolution retains its distinct predeclaration requirement.
-- **Result:** All nineteen A/B/C child rows pass `H1` and continuous `H2`; sixteen are strictly sub-field, while `A1`, `A1.3`, and `A3.3` are blocked before H3 by speed. F1/F2 have executable-representation proposals that still require operator selection. F3/F4 now have bounded structural censuses but still lack the named executable fields recorded in the readiness matrix. The independent F5 interpolation enclosure was frozen as its own evidence generation and subsequently consumed by the separately accepted enclosed-root restart.
+- **Result:** All nineteen A/B/C child rows pass `H1` and continuous `H2`; sixteen are strictly sub-field, while `A1`, `A1.3`, and `A3.3` are outside the declared sub-field H3 method by speed; no universal causal failure follows. F1/F2 have executable-representation proposals that still require operator selection. F3/F4 now have bounded structural censuses but still lack the named executable fields recorded in the readiness matrix. The independent F5 interpolation enclosure was frozen as its own evidence generation and subsequently consumed by the separately accepted enclosed-root restart.
 - **Evidence:** [Parallel A/B/C H1/H2 census](evidence/2026-08-26-parallel-abc-h1-h2-census.md) and [F5 independent interpolation enclosure](evidence/2026-08-26-f5-independent-interpolation-enclosure.md).
 - **Completion:** Closed. No ready lane remains undispositioned.
 
@@ -45,7 +47,7 @@ The [2026-08-26 all-candidate campaign](evidence/2026-08-26-all-candidate-evalua
 
 | Candidate scope | Disposition | Queue status | Exact next object before execution |
 | --- | --- | --- | --- |
-| `A1`, `A1.3`, `A3.3` | `STASIS` | H2 closed; blocked before H3 by speed | freeze a slower-cadence current-identity history, then reconfirm H2 before any H3 predeclaration |
+| `A1`, `A1.3`, `A3.3` | `STASIS` | H2 closed; H3 unknown outside the current sub-field method | independently validate a root method for the unchanged history, or separately freeze a slower history and reconfirm H2 to reuse the sub-field method; no run is authorized here |
 | `A1.1`, `A1.2`, `A1.4`, `A2`, `A3.1`, `A3.2`, `A3.4` | `STASIS` | H2 and scoped prescribed H3 independently closed | separately predeclare ordinary EOM evolution with explicit coupling and numerical controls; no score or retention promotion |
 | `A3` measured slice, `SD3` | `STASIS` | Not queued | independent same-history member-acceleration packet or new campaign predeclared under the accepted ruler/clock and full leakage contract |
 | `B1` | `STASIS` | `BP-002` remains queued | chart ratification followed by one frozen executable slice |
@@ -151,7 +153,7 @@ Plainly: atlas mathematics remains available within its declared history scope. 
 - **Status:** Deferred / blocked
 - **Priority object:** `a1_3_c5_v2_adjudication_packet`
 - **Request / acceptance:** Preserve the optional V2 calibration route by predeclaring a receipt-bound, purge-aware full adjudication of all 172 rows with raw retention and separately authored independent acceptance.
-- **Evidence / blocker:** V1 is closed as calibration-insufficient. The parallel current-source census independently closes H2 for both A1.3 and C5, so BP-007 is no longer their H2 admission route and C5 has no direct dependency on it. A1.3 separately requires a slower-cadence history before H3 because its current prescribed speed exceeds the normalized field-speed ceiling. No V2 calibration execution is authorized until its packet and cost pilot pass fail-closed review.
+- **Evidence / blocker:** V1 is closed as calibration-insufficient. The parallel current-source census independently closes H2 for both A1.3 and C5, so BP-007 is no longer their H2 admission route and C5 has no direct dependency on it. A1.3 lies outside the current sub-field H3 method. Reusing that method requires a separately frozen slower history and H2 reconfirmation; assessing the unchanged history requires an independently validated method covering its actual root regime. No V2 calibration execution is authorized until its packet and cost pilot pass fail-closed review.
 - **Completion:** The V2 packet is accepted before execution, or the calibration route is retired.
 
 ## Stopped historical campaigns

@@ -14,7 +14,7 @@ The metric identifiers below follow the registry order. Binary closure receives 
 | --- | --- | ---: | --- |
 | `M01` | Coordinate-coincidence limit closure | 8 | $q=1$ for certified closure and $q=0$ for certified failure. `N/A` only when continuous certification excludes coordinate coincidence over the claimed history. |
 | `M02` | Required causal-root completeness | 8 | $q=N_{\mathrm{certified}}/N_{\mathrm{required}}$. |
-| `M03` | Field-speed margin | 4 | $q=\operatorname{clip}(1-v_{\max}/c_f,0,1)$. |
+| `M03` | Field-speed margin | 4 | $q=\operatorname{clip}(1-v_{\max}/c_f,0,1)$ within this snapshot's declared sub-field-method scope. |
 | `M04` | Root-transversality margin | 5 | $q=\operatorname{clip}(\min\lvert D_t\rvert/c_f,0,1)$. |
 | `M05` | Master Equation RMS acceleration residual | 10 | $q=\operatorname{clip}(1-R_{\mathrm{RMS}},0,1)$ for a predeclared dimensionless residual. |
 | `M06` | Master Equation peak acceleration residual | 10 | $q=\operatorname{clip}(1-R_{\mathrm{peak}},0,1)$ on the same history and normalization as `M05`. |
@@ -28,6 +28,10 @@ The metric identifiers below follow the registry order. Binary closure receives 
 | `M14` | Positive-width retained-neighborhood certificate | 10 | $q=1$ for a certified nonempty open retained set and $q=0$ for a proved zero-width set. |
 
 Plainly: the maps reward only physical or mathematical quantities, not completed workflow stages. A current record without the required dimensionless normalization or exact-action split stays unavailable even when it contains a nearby diagnostic number.
+
+`M03` is clearance from a restricted method boundary, not a universal admissibility condition or a physical preference for slower architrinos. The [H3 velocity-domain rule](braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) admits below-, at-, and above-field-speed histories. This snapshot preserves every historical `M03` value, credit, weight, denominator, percentage, and availability decision. Its clipped map must not be extended to at/above-field histories as evidence of physical failure. Any future cross-regime comparison needs predeclared method-appropriate applicability and normalization in a separate snapshot; no such rescoring occurs here.
+
+Plainly: these percentages describe the original evidence and its method scope. Removing the universal speed ceiling does not alter old measurements or award new points.
 
 ### Common Ruler, Clock, And Exact-Action Boundary
 
@@ -150,7 +154,7 @@ Plainly: F6b has more evaluated early metrics than the three-pair rows, but two 
 
 ### Record-Level Falsifiers
 
-- The `A3`-slice or `SD3` metric rows are overturned if a faithful refined rerun loses accepted-root completeness or continuous noncoincidence, crosses $c_f=1$, or moves the reported margin beyond its numerical enclosure.
+- The `A3`-slice or `SD3` metric rows are overturned if a faithful refined rerun loses accepted-root completeness or continuous noncoincidence, exits that record's declared strict sub-field method at $c_f=1$, or moves the reported margin beyond its numerical enclosure. Such a method-domain exit invalidates this scoped certificate, not the canonical velocity domain.
 - The `F5` zero is overturned if the declared ordinary two-ring realization satisfies the stationary-centroid, instantaneous-dipole-null, and distinct-member conditions simultaneously, or if a regulator-independent coordinate-coincidence continuation closes the obstructed branch.
 - The `F6b` rows are overturned if a faithful recomputation or an independently authored evaluation changes the root inventory, causal margins, or same-history normalized member residuals beyond their declared tolerances.
 - The `F6c` rows are overturned if the refined packet cannot reproduce its root inventory, continuous guards, margins, fixed member identities, or normalized manifold leakage within the declared refinement contract.
@@ -188,16 +192,16 @@ Plainly: closing a geometry admission gate tells us which test may run next. It 
 
 | Candidate | Earned weighted credit | All-metric denominator | Available-metric denominator | All metrics | Available metrics | Hard-gate overlay |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| `A1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; outside this sub-field H3 method at $v_{\max}\ge1$, not physically rejected |
 | `A1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `A1.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
-| `A1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A1.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; outside this sub-field H3 method at $v_{\max}\ge1$, not physically rejected |
 | `A1.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `A2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `A3`, measured five-coordinate slice | $13.0339127952$ | $92$ | $17$ | **14.17%** | **76.67%** | `H1 P[D]`; `H2`--`H4 P[M]` on this slice; `H5 U` |
 | `A3.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `A3.2` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2 P[D/M]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
-| `A3.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; H3 admission blocked by $v_{\max}\ge1$ |
+| `A3.3` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; `H3`--`H5 U`; outside this sub-field H3 method at $v_{\max}\ge1$, not physically rejected |
 | `A3.4` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |
 | `B1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1 P[D]`; `H2`--`H5 U` |
 | `B1.1` | $0$ | $100$ | $0$ | **0.00%** | **—** | `H1/H2 P[D]`; scoped prescribed `H3 P[M]`; `H4/H5 U` |

@@ -12,7 +12,7 @@ This packet records exact fixed-point-cloud algebra, the moving-assembly test th
 
 ## Exact Fixed-Point-Cloud Pair Residual
 
-For a fixed point cloud with common drift $\mathbf V=\beta_f c_f\hat{\mathbf e}$, an unordered pair with instantaneous unit separation $\hat{\mathbf n}_{ij}$ and signed inverse-square coefficient
+For a fixed point cloud with common group velocity $\mathbf V=\beta_f c_f\hat{\mathbf e}$, an unordered pair with instantaneous unit separation $\hat{\mathbf n}_{ij}$ and signed inverse-square coefficient
 $$
 w_{ij}
 =
@@ -50,11 +50,11 @@ $$
 
 Plainly: a frozen point cloud can translate without deforming only when its signed pair directions balance in their second directional moment. Candidate braids have internal orbital motion and are not subject to this restriction.
 
-This is a failed velocity-ansatz test, not a primitive momentum statement. Neither a uniform polarity prefactor nor a charge-weighted sum removes it: like-polarity pairs retain the common-mode residual, while unlike-polarity weighting trades that component for a nonzero separation-direction component. For a universal differentiable mechanical map $\sum_i f(\mathbf V_i)$, common drift gives $D f(\mathbf V)\sum_i\mathbf A_i$; any nondegenerate local response therefore inherits the same obstruction. The theory has not derived $f$, however, and the quadratic $\tfrac12\mu_{\text{arch}}\|\mathbf V\|^2$ row remains a bookkeeping convention.
+This is a failed velocity-ansatz test, not a primitive momentum statement. Neither a uniform polarity prefactor nor a charge-weighted sum removes it: like-polarity pairs retain the common-mode residual, while unlike-polarity weighting trades that component for a nonzero separation-direction component. For a universal differentiable mechanical map $\sum_i f(\mathbf V_i)$, common group velocity gives $D f(\mathbf V)\sum_i\mathbf A_i$; any nondegenerate local response therefore inherits the same obstruction. The theory has not derived $f$, however, and the quadratic $\tfrac12\mu_{\text{arch}}\|\mathbf V\|^2$ row remains a bookkeeping convention.
 
 Plainly: changing the polarity labels does not make the assumed common velocity solve the acceleration equation. A future nonlinear kinetic account could change a conservation audit, but it cannot make the displayed velocities constant when their calculated derivatives are not.
 
-For a planar configuration containing the drift direction, the condition is
+For a planar configuration containing the group-velocity direction, the condition is
 $$
 \sum_{i<j}w_{ij}e^{2\mathrm i\psi_{ij}}=0.
 $$
@@ -64,7 +64,7 @@ The independent reference is direct addition of the two exact ordered-root forms
 
 ## Timescale Boundary
 
-For a frozen eigenmode $\mathsf K\hat{\mathbf e}=\lambda\hat{\mathbf e}$ and mean velocity $\mathbf U=N^{-1}\sum_i\mathbf V_i$,
+For a frozen eigenmode $\mathsf K\hat{\mathbf e}=\lambda\hat{\mathbf e}$ and mean group velocity $\mathbf U=N^{-1}\sum_i\mathbf V_i$,
 $$
 \frac{d\mathbf U}{dT}
 =
@@ -171,7 +171,7 @@ Claim grade: derived correction to the scope of the instrument. Falsifier: an an
 
 ## Relative-Periodic Moving-Assembly Replacement
 
-For drift speed $u$ along $\hat{\mathbf e}$, the candidate branch is
+For group speed $u$ along $\hat{\mathbf e}$, the candidate branch is
 $$
 \mathbf X_a^{(u)}(T)
 =
@@ -240,7 +240,7 @@ $$
 =
 -\mathbf B_{\hat{\mathbf e}},
 $$
-after neutral translation, phase, and permitted relabeling modes are fixed. Solvability for periodic $\boldsymbol\chi$ is the correct small-drift question. Setting $\boldsymbol\chi=\mathbf0$ is the fixed-point-cloud restriction, not a necessary condition for a deformable moving branch.
+after neutral translation, phase, and permitted relabeling modes are fixed. Solvability for periodic $\boldsymbol\chi$ is the correct small-group-speed question. Setting $\boldsymbol\chi=\mathbf0$ is the fixed-point-cloud restriction, not a necessary condition for a deformable moving branch.
 
 Plainly: the first-order test asks whether the orbit can adjust to motion while remaining a solution. The invalid catalog screen prohibited that adjustment before it began.
 
@@ -455,6 +455,6 @@ Plainly: the audit changes the canonical action bookkeeping and corrects the mov
 
 ## Next Acceptance Step
 
-The next moving-assembly acceptance step is to continue an eligible rest branch with the EOM solver at $c_f=1$ and produce the relative-periodic record defined above. The evolved record must retain the actual internal orbit, permit its dynamical deformation with drift, and return the full state and causal-history ledger before any stability verdict.
+The next moving-assembly acceptance step is to continue an eligible rest branch with the EOM solver at $c_f=1$ and produce the relative-periodic record defined above. The evolved record must retain the actual internal orbit, permit its dynamical deformation with group velocity, and return the full state and causal-history ledger before any stability verdict.
 
 The broader theory step remains item 1 in [Master-Equation Closure](priorities.md): derive one independently evolving wake state. That derivation must decide whether the canonical emission-site line of action survives, whether the candidate transmitter-history cancellation family has any ontological basis, and whether the same update produces the corrected energy, momentum, and angular-momentum accounts. No receiver-velocity relaxation is authorized by this packet.

@@ -350,7 +350,7 @@ The first response chart keeps the following coordinates separate:
 | polarity-differential displacement | $\boldsymbol\xi_{\mathrm d}$ | no electric identity without source and receiver conjugation tests |
 | scalar compression | $\tfrac13\operatorname{tr}\delta L$ | no pressure or bulk modulus without a constitutive ledger |
 | transverse shear | trace-free symmetric part of $\delta L$ | no elastic shear modulus without restoring response and action accounting |
-| collective drift | $\dot{\mathbf C}$ | native translation relative to the Euclidean void, not observer velocity by definition |
+| collective group velocity | $\dot{\mathbf C}$ | native translation relative to the Euclidean void, not observer velocity by definition |
 | orbit-radius variation | $(\delta\rho_+,\delta\rho_-)$ | internal history coordinate |
 | orbit-phase or cadence variation | $(\delta\theta_+,\delta\theta_-)$ | no clock, photon, or frequency identity without return and export |
 | orbit-plane reorientation | variations of $\mathbf p_s,\mathbf q_s$ | no magnetic or tensor identity without a derived receiver coupling |
@@ -483,7 +483,7 @@ Every row in the matrix emits the following fields, even when the value is `not_
 | numerical guards | $10^{-5}$ root-time tolerance, $|D_t|\ge0.1$, primary/refined step and history resolution, precision path, deterministic reduction, and halt code |
 | boundary | finite, periodic, image stencil, receiver-centered exhaustion, or replication identity; omitted exterior status and tail bound if any |
 | geometry | minimum pair clearance with floor $0.05$, orbit radii, phases, plane frames, common translation, linear deformation, and cell identities |
-| speed allocation | common translation speed, common-mode speed, differential-mode speed, orbit-radius speed, phase speed, plane-reorientation speed, source speed, and maximum member speed; no aggregate may hide a channel crossing $c_f$ |
+| speed allocation | common group speed, common-mode speed, differential-mode speed, orbit-radius speed, phase speed, plane-reorientation speed, source speed, and maximum member speed; no aggregate may hide a channel crossing $c_f$ |
 | symmetry and response | translation/sublattice leakage, common/differential cross-leakage, growth or decay rate, propagation delay, $[100]/[110]/[111]$ directional comparison when available, longitudinal/transverse split, polarization leakage, and dispersion |
 | accounts | constituent acceleration contributions, wake record, action-facing entries, energy-facing entries, momentum, angular momentum, source recoil, boundary exchange, and unresolved residuals |
 | source removal | source member location and branch status, last direct source-wake arrival, late common/differential/radius/phase/plane residuals, residual excitation, and backreaction |

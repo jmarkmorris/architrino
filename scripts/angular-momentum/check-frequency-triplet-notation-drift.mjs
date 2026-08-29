@@ -5,6 +5,8 @@ import path from "node:path";
 
 const rootDir = process.cwd();
 
+// On-demand iOS packages are saved snapshots, not current corpus surfaces.
+// Their exporter owns validation against current sources when packaging is requested.
 const recursiveTargets = [
   {
     label: "AAA authored markdown",
@@ -16,12 +18,6 @@ const recursiveTargets = [
     label: "priority markdown",
     relativePath: "reference/priorities",
     extensions: new Set([".md"]),
-    patterns: createCanonicalSurfacePatterns(),
-  },
-  {
-    label: "generated iOS textbook package",
-    relativePath: "apps/ios/ArchitrinoReader/GeneratedTextbookPackage",
-    extensions: new Set([".html", ".json", ".md"]),
     patterns: createCanonicalSurfacePatterns(),
   },
 ];

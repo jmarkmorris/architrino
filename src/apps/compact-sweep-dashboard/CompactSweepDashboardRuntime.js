@@ -1110,7 +1110,7 @@ function parameterDefinitions(rows) {
     },
     {
       id: "translationSpeed",
-      label: "Translation speed",
+      label: "Group speed",
       disposition: "continuously valued, intentionally stratified coordinate",
       value: (row) => row.sampledCoordinates.translationSpeed,
     },
@@ -1937,7 +1937,7 @@ function renderCaseDetail(row) {
   const coordinateTable = table(["Sampled coordinate", "Exact value"]);
   const coordinateLabels = {
     geometryScale: "Geometry scale",
-    translationSpeed: "Translation speed",
+    translationSpeed: "Group speed",
     familyAFlattening: "Family-A flattening",
     familyCSpacingScale: "Family-C spacing scale",
     frequencies: "Frequencies",

@@ -1,0 +1,33 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+main { max-width: 1260px; margin: 24px auto; padding: 36px 42px 48px; border: 1px solid var(--rule); border-radius: 10px; }
+h1 { font-size: 32px; line-height: 1.2; letter-spacing: -.6px; }
+h2 { font-size: 25px; margin-top: 44px; border-bottom: 2px solid var(--rule); padding-bottom: 10px; }
+h3 { font-size: 20px; margin-top: 32px; }
+h1, h2, h3, h4, h5, h6 { scroll-margin-top: 20px; }
+a, .source-ref { color: inherit; }
+table { width: 100%; border-collapse: collapse; margin: 20px 0 24px; font-size: 14px; line-height: 1.55; }
+th { background: var(--panel); text-align: left; padding: 11px 13px; font-size: 12px; }
+td { vertical-align: top; padding: 11px 13px; border-bottom: 1px solid var(--rule); }
+tr:nth-child(even) td { background: var(--stripe); }
+td:first-child { font-weight: 500; }
+td .katex { font-size: 1.14em; }
+code { font-size: .88em; background: var(--panel); padding: 2px 4px; border-radius: 3px; overflow-wrap: anywhere; }
+pre { overflow: auto; background: var(--panel); padding: 16px; }
+blockquote { margin: 20px 0; border-left: 4px solid var(--rule); padding: 2px 20px; background: var(--stripe); }
+li { margin: 8px 0; }
+nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0; }
+nav a { border: 1px solid var(--rule); border-radius: 20px; padding: 5px 13px; text-decoration: none; background: var(--stripe); font-size: 14px; }
+nav a:hover, nav a:focus-visible { text-decoration: underline; }
+.eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 1.7px; font-weight: 650; }
+.note { font-size: 13px; overflow-wrap: anywhere; }
+.katex { color: inherit; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 7px 0; }
+.table-scroll { overflow-x: auto; }
+@media (max-width: 700px) {
+  main { margin: 0; padding: 22px 16px; border: 0; border-radius: 0; }
+  table { font-size: 12px; }
+  td, th { padding: 8px 6px; }
+  h1 { font-size: 27px; }
+}

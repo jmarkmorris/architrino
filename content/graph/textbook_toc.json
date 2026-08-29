@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 186,
-      "sections": 1557
+      "sections": 1558
     }
   },
   "tocRoot": {
@@ -14271,10 +14271,10 @@
         "sections": [
           {
             "kind": "markdown-section",
-            "title": "Contribution and Accountability",
+            "title": "What Architrino Provides",
             "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
-            "markdownSection": "Contribution and Accountability",
-            "sectionKey": "contribution and accountability",
+            "markdownSection": "What Architrino Provides",
+            "sectionKey": "what architrino provides",
             "headingLevel": 2
           },
           {
@@ -14287,26 +14287,34 @@
           },
           {
             "kind": "markdown-section",
-            "title": "Source and AI-Assistance Disclosure",
-            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
-            "markdownSection": "Source and AI-Assistance Disclosure",
-            "sectionKey": "source and ai assistance disclosure",
-            "headingLevel": 2
-          },
-          {
-            "kind": "markdown-section",
-            "title": "What Architrino Provides",
-            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
-            "markdownSection": "What Architrino Provides",
-            "sectionKey": "what architrino provides",
-            "headingLevel": 2
-          },
-          {
-            "kind": "markdown-section",
             "title": "Public Surfaces",
             "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
             "markdownSection": "Public Surfaces",
             "sectionKey": "public surfaces",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "Sources, References, and Attribution",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "Sources, References, and Attribution",
+            "sectionKey": "sources references and attribution",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "AI-Assisted Research and Review",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "AI-Assisted Research and Review",
+            "sectionKey": "ai assisted research and review",
+            "headingLevel": 2
+          },
+          {
+            "kind": "markdown-section",
+            "title": "Contribution and Accountability",
+            "markdownPath": "content/markdown/aaa/archie/about-architrino.md",
+            "markdownSection": "Contribution and Accountability",
+            "sectionKey": "contribution and accountability",
             "headingLevel": 2
           },
           {

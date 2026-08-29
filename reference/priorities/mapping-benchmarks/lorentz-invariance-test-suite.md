@@ -80,13 +80,13 @@ $$
 \Delta_{\mathrm{tw}}(\beta,\hat{\mathbf n})
 \equiv
 \frac{
-T_{\circlearrowleft}(\beta,\hat{\mathbf n})
--\langle T_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
+P_{\circlearrowleft}(\beta,\hat{\mathbf n})
+-\langle P_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
 }{
-\langle T_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
+\langle P_{\circlearrowleft}(\beta,\hat{\mathbf n})\rangle_{\hat{\mathbf n}}
 },
 $$
-where $T_{\circlearrowleft}$ is the closed-path signal time measured by the same physical clock branch. A Michelson-Morley-style pass requires
+where $P_{\circlearrowleft}$ is the closed-path signal time measured by the same physical clock branch. A Michelson-Morley-style pass requires
 $$
 \sup_{\hat{\mathbf n}}|\Delta_{\mathrm{tw}}(\beta,\hat{\mathbf n})|
 \le
@@ -110,7 +110,7 @@ A later wake-bound binary derivation attempt strengthens the deformation row but
 
 The same source also sharpens the speed-identification burden. A square-root clock law computed with one limiting speed and a photon synchronization row computed with another generically leaves an $O(\beta^2)$ two-way residual. The priority target is therefore common-mode speed identification after Noether sea dressing: the observer-facing clock, ruler, photon, and effective gravitational channels must share one homogeneous limiting speed. Do not record this as a proved primitive equality $c_f=c_\gamma=c_{\text{eff}}=c_{\mathrm{GW}}^{\mathrm{eff}}$ until the photon dispersion and gravitational-channel transport derivations are supplied.
 
-For Earth-laboratory preferred-frame rows, use the explicit drift parameter
+For Earth-laboratory preferred-frame rows, use the explicit group-speed parameter
 $$
 \beta_\oplus\equiv\frac{v_\oplus}{c_{\text{eff}}},
 $$
@@ -150,8 +150,8 @@ Kennedy-Thorndike closure requires no boost-dependent drift in the same branch:
 $$
 \Delta_{\mathrm{KT}}(\beta_1,\beta_2)
 \equiv
-\frac{T_{\circlearrowleft}(\beta_1)}{T_{\circlearrowleft}(\beta_2)}-1
--\left[\frac{T_{\circlearrowleft}^{\mathrm{SR}}(\beta_1)}{T_{\circlearrowleft}^{\mathrm{SR}}(\beta_2)}-1\right],
+\frac{P_{\circlearrowleft}(\beta_1)}{P_{\circlearrowleft}(\beta_2)}-1
+-\left[\frac{P_{\circlearrowleft}^{\mathrm{SR}}(\beta_1)}{P_{\circlearrowleft}^{\mathrm{SR}}(\beta_2)}-1\right],
 $$
 with
 $$

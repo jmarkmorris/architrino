@@ -451,13 +451,13 @@ $$
 \frac{
 T_{\text{retune}}\!\left(\theta_{\text{sea}}\right)
 }{
-T_{\text{cycle}}
+P_{\text{cycle}}
 }
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de8aeecf345df1bf)
 
-where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $T_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$ is not a well-defined state function for that record.
+where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $P_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$ is not a well-defined state function for that record.
 
 In differential-form language, $\delta Q/T_{\mathrm{temp}}$ is an exact 1-form only in the fast-retuning regime where the Noether sea response closes before the comparison cycle completes. When $\Lambda_{\text{sea}}\gtrsim1$, the same form acquires a nonzero period around the cycle: the hysteresis-loop area is the observable obstruction to treating thermodynamic entropy as a state function on that packet. The predicted simulation signature is a loop area that grows with the sea-retuning lag rather than with an independently assigned entropy defect.
 

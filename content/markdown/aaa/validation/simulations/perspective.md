@@ -48,7 +48,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - Why it matters:
   - Strictly sub-field-speed interval history rules out nontrivial self-hit roots on that interval, while super-field-speed curved history can open a repulsive channel. Whether that channel balances inward contributions on a retained branch is a simulation and proof question.
-  - The scale-selection target is to derive a smallest sustainable orbital radius $d_0$ and fastest natural period $t_0$ from a retained balance, not to assume them from root onset.
+  - The scale-selection target is to derive a smallest sustainable orbital radius $d_0$ and fastest natural period $P_0$ from a retained balance, not to assume them from root onset.
 
 ---
 
@@ -91,7 +91,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Stability without fine-tuned potentials:
   - Same-transmitter roots can add an outward channel. A retained operating point still requires net-acceleration balance, branch floors, and nonlinear stability; $\|\mathbf V\|=c_f$ alone is not a switch or a collapse-prevention theorem.
 - Scale emergence:
-  - $d_0$ and $t_0$ are branch-derived targets. They become physical scales only after a retained binary family establishes attraction/self-hit balance, stability, and regulator persistence.
+  - $d_0$ and $P_0$ are branch-derived targets. They become physical scales only after a retained binary family establishes attraction/self-hit balance, stability, and regulator persistence.
 - Shielding and apparent inertia:
   - Far-zone cancellation is a shielding diagnostic. Inertial response additionally requires a same-record external acceleration/gradient probe and cannot be inferred from a small wake signature alone.
 - Magnetic-observable recovery:
@@ -113,8 +113,8 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Compute the time-averaged multipole expansion of a high-frequency binary; show leading terms cancel along the rotation axis and decay rapidly off-axis.
 - Observable: a “quiet line” (near-zero net potential) threading the binary.
 
-2) Scale selection for $d_0$ and $t_0$
-- With $\delta\to\delta_\eta$, compute the mean inward attraction from the partner versus the mean outward self-repulsion across one orbit; the fixed point defines $d_0$ and the maximum orbital frequency $2\pi/t_0$.
+2) Scale selection for $d_0$ and $P_0$
+- With $\delta\to\delta_\eta$, compute the mean inward attraction from the partner versus the mean outward self-repulsion across one orbit; the fixed point defines $d_0$ and the maximum orbital frequency $2\pi/P_0$.
 - Prediction: the same $d_0$ appears across binaries with the same $\epsilon$ and $c_f$, independent of initial conditions after sufficient relaxation.
 
 3) Energy consistency across a same-transmitter root-onset window

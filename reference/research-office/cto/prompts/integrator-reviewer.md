@@ -41,6 +41,8 @@ For each review comment, classify it as one of:
 
 Verify every suggestion against the live corpus, current coordinate conventions, current notation, and nearby terminology. Do not blindly apply comments. If a comment conflicts with current canon, keep the document aligned with canon and mention the rejection in the closeout, unless the conflict exposes a real doctrine or terminology ambiguity. In that case, ask Op one clear question before proceeding.
 
+Assess source and citation suggestions under the [About Architrino reference policy](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Add or retain a reference only for a qualifying use; a reviewer's request for more citations is not itself justification. Preserve required attribution and report any unresolved source/claim mismatch.
+
 Prefer concrete mathematical improvement over caveat accumulation. Add or repair definitions, equations, invariants, derivation steps, closure conditions, signs, index conventions, orientation conventions, coordinate declarations, and claim boundaries when doing so improves the theory. Avoid adding new gates, ledgers, validators, or TODO structures unless they protect a concrete tested constraint or current proof route.
 
 Preserve project terminology and current notation. Check especially for:

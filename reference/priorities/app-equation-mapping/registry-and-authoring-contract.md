@@ -31,7 +31,7 @@ The write command assigns a deterministic ID to a new occurrence, inserts its so
 
 Promotion is a separate editorial change. To promote an existing equation into the carousel, an editor adds or updates its curated document and callouts in `EquationMappingData.js`; the baseline link, page, source context, API record, and symbol access already exist.
 
-The source-relative Markdown link is the portable reader contract. The web reader opens the local standalone app page, while the iOS package exporter classifies the same `.html` target as a public `https://architrino.com/equation-mapping.html#...` redirect. Generated reading copies inherit the link from the canonical Markdown source.
+The source-relative Markdown link is the portable reader contract. The web reader presents each link as a compact `View →` action beside its display equation, preserves the exact source route for return navigation, and opens the local standalone app page. The iOS package exporter classifies the same `.html` target as a public `https://architrino.com/equation-mapping.html#...` redirect. Generated reading copies inherit the link from the canonical Markdown source.
 
 ## Review Boundary
 

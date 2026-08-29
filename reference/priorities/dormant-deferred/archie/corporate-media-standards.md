@@ -28,6 +28,8 @@ Generated media that depends on a provider must also use a registered provider c
 
 Source authority for generated media must inherit the validated `source_context` defined in [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). Media validation can refuse or weaken an artifact, but it cannot promote source status.
 
+Editorial references and source checking follow [About Architrino](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and its [research and review disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Media provenance, permissions, and item-specific attribution remain required independently of selective citation.
+
 ## Public Internet Test
 
 Generated media must be suitable for public association with Architrino.

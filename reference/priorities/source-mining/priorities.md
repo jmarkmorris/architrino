@@ -41,6 +41,8 @@ Do not start broad particle-physics mining merely because a source family is lar
 
 This directory retains active priority material and program history; the canonical reusable process remains [Source Mining Best Practice](../../op/source-mining-best-practice.md).
 
+[About Architrino](../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns which references belong in reader-facing prose; its [source-checking disclosures](../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) govern checking and uncertainty. Queue order and mining-history coverage do not create a publication requirement for every inspected source.
+
 Use topic-sweep mode when the operator needs to reconstruct what the legacy archive says about one concept across many posts before choosing individual sources to mine. A topic sweep is source discovery and synthesis; it should not add source-mining-history rows unless the normal source-mining triage and accepted edit or explicit no-edit disposition are also completed for those posts.
 
 Use archive-level mining mode when the operator needs a full-archive idea map before selecting individual sources or topic sweeps. This mode retrieves all public WordPress post text, writes the durable post registry, regenerates the markdown table and URL queue from that registry, stores cleansed full text under the platform temporary directory, clusters source signals, flags legacy terminology and high-risk language, checks coarse corpus coverage, and writes compact priority reports without adding source-mining-history rows.

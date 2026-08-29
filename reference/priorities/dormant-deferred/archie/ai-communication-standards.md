@@ -17,6 +17,8 @@ This priority tracks emerging standards and guidance for how AI systems communic
 
 The goal is early adoption where it improves trust, interoperability, accessibility, compliance, or user understanding. The goal is not to import technical standards language into ordinary user-facing prose.
 
+For reference selection, presentation, and source-checking disclosures, apply [About Architrino](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and its [research and review policy](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). The service's provenance labels and technical standards research do not create a separate requirement to cite every inspected source in the corpus.
+
 ## Plain-Language Rule
 
 User-facing text should explain the user-visible behavior first:

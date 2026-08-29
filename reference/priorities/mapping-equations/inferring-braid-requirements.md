@@ -79,6 +79,10 @@ Plainly: state what every successful geometry must produce before proposing what
 
 ## Theory-Layer Boundary
 
+The canonical architrino velocity domain is unbounded: finite speeds below, at, and above $c_f$ are admitted. The [universal H3 requirement](../braid-program/braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) concerns complete partner- and self-root inventories and valid causal-event continuation, not a member-speed ceiling. Strict sub-field bounds in the seed constructions, proofs, and bounded releases below are hypotheses of those specific methods. Historical speed stops, margins, and negative results retain that scope; they neither reject every faster history nor certify an unevaluated continuation. A separately versioned capped model would require explicit adoption, which the [field-speed-ceiling compatibility decision](../field-speed-ceiling/field-speed-ceiling-compatibility-decision.md) does not provide.
+
+Plainly: a calculation that stops at its speed guard has reached the limit of that calculation, not an established speed limit of nature.
+
 At the substrate layer, an architrino follows a path in Euclidean void and receives acceleration contributions from potential-bearing causal-wake intersections according to the Master Equation. It does not evaluate a Lorentz-force expression, carry a primitive electric or magnetic field, or interact with an autonomous field substance.
 
 At the assembly and observer layers, stable regularities may be compressed into effective charge, current, electric and magnetic fields, potentials, constitutive coefficients, radiation fields, and coupling parameters. These are recovery targets and comparison variables. They may enter this packet only as behavioral requirements or projected outputs, never as microscopic premises.
@@ -219,36 +223,36 @@ Plainly: frequency is one route to geometry, not the route. Counts tell us what 
 
 ### Recurrence Depth
 
-An observer-level frequency does not uniquely imply an architrino orbit. Let $\Theta_T$ denote the complete retained native history ending at absolute time $T$, let $q$ quotient only declared rigid translations, rigid rotations, label permutations, and other physical equivalences, and let $\Pi_k$ be the fixed observer projection for behavior $k$. For candidate period $\tau=2\pi/\omega$, define three recurrence residuals:
+An observer-level frequency does not uniquely imply an architrino orbit. Let $\Theta_T$ denote the complete retained native history ending at absolute time $T$, let $q$ quotient only declared rigid translations, rigid rotations, label permutations, and other physical equivalences, and let $\Pi_k$ be the fixed observer projection for behavior $k$. For candidate period $P_{\mathrm{cyc}}=2\pi/\omega$, define three recurrence residuals:
 
 $$
-R_{\mathrm{obs},k}(\tau)
+R_{\mathrm{obs},k}(P_{\mathrm{cyc}})
 =
 d_k\!\left(
-\Pi_k[\Theta_{T+\tau}],
+\Pi_k[\Theta_{T+P_{\mathrm{cyc}}}],
 \Pi_k[\Theta_T]
 \right),
 $$
 
 $$
-R_{\mathrm{shape}}(\tau)
+R_{\mathrm{shape}}(P_{\mathrm{cyc}})
 =
 d_q\!\left(
-q(\Theta_{T+\tau}),
+q(\Theta_{T+P_{\mathrm{cyc}}}),
 q(\Theta_T)
 \right),
 $$
 
 $$
-R_{\mathrm{hist}}(\tau)
+R_{\mathrm{hist}}(P_{\mathrm{cyc}})
 =
 d_H\!\left(
-\Theta_{[T+\tau-\Delta,T+\tau]},
-\mathsf S_\tau\Theta_{[T-\Delta,T]}
+\Theta_{[T+P_{\mathrm{cyc}}-\Delta,T+P_{\mathrm{cyc}}]},
+\mathsf S_{P_{\mathrm{cyc}}}\Theta_{[T-\Delta,T]}
 \right),
 $$
 
-where $\mathsf S_\tau$ shifts the comparison history by one candidate period and $\Delta$ covers the declared causal-memory horizon. Small $R_{\mathrm{obs},k}$ establishes only recurrence of the measured output. Small $R_{\mathrm{shape}}$ adds recurrence of the assembly geometry after the declared quotient. Small $R_{\mathrm{hist}}$ is the strongest row: the delayed history itself repeats and can support a periodic retained branch after the ordinary retention gates also pass.
+where $\mathsf S_{P_{\mathrm{cyc}}}$ shifts the comparison history by one candidate period and $\Delta$ covers the declared causal-memory horizon. Small $R_{\mathrm{obs},k}$ establishes only recurrence of the measured output. Small $R_{\mathrm{shape}}$ adds recurrence of the assembly geometry after the declared quotient. Small $R_{\mathrm{hist}}$ is the strongest row: the delayed history itself repeats and can support a periodic retained branch after the ordinary retention gates also pass.
 
 Plainly: a spectral line can repeat even when the entire assembly does not. Before calling the motion an orbit, check whether only the detector signal, the assembly shape, or the full delayed history actually returns.
 
@@ -1069,12 +1073,12 @@ Plainly: describe what is present, how it is connected, where it sits, how it mo
 
 The same-inventory comparisons suggest a mode-first search after a genuine retained core is found. A candidate must first be an accepted equilibrium, relative equilibrium, or periodic retained branch under ordinary EOM evolution. No stability spectrum or particle interpretation may be computed about a prescribed path or a configuration that is not actually occupied.
 
-For an accepted periodic branch $\Theta_\star(T)$ with complete-history period $T_\star$, let $\Phi_{T_\star}$ be the delayed-history return map on the declared admissible perturbation space. The linear return operator is
+For an accepted periodic branch $\Theta_\star(T)$ with complete-history period $P_\star$, let $\Phi_{P_\star}$ be the delayed-history return map on the declared admissible perturbation space. The linear return operator is
 
 $$
 \mathcal M_\star
 =
-D\Phi_{T_\star}[\Theta_\star].
+D\Phi_{P_\star}[\Theta_\star].
 $$
 
 Its multipliers and mode histories are meaningful only after removing exactly the declared translation, time-origin, and other genuine redundancy rows. Neutral modes required by those symmetries must not be called instabilities or particle excitations. For a stationary retained branch, the corresponding linear response operator is used only after exact acceleration balance has been certified.
@@ -3804,7 +3808,7 @@ $$
 
 The identities are independent of all six relative coordinates and rates, the A2 gross-support row, the circulation class, and $\pi_{\mathrm{return}}$. They are equal-member geometric centroids and do not assert that any later polarity-weighted, exposure-weighted, or effective observer-level center equals $\mathbf C$.
 
-Plainly: relative F3 deformations can move each binary differently, but each binary still contributes one displacement and its opposite. The full six-member position and velocity averages therefore remain exactly at the declared center and center velocity; this is not a binding or stability result.
+Plainly: relative F3 deformations can move each binary differently, but each binary still contributes one displacement and its opposite. The full six-member position and velocity averages therefore remain exactly at the declared center and group velocity; this is not a binding or stability result.
 
 Claim grade: position and velocity centering are derived algebraically from the completed F3 pair-conjugate member and tangent maps. The F3 seed, isolated modes, and return characters remain guessed. The result is falsified by any admitted labeled row whose equal-member centroid differs from $\mathbf C$ or whose velocity centroid differs from $\dot{\mathbf C}$.
 
@@ -4339,7 +4343,7 @@ $$
 
 These are equal-member centroids. Exposure-weighted, polarity-weighted, current-facing, or dynamical centers are separate claims and are not inferred here.
 
-Plainly: the six-member framed component centers on its own component center, the twelve-member counterflow component centers on its own component center, and their exact 6:12 average is the assembly center. Differentiating gives the same statement for center velocity, without selecting a history.
+Plainly: the six-member framed component centers on its own component center, the twelve-member counterflow component centers on its own component center, and their exact 6:12 average is the assembly center. Differentiating gives the same statement for group velocity, without selecting a history.
 
 Claim grade: the component and assembly position-and-velocity centering identities are derived algebraically from the completed F4 reconstruction, tangent, and weighted gauge. They establish kinematic centering only, not a stationary center, association, binding, return, retention, or stability. The result is falsified by any admitted labeled F4 row for which a displayed component centroid or the full eighteen-member centroid differs from its declared center or center rate.
 
@@ -5792,7 +5796,7 @@ The following rows begin the reverse-engineering work. They are requirements fro
 | `BR-E-10` | Increasing electric amplitude can open field-ionization, tunneling, or other loss-of-retention channels with a derived rate and ordering relative to pair assembly. | Deduced observer-level recovery requirement; native branch-loss mechanism inferred | One evolving assembly and source history must connect bounded deformation to metastable escape, branch loss or reorganization, and any later pair-assembly channel while retaining identity provenance. | A hard scenario switch, unexplained constituent disappearance, or an assumed universal ordering between braid loss and pair production fails. |
 | `BR-B-01` | Magnetic response transforms as an axial object under spatial reflection. | Deduced requirement | The native record must contain two-direction geometry, circulation, handedness, or an equivalent antisymmetric history construction. A single radial hit is insufficient by itself. | Axis-preserving circulation reversal and mirror controls must separate axial order from mere alignment. |
 | `BR-B-02` | The effective magnetic divergence vanishes in the Maxwell regime. | Deduced requirement | A closed root-resolved source, wake, sea, and boundary history network or another derived identity must eliminate the magnetic-source residual without defining it away. A closed internal matter loop alone is insufficient. | If the null follows only because $\mathbf B$ was constructed as a curl, or unmatched history edges are omitted, the native geometric obligation remains unproved. |
-| `BR-B-03` | Translation current, internal circulation, conservative exposure transfer, and changing electric response can contribute to one magnetic projection with distinct reversals. | Deduced recovery requirement; native carrier inferred | One shared causal-history and sea response map must accept all source classes without separate magnetic mechanisms, and exposure changes must remain continuity-complete. | Drift reversal, circulation reversal, and exposure-reconfiguration controls must produce the predeclared independent parities without apparent charge creation. |
+| `BR-B-03` | Translation current, internal circulation, conservative exposure transfer, and changing electric response can contribute to one magnetic projection with distinct reversals. | Deduced recovery requirement; native carrier inferred | One shared causal-history and sea response map must accept all source classes without separate magnetic mechanisms, and exposure changes must remain continuity-complete. | Group velocity reversal, circulation reversal, and exposure-reconfiguration controls must produce the predeclared independent parities without apparent charge creation. |
 | `BR-B-04` | The leading weak magnetic receiver response has the declared no-work behavior while changing direction and exchanging momentum. | Deduced recovery requirement | The leading velocity-linear group-response kernel must be skew within frozen weak-regime tolerance, while any radiation, material loss, source recoil, or other energy channel is reported separately. No primitive $\mathbf v\times\mathbf B$ rule is admitted. | A leading symmetric kernel above tolerance with no separately ledgered energy-transfer channel, or unbooked source/sea recoil, fails. |
 | `BR-B-05` | Exposed translation and internal circulation contribute to one conserved current record. | Deduced recovery requirement; exposure law inferred | Constituent worldlines, exposure, center translation, and internal circulation must remain separately auditable while summing to one coarse-grained current. Exposure changes require an identity-routed transfer current rather than apparent charge creation. | A candidate whose magnetic source changes when the same worldlines are merely regrouped, or whose exposure changes violate continuity, fails. |
 | `BR-B-07` | Orbital and intrinsic magnetic moments, precession, leading $g=2$, and anomalous residuals share one ordered-frame and exposed-current geometry. | Deduced `EQ-15`/`EQ-27` recovery requirement; physical framing inferred | A retained non-gauge ordered-frame loop, its $\mathbb Z_2$ lift, angular-momentum ledger, exposure-current moment map, and residual dressing must remain on one record. | Assigned spin labels, an inserted moment vector, or separate fitted $g$ values fail even when the precession curve agrees. |
@@ -5818,7 +5822,7 @@ Plainly: the table records what any successful geometry must accomplish. It does
 
 ### Source Record
 
-The magnetic investigation begins from exposed constituent worldlines, not from a primitive magnetic source. For assembly $A$ and constituent $a$, retain polarity $q_{Aa}$, exposure $e_{Aa}$, position $\mathbf x_{Aa}$, velocity $\mathbf v_{Aa}$, center velocity $\mathbf V_A$, ordered internal frame, and the complete causal-root history. One shared coarse-graining then separates translation and internal current without changing the underlying record:
+The magnetic investigation begins from exposed constituent worldlines, not from a primitive magnetic source. For assembly $A$ and constituent $a$, retain polarity $q_{Aa}$, exposure $e_{Aa}$, position $\mathbf x_{Aa}$, velocity $\mathbf v_{Aa}$, group velocity $\mathbf V_A$, ordered internal frame, and the complete causal-root history. One shared coarse-graining then separates translation and internal current without changing the underlying record:
 
 $$
 \mathbf J_\ell
@@ -5856,7 +5860,7 @@ Plainly: electric and magnetic behavior may be two orientations of one sheet of 
 
 ### Receiver And Moment Burdens
 
-A fixed arriving Master Equation hit has no instantaneous receiver-velocity multiplier. Magnetic receiver behavior must therefore emerge from a sequence of delayed hits, receiver displacement and ordered-frame evolution between hits, internal assembly response, sea dynamics, or a combination of these. The minimum control family reverses source current, receiver drift, receiver circulation, and mirror orientation independently. It reports group translation, internal deformation, orientation, work, recoil, radiation, and angular momentum separately.
+A fixed arriving Master Equation hit has no instantaneous receiver-velocity multiplier. Magnetic receiver behavior must therefore emerge from a sequence of delayed hits, receiver displacement and ordered-frame evolution between hits, internal assembly response, sea dynamics, or a combination of these. The minimum control family reverses source current, receiver group velocity, receiver circulation, and mirror orientation independently. It reports group translation, internal deformation, orientation, work, recoil, radiation, and angular momentum separately.
 
 `EQ-15` and `EQ-27`, the Zeeman benchmark, and the Stern--Gerlach benchmark add a stricter burden. The same retained ordered-frame loop and exposed-current map must support a nontrivial $\mathbb Z_2$ lift, $4\pi$ restoration, magnetic moment, leading-$g$ relation, anomalous residual, spectral splitting, polarization, gradient response, and discrete output basins. These targets do not establish that exposed same-sign sites occupy any particular position in the braid.
 
@@ -8239,7 +8243,7 @@ while both axial scales expanded to about $0.3067$, the negative cadence fell to
 
 Plainly: balancing radial acceleration at one release instant substantially reduced radius loss relative to the unit-cadence seed, but it did not create a cycle or even a radius turn. Delayed geometry immediately changes the radial response as phase, height, and cadence evolve. A retained braid must balance the complete history or return map, not one instantaneous acceleration row.
 
-A nearby launch moved just beyond the simultaneous radial-balance row while remaining below the field-speed ceiling:
+A nearby launch moved just beyond the simultaneous radial-balance row while remaining inside the declared sub-field method:
 
 $$
 \dot\theta_+=2.38,
@@ -8338,7 +8342,7 @@ $$
 
 The framewise formula residual remained below $5.00\times10^{-16}$. Maximum member speed rose to $0.983222c_f$, leaving only $0.016778c_f$ of field-speed margin, so the record was not extended further.
 
-Plainly: phase can redirect the dangerous corridor from same-polarity to opposite-polarity pairs, but the tested high-cadence row does not solve the return problem. It converts radial collapse into rapid radial expansion and approach to the field-speed ceiling. A retained branch must find a phase and cadence combination that turns both envelope and corridor motion before either coincidence or field-speed contact.
+Plainly: phase can redirect the dangerous corridor from same-polarity to opposite-polarity pairs, but the tested high-cadence row does not solve the return problem. It converts radial collapse into rapid radial expansion and approach to this method's speed guard. Certifying a return within this sub-field method requires both envelope and corridor motion to turn before its coincidence or speed guards are reached. A faster continuation requires a root method valid in that regime; this stopped record neither certifies nor rules out one.
 
 Plainly: cadence controls whether a sector initially contracts or expands and how large its first radial excursion becomes. More importantly, the two polarity sectors turn at different times. F6c therefore carries at least two coupled radial clocks: a common breathing coordinate and a polarity-differential breathing coordinate. Any retained version must phase-lock both clocks while also controlling a same-polarity edge-pinch coordinate that the sector radius does not determine by itself. Within F6c that pinch remains a derived function of the six coordinates, especially relative sector phase; it is not a seventh independent coordinate. One shared orbital frequency and two envelope radii are not enough.
 
@@ -8725,19 +8729,19 @@ $$
 \mathcal R_{\mathrm{reflected}}^2=\mathcal I.
 $$
 
-Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact relative return under either reflected action obeys
+Because the exact F6c current moment lies on $\hat{\mathbf x}$, an exact relative return with reduced shape period $P_{\mathrm{rel}}$ under either reflected action obeys
 
 $$
-\mathbf m_{\mathrm{cur}}(T+\tau)
+\mathbf m_{\mathrm{cur}}(T+P_{\mathrm{rel}})
 =
 -\mathbf m_{\mathrm{cur}}(T),
 \qquad
-\mathbf m_{\mathrm{cur}}(T+2\tau)
+\mathbf m_{\mathrm{cur}}(T+2P_{\mathrm{rel}})
 =
 \mathbf m_{\mathrm{cur}}(T).
 $$
 
-The same action reverses both cadences and exchanges same-polarity modules. Thus its reduced shape period is $\tau$, while its fixed-frame current period is $2\tau$. If the half-cycle symmetry is exact throughout the history, its fixed-frame current average over the doubled period is zero.
+The same action reverses both cadences and exchanges same-polarity modules. Thus its reduced shape period is $P_{\mathrm{rel}}$, while its fixed-frame current period is $2P_{\mathrm{rel}}$. If the half-cycle symmetry is exact throughout the history, its fixed-frame current average over the doubled period is zero.
 
 Plainly: a braid can repeat its shape before it repeats its magnetic posture. After one reflected half-cycle the tetrahedron is the same up to rotation and module exchange, but its current points the other way. Two such steps are needed to restore the current.
 
@@ -8752,7 +8756,7 @@ Claim grade: derived proper-rotation and current-vector geometry on the exact F6
 The F6c factor of two is an instance of a general relative-return rule. Let a complete delayed geometry $Z(T)$ obey
 
 $$
-Z(T+\tau)=gZ(T)
+Z(T+P_{\mathrm{rel}})=gZ(T)
 $$
 
 for one declared symmetry action $g$. If an observable projection $\mathcal O$ transforms by a representation $D_{\mathcal O}$,
@@ -8761,11 +8765,11 @@ $$
 \mathcal O(gZ)=D_{\mathcal O}(g)\mathcal O(Z),
 $$
 
-then its first symmetry-forced return occurs after $k_{\mathcal O}\tau$, where $k_{\mathcal O}$ is the least positive integer for which $D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable. A special observable state can return sooner, so this is a symmetry order, not an assertion that every Fourier component has that fundamental period.
+then its first symmetry-forced return occurs after $k_{\mathcal O}P_{\mathrm{rel}}$, where $k_{\mathcal O}$ is the least positive integer for which $D_{\mathcal O}(g)^{k_{\mathcal O}}$ acts as the identity on that observable. A special observable state can return sooner, so this is a symmetry order, not an assertion that every Fourier component has that fundamental period.
 
 For the reflected F6c action the executable return ledger is
 
-| Projection | Action after $\tau$ | Return order |
+| Projection | Action after $P_{\mathrm{rel}}$ | Return order |
 | --- | --- | ---: |
 | Orientation-quotiented scalar shape | unchanged | $1$ |
 | Sector cadence vector | sign reversed | $2$ |
@@ -8807,7 +8811,7 @@ s_\sigma\frac43
 \right).
 $$
 
-The two terms separate rotation of the shape-dependent current direction from Master Equation acceleration of the sector rate vector. A current-supporting candidate must therefore control at least five distinct release quantities: current magnitude and alignment, pair clearance, limiting-corridor distance rate, field-speed margin and speed derivative, and $\|\dot{\mathbf q}_\sigma\|$. A decreasing speed does not imply a gentle trajectory because $\dot{\mathbf q}_\sigma$ can be almost perpendicular to $\mathbf q_\sigma$.
+The two terms separate rotation of the shape-dependent current direction from Master Equation acceleration of the sector rate vector. Within the declared sub-field method, a current-supporting candidate must therefore control at least five distinct release quantities: current magnitude and alignment, pair clearance, limiting-corridor distance rate, method-specific field-speed margin and speed derivative, and $\|\dot{\mathbf q}_\sigma\|$. A decreasing speed does not imply a gentle trajectory because $\dot{\mathbf q}_\sigma$ can be almost perpendicular to $\mathbf q_\sigma$.
 
 Plainly: a braid can carry a large current at one instant while already being aimed to lose it, collide, or sharply redirect its internal motion. Current, clearance, and motion smoothness are separate requirements.
 
@@ -9088,7 +9092,7 @@ The resulting geometry requirement is joint:
 1. conjugate sectors may exchange current contribution while keeping $\dot I_{\mathrm{tot}}$ small;
 2. each sector must retain adequate same-polarity causal-history spacing;
 3. opposite-polarity spatial corridors must remain open or turn before collapse; and
-4. the combined motion must preserve field-speed margin and the exact identity action through a complete return; and
+4. the combined motion must preserve the exact identity action through a complete return and, to remain certified by this sub-field method, preserve its field-speed margin; and
 5. certified root-time enclosure pressure must remain controlled under tolerance and history-enclosure refinement.
 
 Claim grade: the current and current-flow identities are derived on the F6c chart; census counts, threshold classes, and continuations are measured EOM- solver diagnostics on bounded declared records, not an independent retained- braid result. The active-handoff thresholds are declared diagnostic cuts, not natural constants. Falsifier: a direct member-current derivative that disagrees with the formula, a root-certified continuation that fails the recorded sector slopes, or a reproduction in which the stated halt is instead caused by collision or a $c_f=1$ speed crossing. The pressure-precursor inference is falsified if refinement removes or reverses the monotone rise before the same boundary, or if root-complete candidates repeatedly cross $P_{\mathrm{root}}=1$ without a corresponding change in the declared tolerance/enclosure contract. The cadence- reversal inference is falsified if independent tighter histories do not reproduce the turn and current handoff, or if a complete return requires permanently same-sense circulation after all.

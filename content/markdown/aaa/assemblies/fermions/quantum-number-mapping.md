@@ -649,12 +649,12 @@ $$
 \gtrsim
 \frac{R_{\mathrm{tier}\to\mathrm{ax}}(A)}{c_f}
 +
-N_{\mathrm{lock}}(A)T_{\mathrm{cycle}}(A)
+N_{\mathrm{lock}}(A)P_{\mathrm{cycle}}(A)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e8436b0e040654f0)
 
-Here $R_{\mathrm{tier}\to\mathrm{ax}}$ is the relevant tier-to-axial separation, $c_f$ is the primitive wake speed, $T_{\mathrm{cycle}}$ is the local braid-cycle time, and $N_{\mathrm{lock}}$ counts the relocking cycles needed before the axial layer either restabilizes or opens a reaction corridor. This is a closure target, not yet a computed lifetime formula, but it gives the generation program a native route from shielding loss to finite lifetimes.
+Here $R_{\mathrm{tier}\to\mathrm{ax}}$ is the relevant tier-to-axial separation, $c_f$ is the primitive wake speed, $P_{\mathrm{cycle}}$ is the local braid-cycle time, and $N_{\mathrm{lock}}$ counts the relocking cycles needed before the axial layer either restabilizes or opens a reaction corridor. This is a closure target, not yet a computed lifetime formula, but it gives the generation program a native route from shielding loss to finite lifetimes.
 
 ### Three-Generation Closure Benchmark
 
@@ -1090,6 +1090,6 @@ The same shared precision interface owns the lepton-pair production form factor 
 
 1. The same $R_L$ that fits $\Delta a_\mu$ must keep $|\Delta\sigma/\sigma|$ below electroweak precision limits at $\sqrt{s}=91.19\,\text{GeV}$.
 2. The geometric mixing channel must reproduce $m_W/m_Z=\cos\theta_W$ with residuals inside the precision ledger.
-3. Six-pole charge arithmetic must remain exact under allowed drift/deformation, preserving only $Q\in\{0,\pm 1/3,\pm 2/3,\pm 1\}$.
+3. Six-pole charge arithmetic must remain exact under allowed group velocity/deformation, preserving only $Q\in\{0,\pm 1/3,\pm 2/3,\pm 1\}$.
 
 ---

@@ -329,7 +329,7 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 ## Preferred-Frame Hiding Stop Condition
 
 1. **Hard wall:** If the Euclidean-void rest frame is detectable by any physical experiment, for example a Michelson-Morley-type null test, at $\Delta c/c > 10^{-17}$, the theory fails.
-2. **Required compensation:** Moving assemblies must acquire the Lorentz-compatible deformation and clock laws, $L_{\parallel}=L_0/\gamma$ and $T=\gamma T_0$, from delayed causal closure and Noether sea response rather than from kinematic postulates.
+2. **Required compensation:** Moving assemblies must acquire the Lorentz-compatible deformation and clock laws, $L_{\parallel}=L_0/\gamma$ and $P=\gamma P_0$, from delayed causal closure and Noether sea response rather than from kinematic postulates.
 3. **Coefficient closure:** Clock, ruler, signal, and metric response coefficients must suppress two-way anisotropy and other preferred-frame leakage to the validated bounds. A qualitative contraction story is not sufficient.
 4. **Dissipative drag:** If the Noether sea induces ordinary drag that slows cosmological bodies without a conserving medium-dressed response mechanism, the theory is falsified.
 

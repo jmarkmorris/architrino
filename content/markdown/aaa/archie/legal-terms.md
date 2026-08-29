@@ -34,6 +34,8 @@ The material is educational and research-oriented. It is not personal medical, l
 
 Some assets, data, libraries, and references used by the project have their own licenses, permissions, or attribution requirements. See [Licenses, Attribution & Source Use](licenses-attributions.md) for the public attribution inventory and source-use boundaries.
 
+[About Architrino](about-architrino.md#sources-references-and-attribution) governs editorial reference selection and presentation; its [research and review disclosure](about-architrino.md#ai-assisted-research-and-review) explains source checking. Those policies are separate from the controlling terms for third-party material.
+
 When a third-party license, attribution, or source-specific term applies, users are responsible for complying with that term.
 
 ## Generated Media

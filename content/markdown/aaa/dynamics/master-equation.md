@@ -988,7 +988,7 @@ At a generic fold, the local boundary pairing creates or removes one positive an
 
 An admissible retained record therefore reports the signed grading $(C_+^{ij},C_-^{ij})$, not only raw hit counts. The binary and Noether braid ledgers $N_s$ and $M_p$ are admissible topological labels only after their self-hit and partner-hit entries inherit this signed-root-complex data, together with the phase-return degree data used by the [assembly topological charge](../noether-braid/noether-braid-topological-charge.md) and resonance-lock chapters.
 
-**Proposition 4 (forward partner-root starvation under field-speed drift).** Let a candidate translating branch have center drift $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
+**Proposition 4 (forward partner-root starvation under field-speed group motion).** Let a candidate translating branch have constant group velocity $u\hat{\mathbf e}$ on the retained interval, with $u\ge0$ and $\|\hat{\mathbf e}\|=1$. Write two partner constituents as
 $$
 \mathbf X_i(T_r)=uT_r\,\hat{\mathbf e}+\boldsymbol{\rho}_i(T_r),
 \qquad
@@ -1050,15 +1050,15 @@ Thus the retained forward contribution decays linearly in the gap on that simple
 
 Plainly: the forward root can become very old and very weak at the same time. A finite history boundary can still remove it suddenly, and neither fact fixes the orbit period.
 
-This is a kinematic starvation result, not an acceleration-balance approximation. It says that a forward structural partner root cannot be retained at or above field-speed center drift because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner root for structural closure therefore cannot preserve the same causal-root ledger for sustained drift $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
+This is a kinematic starvation result, not an acceleration-balance approximation. It says that a forward structural partner root cannot be retained at or above field-speed group speed because the causal wake cannot catch the leading receiver. A bound assembly branch that requires at least one such forward partner root for structural closure therefore cannot preserve the same causal-root ledger for sustained group speed $u\ge c_f$. The proposition does not impose a speed cap on a single architrino, on internal curved self-hit motion, or on history-supported super-field-speed components; it applies to center translation of an internally bound branch whose leading-side partner closure is part of the retained ledger.
 
-With finite retained memory $h$ and internal branch period $T_{\mathrm{int}}$, the same obstruction has a graded scale:
+With finite retained memory $h$ and internal branch period $P_{\mathrm{int}}$, the same obstruction has a graded scale:
 $$
 \Lambda_{\mathrm{starv}}
 =
-\frac{\Delta_{\mathrm{fwd}}}{T_{\mathrm{int}}}
+\frac{\Delta_{\mathrm{fwd}}}{P_{\mathrm{int}}}
 \ge
-\frac{d_{\min}}{(c_f-u)T_{\mathrm{int}}}.
+\frac{d_{\min}}{(c_f-u)P_{\mathrm{int}}}.
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-59c6a20d48d728d3)
@@ -1227,14 +1227,16 @@ $$
 then necessarily
 $$
 C(v)=\sqrt{1-\beta_f^2},\qquad
-T(v)=\frac{T_0}{\sqrt{1-\beta_f^2}},
+P_{\mathrm{cyc}}(v)=\frac{P_0}{\sqrt{1-\beta_f^2}},
 \quad
-T_0=\frac{2L_0}{c_f}
+P_0=\frac{2L_0}{c_f}
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c785b382c51c06c8)
 
-This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE Noether braid dynamics without reducing to a two-leg closure model.
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
+This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $P_{\mathrm{cyc}}$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE Noether braid dynamics without reducing to a two-leg closure model.
 
 The forward parallel leg carries the same starvation constraint as Proposition 4 with $d_{\min}$ replaced by the leading longitudinal leg length $L_\parallel$. Let $h_b^{\mathrm{lock}}(v)$ be the retained-history depth measured on the locked moving branch, distinct from the generic analysis horizon $h$. The two-leg checkpoint is admissible as a retained-record model only in the starvation-free regime
 $$
@@ -1254,11 +1256,11 @@ for one leg pair.
 
 In spherical-harmonic language this checkpoint is the $\ell=0$ isotropy projection of the moving internal delay record. The next leakage record is the $\ell=2$ quadrupole anisotropy, denoted schematically by $Q_A$ for assembly $A$. A retained Lorentz or clock-universality claim must show that $Q_A$ is either cancelled by the full three-dimensional branch ledger or bounded below the relevant anisotropy ceiling; otherwise the two-leg period result is only an orientation-specific delay identity.
 
-Accelerated motion adds a second burden. Even if the inertial translating-loop scaling is recovered, acceleration requires a transport law for the internal phase ledger through the Noether sea. For a stable branch with rest size $L_0$, center speed $v(T)$, and small acceleration scale $a(T)$, the dynamics target is a branch-period transport law of the schematic form
+Accelerated motion adds a second burden. Even if the inertial translating-loop scaling is recovered, acceleration requires a transport law for the internal phase ledger through the Noether sea. For a stable branch with rest size $L_0$, group speed $v(T)$, and small acceleration scale $a(T)$, the dynamics target is a branch-period transport law of the schematic form
 $$
-T_q[v(T),a(T)]
+P_q[v(T),a(T)]
 =
-T_q[v(T),0]\,
+P_q[v(T),0]\,
 \left(
 1+
 O\!\left(\frac{a^2L_0^2}{c_f^2}\right)
@@ -1975,7 +1977,7 @@ which is first order in $\beta_f$. Reversing the ordered transverse separation r
 
 **Parallel-separation non-claim.** For instantaneous separation parallel to the translation, the trailing receiver has magnitude $\kappa|q_iq_j|(1+\beta_f)/d^2$ and the leading receiver has magnitude $\kappa|q_iq_j|(1-\beta_f)/d^2$. The observer-level comparison target instead assigns $\kappa|q_iq_j|(1-\beta_f^2)/d^2$ to both. The symmetric part is therefore already wrong at order $\beta_f^2$.
 
-**Fixed-point-cloud drift non-claim.** The perpendicular pair sum is nonzero:
+**Fixed-point-cloud constant-group-velocity non-claim.** The perpendicular pair sum is nonzero:
 $$
 \mathbf A_{ij}+\mathbf A_{ji}
 =
@@ -2001,9 +2003,9 @@ The result is therefore one exactly recovered projection obtained without relati
 
 This calculation is a deliberately restricted negative control. Assume $\mathbf X_i(T)=\mathbf R_i+\mathbf U T$ for every member, so every internal velocity relative to the group center vanishes and every pair distance is constant. Candidate braids do not satisfy those assumptions: their members orbit internally and their pair distances generally vary with time.
 
-Plainly: this subsection tests whether a frozen point cloud can drift without deforming. It does not test an orbiting assembly.
+Plainly: this subsection tests whether a frozen point cloud can move at constant group velocity without deforming. It does not test an orbiting assembly.
 
-The perpendicular example is one orientation of the resulting general three-dimensional formula. Let an instantaneous unordered pair have unit separation $\hat{\mathbf n}_{ij}$, common drift $\mathbf V=\beta_f c_f\hat{\mathbf e}$, and signed inverse-square coefficient
+The perpendicular example is one orientation of the resulting general three-dimensional formula. Let an instantaneous unordered pair have unit separation $\hat{\mathbf n}_{ij}$, common constant group velocity $\mathbf V=\beta_f c_f\hat{\mathbf e}$, and signed inverse-square coefficient
 $$
 w_{ij}
 \equiv
@@ -2027,9 +2029,9 @@ $$
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7778eab0a578ac7c)
 This expression is exact only for the fixed-point-cloud common-translation ansatz and does not assume that the pair lies in a selected plane.
 
-Plainly: delayed partner hits do not usually cancel when the whole pair is assigned one common velocity. Their leftover depends only on the drift direction and the pair's instantaneous direction and signed strength.
+Plainly: delayed partner hits do not usually cancel when the whole pair is assigned one common velocity. Their leftover depends only on the group-velocity direction and the pair's instantaneous direction and signed strength.
 
-This is not repaired by replacing the velocity sum with a polarity-weighted one. Like-polarity weighting preserves the common-mode residual; for an unlike-polarity pair it instead leaves a nonzero separation-direction component. More generally, a universal differentiable mechanical map $\sum_i f(\mathbf V_i)$ has local rate $D f(\mathbf V)\sum_i\mathbf A_i$ on a common-drift state, so any nondegenerate local response inherits the obstruction. The theory has not derived $f$, and the quadratic $K_\mu$ map remains a bookkeeping convention.
+This is not repaired by replacing the velocity sum with a polarity-weighted one. Like-polarity weighting preserves the common-mode residual; for an unlike-polarity pair it instead leaves a nonzero separation-direction component. More generally, a universal differentiable mechanical map $\sum_i f(\mathbf V_i)$ has local rate $D f(\mathbf V)\sum_i\mathbf A_i$ on a common-group-velocity state, so any nondegenerate local response inherits the obstruction. The theory has not derived $f$, and the quadratic $K_\mu$ map remains a bookkeeping convention.
 
 Plainly: the acceleration test does not depend on a mass or momentum definition. A future kinetic account can change the conservation ledger, but it cannot make an assumed constant velocity constant when its calculated time derivative is nonzero.
 
@@ -2054,7 +2056,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d2effc73c80f5993)
-Therefore the exact null condition for a declared drift direction is
+Therefore the exact null condition for a declared group-velocity direction is
 $$
 \mathsf K\hat{\mathbf e}=\mathbf0,
 \qquad\text{equivalently}\qquad
@@ -2065,15 +2067,15 @@ $$
 
 Plainly: cancellation is a signed directional-balance condition, not merely a head count or a visual symmetry claim.
 
-In a plane containing the drift direction, write $\hat{\mathbf n}_{ij}=(\cos\psi_{ij},\sin\psi_{ij},0)$ in that plane. The null condition becomes the vanishing signed second harmonic
+In a plane containing the group-velocity direction, write $\hat{\mathbf n}_{ij}=(\cos\psi_{ij},\sin\psi_{ij},0)$ in that plane. The null condition becomes the vanishing signed second harmonic
 $$
 \sum_{i<j}w_{ij}e^{2\mathrm i\psi_{ij}}=0.
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-daf1c5952b5aca0e)
-A regular triangle and regular square satisfy this planar condition for equal like-polarity weights. An alternating-polarity square also satisfies it because its edge and diagonal direction orbits cancel separately. By contrast, rotational symmetry about the drift axis only removes transverse components in three dimensions; it does not by itself impose the required polar second moment. For example, an equal-weight regular tetrahedron has $\mathsf M=(W/3)\mathsf I$, hence $\mathsf K=(W/3)\mathsf I$ and no nonzero drift-direction null.
+A regular triangle and regular square satisfy this planar condition for equal like-polarity weights. An alternating-polarity square also satisfies it because its edge and diagonal direction orbits cancel separately. By contrast, rotational symmetry about the group-velocity axis only removes transverse components in three dimensions; it does not by itself impose the required polar second moment. For example, an equal-weight regular tetrahedron has $\mathsf M=(W/3)\mathsf I$, hence $\mathsf K=(W/3)\mathsf I$ and no nonzero group-velocity direction null.
 
-Plainly: threefold symmetry is sufficient only in the appropriate planar second-harmonic setting. A three-dimensional object can look highly symmetric and still retain a common-drift residual.
+Plainly: threefold symmetry is sufficient only in the appropriate planar second-harmonic setting. A three-dimensional object can look highly symmetric and still retain a common-group-velocity residual.
 
 If the fixed point cloud has an eigenmode $\mathsf K\hat{\mathbf e}=\lambda\hat{\mathbf e}$ and $\mathbf U=N^{-1}\sum_i\mathbf V_i$, then the local common-mode estimate is
 $$
@@ -2105,7 +2107,7 @@ Plainly: the point-cloud analyzer checks the algebra above and nothing more. It 
 
 #### Relative-Periodic Moving-Assembly Test
 
-A translating orbiting assembly must be tested on its actual moving history. For drift speed $u$ along $\hat{\mathbf e}$, write a candidate branch as
+A translating orbiting assembly must be tested on its actual moving history. For constant group speed $u$ along $\hat{\mathbf e}$, write a candidate branch as
 $$
 \mathbf X_a^{(u)}(T)
 =
@@ -2166,7 +2168,7 @@ Plainly: a successful moving assembly is a repeated solution of the complete del
 
 Prescribed-geometry records may be checked for closure of their declared chart, but that is an integrity check only. Because they were not produced by the EOM solver, they cannot establish or refute existence or stability of a relative-periodic moving branch.
 
-For a small-drift continuation from a rest branch, the useful first-order expansion is
+For a small-group-speed continuation from a rest branch, the useful first-order expansion is
 $$
 \boldsymbol\xi^{(u)}
 =
@@ -2184,7 +2186,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de4fdd27013b912e)
-after the neutral translation, phase, and allowed relabeling modes are fixed. Here $\mathcal L$ is the full delayed linearization about the rest branch and $\mathbf B_{\hat{\mathbf e}}$ is the uniform-drift defect.
+after the neutral translation, phase, and allowed relabeling modes are fixed. Here $\mathcal L$ is the full delayed linearization about the rest branch and $\mathbf B_{\hat{\mathbf e}}$ is the constant-group-velocity defect.
 
 Plainly: the correct first question is whether the internal orbit can deform slightly so that all delayed accelerations still close. Freezing that deformation to zero recovers the fixed point-cloud restriction, not a necessary condition for the moving branch.
 
@@ -4503,7 +4505,7 @@ Remarks:
   $$
 
   [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d5bdca4a9a935f44)
-  where $V_\text{CM}$ is the center‑of‑mass speed. In practice, this is computed from the internal architrino motions (e.g., the tight indexed-binary self-hit orbit plus its interaction with partner binaries).
+  where $V_\text{CM}$ is the group speed (center-of-mass convention). In practice, this is computed from the internal architrino motions (e.g., the tight indexed-binary self-hit orbit plus its interaction with partner binaries).
 
 Thus kinetic energy splits naturally into:
 

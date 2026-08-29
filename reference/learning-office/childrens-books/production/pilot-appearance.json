@@ -1,0 +1,5144 @@
+{
+  "schema_version": 1,
+  "claim": "Saved-pilot pixel and PDF-content reproduction only; not source-art QA approval.",
+  "environment": {
+    "pillow": "11.2.1",
+    "freetype": "2.13.3"
+  },
+  "fonts": {
+    "page": {
+      "name": "Georgia.ttf",
+      "sha256": "4f54eb299fccea7f103edeb0d92437359bfd4441811d53222b82b335369f6218"
+    },
+    "review": {
+      "name": "Arial.ttf",
+      "sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9"
+    }
+  },
+  "entries": {
+    "here-there-back-cover": {
+      "source": {
+        "source_sha256": "fb515ec097047ac6a0d46d9bf42270816465e64f6e28e4cec187e37e1cb7d5eb",
+        "kind": "cover",
+        "text": "Here, There, Back"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "8c2d8f9c4499ca311dbae9e4843df1d758134224897d3563bb2e5b4c5e0b4bc7"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "1bb82e6839a09433507e2dc2f23f893feb54b7b60b1d0d8f35845877031b81cf"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "3cc01c19cd90cd3baea2050801ac072e16ade5a51254711e8e347f9845d9ebf2"
+      }
+    },
+    "here-there-back-spread-01": {
+      "source": {
+        "source_sha256": "66411ee6352606a8249c9388c3cff024c92cb984198a260cddfe9b9c735e7038",
+        "kind": "story_spread",
+        "text": "Here is Electra.\n\nHere is Poz.\n\nHere is the ball."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "08becf7323d0ab2a7e52f03fe3cc0a7b2b7b62192b14be33141ab0d6deddf262"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "f4c201852f732d0219d72b20049be94e98b0119d3c92e715c331d2bf3f7e4c87"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "44337228489a8ff2e15483e8e20dd4346a4808f82744cef0bd97d14ad819826e"
+      }
+    },
+    "here-there-back-spread-02": {
+      "source": {
+        "source_sha256": "b2bd45b6388495e4191154aba28c0843582a68e079fbcdb9ca6016469a00a204",
+        "kind": "story_spread",
+        "text": "A red ball.\n\nA blue ball.\n\nThere they are."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "7bf446dcff3b816cf686282da71ea99614a3543a0866d5de9ad1b50d36c1af9b"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "3337effc24643f889ede31a86c2a4bed099a58ee0dbe6811d2e74f33246598a1"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "4cb9503e445f70d7cc4512bb4efea6c9b32274dc679211d6ceaf2e7ce51077a3"
+      }
+    },
+    "here-there-back-spread-03": {
+      "source": {
+        "source_sha256": "dc526707067821fa953240e55ca767bbe6e141821c1abe38a0562846b12da02b",
+        "kind": "story_spread",
+        "text": "Electra reaches.\n\nPoz reaches.\n\nToward the ball."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b38fdf30838704f76841b610333a5ed0ef4366058851f06214869418e826c8ca"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c82b594a48f8522cce3cfacc7a94331969ecc3f326c9b26c1c55126b1d57d262"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c99d9b0bbcf6f72f1b0d045ce03f7db22ae174d8b391a4a42c32664ad91d7110"
+      }
+    },
+    "here-there-back-spread-04": {
+      "source": {
+        "source_sha256": "b2815d3acd1e70ff4cb53b4b4215d5bc7862ecb4609cfa881acbc4fe2fc1d0ce",
+        "kind": "story_spread",
+        "text": "The red ball rolls.\n\nIt follows a path."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "cd32db629634ae97b055995cf12b5d10f551eaf9c1d54f3d4072f2ac71a007e1"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "71669decccb04c321ba469d51574f88fbe563b5d6b44d3da31b177adbf25bab6"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "385e415e7689fbdbb607c96298e9836be88434f2fa95d00855bb86d1a1d39c40"
+      }
+    },
+    "here-there-back-spread-05": {
+      "source": {
+        "source_sha256": "5b7f705d005f23ddcda8d958ec69b576fd6099b02e83fd3fcd0c7b0bb69cf7f4",
+        "kind": "story_spread",
+        "text": "The ball is there.\n\nElectra is here.\n\nPoz is here."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "12d90b524d4d3e498b0c31a43619f9ff20938e9520c66907f6b53bea54f19a16"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bc31ae6b94605a48e21cfa5413b428de97654f9057300558048519be7c3589de"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "b2a79cf04a5c7e5f71d5ae41f1465631929cbf1425342f782e77b26bd25c6991"
+      }
+    },
+    "here-there-back-spread-06": {
+      "source": {
+        "source_sha256": "e6b551b695cf602617a336c4d4231088a2ae8e1ce4a85bcec5c1494806487198",
+        "kind": "story_spread",
+        "text": "Poz goes.\n\nHands, knees, go."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "fc2441ef679f438ee665b45c35c4390628d4cba32f204abf615db68aaa9c60c2"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "a0634096b057c228dc6be3a29dfc3c0eca12400a5bc47c56cfe50d22cf9b3c3e"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "d7d3217a7c83bfbbc774247b0912a71c6878a4660d253b18e507cc641dbdbe4f"
+      }
+    },
+    "here-there-back-spread-07": {
+      "source": {
+        "source_sha256": "7afc9b1bbd4206355efded4af478e98e36ad85e694a784c68caaf34819c3653b",
+        "kind": "story_spread",
+        "text": "The blue ball rolls back.\n\nBack to here."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "139ec6367517cad9f7bb98b5c493e250674b1a2c62d05e0935a39ac62ceabc43"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "6b362708df5d484be865408d2b0a131860bbafc0c636cc4804d84aaa8824c0ea"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "90affb5d595b25e570f70bcf159d90216aea1efb96848d57be7e6d2782781944"
+      }
+    },
+    "here-there-back-spread-08": {
+      "source": {
+        "source_sha256": "03bf4f3627de0f9a6e9bb3fa23d338719974338812a6856689151d7890ead336",
+        "kind": "story_spread",
+        "text": "Here.\n\nThere.\n\nBack.\n\nAgain."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "3dc6090d3711381c58069ac1a94382b1f34e641d47b0514d2823721b29570a94"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "79464adafa0962d2d719ec43bc927fe13d3d373d34ac2a06324fe910800bbd1f"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "8c1497b7f0e1612188cef0e8373b1f394e3b38dba86adccf18ded1ba7ddddd82"
+      }
+    },
+    "here-there-back-backmatter-01": {
+      "source": {
+        "source_sha256": "05804aa39ff6362e7105f12e78c2772ac14a72711dbbe4dfaac5414fc0640cb8",
+        "kind": "back_matter_activity",
+        "text": "Here.\nThere.\nBack.\nAgain."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "12cce874342725bab7f3ce9cba5dea5b302b33ee4f82598ad9f3eec092f05b7f"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "103960f73b94bfce62675854a5cac6a95370fcd2a3102815cacb5671e496aa0b"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "4f473e9384f792829f89ed2c291c720764a695ad22df16b8f8860812248f9841"
+      }
+    },
+    "roll-turn-again-cover": {
+      "source": {
+        "source_sha256": "a914b49799c8241f6300333b93b7dc60a0692e8b540871ef474293dc3f58caa2",
+        "kind": "cover",
+        "text": "Roll, Turn, Again"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "52b845ddc75c791173ade878cf91e72139ae42fcace760e6e287d1c044885523"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8f3faad693712f7e2ed0e9901a264446221dce35990199c7391e3544b60101e2"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "d0b2bac8dcf15df799bfe5549c4ab8f42e5db1d82c0b387d335df79eaf5fa80c"
+      }
+    },
+    "roll-turn-again-spread-01": {
+      "source": {
+        "source_sha256": "5a05b53fbb6a4bef051dec3ffe909552b52d5d25c959e8058285cca55dd3d351",
+        "kind": "story_spread",
+        "text": "The floor is ready.\n\nThe red ball is still."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "46118d52e232b3662f3245b9e2ca196def9f8303c504898c250e5db6bf961e16"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "9d019502c10f68a91a5ec84800d21326ae124314e839843bfa520e64a4ad322d"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e7f9e427817a7aa46cdbc3d9f807b6a9811a527d7ac181583e0f50bce7b7467f"
+      }
+    },
+    "roll-turn-again-spread-02": {
+      "source": {
+        "source_sha256": "d4a9c263234604127542af31fa7265d4625c05084720676ebfc0ad7ed3489c7a",
+        "kind": "story_spread",
+        "text": "Electra gives one soft push.\n\nRoll, ball, roll."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "d68959751122ea9cb3294a801ecade0cf605bda5f4bfe75838ac35b3308c003d"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "d55de14d876ab94daa1cabe3fe2b203b0ab8db6d62f0465ad25a45ed11fb4790"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "00be3edf0c00b7286c891ae310a743fcafd6bf082414d8cb0de07965eab8eb93"
+      }
+    },
+    "roll-turn-again-spread-03": {
+      "source": {
+        "source_sha256": "b0142c85bcb87d32e3b5e20402ef6d82b96b7a3b8bc9bc5c14e3f1f00bf5cfae",
+        "kind": "story_spread",
+        "text": "The ball does not hop.\n\nIt follows a path."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "69630128fa424f040644ed655e18fd784bf36ebb17255691dfbc3b782a3e7d15"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "ffaf47416447103e532a516d379112647af84387fe5dc5421027422889da67f7"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "33fa3cbeda3bfdfa2511ffffc69300f35f848b2ba36d8f4566e5a780d174a4e3"
+      }
+    },
+    "roll-turn-again-spread-04": {
+      "source": {
+        "source_sha256": "120494a0739b106039f1a4ee0188208f2a74ae0c9a4676d69afcf840f41fc5b0",
+        "kind": "story_spread",
+        "text": "Up the little hill.\n\nSlow, slow, slow."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "26bb732223bf6eb8f4af338463cd141cc1c22133c1ec33ac19189429608b21c5"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "41fd31f6fdd4a0f535d6d8fcdfbf182471800d630fe75d9f73c181f6c32ffd61"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "98c8bad93112631f56b87649e225c9f0d2cd7b3f3705516976ac1f55c4fee390"
+      }
+    },
+    "roll-turn-again-spread-05": {
+      "source": {
+        "source_sha256": "036806f4f6520bfa604735dd976c05ec06ef481ad4275cab97b1f593e83b39e1",
+        "kind": "story_spread",
+        "text": "The path turns.\n\nThe ball turns too."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e31db7e2351d8932eb2c2e657c9b225fc836627d73bba8ccbf15736c3599d3ab"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "ca56fda4d07da3e0e1918b502d188df580aba577920c1b252b627e358a5d8950"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "aff765bd12295efc314b556b461ebf0c81c86f0f0ab2148778fd5e2e70bcb763"
+      }
+    },
+    "roll-turn-again-spread-06": {
+      "source": {
+        "source_sha256": "d3546279f0a734236b56a92c2a70cbfadb55713d24a4a410ec5f624df1b599ff",
+        "kind": "story_spread",
+        "text": "Down in the little dip.\n\nRound and round."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "a4cbeb8d0cfb17c34173a566d53319b531b59d149aee83bf3157a95a0a56a18c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "f49eba2ade42d141a61aa899c7ec7e57f44398fea8a0bbc5fde60d7b48972e10"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "9c72d352e45f56f7db014f4f46e41328fda190f963bc317aefaf0d5e0ffc8d5a"
+      }
+    },
+    "roll-turn-again-spread-07": {
+      "source": {
+        "source_sha256": "d2fdcb859f1b1187e11974c92533e682237163d1bf5bbc705a4ccbe38516d8f1",
+        "kind": "story_spread",
+        "text": "Poz catches the ball.\n\nStop, little ball."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "73622480cf61ef5afdb645e9ea148f6606e876f736a8525bb8a7214dd9c913f0"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "7437224614d0f2db2cef36e28c344f94650ccd84a11e1252ff62fefa7ee9a765"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "7d0bd3c550cba4480565b83ad8be92d783abf2bb1181361d47d83888100631c6"
+      }
+    },
+    "roll-turn-again-spread-08": {
+      "source": {
+        "source_sha256": "fe7985f3b1e00335c9ab5f5a4292708d84db29ffea8f08d4769dd57a9dec069d",
+        "kind": "story_spread",
+        "text": "Now the blue ball is still.\n\nWill it go the same way?"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "c50cefd6c59b522d1a69108c031cd0ab81bf54fcd8a0f102d864bd78c81e867a"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8d3f2875735331ea711fe6732072e27dcd68fc6d97fe05ec8b33dd70191357b4"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e3f29b5ebf5f24e02a5607059fff4a02632a5964864192a542bec84eea2731ff"
+      }
+    },
+    "roll-turn-again-spread-09": {
+      "source": {
+        "source_sha256": "a9e509ec7a864afa9ba88f6b7b268574b6a3b6aa1f06f879328af6d728f3475e",
+        "kind": "story_spread",
+        "text": "Red went this way.\n\nBlue went that way."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b7e3dd47f813e7d751088b70cd6cc3b37c7bfa67b5b3264e46b91bc415a47b3a"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "5c35b657ebcdb6590bf1e016dee26a9b626dd2c12a64bcdde95b9a3459d1e533"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "ac1e37a43e03354ac248d2c43251dfc5c263e2db8371f7d1b8e45fbdd567d1f4"
+      }
+    },
+    "roll-turn-again-spread-10": {
+      "source": {
+        "source_sha256": "892a3c47548aa705274a4df300191a75f29007c407f47971aa4e05c5df57d851",
+        "kind": "story_spread",
+        "text": "Roll.\n\nTurn.\n\nAgain.\n\nWe learned the path."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "ed140afb739ce82f41738ab053029c8b797bcde3b0de0f8562d082ae9988c43f"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "6906586669e1f331d608b2c5ba6a48b934f50a3dbc885d97b462f70ecfa7d21e"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "1ec1fed73fdcc3f060f503af3164f9c119fdcdda00cac838aad33a6e2d027f3b"
+      }
+    },
+    "roll-turn-again-backmatter-01": {
+      "source": {
+        "source_sha256": "e3e5c9c3f93ce5bf2ab15943c4ca94fdefaad98de56395cd0156b9bc9859d93e",
+        "kind": "back_matter_activity",
+        "text": "Roll.\nTurn.\nAgain."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "d15cd9246ea89caa692eaca61d39deaeded335362d320fcee4e243ff102baeb8"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bc9614e13d763c481794ef33b28716c0d09d91438df521d223092a6edee0b37b"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "4db9ae5360f093fac8f9939347a8aa6cb90f3b066823d0f295ec3718038959ac"
+      }
+    },
+    "nature-remembers-motion-cover": {
+      "source": {
+        "source_sha256": "ad4df7943931f944ba23527009854afe7ca3b76f250ac4e94645375c445d3061",
+        "kind": "cover",
+        "text": "Nature Remembers Motion"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "3bc8ed68a0da5c17c5a62b4c18269f17dbc96db5865a7b2cb5647eea6c25fd73"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "27f233476a8799060be37405d5a2580c7f449ba7976610e21c33329ffac26d73"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "f38ceb8e08a987cd60fa49a9438b33c95a75bba87d7bdf20358f17e090eee1fd"
+      }
+    },
+    "nature-remembers-motion-spread-01": {
+      "source": {
+        "source_sha256": "25e332cbf50c98f65d04e3026e41e3ebbaad3901f5a0ecb4def415950d369e2e",
+        "kind": "story_spread",
+        "text": "Electra pulled a ribbon.\n\nThe ribbon made a line."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e7d95f4a6f7507eb236809522c0fec0b504c29c44086dddafebe5db9cc29ebe9"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "34734a810409dc4a9dcacc07db8f4f00f02b2fc8cfb97c8833ce24094b68b407"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "0868aa8f1fbfaffdeb98b1f0c19822dd6066b76fd19e86ded2494dc302a2a378"
+      }
+    },
+    "nature-remembers-motion-spread-02": {
+      "source": {
+        "source_sha256": "b731942408d3e432e7f3b43256d366f13cd888f167f07ca7b48731c1c1933696",
+        "kind": "story_spread",
+        "text": "Poz rolled the red ball.\n\nThe ball went away."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "627dda36e27231fa5052390849dffad30a0aa766dfaf4f26e4b90758913d55e2"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "b2a601cb412d399b32d8c0b3cedfd39116ac7b7ecaecb16ae419dc76539db17a"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "cd5bdde6198717e089fdbe5d73873b08799d3201fd73b1512b60cb940b555968"
+      }
+    },
+    "nature-remembers-motion-spread-03": {
+      "source": {
+        "source_sha256": "ac19a7bc970afc1f98b637fc9713d1ed59bf91b6fb4acbaeccca894afe0e15eb",
+        "kind": "story_spread",
+        "text": "The ball was over there.\n\nThe trail was still here."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "c82f6af183d3e75c04c492f91647df1b54d5f3733cc943a38b3bc74cfad90ccd"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "4cceb506c811a5d7f5a1d35123b2fbd8274b4bd517a00243a04760d4ec53960a"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "accd3933f754ff332487d79dd55da86d6f84576fbe021c3ca2e39058f9a97d54"
+      }
+    },
+    "nature-remembers-motion-spread-04": {
+      "source": {
+        "source_sha256": "d43f3c9acc7e11039555f4755eb3aab0153efc336770fcb4fc4a8c4f16ec642e",
+        "kind": "story_spread",
+        "text": "This part came first.\n\nThat part came next."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "47e0997a959c3def86ab54d115cac91b197dce8ee19bea189f64f26ff96ec61d"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "837a249a5fd08c51b738651b3aba3d78606d20df6667fa79163649973508835f"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "2c386ed45e00eecf7fed7a9b042c78b199d6c66c77c68717f7eedda7bde6d45a"
+      }
+    },
+    "nature-remembers-motion-spread-05": {
+      "source": {
+        "source_sha256": "e68d5ad74de0ea9328946f2809c7822d0bb883d088d5222bc6e5b9b3fd5d61eb",
+        "kind": "story_spread",
+        "text": "Some parts were close.\n\nSome parts were far."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "018c66d191c876e1f1d41711993808937d5c20c790120232616db574acc621c4"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c87f39ebccf2180432aad4890635cf987546cd542df86a402e78cd85bd3d92cc"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "2e6fa06da9be9bcb7a01503306468c9b2ab61f608a10b7df7619f968e1c31489"
+      }
+    },
+    "nature-remembers-motion-spread-06": {
+      "source": {
+        "source_sha256": "27c810777e86d06e82b81eb0607ae438ba51f65769c29833a53f7f28291827d1",
+        "kind": "story_spread",
+        "text": "Electra tapped the water.\n\nCircles grew from the tap."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "8939a2e26551d1bbef33a696fcbb9f9de93a13c2efb37b222aaa1107e8c38e3c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "75629aa4a63f6c7ac99041ac4d3e08dfff3defb8608c25eb2fcac0b3cead4b6e"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "326579b4b866b62c7c0931375d329a0e80126f6098c7869c5f9d2414bedba7f0"
+      }
+    },
+    "nature-remembers-motion-spread-07": {
+      "source": {
+        "source_sha256": "bd8bcc89b07aad0af6ce36ef1663ad9f0bc6d13bdaf4580f4892166e7872df17",
+        "kind": "story_spread",
+        "text": "Poz clapped.\n\nElectra heard it after."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "9cc90c1369b8502a356500d744fc874a779cd46877698c5800545e6b6793a3ff"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "348cec3216f386a8cb88f7a29f3556b338c65112dd81d5f19ac739dac4fdee95"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "dfa3960dd04782121582fbf8d683732125bed302855b7fb0cb01b830a664ae6d"
+      }
+    },
+    "nature-remembers-motion-spread-08": {
+      "source": {
+        "source_sha256": "29ee6a4ef3cb154a7f7245e9941c25fc53aab534789e0c50205eda46a91871ef",
+        "kind": "story_spread",
+        "text": "Poz walked past the light.\n\nThe shadow walked too."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "be5a36898b8b5c67ad4f7e5b91677995ae2fa2800a9d9690e75d074af4580aff"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "9693581b9ec05dcf8fb69a0216c3fd9d417a8a8d404dcab3450df8bafa8e66cc"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "497099a6fd34e31ef25ce981f46fd950c53815884b4512ed3082ddd0c1a1c4f8"
+      }
+    },
+    "nature-remembers-motion-spread-09": {
+      "source": {
+        "source_sha256": "ef43e6beb2df0f30fd543e37c0b432d95c7cdbee59443ff08fc5e304a32d9f67",
+        "kind": "story_spread",
+        "text": "Electra turned around.\n\nThe new trail met the old trail."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "7c32a10c94ee28c6dc85f2a20b2deaaa03c0188c8b1463f5a2dc3dcb5ccfb573"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "e6e1cd50b3ccf5cae63738a70c5011238acefdfdee02dc840911cd2c5b0bcb83"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "f4320d4b12189e456a8d8eaf75e02d9b5f708616f23330ab34ed0b71e32a7f62"
+      }
+    },
+    "nature-remembers-motion-spread-10": {
+      "source": {
+        "source_sha256": "885d096cfd0ce04559d739a623a63f52c3c806f653c485f603c5a6a31e207bb3",
+        "kind": "story_spread",
+        "text": "\"Can we find where it went?\"\n\nPoz followed the trail."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "60e59085f015b37cf6f541d27d37509a2c4b3e89878dd651f0d5f585e06ff24c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "3842116a781d0e3c40881c2779288d1b530eec3e6547536ef67db3df34dfa504"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "736876de7fb2692af9282408e1809fc7b0f5cd5c391129a38b9f335849de5985"
+      }
+    },
+    "nature-remembers-motion-spread-11": {
+      "source": {
+        "source_sha256": "c60356afdbf9aefb943cf70fa92c0eb78ff5217a3557e267771ce9d39f73c4ec",
+        "kind": "story_spread",
+        "text": "Ribbon.\n\nWater.\n\nSound.\n\nShadow.\n\nThey all showed motion."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "bc8147f70ba7566efa8172a5fae81e29c9c4efbfb7e65cada6d3b538a3be8886"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "06fdc4ccd8725f54803778cf2b68f2c4a8616d49ec73f4bc17e4fa9ca7953891"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "911e99ebeb4c3d3f1e3df36812afbebc0240fdb95cca7d84f1feb8f26fa7f8ee"
+      }
+    },
+    "nature-remembers-motion-spread-12": {
+      "source": {
+        "source_sha256": "aed47ab121581bd765d97fe33cca3982dac3dbacbb3a509beb4a473bd782b1f5",
+        "kind": "story_spread",
+        "text": "It moved.\n\nThe world remembered."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "87064849e3e8ce61c43705b2584c519372eb95f7d186846be23041f81c4270bd"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "e4be93db054a7f7f76943ca2a9bb2095ad7166e532f147ed714f01f3932aab0f"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "373dcf2e245bb908d83f2cdeadf9aaecd47e94a7d8df541a66c365bd704c2475"
+      }
+    },
+    "nature-remembers-motion-backmatter-01": {
+      "source": {
+        "source_sha256": "222cab15e80f558920387d98f1a19e5252ec64eec62dce3a2379c6f31764324f",
+        "kind": "back_matter_activity",
+        "text": "Make a trail.\nFollow it.\nAgain."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b794bdcbe81ae09c1ec8b3f15569d2ba6de66e5f1d133801be73edc7dda334aa"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "63abd3876c21f814bfaaad1df43cc31efe1cf9df466f1e231c7e036b5a9bd0e7"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e7349e30beb8f2e8473a707b3ff9ed4c5b234c186d53883b174a62bae46ed2b6"
+      }
+    },
+    "again-makes-a-pattern-cover": {
+      "source": {
+        "source_sha256": "4b77befedf1713448dc98858768de83822fbe32eb9d4269ee3a912beda1b6e88",
+        "kind": "cover",
+        "text": "Again Makes A Pattern"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "9eb5deeec28147029ae27e0815f773e9d15da2ceb625ebd3f703622209611c34"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8c8a845143bf04926d680c5a4262645aba2048d32ae78ab3e1e1e771ff4a0c5c"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "f960f1dba2d6e8287bb0cc2c374e376467467940795f4f5794f1f7b1a8e6c03e"
+      }
+    },
+    "again-makes-a-pattern-spread-01": {
+      "source": {
+        "source_sha256": "302fe509bdf192c8d3e88c5e959e70eff26faa5ee182a4bb83b94875b514c291",
+        "kind": "story_spread",
+        "text": "Electra looked at yesterday's trail.\n\n\"What if we do it again?\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e0cf02bcfb0f1889c982d29053c144b635ad0307061bf57d13309c97ed9177b5"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "32c61448498c60992d6a9936b437c9f0ceeffc4f0b7ab4f9640abec48e472b79"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c5cb4a5318192f75f281d47d8477610db9e6cd36354f0bbaf806f6c30d63ed9c"
+      }
+    },
+    "again-makes-a-pattern-spread-02": {
+      "source": {
+        "source_sha256": "127562eef8014b350a8f1448b8e0f7da5733279d1c8b6d9b279fd249234de298",
+        "kind": "story_spread",
+        "text": "The red ball rolled across the floor.\n\nOne path appeared."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "eb4569692f3ae7e4f4da1e504cd96e4f66b2f1347158ad024e2146435e207bd0"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "3f2dda1c959e6f3231ddba7d3a289027c5f24ed3ed63ebafb890dc615cd5952d"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "7bd53ce157aca6fa3065b9470e1920640af8c72137aaa0e45f95f032866000fb"
+      }
+    },
+    "again-makes-a-pattern-spread-03": {
+      "source": {
+        "source_sha256": "c55877531610805e7bee136b01da46bdb1a13169a942fb92cd8961c2a40aef1c",
+        "kind": "story_spread",
+        "text": "The blue ball rolled next.\n\nIts path came close."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "5bc400659af019937df0a7c337520464f1748dfdd04fdde7ec68c53d45e655c6"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "215aae561ff200562001b6394f7c0b64ff4f69a0532ea657eed46a3bacd44d48"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "87a48a931ea601f3963243d3bc22c7bdd46773cba1229c7f5d36de4fc545785b"
+      }
+    },
+    "again-makes-a-pattern-spread-04": {
+      "source": {
+        "source_sha256": "cc29ed695be6db44fb2f79a5f394ce77520bd5fbf4e85ee3fe59dc002d11df78",
+        "kind": "story_spread",
+        "text": "\"It almost followed the first one,\"\n\nElectra said."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "d2312e1c039f2a33368bdf31babdb72e56773e5bfc7f3b25a91ec828ee019f1a"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c3c434b2c29302e788f47b57d43a108569f50d08b223c308dba6cccf2121b7b3"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c4ceb388a5eea74fe99a0c7cbbbfddf8ab3841fb405a994aaadfa89a2fae5cee"
+      }
+    },
+    "again-makes-a-pattern-spread-05": {
+      "source": {
+        "source_sha256": "0d8ac072a7fcf5d06acc319241998bc2a3512a9245bbe52da1c6e368fbcb8d89",
+        "kind": "story_spread",
+        "text": "Poz moved the ball farther over.\n\nThe path changed."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "8ab4102497da4e80f4701ade044ded1343d89336042e41995082d9e4505d408c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "5ba9869d004c3c9950fb868605ab2c8c935b52f00f2fd148a087fa42774601cb"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "7f78fa81abc3ed63822c8ccbb63c6e601b8a01e09e61c44397693166367a82a3"
+      }
+    },
+    "again-makes-a-pattern-spread-06": {
+      "source": {
+        "source_sha256": "fad75875b336f1d48282cfe2d4a05d07f43fa66ffd7dbed4df1bde535b358392",
+        "kind": "story_spread",
+        "text": "Electra moved the ball near the old path.\n\nThe paths met."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "ed1dcf31fd5fe1b3dda88be28320d6910eaa75798ccd367c3463f79865bee213"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "cc8cacbd07d9dc81652f42de19e497dec0df6beb91fedda906d6cbd302a5e0bf"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "0f3bed529337881156739780efd820a09e67b793dc63ae6867a0b22e31443ff1"
+      }
+    },
+    "again-makes-a-pattern-spread-07": {
+      "source": {
+        "source_sha256": "ab25331b54a2e3d02f759a6aafb39d08fa86dbc23cb06f1b479a1c9783432d30",
+        "kind": "story_spread",
+        "text": "One line crossed another.\n\nPoz traced the crossing with one finger."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "a4d240c00a2a31a6f403fed1f1672faaf4d665a224bbb3abb24ceb42343d18c1"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8cf442e6d24c45444aa149a32a3484cee786cf76eb748f26aab3a4fb50541265"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "176709ad65d3b5e9d79f6716e595d15deff0b6471c39e775cef5ad211e943329"
+      }
+    },
+    "again-makes-a-pattern-spread-08": {
+      "source": {
+        "source_sha256": "88af2ab7cf8e0d90954028d1284c980ff476adc7fdc927121feba98002d8b488",
+        "kind": "story_spread",
+        "text": "Roll.\n\nRoll.\n\nRoll.\n\nThe page grew busy."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "c9f8c97df491f59d731e3d6fcdd7fcfd2c8dcb7fa05db912613fb49118b04557"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "0ae66751afa126b678720f5095994a4b478f36daf8b05f80e17956eefa90d5f2"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "9ee073ab390598e85efa0506ee087e9ab8af3277b7acd11a8afa9608f03026b9"
+      }
+    },
+    "again-makes-a-pattern-spread-09": {
+      "source": {
+        "source_sha256": "ac30543d41a3c18d91aeaab3db8437d0f4f2edb007a292cc99c06b00f39af1b0",
+        "kind": "story_spread",
+        "text": "The lines were not just anywhere.\n\nThey made a quiet shape."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "a79f69cdd4ec0bb7762ca3a9cc380327dcb1c59f004ad9fefe9b4a2639dc0237"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "45753793ff9faae355fbf0282df03f8f4f6c7472e560d5cb8ef4a0e5f81e5802"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "58674463b921406fc206b8f95c2ebcf95f27a320ca79ba3f5ed9388f5723dc08"
+      }
+    },
+    "again-makes-a-pattern-spread-10": {
+      "source": {
+        "source_sha256": "03ecf4ecd63c5251a09a178eb89439fb57f17f7554fac58c59380d80ee47243b",
+        "kind": "story_spread",
+        "text": "\"I think the next one goes here,\"\n\nPoz said."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "76d0ca000d8ce59371c1903d514c05113d9570eea4268ee354b5bb3f0e3eddba"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "65df318d663c814f295749c9027b069b3e05e0da4c8f54ff8aac374429319a92"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "9a1ac31fa7ba35cc9879ee4eac1c32015553ff0b916611e534c871ef87555191"
+      }
+    },
+    "again-makes-a-pattern-spread-11": {
+      "source": {
+        "source_sha256": "22173255cde48d041b732be998b1af9cea83dde10a37a8c5b331005696f5d30f",
+        "kind": "story_spread",
+        "text": "They rolled once more.\n\nThe new path joined the shape."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "44c72b7c9a958eb75f6232d62c9928e519862c4d1e0223ca332d00ed80470b62"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "49f71d24068d8196e3af2f5ab064b9c3ca28c20eba8a8ca3a837d9ac8dd515c7"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "ca2fe969c015b06d924a732cc620614597b32d23a2a54a9cc635115884dad2d9"
+      }
+    },
+    "again-makes-a-pattern-spread-12": {
+      "source": {
+        "source_sha256": "c9d5cc07c8954ce36cf146d4740c8159f340025f0ae5bcdf2e7d07312d7aad22",
+        "kind": "story_spread",
+        "text": "Again made a pattern.\n\nThe pattern helped them see."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "25f45c744ac5367e1c66b7939bd5e06bc02b7abb590278ad8b6195fd9c4aebdc"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "a11e335fac3fd5590a4b944e8b743f2094916db0b5332b5cbcdd8de7fa8bd4a3"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "58e4ae5b04fe93c5a145119f87fa081fe8e458b8dced9e13758c0d14881aeb1b"
+      }
+    },
+    "again-makes-a-pattern-backmatter-01": {
+      "source": {
+        "source_sha256": "10de5bb3b880a2618f5a895a18c063150a06eff1258cacfdc214db1bca487bd9",
+        "kind": "back_matter_activity",
+        "text": "Roll again.\nFind the pattern."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "a33ee11d8a964e32e6c0e20c94c431ed5577b46ed1770494ed54d19bb8acec46"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "2bab7f006814f2a5e6bfabd5b12f2f0b6dc9d1fb13101659f29a131274e2713f"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e702b681f40486c03a7bfe6f79408d5481e9fc6820a7b5f19bd02882ec5d572b"
+      }
+    },
+    "what-changed-cover": {
+      "source": {
+        "source_sha256": "530bc932d0e3ed2a42aaef3b3f82b786135736ce2ce96e9bdb5382ef48f16a42",
+        "kind": "cover",
+        "text": "What Changed?"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "9651dd56056a26369af9beb710e6616f86d98101866332826002ed419684d24e"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "769bb072f4a524227b47642a0fd6fd8aed0358afec95162727ddc1fd4bc032e2"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "17193dd1df16d3508483c86c8ba25c8a95e2e691c1bb4d206d8c12efc80a5ec8"
+      }
+    },
+    "what-changed-spread-01": {
+      "source": {
+        "source_sha256": "347d5f03001da2e5c131b1d9254e2b573967df271106a3d2ef3e637194d3420d",
+        "kind": "story_spread",
+        "text": "Electra watched the red ball roll.\n\n\"Why did the ball go there?\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "8abfae4c30ed5ae507cc971492c88a5098f105231353c7b143f86e1220fb8dc4"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bf602bde62a0daf732b8d2f6dfb17b9d6266c1311bf6b1f1a87d0a0b51886f17"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "9ad3853280159c6e30d7ba817decaf5ad59982f1902219ccd94ceb53f00d51a5"
+      }
+    },
+    "what-changed-spread-02": {
+      "source": {
+        "source_sha256": "8f2069d7381fc6cc2bcd8cde393b358928d22bf5ebbd12945211fe1e9847de75",
+        "kind": "story_spread",
+        "text": "The red ball rolled from the star.\n\nIt stopped in the dip."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "68d7019e65336ca1c6a4f1d0b2d430355b62482434ed10235c988ad9f7854864"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bc30fe4dfe19386a7bc2b6921628727b6fe363b38958b57c0cb5c89484049f79"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e2b4947f30ce626a1c89994c5b880d2170aa74d9f343fc7b60a00583f768943b"
+      }
+    },
+    "what-changed-spread-03": {
+      "source": {
+        "source_sha256": "8c0f6443fcc102b1244c6238550442aca24a4f2ab219ec6fc7d4aadf6453802b",
+        "kind": "story_spread",
+        "text": "Poz drew the path.\n\n\"This is what happened.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "12a67e768dac61a842f05e2b9c602f92939dfebdbcbae55fca8b35de524e0146"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bc942fd0b4198b3d94673e96d38bd0598166e16f070b58fd574fbdf88941e2cf"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "8fc77e32f9eb5f9254fe45f7bfd922aed6db79c555a540995fed8b9d19dd5860"
+      }
+    },
+    "what-changed-spread-04": {
+      "source": {
+        "source_sha256": "15e5cc76b61832e0bdc1cecd4c81a00f5b332acb485334aad1e58e7c0b90d59b",
+        "kind": "story_spread",
+        "text": "\"If we try again,\"\n\nElectra asked,\n\n\"where will it go?\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "6531fc35fac496d2b4058f01f917cee217a1ffbf13a6706e6154b9a6cbdda073"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8b04457c2849480092d460bdfbeec2cd6c91fa0073a9ff09b27ee1298988f354"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e522a5721ff70858da9a43606ae9a93718e19e6617b6200f3550085f65896383"
+      }
+    },
+    "what-changed-spread-05": {
+      "source": {
+        "source_sha256": "38a7132ecbd8ca95916ddc69821d47eb318450dd0268403e6875530010f5ef98",
+        "kind": "story_spread",
+        "text": "Same start.\n\nSame push.\n\nSame path."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b1ac4fe322258f911266d8628d52e657357a504fbae09e480b56769857c985ae"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "582c252e327d239e1ee50190db42d2f528f70d78414bfa54642237e39da60327"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "296ec841fe9bafc4381930d6ea20b8dec6755c0ecba1e2d7d5f169b4f61832f8"
+      }
+    },
+    "what-changed-spread-06": {
+      "source": {
+        "source_sha256": "1f0c2c92580b0193e4f2aa68900ba7031fd78a0752daef9f4855671dd008a514",
+        "kind": "story_spread",
+        "text": "Poz changed one thing.\n\nOnly one."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e9cc2d6ee538b57acb5b6678deaabb86da84455ee2fb1dfbb69553bc812499e2"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "b534cadb2d217fb9a3c710a11b91c8b03e42f605389f471418237746b0844abe"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "321ad967a720b068e4a4451024338a7e3442cf9125abf0ac05f368bb5818f82c"
+      }
+    },
+    "what-changed-spread-07": {
+      "source": {
+        "source_sha256": "1ced6e646c1e556fd8aca65dc075eb83dcdb202225380d6a62ae1c7f30edf9eb",
+        "kind": "story_spread",
+        "text": "The ball rolled again.\n\nThis time it turned left."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "dce6397192886a3fcbabdfd32d04f632e29e01a9844e26e2065984995522bf2e"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c791b7b6ea5292b2a6220d65ad958c46195a7679204b887d18d66c47901b51ef"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "7dd8579d32a2188eaa4f109956b1704732e450ca4f75f8894690f0f578789616"
+      }
+    },
+    "what-changed-spread-08": {
+      "source": {
+        "source_sha256": "4089c4fb2394b75ed842242c42385e3cba9e38c3d89c26cff54cdf0db1ddc116",
+        "kind": "story_spread",
+        "text": "Old path.\n\nNew path.\n\nWhat changed?"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "23b36107c08ebea613943a06d34a0a6125956dee9d77db28cf73423649294e9c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "75e0e79812cff089a23f4b7c7726476df08c84a0fd770153cc469ba2cfe93772"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "62e385c8437acd46c35db70b0e632f61531981dd2fef9710a5c3b25498baa5d5"
+      }
+    },
+    "what-changed-spread-09": {
+      "source": {
+        "source_sha256": "c7107d01893eb22483060d82176b2717fdf22a2df9706ea0749a8a92b23ee8c2",
+        "kind": "story_spread",
+        "text": "They swapped in a hill.\n\nThe ball slowed near the top."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "2683db0c0aa0893a0c84a5aa5b0e77176f64cc0660669f3f8f9925cf11f53e06"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "2deaa44a84f28e8bc1d0135c13c14972348aed6ce4757da4faf984491fbc9a65"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "b18788a745e00b0618d6c0b8fb42ce80086fd7457ba9bf2446dc4a74a891020f"
+      }
+    },
+    "what-changed-spread-10": {
+      "source": {
+        "source_sha256": "bea622b929974e6c051787eadcda59cf66719b99c499477ac7c3f65bb4aba1b5",
+        "kind": "story_spread",
+        "text": "They tried a flat path.\n\nThe ball rolled straight through."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e4b97b46922f50f69ad7bcdd4bc982d430aea04012e9d02431d9758b68a84b73"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "5f61d36d8038fb5dd6b4368937476b2ba7bf8c821a5187440ee98c2694d977d6"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "273c587ed7183ab05ab7799e750f47e9248f421dea3882daf03757e73490b913"
+      }
+    },
+    "what-changed-spread-11": {
+      "source": {
+        "source_sha256": "f6598980bf118d5ec0c6908cba01e4627382b8badbfbacd607474d5da5269662",
+        "kind": "story_spread",
+        "text": "Electra pointed.\n\n\"The path changes when the ball meets something new.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "5db0132c0318e09b9e924a2df8ffead290953315ed558645d2d3be44167f3082"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "7bba10fa0d50c7dcfaef71b3d0b9b4f6e0deff91c208b77cf2c760c8db89dc21"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c35d56aa127a15df0905d2c606f1ab73e0f4d88cb5841f78a7944b0df9e85c7b"
+      }
+    },
+    "what-changed-spread-12": {
+      "source": {
+        "source_sha256": "2cf0c8fc9d0cee8238d0d5be4215f992fb1f746efa3718115445b921824c2888",
+        "kind": "story_spread",
+        "text": "\"What should we change next?\"\n\nPoz asked."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "f759093bb20015cb3875e473426d9f2297045d85fb3361054b3b9004e93fccbc"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "86732828b89416ff1f864b971d912eb641f814c2d2dddab495a6723e573dc4ab"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "225434178e38ab9ec836d2f4e3095fec8135d8340791d58e83e2046931976fc3"
+      }
+    },
+    "what-changed-backmatter-01": {
+      "source": {
+        "source_sha256": "9b6e76415735ca03358a8e8736b5c92aaf2e4a426728713ab5cd8a66b041ad61",
+        "kind": "back_matter_activity",
+        "text": "Change one thing.\nCompare what happened."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "06d821c0808551e6d83465f6d214bd748431c4488ee9af816729cf0cb6cf542f"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "0bb307fd24f6cc2c35fe5363addfb1053213c16fa7bd3d567a7d0638dff4019b"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "b6b94453555cfbfb9fea7c559f8d3618516fab5838dcc5202a13e246bb219ceb"
+      }
+    },
+    "the-message-that-traveled-cover": {
+      "source": {
+        "source_sha256": "98db07164fee08b9a0110f7656957f6bfb5c1ab13a4e6a1748d0bc9043939ed9",
+        "kind": "cover",
+        "text": "The Message That Traveled"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "f0f5acc1a3838a054968e1ccf963e92f7df46205e0aa00552b1510087648d2c7"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "269015f6d28d9f5f4bb3e560a6599fb8c3ce52724862a81dcb29fa0f8b4de700"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "ccb435ec85cb81bb145ffd86c8f456e2e68eb942836f3aeff4ac02fb83deffdc"
+      }
+    },
+    "the-message-that-traveled-spread-01": {
+      "source": {
+        "source_sha256": "ff1713509a8d64ec367a8b44a4a9899560bdcf60b7bae329308ca434ef041f09",
+        "kind": "story_spread",
+        "text": "Electra heard the clock.\n\nTick came before.\n\nTock came after."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "03b946a29b1c1d940a4247f3d8745a96d9132ea6137d5481b8799e86e0e9fa85"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "7c5360402dc2f5c67b3010ca7cec21cb0d13e97916c297d1dcbcbec26b9d31d2"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "77db7aebd4bc0855eabae4bd5b719d2eadf9ac832599e549099d7505a2d7345d"
+      }
+    },
+    "the-message-that-traveled-spread-02": {
+      "source": {
+        "source_sha256": "9b9bf26bc69f57892219f7b386910aa3c944d882102fb68103449116eb2805e5",
+        "kind": "story_spread",
+        "text": "Poz clapped across the yard.\n\nElectra saw Poz's hands.\n\nThen Electra heard the clap."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "4d4359684a79919e01bdeadeafc3351cdc3ef83c6628c61127b46fe26a72f42f"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "9ee60988a6c4c2eb64e9323680ce9648771ccb8db13082917b1ab6d4d2070f1c"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "2e24bb60c43212f272ef9dcf50e9e20acd7d35ef26caebc4a85213aefe7a0f13"
+      }
+    },
+    "the-message-that-traveled-spread-03": {
+      "source": {
+        "source_sha256": "88b3e48f4830d165f94887466be366e9c7c8335fbc15dcd61bfc00ebf3962265",
+        "kind": "story_spread",
+        "text": "\"The clap was real,\"\n\nElectra said,\n\n\"but it was not everywhere at once.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e50c54bd4ef61d0a7bbb8c9e3f40d96db916287922cb4ec54f49c7ad4fdd1a78"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "fcdd9810f4f78a85ba32193404c78c5891b6f31cd9879a3c8996fdca2b31ae13"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "538120a050e3bbca4a101e5ca46135b008572cbca58e3946474ed52507be74a5"
+      }
+    },
+    "the-message-that-traveled-spread-04": {
+      "source": {
+        "source_sha256": "1155158a7442ca62c329d2d79c642df5a101df87c078c64a21679fea878ef2fe",
+        "kind": "story_spread",
+        "text": "Poz stood by the tree.\n\nThe clap began there."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "1538ff8858592d72bd0a1f4249a1a051de32aa80aebd7607d93694989ca7b460"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "23f4e58f3559a1626c17bc5ff78e7062f713a8a25079a2072ccc3de8647e9424"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "6a4f75c315125e92f8492d3b5506a3a59e208249e4842ca769787d15707b3211"
+      }
+    },
+    "the-message-that-traveled-spread-05": {
+      "source": {
+        "source_sha256": "b13761366ce9d562860a3b8722a7c18b076337f64201c5fc1838031472ca6209",
+        "kind": "story_spread",
+        "text": "Electra dropped a pebble.\n\nRings ran away from the splash."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "df4b309c741987aa400ed4dca7cf67a12d323d69d18b27424767065538adac07"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "00b795ddc199613b3cf21fd070f801b2dcf18e31ab232c44d8452deec552e2ce"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "1b52114d1cde0d20fb94c5d7e295efe11935cc4324603e8d3009679c2d2459ba"
+      }
+    },
+    "the-message-that-traveled-spread-06": {
+      "source": {
+        "source_sha256": "a1dcf1dba12626d5c0cb8bb3a4d3ac7117bf6c7401abc84dd7ae704d712d60bc",
+        "kind": "story_spread",
+        "text": "A leaf floated on the water.\n\nThe ring reached it.\n\nThe leaf moved."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "4196edce23a59f1029a3f40454f73861c6066b1a62159718f41ab976965dc931"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "1dde6fd20f21830d248f6c66ea9e2460a0c6602cb882a4fcfae8453fd6d8d6e3"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "5a433df038993f8fe92c5f5199e4eefd5fbf307c88181ecbcfa2f5f766c9df28"
+      }
+    },
+    "the-message-that-traveled-spread-07": {
+      "source": {
+        "source_sha256": "37b72f9172416c60a0c5ce907729f4e1ad1886f44365cefebef4676f4aef76a2",
+        "kind": "story_spread",
+        "text": "Poz tapped the near bell.\n\nElectra heard it quickly."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "aa879fd36872099798b7d292dd28cb9c5d4584d825bbc9bb27f1165a192a3647"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "f25964be6fe210e6f14fa20ee302b38477b386e10ae9b254eb514fc6a49351b6"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "a0a4d322614140dccfbc1c434830d13b260778520b648e64952affceb2e3f081"
+      }
+    },
+    "the-message-that-traveled-spread-08": {
+      "source": {
+        "source_sha256": "4c3a53875c9edbd08b10c3e86bdcc9b0fad48f7495e1428e01610d7990b59d86",
+        "kind": "story_spread",
+        "text": "Poz tapped the far bell.\n\nElectra listened.\n\nThen it rang."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "ba2dd3b51efe50a515cd659051a1870f3f6e5414fffd22628d032b69d9866943"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c9b82e8d85bc0e7d35e71b2dce9fa2f35a03df5a7354bbecc97e4e8ec2a5f4ef"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "facb7e19f50e1c517daf66c9dd90e0c06534b9d215d400035a1f75da195f226f"
+      }
+    },
+    "the-message-that-traveled-spread-09": {
+      "source": {
+        "source_sha256": "1ce44148b714f33c6174fbb8acfbd9671bd5640581a3d9ca9810399baa2cf089",
+        "kind": "story_spread",
+        "text": "Electra pointed from bell to ear.\n\n\"The message came across here.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "5d44bbc8732b987cb313542995ea75369eb326f0135a46051ff2aac095b340eb"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8189937fde10b676db9532a04a8b5eaad83ca35cd149543c3743146d4b803704"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c461b7e3efcbc5cf8566356d8e11504a2bbe95a26e8ceaa488751ca708fbd988"
+      }
+    },
+    "the-message-that-traveled-spread-10": {
+      "source": {
+        "source_sha256": "5ba1a7a2fae71dd415cdf119ea2cbd08ac7ca5434f78049677a2e1b15e9dc8ea",
+        "kind": "story_spread",
+        "text": "Poz pushed a toy boat.\n\nA little wake opened behind it.\n\nThe wake touched a paper leaf.\n\nThe leaf slid away."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "cce88da85dc052abf38ecbc674872e7d1a6f2946cd5e7cb15f98bf95f4ba6bbf"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "4512ef1b3b48f470fdbe60cfb61fc430fd88a36589cb487983e5f29c1abb5c25"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "101c181550429adbd20bc9d9bb6a609dbaf3f9bcc73b574993175ac66f12cd65"
+      }
+    },
+    "the-message-that-traveled-spread-11": {
+      "source": {
+        "source_sha256": "10d5907f64f574c2aa634efa210376d183494154d0374fcf5f6349437341577b",
+        "kind": "story_spread",
+        "text": "Clap.\n\nRing.\n\nRipple.\n\nRoll.\n\nEach one traveled."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e59628d27cda9c9193b80fa375d80c1af39f8e04d8bca07b172c0ca9c654a13c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "3f5cc3ecda1aa1b068af3ea5a1bbb33192394f71ddba1b4771d1f857b06d1dfe"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "53ae569e7a24c37aa3884dafb39ce06b3166972a1fcf4567ca9facf60b33d81f"
+      }
+    },
+    "the-message-that-traveled-spread-12": {
+      "source": {
+        "source_sha256": "56b1a6ce1a399bb7427ff72f06cd17ce85ca62608298b64c10a0426ed889fd41",
+        "kind": "story_spread",
+        "text": "\"A message can be on the way,\"\n\nElectra said,\n\n\"before it reaches me.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "fc1c5d55b6cfb342123fafe920a8469681b5c31760b443b408386dae64e0e1e8"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "1b3862b407ba304f639d861808fcf26c76ae2b7a4e7b9df279642ad60168b8aa"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c52e9daf242d1351f9e83d41a63379994e54437650507adff1520b1222f0b63e"
+      }
+    },
+    "the-message-that-traveled-backmatter-01": {
+      "source": {
+        "source_sha256": "70e73607efe151564d2e5a02b91c15a23a38b127621894c2644dc0affa8858e1",
+        "kind": "back_matter_activity",
+        "text": "Begin.\nTravel.\nArrive."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "50799ab94c251091f0f290890cfd07be7de1dbaf2ef6ec7f121462c8272b93fc"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "e81b17665640fec9d3e85acb988f5248a8180d89ada2256a1399fb37c4c79201"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "737cf6c36fff0290c5766ed0d1c40800cf11ef25873301ad33f61b6e59d1fd5a"
+      }
+    },
+    "the-message-that-traveled-backmatter-02": {
+      "source": {
+        "source_sha256": "3b8803e2f6295d6a545bf1ca329aa8458e7180b80e03ef3d75bb4c259e4b8e22",
+        "kind": "back_matter_activity",
+        "text": "Begin.\nTravel.\nArrive."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "bf6a16f2ea9ba7e5929169092b676945f1e4259df28f39ec321df3a5fec55074"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "32edc6c7857e01d829b30f6b75f434a542154d2818361f273ef3a5a22dbbbb3c"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "fafaca68b827d66474297bb884136a3b2ff3b783b01b45c7b89a0303ce23e311"
+      }
+    },
+    "patterns-that-hold-cover": {
+      "source": {
+        "source_sha256": "ac6b90f2b2fbea06125953beef4caab3f677da3574de59f437698aea6cfea91f",
+        "kind": "cover",
+        "text": "Patterns That Hold"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "3da1b665e0dd7913c22b3de7d11ce5f26de8ece103f2475b288c562ff4a9c3f8"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "f51c1c75b09c4d64178ed524d6f45e6159055a32e7446d694e0dc38f55cf98f3"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "5bc15e51b3686ec30cc313a7297f37f9391c432492b3c15c3b49e2351140a9ad"
+      }
+    },
+    "patterns-that-hold-spread-01": {
+      "source": {
+        "source_sha256": "d47d8e9933e8916494ab9bf65b610572358e851d5e0dc5038e6b609071a33c1f",
+        "kind": "story_spread",
+        "text": "Electra set three beads on strings.\n\nPoz gave one bead a gentle push."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "15a5b7772ec49fc2f8c625194c0eb1d1ffc4cf08043ed0977cb579d04289c616"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "2ab9aa60de4cf5ecff6d297c36c725cf39aab6c2d53fda2761bfb324b3d77082"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "496861b3a339c5e6934cc935567d918bc0a1432076ea718be2b16583ca05915d"
+      }
+    },
+    "patterns-that-hold-spread-02": {
+      "source": {
+        "source_sha256": "1c064a683a6f3101b5284677f4c94af357bfce5a7927cebe7af3122dc939c43a",
+        "kind": "story_spread",
+        "text": "One bead swung too far.\n\nThe pattern broke apart."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "594a6126f670ee4358a8b8ae20cd827a2b0484f96ee250dff463e146fb264df3"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8118c6824099600528a10f0f3ec3aa6680b76bbd66d54dca2e3a87885828e0c1"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e7cd5cb02b4587cb1bc31aec914e4f0cd3ee1107b00be5317c603697920c8290"
+      }
+    },
+    "patterns-that-hold-spread-03": {
+      "source": {
+        "source_sha256": "f4537afac6d8cbeda2bd6e0167e41eabbfd91d6822fdc3130c21612ac4d07ddb",
+        "kind": "story_spread",
+        "text": "One bead barely moved.\n\nNothing interesting lasted."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "c9898a512dcf8443ffcd30c6ea0c1a186b8cab5f34dcbed72b7cdfecdac72f16"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "387b6232751b0c65702251ea614f6cf8092dfe2742a98d4298b1796436f03252"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "81dcdff00648d5729c6a0f674192f3d8f9e74f613af496228fc118b2938dac41"
+      }
+    },
+    "patterns-that-hold-spread-04": {
+      "source": {
+        "source_sha256": "c0c77e609eadc5c29c42336227ba96b8c5359bda09fc91efcdb2a0385ffadc8a",
+        "kind": "story_spread",
+        "text": "Electra tried a smaller push.\n\nThe beads moved.\n\nThen moved again together."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "674b5afa86c4bd544d3137d13cd20fd9c395bfa1331e0c2e51ddcd247b6b7a7a"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "73275586cf93c1791218dfcbebbb848ed3c59cb6ce4a4a2ba45ff173b7be21c6"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "b07c5ce1eb9075dcb6f45a99890ec05ff85157cafe32e3b0742092fc94ebd58a"
+      }
+    },
+    "patterns-that-hold-spread-05": {
+      "source": {
+        "source_sha256": "90a22d0cc8336b7d39799db9edb33b1c23f4be6d7fdb565eca9f9a3455eaaf1e",
+        "kind": "story_spread",
+        "text": "Left.\n\nRight.\n\nLeft.\n\nThe pattern came back."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "28aaa033305341eed04da4b057e8371ce0023493fe5045ae11f7848e3d9ebdca"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "7a3b6fca79f2e5c25122746b3889c2a29cacbf5d0f04241901d3a8ceea2949fa"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "4736ca1e3fe1276e9898fc9c85cb2de092c8bb5e032f1bf96b3e633ba0fd72e2"
+      }
+    },
+    "patterns-that-hold-spread-06": {
+      "source": {
+        "source_sha256": "03855d1e53f8cc049b166559d063b13e20c64c97a19ebc2e1dc9e2a5336850cc",
+        "kind": "story_spread",
+        "text": "\"It is holding,\"\n\nPoz said.\n\n\"But nothing is frozen.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "44e7d8ef201e9bd44717f300c1ef4ff6010e683b9ab010a4b0d4855370d6eb88"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "33fa57f4c129fdde48b6d177b5fa5765f884bfc3a4c6c54ccff1e8f7d22a910c"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e630129080b3bfc29543cc2592c8238339fc8b23c3e9d6f78bed25bb6381a9f5"
+      }
+    },
+    "patterns-that-hold-spread-07": {
+      "source": {
+        "source_sha256": "6c8563708e86abd1827e57a0509ac8687e16a0a7ec8a25d202dcb4bc6fdff639",
+        "kind": "story_spread",
+        "text": "Each bead pulled on another.\n\nEach answer came at the right time."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "dc99cf1f2deaef3685a86d876d9d1018a4190965c349028182bd3ae588e6b5ed"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "e8f426e49cefb36a2d60e797a894ef6e8d79ffc601fa85cefb333ae09875cc45"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "3903b97a99d082b781462f74931619e1b7b3c87f974ade9d11528ea2f5c77b7d"
+      }
+    },
+    "patterns-that-hold-spread-08": {
+      "source": {
+        "source_sha256": "96b624923d6bbef2195f7d6917e546686e03b8a31bd3599ddbd19f6aef615fd9",
+        "kind": "story_spread",
+        "text": "Poz moved one bead farther away.\n\nThe old rhythm faded."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "008b1ff4ae53b6aaad977fba3e7b5c858d69c9c7778c6063a290883739dc8af3"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bbcf8f872d8b6692340a6bdc05dec694f090d3ba9e5512ec397beccee77b66fd"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "6eb23b14708173100a2daddfe981b7eb60e63e1939673e4e490c3ca17b9053b3"
+      }
+    },
+    "patterns-that-hold-spread-09": {
+      "source": {
+        "source_sha256": "98e8a08fe047329e8ee716f9486adbbe982d6791dd23dbdd7ef2419c7acb5369",
+        "kind": "story_spread",
+        "text": "Electra moved it back.\n\nThe rhythm returned."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "36c07be17a50d08e323cbc4c1d349cbe74113909d6f5bff7ad73acd708509ebf"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "8dc6cc42ac3daeef24b8c94bed905c4690787ccfe794c9148eea70abd64380db"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "ad07c5fa5d838f52f4ea72cb1d2dcdbe1d888ed793fd99439b2d30a99089d322"
+      }
+    },
+    "patterns-that-hold-spread-10": {
+      "source": {
+        "source_sha256": "410e3998018caac63b0b6b4103d09cbf45ea87dde8cd0da56d74a0023e12d190",
+        "kind": "story_spread",
+        "text": "Electra watched.\n\n\"Later, we can call this kind of holding an assembly.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "05a03b1fb771852e29d16bec2a911132aaf7bbed94790a85349af6a1d523e868"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "f9789758f439f4375654040ab7a3c247f552e288ca2a1d65c1e17780382b114a"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "62453c9019232f1b6e712db0c52fa8b1c648002a5dbe36e462ffe8adf453abce"
+      }
+    },
+    "patterns-that-hold-spread-11": {
+      "source": {
+        "source_sha256": "8d20ad699e69db4a23851396c740233d27480776c12badfccfa7b6f743782145",
+        "kind": "story_spread",
+        "text": "Three beads held.\n\nThen four.\n\nThen five."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "3198931acf933940e3229f0f3610e8ed686f2f3e665c8e057b6465ffe3f22919"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c9e32b067806b543f1e4dcf83142f3e6ae2df0a58ad0e3c5e9c37443d7a5fc72"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "1b207f0c08ab57de86ba92ba4384d97d29fbb27e99ca0f3a505c312bf8c739e6"
+      }
+    },
+    "patterns-that-hold-spread-12": {
+      "source": {
+        "source_sha256": "da80d2f75fbc72a51a1d28e26c78e8137ec3daf7f5ca50bb967e917ee0c14ddf",
+        "kind": "story_spread",
+        "text": "The parts kept moving.\n\nThe relation held.\n\nNature can build with motion."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "5dbbb69bf0256d49c7de71eb5908b3f8dee886dfb64d814c3b7b2d639410dca5"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "d54ebcbef846299fe1da39b6ebaf5e682c153c34b0ca180f5f621caff910a41d"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "e189f96f26d8e98c5a3c44e2a8744b61e91deb77075bda9dc85116e1a4f39091"
+      }
+    },
+    "patterns-that-hold-backmatter-01": {
+      "source": {
+        "source_sha256": "e4e72772fb9fa5e6efc01545ee276fa59737c1b942b9a95b41e670cae26d6105",
+        "kind": "back_matter_activity",
+        "text": "Move.\nFit.\nHold."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "cc3e7af21ef5246cd9ce6ce63d7ae344510aab075347de3bee534ac4419072c3"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "7d234f81698c0be934add9e218bf3756c019423656e8c532602a888d8cb44902"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "a4823a3430b8abc7955be4d3a797c8e7726f5d8804c2e7de2323a083ecb57e3e"
+      }
+    },
+    "patterns-that-hold-backmatter-02": {
+      "source": {
+        "source_sha256": "7060bb4cb8ee8dbaa8a7deee445d5190e3f2d3fa2c92dd29beb0ad0d5bd5cfd2",
+        "kind": "back_matter_activity",
+        "text": "Move.\nFit.\nHold."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "7ee10b3be6ac7b279a19266407e6ac927c367594ddf3301207855f8388df02a3"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "0dbe39b1c8df69c627aa58390dbb2831175baff512b1dac8c60eabc9f91ccfc7"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "66e26134b1894985bd5e388be7f000d8bd549b3ed7a2a9ff8de4f36f8f1a1c97"
+      }
+    },
+    "the-tiny-transceivers-cover": {
+      "source": {
+        "source_sha256": "b86862a79c361f6c60877558dfa18642670f09940cd0f355e1eb4a5b51a2341d",
+        "kind": "cover",
+        "text": "The Tiny Transceivers"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "56cf5dee743c8caef28e5e0b654c4c283778b6142c8aac5be69415731cc89883"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "3b28e90bdfabd6cc4acc8f75aebdaa2c2330f2aa5f75422192fea89e7c489d8e"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "89d310df172304349752b621bcb15ded40e85aa98af07d0c2ecc1202889a337f"
+      }
+    },
+    "the-tiny-transceivers-spread-01": {
+      "source": {
+        "source_sha256": "ef680d3d80a37d07e75dbc0f7354c92ff7ee6ed8cfcc3e1886c0145983850437",
+        "kind": "story_spread",
+        "text": "Electra and Poz opened the message lab.\n\nTheir question was small and enormous:\n\nWhat sends the deepest messages?"
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b864a30f847deae9c74c0a6f68c232feca04a4dfed4b1308425cc98cbcbcb7bf"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "e589c6de8ef950c9e18e6e56cee970f2f8c0dcb0b440b3742af4608a002550d7"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "4fe8fdb5791ac9951c8ac0dddd11cabfc64132a71584e94b1a210157245cdba5"
+      }
+    },
+    "the-tiny-transceivers-spread-02": {
+      "source": {
+        "source_sha256": "c4f5411ca005b60e64faf0d66d065a7a283a6dabefc29f9f94418a2416c9d173",
+        "kind": "story_spread",
+        "text": "Electra placed one red point on the screen.\n\nIt moved.\n\nThey could follow its path."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "9f2b8efce0f523449d174972d4ea9813ab74f85e056f713c4c5250e6f5adcb3d"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "aa68d3bf8600a5b14b650bff7e533bcd5bd8f165f562459482714289227b4c23"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "0b37f2e71434df2645475a51ffec0593390c8a1b398083676c11edbad65c62c2"
+      }
+    },
+    "the-tiny-transceivers-spread-03": {
+      "source": {
+        "source_sha256": "f971dc4957be9d335bd8e2447543048cca01dc1a83f513b6cee481ec58ee0022",
+        "kind": "story_spread",
+        "text": "Then Poz placed one blue point.\n\n\"This is the other kind,\"\n\nPoz said."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "9cd731f5dfafda4119ab1cee4f0d4de09f7523798ebae18d3415ca473af01ebc"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "bd92c519003d9cee2348ea35d19a0ada9cf0225240b7f1b86f4729a85cc35424"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "1d03cb9deeb231a740320aa2111c3d1fe689f6a49d597fdd06449d555dcf7fb7"
+      }
+    },
+    "the-tiny-transceivers-spread-04": {
+      "source": {
+        "source_sha256": "7c6809cbad96f8eeea235d4fd960e198910e74f17d519fef7f9dc9df5453ca67",
+        "kind": "story_spread",
+        "text": "A card on the screen said:\n\narchitrino.\n\nElectra read the word slowly."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "8e92e2aec74ca8cc4c5db159d8e0f86dcf015d5067517b0d7c0c2f4fca38938e"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "748c77157c45db73eaf0e681063b30b14dce0f6bd582a1131ae820958ee353db"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "eebe9b44212fe2b278fff7f119c9ffdd5c852d2e49a1e591976c9f5a0fee48a1"
+      }
+    },
+    "the-tiny-transceivers-spread-05": {
+      "source": {
+        "source_sha256": "a34e7be782136e49ec32a2ba9eaea1857f5c7ed45d9a9c24ae34f4b05c64764b",
+        "kind": "story_spread",
+        "text": "The red architrino moved.\n\nFrom its old place, a message began."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e2b33baa57320aad2df92cfc7dea751e4e03f9af71370e1ba68315e9c7def349"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "e6c46ab64be02e35d5f3606e27cf3687cb12f0b5de1683aa1b5ebefb43004dd5"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "909a4599f83fa47551084a756974d10a1a29b33562f55a14b6dce0e109628841"
+      }
+    },
+    "the-tiny-transceivers-spread-06": {
+      "source": {
+        "source_sha256": "760177fc31cd191332ced11430077bfb716948baacda517acd8fa03466c34b1b",
+        "kind": "story_spread",
+        "text": "The blue architrino crossed the screen.\n\nWhen the message reached it,\n\nits path changed."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "e526785aa2091424253f1902015cbc08364579a8b892bd7dce894e4beca594dc"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "c928029e51ca1d6697d665ecf3847f1dda9d71f12e5f2cc8b605b81664cb0688"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "b1e03e279ea2f8be3e7270885959c8acd3d3dc98c15fb17108ba9198ee23a93f"
+      }
+    },
+    "the-tiny-transceivers-spread-07": {
+      "source": {
+        "source_sha256": "00b3ecba697064bb9b326a584f9f8a65e91c39725250eee18729493385504b7c",
+        "kind": "story_spread",
+        "text": "\"It is not just a flash,\"\n\nPoz said.\n\n\"It has a before and after.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "c8417edea9e13bfbab084d430a2593d8cf55b4c2871f32f9352b0739bb73c11c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "710bdead5f7a1cd62841379d5cdfc0277d3287cfe2f37363592225ac2aac2d81"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "394d3981f50899913f9515594b638205da8264ba7d180886202179fcd0c80578"
+      }
+    },
+    "the-tiny-transceivers-spread-08": {
+      "source": {
+        "source_sha256": "3ef3bf289538634fb82541220ef3e4ec9d1275167cb7719ff8602599dcb558c4",
+        "kind": "story_spread",
+        "text": "Red and blue did not answer the same way.\n\nTheir paths bent differently."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "7e7a0c7c5fd4012c7c487b553feef75cbdc2ef18e8fd212e0ce42f1dc643f3d3"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "3bbc9933dc69fcb2c817cd50fa94eb4f4b7859872bd9e4d416868c737ca80771"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "d4816b53ce57a7b8673f8b0440b47cc14b1bf4c3f7dc56f69dfd6cc0bdc8e214"
+      }
+    },
+    "the-tiny-transceivers-spread-09": {
+      "source": {
+        "source_sha256": "dde2c7ba8b15347335a9a128f00035ff40d108dfab2e2afecc27a09fa6f31fc1",
+        "kind": "story_spread",
+        "text": "One pair bent inward.\n\nThe children called it toward."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "50a7aaa941071ed4c397c96c982ec2a15d2d5232e144c582555338da3dd39d0d"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "1ae1a4732d8abff66fb5d9bb016edb5dd94ad5f274e4726c560b566be5b04f47"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "6208d84a5ff48a047b5ca0614d1b28163a9ef53c90017d33611a7f78909ed1bd"
+      }
+    },
+    "the-tiny-transceivers-spread-10": {
+      "source": {
+        "source_sha256": "43d5059d4fa9b8db6871c5511e61e51809611e1d688bd56c09d7f328a1379e41",
+        "kind": "story_spread",
+        "text": "Another pair bent outward.\n\nThe children called it away."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b48d65b939e302a78d7c57fb0b9091c3b643030b1c2db63e43a2c6c38b87481d"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "6cd84c34fc8f25ec1f330ccaae25aedeaae28bfc73cae8ed61658eef1756a07e"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "5831be9f098b74a16419197e96738c59daf2ffc7d597dceed5268ef42847e3c4"
+      }
+    },
+    "the-tiny-transceivers-spread-11": {
+      "source": {
+        "source_sha256": "b7e93ad2ac97c00ea74681a2c208e5cf0b33362b690eb25f3c02576797e843d0",
+        "kind": "story_spread",
+        "text": "\"Red is not angry,\"\n\nElectra said.\n\n\"Blue is not calm.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "103766a9ff384483b17f543d0414750552fdf148e8e39971fa166f3bad5e655c"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "a25d957d95bc9b3b30d541962dcde4e4077e5bc7e37db82698a4fbd95f680680"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "6f6720c432d709063abf1730c10c2d8b2b80e70c11dbe8b4dfa2f4876cde028d"
+      }
+    },
+    "the-tiny-transceivers-spread-12": {
+      "source": {
+        "source_sha256": "550eabd6fc0057c5a44999f8dfe5228e43df20ff3d9bf9525fcfeb8cdabe6b99",
+        "kind": "story_spread",
+        "text": "The lab filled with red and blue points.\n\nEvery one kept its own path."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "fed11954fed05f5bcfc38dcfc36ec5c9e8a8729e8d07d4cb1485ce33b490aa96"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "b5689f63a903f1d85dfe23db4508390b936950592f743283e9ba409cb5530561"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "d9688a54eed31e2e15c9583dfcd645bc2ead6bb21b2ca9fb5447b55a48295b0c"
+      }
+    },
+    "the-tiny-transceivers-spread-13": {
+      "source": {
+        "source_sha256": "995dc16eaa1986b36fca7be9dcab29185876a6ee5ce0045a9b41b125e4b9c646",
+        "kind": "story_spread",
+        "text": "Each tiny point could send.\n\nEach tiny point could receive.\n\nThe room became a web of messages."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "191700feefd7018a799593cb16bf774aae2ce0bad39c1fddeef5b38e23dc1f15"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "22cc76069acb156747e966c5c5b5721d4c0efd3d0fea85b16a22662b85851ef6"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "c0ce1962eeed6ed0d5824bc8734f49063f92b4542ae1c93abb5907f2ba50b4de"
+      }
+    },
+    "the-tiny-transceivers-spread-14": {
+      "source": {
+        "source_sha256": "57ecf7e944e5e7c86ee3b6ac27d98c601001851018ec7d64f4e1fe1b50031d7c",
+        "kind": "story_spread",
+        "text": "\"Tiny does not mean simple,\"\n\nPoz said.\n\n\"Tiny can carry the rules.\""
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "b606c1237b15707a75d54c136423ce34e65908c82b71aa0feca37f3d446c2822"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "48ac4e592c1ba9fc9ec29a78f383af37f73a9711d29b51f5e9be7bdb1d504284"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "1808a6e5f7439cd20e1b511979ea11571d24f512eeed4c7b0ef2178f7804e94c"
+      }
+    },
+    "the-tiny-transceivers-backmatter-01": {
+      "source": {
+        "source_sha256": "5878095adb65c66da958e90b2e59b6549b1458d09e24fdadee437e84b650b48a",
+        "kind": "back_matter_activity",
+        "text": "Path.\nSend.\nReceive."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "828fd1a12c827aa6afe5d4eb12e439d4436b085e7c1392584a0d1772386579ff"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "7e849468e8c42055f40d0b17b6a4788b9b16ec4a8de3b71cee9366517193e4fb"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "d2e478e37dc864c273ab57e71b6141ccd141a239c7d06a248d970856c1593106"
+      }
+    },
+    "the-tiny-transceivers-backmatter-02": {
+      "source": {
+        "source_sha256": "7c90d98fa11f1369e1cd9c2a926b080deb772f16a2a37915d520a0b6ef5dbdc8",
+        "kind": "back_matter_activity",
+        "text": "Path.\nSend.\nReceive."
+      },
+      "page_landscape_png": {
+        "size": [
+          1536,
+          1024
+        ],
+        "rgb_sha256": "0bce4a5ee93e9739784b8e39595232e59de9ed70fe3daf1525aac095102c58a4"
+      },
+      "derivative_4x5_png": {
+        "size": [
+          1080,
+          1350
+        ],
+        "rgb_sha256": "a5536c6a7916b023daf75b161675a6a0524d7daa7ddf678e6f1b00fe8df9466e"
+      },
+      "derivative_9x16_png": {
+        "size": [
+          1080,
+          1920
+        ],
+        "rgb_sha256": "90738f04ebdf614d95e5adca1febfee4c5d9b8d50f8a185e30ccb4e4de5da59f"
+      }
+    }
+  },
+  "pdfs": {
+    "here-there-back": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "5b7cd770f6664607234310e656b49c2f9bb25ea98c7d0504620f739512d13dd2"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "f59c3ced218b5750733843292b77c2294767fcd3ba111cf6c743132b857e68e7"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a1b8c5de5e4da7c83943c9c0e9ff2051291c014581f13a2ca54ad24065312f0c"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "d623f3c3fa4a3ef1f13fbefb275a4f556a4d939a8e195258e655c5091a43a9b4"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "dabade23a307704d9a0f9ae8ee349a0ca15d04983402502dc812bddf3a8e58df"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "8b44620e2fe736e4e991daf640fba16c47d5421930cdbc4274d41c1e5db7ee22"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "181980ba4fb9be6ba6d64bb494904c1f16d8c211c3e111a451a2ca4277df5c1b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "04bcfb2c7825ed3ff540e74ced1d56a9c8fba782ba6637b850d986b9d894962b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "63cee007c79e7b9325d7c7406c3c025f066bffb0e50aee98a04da55b163ad658"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "7aece7407c74ce51d6c0264d3a53c0891fec2f0c9bd952b738a4c9894eb7fa5b"
+          }
+        ]
+      }
+    ],
+    "roll-turn-again": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "bc6121228c12fa40f2ca6936ff01fbfa0cc5b5e6314413f30796009cc6dc34a2"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "8b42085a056a3b425927e0188a060586518f0ac85a4419f77dce8fa5628997e4"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "0dc7d89e46bf24bb0ceff25d0f93a53869b22163ec01fcb2dfbcbd16f9dfd4c5"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "70732be135105fa10f45d3295114b737606da28e0d7891f6f6b4d3d96777add8"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "81ef6bc31b8b1792cc73570b9a51f87c12c512fe614943c0418b6a99f83887d5"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "02e498a398cc5144764cbe5e8b8de302ae8e9ee4dca2f93a5b60f4ef9d26d35c"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "24496590011d7689f681ba36e27e6164334b6bee2ef14af6178c6f79ec7b0ab0"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "03f642a87f5c183b231c77be09e3c109af3bf4e33fdcf10a95b35c455caa2dcc"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "6b839df73aa7b87ecfcc4e1c2c9c113f40ac923a27ac600c7df82d142c5ffc3f"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "e2c5e5fb2e207ddf1d37ee019ea84058798bedf1804531d93de26a56950d9a5b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "f66f8daf7cd647c3224921d2f965e4ec55e5f4246eb5f0ff9241aab8fa7b2178"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "9fa77e8c3c7f90f354d9cb73d86a80e274df8e4c6959a74d745448d36a1d8fe5"
+          }
+        ]
+      }
+    ],
+    "nature-remembers-motion": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "d979dc47c15b71c9b5833df8130436922902ea0e134295d8454621b6bcc6c40b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "768855cb967a42786f8965a9b10162dfface60c3be1e9adbfcde5950fe82f38b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "2cec53cfe7694184c000ff496b653ce68c5f6bf742460dbd7c4a470f363c9470"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "4b6be7aa55ebb4e76541baa704e2a0be585d5d91fadd83cd80bcc1ac4aff1249"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "ed64e78339d675ecc4507940074b3e8121342122e15c780c782ba3e4304f8125"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "cab249e5d93dd1dc7244b6e35ed91058e1cb65e38649123475991862da96430f"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "180a0c01f92a696eac31e74288355262d70fe8221a15e2c6e762a70a2b963841"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "cf91e465334d7d80adee60a02a117afedb2bbf1400faadb068f4c33476f1164e"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "66d4bbd37fbfcaad2b0ba4a739003f1e206d422904fe71d3e57fefc17042d65b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "9b81e8cf48cf1780a2a75fcb61eb60332054ba1c239927a292a399972b4fd1f3"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "1ac53af2d93c89b30853c7ef597f98b4d9b45a4e743000e7f71c7098f503b906"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "0fb3599000409c3b9ff52d586aed2c717ddea7767da36d64f62b715a9101ffb1"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "dbbdfcee493ce5e4470767bf2646b1a55a7f34bbd92603720700ede83226d472"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "d6fc9abcc9589fc8abc88773e5f31176289d7ae1f8366054371f677b859de3e0"
+          }
+        ]
+      }
+    ],
+    "again-makes-a-pattern": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "2b67334e42fcc31685c72057782a422b1ba00ff22a077c56134c884e8d45ff4c"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "44732b1e9c699cd06f6c9c308eea9ddc46435e3bbb6c5f25872c43cab479cd4b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "72e1e184b04ed5441cb7b65f9c699e77071d28d205e00adaa7f9547dbb976ccd"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "96794661d9cc62421491f00087f359a5230f02671a7343c282bc6ec4eea52688"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "694db27cd8944ef97c087bb41e79381e385f7c2090f5ff4d1095c131cb39a94f"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a713c08749c651328883af0a0ec08476aed3c516d534c4f4d2ce18955b807ce1"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "299eb012d96946f108de300db733ba9a6ed825deb410d47217d881022f555d30"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "75b6f41c94e5979fbbd0b1b5c1fda3153ad99139f4a148d7e37a4ec06a86bdde"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "6c7a6236c2a546d78871b747379b5107356e405b560aabd204a41a2e71b691ff"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "8f8b6361327641bb3663d0fd2f8d7c48e1d2f0a37ac5431fb4d5455633ebbfe9"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "b0bed948f1bf153d5a7543680f513d41de256157bd5af06cc02df1e5ce02742a"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "bd52d9131514b76ae8c3fca55092474699a62bcc130a69c12589dbffcd1135e9"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "5ce978db7d3e028c0c9643d5b50fdfd476814230edaab851e4ac9940bcf5ecbb"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a4ae104436d4c37546f1de8c2cdd862c65aa5d657eb85ff86efb6d95130b31d3"
+          }
+        ]
+      }
+    ],
+    "what-changed": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "ba30b9ad7f64994be22fc85c8c08e5c01587e7d2c6c90b37460f2f752f51364c"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "93ffc80a86153d8788637acd327646ae9374543733b8f4223f541dd61a961296"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "33d5dbb6f8e0b115ceae659e0dae0daa63a94f45a0170ad95ee89b7356163683"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "ccc3d066342ee24f0655f98044ff57024ed8ad9a2455115078aaa6662abacbfc"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "7dc24e689ed90e212e185332669570fe666e4c880b7df822920857e4327d4afd"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "1264f11a0f3b44a8d91a986bc81f7c93a965a64c6b60eea6f9669deed99ee544"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "750376f275376ef25ecd1908b78d0d90af47b960895571d5e9ee02ad228c917a"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "5d520918b41a30a72919663cc7193bcd821f8bcd26e10c847c956ce7e8264f88"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "cd9c5b787308fcd5388bb8e838e8a77c4ac8eee64bd67b77e87aad7d75098d2f"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "64ad3410fb95a67fa4f922caed45525c70eb6d69657a14a61bf467ca1a80f574"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "2ffae5b28ec6f604a3f1a7b5f8e6312938663768f23bf7fc69c1195fa7ce1d8a"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "57f40c01125f9eca05dba674a86f1e74f135c72f16a1aebc828dfd4b51c6d80c"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "1637a3d0c8c6d2bf9d3cf8e7d7e5b219a93d9df2a6459e14f263bd5cf1632bbb"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "4fde4a0998c59d8cf04f4fc277d386e25ad65109e4bc6130f7df5f97810b4389"
+          }
+        ]
+      }
+    ],
+    "the-message-that-traveled": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "3dd0673b1e5c64fc006a51510fc5e6d7404672b9bb5c0d1adf2e8a5c201975a2"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "5f7cdb54c31bcb629db7364ca14af410979f6f7f6e4951ab89ccbdeeee35bd3f"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "f444a0c8aabb0e5d6b1230c36c2aa3a05dbc1530c55abc1eb972c75feeb4bf05"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a933240fcb01782447a2170a5adee8625e51c8e7591c47b6fa21fa4bc25ebe05"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "99976ee33adde2b8ccbfc1265134aed7b11e03bc6320d1be6255df08224ac2e6"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "040d83f69601e118c690c6c14d88ce522e15c8e8bf131c3bb95bea5428949023"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "e3bb04baeaed155d8e766e88a84bd1b27f2e4188d2234152a951fbcb36fae708"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "d7f078f241de36355aed27e87843d69bac51b8d7255bc49028d11901d31233d3"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "70b9c03027e0b204d7672c6f853b68e1e8f3509a966e1852736f3e331b54447a"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "1ddc0b1a69f5c72959994f63610e52e299b4d18283e03bab521d55468c8a77c8"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "ff61018275c8583ce3f5bae900d8dd78e284b8126f05d6b686974e72c563da09"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "e8ee473949af776f8ede7a53dbe2c7bcd4736784bcc6fd0b90af30a176b405f3"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "ad24d4dfb515d5928f48daae69b3d93fdcca9d0e7d1219e9b1bfa85266b7deb6"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "de89df9562907289e13a32cd519244b2687e84aea1942b52671f94875edab326"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "10f919794c67afdbe0e457d3edb95b87609a882d4d6db7a71965e13f8777bf0d"
+          }
+        ]
+      }
+    ],
+    "patterns-that-hold": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "9af00e6b5848c6443ecc1f8ebba3d2a742b54375746e2d8ccbe7d4c54adbb28d"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "cfe9cafcb6a56081e31844070e730de95fbe76e697be0980d1e6df826060d16d"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "4678dc10c44b8b275f1b217171a83de50863a685a230716601a6713bbb2bc346"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "621964b7f5f50db4b9672e8ad508836e892bf2f01102417dabc57b2bdb2854e4"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "2f321040c9717a7c73fec9e6ab02b46cdea936839f08a5ba2aed7875d5cd44d0"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "11a2b39b11707b924327a077c6a8f70f875f6a847442e59e2a39536f835a1fd0"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "29d571928c17d6b9af5402ad1d55d590526aecec1831030dce47fcff38b37c22"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "97e06a978d39a4f1dbe25f660dbd706c2c0784c043abc491f6a683b06912b333"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "89b26a20c8e2d69c7ca0017c5e5ab4c3859f50744d5669b492e8e9b710c19031"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "f411cc05b54ee6b8e2b2e58794cb0646e9f6ac93b9c66e3be5ce59cdb80802b3"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "1968365eabc908f6aa71de0e266f1304a32eed771e7c788089788a39bb5cbfe8"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "f264586587ca13e7a236104ffea2565c9042b984bc3f47d47b3484908faefa95"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "3f30a1cb99314aa04ccc3bd9ce618497772a7c24b9d1d6d6adc2d0d1ebddd483"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "ac9281c96f9db7b7c9b3c736478da59f6180b708634acb94a3e7487d9b7a1f28"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "f3495ff00f68ba7cafa18c74d1cf1b852f2ea73019dcc1920fbaa069cd8bb8c1"
+          }
+        ]
+      }
+    ],
+    "the-tiny-transceivers": [
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "6f95069a0f911223a8382be0958383b1f306594ec7490a52a9ba6116b034d138"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "68e44a080d94536f4cb866d886cd3027f4541239100c5c3b1d33fab076ae498b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a0c23331e1623b238211d6873cf639f947e24646c20c4cca09e35dac32f1be6d"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "1ad32d2992b75a2874ec6c146e007cf67e53530baa2c02ba79fdb4e0128a8c6b"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "6ebcab2117ab9be04e62f0c849a3e6646562408e8576f1adcd5bfb0affb45d92"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a940ae7b0bbceab15dbaceadcc4287e7b99e1d7e4815c4e12d528a3981870667"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "537d68392556d4053d2351592caa9831be8380d4e49c72bf0fb3cc08147eb568"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "b8a3a4937c16bed66858bd589739b56cb5a2466340a7e150019791deb15ff630"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "5b9a38709776ca295687ecc92ef8d186bee80284db1d72384bd0d1bf1eac156a"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "a63fa7e4f017536bbf3315d908f55fffbf8489c2cd053ba1edddfd2846ff4419"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "4309d359c7c8363fcde18f5b4c1f0c718b848c8f7874d7232a5fdebc3c83ae79"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "53684f84d580afc42aa80d142899297fd706dad99619a8582fa4565a12ca1fb3"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "2de12cba4d3c115b2993f877080571a3c22992f99ddb51753b05e3ecd13537cc"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "49678762dc5417aa8896a279106e64aefd69a7f75390edf1a57e076d633ef8da"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "6bf6cc45c35e2d6a32ea727f5b9d30639aa1b26da535a9bd1e6beae596d95239"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "c99e44a91bdacb4ea0682b1a50d8a3b8cdbb32c1ae089ca15ee064136c52672a"
+          }
+        ]
+      },
+      {
+        "media_box": [
+          0.0,
+          0.0,
+          1536.0,
+          1024.0
+        ],
+        "contents_sha256": "dc4de906acd8845e954c0bb01c7cdadbe6fd4a8293e9911c67c1469b79b17593",
+        "images": [
+          {
+            "name": "/image",
+            "width": 1536,
+            "height": 1024,
+            "filter": "/DCTDecode",
+            "data_sha256": "2fbcf00ec258497ac73c31458b8a92e431eb1bc54ea1253d0c6eea21df9c2375"
+          }
+        ]
+      }
+    ]
+  }
+}

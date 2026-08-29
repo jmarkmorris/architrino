@@ -32,7 +32,7 @@ The report-only [Inferring Braid Requirements](../mapping-equations/inferring-br
 
 - **Status:** Queued
 - **Priority object:** common_axis_source_moment_field_matrix
-- **Request / acceptance:** Build one report-only six-case matrix for a candidate common-axis braid. Each row must name net exposed charge, internal polarity-weighted circulation, assembly drift, intrinsic exposed-current moment, expected observer-level magnetic parity, required same-record bindings, independent Maxwell comparison, and falsifier.
+- **Request / acceptance:** Build one report-only six-case matrix for a candidate common-axis braid. Each row must name net exposed charge, internal polarity-weighted circulation, assembly group velocity, intrinsic exposed-current moment, expected observer-level magnetic parity, required same-record bindings, independent Maxwell comparison, and falsifier.
 - **Cases:** axis-only null, circulation reversal, polarity conjugation, translation reversal, rigid axis rotation, and neutral far-field multipole.
 - **Evidence / blocker:** Prescribed B1 common-axis geometry may define the candidate coordinates but cannot count as retained branch evidence. Equation Mapping supplies the current EQ-13 and EQ-27 row contracts; neither their attempt fixtures nor priority prose supplies accepted source evidence.
 - **Completion:** A focused matrix packet separates internal rotation axis, exposed-current magnetic moment, observer-level magnetic projection, and its direct-wake versus sea-response provenance; all six cases have explicit parity predictions, same-record requirements, and failure conditions; no Maxwell or electron-structure claim is promoted.

@@ -21,6 +21,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 - Unattended PR lifecycle verification: [codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md).
 - Corpus convergence: [convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md), with [theory-orientation.md](theory-orientation.md) for the smallest relevant live theory read.
 - Source mining: [source-mining-best-practice.md](source-mining-best-practice.md).
+- Reference and source policy: [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution), with [source-checking disclosures](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Acquisition and review procedures apply this policy; they do not replace it.
 - Theory orientation for core geometry and corpus sessions: [theory-orientation.md](theory-orientation.md).
 - Long-running tests, simulations, rebuilds, and analytical campaigns: [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
 - Plain-language explanation in operator-facing output: [operator-explanation-standard.md](operator-explanation-standard.md).

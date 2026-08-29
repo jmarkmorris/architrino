@@ -8,7 +8,7 @@ Family A is a geometry-and-motion definition. It does not establish that an A1, 
 
 Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.
 
-At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and the translation speed is the braid's group translation speed rather than an internal architrino speed.
+At the near-rest endpoint, the three binary axes are mutually orthogonal. Their equal-component direction is the Family-A translation direction. The complete braid translates along that direction, and its group speed is distinct from the internal architrino speeds.
 
 Every Family-A Borg catalog representative uses this near-rest endpoint: $\lambda_A=0$, source axes along $x$, $y$, and $z$, and corresponding binary orbit planes yz, xz, and xy. This prescribed display selection does not remove the intermediate and flat response geometries from the wider Family-A taxonomy.
 

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
 import { createEquationMappingLaunchHref, resolveEquationMappingReturnHref } from "../src/runtime/EquationMappingNavigation.js";
-import { createMarkdownEquationMapRuntime, EQUATION_MAP_TRIAL } from "../src/runtime/MarkdownEquationMapRuntime.js";
+import { createMarkdownEquationMapRuntime, resolveEquationMappingSemanticId } from "../src/runtime/MarkdownEquationMapRuntime.js";
 import { EquationMappingRuntime } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
 
 const sourcePath = "content/markdown/aaa/philosophy-history/one-nature-many-theories.md";
@@ -129,35 +129,56 @@ function element(tagName, className = "") {
   return node;
 }
 
-function fixture() {
+function fixture(entries = [{ semanticId, prefix: "../../../../" }]) {
   const root = element("article");
-  const equation = element("div", "markdown-math-block");
-  const paragraph = element("p");
-  const link = element("a");
-  link.textContent = paragraph.textContent = "Explore this equation in Equation Mapping";
-  link.setAttribute("href", `../../../../equation-mapping.html#${semanticId}`);
-  paragraph.append(link);
-  root.append(equation, paragraph);
-  root.querySelectorAll = () => [link];
+  const equations = [];
+  const paragraphs = [];
+  const links = [];
+  for (const entry of entries) {
+    const equation = element("div", "markdown-math-block");
+    const paragraph = element("p");
+    const link = element("a");
+    link.textContent = paragraph.textContent = "Explore this equation in Equation Mapping";
+    link.setAttribute("href", `${entry.prefix}equation-mapping.html#${entry.semanticId}`);
+    paragraph.append(link);
+    root.append(equation, paragraph);
+    equations.push(equation);
+    paragraphs.push(paragraph);
+    links.push(link);
+  }
+  root.querySelectorAll = () => links;
   const windowLike = { location: { href: currentHref } };
   const runtime = createMarkdownEquationMapRuntime({ markdownBody: root, documentLike: { createElement: element }, getWindow: () => windowLike });
-  return { root, equation, paragraph, link, runtime, windowLike };
+  return {
+    root, equations, paragraphs, links, runtime, windowLike,
+    equation: equations[0], paragraph: paragraphs[0], link: links[0],
+  };
 }
 
-test("the trial wraps only the selected equation, preserves its node, and provides an accessible tooltip", () => {
-  const f = fixture();
-  f.runtime.decorate(sourcePath);
-  assert.equal(f.root.children.length, 1);
-  const row = f.root.children[0];
-  assert.equal(row.className, "markdown-equation-map-row");
-  assert.equal(row.children[0], f.equation);
-  const action = row.children[1];
-  assert.equal(action.children[0], f.link);
-  assert.equal(f.link.textContent, "View →");
-  assert.equal(f.link.getAttribute("aria-label"), "View in Equation Mapping");
-  assert.equal(action.children[1].textContent, "View in Equation Mapping");
-  assert.equal(action.children[1].getAttribute("role"), "tooltip");
-  assert.equal(action.children[1].id, f.link.getAttribute("aria-describedby"));
+test("every canonical equation link becomes an accessible View action across source depths", () => {
+  const entries = [
+    { semanticId, prefix: "../../../../" },
+    { semanticId: "corpus-equation-aabbccddeeff0011", prefix: "../../../../../" },
+    { semanticId: "causal-wake-master-equation", prefix: "../../../../../../" },
+  ];
+  const f = fixture(entries);
+  assert.equal(f.runtime.decorate(sourcePath), entries.length);
+  assert.equal(f.root.children.length, entries.length);
+  f.root.children.forEach((row, index) => {
+    const action = row.children[1];
+    const link = f.links[index];
+    assert.equal(row.className, "markdown-equation-map-row");
+    assert.equal(row.id, entries[index].semanticId);
+    assert.equal(row.children[0], f.equations[index]);
+    assert.equal(action.children[0], link);
+    assert.equal(link.textContent, "View →");
+    assert.equal(link.getAttribute("aria-label"), "View in Equation Mapping");
+    assert.equal(action.children[1].textContent, "View in Equation Mapping");
+    assert.equal(action.children[1].getAttribute("role"), "tooltip");
+    assert.equal(action.children[1].id, link.getAttribute("aria-describedby"));
+    assert.equal(new URL(link.href).hash, `#${entries[index].semanticId}`);
+  });
+  const action = f.root.children[0].children[1];
   f.link.fire("keydown", { key: "Escape" });
   assert.equal(action.dataset.tooltipDismissed, "true");
   f.link.fire("focus");
@@ -167,29 +188,50 @@ test("the trial wraps only the selected equation, preserves its node, and provid
   assert.equal(new URL(new URL(f.link.href).searchParams.get("returnTo")).hash, "#scene=settled-section");
 });
 
-test("unselected documents, neighboring equations, and links embedded in prose remain unchanged", () => {
-  for (const change of [f => f.link.setAttribute("href", "../../../../equation-mapping.html#another-equation"), f => { f.paragraph.textContent += " additional prose"; }, f => { f.equation.className = "not-math"; }]) {
+test("noncanonical routes, embedded links, labels, and non-equation neighbors remain unchanged", () => {
+  for (const change of [
+    f => f.link.setAttribute("href", "../../../../other.html#another-equation"),
+    f => { f.paragraph.textContent = `Introductory prose ${f.paragraph.textContent}`; },
+    f => { f.equation.className = "not-math"; },
+    f => { f.link.textContent = f.paragraph.textContent = "Read the equation map"; },
+  ]) {
     const f = fixture(); change(f); f.runtime.decorate(sourcePath);
     assert.deepEqual(f.root.children, [f.equation, f.paragraph]);
   }
-  const f = fixture(); f.runtime.decorate("content/markdown/aaa/another.md");
-  assert.deepEqual(f.root.children, [f.equation, f.paragraph]);
+});
+
+test("a canonical link sharing a paragraph with following prose moves without deleting the prose", () => {
+  const f = fixture();
+  const inline = element("span");
+  inline.textContent = "following explanation";
+  f.paragraph.textContent += " following explanation";
+  f.paragraph.append(inline);
+
+  assert.equal(f.runtime.decorate(sourcePath), 1);
+  assert.deepEqual(f.root.children, [f.root.children[0], f.paragraph]);
+  assert.equal(f.root.children[0].className, "markdown-equation-map-row");
+  assert.deepEqual(f.paragraph.children, [inline]);
 });
 
 test("return restoration waits for math, scrolls once, focuses View, and cancels on a different page", () => {
+  const requestedSemanticId = "corpus-equation-aabbccddeeff0011";
   for (const navigateAway of [false, true]) {
-    const f = fixture();
+    const f = fixture([
+      { semanticId, prefix: "../../../../" },
+      { semanticId: requestedSemanticId, prefix: "../../../../../" },
+    ]);
     f.runtime.decorate(sourcePath);
-    const row = f.root.children[0];
+    const row = f.root.children[1];
+    const link = f.links[1];
     row.isConnected = true;
     let rendered = false;
     let scrolled = 0;
     let focused = 0;
     let callback;
-    row.querySelector = selector => selector === ".is-rendered" ? (rendered ? f.equation : null) : f.link;
+    row.querySelector = selector => selector === ".is-rendered" ? (rendered ? f.equations[1] : null) : link;
     row.scrollIntoView = options => { assert.equal(options.block, "center"); scrolled++; };
-    f.link.focus = options => { assert.equal(options.preventScroll, true); focused++; };
-    f.windowLike.location.search = `?equation=${semanticId}`;
+    link.focus = options => { assert.equal(options.preventScroll, true); focused++; };
+    f.windowLike.location.search = `?equation=${requestedSemanticId}`;
     f.windowLike.requestAnimationFrame = run => { callback = run; };
     f.runtime.restoreReturnPosition();
     assert.equal(callback, undefined);
@@ -206,11 +248,13 @@ test("return restoration waits for math, scrolls once, focuses View, and cancels
   }
 });
 
-test("the single-equation trial points at the unchanged canonical Delta equation and CSS supports keyboard focus", () => {
-  assert.deepEqual(EQUATION_MAP_TRIAL, { sourcePath, semanticId });
-  const source = readFileSync(new URL(`../${sourcePath}`, import.meta.url), "utf8");
-  const prefix = source.slice(0, source.indexOf(`[Explore this equation in Equation Mapping](../../../../equation-mapping.html#${semanticId})`));
-  assert.match(prefix, /\$\$\s*\\Delta_[\s\S]*?\\epsilon_\{ij\}\s*\$\$\s*$/u);
+test("the global source-link parser is narrow and CSS supports keyboard focus", () => {
+  for (const prefix of ["../../../../", "../../../../../", "../../../../../../"]) {
+    assert.equal(resolveEquationMappingSemanticId(`${prefix}equation-mapping.html#${semanticId}`), semanticId);
+  }
+  for (const href of [null, "equation-mapping.html#id", "../../../../other.html#id", "../../../../equation-mapping.html", "../../../../equation-mapping.html#bad/id", "https://example.test/equation-mapping.html#id"]) {
+    assert.equal(resolveEquationMappingSemanticId(href), null);
+  }
   const css = readFileSync(new URL("../style.css", import.meta.url), "utf8");
   assert.match(css, /\.markdown-equation-map-link:focus-visible \+ \.markdown-equation-map-tooltip\s*\{\s*visibility: visible;/u);
 });

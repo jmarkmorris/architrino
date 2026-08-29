@@ -152,7 +152,7 @@ node scripts/build-textbook-md-pdf.mjs --check
 
 Use [codex-pr-branch.md](git/codex-pr-branch.md) for the full branch, commit, push, and PR validation set.
 
-For iOS Reader package work, typical checks are:
+The iOS textbook package is on-demand; ordinary corpus and PR work does not require its regeneration or freshness validation. For explicitly requested iOS Reader package work, follow the [on-demand packaging procedure](../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging). Typical checks for that scope are:
 
 ```bash
 node scripts/export-ios-textbook-package.mjs --check --strict

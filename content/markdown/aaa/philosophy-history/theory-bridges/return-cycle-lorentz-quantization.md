@@ -54,7 +54,7 @@ This level separation is essential. The Lorentz equation is not being promoted t
 
 ## One-Way Roots Are Not Yet Lorentz Geometry
 
-A one-way causal leg along the drift direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
+A one-way causal leg along the group-velocity direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
 $$
 \beta_\star\equiv\frac{v}{c_\star}
 \qquad
@@ -62,7 +62,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dcfcfd5cb198585e)
-For an envelope semiaxis $R_{\parallel}$ along drift, the forward and rear one-way legs are
+For an envelope semiaxis $R_{\parallel}$ along group velocity, the forward and rear one-way legs are
 $$
 t_{+}
 =
@@ -82,7 +82,7 @@ The first structural step is to change the object being analyzed. A material clo
 
 The longitudinal closed return time is the sum of the forward and rear legs:
 $$
-T_{\parallel}
+P_{\parallel}
 =
 t_{+}+t_{-}
 =
@@ -92,9 +92,12 @@ t_{+}+t_{-}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b732691196073fa)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly group velocity. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly group velocity.
+
 Combining the fractions gives
 $$
-T_{\parallel}
+P_{\parallel}
 =
 \frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
 =
@@ -115,7 +118,7 @@ $$
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f5fc9cc7a625c20d)
 For transverse semiaxis $R_{\perp}$,
 $$
-T_{\perp}
+P_{\perp}
 =
 \frac{2R_{\perp}}{c_{\perp}}
 =
@@ -126,11 +129,11 @@ $$
 
 The Lorentz-admissible closure condition is that the same material branch closes with one period in the longitudinal and transverse channels:
 $$
-T_{\parallel}
+P_{\parallel}
 =
-T_{\perp}
+P_{\perp}
 +
-O(\epsilon_{\mathrm{LV}}T_0)
+O(\epsilon_{\mathrm{LV}}P_0)
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae9bfb34f3a31110)
@@ -218,11 +221,14 @@ In ordinary geometry language, $\beta_\star$ is the eccentricity of the oblate s
 
 The same map explains the clock side. A moving clock branch is a closed return cycle, so time dilation is the stretch of the period required for the branch to return to compatible phase:
 $$
-T(v)=\gamma_\star(v)T_0
+P(v)=\gamma_\star(v)P_0
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad47d7d0529c2a26)
-in the ideal homogeneous limit. The size of the object sets the base period $T_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
+
+Here $P$ is the cycle period of the declared clock branch, evaluated at the group-speed argument shown.
+
+in the ideal homogeneous limit. The size of the object sets the base period $P_0$; the velocity-dependent multiplier is the dimensionless factor $\gamma_\star$.
 
 This distinction matters near the light-speed limit. The oblate spheroidal envelope becomes thin because $R_{\parallel}=R_{\perp}/\gamma_\star$ tends to zero. But the forward leg of the closed cycle contains the catch-up denominator $c_\star-v$:
 $$
@@ -241,7 +247,7 @@ The visible assembly envelope is not supplied by one taxonomy-designated binary.
 
 ## Simultaneity From the Leg Difference
 
-The closed-return derivation used only the *sum* of the two one-way legs: the forward leg $t_+=R_\parallel/(c_\star-v)$ and the backward leg $t_-=R_\parallel/(c_\star+v)$ add to the round-trip period, and equating longitudinal with transverse closure fixes the ruler contraction $\xi=1/\gamma_\star$ and the clock dilation $T=\gamma_\star T_0$. The *difference* of the same two legs is not discarded structure; it is the third Lorentz pillar. For two sites of the moving assembly separated by rest longitudinal distance $x'$, the fore-and-aft asymmetry of the one-way legs is
+The closed-return derivation used only the *sum* of the two one-way legs: the forward leg $t_+=R_\parallel/(c_\star-v)$ and the backward leg $t_-=R_\parallel/(c_\star+v)$ add to the round-trip period, and equating longitudinal with transverse closure fixes the ruler contraction $\xi=1/\gamma_\star$ and the clock dilation $P=\gamma_\star P_0$. The *difference* of the same two legs is not discarded structure; it is the third Lorentz pillar. For two sites of the moving assembly separated by rest longitudinal distance $x'$, the fore-and-aft asymmetry of the one-way legs is
 
 $$
 \tfrac12\left(t_+-t_-\right)
@@ -263,7 +269,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ece0442086c80dee)
 
-the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with drift.
+the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with group speed.
 
 The three pillars are therefore one accounting once that identification closes. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, while the **difference** supplies the offset required for relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
 
@@ -279,10 +285,13 @@ $$
 \qquad
 \gamma_{\mathrm{clk}}^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{P_q(v)}{P_0}
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-01020a353ac75c6e)
+
+Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
+
 The realized material Lorentz response is the branch-indexed tuple
 $$
 q
@@ -404,7 +413,7 @@ This sequence is the main reason the term `return-cycle` is preferred. The break
 
 ## Prediction And Failure Mode
 
-The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in drift speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
+The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in group speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
 
 Schematically, the two-way anisotropy diagnostic should decompose as
 $$
@@ -442,6 +451,6 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-That step has no confirmation from evolved dynamics. What the prescribed translating-family kinematics supply is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own ansatz, and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. The actual moving branch may deform internally. Whether its envelope's relative flattening tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ remains a target that requires evolution under the delayed acceleration law and measurement of the settled relative-periodic branch. The open remainder is therefore confirmation at any drift speed, then across the full drift range, together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
+That step has no confirmation from evolved dynamics. What the prescribed translating-family kinematics supply is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own ansatz, and the leg-difference simultaneity offset is exactly zero at rest and grows with group speed in step with the $v\gamma_\star^2$ prediction. The actual moving branch may deform internally. Whether its envelope's relative flattening tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ remains a target that requires evolution under the delayed acceleration law and measurement of the settled relative-periodic branch. The open remainder is therefore confirmation at any group speed, then across the full group-speed range, together with the joint clock-ruler-leakage solve on a retained branch. At larger group speed the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-group-speed regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.

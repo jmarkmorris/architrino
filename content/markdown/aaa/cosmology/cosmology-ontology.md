@@ -293,7 +293,7 @@ $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9356cfffd5bfd52b)
 
-The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/T_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
+The Noether sea retuning ratio $\Lambda_{\mathrm{sea}}=T_{\mathrm{retune}}/P_{\mathrm{cycle}}$ determines how the cycle is read. When $\Lambda_{\mathrm{sea}}\ll1$, a state-function entropy comparison may be available. When $\Lambda_{\mathrm{sea}}\gtrsim1$, the hysteresis-loop record must remain in $\mathcal R_{S,c}$ or the interior-production row; resetting the visible macrostate does not reset the path history. SMBH processing closes this ledger only if its captured assemblies, emitted photon and neutrino channels, Noether sea update, remnants, causal wakes, and boundary fluxes satisfy the same balance.
 
 ## Observation-First Component Abstraction
 

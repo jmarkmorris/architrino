@@ -59,7 +59,7 @@ const SHARED_SYMBOL_DEFINITIONS = Object.freeze({
   m: "an index, mode number, or effective mass-ledger quantity",
   N: "a count, lapse, normalization, or Noether-related quantity",
   n: "an index, count, normal, or mode number",
-  P: "a pressure, probability, momentum, or projection quantity",
+  P: "a cycle period, pressure, probability, momentum, or projection quantity fixed by the local source context",
   p: "a momentum, probability, or local parameter",
   Q: "a conserved charge, quality factor, or indexed quantity",
   q: "an architrino polarity or charge-comparison label",

@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-29 — Compact equation-to-app action approved globally
+
+- Promoted the one-equation `View →` reader trial into the canonical web presentation for every corpus display equation carrying the ordinary Equation Mapping source link.
+- Preserved the ordinary source-relative Markdown link as the portable binding, retained exact-route return navigation and keyboard focus, and kept equation rows full-width in paginated textbook layouts.
+- This presentation change does not alter equation identity, source authority, promotion, proof status, or equation-mapping score.
+
 ### 2026-08-24 — Full-corpus equation baseline, symbols, and author workflow verified
 
 - Inventoried all 198 canonical Markdown files and registered all 4,587 display-equation occurrences. Each occurrence now has a stable semantic ID carried by an ordinary source-relative Markdown link and a generated read-only Equation Mapping page with formula TeX, source heading, line span, nearby context, search text, and symbol records.

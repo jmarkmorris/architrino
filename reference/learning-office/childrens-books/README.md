@@ -1,5 +1,11 @@
 # Children's Book Series
 
+## Pilot Status
+
+This is a learning and production-process pilot, not a released reader-facing product. Eight books have 111 preserved source illustrations. The manuscripts, prompts, exemplars, QA records, and page-layout software remain maintained; pages, PDFs, social derivatives, and review bundles are generated locally only when requested. See the [on-demand export procedure](production/README.md). Exporting does not publish a book, approve pending source-art QA, or regenerate artwork.
+
+## Series Design
+
 **The Wonder of Nature and the Universe** is the child-facing book line for $\mathbb{A}\mathbb{A}\mathbb{A}$. Electra and Poz seek knowledge together and discover one new thing about nature or the universe in each book. The concept progression is in [story-design.md](story-design.md), the visual system is in [style-guide.md](style-guide.md), approved image direction is in [exemplars.md](exemplars.md), and reverse-band story-text placement is in [text-layout-proposals.md](text-layout-proposals.md). Each book keeps the same commitments:
 
 - the story is emotionally simple enough for the target age;

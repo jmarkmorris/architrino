@@ -44,7 +44,7 @@ The absolute-frame question is one important family inside the broader validatio
 - **CMB rest-frame proxy:** The CMB dipole-free frame is an empirical large-scale proxy for Noether sea rest. It is not an identification of the Euclidean-void rest frame.
 - **Protocol:** Compare simulation outputs with CMB-frame summaries only as a large-scale consistency check for the declared Noether sea state and cosmological transport record.
 
-### Null Tests for Absolute-Frame Drift
+### Null Tests for Absolute-Frame Group velocity
 
 - **Protocol:** Run a simulated Michelson-Morley or resonator experiment through a declared Noether sea state.
 - **Success criterion:** The observer-level interference or frequency record remains invariant, within the predeclared leakage bound, as the apparatus rotates relative to the Euclidean-void frame.
@@ -53,7 +53,7 @@ The absolute-frame question is one important family inside the broader validatio
 
 ### Precision Atomic Comparison
 
-- **Protocol:** Compare the derived hydrogen $1S$-$2S$ observer record for apparatus histories with different orientations and drifts relative to the Euclidean-void frame.
+- **Protocol:** Compare the derived hydrogen $1S$-$2S$ observer record for apparatus histories with different orientations and group velocities relative to the Euclidean-void frame.
 - **Success criterion:** The same unit map, photon branch, assembly deformation, and clock channel keep sidereal variation below the bound recorded in the [Constraint Ledger](constraint-ledger.md).
 - **Failure condition:** Per-run retuning of the Noether sea state, line map, or clock calibration is a hidden-tuning failure rather than a successful null result.
 

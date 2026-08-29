@@ -2,6 +2,8 @@
 
 This is the canonical execution ledger for accepted source-acquisition and convergence batches.
 
+Every batch applies the [About Architrino reference policy](../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and [source-checking disclosures](../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). The queue controls research work, not which sources must appear as corpus citations.
+
 ## Ranked Next Objects
 
 1. `mine_source_material` — [SM-001](#sm-001--mine-source-material). Status: `Queued`.

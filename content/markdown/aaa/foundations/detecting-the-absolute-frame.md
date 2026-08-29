@@ -244,9 +244,9 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 The diagnostic relies on a critical physical assumption:
 - **Wake propagation independence from transmitter motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the transmitter's subsequent trajectory.
 
-This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
+This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null results for group-motion anisotropy; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 
-The reason is structural rather than rhetorical. The complete-state diagnostic operates on transmitter-tagged wake centers: transmitter identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. Null drift constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the transmitter-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
+The reason is structural rather than rhetorical. The complete-state diagnostic operates on transmitter-tagged wake centers: transmitter identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. The null group-motion anisotropy result constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the transmitter-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
 
 ### Tagged-Emission Injectivity Lemma
 
@@ -312,7 +312,7 @@ The next chapter, [Constructing the Absolute Frame](constructing-the-absolute-fr
 
 The risk-bearing claim is two-sided. The preferred-frame program fails at the complete-state level if transmitter-tagged wake centers cannot define one consistent rest-frame structure. It fails at the observer level if physical clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or PPN ceilings after moving-assembly closure is applied. The framework is therefore committed both to a real complete-state preferred frame and to a quantitatively hidden observer-sector leakage row.
 
-In map language, the theorem target pairs the proved tagged-emission injectivity lemma with approximate observer invariance. The label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or drift family:
+In map language, the theorem target pairs the proved tagged-emission injectivity lemma with approximate observer invariance. The label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or group velocity family:
 $$
 \operatorname{diam}_{\mathrm{obs}}
 \left\{
@@ -324,4 +324,4 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
-Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute drift $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
+Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute group velocity $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.

@@ -21,10 +21,12 @@ The locally ranked campaign and decision objects live in [work-queue.md](work-qu
 
 ## Strategy: the ratified N-ladder, evolution-first
 
+The canonical theory imposes no architrino speed ceiling. Sub-field speed is a declared scope of the first rung and certain instruments, not a universal braid requirement; [H3](braid-candidate-requirement-adjudication.md#velocity-domain-and-instrument-scope) requires complete causal roots and valid event handling across the declared speed regime.
+
 Walk up from the smallest object, certifying dynamical behavior at each rung before adding structure. This inverts the last effort, which explored elaborate shapes on prescribed motion before any object had a verified dynamical existence.
 
 1. `binary_subfield_fate` — **Two architrinos, below field speed.** Evolve the opposite-polarity pair under the master equation; collapse-test; characterize its fate (bound, unbound, conditional). The program's first certified dynamical object — everything else builds on knowing what a binary actually does.
-2. **Two architrinos at and above field speed.** Self-hits active. The same fate question where the delayed self-interaction channel opens.
+2. **Two architrinos at and above field speed.** Resolve the actual partner- and self-root inventory; speed alone does not establish a self-hit. Apply the same fate question where delayed self-interaction is present.
 3. **Four architrinos: a neutral pair of pairs.** First composite: do certified binaries interact toward binding or dispersal?
 4. **Six architrinos: braid candidates.** Screening over the configuration chart nominates candidates; evolution decides them.
 5. **Assembly mapping.** Photon-carrier and charged-lepton campaigns open only after a persistent object exists to map.
@@ -32,7 +34,7 @@ Walk up from the smallest object, certifying dynamical behavior at each rung bef
 ## Parallel Analytical Lanes
 
 - [`common_axis_braid_train_analytics`](common-axis-braid-train-analytics.md) — Operator-directed prescribed-path lane for the six-architrino Family-B dimension extension and the general twelve-architrino coaxial Family-C chart, with an optional six-worldline Accessory Configuration. C1/C2 are the general co-/counter-rotating members; C3/C4 are the coaxial two-B1 loci; C5/C6 are their all-equatorial loci. The prior twelve-row $c_f=4$ pilot is historical diagnostic evidence only and cannot negatively rank the enormous common-axis space. A current campaign must use $c_f=1$, co-translating exterior probes, translation controls, and space-filling coverage.
-- [`parallel_braid_prescribed_search`](campaigns/parallel-agent-braid-search.v1.json) — Completed source-frozen agent dispatch across current A/B/C `H1/H2` rows, F1–F4 representation debt, and the independent F5 interpolation-enclosure prerequisite. The [A/B/C census](evidence/2026-08-26-parallel-abc-h1-h2-census.md) closes H2 for all nineteen executable child rows; sixteen are sub-field and three require slower cadence before H3. The independent F5 enclosure also passes; its later, separately authorized [clean enclosed-root restart](evidence/2026-08-27-f5-enclosed-root-closure.md) now closes scoped prescribed `H3 P[M]`. The completed parallel manifest itself authorized no F5 `H3` root run, ordinary EOM evolution, score change, retention, stability, or physical claim.
+- [`parallel_braid_prescribed_search`](campaigns/parallel-agent-braid-search.v1.json) — Completed source-frozen agent dispatch across current A/B/C `H1/H2` rows, F1–F4 representation debt, and the independent F5 interpolation-enclosure prerequisite. The [A/B/C census](evidence/2026-08-26-parallel-abc-h1-h2-census.md) closes H2 for all nineteen executable child rows; sixteen are sub-field and three lie outside the current sub-field H3 method. The three remain `H3 U`, not physically rejected; slower cadence is needed only to reuse that restricted method. The independent F5 enclosure also passes; its later, separately authorized [clean enclosed-root restart](evidence/2026-08-27-f5-enclosed-root-closure.md) now closes scoped prescribed `H3 P[M]`. The completed parallel manifest itself authorized no F5 `H3` root run, ordinary EOM evolution, score change, retention, stability, or physical claim.
 
 Plainly: the first broad geometry search is complete. Its results identify the next safe tests without turning any favorable prescribed path into a claim that the path is dynamically produced or retained.
 

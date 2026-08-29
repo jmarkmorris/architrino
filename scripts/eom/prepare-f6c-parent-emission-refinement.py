@@ -10,8 +10,8 @@ comparison and original root reference are bound bytes, never imported here.
 Queries are acknowledged only after write, flush AND fsync. A failed sink may
 have written an unacknowledged record; that pending record is reported separately
 from the proposer's acknowledged prefix. Private attempts survive rejection.
-Four public files are linked exclusively, manifest last, and retracted only if
-still owned when any late source/runtime/publication/cleanup check fails.
+Four public files are linked exclusively, manifest last. Every failed private
+and public byte is retained without acceptance when a late check fails.
 
 This CLI has a supplementary local remaining-duration guard. Only the separately
 reviewed outer supervisor can establish whole-attempt resource/process closure.
@@ -44,7 +44,7 @@ CONTROLS = 'tests/test_f6c_parent_emission_refinement_preparation.py'
 PREFIX = 'reference/priorities/braid-program/evidence/'
 LANE = '.local-data/braid-analysis/f6c-parent-emission-refinement-20260827'
 OWNER = PREFIX+'2026-08-27-braid-search-launch-readiness.md'
-PLAN_SCHEMA = 'braid-program/f6c-parent-emission-refinement-launch.v1'
+PLAN_SCHEMA = 'braid-program/f6c-parent-emission-refinement-launch.v2'
 SCHEMA = 'braid-program/f6c-parent-emission-refinement-cover.v1'
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
 MAX_BYTES = 64*1024**2
@@ -96,9 +96,9 @@ ORIGINAL = {
  **FULL,
 }
 PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner',
-             'priorCoverClosure','runtimeBindings','operationalBindings','limits')
+             'priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','limits')
 MANIFEST_KEYS = tuple('schema scope status accepted launchPlan producer verifier declaration parent members originalBindings acceptanceOwner priorCoverClosure historicalSourceBindings subjectSourceBindings runtimeBindings operationalBindings algorithm restrictions census helperCalls queries rows pieces libraryFlags claims publicationRequires'.split())
-COMPLETION_KEYS = tuple('completed accepted scope parentIndex outputs census helperCalls elapsedSeconds processUserSeconds processSystemSeconds maximumIndividualProcessResidentBytes independentComparisonRequired externalInclusiveDeadlineAndProcessClosureRequired claims'.split())
+COMPLETION_KEYS = tuple('completed accepted scope parentIndex outputs publicationRecords census helperCalls elapsedSeconds processUserSeconds processSystemSeconds maximumIndividualProcessResidentBytes independentComparisonRequired externalInclusiveDeadlineAndProcessClosureRequired claims'.split())
 HISTORY_KEYS = tuple('id pathKey polarity charge historyFingerprint coverageStart coverageEnd segments'.split())
 SEGMENT_KEYS = tuple('startTime endTime coefficients positionErrors velocityErrors positionError velocityError'.split())
 ROW_KEYS = frozenset('rowIndex cellIndex receiverIndex transmitterIndex receiverId transmitterId reception emission ordinaryRootsPerReception coincidentEndpointExcluded oldestResidual lowerFaceResidual upperFaceResidual displacement distance transmitterFactor receiverFactor receiverPieceRecord transmitterPieceRecord rootFreeComplementConditional retainedBoundaryContact libraryFlags'.split())
@@ -216,7 +216,28 @@ def validate_plan(plan, own_sha, root, transport):
     require(len({b['path'] for b in new})==len(new),'duplicate new execution source')
     originals=[binding(v,root) for v in plan['originalBindings'].values()]+[owner]
     require(len({b['path'] for b in originals})==len(originals),'duplicate original role')
+    validate_routes(plan['historicalDocumentRoutes'], root)
     return subjects,runtime,ops
+
+
+HISTORICAL_DOCUMENTS = {
+ 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853':16985,
+ '46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef':13021,
+}
+
+
+def validate_routes(rows, root):
+    require(type(rows) is list and len(rows)<=2,'bounded consumed historical document routes')
+    result={}
+    for row in rows:
+        closed(row,('original','physical'));old=binding(row['original'],root);physical=binding(row['physical'],root)
+        require(old['sha256'] in HISTORICAL_DOCUMENTS and old['bytes']==HISTORICAL_DOCUMENTS[old['sha256']]
+            and old['path'].startswith(str(root/'reference/priorities/braid-program/evidence')+'/')
+            and old['path'].endswith(('.md','.json')),'only exact historical documents')
+        require(physical['path']!=old['path'] and physical['sha256']==old['sha256'] and physical['bytes']==old['bytes'],'lossless explicit archive route')
+        require(old['path'] not in result and old['sha256'] not in {r['original']['sha256'] for r in result.values()},'duplicate historical route')
+        result[old['path']]=dict(original=old,physical=physical)
+    return result
 
 
 def canonical_plan(plan,root):
@@ -261,12 +282,16 @@ def bootstrap(path,digest,live):
 
 
 class CapturePool:
-    def __init__(self,stack,transport,root,live): self.stack,self.w,self.root,self.live=stack,transport,root,live;self.files={}
+    def __init__(self,stack,transport,root,live):
+        self.stack,self.w,self.root,self.live=stack,transport,root,live;self.files={};self.routes={};self.used_routes=set();self.allowed=None;self.total=0;self.inodes=set()
     def capture(self,raw,*,data=False,limit=MAX_SOURCE_BYTES):
         b=binding(raw,self.root);path=b['path'];require(b['bytes']<=limit,'capture role size')
+        if self.allowed is not None: require(path in self.allowed and equal(self.allowed[path],b),'source absent from original operation union')
         if path not in self.files:
+            require(len(self.files)<512 and self.total+b['bytes']<=MAX_SOURCE_BYTES,'aggregate source file/byte cap')
             f=self.stack.enter_context(self.w.BoundFile(path,b['sha256'],capture=data,limit=limit,live=self.live));self.files[path]=f
             require(f.initial.st_size==b['bytes'],'captured byte count')
+            inode=(f.initial.st_dev,f.initial.st_ino);require(inode not in self.inodes,'source inode alias');self.inodes.add(inode);self.total+=b['bytes']
         f=self.files[path];require(f.digest==b['sha256'] and f.initial.st_size==b['bytes'],'conflicting captured generation')
         if data and f.data is None:
             # Same descriptor, same initial length and final EOF; never read to
@@ -276,6 +301,23 @@ class CapturePool:
     def read_binding(self,b,*,capture=False):
         f=self.capture(b,data=capture,limit=MAX_BYTES if capture else MAX_SOURCE_BYTES)
         return f.data if capture else f.binding()
+    def historical(self,b):
+        old=binding(b,self.root);route=self.routes.get(old['path'])
+        if route is None:return self.capture(old).binding()
+        require(equal(route['original'],old),'historical route original tuple');self.capture(route['physical']);self.used_routes.add(old['path']);return old
+    def admit_operation(self, filename, digest):
+        p=Path(filename);require(p.is_absolute() and p==p.resolve(),'canonical operation plan')
+        own=dict(path=str(p),sha256=digest,bytes=p.stat().st_size)
+        f=self.capture(own,data=True,limit=MAX_BYTES);doc=json.loads(f.data)
+        require(doc.get('schema')=='braid-program/f6c-bounded-operation-plan.v1','source-bound generic operation')
+        rows=[*doc['sources'],doc['hookModule'],doc['hookControls'],own]
+        for stage in doc['stages']:rows.extend((stage['entry'],*stage['sources'],*stage['runtimeBindings']))
+        allowed={}
+        for row in rows:
+            b=binding(row,self.root);require(b['path'] not in allowed or equal(allowed[b['path']],b),'operation source conflict');allowed[b['path']]=b
+        require(len(allowed)<=512 and sum(b['bytes'] for b in allowed.values())<=MAX_SOURCE_BYTES,'global source union cap')
+        for b in allowed.values():self.capture(b)
+        require(set(self.files)<=set(allowed),'bootstrap source absent from global union');self.allowed=allowed
     def recheck(self):
         for f in self.files.values(): f.recheck()
         self.live()
@@ -346,10 +388,11 @@ def authenticate_full_chain(w,docs,files,pool,owner_raw):
     expected=[]
     for path,digest in entry_pins(files['fullEntry'].data).items():
         absolute=str(pool.root/path);require(absolute in claimed_map and claimed_map[absolute]['sha256']==digest,'entry source missing')
-        expected.append(pool.capture(claimed_map[absolute]).binding())
+        expected.append(pool.historical(claimed_map[absolute]))
     for group,n in ((contract['subjectSourceBindings'],4),(contract['runtimeBindings'],158),(p['operationalBindings'],6),(p['controlBindings'],2)):
-        for b in binding_list(group,pool.root,n): expected.append(pool.capture(b).binding())
-    expected.extend((pool.capture(p['resourcePlan']).binding(),files['fullPlan'].binding()))
+        for b in binding_list(group,pool.root,n): expected.append(pool.historical(b))
+    expected.extend((pool.historical(p['resourcePlan']),files['fullPlan'].binding()))
+    require(pool.used_routes==set(pool.routes),'unused historical route')
     unique={}
     for b in expected:
         require(b['path'] not in unique or equal(unique[b['path']],b),'conflicting historical source');unique[b['path']]=b
@@ -525,27 +568,46 @@ def project_original_parent(export, full_rows, full_pieces, full_manifest_bindin
 
 
 class DurableStream:
-    def __init__(self,path,expected_keys,limit,aggregate):
-        self.path=path;self.keys=expected_keys;self.limit=limit;self.aggregate=aggregate;self.count=0;self.bytes=0
+    def __init__(self,path,expected_keys,limit,aggregate,aggregate_limit=MAX_BYTES):
+        self.path=path;self.keys=expected_keys;self.limit=limit;self.aggregate=aggregate;self.aggregate_limit=aggregate_limit;self.count=0;self.bytes=0
         self.file=path.open('xb',buffering=0)
+        s=os.fstat(self.file.fileno());self.original_inode=(s.st_dev,s.st_ino)
+    def check(self):
+        s=os.stat(self.path,follow_symlinks=False)
+        require(stat.S_ISREG(s.st_mode) and (s.st_dev,s.st_ino)==self.original_inode,'original stream path replaced')
     def write(self,record):
         value=plain(record);closed(value,self.keys);raw=encoded(value)
-        require(0<len(raw)<=MAX_LINE and self.bytes+len(raw)<=self.limit and self.aggregate[0]+len(raw)<=MAX_BYTES,'output stream quota')
+        require(0<len(raw)<=MAX_LINE and self.bytes+len(raw)<=self.limit and self.aggregate[0]+len(raw)<=self.aggregate_limit,'output stream quota')
         n=self.file.write(raw);require(n==len(raw),'short stream write');self.file.flush();os.fsync(self.file.fileno())
         self.bytes+=n;self.aggregate[0]+=n;self.count+=1
+        self.check()
     def close(self):
         if self.file is not None:
             f=self.file;self.file=None
             try:f.flush();os.fsync(f.fileno())
             finally:f.close()
+            self.check()
 
 
 class Publication:
     """Durable private prefix plus own-inode-only public hardlinks."""
-    def __init__(self,output,live):
-        self.output=output;self.live=live;self.output.mkdir(mode=0o700)
-        self.private=Path(tempfile.mkdtemp(prefix='.parent-emission-private-',dir=output));self.links=[];self.aggregate=[0]
-    def stream(self,name,keys): return DurableStream(self.private/name,keys,MAX_BYTES,self.aggregate)
+    def __init__(self,output,live,scientific_bytes_already=0,maximum_stage_output_bytes=MAX_BYTES):
+        self.output=output;self.live=live
+        require(output==output.resolve() and output.is_dir() and not tuple(output.iterdir()),'fresh supervisor-created output directory')
+        self.directory_identity=(output.stat().st_dev,output.stat().st_ino)
+        require(type(scientific_bytes_already) is int and 0<=scientific_bytes_already<MAX_BYTES,'global scientific byte baseline')
+        require(type(maximum_stage_output_bytes) is int and 0<maximum_stage_output_bytes<=MAX_BYTES-scientific_bytes_already,'stage output allowance within original global bound')
+        self.baseline=scientific_bytes_already
+        self.ceiling=self.baseline+maximum_stage_output_bytes
+        self.directory_fd=os.open(output,os.O_RDONLY|getattr(os,'O_NOFOLLOW',0));self.guards={}
+        d=os.fstat(self.directory_fd);require(stat.S_ISDIR(d.st_mode) and (d.st_dev,d.st_ino)==self.directory_identity,'original output directory FD')
+        self.private=output;self.private_paths={};self.created={};self.published={};self.links=[];self.aggregate=[scientific_bytes_already]
+    def private_path(self,name):
+        if name not in self.private_paths:self.private_paths[name]=self.output/(name+'.partial.'+os.urandom(16).hex())
+        return self.private_paths[name]
+    def stream(self,name,keys):
+        stream=DurableStream(self.private_path(name),keys,MAX_BYTES,self.aggregate,self.ceiling)
+        self.created[name]=stream.original_inode;self.guards[name]=os.dup(stream.file.fileno());return stream
     @staticmethod
     def identity(s): return s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns
     def binding(self,path):
@@ -560,32 +622,39 @@ class Publication:
             return dict(path=str(path),sha256=h.hexdigest(),bytes=n)
         finally:os.close(fd)
     def publish_private(self,name):
-        self.live();source=self.private/name;require(source.parent==self.private and source.is_file() and not source.is_symlink(),'private output identity')
+        self.live();source=self.private_path(name);require(source.parent==self.private and source.is_file() and not source.is_symlink(),'private output identity')
         public=self.output/name;require(not public.exists() and not public.is_symlink(),'fresh public output')
-        before=os.stat(source,follow_symlinks=False);os.link(source,public);self.links.append((public,before.st_dev,before.st_ino))
+        before=os.stat(source,follow_symlinks=False);require((before.st_dev,before.st_ino)==self.created[name],'original private file replaced');os.link(source,public);self.links.append((public,before.st_dev,before.st_ino))
         fd=os.open(self.output,os.O_RDONLY)
         try:os.fsync(fd)
         finally:os.close(fd)
         require(self.identity(os.stat(source,follow_symlinks=False))==self.identity(os.stat(public,follow_symlinks=False)),'published link identity')
+        self.published[name]=self.identity(os.stat(public,follow_symlinks=False))
         return self.binding(public)
     def write_manifest(self,record):
-        raw=encoded(record);require(0<len(raw)<=MAX_BYTES and self.aggregate[0]+len(raw)<=MAX_BYTES,'manifest/aggregate quota')
-        path=self.private/'cover-manifest.json';fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
-        try:require(os.write(fd,raw)==len(raw),'short manifest write');os.fsync(fd)
+        raw=encoded(record);require(0<len(raw)<=MAX_BYTES and self.aggregate[0]+len(raw)<=self.ceiling,'manifest/aggregate quota')
+        path=self.private_path('cover-manifest.json');fd=os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
+        try:
+            s=os.fstat(fd);self.created['cover-manifest.json']=(s.st_dev,s.st_ino)
+            self.guards['cover-manifest.json']=os.dup(fd)
+            require(os.write(fd,raw)==len(raw),'short manifest write');os.fsync(fd)
         finally:os.close(fd)
-        self.aggregate[0]+=len(raw);return self.publish_private(path.name)
+        self.aggregate[0]+=len(raw);return self.publish_private('cover-manifest.json')
     def validate_private(self):
-        require(self.private==self.private.resolve() and self.private.parent==self.output,'canonical private directory')
-        require({p.name for p in self.output.iterdir()}=={self.private.name,'queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'},'output directory census')
-        names=sorted(p.name for p in self.private.iterdir());require(names==['cover-manifest.json','pieces.ndjson','queries.ndjson','rows.ndjson'],'private file census')
+        require(self.output==self.output.resolve() and self.directory_identity==(self.output.stat().st_dev,self.output.stat().st_ino),'original output directory')
+        if self.directory_fd is not None:
+            d=os.fstat(self.directory_fd);require((d.st_dev,d.st_ino)==self.directory_identity,'retained original directory FD')
+        require({p.name for p in self.output.iterdir()}==set(self.private_paths)|{p.name for p in self.private_paths.values()},'exact eight publication paths')
+        require(set(self.private_paths)=={'queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json'},'private file census')
         total=0
-        for p in self.private.iterdir():
-            s=os.stat(p,follow_symlinks=False);public=self.output/p.name;t=os.stat(public,follow_symlinks=False)
+        for name,p in self.private_paths.items():
+            s=os.stat(p,follow_symlinks=False);public=self.output/name;t=os.stat(public,follow_symlinks=False)
             owned=next(((dev,ino) for path,dev,ino in self.links if path==public),None)
             require(stat.S_ISREG(s.st_mode) and stat.S_ISREG(t.st_mode) and s.st_nlink==t.st_nlink==2
                 and (s.st_dev,s.st_ino,s.st_size)==(t.st_dev,t.st_ino,t.st_size)
-                and owned==(t.st_dev,t.st_ino),'private/public owned publication alias');total+=s.st_size
-        require(total==self.aggregate[0]<=MAX_BYTES,'private aggregate bytes')
+                and owned==(t.st_dev,t.st_ino) and self.identity(s)==self.identity(t)==self.published[name],'private/public original publication alias');total+=s.st_size
+            if name in self.guards:require(self.identity(os.fstat(self.guards[name]))==self.published[name],'retained original publication FD')
+        require(total+self.baseline==self.aggregate[0]<=self.ceiling<=MAX_BYTES,'global scientific bytes including retained earlier output and stage allowance')
     def verify_outputs(self,bindings):
         self.validate_private()
         actual=[self.binding(self.output/name) for name in ('queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json')]
@@ -593,19 +662,18 @@ class Publication:
         for path,dev,ino in self.links:
             current=os.stat(path,follow_symlinks=False);require((current.st_dev,current.st_ino)==(dev,ino),'owned public inode changed')
         self.live()
+        # The last callback is observable. Recheck the original generations
+        # after it, without another callback between this check and return.
+        self.validate_private()
     def reject(self):
-        errors=[]
-        for path,dev,ino in reversed(self.links):
-            try:
-                s=os.stat(path,follow_symlinks=False)
-                if (s.st_dev,s.st_ino)==(dev,ino):os.unlink(path)
-            except FileNotFoundError:pass
+        # Failure never promotes these paths; retain every byte for inspection.
+        return self.close_guards()
+    def close_guards(self):
+        errors=[];fds=list(self.guards.values());self.guards={}
+        if self.directory_fd is not None:fds.append(self.directory_fd);self.directory_fd=None
+        for fd in fds:
+            try:os.close(fd)
             except OSError as exc:errors.append(str(exc))
-        try:
-            fd=os.open(self.output,os.O_RDONLY)
-            try:os.fsync(fd)
-            finally:os.close(fd)
-        except OSError as exc:errors.append(str(exc))
         return errors
 
 
@@ -654,7 +722,7 @@ def check_runtime(runtime,subjects,git_binary):
 def check_output(root,output,git_binary):
     lane=root/LANE
     require(output==output.resolve() and output.parent==lane and lane.is_dir() and lane==lane.resolve(),'canonical direct output')
-    require(not output.exists() and not output.is_symlink(),'fresh absent output')
+    require(output.is_dir() and not output.is_symlink() and not tuple(output.iterdir()),'fresh empty supervisor-created output')
     result=subprocess.run([str(git_binary),'check-ignore','-q','--',str(output.relative_to(root))],cwd=root,
         stdin=subprocess.DEVNULL,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=2)
     require(result.returncode==0,'output not ignored')
@@ -682,8 +750,10 @@ def watching(live,progress,began):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    for key in ('plan','plan-sha256','producer-sha256','out-dir','budget-seconds','git-binary'):parser.add_argument('--'+key,required=True)
+    for key in ('plan','plan-sha256','producer-sha256','out-dir','budget-seconds','git-binary','operation-plan','operation-plan-sha256','scientific-bytes-already','maximum-stage-output-bytes'):parser.add_argument('--'+key,required=True)
     parser.add_argument('--repo-root');args=parser.parse_args(argv)
+    require(re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already) and re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes),'canonical original stage byte budget')
+    require(0<=int(args.scientific_bytes_already)<MAX_BYTES and 0<int(args.maximum_stage_output_bytes)<=MAX_BYTES-int(args.scientific_bytes_already),'stage budget before any scientific work')
     began=time.monotonic();deadline=budget_deadline(args.budget_seconds,began);usage0=resource.getrusage(resource.RUSAGE_SELF)
     root=Path(__file__).resolve().parents[2];require(args.repo_root is None or Path(args.repo_root)==root,'executing repository root')
     require(type(args.producer_sha256) is str and HEX.fullmatch(args.producer_sha256),'producer SHA');output=Path(args.out_dir).absolute()
@@ -706,6 +776,8 @@ def main(argv=None):
                 plan=core.decode_document(plan_raw.data)
                 subjects,runtime,ops=validate_plan(plan,args.producer_sha256,root,w);plan=canonical_plan(plan,root)
                 selected_parent=plan['parentIndex']
+                pool.admit_operation(args.operation_plan,args.operation_plan_sha256)
+                pool.routes=validate_routes(plan['historicalDocumentRoutes'],root)
                 subjects=sorted(subjects,key=lambda b:b['path']);runtime=plan['runtimeBindings'];ops=plan['operationalBindings']
                 for group in (subjects,runtime,ops):
                     for b in group:pool.capture(b)
@@ -724,7 +796,8 @@ def main(argv=None):
                 rows=w.records(core,original_files['fullRows'].data,10240);pieces=w.records(core,original_files['fullPieces'].data,17920)
                 histories,parent=project_original_parent(docs['export'],rows,pieces,original_files['fullManifest'].binding(),parent_index=selected_parent)
                 require(equal(owner_declaration(owner.data),plan['priorCoverClosure']),'plan/owner closure')
-                progress['stage']='proposal';publication=Publication(output,live)
+                require(re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already) and re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes),'canonical global byte baseline and stage allowance')
+                progress['stage']='proposal';publication=Publication(output,live,int(args.scientific_bytes_already),int(args.maximum_stage_output_bytes))
                 query=publication.stream('queries.ndjson',QUERY_KEYS);streams.append(query)
                 row=publication.stream('rows.ndjson',ROW_KEYS);streams.append(row)
                 piece=publication.stream('pieces.ndjson',PIECE_KEYS);streams.append(piece)
@@ -755,16 +828,19 @@ def main(argv=None):
                 progress['stage']='complete';elapsed=time.monotonic()-began;usage=resource.getrusage(resource.RUSAGE_SELF)
                 rss=usage.ru_maxrss*(1 if sys.platform=='darwin' else 1024)
                 completion=dict(completed=True,accepted=False,scope=parent_scope(selected_parent),parentIndex=selected_parent,outputs=bindings,census=CENSUS,helperCalls=CALLS,
+                    publicationRecords=[dict(binding=b,privatePath=str(publication.private_paths[Path(b['path']).name]),identity=[str(v) for v in publication.published[Path(b['path']).name]]) for b in bindings],
                     elapsedSeconds=elapsed,processUserSeconds=usage.ru_utime-usage0.ru_utime,processSystemSeconds=usage.ru_stime-usage0.ru_stime,
                     maximumIndividualProcessResidentBytes=rss,independentComparisonRequired=True,
                     externalInclusiveDeadlineAndProcessClosureRequired=True,claims=CLAIMS)
                 closed(completion,COMPLETION_KEYS)
-                identities=pool.identities()+[(plan_raw.binding(),w.BoundFile.identity(plan_raw.initial))]
+                identities=pool.identities()
+                require(any(equal(b,plan_raw.binding()) and i==w.BoundFile.identity(plan_raw.initial) for b,i in identities),'original separately captured plan identity')
         live();check_runtime(runtime,subjects,git_binary)
       # The watch, all source descriptors and private module registrations are
-      # gone before the one completion line. A callback failure here retracts.
+      # gone before the one completion line. A failure retains unaccepted bytes.
       live();final_recapture(w,identities,live)
       publication.verify_outputs(completion['outputs']);check_runtime(runtime,subjects,git_binary)
+      require(not publication.close_guards(),'publication descriptor closure');publication.verify_outputs(completion['outputs'])
       completion['elapsedSeconds']=time.monotonic()-began
       usage=resource.getrusage(resource.RUSAGE_SELF)
       completion.update(processUserSeconds=usage.ru_utime-usage0.ru_utime,processSystemSeconds=usage.ru_stime-usage0.ru_stime,

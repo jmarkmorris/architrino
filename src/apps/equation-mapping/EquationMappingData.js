@@ -538,7 +538,7 @@ const equationMapSeedDocuments = [
       "\\gamma_\\star(\\mathbf w_{\\mathrm{eff}})=\\frac{1}{\\rule{0pt}{1.06em}\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}},\\quad d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
     anchors: [
       anchor("gammaFactor", "Lorentz factor", "gamma clock ruler factor"),
-      anchor("driftSpeed", "drift speed", "motion through local Noether sea"),
+      anchor("driftSpeed", "group speed", "assembly motion through local Noether sea"),
       anchor("clockRate", "clock rate", "moving clock readout"),
     ],
     formulaParts: [
@@ -556,9 +556,9 @@ const equationMapSeedDocuments = [
     overlays: [
       overlay(
         "drift-through-sea",
-        "Drift through sea",
+        "Group velocity through sea",
         "driftSpeed",
-        "This is the speed used inside $\\gamma$. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ subtracts that flow first.",
+        "Its magnitude is the assembly group speed used inside $\\gamma$, measured relative to the local Noether sea flow. The declared center-of-mass convention is retained. If the sea itself is moving, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ subtracts that flow first.",
         "\\mathbf w_{\\mathrm{eff}}=\\mathbf V_{\\mathrm{cm,eff}}-\\mathbf u_{\\mathrm{sea,eff}}",
         { x: 6, y: 8, width: 34, maxWidth: 480, line: "above" }
       ),

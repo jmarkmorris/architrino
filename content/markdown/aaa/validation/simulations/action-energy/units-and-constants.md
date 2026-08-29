@@ -19,7 +19,7 @@ Core symbols:
 
 - Coupling constant ($\kappa>0$):
   - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law, $ \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf{r}}, $ larger $\kappa$ uniformly strengthens every interaction.
-  - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
+  - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $P_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
   - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth pushes so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
@@ -36,7 +36,7 @@ Core symbols:
   - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$ is the separation between the receiver at reception time $T_r$ and the transmitter at emission time $T_t$. $\hat{\mathbf{r}}$ is the corresponding unit vector. The transmitter-side factor is $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf{r}}$, the receiver-side factor is $D_r=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. All per-hit acceleration contributions are directed along this line; no transverse or right-hand-rule terms appear.
 
 - Combined role in assembly scales:
-  - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
+  - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/P_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
 
 - Dimensionless branch-scan controls:
   - Simulation sweeps should report dimensionless controls rather than only raw choices of $(\kappa,\epsilon,\eta,L_0,T_0)$. Choose a reference length $L_\star$ and the corresponding reference time $T_\star=L_\star/c_f$; in field-speed units, $c_f=1$ and $T_\star=L_\star$.

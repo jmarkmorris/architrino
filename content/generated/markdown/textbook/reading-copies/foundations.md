@@ -3148,9 +3148,9 @@ Assembly-based measuring devices are themselves distorted by motion and coupling
 The diagnostic relies on a critical physical assumption:
 - **Wake propagation independence from transmitter motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the transmitter's subsequent trajectory.
 
-This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null drift results; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
+This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null results for group-motion anisotropy; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
 
-The reason is structural rather than rhetorical. The complete-state diagnostic operates on transmitter-tagged wake centers: transmitter identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. Null drift constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the transmitter-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
+The reason is structural rather than rhetorical. The complete-state diagnostic operates on transmitter-tagged wake centers: transmitter identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. The null group-motion anisotropy result constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the transmitter-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
 
 #### Tagged-Emission Injectivity Lemma
 
@@ -3216,7 +3216,7 @@ The next chapter, [Constructing the Absolute Frame](../../../../markdown/aaa/fou
 
 The risk-bearing claim is two-sided. The preferred-frame program fails at the complete-state level if transmitter-tagged wake centers cannot define one consistent rest-frame structure. It fails at the observer level if physical clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or PPN ceilings after moving-assembly closure is applied. The framework is therefore committed both to a real complete-state preferred frame and to a quantitatively hidden observer-sector leakage row.
 
-In map language, the theorem target pairs the proved tagged-emission injectivity lemma with approximate observer invariance. The label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or drift family:
+In map language, the theorem target pairs the proved tagged-emission injectivity lemma with approximate observer invariance. The label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or group velocity family:
 $$
 \operatorname{diam}_{\mathrm{obs}}
 \left\{
@@ -3228,7 +3228,7 @@ $$
 $$
 
 [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
-Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute drift $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
+Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute group velocity $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
 
 ## Constructing the Absolute Frame
 
@@ -3418,9 +3418,9 @@ From these basic rules, a rich and unpredictable world of patterns appears:
 
 The lesson that carries over is narrow: simple deterministic rules can generate stable forms, periodic behavior, and moving patterns. The dynamical picture should not be carried over. The Game of Life is grid-based, memoryless, nearest-neighbor, and globally clocked. Architrino dynamics is none of those things.
 
-The useful structural map is topological rather than cellular. A still life is the fixed-point analogue of an equilibrium link, an oscillator is the periodic-orbit analogue of a limit-cycle branch, and a glider is the translation-invariant analogue of a drift bundle in the assembly atlas.
+The useful structural map is topological rather than cellular. A still life is the fixed-point analogue of an equilibrium link, an oscillator is the periodic-orbit analogue of a limit-cycle branch, and a glider is the translation-invariant analogue of a translating branch family in the assembly atlas.
 
-In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and, in the discrete-grid case, a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a drift bundle is a periodic branch in the quotient whose lift carries nonzero displacement per return.
+In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and, in the discrete-grid case, a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a translating branch family is a periodic branch in the quotient whose lift carries nonzero displacement per return.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when causal wake surfaces emitted in the past intersect its worldline, so active causal roots are not synchronized by a shared update tick. Each contribution has inverse-square falloff and depends on transmitter and receiver path history. The effective evolution is therefore a nonlinear delay-differential system with formally infinite-range coupling rather than a cellular rule table.
 

@@ -36,7 +36,7 @@ $$
 where:
 
 - $q$ is the retained branch identity.
-- $\mathcal{D}_{\beta}=\{0\le\beta_f\le\beta_{\max}<1\}$ with $\beta_f=v/c_f$ is the certified drift band.
+- $\mathcal{D}_{\beta}=\{0\le\beta_f\le\beta_{\max}<1\}$ with $\beta_f=v/c_f$ is the certified group-speed band.
 - $\boldsymbol{\rho}^{\star}_{q}(s;\beta_f)$ is the translated attractor family.
 - $J_{\min}>0$ is the active-root Jacobian floor.
 - $g_{\mathrm{inactive}}>0$ is the inactive-root gap floor.
@@ -74,7 +74,7 @@ Q_{ab}^{(q)}(v)
 M_q=\sum_i m_i.
 $$
 
-With drift axis $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$, the extracted semiaxes are
+With group-velocity axis $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$, the extracted semiaxes are
 
 $$
 a_{\parallel,q}(v)
@@ -89,11 +89,11 @@ $$
 The declared clock phase must come from the same branch ledger:
 
 $$
-T_q(v)
+P_q(v)
 =
 \frac{2\pi}{\langle\dot{\theta}_{\mathrm{clk},q}\rangle_{\mathrm{cyc}}},
 \qquad
-T_0=T_q(0).
+P_0=P_q(0).
 $$
 
 The moving-assembly residuals prepared for the future bridge are
@@ -107,7 +107,7 @@ R_{\parallel}^{(q)}(v)
 \qquad
 R_T^{(q)}(v)
 \equiv
-\frac{T_q(v)}{T_0}
+\frac{P_q(v)}{P_0}
 -
 \gamma_\star(v).
 $$
@@ -124,7 +124,7 @@ C_{\parallel}\epsilon_{\mathrm{LV}}\beta_\star^2,
 C_T\epsilon_{\mathrm{LV}}\beta_\star^2
 $$
 
-uniformly on the certified drift band. The packet fails if contraction and clock retuning use different branch ledgers, if $c_f$ is identified with $c_\star$ without a dressing map, or if Lorentz agreement appears only after tuning PPN coefficients.
+uniformly on the certified group-speed band. The packet fails if contraction and clock retuning use different branch ledgers, if $c_f$ is identified with $c_\star$ without a dressing map, or if Lorentz agreement appears only after tuning PPN coefficients.
 
 ## Prepared Coefficient Identities
 
@@ -199,7 +199,7 @@ The proper-time channel consumes the same moving branch through the Noether sea 
 $$
 \Gamma_N(\mathbf{x},t)
 =
-\frac{T_N(\mathbf{x},t)}{T_{N0}}
+\frac{P_N(\mathbf{x},t)}{P_{N0}}
 =
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)},
 \qquad

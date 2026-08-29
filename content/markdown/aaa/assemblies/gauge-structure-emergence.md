@@ -560,5 +560,5 @@ For $R_{\mathrm{comp}}\sim 10^{-19}\,\text{m}$, this predicts negligible deviati
 
 1. If the $R_{\mathrm{comp}}$ needed to fit $\Delta a_\mu$ implies $|\Delta\sigma/\sigma|>10^{-3}$ near the LEP $Z$ pole, the composite correction map is ruled out.
 2. If the required hierarchy violates nonresonance and destabilizes closure in the kinematic sector, the electroweak map is not self-consistent with Lorentz closure.
-3. If charge reconstruction from six-pole averaging acquires drift-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.
+3. If charge reconstruction from six-pole averaging acquires group-velocity-dependent leakage (non-integer multiples of $e/3$), the quantization map fails.
 4. If the map predicts additional stable charged fermions, unsuppressed partner channels, proton-instability corridors, extra gauge modes, or other non-baseline observables above null-result bounds, the added structure is not a closed unification result.

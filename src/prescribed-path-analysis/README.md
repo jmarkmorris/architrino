@@ -238,7 +238,7 @@ The protocol also predeclares:
 - both virtual-probe polarities on every fixed and surface coordinate;
 - same-source exclusion for the six moving endpoint receivers;
 - cycle-and-surface exposure norms and the raw constituent normalization;
-- complete-cycle signed, transmitter-root-tagged raw, and residual normal causal-wake flux, together with $\eta_{\mathcal W,\mathrm{flux}}(R)$ and the reference $T_{\mathrm{ret}}\sum_j|q_j|$;
+- complete-cycle signed, transmitter-root-tagged raw, and residual normal causal-wake flux, together with $\eta_{\mathcal W,\mathrm{flux}}(R)$ and the reference $P_{\mathrm{ret}}\sum_j|q_j|$;
 - real orthonormal spherical harmonics through degree $8$;
 - complete-cycle Fourier rows through harmonic $16$;
 - transmitter-root-tagged complex normal wake-flux coefficients and coefficient-level $\eta_{\mathcal W,\mathrm{flux}}^{(\ell mn)}(R)$ rows through the same angular and temporal band;
@@ -264,7 +264,7 @@ node scripts/eom/run-b1-complete-cycle-streaming-reduction.mjs \
   --write .tmp/prescribed-path-analysis/b1-interior-complete-cycle-reduction.result-packet.v1.json
 ```
 
-The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, entry counts, radius, resolution, and time index. The generated reduction result retains the exact quadrature nodes and weights, the primary-versus-refined convergence comparisons, the raw wake-flux residual against $T_{\mathrm{ret}}\sum_j|q_j|$, and the transmitter-tagged retained-band coverage at every radius and resolution. The frequency rows do not advance when transmitter tags do not reconstruct the sampled normal flux, the retained out-of-band RMS fraction exceeds `0.02`, or primary and refined complex coefficients disagree by more than `0.05`. Cancellation ratios and logarithmic radial fits are admitted only above the larger of the absolute coefficient floor and $10^{-6}$ times the dominant raw coefficient on that surface; below-floor rows remain diagnostic.
+The raw result packets are written under `.tmp/prescribed-path-analysis/b1-interior-complete-cycle-raw/` by default. Every stored packet is bound into the reduction result by its compressed and uncompressed SHA-256 hashes, event result hash, event protocol hash, raw causal-root-ledger hash, entry counts, radius, resolution, and time index. The generated reduction result retains the exact quadrature nodes and weights, the primary-versus-refined convergence comparisons, the raw wake-flux residual against $P_{\mathrm{ret}}\sum_j|q_j|$, and the transmitter-tagged retained-band coverage at every radius and resolution. The frequency rows do not advance when transmitter tags do not reconstruct the sampled normal flux, the retained out-of-band RMS fraction exceeds `0.02`, or primary and refined complex coefficients disagree by more than `0.05`. Cancellation ratios and logarithmic radial fits are admitted only above the larger of the absolute coefficient floor and $10^{-6}$ times the dominant raw coefficient on that surface; below-floor rows remain diagnostic.
 
 Check the result without rewriting it:
 

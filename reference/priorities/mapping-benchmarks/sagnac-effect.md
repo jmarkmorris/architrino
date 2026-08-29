@@ -14,7 +14,7 @@ It is not a Michelson-Morley violation. It is a rotation-sensitive path observab
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-The Sagnac case is valuable because $\mathbb{A}\mathbb{A}\mathbb{A}$ has absolute time and a Euclidean void but must still recover Lorentz-like inertial behavior. Rotation is not equivalent to uniform drift. The case can separate path-history phase accumulation from forbidden inertial preferred-frame leakage.
+The Sagnac case is valuable because $\mathbb{A}\mathbb{A}\mathbb{A}$ has absolute time and a Euclidean void but must still recover Lorentz-like inertial behavior. Rotation is not equivalent to constant group velocity. The case can separate path-history phase accumulation from forbidden inertial preferred-frame leakage.
 
 ## Candidate Closure Steps
 
@@ -22,7 +22,7 @@ These rows decompose the case at draft grade. They are not executable queue auth
 
 1. `loop_path_history` — Define the closed-loop causal-wake path-history functional $\mathcal{P}_{\circlearrowleft,\circlearrowright}$. Status: `draft`.
 2. `rotation_observable` — Derive $\Delta t\propto\boldsymbol{\Omega}\cdot\mathbf{A}$ from rotating receiver and path geometry. Status: `draft`.
-3. `lorentz_boundary` — Show why Sagnac survives while Michelson-Morley two-way drift anisotropy cancels. Status: `draft`.
+3. `lorentz_boundary` — Show why Sagnac survives while Michelson-Morley two-way group velocity anisotropy cancels. Status: `draft`.
 
 ## Closure Objects
 

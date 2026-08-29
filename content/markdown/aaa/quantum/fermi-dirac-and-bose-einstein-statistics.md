@@ -122,7 +122,7 @@ For a photon-like planar carrier, $\xi\to0$ removes the volumetric obstruction b
 
 ## The 3D-to-2D Transition
 
-The transition can be summarized by the canonical Noether braid shape ratio from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether braid shape ratio from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or group-velocity-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
@@ -150,7 +150,7 @@ Neutrality is not enough to make a carrier bosonic. A neutral Noether braid may 
 
 ### Spin-Geometry Co-Variation Target
 
-The missing spin-statistics bridge is the co-variation of exchange character with geometry on one retained deformation family. It is not enough to derive $r_\star$ on one volumetric branch and $\xi_{\mathrm{stat}}\to0$ on a different planar ansatz, and ordinary drift at fixed family member does not count as this continuation. A candidate elementary carrier family $\lambda\mapsto\mathfrak B(\lambda)$ must carry both records through the same rest-branch continuation, with a rest-chartless endpoint interpreted by the limiting family record:
+The missing spin-statistics bridge is the co-variation of exchange character with geometry on one retained deformation family. It is not enough to derive $r_\star$ on one volumetric branch and $\xi_{\mathrm{stat}}\to0$ on a different planar ansatz, and ordinary group velocity at fixed family member does not count as this continuation. A candidate elementary carrier family $\lambda\mapsto\mathfrak B(\lambda)$ must carry both records through the same rest-branch continuation, with a rest-chartless endpoint interpreted by the limiting family record:
 $$
 \xi_{\mathrm{stat}}(\lambda)\ge\xi_F
 \Longrightarrow

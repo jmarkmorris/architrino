@@ -7,18 +7,17 @@ import argparse
 import html
 import json
 import os
+from html.parser import HTMLParser
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
+from build_generation_manifest import checked_manifest
+from pilot_appearance import BASELINE, REVIEW_FONT, pdf_path, require_font, verify_exports
 
 
 REPO = Path(__file__).resolve().parents[4]
 PRODUCTION = REPO / "reference/learning-office/childrens-books/production"
 MANIFEST = PRODUCTION / "generation-manifest.json"
-FONT_CANDIDATES = [
-    Path("/System/Library/Fonts/Supplemental/Arial.ttf"),
-    Path("/System/Library/Fonts/Supplemental/Georgia.ttf"),
-]
 
 
 CHECKLISTS = {
@@ -42,14 +41,7 @@ DEFAULT_CHECKLIST = [
 ]
 
 
-def load_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-    for path in FONT_CANDIDATES:
-        if path.exists():
-            return ImageFont.truetype(str(path), size=size)
-    return ImageFont.load_default(size=size)
-
-
-def contact_sheet(entries: list[dict], output: Path) -> None:
+def contact_sheet(entries: list[dict], output: Path, font_path: Path) -> None:
     thumb_size = (720, 480)
     label_height = 38
     gap = 24
@@ -60,14 +52,15 @@ def contact_sheet(entries: list[dict], output: Path) -> None:
     height = rows * row_height + gap
     sheet = Image.new("RGB", (width, height), (255, 255, 255))
     draw = ImageDraw.Draw(sheet)
-    font = load_font(24)
+    font = ImageFont.truetype(str(font_path), size=24)
 
     for index, entry in enumerate(entries):
         row, col = divmod(index, cols)
         x = gap + col * (thumb_size[0] + gap)
         y = gap + row * row_height
         page_path = REPO / entry["paths"]["page_landscape_png"]
-        image = Image.open(page_path).convert("RGB")
+        with Image.open(page_path) as page:
+            image = page.convert("RGB")
         tile = Image.new("RGB", thumb_size, (255, 255, 255))
         image = ImageOps.contain(image, thumb_size, method=Image.Resampling.LANCZOS)
         tile.paste(image, ((thumb_size[0] - image.width) // 2, (thumb_size[1] - image.height) // 2))
@@ -225,12 +218,12 @@ def review_index(book: dict, entries: list[dict], output: Path) -> None:
 <body>
   <header>
     <h1>{html.escape(title)} - Book {book_number} Review</h1>
-    <p>First-draft source images and page layouts are generated. QA is intentionally pending until operator review.</p>
+    <p>On-demand pilot export. Page appearance matches the saved pilot; source-art QA remains separately recorded and is not approved by regeneration.</p>
     <div class="links">
-      <a href="{repo_relative_link(output, f'content/assets/books/childrens-books/{slug}/{slug}-first-draft.pdf')}">Open first-draft PDF</a>
+      <a href="{repo_relative_link(output, pdf_path(slug))}">Open first-draft PDF</a>
       <a href="{contact_name}">Open contact sheet</a>
-      <a href="../../qa/{slug}/{slug}-qa-summary.json">Open QA summary</a>
-      <a href="../../generation-manifest.json">Open manifest</a>
+      <a href="{repo_relative_link(output, PRODUCTION / 'qa' / slug / f'{slug}-qa-summary.json')}">Open QA summary</a>
+      <a href="{repo_relative_link(output, MANIFEST)}">Open manifest</a>
     </div>
   </header>
   <main>
@@ -269,26 +262,47 @@ def review_index(book: dict, entries: list[dict], output: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--book", required=True)
+    parser.add_argument("--write", action="store_true", required=True)
+    parser.add_argument("--review-font", type=Path, default=REVIEW_FONT)
     args = parser.parse_args()
 
-    manifest = json.loads(MANIFEST.read_text())
+    manifest = checked_manifest()
     book = next((item for item in manifest["books"] if item["slug"] == args.book), None)
     if book is None:
         raise SystemExit(f"no book metadata for {args.book}")
     entries = [entry for entry in manifest["entries"] if entry["book_slug"] == args.book]
     if not entries:
         raise SystemExit(f"no manifest entries for {args.book}")
-    missing = [entry["paths"]["page_landscape_png"] for entry in entries if not (REPO / entry["paths"]["page_landscape_png"]).exists()]
-    if missing:
-        raise SystemExit("missing landscape pages:\n" + "\n".join(missing))
+    baseline = json.loads(BASELINE.read_text())
+    verify_exports(entries, baseline)
+    build_review(book, entries, require_font(args.review_font, "review", baseline))
 
-    review_dir = PRODUCTION / "review" / args.book
-    contact_path = review_dir / f"{args.book}-landscape-contact-sheet.jpg"
+
+def build_review(book: dict, entries: list[dict], font_path: Path) -> None:
+    review_dir = pdf_path(book["slug"]).parent / "review"
+    contact_path = review_dir / f"{book['slug']}-landscape-contact-sheet.jpg"
     index_path = review_dir / "index.html"
-    contact_sheet(entries, contact_path)
+    for target in (contact_path, index_path):
+        if target.resolve() != target:
+            raise ValueError(f"review output must not redirect through a symlink: {target}")
+    contact_sheet(entries, contact_path, font_path)
     review_index(book, entries, index_path)
+    verify_review(book["slug"])
     print(f"wrote contact sheet: {contact_path.relative_to(REPO)}")
     print(f"wrote review index: {index_path.relative_to(REPO)}")
+
+
+def verify_review(slug: str) -> None:
+    index_path = pdf_path(slug).parent / "review/index.html"
+
+    class LinkChecker(HTMLParser):
+        def handle_starttag(self, tag, attrs):
+            for key, value in attrs:
+                if key in ("src", "href") and value:
+                    if not (index_path.parent / value).is_file():
+                        raise ValueError(f"missing local review target: {value}")
+
+    LinkChecker().feed(index_path.read_text())
 
 
 if __name__ == "__main__":

@@ -6,4 +6,11 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-08-27 — On-demand packaging and release deferral
+
+- Operator report: the reader has been tested some on the operator's devices and basically works. This is preliminary firsthand feedback, not a complete physical-device QA receipt or App Store readiness claim.
+- Operator decision: preserve the iOS app and textbook packaging process/software without producing a new package for every PR; App Store release is deferred until theory closure.
+- Implementation: remove iOS package freshness from the routine Content Integrity gate and stop the routine frequency-triplet notation audit from treating a saved iOS snapshot as current corpus. Keep the exporter and its strict check available for explicitly requested iOS package/build work.
+- Policy: preserve the on-demand recipe in the app README and defer IOS-001 through IOS-003 until theory closure and an explicit operator release decision. Existing generated packages, app code, and web textbook generation are unchanged by this decision.
+- Verification boundary: workflow and routing tests can establish the changed gate behavior, not device quality or release readiness. No new iOS package, archive, or submission is produced by this workflow change.
+- Validation: the focused PR procedure, pre-push policy, exact-state receipt, and iOS link-routing suites passed 19/19 tests, including a stale-snapshot/current-authored-content negative control. Strict content validation and the live frequency-triplet audit passed; `git diff --check` was clean. The generated startup router is stale after its policy inputs changed; regenerate it with `node scripts/build-agent-startup-orientation.mjs --write` at the next authorized regeneration or final-PR checkpoint, then rerun its `--check`.

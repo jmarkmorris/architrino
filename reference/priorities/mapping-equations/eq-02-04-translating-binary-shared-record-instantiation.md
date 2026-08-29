@@ -39,7 +39,7 @@ The packet does not claim that the translating binary already proves Lorentz beh
 
 ## Source Basis
 
-The reader-facing Lorentz chapter already defines the translating binary benchmark. For opposite-polarity architrinos $\sigma\in\{+1,-1\}$ and drift direction $\hat{\mathbf e}$, the branch ansatz is
+The reader-facing Lorentz chapter already defines the translating binary benchmark. For opposite-polarity architrinos $\sigma\in\{+1,-1\}$ and group-velocity direction $\hat{\mathbf e}$, the branch ansatz is
 
 $$
 \mathbf{x}_{\sigma}(t)
@@ -48,7 +48,7 @@ u t\,\hat{\mathbf e}
 +
 \sigma\,\boldsymbol{\rho}_u(\theta(t)),
 \qquad
-\theta(t+T_u)=\theta(t)+2\pi.
+\theta(t+P_u)=\theta(t)+2\pi.
 $$
 
 For a root emitted by $\sigma'$ and received by $\sigma$, the delay equation is
@@ -66,7 +66,7 @@ u\tau\,\hat{\mathbf e}
 -c_f\tau
 =0,
 \qquad
-\Omega_u\equiv\frac{2\pi}{T_u}.
+\Omega_u\equiv\frac{2\pi}{P_u}.
 $$
 
 The branch Jacobian is
@@ -103,7 +103,7 @@ This packet extends that triple into the `EQ-02` through `EQ-04` same-record res
 
 ## Retained Record To Populate
 
-For a drift value $0<u<c_f$, retain one packet-local common carrier
+For a group-speed value $0<u<c_f$, retain one packet-local common carrier
 
 $$
 \mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)
@@ -139,7 +139,7 @@ $$
 =
 \left(
 \boldsymbol{\rho}_u,
-T_u,
+P_u,
 \Omega_u,
 b_u,
 h_u,
@@ -158,10 +158,10 @@ For any forward translating row, the same branch chart must also expose the mini
 $$
 \mathcal R_{\mathrm{Lor\text{-}root}}(u)
 =
-\frac{\tau_{\mathrm{forward}}(u)/T_u}
+\frac{\tau_{\mathrm{forward}}(u)/P_u}
 {M_b^{\mathrm{mem}}(u)+\epsilon_h},
 \qquad
-M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u}.
+M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{P_u}.
 $$
 
 This is a branch-validity row rather than an extra Lorentz fit. If the moving binary loses the forward causal roots needed by its own clock, envelope, or force rows, a small Lorentz-looking residual is not eligible for promotion.
@@ -210,7 +210,7 @@ $$
 \begin{aligned}
 \Pi_T^C\mathcal C_u
 &=
-\left(T_u,T_0,b_u,\mathcal N_0\right),
+\left(P_u,P_0,b_u,\mathcal N_0\right),
 \\
 \Pi_{\xi}^C\mathcal C_u
 &=
@@ -275,7 +275,7 @@ The branch-level clock and envelope projection rows are
 $$
 R_T^{\mathrm{bin}}\!\left[\Pi_T^C\mathcal C_u;u\right]
 =
-\frac{T_u}{T_0}
+\frac{P_u}{P_0}
 -
 \gamma_f(u),
 \qquad
@@ -389,7 +389,7 @@ This layer keeps the Lorentz and energy-momentum comparison as one retained tran
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Negative control required for advancement | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| $\gamma_f(u)=(1-u^2/c_f^2)^{-1/2}$ and $T_u/T_0$ | Clock-period readout from the retained translating branch. | `retained_branch_chart`, `clock_row`, `same_branch_chart_identity` | $T_u$, $T_0$, drift $u$, branch ledger $b_u$, Noether sea cell, and common carrier are the same objects used by envelope, energy, and mass-shell rows. | Current proxy rows remain `blocked_current_proxy_only` until raw retained rows and branch identity are accepted. | Accepted retained branch chart plus clock row on one `S_eq` retained-domain carrier. |
+| $\gamma_f(u)=(1-u^2/c_f^2)^{-1/2}$ and $P_u/P_0$ | Clock-period readout from the retained translating branch. | `retained_branch_chart`, `clock_row`, `same_branch_chart_identity` | $P_u$, $P_0$, group speed $u$, branch ledger $b_u$, Noether sea cell, and common carrier are the same objects used by envelope, energy, and mass-shell rows. | Current proxy rows remain `blocked_current_proxy_only` until raw retained rows and branch identity are accepted. | Accepted retained branch chart plus clock row on one `S_eq` retained-domain carrier. |
 | $R_{\parallel,u}/R_{\perp,u}=1/\gamma_f(u)$ | Envelope-shape readout from the same oblate branch geometry. | `envelope_row`, `retained_branch_chart`, inactive-root gap cover | Principal axes, branch chart, causal-root ledger, inactive-root gaps, and envelope projection share the same support and retained history. | Root-starvation and split-root witnesses reject envelope rows whose forward roots differ from clock or force rows. | Accepted envelope row with same retained branch chart and root ledger. |
 | Two-way signal leakage $\Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta)$ | Signal-transfer readout over the same active causal-root ledger. | `two_way_signal_row`, path-history rows, causal-root ledger rows | Two-way signal, clock period, endpoint cadence, and path-history rows bind to the same retained event or positive-width domain. | Carrier-split controls reject using a separate signal ledger to tune leakage while clock/envelope rows pass. | Accepted two-way signal row plus path-history and causal-root rows bound to `S_eq`. |
 | $E_{\mathrm{CM},u}=\gamma M_0c_f^2$ and $\mathbf p_{\mathrm{CM},u}=\gamma M_0\mathbf u$ | Energy and momentum readouts from one wake/event ledger. | `energy_row`, `momentum_row`, wake ledger, event ledger | Energy, momentum, boundary flux, recoil/boundary exchange, rest mass, and exposure rows cite the same common carrier and event ledger. | Event-ledger and hidden-retune witnesses reject changing branch ledger, Noether sea cell, speed convention, or rest mass between $E$ and $\mathbf p$. | Accepted energy and momentum rows bound to the same retained branch and wake ledger. |
@@ -441,15 +441,15 @@ before any small residual is interpreted as a physical Lorentz or mass-map leaka
 
 ## Outputs Required From The First Calculation
 
-For each sampled drift $u_k$, the run must output:
+For each sampled group speed $u_k$, the run must output:
 
 | Output | Required content | Consumed by |
 | --- | --- | --- |
 | Common carrier | $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)$ with one shared branch chart, Noether sea cell, root ledger, wake ledger, and energy-momentum-angular-momentum ledger. | All row projections. |
-| Retained branch chart | $\boldsymbol{\rho}_{u_k}$, $T_{u_k}$, $\Omega_{u_k}$, $b_{u_k}$, $h_{u_k}$, $\eta_{u_k}$, $\epsilon_{c,u_k}$, $J_{0,u_k}$, and inactive-root gaps. | Same-record eligibility. |
-| Root-starvation row | $d_{\min}(u_k)$, $h_b^{\mathrm{lock}}(u_k)$, $T_{u_k}$, $M_b^{\mathrm{mem}}(u_k)=h_b^{\mathrm{lock}}(u_k)/T_{u_k}$, and $\mathcal R_{\mathrm{Lor\text{-}root}}(u_k)$ using the same active forward-root rows. | Same-record eligibility and finite-memory falsifier for `EQ-02` and `EQ-03`. |
+| Retained branch chart | $\boldsymbol{\rho}_{u_k}$, $P_{u_k}$, $\Omega_{u_k}$, $b_{u_k}$, $h_{u_k}$, $\eta_{u_k}$, $\epsilon_{c,u_k}$, $J_{0,u_k}$, and inactive-root gaps. | Same-record eligibility. |
+| Root-starvation row | $d_{\min}(u_k)$, $h_b^{\mathrm{lock}}(u_k)$, $P_{u_k}$, $M_b^{\mathrm{mem}}(u_k)=h_b^{\mathrm{lock}}(u_k)/P_{u_k}$, and $\mathcal R_{\mathrm{Lor\text{-}root}}(u_k)$ using the same active forward-root rows. | Same-record eligibility and finite-memory falsifier for `EQ-02` and `EQ-03`. |
 | Same-root conservation row | $\mathcal{R}_{01-05}^{\mathfrak B_{u_k}}(W_k)$ or a declared inherited conservation certificate using the same $\mathfrak B_{u_k}$, active roots, wake ledger, event ledger, and boundary flux convention. | `EQ-05`, same-record eligibility for `EQ-02` through `EQ-04`. |
-| Clock row | $T_{u_k}/T_0$, $\gamma_f(u_k)$, and $R_T^{\mathrm{bin}}(u_k)$. | `EQ-02`. |
+| Clock row | $P_{u_k}/P_0$, $\gamma_f(u_k)$, and $R_T^{\mathrm{bin}}(u_k)$. | `EQ-02`. |
 | Envelope row | $R_{\parallel,u_k}$, $R_{\perp,u_k}$, $\xi_{u_k}$, $R_{\xi}^{\mathrm{bin}}(u_k)$, and $R_{\mathrm{shape}}^{\mathrm{bin}}(u_k)$. | `EQ-03`. |
 | Two-way signal row | $\Delta_{\mathrm{tw}}^{\mathrm{bin}}(\beta_f,\theta)$ and angular decomposition of any leakage. | `EQ-02`, `EQ-07`, `EQ-09`. |
 | Energy row | $E_{\mathrm{internal}}(u_k)$, wake-energy convention, boundary flux, event updates, and $E_{\mathrm{CM},u_k}$. | `EQ-04`, `EQ-05`. |
@@ -461,6 +461,8 @@ For each sampled drift $u_k$, the run must output:
 | Split witnesses | $\mathcal S_{\mathrm{root}}^{02\text{-}04}$ and $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$. | Common-architecture pass/fail. |
 
 ## Current Solver Proxy Intake
+
+The emission contract retains the literal row identifier `clock_period_T_u_T0`; its period-ratio meaning in current notation is $P_u/P_0$. The diagnostic names $R_T^{\mathrm{bin}}$ and $R_T^{(q)}$ retain their established clock-residual labels. Neither spelling licenses using $T$ as a cycle period in a new equation. Historical fixtures keep their recorded keys and numbers.
 
 The live three-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload requires verification for advancement and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
 
@@ -597,7 +599,7 @@ $$
 
 The checker still reports `missing_accepted_raw_labeled_rows_preserved_on_retained_history` as the first row-level blocker, but that row should not be chased in isolation. It becomes meaningful only when evaluated on the certified invariant cell. In plain terms, the first accepted retained branch object is not a low Lorentz residual and not a display of a Noether braid candidate. It is a positive-width, source-backed invariant support on which raw generator labels, path-history rows, causal-root rows, wake rows, energy/action rows, momentum/angular-momentum rows, phase rows, plane-orientation rows, response-center/group-velocity rows, and the local Noether sea row are all bound before any `I:M:O` role assignment or quotient policy is imposed.
 
-Once that object exists, the retained-record evaluator may test the drift row with $\beta_f=u_k/c_f$ and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Only then may the numeric rows for clock, envelope, two-way leakage, energy, momentum, rest mass, mass shell, and medium response be treated as branch evidence.
+Once that object exists, the retained-record evaluator may test the group velocity row with $\beta_f=u_k/c_f$ and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Only then may the numeric rows for clock, envelope, two-way leakage, energy, momentum, rest mass, mass shell, and medium response be treated as branch evidence.
 
 The support certificate must report a scale hierarchy:
 
@@ -650,7 +652,7 @@ For `EQ-04A`, this same evidence object has one downstream consequence: it can s
 1. one validated finite-memory relative-periodic point enclosed by a declared validation box;
 2. a separately controlled lift of that point to one full delayed history;
 3. source-backed `S_eq` retained-domain identity on that validated point;
-4. validated continuation over a drift interval before any connection claim;
+4. validated continuation over a group-speed interval before any connection claim;
 5. `EQ-02` through `EQ-04` retained-record population on the same carrier;
 6. nested shell or charged-lepton branch-family specialization of the same mass response;
 7. `EQ-04A` Koide mass-root residual with zero hidden retune.
@@ -661,15 +663,15 @@ This rule prevents a common failure mode: treating a numerically coherent attemp
 
 ### Connection And No-Retune Target
 
-A validation box can prove one relative-periodic point; it is not an invariant cell, trapping region, branch segment, stability result, or basin measure. A full-history lift can support pointwise coframe extraction at one drift. Connection transport requires a separately validated continuation of that same full history over a drift interval. Stability, trapping, and basin claims remain later independent theorems.
+A validation box can prove one relative-periodic point; it is not an invariant cell, trapping region, branch segment, stability result, or basin measure. A full-history lift can support pointwise coframe extraction at one group speed. Connection transport requires a separately validated continuation of that same full history over a group-speed interval. Stability, trapping, and basin claims remain later independent theorems.
 
-Shared support does not by itself prove no-retune. The no-retune target is frozen-source held-out parallelism: the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea rows must be predictions of one source-identified connection over a held-out connected drift block, not separately tuned fibers above the same carrier label.
+Shared support does not by itself prove no-retune. The no-retune target is frozen-source held-out parallelism: the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea rows must be predictions of one source-identified connection over a held-out connected group-speed block, not separately tuned fibers above the same carrier label.
 
 Research input: [No-Retune Transport Beyond Drift-Only Holonomy](../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) proposes a source-identified, frozen-source held-out transport test and a point-first dependency ladder. It is priority-only research guidance; it does not populate this packet's retained support, branch continuation, connection, or acceptance rows.
 
 Research input: [Invariant-Cell Coframe Certificate](../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) corrects the point theorem, proof order, support terminology, and dynamic identity obligation. It is reference evidence only; the coupled executable contract migration remains owned by `EQM-001`.
 
-Use the one-dimensional drift base
+Use the one-dimensional group-speed base
 
 $$
 B_{02\text{-}04}
@@ -731,11 +733,11 @@ A `leg_rescaled_coframe` negative control must change one leg after construction
 The witness split should be explicit:
 
 - $W_{\mathrm{supp}}$ is the set-level shared-support witness. It asks whether all rows live on the same accepted support, `domainId`, and `commonCarrierId`.
-- $W_{\parallel}$ is frozen-source held-out parallelism over a connected drift block; $W_{\mathrm{end}}$ is its endpoint form when only independently extracted endpoints are available.
+- $W_{\parallel}$ is frozen-source held-out parallelism over a connected group-speed block; $W_{\mathrm{end}}$ is its endpoint form when only independently extracted endpoints are available.
 - $W_{\mathrm{loop}}$ is reserved for a genuine loop after a second retained continuation modulus exists.
 - $W_{\mathrm{NR}}$ is only the composite no-retune label combining the primary parallelism row with any later nontrivial loop row.
 
-$W_{\mathrm{supp}}=0$ is necessary. On the one-dimensional drift base, curvature, loop composition, and a return along the same path are trivial and cannot certify no-retune. The current machine field `W_hol` is therefore a diagnostic guardrail pending the separately authorized contract migration; it must not be read as the primary no-retune theorem.
+$W_{\mathrm{supp}}=0$ is necessary. On the one-dimensional group-speed base, curvature, loop composition, and a return along the same path are trivial and cannot certify no-retune. The current machine field `W_hol` is therefore a diagnostic guardrail pending the separately authorized contract migration; it must not be read as the primary no-retune theorem.
 
 The current producer-level scalar guardrail splits support transport from holonomy transport. Passing both scalar checks, zero torsion, or zero phase holonomy is diagnostic only. Every claimed held-out row needs an independently implemented endpoint projection, and at least one representative action class needs an analytic or genuinely independent correctness reference. Shared implementation paths establish parity, not correctness.
 
@@ -780,9 +782,9 @@ $$
 \right|.
 $$
 
-The older raw shell defect and normalized residual remain useful diagnostics, but the acceptance row should not depend on a regulator choice. The Noether sea tensor $\mathcal M_{\mathrm{sea}}^{ab}(u)$ is likewise a consumer of the drift and coframe solution in the primitive run. It may dress the effective coframe after extraction; it may not be the source used to manufacture $\lambda(u)$ or $\gamma_f(u)$.
+The older raw shell defect and normalized residual remain useful diagnostics, but the acceptance row should not depend on a regulator choice. The Noether sea tensor $\mathcal M_{\mathrm{sea}}^{ab}(u)$ is likewise a consumer of the group velocity and coframe solution in the primitive run. It may dress the effective coframe after extraction; it may not be the source used to manufacture $\lambda(u)$ or $\gamma_f(u)$.
 
-The solver-facing output per drift sample should therefore include:
+The solver-facing output per group-speed sample should therefore include:
 
 $$
 \left(
@@ -889,9 +891,9 @@ node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
 
 Until that command passes, `EQ-02`, `EQ-03`, and `EQ-04` keep their current scores.
 
-## Drift Sampling And Local Expansion
+## Group-Speed Sampling And Local Expansion
 
-The first run should sample small and moderate primitive drift:
+The first run should sample small and moderate primitive group speeds:
 
 $$
 0
@@ -912,7 +914,7 @@ $$
 Near $\beta=0$, fit even-power rows for clock and envelope:
 
 $$
-\frac{T_u}{T_0}
+\frac{P_u}{P_0}
 =
 1+a_2\beta^2+a_4\beta^4+R_T^{(6)},
 \qquad
@@ -1000,13 +1002,13 @@ b_4^C+\frac{1}{8}
 \right).
 $$
 
-This row is evaluable only when $(k_2,\ell_2,k_4,\ell_4)$, $T_u/T_0$, and $R_{\parallel,u}/R_{\perp,u}$ are extracted from the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ and the same inherited finite-window conservation convention. If that shared extraction is absent, report `blocked_not_evaluable`; do not set $R_{\mathrm{coef}}^{\mathrm{bin}}=0$ by assumption.
+This row is evaluable only when $(k_2,\ell_2,k_4,\ell_4)$, $P_u/P_0$, and $R_{\parallel,u}/R_{\perp,u}$ are extracted from the same $\mathcal C_{02\text{-}04}^{\mathrm{bin}}(u)$ and the same inherited finite-window conservation convention. If that shared extraction is absent, report `blocked_not_evaluable`; do not set $R_{\mathrm{coef}}^{\mathrm{bin}}=0$ by assumption.
 
 ## Negative Controls
 
 The first executable includes six negative controls:
 
-1. **Clock-only retune:** adjust $T_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
+1. **Clock-only retune:** adjust $P_u$ to match $\gamma_f$ while holding the branch ledger fixed incorrectly. This must pass $R_T$ and fail $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$ or $R_{\xi}$.
 2. **Envelope-only retune:** impose $R_{\parallel}/R_{\perp}=1/\gamma_f$ without the root ledger. This must pass $R_{\xi}$ and fail $\mathcal S_{\mathrm{root}}^{02\text{-}04}$.
 3. **Velocity-dependent rest mass:** let $M_0(u)$ absorb energy-momentum error. This must fail $R_{M_0}^{\mathrm{bin}}$ even if $R_{\mathrm{shell}}$ shrinks.
 4. **Medium-response compensator:** change $\mathcal M_{\mathrm{sea}}^{ab}$ inside the primitive homogeneous cell to repair momentum. This must fail $R_{\mathcal M}^{\mathrm{bin},ab}$ or the declared Noether sea cell equality.
@@ -1023,7 +1025,7 @@ These controls are useful because they test whether the same-record residual det
 | `pass.with_declared_residual` | Clock, envelope, and mass-shell rows share one branch, but residuals are nonzero and assigned to named branch-transition, finite-memory, shape-mode, or Noether sea dressing rows. | The next task is to prove the residual source survives nested shell braid averaging without hidden retune. |
 | `fail.clock_envelope_split` | Clock and envelope rows need different branches, roots, or speed conventions. | `EQ-02` and `EQ-03` cannot be raised; nested shell braid closure must repair a real primitive failure. |
 | `fail.mass_shell_split` | Mass shell or momentum rows pass only by changing $M_0$, $\zeta$, $\mathcal M_{\mathrm{sea}}^{ab}$, or $c_{\star}$. | `EQ-04` remains a residual grammar, not a recovery result. |
-| `fail.no_branch` | No stable translating branch exists for the sampled drift domain. | The Lorentz program must move to a different retained branch family or explain why the binary is not the right primitive test. |
+| `fail.no_branch` | No stable translating branch exists for the sampled group-speed domain. | The Lorentz program must move to a different retained branch family or explain why the binary is not the right primitive test. |
 
 ## Relationship To Other Equation Rows
 

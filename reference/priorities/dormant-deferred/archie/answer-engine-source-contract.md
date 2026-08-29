@@ -55,7 +55,7 @@ If provider-backed answer generation is requested, the manifest should carry onl
 
 ## Source Selection Rules
 
-Source selection should follow the authority order in [assistant-mode-contract.md](assistant-mode-contract.md).
+Source-class eligibility and authority order follow [assistant-mode-contract.md](assistant-mode-contract.md). Within those allowed classes, reference selection, presentation, and checking follow [About Architrino](../../../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) and its [research and review disclosures](../../../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review). Retrieval rank or eligibility alone does not justify citing a source.
 
 1. Prefer authored `published_corpus` routes for theory explanations.
 2. Use `scene_route` and `generated_reading_copy` routes for navigation and reading convenience, not stronger authority.
