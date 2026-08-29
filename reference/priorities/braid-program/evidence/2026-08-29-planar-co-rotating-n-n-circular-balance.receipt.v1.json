@@ -1,0 +1,249 @@
+{
+  "schema": "braid-program/planar-n-n-circular-balance-receipt.v1",
+  "receiptId": "planar-co-rotating-n-n-circular-balance-2026-08-29-v4",
+  "compatibilityIdentifier": "aaa-corpus-advancement",
+  "sourceRecord": {
+    "schema": "braid-program/planar-n-n-circular-balance-campaign.v1",
+    "campaignId": "planar-co-rotating-n-n-uncapped-master-equation-2026-08-29",
+    "generatingCommit": "18d06e3d0b34b7749e603e1b9a44c8906bfe7388",
+    "model": {
+      "fieldSpeed": 1,
+      "masterEquation": "default uncapped emission-site acceleration law",
+      "lineOfAction": "emission-site",
+      "universalSpeedCeilingApplied": false,
+      "radiusNormalization": 1,
+      "physicalScaleCoordinate": "R/R_star=-mean(radial coefficient)/beta_f^2"
+    },
+    "declaredDomain": {
+      "n": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "beta": [
+        0.05,
+        20
+      ],
+      "regularBetaStep": 0.025,
+      "nonuniformMinimumPhaseGap": 0.01,
+      "phaseClass": "one common planar circle, fixed cyclic order, common angular rate, equal radius",
+      "excluded": [
+        "collisions",
+        "unresolved folds",
+        "variable speed",
+        "breathing",
+        "eccentricity",
+        "nonplanarity",
+        "free evolution"
+      ]
+    },
+    "symmetryReduction": {
+      "rotations": "exact label rotation orbit",
+      "globalPolarityConjugation": "exact because every acceleration sign is a receiver-transmitter polarity product",
+      "reflection": "used only with reflection plus circulation reversal after covariance check; canonical orbit records remain explicit"
+    }
+  },
+  "rawArtifact": {
+    "retention": "ignored-local-analytical-storage",
+    "path": ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v4.json",
+    "sha256": "f17525aa2bccbf884a50ebedb0e58f68d6c81fdc6a770b103f3ad37502eb604d",
+    "byteCount": 17333611,
+    "lineCount": 491592,
+    "requiredForTests": false
+  },
+  "correctionHistory": [
+    {
+      "version": 1,
+      "path": ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v1.json",
+      "sha256": "1fd9efb3b6f171704026a470fa80325d6f543cf995abee67873fc6cba515a335",
+      "byteCount": 14551775,
+      "lineCount": 414117,
+      "correctionOfVersion": null,
+      "correctionReason": null,
+      "elapsedSeconds": 491.156
+    },
+    {
+      "version": 2,
+      "path": ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v2.json",
+      "sha256": "357978b45c9b6142229582c70d82270991b74541491a9bd7e38239d2247e4276",
+      "byteCount": 15170865,
+      "lineCount": 430423,
+      "correctionOfVersion": 1,
+      "correctionReason": "The first closed run sampled topology intervals but did not refine receiver tangential sign changes immediately after root births; this packet adds topology-local logarithmic boundary probes and bisection.",
+      "elapsedSeconds": 1873.927
+    },
+    {
+      "version": 3,
+      "path": ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json",
+      "sha256": "7bd5a1554002f5440933a603a36829e45f16feee821ccb7b421fe1069ccc6699",
+      "byteCount": 15283815,
+      "lineCount": 434083,
+      "correctionOfVersion": 2,
+      "correctionReason": "The second closed run established the regular candidates but allowed broader-chart optimizers to discard balanced regular seeds; this packet preserves those subloci while keeping nonregular phase extensions unresolved.",
+      "elapsedSeconds": 158.622
+    },
+    {
+      "version": 4,
+      "path": ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v4.json",
+      "sha256": "f17525aa2bccbf884a50ebedb0e58f68d6c81fdc6a770b103f3ad37502eb604d",
+      "byteCount": 17333611,
+      "lineCount": 491592,
+      "correctionOfVersion": 3,
+      "correctionReason": "The third closed run preserved the regular B1.3 chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
+      "elapsedSeconds": 158.017
+    }
+  ],
+  "decision": {
+    "balancedCandidateCount": 5,
+    "unresolvedSearchRowCount": 61,
+    "verdict": "balanced-regular-subloci-found-with-broader-phase-search-unresolved",
+    "claimGrade": "mixed derived taxonomy, independently checked ledger implementation, and bounded numerical search",
+    "excludedClaims": [
+      "retention",
+      "binding",
+      "stability",
+      "release survival",
+      "physical identity",
+      "score increase",
+      "scientific acceptance"
+    ],
+    "falsifier": "Any missing causal root, failed independent check, nonconvergent residual, or balanced point inside the declared bounded domain overturns the corresponding result."
+  },
+  "balancedCandidateScopes": [
+    {
+      "n": 2,
+      "phaseConfiguration": "regular-2n-gon",
+      "polarityClass": "+-+-",
+      "beta": 2.1472456589006224,
+      "rootTopologySignature": "1,3,1,1;1,1,3,1;1,1,1,3;3,1,1,1",
+      "rootCount": 24,
+      "compatibleScale": 0.4161828083090951,
+      "residuals": {
+        "maximumRadial": 4.440892098500626e-16,
+        "maximumTangential": 5.36654054528185e-13,
+        "maximumAxial": 0,
+        "maximumFullVector": 5.366541004644862e-13
+      },
+      "rootCompleteness": {
+        "complete": true,
+        "coincidentSelfRootsExcluded": 4,
+        "nontrivialSameTransmitterRootsIncluded": true,
+        "foldEventCount": 0,
+        "minimumJacobianFloor": 0.3171169078837861,
+        "maximumRootEquationResidual": 1.7719159473017498e-13,
+        "maximumDirectChordResidual": 8.237854842718662e-14,
+        "basis": "finite chord domain plus concave absolute-sine lobe partition"
+      }
+    },
+    {
+      "n": 3,
+      "phaseConfiguration": "regular-2n-gon",
+      "polarityClass": "+-+-+-",
+      "beta": 2.974307176117306,
+      "rootTopologySignature": "1,3,3,3,1,1;1,1,3,3,3,1;1,1,1,3,3,3;3,1,1,1,3,3;3,3,1,1,1,3;3,3,3,1,1,1",
+      "rootCount": 72,
+      "compatibleScale": 0.5617317000713459,
+      "residuals": {
+        "maximumRadial": 3.2862601528904634e-14,
+        "maximumTangential": 6.88338275267597e-14,
+        "maximumAxial": 0,
+        "maximumFullVector": 7.62510728881475e-14
+      },
+      "rootCompleteness": {
+        "complete": true,
+        "coincidentSelfRootsExcluded": 6,
+        "nontrivialSameTransmitterRootsIncluded": true,
+        "foldEventCount": 0,
+        "minimumJacobianFloor": 0.11680602873827528,
+        "maximumRootEquationResidual": 3.4994229736184934e-13,
+        "maximumDirectChordResidual": 1.1746159600534156e-13,
+        "basis": "finite chord domain plus concave absolute-sine lobe partition"
+      }
+    },
+    {
+      "n": 4,
+      "phaseConfiguration": "regular-2n-gon",
+      "polarityClass": "+-+-+-+-",
+      "beta": 1.6595117714602787,
+      "rootTopologySignature": "1,3,1,1,1,1,1,1;1,1,3,1,1,1,1,1;1,1,1,3,1,1,1,1;1,1,1,1,3,1,1,1;1,1,1,1,1,3,1,1;1,1,1,1,1,1,3,1;1,1,1,1,1,1,1,3;3,1,1,1,1,1,1,1",
+      "rootCount": 80,
+      "compatibleScale": 1.7441728749235372,
+      "residuals": {
+        "maximumRadial": 7.993605777301127e-15,
+        "maximumTangential": 2.8634872251132037e-12,
+        "maximumAxial": 0,
+        "maximumFullVector": 2.8634872251132037e-12
+      },
+      "rootCompleteness": {
+        "complete": true,
+        "coincidentSelfRootsExcluded": 8,
+        "nontrivialSameTransmitterRootsIncluded": true,
+        "foldEventCount": 0,
+        "minimumJacobianFloor": 0.1379452644538317,
+        "maximumRootEquationResidual": 1.999511667349907e-13,
+        "maximumDirectChordResidual": 1.2079226507921703e-13,
+        "basis": "finite chord domain plus concave absolute-sine lobe partition"
+      }
+    },
+    {
+      "n": 5,
+      "phaseConfiguration": "regular-2n-gon",
+      "polarityClass": "+-+-+-+-+-",
+      "beta": 1.5556550244378213,
+      "rootTopologySignature": "1,3,1,1,1,1,1,1,1,1;1,1,3,1,1,1,1,1,1,1;1,1,1,3,1,1,1,1,1,1;1,1,1,1,3,1,1,1,1,1;1,1,1,1,1,3,1,1,1,1;1,1,1,1,1,1,3,1,1,1;1,1,1,1,1,1,1,3,1,1;1,1,1,1,1,1,1,1,3,1;1,1,1,1,1,1,1,1,1,3;3,1,1,1,1,1,1,1,1,1",
+      "rootCount": 120,
+      "compatibleScale": 2.7040642782802484,
+      "residuals": {
+        "maximumRadial": 1.1546319456101628e-14,
+        "maximumTangential": 7.644551658358978e-12,
+        "maximumAxial": 0,
+        "maximumFullVector": 7.644554186576438e-12
+      },
+      "rootCompleteness": {
+        "complete": true,
+        "coincidentSelfRootsExcluded": 10,
+        "nontrivialSameTransmitterRootsIncluded": true,
+        "foldEventCount": 0,
+        "minimumJacobianFloor": 0.1049072417723822,
+        "maximumRootEquationResidual": 1.9984014443252818e-13,
+        "maximumDirectChordResidual": 1.2856382625159313e-13,
+        "basis": "finite chord domain plus concave absolute-sine lobe partition"
+      }
+    },
+    {
+      "n": 6,
+      "phaseConfiguration": "regular-2n-gon",
+      "polarityClass": "+-+-+-+-+-+-",
+      "beta": 1.484095961562689,
+      "rootTopologySignature": "1,3,1,1,1,1,1,1,1,1,1,1;1,1,3,1,1,1,1,1,1,1,1,1;1,1,1,3,1,1,1,1,1,1,1,1;1,1,1,1,3,1,1,1,1,1,1,1;1,1,1,1,1,3,1,1,1,1,1,1;1,1,1,1,1,1,3,1,1,1,1,1;1,1,1,1,1,1,1,3,1,1,1,1;1,1,1,1,1,1,1,1,3,1,1,1;1,1,1,1,1,1,1,1,1,3,1,1;1,1,1,1,1,1,1,1,1,1,3,1;1,1,1,1,1,1,1,1,1,1,1,3;3,1,1,1,1,1,1,1,1,1,1,1",
+      "rootCount": 168,
+      "compatibleScale": 3.842971035530748,
+      "residuals": {
+        "maximumRadial": 1.2434497875801753e-14,
+        "maximumTangential": 1.8199219908865416e-11,
+        "maximumAxial": 0,
+        "maximumFullVector": 1.8199219995557143e-11
+      },
+      "rootCompleteness": {
+        "complete": true,
+        "coincidentSelfRootsExcluded": 12,
+        "nontrivialSameTransmitterRootsIncluded": true,
+        "foldEventCount": 0,
+        "minimumJacobianFloor": 0.08372241039222517,
+        "maximumRootEquationResidual": 1.9939605522267811e-13,
+        "maximumDirectChordResidual": 1.341149413747189e-13,
+        "basis": "finite chord domain plus concave absolute-sine lobe partition"
+      }
+    }
+  ],
+  "reproduction": {
+    "fullCampaignCommand": "node scripts/equation-mapping/analyze-planar-co-rotating-rings.mjs --out=.local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/reproduction.json",
+    "acceleratedPhaseSearchCommand": "node scripts/equation-mapping/analyze-planar-co-rotating-rings.mjs --reuse-regular=.local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json --out=.local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/reproduction.json",
+    "receiptCommand": "node scripts/build-machine-artifact-receipts.mjs --target=ring --write",
+    "exactByteReproduction": false,
+    "exactByteLimitation": "The producer records elapsed wall time; compare the declared domain, result rows, and hashes rather than the complete output bytes."
+  },
+  "claimBoundary": "Prescribed acceleration-balance evidence only; no retention, binding, stability, release survival, physical identity, score increase, or scientific acceptance follows."
+}

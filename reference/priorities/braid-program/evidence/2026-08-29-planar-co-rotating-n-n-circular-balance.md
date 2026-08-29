@@ -2,8 +2,10 @@
 
 Date: 2026-08-29  
 Compatibility identifier: `aaa-corpus-advancement`  
-Current machine record: [`2026-08-29-planar-co-rotating-n-n-circular-balance.v4.json`](2026-08-29-planar-co-rotating-n-n-circular-balance.v4.json)  
+Current compact receipt: [`2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json`](2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json)
 Instrument: [`PlanarCoRotatingRingBalance.mjs`](../../../../src/prescribed-path-analysis/PlanarCoRotatingRingBalance.mjs) and [`PlanarCoRotatingRingSearch.mjs`](../../../../src/prescribed-path-analysis/PlanarCoRotatingRingSearch.mjs), driven by [`analyze-planar-co-rotating-rings.mjs`](../../../../scripts/equation-mapping/analyze-planar-co-rotating-rings.mjs)
+
+Focused extension: the independently checked [regular alternating $12{:}12$ packet](2026-08-29-planar-co-rotating-12-12-alternating.md) records a separate 24-member balanced candidate and its derived exclusion from B1.3 and C5/C6. It does not extend this campaign's complete regular-polarity census beyond $N=6$.
 
 ## Decision
 
@@ -33,7 +35,7 @@ Plainly: the one-dimensional regular search is dense and adaptively follows root
 
 Plainly: every positive result belongs to the alternating regular ring. Odd $N$ has neutral antipodal pairs; even $N$ has like-polarity antipodes. Neutral antipodes alone do not make a record B1.3: $N=5$ has ten members, while B1.3 has exactly six. The twelve-member $N=6$ ring has one center and therefore does not satisfy the positive component-center separation required by C5 or C6.
 
-The remaining regular polarity classes are bounded negatives on the declared interval: 1 class for $N=2$, 2 for $N=3$, 6 for $N=4$, 12 for $N=5$, and 34 for $N=6$. Across those classifications the packet records respectively 50, 111, 336, 780, and 2,520 root-topology intervals. The machine table retains, for every class, the phase word, orbit metadata, antipodal status, taxonomy mapping, scan interval, topology intervals, candidate values, compatible scale, residual components, refinement behavior, independent-reference declaration, claim grade, falsifier, and verdict. Every promoted candidate also retains its complete root ledger, inactive-root gaps, fold record, emission lags, separations, $D_t$, $D_r$, acceleration weights, multiplicities, and Jacobian floors.
+The remaining regular polarity classes are bounded negatives on the declared interval: 1 class for $N=2$, 2 for $N=3$, 6 for $N=4$, 12 for $N=5$, and 34 for $N=6$. Across those classifications the raw packet records respectively 50, 111, 336, 780, and 2,520 root-topology intervals. The ignored local raw artifact retains, for every class, the phase word, orbit metadata, antipodal status, taxonomy mapping, scan interval, topology intervals, candidate values, compatible scale, residual components, refinement behavior, independent-reference declaration, claim grade, falsifier, and verdict. The tracked receipt retains the raw SHA-256, correction history, declared domain, decision, and compact independently consumed candidate rows.
 
 Plainly: the negative rows reject only their exact regular polarity pattern below speed 20. They do not reject faster rings or variable-speed, breathing, eccentric, nonplanar, or freely evolving paths.
 
@@ -61,13 +63,13 @@ Plainly: every claim can be challenged by a named calculation. Discovering anoth
 
 ## Evidence History And Reproduction
 
-The write-once `v1` record completed in 491.156 seconds with 11 heartbeats but missed narrow post-root-birth tangential zeros because its topology intervals lacked boundary-local probing. The corrected `v2` record added logarithmic boundary probes and bisection, completed the full regular and phase searches in 1,873.927 seconds with 131 heartbeats, and recovered all five regular representatives. The `v3` record preserved the closed `v2` regular ledgers and retained the regular B1.3 point in the dedicated antipodal chart, completing in 158.622 seconds with 71 heartbeats. The current `v4` record additionally retains every exact regular phase point inside the general nonuniform charts while keeping each genuinely nonregular extension unresolved; it completed in 158.017 seconds with 71 heartbeats. `v1` through `v3` remain immutable superseded records.
+The write-once `v1` record completed in 491.156 seconds with 11 heartbeats but missed narrow post-root-birth tangential zeros because its topology intervals lacked boundary-local probing. The corrected `v2` record added logarithmic boundary probes and bisection, completed the full regular and phase searches in 1,873.927 seconds with 131 heartbeats, and recovered all five regular representatives. The `v3` record preserved the closed `v2` regular ledgers and retained the regular B1.3 point in the dedicated antipodal chart, completing in 158.622 seconds with 71 heartbeats. The current `v4` record additionally retains every exact regular phase point inside the general nonuniform charts while keeping each genuinely nonregular extension unresolved; it completed in 158.017 seconds with 71 heartbeats. The compact receipt preserves the SHA-256, size, correction reason, and elapsed time for all four raw versions; the full packets are retained locally under ignored analytical storage rather than as tracked branch-tip files.
 
 Plainly: the first run's negative omissions were an instrument defect, not physics evidence. The later records preserve the correction trail and make the current claim boundary machine-readable.
 
-Reproduce the full campaign without overwriting the evidence owner by running `node scripts/equation-mapping/analyze-planar-co-rotating-rings.mjs --out=.local-data/planar-co-rotating-rings/reproduction.json`. To recheck only the corrected phase-search semantics against the frozen full regular ledgers, add `--reuse-regular=reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json`; the CLI rejects a reused packet whose model or regular scan domain differs. Run the independent checks with `node --test tests/planar-co-rotating-ring-balance.test.js tests/circular-self-hit-binary-analysis.test.js`.
+Reproduce the full campaign without overwriting the evidence owner by running `node scripts/equation-mapping/analyze-planar-co-rotating-rings.mjs --out=.local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/reproduction.json`. To recheck only the corrected phase-search semantics against the locally retained regular ledgers, add `--reuse-regular=.local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json`; the CLI rejects a reused packet whose model or regular scan domain differs. Refresh the compact receipt with `node scripts/build-machine-artifact-receipts.mjs --target=ring --write`. Run the independent checks with `node --test tests/planar-co-rotating-ring-balance.test.js tests/circular-self-hit-binary-analysis.test.js`.
 
-Plainly: reproduction writes to ignored local storage. The durable evidence files are closed records and should not be overwritten.
+Plainly: reproduction and full ledgers stay in ignored local storage. The tracked receipt makes the result, correction trail, raw identity, and test-consumed candidate rows durable without adding millions of review lines.
 
 ## Claim Boundary And Next Blocker
 

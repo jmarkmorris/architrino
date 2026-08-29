@@ -125,13 +125,25 @@ At an axial locus, $\phi_a$ and $f$ remain prescribed record labels but no longe
 
 ### Equal-Radius Phase-Symmetric Acceleration-Balance Locus
 
-One exact B1.3 sublocus sets $R_1=R_2=R_3=R$ and assigns the three binary phases $0$, $2\pi/3$, and $4\pi/3$. Each binary has antipodal opposite-polarity endpoints. The six endpoints therefore form a regular hexagon with alternating polarities while sharing one center, one axis, one angular rate, and one circulation sense.
+One exact B1.3 sublocus sets $R_1=R_2=R_3=R$ and assigns the three binary phases $0$, $2\pi/3$, and $4\pi/3$. Each binary has antipodal opposite-polarity endpoints. The six endpoints therefore form a regular hexagon with alternating polarities while sharing one center, one axis, one angular rate, and one circulation sense. In the broader Dynamics taxonomy this is the exact $N=3$ overlap with the [Shared-Circle Assemblies](../dynamics/shared-circle-assemblies.md#exact-taxonomy-intersections) chart; the overlap does not enlarge B1.3 to other inventory sizes.
 
 For the default uncapped Master Equation with $c_f=1$, a complete-root circular-path calculation gives the dimensionless speed $\beta_f=2.974307176117306$ and compatible scale $R/R_*=0.5617317000713459$, where $R_*=\kappa\epsilon^2/c_f^2$.
 
 The measured 72-root directed ledger includes every nontrivial same-transmitter root and excludes only the coincident self root. Its maximum radial, tangential, axial, and full-vector prescribed-acceleration residuals are respectively $3.2862601528904634\times10^{-14}$, $6.88338275267597\times10^{-14}$, $0$, and $7.62510728881475\times10^{-14}$. Tightening the root tolerance preserves the root topology and gives maximum full-vector residual $4.500069559058899\times10^{-12}$; the minimum Jacobian floor is $0.11680602873827528$. An independently authored generic prescribed-history evaluator checks the cross-transmitter roots and acceleration contributions, while an independently authored circular-binary evaluator checks the nontrivial same-transmitter roots. Rotational covariance is checked both algebraically and over a full cycle.
 
+> Claim grade: measured. `PlanarCoRotatingRingBalance` measures the complete prescribed-path ledger; `AnalyticalBraidEvaluator` independently checks the cross-transmitter roots and acceleration contributions, and `CircularSelfHitBinaryAnalysis` independently checks the nontrivial same-transmitter roots. Falsifier: either independent comparison finds a missing or displaced causal root, a mismatched acceleration contribution, an incompatible radial scale, or a full-vector residual that does not remain within the declared refinement envelope.
+
 Plainly: at this one regular hexagonal point, every architrino receives the inward acceleration required by its prescribed circle, with no measurable tangential or out-of-plane remainder. The complete equal-radius chart with unequal binary phases remains unresolved, as does the broader B1.3 chart with unequal radii. This is prescribed acceleration balance, not retention, binding, stability, release survival, physical identity, or scientific acceptance.
+
+### A Balanced Ring Outside The B1.3 Inventory
+
+The same complete-root calculation has an independently checked result for one larger comparison geometry: the regular alternating $12{:}12$ ring, which has 24 architrinos on one common circle. On the bounded interval $0.05\leq\beta_f\leq20$, its best candidate occurs at $\beta_f=1.290840841384326$ with compatible scale $R/R_*=13.982496760466805$. The 624-root directed ledger has maximum full prescribed-acceleration residual $5.858187577303801\times10^{-10}$, which becomes $1.4986768330120922\times10^{-10}$ after root-tolerance tightening without a topology change.
+
+Because 12 is even, antipodal members of this alternating ring have like polarity. More decisively, the record has 24 members, whereas B1.3 has exactly six members in three neutral antipodal binaries. The $12{:}12$ ring is therefore not a B1.3 locus. Nor is it a C5 or C6 decomposition: all 24 paths share one center, there is no positive separation between component centers, and the like-polarity antipodes do not define B1.3 components.
+
+> Claim grade: bounded measured acceleration balance plus derived taxonomy exclusion. `PlanarCoRotatingRingBalance` measures this one regular alternating class; `AnalyticalBraidEvaluator` independently checks all cross-transmitter roots and acceleration contributions, and `CircularSelfHitBinaryAnalysis` independently checks all nontrivial same-transmitter roots. Falsifier: a missed causal root, failed independent comparison, receiver-incompatible scale, topology change under refinement, or residual above the declared tolerance overturns the balance result; only a canonical inventory change could alter the taxonomy exclusion.
+
+Plainly: the larger ring is included here to mark the exact B1.3 boundary, not to enlarge B1.3. Its acceleration balance says nothing about retention, binding, stability, release survival, physical identity, or scientific acceptance, and it does not cover other $12{:}12$ polarity words or nonuniform phase gaps.
 
 ### Deprecated Axial-Limit Control
 

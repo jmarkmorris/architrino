@@ -1,0 +1,52 @@
+{
+  "schema": "architrino/machine-artifact-retention-registry.v1",
+  "thresholds": {
+    "lineCount": 100000,
+    "byteCount": 10485760
+  },
+  "records": [
+    {
+      "path": "content/assets/borg/records/f5-phase-varying-campaign.assembly-view-record.v0.json",
+      "owner": "Borg prescribed-record runtime",
+      "consumers": [
+        "src/apps/borg/BorgBraidRecordCatalog.js",
+        "tests/prescribed-worldline-independent-conformance.test.js"
+      ],
+      "regenerationCommand": "node scripts/eom/generate-prescribed-braid-record.mjs --all --write",
+      "retentionReason": "A fresh static application clone loads this exact prescribed display record, and conformance tests verify it against its authored source.",
+      "compactAlternativeInsufficient": "A summary receipt cannot supply the sampled worldline events required by the Borg runtime."
+    },
+    {
+      "path": "content/generated/equation-mapping/corpus-equations.json",
+      "owner": "Equation Mapping generated corpus",
+      "consumers": [
+        "src/apps/equation-mapping/EquationMappingCorpusLoader.js",
+        "tests/equation-mapping-corpus.test.js"
+      ],
+      "regenerationCommand": "node scripts/build-equation-mapping-corpus.mjs --write",
+      "retentionReason": "Static clients fetch the generated registry directly, and the content-integrity gate checks it against canonical Markdown.",
+      "compactAlternativeInsufficient": "A receipt cannot provide the complete searchable equation and symbol registry required by static clients."
+    },
+    {
+      "path": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
+      "owner": "Archie service source index",
+      "consumers": [
+        "src/archie-service/source-index/full-corpus-v1.mjs"
+      ],
+      "regenerationCommand": "node scripts/archie-service/build-full-corpus-source-index.mjs --write",
+      "retentionReason": "The local full-corpus launcher consumes the immutable exact-content, search, graph, and metadata views from a fresh clone.",
+      "compactAlternativeInsufficient": "A receipt cannot serve the full source records and graph edges required by the local source-index provider."
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+      "owner": "Braid Program orthogonal-plane weave diagnostic",
+      "consumers": [
+        "tests/orthogonal-plane-weave-balance.test.js",
+        "tests/test_orthogonal_plane_weave_interval_oracle.py"
+      ],
+      "regenerationCommand": "node scripts/prescribed-path-analysis/run-orthogonal-plane-weave-balance.mjs --write reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json",
+      "retentionReason": "The independent interval certificate binds this exact frozen subject by SHA-256, and focused tests inspect its complete root ledgers.",
+      "compactAlternativeInsufficient": "Removing the detailed root ledgers would break the present independent-control hash and the direct-coordinate contribution audit."
+    }
+  ]
+}

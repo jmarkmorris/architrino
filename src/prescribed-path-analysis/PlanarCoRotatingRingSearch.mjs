@@ -148,11 +148,16 @@ export function scanRegularPolarityClass({
   maximumBeta = 20,
   betaStep = 0.025,
   balanceTolerance = 2e-8,
+  progress = () => {},
 } = {}) {
   const phases = regularRingPhases(n);
   const polarities = polarityClass.polarities;
-  const samples = regularBetaSamples({ minimumBeta, maximumBeta, betaStep }).map((beta) => {
+  const betaSamples = regularBetaSamples({ minimumBeta, maximumBeta, betaStep });
+  const samples = betaSamples.map((beta, index) => {
     const evaluation = evaluatePlanarCoRotatingRing({ phases, polarities, beta });
+    if ((index + 1) % 100 === 0 || index + 1 === betaSamples.length) {
+      progress({ stage: "base-scan", completed: index + 1, total: betaSamples.length, beta });
+    }
     return { beta, signature: evaluation.rootTopologySignature, objective: configurationObjective(evaluation) };
   });
   const boundaryBrackets = [];
@@ -165,6 +170,7 @@ export function scanRegularPolarityClass({
         right: samples[index].beta,
         leftSignature: samples[index - 1].signature,
       }));
+      progress({ stage: "topology-boundary", completed: boundaryBrackets.length, sampledIndex: index });
     }
   }
   const intervalBoundaries = uniqueSorted([
@@ -187,6 +193,7 @@ export function scanRegularPolarityClass({
       minimumJacobianFloor: evaluation.rootCompleteness.minimumJacobianFloor,
     });
   }
+  progress({ stage: "topology-census", completed: topologyIntervals.length, total: topologyIntervals.length });
 
   const minimaBrackets = [];
   for (let index = 1; index < samples.length - 1; index += 1) {
@@ -199,7 +206,8 @@ export function scanRegularPolarityClass({
     }
   }
   const tangentialZeros = [];
-  for (const topology of topologyIntervals) {
+  for (let topologyIndex = 0; topologyIndex < topologyIntervals.length; topologyIndex += 1) {
+    const topology = topologyIntervals[topologyIndex];
     const [left, right] = topology.interval;
     const span = right - left;
     if (span <= 1e-8) continue;
@@ -220,7 +228,13 @@ export function scanRegularPolarityClass({
         minimaBrackets.push([localSamples[index - 1].beta, localSamples[index + 1].beta]);
       }
     }
-    for (let receiverIndex = 0; receiverIndex < phases.length; receiverIndex += 1) {
+    // A regular alternating word is transitive under one label rotation combined
+    // with the same spatial rotation, so every receiver has the same projected
+    // coefficient. Candidate acceptance below still evaluates every receiver.
+    const receiverIndices = polarityClass.alternating
+      ? [0]
+      : Array.from({ length: phases.length }, (_, receiverIndex) => receiverIndex);
+    for (const receiverIndex of receiverIndices) {
       for (let index = 1; index < localSamples.length; index += 1) {
         const prior = localSamples[index - 1];
         const next = localSamples[index];
@@ -233,6 +247,14 @@ export function scanRegularPolarityClass({
           tangentialZeros.push(evaluatePlanarCoRotatingRing({ phases, polarities, beta }));
         }
       }
+    }
+    if ((topologyIndex + 1) % 10 === 0 || topologyIndex + 1 === topologyIntervals.length) {
+      progress({
+        stage: "topology-refinement",
+        completed: topologyIndex + 1,
+        total: topologyIntervals.length,
+        interval: topology.interval,
+      });
     }
   }
   const refined = minimaBrackets.map(([left, right]) => {
@@ -269,6 +291,9 @@ export function scanRegularPolarityClass({
     scanInterval: [minimumBeta, maximumBeta],
     betaStep,
     sampledBetaCount: samples.length,
+    tangentialSearchReceiverIndices: polarityClass.alternating
+      ? [0]
+      : Array.from({ length: phases.length }, (_, receiverIndex) => receiverIndex),
     topologyBoundaryBrackets: boundaryBrackets,
     rootTopologyIntervals: topologyIntervals,
     candidateBetaValues: uniqueMinima.slice(0, 8).map((evaluation) => compactEvaluation(evaluation)),
@@ -725,7 +750,7 @@ export function runPlanarRingCampaign({
   return {
     schema: "braid-program/planar-n-n-circular-balance-campaign.v1",
     campaignId: "planar-co-rotating-n-n-uncapped-master-equation-2026-08-29",
-    correctionOf: "reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json",
+    correctionOf: ".local-data/braid-analysis/retained-evidence/planar-co-rotating-rings/2026-08-29-planar-co-rotating-n-n-circular-balance.v3.json",
     correctionReason: "The third closed run preserved the regular B1.3 chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
     compatibilityIdentifier: "aaa-corpus-advancement",
     model: {

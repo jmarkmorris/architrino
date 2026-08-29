@@ -4,6 +4,8 @@ Status: CURRENT MASTER INDEX, operator-established 2026-08-25 and campaign-recon
 
 The evidence-graded [Braid Candidate Requirement Adjudication](braid-candidate-requirement-adjudication.md) applies the consolidated inferred requirements to every admitted or exploratory registry row and preserves the F6b scoped negative. The current [Weighted Score Packet](candidate-weighted-score-packet.md) owns the raw scored records, normalization, calculations, hard-gate overlay, and sensitivity check behind the two registry percentages. This registry owns candidate identity and routing; neither comparison artifact replaces candidate-specific evidence.
 
+Evaluated circular $N{:}N$ records that do not satisfy an admitted braid inventory remain in the separate [Shared-Circle Assembly Registry](shared-circle-assembly-registry.md). The regular alternating $N=3$ row is cross-listed here only through its exact B1.3 coordinate identity; other inventory sizes do not enter this registry merely because their prescribed acceleration balances.
+
 ## Status Discipline
 
 `Admitted candidate` means that the geometry has a complete exact chart, persistent member inventory, removed gauge coordinates, and a reconstructible position-and-velocity map. `Exploratory` means that the geometry remains a search seed or incomplete extension. `Scoped negative / demoted` means that the declared realization has been rejected or excluded from active search while its evidence is retained. None of these labels establishes a retained braid.

@@ -20,7 +20,7 @@ Every published candidate analysis must identify one source record. At minimum t
 - the family/member identifier and complete taxonomy-coordinate row;
 - the prescribed-geometry engine and chart version;
 - the retained history interval, analysis window, return duration $P_{\mathrm{ret}}$, and absolute-time origin $T_0$;
-- when envelope geometry is reported, the exact support-direction grid, constant-time emission measure, centered path second-moment convention, and any quadratic-fit rule, tie-break, and tolerance;
+- when envelope geometry is reported, the exact directional-support grid, constant-time emission measure, centered path second-moment convention, and any quadratic-fit rule, tie-break, and tolerance;
 - the field speed $c_f$, coupling convention, root policy, self-hit policy, and any mollifier or cutoff;
 - the spatial probe set, enclosing surfaces, temporal sampling rule, and numerical tolerances; and
 - the source hash, engine identity, parameter vector, sampling seed, and generated result hash.
@@ -423,9 +423,9 @@ Every measure in this chapter is a deterministic analytical consequence of a pre
 | --- | --- | --- |
 | Prescribed-period closure | Position, velocity, and phase differences between $T_0$ and $T_0+P_{\mathrm{ret}}$ | Whether the declared formulas and chosen return period are internally consistent |
 | Minimum separation | $d_{\min}=\min_{T,i\ne j}\|\mathbf X_i(T)-\mathbf X_j(T)\|$ | Whether the prescribed chart contains a collision, an undeclared coincidence, or a near-singular pair geometry |
-| Exact path-history support | $H_{\mathrm{env}}(\hat{\mathbf m};W)$ on a declared directional grid, with angular refinement | The furthest centered constituent-path excursion in each direction over the declared window |
+| Exact directional support | $H_{\mathrm{env}}(\hat{\mathbf m};W)$ on a declared directional grid, with angular refinement | The furthest centered constituent-path excursion in each direction and therefore the convex hull over the declared window; non-convex indentations are not retained |
 | Centered path second moment | Six independent components, eigenvalues, and non-degenerate principal directions of $\mathsf M_{\mathrm{env}}^{ab}(W)$ under the constant-time emission measure | Dwell-weighted scale, anisotropy, and orientation of the centered path distribution |
-| Quadratic-envelope fit | Positive-definite $\mathsf Q_{\mathrm{env}}^{ab}(W)$, angular fitting rule, tie-break, and $\mathcal R_Q(W)$ | Whether the exact support is adequately compressed by one ellipsoid for the declared consumer |
+| Quadratic-envelope fit | Positive-definite $\mathsf Q_{\mathrm{env}}^{ab}(W)$, angular fitting rule, tie-break, and $\mathcal R_Q(W)$ | Whether the exact directional support is adequately compressed by one ellipsoid for the declared consumer |
 | Support-moment disagreement | Principal-subspace angles or normalized-tensor mismatch between admitted $\mathsf Q_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ | Whether boundary extrema and dwell-weighted path occupancy support one quadratic summary |
 | Root-transversality margin | $\min|D_{t,j}|$ over all retained probe and internal roots | Distance from an unresolved causal-root fold |
 | Root-topology ledger | Root counts, identities, births, deaths, and reconnections versus $T$ | Whether averaged curves hide causal-branch changes |
@@ -1029,11 +1029,19 @@ $$
 
 Report axial, radial, and tangential projections separately over the complete return period. Pointwise rows, signed cycle averages, RMS values, maxima, primary/refined differences, and source-resolved contributions are all required. Cancellation in one projection cannot conceal failure in another. A converged residual remains a prescribed-path analytical result; it is not stability, retention, binding, or physical realization.
 
-## Screening and Evolution
+## How Braid Candidates Are Tested
+
+### Screening and Evolution
 
 The analysis has two evidential stages. **Prescribed screening** evaluates the master-equation residual on a declared geometry and motion. A certified nonzero residual rules out that prescribed record within the evaluated domain. A small or converged residual only nominates the record for further study: it establishes neither persistence nor response to unprescribed motion.
 
 **EOM evolution** tests whether a nominated record persists when the EOM solver supplies the motion from declared initial data. Only evolution can rule a candidate in. Because the dynamical state includes path history across the delay horizon, every evolution result must declare its prehistory rather than treating one convenient history as a neutral default. Object-level temporal claims require at least three materially different prehistories matched at the endpoint state, evolution beyond the delay horizon, comparison on symmetry-reduced observables, and a numerical refinement envelope covering the time step, history segmentation, and causal-root search. The claim window begins only after the retained root ledger certifies that no active causal root can still reach the seeded interval.
+
+### Proof-Burden Order
+
+Evidence closes in a fixed order. First comes **rest branch retention**: the complete delayed-history record must persist in its declared rest environment. Second comes **Noether sea embedded retention**: the same branch must remain coherent when the surrounding population response is included. Third comes **moving observer export**: a retained moving branch must supply its transport, clock, ruler, action, and leakage rows from the same record. Only then may **downstream assembly consumers** use that retained record for particle roles, effective-metric recovery, or other observer-level claims.
+
+A later rung cannot repair an earlier one. A favorable particle, mass, topology, clock, or metric diagnostic may classify a retained branch, but it cannot establish that the branch is retained; equally, a prescribed-path balance result can nominate an evolution seed without supplying any rung of the retention ladder by itself.
 
 ## Prescribed-Record Grading
 

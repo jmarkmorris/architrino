@@ -13,7 +13,7 @@ That is why this geometry matters downstream. Pressure, packing, clock/ruler res
 This chapter is the envelope and export-interface chapter for braid geometry. It owns:
 
 - the dynamic exclusion-envelope interpretation of a braid assembly,
-- the exact support-function and dwell-weighted second-moment descriptions of a declared path-history envelope,
+- the exact directional-support and dwell-weighted second-moment descriptions of a declared path-history envelope,
 - the envelope forms associated with the member coordinates — B1's common-axis envelope and the Family-A oblate spheroidal envelope,
 - the role of the boundary layer in setting the leading envelope surface,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
@@ -769,13 +769,15 @@ In low-stress A1 prose, "A1 envelope" means this effective path-history envelope
 
 ### Exact Support and Centered Path Second Moments
 
-The support function above and a dwell-weighted moment answer different geometric questions. The support function records the furthest excursion reached in each direction and is therefore the exact boundary description of the swept path set on $W$. The companion **centered path second-moment tensor** records how the constituent paths occupy directions over the same window. Let $\mathcal I_{\mathrm{env}}$ be the declared constituent-worldline inventory, let $N_{\mathrm{env}}=|\mathcal I_{\mathrm{env}}|$, let $W=[T_0,T_1]$ with $|W|=T_1-T_0>0$, and define the centered path coordinates
+The support function above and a dwell-weighted moment answer different geometric questions. The support function records the furthest excursion reached in each direction and is therefore the exact directional-support description of the swept path set on $W$, equivalently of its convex hull. It does not preserve non-convex indentations. The companion **centered path second-moment tensor** records how the constituent paths occupy directions over the same window. Let $\mathcal I_{\mathrm{env}}$ be the declared constituent-worldline inventory, let $N_{\mathrm{env}}=|\mathcal I_{\mathrm{env}}|$, let $W=[T_0,T_1]$ with $|W|=T_1-T_0>0$, and define the centered path coordinates
 
 $$
 Y_j^a(T_t)
 =
 X_j^a(T_t)-X_{\mathrm{grp}}^a(T_t)
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-71cc9254719c4a76)
 
 The centered path second-moment tensor is
 
@@ -788,11 +790,13 @@ $$
 Y_j^a(T_t)Y_j^b(T_t)\,dT_t
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-2f81fc5593eff930)
+
 The averaging measure is the constant-time emission measure $dT_t$ declared in [Architrino](../foundations/architrino.md#constant-time-emission-measure-postulate). Each constituent therefore receives equal weight per unit absolute emission time. A receiver-selected root window is a different object: it must retain the delay-map Jacobian and may not be substituted for this emission-window moment without an explicit measure conversion.
 
 Plainly: $H_{\mathrm{env}}$ asks how far the braid ever reaches in a direction. $\mathsf M_{\mathrm{env}}$ asks how much of the declared emission window the paths spend distributed through the directions around the group position. A brief excursion can set the support boundary while contributing little to the second moment, although a sufficiently large excursion can still dominate both.
 
-The tensor is symmetric and positive semidefinite because, for every Euclidean covector $z_a$,
+**Derived geometric fact.** The tensor is symmetric and positive semidefinite because, for every Euclidean covector $z_a$,
 
 $$
 z_a\mathsf M_{\mathrm{env}}^{ab}(W)z_b
@@ -804,11 +808,13 @@ z_a\mathsf M_{\mathrm{env}}^{ab}(W)z_b
 \ge 0
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-f241eb36678c47f1)
+
 It is positive definite only when the centered paths span all three spatial directions on a set of nonzero emission measure. Planar and collinear records are allowed to produce rank-two and rank-one tensors. If the eigenpairs are $(\mu_r,\hat{\mathbf e}_r)$, the principal RMS radii are $\sigma_r=\sqrt{\mu_r}$. Repeated eigenvalues leave the corresponding principal directions non-unique, so an orientation angle must not be reported in a degenerate eigenspace.
 
 Plainly: the tensor always has non-negative directional spreads, but it need not describe a full three-dimensional ellipsoid. A planar braid record has no measured thickness normal to its plane, and a spherical or axisymmetric record does not select every orientation uniquely.
 
-When a consumer requires a six-component ellipsoidal compression of the exact support, it may fit a separate symmetric positive-definite tensor $\mathsf Q_{\mathrm{env}}^{ab}(W)$ through
+**Defined compression.** When a consumer requires a six-component ellipsoidal compression of the exact directional support, it may fit a separate symmetric positive-definite tensor $\mathsf Q_{\mathrm{env}}^{ab}(W)$ through
 
 $$
 H_Q(\hat{\mathbf m};W)
@@ -817,6 +823,8 @@ H_Q(\hat{\mathbf m};W)
 \hat m_a\mathsf Q_{\mathrm{env}}^{ab}(W)\hat m_b
 }
 $$
+
+[View →](../../../../equation-mapping.html#corpus-equation-292e81a56fdc8ee0)
 
 and minimize the declared angular residual
 
@@ -830,9 +838,11 @@ $$
 }
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-3a6ae971a10fb849)
+
 The angular quadrature, fitting rule, deterministic tie-break, and acceptance tolerance must be declared before the result is inspected. $\mathsf Q_{\mathrm{env}}$ is an admitted quadratic approximation only when $\mathcal R_Q$ passes that tolerance; it is not the exact envelope for a general swept path set and is not identified with $\mathsf M_{\mathrm{env}}$. Agreement between $\mathsf Q_{\mathrm{env}}$ and $\mathsf M_{\mathrm{env}}$ is an internal same-record consistency check, not independent evidence that either object is physically correct.
 
-For an admitted axisymmetric quadratic reduction with declared axis $\hat{\mathbf u}$,
+**Derived axisymmetric reduction.** For an admitted axisymmetric quadratic reduction with declared axis $\hat{\mathbf u}$,
 
 $$
 \mathsf Q_{\mathrm{env}}^{ab}
@@ -843,11 +853,13 @@ R_{\perp}^2h^{ab}
 \hat u^a\hat u^b
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-5082f154a32a705f)
+
 Its eigenvalues are $R_{\parallel}^2$ along $\hat{\mathbf u}$ and $R_{\perp}^2$ on the transverse plane. The existing variables $\xi=R_{\parallel}/R_{\perp}$ and $\lambda=R_{\perp}/R_{\perp,0}$ therefore survive unchanged as the axisymmetric reduction of $\mathsf Q_{\mathrm{env}}$. They are not redefined from the eigenvalues of $\mathsf M_{\mathrm{env}}$.
 
 Plainly: the optional tensor $\mathsf Q_{\mathrm{env}}$ compresses a genuinely ellipsoidal or nearly ellipsoidal boundary into three semiaxes and an orientation. The moment tensor records dwell-weighted path spread. Keeping them separate prevents an attractive ellipsoid fit from erasing a rare but real boundary excursion or from being mistaken for the exact path-history envelope.
 
-If the fitted support axes and the moment axes disagree beyond a predeclared angular or normalized-tensor tolerance, the record falsifies a single-quadratic summary for that consumer. Both source-derived objects remain exportable with the disagreement attached; the mismatch does not erase either the exact boundary record or the dwell-weighted moment record.
+If the fitted support axes and the moment axes disagree beyond a predeclared angular or normalized-tensor tolerance, the record falsifies a single-quadratic summary for that consumer. Both source-derived objects remain exportable with the disagreement attached; the mismatch does not erase either the exact directional-support record or the dwell-weighted moment record.
 
 ## Canonical Geometry Variables
 
@@ -1074,7 +1086,7 @@ For the special-relativity-facing comparison of this deformation channel, see [t
 
 ## Why Envelope Geometry Does Not Determine Mass
 
-The exact support, centered path second moment, and any admitted quadratic fit are spatial projections of a fuller delayed branch record. They discard which historical path segments are selected by the active causal roots, how self-hit and partner-hit contributions are phased, how the internal energy ledger closes, how shielding partitions exposed response, and how the surrounding Noether sea responds. Two retained branches can therefore share $H_{\mathrm{env}}$, $\mathsf M_{\mathrm{env}}$, and $\mathsf Q_{\mathrm{env}}$ while carrying different internal causal-history and exposure ledgers. The mass program accordingly remains owned by the closed-history, shielding, and response construction in [Braid Mathematics](braid-mathematics.md#mass-thesis-as-a-dynamics-target) and [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy).
+**Inferred ownership boundary.** The exact directional support, centered path second moment, and any admitted quadratic fit are spatial projections of a fuller delayed branch record. They discard which historical path segments are selected by the active causal roots, how self-hit and partner-hit contributions are phased, how the internal energy ledger closes, how shielding partitions exposed response, and how the surrounding Noether sea responds. Two retained branches can therefore share $H_{\mathrm{env}}$, $\mathsf M_{\mathrm{env}}$, and $\mathsf Q_{\mathrm{env}}$ while carrying different internal causal-history and exposure ledgers. The mass program accordingly remains owned by the closed-history, shielding, and response construction in [Braid Mathematics](braid-mathematics.md#mass-thesis-as-a-dynamics-target) and [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy).
 
 Plainly: the envelope says where the paths reach and how their positions are distributed. It does not say which past emissions act now or how much of the internal history is visible to an external probe, so shape alone cannot determine inertial mass.
 
@@ -1103,4 +1115,4 @@ For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [No
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the full six-path envelope supplies the observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to one binary path or to envelope shape alone.
 
-> **Envelope-Record Commitment:** $H_{\mathrm{env}}$ is the exact support record of the declared swept paths, $\mathsf M_{\mathrm{env}}$ is their centered emission-time second moment, and $\mathsf Q_{\mathrm{env}}$ is optional quadratic compression admitted only by a declared angular fit. Same-record agreement among these objects is consistency evidence, not independent physical confirmation.
+> **Envelope-Record Commitment:** $H_{\mathrm{env}}$ is the exact directional-support record of the declared swept paths and therefore determines their convex hull rather than any non-convex indentations, $\mathsf M_{\mathrm{env}}$ is their centered emission-time second moment, and $\mathsf Q_{\mathrm{env}}$ is optional quadratic compression admitted only by a declared angular fit. Same-record agreement among these objects is consistency evidence, not independent physical confirmation.

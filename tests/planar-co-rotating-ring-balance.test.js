@@ -7,6 +7,7 @@ import {
   evaluatePrescribedRecordAnalysis,
 } from "../src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs";
 import {
+  alternatingPolarityClass,
   classifyPlanarRingTaxonomy,
   enumerateBalancedPolarityClasses,
   evaluatePlanarCoRotatingRing,
@@ -36,7 +37,15 @@ function crossAcceleration(evaluation, receiverIndex) {
   return acceleration;
 }
 
-function genericCrossLedger({ phases, polarities, beta }) {
+function genericCrossLedger({
+  phases,
+  polarities,
+  beta,
+  rootTolerance = 1e-11,
+  refinedRootTolerance = 1e-12,
+  maxIterations = 160,
+  refinedMaxIterations = 180,
+}) {
   const period = 2 * Math.PI / beta;
   const sourceRecord = {
     schema: "prescribed-path-analysis/exact-source-record.v1",
@@ -68,8 +77,8 @@ function genericCrossLedger({ phases, polarities, beta }) {
     returnWindow: { start: 0, period },
     rootPolicy: {
       id: ALL_RETAINED_ROOTS_POLICY,
-      tolerance: 1e-11,
-      maxIterations: 160,
+      tolerance: rootTolerance,
+      maxIterations,
       initialSubdivisionCount: 128,
       maximumSubdivisionDepth: 28,
       maximumCandidateIntervals: 32768,
@@ -82,8 +91,8 @@ function genericCrossLedger({ phases, polarities, beta }) {
     },
     geometry: { minimumSeparationSamples: 64 },
     convergence: {
-      rootTolerance: 1e-12,
-      maxIterations: 180,
+      rootTolerance: refinedRootTolerance,
+      maxIterations: refinedMaxIterations,
       minimumSeparationSamples: 128,
     },
     probes: phases.map((_, index) => ({
@@ -135,7 +144,7 @@ test("the unchanged generic all-root evaluator independently matches cross-root 
   const beta = 3.070356625390253;
   const specialized = evaluatePlanarCoRotatingRing({ phases, polarities, beta });
   const generic = genericCrossLedger({ phases, polarities, beta });
-  assert.equal(generic.reducedMeasures.validity.passed, true);
+  assert.equal(generic.reducedMeasures.validity.passed, true, JSON.stringify(generic.reducedMeasures.numericalConvergence));
   generic.rawLedgers.causalRoots.forEach((event, receiverIndex) => {
     const specializedCount = specialized.receivers[receiverIndex].directedPairs.reduce(
       (sum, pair) => sum + (pair.transmitterIndex === receiverIndex ? 0 : pair.rootCount), 0);
@@ -177,6 +186,15 @@ test("the B1.3 mapping is exact only for a six-member antipodal-neutral common-c
   });
   assert.equal(twelve.memberId, null);
   assert.match(twelve.classification, /not C5\/C6 because d_C=0/);
+
+  const twentyFour = classifyPlanarRingTaxonomy({
+    n: 12,
+    phases: regularRingPhases(12),
+    polarities: alternatingPolarityClass(12).polarities,
+  });
+  assert.equal(twentyFour.memberId, null);
+  assert.equal(twentyFour.allAntipodesNeutral, false);
+  assert.match(twentyFour.classification, /outside B1\.3 inventory/);
 });
 
 test("the live B1.3 source record satisfies the independent coordinate mapping", () => {
@@ -209,14 +227,15 @@ test("the live B1.3 source record satisfies the independent coordinate mapping",
 });
 
 test("every promoted regular candidate matches both unchanged independent root instruments", () => {
-  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.v4.json", import.meta.url);
+  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json", import.meta.url);
   const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
-  assert.equal(evidence.summary.balancedCandidateCount, 5);
-  for (const candidate of evidence.summary.balancedCandidateScopes) {
+  assert.equal(evidence.decision.balancedCandidateCount, 5);
+  assert.equal(evidence.rawArtifact.requiredForTests, false);
+  for (const candidate of evidence.balancedCandidateScopes) {
     const n = candidate.n;
     const phases = regularRingPhases(n);
     const polarities = Array.from({ length: 2 * n }, (_, index) => index % 2 === 0 ? 1 : -1);
-    const beta = candidate.best.beta;
+    const beta = candidate.beta;
     const specialized = evaluatePlanarCoRotatingRing({ phases, polarities, beta });
     const generic = genericCrossLedger({ phases, polarities, beta });
     assert.equal(generic.reducedMeasures.validity.passed, true, `generic validity for N=${n}`);
@@ -236,4 +255,51 @@ test("every promoted regular candidate matches both unchanged independent root i
       closeTo(actualAcceleration.z, expectedAcceleration[2], 7e-8);
     });
   }
+});
+
+test("the regular alternating 12:12 candidate balances and matches both unchanged independent root instruments", () => {
+  const n = 12;
+  const evidencePath = new URL("../reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.v1.json", import.meta.url);
+  const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
+  assert.equal(evidence.declaredScope.coverage,
+    "one exact symmetry class; not a census of all balanced 12:12 polarity classes and not a nonuniform-phase search");
+  assert.equal(evidence.taxonomyDecision.verdict, "outside-B1.3");
+  const beta = evidence.regularResult.best.beta;
+  const phases = regularRingPhases(n);
+  const polarities = alternatingPolarityClass(n).polarities;
+  const specialized = evaluatePlanarCoRotatingRing({ phases, polarities, beta, rootTolerance: 2e-14, foldTolerance: 2e-11 });
+  assert.equal(specialized.rootCompleteness.complete, true);
+  assert.equal(specialized.rootCount, 624);
+  assert.equal(evidence.regularResult.best.rootCount, specialized.rootCount);
+  assert.ok(specialized.compatibleScale > 0);
+  assert.ok(specialized.residuals.maximumFullVector <= 2e-8);
+  const taxonomy = classifyPlanarRingTaxonomy({ n, phases, polarities });
+  assert.equal(taxonomy.memberId, null);
+  assert.equal(taxonomy.allAntipodesNeutral, false);
+
+  const generic = genericCrossLedger({
+    phases,
+    polarities,
+    beta,
+    rootTolerance: 1e-12,
+    refinedRootTolerance: 1e-13,
+    maxIterations: 180,
+    refinedMaxIterations: 200,
+  });
+  assert.equal(generic.reducedMeasures.validity.passed, true, JSON.stringify(generic.reducedMeasures.numericalConvergence));
+  const independentSelf = selfRoots(beta).map((value) => 2 * value);
+  generic.rawLedgers.causalRoots.forEach((event, receiverIndex) => {
+    const receiver = specialized.receivers[receiverIndex];
+    const selfLedger = receiver.directedPairs[receiverIndex];
+    assert.equal(selfLedger.rootCount, independentSelf.length);
+    selfLedger.roots.forEach((root, rootIndex) => closeTo(root.delayAngle, independentSelf[rootIndex], 4e-10));
+    const specializedCount = receiver.directedPairs.reduce(
+      (sum, pair) => sum + (pair.transmitterIndex === receiverIndex ? 0 : pair.rootCount), 0);
+    assert.equal(event.rootCount, specializedCount);
+    const expectedAcceleration = crossAcceleration(specialized, receiverIndex);
+    const actualAcceleration = event.measures.probeResponses[0].acceleration;
+    closeTo(actualAcceleration.x, expectedAcceleration[0], 7e-8);
+    closeTo(actualAcceleration.y, expectedAcceleration[1], 7e-8);
+    closeTo(actualAcceleration.z, expectedAcceleration[2], 7e-8);
+  });
 });

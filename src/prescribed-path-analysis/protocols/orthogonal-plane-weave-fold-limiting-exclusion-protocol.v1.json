@@ -1,0 +1,88 @@
+{
+  "schema": "prescribed-path-analysis/orthogonal-plane-weave-fold-limiting-exclusion-protocol.v1",
+  "date": "2026-08-29",
+  "objective": "Close the fourteen fold boxes left by the fixed-120-degree orthogonal-plane weave certificate through a canonical limiting exclusion, without defining a new acceleration law.",
+  "frozenInputs": {
+    "ordinaryCertificatePath": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json",
+    "ordinaryCertificateSha256": "d65d556bd25ed6b40d8281aad53d6138daab042e80deb120cb97ae244a1b7b27",
+    "ordinaryOraclePath": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py",
+    "ordinaryOracleSha256": "b54a5ae488edb49dca8d58fbed8627f3edf912358dd4f4599e077b5136ffdec1",
+    "masterEquationPath": "content/markdown/aaa/dynamics/master-equation.md",
+    "masterEquationSha256": "0e8219c7a3cc750747c43030d5b998ddbf2de525a5469d32fa5e52fbae5ec63f",
+    "sixWorldlineSubjectPath": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
+    "sixWorldlineSubjectSha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be",
+    "modificationRule": "All four frozen inputs are read-only controls for this extension."
+  },
+  "domain": {
+    "fieldSpeed": "1",
+    "beta": ["0.25", "12"],
+    "receptionPhase": ["0", "2*pi"],
+    "relativeBinaryPhases": ["0", "2*pi/3", "4*pi/3"],
+    "radiusInRootGeometry": "1",
+    "witnessReceiver": "a1+",
+    "witnessReceptionPhase": "0"
+  },
+  "canonicalFoldLaw": {
+    "simpleRootWeight": "W_acc=1/abs(D_t)",
+    "finiteOrderTransit": "A nondegenerate transverse fold is routed through the canonical caustic-transit chart: its ordinary branch acceleration scales as abs(T_r-T_r*)^(-1/2), is locally integrable in reception time, and is not assigned a finite pointwise acceleration at D_t=0.",
+    "persistentFold": "A persistent interval with D_t=0 is outside the finite-impulse lemma and remains a regularized-chart failure.",
+    "coincidentSelfBirth": "The x=0 coincident self root is excluded; a coincident same-transmitter root birth is not an accepted fold transition under the finite-regulator theorem target."
+  },
+  "analyticalReduction": {
+    "rootEquationsAtPhaseZero": {
+      "self": "H_s=2-2*cos(x)-x^2/beta_f^2",
+      "partner": "H_p=2+2*cos(x)-x^2/beta_f^2",
+      "crossPlus": "H_+=2+2*sin(x)-x^2/beta_f^2",
+      "crossMinus": "H_-=2-2*sin(x)-x^2/beta_f^2"
+    },
+    "interiorFold": "H=H_x=0, H_xx!=0, delay=x/beta_f>0",
+    "crossPhaseEquation": "F_sigma(phi,x;beta_f)=2-2*sigma*cos(phi)*sin(phi-x)-x^2/beta_f^2",
+    "crossTransversality": "At a crossPlus or crossMinus fold at phi=0, D_r=-beta_f^2*(F_phi+F_x)/(2*x)=1 exactly, so the reception phase crosses a nondegenerate fold transversely.",
+    "persistentIdentity": "For self and partner circular rows, the causal equation depends only on delay; D_r=D_t. Hence D_t=0 persists for every reception phase at an interior fold beta_f.",
+    "relevantComponents": {
+      "self": "each born root contributes +2*beta_f*sin(x)/(x^2*abs(H_x)) to the tangent component near the fold",
+      "partner": "each born root contributes 2*beta_f*sin(x)/(x^2*abs(H_x))<0 to the tangent component near the fold",
+      "crossPlus": "each born root contributes -2*beta_f*cos(x)/(x^2*abs(H_x))<0 to the plane-normal component near the fold",
+      "crossMinus": "each born root contributes -2*beta_f*cos(x)/(x^2*abs(H_x))>0 to the plane-normal component near the fold"
+    },
+    "limitingExclusion": "On the beta_f>beta_* side, the two roots born at every interior lobe minimum have one common transmitter, polarity, limiting line of action, and same-signed relevant transverse projection. Their combined magnitude diverges while all nonfold rows remain bounded. On the beta_f<beta_* side, the target pair is absent and the frozen root-sheet oracle interval-encloses the reduced transverse sum away from zero. At beta_f=beta_*, a persistent fold is a chart failure and a transverse fold has no finite pointwise acceleration; either disposition fails the declared every-phase acceleration-balance condition.",
+    "betaOneBoundary": "At beta_f=1, 2-2*cos(x)<x^2 for every x>0, so no nontrivial self root exists. The coincident root is excluded and the remaining phase-zero tangent sum is interval-enclosed away from zero. For beta_f>1 the born self contribution is positive and divergent."
+  },
+  "numerics": {
+    "decimalDigits": 80,
+    "bisectionSteps": 180,
+    "rootTubeInflation": "1e-45",
+    "foldBracketDigits": 70,
+    "minimumDominanceMargin": "1e-12"
+  },
+  "outcomePolicy": {
+    "boundedNoBalance": "The prior ordinary charts plus all fourteen closed fold boxes cover beta_f in [0.25,12], and every beta_f fails a necessary finite pointwise transverse acceleration condition.",
+    "unresolved": "At least one box lacks a certified no-root-side exclusion, a root-side dominance bound, or a canonical exact-fold disposition."
+  },
+  "claimBoundary": {
+    "model": "default uncapped canonical Master Equation with its existing caustic-transit and persistent-fold routing",
+    "doesNotDefineNewFoldLaw": true,
+    "pathEvolutionInvoked": false,
+    "eomSolverInvoked": false,
+    "fieldSpeedCeilingApplied": false,
+    "doesNotEstablish": [
+      "retention",
+      "stability",
+      "binding",
+      "physical realization",
+      "balance or failure outside beta_f in [0.25,12]",
+      "failure of other relative phasings",
+      "failure of variable-speed, breathing, or precessing-plane histories",
+      "failure of other three-dimensional 3:3 histories",
+      "any N>3 braid family",
+      "sharp-limit convergence of the dual-mollified equation at unrelated caustics"
+    ]
+  },
+  "falsifiers": [
+    "A fold box contains an ordinary beta_f at which both phase-zero transverse components vanish.",
+    "A target fold pair has opposite leading transverse signs or is canceled by another simultaneous unbounded contribution for the same receiver.",
+    "A self or partner interior fold is not persistent in reception phase, or a cross fold has D_r=0.",
+    "The canonical Master Equation supplies a finite pointwise D_t=0 acceleration that replaces the frozen caustic routing.",
+    "Any frozen input hash differs from the protocol binding."
+  ]
+}

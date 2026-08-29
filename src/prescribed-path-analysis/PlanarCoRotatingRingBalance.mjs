@@ -407,6 +407,21 @@ export function canonicalPolarityOrbit(polarities, { includeReflection = true } 
   return { canonicalWord: [...orbit].sort()[0], orbit: [...orbit].sort() };
 }
 
+export function alternatingPolarityClass(n, { includeReflection = true } = {}) {
+  if (!Number.isSafeInteger(n) || n < 1) throw new TypeError("n must be a positive integer.");
+  const polarities = Array.from({ length: 2 * n }, (_, index) => index % 2 === 0 ? 1 : -1);
+  const orbit = canonicalPolarityOrbit(polarities, { includeReflection });
+  return {
+    classId: `n${n}-${orbit.canonicalWord.replaceAll("+", "p").replaceAll("-", "m")}`,
+    canonicalWord: orbit.canonicalWord,
+    polarities,
+    orbitSize: orbit.orbit.length,
+    alternating: true,
+    allAntipodesNeutral: n % 2 === 1,
+    subclass: "alternating",
+  };
+}
+
 export function enumerateBalancedPolarityClasses(n, { includeReflection = true } = {}) {
   if (!Number.isSafeInteger(n) || n < 1 || n > 15) throw new TypeError("n must be an integer in [1,15].");
   const memberCount = 2 * n;

@@ -6,6 +6,10 @@ Each taxonomy member receives a neutral identifier consisting of a family letter
 
 This is a geometry-and-motion taxonomy. It does not establish that a prescribed configuration is generated, retained, or stable under the EOM solver.
 
+[Shared-Circle Assemblies](../dynamics/shared-circle-assemblies.md) is a Dynamics chart rather than an additional braid family. A shared-circle record receives a braid identifier only when its complete inventory and coordinates satisfy a row below. Its equal-radius six-worldline antipodal-neutral intersection is B1.3; other inventory sizes remain outside B1.3.
+
+Plainly: a ring can be an exact and useful prescribed assembly without being assigned a braid-family name. Circular appearance alone never changes the inventory contract.
+
 ## Assembly Composition
 
 Assembly composition describes how complete braid records are combined.

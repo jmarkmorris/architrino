@@ -33,6 +33,10 @@ const CHECKS = [
     args: ["scripts/build-textbook-md-pdf.mjs", "--check"],
   },
   {
+    name: "Validate large machine-artifact retention",
+    args: ["scripts/validate-machine-artifact-retention.mjs"],
+  },
+  {
     name: "Check current Master Equation terminology",
     args: ["scripts/check-master-equation-terminology-migration.mjs"],
   },

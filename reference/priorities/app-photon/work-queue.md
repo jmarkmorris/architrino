@@ -44,7 +44,7 @@ This is the canonical execution ledger for remaining Photon work. [priorities.md
 - **Status:** In progress
 - **Priority object:** `absolute_source_history_self_hit`
 - **Request / acceptance:** Deepen rejected-root reasons and extend sweeps only when new transmitter-history families are introduced.
-- **Evidence / blocker:** Current sweep found no stable phase-lock family and remains diagnostic.
+- **Evidence / blocker:** The [compact sweep receipt](helical-self-hit-phase-lock-sweep.receipt.v1.json) records that the 756-case sweep found no stable phase-lock family; the full case rows are retained in ignored analytical storage because no runtime or test consumed the tracked raw file. The result remains diagnostic.
 - **Completion:** Rejected roots are classified through singular-root, Jacobian, and transversality boundaries without promoting diagnostic output.
 
 ### PHO-006 — Configuration Search comparison

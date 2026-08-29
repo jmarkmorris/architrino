@@ -31,6 +31,10 @@
         "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
       {
+        "nodeId": "shared_circle_assemblies",
+        "scenePath": "content/scenes/dynamics/shared_circle_assemblies.json"
+      },
+      {
         "nodeId": "causal_action_functional",
         "scenePath": "content/scenes/dynamics/causal_action_functional.json"
       },
@@ -78,6 +82,14 @@
       "radius": 2.688,
       "color": "#243d8f",
       "labelTitle": "Binary Dynamics",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "shared_circle_assemblies",
+      "title": "Shared-Circle Assemblies",
+      "radius": 2.688,
+      "color": "#345b78",
+      "labelTitle": "Shared-Circle Assemblies",
       "labelBadge": "doc"
     },
     {

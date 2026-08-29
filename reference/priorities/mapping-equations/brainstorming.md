@@ -36,7 +36,7 @@ Plainly: this equation states the observer-level geometry to recover. It does no
 
 ### Full-Matrix Envelope Closure Target
 
-The scalar ratio cannot detect a transverse breathing split, off-axis shear, or orientation change. The existing envelope owner now separates the exact support $H_{\mathrm{env}}$, the centered path second-moment tensor $\mathsf M_{\mathrm{env}}^{ab}$, and an optional quadratic support fit $\mathsf Q_{\mathrm{env}}^{ab}$. For one retained rest branch and one retained moving branch expressed in the same Euclidean frame, define the candidate longitudinal contraction operator
+The scalar ratio cannot detect a transverse breathing split, off-axis shear, or orientation change. The existing envelope owner now separates the exact directional support $H_{\mathrm{env}}$, the centered path second-moment tensor $\mathsf M_{\mathrm{env}}^{ab}$, and an optional quadratic support fit $\mathsf Q_{\mathrm{env}}^{ab}$. For one retained rest branch and one retained moving branch expressed in the same Euclidean frame, define the candidate longitudinal contraction operator
 
 $$
 B_v{}^a{}_b
@@ -84,7 +84,7 @@ $$
 
 Here $H_{\mathrm{env}}$ is evaluated through its positively homogeneous extension from unit directions, so the generally non-unit vector $B_v^{T}\hat{\mathbf m}$ is a legal support-function argument.
 
-Plainly: the proposed test contracts the complete rest-envelope record along the group-velocity direction and compares all six independent tensor components, while the support equation checks the actual boundary without assuming it is ellipsoidal. The formulas define what an affine contraction would predict; they do not derive that contraction from the delayed dynamics.
+Plainly: the proposed test contracts the complete rest-envelope moment record along the group-velocity direction and compares all six independent tensor components, while the support equation checks outer reach in every sampled direction without assuming an ellipsoid. The support function determines the convex hull, not non-convex indentations. The formulas define what an affine contraction would predict; they do not derive that contraction from the delayed dynamics.
 
 On an aligned axisymmetric branch, the longitudinal eigenvalue of $\mathsf M_{\mathrm{env}}$ scales as $\gamma_{\mathrm{eff}}^{-2}$ because it is a squared length, while the longitudinal RMS radius and the corresponding semiaxis scale as $\gamma_{\mathrm{eff}}^{-1}$. For a general triaxial rest tensor, the expected congruence can rotate principal eigenvectors when $\mathsf M_{\mathrm{env}}(0)$ does not commute with $\hat{\mathbf v}\hat{\mathbf v}^{T}$. A no-rotation condition is therefore admissible only on a spherical or already aligned branch, not as a universal tensor constraint.
 
