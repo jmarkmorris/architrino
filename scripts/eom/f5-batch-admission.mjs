@@ -58,11 +58,33 @@ function assertCampaignRenewal(original, current, readBoundJson) {
   requireBatch(Number.isFinite(start) && Number.isFinite(end) && end-start===12*60*60*1000 && start>=Date.parse(original.campaignDeadline),
     'renewal must be a distinct fixed twelve-hour window');
   const window=read(renewal.window,true), startTool=read(renewal.startTool,true);
+  let authorizedMessage='y';
+  let dateCommands=["date -u '+%Y-%m-%dT%H:%M:%SZ'"];
+  if(renewal.authorizationMode!==undefined) {
+    requireBatch(renewal.authorizationMode==='prompt-execution-v1', 'unknown renewal authority mode');
+    const prompt=binding(renewal.prompt), requestReview=read(renewal.requestReview,true);
+    requireBatch(sources.has(prompt.path) && same(sources.get(prompt.path),renewal.prompt), 'renewal prompt missing from source inventory');
+    authorizedMessage='execute '+renewal.prompt.path;
+    requireBatch(window.authorization?.mode===renewal.authorizationMode && startTool.authorization?.mode===renewal.authorizationMode &&
+      same(window.authorization.prompt,renewal.prompt) && same(startTool.authorization.prompt,renewal.prompt) &&
+      same(window.authorization.requestReview,renewal.requestReview) && same(startTool.authorization.requestReview,renewal.requestReview),
+      'prompt execution authority bindings differ');
+    requireBatch(requestReview.schema==='braid-program/independent-prompt-execution-authority.v1' && requestReview.accepted===true &&
+      requestReview.directUserMessage===authorizedMessage && same(requestReview.prompt,renewal.prompt) &&
+      requestReview.authorizedStart===current.campaignStart && requestReview.authorizedDeadline===current.campaignDeadline &&
+      requestReview.scientificChangesAuthorized===false && requestReview.limitsChangesAuthorized===false &&
+      requestReview.automaticExtensionAuthorized===false && isDeepStrictEqual(requestReview.actualStartTool,startTool.actualTool),
+      'independently reviewed prompt execution differs');
+    // Markdown bytes are authenticated by the surrounding source inventory, not
+    // parsed by this JSON-only reader. This predicate checks the reviewed linkage.
+    dateCommands.push('date -u +%Y-%m-%dT%H:%M:%SZ');
+  } else requireBatch(window.authorization?.mode===undefined && startTool.authorization?.mode===undefined,
+    'mixed renewal authority modes');
   requireBatch(window.schema==='braid-program/benchmark-campaign-window.v1' && window.recordedStart===current.campaignStart &&
-    window.hardStop===current.campaignDeadline && isDeepStrictEqual(window.cases,cases) && window.authorization?.userMessage==='y',
+    window.hardStop===current.campaignDeadline && isDeepStrictEqual(window.cases,cases) && window.authorization?.userMessage===authorizedMessage,
     'renewal window authority differs');
   requireBatch(startTool.schema==='braid-program/campaign-start-tool.v1' && startTool.hardStop===current.campaignDeadline &&
-    startTool.authorization?.directUserMessage==='y' && startTool.actualTool?.command==="date -u '+%Y-%m-%dT%H:%M:%SZ'" &&
+    startTool.authorization?.directUserMessage===authorizedMessage && dateCommands.includes(startTool.actualTool?.command) &&
     startTool.actualTool.exit_code===0 && startTool.actualTool.output===current.campaignStart+'\n' &&
     typeof startTool.actualTool.chunk_id==='string' && startTool.actualTool.chunk_id.length>0 &&
     Number.isFinite(startTool.actualTool.wall_time_seconds) && startTool.actualTool.wall_time_seconds>=0, 'renewal start tool differs');

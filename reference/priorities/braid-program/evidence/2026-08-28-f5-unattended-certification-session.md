@@ -1,6 +1,12 @@
 # F5 unattended certification session
 
-Current status at the `2026-08-28T15:59:26.599Z` proof integration: the campaign remains active under its original clock, with **zero complete scientific evaluations launched out of three authorized**. The final NORMAL observation retry failed before controller launch and is consumed; no additional NORMAL retry, replacement guard, EOM build or evaluation is admitted. Recorded failure-process/source/file/lock closure is complete only at its explicitly limited scope. Work continues on source analysis and independently reviewed conditional mathematics until the original minimum-work point; the main objective remains unmet. The [historical diagnosis](2026-08-28-f5-certification-diagnosis.md) and [completed unresolved evaluation](2026-08-27-f5-ordinary-evolution-evaluation.md) retain their original authority and failed gates.
+**F5 stopped, goal unmet; documentation closeout separately authorized.** Zero complete scientific evaluations launched. The [one-hour documentation closeout](#one-hour-documentation-closeout) integrates the outstanding accounting and conditional mathematical reviews and measures retained evidence. It authorizes no builds, tests or scientific runs and does not complete F5.
+
+The original campaign's fresh clock check returned `2026-08-28T21:21:37Z`, after its `18:41:23Z` hard stop. No extension of that campaign was authorized. No new runtime launched at the stop; all its subagents were interrupted or already completed. Two subagent status results reported usage-limit errors. The intervening clock gap is not verified useful work, and the twelve-hour working minimum is not claimed. The original late stop and its then-unfinished accounting remain preserved below; the later documentation work does not make that closeout timely.
+
+Plainly: this session produced preparation, limited operational evidence and conditional proofs, but did not deliver the requested independently checked F5 evaluation. The deadline was not observed on time.
+
+Historical status at the `2026-08-28T15:59:26.599Z` proof integration: the campaign remains active under its original clock, with **zero complete scientific evaluations launched out of three authorized**. The final NORMAL observation retry failed before controller launch and is consumed; no additional NORMAL retry, replacement guard, EOM build or evaluation is admitted. Recorded failure-process/source/file/lock closure is complete only at its explicitly limited scope. Work continues on source analysis and independently reviewed conditional mathematics until the original minimum-work point; the main objective remains unmet. The [historical diagnosis](2026-08-28-f5-certification-diagnosis.md) and [completed unresolved evaluation](2026-08-27-f5-ordinary-evolution-evaluation.md) retain their original authority and failed gates.
 
 Plainly: operational preparation and a few bounded controls ran, but this session has not produced the requested new F5 evaluation. The mathematical results below identify sufficient conditions and limitations; they are not substitutes for missing trial evidence.
 
@@ -302,3 +308,87 @@ The invariant-regularity theorem's first draft contained a malformed displayed e
 The source and theorem files remain in the session's ignored root. The same original science, histories, tolerances, caller route, retry quota and campaign clocks apply. No arithmetic checker, witness search, linear program, EOM configuration, diagnostic-generation build, or complete evaluation was executed to produce these mathematical results.
 
 Closure goal: retain the strongest conditional proofs while leaving actual F5 width attribution, continuous transport, successful observation and complete evaluation unresolved.
+
+## Expired-deadline stop and unfinished closeout
+
+The first fresh late clock observation was `2026-08-28T21:21:37Z`; the administrative stop record was written at `2026-08-28T21:23:25.675272+00:00`. Calendar elapsed time from the original start is 60122.675 seconds. This is not a measured useful-work total. The original minimum, closure-start and hard-stop timestamps are unchanged. No quota, deadline or scientific authority was renewed.
+
+The exact pre-stop state and report bytes were preserved under the ignored campaign root. The limited stop receipt is `expired-deadline-limited-stop-v1.json`, SHA-256 `f72aa9d82a5dc2c2024f44b0284f4c74c646d928d0b3c2f36982cf0794a587a8`. It binds the prior accepted proof integration, NORMAL3 limited release and unfinished review artifacts. The last NORMAL3 closure remains limited to its recorded processes, sources, files and lock; its 317 omitted lifetimes remain unclassified. No fresh universal process census or final campaign storage census is claimed.
+
+Plainly: preserved evidence remains usable at its original scope. Missing final reviews, unknown process lifetimes and a long clock gap are not converted into passing results.
+
+Charged compute remains 74.435158333 seconds, including 65.632158333 seconds charged to builds/tests. Those are retained invocation-budget figures, not an independently completed final resource audit. The final NORMAL retry is exhausted; no diagnostic EOM build, failed-trial capture, complete evaluation, actual uncertainty floor or validated motion was established. The later smooth-history review was received but not parent-integrated; the stationary-receiver primitive theorem and final accounting were left pending. No new proof acceptance is inferred at this administrative stop.
+
+Closure goal: preserve the unmet campaign and its exact limitations. Any future execution requires separate time authority and fresh technical admission; this campaign will not restart automatically or reuse expired approval.
+
+## One-hour documentation closeout
+
+The operator separately authorized: “finish the remaining reviews and accounting in one hour, with no builds, tests, or scientific runs.” The first observed clock fixes this window at `2026-08-28T22:37:40Z` through `23:37:40Z`, with finalization beginning by `23:32:40Z`. The [new authority and exact pre-closeout snapshots](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/closeout-20260828T223740Z/authorization.json) preserve the original state and this report before these documentation changes. Original scientific clocks, retry counts and failed outcomes are unchanged. No solver, reference, harness, caller or historical binary was changed in this closeout.
+
+Plainly: this hour closes missing documentation. It does not reopen the experiment or fill the earlier unobserved clock gap.
+
+### Independent accounting and current source disposition
+
+The [independent accounting review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/final-campaign-accounting-independent-review-v1.md), received before the old stop but not integrated then, is now [parent-integrated with the smooth-history review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/closeout-20260828T223740Z/accounting-and-smooth-review-integration.json), SHA-256 `a30b375fb55a3b43406b122724f264895be767253c2fd88e40b52bf8c10c68bd`. A fresh full-byte and five-field identity pass covered 188 distinct expected bindings: 186 matched exactly; the only two mismatches are explicitly mutable historical state/report snapshots. Their old identities remain recorded, and current pre-closeout copies are preserved. Neither mutable context is used as the sole evidence for an outcome.
+
+**Measured metadata reconciliation:** the parent independently extracted each charge from the actual invocation packet and recomputed the sums with exact decimal arithmetic. The first two entries use their recorded tool durations because their external prefixes were not measured; the remaining entries use the retained dispatch-to-observed-terminal interval. Nested waits and stages are not added again.
+
+| Invocation | Compute charge, seconds | Included in build/test charge |
+| --- | ---: | --- |
+| Process-helper bootstrap 1 | 0.063955750 | Yes |
+| Process-helper bootstrap 2 | 0.785202583 | Yes |
+| Process-helper bootstrap 3 | 12.352 | Yes |
+| Harness compilation 1 | 8.871 | Yes |
+| Harness compilation 2 | 8.329 | Yes |
+| NORMAL 1 | 3.916 | Yes |
+| NORMAL 2 | 10.765 | Yes |
+| Environment preflight P | 7.610 | Yes |
+| P metadata audit | 3.951 | No |
+| Startup-policy controls S | 6.659 | Yes |
+| S metadata audit | 4.852 | No |
+| NORMAL 3 | 6.281 | Yes |
+| **Total** | **74.435158333** | **65.632158333 seconds** |
+
+Plainly: these are the twelve declared invocation charges, including 8.803 seconds for the two compute-only metadata audits. They are not a full-session CPU total, a count of all documentation commands, an exact process-lifetime measurement or proof of continuous resource compliance. No original failure is upgraded by this reconciliation.
+
+**Measured source identity:** all 57 canonical EOM files and all 59 private diagnostic files matched the accounting review's recorded current-generation bindings. The private tree contains 49 unchanged original files, eight changed existing files and two new capture files; it is not 57 unchanged files plus two additions. All original byte records remain preserved. The operational process helper has accepted compile provenance and later ran in failed observation attempts. The second operational harness build has accepted compile provenance but its harness was never executed. Neither is a diagnostic EOM build or a successful measurement qualification.
+
+The nine scientific sections of the latest declaration draft, `successor-1-declaration-draft-v3.json` (`a956f9b2`), were freshly compared with the original declaration and remain equal. Its executable is unaccepted, its source-binding list is empty, and it is not launchable. All four late configure-input artifacts remain absent. The earlier draft-v2 pointer and reused NORMAL2 path fields are historical checkpoints: the exact NORMAL2 bytes now reside in `observer-controls/normal-2-original-path-archive-v1/case/`, while `observer-controls/runs-v3/normal/` contains NORMAL3. The state now explicitly distinguishes those historical fields from its current documentation synopsis.
+
+Plainly: preserved preparation is available for a separately authorized successor, but no executable scientific generation was accepted. A later path or state update cannot stand in for the file generation named by an old receipt.
+
+### Remaining mathematical reviews integrated
+
+**Derived, independently reviewed:** the [strict-slack smooth-history review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/strict-slack-smooth-history-lifting-independent-review-v1.md) accepts a conditional construction of a globally $C^1$ history from the stated finite piecewise $C^1$ history. Strict position/velocity slack, common interior joining velocities and disjoint finite compensation supports allow smoothing while preserving both external endpoint positions and velocities. The parent reviewed the common positive width choice, one-sided interval inclusion, compensation integral and position-drift bound. This is not a fixed-partition cubic certificate and does not preserve unspecified interior, joint or dynamical constraints. No actual F5 history satisfying its premises was supplied.
+
+Plainly: enough independently established spare allowance permits smoothing the joins without leaving the declared component bounds. A merely feasible relaxed history does not establish that spare allowance.
+
+**Derived, independently reviewed:** the [new stationary-receiver primitive review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/closeout-20260828T223740Z/stationary-primitive-independent-review.md) accepts the exact signed change of variable and the bound for the acceleration time integral on a complete regular stationary-receiver branch. The parent [integrated that review](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/closeout-20260828T223740Z/stationary-primitive-parent-integration.json), SHA-256 `8cd172afb34e418c7bffe62bc1820ab703dfc44b8a2556ab9bba153882497ea3`, after reading its full argument and reauthenticating its seven inputs and report. The author and reviewer are distinct. The proof retains the chart sign, both moved integration endpoints and whole-domain separation/derivative margins. Its oscillatory example has close time integrals despite separated point accelerations. Moving receivers retain an additional receiver factor and require a different argument; no general moving-history estimate or actual F5 application follows.
+
+Plainly: the integral of an acceleration can be better controlled than its value at one instant. The reviewed theorem proves that distinction for fixed receivers only. It supplies no new trajectory, numerical acceptance or stability result.
+
+### Retained evidence census
+
+**Measured file metadata:** a full streaming SHA-256 and file-identity census at `2026-08-28T22:44:07.208628Z–22:44:07.514756Z` covered the historical campaign subtree, excluding its mutable `state.json` and this new closeout directory. The [census](../../../../.local-data/braid-analysis/f5-unattended-20260828T044123Z/closeout-20260828T223740Z/retained-evidence-census.json) binds the complete per-file inventory; names and identities were checked again after reading. It found no symbolic links or special files in that scope.
+
+| Retained historical scope | Measured value |
+| --- | ---: |
+| Regular file paths | 1,027 |
+| Distinct physical regular files | 1,007 |
+| Logical bytes counted by pathname | 189,400,385 |
+| Logical bytes after hard-link deduplication | 188,734,620 |
+| Allocated bytes after hard-link deduplication | 190,824,448 |
+
+Plainly: twenty additional names refer to already counted physical files. Allocated bytes use filesystem block metadata; they do not determine exclusive APFS shared-extent usage. External runtimes named by evidence are not campaign-owned storage. The mutable state, new closeout records and tracked report are separately itemized by the terminal documentation receipt.
+
+This current census supersedes the old 839-file/184,546,264-byte snapshot only for current retained-storage reporting. It does not reconstruct historical peak storage, prove every per-attempt output cap, or complete a continuous resource audit. The original 317 omitted process lifetimes remain unclassified. No fresh universal process-absence claim is made by this documentation closeout.
+
+### Final scope and unresolved F5 work
+
+The documentation disposition is limited to integrating the outstanding reviews, reconciling charges, correcting current-versus-historical pointers and measuring retained evidence. The original scientific result remains **zero of three complete evaluations launched**, with the NORMAL retry allowance exhausted. The failed reference root/acceleration gates, missing failed-trial operands, unaccepted observation path, absent diagnostic EOM configuration/build, unperformed capture conformance and capacity checks, unexecuted complete caller and unproved actual uncertainty transport all remain unresolved. A physical failure, uncertainty floor, validated motion, retention, stability or score increase is not established.
+
+Plainly: the records are now clearer and the pending proofs have their review verdicts. Completing F5 still requires a separately authorized and technically admitted successor; this hour grants none.
+
+**Falsifiers and audit boundary:** a retained invocation packet yielding a different stated charge, an unreported immutable binding mismatch, a missing or duplicated file in the census's declared scope, or a theorem applied without its stated premises would overturn the corresponding documentation claim. The linked receipts identify the exact files and comparisons to inspect. Unknown historical observations remain unknown, and the late original stop remains late.
+
+Closure goal: close the authorized documentation gaps within the new hour while preserving the original F5 campaign as stopped and unmet.

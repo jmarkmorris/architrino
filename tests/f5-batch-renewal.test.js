@@ -71,3 +71,42 @@ const mutations=[
 for(const [name,mutate,expected] of mutations)test(name,()=>{
   const f=fixture();mutate(f);assert.throws(()=>assertScientificGeneration(f.original,f.current,f.reader),expected);
 });
+
+function promptFixture() {
+  const f=fixture(),prompt={...binding('prompt'),path:'renewal-test/successor-prompt.md'},requestReview=binding('request-review');
+  const message='execute '+prompt.path,mode='prompt-execution-v1';
+  Object.assign(f.renewal,{authorizationMode:mode,prompt,requestReview});
+  f.window.authorization={mode,userMessage:message,prompt,requestReview};
+  f.start.authorization={mode,directUserMessage:message,prompt,requestReview};
+  f.start.actualTool.command='date -u +%Y-%m-%dT%H:%M:%SZ';
+  const review={schema:'braid-program/independent-prompt-execution-authority.v1',accepted:true,directUserMessage:message,prompt,
+    authorizedStart:f.current.campaignStart,authorizedDeadline:f.current.campaignDeadline,actualStartTool:structuredClone(f.start.actualTool),
+    scientificChangesAuthorized:false,limitsChangesAuthorized:false,automaticExtensionAuthorized:false};
+  f.current.sourceBindings.push(prompt,requestReview);f.records.set(requestReview.path,{...requestReview,value:review});
+  return {...f,prompt,requestReview,review};
+}
+test('exact reviewed prompt execution preserves actual request and unquoted clock command',()=>{
+  const f=promptFixture();assert.doesNotThrow(()=>assertScientificGeneration(f.original,f.current,f.reader));
+});
+const promptMutations=[
+  ['unknown authority mode',f=>{f.renewal.authorizationMode='anything';},/unknown renewal authority mode/],
+  ['mixed legacy and prompt modes',f=>{delete f.renewal.authorizationMode;},/mixed renewal authority modes/],
+  ['missing prompt mode on start',f=>{delete f.start.authorization.mode;},/authority bindings differ/],
+  ['forged literal yes on window',f=>{f.window.authorization.userMessage='y';},/window authority differs/],
+  ['forged literal yes on start',f=>{f.start.authorization.directUserMessage='y';},/start tool differs/],
+  ['prompt missing from source inventory',f=>{f.current.sourceBindings=f.current.sourceBindings.filter(b=>b!==f.prompt);},/prompt missing from source inventory/],
+  ['request review missing from source inventory',f=>{f.current.sourceBindings=f.current.sourceBindings.filter(b=>b!==f.requestReview);},/missing from source inventory/],
+  ['changed prompt hash on window',f=>{f.window.authorization.prompt={...f.prompt,sha256:'b'.repeat(64)};},/authority bindings differ/],
+  ['changed request review on start',f=>{f.start.authorization.requestReview={...f.requestReview,sha256:'b'.repeat(64)};},/authority bindings differ/],
+  ['unaccepted request review',f=>{f.review.accepted=false;},/reviewed prompt execution differs/],
+  ['changed reviewed prompt',f=>{f.review.prompt={...f.prompt,path:'renewal-test/another.md'};},/reviewed prompt execution differs/],
+  ['changed reviewed actual request',f=>{f.review.directUserMessage='execute something else';},/reviewed prompt execution differs/],
+  ['changed reviewed start',f=>{f.review.authorizedStart='2026-08-28T13:12:37Z';},/reviewed prompt execution differs/],
+  ['extended reviewed stop',f=>{f.review.authorizedDeadline='2026-08-29T01:12:37Z';},/reviewed prompt execution differs/],
+  ['mismatched actual clock return',f=>{f.start.actualTool.output='wrong\n';},/reviewed prompt execution differs/],
+  ['unreviewed shell normalization',f=>{f.start.actualTool.command=f.review.actualStartTool.command='date  -u +%Y-%m-%dT%H:%M:%SZ';},/start tool differs/],
+  ['review grants scientific changes',f=>{f.review.scientificChangesAuthorized=true;},/reviewed prompt execution differs/],
+];
+for(const [name,mutate,expected] of promptMutations)test(name,()=>{
+  const f=promptFixture();mutate(f);assert.throws(()=>assertScientificGeneration(f.original,f.current,f.reader),expected);
+});
