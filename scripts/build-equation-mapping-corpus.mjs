@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 import { createEquationMappingRegistryApi } from "../src/apps/equation-mapping/EquationMappingRegistry.js";
 
 export const CORPUS_EQUATION_REGISTRY_SCHEMA = "equation-mapping-corpus-registry.v1";
-export const EQUATION_LINK_LABEL = "Explore this equation in Equation Mapping";
+export const EQUATION_LINK_LABEL = "View →";
 export const GENERATED_REGISTRY_PATH = "content/generated/equation-mapping/corpus-equations.json";
 
 const CORPUS_ROOT = "content/markdown/aaa";
@@ -328,7 +328,7 @@ function createSymbolDefinition(symbolTex, contextLines, heading) {
 }
 
 function parseLinkTarget(linkText) {
-  const match = String(linkText ?? "").match(/\[Explore this equation in Equation Mapping\]\(([^)#]+)#([^)]+)\)/u);
+  const match = String(linkText ?? "").match(/\[View →\]\(([^)#]+)#([^)]+)\)/u);
   if (!match) return null;
   return { href: match[1], semanticId: decodeURIComponent(match[2]) };
 }
@@ -343,7 +343,7 @@ function createDerivedSemanticId(sourcePath, normalizedFormula, duplicateIndex =
 }
 
 function findImmediateEquationLink(source, closeEnd) {
-  const linkPattern = /\[Explore this equation in Equation Mapping\]\([^)]+\)/gu;
+  const linkPattern = /\[View →\]\([^)]+\)/gu;
   linkPattern.lastIndex = closeEnd;
   const match = linkPattern.exec(source);
   if (!match) return null;

@@ -57,7 +57,7 @@ c_\star^2
 \gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-813718eb5b450e1e)
+[View →](../../../../equation-mapping.html#corpus-equation-813718eb5b450e1e)
 Thus an observer-export clock or ruler row must extract
 $$
 \frac{c_{\perp}}{c_\star}
@@ -65,7 +65,7 @@ $$
 \frac{1}{\gamma_\star}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-06d44856fc2aaa8a)
+[View →](../../../../equation-mapping.html#corpus-equation-06d44856fc2aaa8a)
 from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
 
 ### Transverse Internal-Motion Speed-Budget Lemma
@@ -78,7 +78,7 @@ $$
 \mathbf V_{\mathrm{grp}}+\mathbf v_i^{\mathrm{int}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8772dafac2550ec6)
+[View →](../../../../equation-mapping.html#corpus-equation-8772dafac2550ec6)
 
 The exact native speed identity is
 
@@ -92,7 +92,7 @@ $$
 2\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4a9a2a8b27b58b89)
+[View →](../../../../equation-mapping.html#corpus-equation-4a9a2a8b27b58b89)
 
 If the internal motion is transverse to the group translation at every instant, then the cross term vanishes and the site speed is the exact quadrature
 
@@ -106,7 +106,7 @@ u=\|\mathbf V_{\mathrm{grp}}\|,
 v_{\mathrm{int},i}=\|\mathbf v_i^{\mathrm{int}}\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-358a1ee6eb1d1c92)
+[View →](../../../../equation-mapping.html#corpus-equation-358a1ee6eb1d1c92)
 
 If a branch additionally pins the total site speed to $\|\mathbf V_i\|=\beta_{\mathrm{pin}} c_f$, the available internal speed is forced to
 
@@ -116,7 +116,7 @@ v_{\mathrm{int},i}(u)
 \sqrt{\beta_{\mathrm{pin}}^2c_f^2-u^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4cb81593b9f3a036)
+[View →](../../../../equation-mapping.html#corpus-equation-4cb81593b9f3a036)
 
 The quadrature is exact kinematics under the transverse-motion hypothesis. The pinning of $\beta_{\mathrm{pin}}$ is a separate branch hypothesis, not an established retention mechanism. The A2 body-diagonal rotating channel and the B1 axial screw chart are two realizations of the transverse geometry; neither realization makes fixed total site speed automatic. A record with $\mathbf V_{\mathrm{grp}}\cdot\mathbf v_i^{\mathrm{int}}\neq0$ falsifies use of the quadrature for that site and must retain the cross term, which generally makes the maximum speed phase dependent.
 
@@ -146,7 +146,7 @@ m_0(A)c_{\text{eff}}^2
 \zeta(A)E_{\text{internal}}(A)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a55435f686ee6e79)
+[View →](../../../../equation-mapping.html#corpus-equation-a55435f686ee6e79)
 
 where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed braid dynamics.
 
@@ -157,14 +157,14 @@ $$
 \frac{d^2\mathbf X_i}{dT^2}(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-692ba4f073f377a6)
+[View →](../../../../equation-mapping.html#corpus-equation-692ba4f073f377a6)
 with delay constraints (causal roots):
 $$
 \|\mathbf X_j(T_{p,k})-\mathbf X_i(T)\|=c_f\,(T-T_{p,k}), \quad
 \|\mathbf X_i(T_{s,m})-\mathbf X_i(T)\|=c_f\,(T-T_{s,m})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-16b10a9ff072c882)
+[View →](../../../../equation-mapping.html#corpus-equation-16b10a9ff072c882)
 where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed. The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
 
 and $s=\|\mathbf V\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
@@ -172,13 +172,13 @@ $$
 \delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0751d8f251047510)
+[View →](../../../../equation-mapping.html#corpus-equation-0751d8f251047510)
 with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
 $$
 \ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4fa3a02b273b8067)
+[View →](../../../../equation-mapping.html#corpus-equation-4fa3a02b273b8067)
 The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
 
 The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the broader causal-closure program. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
@@ -190,13 +190,13 @@ $$
 \ddot R\ge-\frac{K}{R^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-734d14f24aba55d3)
+[View →](../../../../equation-mapping.html#corpus-equation-734d14f24aba55d3)
 for a constant $K>0$. Then
 $$
 \mathcal E_R=\frac12\dot R^2-\frac{K}{R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-66a2f296a9e85423)
+[View →](../../../../equation-mapping.html#corpus-equation-66a2f296a9e85423)
 is nondecreasing, because
 $$
 \frac{d\mathcal E_R}{dT}
@@ -205,13 +205,13 @@ $$
 \ge0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b18d6235a0cd67f2)
+[View →](../../../../equation-mapping.html#corpus-equation-b18d6235a0cd67f2)
 If at some $T_\ast$,
 $$
 \dot R(T_\ast)^2>\frac{2K}{R(T_\ast)},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f70a0ffb870211fa)
+[View →](../../../../equation-mapping.html#corpus-equation-f70a0ffb870211fa)
 then $\mathcal E_R(T_\ast)>0$ and $\dot R$ cannot later reach zero while the hypotheses remain valid. This is an escape certificate for that scalar chart, not a family-general no-binding theorem.
 
 A braid application must derive $R$ and the bound $K$ from the actual retained acceleration ledger. A speed cap, separation floor, acceleration-weight cap, and polarity inventory can supply such a bound only when their projection covers every retained root contribution on the same interval. Failure of any bound suspends the certificate. The A2 isolated-release channel is one conditional application route; see [A2 Symmetry and Return Response](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
@@ -225,7 +225,7 @@ $$
 \mathcal{D}_{A1}^{\mathrm{grad}}(W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-887f9f2ccc91af88)
+[View →](../../../../equation-mapping.html#corpus-equation-887f9f2ccc91af88)
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
 The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
@@ -241,7 +241,7 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 2. **Collinear self-hit reading.** Along a true collinear history, the same-transmitter term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: self-interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The open question is therefore whether partner attraction can recapture the motion despite that self-drive.
 3. **Fixed-coordinate octahedral chart.** The fixed-coordinate zero-offset octahedral carrier at fixed speed is conjectured to carry a nonzero tangential residual rejecting the narrow fixed-speed branch chart; this conjecture is unverified, and the reading discipline for that chart is recorded in [Braid Recovery Requirements](braid-recovery-requirements.md#reading-discipline).
 4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in the [A2 isolated-release analysis](braid-a2-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
-5. **Fixed-coordinate single-frequency rotating-wave family.** The fixed-coordinate single-frequency A2 rotating wave fails twice, independently. Axially: same-ring contributions have exactly zero axial component, while every opposite-ring contribution pulls the two rings together, and a sum of strictly one-signed terms cannot vanish — so this rotating wave has no axial equilibrium at any two-ring aspect and any sub-field rim speed, and the tested single-frequency family, if it existed, would be forced planar. This axial no-balance statement is a derivation. Tangentially: on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
+5. **Polarity-segregated fixed-plane two-ring family.** The axial and tangential questions separate. Axially, the [fixed-plane axial no-balance lemma](braid-b1-symmetry.md#fixed-plane-axial-no-balance-lemma) proves that same-plane contributions have exactly zero axial component while every ordinary simple-root opposite-plane contribution accelerates its receiver toward the midplane. The positive canonical root weight cannot reverse that sign, so no fixed-height member of this family has axial acceleration balance at nonzero ring separation for any finite member speed, including super-field-speed motion. This derivation requires complete bounded history in two fixed parallel planes, a stationary axial center, polarity segregation by plane, positive ranges, and an ordinary simple-root ledger. It excludes caustics, non-simple-root event contributions, collisions, incomplete history, variable height, plane precession, axial translation, mixed plane polarities, and additional external, constraint, or Noether-sea acceleration. It does not force a dynamical history to become planar. Tangentially, on the planar hexagon, the conjectured behavior is a strictly positive tangential residual growing with rim speed while the radial residual stays inward — the delayed kernel pumping the rotation rather than braking it. That tangential conjecture is unverified; the axial derivation stands on its own.
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, A1, A2, B1, and C-family, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
@@ -258,7 +258,7 @@ $$
 +u\,\hat{\mathbf n}\,t
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cee7b95fd49948bc)
+[View →](../../../../equation-mapping.html#corpus-equation-cee7b95fd49948bc)
 
 with angular rate $\omega$ and constant axial group-velocity component $u$. On the channel the free data reduce to the representative worldlines of the equivariant reduction, and the natural branch coordinate is the screw pitch, equivalently the pair $(u,\omega)$ with the channel radius.
 
@@ -272,7 +272,7 @@ F_{ij}(\tau)
 -c_f^2\tau^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8057c1cf9dcfdba7)
+[View →](../../../../equation-mapping.html#corpus-equation-8057c1cf9dcfdba7)
 
 is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
@@ -317,7 +317,7 @@ $$
 \mathbf X_p^{\mathrm{acc}}(T)-\mathbf X_{\mathrm{grp}}(T).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b50b49b84d139346)
+[View →](../../../../equation-mapping.html#corpus-equation-b50b49b84d139346)
 
 The first configuration data are the net accessory polarity and polarity-signed spatial moments,
 
@@ -327,7 +327,7 @@ Q_{\mathrm{acc}}=\sum_{p=1}^{6}\tau_p,
 \mathbf p_{\mathrm{acc}}=\sum_{p=1}^{6}\tau_p\mathbf r_p,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ad2b57b336dc8988)
+[View →](../../../../equation-mapping.html#corpus-equation-ad2b57b336dc8988)
 
 with higher moments built from the same six signed positions. These moments are derived readouts of a specified Accessory Configuration. They do not determine the six trajectories, prove confinement, or establish a retained assembly.
 

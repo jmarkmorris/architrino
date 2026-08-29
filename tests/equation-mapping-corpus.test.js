@@ -145,7 +145,7 @@ test("the chapter's stable equation links resolve to its current unpunctuated so
   const sourcePath = "content/markdown/aaa/philosophy-history/one-nature-many-theories.md";
   const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
   // Independent literal Markdown inventory, not the generator's parser.
-  const displays = [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)];
+  const displays = [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[View →\]\([^#]+#([^\s)]+)\)/gu)];
   assert.equal(displays.length, 9);
   for (const [, tex, id] of displays) {
     const record = payload.records.find((entry) => entry.semanticId === id);
@@ -168,7 +168,7 @@ test("period renaming preserves equation links, absolute-time arguments, and pat
     const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
     // These literal IDs predate the rename; the independent Markdown scan must
     // still associate them with the same equations after their notation changes.
-    const displays = [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)];
+    const displays = [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[View →\]\([^#]+#([^\s)]+)\)/gu)];
     const found = displays.find((entry) => entry[2] === id);
     assert.ok(found, id);
     return found[1].trim();
@@ -201,7 +201,7 @@ test("weak-mixing suppression uses its defined exponential without changing equa
   const sourcePath = "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md";
   const source = readFileSync(path.join(repoRoot, sourcePath), "utf8");
   const sourceDisplays = new Map(
-    [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[Explore this equation in Equation Mapping\]\([^#]+#([^\s)]+)\)/gu)]
+    [...source.matchAll(/\$\$\s*\n([\s\S]*?)\n\$\$\s*\n\s*\[View →\]\([^#]+#([^\s)]+)\)/gu)]
       .map((match) => [match[2], match[1].trim()])
   );
   const expected = new Map([

@@ -19,7 +19,7 @@ $$
 \gamma(v)\quad\text{is a step function}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-acd62affa849eb03)
+[View →](../../../../../equation-mapping.html#corpus-equation-acd62affa849eb03)
 The claim is
 $$
 \text{realized material Lorentz response}
@@ -27,7 +27,7 @@ $$
 \text{is branch-indexed by closed return-cycle ledgers}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-09d839c7cc261dfc)
+[View →](../../../../../equation-mapping.html#corpus-equation-09d839c7cc261dfc)
 Here $c_\star$ denotes the declared channel speed for the Lorentz comparison; the convention is defined in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). In the app's field-speed lesson, $c_\star=c_f$.
 
 At the effective observer level, the measured envelope can still be the usual smooth function
@@ -37,7 +37,7 @@ $$
 \frac{1}{\sqrt{1-v^2/c_\star^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bbfdd7585def83c1)
+[View →](../../../../../equation-mapping.html#corpus-equation-bbfdd7585def83c1)
 
 ## Level Separation
 
@@ -61,7 +61,7 @@ $$
 \gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dcfcfd5cb198585e)
+[View →](../../../../../equation-mapping.html#corpus-equation-dcfcfd5cb198585e)
 For an envelope semiaxis $R_{\parallel}$ along group velocity, the forward and rear one-way legs are
 $$
 t_{+}
@@ -73,7 +73,7 @@ t_{-}
 \frac{R_{\parallel}}{c_\star+v}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fba26134494313c5)
+[View →](../../../../../equation-mapping.html#corpus-equation-fba26134494313c5)
 They are unequal. A single one-way leg therefore cannot be the Lorentz law, because it carries the preferred-frame asymmetry directly.
 
 The first structural step is to change the object being analyzed. A material clock or ruler is not a one-way signal. It is a closed branch that must return with the correct phase, root count, and wake ledger. The Lorentz-relevant object is the closed return cycle.
@@ -91,7 +91,7 @@ t_{+}+t_{-}
 \frac{R_{\parallel}}{c_\star+v}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6b732691196073fa)
+[View →](../../../../../equation-mapping.html#corpus-equation-6b732691196073fa)
 
 Here $P_0$ is the reference cycle period of the same declared clock branch. $P_{\parallel}$ is the closed signal-cycle period parallel to the assembly group velocity. $P_{\perp}$ is the closed signal-cycle period perpendicular to the assembly group velocity.
 
@@ -104,7 +104,7 @@ P_{\parallel}
 \frac{2R_{\parallel}}{c_\star}\gamma_\star^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1dc205065c06ee74)
+[View →](../../../../../equation-mapping.html#corpus-equation-1dc205065c06ee74)
 
 The transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
 $$
@@ -115,7 +115,7 @@ c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
 \frac{c_\star}{\gamma_\star}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f5fc9cc7a625c20d)
+[View →](../../../../../equation-mapping.html#corpus-equation-f5fc9cc7a625c20d)
 For transverse semiaxis $R_{\perp}$,
 $$
 P_{\perp}
@@ -125,7 +125,7 @@ P_{\perp}
 \frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2721799ceb7b0340)
+[View →](../../../../../equation-mapping.html#corpus-equation-2721799ceb7b0340)
 
 The Lorentz-admissible closure condition is that the same material branch closes with one period in the longitudinal and transverse channels:
 $$
@@ -136,7 +136,7 @@ P_{\perp}
 O(\epsilon_{\mathrm{LV}}P_0)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ae9bfb34f3a31110)
+[View →](../../../../../equation-mapping.html#corpus-equation-ae9bfb34f3a31110)
 In the homogeneous zero-leakage limit,
 $$
 \frac{2R_{\parallel}}{c_\star}\gamma_\star^2
@@ -144,7 +144,7 @@ $$
 \frac{2R_{\perp}}{c_\star}\gamma_\star
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-05b73cb812924746)
+[View →](../../../../../equation-mapping.html#corpus-equation-05b73cb812924746)
 so
 $$
 \xi(v)
@@ -154,7 +154,7 @@ $$
 \frac{1}{\gamma_\star(v)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dee85187f0644438)
+[View →](../../../../../equation-mapping.html#corpus-equation-dee85187f0644438)
 This is the direct Lorentz-to-geometry map.
 
 ## Oblate Spheroidal Envelope Projection
@@ -168,7 +168,7 @@ $$
 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1bf27f13625d1723)
+[View →](../../../../../equation-mapping.html#corpus-equation-1bf27f13625d1723)
 with Lorentz-compatible semiaxes
 $$
 R_{\parallel}
@@ -176,7 +176,7 @@ R_{\parallel}
 \frac{R_{\perp}}{\gamma_\star}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3415bfa2e40535be)
+[View →](../../../../../equation-mapping.html#corpus-equation-3415bfa2e40535be)
 in the homogeneous zero-leakage limit. If energy state or Noether sea conditions also change the transverse scale, separate the shape and scale channels:
 $$
 R_{\perp}(v,E,n)
@@ -188,7 +188,7 @@ R_{\parallel}(v,E,n)
 \frac{\lambda(v,E,n)R_0}{\gamma_\star(v)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-cca4b7056657b7cc)
+[View →](../../../../../equation-mapping.html#corpus-equation-cca4b7056657b7cc)
 Thus $\gamma_\star$ maps to the shape channel $\xi$, while $\lambda$ remains a separate scale, energy, and medium-response channel.
 
 This gives a simple geometry dictionary for the no-extra-scale lesson case:
@@ -206,7 +206,7 @@ $$
 \frac{R_{\perp}}{R_{\parallel}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d837b64cf488ff66)
+[View →](../../../../../equation-mapping.html#corpus-equation-d837b64cf488ff66)
 The velocity fraction is therefore recovered from the envelope by
 $$
 \beta_\star
@@ -216,7 +216,7 @@ $$
 \sqrt{1-\frac{R_{\parallel}^2}{R_{\perp}^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-769fa47768899888)
+[View →](../../../../../equation-mapping.html#corpus-equation-769fa47768899888)
 In ordinary geometry language, $\beta_\star$ is the eccentricity of the oblate spheroidal envelope, while $\gamma_\star$ is the transverse-to-longitudinal aspect ratio. The envelope is not merely a picture placed beside the Lorentz factor; its measured semiaxes determine $\xi$, $\gamma_\star$, and $\beta_\star$ in the homogeneous zero-leakage limit.
 
 The same map explains the clock side. A moving clock branch is a closed return cycle, so time dilation is the stretch of the period required for the branch to return to compatible phase:
@@ -224,7 +224,7 @@ $$
 P(v)=\gamma_\star(v)P_0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ad47d7d0529c2a26)
+[View →](../../../../../equation-mapping.html#corpus-equation-ad47d7d0529c2a26)
 
 Here $P$ is the cycle period of the declared clock branch, evaluated at the group-speed argument shown.
 
@@ -240,7 +240,7 @@ t_+
 \sqrt{\frac{1+\beta_\star}{1-\beta_\star}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5269b150a8189755)
+[View →](../../../../../equation-mapping.html#corpus-equation-5269b150a8189755)
 so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the closed period diverges. Thus the clock does not diverge because the envelope is large; it diverges because the forward causal update has almost no catch-up margin left.
 
 The visible assembly envelope is not supplied by one taxonomy-designated binary. A Lorentz-admissible branch must retune all three indexed binary ledgers so that the geometry projection, clock closure, action conservation, and leakage bounds are solved by the same branch.
@@ -257,7 +257,7 @@ $$
 \frac{R_\parallel\,v}{c_\star^2}\,\gamma_\star^2 .
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6f1f79caff527c96)
+[View →](../../../../../equation-mapping.html#corpus-equation-6f1f79caff527c96)
 
 Referred to the assembly's own dilated clock ($d\tau=dT/\gamma_\star$) and its rest separation ($R_\parallel=x'/\gamma_\star$), this is the offset
 
@@ -267,7 +267,7 @@ $$
 \frac{v}{c_\star^2}\,x' ,
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ece0442086c80dee)
+[View →](../../../../../equation-mapping.html#corpus-equation-ece0442086c80dee)
 
 the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with group speed.
 
@@ -288,7 +288,7 @@ $$
 \frac{P_q(v)}{P_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-01020a353ac75c6e)
+[View →](../../../../../equation-mapping.html#corpus-equation-01020a353ac75c6e)
 
 Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
 
@@ -304,7 +304,7 @@ q
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0fbfaf3da15d287b)
+[View →](../../../../../equation-mapping.html#corpus-equation-0fbfaf3da15d287b)
 The admissible set at fixed background conditions is
 $$
 \Gamma_{\mathrm{adm}}(v)
@@ -319,7 +319,7 @@ q\in\mathcal{Q}_{\mathrm{stable}}(v)
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4a831a61cf6530c7)
+[View →](../../../../../equation-mapping.html#corpus-equation-4a831a61cf6530c7)
 A successful homogeneous weak-field Lorentz limit requires
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
@@ -331,7 +331,7 @@ $$
 O(\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-af117602029923f0)
+[View →](../../../../../equation-mapping.html#corpus-equation-af117602029923f0)
 for every branch class admitted as stable clock/ruler material.
 
 This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether braid implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
@@ -349,7 +349,7 @@ B_q(v)
 \right)_q
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1162a35049619abe)
+[View →](../../../../../equation-mapping.html#corpus-equation-1162a35049619abe)
 A one-$h$ full-cycle transaction should be treated as a branch update,
 $$
 B_q(v)
@@ -357,7 +357,7 @@ B_q(v)
 B_{q'}(v+\Delta v)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e3bd7fa61f521282)
+[View →](../../../../../equation-mapping.html#corpus-equation-e3bd7fa61f521282)
 For each persistent binary index $a\in\{1,2,3\}$, the branch ledger can expose a binary-level phase and action row:
 $$
 \Delta\phi_a=2\pi n_a
@@ -365,12 +365,12 @@ $$
 n_a\in\mathbb{Z}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f094809f331d45a)
+[View →](../../../../../equation-mapping.html#corpus-equation-5f094809f331d45a)
 $$
 \Delta A_a=n_a h+\epsilon_a^{\mathrm{leak}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-151ea745b1d3f104)
+[View →](../../../../../equation-mapping.html#corpus-equation-151ea745b1d3f104)
 where $\epsilon_a^{\mathrm{leak}}$ records unresolved branch leakage or coupling to the wake ledger. A closed branch requires the persistently indexed binary rows to be compatible with the same all-binary action transaction, not tuned independently.
 
 subject to the action ledger
@@ -384,7 +384,7 @@ $$
 \sigma\hbar
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a4f8b75b4d192caf)
+[View →](../../../../../equation-mapping.html#corpus-equation-a4f8b75b4d192caf)
 and the all-binary energy ledger
 $$
 \sum_{a\in\{1,2,3\}}
@@ -395,7 +395,7 @@ $$
 \Delta E_{\text{coupl}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e7213a7f5673d10a)
+[View →](../../../../../equation-mapping.html#corpus-equation-e7213a7f5673d10a)
 The geometry projection is then the visible part of the sequence
 $$
 \text{one-}h\text{ action transaction}
@@ -407,7 +407,7 @@ $$
 \text{effective }\gamma_\star(v)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-fadcabcb97f8397f)
+[View →](../../../../../equation-mapping.html#corpus-equation-fadcabcb97f8397f)
 
 This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the assembly envelope becomes oblate. The stronger claim is that the oblate spheroidal envelope is the visible projection of a closed all-binary branch ledger.
 
@@ -425,7 +425,7 @@ $$
 B_r\,\mathcal{W}_r(\beta_\star)\cos(2m_r\theta+\varphi_r)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-21e536d91583bdb7)
+[View →](../../../../../equation-mapping.html#corpus-equation-21e536d91583bdb7)
 where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
 
 The failure mode is equally sharp. If the declared exclusion envelope gives
@@ -435,7 +435,7 @@ $$
 \frac{1}{\gamma_\star(v)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-db4cf011c72ab039)
+[View →](../../../../../equation-mapping.html#corpus-equation-db4cf011c72ab039)
 but the clock channel gives a different factor,
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
@@ -444,7 +444,7 @@ $$
 +O(\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bc6df02c959a6947)
+[View →](../../../../../equation-mapping.html#corpus-equation-bc6df02c959a6947)
 then the bridge fails. The theory must not tune the ruler, clock, momentum, and signal channels separately.
 
 ## Status

@@ -15,13 +15,13 @@ $$
 \Delta\Gamma_{\text{cell}}=h^n
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6c4b509a949c3341)
+[View →](../../../../../equation-mapping.html#corpus-equation-6c4b509a949c3341)
 for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted A1 dynamics select a positive increment $\Delta I_*$ such that
 $$
 h_{\mathbb{A}\mathbb{A}\mathbb{A}}=2\pi\Delta I_*
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c08fff78900e1809)
+[View →](../../../../../equation-mapping.html#corpus-equation-c08fff78900e1809)
 matches the observer-level Planck constant benchmark.
 
 Passing this protocol would not complete quantum theory. It would only promote the action-increment step from bookkeeping convention to candidate derived output.
@@ -34,7 +34,7 @@ $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-affbf38439b59823)
+[View →](../../../../../equation-mapping.html#corpus-equation-affbf38439b59823)
 
 unless both endpoint packets first satisfy branch-certificate eligibility: matching ledger identity, matching active-root convention, positive Jacobian floors, positive transmitter-side acceleration-weight floors or certified intervals, declared inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback on the same rows, and refinement records sufficient to keep the endpoint status stable. Before that eligibility is supplied, a run may report diagnostics or rejected endpoint packets, but it may not promote `candidate_action_increment` or `candidate_h_recovery`.
 
@@ -55,7 +55,7 @@ B_q\to B_{q'}:
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f12757a4496ccae3)
+[View →](../../../../../equation-mapping.html#corpus-equation-f12757a4496ccae3)
 The tolerances $\tau_{\mathrm{phase}}$, $\tau_E$, $\tau_P$, $\tau_J$, and $\tau_{\mathrm{root}}$ must be declared before the run. The transition is not accepted merely because it improves a fit to `$h$`.
 
 Plain language: only stable, conservation-accounted, root-accounted branch changes are allowed to vote on the action increment.
@@ -72,7 +72,7 @@ $$
 \mathbf A_i(T),
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07210d95933edafb)
+[View →](../../../../../equation-mapping.html#corpus-equation-07210d95933edafb)
 which has units of specific torque. The index carries no radius order. With transaction axis $\hat{\mathbf n}_{\mathrm{txn}}$, the action-unit increment is
 $$
 \Delta I_{\mathrm{ME}}
@@ -87,7 +87,7 @@ $$
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-1afa3c3d67c9e6b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-1afa3c3d67c9e6b8)
 Here $\Delta\mathbf L_{\mathrm{wake},\partial}^{\mathrm{spec}}$ is the specific angular momentum still carried across the chosen braid boundary at the end of the transition window. The universal $\mu_{\text{arch}}$ is an action/energy bookkeeping conversion only; it is not primitive architrino mass.
 
 The packet must declare $\mu_{\text{arch}}$ in `campaign.json`, record units for every action and acceleration-moment column, and keep that normalization fixed across all candidate and control transitions. A packet that omits the conversion may report a specific-action diagnostic, but it may not evaluate $\delta_h$ or promote `candidate_h_recovery`.
@@ -105,14 +105,14 @@ K_{\mu}+E_{\mathrm{wake}}^{(\eta)},
 \mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}^{(\eta)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dfa6dd9138d96765)
+[View →](../../../../../equation-mapping.html#corpus-equation-dfa6dd9138d96765)
 $$
 \boldsymbol{\mathcal{J}}_{\mathrm{tot}}^{(\eta)}
 =
 \mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake}}^{(\eta)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-06c4d8a4e74d35da)
+[View →](../../../../../equation-mapping.html#corpus-equation-06c4d8a4e74d35da)
 The residuals $\mathcal{R}_{E}$, $\mathcal{R}_{P}$, and $\mathcal{R}_{J}$ are the normalized window changes of these three totals after subtracting the declared Euler-residual and endpoint-leakage terms. They must use the same branch rows as the root ledger, acceleration residual, and $\Delta I_{\mathrm{ME}}$ calculation. A work-integral energy reconstruction or torque projection may be reported as a diagnostic, but it does not replace the exact wake-history pullback.
 
 The candidate increment floor is
@@ -123,13 +123,13 @@ $$
 \left|\Delta I_{\mathrm{ME}}(B_q\to B_{q'})\right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-c6b35efac3472013)
+[View →](../../../../../equation-mapping.html#corpus-equation-c6b35efac3472013)
 with required positivity condition
 $$
 0<\Delta I_*<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4d2f12a6478c55c2)
+[View →](../../../../../equation-mapping.html#corpus-equation-4d2f12a6478c55c2)
 The benchmark comparison is
 $$
 \delta_h
@@ -139,7 +139,7 @@ $$
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-07388e8aaacd6745)
+[View →](../../../../../equation-mapping.html#corpus-equation-07388e8aaacd6745)
 
 ## Cluster and Stability Residuals
 
@@ -155,7 +155,7 @@ $$
 },
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-796980e1e5662ff5)
+[View →](../../../../../equation-mapping.html#corpus-equation-796980e1e5662ff5)
 Here $\varepsilon_I$ is a predeclared action-increment floor with the same units as $\Delta I_{\mathrm{ME}}$. Also report the Floquet basin-robustness gap
 $$
 \Delta_{\mathbf{k}}
@@ -163,7 +163,7 @@ $$
 1-\max_{i\notin G}\|\mu_i(\mathbf{k})\|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e1bb97ae077631e6)
+[View →](../../../../../equation-mapping.html#corpus-equation-e1bb97ae077631e6)
 for each endpoint branch and each transition continuation.
 
 The action-increment claim is numerically meaningful only when $\delta_I$ is small, $\Delta_{\mathbf{k}}>0$, and the phase, energy, and root residuals remain below their predeclared tolerances across refinement.

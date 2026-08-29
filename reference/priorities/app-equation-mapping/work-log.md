@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-29 — Portable equation action label adopted
+
+- Promoted `View →` from a web-reader-only transformation to the canonical portable Markdown label at operator direction, so VS Code preview and other Markdown readers no longer expose the superseded descriptive sentence.
+- Retained the source-relative Equation Mapping target, web-reader styling, accessible label and tooltip, exact-route return navigation, stable semantic IDs, and equation/source authority boundaries.
+- This presentation-contract change does not alter equation identity, source authority, promotion, proof status, or equation-mapping score.
+
 ### 2026-08-29 — Compact equation-to-app action approved globally
 
 - Promoted the one-equation `View →` reader trial into the canonical web presentation for every corpus display equation carrying the ordinary Equation Mapping source link.

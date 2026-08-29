@@ -31,7 +31,7 @@ Ordinary language uses the word "time" for several different things. $\mathbb{A}
    r_{ij}(T_r,T_t)=c_f(T_r-T_t),
    $$
 
-   [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-079f15c58f4fd603)
+   [View →](../../../../equation-mapping.html#corpus-equation-079f15c58f4fd603)
 
    where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
 3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), with $\varphi_{\mathcal A}$ the counted clock phase and $\Omega_{\mathcal A}^{(0)}$ its rest-branch reference rate,
@@ -42,7 +42,7 @@ Ordinary language uses the word "time" for several different things. $\mathbb{A}
    \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
    $$
 
-   [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6554a68e5088fcba)
+   [View →](../../../../equation-mapping.html#corpus-equation-6554a68e5088fcba)
 
    Motion through the Euclidean void and coupling to the Noether sea can retune the internal cycle, so derived clock time changes even though absolute time does not.
 
@@ -57,7 +57,7 @@ $$
 \mathbb{R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c2b8df32454a4ae6)
+[View →](../../../../equation-mapping.html#corpus-equation-c2b8df32454a4ae6)
 
 A specific instant is a point $T \in \mathbb{R}$.
 
@@ -66,7 +66,7 @@ $$
 dT
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c6696fbaf71b269c)
+[View →](../../../../equation-mapping.html#corpus-equation-c6696fbaf71b269c)
 on the oriented time line. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$.
 
 The notation keeps the levels apart. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$ rather than by reusing the proper-time symbol.
@@ -80,7 +80,7 @@ $$
 \hat T = T_0 \, T
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1bd41191b2ccab82)
+[View →](../../../../equation-mapping.html#corpus-equation-1bd41191b2ccab82)
 where $T$ is dimensionless.
 
 Positions require the corresponding length scale. Choose $L_0>0$ and write
@@ -92,7 +92,7 @@ $$
 c_f=\frac{\hat c_f T_0}{L_0}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-68c0b410d718ed52)
+[View →](../../../../equation-mapping.html#corpus-equation-68c0b410d718ed52)
 Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention, the nondimensional causal-root condition keeps the same form,
 $$
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|
@@ -100,7 +100,7 @@ $$
 c_f(T_r-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6b9d1a38632179a2)
+[View →](../../../../equation-mapping.html#corpus-equation-6b9d1a38632179a2)
 while the dimensional condition is
 $$
 \|\hat{\mathbf X}_i(\hat T_r)-\hat{\mathbf X}_j(\hat T_t)\|
@@ -108,7 +108,7 @@ $$
 \hat c_f(\hat T_r-\hat T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9efbea1f31e04dd6)
+[View →](../../../../equation-mapping.html#corpus-equation-9efbea1f31e04dd6)
 
 Choosing $T_0$ fixes the affine scale of $T$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
 
@@ -123,14 +123,14 @@ $$
 \Delta T = |T_2 - T_1|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f5d569750586df42)
+[View →](../../../../equation-mapping.html#corpus-equation-f5d569750586df42)
 
 The corresponding physical duration is:
 $$
 \Delta \hat T = T_0 \, \Delta T
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9cff1d4d836b911c)
+[View →](../../../../equation-mapping.html#corpus-equation-9cff1d4d836b911c)
 
 This duration rule is **invariant under time translation**. It is the same for all observers, regardless of their position or state of motion.
 
@@ -148,7 +148,7 @@ $$
 T_1 < T_2, \quad T_1 = T_2, \quad \text{or} \quad T_1 > T_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-73a406ffea6fd85b)
+[View →](../../../../equation-mapping.html#corpus-equation-73a406ffea6fd85b)
 
 **Temporal ordering:** Event A temporally precedes event B if and only if $T_A < T_B$. This ordering is absolute and observer-independent.
 
@@ -194,13 +194,13 @@ $$
 (\mathbb{R}, +)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6ecdce42168d70f9)
+[View →](../../../../equation-mapping.html#corpus-equation-6ecdce42168d70f9)
 of **time translations**. This acts on time via:
 $$
 T \mapsto T + T_{\mathrm{shift}}, \quad T_{\mathrm{shift}} \in \mathbb{R}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-42a6f1d16fa05d72)
+[View →](../../../../equation-mapping.html#corpus-equation-42a6f1d16fa05d72)
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $T$, obey the same dynamical law.
 
@@ -213,7 +213,7 @@ $$
 T \mapsto -T
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ccb6a1eab7aab2a3)
+[View →](../../../../equation-mapping.html#corpus-equation-ccb6a1eab7aab2a3)
 
 This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $T$ by summing only over causal-root rows with $T_t<T$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
 
@@ -232,7 +232,7 @@ $$
 \mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3, \quad T \mapsto \mathbf X(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c985db7235edb3a7)
+[View →](../../../../equation-mapping.html#corpus-equation-c985db7235edb3a7)
 where $I$ is an interval and $T$ is **strictly increasing** with respect to the time orientation.
 
 **Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics**: the complete history state selects among dynamically admitted branches, while an attractor description is reserved for a declared retained subsystem with established contraction and exported-flux accounting. This is not a splitting of the time parameter itself.
@@ -262,7 +262,7 @@ $$
 \{\,T_t<T_r:\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)\,\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dee62fd344eab043)
+[View →](../../../../equation-mapping.html#corpus-equation-dee62fd344eab043)
 
 Only emission times in $\mathcal{C}_{ij}(T_r)$ contribute to the receiver at reception time $T_r$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
 
@@ -275,7 +275,7 @@ F_{ij}(T_r,T_t)
 T_t<T_r
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6cfd6895bac76596)
+[View →](../../../../equation-mapping.html#corpus-equation-6cfd6895bac76596)
 Then $\mathcal{C}_{ij}(T_r)=\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
 $$
 \left|
@@ -289,7 +289,7 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 \kappa_{\mathrm{hit}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b36170ce274c583a)
+[View →](../../../../equation-mapping.html#corpus-equation-b36170ce274c583a)
 where
 $$
 \mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
@@ -297,7 +297,7 @@ $$
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5cbd1d920a3685bc)
+[View →](../../../../equation-mapping.html#corpus-equation-5cbd1d920a3685bc)
 Failure of this transversality floor marks a caustic-like or degenerate wake-root regime. It must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
 For self-hits, the shared root function does not erase the additional geometry carried by transmitter identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-transmitter root existence together with the transversality floor and the retained transmitter-side acceleration weight.
@@ -313,7 +313,7 @@ $$
 \{(T_r,T_t):F_{ij}(T_r,T_t)=0,\ \partial_{T_t}F_{ij}(T_r,T_t)=0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-177db29a2a4a5a62)
+[View →](../../../../equation-mapping.html#corpus-equation-177db29a2a4a5a62)
 On a generic one-parameter branch this is a Whitney fold, or $A_2$ singularity, of the root map $T_t\mapsto F_{ij}(T,T_t)$. Higher events such as a cusp, where $\partial_{T_t}^2F_{ij}=0$ also holds, are codimension-two alarms for branch-pair creation, annihilation, or merger of fold events. In simulation language, fold contact is the first warning that the Jacobian floor has failed; cusp contact is a stronger warning that the local branch-count catalogue itself is changing.
 
 This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
@@ -344,7 +344,7 @@ $$
 \{(\mathbf X_i(T),\mathbf V_i(T),q_i,H_i(T))\}_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-791f39811d866128)
+[View →](../../../../equation-mapping.html#corpus-equation-791f39811d866128)
 
 where $H_i(T)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(T)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
 

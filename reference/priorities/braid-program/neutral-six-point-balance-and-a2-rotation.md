@@ -158,9 +158,19 @@ A_{\rho}=-\omega^2\rho,
 A_{\phi}=0.
 $$
 
-Same-ring partners have zero axial component, while all three opposite-ring contributions point toward the other ring. Their axial sum is strictly one-signed at every nonzero ring height, so the bare fixed-coordinate single-frequency two-ring chart cannot satisfy $A_{\parallel}=0$ at any sub-field rim speed.
+Let $s_i\in\{+1,-1\}$ identify receiver $i$'s plane, so $\hat{\mathbf n}\cdot\mathbf x_i=s_i h$. On a complete ordinary simple-root ledger, same-plane and same-transmitter hits have zero axial projection. Every opposite-plane hit has unlike polarity and therefore contributes
 
-Plainly: changing the common rotation rate cannot supply the missing axial support. The chart must flatten, deform, or acquire an additional declared response.
+$$
+\hat{\mathbf n}\cdot\mathbf A_{ij}
+=
+-s_i\frac{2\kappa |q_iq_j|h}{r_{ij}^{3}}W^{\mathrm{acc}}_{ij},
+\qquad
+W^{\mathrm{acc}}_{ij}=\frac{c_f}{|D_{t,ij}|}>0.
+$$
+
+The sum is strictly directed toward the midplane at every nonzero fixed height. Bounded complete cross-plane history guarantees at least one causal root by the intermediate value theorem; if the crossing is non-simple, the history exits this ordinary-root theorem rather than establishing balance. The bare polarity-segregated fixed-plane two-ring chart therefore cannot satisfy $A_{\parallel}=0$ at any finite member speed, including super-field-speed motion. This is a derived sign result from the canonical Master Equation; the independent review is recorded in the [theorem-review evidence](evidence/2026-08-29-shared-circle-winding-and-two-ring-axial-no-balance-theorem-review.md).
+
+Plainly: changing the common rotation rate or crossing field speed changes which roots arrive and how heavily they are weighted, but every admitted cross-plane contribution still points toward the middle. The proof stops at collisions, caustics, non-simple-root events, variable height, moving or precessing planes, incomplete history, mixed plane polarities, or an added external, constraint, or Noether-sea acceleration.
 
 For stationary arriving histories followed by an instantaneous tangential release $\mathbf v_i=\omega\hat{\mathbf n}\times\mathbf x_i$, the initial common-radius curvature is
 
@@ -185,7 +195,7 @@ independently of $\omega$.
 
 Plainly: the tuned kick changes the radial curvature without preserving the octahedron. The immediate motion remains an axial flattening channel rather than a rigid rotating branch.
 
-A coherently rotating prior history requires recomputation of every delayed root and transmitter-side acceleration weight. The sign obstruction still rejects the declared fixed-coordinate two-ring chart, but no spin-up, spin-down, collision, escape, breathing, or retained-branch fate follows without direct EOM-solver evolution.
+A coherently rotating prior history requires recomputation of every delayed root and transmitter-side acceleration weight. On any complete ordinary simple-root chart, that recomputation cannot reverse the axial sign obstruction because the canonical weights remain positive. No spin-up, spin-down, collision, escape, breathing, or retained-branch fate follows without direct EOM-solver evolution, and this parallel-plane result does not address the orthogonal-plane weave.
 
 ## Externally Constrained Spherical Motion
 

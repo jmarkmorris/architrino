@@ -56,7 +56,7 @@ $$
 \Delta \rho_{\mathrm{locked}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-13f90e8e9fca11a0)
+[View →](../../../../equation-mapping.html#corpus-equation-13f90e8e9fca11a0)
 
 with each term tied to the same Noether sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
 
@@ -74,7 +74,7 @@ d_E\!\left(
 d_{\mathrm{seed}}(P_{\mathrm{seed}}^\theta,P_{\mathrm{seed}}^{\mathrm{obs}}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1a4d05b308ce80b7)
+[View →](../../../../equation-mapping.html#corpus-equation-1a4d05b308ce80b7)
 This keeps the useful inflation target--rapid smoothing and perturbation seeding--while forcing the energy accounting through shielding, release, and apparent-energy projection.
 
 ## Scalar and Tensor Benchmark
@@ -88,13 +88,13 @@ $$
 \left(A_{\mathrm{s}}^{\mathrm{obs}},n_{\mathrm{s}}^{\mathrm{obs}},\alpha_{\mathrm{s}}^{\mathrm{obs}},r_{\max}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0cfaf304adff478e)
+[View →](../../../../equation-mapping.html#corpus-equation-0cfaf304adff478e)
 within the declared observational tolerances, with
 $$
 r^{\theta}(k_*) \le r_{\max}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9ce4719a6d42e6e0)
+[View →](../../../../equation-mapping.html#corpus-equation-9ce4719a6d42e6e0)
 
 The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
 
@@ -119,7 +119,7 @@ o \in \mathcal{O}_{\mathrm{CMB,near}}
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-46b5400cbdf98783)
+[View →](../../../../equation-mapping.html#corpus-equation-46b5400cbdf98783)
 The branch is predictive only when this set is narrow under the declared CMB comparison measure. The companion initial-basin burden is $\mathcal{S}_{\mathrm{init}}$: if the release channel succeeds only for a tiny set of pre-release Noether sea states, then the smoothing explanation has been moved into the starting chart rather than derived from the high-curvature dynamics.
 
 ### Slow-Roll Comparison Dictionary
@@ -134,7 +134,7 @@ Z_{\mathrm{endpoint},X}^{\theta}
 +Y_{X,\mathrm{path}}^{\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-59f311f9eafc8602)
+[View →](../../../../equation-mapping.html#corpus-equation-59f311f9eafc8602)
 with $Y_{X,\mathrm{path}}^\theta$ carrying any Compton/Sunyaev-Zeldovich-like exchange rows. A branch may use $a_\theta$ and $N_\theta$ only after this budget has been reduced to the homogeneous comparison limit. The first comparison slow-roll coordinate is
 $$
 \varepsilon_\theta
@@ -144,7 +144,7 @@ $$
 \varepsilon_\theta < 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-73135c1eaadfb915)
+[View →](../../../../equation-mapping.html#corpus-equation-73135c1eaadfb915)
 for an inflation-like effective interval, and the second coordinate is
 $$
 \eta_\theta
@@ -155,7 +155,7 @@ $$
 \frac{d\varepsilon_\theta}{dN_\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-afb8ffc2f2715a2a)
+[View →](../../../../equation-mapping.html#corpus-equation-afb8ffc2f2715a2a)
 If a branch introduces an effective potential surrogate $V_\theta(\varphi)$ for comparison with single-field models, it must also expose
 $$
 \epsilon_{v,\theta}
@@ -169,7 +169,7 @@ M_{\mathrm{pl}}^2
 \frac{V_{\theta,\varphi\varphi}}{V_\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-07b3da278ebc1f8c)
+[View →](../../../../equation-mapping.html#corpus-equation-07b3da278ebc1f8c)
 with $\varepsilon_\theta\approx\epsilon_{v,\theta}$ and $\eta_\theta\approx\eta_{v,\theta}-\epsilon_{v,\theta}$ only in the effective slow-roll limit. These are not new substrate fields; they are a way to test whether the release record lands in the same observable region as slow-roll inflation.
 
 At the comparison horizon-crossing surface $k=a_\theta H_\theta$, the scalar and tensor amplitudes become
@@ -189,7 +189,7 @@ $$
 \right|_{k=a_\theta H_\theta}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-257753b409ec6a38)
+[View →](../../../../equation-mapping.html#corpus-equation-257753b409ec6a38)
 so that
 $$
 n_{\mathrm{s}}^\theta - 1
@@ -203,7 +203,7 @@ r^\theta
 16\varepsilon_\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8b501124c4d9932d)
+[View →](../../../../equation-mapping.html#corpus-equation-8b501124c4d9932d)
 A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_{\mathrm{s}}^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
 Eternal-inflation and landscape language add no ontology by themselves. A cosmological ensemble does not explain observed parameters merely by containing them somewhere; its explanatory content comes from the physical mechanism that generates the sampling measure and connects that measure to this observed record. These frameworks become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
@@ -215,7 +215,7 @@ d_\Omega\!\left(\Omega_k^{\theta},\Omega_k^{\mathrm{obs}}\right)
 +d_{\mathrm{shared}}\!\left(\theta_{\mathrm{CMB}},\theta_{\mathrm{growth}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be07f425eb5abcdc)
+[View →](../../../../equation-mapping.html#corpus-equation-be07f425eb5abcdc)
 Here $S_{PW}$ is the cross-map localized-feature statistic defined in [CMB](./CMB.md), and $d_{\mathrm{shared}}$ penalizes a fit that explains localized features or curvature by changing the cosmology state independently from the acoustic peaks, lensing, BAO, BBN, or structure-growth records. A positive localized feature, negative-curvature trend, or bubble-collision-style template would be an observational pressure to explain, not evidence that the external population picture has become $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
 ## Pre-BBN Comparison Gate
@@ -236,7 +236,7 @@ w_X(a),\;
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8758a93614d6238d)
+[View →](../../../../equation-mapping.html#corpus-equation-8758a93614d6238d)
 where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the dissociation or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
 $$
 \mathcal{R}_{\mathrm{preBBN}}(\theta_X,\theta_{\mathrm{sea}})
@@ -250,7 +250,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a286b927dc916196)
+[View →](../../../../equation-mapping.html#corpus-equation-a286b927dc916196)
 This gate preserves the observable pressure while rejecting the interpretation shortcut. A pre-BBN branch that disappears only by changing state variables between BBN, CMB, structure formation, and gravitational-wave comparisons is not hidden; it has split the cosmology record.
 
 If $X$ is a compact-object branch, the projection must also record the mass function and release history rather than only an effective density:
@@ -266,7 +266,7 @@ t_{\mathrm{eff},f}(M),\;
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8e47a653a819c88e)
+[View →](../../../../equation-mapping.html#corpus-equation-8e47a653a819c88e)
 Here $\psi_X(M)$ is the comparison mass function, $f_X$ is the dark-sector fraction in that branch, $t_{\mathrm{eff},f}(M)$ is the inferred formation or release clock, $\Gamma_{\mathrm{release}}^X$ is any Hawking-like or native release spectrum, and $\Delta x_{\mathrm{eff,ephem}}^{i,X}$ is retained only for late-time local-detection consistency. These variables do not add compact-object ontology to the inflation module; they make explicit which observables a pre-BBN compact branch must carry into the BBN, CMB, growth, gravitational-wave, and local-detection ledgers.
 
 ## Planck-Alignment Boundary
@@ -285,7 +285,7 @@ $$
 H^2(a) = H_0^2\left[\Omega_r a^{-4} + \Omega_m a^{-3} + \Omega_{\text{eff}}(a)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aeb08cfd345e35c3)
+[View →](../../../../equation-mapping.html#corpus-equation-aeb08cfd345e35c3)
 
 where $\Omega_{\text{eff}}(a)$ encodes the emergent high-curvature phase and its relaxation.
 
@@ -294,7 +294,7 @@ $$
 \dot{R}(t) = v_1(t) + c_f + v_3(t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6d4488b0633aa4b1)
+[View →](../../../../equation-mapping.html#corpus-equation-6d4488b0633aa4b1)
 Here the source record assigns $v_1(t)$ to a decaying high-curvature release term and $v_3(t)$ to slower volumetric rebound, while the constant $c_f$ marks the transport/horizon channel. These roles belong to this toy record and are not assigned by the taxonomy. This is not a closed cosmological derivation, but it is a compact way to encode the conjecture that inflation-like release, horizon-scale transport, and late-time expansion could be different channels of one candidate continuation of the Family-A response.
 
 ## Expansion-Module Interface

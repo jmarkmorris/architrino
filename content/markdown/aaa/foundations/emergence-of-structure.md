@@ -46,7 +46,7 @@ G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
 \ \exists\gamma\in\Gamma_{\mathrm{adm}}(c):\phi\in\mathcal H_\gamma\,\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dec5af64b60d25c8)
+[View →](../../../../equation-mapping.html#corpus-equation-dec5af64b60d25c8)
 Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
 The native state is $\mathsf Z=(\mathbf X,\mathbf V)$. The constrained flow is still the lower-level causal-wake dynamics,
@@ -55,7 +55,7 @@ $$
 \frac{d\mathsf Z}{dT}=F_L(\mathsf Z_T),\qquad \mathsf Z_T\in \mathcal K_c
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a22147c2836f6f9e)
+[View →](../../../../equation-mapping.html#corpus-equation-a22147c2836f6f9e)
 
 where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
 
@@ -69,7 +69,7 @@ B_k^W(c)
 \{\phi\in\mathcal K_c\mid \Pi_{\mathrm{br}}\Phi_T^c(\phi)=k,\ \Phi_s^c(\phi)\in\mathcal K_c\ \text{for }0\le s\le T\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b767f484238c02b2)
+[View →](../../../../equation-mapping.html#corpus-equation-b767f484238c02b2)
 
 The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
 
@@ -77,7 +77,7 @@ $$
 P_c(k)=\mu_c(B_k^W(c))
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b765c7f1fa3ef956)
+[View →](../../../../equation-mapping.html#corpus-equation-b765c7f1fa3ef956)
 
 This is only the foundation-level basin-measure form. It says how branch weights can be assigned after the physical preparation and measure source are declared. It becomes a quantum-probability recovery only after a measurement chart supplies an apparatus kernel, record map, interference or coherence bookkeeping, and a proof that the same declared measure pushes forward to Born statistics across the relevant measurement contexts. In particular, a Born-rule closure must show that these finite-window basin weights reproduce $|\psi_k|^2$ frequencies without changing the measure between outcome statistics, interference records, and thermodynamic cost. That burden belongs to the quantum recovery chapters, especially [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence).
 
@@ -89,7 +89,7 @@ $$
 \mu_c\!\left(\mathcal K_c\setminus\bigcup_k B_k^W(c)\right)\le\varepsilon_{\text{esc}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b685ad66e70ea708)
+[View →](../../../../equation-mapping.html#corpus-equation-b685ad66e70ea708)
 
 This clean partition is an admissibility target, not an automatic property of delayed feedback. Basin boundaries in state-dependent delay systems can be fractal, riddled, or measure-thick under the preparation measure; in those cases $\mu_c(\partial B_k^W(c))=0$ can fail and the branch weights are not stable observer-level probabilities. A useful separatrix regularity row is therefore the basin analogue of a causal-root transversality floor: on the declared return-section chart, each boundary between neighboring basins should be represented outside a null exceptional set by a signed separator functional $S_{k\ell}$ with
 $$
@@ -98,7 +98,7 @@ S_{k\ell}(\phi)=0,
 \|DS_{k\ell}(\phi)\|_\ast \ge \kappa_{\mathrm{sep}} > 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ca01df3e59b9e366)
+[View →](../../../../equation-mapping.html#corpus-equation-ca01df3e59b9e366)
 If no codimension-one separatrix row, equivalent null-boundary proof, or controlled fractal-boundary measure theorem is supplied, $P_c(k)$ remains a diagnostic basin volume rather than a closed branch-weight law.
 
 Local separator smoothness is not by itself enough in an infinite-dimensional or state-dependent delay system. A valid basin chart should also rule out uncontrolled accumulation of separator sheets on the compact return-section region being measured. One useful formulation is local finiteness: for every compact $K$ in the declared return section,
@@ -106,7 +106,7 @@ $$
 \#\{(k,\ell,n):\{S_{k\ell}^{(n)}=0\}\cap K\ne\varnothing\}<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-77791d0694746ea9)
+[View →](../../../../equation-mapping.html#corpus-equation-77791d0694746ea9)
 after discarding a $\mu_c$-null exceptional set. Here $n$ indexes distinct separator sheets between the same branch pair when the delayed return map creates multiple folds. This condition prevents a countable pile-up of individually smooth sheets from producing a measure-thick or riddled basin boundary. It is the basin analogue of excluding cusp accumulation in a causal-root chart.
 
 Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
@@ -123,7 +123,7 @@ $$
 \mu_{c'}(B_k^W(c'))>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e26dabf6f02bd8bf)
+[View →](../../../../equation-mapping.html#corpus-equation-e26dabf6f02bd8bf)
 
 The reverse inequality pattern records branch closure, and partial changes in $\mu_c(B_k^W(c))$ record ordinary reshaping of basin weights. In each case, the context change must be tied to a physical transition rather than to a new ontology outside the architrino dynamics.
 
@@ -133,7 +133,7 @@ $$
 \mathsf e=(\mathsf Z,I_{\mathsf e},Y_{\mathsf e})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d3df431c5011bc64)
+[View →](../../../../equation-mapping.html#corpus-equation-d3df431c5011bc64)
 
 where $\mathsf Z$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
 
@@ -144,7 +144,7 @@ $$
 \mathsf Z_T\in C([-h,0])
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-70098b9d537b12f5)
+[View →](../../../../equation-mapping.html#corpus-equation-70098b9d537b12f5)
 with boundary and memory-window terms built from the same causal kernel that supplies the acceleration. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
 
 $$
@@ -165,7 +165,7 @@ W_{\partial\Omega}
 =0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f5c52ce08e9ae48d)
+[View →](../../../../equation-mapping.html#corpus-equation-f5c52ce08e9ae48d)
 
 Here $K_{\mathrm{mech}}$ is the $\mu_{\text{arch}}$-weighted kinetic bookkeeping term from the [Master Equation](../dynamics/master-equation.md)'s regularized energy diagnostic for the retained architrino degrees of freedom, with assembly-level kinetic entries allowed only as derived ledger summaries after their constituent account is declared. The subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is boundary work, positive for work done on the retained subsystem. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
 
@@ -192,7 +192,7 @@ $$
 {\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon_{\mathrm{reg}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d1cc7aa3a12e1317)
+[View →](../../../../equation-mapping.html#corpus-equation-d1cc7aa3a12e1317)
 where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux, $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux, and $\varepsilon_{\mathrm{reg}}>0$ is a root-flux regulator. A candidate geometric estimator for the external flux ordering is the lowest unquenched polarity-signed moment of the assembly's configuration: arrangements whose low-order moments cancel expose less structure at distance, which is the moment hypothesis developed for the six-architrino [Accessory Configuration](../noether-braid/braid-mathematics.md#accessory-configuration). A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity; an increase in $\Sigma_{\mathrm{shield}}$ is a useful witness under the declared convention when the retained internal-flux account is fixed or separately controlled, and the energy and provenance ledger still closes. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
 
 ## Bottom-Up Structural Ladder
@@ -256,7 +256,7 @@ $$
 \mathbf A_{ij}(T_r;T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-856c9b4a5873bdd3)
+[View →](../../../../equation-mapping.html#corpus-equation-856c9b4a5873bdd3)
 exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over transmitter events with $\mathbf X_j(T_t)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
 For the weak homogeneous Noether sea case, the canonical lemma proves that statistically homogeneous, isotropic, locally neutral, vector-mixing shell contributions have variance $O(n^{-2})$ and hence converge almost surely under the declared mixing bound. This is the convergence foothold consumed by the Noether sea construction; the proof and its hypotheses remain in [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma), and coherent, inhomogeneous, strong-field, or poorly screened branches retain a separate burden.
@@ -274,7 +274,7 @@ $$
 \varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-883656d7fdb85db5)
+[View →](../../../../equation-mapping.html#corpus-equation-883656d7fdb85db5)
 If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_t,T_r]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
 $$
 \|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|
@@ -284,7 +284,7 @@ $$
 c_f(T_r-T_t)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bc9b501879794569)
+[View →](../../../../equation-mapping.html#corpus-equation-bc9b501879794569)
 Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit acceleration contribution additionally carries the same-record transmitter-side acceleration weight.
 
 This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-transmitter roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.

@@ -10,7 +10,7 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
     \mathcal{C}_{aa}(T_r)=\{\,T_t<T_r:\|\mathbf X_a(T_r)-\mathbf X_a(T_t)\|=c_f(T_r-T_t)\,\}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-5c21f41edba4512c)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-5c21f41edba4512c)
     A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence, a nonzero Jacobian/transversality margin, and a retained transmitter-side acceleration weight.
   - Coincident $r=0$ contact is not an active same-transmitter hit. At $\Delta=0$ the convention $H(0)=0$ blocks instantaneous self-kicks, and for a coincident delayed candidate the unit line of action $\hat{\mathbf{r}}$ is undefined. The active channel begins with a nonzero-delay same-transmitter root that supplies direction, transversality, and the transmitter-side acceleration weight.
 

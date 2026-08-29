@@ -13,7 +13,7 @@ The teaching sequence is deliberately layered. First comes the ontological claim
    \Sigma_{T_\ast} = \pi_T^{-1}(\{T_\ast\}) = \{T_\ast\}\times \mathbb{R}^3
    $$
 
-   [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e84fc71ef931610)
+   [View →](../../../../equation-mapping.html#corpus-equation-5e84fc71ef931610)
 4. **Substrate clock form**: The substrate clock form $dT$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $T$, it fixes the tangent planes to the slices $\Sigma_T$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of Noether braid internal phase dynamics.
 
@@ -44,7 +44,7 @@ H_T,
 \big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-32ba4361fc774e61)
+[View →](../../../../equation-mapping.html#corpus-equation-32ba4361fc774e61)
 where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
 The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records the dynamically occupied branch, active causal-root labels, and regularization regime of the deterministic history $H_T$. Where a reduced subsystem has a proved contraction after its exported fluxes are included, the record may also identify its attractor basin. A different analyst may choose different coordinates for describing the branch, but cannot choose a different occupied branch without changing $S(T)$ itself.
@@ -79,7 +79,7 @@ H_{\mathcal A}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-105e00cb4ffec320)
+[View →](../../../../equation-mapping.html#corpus-equation-105e00cb4ffec320)
 Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, and $H_{\mathcal A}$ is the relevant path-history ledger. Both $\Omega_{\mathcal A}$ and $\Omega_{\mathcal A}^{(0)}$ are phase rates per unit effective time $t_{\mathrm{eff}}$, so the ratio is dimensionless. The velocity relative to the local Noether sea flow in the observer-level bookkeeping map is
 $$
 w^i_{\mathcal A}
@@ -89,7 +89,7 @@ w^i_{\mathcal A}
 u^i_{\mathrm{sea,eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5ab406531d40bca2)
+[View →](../../../../equation-mapping.html#corpus-equation-5ab406531d40bca2)
 for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
 This phase extraction is admissible only on a clock branch whose internal return map retains a normally hyperbolic invariant cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
@@ -101,7 +101,7 @@ $$
 \quad \mathrm{mod}\ 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
+[View →](../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
 defined mod 1 through the choice of lift. When $P_{\mathcal A}$ restricted to the retained clock circle is an orientation-preserving homeomorphism, this limit exists and is independent of $\theta$; that invertibility is the real hypothesis. If the restriction is only degree-one and non-invertible, the rotation set can be an interval rather than a point, and clock validity requires it to collapse to a point. The clock-validity domain is the parameter region where $P_{\mathcal A}$ restricted to the clock circle is topologically conjugate to a rigid rotation, or reduces to a unique normally hyperbolic periodic orbit with a well-defined phase advance. In that regime $\varphi_{\mathcal A}$ can be chosen continuously and $\Omega_{\mathcal A}$ is a branch observable. If the moving or dressed branch loses normal hyperbolicity through a saddle-node of cycles, torus breakdown, quasiperiodic transition, loss of return-map invertibility with an open rotation interval, or collapse of the cycle-stability floor, then a single rotation number no longer exists and $d\tau_{\mathcal A}$ is undefined for that branch. That event is a clock-failure mode, not a new proper-time law; in simulation it appears as a Floquet or Lyapunov-spectrum sign change in the transverse clock-cycle directions.
 
 In the Noether-braid clock class, this is the observer-side use of the [candidate and certified braid](../noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. A physical clock is an admitted branch whose retained record returns under the delayed return map, modulo only true neutral symmetries, with a positive non-symmetry Floquet margin. Its declared clock phase $\varphi_{\mathcal A}$ is the rotation coordinate of that relative periodic orbit. Thus the clock-validity certificate can be written schematically as
@@ -113,7 +113,7 @@ $$
 \Delta_{\mathrm{Floquet}}^{\perp}(\mathcal A)>0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-860738cb635545d8)
+[View →](../../../../equation-mapping.html#corpus-equation-860738cb635545d8)
 The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. This certificate establishes transverse persistence on the retained clock branch; it does not by itself prove contraction of the complete history flow. The stronger word *attracting* applies only after a declared reduced clock subsystem includes the wake, Noether sea, and memory-boundary fluxes crossing its retained boundary and proves the required contraction. Loss of the clock certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
 The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
@@ -124,7 +124,7 @@ $$
 O(\epsilon_{\omega}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
+[View →](../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
 This is the clock-sector reading of the branch-symplectic-promotion condition in [Effective Lagrangian](../dynamics/effective-lagrangian.md#effective-hamiltonian-domain-gate). A branch that leaks energy, symplectic area, or wake momentum through the memory boundary per cycle may still be a transient oscillator, but it is not a stable proper-time standard because its rotation number drifts.
 
 The full local Noether sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
@@ -142,7 +142,7 @@ Q^{\text{sea}}_{ij},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-60bfdf3c6a2e0b4e)
+[View →](../../../../equation-mapping.html#corpus-equation-60bfdf3c6a2e0b4e)
 The scalar $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
 A broad constitutive expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
@@ -153,7 +153,7 @@ $$
 \tau(t_{\mathrm{eff},1})-\tau(t_{\mathrm{eff},0})=\int_{t_{\mathrm{eff},0}}^{t_{\mathrm{eff},1}}\frac{\omega_{\text{clk}}(t_{\mathrm{eff}})}{\omega_0}\,dt_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d21e5fbcfc3a642b)
+[View →](../../../../equation-mapping.html#corpus-equation-d21e5fbcfc3a642b)
 
 where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency; this is the integral form of the same phase extraction, with $\omega_{\text{clk}}=\Omega_{\mathcal A}$ and $\omega_0=\Omega_{\mathcal A}^{(0)}$ on the declared branch. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
@@ -168,7 +168,7 @@ B_{ij}^{(\mathcal A)}
 B_{ij}+\delta B_{ij}^{(\mathcal A)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e9e0a48dfe4c1487)
+[View →](../../../../equation-mapping.html#corpus-equation-e9e0a48dfe4c1487)
 with the assembly-dependent remainders bounded by the clock-comparison, composition, and Lorentz-test rows below. The residual universality condition can be written schematically as
 $$
 \epsilon_{\mathrm{univ}}
@@ -190,7 +190,7 @@ B^{(\mathcal B)}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bce23479e117f7c9)
+[View →](../../../../equation-mapping.html#corpus-equation-bce23479e117f7c9)
 with $\epsilon_{\mathrm{univ}}$ forced below the relevant residual ceilings for the comparison being made. The proposed mechanism is primitive-wake commonality: atomic, nuclear, and mechanical clocks are all architrino assemblies whose stable translating branches are solved from the same causal-wake law, causal-root ledger grammar, and Noether sea state. A moving branch should therefore deform its closed return cycles, clock periods, and ruler scales together rather than receiving separate Lorentz factors by definition.
 
 A useful sufficient-condition target is connected-moduli dressing. Let $\mathfrak M_{\mathrm{clk}}$ denote the retained moduli component for the admitted low-energy clock and ruler branches in a comparison class, and let $\Phi_\lambda$ be the Noether sea dressing flow on that component. If all admitted clock branches lie in one connected component of $\mathfrak M_{\mathrm{clk}}$, and if the generator $D_{\mathrm{dress}}$ of $\Phi_\lambda$ preserves the topological branch labels carried by the causal-root ledger and framing data, then clock universality reduces to the failure of dressing and branch-label transport to commute:
@@ -207,7 +207,7 @@ O\!\left(
 O(\epsilon_{\mathrm{chart}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-31a569f78e0dfb28)
+[View →](../../../../equation-mapping.html#corpus-equation-31a569f78e0dfb28)
 Here $D_{\mathrm{br}}$ denotes transport along the retained branch-label flow and $\epsilon_{\mathrm{chart}}$ collects declared chart and regularization remainders. This is not yet a proof of universality; it states the topological route by which a single dressing map could move every admitted clock and ruler branch together.
 
 The topological route also needs a spectral separation condition. Primitive-wake commonality alone does not imply one effective clock/ruler channel. Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap from the shared long-wavelength Noether sea sector to any other collective sector that couples to the admitted clock and ruler branches, and let $\omega_{\mathrm{test}}$ be the highest frequency in the declared comparison regime. The single-sector reduction requires
@@ -217,7 +217,7 @@ $$
 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a393148bda4b7213)
+[View →](../../../../equation-mapping.html#corpus-equation-a393148bda4b7213)
 and can be organized schematically as
 $$
 \epsilon_{\mathrm{univ}}
@@ -232,7 +232,7 @@ $$
 \lim_{r\to0}\epsilon_{\mathrm{mix}}(r)=0,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3bdffce6e2e36133)
+[View →](../../../../equation-mapping.html#corpus-equation-3bdffce6e2e36133)
 where $\epsilon_{\mathrm{intra}}$ is the connected-moduli commutator and chart remainder above, while $\epsilon_{\mathrm{mix}}$ measures contamination by the gapped sectors. This is a conditional reduction target, not an automatic consequence of one microscopic law. A second gapless sector with a nonzero species-dependent leading coupling makes $\Delta_{\mathrm{sea,gap}}=0$ for this purpose and structurally defeats this route to clock universality.
 
 Plainly: common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or remains above the tested frequency band.
@@ -267,7 +267,7 @@ O(w^4/c_0^4)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3f62541724b9b224)
+[View →](../../../../equation-mapping.html#corpus-equation-3f62541724b9b224)
 The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function. The leading orientation row should be read as the trace-free quadrupole of the clock branch's framed trajectory bundle, not as an independent nuisance. If $Q_{\mathcal A}^{ij}$ is the symmetric trace-free framing tensor
 $$
 Q_{\mathcal A}^{ij}
@@ -279,7 +279,7 @@ Q_{\mathcal A}^{ij}
 \right\rangle_{\mathcal A}^{\mathrm{frame}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
+[View →](../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
 then the lowest anisotropic clock response has the schematic form
 $$
 \Delta_{\mathcal A}^{\mathrm{ori}}(\hat{\mathbf n})
@@ -295,7 +295,7 @@ Q_{\mathcal A}^{ij}
 O_{\ell\ge4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
+[View →](../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
 The same $Q_{\mathcal A}^{ij}$ is the matter-response source constrained by Hughes-Drever-type anisotropy tests, so the clock orientation row and the inertial-response anisotropy row are two exports of one branch certificate.
 
 For Noether braid candidates, [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the corresponding geometric order parameter. The theorem target is sharper than near-orthogonality alone: $|D_{\mathrm{plane}}|\to1$ suppresses the non-orthogonal-frame part of the trace-free framing quadrupole $Q_{\mathcal A}^{ij}$, while small total $\|Q_{\mathcal A}\|$ also requires near-degenerate retained spectral weights, shielding, or branch averaging in the same frame extraction. If those conditions close for a clock assembly, the strict orientation row, Hughes-Drever matter anisotropy, scalar-mass anisotropy, and translating-loop Lorentz period anisotropy become different projections of one $\ell=2$ framing-isotropy condition rather than separately tuned residuals.
@@ -311,7 +311,7 @@ $$
 \frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6527952b172a86b7)
+[View →](../../../../equation-mapping.html#corpus-equation-6527952b172a86b7)
 The MICROSCOPE experiment platinum/titanium result supplies a $10^{-15}$-class benchmark for this free-fall row, not for $\Delta_{\mathcal A}^{\mathrm{comp}}$. The two residuals may be linked only after a formal cross-map derives both the gravitational/inertial response and the clock/ruler maps $(A,B_{ij})$ from the same retained assembly and Noether sea record.
 
 These scales are experimental requirements and bookkeeping ceilings, not framework-predicted amplitudes by themselves:
@@ -331,7 +331,7 @@ Required emergent limits:
   \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
+  [View →](../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
   In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
 - Weak field, low velocities, after the clock-channel potential has been matched to the Newtonian benchmark:
   $$
@@ -340,13 +340,13 @@ Required emergent limits:
   \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
+  [View →](../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
   Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
   $$
   \Phi_N=-U_N
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
+  [View →](../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
   so the first-order clock expansion reads
   $$
   \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
@@ -358,7 +358,7 @@ Required emergent limits:
   -\frac{\|\mathbf{w}\|^2}{2c_0^2}
   $$
 
-  [Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
+  [View →](../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
 
 **Speed convention table**
 
@@ -381,7 +381,7 @@ c_{2w}(\hat{\mathbf n})
 \frac{2L}{T_+(\hat{\mathbf n})+T_-(\hat{\mathbf n})}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e41b35d34629c42b)
+[View →](../../../../equation-mapping.html#corpus-equation-e41b35d34629c42b)
 In ordinary low-energy conditions its anisotropy must fit
 $$
 \frac{c_{2w}(\hat{\mathbf n})-c_0}{c_0}
@@ -396,7 +396,7 @@ $$
 \cdots
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a7d979a4d966f967)
+[View →](../../../../equation-mapping.html#corpus-equation-a7d979a4d966f967)
 with the trace-free anisotropy below the current hard-wall row in the constraint ledger, presently of order $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
 $$
 \left(
@@ -416,7 +416,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5330b39dbced67eb)
+[View →](../../../../equation-mapping.html#corpus-equation-5330b39dbced67eb)
 Any screening mechanism must be included before exporting the observer-level PPN and Lorentz-test coefficients. The exported coefficients themselves must pass the ledger bounds. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
 
 The trace-free coefficient $\zeta_{ij}^{\mathrm{TF}}$ is the photon-channel projection of the Noether sea framing quadrupole. It is parallel to, but not identical with, the matter framing tensor $Q_{\mathcal A}^{ij}$ above: matter leakage tests the retained assembly framing, while photon and PPN leakage test the sea-response framing sampled by the signal channel. Translation and rotation invariance forbid leading $\ell=1$ preferred-axis leakage in the homogeneous rest branch, so the first dangerous rows are $\ell=2$ trace-free projections. The preferred-frame budget is therefore a collection of framing-isotropy conditions on matter assemblies and on the Noether sea response, with the two-way photon row measuring the sea-side quadrupole.
@@ -435,7 +435,7 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0f9a5b68a09b6135)
+[View →](../../../../equation-mapping.html#corpus-equation-0f9a5b68a09b6135)
 The metric handoff is admissible only on branches where
 $$
 A>0,
@@ -447,7 +447,7 @@ B_{ij}\xi^i\xi^j>0
 \text{for }\xi\ne0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
+[View →](../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
 These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a certified clock cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../spacetime/singularity-resolution.md).
 
 **Conditional uniform-flow affine-equivalence lemma.** Suppose that, on one comparison window, $A$ is a positive constant, $B_{ij}$ is a constant symmetric positive-definite matrix, and $u^i_{\mathrm{sea,eff}}$ is constant. Suppose also that every admitted clock, ruler, and signal in that window couples only through this same effective handoff. Choose a constant matrix $L^a{}_i$ satisfying
@@ -457,7 +457,7 @@ B_{ij}
 \delta_{ab}L^a{}_iL^b{}_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ebb791623df657c4)
+[View →](../../../../equation-mapping.html#corpus-equation-ebb791623df657c4)
 and define
 $$
 t'_{\mathrm{eff}}
@@ -475,7 +475,7 @@ u^i_{\mathrm{sea,eff}}t_{\mathrm{eff}}
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f1f3c9c3e04165e5)
+[View →](../../../../equation-mapping.html#corpus-equation-f1f3c9c3e04165e5)
 The handoff then becomes
 $$
 d\tau^2
@@ -485,7 +485,7 @@ dt_{\mathrm{eff}}'^2
 \delta_{ab}\,dy^a_{\mathrm{eff}}dy^b_{\mathrm{eff}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9622f4df7a4487ec)
+[View →](../../../../equation-mapping.html#corpus-equation-9622f4df7a4487ec)
 
 Plainly: a uniform sea flow with constant universal clock, ruler, and signal response is removable from the effective record by an affine coordinate change. This lemma does not remove the substrate preferred frame or establish universality. It localizes observable preferred-frame leakage to gradients or time dependence in the sea record, dispersion, non-universal assembly coupling, or channels not captured by the single metric handoff.
 
@@ -498,7 +498,7 @@ $$
 (A,B_{ij}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d13e1ce133948a4e)
+[View →](../../../../equation-mapping.html#corpus-equation-d13e1ce133948a4e)
 On a regular branch, $\Psi_{\mathrm{cr}}$ has the fixed rank needed to export one clock rate and one positive spatial quadratic response. The failure set is the branch-fold locus
 $$
 \mathfrak{F}_{\mathrm{cr}}
@@ -510,7 +510,7 @@ $$
 \}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-855b8fb677f47adc)
+[View →](../../../../equation-mapping.html#corpus-equation-855b8fb677f47adc)
 The conditioning face of the same admissibility condition is a singular-value floor:
 $$
 \sigma_{\min}
@@ -521,7 +521,7 @@ D\Psi_{\mathrm{cr}}\big|_{\mathrm{reg}}
 \sigma_{\mathrm{cr}}>0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b59763c66090a8a4)
+[View →](../../../../equation-mapping.html#corpus-equation-b59763c66090a8a4)
 The inequalities $A>0$ and $B_{ij}\succ0$ are the positivity face of this condition, while the rank and singular-value bounds are the local-invertibility face. A branch can therefore fail metric export either by losing clock/ruler positivity or by becoming so ill-conditioned that the effective metric is locally multivalued under small retained-record perturbations.
 
 For a generic finite-dimensional retained branch chart, the regular clock/ruler region is the open complement of a stratified failure set. Its top stratum is expected to be codimension one: a fold hypersurface across which $\Psi_{\mathrm{cr}}$ loses local invertibility and the metric handoff must be suspended. Higher-codimension strata correspond to cusp, multiple-fold, or simultaneous clock/ruler degeneracies. The preceding list gives coordinate descriptions of the same loss of one-to-one branch structure. This is the clock/ruler version of the fold and non-degeneracy-floor discipline used for causal-root charts in [Master Equation](../dynamics/master-equation.md#causal-time-map-and-root-topology).
@@ -531,7 +531,7 @@ $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-142d1bd421e3f1b2)
+[View →](../../../../equation-mapping.html#corpus-equation-142d1bd421e3f1b2)
 With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the exported components are
 $$
 g^{\mathrm{eff}}_{00}
@@ -539,14 +539,14 @@ g^{\mathrm{eff}}_{00}
 -A^2+\frac{1}{c_0^2}B_{ij}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-077f6f96b2236e09)
+[View →](../../../../equation-mapping.html#corpus-equation-077f6f96b2236e09)
 $$
 g^{\mathrm{eff}}_{0i}
 =
 -\frac{1}{c_0}B_{ij}u^j_{\mathrm{sea,eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e0931c21a6845226)
+[View →](../../../../equation-mapping.html#corpus-equation-e0931c21a6845226)
 and
 $$
 g^{\mathrm{eff}}_{ij}
@@ -554,7 +554,7 @@ g^{\mathrm{eff}}_{ij}
 B_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-58d9d410e1c1b17a)
+[View →](../../../../equation-mapping.html#corpus-equation-58d9d410e1c1b17a)
 Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
 $$
 \frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
@@ -564,14 +564,14 @@ u^i_{\mathrm{sea,eff}}
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-53d3b79421c051ab)
+[View →](../../../../equation-mapping.html#corpus-equation-53d3b79421c051ab)
 $$
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
 \frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b386c818670a88e7)
+[View →](../../../../equation-mapping.html#corpus-equation-b386c818670a88e7)
 The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\mathrm{sea,eff}}\to0$.
 
 The same-record rule is stricter than using one symbol $\mathcal{N}_{\mathrm{sea}}$ in several equations. The clock/ruler map must consume the same Noether sea response record that supplies $G_{\mathrm{eff}}$ in the gravity inventory, $c_{\text{eff}}$ in the matter limiting-speed and mass-shell rows, and $c_\gamma$ in the photon channel:
@@ -587,7 +587,7 @@ c_\gamma
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-30f59d13f3892938)
+[View →](../../../../equation-mapping.html#corpus-equation-30f59d13f3892938)
 If these projections require separate sea records or independently tuned response tensors, the effective metric is fitted rather than derived. The closure burden is therefore one sea-constitutive object with clock, ruler, gravity, matter-speed, and photon projections, not a separate clock-sector construction.
 
 **Key point**

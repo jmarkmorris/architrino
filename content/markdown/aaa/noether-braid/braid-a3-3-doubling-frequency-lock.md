@@ -25,7 +25,7 @@ v_a = 2\pi f_a r_a = \beta_a c_f,
 c_f>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e96d68c55bfa26ef)
+[View →](../../../../equation-mapping.html#corpus-equation-e96d68c55bfa26ef)
 
 Equivalently,
 $$
@@ -36,7 +36,7 @@ r_a=\frac{v_a}{2\pi f_a},
 v_a=2\pi f_a r_a
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e60fb027d3fbd019)
+[View →](../../../../equation-mapping.html#corpus-equation-e60fb027d3fbd019)
 
 Plain language: for any one binary carrier, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
 
@@ -57,7 +57,7 @@ v_h^{\mathrm{car}}=c_f,
 \beta_h^{\mathrm{car}}=1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bc8a2f18393b8b3e)
+[View →](../../../../equation-mapping.html#corpus-equation-bc8a2f18393b8b3e)
 For compact notation, the algebra below writes $v_h=c_f$ and $\beta_h=1$ for this carrier value.
 
 The branch-level motion may have microscopic crossings
@@ -67,7 +67,7 @@ v_h(T)=c_f+\delta v_h(T),
 \langle \delta v_h\rangle_W=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5390c7ab577ac84d)
+[View →](../../../../equation-mapping.html#corpus-equation-5390c7ab577ac84d)
 over the declared window $W$. Each regularized crossing of the $J_h^{t}(\theta_h)=0$ boundary is a caustic transit with finite impulse
 $$
 \Delta\mathbf{V}_{h,j}
@@ -78,7 +78,7 @@ $$
 \left\|\Delta\mathbf{V}_{h,j}\right\|<\infty
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ded68219009abda5)
+[View →](../../../../equation-mapping.html#corpus-equation-ded68219009abda5)
 rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
 This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
@@ -92,23 +92,23 @@ m,n\in\mathbb{N},
 1<m<n
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b17b3862a4a76728)
+[View →](../../../../equation-mapping.html#corpus-equation-b17b3862a4a76728)
 such that
 $$
 \theta_3(T+P_3)=\theta_3(T)+2\pi
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1e3ee755bb462b90)
+[View →](../../../../equation-mapping.html#corpus-equation-1e3ee755bb462b90)
 $$
 \theta_2(T+P_3)=\theta_2(T)+2\pi m
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-887d0ec76c657a3b)
+[View →](../../../../equation-mapping.html#corpus-equation-887d0ec76c657a3b)
 $$
 \theta_1(T+P_3)=\theta_1(T)+2\pi n
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b8f2660b620aa775)
+[View →](../../../../equation-mapping.html#corpus-equation-b8f2660b620aa775)
 
 Therefore the indexed frequency triplet is $f_1:f_2:f_3=n:m:1$, with $f_2=m f_3$ and $f_1=n f_3$.
 
@@ -123,12 +123,12 @@ $$
 \phi_{23}(T)\equiv \theta_2(T)-m\theta_3(T)=\phi_{23}^\ast
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-84f096c688ac1560)
+[View →](../../../../equation-mapping.html#corpus-equation-84f096c688ac1560)
 $$
 \phi_{13}(T)\equiv \theta_1(T)-n\theta_3(T)=\phi_{13}^\ast
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b8a789367e3abbdf)
+[View →](../../../../equation-mapping.html#corpus-equation-b8a789367e3abbdf)
 with constants $\phi_{23}^\ast,\phi_{13}^\ast$.
 
 Plain language: the binaries keep the same timing relationship cycle after cycle rather than drifting through one another.
@@ -147,7 +147,7 @@ d\theta_2-m\,d\theta_3,
 d\theta_1-n\,d\theta_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ea01a6be817aff43)
+[View →](../../../../equation-mapping.html#corpus-equation-ea01a6be817aff43)
 
 Exact integer phase closure says the covering degrees over one binary-3 cycle are
 
@@ -157,7 +157,7 @@ $$
 \frac{1}{2\pi}\oint_{S^1_3}d\theta_1=n
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cfcc793ba6e188ac)
+[View →](../../../../equation-mapping.html#corpus-equation-cfcc793ba6e188ac)
 
 or equivalently
 
@@ -169,7 +169,7 @@ $$
 (\mathrm{mod}\ 2\pi)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f1455388f78e96d9)
+[View →](../../../../equation-mapping.html#corpus-equation-f1455388f78e96d9)
 
 on the locked branch. Fixed relative phase then says these one-forms are flat on the retained return chart: their integrated values do not drift, and the constants $\phi_{23}^\ast,\phi_{13}^\ast$ are the residual flat-connection data. The discrete and continuous pieces should be kept separate:
 
@@ -179,7 +179,7 @@ $$
 (\phi_{23}^\ast,\phi_{13}^\ast)=\text{flat-connection moduli}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f0d13a35f804b687)
+[View →](../../../../equation-mapping.html#corpus-equation-f0d13a35f804b687)
 
 Thus the lock is a flat relative-phase connection with integer holonomy, not a literal first Chern class over the binary-3 phase circle. In the language of [Effective Lagrangian](../dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-return degree data that make the reduced action-angle chart globally replayable rather than merely local.
 
@@ -190,7 +190,7 @@ $$
 |D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5037aab430c37416)
+[View →](../../../../equation-mapping.html#corpus-equation-5037aab430c37416)
 It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal Noether braid phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
 
 ## Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)
@@ -212,7 +212,7 @@ $$
 \Omega_{\mathrm{reg}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34848497603093d1)
+[View →](../../../../equation-mapping.html#corpus-equation-34848497603093d1)
 
 where $\theta_{h,j}^{\ast}$ are the candidate-carrier caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{h,j}$ and its wake-history increment on the retained branch. Any energy-routing fulcrum is therefore geometric and branch-derived: transfers may concentrate at the carrier caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
@@ -225,7 +225,7 @@ A_{k,\ell}(\beta_k,r_k,\eta,D_t,D_r,W^{\mathrm{acc}},J_k^{t})\,
 e^{i\ell(q_k\omega_3 T+\phi_k)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6233800de291e313)
+[View →](../../../../equation-mapping.html#corpus-equation-6233800de291e313)
 The coefficients $A_{k,\ell}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ transmitter-side acceleration-weight, branch-transversality, and causal-wake ledger used to test the candidate lock. They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential. For the caustic-grazing candidate carrier this extraction is not an ordinary smooth Fourier coefficient. A carrier harmonic must carry the caustic transversality weight of the window while keeping transmitter-side acceleration/action strength on the same retained record, schematically
 
 $$
@@ -240,7 +240,7 @@ w_{h,\ell}^{r}(\theta_h)
 e^{-i\ell\theta_h}\,d\theta_h
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bca27ce5edad2566)
+[View →](../../../../equation-mapping.html#corpus-equation-bca27ce5edad2566)
 
 with $\eta_J$ the declared Jacobian-floor regularization and $w_{h,\ell}^{r}$ the branch-derived numerator computed from the same retained $D_t$, $D_r$, and $W^{\mathrm{acc}}$ row for that harmonic channel. The $J_h^{t}$ factor is a caustic-window transversality weight, not a substitute for transmitter-side acceleration weight. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{h,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite candidate-carrier impulse deposits the right spectral weight into the first common resonance block. The cycle-averaged cancellation score over one binary-3 reference window starting at $T_\ast$ is
 $$
@@ -255,7 +255,7 @@ A_{k,\ell}e^{i\ell\phi_k}
 \right|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4f475be1c41774e5)
+[View →](../../../../equation-mapping.html#corpus-equation-4f475be1c41774e5)
 The doubling-frequency claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
 
 **Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two binaries only when their finite harmonic supports overlap:
@@ -263,13 +263,13 @@ $$
 \nu\in q_k\{1,\ldots,L\}\cap q_b\{1,\ldots,L\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-655390add6980257)
+[View →](../../../../equation-mapping.html#corpus-equation-655390add6980257)
 for distinct binary indices $k$ and $b$. If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the doubling-frequency candidate $(m,n)=(2,4)$, the first binary-3/binary-2 overlap is $\nu=2$ via $(3,\ell=2)$ and $(2,\ell=1)$; the first all-binary overlap is
 $$
 \nu=4
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d8be52738bddeb0f)
+[View →](../../../../equation-mapping.html#corpus-equation-d8be52738bddeb0f)
 via $(3,\ell=4)$, $(2,\ell=2)$, and $(1,\ell=1)$. Thus this functional can select $1:2:4$ only if $L\ge4$ and the $\nu=4$ block has nontrivial branch-derived amplitudes. A complete cancellation of that all-binary block additionally requires the amplitude magnitudes to satisfy the polygon condition
 $$
 \max(|A_{3,4}|,|A_{2,2}|,|A_{1,1}|)
@@ -277,7 +277,7 @@ $$
 \text{sum of the other two}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0b33d301f9b4bf84)
+[View →](../../../../equation-mapping.html#corpus-equation-0b33d301f9b4bf84)
 The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock. The selection therefore has two independent requirements. The topological requirement is that the all-binary resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted carrier contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
 
 Topologically, the same $\nu=4$ statement says the doubling-frequency lock is the first common cover of the three phase circles. The covering maps can be written
@@ -290,14 +290,14 @@ S^1_2
 S^1_1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d53b597636de7439)
+[View →](../../../../equation-mapping.html#corpus-equation-d53b597636de7439)
 
 when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each indexed phase circle double-covers its reference neighbor. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins. Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
 $$
 S^1\xleftarrow{\times 2}S^1\xleftarrow{\times 2}S^1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5d41d7dbdb178969)
+[View →](../../../../equation-mapping.html#corpus-equation-5d41d7dbdb178969)
 among non-identity integer towers. This is why the doubling-frequency family is also the natural candidate for a renormalization-style fixed point in the truncation analysis: repeated double covering is the simplest scale-similar phase organization.
 
 ## Non-Assumptions
@@ -319,7 +319,7 @@ $$
 (q_1,q_2,q_3)=(n,m,1).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ca254f0e7889a344)
+[View →](../../../../equation-mapping.html#corpus-equation-ca254f0e7889a344)
 The exact identity gives every characteristic radius relative to the binary-3 reference radius:
 $$
 r_a
@@ -333,7 +333,7 @@ r_a
 a\in\{1,2,3\}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3057c660ac699eb3)
+[View →](../../../../equation-mapping.html#corpus-equation-3057c660ac699eb3)
 If the candidate carrier is binary $h$, Assumption 1 adds only $\beta_h=1$. It does not order the other radii. Thus the frequency ratio and one field-speed condition still leave the remaining speed factors to be determined by the branch dynamics.
 
 ## Proposition 1 (Exterior Integer Lock Formulas)
@@ -343,7 +343,7 @@ $$
 f_1:f_2:f_3 = n:m:1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-42abafe8aa247b4d)
+[View →](../../../../equation-mapping.html#corpus-equation-42abafe8aa247b4d)
 and
 $$
 r_1:r_2:r_3
@@ -351,14 +351,14 @@ r_1:r_2:r_3
 \frac{\beta_1}{n}:\frac{\beta_2}{m}:\beta_3.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-69fcc8c7b3370a8c)
+[View →](../../../../equation-mapping.html#corpus-equation-69fcc8c7b3370a8c)
 
 **Proof.** The frequency ratio is exactly Assumption 2. The radius ratios follow from
 $$
 r_a=\frac{\beta_a c_f}{2\pi f_a}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1068d33780e493b7)
+[View →](../../../../equation-mapping.html#corpus-equation-1068d33780e493b7)
 together with $(f_1,f_2,f_3)=(nf_3,mf_3,f_3)$. The carrier choice adds $\beta_h=1$ only after $h$ is declared. $\square$
 
 The geometry is controlled by integer phase closure plus a separately declared caustic-grazing carrier condition. The proposition makes no claim about which integer pair or carrier index is dynamically preferred.
@@ -372,13 +372,13 @@ m=2,
 n=4
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99d23427c622cdad)
+[View →](../../../../equation-mapping.html#corpus-equation-99d23427c622cdad)
 then
 $$
 f_1:f_2:f_3 = 4:2:1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e7f9e081e0c18557)
+[View →](../../../../equation-mapping.html#corpus-equation-e7f9e081e0c18557)
 but the radius ratios become
 $$
 r_1:r_2:r_3
@@ -386,7 +386,7 @@ r_1:r_2:r_3
 \frac{\beta_1}{4}:\frac{\beta_2}{2}:\beta_3.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b738b1fe51b74e26)
+[View →](../../../../equation-mapping.html#corpus-equation-b738b1fe51b74e26)
 
 So the doubling-frequency lock is a viable candidate pattern, but it does **not** by itself imply equal-speed geometry, and it does **not** by itself imply a self-similar radius law unless further assumptions are added.
 
@@ -427,7 +427,7 @@ $$
 L
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9e18cffffd15920c)
+[View →](../../../../equation-mapping.html#corpus-equation-9e18cffffd15920c)
 That truncation must be certified rather than assumed. The useful analogy from renormalization-group reasoning is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits a field-theory RG flow, but that discarded modes must be shown irrelevant for the decision being made.
 
 The branch geometry predicts which modes are most dangerous. Smooth noncarrier binaries should have rapidly decaying coefficients,
@@ -439,7 +439,7 @@ C e^{-c\ell},
 \qquad b\ne h
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cd8f6915729836af)
+[View →](../../../../equation-mapping.html#corpus-equation-cd8f6915729836af)
 
 on an analytic replayable chart. The candidate carrier instead has an algebraic pre-cutoff tail because its impulse is phase-localized:
 
@@ -449,14 +449,14 @@ $$
 C_{\eta}\,\ell^{-p_{\mathrm{fold}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9cf2183dec4bd245)
+[View →](../../../../equation-mapping.html#corpus-equation-9cf2183dec4bd245)
 
 with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized carrier impulse through the retained branch record; it is not the unintegrated acceleration or potential row. In a local fold coordinate $x=\theta_h-\theta_{h,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $\ell^{-3/2}$. The corresponding unintegrated acceleration-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
 $$
 p_{\mathrm{fold}}=\frac{3}{2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-23f4ee80322d8464)
+[View →](../../../../equation-mapping.html#corpus-equation-23f4ee80322d8464)
 A cusp or higher catastrophe would change this exponent and therefore change the truncation budget. The finite-depth proof must therefore report the carrier-caustic spectral exponent or cutoff, not only assert that high harmonics are small. In the RG analogy, the smooth noncarrier harmonics are irrelevant tails, while the carrier caustic block is the marginal channel that can still affect selection beyond the first all-binary block.
 
 For a candidate lock $(m,n)$, define the tail score
@@ -470,19 +470,19 @@ A_{k,\ell}e^{i\ell\phi_k}
 \right|^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c739705ac308222e)
+[View →](../../../../equation-mapping.html#corpus-equation-c739705ac308222e)
 where
 $$
 L_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-403988a484298f5c)
+[View →](../../../../equation-mapping.html#corpus-equation-403988a484298f5c)
 is the largest resonance block retained in the selection audit. The finite-depth proof must supply a bound
 $$
 T_L(m,n)\le \varepsilon_L
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4a3d14a520734218)
+[View →](../../../../equation-mapping.html#corpus-equation-4a3d14a520734218)
 uniformly over the admissible branch chart and then compare the winner gap
 $$
 \Delta C_L
@@ -491,13 +491,13 @@ $$
 \big(C_L(m,n)-C_L(m_\ast,n_\ast)\big)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-741585d3951e8fc6)
+[View →](../../../../equation-mapping.html#corpus-equation-741585d3951e8fc6)
 against the truncation error. A lock is selected by the finite calculation only if
 $$
 \Delta C_L>2\varepsilon_L
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-045f1a85c9f81356)
+[View →](../../../../equation-mapping.html#corpus-equation-045f1a85c9f81356)
 For the generic $A_2$ fold exponent, the carrier tail dominates the smooth noncarrier tails:
 $$
 |A_{h,\ell}|^2=O(\ell^{-3}),
@@ -505,7 +505,7 @@ $$
 \varepsilon_L=O(L_{\mathrm{eff}}^{-2}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1c9febadd4de975e)
+[View →](../../../../equation-mapping.html#corpus-equation-1c9febadd4de975e)
 Thus a practical finite-depth certificate must choose $L_{\mathrm{eff}}$ large enough that the bound implied by $L_{\mathrm{eff}}^{-2}$ is less than $\frac12\Delta C_L$ on the same branch chart. This is a stopping rule for the selection calculation, not a new assumption about which lock wins.
 
 This turns "higher harmonics are small" into a checkable theorem target tied to the same branch-derived amplitudes used in
@@ -513,7 +513,7 @@ $$
 C_L
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ccdd30ab74935a28)
+[View →](../../../../equation-mapping.html#corpus-equation-ccdd30ab74935a28)
 
 ## Reduced-Theorem Target
 
@@ -531,7 +531,7 @@ $$
 P_{\eta,m,n}:\mathcal{S}_{m,n}\to\mathcal{S}_{m,n}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8572c49528b34fe3)
+[View →](../../../../equation-mapping.html#corpus-equation-8572c49528b34fe3)
 on the retained branch chart and require
 $$
 \Delta_{m,n}
@@ -540,7 +540,7 @@ $$
 >0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-babb4c1dbcc00902)
+[View →](../../../../equation-mapping.html#corpus-equation-babb4c1dbcc00902)
 off the neutral symmetry directions $G$.
 
 Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the binary phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-transversality floors, caustic-impulse rows, candidate-carrier index, and history variables needed to evaluate one binary-3-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
@@ -557,7 +557,7 @@ T_{\mathrm{flat}}
 G_{\mathrm{rel}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99b74565951aed05)
+[View →](../../../../equation-mapping.html#corpus-equation-99b74565951aed05)
 
 where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the global spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{23},\delta\phi_{13})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift. The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
 $$
@@ -569,7 +569,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-747678d85346703b)
+[View →](../../../../equation-mapping.html#corpus-equation-747678d85346703b)
 has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
 
 If the minimizer turns out to be the binary-3-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the doubling-frequency hierarchy would be a derived selection result rather than a starting assumption.
@@ -592,7 +592,7 @@ M_p,\,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-796643e7e09d8333)
+[View →](../../../../equation-mapping.html#corpus-equation-796643e7e09d8333)
 
 with flat phase connection, positive Floquet gap off $G$, and $|D_{\mathrm{plane}}|$ bounded away from zero outside the horizon-alignment locus. The doubling-frequency conjecture is the sharper claim that $(N_s,M_p,(2,4))$ is the minimal-curvature such class in the exterior/horizon-transition regime.
 
@@ -603,7 +603,7 @@ $$
 z_i=(\boldsymbol{\psi}_i,\mathbf{r}^{\mathrm{bin}}_i,\boldsymbol{\beta}_i,\mathcal{R}^{\mathrm{rec}}_i,h_i,\hat{\mathbf{n}}_{1,i},\hat{\mathbf{n}}_{2,i},\hat{\mathbf{n}}_{3,i})\in\mathcal{S}_{m,n}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a41b4401ef7e3a44)
+[View →](../../../../equation-mapping.html#corpus-equation-a41b4401ef7e3a44)
 Define a recurrence matrix
 $$
 Q^{(\epsilon)}_{ij}
@@ -618,7 +618,7 @@ d_{\mathcal{S}}(z_i,z_j)<\epsilon
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b2de705baf0c671a)
+[View →](../../../../equation-mapping.html#corpus-equation-b2de705baf0c671a)
 where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$, while the holonomy-defect coordinate is not quotiented:
 
 $$
@@ -630,7 +630,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-747678d85346703b-2)
+[View →](../../../../equation-mapping.html#corpus-equation-747678d85346703b-2)
 
 A candidate $1{:}2$ row, or a chained $1{:}2{:}4$ row, is recurrence-positive only if returned-section hits recur at the declared binary-3-period multiples, the recurrence period agrees with the winding and active-branch ledger, the relative-phase defect $\Theta$ recurs to zero, the plane determinant stays in the nondegenerate domain, the candidate-carrier assignment is stable under refinement or its transition is explicitly recorded, the recurrence structure persists under timestep, history-resolution, and $\eta$ refinement, and nearby trials that fail the non-symmetry Floquet gap do not pass this recurrence check. This separates point recurrence from true phase-lock recurrence.
 
@@ -641,7 +641,7 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a51f0171fd91214c)
+[View →](../../../../equation-mapping.html#corpus-equation-a51f0171fd91214c)
 
 This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal rank-three bundle studied in this chapter. In compact form:
 
@@ -651,7 +651,7 @@ $$
 \text{coplanar cyclic sector}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4c34babac066f273)
+[View →](../../../../equation-mapping.html#corpus-equation-4c34babac066f273)
 
 whereas
 
@@ -661,14 +661,14 @@ $$
 \text{near-orthogonal }T^3\text{ sector}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7a50aa3db26d742a)
+[View →](../../../../equation-mapping.html#corpus-equation-7a50aa3db26d742a)
 
 The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above. The separating wall is the plane-degeneracy condition
 $$
 D_{\mathrm{plane}}=0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b6ac679d0cad5e11)
+[View →](../../../../equation-mapping.html#corpus-equation-b6ac679d0cad5e11)
 On one side, the near-orthogonal sector carries three independent phase circles and covering data. On the wall, the phase chart collapses into a coplanar cyclic configuration where cancellation is representation-theoretic inside one plane. Crossing this wall is therefore a change in cancellation topology, not a smooth deformation inside one sector. The reachable theorem target is that the doubling-frequency sector and the coplanar $\mathbb{Z}_3$ sector cannot be connected by a path that preserves both $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ and a positive non-symmetry Floquet gap.
 
 For a neighboring closure problem, see [Horizon Chirality](../spacetime/horizon-chirality.md).

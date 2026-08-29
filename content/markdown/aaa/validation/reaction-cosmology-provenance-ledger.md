@@ -42,7 +42,7 @@ $$
 \text{observer-level background variable}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1a80b835ef4ef7cf)
+[View →](../../../../equation-mapping.html#corpus-equation-1a80b835ef4ef7cf)
 
 The minimal useful first path is BBN photon loading: identify a source-zone radiation channel, record its event-level provenance, propagate it through the local thermalization assumptions, and show whether it can support effective $\eta_B\approx6\times10^{-10}$ during the deuterium bottleneck window.
 
@@ -108,7 +108,7 @@ E_\gamma
 \Delta E_{\text{rem}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b9cc5364cea8d5e3)
+[View →](../../../../equation-mapping.html#corpus-equation-b9cc5364cea8d5e3)
 
 The provenance record must also include the source electron assembly, target assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, local $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, planar-mode threshold status, emitted photon assembly direction, recoil, medium excitation, causal-wake ledger, identity routing, closure status, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold. Its polarization handoff inherits photon Gate B rather than deriving photon spin locally, and the record remains provisional until the event residual routes source, recoil, medium, wake, handoff, and remnant rows.
 
@@ -149,7 +149,7 @@ S_{\mathrm{return}}
 \right)_W
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eea86edc186d76ca)
+[View →](../../../../equation-mapping.html#corpus-equation-eea86edc186d76ca)
 for a declared window $W$. Here $N_A$ records neutral or dark assembly candidates, $S_{\mathrm{pair}}$ records pair or reaction production inside the window, and $S_{\mathrm{return}}$ records content returned to the Noether sea or reclassified after reactions. This row is a source-component inventory, not a proof of a specific production rate; it prevents "empty intergalactic space" from replacing the actual component ledger.
 
 ### BBN Photon Loading
@@ -165,7 +165,7 @@ $$
 \frac{N_B(W)-N_{\bar B}(W)}{N_\gamma(W)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4174fcb7e432fb8f)
+[View →](../../../../equation-mapping.html#corpus-equation-4174fcb7e432fb8f)
 For leptogenesis-like source routes, the ledger must also carry a neutrino/antineutrino CP-asymmetry comparison term rather than assuming the external mechanism. Source leads for this row are primary neutrino-oscillation and leptogenesis sources: long-baseline $\nu/\bar\nu$ transition measurements, PMNS CP-phase summaries, and baryogenesis/leptogenesis rate calculations. The comparison term is
 $$
 \Delta_{\nu\bar\nu}^{\mathrm{CP}}(E,L;\alpha,\beta)
@@ -175,7 +175,7 @@ P_{\nu_\alpha\to\nu_\beta}(E,L)
 P_{\bar\nu_\alpha\to\bar\nu_\beta}(E,L)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a12867edd3ecb8c)
+[View →](../../../../equation-mapping.html#corpus-equation-8a12867edd3ecb8c)
 where $E$ is neutrino energy, $L$ is baseline, and $\alpha,\beta$ label flavor channels. The source-window ledger may report $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}(W)$ as the event-record-weighted version of this comparison over $W$, but that reported value is only an input constraint on the matter-asymmetry closure. It is not an established $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of baryon excess.
 
 The acceptance residual should be reported as
@@ -191,7 +191,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-01a825d10e240729)
+[View →](../../../../equation-mapping.html#corpus-equation-01a825d10e240729)
 Here $\Delta_{\nu\bar\nu}^{\mathrm{ledger}}$, $\Delta B_{\mathrm{unrec}}$, $\Delta Q_{\mathrm{unrec}}$, and $\Delta E_{\mathrm{unrec}}$ are not new ontology. They are comparison or failure counters for CP-asymmetric neutrino/antineutrino transition rates, baryon-number bookkeeping, electric-charge bookkeeping, and energy balance after all declared reaction, recoil, medium, and escape channels have been included. A leptogenesis-like source model may remain in the comparison ledger only when $\mathcal{R}_{B/\gamma}\le1$ and the same event record also passes the BBN photon-loading and CMB thermalization checks below.
 
 ### CMB Thermalization
@@ -212,7 +212,7 @@ $$
 \int_{t_a}^{t_b}\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cd03fb5593128be0)
+[View →](../../../../equation-mapping.html#corpus-equation-cd03fb5593128be0)
 
 with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded channels being used: planar-mode capture/release, Compton-like redistribution, pair channels, and non-radiative medium exchange. A CMB blackbody claim requires $\mathcal{D}_{\mathrm{th}}\gg1$ before decoupling, effective photon chemical potential driven to zero, and a post-decoupling transport map that preserves the already-generated spectrum while carrying anisotropy, polarization, damping, and redshift information.
 
@@ -245,7 +245,7 @@ h(\nu_{\gamma,j}^{+}-\nu_{\gamma,j}^{-})
 }{\epsilon_{E,j}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0a95eb11f08bb1b6)
+[View →](../../../../equation-mapping.html#corpus-equation-0a95eb11f08bb1b6)
 
 This row is a candidate source mechanism, not a completed CMB derivation. It becomes cosmology-facing only after the emitted or converted packet is propagated through the CMB thermalization, distortion, anisotropy, polarization, and redshift handoff checks. A high-energy interior photon population that cannot be routed through those checks may remain a black-hole release-channel hypothesis, but it cannot be used as a CMB source.
 
@@ -266,7 +266,7 @@ h(\nu^+-\nu^-)
 }{\epsilon_E}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7ee4a4cb676933c1)
+[View →](../../../../equation-mapping.html#corpus-equation-7ee4a4cb676933c1)
 
 The same row must state whether the exchange is thermalizing, spectrally distorting, or coherently transported. A Sunyaev-Zeldovich-type boost is admissible only when the electron or medium record supplies the photon energy increase and when the side effects remain compatible with the CMB spectrum, anisotropy, polarization, and kSZ/tSZ observable rows. A depletion row is admissible only when the lost photon energy is routed into a named medium, recoil, remnant, or thermalization channel.
 
@@ -288,7 +288,7 @@ $$
 \right)\,ds.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8badadff6a6a3f3b)
+[View →](../../../../equation-mapping.html#corpus-equation-8badadff6a6a3f3b)
 The segment-level energy closure remains
 $$
 \Delta E_{\gamma,s}
@@ -299,7 +299,7 @@ $$
 =0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5cc26baa2c07808b)
+[View →](../../../../equation-mapping.html#corpus-equation-5cc26baa2c07808b)
 The kernel $\mathcal{K}_{\nu}$ is a derivation target, not a free redshift law. It must state whether the segment is coherent transparent transport, thermalizing exchange, spectral distortion, capture, or carrier exit, and it must preserve the same photon packet identity unless a reaction or remnant row explicitly terminates it.
 
 ## Closure Targets

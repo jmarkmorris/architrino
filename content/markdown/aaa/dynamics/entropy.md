@@ -32,7 +32,7 @@ $$
 \left(\mathcal{F}_{T_{\mathrm{prep}}\to T}\right)_*\nu_{\mathrm{prep}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d02a207cc2ecbebe)
+[View →](../../../../equation-mapping.html#corpus-equation-d02a207cc2ecbebe)
 
 This is the official reading of $\mu_T$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
 
@@ -42,7 +42,7 @@ $$
 \Pi_{\mathcal{Q},W}:\Gamma_T\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c51d1c26cf596fd3)
+[View →](../../../../equation-mapping.html#corpus-equation-c51d1c26cf596fd3)
 
 maps complete histories into retained record variables. Here $\Gamma_T$ is the preparation-conditioned complete-history space at absolute time $T$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
 
@@ -56,7 +56,7 @@ $$
 \nu_{\mathrm{prep}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d5fa004c9aae8977)
+[View →](../../../../equation-mapping.html#corpus-equation-d5fa004c9aae8977)
 
 and the corresponding observer-window entropy is
 
@@ -66,7 +66,7 @@ S_{\Pi,W}(T)
 k_B\,\mathcal{H}\!\left(\nu_{\mathcal{Q},W,T}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-652414f6f55d17de)
+[View →](../../../../equation-mapping.html#corpus-equation-652414f6f55d17de)
 
 where $\mathcal{H}$ is the entropy functional appropriate to the retained record measure.
 
@@ -85,7 +85,7 @@ $$
 d\nu_{\mathcal{Q},W,T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7ae0d5858da7a312)
+[View →](../../../../equation-mapping.html#corpus-equation-7ae0d5858da7a312)
 
 Bare differential entropy is chart-dependent, so neither the coordinate chart nor its volume element may remain implicit in a quantitative entropy claim.
 
@@ -109,7 +109,7 @@ D_{\mathrm{KL}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-545fdfd3ca357464)
+[View →](../../../../equation-mapping.html#corpus-equation-545fdfd3ca357464)
 Projection cannot increase the retained record's ability to distinguish the two candidate history ensembles. This loss of distinguishability is not automatically an increase of Shannon or thermodynamic entropy; an entropy-growth claim still requires the fixed reference measure, coarse-graining, access window, and boundary ledger declared above.
 
 For a discrete coarse partition with probabilities $p_\alpha$, this reduces to the familiar Gibbs/Shannon form
@@ -120,7 +120,7 @@ S_{\mathcal{Q}}
 -k_B\sum_{\alpha}p_\alpha\log p_\alpha
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-07a57793d3877ba2)
+[View →](../../../../equation-mapping.html#corpus-equation-07a57793d3877ba2)
 
 For a microcanonical retained window, the same idea is written as
 
@@ -130,7 +130,7 @@ S_{\mathcal{Q},W}(T)
 k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(T)}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3004d4ff5fe0f531)
+[View →](../../../../equation-mapping.html#corpus-equation-3004d4ff5fe0f531)
 
 where $\Gamma_{\mathcal{Q},W(T)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window.
 
@@ -149,7 +149,7 @@ $$
 C\!\left([-h,0];\mathcal{Z}_{\eta}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-88e352bcac5be834)
+[View →](../../../../equation-mapping.html#corpus-equation-88e352bcac5be834)
 
 where $\mathcal{Z}_{\eta}$ is the declared regularized state space for $\mathsf Z=(\mathbf X,\mathbf V)$; a finite-dimensional Galerkin or return-section chart is another admissible setting when its projection error is included in the record. The preparation measure must be defined on that domain, and the delayed flow must at least be measurable on the retained window.
 
@@ -167,7 +167,7 @@ $$
 \right\}_{\rho\in R_i(T)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c1a96d4138be1abb)
+[View →](../../../../equation-mapping.html#corpus-equation-c1a96d4138be1abb)
 
 where $\rho\in R_i(T)$ indexes an active received root, $\ell_\rho$ is the retained unoriented line of action, and $\|\mathbf{A}_\rho\|$ is the retained hit strength. If an apparatus retains oriented directions or source tags, those data are added to $\mathcal{H}_i^{\mathrm{hit}}$ explicitly. The receiver inference fiber is
 
@@ -182,7 +182,7 @@ $$
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7cdb17d11b9d0cd8)
+[View →](../../../../equation-mapping.html#corpus-equation-7cdb17d11b9d0cd8)
 
 and the receiver-hit entropy is
 
@@ -195,7 +195,7 @@ k_B\,\mathcal{H}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5e11552e3011c989)
+[View →](../../../../equation-mapping.html#corpus-equation-5e11552e3011c989)
 
 This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(T)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
@@ -233,7 +233,7 @@ E_{\mathcal Q,W},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7fa143c0847a4786)
+[View →](../../../../equation-mapping.html#corpus-equation-7fa143c0847a4786)
 
 where $\mathcal R_{\mathrm{eq}}$ records whether local thermodynamic equilibrium, detailed balance, or another thermalization condition has been derived, and $\mathcal O_{\mathrm{obs}}$ records how the temperature is measured, redshifted, or reconstructed. If $S_{\mathcal Q,W}$ is physical entropy and the derivative is stable inside the declared record, the temperature channel is
 
@@ -246,7 +246,7 @@ $$
 \right)_{\mathcal N,\mathcal V}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e50470a88034bb5c)
+[View →](../../../../equation-mapping.html#corpus-equation-e50470a88034bb5c)
 
 A kinetic temperature is a special limit of the same rule, not a separate ontology. It is available only when the accessible velocity or mode distribution has thermalized under the local interaction rules. For example, a Maxwell-Boltzmann comparison may be used only after the retained packet shows
 
@@ -256,7 +256,7 @@ f_{\mathcal Q}(\mathbf{v};\theta_{\text{sea}})
 f_{\mathrm{MB}}(\mathbf{v};T_{\mathrm{kin}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d05af14c09f7f759)
+[View →](../../../../equation-mapping.html#corpus-equation-d05af14c09f7f759)
 
 inside a declared tolerance. Without that ensemble measure or entropy-energy derivative, a high cadence, high internal energy, strong medium response, or local excitation is not yet a temperature.
 
@@ -278,7 +278,7 @@ E_{\mathcal{Q},W}(T)
 T_R S_{\mathcal{Q},W}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9e9e516ea1e74787)
+[View →](../../../../equation-mapping.html#corpus-equation-9e9e516ea1e74787)
 
 This is a diagnostic, not a new substrate property. In a closed isothermal comparison, the useful work extractable from the retained packet is bounded by the decrease of this same-record availability,
 
@@ -290,7 +290,7 @@ A_{\mathcal{Q},W}^{(T_R)}(T_i)
 A_{\mathcal{Q},W}^{(T_R)}(T_f)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3adfd7250e4ba0ba)
+[View →](../../../../equation-mapping.html#corpus-equation-3adfd7250e4ba0ba)
 
 up to declared control and boundary residuals. A packet that conserves $E_{\mathcal{Q},W}$ while increasing $S_{\mathcal{Q},W}$ has not lost energy. It has lost retained work availability in that comparison channel.
 
@@ -303,7 +303,7 @@ W_{\max}\!\left(\theta_W;\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
 \Delta E_{\mathrm{weight}}\!\left[\alpha:\theta_W\to R_f\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ca4951d25b4b8f31)
+[View →](../../../../equation-mapping.html#corpus-equation-ca4951d25b4b8f31)
 
 The value can change when the apparatus record contains which pressure side, molecule class, isotope channel, or other controllable distinction is present. That is not a psychological addition to physics. It is a different physical record and a different control/readout channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an entropy that claims to measure available work must therefore declare $\theta_W$, $\mathcal{C}^{\mathrm{ctrl}}_W$, and $R_f$ together.
 
@@ -316,7 +316,7 @@ $$
 W_{\max}\!\left(\theta_W(T);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2d244d05e174e24c)
+[View →](../../../../equation-mapping.html#corpus-equation-2d244d05e174e24c)
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this envelope must distinguish exposed gradients from shielded internal assembly energy. If the declared control class includes operations that can change shielding, write schematically
 
@@ -335,7 +335,7 @@ $$
 E_{\text{internal}}(A)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c57f5580363bf27d)
+[View →](../../../../equation-mapping.html#corpus-equation-c57f5580363bf27d)
 
 Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can raise an assembly's probe-channel leakage in the declared window, $\zeta_{\text{probe},0}$ is the initial probe-channel leakage, and $[x]_+=\max(x,0)$. If topological assembly protection forbids such leakage-raising operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the accessible de-shielding term.
 
@@ -350,7 +350,7 @@ $$
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-00d5e9889b634686)
+[View →](../../../../equation-mapping.html#corpus-equation-00d5e9889b634686)
 
 If the initial branch lies below that window, it has not supplied a positive scalar-mass reservoir for this work-availability comparison. Raising $\zeta_{\text{probe}}$ can expose internal energy, but the extraction path is still constrained by branch survival: an assembly de-shielded so far that it exits the mass map or dissociates has stopped being the same matter reservoir whose work availability was being counted.
 
@@ -370,7 +370,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-023b39cf30d1f321)
+[View →](../../../../equation-mapping.html#corpus-equation-023b39cf30d1f321)
 
 where $\rho_{\mathrm{in}}$ and $\rho_{\mathrm{out}}$ are retained spectral/angular records, not new ontological fluids. The entropy claim is physical only when this boundary record is the same one used for energy flux, internal work, heat, and observer readout.
 
@@ -390,7 +390,7 @@ $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{inside}}\le 0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-862813fe9924497e)
+[View →](../../../../equation-mapping.html#corpus-equation-862813fe9924497e)
 
 where both terms are computed from the same access window, coarse-graining, and boundary record. The first term may describe the maintained organization of a cell, reaction network, engineered refrigerator, or other open subsystem. The second term records the exported heat, lower-grade radiation, reaction byproducts, wake-boundary history, and environmental disorder that make the local organization possible.
 
@@ -411,7 +411,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7cefab91c3835353)
+[View →](../../../../equation-mapping.html#corpus-equation-7cefab91c3835353)
 
 The quantity peaks when a sharply organized coherent core coexists with substantial exported or surrounding incoherent entropy. Stable assemblies are therefore candidate local maxima or ridges of $\mathcal{C}_W$ under the second-law export constraint above. The Noether braid program can test this directly by asking whether phase-locked trajectory bundles sit on such ridges while the surrounding Noether sea and wake-boundary ledger pay the entropy cost.
 
@@ -429,7 +429,7 @@ $$
 \oint_{\mathrm{rev}}\frac{\delta Q_{\mathrm{rev}}}{T}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eb3ae6f3bd77fe38)
+[View →](../../../../equation-mapping.html#corpus-equation-eb3ae6f3bd77fe38)
 
 for the declared heat reservoirs, temperature scale, and reversible comparison class. Only after that integrability condition is available does the entropy difference
 
@@ -439,7 +439,7 @@ $$
 \int_{A}^{B}\frac{\delta Q_{\mathrm{rev}}}{T}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-427412577e15da0c)
+[View →](../../../../equation-mapping.html#corpus-equation-427412577e15da0c)
 
 become path-independent. In this chapter, a claim that "entropy broke the second law" must therefore specify which entropy is being used. If the Clausius integrability condition fails, the thermodynamic entropy used in that comparison was not well-defined in the first place.
 
@@ -455,7 +455,7 @@ P_{\text{cycle}}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de8aeecf345df1bf)
+[View →](../../../../equation-mapping.html#corpus-equation-de8aeecf345df1bf)
 
 where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $P_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$ is not a well-defined state function for that record.
 
@@ -471,7 +471,7 @@ p_\alpha=\frac{1}{\Omega}
 k_B\log\Omega
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-56ca9b5506deb8f2)
+[View →](../../../../equation-mapping.html#corpus-equation-56ca9b5506deb8f2)
 
 Thus the count is not licensed by cardinality alone. It also assumes the measure that gives the compatible microstates equal weight, usually through an isolated equilibrium comparison or another declared physical preparation. The macrostate partition is part of the claim. Changing the partition or the measure changes the entropy statement. A singleton partition over exact complete histories would assign zero Boltzmann entropy to every cell, but it would also erase the thermodynamic question. Useful Boltzmann entropy requires retained macrostates tied to measurable, controllable, or dynamically stable distinctions.
 
@@ -495,7 +495,7 @@ w_k
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d66a142244462fcd)
+[View →](../../../../equation-mapping.html#corpus-equation-d66a142244462fcd)
 
 and the effective outcome entropy is $-k_B\sum_k w_k\log w_k$. Entropy does not select which branch the actual complete microstate takes. The measure $\mu_T$ predicts the branch weights that any record-limited observer must assign before the missing path-history distinctions are recovered. This is the direct entropy handoff to Born-rule closure.
 
@@ -507,7 +507,7 @@ $$
 \mathrm{Tr}_{\bar A}\rho_{A\bar A}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cac11114d19667e3)
+[View →](../../../../equation-mapping.html#corpus-equation-cac11114d19667e3)
 
 with entropy
 
@@ -517,7 +517,7 @@ S_A(\theta)
 -k_B\,\mathrm{Tr}\!\left(\rho_A(\theta)\log\rho_A(\theta)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8864618cd932a12a)
+[View →](../../../../equation-mapping.html#corpus-equation-8864618cd932a12a)
 
 Even when the full comparison state is pure, reversible, or measure-preserving, $S_A$ can be nonzero because correlations with $\bar A$ have been excluded from the retained record. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an access-cut entropy: the same mathematical role must be recovered as coarse-graining over unresolved path-history, apparatus, boundary-wake, and Noether sea correlations that cross the declared cut.
 
@@ -532,7 +532,7 @@ E_{\Sigma}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-13793d1954c6ff5d)
+[View →](../../../../equation-mapping.html#corpus-equation-13793d1954c6ff5d)
 
 where vertices are retained roots on the two sides and an edge records that two roots share a compatible transmitter worldline segment. The record entropy across the cut is governed by the number of transmitter-history assignments compatible with the same boundary hit record,
 
@@ -549,7 +549,7 @@ G_{\mathrm{prov}}(\Sigma),
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dbca934e3fdd96a1)
+[View →](../../../../equation-mapping.html#corpus-equation-dbca934e3fdd96a1)
 
 The global record can remain pure or closed because $G_{\mathrm{prov}}$ is connected in the complete history, while the retained subregion is mixed because the edge cut has hidden the complementary provenance.
 
@@ -563,7 +563,7 @@ H_2(P)
 -\sum_i p_i\log_2 p_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-55d214c966975711)
+[View →](../../../../equation-mapping.html#corpus-equation-55d214c966975711)
 
 This has a precise compression interpretation: for any prefix-free code $\mathcal{C}$ that encodes symbols drawn from $P$, the average code length obeys
 
@@ -573,7 +573,7 @@ $$
 H_2(P)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-91a0fc328c7189d2)
+[View →](../../../../equation-mapping.html#corpus-equation-91a0fc328c7189d2)
 
 with block codes able to approach the bound under the usual coding assumptions. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not free-floating information. It is an entropy of a declared symbol record, model class, and decoding channel.
 
@@ -585,7 +585,7 @@ H_2(P,Q)
 -\sum_i p_i\log_2 q_i
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aa7fc6e93bb39f97)
+[View →](../../../../equation-mapping.html#corpus-equation-aa7fc6e93bb39f97)
 
 The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient. This is why next-symbol prediction and compression can be equivalent for a predictive coding apparatus while remaining an observer-level modeling statement. The entropy becomes physical only after the symbol carrier, probability source, encoder, decoder, training or update channel, and device/boundary cost are part of the same record.
 
@@ -619,7 +619,7 @@ s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \mathcal{R}_{\mathcal{Q}}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-efa0c673ea34bd29)
+[View →](../../../../equation-mapping.html#corpus-equation-efa0c673ea34bd29)
 
 Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{u}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary boundary-flux form.
 
@@ -641,7 +641,7 @@ s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \cdot\hat{\mathbf{n}}\,dA
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-abb650d46adaa80a)
+[View →](../../../../equation-mapping.html#corpus-equation-abb650d46adaa80a)
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
 
@@ -661,7 +661,7 @@ T
 \mathcal{R}_{\Pi,W}(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3a30bd457031e485)
+[View →](../../../../equation-mapping.html#corpus-equation-3a30bd457031e485)
 
 on a fixed coarse-graining and boundary convention. In words: observer-window entropy production equals the retained-history distinctions lost to escaping wakes plus the declared interior production and projection-residual terms. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.
 
@@ -689,7 +689,7 @@ $$
 -\epsilon_{\mathrm{fluc}}(W,\mathcal{Q},T_f-T_i)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bef0d330f181c4dd)
+[View →](../../../../equation-mapping.html#corpus-equation-bef0d330f181c4dd)
 
 Here $\Delta S_{\mathcal{Q},W}$ is the retained entropy change inside the window, $\Delta S_{\mathcal{Q},\partial W+\mathrm{env}}$ is the boundary and environmental entropy change assigned by the same record, $\mathcal{R}_{\mathcal{Q}}$ records changes in the retained coarse-graining or record set, and $\epsilon_{\mathrm{fluc}}$ allows finite-window statistical fluctuations. In the macroscopic thermodynamic regime, $\epsilon_{\mathrm{fluc}}$ is negligible for ordinary comparisons. In microscopic or short-time windows it is not.
 
@@ -716,7 +716,7 @@ O_W,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5da3c27369963180)
+[View →](../../../../equation-mapping.html#corpus-equation-5da3c27369963180)
 
 where $\mathcal{H}^{W}$ is retained path-history data, $\mathcal{B}^{(O)}(W)$ is observer-accessible boundary or apparatus record data, $\left.\mathcal{N}_{\mathrm{sea}}\right|_W$ is the resolved Noether sea state on the window, $O_W$ is the observer clock/ruler/readout state when an observer is part of the comparison, $\Pi_{\mathrm{eff}}$ is the effective projection, and $\mu_{\theta}$ is the conditional measure over unresolved deterministic histories.
 
@@ -735,7 +735,7 @@ dQ,\,
 \mathcal{P}_{\mathcal{Q},W}(\theta_W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-543128a06c7e474c)
+[View →](../../../../equation-mapping.html#corpus-equation-543128a06c7e474c)
 
 where all listed quantities are projections of the same $\theta_W$. If entropy is computed from one $\theta_W$, temperature from another, Born-style basin weights from a third, and flux from a fourth, the packet has not derived a closure. It has fitted separate descriptions.
 
@@ -762,7 +762,7 @@ f_{\mathrm{early}}
 \exp(-10^{123})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de56fe84878a628b)
+[View →](../../../../equation-mapping.html#corpus-equation-de56fe84878a628b)
 not proof that an external random draw selected the universe.
 
 ## Heat Death and Its Escapes
@@ -785,7 +785,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-204207c15eada109)
+[View →](../../../../equation-mapping.html#corpus-equation-204207c15eada109)
 
 for the same declared measure, coarse-graining, and access window. A mature same-record entropy cosmology requires $\mathcal{R}_{\mathrm{BB}}(\theta)\ll 1$ or an explicit reason why the comparison class is not admissible. Otherwise the theory has only renamed the circularity: records infer a low-entropy past, while the assumed low-entropy past is what made the records trustworthy.
 
@@ -806,7 +806,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ae0767b0c14ea807)
+[View →](../../../../equation-mapping.html#corpus-equation-ae0767b0c14ea807)
 
 with the denominator restricted to the retained incoming roots in the declared window. Equivalently, $\mathcal{K}$ is the local edge-connectivity fraction of $G_{\mathrm{prov}}$: it measures how many retained incoming roots share transmitter-worldline edges with neighboring receivers' roots. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea transmitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-transmitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are measure-suppressed rather than forbidden by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent transmitter-history coincidences, not only a memory snapshot. At this claim level, high-$\mathcal K$ fluctuations are treated as measure-suppressed rather than forbidden; forbiddance would require a separate theorem that no compatible transmitter-history assignment exists.
 
@@ -822,7 +822,7 @@ S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_{\mathrm{rec},0}+T_{\text{rec}})
 S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_{\mathrm{rec},0})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-152e11c0be2d33aa)
+[View →](../../../../equation-mapping.html#corpus-equation-152e11c0be2d33aa)
 
 is the entropy change associated with the candidate record, with $T_{\mathrm{rec},0}$ the start of the record-formation window. A strong record candidate satisfies
 
@@ -832,7 +832,7 @@ $$
 S_{\mathrm{lock}}>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-970ce7dd80e2198c)
+[View →](../../../../equation-mapping.html#corpus-equation-970ce7dd80e2198c)
 
 with $S_{\mathrm{lock}}$ fixed by the apparatus class and readout channel. This is not a collapse law. It is the requirement that the branch has exported enough unresolved apparatus/environment history that coherent reversal is no longer part of the retained measurement window.
 
@@ -846,7 +846,7 @@ k_B\log N-k_B\varepsilon_\mu,
 N\ge2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8e32d3ee892a905c)
+[View →](../../../../equation-mapping.html#corpus-equation-8e32d3ee892a905c)
 
 with $\varepsilon_\mu$ the declared measure/readout tolerance.
 
@@ -866,7 +866,7 @@ $$
 k_B\log(1/p_s)-\epsilon_s
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b97fdcb000af71bb)
+[View →](../../../../equation-mapping.html#corpus-equation-b97fdcb000af71bb)
 
 The inequality is not a new law of symbols. It states the burden that the same physical record defining success must also supply the entropy, heat, work, and boundary terms used to claim a cost.
 
@@ -885,7 +885,7 @@ k_B\log
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d4b9f11a3d394868)
+[View →](../../../../equation-mapping.html#corpus-equation-d4b9f11a3d394868)
 
 with $\mathcal{B}_{\partial\Omega}^{(O)}$ defined by retained boundary-wake labels readable by the same Physical Observer record. The local Clausius comparison becomes a residual or variation target:
 
@@ -898,7 +898,7 @@ T_U^{(O)}
 \mathcal{O}(k_B T_U^{(O)}\epsilon_{\mathrm{local}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-942866b57cc90932)
+[View →](../../../../equation-mapping.html#corpus-equation-942866b57cc90932)
 
 This is a recovery target, not a postulate. The proof fails if $S_{\partial\Omega}^{(O)}$, $T_U^{(O)}$, $dQ_{\partial\Omega}^{(O)}$, and the effective metric are assigned independent records.
 
@@ -915,7 +915,7 @@ s_{\mathrm{align}}(\theta)
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cba6c463de59bfe3)
+[View →](../../../../equation-mapping.html#corpus-equation-cba6c463de59bfe3)
 
 when the limit exists after boundary corrections. The required coefficient is area-normalized:
 
@@ -926,7 +926,7 @@ $$
 \frac{1}{4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2bef8565d46260ad)
+[View →](../../../../equation-mapping.html#corpus-equation-2bef8565d46260ad)
 
 This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
 
@@ -950,7 +950,7 @@ M_{p,u}
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9ff215aa6d15e556)
+[View →](../../../../equation-mapping.html#corpus-equation-9ff215aa6d15e556)
 
 where $\chi_u$ is the retained terminal-alignment handedness label and $(N_{s,u},M_{p,u})$ is the local self-hit and partner-hit root-ledger index. The $1/4$ coefficient is therefore a falsifiable statement about the per-patch admissible ledger multiplicity and the patch area $a_{\theta}$ in the accepted alignment units, not a coefficient to fit after the fact.
 

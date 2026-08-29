@@ -16,7 +16,7 @@ v_2 = c_f,
 v_3 \to c_f
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6d9fca1808c6ae6b)
+[View →](../../../../equation-mapping.html#corpus-equation-6d9fca1808c6ae6b)
 
 with binaries 2 and 3 becoming coplanar and collinear with binary 1 at alignment and precession ceasing in that limit.
 
@@ -41,7 +41,7 @@ Wr_c(\mathfrak B)
 \chi_{\mathrm{causal}}(a,b)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a5c6a23a0d22053f)
+[View →](../../../../equation-mapping.html#corpus-equation-a5c6a23a0d22053f)
 
 records signed causal-locus crossings or linkages in the retained branch record $\mathfrak B$. The indices $a$ and $b$ label oriented retained causal-locus strands or strand segments in the declared projection; $\chi_{\mathrm{causal}}(a,b)$ is $1$ only for an admissible same-record crossing or linkage event, and $0$ otherwise. The sign $\operatorname{sgn}(a,b)$ is defined only relative to the declared branch framing and is not defined at a fold, framing slip, or unresolved collision row.
 
@@ -167,7 +167,7 @@ R_\parallel = \frac{R_\perp}{\gamma_f},
 \beta_f = \frac{v_{\text{trans}}}{c_f}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-668398d306edf792)
+[View →](../../../../equation-mapping.html#corpus-equation-668398d306edf792)
 
 Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\vartheta$ with the translation axis $\hat z$. The central cross-section of the assumed oblate spheroidal envelope cut by that orbital plane has area
 
@@ -181,7 +181,7 @@ A(\vartheta)
 {\sqrt{\gamma_f^2\sin^2\vartheta + \cos^2\vartheta}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2e147f38e41c1867)
+[View →](../../../../equation-mapping.html#corpus-equation-2e147f38e41c1867)
 
 This area is maximal at $\vartheta = 0$ or $\vartheta = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\vartheta = \pi/2$, when the orbital normal is transverse to the motion.
 
@@ -202,7 +202,7 @@ A(\vartheta)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5de5c927503ea9c3)
+[View →](../../../../equation-mapping.html#corpus-equation-5de5c927503ea9c3)
 
 This expression does not by itself supply a restoring acceleration. Axialization follows only if the native constitutive dynamics independently show that increasing available cross-section lowers the same-record closure residual.
 
@@ -234,7 +234,7 @@ $$
 \text{post-lock reconfiguration or reopening}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6a4f429386339b1b)
+[View →](../../../../equation-mapping.html#corpus-equation-6a4f429386339b1b)
 
 The intended label flow along that ladder is:
 
@@ -302,7 +302,7 @@ $$
 \hat J_{\text{net}} \parallel -\hat{\mathbf V}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1ff3d0ff7ea22355)
+[View →](../../../../equation-mapping.html#corpus-equation-1ff3d0ff7ea22355)
 
 are natural candidates for a left/right or helicity-like pair.
 
@@ -327,7 +327,7 @@ $$
 \hat J_{\text{net}}\parallel\pm\hat{\mathbf V}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-689b6fb39a59aff1)
+[View →](../../../../equation-mapping.html#corpus-equation-689b6fb39a59aff1)
 
 is not enough to identify weak left/right exposure. The same record must also pass the row-local parity and gauge-control checks used in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the $\Delta_{\mathrm{WCT}}$ exposure record used in [Weak Mixing and CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). Until then, axial sign remains a candidate bridge variable rather than a weak-chirality derivation.
 

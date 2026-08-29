@@ -21,7 +21,7 @@ Delay differential equations (two-body, $c_f=1$):
   r_{12}=\big|X_1(T)-X_2(T_t)\big|
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-6f74f489f538e74a)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-6f74f489f538e74a)
   $$
   A_2(T)
   \;=\;
@@ -31,7 +31,7 @@ Delay differential equations (two-body, $c_f=1$):
   r_{21}=\big|X_2(T)-X_1(T_t)\big|
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-667f2aac178100cf)
+  [View →](../../../../../../equation-mapping.html#corpus-equation-667f2aac178100cf)
 - $W_{12}^{\mathrm{acc}}$ and $W_{21}^{\mathrm{acc}}$ are the corresponding transmitter-side acceleration weights. A root with a failed transmitter-side floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
 - Because the two line-of-action signs are opposite, symmetry implies $X_1(T)=-X_2(T)$ and $A_1(T)=-A_2(T)$ for all $T$ given symmetric initial data.
 

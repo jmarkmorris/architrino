@@ -240,7 +240,7 @@ $$
 \partial_{[\alpha}F_{\beta\gamma]}=0.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d231593255777b31)
+[View →](../../../../equation-mapping.html#corpus-equation-d231593255777b31)
 
 **Limiting tension.** The effective fields and magnetic sector are successful continuum variables, not primitive architrino accelerations or substances.
 
@@ -493,7 +493,7 @@ P(a\mid x,\lambda)P(b\mid y,\lambda),
 \lvert S_{\mathrm{CHSH}}\rvert\le 2,
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8fa7e41e818e3476)
+[View →](../../../../equation-mapping.html#corpus-equation-8fa7e41e818e3476)
 under the stated locality and measurement-independence assumptions.
 
 **Limiting tension.** Bell constrains causal factorization; it neither supplies an ontology nor licenses pair provenance followed by independent local readout.
@@ -528,7 +528,7 @@ A^\mu_{\mathrm{past}}+A^\mu_{\mathrm{future}}
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-01b8fbfc79b77ded)
+[View →](../../../../equation-mapping.html#corpus-equation-01b8fbfc79b77ded)
 
 **Limiting tension.** Its future-directed term and absorber boundary condition conflict with a causal-past master equation in absolute time.
 

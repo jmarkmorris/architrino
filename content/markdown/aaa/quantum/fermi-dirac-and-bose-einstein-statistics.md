@@ -53,7 +53,7 @@ $$
 \Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8c70ff41dec834b0)
+[View →](../../../../equation-mapping.html#corpus-equation-8c70ff41dec834b0)
 
 and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
 
@@ -88,7 +88,7 @@ $$
 \prod_{a=1}^{m}\epsilon_{\mathrm{ex}}(r_a).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7cd0aaa3cd8f79bc)
+[View →](../../../../equation-mapping.html#corpus-equation-7cd0aaa3cd8f79bc)
 If exactly $f$ of those rows are fermionic and the remaining rows have trivial bosonic sign, then $\epsilon_{\mathrm{ex}}(C)=(-1)^f$. An even number of fermionic rows therefore gives the symmetric composite sign $+1$, while an odd number gives $-1$. This is the observer-level exchange-composition target; it does not assert that the constituents lose identity or that a product sign alone guarantees condensation.
 
 That product law is not the general two-dimensional braid rule. For an Abelian anyon representation with single-anyon generator phase $e^{i\alpha}$, exchanging two identical composites containing $m$ matched anyons winds every constituent of one composite around every constituent of the other and gives
@@ -98,7 +98,7 @@ U_{\mathrm{comp}}(\sigma)
 e^{im^2\alpha}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-65a9428b7cdf5492)
+[View →](../../../../equation-mapping.html#corpus-equation-65a9428b7cdf5492)
 when the composites remain bound and the braid is adiabatic. The fermionic endpoint agrees with parity because $m^2\equiv m\pmod 2$ at $\alpha=\pi$; intermediate anyonic phases retain the $m^2$ dependence.
 
 The derivation burden is stricter than parity counting. The same retained composite record must show that whole-composite exchange preserves binding, returns the internal state to the same gauge class, keeps constituent overlap corrections below tolerance, and supplies the effective center-of-assembly state on which $P_+$ acts. At densities where the constituent wave or wake histories overlap strongly enough to expose their internal labels, ideal composite-boson behavior may fail. Atomic condensates, paired-electron channels, and massive bosonic assemblies therefore constrain this composition map independently of the planar photon-like route.
@@ -110,7 +110,7 @@ $$
 U(\sigma_a)=e^{i\alpha}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6f7c3ea33fafafc5)
+[View →](../../../../equation-mapping.html#corpus-equation-6f7c3ea33fafafc5)
 to a braid generator $\sigma_a$. The bosonic and fermionic cases are the endpoints $\alpha=0$ and $\alpha=\pi$, while intermediate phases are anyonic. Fractional-quantum-Hall interferometry has directly observed a fractional braiding phase ([Nakamura et al. 2020](https://doi.org/10.1038/s41567-020-1019-1)), so this is an observer-level constraint rather than an optional comparison.
 
 The planar-channel hypothesis must therefore distinguish two physical situations:
@@ -128,7 +128,7 @@ $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-16d7c673e31ee783)
+[View →](../../../../equation-mapping.html#corpus-equation-16d7c673e31ee783)
 
 For compact notation, let $\xi_{\mathrm{stat}}$ denote the statistics-classifying ratio: $\xi_{\mathrm{stat}}=\xi_q(0)$ when an admissible rest branch exists, and otherwise the direct axis ratio of the retained null-channel support. It never denotes the Lorentz moving-branch projection $\xi_q(v)/\xi_q(0)$. A boosted massive fermion may therefore satisfy $\xi_q(v)/\xi_q(0)\to0$ while its rest-envelope class and fermionic exchange row remain unchanged. A photon-like carrier with no admissible rest branch must instead earn the planar classification from its null-channel support and exchange holonomy.
 
@@ -137,7 +137,7 @@ $$
 0\le\xi_B<\xi_F\le1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-867964abee197d8d)
+[View →](../../../../equation-mapping.html#corpus-equation-867964abee197d8d)
 where $\xi_{\mathrm{stat}}\ge\xi_F$ is the calibrated volumetric regime and $\xi_{\mathrm{stat}}\le\xi_B$ is the calibrated planar-support regime. The intermediate window $\xi_B<\xi_{\mathrm{stat}}<\xi_F$ is unresolved by geometry alone. It is not automatically an anyonic sector: an anyonic classification additionally requires a two-dimensional non-contractible braid record and a measured nontrivial exchange holonomy. If a claimed elementary family crosses this window, closure requires either a theorem excluding stable retained branches there or an explicit exchange classification throughout it.
 
 The elementary fermion candidate regime has $\xi_{\mathrm{stat}}\ge\xi_F$. The rest envelope is oblate but still volumetric. The candidate planar coherent-channel regime has $\xi_{\mathrm{stat}}\le\xi_B$ along an intrinsic carrier-family continuation, or reaches a rest-chartless null endpoint whose support is independently shown to be planar. Composite-boson exchange is not classified by this axis ratio.
@@ -161,7 +161,7 @@ $$
 e^{i\alpha_{\mathrm{ex}}(\lambda)}=+1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-97e266b5c357c397)
+[View →](../../../../equation-mapping.html#corpus-equation-97e266b5c357c397)
 for the claimed fermion-to-planar-boson route, with all gauge-control, angular-momentum, stability, and event-ledger residuals evaluated on that same family. The first implication consumes the retained non-gauge ordered-frame row. The second must show why the ordered-frame obstruction disappears and why the remaining planar braid holonomy is trivial rather than anyonic. This co-variation is the actual geometry-side spin-statistics theorem target.
 
 ## Effective Exchange-State Contract
@@ -179,7 +179,7 @@ P_-
 \sum_{\sigma\in S_N}\operatorname{sgn}(\sigma)U_\sigma
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2dfe60cf8c3f09f2)
+[View →](../../../../equation-mapping.html#corpus-equation-2dfe60cf8c3f09f2)
 The Bose-Einstein and Fermi-Dirac comparison spaces are therefore
 $$
 \mathcal{H}_{\theta,+}^{(N)}
@@ -191,7 +191,7 @@ P_+\mathcal{H}_\theta^{\otimes N},
 P_-\mathcal{H}_\theta^{\otimes N}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3797a609f9dad969)
+[View →](../../../../equation-mapping.html#corpus-equation-3797a609f9dad969)
 The exchange rule is a statement about the effective quotient after inaccessible provenance has been compressed, not a claim that substrate identities disappear. Individual architrinos still retain path history and provenance; $P_\pm$ acts only after the apparatus and coarse-graining have made those labels unavailable to the observer-level state.
 
 The standard Slater-determinant construction is the first finite-$N$ benchmark for the fermionic side of this quotient. For one-particle states $\{\psi_i\}_{i=1}^N$, the observer-level comparison state is
@@ -202,7 +202,7 @@ $$
 \det\!\left[\psi_i(j)\right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c27ab1917437b99f)
+[View →](../../../../equation-mapping.html#corpus-equation-c27ab1917437b99f)
 This state changes sign under exchange and vanishes when two effective rows become identical, so it packages both antisymmetry and Pauli exclusion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this determinant is not substrate identity loss; it is the record-facing compression obtained after the apparatus cannot access individual architrino provenance.
 
 Two-electron atoms give a sharper energy benchmark because the Coulomb exchange integral separates the direct repulsion from the exchange contribution. The direct and exchange integrals are written here in the standard SI two-electron comparison form, with $\epsilon_0$ the vacuum permittivity (not the polarity unit $\epsilon$):
@@ -216,7 +216,7 @@ J_{ab}
 d^3r_1d^3r_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b5ee7bc93b4c92f9)
+[View →](../../../../equation-mapping.html#corpus-equation-b5ee7bc93b4c92f9)
 $$
 K_{ab}
 =
@@ -230,7 +230,7 @@ K_{ab}
 d^3r_1d^3r_2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f130aae00ec77bde)
+[View →](../../../../equation-mapping.html#corpus-equation-f130aae00ec77bde)
 The symmetric and antisymmetric spatial states split as $J_{ab}\pm K_{ab}$, with the fermionic spin sector supplying the compensating exchange symmetry. A useful exchange-energy recovery residual is therefore
 $$
 \mathcal{R}_{\mathrm{Slater}}(\theta)
@@ -244,7 +244,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6ce567e40f314b4e)
+[View →](../../../../equation-mapping.html#corpus-equation-6ce567e40f314b4e)
 Here $\Delta E_{ab}^{\mathrm{antisym}}$ and $\Delta E_{ab}^{\mathrm{sym}}$ are the $\mathbb{A}\mathbb{A}\mathbb{A}$-predicted antisymmetric-spatial (spin-triplet) and symmetric-spatial (spin-singlet) energies, compared against the standard $J_{ab}-K_{ab}$ and $J_{ab}+K_{ab}$ respectively; the split is by spatial exchange symmetry. This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
 The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether braid configurations with $\xi_{\mathrm{stat}}\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi_{\mathrm{stat}}\le\xi_B$. The exchange closure target is
@@ -259,7 +259,7 @@ $$
 \le 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-63822b0d5b43cbf8)
+[View →](../../../../equation-mapping.html#corpus-equation-63822b0d5b43cbf8)
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
 
 For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on records that also satisfy $\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}}$ with zero retune penalty in the same-record spinor-label pullback. This ties the effective exchange projection to the same non-gauge ordered-frame row instead of allowing the antisymmetric projector to be fitted after the fact.
@@ -278,7 +278,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2a0cf75ae6f72777)
+[View →](../../../../equation-mapping.html#corpus-equation-2a0cf75ae6f72777)
 where $T_{\mathrm{temp}}$ is thermodynamic temperature and $\mu_{\mathrm{chem}}$ is the chemical potential. The use of $T_{\mathrm{temp}}$ keeps temperature distinct from absolute time $T$.
 
 Let $N_E$ be the occupation count extracted from many-excitation record basins in an effective energy bin $E$. The native recovery target is not a separately fitted thermodynamic ensemble, but
@@ -290,7 +290,7 @@ $$
 \bar n_\sigma(E)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-66da337573f8a173)
+[View →](../../../../equation-mapping.html#corpus-equation-66da337573f8a173)
 under the same $\mu_{*,T_W}$ that supplies exchange-state weights, apparatus records, energy accounting, and repeated frequencies. For photons, the $\mu_{\mathrm{chem}}=0$ limit must also join the Gate C Planck-spectrum recovery. A successful projector calculation without this same-measure occupation law closes exchange symmetry but not Fermi-Dirac or Bose-Einstein statistics.
 
 ## Interfaces

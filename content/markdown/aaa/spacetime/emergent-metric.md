@@ -65,7 +65,7 @@ $$
 g^{\text{eff}}_{\mu\nu}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-076993b73a4321c2)
+[View →](../../../../equation-mapping.html#corpus-equation-076993b73a4321c2)
 
 The first arrow is the open constitutive problem. It carries the main closure burden: the Noether sea state must produce the clock, ruler, drift, and signal channels together. In observer-record language, this map is the $\Pi_{\mathrm{ADM}}$ projection consumed after it has been built from the shared record; listing $\Phi_{\text{eff}}$ and $\chi_{\text{sea}}$ on the first arrow marks intermediate constitutive fields, not independently fitted inputs. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
 
@@ -81,7 +81,7 @@ $$
 \frac{4\pi G_{\mathrm{eff}}\rho_{\mathrm{mat}}L^2}{3c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5396b604ccb5c746)
+[View →](../../../../equation-mapping.html#corpus-equation-5396b604ccb5c746)
 
 Thus ordinary density can be weakly visible to clocks and signal paths when it is integrated over planetary or stellar length scales, while meter-scale laboratory samples require much higher density or precision. The Earth core is thermally cold on a Planck-temperature comparison, but that fact is not the limiting variable for weak gravity. Its contribution to observer-level metric response comes from the rest-energy, pressure, stress, and exposed assembly ledger distributed over a large body, projected through the same Noether sea response map that supplies $\Phi_{\text{eff}}$, $\Gamma_N$, and $\chi_{\text{sea}}$.
 
@@ -92,7 +92,7 @@ $$
 =\mathbf{0}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-61834399155d385e)
+[View →](../../../../equation-mapping.html#corpus-equation-61834399155d385e)
 The constitutive variable that sources $\Phi_{\text{eff}}$ may therefore be an energy, stress, or RMS excitation record, but the force-like observer readout still comes from the spatial gradient of the shared effective potential. A model that equates gravity directly with "more temperature" fails this center-gradient check even before PPN coefficients are tested.
 
 ### Alternating-Flux Constitutive Candidate
@@ -107,7 +107,7 @@ $$
 \right\rangle_{\Delta T}^{1/2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-28ee266019bf0cc0)
+[View →](../../../../equation-mapping.html#corpus-equation-28ee266019bf0cc0)
 Here $\theta$ labels the shared candidate record being tested, $A_s$ denotes the branch-resolved wake amplitude from source segment $s$ — defined on the same retained causal root as the branch law and carrying the same-record transmitter-side acceleration weight and inverse-square factor $W^{\mathrm{acc}}_s/r_s^2$, not a bare $1/r$ or root-independent amplitude — and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
 Because the RMS factor is non-negative, the attractive weak-field branch requires a declared negative sign: $\mathcal K_{\mathrm{sea}}<0$ in the convention $\Phi_{\mathrm{eff}}=c_0^2\ln N<0$ near an ordinary mass source. Increasing the shared RMS excitation must then make $\Phi_{\mathrm{eff}}$ more negative monotonically on that branch. Without this sign and monotonicity condition, the candidate does not determine even the direction of the recovered weak-field acceleration.
@@ -126,7 +126,7 @@ ds_{\mathrm{eff}}^2
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#effective-metric-adm-cartan)
+[View →](../../../../equation-mapping.html#effective-metric-adm-cartan)
 
 Here $N$ is the clock-rate or lapse channel, $u^i_{\mathrm{sea,eff}}$ is medium drift, and $\gamma_{ij}^{\mathrm{eff}}$ is the spatial compliance channel built from the frame field $e^a{}_i$. In the GR-matching regime the effective connection is the Levi-Civita connection of $g^{\text{eff}}_{\mu\nu}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables rather than substrate ontology.
 
@@ -144,7 +144,7 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4fc11cc78bbfa139)
+[View →](../../../../equation-mapping.html#corpus-equation-4fc11cc78bbfa139)
 with $A$, $B_{ij}$, and $u^i_{\mathrm{sea,eff}}$ read from the same retained Noether sea state and Physical Observer record. In the local Noether sea rest frame, the photon-channel null condition $d\tau^2=0$ gives
 $$
 c_\gamma(\hat{\mathbf{k}},\mathcal{N}_{\mathrm{sea}})
@@ -158,7 +158,7 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})\hat k^i\hat k^j
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6e00dbc328030441)
+[View →](../../../../equation-mapping.html#corpus-equation-6e00dbc328030441)
 The weak homogeneous observer branch requires
 $$
 A\to1,
@@ -168,7 +168,7 @@ B_{ij}\to\delta_{ij},
 u^i_{\mathrm{sea,eff}}\to0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a560a0adc81e6f64)
+[View →](../../../../equation-mapping.html#corpus-equation-a560a0adc81e6f64)
 This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace. Every weak-field expansion about this branch is additionally conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics; that equilibrium predicate is an open closure item of the [Noether sea program](noether-sea.md), and the expansions below inherit it rather than establish it.
 
 As a form-level recovery, the same handoff already has the correct weak-field clock shape once the clock-channel potential has been matched to the Newtonian benchmark. In a weak, slow comparison window,
@@ -179,7 +179,7 @@ $$
 -\frac{\|\mathbf w\|^2}{2c_0^2},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-686bee199bdbc652)
+[View →](../../../../equation-mapping.html#corpus-equation-686bee199bdbc652)
 where $U\ge0$ is the positive Newtonian potential declared above and $\mathbf w$ is the clock group velocity through the local Noether sea. This reproduces the Newtonian-limit clock relation and the standard $g_{00}$ first-order structure as a comparison form. It is not yet coefficient-level GR closure: $\Phi_{\mathrm{eff}}=\Phi_N$, $G_{\mathrm{eff}}$, and any Einstein-equation analogue must still be derived from the same Noether sea response record that supplies $A$, $B_{ij}$, $c_{\text{eff}}$, and the photon channel.
 
 The retained weak-field coefficient map should therefore be expressed at the ADM/Cartan level before observable projections are evaluated. With
@@ -190,7 +190,7 @@ $$
 \varphi\equiv\frac{\Phi_{\text{eff}}}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3998b52bba7dc3d0)
+[View →](../../../../equation-mapping.html#corpus-equation-3998b52bba7dc3d0)
 and with $\Sigma^{\mathrm{tf}}_{\text{sea},ij}$ the retained trace-free Noether sea stress projection, the minimal coefficient scaffold is
 $$
 N
@@ -203,7 +203,7 @@ N
 +O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2167007e26378c1d)
+[View →](../../../../equation-mapping.html#corpus-equation-2167007e26378c1d)
 $$
 \gamma_{ij}^{\mathrm{eff}}
 =
@@ -218,7 +218,7 @@ h_{ij}
 +O(c_0^{-4},\epsilon_{\mathrm{LV}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-36fc405532a4696e)
+[View →](../../../../equation-mapping.html#corpus-equation-36fc405532a4696e)
 $$
 u^i_{\mathrm{sea,eff}}
 =
@@ -229,7 +229,7 @@ D_U w^i\frac{U}{c_0^2}
 \gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b8321393ecb536b5)
+[View →](../../../../equation-mapping.html#corpus-equation-b8321393ecb536b5)
 Here $w^i$ is the Noether sea drift relative to the comparison frame, $D_U$ and $D_{\mathrm{aniso}}$ are the isotropic and anisotropic drift-response coefficients, $U$ is the positive PPN potential, and $U^i{}_j$ is its standard anisotropic potential tensor. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record. The coefficient dictionary to $(\gamma_{\mathrm{PPN}},C_2^{(U)},\Xi_1,\ldots,\Xi_4)$ is given in [PPN Parameters](./ppn-parameters.md#admcartan-extraction-equations).
 
 A practical consistency check is that those channels must be projections of one shared record of the Noether sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
@@ -239,7 +239,7 @@ $$
 \Pi_{\mathrm{sig}}\theta
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aae5b2ebd004d717)
+[View →](../../../../equation-mapping.html#corpus-equation-aae5b2ebd004d717)
 denote the clock, ruler, and signal projections of that same record. Let $\mathcal{B}_{\mathrm{eff}}$ be the benchmark bundle returned by the candidate effective-metric map from those projections, and let $\mathcal{B}_{\mathrm{GR}}^{W}$ denote the GR/PPN benchmark bundle on $W$ for redshift, Shapiro delay, lensing, precession, two-way signal speed, and preferred-frame bounds. A compact metric-recovery residual is
 $$
 \mathcal{R}_{\mathrm{metric}}(\theta;W)
@@ -260,7 +260,7 @@ $$
 \lambda_{\mathrm{retune}}\mathcal{S}_{\mathrm{retune}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e4e8cdc584bd10dc)
+[View →](../../../../equation-mapping.html#corpus-equation-e4e8cdc584bd10dc)
 Here $\Sigma_W$ is the declared benchmark covariance, $\alpha_i$ are the preferred-frame parameters, and $\mathcal{S}_{\mathrm{retune}}(\theta)$ records whether separate parameter choices were used to pass different channels. The closure condition is
 $$
 \mathcal{R}_{\mathrm{metric}}(\theta;W)\le\epsilon_{\mathrm{metric}},
@@ -268,7 +268,7 @@ $$
 \mathcal{S}_{\mathrm{retune}}(\theta)=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-dc56bc079251de78)
+[View →](../../../../equation-mapping.html#corpus-equation-dc56bc079251de78)
 The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same Noether sea state and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
 
 ### Geodesic and Lensing Recovery Benchmarks
@@ -286,7 +286,7 @@ d\tau
 \sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#geodesic-proper-time-action)
+[View →](../../../../equation-mapping.html#geodesic-proper-time-action)
 
 and extremizing this observer-level action must give the same weak-field acceleration contribution used in the PPN bundle,
 $$
@@ -296,13 +296,13 @@ $$
 +O(c_0^{-2})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a35d6c93159ee4b3)
+[View →](../../../../equation-mapping.html#corpus-equation-a35d6c93159ee4b3)
 For null signal records,
 $$
 g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#photon-null-eikonal)
+[View →](../../../../equation-mapping.html#photon-null-eikonal)
 
 must match the eikonal path-time extremal of the Noether sea signal channel. In the point-mass weak-field limit, the recovered deflection target is
 $$
@@ -313,7 +313,7 @@ $$
 +O(c_0^{-4})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#shapiro-lensing-ppn)
+[View →](../../../../equation-mapping.html#shapiro-lensing-ppn)
 
 so the GR limit $\gamma_{\mathrm{PPN}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
 
@@ -329,7 +329,7 @@ ds_{\mathrm{eff}}^2
 \left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)h_{ij}dx_{\mathrm{eff}}^i dx_{\mathrm{eff}}^j
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-93c0079533adc34e)
+[View →](../../../../equation-mapping.html#corpus-equation-93c0079533adc34e)
 
 Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
 
@@ -339,7 +339,7 @@ $$
 \frac{\Phi_{\mathrm{dyn}}+\Psi_{\mathrm{sp}}}{2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-1065484b1bf719c3)
+[View →](../../../../equation-mapping.html#corpus-equation-1065484b1bf719c3)
 
 The equality target is therefore
 
@@ -354,7 +354,7 @@ $$
 O(\epsilon_{\mathrm{lens}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-26f4bcea5c297eff)
+[View →](../../../../equation-mapping.html#corpus-equation-26f4bcea5c297eff)
 
 equivalently $\gamma_{\mathrm{PPN}}\equiv\Psi_{\mathrm{sp}}/\Phi_{\mathrm{dyn}}\to1$ in the weak-field lensing regime. A scalar force or medium-response correction that appears only in the clock/lapse channel accelerates matter but under-deflects light. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ response must project the same Noether sea state into the lapse and spatial-compliance channels so that rotation curves, hydrostatic mass, time delay, and lensing consume one effective metric.
 
@@ -383,7 +383,7 @@ $$
 \lambda_{\mathrm{shared}}\mathcal{S}_{\mathrm{retune}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ab2a6181d314c2da)
+[View →](../../../../equation-mapping.html#corpus-equation-ab2a6181d314c2da)
 
 This residual belongs to the effective-metric closure program, not to dark-sector ontology by itself. It is the condition that lets a medium-response explanation of galaxy or cluster dynamics remain compatible with the same lensing map.
 
@@ -408,7 +408,7 @@ d_{\mathrm{cone}}
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-34c260c43d4c592a)
+[View →](../../../../equation-mapping.html#corpus-equation-34c260c43d4c592a)
 where $\mathcal{R}_{\mathrm{Cauchy}}^{(r)}$ records failure of the declared channel to share the predictive Cauchy evolution used by the same observer-level metric record. In the validated weak homogeneous photon regime, this residual includes the requirement that the two physical polarization branches share the same free-space characteristic cone up to the birefringence tolerance routed through [Failure Criteria](../validation/failure-criteria.md#operational-null-result-ledger).
 
 This remains a closure target rather than substrate ontology. If $\mathcal{R}_{\mathrm{char}}$ is small only because the photon, clock, ruler, or stress channels use different fitted records, the metric has not been recovered as a constitutive output of the Noether sea.
@@ -422,7 +422,7 @@ $$
 \mathcal{R}_{\mathrm{spin\to metric}}(\theta;W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-aaab9d9dfdbdc067)
+[View →](../../../../equation-mapping.html#corpus-equation-aaab9d9dfdbdc067)
 with $\mathcal{R}_{\mathrm{spin\to metric}}$ defined in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). This does not add spinor ontology to the metric. It states when fermion matter records are mature enough to be consumed by the metric constitutive map without importing weak handedness or spin as unexplained effective labels.
 
 The same-record condition is part of the metric claim. A fermion stress channel cannot pass metric compatibility by combining one branch for inertial response, another branch for spinor closure, and a third branch for weak exposure; the retained row that supplies the ordered-frame spinor label must also satisfy the row-local gauge-control and angular-momentum residuals consumed by $\mathcal{R}_{\mathrm{spin\to metric}}$.
@@ -438,7 +438,7 @@ $$
 G_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#poisson-einstein-weak-gravity)
+[View →](../../../../equation-mapping.html#poisson-einstein-weak-gravity)
 
 not as substrate curvature of the Euclidean void. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ weak-field translation, the speed slot is supplied by the recovered homogeneous observer-channel speed $c_0$, the right-hand side is interpreted through matter assemblies and Noether sea stress, and the left-hand side is the observer-level metric summary reconstructed from clock, ruler, and signal channels.
 
@@ -452,7 +452,7 @@ ds^2
 +g_3(\zeta,\vartheta)d\phi^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-789ca5523b0e74cb)
+[View →](../../../../equation-mapping.html#corpus-equation-789ca5523b0e74cb)
 where $(\zeta,\vartheta,\phi)$ are local effective-chart coordinates, and $f,g_1,g_2,g_3$ encode the observer-level response of clocks, rulers, and signal paths. The symbols $\zeta$ and $\vartheta$ do not rename the Noether braid envelope ratio $\xi$ or the mollifier width $\eta$. These coefficients are not primitive geometry. They are closure targets to be derived from Noether sea density, strain, alignment, and deformation.
 
 The useful GR analogy is therefore limited but important:
@@ -486,7 +486,7 @@ S(T),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}
 g_{\mu\nu}^{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8e194ba5b53c70fa)
+[View →](../../../../equation-mapping.html#corpus-equation-8e194ba5b53c70fa)
 and the residual
 $$
 \mathcal{R}_{\mathrm{hydro}\to g}(\theta)
@@ -500,7 +500,7 @@ g_{\mu\nu}^{\mathrm{eff}}(\theta)
 }{\epsilon_g}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9f059dcb6bf2a033)
+[View →](../../../../equation-mapping.html#corpus-equation-9f059dcb6bf2a033)
 This residual is not a new gate; it states the existing constitutive burden in a form that separates collective-mode recovery from microscopic derivation.
 
 This does not license dismissing low-energy quantized-metric calculations. In the long-distance regime, the effective-field-theory treatment of GR separates unknown high-energy local terms from calculable infrared corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve that result as an observer-level recovery benchmark: the microscopic account may differ, but the weak-field constitutive record must reproduce the same long-distance quantum correction when its variables are coarse-grained into the effective metric description.
@@ -529,7 +529,7 @@ dQ_{\partial\Omega}^{(O)}(\theta)
 T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-64e42d358483a2dd)
+[View →](../../../../equation-mapping.html#corpus-equation-64e42d358483a2dd)
 and
 $$
 \mathcal{R}_{\mathrm{thermo}}(\theta)
@@ -551,7 +551,7 @@ T_U^{(O)}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d67a57d835cabef0)
+[View →](../../../../equation-mapping.html#corpus-equation-d67a57d835cabef0)
 
 The local-horizon gate is $\mathcal{R}_{\mathrm{thermo}}(\theta)\le\epsilon_{\mathrm{thermo}}$ in the equilibrium weak-field comparison regime, with the same $\theta$ also passing the ADM/Cartan and PPN gates below. If the residual can be made small only by assigning independent entropy, temperature, and stress records to each patch, then the equation-of-state analogy has not become a native closure. If it can be made small for all local horizon patches while local observer-level conservation holds, the Jacobson route supplies a proof scaffold for recovering an effective Einstein equation without treating the Euclidean void as curved.
 
@@ -566,7 +566,7 @@ S_{\partial\Omega}^{(O)}(\theta;W)
 k_B\log\mathcal{N}_{\partial\Omega}^{(O)}(\theta;W)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a239ed0104ddcef4)
+[View →](../../../../equation-mapping.html#corpus-equation-a239ed0104ddcef4)
 The area-scaling target is not imposed as ontology. It is the recoverable limit
 $$
 \frac{\partial S_{\partial\Omega}^{(O)}}{\partial A_{\partial\Omega}^{\mathrm{eff}}}
@@ -574,7 +574,7 @@ $$
 \frac{k_B}{4A_{\text{align}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2e393a3764cb2c2b)
+[View →](../../../../equation-mapping.html#corpus-equation-2e393a3764cb2c2b)
 where $A_{\partial\Omega}^{\mathrm{eff}}$ is the observer-level patch area and $A_{\text{align}}$ is the alignment-area scale used in the black-hole entropy target. The local temperature comparison is
 $$
 T_U^{(O)}
@@ -586,7 +586,7 @@ a_O^2
 \gamma_{ij}^{\mathrm{eff}}a_O^i a_O^j
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cbe51d89696051e8)
+[View →](../../../../equation-mapping.html#corpus-equation-cbe51d89696051e8)
 with $a_O^i$ extracted from the same observer-channel metric record. The flux projection must then agree with the effective stress-energy flux computed from that record, and the local conservation residual
 $$
 \mathcal{R}_{E,\partial\Omega}^{(O)}(\theta;W)
@@ -601,7 +601,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6c3ae013b787a139)
+[View →](../../../../equation-mapping.html#corpus-equation-6c3ae013b787a139)
 must be small on the same windows. Thus the local-horizon pass condition is not only $\mathcal{R}_{\mathrm{thermo}}\le\epsilon_{\mathrm{thermo}}$, but also $\mathcal{R}_{E,\partial\Omega}^{(O)}\le\epsilon_E$ and the weak-field ADM/Cartan gates for the same $\theta$. A concrete simulation protocol for this target is [Thermodynamic Residual](../validation/simulations/thermodynamic-residual.md).
 
 #### Native Shared-Record Variation Target
@@ -620,7 +620,7 @@ O_W,
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-06dc68db9ed9ded8)
+[View →](../../../../equation-mapping.html#corpus-equation-06dc68db9ed9ded8)
 Here $\mathcal{H}_{\Omega}^{W}$ is the retained path-history data on the window, $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the observer-accessible boundary-wake record, $\left.\mathcal{N}_{\mathrm{sea}}\right|_{\Omega,W}$ is the locally resolved Noether sea state, $O_W$ is the observer's clock, ruler, and readout state on the window, $\Pi_{\mathrm{eff}}$ is the projection to the observer-level fields $(N,u^i_{\mathrm{sea,eff}},\gamma_{ij}^{\mathrm{eff}},T_{\mu\nu}^{\mathrm{eff}})$, and $\mu_{\Omega,\theta}$ is the conditional measure over unresolved deterministic histories. This tuple is not a new substrate object. It only names the record that must supply entropy, temperature, flux, and effective metric data together.
 
 Let $\delta_\ell$ denote an admissible local-horizon perturbation that keeps the observer, window, projection map, and comparison regime fixed while varying the resolved Noether sea state and boundary flux through the patch. The native closure target is
@@ -638,7 +638,7 @@ $$
 \mathcal{O}(\epsilon_{\mathrm{local}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bf180429d2f97e17)
+[View →](../../../../equation-mapping.html#corpus-equation-bf180429d2f97e17)
 Equivalently, $\delta_\ell Q_{\partial\Omega}^{(O)}=T_U^{(O)}\delta_\ell S_{\partial\Omega}^{(O)}+\mathcal{O}(k_B T_U^{(O)}\epsilon_{\mathrm{local}})$, with $S_{\partial\Omega}^{(O)}=k_B\log|\mathcal{B}_{\partial\Omega}^{(O)}|$. The error term collects declared local-gradient, finite-window, and record-coarse-graining residuals; it may not hide a second entropy record, a second stress record, or a separately tuned temperature.
 
 The first proof step is to show that the logarithmic boundary-label count admits an area density on the observer-level horizon patch:
@@ -660,7 +660,7 @@ dA_{\mathrm{eff}}(x_{\mathrm{eff}})
 \frac{1}{4A_{\text{align}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-12663a44df473f84)
+[View →](../../../../equation-mapping.html#corpus-equation-12663a44df473f84)
 in the equilibrium weak-field limit. The proof fails if the distinguishable boundary-wake count scales with unresolved interior volume or arbitrary history length after the effective area is fixed, if $T_U^{(O)}$ is not extracted from the same observer-channel acceleration that defines $A_{\partial\Omega}^{\mathrm{eff}}$, if $dQ_{\partial\Omega}^{(O)}$ uses a stress tensor not projected from $\theta_{\Omega,O,W}$, or if the same record cannot also satisfy weak-field ADM/Cartan recovery.
 
 A more explicit reduction is the boundary-factorization theorem target. Let $\mathcal{P}_{\partial\Omega}$ be a patch decomposition of the observer-level horizon surface with
@@ -674,7 +674,7 @@ a_{\theta}A_{\text{align}}
 P_a\in\mathcal{P}_{\partial\Omega}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d256e08e80a780a7)
+[View →](../../../../equation-mapping.html#corpus-equation-d256e08e80a780a7)
 where $a_{\theta}$ is the derived dimensionless patch-area normalization for the retained record. The coefficient cannot be interpreted as a literal independent one-patch count: $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, not the cardinality of a finite set. The coherent target is an area-normalized block entropy density. For a connected patch block $U\subseteq\mathcal{P}_{\partial\Omega}$, let $\mathcal{L}_U(\theta_{\Omega,O,W})$ be the joint retained boundary-wake label set on $U$ after fixing the observer record and the edge data to the accuracy declared by $\epsilon_{\mathrm{local}}$. The local aligned-label density is
 $$
 s_{\mathrm{align}}(\theta_{\Omega,O,W})
@@ -686,7 +686,7 @@ s_{\mathrm{align}}(\theta_{\Omega,O,W})
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cc5176b20f81a9de)
+[View →](../../../../equation-mapping.html#corpus-equation-cc5176b20f81a9de)
 when the limit exists after boundary corrections. The locality part of the theorem target is
 $$
 \log\left|
@@ -700,7 +700,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-eda386d9c5d781c2)
+[View →](../../../../equation-mapping.html#corpus-equation-eda386d9c5d781c2)
 where the correction records edge and finite-correlation effects between adjacent patches. The normalization part is then the aligned-label statement
 $$
 \frac{s_{\mathrm{align}}(\theta_{\Omega,O,W})}
@@ -709,7 +709,7 @@ $$
 \frac{1}{4}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f4026a3bc1a04553)
+[View →](../../../../equation-mapping.html#corpus-equation-f4026a3bc1a04553)
 Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal Family-A alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
 ## Refraction vs. Curvature
@@ -738,7 +738,7 @@ $$
 u^i_{\mathrm{sea,eff}}=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec70e479f1d935bd)
+[View →](../../../../equation-mapping.html#corpus-equation-ec70e479f1d935bd)
 with observer-channel speed $c_0=c_{\text{eff}}(\infty)$. The weak-field target is
 $$
 N(x_{\mathrm{eff}}^k)
@@ -747,7 +747,7 @@ N(x_{\mathrm{eff}}^k)
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99240e6ba24f92ab)
+[View →](../../../../equation-mapping.html#corpus-equation-99240e6ba24f92ab)
 $$
 \gamma_{ij}^{\mathrm{eff}}(x_{\mathrm{eff}}^k)
 =
@@ -757,7 +757,7 @@ $$
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c03f96afd2912f55)
+[View →](../../../../equation-mapping.html#corpus-equation-c03f96afd2912f55)
 
 Equivalently, using $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ in the observer-sector metric,
 $$
@@ -767,7 +767,7 @@ g^{\text{eff}}_{00}(x_{\mathrm{eff}}^k)
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b4f19dea6bc22a16)
+[View →](../../../../equation-mapping.html#corpus-equation-b4f19dea6bc22a16)
 $$
 g^{\text{eff}}_{ij}(x_{\mathrm{eff}}^k)
 =
@@ -777,14 +777,14 @@ g^{\text{eff}}_{ij}(x_{\mathrm{eff}}^k)
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-423827ef9e7e6d38)
+[View →](../../../../equation-mapping.html#corpus-equation-423827ef9e7e6d38)
 
 The native Noether sea delay factor remains
 $$
 \chi_{\text{sea}}(\mathbf X,T)\equiv \frac{c_f}{c_{\text{eff}}(\mathbf X,T)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-24f2d1e988b9a328)
+[View →](../../../../equation-mapping.html#corpus-equation-24f2d1e988b9a328)
 After projection into the effective chart, PPN time-of-flight comparisons normalize by the homogeneous observer speed:
 $$
 \frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^k)}
@@ -795,13 +795,13 @@ $$
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-27e8cb6647a21929)
+[View →](../../../../equation-mapping.html#corpus-equation-27e8cb6647a21929)
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
 t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}\,ds_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-365cb6acc6ef920c)
+[View →](../../../../equation-mapping.html#corpus-equation-365cb6acc6ef920c)
 
 This is the concrete first-order realization of
 $$
@@ -812,7 +812,7 @@ $$
 g^{\text{eff}}_{\mu\nu}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bddb3dd9e98a72b3)
+[View →](../../../../equation-mapping.html#corpus-equation-bddb3dd9e98a72b3)
 with $\gamma_{\mathrm{PPN}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
 ## Closure Program Interface (metric constitutive map)
@@ -826,7 +826,7 @@ $$
 g^{\text{eff}}_{\mu\nu}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-bddb3dd9e98a72b3-2)
+[View →](../../../../equation-mapping.html#corpus-equation-bddb3dd9e98a72b3-2)
 
 Distribute proof obligations as:
 - constitutive metric form and observer map: **this chapter**,
@@ -852,7 +852,7 @@ u^i_{\mathrm{sea,eff}}=0,
 N=\Omega(n,\lambda)\xi
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a513771b431dbf92)
+[View →](../../../../equation-mapping.html#corpus-equation-a513771b431dbf92)
 
 Here $\xi$ is the Noether braid envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
 
@@ -865,7 +865,7 @@ c_0^2\ln\!\big(\Omega(x_{\mathrm{eff}}^i)\xi(x_{\mathrm{eff}}^i)\big),
 N(x_{\mathrm{eff}}^i)=e^{\Phi_{\text{eff}}(x_{\mathrm{eff}}^i)/c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-773a465df978f1bd)
+[View →](../../../../equation-mapping.html#corpus-equation-773a465df978f1bd)
 
 The $c_0^2$ prefactor calibrates the observer-sector potential; in the weak homogeneous branch, the residual between the primitive wake speed $c_f$ and the measured limiting speed $c_0$ is what operationally defines $\epsilon_{\mathrm{LV}}$ — the two agree up to $O(\epsilon_{\mathrm{LV}}c_0)$ by that definition, as a residual bounded by the Lorentz-violation budget rather than an asserted derivation.
 
@@ -876,7 +876,7 @@ g^{\text{eff}}_{00}=-N^2,
 g^{\text{eff}}_{ij}=\Omega^2h_{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-e49b881fd1df75f9)
+[View →](../../../../equation-mapping.html#corpus-equation-e49b881fd1df75f9)
 
 This subclass turns the first-order shape response into a sharp geometry-side closure target. Matching the standard positive-potential PPN rows gives
 $$
@@ -891,7 +891,7 @@ N
 +O(c_0^{-4}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ac5b81fe5cacbd0e)
+[View →](../../../../equation-mapping.html#corpus-equation-ac5b81fe5cacbd0e)
 Because $N=\Omega\xi$, the same record must therefore satisfy
 $$
 \xi
@@ -900,7 +900,7 @@ $$
 +O(c_0^{-4}).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c44d1eb4221c566e)
+[View →](../../../../equation-mapping.html#corpus-equation-c44d1eb4221c566e)
 Thus $\gamma_{\mathrm{PPN}}=1$ is equivalent at first order to $\xi=1-2U/c_0^2+O(c_0^{-4})$ in this ADM subclass. The asymptotic condition is $\xi\to1$ as $U\to0$; it does not erase the first-order response that carries $\gamma_{\mathrm{PPN}}$. A native braid-envelope derivation of this response would determine $\gamma_{\mathrm{PPN}}$ rather than fit it.
 
 For a slowly moving test assembly in a stationary medium, the dominant connection piece is
@@ -914,7 +914,7 @@ $$
 \xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-4ac6e5b928f6972f)
+[View →](../../../../equation-mapping.html#corpus-equation-4ac6e5b928f6972f)
 Using $dx_{\mathrm{eff}}^0/dt_{\mathrm{eff}}\approx c_0$, the spatial geodesic equation gives
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
@@ -924,7 +924,7 @@ $$
 -\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-60769808bf61c478)
+[View →](../../../../equation-mapping.html#corpus-equation-60769808bf61c478)
 Hence, retaining $\xi=1+O(U/c_0^2)$ on the declared weak-field branch,
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
@@ -934,7 +934,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f80bc28ba0203090)
+[View →](../../../../equation-mapping.html#corpus-equation-f80bc28ba0203090)
 which is the Newtonian limit.
 
 PPN extraction for this constitutive subclass is defined canonically in [ppn-parameters](./ppn-parameters.md#ppn-parameters-and-the-euclidean-anchor), including the full $g_{00}$/$g_{ij}$ expansions, preferred-frame leakage map, and weak-field closure vector.

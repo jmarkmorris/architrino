@@ -218,4 +218,54 @@ Plainly: all members travel around the same circle, but they take turns speeding
 
 The proof burden for the ring hypothesis is a complete delayed-root calculation with zero radial and tangential residual throughout the proposed period, followed by unconstrained perturbations of position, speed, phase, and retained history, including departures from the plane. A simulation that pins members to the circle cannot establish free-space stability. Failure of the residual test rejects a specific profile, not every variable-speed ring. Promotion targets: the circular branch discussion in [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md) and the assembly configuration discussion in [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), only after the corresponding evidence burden closes.
 
-**Next artifact:** derive and evaluate the complete-history circular compatibility residual for the alternating 2:2 time-shifted family, using the existing 1:1 super-field-speed balance as a separate reference case; attempt no stability verdict before an actual balance solution is established.
+### Recommended 3:3 Generalization: Three-Dimensional Orthogonal-Plane Weave
+
+**[derived geometry and taxonomy]** The intended $3{:}3$ target is not the planar alternating B1.3 hexagon. Let the three binary-plane normals $\hat{\mathbf n}_a$, $a\in\{1,2,3\}$, form an orthonormal frame, and choose an oriented orthonormal pair $(\hat{\mathbf e}_{a1},\hat{\mathbf e}_{a2})$ in each plane. Define
+
+$$
+\mathbf d_a(T)
+=
+R\left[
+\cos\theta_a(T)\hat{\mathbf e}_{a1}
++
+\sin\theta_a(T)\hat{\mathbf e}_{a2}
+\right],
+\qquad
+\theta_a(T)=\Omega T+\frac{2\pi(a-1)}{3},
+$$
+
+and place the polarity-conjugate endpoints at
+
+$$
+\mathbf X_{a,+}(T)=\mathbf C+\mathbf d_a(T),
+\qquad
+\mathbf X_{a,-}(T)=\mathbf C-\mathbf d_a(T).
+$$
+
+This is an equal-radius, common-frequency, phase-separated A1.2 locus; imposing one circulation sense and exact cyclic binary equivalence selects its A2-compatible symmetric sublocus. Each binary remains an antipodal circular pair, but the three circles occupy mutually orthogonal planes. Pairwise geometry generally changes through the cycle, so the assembly is a genuinely three-dimensional periodic weave rather than one rigid planar ring. A coordinate comparison showing that the proposed worldlines do not satisfy the A1.2 relations would falsify this taxonomy identification.
+
+Plainly: each neutral pair runs around its own great circle, with the three circles oriented like the $xy$, $yz$, and $zx$ planes. The six points continually reshape in three dimensions even though every individual path is circular.
+
+**[derived exclusion of the tempting rigid alternative]** A regular octahedron rigidly co-rotating about its body diagonal has two staggered triangular rings at fixed heights $\pm h$ and is the cyclic-symmetric A2/B1 interior overlap. In the polarity-segregated assignment, every same-ring and same-transmitter hit has zero axial component, while every opposite-ring hit has an axial component toward the other ring. The canonical acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ is nonnegative on every admitted simple root, so adding super-field-speed partner or self roots cannot cancel that one-signed axial sum. The rigid two-ring chart therefore cannot supply its required zero axial acceleration for $h>0$; caustic or collision events remain outside this simple-root statement. An admitted root with a negative canonical acceleration weight or a nonzero axial same-ring/self line of action would falsify the extension.
+
+Plainly: the visibly three-dimensional spinning octahedron is not the promising version. Its upper and lower rings are always pulled together, and the extra self-hits available above field speed stay within each ring plane. The orthogonal-plane weave avoids organizing the six paths into those permanently separated polarity planes.
+
+**[recommended bounded search; no balance or stability claim]** For $\beta_f=\Omega R/c_f$, the prescribed acceleration of each endpoint is $-\Omega^2(\mathbf X_{a,\sigma}-\mathbf C)$. Evaluate the complete six-worldline causal-root ledger over one full period and require the vector residual
+
+$$
+\mathcal R_{a,\sigma}(T)
+=
+\mathbf A^{\mathrm{ME}}_{a,\sigma}(T)
++
+\Omega^2\left[\mathbf X_{a,\sigma}(T)-\mathbf C\right]
+=
+\mathbf0
+$$
+
+for every endpoint and every phase. Use $\beta_f=3.070356625390253$ only as a first uncapped-model scan seed: the antipodal partner and self-root rows are inherited geometrically from the binary benchmark, but the four cross-binary worldlines add time-dependent three-dimensional contributions and may move or destroy its tangential zero. A single-phase cancellation is insufficient; root identities, Jacobian floors, radial and two transverse residuals, and the maximum full-period residual must all be reported. Only after acceleration balance exists should position, phase, speed, plane-normal, and retained-history perturbations be tested.
+
+Plainly: the binary result supplies a useful starting cadence, not a six-body solution. The Master Equation must reproduce the entire deforming three-dimensional motion at every point in its cycle before stability has a referent.
+
+**[speculation; later family question]** The natural $N>3$ extension is not a planar odd-$N$ ladder. It replaces the orthogonal triad of binary-plane normals by a declared symmetric set of $N$ unoriented axes in three-dimensional space. Because only three axes can be mutually orthogonal, $N=4$ and higher require a different symmetry class, such as tetrahedrally or icosahedrally distributed axes, and should remain assembly hypotheses rather than new Noether-braid types until one exact coordinate family and a complete residual obligation are chosen. A retained $3{:}3$ branch would motivate that taxonomy work; it does not establish it.
+
+**Next artifact:** author an independent prescribed-history evaluator for the six worldlines of the zero-offset A2-compatible A1.2 locus and scan one complete phase period around the binary seed in the uncapped Master Equation, reporting the complete root ledger and the radial plus two transverse residuals. Keep the planar B1.3 hexagon and rigid two-ring octahedron only as analytically bounded controls; defer any $N>3$ taxonomy proposal until the three-dimensional $3{:}3$ residual is independently checked.

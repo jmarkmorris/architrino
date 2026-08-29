@@ -8,8 +8,7 @@ import {
   EQUATION_MAPPING_PAGE_PATH,
   createEquationMappingRegistryApi,
 } from "../src/apps/equation-mapping/EquationMappingRegistry.js";
-
-const EQUATION_LINK_LABEL = "Explore this equation in Equation Mapping";
+import { EQUATION_LINK_LABEL } from "./build-equation-mapping-corpus.mjs";
 
 function countOccurrences(text, target) {
   let count = 0;

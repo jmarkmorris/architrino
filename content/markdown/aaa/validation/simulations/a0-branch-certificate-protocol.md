@@ -55,7 +55,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4b5f8d0c47ae2134)
+[View →](../../../../../equation-mapping.html#corpus-equation-4b5f8d0c47ae2134)
 Tier 0 may compute only part of this surface. The row must still emit every component. Missing later-tier components use explicit `not_computed_in_tier0` status, null value, null tolerance when no tolerance exists yet, a promotion role, and a note that names the tier responsible for computing the entry.
 
 ### Self-Hit Energy And Action-Spacing Order
@@ -71,7 +71,7 @@ J_{\min}
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e80a6a39747b59e2)
+[View →](../../../../../equation-mapping.html#corpus-equation-e80a6a39747b59e2)
 
 On the same active records the certificate must also report the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ on its certified floor or bounded interval. It must report the receiver-side factor $D_r=1-\mathbf V_{o'}(T)\cdot\hat{\mathbf r}_{o'j}(T;T_0)/c_f$ separately for signed root playback. A healthy transversality floor $J_{\min}$ alone does not certify the branch's acceleration or action contribution.
 
@@ -86,7 +86,7 @@ $$
 \mathbf{C}_{A_0}(T)=\frac{1}{6}\sum_{a\in A_0}\mathbf X_a(T)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-e6bd9714da63ff7a)
+[View →](../../../../../equation-mapping.html#corpus-equation-e6bd9714da63ff7a)
 define
 $$
 D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
@@ -98,7 +98,7 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 \right\rangle_{P_{\mathbf{k}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-56322f39346f96b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-56322f39346f96b8)
 $$
 Q^{ij}_{A_0}
 =
@@ -109,7 +109,7 @@ Q^{ij}_{A_0}
 Q^{ij}_{A_0}-\frac{1}{3}h^{ij}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f022c55f30d3b266)
+[View →](../../../../../equation-mapping.html#corpus-equation-f022c55f30d3b266)
 Here $h_{mn}=\delta_{mn}$ is the Euclidean spatial metric on $\Sigma_T$ and $h^{ij}=\delta^{ij}$ is its inverse, so the denominator is the Euclidean trace of $D^{ij}_{A_0}$. This tensor measures motion-induced or probe-induced Noether braid deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
 ## Tier 0: Algebraic Branch Search
@@ -218,7 +218,7 @@ $$
 \left\langle\mathbf D_\ell\right\rangle_W=0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ed6d2de7bf72ebb0)
+[View →](../../../../../equation-mapping.html#corpus-equation-ed6d2de7bf72ebb0)
 
 Here $P_{\mathbf{k}}$ is the declared return period indexed by the winding vector $\mathbf k$.
 
@@ -247,13 +247,13 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-aee97242a02ad6b6)
+[View →](../../../../../equation-mapping.html#corpus-equation-aee97242a02ad6b6)
 The rerun may proceed toward monodromy only if
 $$
 \mathcal{R}_{\mathrm{1per}}\le 0.02
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7579aacacf0ef4a6)
+[View →](../../../../../equation-mapping.html#corpus-equation-7579aacacf0ef4a6)
 with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
 
 ## Tier 2: Energy and Shielding

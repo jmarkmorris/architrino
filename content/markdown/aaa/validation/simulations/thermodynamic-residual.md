@@ -31,7 +31,7 @@ b\ \text{is a retained boundary-wake label crossing}\ \partial\Omega
 \right\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-636ca4071c2285ff)
+[View →](../../../../../equation-mapping.html#corpus-equation-636ca4071c2285ff)
 
 The first entropy estimator is the microcanonical count
 $$
@@ -47,7 +47,7 @@ k_B\log
 \right|>0
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5a609f0b967fed91)
+[View →](../../../../../equation-mapping.html#corpus-equation-5a609f0b967fed91)
 
 This finite count is a packet estimator, not the final horizon-interface coefficient. For coefficient recovery, a row should be interpreted as a finite-block sample of the block-density target
 $$
@@ -60,7 +60,7 @@ $$
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6d0011c0615ed3d5)
+[View →](../../../../../equation-mapping.html#corpus-equation-6d0011c0615ed3d5)
 where $U$ is the declared connected patch block and $\mathcal{B}_{U}^{(O)}$ retains only labels accessible to the same observer record. When $|U|$ is physical patch area, $\widehat{s}_{U}^{(O)}$ has inverse-area units and the large-block target is
 $$
 \widehat{s}_{U}^{(O)}
@@ -68,7 +68,7 @@ $$
 \frac{1}{4A_{\text{align}}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f2a9596dff16070c)
+[View →](../../../../../equation-mapping.html#corpus-equation-f2a9596dff16070c)
 after boundary corrections. The dimensionless value $1/4$ applies only when the packet has explicitly normalized $A_{\text{align}}=1$; it is not a literal one-patch cardinality.
 
 Area scaling is a recovery target, not a definition. Compare neighboring patches or refinements with the same observer and record:
@@ -87,7 +87,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dc362e5d890cc318)
+[View →](../../../../../equation-mapping.html#corpus-equation-dc362e5d890cc318)
 
 Passing this subgate means the retained logarithmic label count has the target area slope in the relevant equilibrium regime. It does not yet prove Page-curve recovery or black-hole endpoint closure.
 
@@ -106,7 +106,7 @@ a_O^2
 \gamma_{ij}^{\mathrm{eff}}a_O^i a_O^j
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8c4e5cebf5971cba)
+[View →](../../../../../equation-mapping.html#corpus-equation-8c4e5cebf5971cba)
 
 The continuum flux estimator is
 $$
@@ -116,7 +116,7 @@ $$
 T_{\mu\nu}^{\mathrm{eff}}(\theta)\xi^\mu d\Sigma^\nu
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-0b06633a3e01e30c)
+[View →](../../../../../equation-mapping.html#corpus-equation-0b06633a3e01e30c)
 
 When the run has not constructed a continuum $T_{\mu\nu}^{\mathrm{eff}}$, the packet may use a discrete estimator, but only if every term comes from the same boundary-wake and observer record:
 $$
@@ -126,7 +126,7 @@ $$
 \sigma_b E_b^{(O)}\omega_b^{(O)}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4010deace7face00)
+[View →](../../../../../equation-mapping.html#corpus-equation-4010deace7face00)
 Here $\sigma_b$ is the signed crossing convention, $E_b^{(O)}$ is the observer-level energy assigned by the same channel that builds $T_{\mu\nu}^{\mathrm{eff}}$, and $\omega_b^{(O)}$ is the declared quadrature or coarse-graining weight.
 
 The measured local-horizon residual is then
@@ -150,7 +150,7 @@ d\widehat{S}_{\partial\Omega}^{(O)}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ac1e36657438f6c2)
+[View →](../../../../../equation-mapping.html#corpus-equation-ac1e36657438f6c2)
 
 ## Conservation and Same-Record Gate
 
@@ -173,7 +173,7 @@ $$
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2df316b1a7c19a7a)
+[View →](../../../../../equation-mapping.html#corpus-equation-2df316b1a7c19a7a)
 
 A local-horizon packet passes only when
 $$
@@ -190,7 +190,7 @@ $$
 \epsilon_E
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-919e2119526aa9ec)
+[View →](../../../../../equation-mapping.html#corpus-equation-919e2119526aa9ec)
 and the same $\theta$ also satisfies the weak-field metric gates relevant to the run. A packet that fits $\widehat{S}$, $\widehat{T}_U$, and $\widehat{dQ}$ with independent records fails even if each scalar looks plausible by itself.
 
 ## Free-Energy and Response Consistency
@@ -204,7 +204,7 @@ $$
 \widehat T_z\widehat S_z
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4f8237eae20a7ef1)
+[View →](../../../../../equation-mapping.html#corpus-equation-4f8237eae20a7ef1)
 On a relaxation window with no declared external work, the free-energy residual is
 $$
 \widehat{\mathcal R}_{F}^{(O)}
@@ -222,7 +222,7 @@ W_{\mathrm{ext},z}^{(O)}
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-57d7414d9ab567f8)
+[View →](../../../../../equation-mapping.html#corpus-equation-57d7414d9ab567f8)
 The gate is optional unless the packet uses free-energy minimization, order-parameter relaxation, or Landau-Ginzburg language. If invoked, it must pass with the same $\theta$ that supplies $\widehat{\mathcal{R}}_{\mathrm{thermo}}^{(O)}$.
 
 If the packet includes stochastic or fluctuation claims, it must report a response/noise residual rather than fitting noise independently. For a declared observable pair $(A,B)$, use the measured fluctuation spectrum $S_{AB}^{(O)}(\omega)$ and the dissipative response $\chi_{AB}^{\prime\prime(O)}(\omega)$:
@@ -251,7 +251,7 @@ S_{AB}^{(O)}(\omega)
 }
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-6a2d20c88edfa0f8)
+[View →](../../../../../equation-mapping.html#corpus-equation-6a2d20c88edfa0f8)
 Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether sea dynamics is fundamentally stochastic.
 
 ## Proof Route

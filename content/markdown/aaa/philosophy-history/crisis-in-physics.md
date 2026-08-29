@@ -50,7 +50,7 @@ N_{\mathrm{shared\ nuisance}}
 N_{\mathrm{posthoc}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-20120c37783a8539)
+[View →](../../../../equation-mapping.html#corpus-equation-20120c37783a8539)
 Here $N_{\mathrm{ind}}$ counts independent successful benchmark families, $N_{\mathrm{free}}$ counts unconstrained parameters, $N_{\mathrm{shared\ nuisance}}$ counts nuisance assumptions reused across supposedly independent rows, and $N_{\mathrm{posthoc}}$ counts repairs introduced after seeing the target data. The formula is not a universal philosophy of science. It is a working discipline for this corpus: a substrate claim should not be treated as established until its effective successes outnumber its adjustable and nuisance-dependent supports across multiple measurement families.
 
 ## Crisis-to-Solution Cross-Map
@@ -151,7 +151,7 @@ P_{\mathrm{rec}}(R_n\mid\theta)
 \mu_{*,T_W}\!\left(\pi_{T_W}^{-1}(R_n)\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-8a986754faa9e8e3)
+[View →](../../../../equation-mapping.html#corpus-equation-8a986754faa9e8e3)
 
 The same deterministic flow, apparatus kernel, coarse-graining, and record window $\theta$ must also recover the effective wave equation. Predictive success licenses the target distribution; it does not by itself identify the substrate that generates the measure.
 
@@ -264,7 +264,7 @@ P(A,B\mid a,b,\lambda)
 P(A\mid a,\lambda)P(B\mid b,\lambda)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ecb330e1c4987036)
+[View →](../../../../equation-mapping.html#corpus-equation-ecb330e1c4987036)
 A shared creation event by itself does not meet this obligation: under measurement independence, an ordinary local common cause is exactly the kind of $\lambda$ for which the product form is tested. The missing derivation must therefore identify a genuinely nonfactorizable dependence in the retained dynamics, show why it is compatible with the observed local marginals, and recover the measured setting-angle correlation.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
@@ -322,7 +322,7 @@ $$
 \left(\Gamma_{\mathrm{out}},S_{\mathrm{out}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ed8594f3f1149f97)
+[View →](../../../../equation-mapping.html#corpus-equation-ed8594f3f1149f97)
 
 Its output must preserve deterministic record closure without treating an auxiliary mirror, clone, or second exterior as the substrate object itself. The mathematical burden is a strong-field record map, not the import of a particular diagrammatic identification.
 
@@ -400,7 +400,7 @@ S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-296af60f1fac9a00)
+[View →](../../../../equation-mapping.html#corpus-equation-296af60f1fac9a00)
 
 Here $\mathcal{D}_{O}(t_{\mathrm{eff}})$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf X,T)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})$ records accessible outgoing entropy. The de Sitter recovery problem is not "find a boundary CFT." It is to derive the following Noether sea state map.
 
@@ -414,7 +414,7 @@ S_{\mathrm{hor}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c3ad8114ad8e5258)
+[View →](../../../../equation-mapping.html#corpus-equation-c3ad8114ad8e5258)
 
 The output must match late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks, and observer clock-rate constraints without promoting the comparison geometry to substrate ontology. Transition relevance is high because this gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a sharper way to absorb holographic and de Sitter pressure without inheriting their boundary assumptions.
 

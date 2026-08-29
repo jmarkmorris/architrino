@@ -69,7 +69,7 @@ $$
 \frac{\nu_{\mathrm{emit}}}{\nu_{\mathrm{obs}}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-40debe224727b7d9)
+[View →](../../../../equation-mapping.html#corpus-equation-40debe224727b7d9)
 
 That much is direct bookkeeping. The extra Lambda-CDM step is to identify the same ratio with the scale factor:
 
@@ -83,7 +83,7 @@ $$
 \frac{a(t_{\mathrm{obs}})}{a(t_{\mathrm{emit}})}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-425758b6e3c675ca)
+[View →](../../../../equation-mapping.html#corpus-equation-425758b6e3c675ca)
 
 This is the big conversion. A frequency ratio becomes a scale-factor ratio. Once that conversion is accepted, $z$ becomes more than a line shift. It becomes the coordinate used to infer distance, lookback time, source volume, population history, matter density, dark energy, curvature, neutrino masses, and the age of the observable universe.
 
@@ -104,7 +104,7 @@ H_0
 \right]^{1/2},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c4b7dfeedc2b8eec)
+[View →](../../../../equation-mapping.html#corpus-equation-c4b7dfeedc2b8eec)
 
 with the precise dark-energy term generalized when $w(z)$ is not fixed at $-1$. The comoving radial distance is then modeled by
 
@@ -116,7 +116,7 @@ c_0
 \frac{dz'}{H(z')},
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-0f4ecab8abce4709)
+[View →](../../../../equation-mapping.html#corpus-equation-0f4ecab8abce4709)
 
 and the lookback time by
 
@@ -127,7 +127,7 @@ t_L(z)
 \frac{dz'}{(1+z')H(z')}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7a04a0fbe7e97db5)
+[View →](../../../../equation-mapping.html#corpus-equation-7a04a0fbe7e97db5)
 
 In a flat comparison model, luminosity distance is summarized by
 
@@ -137,7 +137,7 @@ d_L(z)
 (1+z)\chi(z),
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6e0e0e9b24a6ba30)
+[View →](../../../../equation-mapping.html#corpus-equation-6e0e0e9b24a6ba30)
 
 while the flux relation is
 
@@ -147,7 +147,7 @@ F
 \frac{L}{4\pi d_L^2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-12c6b174942e554b)
+[View →](../../../../equation-mapping.html#corpus-equation-12c6b174942e554b)
 
 This is why redshift is so important. A measured line shift becomes $z$. The model turns $z$ into $H(z)$, $d_L(z)$, $d_A(z)$, lookback time, source volume, and population history. The fitted parameters then support statements about cosmic acceleration, dark energy, matter density, curvature, neutrino masses, and cosmic age.
 
@@ -164,7 +164,7 @@ Z_X^{E\to R}
 \frac{\nu_{X,0}}{\nu_{\mathrm{obs},X}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-18e80cb7ac250754)
+[View →](../../../../equation-mapping.html#corpus-equation-18e80cb7ac250754)
 
 Here $X$ labels the calibrated channel: a spectral line, supernova light-curve class, CMB band, or other identifiable photon record. The observed redshift is the exponential of this ledger:
 
@@ -174,7 +174,7 @@ $$
 \exp Z_X^{E\to R}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-c013e880f634ab91)
+[View →](../../../../equation-mapping.html#corpus-equation-c013e880f634ab91)
 
 The useful decomposition is
 
@@ -192,7 +192,7 @@ Y_{X,E\to R}
 \ln D_v.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-6a88827a144da6cd)
+[View →](../../../../equation-mapping.html#corpus-equation-6a88827a144da6cd)
 
 Each term answers a plain question:
 
@@ -220,7 +220,7 @@ Z_X^{E\to R}
 \ln D_v.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d7eaa172d7bb9813)
+[View →](../../../../equation-mapping.html#corpus-equation-d7eaa172d7bb9813)
 
 Only this residual is eligible to define an effective Hubble-like coefficient along a calibrated line of sight:
 
@@ -230,7 +230,7 @@ H_{\mathrm{eff},X}(R,\hat{\mathbf k})
 c_0\,\partial_R Z_{\mathrm{prop},X}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d18ea9ad793b67e6)
+[View →](../../../../equation-mapping.html#corpus-equation-d18ea9ad793b67e6)
 
 This $H_{\mathrm{eff}}$ is not the expansion rate of the Euclidean void. It is the observer-level slope of the corrected redshift-transfer ledger after the local channel, source, endpoint, and path terms have been separated as far as the data allow.
 
@@ -275,7 +275,7 @@ t_0
 \frac{dz}{(1+z)H(z)}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d36ffebfb0d45ba0)
+[View →](../../../../equation-mapping.html#corpus-equation-d36ffebfb0d45ba0)
 
 This works inside Lambda-CDM because $z$ is interpreted as a scale-factor coordinate and $H(z)$ as the expansion rate of the metric background. The model age is the elapsed effective time along the fitted expansion history.
 
@@ -299,7 +299,7 @@ d_{L,X}^{\mathrm{eff}}
 \right)^{1/2}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9291eb71cf443f52)
+[View →](../../../../equation-mapping.html#corpus-equation-9291eb71cf443f52)
 
 But this quantity is not automatically a geometric radius in an expanding metric. It includes source calibration, arrival-rate changes, photon-channel transport, beam geometry, absorption or scattering where present, and receiver calibration.
 
@@ -319,7 +319,7 @@ d_L^{\Lambda\mathrm{CDM}}(z)
 \frac{dz'}{H_0\left[\Omega_r(1+z')^4+\Omega_m(1+z')^3+\Omega_\Lambda\right]^{1/2}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-72f5db2649607b23)
+[View →](../../../../equation-mapping.html#corpus-equation-72f5db2649607b23)
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ column is not a completed native prediction. It is the constant corrected-transfer benchmark obtained when endpoint, source, launch, and inhomogeneous path terms have been removed and the remaining propagation residual has a constant local slope $H_{\mathrm{eff},0}=H_0$:
 
@@ -329,7 +329,7 @@ d_{L,\mathrm{bench}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(z)
 (1+z)\frac{c_0}{H_{\mathrm{eff},0}}\ln(1+z).
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-64b2002e83b09c0e)
+[View →](../../../../equation-mapping.html#corpus-equation-64b2002e83b09c0e)
 
 The percent difference is
 
@@ -346,7 +346,7 @@ d_L^{\Lambda\mathrm{CDM}}
 }.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5a58ce43c20eb651)
+[View →](../../../../equation-mapping.html#corpus-equation-5a58ce43c20eb651)
 
 | Redshift $z$ | Lambda-CDM $d_L$ (Mpc) | $\mathbb{A}\mathbb{A}\mathbb{A}$ benchmark $d_L$ (Mpc) | $\Delta_{\%}$ |
 | ---: | ---: | ---: | ---: |
@@ -422,6 +422,6 @@ $$
 \text{native Noether sea and assembly history}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-06bc75825ef1607d)
+[View →](../../../../equation-mapping.html#corpus-equation-06bc75825ef1607d)
 
 The standard model reads the middle of this chain as expanding spacetime. $\mathbb{A}\mathbb{A}\mathbb{A}$ reads it as a successful effective compression of deeper medium, source, and clock records. The observational burden is to recover every strong Lambda-CDM data product while moving the ontology from metric expansion to ledgers propagating through an evolving Noether sea in a fixed Euclidean void.

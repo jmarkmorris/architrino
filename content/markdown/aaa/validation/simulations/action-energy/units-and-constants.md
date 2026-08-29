@@ -45,27 +45,27 @@ Core symbols:
     \beta_i(T)=\frac{\|\mathbf V_i(T)\|}{c_f}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-0a0bc5d65e8e1afd)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-0a0bc5d65e8e1afd)
     and, for circular binary scans, the existing speed factor
     $$
     s=\frac{R\omega}{c_f}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-dac301d02838fb90)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-dac301d02838fb90)
     A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta_f=1$.
   - **Delay/window ratio:** use
     $$
     \Theta_{\Delta T}=\frac{\Delta T_{\max}}{T_{\mathrm{win}}}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-22dec982b4dd6f58)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-22dec982b4dd6f58)
     where $\Delta T_{\max}$ is the longest active causal lookback time and $T_{\mathrm{win}}$ is the averaging, diagnostic, or return-map window. The stored history horizon $h$ must satisfy $h\ge\Delta T_{\max}$ on the scanned branch chart.
   - **Regularization thickness:** use
     $$
     \hat{\eta}=\frac{\eta}{L_\star}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-1f5196ad240d203b)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-1f5196ad240d203b)
     with local checks such as $\eta/r_{\min}$ against the smallest resolved separation. A scan is numerically meaningful only when branch counts and averaged observables stabilize as $\hat{\eta}$ is reduced while the causal wakes remain resolved.
   - **Coupling scale:** compare the per-hit acceleration scale with the reference acceleration $L_\star/T_\star^2$:
     $$
@@ -76,7 +76,7 @@ Core symbols:
     \frac{\kappa\epsilon^2}{c_f^2 L_\star}
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-bdfce55a112e1b3c)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-bdfce55a112e1b3c)
     In field-speed units this reduces to $g_\kappa=\kappa\epsilon^2/L_\star$.
   - **Branch/root tolerances:** for the causal-root residual
     $$
@@ -85,14 +85,14 @@ Core symbols:
     \|\phi_i(0)-\phi_j(-\Delta T)\|-c_f\Delta T
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-328277424a05be28)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-328277424a05be28)
     accept a root only when $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$, keep distinct roots separated by $|\Delta T_a-\Delta T_b|/T_\star>\varepsilon_{\mathrm{sep}}$, and treat $|J|\le\varepsilon_J$ as a branch-birth or caustic zone rather than an ordinary stable branch.
   - A branch-scan report should therefore include at least
     $$
     (\beta_{\max}\ \text{or}\ s,\ \Theta_{\Delta T},\ \hat{\eta},\ g_\kappa,\ \varepsilon_{\mathrm{root}},\ \varepsilon_{\mathrm{sep}},\ \varepsilon_J)
     $$
 
-    [Explore this equation in Equation Mapping](../../../../../../equation-mapping.html#corpus-equation-aaa8556681b2a511)
+    [View →](../../../../../../equation-mapping.html#corpus-equation-aaa8556681b2a511)
     together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.
 
 Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of polarity. The push is always straight along the line back to where the isochron was emitted, but its received strength is shaped by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities push out, unlike polarities pull in.

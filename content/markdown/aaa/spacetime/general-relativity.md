@@ -26,7 +26,7 @@ $$
 \text{effective metric observables}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-f070483765b65d62)
+[View →](../../../../equation-mapping.html#corpus-equation-f070483765b65d62)
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
 
@@ -45,7 +45,7 @@ C_{\mathrm{net}}^{-1}
 \mathbf{r}_{\mathrm{net}}(\theta)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9aea7b28c80cb8ea)
+[View →](../../../../equation-mapping.html#corpus-equation-9aea7b28c80cb8ea)
 where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
 
 ### Causal-order and scale recovery
@@ -67,7 +67,7 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-af59c20f2dc02694)
+[View →](../../../../equation-mapping.html#corpus-equation-af59c20f2dc02694)
 The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps preferred-frame signatures below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
 
 The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout. They are scale readouts in the effective observer layer, not additional substrate time variables.
@@ -91,7 +91,7 @@ N_{\text{sea}}|_{\Omega\times W}
 \mathcal{S}_{\Omega}(T_f)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-cf60cb273ecd8b69)
+[View →](../../../../equation-mapping.html#corpus-equation-cf60cb273ecd8b69)
 where $\mathcal{S}_{\Omega}(T_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(T_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
 
 ## Weak-Field Observables That Must Match GR
@@ -105,7 +105,7 @@ $$
 \sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{\|\mathbf w\|^2}{c_0^2}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a10eac89a256ff66)
+[View →](../../../../equation-mapping.html#corpus-equation-a10eac89a256ff66)
 in the weak-field, low-velocity observer regime, where $\mathbf w$ is the sea-relative group velocity of the clock in the weak homogeneous limit and $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
 $$
 \frac{\Delta \nu}{\nu}
@@ -113,7 +113,7 @@ $$
 \frac{\Delta \Phi_N}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-ec3c33cf92fa48dd)
+[View →](../../../../equation-mapping.html#corpus-equation-ec3c33cf92fa48dd)
 
 Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons (mm-baseline Sr optical-lattice clock comparison, Bothwell-class) sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
 
@@ -124,7 +124,7 @@ $$
 t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,ds_{\mathrm{eff}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-a8e4c7a114562af9)
+[View →](../../../../equation-mapping.html#corpus-equation-a8e4c7a114562af9)
 with
 $$
 \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)
@@ -137,7 +137,7 @@ $$
 +O(c_0^{-4})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-3d4b17ebd2600bbe)
+[View →](../../../../equation-mapping.html#corpus-equation-3d4b17ebd2600bbe)
 
 For a point mass, the resulting delay is
 $$
@@ -148,7 +148,7 @@ $$
 +O(c_0^{-5})
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-427734dc658fe45c)
+[View →](../../../../equation-mapping.html#corpus-equation-427734dc658fe45c)
 which must match the GR coefficient at current solar-system precision.
 
 ### Light bending
@@ -161,13 +161,13 @@ $$
 \frac{G_N M}{b\,c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-9ce389605d4f4747)
+[View →](../../../../equation-mapping.html#corpus-equation-9ce389605d4f4747)
 with impact parameter $b$. In the GR-matching limit $\gamma_{\mathrm{PPN}}=1$, this reduces to the standard
 $$
 \Delta\theta \approx \frac{4G_N M}{b\,c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-987d3bf3dcb7335a)
+[View →](../../../../equation-mapping.html#corpus-equation-987d3bf3dcb7335a)
 
 So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.
 
@@ -192,7 +192,7 @@ N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-b0e43cf5e15c9c7c)
+[View →](../../../../equation-mapping.html#corpus-equation-b0e43cf5e15c9c7c)
 The observable residual bundle is then
 $$
 \mathbf{r}_{\mathrm{GR}}(\theta_W)
@@ -214,7 +214,7 @@ R_{\mathrm{acc}}
 {\left\|(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-99b0736a014e40c6)
+[View →](../../../../equation-mapping.html#corpus-equation-99b0736a014e40c6)
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
 Solar oblateness supplies the nuisance-control version of the same rule. Mercury-type precession may be written as
@@ -227,7 +227,7 @@ $$
 +\Delta\varpi_{\mathrm{noise}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-5faf9cf10e07397c)
+[View →](../../../../equation-mapping.html#corpus-equation-5faf9cf10e07397c)
 where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
 
 The perihelion row should carry the explicit GR target rather than only the name of the test. For a weak-field bound orbit with semi-major axis $a$ and eccentricity $e$,
@@ -237,7 +237,7 @@ $$
 \frac{6\pi G_N M}{a(1-e^2)c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-96ce30e1a9d51242)
+[View →](../../../../equation-mapping.html#corpus-equation-96ce30e1a9d51242)
 per orbit. In the PPN projection this is the special case of
 $$
 \Delta\varpi_{\mathrm{PPN}}
@@ -246,7 +246,7 @@ $$
 \left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-46317199ba600344)
+[View →](../../../../equation-mapping.html#corpus-equation-46317199ba600344)
 so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
 
 ### Low-Energy Quantum-Gravity EFT Benchmark
@@ -267,7 +267,7 @@ V_{\mathrm{GR\text{-}EFT}}(r)
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-7ff05941ab8aef49)
+[View →](../../../../equation-mapping.html#corpus-equation-7ff05941ab8aef49)
 
 where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
 
@@ -284,7 +284,7 @@ G_N m_1 m_2/r
 \right|
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-221850cce9a25c2d)
+[View →](../../../../equation-mapping.html#corpus-equation-221850cce9a25c2d)
 
 This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
 
@@ -299,7 +299,7 @@ $$
 \frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-de660d9fa2c2b12b)
+[View →](../../../../equation-mapping.html#corpus-equation-de660d9fa2c2b12b)
 The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
 $$
 \mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
@@ -315,7 +315,7 @@ $$
 \ll 1
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-54307dedc8cf70bd)
+[View →](../../../../equation-mapping.html#corpus-equation-54307dedc8cf70bd)
 with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response.
 
 The same statement can be read in mechanism language. Inertial response and gravitational response need not have identical substrate triggers: one can come from imposed acceleration of the assembly ledger, while the other can come from a Noether sea gradient. They recover the equivalence principle only if both triggers perturb the same shielded internal ledger through the same weak homogeneous response map. Any Mach-like dependence on the surrounding matter distribution must therefore appear as a common-mode feature of $\theta_W$, not as a body-specific adjustment of inertia.
@@ -336,7 +336,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-2f24cc6685527a81)
+[View →](../../../../equation-mapping.html#corpus-equation-2f24cc6685527a81)
 where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
 
 ## Preferred-Frame Leakage
@@ -348,7 +348,7 @@ $$
 \alpha_1,\alpha_2,\alpha_3
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-46405bc13afbbc08)
+[View →](../../../../equation-mapping.html#corpus-equation-46405bc13afbbc08)
 must be observationally negligible in validated regimes. This is not optional. If the Noether sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
 
 ## Gravitational-Wave Channel
@@ -360,7 +360,7 @@ $$
 \varepsilon_{\mathrm{GW}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-be17db24e72ca918)
+[View →](../../../../equation-mapping.html#corpus-equation-be17db24e72ca918)
 
 Here $\varepsilon_{\mathrm{GW}}$ is the multi-messenger speed tolerance owned by the [GW Speed](../validation/constraint-ledger.md#gw-speed) ledger row. In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
 
@@ -385,7 +385,7 @@ r_{\mathrm{ph}}=\frac{3G_N M}{c_0^2},
 r_{\mathrm{ISCO}}=\frac{6G_N M}{c_0^2}
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-d7ef96253ade83c7)
+[View →](../../../../equation-mapping.html#corpus-equation-d7ef96253ade83c7)
 for the Schwarzschild comparison branch. The first is the effective horizon radius, the second the null photon-orbit radius, and the third the innermost stable circular orbit for massive test bodies in the nonrotating exterior comparison. A native black-hole record may reinterpret what the horizon is made of, but it must still recover these exterior scales, or provide a declared residual template, before using strong-field ontology to explain compact-object observations.
 
 ## Closure Targets
@@ -434,7 +434,7 @@ $$
 \neq \varnothing
 $$
 
-[Explore this equation in Equation Mapping](../../../../equation-mapping.html#corpus-equation-05d464d7eef89585)
+[View →](../../../../equation-mapping.html#corpus-equation-05d464d7eef89585)
 
 If that intersection is empty, the effective-metric program is not yet viable.
 

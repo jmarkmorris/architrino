@@ -16,7 +16,7 @@ $$
 \{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN},\mathrm{PREBBN}\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-d22b0a963d28c309)
+[View →](../../../../../equation-mapping.html#corpus-equation-d22b0a963d28c309)
 
 For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared Noether sea state record into that family. The scaffold computes
 
@@ -28,7 +28,7 @@ C_X^{-1}
 r_X(\theta_{\mathrm{sea}},\nu_X)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-a1cbbaa65e6c0daf)
+[View →](../../../../../equation-mapping.html#corpus-equation-a1cbbaa65e6c0daf)
 
 and the cross-family projection penalty
 
@@ -44,7 +44,7 @@ w_a
 \right)^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-76a8d0efa5baae69)
+[View →](../../../../../equation-mapping.html#corpus-equation-76a8d0efa5baae69)
 
 where $K_X$ is the set of shared comparison coordinates reported by family $X$, and $w_a$ is a declared dimensionless weight. The packet-level residual is
 
@@ -59,7 +59,7 @@ $$
 \mathcal{P}_{XY}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-39d5df0b3b399238)
+[View →](../../../../../equation-mapping.html#corpus-equation-39d5df0b3b399238)
 
 A low value of the first term alone is insufficient. The second term is the split-ontology guard: it rejects a fit that keeps each observable close to its benchmark only by assigning mutually incompatible projections of $\theta_{\mathrm{sea}}$.
 
@@ -68,7 +68,7 @@ $$
 \nu_X^{\mathrm{dof}}=N_X-p_X
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-353e97dc6eff2fe6)
+[View →](../../../../../equation-mapping.html#corpus-equation-353e97dc6eff2fe6)
 and, when $\nu_X^{\mathrm{dof}}>0$, the reduced statistic
 $$
 \overline{\mathcal{R}}_X
@@ -76,7 +76,7 @@ $$
 \frac{\mathcal{R}_X}{\nu_X^{\mathrm{dof}}}.
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-2fbc568db154dbb9)
+[View →](../../../../../equation-mapping.html#corpus-equation-2fbc568db154dbb9)
 The raw $\mathcal{R}_X$ remains the additive packet term; $\overline{\mathcal{R}}_X$ is a scale diagnostic and must not replace a likelihood without a declared statistical derivation.
 
 The nuisance record $\nu_X$ must state, before fitting, whether each nuisance quantity is fixed, profiled, or marginalized and how that choice changes $p_X$ and the effective covariance. The projection weights $w_a$, the penalty coefficient $\lambda$, and all residual and overlap thresholds are likewise frozen before fitting. They may be changed only in a separately identified sensitivity run, never retuned after seeing the shared-state result.
@@ -92,7 +92,7 @@ r_{\mathrm{SN/BAO}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ac97f573e12870bf)
+[View →](../../../../../equation-mapping.html#corpus-equation-ac97f573e12870bf)
 $$
 r_{\mathrm{CMB}}
 \supset
@@ -103,7 +103,7 @@ r_{\mathrm{CMB}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-086b4246d26df244)
+[View →](../../../../../equation-mapping.html#corpus-equation-086b4246d26df244)
 $$
 r_{\mathrm{growth}}
 \supset
@@ -113,7 +113,7 @@ r_{\mathrm{growth}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-106f9c9e30cd0bd7)
+[View →](../../../../../equation-mapping.html#corpus-equation-106f9c9e30cd0bd7)
 and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
 Redshift-facing packets must expose the signed photon-frequency transfer row rather than treating redshift as a primitive expansion coordinate. For a line or photon family $X$, retain
@@ -127,7 +127,7 @@ r_{\nu\text{-}\mathrm{path}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-161938fb0ad62752)
+[View →](../../../../../equation-mapping.html#corpus-equation-161938fb0ad62752)
 where $Z_X$ is the total logarithmic redshift budget, $Y_{X,\mathrm{path}}$ is the signed path-history exchange contribution, and $Y_{X,\mathrm{cal}}^{\mathrm{obs}}$ is any declared calibration row such as a Sunyaev-Zeldovich or kinematic-Sunyaev-Zeldovich frequency-shift packet. This row does not add a separate cosmology gate. It prevents a shared-state fit from hiding path-frequency exchange inside $H(z)$, distance modulus, or CMB temperature calibration.
 
 The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
@@ -164,7 +164,7 @@ D_V^\theta(z_i)/r_d^\theta
 \right]
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3a5d3bee6d4cecb5)
+[View →](../../../../../equation-mapping.html#corpus-equation-3a5d3bee6d4cecb5)
 
 where `kept` means the subset reported by the survey bin. This avoids pretending that isotropic BAO bins contain independent radial and transverse information.
 
@@ -184,7 +184,7 @@ $$
 },
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-bef1a332fe8468b8)
+[View →](../../../../../equation-mapping.html#corpus-equation-bef1a332fe8468b8)
 
 where $\mathbf C_\ell$ includes cross-patch covariance and survey-window coupling. The dispersion row is
 
@@ -200,7 +200,7 @@ $$
 \right).
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ec413a9b4c42a07e)
+[View →](../../../../../equation-mapping.html#corpus-equation-ec413a9b4c42a07e)
 
 Homogeneous comparison mocks determine the noise-only distribution after masks, selection, reconstruction, and shared-distance calibration are applied. A recovered branch passes when its predicted patch and bin dispersion is consistent with that distribution. Because BAO measures distance-to-ruler ratios, $r_{d,pb}^{\mathrm{fit}}$ is not treated as a model-free direct observation; the same declared distance map must be used in every subset.
 
@@ -219,7 +219,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7ef9bfdd4f931dc1)
+[View →](../../../../../equation-mapping.html#corpus-equation-7ef9bfdd4f931dc1)
 
 The CMB row should preserve spectra and lensing as separate but overlapping checks:
 
@@ -244,7 +244,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-dfc36d70b2a4fd7e)
+[View →](../../../../../equation-mapping.html#corpus-equation-dfc36d70b2a4fd7e)
 
 The overlap key `CMB_lensing` must appear in both CMB and growth-facing projections whenever lensing is used. Otherwise a packet can accidentally fit CMB spectra with one projection and weak-lensing or clustering with another, which is exactly the split-ontology failure this protocol is meant to catch.
 
@@ -264,7 +264,7 @@ r_{\mathrm{DM,split}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-14d79998fa0ff35c)
+[View →](../../../../../equation-mapping.html#corpus-equation-14d79998fa0ff35c)
 
 Here $w_{\mathrm{lin}}$ and $c_{s,\mathrm{lin}}^2$ are comparison coordinates for CDM-like linear loading, while $v_c(r)$, $\Delta_{\mathrm{BTFR}}$, $\mathrm{RAR}$, $a_\star(E)$, and $f_\star(E)$ are nonlinear acceleration-response coordinates. A dimensionless BTFR residual can be recorded as
 
@@ -275,7 +275,7 @@ $$
 -1
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-f0921c41253a26f0)
+[View →](../../../../../equation-mapping.html#corpus-equation-f0921c41253a26f0)
 
 with $v_f$ the retained flat-curve velocity and $M_b$ the retained baryonic mass. The environment label $E$ is not a new ontology coordinate; it is the observable context carried in $\nu_X$. For these rows it should include at least $M_{\mathrm{halo}}$, $z_{\mathrm{vir}}$, $\sigma_v$, $T_{\mathrm{eff}}$, the baryon profile, and, for mergers, the declared ratio $v_{\mathrm{inf}}/c_s$ when the comparison template supplies a sound-speed coordinate. The low-acceleration galaxy comparison may be expressed as
 
@@ -287,7 +287,7 @@ g_{\mathrm{bar}}(r)
 g_{\mathrm{med}}^\theta(r,E_{\mathrm{gal}})
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-7f2356452b86ade2)
+[View →](../../../../../equation-mapping.html#corpus-equation-7f2356452b86ade2)
 
 where $g_{\mathrm{med}}^\theta$ is only the Noether sea response projection being tested against a MOND-like comparison residual. To make the galaxy-vs-cluster split measurable, the same packet should evaluate $a_\star(E)$ and $f_\star(E)$ at both $E_{\mathrm{gal}}$ and $E_{\mathrm{cl}}$. Passing the galaxy rotation-curve, BTFR, and RAR rows while failing the cluster rows below is not promotable as a shared-state success. These rows are not a request to add a new fundamental scalar-fluid ontology. Their purpose is to prevent a packet from fitting CMB and matter power data with one effective dark component while fitting galaxy, cluster, and merger accelerations with a separately tuned Noether sea law.
 
@@ -307,7 +307,7 @@ r_{\mathrm{cl}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-ea14d73a0e7bd124)
+[View →](../../../../../equation-mapping.html#corpus-equation-ea14d73a0e7bd124)
 
 This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same Noether sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
 
@@ -324,7 +324,7 @@ r_{\mathrm{merge}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-df474580a5d4640c)
+[View →](../../../../../equation-mapping.html#corpus-equation-df474580a5d4640c)
 
 The ratio $v_{\mathrm{inf}}/c_s$ distinguishes low-dissipation pass-through encounters from high-dissipation encounters in comparison templates that provide $c_s$. The coordinate $\mathcal{I}_{\mathrm{int}}$ is a declared shell or interference-morphology statistic for high-relative-speed mergers, and $N_{\mathrm{vort}}(R)$ is included only when the comparison template predicts vortex-like substructure measurable through lensing over projected radius $R$. Cold-atom or other laboratory analogue simulations can supply provenance for these dimensionless template variables, but visual analogy is not a substitute for astronomical residual rows under the shared-state packet.
 
@@ -362,7 +362,7 @@ r_{\mathrm{PREBBN}}
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-3f446f1eb1b133d1)
+[View →](../../../../../equation-mapping.html#corpus-equation-3f446f1eb1b133d1)
 The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the projection penalty shows that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
 
 ## Frame-Split Measurement Recipe
@@ -377,7 +377,7 @@ $$
 \{\mathrm{CMB},\mathrm{MD},\mathrm{SN},\mathrm{BAO},H_0\}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-8b61b616046af765)
+[View →](../../../../../equation-mapping.html#corpus-equation-8b61b616046af765)
 
 where $\mathrm{MD}$ denotes matter-dipole catalogues such as radio, infrared, quasar, or galaxy-count samples. Each row must report a measured three-vector $\mathbf{y}_i$, an expected three-vector $\mathbf{m}_i(\theta_{\mathrm{frame}})$ from the declared common frame model, a covariance object $C_i$, calibration or mask context $\nu_i$, and a projection $\Pi_i\theta_{\mathrm{frame}}$ onto shared frame coordinates.
 
@@ -395,7 +395,7 @@ The preprocessing rules are:
   \mathbf{F}_{X}(\theta_{\mathrm{frame}},\nu_X)
   $$
 
-  [Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-5f4ee677a09b9410)
+  [View →](../../../../../equation-mapping.html#corpus-equation-5f4ee677a09b9410)
   where $K_X$ is the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
 - Supernovae: $\mathbf{y}_{\mathrm{SN}}(z_b)$ is the fitted distance-modulus dipole in redshift bin $z_b$, after standardization and host-environment bookkeeping; $\mathbf{m}_{\mathrm{SN}}(z_b)$ is the corresponding shared-frame prediction.
 - BAO: $\mathbf{y}_{\mathrm{BAO}}(z_b)$ is the anisotropic BAO-scale dipole or lowest retained directional harmonic in bin $z_b$; $\mathbf{m}_{\mathrm{BAO}}(z_b)$ is the shared-frame prediction in the same basis.
@@ -412,7 +412,7 @@ C_i^{-1}
 \left(\mathbf{y}_i-\mathbf{m}_i\right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-b281f805db01a924)
+[View →](../../../../../equation-mapping.html#corpus-equation-b281f805db01a924)
 
 The frame-projection penalty is
 
@@ -429,7 +429,7 @@ w_a
 \right]^2
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-20a4883a89d61171)
+[View →](../../../../../equation-mapping.html#corpus-equation-20a4883a89d61171)
 
 and the combined frame score is
 
@@ -441,7 +441,7 @@ $$
 \lambda_{\mathrm{frame}}\mathcal{P}_{\mathrm{frame}}
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-4ed41d6110734ee0)
+[View →](../../../../../equation-mapping.html#corpus-equation-4ed41d6110734ee0)
 
 The packet also records a direction check for every nonzero row,
 
@@ -455,7 +455,7 @@ $$
 \right)
 $$
 
-[Explore this equation in Equation Mapping](../../../../../equation-mapping.html#corpus-equation-86944af1aaee1ff0)
+[View →](../../../../../equation-mapping.html#corpus-equation-86944af1aaee1ff0)
 
 Tolerances must be declared before fitting: maximum $\mathcal{Q}_{\mathrm{frame}}$, maximum $\mathcal{P}_{\mathrm{frame}}$, maximum $\mathcal{R}_{\mathrm{frame}}$, minimum shared projection-key overlap, and maximum allowed $\alpha_i$ for nonzero vectors. These tolerances are not universal constants; they belong to the survey packet, covariance construction, redshift binning, and systematics budget.
 
