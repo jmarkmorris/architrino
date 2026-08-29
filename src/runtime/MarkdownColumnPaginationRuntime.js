@@ -8,6 +8,7 @@ const WIDE_BLOCK_SELECTOR = [
   "blockquote",
   ".math-block",
   ".markdown-math-block",
+  ".markdown-equation-map-row",
   ".katex-display",
   "mjx-container",
 ].join(", ");

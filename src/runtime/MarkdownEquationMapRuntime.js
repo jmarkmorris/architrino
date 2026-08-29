@@ -1,29 +1,32 @@
 import { createEquationMappingLaunchHref, EQUATION_RETURN_PARAM } from "./EquationMappingNavigation.js";
 
-// Operator-requested one-equation trial. Remove this restriction only after
-// approval of the global migration; remove the module if the trial is rejected.
-export const EQUATION_MAP_TRIAL = Object.freeze({
-  sourcePath: "content/markdown/aaa/philosophy-history/one-nature-many-theories.md",
-  semanticId: "corpus-equation-9a8a84e6187eb564",
-});
+const EQUATION_MAPPING_SOURCE_LABEL = "Explore this equation in Equation Mapping";
+const EQUATION_MAPPING_SOURCE_HREF = /^(?:\.\.\/)+equation-mapping\.html#([a-z0-9][a-z0-9._~-]*)$/iu;
+
+export function resolveEquationMappingSemanticId(rawHref) {
+  if (typeof rawHref !== "string") return null;
+  return rawHref.match(EQUATION_MAPPING_SOURCE_HREF)?.[1] ?? null;
+}
 
 export function createMarkdownEquationMapRuntime({ markdownBody, documentLike, getWindow }) {
-  let returnRow = null;
-  let restored = false;
+  let returnRows = new Map();
+  let restoredSemanticId = null;
 
   function decorate(sourcePath, sourceSection = null) {
-    returnRow = null;
-    restored = false;
-    if (sourcePath !== EQUATION_MAP_TRIAL.sourcePath || !documentLike?.createElement) return;
-    const semanticId = EQUATION_MAP_TRIAL.semanticId;
+    returnRows = new Map();
+    restoredSemanticId = null;
+    if (!sourcePath || !documentLike?.createElement) return 0;
     for (const link of markdownBody?.querySelectorAll?.("a[href]") ?? []) {
       const rawHref = link.getAttribute("href");
+      const semanticId = resolveEquationMappingSemanticId(rawHref);
       const paragraph = link.parentElement;
       const equation = paragraph?.previousElementSibling;
-      if (rawHref !== `../../../../equation-mapping.html#${semanticId}` ||
-          paragraph?.tagName !== "P" || paragraph.childElementCount !== 1 ||
-          paragraph.textContent.trim() !== link.textContent.trim() ||
+      const paragraphText = paragraph?.textContent.trim() ?? "";
+      if (!semanticId || link.textContent.trim() !== EQUATION_MAPPING_SOURCE_LABEL ||
+          paragraph?.tagName !== "P" || paragraph.children?.[0] !== link ||
+          !paragraphText.startsWith(EQUATION_MAPPING_SOURCE_LABEL) ||
           !equation?.classList.contains("markdown-math-block")) continue;
+      const linkOnlyParagraph = paragraphText === EQUATION_MAPPING_SOURCE_LABEL;
 
       const row = documentLike.createElement("div");
       row.className = "markdown-equation-map-row";
@@ -55,21 +58,20 @@ export function createMarkdownEquationMapRuntime({ markdownBody, documentLike, g
       equation.replaceWith(row);
       action.append(link, tooltip);
       row.append(equation, action);
-      paragraph.remove();
-      returnRow = row;
-      break;
+      if (linkOnlyParagraph) paragraph.remove();
+      returnRows.set(semanticId, row);
     }
+    return returnRows.size;
   }
 
   function restoreReturnPosition() {
-    if (!returnRow || restored || !returnRow.querySelector(".is-rendered")) return;
     const windowLike = getWindow();
     const requested = new URLSearchParams(windowLike?.location?.search ?? "").get(EQUATION_RETURN_PARAM);
-    if (requested !== returnRow.id) return;
-    restored = true;
-    const row = returnRow;
+    const row = returnRows.get(requested);
+    if (!row || restoredSemanticId === requested || !row.querySelector(".is-rendered")) return;
+    restoredSemanticId = requested;
     windowLike.requestAnimationFrame(() => {
-      if (returnRow !== row || !row.isConnected) return;
+      if (returnRows.get(requested) !== row || !row.isConnected) return;
       row.scrollIntoView({ block: "center", behavior: "instant" });
       row.querySelector("a")?.focus({ preventScroll: true });
     });

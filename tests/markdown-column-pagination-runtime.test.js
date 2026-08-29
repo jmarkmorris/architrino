@@ -155,3 +155,17 @@ test("full-width markdown blocks stay between vertical spreads", () => {
   runtime.clear();
   assert.deepEqual(markdownBody.childNodes, nodes);
 });
+
+test("equation-map rows retain the full-width display-equation layout", () => {
+  const first = createFakeNode({ height: 300, text: "First" });
+  const equationRow = createFakeNode({ height: 240, text: "Equation" });
+  equationRow.className = "markdown-equation-map-row";
+  equationRow.matches = selector => selector.includes(".markdown-equation-map-row");
+  const second = createFakeNode({ height: 300, text: "Second" });
+  const { markdownBody, runtime } = createRuntime([first, equationRow, second]);
+
+  runtime.apply(2);
+
+  assert.equal(markdownBody.childNodes[1].classList.contains("markdown-column-wide-block"), true);
+  assert.equal(markdownBody.childNodes[1].childNodes[0], equationRow);
+});
