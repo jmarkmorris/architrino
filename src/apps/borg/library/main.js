@@ -250,7 +250,7 @@ async function openInspector(row, persist = true) {
     state.selected = row;
     if (persist) { state.params.set("selected", row.id); state.params.set("sha256", row.recordSha256); saveUrl(); }
     $("inspector-title").textContent = row.label; $("inspector-alias").textContent = row.alias;
-    $("inspector-description").textContent = row.description; $("copy-status").textContent = "";
+    $("inspector-description").textContent = `Recorded description: ${row.description}`; $("copy-status").textContent = "";
     $("identity").replaceChildren();
     for (const [key, value] of [["Catalog identity", row.id], ["Source identity", row.sourceId], ["Record SHA-256", row.recordSha256], ["Source specification", row.source], ["Grade", `${row.claimGrade} · ${row.evidenceStatus}`], ["Descriptor", row.descriptorVersion], ["Classification revision", row.classificationRevision ?? "Unavailable"], ["Classification source", row.classificationSource ?? "Unavailable"], ["Classification SHA-256", row.classificationSha256 ?? "Unavailable"], ["Braid groups", row.braids.map((b) => `${b.id} (${b.memberCount} architrinos)`).join("; ") || "Unavailable"]]) addDefinition($("identity"), key, value);
     $("facet-reasons").replaceChildren(); $("inspector-facets").replaceChildren();

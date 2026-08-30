@@ -70,6 +70,12 @@ test("braid taxonomy scanner audits member and family labels while enforcing the
   assert.equal(strictFindings[0].ruleId, "ideal-braid-name");
 });
 
+test("braid taxonomy scanner recognizes complete dot-zero example aliases", () => {
+  const findings = scanTextForBraidTaxonomyTerminology("A1.0 A2.0 A3.0 A1.1 A3.4", "synthetic.md")
+    .filter((finding) => finding.ruleId === "taxonomy-member-identifier");
+  assert.deepEqual(findings.map((finding) => finding.match), ["A1.0", "A2.0", "A3.0", "A1.1", "A3.4"]);
+});
+
 test("braid taxonomy scanner preserves only the concrete dated historical app title", () => {
   const relativePath = "content/markdown/aaa/archie/research-notebook.md";
   assert.deepEqual(

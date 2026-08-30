@@ -6,6 +6,22 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-08-30 - Concrete Example Names A1.0, A2.0, and A3.0
+
+- Accepted the operator's A1→A1.0, A2→A2.0, and A3→A3.0 naming decision for the existing concrete examples. The shared Borg catalog owns their labels in selection, the Assembly Library, and workbench record inspection. The library searches original recorded labels as aliases; the workbench separates the current candidate label, geometry class, and recorded label. Record descriptions remain explicitly attributed to the recorded source.
+- Updated the canonical taxonomy navigation table, Family-A class/example explanation, selector assignment audit, readiness matrix, sign-off catalog labels, configuration-chart scope, scientific-registry scope, library documentation, and BORG-014 naming contract. Removed the accepted proposal from brainstorming. Mathematical A1/A2/A3 definitions and analytical `memberId` fields remain class identifiers; in particular, the registry's measured five-coordinate A3 slice is not silently reassigned to A3.0. A1.0/A3.0 retain indexed frequencies $(0.25,0.5,0.75)$, distinct from their equal-frequency `.1` examples.
+- Preserved source specifications, sealed-record bytes, source IDs, record URLs, hash pins, exact saved selections, classifications, and historical evidence. No geometry, solver, oracle, score, or source-generation change is part of this alias migration. Claim grade: software naming and navigation behavior, not scientific validation. Falsifier: a saved selection opens different bytes, an old full label becomes unsearchable, a current example table uses an unsuffixed label, or a class-wide result is attributed to one `.0` record.
+
+Plainly: all three examples remain the same assemblies with the same motion. Their names now distinguish them from the reusable geometry classes.
+
+### 2026-08-30 - Selector Audit Expanded to Complete Catalog
+
+- Added SD3, F5, F6c, and F6b to [the seven-dimension assignment table](selector-assignment-audit.md), bringing coverage to all twenty-four current Borg catalog records. F6c is assigned Breather; F6b is assigned Non-breather and Circular paths. Missing assignments remain explicit: two breathing, fifteen nesting, three shape, and twenty-four speed-policy cells. The earlier spherical-coordinate finding remains scoped to the twenty A/B/C sources.
+- Updated BORG-014 and the library documentation link. No app logic, source geometry, sealed record, or operator classification changed. The proposed A1.0/A2.0/A3.0 aliases remain discussion-scoped and unimplemented.
+- Verification: a read-only Node comparison matched all twenty-four table labels and every selector column against the current catalog, descriptor, and hash-pinned assignments; priority-ranking validation and `git diff --check` pass. Claim grade: measured documentation coverage and software-output agreement, not independent scientific validation. Falsifier: a catalog record is absent from the table or any cell differs from its current descriptor assignment.
+
+Plainly: the table now includes every record already available in Borg, while retaining visible gaps where the app has not assigned a property.
+
 ### 2026-08-30 - Selector Menu Cleanup and Individual-Geometry Audit
 
 - Applied the operator's menu changes: `1D` labels the line/point bucket; `Unavailable` options are removed; shape retains `Unclassified`. `Any` still includes unassigned records, and selected-record details render `Not assigned`. The internal descriptor values remain unchanged and never become false. Saved browse links drop withdrawn choices without retargeting their selected record/hash; unassigned group previews remain counted but cannot recreate a removed menu option.

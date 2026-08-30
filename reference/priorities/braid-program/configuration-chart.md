@@ -68,7 +68,7 @@ Every Family-A row also carries the prescribed flattening coordinate $\lambda_A\
 | `A3.3` | `T6` | $R_a,h_a,\rho_a$, frequency scale $f$, $\phi_a$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A3 relations; indexed frequency ratio $4{:}2{:}1$ |
 | `A3.4` | `T6` | $R_a,h_a,\rho_a$, frequency scale $f$, $\phi_a$, $\lambda_A$, $s_{\mathrm{grp}}$, and source-declared circulation | A3 relations; indexed frequency ratio $3{:}2{:}1$ |
 
-Plainly: the Family-A suffixes restrict coordinates inside A1 or A3. They do not replace those parent charts or establish that the prescribed flattening path is retained.
+Plainly: the `.1`–`.4` Family-A suffixes restrict coordinates inside A1 or A3. They do not replace those mathematical charts or establish that the prescribed flattening path is retained. The separate catalog labels A1.0, A2.0, and A3.0 identify concrete examples of these charts, not additional chart definitions.
 
 Every Family-B row carries one common midpoint, one common oriented axis, one common frequency, one common circulation sense, three persistent neutral-binary identities, and the exact fixed-coordinate path equations of B1.
 

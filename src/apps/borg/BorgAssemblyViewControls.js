@@ -55,8 +55,10 @@ export function createBorgAssemblyViewControls({
       [prescribedGeometry ? "Geometry source" : "Engine", `${presentation.provenance.engineId} ${presentation.provenance.engineVersion}`],
       ...(taxonomy ? [
         ["Braid family", taxonomy.familyLabel],
-        ["Candidate", taxonomy.displayLabel],
-        ["Member definition", `${taxonomy.memberId} — ${taxonomy.memberLabel}`],
+        ["Candidate", presentation.catalogLabel ?? taxonomy.displayLabel],
+        ["Geometry class", `${taxonomy.memberId} — ${taxonomy.memberLabel}`],
+        ...(presentation.catalogLabel && presentation.catalogLabel !== taxonomy.displayLabel
+          ? [["Recorded label", taxonomy.displayLabel]] : []),
         ...(taxonomy.instantiationLabel ? [["Instantiation", taxonomy.instantiationLabel]] : []),
         ["Canon source", taxonomy.canonSource],
       ] : []),

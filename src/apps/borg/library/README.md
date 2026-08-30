@@ -12,7 +12,9 @@ Try `Architrinos: 8` to see the current breather and non-breather together, or `
 
 Try `Braids in assembly: 2` plus `Nesting: Nested` for C5/C6, or two braids plus the spindle shape for C1–C4. The braid-count selector always offers 1, 2, and 3; three currently returns no records.
 
-The menus omit `Unavailable`; `Any` includes records whose classification is missing, while a chosen value includes only confirmed matches. Shape retains `Unclassified`. Dimensions uses `1D` for the combined line/point bucket. Record details preserve missing values as `Not assigned`. Withdrawn choices in old browse links reset to `Any` without changing the selected record pin. See [the individual A/B/C assignment audit](../../../../reference/priorities/app-borg/selector-assignment-audit.md) for all seven dimensions and the unassigned spherical candidates.
+The menus omit `Unavailable`; `Any` includes records whose classification is missing, while a chosen value includes only confirmed matches. Shape retains `Unclassified`. Dimensions uses `1D` for the combined line/point bucket. Record details preserve missing values as `Not assigned`. Withdrawn choices in old browse links reset to `Any` without changing the selected record pin. See [the complete catalog assignment audit](../../../../reference/priorities/app-borg/selector-assignment-audit.md) for all seven dimensions and the unassigned spherical candidates.
+
+The concrete examples use A1.0, A2.0, and A3.0, as owned by the shared Borg catalog. Their old recorded labels remain searchable aliases; record IDs, URLs, byte hashes, and saved selections are unchanged. Borg's inspector distinguishes the current example name from its A1/A2/A3 geometry class and recorded label. Source specifications, analytical class keys, and historical evidence are not relabeled as if a new record had been emitted.
 
 ## Responsibilities
 

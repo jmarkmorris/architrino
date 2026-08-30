@@ -1,20 +1,20 @@
 # Borg Selector Assignment Audit
 
-Snapshot: 2026-08-30. Scope: the twenty individual A/B/C prescribed representatives currently in [the Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js), not the family headings or every parameter value admitted by the taxonomy. A1 and A3 appear because each has its own concrete general representative; B1 has no additional standalone record beyond B1.1–B1.3. SD3 and the F-series are outside this requested table.
+Snapshot: 2026-08-30. Scope: all twenty-four prescribed representatives currently in [the Borg catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js): twenty A/B/C records plus SD3, F5, F6c, and F6b. These are concrete records, not family headings or every parameter value admitted by the taxonomy. A1.0, A2.0, and A3.0 identify concrete examples, not their parameterized geometry classes; B1 has no additional standalone record beyond B1.1–B1.3. Catalog coverage does not imply that every assembly discussed elsewhere has a display record.
 
-The table reports actual assignments from [the descriptor](../../../src/apps/borg/library/BorgLibraryDescriptors.mjs) and [operator classifications](library-classifications.v1.json). `—` means no current assignment, not false. The gap analysis below distinguishes missing source declarations from derivable geometry whose browse classification is not yet implemented or agreed.
+The table reports actual assignments from [the descriptor](../../../src/apps/borg/library/BorgLibraryDescriptors.mjs) and [operator classifications](library-classifications.v1.json). `—` means no current assignment, not false; shape uses the menu's `Unclassified` label for the same missing-assignment state. The gap analysis below distinguishes missing source declarations from derivable geometry whose browse classification is not yet implemented or agreed.
 
 ## Current Assignments
 
 | Geometry | Architrinos | Braids | Breathing | Nesting | Dimensions | Shape | Speed policy |
 | --- | ---: | ---: | --- | --- | --- | --- | --- |
-| A1 — coincident endpoint orbits | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
+| A1.0 — coincident endpoint orbits | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
 | A1.1 — equal frequency | 6 | 1 | Non-breather | Nested | 3D | Circular paths | — |
 | A1.2 — equal frequency, equal radius | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
 | A1.3 — 4:2:1 frequency | 6 | 1 | Non-breather | Nested | 3D | Circular paths | — |
 | A1.4 — 3:2:1 frequency | 6 | 1 | Non-breather | Nested | 3D | Circular paths | — |
-| A2 — fully symmetric | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
-| A3 — general | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
+| A2.0 — fully symmetric | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
+| A3.0 — general | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
 | A3.1 — equal frequency | 6 | 1 | Non-breather | Nested | 3D | Circular paths | — |
 | A3.2 — equal frequency, equal radius | 6 | 1 | Non-breather | — | 3D | Circular paths | — |
 | A3.3 — 4:2:1 frequency | 6 | 1 | Non-breather | Nested | 3D | Circular paths | — |
@@ -28,23 +28,32 @@ The table reports actual assignments from [the descriptor](../../../src/apps/bor
 | C4 — counter-rotating B1 pair | 12 | 2 | Non-breather | — | 3D | Circular paths; spindle | — |
 | C5 — co-rotating B1.3 pair | 12 | 2 | Non-breather | Nested | 3D | Circular paths | — |
 | C6 — counter-rotating B1.3 pair | 12 | 2 | Non-breather | Nested | 3D | Circular paths | — |
+| SD3 — centered five-coordinate representative | 6 | 1 | — | — | 3D | Unclassified | — |
+| F5 — phase-varying prescribed display representative | 12 | 1 | — | — | 3D | Unclassified | — |
+| F6c — small asymmetric counter-breathing representative | 8 | 1 | Breather | — | 3D | Unclassified | — |
+| F6b — scoped-negative circular realization | 8 | 1 | Non-breather | — | 3D | Circular paths | — |
 
-Plainly: every listed representative has assigned inventory, braid count, breathing, dimensions, and at least one shape tag. Eleven nesting cells and all twenty speed-policy cells are unassigned. A circular-path tag does not rule out an additional spherical or spindle tag.
+Plainly: all twenty-four representatives have assigned inventory, braid count, and dimensions. Two breathing cells, fifteen nesting cells, three shape cells, and all twenty-four speed-policy cells are unassigned. A circular-path tag does not rule out an additional spherical or spindle tag.
 
 Counts are read from source inventory and component memberships. The accepted browse count is two for all C records, including C1/C2's source index subsets; it does not assert two independently bound top-level braids. Dimensionality is the affine span of complete recorded paths, not the dimension of a single instantaneous snapshot. C5/C6 are spatial assemblies of separated planar components, so they are 3D even though each B1.3 component is planar. Breathing and circular-path assignments consume the declared fixed-center circular prescriptions. Nested and spindle positives are operator assignments, not independent scientific results.
 
+The added records use the same descriptor, with no name-based exceptions. F6c's declared radial/axial harmonics supply its breathing assignment; F6b's fixed-center circular paths supply its non-breathing and circular assignments. SD3's individual straight paths collectively span 3D, so the assembly is not assigned to the 1D bucket. F5 has twelve architrinos but one source-declared component group, hence one braid in this browse table. F6b remains a scoped-negative prescribed display record, not an accepted physical realization.
+
+Plainly: the table describes each exact recorded example. Particle count alone does not determine braid count, and inclusion in the catalog does not establish that an assembly works physically.
+
 ## Which Gaps Are Derivable?
 
-- **No declared speed policy:** all twenty. Their source specifications carry `constraints.speedGuard.policy: preserve-and-report`, a migration check that reports the prescribed speed bound. [Its implementation](../../../src/prescribed-geometry/PrescribedAssemblySpec.mjs) does not reject over-field-speed records in that mode or impose a dynamical speed cap. It is not sufficient to assign either a capped or an uncapped model/run policy. These cells need an explicit policy declaration, not inference from observed speed.
-- **Equal-radius, therefore not nested under the stated radius criterion:** A1.2, A2, A3.2. Their three binary layer radii are equal. Their `Not nested` browse assignments are still absent; this is an implementation/assignment gap, not missing radius data.
-- **Unequal radii, but broader nesting membership unresolved:** A1, A3, B1.1, B1.2, C1, C2, C3, C4. Their source radii satisfy the literal different-radius criterion, but they were not in the operator's confirmed nested list. C1/C2 also have distinct binary midpoints, so a future definition requiring concentricity would distinguish them. Their geometry is available; the browse rule needs a decision.
-- **Missing spherical tag despite common-radius geometry:** A1.2, A2, A3.2 are the three source-supported common-spherical-surface candidates, as derived below. The `Spherical distribution` assignment remains absent because its meaning has not yet been frozen.
+- **No declared model/run speed policy:** all twenty-four. The twenty A/B/C source specifications carry `constraints.speedGuard.policy: preserve-and-report`, a migration check that reports the prescribed speed bound. [Its implementation](../../../src/prescribed-geometry/PrescribedAssemblySpec.mjs) does not reject over-field-speed records in that mode or impose a dynamical speed cap. The SD3, F5, F6c, and F6b source specifications instead use `reject` to restrict admissible prescribed histories; this still does not declare the model/run policy consumed by the selector. These cells need an explicit policy declaration, not inference from observed speed or a source-validation guard.
+- **Equal-radius, therefore not nested under the stated radius criterion:** A1.2, A2.0, A3.2. Their three binary layer radii are equal. Their `Not nested` browse assignments are still absent; this is an implementation/assignment gap, not missing radius data.
+- **Unequal radii, but broader nesting membership unresolved:** A1.0, A3.0, B1.1, B1.2, C1, C2, C3, C4. Their source radii satisfy the literal different-radius criterion, but they were not in the operator's confirmed nested list. C1/C2 also have distinct binary midpoints, so a future definition requiring concentricity would distinguish them. Their geometry is available; the browse rule needs a decision.
+- **Missing spherical tag despite common-radius geometry:** A1.2, A2.0, A3.2 are the three source-supported common-spherical-surface candidates, as derived below. The `Spherical distribution` assignment remains absent because its meaning has not yet been frozen.
+- **Additional unassigned properties:** SD3 and F5 have no breathing assignment because the current descriptor does not classify their linear and phase-varying prescriptions. SD3, F5, and F6c have no shape assignment; all four added records have no nesting assignment. These are current classification gaps, not negative results. The A/B/C radius audit below does not classify these additional geometries.
 
 Plainly: missing assignment does not always mean missing knowledge. Some gaps need a definition, some need an implementation, and the speed-policy gap needs additional source information.
 
 ## Spherical Geometry Finding
 
-The current [A1.2 source](../braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json), [A2 source](../braid-program/configurations/family-a-a2-fully-symmetric.v2.json), and [A3.2 source](../braid-program/configurations/family-a-a3-2-equal-frequency-equal-radius.v2.json) each declare a common braid center and common binary layer radius $R=0.32$. Their axial half-separations are respectively $(0,0,0)$, $(0.12,0.12,0.12)$, and $(0.08,0.16,0.24)$; each transverse radius obeys $\rho_a^2=R^2-h_a^2$. All three current representatives use the mutually orthogonal near-rest axes from [the taxonomy's individual-binary and navigation tables](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md#individual-binary-master-table).
+The current [A1.2 source](../braid-program/configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json), [A2.0 source](../braid-program/configurations/family-a-a2-fully-symmetric.v2.json), and [A3.2 source](../braid-program/configurations/family-a-a3-2-equal-frequency-equal-radius.v2.json) each declare a common braid center and common binary layer radius $R=0.32$. Their axial half-separations are respectively $(0,0,0)$, $(0.12,0.12,0.12)$, and $(0.08,0.16,0.24)$; each transverse radius obeys $\rho_a^2=R^2-h_a^2$. All three current representatives use the mutually orthogonal near-rest axes from [the taxonomy's individual-binary and navigation tables](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md#individual-binary-master-table).
 
 For a declared source path write $\mathbf x(T)-\mathbf c=\mathbf d+\mathbf u\cos\theta(T)+\mathbf v\sin\theta(T)$, where $\mathbf c$ is the braid center, $\mathbf d$ the orbit-center offset, and $\mathbf u,\mathbf v$ the two radius vectors. These sources have mutually perpendicular $\mathbf d,\mathbf u,\mathbf v$ and equal lengths $\lVert\mathbf u\rVert=\lVert\mathbf v\rVert=\rho_a$. Therefore
 
@@ -56,7 +65,7 @@ $$
 
 Plainly: each architrino remains the same distance from the common center. The circular paths lie on one spherical surface even when their individual circle centers are offset. This is a derived property of the declared analytical paths; sampled cubic replay remains at its recorded interpolation accuracy.
 
-A read-only arithmetic audit of all twenty v2 source specifications, without importing the production descriptor or worldline evaluator, checked the dot products above and the range of $\sqrt{\lVert\mathbf d\rVert^2+\lVert\mathbf u\rVert^2}$ across constituents. With a $10^{-12}$ source-unit screening tolerance and $c_f=1$, exactly A1.2, A2, and A3.2 had a common radius, each 0.32; their computed radius spread and orthogonality residual were zero in that evaluation. This is a bounded source-coordinate check, not an independent recalculation of recorded histories or a physical acceptance result. Falsifier: a source vector violates the displayed orthogonality/equal-length conditions, a constituent has a different radius, or the table's record is no longer generated from the cited source specification.
+A read-only arithmetic audit of the twenty A/B/C v2 source specifications, without importing the production descriptor or worldline evaluator, checked the dot products above and the range of $\sqrt{\lVert\mathbf d\rVert^2+\lVert\mathbf u\rVert^2}$ across constituents. With a $10^{-12}$ source-unit screening tolerance and $c_f=1$, exactly A1.2, A2.0, and A3.2 had a common radius, each 0.32; their computed radius spread and orthogonality residual were zero in that evaluation. This is a bounded source-coordinate check, not an independent recalculation of recorded histories or a physical acceptance result. Falsifier: a source vector violates the displayed orthogonality/equal-length conditions, a constituent has a different radius, or the table's record is no longer generated from the cited source specification.
 
 Recommended definition for discussion: a spherical browse tag means spatial paths lying on a common spherical surface about a source-declared center. It would include these three representatives while retaining their circular-path tags. It would not assert uniform surface coverage, a filled ball, a spherical instantaneous convex hull, or stability. If instead the desired tag means a roughly round multi-radius envelope, the other orthogonal Family-A representatives need a separate envelope criterion; the single-surface finding alone neither assigns nor excludes that broader category. A preview's enclosing sphere is never evidence for either definition.
 

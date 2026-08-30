@@ -10,6 +10,7 @@ import { BORG_BRAID_RECORD_CATALOG } from "../src/apps/borg/BorgBraidRecordCatal
 import { describeBounds, recordControlPoints, describeLibraryRecord, createLibraryPreview } from "../src/apps/borg/library/BorgLibraryDescriptors.mjs";
 import { queryLibraryRows, isLibrarySelectorValue, normalizeLibraryBrowseParams } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 import { bootBorgApp } from "../src/apps/borg/BorgBootstrap.js";
+import { createBorgAssemblyViewSession, createBorgAssemblyViewPresentation } from "../src/apps/borg/BorgAssemblyViewSession.js";
 import { describeBraidComposition, validateLibraryClassifications, recordClassification } from "../src/apps/borg/library/BorgLibraryComposition.mjs";
 import { LIBRARY_FACETS } from "../src/apps/borg/library/BorgLibraryQuery.mjs";
 
@@ -142,6 +143,45 @@ test("seed provider covers all 24 records, paginates deterministically, and veri
   assert.equal((await request(service, `/api/borg/library?count=8&cursor=${first.body.nextCursor}`)).status, 400);
   assert.equal((await request(service, "/api/borg/library", "POST")).status, 405);
   assert.equal((await request(service, "/not-the-library")).handled, false);
+});
+
+test("dot-zero aliases preserve sealed records, source classes, old-label search, and exact selection", async () => {
+  const service = createBorgLibraryService({ repoRoot });
+  const expected = [
+    ["family-a-a1-general-v1", "A1.0 — coincident endpoint orbits", "A1 — coincident endpoint orbits", "A1"],
+    ["family-a-a2-fully-symmetric-v1", "A2.0 — fully symmetric", "A2 — fully symmetric", "A2"],
+    ["family-a-a3-general-v1", "A3.0 — general", "A3 — general", "A3"],
+  ];
+  for (const [id, label, oldLabel, geometryClass] of expected) {
+    const catalogEntry = BORG_BRAID_RECORD_CATALOG.entries.find((row) => row.id === id);
+    const bytes = await readFile(new URL(`../${catalogEntry.recordUrl}`, import.meta.url));
+    const digest = createHash("sha256").update(bytes).digest("hex");
+    const raw = JSON.parse(bytes);
+    const original = JSON.stringify(raw);
+    const session = createBorgAssemblyViewSession([raw]);
+    const presentation = createBorgAssemblyViewPresentation(session.selected);
+    assert.equal(presentation.catalogLabel, label);
+    assert.equal(presentation.rawRecord, raw);
+    assert.equal(presentation.provenance.prescribedGeometry.taxonomy.memberId, geometryClass);
+    assert.equal(presentation.provenance.prescribedGeometry.taxonomy.displayLabel, oldLabel);
+    for (const query of [label, oldLabel, label.split(" —")[0]]) {
+      const result = await request(service, `/api/borg/library?q=${encodeURIComponent(query)}`);
+      assert.equal(result.status, 200);
+      assert.equal(result.body.total, 1);
+      assert.equal(result.body.results[0].id, id);
+      assert.equal(result.body.results[0].alias, label);
+      assert.equal(result.body.results[0].recordSha256, digest);
+      assert.ok(result.body.results[0].aliases.includes(oldLabel));
+    }
+    const preview = await request(service, `/api/borg/library/preview?id=${id}&sha256=${digest}`);
+    assert.equal(preview.status, 200);
+    assert.equal(preview.body.summary.alias, label);
+    assert.equal(preview.body.summary.recordUrl, catalogEntry.recordUrl);
+    assert.equal(preview.body.preview.recordSha256, digest);
+    assert.equal(JSON.stringify(raw), original);
+  }
+  const unrelated = createBorgAssemblyViewSession([linearRecord()]);
+  assert.equal(createBorgAssemblyViewPresentation(unrelated.selected).catalogLabel, null);
 });
 
 test("operator-confirmed nesting and spindle sets match the requested configurations exactly", async () => {

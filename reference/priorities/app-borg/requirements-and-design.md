@@ -222,7 +222,15 @@ Each positive assignment binds the full sealed-record digest rather than its ali
 
 Plainly: the number comes from declared membership, not from how crowded a sphere looks. The selector still offers three so the empty result is explicit and the next source-declared three-braid record needs no interface change.
 
-Open definition question: the literal different-layer-radius criterion also holds for A1, A3, B1.1, B1.2, and C1–C4 in the current records. The operator must resolve whether the nested category should include those records or remain restricted by an additional condition. Until then, the demonstrator applies only the nine confirmed positives and does not label unlisted records non-nested. Any later radius evaluator must use the source binary layer radius, not transverse orbit radius; unequal transverse radii alone do not establish unequal layer radii.
+Open definition question: the literal different-layer-radius criterion also holds for A1.0, A3.0, B1.1, B1.2, and C1–C4 in the current records. The operator must resolve whether the nested category should include those records or remain restricted by an additional condition. Until then, the demonstrator applies only the nine confirmed positives and does not label unlisted records non-nested. Any later radius evaluator must use the source binary layer radius, not transverse orbit radius; unequal transverse radii alone do not establish unequal layer radii.
+
+### Concrete Example Names
+
+The operator-approved browse aliases are A1.0, A2.0, and A3.0 for the existing `family-a-a1-general-v1`, `family-a-a2-fully-symmetric-v1`, and `family-a-a3-general-v1` records. [The catalog](../../../src/apps/borg/BorgBraidRecordCatalog.js) owns their current labels across Borg selection, record inspection, and the Assembly Library. These are peer examples, not parent entries. A1.0 and A3.0 retain their indexed $1:2:3$ frequencies, distinct from the equal-frequency `.1` examples; A2.0 supplies the consistent example suffix for the symmetric record.
+
+The alias change preserves specification files, sealed-record bytes, source IDs, URLs, hashes, coordinate-class fields, and saved exact selections. The library searches retained source labels as aliases. Borg distinguishes the current candidate name, its geometry class, and the label recorded in the sealed source. The mathematical A1/A2/A3 definitions, analytical registry `memberId` fields, and historical evidence keep their class or provenance meaning; the rename does not transfer class-wide scores or another measured slice's evidence to a `.0` example. New concrete-example tables use the `.0` names, while class tables explicitly state their scope.
+
+Plainly: the name changes, not the assembly or its evidence. Old links still open the same motion, and the source remains inspectable under its original recorded label.
 
 ## Path-History Retention
 

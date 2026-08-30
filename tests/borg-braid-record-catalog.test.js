@@ -45,13 +45,13 @@ test("Borg braid catalog is immutable record routing data with no geometry or ph
   assert.deepEqual(
     BORG_BRAID_RECORD_CATALOG.entries.map((entry) => entry.label),
     [
-      "A1 — coincident endpoint orbits",
+      "A1.0 — coincident endpoint orbits",
       "A1.1 — equal frequency",
       "A1.2 — equal frequency, equal radius",
       "A1.3 — 4:2:1 frequency",
       "A1.4 — 3:2:1 frequency",
-      "A2 — fully symmetric",
-      "A3 — general",
+      "A2.0 — fully symmetric",
+      "A3.0 — general",
       "A3.1 — equal frequency",
       "A3.2 — equal frequency, equal radius",
       "A3.3 — 4:2:1 frequency",

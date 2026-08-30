@@ -386,17 +386,21 @@ The all-axial boundary is not a distinct internally moving member. Its coordinat
 
 Family and member names are optional aliases. The Description column may aid navigation, but it does not define the geometry and must not introduce a characteristic absent from the first three master tables.
 
+This navigation table lists concrete record examples. A1.0, A2.0, and A3.0 are examples of the A1, A2, and A3 geometry classes defined above; `.0` does not denote a parent or a new parameterized class. A1.0 and A3.0 select indexed frequencies $(0.25,0.5,0.75)$, a $1:2:3$ ratio, while their `.1` examples use equal frequencies. A2.0 selects one fully symmetric geometry. Each name resolves to the complete recorded coordinates and motion, not to every configuration admitted by its class.
+
+Plainly: the examples are peers for browsing. The reusable mathematical definitions remain available without requiring family-tree navigation.
+
 Every Family-A Borg depiction in this table selects the near-rest endpoint $\lambda_A=0$. Its three source-defined binary axes are the mutually orthogonal $x$, $y$, and $z$ axes, so the corresponding binary orbit planes are yz, xz, and xy. The wider taxonomy retains the prescribed interpolation through $0 < \lambda_A < 1$ and the coincident-axis endpoint at $\lambda_A=1$.
 
-| Member ID | Family name | Member name | Geometry record | Borg depiction | Description |
+| Example ID | Family name | Member name | Geometry record | Borg depiction | Description |
 | --- | --- | --- | --- | --- | --- |
-| `A1` | Noether core | Coincident endpoint orbits | `family-a-a1-general-v1` | `A1 — coincident endpoint orbits` | Zero-axial-offset Family-A member whose two endpoint paths share one geometric circle within each binary. |
+| `A1.0` | Noether core | Coincident endpoint orbits | `family-a-a1-general-v1` | `A1.0 — coincident endpoint orbits` | Zero-axial-offset A1 example with indexed frequency ratio $1:2:3$; the two endpoint paths share one geometric circle within each binary. |
 | `A1.1` | Noether core | Equal-frequency | `family-a-a1-1-equal-frequency-v1` | `A1.1 — equal frequency` | A1 constrained to one common binary frequency while retaining independently assignable radii. |
 | `A1.2` | Noether core | Equal-frequency equal-radius | `family-a-a1-2-equal-frequency-equal-radius-v1` | `A1.2 — equal frequency, equal radius` | A1 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
 | `A1.3` | Noether core | 4:2:1-frequency | `family-a-a1-3-4-2-1-frequency-v1` | `A1.3 — 4:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |
 | `A1.4` | Noether core | 3:2:1-frequency | `family-a-a1-4-3-2-1-frequency-v1` | `A1.4 — 3:2:1 frequency` | A1 constrained to the indexed frequency ratio $f_1:f_2:f_3=3:2:1$; the ratio does not order the radii. |
-| `A2` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2 — fully symmetric` | Three equivalent binaries with equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
-| `A3` | Noether core | General axial decomposition | `family-a-a3-general-v1` | `A3 — general` | General Family-A member with independently assignable positive radii, frequencies, phases, and axial/transverse decompositions. |
+| `A2.0` | Noether core | Fully symmetric | `family-a-a2-fully-symmetric-v1` | `A2.0 — fully symmetric` | A2 example with three equivalent binaries, equal geometry, equal frequencies, $120^\circ$ phase spacing, and one circulation sense. |
+| `A3.0` | Noether core | General axial decomposition | `family-a-a3-general-v1` | `A3.0 — general` | A3 example with positive axial offsets and indexed frequency ratio $1:2:3$; its remaining coordinates are fixed by the record. |
 | `A3.1` | Noether core | Equal-frequency axial decomposition | `family-a-a3-1-equal-frequency-v1` | `A3.1 — equal frequency` | A3 constrained to one common binary frequency while retaining independently assignable radii and decompositions. |
 | `A3.2` | Noether core | Equal-frequency equal-radius axial decomposition | `family-a-a3-2-equal-frequency-equal-radius-v1` | `A3.2 — equal frequency, equal radius` | A3 constrained to equal radii, equal frequencies, and phases separated by $120^\circ$. |
 | `A3.3` | Noether core | 4:2:1-frequency axial decomposition | `family-a-a3-3-4-2-1-frequency-v1` | `A3.3 — 4:2:1 frequency` | A3 constrained to the indexed frequency ratio $f_1:f_2:f_3=4:2:1$; the ratio does not order the radii. |

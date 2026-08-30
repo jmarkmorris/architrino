@@ -247,6 +247,8 @@ Plainly: B1.3 now contains one independently checked circular path whose Master-
 
 The [configuration chart](configuration-chart.md) owns the admitted coordinates and scope. The [Borg sign-off ledger](borg-candidate-signoff.md) owns prescribed-display review, and the [work queue](work-queue.md) owns executable campaign state.
 
+The short names A1, A2, and A3 in this scientific registry denote parameterized geometry classes. Their concrete Borg catalog examples are A1.0, A2.0, and A3.0 respectively. These aliases change no class-level score or evidence scope: in particular, the measured five-coordinate A3 slice below is not the A3.0 prescribed display record. [The navigation table](../../../content/markdown/aaa/noether-braid/braid-taxonomy.md#naming-and-navigation-master-table) maps example names to stable record identities.
+
 | Short name | Short description | Program and geometry status | Dynamical status | All metrics | Available metrics | Next step, if any |
 | --- | --- | --- | --- | ---: | ---: | --- |
 | `A1` | Three neutral binaries with a common braid center and zero axial half-separation; each pair uses one center-crossing circle. | Admitted taxonomy; Borg signed-off. | No retained braid; `H1/H2 P[D]` on the frozen prescribed history; `H3 U` outside the current sub-field method. | 0.00% | — | Validate a root method for the unchanged history, or separately freeze a slower history and reconfirm H2 to reuse the sub-field method. |

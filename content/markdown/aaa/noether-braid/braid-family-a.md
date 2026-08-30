@@ -4,6 +4,8 @@ Family A contains prescribed one-braid geometries whose three binary axes are mu
 
 Family A is a geometry-and-motion definition. It does not establish that an A1, A2, or A3 record is generated, retained, or stable under the EOM solver. The realization-independent retention burden is stated in [Braid Recovery Requirements](braid-recovery-requirements.md).
 
+The concrete catalog examples A1.0, A2.0, and A3.0 instantiate the A1, A2, and A3 definitions respectively. The `.0` suffix identifies an example, not a parent class or an additional defining constraint. Their record identities and prescribed paths are listed in the [naming and navigation table](braid-taxonomy.md#naming-and-navigation-master-table); statements about the full A1, A2, or A3 class do not follow from one example's assigned properties.
+
 ## Shared Family-A Geometry
 
 Every Family-A member is one complete Noether braid composed of three neutral binaries. Each binary contains one electrino and one positrino. The three binary midpoints coincide with the braid center. The binaries share a braid-level phase zero, while radius, axial half-separation, transverse orbit radius, frequency, phase, and circulation are binary coordinates.

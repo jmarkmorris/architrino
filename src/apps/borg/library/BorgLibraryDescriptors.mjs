@@ -1,7 +1,7 @@
 import { createEomHistoryDataset } from "../../shared/EomHistoryDataset.mjs";
 import { describeBraidComposition, recordClassification } from "./BorgLibraryComposition.mjs";
 
-export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v2";
+export const LIBRARY_DESCRIPTOR_VERSION = "borg-record-facets.v3";
 const norm = (v) => Math.hypot(...v);
 const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 const subtract = (a, b) => a.map((v, i) => v - b[i]);
@@ -77,6 +77,8 @@ export function describeLibraryRecord(record, catalogEntry, recordSha256, classi
   const label = catalogEntry.label.replace(/^[^—]+—\s*/, "");
   const summary = {
     id: catalogEntry.id, sourceId: record.sourceId, label, alias: catalogEntry.label,
+    aliases: [...new Set([record.title, prescribed?.taxonomy?.displayLabel, coordinates?.identity?.displayLabel]
+      .filter((value) => typeof value === "string" && value.length > 0 && value !== catalogEntry.label))],
     recordUrl: catalogEntry.recordUrl, recordSha256, facets, bounds,
     descriptorVersion: LIBRARY_DESCRIPTOR_VERSION, window: dataset.window,
     classificationRevision: classifications?.revision ?? null, classificationSource: classifications?.source ?? null,

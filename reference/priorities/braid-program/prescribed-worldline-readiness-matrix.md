@@ -15,15 +15,17 @@ Plainly: every registry row receives an explicit outcome. A row becomes drawable
 
 ## Registry And Source Matrix
 
+Concrete display rows use the current A1.0, A2.0, and A3.0 example aliases. Their source files and frozen migration evidence retain the original A1/A2/A3 labels and geometry-class fields; no readiness grade or source identity changes with these aliases.
+
 | Candidate | Class | Current executable source or exact owner | Migration or readiness disposition |
 | --- | ---: | --- | --- |
-| `A1` | 1 | `configurations/family-a-a1-general.v2.json` | Migrated with measured preservation-only parity. |
+| `A1.0` | 1 | `configurations/family-a-a1-general.v2.json` | Migrated with measured preservation-only parity. |
 | `A1.1` | 1 | `configurations/family-a-a1-1-equal-frequency.v2.json` | Six explicit individual worldlines; migration parity is measured separately and does not establish dynamics. |
 | `A1.2` | 1 | `configurations/family-a-a1-2-equal-frequency-equal-radius.v2.json` | Migrated with measured preservation-only parity. |
 | `A1.3` | 1 | `configurations/family-a-a1-3-4-2-1-frequency.v2.json` | Migrated with measured preservation-only parity. |
 | `A1.4` | 1 | `configurations/family-a-a1-4-3-2-1-frequency.v2.json` | Migrated with measured preservation-only parity. |
-| `A2` | 1 | `configurations/family-a-a2-fully-symmetric.v2.json` | Migrated with measured preservation-only parity. |
-| `A3` | 1 | `configurations/family-a-a3-general.v2.json` | Migrated with measured preservation-only parity. |
+| `A2.0` | 1 | `configurations/family-a-a2-fully-symmetric.v2.json` | Migrated with measured preservation-only parity. |
+| `A3.0` | 1 | `configurations/family-a-a3-general.v2.json` | Migrated with measured preservation-only parity. |
 | `A3.1` | 1 | `configurations/family-a-a3-1-equal-frequency.v2.json` | Migrated with measured preservation-only parity. |
 | `A3.2` | 1 | `configurations/family-a-a3-2-equal-frequency-equal-radius.v2.json` | Migrated with measured preservation-only parity. |
 | `A3.3` | 1 | `configurations/family-a-a3-3-4-2-1-frequency.v2.json` | Migrated with measured preservation-only parity. |

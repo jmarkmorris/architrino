@@ -8,4 +8,4 @@ Accepted implementation work belongs in [work-queue.md](work-queue.md), strategi
 
 ## Unresolved Ideas
 
-- None currently recorded.
+Further removal of family-led organization remains part of the broader registry design. Reusable coordinate constraints can support generation and explanation without becoming mandatory GUI parents. The accepted A1.0/A2.0/A3.0 example-name rule is maintained in [the naming contract](requirements-and-design.md#concrete-example-names), not as a provisional proposal here.

@@ -5,7 +5,7 @@ const ENTRY_FIELDS = Object.freeze(["id", "label", "recordUrl", "familyId", "fam
 export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   {
     id: "family-a-a1-general-v1",
-    label: "A1 — coincident endpoint orbits",
+    label: "A1.0 — coincident endpoint orbits",
     familyId: "A",
     familyLabel: "Family A",
     recordUrl: "content/assets/borg/records/family-a-a1-general.assembly-view-record.v0.json",
@@ -40,14 +40,14 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
   },
   {
     id: "family-a-a2-fully-symmetric-v1",
-    label: "A2 — fully symmetric",
+    label: "A2.0 — fully symmetric",
     familyId: "A",
     familyLabel: "Family A",
     recordUrl: "content/assets/borg/records/family-a-a2-fully-symmetric.assembly-view-record.v0.json",
   },
   {
     id: "family-a-a3-general-v1",
-    label: "A3 — general",
+    label: "A3.0 — general",
     familyId: "A",
     familyLabel: "Family A",
     recordUrl: "content/assets/borg/records/family-a-a3-general.assembly-view-record.v0.json",
@@ -185,6 +185,12 @@ export const BORG_BRAID_RECORD_CATALOG = createBorgBraidRecordCatalog([
       "content/assets/borg/records/f6b-scoped-negative-circular.assembly-view-record.v0.json",
   },
 ]);
+
+// Labels are navigation aliases, not sealed-record or geometry-class identity.
+// Keep one label owner for the library, workbench, and catalog-backed reports.
+export function borgBraidRecordLabel(sourceId) {
+  return BORG_BRAID_RECORD_CATALOG.entries.find((entry) => entry.id === sourceId)?.label ?? null;
+}
 
 export function createBorgBraidRecordCatalog(entries) {
   if (!Array.isArray(entries) || entries.length === 0) {
